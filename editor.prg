@@ -3,7 +3,7 @@
 
 function Main()
 
-   local oEditor := HBScrEdit():New( MemoRead( "editor.prg" ), 0, 0, MaxRow(), MaxCol(), .T. )
+   local oEditor := HBSrcEdit():New( MemoRead( "editor.prg" ), 0, 0, MaxRow(), MaxCol(), .T. )
 
    oEditor:SetColor( "W/B,N/BG" )
    oEditor:Display()
@@ -15,7 +15,7 @@ function Main()
 
 return nil   
 
-CREATE CLASS HBScrEdit FROM HBEditor
+CREATE CLASS HBSrcEdit FROM HBEditor
 
    METHOD Display()
    METHOD DisplayLine( nLine )
@@ -23,9 +23,9 @@ CREATE CLASS HBScrEdit FROM HBEditor
 
 ENDCLASS
 
-METHOD Display() CLASS HBScrEdit
+METHOD Display() CLASS HBSrcEdit
 
-   LOCAL nRow, nCount
+   local nRow, nCount
 
    DispBegin()
    nRow = ::nTop
@@ -35,12 +35,12 @@ METHOD Display() CLASS HBScrEdit
    end
    DispEnd()
 
-   RETURN Self
+return Self
 
-METHOD DisplayLine( nLine ) CLASS HBScrEdit
+METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
-   LOCAL n, cLine, cToken := "", cColor := ""
-   local cOperators := "(),;.::=!=():),{})[]){}+=-=*=/=%=^"
+   local n, cLine, cToken := "", cColor := ""
+   local cOperators := "<><=>=(),;.::=!=():),{})[]){}+=++---=*=/=%=^=="
 
    hb_DispOutAt( nLine, ::nLeft,;
                  SubStrPad( cLine := ::GetLine( ::nFirstRow + nLine ),;
@@ -93,7 +93,8 @@ METHOD DisplayLine( nLine ) CLASS HBScrEdit
       cToken = ""
    end
 
-   RETURN Self
+return Self
 
-STATIC FUNCTION SubStrPad( cText, nFrom, nLen )
-   RETURN hb_UPadR( hb_USubStr( cText, nFrom, nLen ), nLen )
+static function SubStrPad( cText, nFrom, nLen )
+   
+return hb_UPadR( hb_USubStr( cText, nFrom, nLen ), nLen )
