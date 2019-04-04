@@ -10,7 +10,9 @@ function Main()
    
    while ( nKey := Inkey( 0 ) ) != K_ESC
       oEditor:Edit( nKey )
-      oEditor:Display()
+      oEditor:DisplayLine( oEditor:Row() - 1 )
+      oEditor:DisplayLine( oEditor:Row() )
+      oEditor:DisplayLine( oEditor:Row() + 1 )
    end
 
 return nil   
