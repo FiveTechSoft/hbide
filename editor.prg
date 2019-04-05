@@ -25,7 +25,7 @@ CREATE CLASS HBSrcEdit FROM HBEditor
 
    DATA   cClrString   INIT "GR+"
    DATA   cClrOperator INIT "R+" 
-   DATA   cClrkeyword  INIT "G+"
+   DATA   cClrKeyword  INIT "G+"
    DATA   cClrSelRow   INIT "N/BG"
    DATA   cClrComment  INIT "RB+"
  
