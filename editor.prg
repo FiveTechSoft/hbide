@@ -25,15 +25,17 @@ CREATE CLASS HBSrcEdit FROM HBEditor
 
    DATA   cClrString   INIT "GR+"
    DATA   cClrOperator INIT "R+" 
-   DATA   cClrKeyword  INIT "G+"
+   DATA   cClrKeyword1 INIT "G+"
+   DATA   cClrKeyword2 INIT "BG+"
    DATA   cClrSelRow   INIT "N/BG"
    DATA   cClrComment  INIT "RB+"
    DATA   cClrNumber   INIT "W+"
  
    DATA   cOperators   INIT "<><=>=(),;.::=!=():),{})[]){}+=++---=*=/=%=^=="
-   DATA   cKeywords    INIT ;
-      "FUNCTION,LOCAL,DO,CASE,OTHERWISE,ENDCASE,IF,ELSE,ENDIF,WHILE," + ;
-      "FOR,NEXT,RETURN,CREATE,FROM,DATA,INIT,METHOD,ENDCLASS"
+   DATA   cKeywords1   INIT ;
+      "FUNCTION,DO,CASE,OTHERWISE,ENDCASE,IF,ELSE,ENDIF,WHILE," + ;
+      "FOR,NEXT,RETURN,CREATE,FROM,DATA,INIT,METHOD,INLINE,ENDCLASS"
+   DATA   cKeywords2   INIT "STATIC,LOCAL,NIL,SELF,SUPER,#INCLUDE"
 
    METHOD Display()
    METHOD DisplayLine( nLine )
@@ -87,7 +89,6 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
                cToken += SubStr( cLine, n++, 1 )
             end
             
-
          case ! SubStr( cLine, n, 1 ) $ " " + cOperators .and. n <= Len( cLine )
             while ! SubStr( cLine, n, 1 ) $ " " + cOperators .and. n <= Len( cLine )
                cToken += SubStr( cLine, n++, 1 )
@@ -109,9 +110,13 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
          case Upper( cToken ) $ cOperators
               cColor = ::cClrOperator
 
-         case Upper( cToken ) $ ::cKeywords .and. Len( cToken ) > 1 .and. ;
+         case Upper( cToken ) $ ::cKeywords1 .and. Len( cToken ) > 1 .and. ;
               ! Upper( cToken ) $ "AT" 
-              cColor = ::cClrKeyword
+              cColor = ::cClrKeyword1
+
+         case Upper( cToken ) $ ::cKeywords2 .and. Len( cToken ) > 1 .and. ;
+              ! Upper( cToken ) $ "AT"
+              cColor = ::cClrKeyword2
 
          otherwise
               cColor = SubStr( ::LineColor( nLine ), 1, At( "/", ::LineColor( nLine ) ) - 1 )
