@@ -103,13 +103,14 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
          case Left( cToken, 2 ) == "//"
               cColor = ::cClrComment
 
-         case Left( cToken, 1 ) == '"'
+         case Left( cToken, 1 ) $ '"' + "'" 
               cColor = ::cClrString
 
          case Upper( cToken ) $ cOperators
               cColor = ::cClrOperator
 
-         case Upper( cToken ) $ ::cKeywords .and. Len( cToken ) > 1
+         case Upper( cToken ) $ ::cKeywords .and. Len( cToken ) > 1 .and. ;
+              ! Upper( cToken ) $ "AT" 
               cColor = ::cClrKeyword
 
          otherwise
