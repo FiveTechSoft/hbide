@@ -1,6 +1,8 @@
 #include "hbclass.ch"
 #include "inkey.ch"
 
+//-----------------------------------------------------------------------------------------//
+
 function Main()
 
    local oEditor := HBSrcEdit():New( MemoRead( "editor.prg" ), 0, 0, MaxRow(), MaxCol(), .T. )
@@ -17,13 +19,25 @@ function Main()
 
 return nil   
 
+//-----------------------------------------------------------------------------------------//
+
 CREATE CLASS HBSrcEdit FROM HBEditor
+
+   DATA   cClrString   INIT "GR+"
+   DATA   cClrOperator INIT "R+" 
+   DATA   cClrkeyword  INIT "G+"
+   DATA   cClrSelRow   INIT "N/BG"
+ 
+   DATA   cOperators   INIT "<><=>=(),;.::=!=():),{})[]){}+=++---=*=/=%=^=="
+   DATA   cKeywords    INIT "FUNCTION,LOCAL,WHILE,FOR,NEXT,RETURN,CREATE,FROM,METHOD,ENDCLASS"
 
    METHOD Display()
    METHOD DisplayLine( nLine )
-   METHOD LineColor( nLine ) INLINE If( nLine == ::nRow - ::nFirstRow, "N/BG", ::cColorSpec )
+   METHOD LineColor( nLine ) INLINE If( nLine == ::nRow - ::nFirstRow, ::cClrSelRow, ::cColorSpec )
 
 ENDCLASS
+
+//-----------------------------------------------------------------------------------------//
 
 METHOD Display() CLASS HBSrcEdit
 
@@ -39,10 +53,12 @@ METHOD Display() CLASS HBSrcEdit
 
 return Self
 
+//-----------------------------------------------------------------------------------------//
+
 METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
-   local n, cLine, cToken := "", cColor := ""
-   local cOperators := "<><=>=(),;.::=!=():),{})[]){}+=++---=*=/=%=^=="
+   local n, cLine, cToken := "", cColor
+   local cOperators := ::cOperators
 
    hb_DispOutAt( nLine, ::nLeft,;
                  SubStrPad( cLine := ::GetLine( ::nFirstRow + nLine ),;
@@ -61,11 +77,12 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
              end
              cToken += '"'
              n++
-   
+                
          case SubStr( cLine, n, 1 ) $ cOperators
             while SubStr( cLine, n, 1 ) $ cOperators .and. n <= Len( cLine )
                cToken += SubStr( cLine, n++, 1 )
             end
+            
 
          case ! SubStr( cLine, n, 1 ) $ " " + cOperators .and. n <= Len( cLine )
             while ! SubStr( cLine, n, 1 ) $ " " + cOperators .and. n <= Len( cLine )
@@ -76,13 +93,13 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
       do case
          case Left( cToken, 1 ) == '"'
-              cColor = "GR+"
+              cColor = ::cClrString
 
          case Upper( cToken ) $ cOperators
-              cColor = "R+"
+              cColor = ::cClrOperator
 
-         case Upper( cToken ) $ "FUNCTION,LOCAL,WHILE,FOR,NEXTRETURN,CREATE,FROM,METHOD,ENDCLASS"
-              cColor = "G+"
+         case Upper( cToken ) $ ::cKeywords
+              cColor = ::cClrKeyword
 
          otherwise
               cColor = SubStr( ::LineColor( nLine ), 1, At( "/", ::LineColor( nLine ) ) - 1 )
@@ -97,6 +114,10 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
 return Self
 
+//-----------------------------------------------------------------------------------------//
+
 static function SubStrPad( cText, nFrom, nLen )
    
 return hb_UPadR( hb_USubStr( cText, nFrom, nLen ), nLen )
+
+//-----------------------------------------------------------------------------------------//
