@@ -32,7 +32,8 @@ CREATE CLASS HBSrcEdit FROM HBEditor
  
    DATA   cOperators   INIT "<><=>=(),;.::=!=():),{})[]){}+=++---=*=/=%=^=="
    DATA   cKeywords    INIT ;
-      "FUNCTION,LOCAL,WHILE,FOR,NEXT,RETURN,CREATE,FROM,DATA,INIT,METHOD,ENDCLASS"
+      "FUNCTION,LOCAL,DO,CASE,OTHERWISE,ENDCASE,IF,ELSE,ENDIF,WHILE," + ;
+      "FOR,NEXT,RETURN,CREATE,FROM,DATA,INIT,METHOD,ENDCLASS"
 
    METHOD Display()
    METHOD DisplayLine( nLine )
