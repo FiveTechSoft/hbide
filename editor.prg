@@ -99,7 +99,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
          case Upper( cToken ) $ cOperators
               cColor = ::cClrOperator
 
-         case Upper( cToken ) $ ::cKeywords
+         case Upper( cToken ) $ ::cKeywords .and. Len( cToken ) > 1
               cColor = ::cClrKeyword
 
          otherwise
