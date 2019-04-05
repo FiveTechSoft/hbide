@@ -28,6 +28,7 @@ CREATE CLASS HBSrcEdit FROM HBEditor
    DATA   cClrKeyword  INIT "G+"
    DATA   cClrSelRow   INIT "N/BG"
    DATA   cClrComment  INIT "RB+"
+   DATA   cClrNumber   INIT "W+"
  
    DATA   cOperators   INIT "<><=>=(),;.::=!=():),{})[]){}+=++---=*=/=%=^=="
    DATA   cKeywords    INIT ;
@@ -94,6 +95,10 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
       endcase
 
       do case
+         case Left( cToken, 1 ) $ "0123456789" .and. ;
+              Right( cToken, 1 ) $ "0123456789"
+              cColor = ::cClrNumber
+ 
          case Left( cToken, 2 ) == "//"
               cColor = ::cClrComment
 
