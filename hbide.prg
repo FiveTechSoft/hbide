@@ -14,6 +14,8 @@
 function Main()
 
    local oHBIde := HBIde():New()
+
+   oHbIde:aWindows[ 1 ]:SetCaption( "noname.prg" )
    
    oHbIde:Activate()
 
