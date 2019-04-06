@@ -33,12 +33,12 @@ FUNCTION __dbgBuildMenu( oHbIde )
    MENU oMenu
       MENUITEM " ~File "
       MENU
-         MENUITEM " ~New"             ACTION Alert( "new" )
-         MENUITEM " ~Open..."         ACTION Alert( "open" )
-         MENUITEM " ~Save"            ACTION Alert( "save" )
-         MENUITEM " Save ~As..."      ACTION Alert( "saveas" )
+         MENUITEM " ~New"              ACTION Alert( "new" )
+         MENUITEM " ~Open..."          ACTION Alert( "open" )
+         MENUITEM " ~Save"             ACTION Alert( "save" )
+         MENUITEM " Save ~As... "      ACTION Alert( "saveas" )
          SEPARATOR
-         MENUITEM " E~xit"            ACTION oHbide:Quit()
+         MENUITEM " E~xit"             ACTION oHbide:Quit()
       ENDMENU
 
       MENUITEM " ~Edit "
@@ -46,8 +46,8 @@ FUNCTION __dbgBuildMenu( oHbIde )
          MENUITEM " ~Copy "
          MENUITEM " ~Paste "
          SEPARATOR
-         MENUITEM " ~Find..."
-         MENUITEM " ~Repeat Last Find  F3"
+         MENUITEM " ~Find... "
+         MENUITEM " ~Repeat Last Find  F3 "
          MENUITEM " ~Change..."   
       ENDMENU
 
