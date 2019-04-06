@@ -11,6 +11,8 @@
 #xcommand SEPARATOR => HBDbMenu():AddItem( HBDbMenuItem():New( "-" ) )
 #xcommand ENDMENU => ATail( HBDbMenu():aMenus ):Build()
 
+//-----------------------------------------------------------------------------------------//
+
 function Main()
 
    local oHBIde := HBIde():New()
@@ -21,12 +23,16 @@ function Main()
 
 return nil
 
+//-----------------------------------------------------------------------------------------//
+
 CREATE CLASS HBIde FROm HBDebugger
 
    METHOD LoadCallStack() VIRTUAL
    METHOD LoadVars() VIRTUAL
 
 ENDCLASS
+
+//-----------------------------------------------------------------------------------------//
 
 FUNCTION __dbgBuildMenu( oHbIde )  
 
@@ -63,7 +69,7 @@ FUNCTION __dbgBuildMenu( oHbIde )
       MENUITEM " ~Options "
       MENU
          MENUITEM "~Compiler Flags... "
-         MENUITEM "~Display... " 
+         MENUITEM "~Display... "         ACTION ( oHbIde:Colors(), oHbIde:SaveSettings() )  
       ENDMENU 
 
       MENUITEM " ~Help "
@@ -76,3 +82,5 @@ FUNCTION __dbgBuildMenu( oHbIde )
    ENDMENU
 
 return oMenu
+
+//-----------------------------------------------------------------------------------------//
