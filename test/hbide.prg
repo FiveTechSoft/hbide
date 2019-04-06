@@ -48,10 +48,10 @@ METHOD LoadColors() CLASS HbMenu
    // LOCAL aColors := __dbgColors()
    LOCAL oMenuItem
 
-   ::cClrPopup    := "N/W"   // aColors[  8 ]
-   ::cClrHotKey   := "R+/W"  // aColors[  9 ]
-   ::cClrHilite   := "N/BG"  // aColors[ 10 ]
-   ::cClrHotFocus := "R+/BG" // aColors[ 11 ]
+   ::cClrPopup    := "N/W"  // aColors[  8 ]
+   ::cClrHotKey   := "R/W"  // aColors[  9 ]
+   ::cClrHilite   := "N/BG" // aColors[ 10 ]
+   ::cClrHotFocus := "R/BG" // aColors[ 11 ]
 
    FOR EACH oMenuItem IN ::aItems
       IF HB_ISOBJECT( oMenuItem:bAction )
