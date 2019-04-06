@@ -33,18 +33,44 @@ FUNCTION __dbgBuildMenu( oHbIde )
    MENU oMenu
       MENUITEM " ~File "
       MENU
+         MENUITEM " ~New"             ACTION Alert( "new" )
          MENUITEM " ~Open..."         ACTION Alert( "open" )
-         MENUITEM " ~Resume"          ACTION Alert( "Resume" )
-         MENUITEM " O~S Shell"        ACTION Alert( "shell" )
+         MENUITEM " ~Save"            ACTION Alert( "save" )
+         MENUITEM " Save ~As..."      ACTION Alert( "saveas" )
          SEPARATOR
-         MENUITEM " e~Xit    Alt-X "  ACTION oHbide:Quit()
+         MENUITEM " E~xit"            ACTION oHbide:Quit()
       ENDMENU
 
       MENUITEM " ~Edit "
       MENU
          MENUITEM " ~Copy "
          MENUITEM " ~Paste "
+         SEPARATOR
+         MENUITEM " ~Find..."
+         MENUITEM " ~Repeat Last Find  F3"
+         MENUITEM " ~Change..."   
       ENDMENU
+
+      MENUITEM " ~Run "
+      MENU
+         MENUITEM " ~Start "
+         MENUITEM " S~cript "
+         MENUITEM " ~Debug "   
+      ENDMENU
+
+      MENUITEM " ~Options "
+      MENU
+         MENUITEM " ~Compiler Flags "
+         MENUITEM " ~Display " 
+      ENDMENU 
+
+      MENUITEM " ~Help "
+      MENU
+         MENUITEM " ~Index "
+         MENUITEM " ~Contents "
+         SEPARATOR
+         MENUITEM " ~About... "  
+      ENDMENU  
    ENDMENU
 
 return oMenu
