@@ -18,6 +18,7 @@ function Main()
    local cBack := SaveScreen( 0, 0, MaxRow(), MaxCol() )
    local oMenu := BuildMenu()
    local oWndCode := HBDbWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
+   local oEditor := BuildEditor()
 
    SetCursor( SC_NONE )
    SET COLOR TO "W/B"
@@ -25,6 +26,7 @@ function Main()
    
    oMenu:Display()
    oWndCode:Show( .T. )
+   oEditor:Display()
    oMenu:ShowPopup( 1 )
 
    while ( nKey := Inkey( 0, INKEY_ALL ) ) != K_ESC
@@ -59,7 +61,9 @@ FUNCTION BuildMenu()
          SEPARATOR
          MENUITEM "~Find... "
          MENUITEM "~Repeat Last Find  F3 "
-         MENUITEM "~Change..."   
+         MENUITEM "~Change..."
+         SEPARATOR
+         MENUITEM "~Goto Line..."    
       ENDMENU
 
       MENUITEM " ~Run "

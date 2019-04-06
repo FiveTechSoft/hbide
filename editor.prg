@@ -3,21 +3,24 @@
 
 //-----------------------------------------------------------------------------------------//
 
-function Main()
+function BuildEditor()
 
-   local oEditor := HBSrcEdit():New( MemoRead( "editor.prg" ), 0, 0, MaxRow(), MaxCol(), .T. ), nKey
+   local oEditor := HBSrcEdit():New( MemoRead( "editor.prg" ), 2, 1, MaxRow() - 2,;
+                                     MaxCol() - 1, .T. ), nKey
 
    oEditor:SetColor( "W/B,N/BG" )
-   oEditor:Display()
+   // oEditor:Display()
    
+   /*
    while ( nKey := Inkey( 0 ) ) != K_ESC
       oEditor:Edit( nKey )
       oEditor:DisplayLine( oEditor:Row() - 1 )
       oEditor:DisplayLine( oEditor:Row() )
       oEditor:DisplayLine( oEditor:Row() + 1 )
    end
+   */
 
-return nil   
+return oEditor   
 
 //-----------------------------------------------------------------------------------------//
 
@@ -68,7 +71,8 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
    hb_DispOutAt( nLine, ::nLeft,;
                  SubStrPad( cLine := ::GetLine( ::nFirstRow + nLine ),;
-                 ::nFirstCol, ::nNumCols ), ::LineColor( nLine ) )   
+                 ::nFirstCol, ::nRight - ::nLeft - 2 ),;
+                 ::LineColor( nLine ) )   
 
    n = 1
    while n < Len( cLine )
@@ -122,10 +126,11 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
               cColor = SubStr( ::LineColor( nLine ), 1, At( "/", ::LineColor( nLine ) ) - 1 )
       endcase 
 
-       hb_DispOutAt( nLine, n - Len( cToken ) - ::nFirstCol, cToken,;
+       hb_DispOutAt( nLine, ::nLeft + n - Len( cToken ) - ::nFirstCol,;
+                     SubStr( cToken, ::nLeft, Min( Len( cToken ) - ::nLeft + 1,;
+                             ::nRight - ::nLeft + 1 ) ),;
                      cColor + SubStr( ::LineColor( nLine ),;
-                     At( "/", ::LineColor( nLine ) ) ) ) 
-
+                     At( "/", ::LineColor( nLine ) ) ) )
       cToken = ""
    end
 
