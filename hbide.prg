@@ -1,6 +1,6 @@
 #include "hbclass.ch"
-
-#pragma -b-
+#include "inkey.ch"
+#include "setcurs.ch"
 
 #xcommand MENU [<oMenu>] => [ <oMenu> := ] HBDbMenu():New()
 #xcommand MENUITEM [ <oMenuItem> PROMPT ] <cPrompt> ;
@@ -15,28 +15,29 @@
 
 function Main()
 
-   local oHBIde := HBIde():New()
+   local cBack := SaveScreen( 0, 0, MaxRow(), MaxCol() )
+   local oMenu := BuildMenu()
+   local oWndCode := HBDbWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
 
-   AltD( 1 )
-
-   oHbIde:aWindows[ 1 ]:SetCaption( "noname.prg" )
+   SetCursor( SC_NONE )
+   SET COLOR TO "W/B"
+   CLEAR SCREEN
    
-   oHbIde:Activate()
+   oMenu:Display()
+   oWndCode:Show( .T. )
+   oMenu:ShowPopup( 1 )
+
+   while ( nKey := Inkey( 0, INKEY_ALL ) ) != K_ESC
+      oMenu:ProcessKey( nKey )
+   end
+
+   RestScreen( 0, 0, MaxRow(), MaxCol(), cBack )
 
 return nil
 
 //-----------------------------------------------------------------------------------------//
 
-CREATE CLASS HBIde FROm HBDebugger
-
-   METHOD LoadCallStack() VIRTUAL
-   METHOD LoadVars() VIRTUAL
-
-ENDCLASS
-
-//-----------------------------------------------------------------------------------------//
-
-FUNCTION __dbgBuildMenu( oHbIde )  
+FUNCTION BuildMenu()
 
    LOCAL oMenu
 
@@ -48,7 +49,7 @@ FUNCTION __dbgBuildMenu( oHbIde )
          MENUITEM "~Save"             ACTION Alert( "save" )
          MENUITEM "Save ~As... "      ACTION Alert( "saveas" )
          SEPARATOR
-         MENUITEM "E~xit"             ACTION oHbide:Quit()
+         MENUITEM "E~xit"             ACTION __Quit()
       ENDMENU
 
       MENUITEM " ~Edit "
@@ -71,7 +72,7 @@ FUNCTION __dbgBuildMenu( oHbIde )
       MENUITEM " ~Options "
       MENU
          MENUITEM "~Compiler Flags... "
-         MENUITEM "~Display... "         ACTION ( oHbIde:Colors(), oHbIde:SaveSettings() )  
+         MENUITEM "~Display... "           
       ENDMENU 
 
       MENUITEM " ~Help "
@@ -79,7 +80,7 @@ FUNCTION __dbgBuildMenu( oHbIde )
          MENUITEM "~Index "
          MENUITEM "~Contents "
          SEPARATOR
-         MENUITEM "~About... " ACTION Alert( "HBIde 1.0" ) 
+         MENUITEM "~About... "      ACTION Alert( "HbIde 1.0" )
       ENDMENU  
    ENDMENU
 
