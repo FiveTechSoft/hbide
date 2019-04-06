@@ -33,43 +33,43 @@ FUNCTION __dbgBuildMenu( oHbIde )
    MENU oMenu
       MENUITEM " ~File "
       MENU
-         MENUITEM " ~New"              ACTION Alert( "new" )
-         MENUITEM " ~Open..."          ACTION Alert( "open" )
-         MENUITEM " ~Save"             ACTION Alert( "save" )
-         MENUITEM " Save ~As... "      ACTION Alert( "saveas" )
+         MENUITEM "~New"              ACTION Alert( "new" )
+         MENUITEM "~Open..."          ACTION Alert( "open" )
+         MENUITEM "~Save"             ACTION Alert( "save" )
+         MENUITEM "Save ~As... "      ACTION Alert( "saveas" )
          SEPARATOR
-         MENUITEM " E~xit"             ACTION oHbide:Quit()
+         MENUITEM "E~xit"             ACTION oHbide:Quit()
       ENDMENU
 
       MENUITEM " ~Edit "
       MENU
-         MENUITEM " ~Copy "
-         MENUITEM " ~Paste "
+         MENUITEM "~Copy "
+         MENUITEM "~Paste "
          SEPARATOR
-         MENUITEM " ~Find... "
-         MENUITEM " ~Repeat Last Find  F3 "
-         MENUITEM " ~Change..."   
+         MENUITEM "~Find... "
+         MENUITEM "~Repeat Last Find  F3 "
+         MENUITEM "~Change..."   
       ENDMENU
 
       MENUITEM " ~Run "
       MENU
-         MENUITEM " ~Start "
-         MENUITEM " S~cript "
-         MENUITEM " ~Debug "   
+         MENUITEM "~Start "
+         MENUITEM "S~cript "
+         MENUITEM "~Debug "   
       ENDMENU
 
       MENUITEM " ~Options "
       MENU
-         MENUITEM " ~Compiler Flags "
-         MENUITEM " ~Display " 
+         MENUITEM "~Compiler Flags... "
+         MENUITEM "~Display... " 
       ENDMENU 
 
       MENUITEM " ~Help "
       MENU
-         MENUITEM " ~Index "
-         MENUITEM " ~Contents "
+         MENUITEM "~Index "
+         MENUITEM "~Contents "
          SEPARATOR
-         MENUITEM " ~About... "  
+         MENUITEM "~About... " ACTION Alert( "HBIde 1.0" ) 
       ENDMENU  
    ENDMENU
 
