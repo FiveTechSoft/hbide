@@ -18,19 +18,42 @@ function Main()
    local cBack := SaveScreen( 0, 0, MaxRow(), MaxCol() )
    local oMenu := BuildMenu()
    local oWndCode := HBDbWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
-   local oEditor := BuildEditor()
+   local oEditor  := BuildEditor()
+   local nOldCursor := SetCursor( SC_NORMAL )
 
-   SetCursor( SC_NONE )
    SET COLOR TO "W/B"
    CLEAR SCREEN
+   SetPos( 2, 1 )
    
    oMenu:Display()
    oWndCode:Show( .T. )
    oEditor:Display()
-   oMenu:ShowPopup( 1 )
 
-   while ( nKey := Inkey( 0, INKEY_ALL ) ) != K_ESC
-      oMenu:ProcessKey( nKey )
+   while .T.
+      nKey = Inkey( 0, INKEY_ALL )
+      if nKey == K_LBUTTONDOWN
+         if MRow() == 0 .or. oMenu:IsOpen()
+            nOldCursor = SetCursor( SC_NONE )
+            oMenu:ProcessKey( nKey )
+            if ! oMenu:IsOpen()
+               SetCursor( nOldCursor )
+            endif 
+         endif
+      else 
+         if oMenu:IsOpen() 
+            oMenu:ProcessKey( nKey )
+            if ! oMenu:IsOpen()
+               SetCursor( nOldCursor )
+            endif
+         else
+            SetCursor( nOldCursor )
+            oEditor:Edit( nKey )
+            oEditor:Display() 
+            // oEditor:DisplayLine( oEditor:Row() + 2 )
+            // oEditor:DisplayLine( oEditor:Row() + 1 )
+            // oEditor:DisplayLine( oEditor:Row() + 2 )
+         endif
+      endif
    end
 
    RestScreen( 0, 0, MaxRow(), MaxCol(), cBack )

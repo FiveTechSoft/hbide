@@ -42,7 +42,8 @@ CREATE CLASS HBSrcEdit FROM HBEditor
 
    METHOD Display()
    METHOD DisplayLine( nLine )
-   METHOD LineColor( nLine ) INLINE If( nLine == ::nRow - ::nFirstRow, ::cClrSelRow, ::cColorSpec )
+   METHOD LineColor( nLine ) INLINE ;
+                     If( nLine == ::nRow - ::nFirstRow + ::nTop, ::cClrSelRow, ::cColorSpec )
 
 ENDCLASS
 
@@ -54,7 +55,7 @@ METHOD Display() CLASS HBSrcEdit
 
    DispBegin()
    nRow = ::nTop
-   nCount = ::nNumRows
+   nCount = ::nBottom - ::nTop + 1
    while --nCount >= 0
       ::DisplayLine( nRow++ )
    end
@@ -70,8 +71,8 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
    local cOperators := ::cOperators
 
    hb_DispOutAt( nLine, ::nLeft,;
-                 SubStrPad( cLine := ::GetLine( ::nFirstRow + nLine ),;
-                 ::nFirstCol, ::nRight - ::nLeft - 2 ),;
+                 SubStrPad( cLine := ::GetLine( ::nFirstRow + nLine - ::nTop ),;
+                 ::nFirstCol, ::nRight - ::nLeft + 1 ),;
                  ::LineColor( nLine ) )   
 
    n = 1
@@ -128,7 +129,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
        hb_DispOutAt( nLine, ::nLeft + n - Len( cToken ) - ::nFirstCol,;
                      SubStr( cToken, ::nLeft, Min( Len( cToken ) - ::nLeft + 1,;
-                             ::nRight - ::nLeft + 1 ) ),;
+                             ::nRight - ::nLeft ) ),;
                      cColor + SubStr( ::LineColor( nLine ),;
                      At( "/", ::LineColor( nLine ) ) ) )
       cToken = ""
