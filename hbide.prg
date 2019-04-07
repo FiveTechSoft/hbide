@@ -79,7 +79,7 @@ METHOD Activate() CLASS HBIde
 
    ::lEnd = .F.
    ::Show()
-   SetPos( 2, 5 )
+   ::oEditor:Goto( 1, 5 )
    
    while ! ::lEnd
       nKey = Inkey( 0, INKEY_ALL )
