@@ -56,7 +56,7 @@ function ShowStatus( oEditor )
    hb_DispOutAt( MaxRow(), 0, Space( MaxCol() + 1 ), __DbgColors()[ 8 ] )
    hb_DispOutAt( MaxRow(), MaxCol() - 17,;
                  "row: " + AllTrim( Str( oEditor:RowPos() ) ) + ", " + ;
-                 "col: " + AllTrim( Str( oEditor:ColPos() ) )+ " ",;
+                 "col: " + AllTrim( Str( oEditor:ColPos() ) ) + " ",;
                  __DbgColors()[ 8 ] )
    DispEnd()
 
