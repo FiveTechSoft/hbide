@@ -64,9 +64,9 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
-FUNCTION BuildMenu()
+function BuildMenu()
 
-   LOCAL oMenu
+   local oMenu
 
    MENU oMenu
       MENUITEM " ~File "
