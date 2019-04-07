@@ -5,7 +5,7 @@
 
 function BuildEditor()
 
-   local oEditor := HBSrcEdit():New( MemoRead( "editor.prg" ), 2, 1, MaxRow() - 2,;
+   local oEditor := HBSrcEdit():New( MemoRead( "hbide.prg" ), 2, 1, MaxRow() - 2,;
                                      MaxCol() - 1, .T. ), nKey
 
    oEditor:SetColor( "W/B,N/BG" )

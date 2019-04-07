@@ -21,14 +21,14 @@ function Main()
    local oEditor  := BuildEditor()
    local nOldCursor := SetCursor( SC_NORMAL )
 
-   SET COLOR TO "W/B"
    CLEAR SCREEN
    SetPos( 2, 1 )
    
    oMenu:Display()
    oWndCode:Show( .T. )
    oEditor:Display()
-
+   ShowStatus( oEditor )
+   
    while .T.
       nKey = Inkey( 0, INKEY_ALL )
       if nKey == K_LBUTTONDOWN
@@ -48,11 +48,26 @@ function Main()
          else
             SetCursor( nOldCursor )
             oEditor:Edit( nKey )
+            ShowStatus( oEditor ) 
          endif
       endif
    end
 
    RestScreen( 0, 0, MaxRow(), MaxCol(), cBack )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+function ShowStatus( oEditor )
+
+   DispBegin()
+   hb_DispOutAt( MaxRow(), 0, Space( MaxCol() + 1 ), __DbgColors()[ 8 ] )
+   hb_DispOutAt( MaxRow(), MaxCol() - 17,;
+                 "row: " + AllTrim( Str( oEditor:RowPos() ) ) + ", " + ;
+                 "col: " + AllTrim( Str( oEditor:ColPos() ) )+ " ",;
+                 __DbgColors()[ 8 ] )
+   DispEnd()
 
 return nil
 
