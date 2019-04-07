@@ -1,62 +1,71 @@
 #include "inkey.ch"
 #include "setcurs.ch"
 #include "dbgmenu.ch"
+#include "hbclass.ch"
 
 //-----------------------------------------------------------------------------------------//
 
 function Main()
 
-   local cBack := SaveScreen( 0, 0, MaxRow(), MaxCol() )
-   local oMenu := BuildMenu()
-   local oWndCode := HBDbWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
-   local oEditor  := BuildEditor()
-   local nOldCursor := SetCursor( SC_NORMAL )
+   local oHbIde := HBIde():New()
 
-   CLEAR SCREEN
-   SetPos( 2, 1 )
+   oHbIde:Activate()
    
-   oMenu:Display()
-   oWndCode:Show( .T. )
-   oEditor:Display()
-   ShowStatus( oEditor )
-   
-   while .T.
-      nKey = Inkey( 0, INKEY_ALL )
-      if nKey == K_LBUTTONDOWN
-         if MRow() == 0 .or. oMenu:IsOpen()
-            nOldCursor = SetCursor( SC_NONE )
-            oMenu:ProcessKey( nKey )
-            if ! oMenu:IsOpen()
-               SetCursor( nOldCursor )
-            endif 
-         endif
-      else 
-         if oMenu:IsOpen() 
-            oMenu:ProcessKey( nKey )
-            if ! oMenu:IsOpen()
-               SetCursor( nOldCursor )
-            endif
-         else
-            SetCursor( nOldCursor )
-            oEditor:Edit( nKey )
-            ShowStatus( oEditor ) 
-         endif
-      endif
-   end
+return nil
 
-   RestScreen( 0, 0, MaxRow(), MaxCol(), cBack )
+//-----------------------------------------------------------------------------------------//
+
+CLASS HbIde
+
+   DATA   cBackScreen
+   DATA   oMenu
+   DATA   oWndCode
+   DATA   oEditor
+   DATA   nOldCursor
+   DATA   lEnd
+
+   METHOD New()
+   METHOD BuildMenu()
+   METHOD Show()
+   METHOD ShowStatus()
+   METHOD Activate()
+   METHOD End() INLINE ::lEnd := .T.   
+   METHOD Hide() INLINE RestScreen( 0, 0, MaxRow(), MaxCol(), ::cBackScreen )
+
+ENDCLASS
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD New() CLASS HBIde
+
+   ::cBackScreen = SaveScreen( 0, 0, MaxRow(), MaxCol() )
+   ::oMenu       = ::BuildMenu()
+   ::oWndCode    = HBDbWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
+   ::oEditor     = BuildEditor()
+   ::nOldCursor  = SetCursor( SC_NORMAL )
+
+return Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Show() CLASS HBIde
+
+   ::oMenu:Display()
+   ::oWndCode:Show( .T. )
+   ::oEditor:Display()
+   ::ShowStatus()
 
 return nil
 
 //-----------------------------------------------------------------------------------------//
 
-function ShowStatus( oEditor )
+METHOD ShowStatus() CLASS HBIde
 
    DispBegin()
    hb_DispOutAt( MaxRow(), 0, Space( MaxCol() + 1 ), __DbgColors()[ 8 ] )
    hb_DispOutAt( MaxRow(), MaxCol() - 17,;
-                 "row: " + AllTrim( Str( oEditor:RowPos() ) ) + ", " + ;
-                 "col: " + AllTrim( Str( oEditor:ColPos() ) ) + " ",;
+                 "row: " + AllTrim( Str( ::oEditor:RowPos() ) ) + ", " + ;
+                 "col: " + AllTrim( Str( ::oEditor:ColPos() ) ) + " ",;
                  __DbgColors()[ 8 ] )
    DispEnd()
 
@@ -64,7 +73,46 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
-function BuildMenu()
+METHOD Activate() CLASS HBIde
+
+   local nKey
+
+   ::lEnd = .F.
+
+   ::Show()
+   SetPos( 2, 1 )
+
+   while ! ::lEnd
+      nKey = Inkey( 0, INKEY_ALL )
+      if nKey == K_LBUTTONDOWN
+         if MRow() == 0 .or. ::oMenu:IsOpen()
+            ::nOldCursor = SetCursor( SC_NONE )
+            ::oMenu:ProcessKey( nKey )
+            if ! ::oMenu:IsOpen()
+               SetCursor( ::nOldCursor )
+            endif
+         endif
+      else
+         if ::oMenu:IsOpen()
+            ::oMenu:ProcessKey( nKey )
+            if ! ::oMenu:IsOpen()
+               SetCursor( ::nOldCursor )
+            endif
+         else
+            SetCursor( ::nOldCursor )
+            ::oEditor:Edit( nKey )
+            ::ShowStatus()
+         endif
+      endif
+   end
+
+   ::Hide()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD BuildMenu() CLASS HBIde
 
    local oMenu
 
@@ -76,7 +124,7 @@ function BuildMenu()
          MENUITEM "~Save"             ACTION Alert( "save" )
          MENUITEM "Save ~As... "      ACTION Alert( "saveas" )
          SEPARATOR
-         MENUITEM "E~xit"             ACTION __Quit()
+         MENUITEM "E~xit"             ACTION ::End()
       ENDMENU
 
       MENUITEM " ~Edit "
