@@ -79,8 +79,8 @@ METHOD Activate() CLASS HBIde
 
    ::lEnd = .F.
    ::Show()
-   SetPos( 2, 1 )
-
+   SetPos( 2, 5 )
+   
    while ! ::lEnd
       nKey = Inkey( 0, INKEY_ALL )
       if nKey == K_LBUTTONDOWN
