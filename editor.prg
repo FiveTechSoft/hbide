@@ -9,16 +9,6 @@ function BuildEditor()
                                      MaxCol() - 1, .T. ), nKey
 
    oEditor:SetColor( "W/B,N/BG" )
-   // oEditor:Display()
-   
-   /*
-   while ( nKey := Inkey( 0 ) ) != K_ESC
-      oEditor:Edit( nKey )
-      oEditor:DisplayLine( oEditor:Row() - 1 )
-      oEditor:DisplayLine( oEditor:Row() )
-      oEditor:DisplayLine( oEditor:Row() + 1 )
-   end
-   */
 
 return oEditor   
 
@@ -40,12 +30,31 @@ CREATE CLASS HBSrcEdit FROM HBEditor
       "FOR,NEXT,RETURN,CREATE,FROM,DATA,INIT,METHOD,INLINE,ENDCLASS,VIRTUAL"
    DATA   cKeywords2   INIT "STATIC,LOCAL,NIL,SELF,SUPER,#INCLUDE"
 
+   METHOD Edit( nKey )
    METHOD Display()
    METHOD DisplayLine( nLine )
    METHOD LineColor( nLine ) INLINE ;
                      If( nLine == ::nRow - ::nFirstRow + ::nTop, ::cClrSelRow, ::cColorSpec )
 
 ENDCLASS
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Edit( nKey ) CLASS HBSrcEdit
+
+   ::Super:Edit( nKey )
+
+   if ::Row() > ::nTop
+      ::DisplayLine( ::Row() - 1 )
+   endif
+
+   ::DisplayLine( ::Row() )
+
+   if ::Row() < ::nBottom
+      ::DisplayLine( ::Row() + 1 )
+   endif
+   
+return nil
 
 //-----------------------------------------------------------------------------------------//
 

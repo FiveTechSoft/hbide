@@ -48,10 +48,6 @@ function Main()
          else
             SetCursor( nOldCursor )
             oEditor:Edit( nKey )
-            oEditor:Display() 
-            // oEditor:DisplayLine( oEditor:Row() + 2 )
-            // oEditor:DisplayLine( oEditor:Row() + 1 )
-            // oEditor:DisplayLine( oEditor:Row() + 2 )
          endif
       endif
    end
