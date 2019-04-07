@@ -82,9 +82,10 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
    local n, cLine, cToken := "", cColor
    local cOperators := ::cOperators
 
-   hb_DispOutAt( nLine, ::nLeft,;
+   hb_DispOutAt( nLine, ::nLeft, PadL( ::nFirstRow + nLine - ::nTop, 4 ), "N/W" )
+   hb_DispOutAt( nLine, ::nLeft + 4,;
                  SubStrPad( cLine := ::GetLine( ::nFirstRow + nLine - ::nTop ),;
-                 ::nFirstCol, ::nRight - ::nLeft + 1 ),;
+                 ::nFirstCol, ::nRight - ::nLeft - 4 + 1 ),;
                  ::LineColor( nLine ) )   
 
    n = 1
@@ -139,9 +140,9 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
               cColor = SubStr( ::LineColor( nLine ), 1, At( "/", ::LineColor( nLine ) ) - 1 )
       endcase 
 
-       hb_DispOutAt( nLine, ::nLeft + n - Len( cToken ) - ::nFirstCol,;
+       hb_DispOutAt( nLine, 4 + ::nLeft + n - Len( cToken ) - ::nFirstCol,;
                      SubStr( cToken, ::nLeft, Min( Len( cToken ) - ::nLeft + 1,;
-                             ::nRight - ::nLeft ) ),;
+                             ::nRight - ::nLeft - 4 ) ),;
                      cColor + SubStr( ::LineColor( nLine ),;
                      At( "/", ::LineColor( nLine ) ) ) )
       cToken = ""
