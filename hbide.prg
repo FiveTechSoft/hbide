@@ -78,7 +78,6 @@ METHOD Activate() CLASS HBIde
    local nKey
 
    ::lEnd = .F.
-
    ::Show()
    SetPos( 2, 1 )
 
