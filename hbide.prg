@@ -38,6 +38,7 @@ ENDCLASS
 
 METHOD New() CLASS HBIde
 
+   SetMode( 30, 121 )
    ::cBackScreen = SaveScreen( 0, 0, MaxRow(), MaxCol() )
    ::oMenu       = ::BuildMenu()
    ::oWndCode    = HBWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
@@ -61,12 +62,15 @@ return nil
 
 METHOD ShowStatus() CLASS HBIde
 
+   local aColors := ;
+      { "W+/BG", "N/BG", "R/BG", "N+/BG", "W+/B", "GR+/B", "W/B", "N/W", "R/W", "N/BG", "R/BG" }
+
    DispBegin()
-   hb_DispOutAt( MaxRow(), 0, Space( MaxCol() + 1 ), __DbgColors()[ 8 ] )
+   hb_DispOutAt( MaxRow(), 0, Space( MaxCol() + 1 ), aColors[ 8 ] )
    hb_DispOutAt( MaxRow(), MaxCol() - 17,;
                  "row: " + AllTrim( Str( ::oEditor:RowPos() ) ) + ", " + ;
                  "col: " + AllTrim( Str( ::oEditor:ColPos() ) ) + " ",;
-                 __DbgColors()[ 8 ] )
+                 aColors[ 8 ] )
    DispEnd()
 
 return nil
