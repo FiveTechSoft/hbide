@@ -38,7 +38,7 @@ ENDCLASS
 
 METHOD New() CLASS HBIde
 
-   SetMode( 30, 121 )
+   SetMode( 33, 100 )
    ::cBackScreen = SaveScreen( 0, 0, MaxRow(), MaxCol() )
    ::oMenu       = ::BuildMenu()
    ::oWndCode    = HBWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
@@ -69,7 +69,7 @@ METHOD ShowStatus() CLASS HBIde
    hb_DispOutAt( MaxRow(), 0, Space( MaxCol() + 1 ), aColors[ 8 ] )
    hb_DispOutAt( MaxRow(), MaxCol() - 17,;
                  "row: " + AllTrim( Str( ::oEditor:RowPos() ) ) + ", " + ;
-                 "col: " + AllTrim( Str( ::oEditor:ColPos() ) ) + " ",;
+                 "col: " + AllTrim( Str( ::oEditor:ColPos() - 4 ) ) + " ",;
                  aColors[ 8 ] )
    DispEnd()
 
@@ -82,8 +82,8 @@ METHOD Activate() CLASS HBIde
    local nKey
 
    ::lEnd = .F.
-   ::Show()
    ::oEditor:Goto( 1, 5 )
+   ::Show()
    
    while ! ::lEnd
       nKey = Inkey( 0, INKEY_ALL )

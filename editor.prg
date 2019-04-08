@@ -14,7 +14,7 @@ return oEditor
 
 //-----------------------------------------------------------------------------------------//
 
-CREATE CLASS HBSrcEdit FROM HBEditor
+CLASS HBSrcEdit FROM HBEditor
 
    DATA   cClrString   INIT "GR+"
    DATA   cClrOperator INIT "R+" 
@@ -38,6 +38,7 @@ CREATE CLASS HBSrcEdit FROM HBEditor
    METHOD DisplayLine( nLine )
    METHOD LineColor( nLine ) INLINE ;
                      If( nLine == ::nRow - ::nFirstRow + ::nTop, ::cClrSelRow, ::cColorSpec )
+   METHOD MoveCursor( nKey )
 
 ENDCLASS
 
@@ -149,6 +150,24 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
    end
 
 return Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD MoveCursor( nKey ) CLASS HbSrcEdit
+
+   local lResult := .T.
+
+   if nKey == K_LEFT
+      if ::nCol > 5
+         lResult = ::Super:MoveCursor( nKey )
+      else
+         lResult = .F.
+      endif
+   else
+      lResult = ::Super:MoveCursor( nKey )
+   endif
+
+return lResult
 
 //-----------------------------------------------------------------------------------------//
 
