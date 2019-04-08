@@ -25,7 +25,7 @@ CREATE CLASS HBSrcEdit FROM HBEditor
    DATA   cClrNumber   INIT "W+"
  
    DATA   cOperators   INIT "[{}],||[<>]<><=>=(),;.::=!=():),{})[]){}+=++---=*=/=%=^==$" + ;
-                            "[{||,...>,>],"
+                            "[{||,...>,>],()["
    DATA   cKeywords1   INIT ;
       "FUNCTION,DO,CASE,OTHERWISE,ENDCASE,IF,ELSE,ENDIF,WHILE," + ;
       "FOR,NEXT,RETURN,CREATE,FROM,DATA,INIT,METHOD,INLINE,ENDCLASS,VIRTUAL" + ;
