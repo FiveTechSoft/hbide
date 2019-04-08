@@ -1,7 +1,7 @@
+#include "hbclass.ch"
+#include "hbmenu.ch"
 #include "inkey.ch"
 #include "setcurs.ch"
-#include "dbgmenu.ch"
-#include "hbclass.ch"
 
 //-----------------------------------------------------------------------------------------//
 
@@ -40,7 +40,7 @@ METHOD New() CLASS HBIde
 
    ::cBackScreen = SaveScreen( 0, 0, MaxRow(), MaxCol() )
    ::oMenu       = ::BuildMenu()
-   ::oWndCode    = HBDbWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
+   ::oWndCode    = HBWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
    ::oEditor     = BuildEditor()
    ::nOldCursor  = SetCursor( SC_NORMAL )
 
