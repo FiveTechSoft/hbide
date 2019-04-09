@@ -28,6 +28,7 @@ CLASS HbIde
    METHOD BuildMenu()
    METHOD Show()
    METHOD ShowStatus()
+   METHOD Start()
    METHOD Activate()
    METHOD End() INLINE ::lEnd := .T.   
    METHOD Hide() INLINE RestScreen( 0, 0, MaxRow(), MaxCol(), ::cBackScreen )
@@ -144,7 +145,7 @@ METHOD BuildMenu() CLASS HBIde
 
       MENUITEM " ~Run "
       MENU
-         MENUITEM "~Start "
+         MENUITEM "~Start "            ACTION ::Start()
          MENUITEM "S~cript "
          MENUITEM "~Debug "   
       ENDMENU
@@ -165,5 +166,19 @@ METHOD BuildMenu() CLASS HBIde
    ENDMENU
 
 return oMenu
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Start() CLASS HbIde
+
+   ::oEditor:SaveFile()
+
+   if File( "../harbour/bin/darwin/clang/hbmk2" )
+      hb_Run( "../harbour/bin/darwin/clang/hbmk2 noname.prg > info.txt" )
+      Alert( MemoRead( "./info.txt" ) )
+      hb_Run( "./noname" )
+   endif
+
+return nil
 
 //-----------------------------------------------------------------------------------------//

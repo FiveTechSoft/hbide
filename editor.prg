@@ -5,10 +5,14 @@
 
 function BuildEditor()
 
-   local oEditor := HBSrcEdit():New( MemoRead( "hbide.prg" ), 2, 1, MaxRow() - 2,;
+   local cCode   := "function Main()"  + hb_eol() + hb_eol() + ;
+                    '   Alert( "Hello world from Harbour" )' + hb_eol() + hb_eol() + ;
+                    "return nil" 
+   local oEditor := HBSrcEdit():New( cCode, 2, 1, MaxRow() - 2,;
                                      MaxCol() - 1, .T. ), nKey
 
    oEditor:SetColor( "W/B,N/BG" )
+   oEditor:cFile = "noname.prg"
 
 return oEditor   
 
@@ -16,6 +20,7 @@ return oEditor
 
 CLASS HBSrcEdit FROM HBEditor
 
+   DATA   cFile        // no longer protected
    DATA   cClrString   INIT "GR+"
    DATA   cClrOperator INIT "R+" 
    DATA   cClrKeyword1 INIT "G+"
@@ -25,7 +30,7 @@ CLASS HBSrcEdit FROM HBEditor
    DATA   cClrNumber   INIT "W+"
  
    DATA   cOperators   INIT "[{}],||[<>]<><=>=(),;.::=!=():),{})[]){}+=++---=*=/=%=^==$" + ;
-                            "[{||,...>,>],()["
+                            "[{||,...>,>],()[?"
    DATA   cKeywords1   INIT ;
       "FUNCTION,DO,CASE,OTHERWISE,ENDCASE,IF,ELSE,ENDIF,WHILE," + ;
       "FOR,NEXT,RETURN,CREATE,FROM,DATA,INIT,METHOD,INLINE,ENDCLASS,VIRTUAL" + ;
