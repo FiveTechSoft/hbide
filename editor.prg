@@ -80,7 +80,7 @@ return Self
 
 METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
-   local n, cLine, cToken := "", cColor
+   local n, cLine, cToken := "", cColor, nCol, nStart
    local cOperators := ::cOperators
 
    hb_DispOutAt( nLine, ::nLeft, PadL( ::nFirstRow + nLine - ::nTop, 4 ), "N/W" )
@@ -141,11 +141,16 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
               cColor = SubStr( ::LineColor( nLine ), 1, At( "/", ::LineColor( nLine ) ) - 1 )
       endcase 
 
-       hb_DispOutAt( nLine, 4 + ::nLeft + n - Len( cToken ) - ::nFirstCol,;
-                     SubStr( cToken, ::nLeft, Min( Len( cToken ) - ::nLeft + 1,;
-                             ::nRight - ::nLeft - 4 ) ),;
-                     cColor + SubStr( ::LineColor( nLine ),;
-                     At( "/", ::LineColor( nLine ) ) ) )
+      nCol = 5 + n - Len( cToken ) - ::nFirstCol
+      nStart = If( nCol < 5, ::nFirstCol, 1 )
+      nCol = Max( nCol, 5 ) 
+
+      hb_DispOutAt( nLine, nCol,;
+                    SubStr( cToken, nStart,;
+                            Min( Len( cToken ) - ::nLeft + 1,;
+                            ::nRight - ::nLeft - 4 ) ),;
+                    cColor + SubStr( ::LineColor( nLine ),;
+                    At( "/", ::LineColor( nLine ) ) ) )
       cToken = ""
    end
 
