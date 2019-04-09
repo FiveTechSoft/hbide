@@ -158,17 +158,21 @@ return Self
 
 METHOD MoveCursor( nKey ) CLASS HbSrcEdit
 
-   local lResult := .F.
+   local lResult := .T.
 
    if nKey == K_LEFT
-      if ::nCol > 5
-         lResult = ::Super:MoveCursor( nKey )
+      if Col() > 5
+         lResult := ::Super:MoveCursor( nKey )
       else
-         lResult = .F.
-      endif
+         if ::nFirstCol > 1
+            ::nCol--
+            ::nFirstCol--
+            ::Display()
+         endif   
+      endif   
    else
       lResult = ::Super:MoveCursor( nKey )
-   endif
+   endif   
 
 return lResult
 
