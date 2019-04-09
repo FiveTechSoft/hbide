@@ -142,13 +142,11 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
       endcase 
 
       nCol = 5 + n - Len( cToken ) - ::nFirstCol
-      nStart = If( nCol < 5, ::nFirstCol, 1 )
+      nStart = If( nCol < 5, 1 + 5 - nCol, 1 )
       nCol = Max( nCol, 5 ) 
 
       hb_DispOutAt( nLine, nCol,;
-                    SubStr( cToken, nStart,;
-                            Min( Len( cToken ) - ::nLeft + 1,;
-                            ::nRight - ::nLeft - 4 ) ),;
+                    SubStr( cToken, nStart, Min( Len( cToken ) - nStart + 1, ::nNumCols - 4 ) ),;
                     cColor + SubStr( ::LineColor( nLine ),;
                     At( "/", ::LineColor( nLine ) ) ) )
       cToken = ""
@@ -160,7 +158,7 @@ return Self
 
 METHOD MoveCursor( nKey ) CLASS HbSrcEdit
 
-   local lResult := .T.
+   local lResult := .F.
 
    if nKey == K_LEFT
       if ::nCol > 5
