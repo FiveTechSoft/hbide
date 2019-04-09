@@ -190,12 +190,11 @@ METHOD Script() CLASS HbIde
    local oHrb, bOldError
 
    if File( "../harbour/lib/android/clang/libhbvm.a" )
-      oHrb = hb_CompileFromBuf( ::oEditor:GetText(), .F., "-n",;
-                                "-I../harbour/include" )
+      oHrb = hb_CompileFromBuf( StrTran( ::oEditor:GetText(), "Main", "__Main" ),;
+                                .T., "-n", "-I../harbour/include" )
       if ! Empty( oHrb )
          BEGIN SEQUENCE
             bOldError = ErrorBlock( { | o | DoBreak( o ) } )
-            Alert( "ok" )
             hb_HrbRun( oHrb )
          END SEQUENCE
          ErrorBlock( bOldError )
