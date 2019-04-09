@@ -29,6 +29,7 @@ CLASS HbIde
    METHOD Show()
    METHOD ShowStatus()
    METHOD Start()
+   METHOD Script()
    METHOD Activate()
    METHOD End() INLINE ::lEnd := .T.   
    METHOD Hide() INLINE RestScreen( 0, 0, MaxRow(), MaxCol(), ::cBackScreen )
@@ -146,7 +147,7 @@ METHOD BuildMenu() CLASS HBIde
       MENUITEM " ~Run "
       MENU
          MENUITEM "~Start "            ACTION ::Start()
-         MENUITEM "S~cript "
+         MENUITEM "S~cript "           ACTION ::Script()
          MENUITEM "~Debug "   
       ENDMENU
 
@@ -179,6 +180,35 @@ METHOD Start() CLASS HbIde
       hb_Run( "./noname" )
       SetCursor( SC_NORMAL )
    endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Script() CLASS HbIde
+   
+   local oHrb, bOldError
+
+   if File( "../harbour/lib/android/clang/libhbvm.a" )
+      oHrb = hb_CompileFromBuf( ::oEditor:GetText(), .F., "-n",;
+                                "-I../harbour/include" )
+      if ! Empty( oHrb )
+         BEGIN SEQUENCE
+            bOldError = ErrorBlock( { | o | DoBreak( o ) } )
+            Alert( "ok" )
+            hb_HrbRun( oHrb )
+         END SEQUENCE
+         ErrorBlock( bOldError )
+      endif
+   endif
+
+return nil      
+
+//-----------------------------------------------------------------------------------------//
+
+function DoBreak( oError )
+
+   Alert( oError:Description )
 
 return nil
 
