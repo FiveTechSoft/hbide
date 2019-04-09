@@ -177,6 +177,7 @@ METHOD Start() CLASS HbIde
       hb_Run( "../harbour/bin/darwin/clang/hbmk2 noname.prg > info.txt" )
       Alert( MemoRead( "./info.txt" ) )
       hb_Run( "./noname" )
+      SetCursor( SC_NORMAL )
    endif
 
 return nil
