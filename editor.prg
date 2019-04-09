@@ -83,6 +83,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
    local n, cLine, cToken := "", cColor, nCol, nStart
    local cOperators := ::cOperators
 
+   DispBegin()
    hb_DispOutAt( nLine, ::nLeft, PadL( ::nFirstRow + nLine - ::nTop, 4 ), "N/W" )
    hb_DispOutAt( nLine, ::nLeft + 4,;
                  SubStrPad( cLine := ::GetLine( ::nFirstRow + nLine - ::nTop ),;
@@ -153,6 +154,8 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
       endif                 
       cToken = ""
    end
+
+   DispEnd()
 
 return Self
 
