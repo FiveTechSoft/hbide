@@ -1,6 +1,8 @@
 #include "hbclass.ch"
 #include "inkey.ch"
 
+#define _REFRESH_LINE   1
+
 //-----------------------------------------------------------------------------------------//
 
 function BuildEditor()
@@ -51,7 +53,37 @@ ENDCLASS
 
 METHOD Edit( nKey ) CLASS HBSrcEdit
 
-   ::Super:Edit( nKey )
+   local nKeyStd := hb_keyStd( nKey )
+
+   do case 
+      case nKeyStd == K_BS
+           IF ::nCol > 1
+              ::lDirty := .T.
+              ::aText[ ::nRow ]:cText := hb_UStuff( ::aText[ ::nRow ]:cText, --::nCol - 4, 1, "" )
+              ::GoTo( ::nRow, ::nCol, _REFRESH_LINE )
+           ENDIF
+
+      case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;
+           Space( TabCount( ::nTabWidth, ::nCol ) ), ;
+           hb_keyChar( nKey ) ) )
+      
+           ::lDirty := .T.
+           oLine := ::aText[ ::nRow ]
+           IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 1 ) > 0
+              oLine:cText += Space( nPos )
+           ENDIF
+           oLine:cText := hb_UStuff( oLine:cText, ::nCol - 4, ;
+                                     iif( Set( _SET_INSERT ), 0, 1 ), cKey )
+           ::nCol += hb_ULen( cKey )
+           IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol
+              ::ReformParagraph()
+           ELSE
+              ::GoTo( ::nRow, ::nCol, _REFRESH_LINE )
+           ENDIF
+     
+      otherwise
+           ::Super:Edit( nKey )
+   endcase
 
    if ::Row() > ::nTop
       ::DisplayLine( ::Row() - 1 )
@@ -193,3 +225,6 @@ static function SubStrPad( cText, nFrom, nLen )
 return hb_UPadR( hb_USubStr( cText, nFrom, nLen ), nLen )
 
 //-----------------------------------------------------------------------------------------//
+
+STATIC FUNCTION TabCount( nTabWidth, nCol )
+   RETURN Int( nTabWidth - ( nCol - 1 ) % nTabWidth )
