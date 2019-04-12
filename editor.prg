@@ -57,7 +57,7 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
 
    do case 
       case nKeyStd == K_BS
-           IF ::nCol > 1
+           IF ::nCol > 5
               ::lDirty := .T.
               ::aText[ ::nRow ]:cText := hb_UStuff( ::aText[ ::nRow ]:cText, --::nCol - 4, 1, "" )
               ::GoTo( ::nRow, ::nCol, _REFRESH_LINE )
