@@ -63,6 +63,10 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
               ::GoTo( ::nRow, ::nCol, _REFRESH_LINE )
            ENDIF
 
+      case nKeyStd == K_ENTER
+           ::Super:Edit( nKey )
+           ::GoTo( ::nRow + 1, 5 )
+
       case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;
            Space( TabCount( ::nTabWidth, ::nCol ) ), ;
            hb_keyChar( nKey ) ) )
