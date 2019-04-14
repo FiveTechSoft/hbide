@@ -1,8 +1,11 @@
 #include "hbclass.ch"
+#include "box.ch"
 
 CLASS HbMenu FROM HBDbMenu
 
    METHOD LoadColors()
+
+   METHOD Display()
 
 ENDCLASS
 
@@ -21,5 +24,28 @@ METHOD LoadColors() CLASS HbMenu
          oMenuItem:bAction:LoadColors()
       endif
    next
+
+return nil
+
+METHOD Display() CLASS HbMenu
+   
+   local oMenuItem
+
+   if ::lPopup
+      ::cBackImage := __dbgSaveScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2 )
+      hb_DispBox( ::nTop, ::nLeft, ::nBottom, ::nRight, HB_B_SINGLE_UNI, ::cClrPopup )
+      hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
+   else
+      hb_DispOutAt( 0, 0, Space( MaxCol() + 1 ), ::cClrPopup )
+   endif
+
+   FOR EACH oMenuItem IN ::aItems
+      IF oMenuItem:cPrompt == "-"  // Separator
+         hb_DispOutAtBox( oMenuItem:nRow, ::nLeft, ;
+            hb_UTF8ToStrBox( "├" + Replicate( "─", ::nRight - ::nLeft - 1 ) + "┤" ), ::cClrPopup )
+      ELSE
+         oMenuItem:Display( ::cClrPopup, ::cClrHotKey )
+      ENDIF
+   NEXT
 
 return nil

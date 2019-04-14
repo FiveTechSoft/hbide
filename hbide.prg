@@ -191,7 +191,9 @@ METHOD Script() CLASS HbIde
 
    if File( "../harbour/lib/android/clang/libhbvm.a" )
       oHrb = hb_CompileFromBuf( StrTran( ::oEditor:GetText(), "Main", "__Main" ),;
-                                .T., "-n", "-I../harbour/include" )
+                                .T., "-n", "-I../harbour/include" ) 
+      ::Show()
+
       if ! Empty( oHrb )
          BEGIN SEQUENCE
             bOldError = ErrorBlock( { | o | DoBreak( o ) } )
