@@ -3,11 +3,15 @@
 #include "inkey.ch"
 #include "setcurs.ch"
 
+#define HB_INKEY_GTEVENT   1024
+
 //-----------------------------------------------------------------------------------------//
 
 function Main()
 
    local oHbIde := HBIde():New()
+
+   Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
 
    oHbIde:Activate()
    
@@ -81,14 +85,15 @@ return nil
 
 METHOD Activate() CLASS HBIde
 
-   local nKey
+   local nKey, nKeyStd
 
    ::lEnd = .F.
    ::oEditor:Goto( 1, 5 )
    ::Show()
-   
+
    while ! ::lEnd
-      nKey = Inkey( 0, INKEY_ALL )
+      nKey = Inkey( 0 )
+      // nKeyStd = hb_keyStd( nKey )
       if nKey == K_LBUTTONDOWN
          if MRow() == 0 .or. ::oMenu:IsOpen()
             ::nOldCursor = SetCursor( SC_NONE )
