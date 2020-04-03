@@ -10,6 +10,12 @@ if [[ $OSTYPE == *"darwin"* ]]; then
   ../harbour/bin/darwin/clang/hbmk2 hbide.hbp
 fi
 
+if [[ $OSTYPE == *"linux"* ]]; then
+  export HB_PLATFORM="linux"
+  export HB_COMPILER="gcc"
+  ../harbour/bin/linux/gcc/hbmk2 hbide.hbp
+fi
+
 if [ $? == 0 ]; then
   ./hbide
 fi
