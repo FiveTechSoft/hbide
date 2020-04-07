@@ -43,8 +43,6 @@ ENDCLASS
 
 METHOD New() CLASS HBIde
 
-   local aWndSize := hb_GtInfo( HB_GTI_SCREENSIZE )
-
    Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
    SetMode( 40, 120 )
 
@@ -54,10 +52,6 @@ METHOD New() CLASS HBIde
    ::oEditor     = BuildEditor()
    ::nOldCursor  = SetCursor( SC_NORMAL )
 
-   hb_GtInfo( HB_GTI_DESKTOPWIDTH, aWndSize[ 2 ] )
-   hb_GtInfo( HB_GTI_SCREENHEIGHT, aWndSize[ 1 ] )
-   hb_GtInfo( HB_GTI_SCREENWIDTH, aWndSize[ 2 ] )
-   // Hb_GtInfo( HB_GTI_RESIZABLE, .T. )
    Hb_GtInfo( HB_GTI_FONTNAME , "Lucida Console" )
    Hb_GtInfo( HB_GTI_FONTWIDTH, 14  )
    Hb_GtInfo( HB_GTI_FONTSIZE , 25 ) 
