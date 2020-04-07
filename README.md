@@ -2,4 +2,4 @@
 
 # HbIde
 
-[![](https://github.com/FiveTechSoft/hbsrcedit/blob/master/screenshots/hbide_1.png)](http://www.fivetechsoft.com "FiveTech Software")
+[![](https://github.com/FiveTechSoft/screenshots/blob/master/HarbourIDE.png?raw=true)](http://www.fivetechsoft.com "FiveTech Software")
