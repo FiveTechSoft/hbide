@@ -1,6 +1,8 @@
 #include "hbclass.ch"
 #include "box.ch"
 
+//-----------------------------------------------------------------------------------------//
+
 CLASS HbMenu FROM HBDbMenu
 
    METHOD LoadColors()
@@ -8,6 +10,8 @@ CLASS HbMenu FROM HBDbMenu
    METHOD Display()
 
 ENDCLASS
+
+//-----------------------------------------------------------------------------------------//
 
 METHOD LoadColors() CLASS HbMenu
 
@@ -26,6 +30,8 @@ METHOD LoadColors() CLASS HbMenu
    next
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
 
 METHOD Display() CLASS HbMenu
    
@@ -49,3 +55,5 @@ METHOD Display() CLASS HbMenu
    NEXT
 
 return nil
+
+//-----------------------------------------------------------------------------------------//

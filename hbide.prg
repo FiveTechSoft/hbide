@@ -4,6 +4,11 @@
 #include "setcurs.ch"
 #include 'hbgtinfo.ch'
 
+#xcommand DEFAULT <uVar1> := <uVal1> ;
+               [, <uVarN> := <uValN> ] => ;
+                  If( <uVar1> == nil, <uVar1> := <uVal1>, ) ;;
+                [ If( <uVarN> == nil, <uVarN> := <uValN>, ); ]
+
 #define HB_INKEY_GTEVENT   1024
 
 //-----------------------------------------------------------------------------------------//
@@ -29,13 +34,15 @@ CLASS HbIde
 
    METHOD New()
    METHOD BuildMenu()
+   METHOD Hide() INLINE RestScreen( 0, 0, MaxRow(), MaxCol(), ::cBackScreen )   
    METHOD Show()
    METHOD ShowStatus()
    METHOD Start()
    METHOD Script()
    METHOD Activate()
    METHOD End() INLINE ::lEnd := .T.   
-   METHOD Hide() INLINE RestScreen( 0, 0, MaxRow(), MaxCol(), ::cBackScreen )
+   METHOD MsgInfo( cText ) 
+   METHOD SaveScreen() INLINE ::cBackScreen = SaveScreen( 0, 0, MaxRow(), MaxCol() )  
 
 ENDCLASS
 
@@ -46,7 +53,6 @@ METHOD New() CLASS HBIde
    Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
    SetMode( 40, 120 )
 
-   ::cBackScreen = SaveScreen( 0, 0, MaxRow(), MaxCol() )
    ::oMenu       = ::BuildMenu()
    ::oWndCode    = HBWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
    ::oEditor     = BuildEditor()
@@ -57,6 +63,28 @@ METHOD New() CLASS HBIde
    Hb_GtInfo( HB_GTI_FONTSIZE , 25 ) 
 
 return Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD MsgInfo( cText, cTitle ) CLASS HBIde
+
+   local oDlg
+
+   DEFAULT cTitle := "Information"
+
+   oDlg = HBWindow():New( Int( ( MaxRow() / 2 ) - 7 ), Int( ( MaxCol() / 2 ) - 20 ),;
+                          Int( ( MaxRow() / 2 ) + 7 ), Int( ( MaxCol() / 2 ) + 20 ),;
+                          cTitle, "W+/W" )
+
+   oDlg:bInit = { | Self | ::SayCenter( "Harbour IDE", -4 ),;
+                           ::SayCenter( "Version 1.0", -2 ),;
+                           ::SayCenter( "Copyright (c) 1999-2020 by" ),;
+                           ::SayCenter( "The Harbour Project", 2 ) }
+
+   // oDlg:bKeyPressed = { | nKey | If( nKey == K_LBUTTONDOWN, Alert( "ok" ),) }                                              
+   oDlg:ShowModal()
+   
+return nil
 
 //-----------------------------------------------------------------------------------------//
 
@@ -172,7 +200,7 @@ METHOD BuildMenu() CLASS HBIde
          MENUITEM "~Index "
          MENUITEM "~Contents "
          SEPARATOR
-         MENUITEM "~About... "      ACTION Alert( "HbIde 1.0" )
+         MENUITEM "~About... "      ACTION ::MsgInfo( "HbIde 1.0" )
       ENDMENU  
    ENDMENU
 
