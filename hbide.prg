@@ -164,7 +164,7 @@ METHOD BuildMenu() CLASS HBIde
       MENUITEM " ~Options "
       MENU
          MENUITEM "~Compiler Flags... "
-         MENUITEM "~Display... "       ACTION Alert( hb_ntos( hb_GtInfo( HB_GTI_SCREENSIZE )[ 1 ] ) )     
+         MENUITEM "~Display... "            
       ENDMENU 
 
       MENUITEM " ~Help "
