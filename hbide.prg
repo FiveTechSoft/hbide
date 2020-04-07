@@ -50,6 +50,8 @@ ENDCLASS
 
 METHOD New() CLASS HBIde
 
+   SET SCOREBOARD OFF
+   
    ::SaveScreen()
    Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
    SetMode( 40, 120 )
