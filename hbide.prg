@@ -92,16 +92,19 @@ return nil
 
 function AddButton( nRow, nCol, cCaption, oDlg )
 
-   local lPressed := .F.
+   local lOk := .F.
    local GetList := {}
 
-   @ nRow, nCol GET lPressed PUSHBUTTON CAPTION cCaption COLOR "W/G,W+/G,N/G,GR+/G" ;
+   @ nRow, nCol GET lOk PUSHBUTTON CAPTION cCaption COLOR "W/G,W+/G,N/G,GR+/G" ;
       STATE { || ReadKill( .T. ) }
 
    ATail( GetList ):Control:Style = Chr( 255 ) + Chr( 255 )   
 
    READ
-   __Keyboard( K_ESC )
+
+   if lOk
+      __Keyboard( K_ESC )
+   endif   
    
 return nil   
 
