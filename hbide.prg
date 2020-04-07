@@ -99,6 +99,8 @@ function AddButton( nRow, nCol, cCaption, oDlg )
    @ nRow, nCol GET lOk PUSHBUTTON CAPTION cCaption COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || ReadKill( .T. ) }
 
+   __objModMethod( ATail( GetList ):Control, "DISPLAY", @BtnDisplay() )
+
    ATail( GetList ):Control:Style = Chr( 255 ) + Chr( 255 )   
 
    READ
