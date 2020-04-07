@@ -2,6 +2,7 @@
 #include "hbmenu.ch"
 #include "inkey.ch"
 #include "setcurs.ch"
+#include 'hbgtinfo.ch'
 
 #define HB_INKEY_GTEVENT   1024
 
@@ -10,8 +11,6 @@
 function Main()
 
    local oHbIde := HBIde():New()
-
-   Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
 
    oHbIde:Activate()
    
@@ -44,12 +43,24 @@ ENDCLASS
 
 METHOD New() CLASS HBIde
 
-   SetMode( 33, 100 )
+   local aWndSize := hb_GtInfo( HB_GTI_SCREENSIZE )
+
+   Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
+   SetMode( 40, 120 )
+
    ::cBackScreen = SaveScreen( 0, 0, MaxRow(), MaxCol() )
    ::oMenu       = ::BuildMenu()
    ::oWndCode    = HBWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
    ::oEditor     = BuildEditor()
    ::nOldCursor  = SetCursor( SC_NORMAL )
+
+   hb_GtInfo( HB_GTI_DESKTOPWIDTH, aWndSize[ 2 ] )
+   hb_GtInfo( HB_GTI_SCREENHEIGHT, aWndSize[ 1 ] )
+   hb_GtInfo( HB_GTI_SCREENWIDTH, aWndSize[ 2 ] )
+   // Hb_GtInfo( HB_GTI_RESIZABLE, .T. )
+   Hb_GtInfo( HB_GTI_FONTNAME , "Lucida Console" )
+   Hb_GtInfo( HB_GTI_FONTWIDTH, 14  )
+   Hb_GtInfo( HB_GTI_FONTSIZE , 25 ) 
 
 return Self
 
@@ -159,7 +170,7 @@ METHOD BuildMenu() CLASS HBIde
       MENUITEM " ~Options "
       MENU
          MENUITEM "~Compiler Flags... "
-         MENUITEM "~Display... "           
+         MENUITEM "~Display... "       ACTION Alert( hb_ntos( hb_GtInfo( HB_GTI_SCREENSIZE )[ 1 ] ) )     
       ENDMENU 
 
       MENUITEM " ~Help "
