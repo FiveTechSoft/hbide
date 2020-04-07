@@ -83,8 +83,9 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
                            ::SayCenter( "The Harbour Project", 2 ),;
                            AddButton( 23, 56, " &OK ", oDlg ) }
 
-   // oDlg:bKeyPressed = { | nKey | If( nKey == K_LBUTTONDOWN, Alert( "ok" ),) }                                              
-   oDlg:ShowModal()
+   // oDlg:bKeyPressed = { | nKey | If( nKey == K_LBUTTONDOWN, Alert( "ok" ),) } 
+   oDlg:lShadow = .T.                                             
+   oDlg:Show()
    
 return nil
 
@@ -95,16 +96,13 @@ function AddButton( nRow, nCol, cCaption, oDlg )
    local lOk := .F.
    local GetList := {}
 
-   @ nRow, nCol GET lOk PUSHBUTTON CAPTION cCaption COLOR "W/G,W+/G,N/G,GR+/G" ;
+   @ nRow, nCol GET lOk PUSHBUTTON CAPTION cCaption COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || ReadKill( .T. ) }
 
    ATail( GetList ):Control:Style = Chr( 255 ) + Chr( 255 )   
 
    READ
-
-   if lOk
-      __Keyboard( K_ESC )
-   endif   
+   oDlg:Hide()
    
 return nil   
 
