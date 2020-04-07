@@ -80,12 +80,26 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
    oDlg:bInit = { | Self | ::SayCenter( "Harbour IDE", -4 ),;
                            ::SayCenter( "Version 1.0", -2 ),;
                            ::SayCenter( "Copyright (c) 1999-2020 by" ),;
-                           ::SayCenter( "The Harbour Project", 2 ) }
+                           ::SayCenter( "The Harbour Project", 2 ),;
+                           AddButton( 23, 56, " &OK ", oDlg ) }
 
    // oDlg:bKeyPressed = { | nKey | If( nKey == K_LBUTTONDOWN, Alert( "ok" ),) }                                              
    oDlg:ShowModal()
    
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+function AddButton( nRow, nCol, cCaption, oDlg )
+
+   local cValue := Space( 3 )
+
+   @ nRow, nCol GET cValue PUSHBUTTON CAPTION cCaption COLOR "W/G,W+/G,W+/G,GR+/G" ;
+      VALID ( oDlg:Hide(), .T. )
+
+   READ
+   
+return nil   
 
 //-----------------------------------------------------------------------------------------//
 
