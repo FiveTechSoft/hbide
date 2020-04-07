@@ -53,7 +53,7 @@ METHOD SayCenter( cMsg, nRow ) CLASS HbWindow
    nRow = hb_DefaultValue( nRow, 0 )
 
    hb_DispOutAt( ::nTop - 1 + nRow + ( ::nHeight() / 2 ),;
-   ::nLeft + ( ::nWidth() / 2 ) - Len( cMsg ) / 2, cMsg,;
+   ::nLeft - 1 + Int( ::nWidth() / 2 ) - Int( Len( cMsg ) / 2 ), cMsg,;
    GetColors()[ 8 ] ) 
 
 return nil
