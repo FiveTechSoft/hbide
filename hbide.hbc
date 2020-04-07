@@ -4,5 +4,4 @@
 
 description=hbide
 
-{unix|linux|darwin}gt=gtxwc
 {win}gt=gtwvt

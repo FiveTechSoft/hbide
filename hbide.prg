@@ -42,7 +42,7 @@ CLASS HbIde
    METHOD Activate()
    METHOD End() INLINE ::lEnd := .T.   
    METHOD MsgInfo( cText ) 
-   METHOD SaveScreen() INLINE ::cBackScreen = SaveScreen( 0, 0, MaxRow(), MaxCol() )  
+   METHOD SaveScreen() INLINE ::cBackScreen := SaveScreen( 0, 0, MaxRow(), MaxCol() )  
 
 ENDCLASS
 
@@ -50,6 +50,7 @@ ENDCLASS
 
 METHOD New() CLASS HBIde
 
+   ::SaveScreen()
    Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
    SetMode( 40, 120 )
 
