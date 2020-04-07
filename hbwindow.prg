@@ -17,6 +17,8 @@ CLASS HbWindow FROM HbDbWindow
 
    METHOD Show( lFocused )
 
+   METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit )   
+
 ENDCLASS
 
 //-----------------------------------------------------------------------------------------//
@@ -69,6 +71,21 @@ METHOD Show( lFocused ) CLASS HbWindow
    endif   
 
 return nil   
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit ) CLASS HbWindow
+   
+   local nTop    := ( MaxRow() / 2 ) - ( nHeight / 2 )
+   local nLeft   := ( MaxCol() / 2 ) - ( nWidth / 2 )
+   local nBottom := ( MaxRow() / 2 ) + ( nHeight / 2 )   
+   local nRight  := ( MaxCol() / 2 ) + ( nWidth / 2 )
+
+   ::New( nTop, nLeft, nBottom, nRight, cCaption, cColor )
+   ::bInit   = bInit
+   ::lShadow = .T.
+
+return Self
 
 //-----------------------------------------------------------------------------------------//
 

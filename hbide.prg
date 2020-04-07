@@ -43,6 +43,7 @@ CLASS HbIde
    METHOD End() INLINE ::lEnd := .T.   
    METHOD MsgInfo( cText ) 
    METHOD SaveScreen() INLINE ::cBackScreen := SaveScreen( 0, 0, MaxRow(), MaxCol() )  
+   METHOD OpenFile()
 
 ENDCLASS
 
@@ -187,7 +188,7 @@ METHOD BuildMenu() CLASS HBIde
       MENUITEM " ~File "
       MENU
          MENUITEM "~New"              ACTION Alert( "new" )
-         MENUITEM "~Open..."          ACTION Alert( "open" )
+         MENUITEM "~Open..."          ACTION ::OpenFile()
          MENUITEM "~Save"             ACTION Alert( "save" )
          MENUITEM "Save ~As... "      ACTION Alert( "saveas" )
          SEPARATOR
@@ -244,6 +245,31 @@ METHOD Start() CLASS HbIde
    endif
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD OpenFile() CLASS HbIde 
+
+   local oDlg := HbWindow():Dialog( "Open a file", 36, 17, "W+/W" )
+   local GetList := {}
+   local cFileName := Space( 25 )
+   local lOk := .F.
+   
+   oDlg:Show()
+
+   @ 13, 43 SAY "File to open" COLOR "W+/W"
+
+   @ 14, 43 GET cFileName COLOR "W+/B"
+   
+   @ 14, 69 GET lOk PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || ReadKill( .T. ) }
+   __objModMethod( ATail( GetList ):Control, "DISPLAY", @BtnDisplay() )
+   ATail( GetList ):Control:Style = Chr( 255 ) + Chr( 255 ) 
+   
+   READ
+   oDlg:Hide()  
+
+return nil   
 
 //-----------------------------------------------------------------------------------------//
 
