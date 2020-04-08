@@ -92,10 +92,9 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
    @ 23, 56 GET lOk PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || ReadKill( .T. ) }
 
-   ATail( GetList ):Control:Style = Chr( 255 ) + Chr( 255 )   
-
    READ
    oDlg:Hide()
+   ::oEditor:ShowCursor()
    
 return nil
 
@@ -145,17 +144,17 @@ METHOD Activate() CLASS HBIde
             ::nOldCursor = SetCursor( SC_NONE )
             ::oMenu:ProcessKey( nKey )
             if ! ::oMenu:IsOpen()
-               SetCursor( ::nOldCursor )
+               SetCursor( SC_NORMAL )
             endif
          endif
       else
          if ::oMenu:IsOpen()
             ::oMenu:ProcessKey( nKey )
             if ! ::oMenu:IsOpen()
-               SetCursor( ::nOldCursor )
+               SetCursor( SC_NORMAL )
             endif
          else
-            SetCursor( ::nOldCursor )
+            SetCursor( SC_NORMAL )
             ::oEditor:Edit( nKey )
             ::ShowStatus()
          endif
@@ -252,10 +251,16 @@ METHOD OpenFile() CLASS HbIde
    @ 14, 69 GET lOk PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || ReadKill( .T. ) }
 
-   ATail( GetList ):Control:Style = Chr( 255 ) + Chr( 255 ) 
-   
    READ
    oDlg:Hide()  
+
+   if ! Empty( cFileName )
+      ::oEditor:LoadFile( cFileName )
+      ::oEditor:Display()
+      ::oEditor:Goto( 1, 5 )
+   endif 
+   
+   ::oEditor:ShowCursor()
 
 return nil   
 

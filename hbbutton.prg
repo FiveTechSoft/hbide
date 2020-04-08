@@ -3,7 +3,7 @@ function BtnDisplay()
    local Self := QSelf()
 
    LOCAL cColor
-   LOCAL cStyle := ::cStyle
+   LOCAL cStyle := Chr( 255 )+ Chr( 255 ) // ::cStyle
    LOCAL cCaption := ::cCaption
    LOCAL nRow := ::nRow
    LOCAL nCol := ::nCol

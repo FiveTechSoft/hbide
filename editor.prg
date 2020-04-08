@@ -1,5 +1,6 @@
 #include "hbclass.ch"
 #include "inkey.ch"
+#include "setcurs.ch"
 
 #define _REFRESH_LINE   1
 
@@ -46,6 +47,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD LineColor( nLine ) INLINE ;
                      If( nLine == ::nRow - ::nFirstRow + ::nTop, ::cClrSelRow, ::cColorSpec )
    METHOD MoveCursor( nKey )
+   METHOD ShowCursor() INLINE ( SetCursor( SC_NORMAL ), SetPos( ::nRow + 1, ::nCol ) )   
 
 ENDCLASS
 
