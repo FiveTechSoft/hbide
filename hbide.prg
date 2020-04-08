@@ -66,50 +66,38 @@ METHOD New() CLASS HBIde
    Hb_GtInfo( HB_GTI_FONTWIDTH, 14  )
    Hb_GtInfo( HB_GTI_FONTSIZE , 25 ) 
 
+   __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
+
 return Self
 
 //-----------------------------------------------------------------------------------------//
 
 METHOD MsgInfo( cText, cTitle ) CLASS HBIde
 
-   local oDlg
+   local oDlg, GetList := {}, lOk := .F.
 
    DEFAULT cTitle := "Information"
 
    oDlg = HBWindow():New( Int( ( MaxRow() / 2 ) - 7 ), Int( ( MaxCol() / 2 ) - 20 ),;
                           Int( ( MaxRow() / 2 ) + 7 ), Int( ( MaxCol() / 2 ) + 20 ),;
                           cTitle, "W+/W" )
-
-   oDlg:bInit = { | Self | ::SayCenter( "Harbour IDE", -4 ),;
-                           ::SayCenter( "Version 1.0", -2 ),;
-                           ::SayCenter( "Copyright (c) 1999-2020 by" ),;
-                           ::SayCenter( "The Harbour Project", 2 ),;
-                           AddButton( 23, 56, " &OK ", oDlg ) }
-
-   // oDlg:bKeyPressed = { | nKey | If( nKey == K_LBUTTONDOWN, Alert( "ok" ),) } 
-   oDlg:lShadow = .T.                                             
+   oDlg:lShadow = .T.
    oDlg:Show()
-   
-return nil
 
-//-----------------------------------------------------------------------------------------//
+   oDlg:SayCenter( "Harbour IDE", -4 )
+   oDlg:SayCenter( "Version 1.0", -2 )
+   oDlg:SayCenter( "Copyright (c) 1999-2020 by" )
+   oDlg:SayCenter( "The Harbour Project", 2 )
 
-function AddButton( nRow, nCol, cCaption, oDlg )
-
-   local lOk := .F.
-   local GetList := {}
-
-   @ nRow, nCol GET lOk PUSHBUTTON CAPTION cCaption COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+   @ 23, 56 GET lOk PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || ReadKill( .T. ) }
-
-   __objModMethod( ATail( GetList ):Control, "DISPLAY", @BtnDisplay() )
 
    ATail( GetList ):Control:Style = Chr( 255 ) + Chr( 255 )   
 
    READ
    oDlg:Hide()
    
-return nil   
+return nil
 
 //-----------------------------------------------------------------------------------------//
 
@@ -263,7 +251,7 @@ METHOD OpenFile() CLASS HbIde
    
    @ 14, 69 GET lOk PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || ReadKill( .T. ) }
-   __objModMethod( ATail( GetList ):Control, "DISPLAY", @BtnDisplay() )
+
    ATail( GetList ):Control:Style = Chr( 255 ) + Chr( 255 ) 
    
    READ
