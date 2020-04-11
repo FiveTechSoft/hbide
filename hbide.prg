@@ -237,24 +237,47 @@ return nil
 
 METHOD OpenFile() CLASS HbIde 
 
-   local oDlg := HbWindow():Dialog( "Open a file", 36, 17, "W+/W" )
-   local GetList := {}
-   local cFileName := Space( 25 )
-   local lOk := .F.
+   local oDlg := HbWindow():Dialog( "Open a file", 38, 17, "W+/W" )
+   local GetList := {}, oGetName, oListBox
+   local cFileName := Space( 25 ), cPickFileName := ""
+   local lDummy, lOk := .F., lCancel := .F.
+   local aPrgs := Directory( "*.prg" )
+
+   AEval( aPrgs, { | aPrg, n | aPrgs[ n ] := aPrg[ 1 ] } )
    
    oDlg:Show()
 
-   @ 13, 43 SAY "File to open" COLOR "W+/W"
+   @ 14, 42 GET cFileName COLOR "W/B,W+/B,W+/W,GR+/W"
 
-   @ 14, 43 GET cFileName COLOR "W+/B"
-   
-   @ 14, 69 GET lOk PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+   with object oGetName := ATail( GetList )  
+      :CapRow = 13   
+      :CapCol = 42   
+      :Caption = "File to ope&n"
+      :Display()
+   end   
+
+   @ 17, 42, 27, 66 GET cPickFileName LISTBOX aPrgs ;
+      COLOR "N/BG,GR+/BG,N/BG,W+/G,W+/W,W+/W,GR+/W" ;
+      STATE { || If( oListBox != nil, ( oGetName:VarPut( Space( 25 ) ), oGetName:Display(),;
+                     oGetName:VarPut( oListBox:buffer ), oGetName:Assign(), oGetName:Display() ),) }
+
+   with object oListBox := ATail( GetList ):Control  
+      :CapRow = 16   
+      :CapCol = 43   
+      :Caption = "&Files"   
+      :Display()
+   end   
+
+   @ 14, 68 GET lDummy PUSHBUTTON CAPTION "  &OK  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || ReadKill( .T. ), lOk := .T. }
+
+   @ 16, 68 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || ReadKill( .T. ) }
 
    READ
    oDlg:Hide()  
 
-   if ! Empty( cFileName )
+   if lOk .and. ! Empty( cFileName )
       ::oEditor:LoadFile( cFileName )
       ::oEditor:Display()
       ::oEditor:Goto( 1, 5 )
