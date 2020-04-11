@@ -1,5 +1,7 @@
 #include "hbclass.ch"
 #include "inkey.ch"
+#include "box.ch"
+#include "setcurs.ch"
 
 //-----------------------------------------------------------------------------------------//
 
@@ -21,6 +23,8 @@ CLASS HbWindow FROM HbDbWindow
    METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit ) 
       
    METHOD Hide()   
+
+   METHOD MouseEvent( nMRow, nMCol )   
 
 ENDCLASS
 
@@ -53,6 +57,49 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
+
+   local cPrevColor, cImage, cBackImage, nHeight
+   local nPrevCursor := SetCursor( SC_NONE )
+
+   do case
+      case nMRow == ::nTop .and. nMCol == ::nLeft + 2 .and. MLeftDown() // close button
+           ReadKill( .T. )
+
+      case MLeftDown() .and. nMRow == ::nTop .and. nMCol >= ::nLeft .and. nMCol <= ::nRight // top border
+           cBackImage = ::cBackImage
+           cPrevColor = ::cColor
+           nHeight = ::nBottom - ::nTop + 1
+           ::cColor = "G+/W" 
+           ::Refresh()
+           cImage = SaveScreen( ::nTop, ::nLeft, ::nBottom, ::nRight )
+           while MLeftDown()
+              if MRow() != ::nTop
+                 DispBegin()
+                 __dbgRestScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2, cBackImage )
+                 ::nTop = MRow()
+                 ::nBottom = MRow() + nHeight - 1
+                 cBackImage = __dbgSaveScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2 )
+                 RestScreen( ::nTop, ::nLeft, ::nBottom, ::nRight, cImage )
+                 hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
+                 DispEnd()
+              endif    
+           end 
+           ::cBackImage = cBackImage
+           ::cColor = cPrevColor
+           ::Refresh()
+           hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
+           SetCursor( nPrevCursor )
+
+      otherwise
+         ::Refresh()   
+      
+   endcase
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD SayCenter( cMsg, nRow ) CLASS HbWindow
 
    nRow = hb_DefaultValue( nRow, 0 )
@@ -73,8 +120,8 @@ METHOD Show( lFocused ) CLASS HbWindow
       Eval( ::bInit, Self )
    endif   
 
-   ::nIdle = hb_IdleAdd( { || If( MRow() == ::nTop .and. MCol() == ::nLeft + 2 .and. MLeftDown(),;
-                            ReadKill( .T. ),) } )
+   ::nIdle = hb_IdleAdd( { || ::MouseEvent( MRow(), MCol() ) } )
+
 return nil   
 
 //-----------------------------------------------------------------------------------------//

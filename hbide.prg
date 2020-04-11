@@ -106,6 +106,8 @@ METHOD Show() CLASS HBIde
 
    ::oMenu:Display()
    ::oWndCode:Show( .T. )
+   hb_IdleDel( ::oWndCode:nIdle )
+   ::oWndCode:nIdle = nil
    ::oEditor:Display()
    ::ShowStatus()
 
