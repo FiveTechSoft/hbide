@@ -244,6 +244,9 @@ METHOD OpenFile() CLASS HbIde
    local aPrgs := Directory( "*.prg" )
 
    AEval( aPrgs, { | aPrg, n | aPrgs[ n ] := aPrg[ 1 ] } )
+   if Len( aPrgs ) == 0
+      AAdd( aPrgs, "" )
+   endif   
    
    oDlg:Show()
 
