@@ -6,6 +6,7 @@
 CLASS HbWindow FROM HbDbWindow
 
    DATA   bInit
+   DATA   nIdle     // allows mouse support in READ
 
    METHOD LoadColors()
 
@@ -17,7 +18,9 @@ CLASS HbWindow FROM HbDbWindow
 
    METHOD Show( lFocused )
 
-   METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit )   
+   METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit ) 
+      
+   METHOD Hide()   
 
 ENDCLASS
 
@@ -70,16 +73,31 @@ METHOD Show( lFocused ) CLASS HbWindow
       Eval( ::bInit, Self )
    endif   
 
+   ::nIdle = hb_IdleAdd( { || If( MRow() == ::nTop .and. MCol() == ::nLeft + 2 .and. MLeftDown(),;
+                            ReadKill( .T. ),) } )
+return nil   
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Hide() CLASS HbWindow 
+
+   ::Super:Hide()
+
+   if ::nIdle != nil
+      hb_IdleDel( ::nIdle )
+      ::nIdle = nil
+   endif
+   
 return nil   
 
 //-----------------------------------------------------------------------------------------//
 
 METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit ) CLASS HbWindow
    
-   local nTop    := ( MaxRow() / 2 ) - ( nHeight / 2 )
-   local nLeft   := ( MaxCol() / 2 ) - ( nWidth / 2 )
-   local nBottom := ( MaxRow() / 2 ) + ( nHeight / 2 )   
-   local nRight  := ( MaxCol() / 2 ) + ( nWidth / 2 )
+   local nTop    := Int( ( MaxRow() / 2 ) - ( nHeight / 2 ) )
+   local nLeft   := Int( ( MaxCol() / 2 ) - ( nWidth / 2 ) )
+   local nBottom := Int( ( MaxRow() / 2 ) + ( nHeight / 2 ) )  
+   local nRight  := Int( ( MaxCol() / 2 ) + ( nWidth / 2 ) )
 
    ::New( nTop, nLeft, nBottom, nRight, cCaption, cColor )
    ::bInit   = bInit

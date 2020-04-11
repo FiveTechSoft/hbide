@@ -68,6 +68,8 @@ METHOD New() CLASS HBIde
 
    __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
 
+   hb_IdleAdd( { || ::ShowStatus() } )  
+
 return Self
 
 //-----------------------------------------------------------------------------------------//
@@ -240,7 +242,7 @@ METHOD OpenFile() CLASS HbIde
    local oDlg := HbWindow():Dialog( "Open a file", 38, 17, "W+/W" )
    local GetList := {}, oGetName, oListBox
    local cFileName := Space( 25 ), cPickFileName := ""
-   local lDummy, lOk := .F., lCancel := .F.
+   local lDummy, lOk := .F.
    local aPrgs := Directory( "*.prg" )
 
    AEval( aPrgs, { | aPrg, n | aPrgs[ n ] := aPrg[ 1 ] } )
@@ -278,7 +280,8 @@ METHOD OpenFile() CLASS HbIde
       STATE { || ReadKill( .T. ) }
 
    READ
-   oDlg:Hide()  
+
+   oDlg:Hide()
 
    if lOk .and. ! Empty( cFileName )
       ::oEditor:LoadFile( cFileName )
