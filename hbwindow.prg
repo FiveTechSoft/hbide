@@ -59,17 +59,20 @@ return nil
 
 METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
 
-   local cPrevColor, cImage, cBackImage, nHeight
+   local cPrevColor, cImage, cBackImage, nHeight, nWidth
    local nPrevCursor := SetCursor( SC_NONE )
 
    do case
       case nMRow == ::nTop .and. nMCol == ::nLeft + 2 .and. MLeftDown() // close button
            ReadKill( .T. )
 
-      case MLeftDown() .and. nMRow == ::nTop .and. nMCol >= ::nLeft .and. nMCol <= ::nRight // top border
+      case MLeftDown() .and. ;
+           ( ( nMRow == ::nTop .or. nMRow == ::nBottom ) .and. nMCol >= ::nLeft .and. nMCol <= ::nRight ) .or. ;
+           ( ( nMCol == ::nLeft .or. nMCol == ::nRight ) .and. nMRow >= ::nTop .and. nMRow <= ::nBottom ) // border
            cBackImage = ::cBackImage
            cPrevColor = ::cColor
            nHeight = ::nBottom - ::nTop + 1
+           nWidth  = ::nRight - ::nLeft + 1
            ::cColor = "G+/W" 
            ::Refresh()
            cImage = SaveScreen( ::nTop, ::nLeft, ::nBottom, ::nRight )
@@ -77,8 +80,10 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
               if MRow() != ::nTop
                  DispBegin()
                  __dbgRestScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2, cBackImage )
-                 ::nTop = MRow()
-                 ::nBottom = MRow() + nHeight - 1
+                 ::nTop  = MRow()
+                 ::nLeft = MCol()
+                 ::nBottom = ::nTop + nHeight - 1
+                 ::nRight = ::nLeft + nWidth - 1
                  cBackImage = __dbgSaveScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2 )
                  RestScreen( ::nTop, ::nLeft, ::nBottom, ::nRight, cImage )
                  hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
