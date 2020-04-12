@@ -80,10 +80,8 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
 
    DEFAULT cTitle := "Information"
 
-   oDlg = HBWindow():New( Int( ( MaxRow() / 2 ) - 7 ), Int( ( MaxCol() / 2 ) - 20 ),;
-                          Int( ( MaxRow() / 2 ) + 7 ), Int( ( MaxCol() / 2 ) + 20 ),;
-                          cTitle, "W+/W" )
-   oDlg:lShadow = .T.
+   oDlg = HBWindow():Dialog( cTitle, 35, 15, "W+/W" )
+   oDlg:GetList = GetList
    oDlg:Show()
 
    oDlg:SayCenter( "Harbour IDE", -4 )
@@ -252,6 +250,7 @@ METHOD OpenFile() CLASS HbIde
       AAdd( aPrgs, "" )
    endif   
    
+   oDlg:GetList = GetList
    oDlg:Show()
 
    @ 14, 42 GET cFileName COLOR "W/B,W+/B,W+/W,GR+/W"

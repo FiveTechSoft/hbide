@@ -9,6 +9,7 @@ CLASS HbWindow FROM HbDbWindow
 
    DATA   bInit
    DATA   nIdle     // allows mouse support in READ
+   DATA   GetList
 
    METHOD LoadColors()
 
@@ -25,6 +26,8 @@ CLASS HbWindow FROM HbDbWindow
    METHOD Hide()   
 
    METHOD MouseEvent( nMRow, nMCol )   
+
+   METHOD MoveControls()   
 
 ENDCLASS
 
@@ -61,6 +64,7 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
 
    local cPrevColor, cImage, cBackImage, nHeight, nWidth
    local nPrevCursor := SetCursor( SC_NONE )
+   local nOldRow, nOldCol, nOldBottom, nOldRight
 
    do case
       case nMRow == ::nTop .and. nMCol == ::nLeft + 2 .and. MLeftDown() // close button
@@ -69,6 +73,10 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
       case MLeftDown() .and. ;
            ( ( nMRow == ::nTop .or. nMRow == ::nBottom ) .and. nMCol >= ::nLeft .and. nMCol <= ::nRight ) .or. ;
            ( ( nMCol == ::nLeft .or. nMCol == ::nRight ) .and. nMRow >= ::nTop .and. nMRow <= ::nBottom ) // border
+           nOldTop    = ::nTop
+           nOldLeft   = ::nLeft
+           nOldBottom = ::nBottom
+           nOldRight  = ::nRight
            cBackImage = ::cBackImage
            cPrevColor = ::cColor
            nHeight = ::nBottom - ::nTop + 1
@@ -104,6 +112,7 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
            ::cColor = cPrevColor
            ::Refresh()
            hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
+           ::MoveControls( nOldTop, nOldLeft, nOldBottom, nOldRight ) 
            SetCursor( nPrevCursor )
 
       otherwise
@@ -112,6 +121,39 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
    endcase
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD MoveControls( nOldTop, nOldLeft, nOldBottom, nOldRight ) CLASS HbWindow 
+
+   local oCtrl
+
+   if ! Empty( ::GetList )
+      for each oCtrl in ::GetList
+         oCtrl:row += ( ::nTop - nOldTop )
+         oCtrl:col += ( ::nLeft - nOldLeft )
+         if ! Empty( oCtrl:Caption )
+            oCtrl:CapRow += ( ::nTop - nOldTop )
+            oCtrl:CapCol += ( ::nLeft - nOldLeft )
+         endif
+         if ! Empty( oCtrl:Control )
+            if oCtrl:Control:IsKindOf( "PUSHBUTTON" )
+               oCtrl:Control:row += ( ::nTop - nOldTop )
+               oCtrl:Control:col += ( ::nLeft - nOldLeft )
+            endif   
+            if oCtrl:Control:IsKindOf( "LISTBOX" ) 
+               oCtrl:Control:top    += ( ::nTop - nOldTop )
+               oCtrl:Control:left   += ( ::nLeft - nOldLeft )
+               oCtrl:Control:bottom += ( ::nBottom - nOldBottom )
+               oCtrl:Control:right  += ( ::nRight - nOldRight )
+               oCtrl:Control:CapRow += ( ::nTop - nOldTop )
+               oCtrl:Control:CapCol += ( ::nLeft - nOldLeft )
+            endif
+         endif
+      next 
+   endif
+   
+return nil   
 
 //-----------------------------------------------------------------------------------------//
 
