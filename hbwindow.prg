@@ -76,12 +76,22 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
            ::cColor = "G+/W" 
            ::Refresh()
            cImage = SaveScreen( ::nTop, ::nLeft, ::nBottom, ::nRight )
+           if MRow() != ::nTop .or. MRow() != ::nBottom
+              nMRow = MRow() - ::nTop
+           else
+              nMRow = 0
+           endif      
+           if MCol() != ::nLeft .or. MCol() != ::nRight
+              nMCol = MCol() - ::nLeft
+           else
+              nMCol = 0
+           endif      
            while MLeftDown()
-              if MRow() != ::nTop
+              if MRow() != ::nTop .or. MCol() != ::nLeft .or. MCol() != ::nRight
                  DispBegin()
                  __dbgRestScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2, cBackImage )
-                 ::nTop  = MRow()
-                 ::nLeft = MCol()
+                 ::nTop  = MRow() - nMRow
+                 ::nLeft = MCol() - nMCol
                  ::nBottom = ::nTop + nHeight - 1
                  ::nRight = ::nLeft + nWidth - 1
                  cBackImage = __dbgSaveScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2 )
