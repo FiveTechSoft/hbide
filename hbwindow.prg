@@ -83,7 +83,7 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
            nWidth  = ::nRight - ::nLeft + 1
            ::cColor = "G+/W" 
            ::Refresh()
-           cImage = SaveScreen( ::nTop, ::nLeft, ::nBottom, ::nRight )
+           cImage = __dbgSaveScreen( ::nTop, ::nLeft, ::nBottom, ::nRight )
            if MRow() != ::nTop .or. MRow() != ::nBottom
               nMRow = MRow() - ::nTop
            else
@@ -103,7 +103,7 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
                  ::nBottom = ::nTop + nHeight - 1
                  ::nRight = ::nLeft + nWidth - 1
                  cBackImage = __dbgSaveScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2 )
-                 RestScreen( ::nTop, ::nLeft, ::nBottom, ::nRight, cImage )
+                 __dbgRestBlock( ::nTop, ::nLeft, ::nBottom, ::nRight, cImage )
                  hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
                  DispEnd()
               endif    
@@ -119,6 +119,24 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
          ::Refresh()   
       
    endcase
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+function __dbgRestBlock( nTop, nLeft, nBottom, nRight, cImage )
+
+   local nWidth  := Min( nRight - nLeft + 1, MaxCol() - nLeft + 1 )
+   local nHeight := Min( nBottom - nTop + 1, MaxRow() - nTop + 1 )
+   local cResult := "", n
+
+   for n = 1 to nHeight
+      cResult += SubStr( cImage, 1 + ( ( n - 1 ) * ( ( nRight - nLeft + 1 ) * 4 ) ), nWidth * 4 )
+   next
+
+   __dbgRestScreen( Min( nTop, MaxRow() ), Min( nLeft, MaxCol() ),;
+                   Min( nBottom, MaxRow() ), Min( nRight, MaxCol() ),;
+                   cResult )  
 
 return nil
 
