@@ -63,7 +63,7 @@ return nil
 METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
 
    local cPrevColor, cImage, cBackImage, nHeight, nWidth
-   local nPrevCursor := SetCursor( SC_NONE )
+   local nCurRow := Row(), nCurCol := Col(), nPrevCursor := SetCursor( SC_NONE )
    local nOldRow, nOldCol, nOldBottom, nOldRight
 
    do case
@@ -103,7 +103,7 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
                  ::nBottom = ::nTop + nHeight - 1
                  ::nRight = ::nLeft + nWidth - 1
                  cBackImage = __dbgSaveScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2 )
-                 __dbgRestBlock( ::nTop, ::nLeft, ::nBottom, ::nRight, cImage )
+                 RestBlock( ::nTop, ::nLeft, ::nBottom, ::nRight, cImage )
                  hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
                  DispEnd()
               endif    
@@ -114,6 +114,7 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
            hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
            ::MoveControls( nOldTop, nOldLeft, nOldBottom, nOldRight ) 
            SetCursor( nPrevCursor )
+           SetPos( nCurRow, nCurCol )
 
       otherwise
          ::Refresh()   
@@ -124,17 +125,26 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
-function __dbgRestBlock( nTop, nLeft, nBottom, nRight, cImage )
+function RestBlock( nTop, nLeft, nBottom, nRight, cImage )
 
-   local nWidth  := Min( nRight - nLeft + 1, MaxCol() - nLeft + 1 )
-   local nHeight := Min( nBottom - nTop + 1, MaxRow() - nTop + 1 )
-   local cResult := "", n
+   local nImgHeight   := nBottom - nTop + 1
+   local nImgWidth    := nRight - nLeft + 1
+   local nBlockWidth  := Min( nImgWidth, Min( nRight, MaxCol() ) - Max( nLeft, 0 ) + 1 )
+   local nBlockHeight := Min( nImgHeight, MaxRow() - nTop + 1 )
+   local cResult := "", n, cLine
 
-   for n = 1 to nHeight
-      cResult += SubStr( cImage, 1 + ( ( n - 1 ) * ( ( nRight - nLeft + 1 ) * 4 ) ), nWidth * 4 )
+   for n = 1 to nBlockHeight
+      cLine = SubStr( cImage, 1 + ( ( n - 1 ) * ( nImgWidth * 4 ) ), nImgWidth * 4 )
+      if nLeft < 0
+         cResult += SubStr( cLine, 1 - ( nLeft * 4 ), nBlockWidth * 4 )
+      elseif nRight > MaxCol()
+         cResult += SubStr( cLine, 1, nBlockWidth * 4 )
+      else
+         cResult += cLine   
+      endif   
    next
 
-   __dbgRestScreen( Min( nTop, MaxRow() ), Min( nLeft, MaxCol() ),;
+   __dbgRestScreen( Min( nTop, MaxRow() ), Max( nLeft, 0 ),;
                    Min( nBottom, MaxRow() ), Min( nRight, MaxCol() ),;
                    cResult )  
 
