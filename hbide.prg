@@ -125,6 +125,7 @@ METHOD GotoLine() CLASS HBIde
    if lOk
       ::oEditor:GotoLine( nLine )
       ::oEditor:Display()
+      ::oEditor:ShowCursor()
    endif   
    
 return nil
@@ -180,19 +181,18 @@ METHOD Activate() CLASS HBIde
                ::oEditor:ShowCursor()
             endif
          else   
-            SetCursor( SC_NORMAL )
             ::oEditor:Edit( nKey )
-            ::oEditor:ShowCursor()
             ::ShowStatus()
+            ::oEditor:ShowCursor()
          endif
       else
          if ::oMenu:IsOpen()
             ::oMenu:ProcessKey( nKey )
             if ! ::oMenu:IsOpen()
-               SetCursor( SC_NORMAL )
+               ::oEditor:ShowCursor()
             endif
          else
-            SetCursor( SC_NORMAL )
+            ::oEditor:ShowCursor()
             ::oEditor:Edit( nKey )
             ::ShowStatus()
          endif

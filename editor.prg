@@ -48,7 +48,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD LineColor( nLine ) INLINE ;
                      If( nLine == ::nRow - ::nFirstRow + ::nTop, ::cClrSelRow, ::cColorSpec )
    METHOD MoveCursor( nKey )
-   METHOD ShowCursor() INLINE ( SetCursor( SC_NORMAL ), SetPos( ::nRow + 1, ::nCol ) )   
+   METHOD ShowCursor() INLINE ( SetCursor( SC_NORMAL ), SetPos( ::nRow - ::nFirstRow + 2, ::nCol ) )   
 
 ENDCLASS
 
