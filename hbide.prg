@@ -44,6 +44,7 @@ CLASS HbIde
    METHOD MsgInfo( cText ) 
    METHOD SaveScreen() INLINE ::cBackScreen := SaveScreen( 0, 0, MaxRow(), MaxCol() )  
    METHOD OpenFile()
+   METHOD GotoLine()   
 
 ENDCLASS
 
@@ -96,7 +97,35 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
 
    READ
    oDlg:Hide()
-   ::oEditor:ShowCursor()
+   
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD GotoLine() CLASS HBIde 
+
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local nLine := 1, oGetName
+
+   oDlg = HBWindow():Dialog( "Goto line", 30, 7, "W+/W" )
+   oDlg:GetList = GetList
+   oDlg:Show()
+
+   @ 18, 57 GET nLine CAPTION "number:" COLOR "W/B,W+/B,W+/W,GR+/W"
+
+   @ 21, 50 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || lOk := .T., ReadKill( .T. ) }
+
+   @ 21, 60 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || ReadKill( .T. ) }
+
+   READ
+   oDlg:Hide()
+
+   if lOk
+      ::oEditor:GotoLine( nLine )
+      ::oEditor:Display()
+   endif   
    
 return nil
 
@@ -148,11 +177,12 @@ METHOD Activate() CLASS HBIde
             ::nOldCursor = SetCursor( SC_NONE )
             ::oMenu:ProcessKey( nKey )
             if ! ::oMenu:IsOpen()
-               SetCursor( SC_NORMAL )
+               ::oEditor:ShowCursor()
             endif
          else   
             SetCursor( SC_NORMAL )
             ::oEditor:Edit( nKey )
+            ::oEditor:ShowCursor()
             ::ShowStatus()
          endif
       else
@@ -210,7 +240,7 @@ METHOD BuildMenu() CLASS HBIde
          MENUITEM "~Repeat Last Find  F3 "
          MENUITEM "~Change..."
          SEPARATOR
-         MENUITEM "~Goto Line..."    
+         MENUITEM "~Goto Line..."      ACTION ::GotoLine()
       ENDMENU
 
       MENUITEM " ~Run "
@@ -306,8 +336,6 @@ METHOD OpenFile() CLASS HbIde
       ::oEditor:Display()
       ::oEditor:Goto( 1, 5 )
    endif 
-   
-   ::oEditor:ShowCursor()
 
 return nil   
 
