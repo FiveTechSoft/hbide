@@ -54,7 +54,9 @@ METHOD New() CLASS HBIde
    SET SCOREBOARD OFF
    
    ::SaveScreen()
+   // Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
    Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
+   // Set( _SET_EVENTMASK, INKEY_ALL + HB_INKEY_GTEVENT )
    SetMode( 40, 120 )
 
    ::oMenu       = ::BuildMenu()
@@ -132,15 +134,15 @@ return nil
 
 METHOD Activate() CLASS HBIde
 
-   local nKey, nKeyStd
+   local nKey, nKeyStd, lMouseWheel := .F.
 
    ::lEnd = .F.
    ::oEditor:Goto( 1, 5 )
    ::Show()
 
    while ! ::lEnd
-      nKey = Inkey( 0 )
-      // nKeyStd = hb_keyStd( nKey )
+      nKey = InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
+
       if nKey == K_LBUTTONDOWN
          if MRow() == 0 .or. ::oMenu:IsOpen()
             ::nOldCursor = SetCursor( SC_NONE )
@@ -148,6 +150,10 @@ METHOD Activate() CLASS HBIde
             if ! ::oMenu:IsOpen()
                SetCursor( SC_NORMAL )
             endif
+         else   
+            SetCursor( SC_NORMAL )
+            ::oEditor:Edit( nKey )
+            ::ShowStatus()
          endif
       else
          if ::oMenu:IsOpen()
@@ -161,6 +167,17 @@ METHOD Activate() CLASS HBIde
             ::ShowStatus()
          endif
       endif
+
+      if nKey == K_MWFORWARD .or. nKey == K_MWBACKWARD
+         if ! lMouseWheel
+            lMouseWheel = .T.
+            if ::oMenu:IsOpen()
+               ::oMenu:ProcessKey( nKey )
+            else
+               ::oEditor:Edit( nKey )
+            endif
+         endif   
+      endif         
    end
 
    ::Hide()

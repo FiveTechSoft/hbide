@@ -1,5 +1,6 @@
 #include "hbclass.ch"
 #include "box.ch"
+#include "inkey.ch"
 
 //-----------------------------------------------------------------------------------------//
 
@@ -8,6 +9,8 @@ CLASS HbMenu FROM HBDbMenu
    METHOD LoadColors()
 
    METHOD Display()
+
+   METHOD ProcessKey( nKey )   
 
 ENDCLASS
 
@@ -55,5 +58,22 @@ METHOD Display() CLASS HbMenu
    NEXT
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ProcessKey( nKey ) CLASS HbMenu
+
+   do case
+      case nKey == K_MWBACKWARD
+         ::GoDown() 
+         
+      case nKey == K_MWFORWARD   
+         ::GoUp()
+
+      otherwise
+         ::Super:ProcessKey( nKey )
+   endcase
+   
+return nil   
 
 //-----------------------------------------------------------------------------------------//

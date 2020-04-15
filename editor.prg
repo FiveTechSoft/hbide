@@ -3,6 +3,7 @@
 #include "setcurs.ch"
 
 #define _REFRESH_LINE   1
+#define _REFRESH_ALL    2
 
 //-----------------------------------------------------------------------------------------//
 
@@ -58,6 +59,15 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
    local nKeyStd := hb_keyStd( nKey )
 
    do case 
+      case nKey == K_LBUTTONDOWN
+           ::GoTo( MRow() - ::nTop + ::nFirstRow, MCol() - ::nLeft + ::nFirstCol, _REFRESH_ALL )
+
+      case nKey == K_MWBACKWARD
+           ::Super:Edit( K_DOWN )
+
+      case nKey == K_MWFORWARD
+           ::Super:Edit( K_UP )
+
       case nKeyStd == K_BS
            IF ::nCol > 5
               ::lDirty := .T.
