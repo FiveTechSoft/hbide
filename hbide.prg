@@ -273,12 +273,19 @@ METHOD Start() CLASS HbIde
 
    ::oEditor:SaveFile()
 
-   if File( "../harbour/bin/darwin/clang/hbmk2" )
-      hb_Run( "../harbour/bin/darwin/clang/hbmk2 noname.prg > info.txt" )
-      Alert( MemoRead( "./info.txt" ) )
-      hb_Run( "./noname" )
-      SetCursor( SC_NORMAL )
-   endif
+   do case
+      case Left( OS(), 7 ) == "Windows"
+         hb_Run( "c:/harbour/bin/win/msvc/hbmk2 noname.prg -comp=bcc > info.txt" )
+         Alert( MemoRead( "info.txt" ) )
+         hb_Run( "noname.exe" )
+
+      case Left( OS(), 5 ) == "Linux"
+         hb_Run( "../harbour/bin/darwin/clang/hbmk2 noname.prg > info.txt" )
+         Alert( MemoRead( "./info.txt" ) )
+         hb_Run( "./noname" )
+   endcase
+
+   SetCursor( SC_NORMAL )
 
 return nil
 
@@ -345,18 +352,16 @@ METHOD Script() CLASS HbIde
    
    local oHrb, bOldError
 
-   if File( "../harbour/lib/android/clang/libhbvm.a" )
-      oHrb = hb_CompileFromBuf( StrTran( ::oEditor:GetText(), "Main", "__Main" ),;
-                                .T., "-n", "-I../harbour/include" ) 
-      ::Show()
+   oHrb = hb_CompileFromBuf( StrTran( ::oEditor:GetText(), "Main", "__Main" ),;
+                              .T., "-n", "-Ic:/harbour/include" ) 
+   ::Show()
 
-      if ! Empty( oHrb )
-         BEGIN SEQUENCE
-            bOldError = ErrorBlock( { | o | DoBreak( o ) } )
-            hb_HrbRun( oHrb )
-         END SEQUENCE
-         ErrorBlock( bOldError )
-      endif
+   if ! Empty( oHrb )
+      BEGIN SEQUENCE
+         bOldError = ErrorBlock( { | o | DoBreak( o ) } )
+         hb_HrbRun( oHrb )
+      END SEQUENCE
+      ErrorBlock( bOldError )
    endif
 
 return nil      
