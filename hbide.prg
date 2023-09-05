@@ -89,7 +89,7 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
 
    oDlg:SayCenter( "Harbour IDE", -4 )
    oDlg:SayCenter( "Version 1.0", -2 )
-   oDlg:SayCenter( "Copyright (c) 1999-2020 by" )
+   oDlg:SayCenter( "Copyright (c) 1999-2023 by" )
    oDlg:SayCenter( "The Harbour Project", 2 )
 
    @ 23, 56 GET lOk PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
