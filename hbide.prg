@@ -173,6 +173,10 @@ METHOD Activate() CLASS HBIde
    while ! ::lEnd
       nKey = InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
 
+      if nKey >= K_ALT_Q .and. nKey <= K_ALT_M
+         ::oMenu:ProcessKey( nKey )
+      endif   
+
       if nKey == K_LBUTTONDOWN
          if MRow() == 0 .or. ::oMenu:IsOpen()
             ::nOldCursor = SetCursor( SC_NONE )
@@ -261,7 +265,7 @@ METHOD BuildMenu() CLASS HBIde
          MENUITEM "~Index "
          MENUITEM "~Contents "
          SEPARATOR
-         MENUITEM "~About... "      ACTION ::MsgInfo( "HbIde 1.0" )
+         MENUITEM "A~bout... "      ACTION ::MsgInfo( "HbIde 1.0" )
       ENDMENU  
    ENDMENU
 

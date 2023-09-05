@@ -63,12 +63,32 @@ return nil
 
 METHOD ProcessKey( nKey ) CLASS HbMenu
 
+   local n, oPopup, nItem
+
    do case
       case nKey == K_MWBACKWARD
          ::GoDown() 
          
       case nKey == K_MWFORWARD   
          ::GoUp()
+
+      case nKey >= K_ALT_Q .and. nKey <= K_ALT_M
+         if ( n := ::GetHotKeyPos( __dbgAltToKey( nKey ) ) ) != 0
+            IF n != ::nOpenPopup
+               ::ClosePopup( ::nOpenPopup )
+               ::ShowPopup( n )
+            ENDIF            
+         else   
+            for n = 1 to Len( ::aItems )
+               oPopup = ::aItems[ n ]:bAction
+               if ( nItem := oPopup:GetHotKeyPos( __dbgAltToKey( nKey ) ) ) != 0
+                  oMenuItem := oPopup:aItems[ nItem ]
+                  IF oMenuItem:bAction != NIL
+                     Eval( oMenuItem:bAction, oMenuItem )
+                  ENDIF
+               endif   
+            next   
+         endif   
 
       otherwise
          ::Super:ProcessKey( nKey )
