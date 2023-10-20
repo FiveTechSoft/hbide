@@ -63,7 +63,7 @@ METHOD New() CLASS HBIde
    ::oMenu       = ::BuildMenu()
    ::oWndCode    = HBWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
    ::oEditor     = BuildEditor()
-   ::nOldCursor  = SetCursor( SC_NORMAL )
+   ::nOldCursor  = SetCursor( SC_NONE )
 
    Hb_GtInfo( HB_GTI_FONTNAME , "Lucida Console" )
    Hb_GtInfo( HB_GTI_FONTWIDTH, 14  )
@@ -134,8 +134,13 @@ return nil
 
 METHOD Show() CLASS HBIde
 
+   local n
+
    ::oMenu:Display()
-   ::oWndCode:Show( .T. )
+   for n = 1 to MaxRow()
+      @ n, 0 SAY Replicate( " ", MaxCol() + 1 ) COLOR "BG/B"
+   next   
+   ::oWndCode:Show()
    hb_IdleDel( ::oWndCode:nIdle )
    ::oWndCode:nIdle = nil
    ::oEditor:Display()
@@ -167,8 +172,8 @@ METHOD Activate() CLASS HBIde
    local nKey, nKeyStd, lMouseWheel := .F.
 
    ::lEnd = .F.
-   ::oEditor:Goto( 1, 5 )
    ::Show()
+   ::oEditor:Goto( 1, 5 )
 
    while ! ::lEnd
       nKey = InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
@@ -179,26 +184,39 @@ METHOD Activate() CLASS HBIde
 
       if nKey == K_LBUTTONDOWN
          if MRow() == 0 .or. ::oMenu:IsOpen()
-            ::nOldCursor = SetCursor( SC_NONE )
+            SetCursor( SC_NONE )
             ::oMenu:ProcessKey( nKey )
             if ! ::oMenu:IsOpen()
-               ::oEditor:ShowCursor()
+               if ::oWndCode:lVisible
+                  ::oEditor:ShowCursor()
+               endif   
             endif
          else   
-            ::oEditor:Edit( nKey )
-            ::ShowStatus()
-            ::oEditor:ShowCursor()
+            if MRow() == 1 .and. MCol() == 2
+               ::oWndCode:Hide()
+               SetCursor( SC_NONE )
+            else   
+               if ::oWndCode:lVisible
+                  ::oEditor:Edit( nKey )
+                  ::ShowStatus()
+                  ::oEditor:ShowCursor()
+               endif   
+            endif   
          endif
       else
          if ::oMenu:IsOpen()
             ::oMenu:ProcessKey( nKey )
             if ! ::oMenu:IsOpen()
-               ::oEditor:ShowCursor()
+               if ::oWndCode:lVisible
+                  ::oEditor:ShowCursor()
+               endif   
             endif
          else
-            ::oEditor:ShowCursor()
-            ::oEditor:Edit( nKey )
-            ::ShowStatus()
+            if ::oWndCode:lVisible
+               ::oEditor:ShowCursor()
+               ::oEditor:Edit( nKey )
+               ::ShowStatus()
+            endif   
          endif
       endif
 
@@ -343,6 +361,9 @@ METHOD OpenFile() CLASS HbIde
    oDlg:Hide()
 
    if lOk .and. ! Empty( cFileName )
+      if ! ::oWndCode:lVisible
+         ::oWndCode:Show( .F. )
+      endif
       ::oEditor:LoadFile( cFileName )
       ::oEditor:Display()
       ::oEditor:Goto( 1, 5 )

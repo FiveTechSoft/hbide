@@ -60,7 +60,7 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
 
    do case 
       case nKey == K_LBUTTONDOWN
-           ::GoTo( MRow() - ::nTop + ::nFirstRow, MCol() - ::nLeft + ::nFirstCol, _REFRESH_ALL )
+           ::GoTo( MRow() - ::nTop + ::nFirstRow, Max( MCol() - ::nLeft + ::nFirstCol, 5 ), _REFRESH_ALL )
 
       case nKey == K_MWBACKWARD
            ::Super:Edit( K_DOWN )

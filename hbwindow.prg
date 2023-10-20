@@ -199,13 +199,17 @@ return nil
 
 METHOD Show( lFocused ) CLASS HbWindow
 
+   lFocused = hb_DefaultValue( lFocused, .T. )
+
    ::Super:Show( lFocused )
 
    if ! Empty( ::bInit )
       Eval( ::bInit, Self )
    endif   
 
-   ::nIdle = hb_IdleAdd( { || ::MouseEvent( MRow(), MCol() ) } )
+   if lFocused
+      ::nIdle = hb_IdleAdd( { || ::MouseEvent( MRow(), MCol() ) } )
+   endif   
 
 return nil   
 
