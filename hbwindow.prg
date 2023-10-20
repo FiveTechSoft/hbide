@@ -71,7 +71,8 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
            ReadKill( .T. )
 
       case MLeftDown() .and. ;
-           ( ( nMRow == ::nTop .or. nMRow == ::nBottom ) .and. nMCol >= ::nLeft .and. nMCol <= ::nRight )
+           ( ( ( nMRow == ::nTop .or. nMRow == ::nBottom ) .and. nMCol >= ::nLeft .and. nMCol <= ::nRight ) .or. ;
+             ( ( nMCol == ::nLeft .or. nMCol == ::nRight ) .and. nMRow >= ::nTop .and. nMRow <= ::nBottom ) )
            nOldTop    = ::nTop
            nOldLeft   = ::nLeft
            nOldBottom = ::nBottom
