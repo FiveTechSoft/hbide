@@ -114,7 +114,7 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
            hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
            ::MoveControls( nOldTop, nOldLeft, nOldBottom, nOldRight ) 
            SetCursor( nPrevCursor )
-           SetPos( nCurRow, nCurCol )
+           SetPos( nCurRow - nOldTop + ::nTop, nCurCol - nOldLeft + ::nLeft )
 
       otherwise
          ::Refresh()   
