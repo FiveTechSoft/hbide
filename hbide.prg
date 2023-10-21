@@ -82,8 +82,6 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
    DEFAULT cTitle := "Information"
 
    oDlg = HBWindow():Dialog( cTitle, 35, 15, "W+/W" )
-   oDlg:GetList = GetList
-   oDlg:Show()
 
    oDlg:SayCenter( "Harbour IDE", -4 )
    oDlg:SayCenter( "Version 1.0", -2 )
@@ -93,8 +91,7 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
    @ 23, 56 GET lOk PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
-   READ
-   oDlg:Hide()
+   oDlg:Activate( GetList )
    
 return nil
 
@@ -106,8 +103,6 @@ METHOD GotoLine() CLASS HBIde
    local nLine := 1, oGetName
 
    oDlg = HBWindow():Dialog( "Goto line", 30, 7, "W+/W" )
-   oDlg:GetList = GetList
-   oDlg:Show()
 
    @ 18, 57 GET nLine CAPTION "number:" COLOR "W/B,W+/B,W+/W,GR+/W"
 
@@ -117,8 +112,7 @@ METHOD GotoLine() CLASS HBIde
    @ 21, 60 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
-   READ
-   oDlg:Hide()
+   oDlg:Activate( GetList )
 
    if lOk
       ::oEditor:GotoLine( nLine )
@@ -325,9 +319,6 @@ METHOD OpenFile() CLASS HbIde
       AAdd( aPrgs, "" )
    endif   
    
-   oDlg:GetList = GetList
-   oDlg:Show()
-
    @ 14, 42 GET cFileName COLOR "W/B,W+/B,W+/W,GR+/W"
 
    with object oGetName := ATail( GetList )  
@@ -355,9 +346,7 @@ METHOD OpenFile() CLASS HbIde
    @ 16, 68 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
-   READ
-
-   oDlg:Hide()
+   oDlg:Activate( GetList )
 
    if lOk .and. ! Empty( cFileName )
       if ! ::oWndCode:lVisible
