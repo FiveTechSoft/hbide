@@ -11,6 +11,8 @@ CLASS HbWindow FROM HbDbWindow
    DATA   nIdle     // allows mouse support in READ
    DATA   GetList
 
+   METHOD End() INLINE ReadKill( .T. )
+
    METHOD LoadColors()
 
    METHOD New( nTop, nLeft, nBottom, nRight, cCaption, cColor )

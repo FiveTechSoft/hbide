@@ -91,7 +91,7 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
    oDlg:SayCenter( "The Harbour Project", 2 )
 
    @ 23, 56 GET lOk PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || ReadKill( .T. ) }
+      STATE { || oDlg:End() }
 
    READ
    oDlg:Hide()
@@ -112,10 +112,10 @@ METHOD GotoLine() CLASS HBIde
    @ 18, 57 GET nLine CAPTION "number:" COLOR "W/B,W+/B,W+/W,GR+/W"
 
    @ 21, 50 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || lOk := .T., ReadKill( .T. ) }
+      STATE { || lOk := .T., oDlg:End() }
 
    @ 21, 60 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || ReadKill( .T. ) }
+      STATE { || oDlg:End() }
 
    READ
    oDlg:Hide()
@@ -350,10 +350,10 @@ METHOD OpenFile() CLASS HbIde
    end   
 
    @ 14, 68 GET lDummy PUSHBUTTON CAPTION "  &OK  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || ReadKill( .T. ), lOk := .T. }
+      STATE { || oDlg:End(), lOk := .T. }
 
    @ 16, 68 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || ReadKill( .T. ) }
+      STATE { || oDlg:End() }
 
    READ
 
