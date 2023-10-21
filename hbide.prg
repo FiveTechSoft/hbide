@@ -55,9 +55,7 @@ METHOD New() CLASS HBIde
    SET SCOREBOARD OFF
    
    ::SaveScreen()
-   // Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
    Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
-   // Set( _SET_EVENTMASK, INKEY_ALL + HB_INKEY_GTEVENT )
    SetMode( 40, 120 )
 
    ::oMenu       = ::BuildMenu()
@@ -179,6 +177,7 @@ METHOD Activate() CLASS HBIde
       nKey = InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
 
       if nKey >= K_ALT_Q .and. nKey <= K_ALT_M
+         SetCursor( SC_NONE )
          ::oMenu:ProcessKey( nKey )
       endif   
 
