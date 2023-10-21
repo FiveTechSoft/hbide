@@ -11,6 +11,8 @@ CLASS HbWindow FROM HbDbWindow
    DATA   nIdle     // allows mouse support in READ
    DATA   GetList
 
+   METHOD Activate( GetList )
+
    METHOD End() INLINE ReadKill( .T. )
 
    METHOD LoadColors()
@@ -45,6 +47,16 @@ METHOD New( nTop, nLeft, nBottom, nRight, cCaption, cColor ) CLASS HBWindow
    ::cColor   = hb_defaultValue( cColor, GetColors()[ 1 ] )
 
 return Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Activate( GetList ) CLASS HbWindow 
+
+   ::GetList = GetList 
+   READ
+   ::Hide() 
+
+return nil   
 
 //-----------------------------------------------------------------------------------------//
 
@@ -240,6 +252,7 @@ METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit ) CLASS HbWindow
    ::New( nTop, nLeft, nBottom, nRight, cCaption, cColor )
    ::bInit   = bInit
    ::lShadow = .T.
+   ::Show()
 
 return Self
 
