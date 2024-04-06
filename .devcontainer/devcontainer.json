@@ -1,0 +1,10 @@
+{
+	"name": "hbide",
+	"dockerFile": "DockerFile",
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	"onCreateCommand": "git clone https://github.com/harbour/core harbour",
+	"postAttachCommand": "make"
+	// Configure tool-specific properties.
+	// "customizations": {},
+}
