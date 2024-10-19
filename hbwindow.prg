@@ -78,14 +78,13 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
 
    local cPrevColor, cImage, cBackImage, nHeight, nWidth
    local nCurRow := Row(), nCurCol := Col(), nPrevCursor := SetCursor( SC_NONE )
-   local nOldRow, nOldCol, nOldBottom, nOldRight
+   local nOldRow, nOldCol, nOldBottom, nOldRight, oCtrl
 
    do case
       case nMRow == ::nTop .and. nMCol == ::nLeft + 2 .and. MLeftDown() // close button
            ReadKill( .T. )
 
       case MLeftDown() .and. nMRow == ::nBottom .and. nMCol == ::nRight
-         cBackImage = ::cBackImage
          while MLeftDown()
             if MRow() != ::nBottom .or. MCol() != ::nRight
                DispBegin()
@@ -93,6 +92,11 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
                ::nBottom = MRow()
                ::nRight = MCol()
                ::Show( .T. )
+               if ! Empty( ::GetList )
+                  for each oCtrl in ::GetList
+                     oCtrl:Display()
+                  next 
+               endif      
                hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
                DispEnd()
             endif    
