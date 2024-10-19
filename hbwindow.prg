@@ -84,6 +84,20 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
       case nMRow == ::nTop .and. nMCol == ::nLeft + 2 .and. MLeftDown() // close button
            ReadKill( .T. )
 
+      case MLeftDown() .and. nMRow == ::nBottom .and. nMCol == ::nRight
+         cBackImage = ::cBackImage
+         while MLeftDown()
+            if MRow() != ::nBottom .or. MCol() != ::nRight
+               DispBegin()
+               ::Hide()
+               ::nBottom = MRow()
+               ::nRight = MCol()
+               ::Show( .T. )
+               hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
+               DispEnd()
+            endif    
+         end 
+
       case MLeftDown() .and. ;
            ( ( ( nMRow == ::nTop .or. nMRow == ::nBottom ) .and. nMCol >= ::nLeft .and. nMCol <= ::nRight ) .or. ;
              ( ( nMCol == ::nLeft .or. nMCol == ::nRight ) .and. nMRow >= ::nTop .and. nMRow <= ::nBottom ) )
