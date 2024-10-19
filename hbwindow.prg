@@ -94,7 +94,7 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
                ::Show( .T. )
                if ! Empty( ::GetList )
                   for each oCtrl in ::GetList
-                     oCtrl:Display()
+                     oCtrl:Control:Display()
                   next 
                endif      
                hb_Shadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
