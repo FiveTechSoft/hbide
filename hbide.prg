@@ -34,6 +34,7 @@ CLASS HbIde
 
    METHOD New()
    METHOD BuildMenu()
+   METHOD Designer()   
    METHOD Hide() INLINE RestScreen( 0, 0, MaxRow(), MaxCol(), ::cBackScreen )   
    METHOD Show()
    METHOD ShowStatus()
@@ -72,6 +73,24 @@ METHOD New() CLASS HBIde
    hb_IdleAdd( { || ::ShowStatus() } )  
 
 return Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Designer() CLASS HBIde
+
+   local oDlg, GetList := {}, lOk := .F., lDummy
+
+   oDlg = HBWindow():Dialog( "Title", 35, 15, "W+/W" )
+
+   @ 24, 50 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || lOk := .T., oDlg:End() }
+
+   @ 24, 60 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   
+return nil
 
 //-----------------------------------------------------------------------------------------//
 
@@ -268,7 +287,9 @@ METHOD BuildMenu() CLASS HBIde
       MENUITEM " ~Options "
       MENU
          MENUITEM "~Compiler Flags... "
-         MENUITEM "~Display... "            
+         MENUITEM "~Display... "        
+         SEPARATOR
+         MENUITEM "De~signer..."       ACTION ::Designer() 
       ENDMENU 
 
       MENUITEM " ~Help "
