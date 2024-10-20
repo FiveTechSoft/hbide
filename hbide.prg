@@ -81,6 +81,7 @@ METHOD Designer() CLASS HBIde
    local oDlg, GetList := {}, lOk := .F., lDummy
 
    oDlg = HBWindow():Dialog( "Title", 35, 15, "W+/W" )
+   oDlg:lDesign = .T.
 
    @ 24, 50 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || lOk := .T., oDlg:End() }

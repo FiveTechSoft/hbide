@@ -2,6 +2,7 @@
 #include "inkey.ch"
 #include "box.ch"
 #include "setcurs.ch"
+#include "hbmenu.ch"
 
 //-----------------------------------------------------------------------------------------//
 
@@ -10,6 +11,7 @@ CLASS HbWindow FROM HbDbWindow
    DATA   bInit
    DATA   nIdle     // allows mouse support in READ
    DATA   GetList
+   DATA   lDesign INIT .F.
 
    METHOD Activate( GetList )
 
@@ -78,13 +80,21 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
 
    local cPrevColor, cImage, cBackImage, nHeight, nWidth
    local nCurRow := Row(), nCurCol := Col(), nPrevCursor := SetCursor( SC_NONE )
-   local nOldRow, nOldCol, nOldBottom, nOldRight, oCtrl
+   local nOldRow, nOldCol, nOldBottom, nOldRight, oCtrl, oPopup, oMenuItem
 
    do case
       case nMRow == ::nTop .and. nMCol == ::nLeft + 2 .and. MLeftDown() // close button
-           ReadKill( .T. )
+         ReadKill( .T. )
 
-      case MLeftDown() .and. nMRow == ::nBottom .and. nMCol == ::nRight
+      case MRightDown()
+         MENU oPopup POPUP 
+            MENUITEM "~Add item"
+            MENUITEM "~Generate code..."
+         ENDMENU   
+
+         ACTIVATE MENU oPopup
+
+      case ::lDesign .and. MLeftDown() .and. nMRow == ::nBottom .and. nMCol == ::nRight
          while MLeftDown()
             if MRow() != ::nBottom .or. MCol() != ::nRight
                DispBegin()

@@ -2,9 +2,20 @@
 #include "box.ch"
 #include "inkey.ch"
 
+#xcommand DEFAULT <uVar1> := <uVal1> ;
+   [, <uVarN> := <uValN> ] => ;
+      If( <uVar1> == nil, <uVar1> := <uVal1>, ) ;;
+    [ If( <uVarN> == nil, <uVarN> := <uValN>, ); ]
+
 //-----------------------------------------------------------------------------------------//
 
 CLASS HbMenu FROM HBDbMenu
+
+   METHOD New( lPopup )
+
+   METHOD Activate()   
+
+   METHOD AddItem( oMenuItem )   
 
    METHOD LoadColors()
 
@@ -14,6 +25,63 @@ CLASS HbMenu FROM HBDbMenu
 
 ENDCLASS
 
+//-----------------------------------------------------------------------------------------//
+
+METHOD New( lPopup ) CLASS HbMenu 
+
+   DEFAULT lPopup := .F.
+
+   if lPopup
+      ::aMenus  = { Self }
+      ::super:New()
+      ::nTop    = 25
+      ::nLeft   = 30
+      ::nBottom = 27
+      ::nRight  = 70
+   endif   
+
+return If( lPopup, Self, ::super:New() )   
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Activate() CLASS HbMenu
+
+   local oMenuItem
+
+   ::nRight += 8
+   for each oMenuItem in ::aItems 
+      oMenuItem:cPrompt += Space( ::nRight - ::nLeft - Len( oMenuItem:cPrompt ) )
+   next   
+   ::Display()
+   ::aItems[ 1 ]:Display( ::cClrHilite, ::cClrHotFocus )
+
+return nil   
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD AddItem( oMenuItem ) CLASS HbMenu
+   
+   local oLastMenu := ATail( ::aMenus )
+   local oLastMenuItem
+
+   if oLastMenu:lPopup
+      oMenuItem:nRow := oLastMenu:nTop + 1 + Len( oLastMenu:aItems )
+      oMenuItem:nCol := oLastMenu:nLeft + 3
+   else
+      oMenuItem:nRow := 0
+      if Len( oLastMenu:aItems ) > 0
+         oLastMenuItem := ATail( oLastMenu:aItems )
+         oMenuItem:nCol := oLastMenuItem:nCol + ;
+            Len( StrTran( oLastMenuItem:cPrompt, "~" ) )
+      else
+         oMenuItem:nCol := 0
+      endif
+   endif
+
+   AAdd( ATail( ::aMenus ):aItems, oMenuItem )
+
+return oMenuItem
+   
 //-----------------------------------------------------------------------------------------//
 
 METHOD LoadColors() CLASS HbMenu
