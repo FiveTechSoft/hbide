@@ -33,16 +33,17 @@ CLASS HbIde
    DATA   lEnd
 
    METHOD New()
+   METHOD About()   
    METHOD BuildMenu()
    METHOD Designer()   
    METHOD Hide() INLINE RestScreen( 0, 0, MaxRow(), MaxCol(), ::cBackScreen )   
+   METHOD MsgInfo( cText ) 
    METHOD Show()
    METHOD ShowStatus()
    METHOD Start()
    METHOD Script()
    METHOD Activate()
    METHOD End() INLINE ::lEnd := .T.   
-   METHOD MsgInfo( cText ) 
    METHOD SaveScreen() INLINE ::cBackScreen := SaveScreen( 0, 0, MaxRow(), MaxCol() )  
    METHOD OpenFile()
    METHOD GotoLine()   
@@ -72,7 +73,7 @@ METHOD New() CLASS HBIde
 
    hb_IdleAdd( { || ::ShowStatus() } )  
 
-   ErrorBlock( { | oError | Alert( CallStack( oError ) ) } )
+   ErrorBlock( { | oError | ::MsgInfo( CallStack( oError ), "Error" ) } )
 
 return Self
 
@@ -157,13 +158,11 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
-METHOD MsgInfo( cText, cTitle ) CLASS HBIde
+METHOD About() CLASS HBIde
 
    local oDlg, GetList := {}, lOk := .F.
 
-   DEFAULT cTitle := "Information"
-
-   oDlg = HBWindow():Dialog( cTitle, 35, 15, "W+/W" )
+   oDlg = HBWindow():Dialog( "HbIde 1.0", 35, 15, "W+/W" )
 
    oDlg:SayCenter( "Harbour IDE", -4 )
    oDlg:SayCenter( "Version 1.0", -2 )
@@ -201,6 +200,29 @@ METHOD GotoLine() CLASS HBIde
       ::oEditor:Display()
       ::oEditor:ShowCursor()
    endif   
+   
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD MsgInfo( cText, cTitle ) CLASS HBIde
+
+   local oDlg, GetList := {}, lOk := .F.
+   local aLines := hb_aTokens( cText, Chr( 10 ) ), cLine, nRow := 2
+
+   DEFAULT cTitle := "Information"
+
+   oDlg = HBWindow():Dialog( cTitle, 55, Len( aLines ) + 5, "W+/W" )
+
+   for each cLine in aLines
+      oDlg:Say( nRow++, 2, cLine )
+   next   
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + ( oDlg:nRight - oDlg:nLeft ) / 2 - 2 GET lOk PUSHBUTTON ;
+      CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
    
 return nil
 
@@ -360,7 +382,7 @@ METHOD BuildMenu() CLASS HBIde
          MENUITEM "~Index "
          MENUITEM "~Contents "
          SEPARATOR
-         MENUITEM "A~bout... "      ACTION ::MsgInfo( "HbIde 1.0" )
+         MENUITEM "A~bout... "      ACTION ::About()
       ENDMENU  
    ENDMENU
 

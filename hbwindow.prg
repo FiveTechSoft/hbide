@@ -23,6 +23,8 @@ CLASS HbWindow FROM HbDbWindow
 
    METHOD nHeight() INLINE ::nBottom - ::nTop + 1   
 
+   METHOD Say( nRow, nCol, cLine )
+
    METHOD SayCenter( cMsg, nRow )                         
 
    METHOD Show( lFocused )
@@ -224,6 +226,14 @@ METHOD MoveControls( nOldTop, nOldLeft, nOldBottom, nOldRight ) CLASS HbWindow
    endif
    
 return nil   
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Say( nRow, nCol, cLine ) CLASS HbWindow
+
+   hb_DispOutAt( ::nTop + nRow, ::nLeft + nCol, cLine, GetColors()[ 8 ] ) 
+
+return nil
 
 //-----------------------------------------------------------------------------------------//
 
