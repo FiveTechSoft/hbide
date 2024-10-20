@@ -15,7 +15,9 @@ CLASS HbMenu FROM HBDbMenu
 
    METHOD Activate()   
 
-   METHOD AddItem( oMenuItem )   
+   METHOD AddItem( oMenuItem )  
+      
+   METHOD EvalAction()   
 
    METHOD LoadColors()
 
@@ -54,6 +56,13 @@ METHOD Activate() CLASS HbMenu
    next   
    ::Display()
    ::aItems[ 1 ]:Display( ::cClrHilite, ::cClrHotFocus )
+   ::nOpenPopup = 1
+
+   while .T.
+      ::ProcessKey( Inkey( 0 ) )
+   end   
+
+   ::Hide()
 
 return nil   
 
@@ -82,6 +91,24 @@ METHOD AddItem( oMenuItem ) CLASS HbMenu
 
 return oMenuItem
    
+//-----------------------------------------------------------------------------------------//
+
+METHOD EvalAction() CLASS HbMenu
+
+   local oMenuItem
+
+   if ::lPopup
+      oMenuItem = ::aItems[ ::nOpenPopup ]
+      if oMenuItem:bAction != nil
+         // ::Close()
+         Eval( oMenuItem:bAction, oMenuItem )
+      endif
+   else
+      ::Super:EvalAction()   
+   endif
+   
+return nil   
+
 //-----------------------------------------------------------------------------------------//
 
 METHOD LoadColors() CLASS HbMenu

@@ -88,8 +88,8 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
 
       case MRightDown()
          MENU oPopup POPUP 
-            MENUITEM "~Add item"
-            MENUITEM "~Generate code..."
+            MENUITEM "~Add item" ACTION Alert( "add item" )
+            MENUITEM "~Generate code..." ACTION Alert( "code" )
          ENDMENU   
 
          ACTIVATE MENU oPopup

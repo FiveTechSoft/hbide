@@ -72,7 +72,69 @@ METHOD New() CLASS HBIde
 
    hb_IdleAdd( { || ::ShowStatus() } )  
 
+   ErrorBlock( { | oError | Alert( CallStack( oError ) ) } )
+
 return Self
+
+//-----------------------------------------------------------------------------------------//
+
+function CallStack( oError, cSep, nLevel )
+
+   local cErrorLog := ErrorMessage( oError ) 
+   local c
+
+   DEFAULT cSep := Chr( 10 ), nLevel := 1
+
+   if ValType( oError:Args ) == "A"
+      cErrorLog += cSep + "   Args:" + cSep
+      for n = 1 to Len( oError:Args )
+         cErrorLog += "     [" + Str( n, 4 ) + "] = " + ValType( oError:Args[ n ] ) + ;
+                      "   " + hb_ValToStr( oError:Args[ n ] ) + ;
+                      If( ValType( oError:Args[ n ] ) == "A", " length: " + ;
+                      AllTrim( Str( Len( oError:Args[ n ] ) ) ), "" ) + cSep
+      next
+   endif
+
+   while ! Empty( c := ProcName( nLevel ) )
+      cErrorLog += cSep + c + "( " + hb_ntos( ProcLine( nLevel ) ) + " )"
+      nLevel++
+   end
+
+return cErrorLog
+
+//-----------------------------------------------------------------------------------------//
+
+#define NTRIM(n)    ( LTrim( Str( n ) ) )
+#include "error.ch"
+
+static func ErrorMessage( e )
+
+   // start error message
+    local cMessage := if( empty( e:OsCode ), ;
+                          if( e:severity > ES_WARNING, "Error ", "Warning " ),;
+                          "(DOS Error " + NTRIM(e:osCode) + ") " )
+
+   // add subsystem name if available
+    cMessage += if( ValType( e:SubSystem ) == "C",;
+                    e:SubSystem()                ,;
+                    "???" )
+
+   // add subsystem's error code if available
+    cMessage += if( ValType( e:SubCode ) == "N",;
+                    "/" + NTRIM( e:SubCode )   ,;
+                    "/???" )
+   // add error description if available
+  if ( ValType( e:Description ) == "C" )
+        cMessage += "  " + e:Description
+   end
+
+   // add either filename or operation
+    cMessage += if( ! Empty( e:FileName ),;
+                    ": " + e:FileName   ,;
+                    if( !Empty( e:Operation ),;
+                        ": " + e:Operation   ,;
+                        "" ) )
+return cMessage
 
 //-----------------------------------------------------------------------------------------//
 
