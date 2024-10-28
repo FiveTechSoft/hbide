@@ -97,6 +97,8 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
             MENUITEM "~Generate code..." ACTION Alert( "code" )
          ENDMENU   
 
+         ATail( oPopup:aItems ):bAction = { || Alert( "code" ) }
+
          ACTIVATE MENU oPopup
 
          ::nIdle = hb_IdleAdd( { || ::MouseEvent( MRow(), MCol() ) } )

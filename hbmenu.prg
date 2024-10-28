@@ -100,7 +100,6 @@ METHOD EvalAction() CLASS HbMenu
    if ::lPopup
       oMenuItem = ::aItems[ ::nOpenPopup ]
       if oMenuItem:bAction != nil
-         // ::Close()
          Eval( oMenuItem:bAction, oMenuItem )
       endif
    else
