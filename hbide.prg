@@ -274,6 +274,10 @@ METHOD Activate() CLASS HBIde
    while ! ::lEnd
       nKey = InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
 
+      if nKey == K_ESC .and. ! ::oMenu:IsOpen()
+         ::lEnd = .T. 
+      endif   
+
       if nKey >= K_ALT_Q .and. nKey <= K_ALT_M
          SetCursor( SC_NONE )
          ::oMenu:ProcessKey( nKey )
