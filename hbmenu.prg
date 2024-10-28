@@ -51,18 +51,18 @@ METHOD Activate() CLASS HbMenu
    local oMenuItem
 
    ::nRight += 8
-   for each oMenuItem in ::aItems 
-      oMenuItem:cPrompt += Space( ::nRight - ::nLeft - Len( oMenuItem:cPrompt ) )
+   for each oMenuItem in ::aItems
+      if oMenuItem:cPrompt != "-" 
+         oMenuItem:cPrompt += Space( ::nRight - ::nLeft - Len( oMenuItem:cPrompt ) )
+      endif   
    next   
    ::Display()
    ::aItems[ 1 ]:Display( ::cClrHilite, ::cClrHotFocus )
    ::nOpenPopup = 1
 
-   while .T.
+   while ::nOpenPopup != 0
       ::ProcessKey( Inkey( 0 ) )
    end   
-
-   ::Hide()
 
 return nil   
 
@@ -161,6 +161,49 @@ METHOD ProcessKey( nKey ) CLASS HbMenu
    local n, oPopup, nItem
 
    do case
+      case nKey == K_ESC 
+         if ::lPopup 
+            __dbgRestScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2, ::cBackImage )
+            ::cBackImage = nil
+            ::nOpenPopup = 0
+         else
+            ::Super:ProcessKey( nKey )
+         endif      
+
+      case nKey == K_UP 
+         if ::lPopup
+            ::DeHilite()
+            if ::nOpenPopup > 1
+               ::nOpenPopup--
+               while ::nOpenPopup < Len( ::aItems ) .and. ;
+                  hb_LeftEq( ::aItems[ ::nOpenPopup ]:cPrompt, "-" )
+                  --::nOpenPopup
+               end
+            else   
+               ::nOpenPopup = Len( ::aItems )
+            endif      
+            ::aItems[ ::nOpenPopup ]:Display( ::cClrHilite, ::cClrHotFocus )
+         else
+            ::Super:ProcessKey( nKey )   
+         endif   
+
+      case nKey == K_DOWN
+         if ::lPopup
+            ::DeHilite()
+            if ::nOpenPopup < Len( ::aItems )
+               ::nOpenPopup++
+               while ::nOpenPopup < Len( ::aItems ) .and. ;
+                  hb_LeftEq( ::aItems[ ::nOpenPopup ]:cPrompt, "-" )
+                  ++::nOpenPopup
+               end
+            else   
+               ::nOpenPopup = 1
+            endif      
+            ::aItems[ ::nOpenPopup ]:Display( ::cClrHilite, ::cClrHotFocus )
+         else
+            ::Super:ProcessKey( nKey )   
+         endif   
+
       case nKey == K_MWBACKWARD
          ::GoDown() 
          

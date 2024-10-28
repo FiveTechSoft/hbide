@@ -89,12 +89,17 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
          ReadKill( .T. )
 
       case MRightDown()
+         hb_idleDel( ::nIdle )
+         
          MENU oPopup POPUP 
             MENUITEM "~Add item" ACTION Alert( "add item" )
+            SEPARATOR
             MENUITEM "~Generate code..." ACTION Alert( "code" )
          ENDMENU   
 
          ACTIVATE MENU oPopup
+
+         ::nIdle = hb_IdleAdd( { || ::MouseEvent( MRow(), MCol() ) } )
 
       case ::lDesign .and. MLeftDown() .and. nMRow == ::nBottom .and. nMCol == ::nRight
          while MLeftDown()
