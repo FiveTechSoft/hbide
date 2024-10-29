@@ -16,6 +16,8 @@ CLASS HbMenu FROM HBDbMenu
    METHOD Activate()   
 
    METHOD AddItem( oMenuItem )  
+
+   METHOD ClosePopup( nOpenPopup )
       
    METHOD EvalAction()   
 
@@ -93,6 +95,20 @@ return oMenuItem
    
 //-----------------------------------------------------------------------------------------//
 
+METHOD ClosePopup( nOpenPopup ) CLASS HbMenu
+
+   if ::lPopup 
+      __dbgRestScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2, ::cBackImage )
+      ::cBackImage = nil
+      ::nOpenPopup = 0
+   else
+      ::Super:ClosePopup( nOpenPopup )
+   endif      
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD EvalAction() CLASS HbMenu
 
    local oMenuItem
@@ -157,14 +173,29 @@ return nil
 
 METHOD ProcessKey( nKey ) CLASS HbMenu
 
-   local n, oPopup, nItem
+   local n, oPopup, nItem, oItem
 
    do case
+      case nKey == K_LBUTTONDOWN
+         if ::lPopup
+            if ( nItem := ::GetItemOrdByCoors( MRow(), MCol() ) ) == 0
+               ::Close()
+            else
+               ::DeHilite()
+               ::nOpenPopup := nItem
+               ::aItems[ nItem ]:Display( ::cClrHilite, ::cClrHotFocus )
+               ::Close()
+               ::nOpenPopup = nItem
+               ::EvalAction()
+               ::nOpenPopup = 0
+            endif
+         else 
+            ::Super:ProcessKey( nKey )
+         endif
+
       case nKey == K_ESC 
          if ::lPopup 
-            __dbgRestScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2, ::cBackImage )
-            ::cBackImage = nil
-            ::nOpenPopup = 0
+            ::Close()
          else
             ::Super:ProcessKey( nKey )
          endif      

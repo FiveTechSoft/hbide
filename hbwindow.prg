@@ -89,19 +89,22 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
          ReadKill( .T. )
 
       case MRightDown()
-         hb_idleDel( ::nIdle )
+         if ::lDesign .and. MRow() > ::nTop .and. MRow() < ::nBottom .and. ;
+            MCol() > ::nLeft .and. MCol() < ::nRight
+            hb_idleDel( ::nIdle )
          
-         MENU oPopup POPUP 
-            MENUITEM "~Add item" ACTION Alert( "add item" )
-            SEPARATOR
-            MENUITEM "~Generate code..." ACTION Alert( "code" )
-         ENDMENU   
+            MENU oPopup POPUP 
+               MENUITEM "~Add item" ACTION Alert( "add item" )
+               SEPARATOR
+               MENUITEM "~Generate code..." ACTION Alert( "code" )
+            ENDMENU   
 
-         ATail( oPopup:aItems ):bAction = { || Alert( "code" ) }
+            ATail( oPopup:aItems ):bAction = { || Alert( "code" ) }
 
-         ACTIVATE MENU oPopup
+            ACTIVATE MENU oPopup
 
-         ::nIdle = hb_IdleAdd( { || ::MouseEvent( MRow(), MCol() ) } )
+            ::nIdle = hb_IdleAdd( { || ::MouseEvent( MRow(), MCol() ) } )
+         endif   
 
       case ::lDesign .and. MLeftDown() .and. nMRow == ::nBottom .and. nMCol == ::nRight
          while MLeftDown()
