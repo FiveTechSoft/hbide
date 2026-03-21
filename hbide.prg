@@ -31,6 +31,7 @@ CLASS HbIde
    DATA   oEditor
    DATA   nOldCursor
    DATA   lEnd
+   DATA   nIdleStatus
 
    METHOD New()
    METHOD About()   
@@ -46,7 +47,12 @@ CLASS HbIde
    METHOD End() INLINE ::lEnd := .T.   
    METHOD SaveScreen() INLINE ::cBackScreen := SaveScreen( 0, 0, MaxRow(), MaxCol() )  
    METHOD OpenFile()
-   METHOD GotoLine()   
+   METHOD GotoLine()
+   METHOD FindDialog()
+   METHOD SaveFile()
+   METHOD Repaint()
+   METHOD SuspendStatus()
+   METHOD ResumeStatus()
 
 ENDCLASS
 
@@ -71,7 +77,7 @@ METHOD New() CLASS HBIde
 
    __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
 
-   hb_IdleAdd( { || ::ShowStatus() } )  
+   ::nIdleStatus = hb_IdleAdd( { || ::ShowStatus() } )
 
    ErrorBlock( { | oError | ::MsgInfo( CallStack( oError ), "Error" ) } )
 
@@ -81,8 +87,8 @@ return Self
 
 function CallStack( oError, cSep, nLevel )
 
-   local cErrorLog := ErrorMessage( oError ) 
-   local c
+   local cErrorLog := ErrorMessage( oError )
+   local c, n
 
    DEFAULT cSep := Chr( 10 ), nLevel := 1
 
@@ -144,6 +150,8 @@ METHOD Designer() CLASS HBIde
    local oDlg, GetList := {}, lOk := .F., lDummy
 
    oDlg = HBWindow():Dialog( "Title", 35, 15, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   ::SuspendStatus()
    oDlg:lDesign = .T.
 
    @ 24, 50 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
@@ -153,6 +161,7 @@ METHOD Designer() CLASS HBIde
       STATE { || oDlg:End() }
 
    oDlg:Activate( GetList )
+   ::ResumeStatus()
    
 return nil
 
@@ -163,6 +172,8 @@ METHOD About() CLASS HBIde
    local oDlg, GetList := {}, lOk := .F.
 
    oDlg = HBWindow():Dialog( "HbIde 1.0", 35, 15, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   ::SuspendStatus()
 
    oDlg:SayCenter( "Harbour IDE", -4 )
    oDlg:SayCenter( "Version 1.0", -2 )
@@ -173,6 +184,7 @@ METHOD About() CLASS HBIde
       STATE { || oDlg:End() }
 
    oDlg:Activate( GetList )
+   ::ResumeStatus()
    
 return nil
 
@@ -184,6 +196,8 @@ METHOD GotoLine() CLASS HBIde
    local nLine := 1, oGetName
 
    oDlg = HBWindow():Dialog( "Goto line", 30, 7, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   ::SuspendStatus()
 
    @ 18, 57 GET nLine CAPTION "number:" COLOR "W/B,W+/B,W+/W,GR+/W"
 
@@ -194,6 +208,7 @@ METHOD GotoLine() CLASS HBIde
       STATE { || oDlg:End() }
 
    oDlg:Activate( GetList )
+   ::ResumeStatus()
 
    if lOk
       ::oEditor:GotoLine( nLine )
@@ -213,6 +228,8 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
    DEFAULT cTitle := "Information"
 
    oDlg = HBWindow():Dialog( cTitle, 55, Len( aLines ) + 5, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   ::SuspendStatus()
 
    for each cLine in aLines
       oDlg:Say( nRow++, 2, cLine )
@@ -223,6 +240,7 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
       STATE { || oDlg:End() }
 
    oDlg:Activate( GetList )
+   ::ResumeStatus()
    
 return nil
 
@@ -235,12 +253,32 @@ METHOD Show() CLASS HBIde
    ::oMenu:Display()
    for n = 1 to MaxRow()
       @ n, 0 SAY Replicate( " ", MaxCol() + 1 ) COLOR "BG/B"
-   next   
+   next
    ::oWndCode:Show()
    hb_IdleDel( ::oWndCode:nIdle )
    ::oWndCode:nIdle = nil
    ::oEditor:Display()
    ::ShowStatus()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Repaint() CLASS HBIde
+
+   local n
+
+   DispBegin()
+   ::oMenu:Display()
+   for n = 1 to MaxRow()
+      @ n, 0 SAY Replicate( " ", MaxCol() + 1 ) COLOR "BG/B"
+   next
+   if ::oWndCode:lVisible
+      ::oWndCode:Refresh()
+   endif
+   ::oEditor:Display()
+   ::ShowStatus()
+   DispEnd()
 
 return nil
 
@@ -263,9 +301,30 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+METHOD SuspendStatus() CLASS HBIde
+
+   if ::nIdleStatus != nil
+      hb_IdleDel( ::nIdleStatus )
+      ::nIdleStatus = nil
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ResumeStatus() CLASS HBIde
+
+   if ::nIdleStatus == nil
+      ::nIdleStatus = hb_IdleAdd( { || ::ShowStatus() } )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD Activate() CLASS HBIde
 
-   local nKey, nKeyStd, lMouseWheel := .F.
+   local nKey
 
    ::lEnd = .F.
    ::Show()
@@ -275,13 +334,36 @@ METHOD Activate() CLASS HBIde
       nKey = InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
 
       if nKey == K_ESC .and. ! ::oMenu:IsOpen()
-         ::lEnd = .T. 
-      endif   
+         ::lEnd = .T.
+      endif
 
       if nKey >= K_ALT_Q .and. nKey <= K_ALT_M
          SetCursor( SC_NONE )
          ::oMenu:ProcessKey( nKey )
-      endif   
+      endif
+
+      // Handle F5 for Find
+      if nKey == K_F5 .and. ! ::oMenu:IsOpen()
+         ::FindDialog()
+         loop
+      endif
+
+      // Handle F2 for Save
+      if nKey == K_F2 .and. ! ::oMenu:IsOpen()
+         ::SaveFile()
+         loop
+      endif
+
+
+
+
+      // Handle F3 for Find Next
+      if nKey == K_F3 .and. ! ::oMenu:IsOpen()
+         ::oEditor:FindNext()
+         ::oEditor:ShowCursor()
+         ::ShowStatus()
+         loop
+      endif
 
       if nKey == K_LBUTTONDOWN
          if MRow() == 0 .or. ::oMenu:IsOpen()
@@ -290,19 +372,29 @@ METHOD Activate() CLASS HBIde
             if ! ::oMenu:IsOpen()
                if ::oWndCode:lVisible
                   ::oEditor:ShowCursor()
-               endif   
+               endif
             endif
-         else   
+         else
             if MRow() == 1 .and. MCol() == 2
                ::oWndCode:Hide()
                SetCursor( SC_NONE )
-            else   
+            else
                if ::oWndCode:lVisible
                   ::oEditor:Edit( nKey )
                   ::ShowStatus()
                   ::oEditor:ShowCursor()
-               endif   
-            endif   
+               endif
+            endif
+         endif
+      elseif nKey == K_MWFORWARD .or. nKey == K_MWBACKWARD
+         if ::oMenu:IsOpen()
+            ::oMenu:ProcessKey( nKey )
+         else
+            if ::oWndCode:lVisible
+               ::oEditor:Edit( nKey )
+               ::ShowStatus()
+               ::oEditor:ShowCursor()
+            endif
          endif
       else
          if ::oMenu:IsOpen()
@@ -310,27 +402,16 @@ METHOD Activate() CLASS HBIde
             if ! ::oMenu:IsOpen()
                if ::oWndCode:lVisible
                   ::oEditor:ShowCursor()
-               endif   
+               endif
             endif
          else
             if ::oWndCode:lVisible
                ::oEditor:ShowCursor()
                ::oEditor:Edit( nKey )
                ::ShowStatus()
-            endif   
+            endif
          endif
       endif
-
-      if nKey == K_MWFORWARD .or. nKey == K_MWBACKWARD
-         if ! lMouseWheel
-            lMouseWheel = .T.
-            if ::oMenu:IsOpen()
-               ::oMenu:ProcessKey( nKey )
-            else
-               ::oEditor:Edit( nKey )
-            endif
-         endif   
-      endif         
    end
 
    ::Hide()
@@ -348,7 +429,7 @@ METHOD BuildMenu() CLASS HBIde
       MENU
          MENUITEM "~New"              ACTION Alert( "new" )
          MENUITEM "~Open..."          ACTION ::OpenFile()
-         MENUITEM "~Save"             ACTION Alert( "save" )
+         MENUITEM "~Save           F2 " ACTION ::SaveFile()
          MENUITEM "Save ~As... "      ACTION Alert( "saveas" )
          SEPARATOR
          MENUITEM "E~xit"             ACTION ::End()
@@ -356,14 +437,16 @@ METHOD BuildMenu() CLASS HBIde
 
       MENUITEM " ~Edit "
       MENU
-         MENUITEM "~Copy "
-         MENUITEM "~Paste "
+         MENUITEM "~Copy "                  ACTION ::oEditor:CopyLine()
+         MENUITEM "~Paste "                 ACTION ( ::oEditor:PasteLine(), ::oEditor:ShowCursor() )
          SEPARATOR
-         MENUITEM "~Find... "
-         MENUITEM "~Repeat Last Find  F3 "
-         MENUITEM "~Change..."
+         MENUITEM "~Delete Line  Ctrl+Y"    ACTION ( ::oEditor:DeleteLine(), ::oEditor:ShowCursor() )
+         MENUITEM "D~uplicate Line "        ACTION ( ::oEditor:DuplicateLine(), ::oEditor:ShowCursor() )
          SEPARATOR
-         MENUITEM "~Goto Line..."      ACTION ::GotoLine()
+         MENUITEM "~Find...         F5 "    ACTION ::FindDialog()
+         MENUITEM "~Repeat Last Find F3"    ACTION ( ::oEditor:FindNext(), ::oEditor:ShowCursor() )
+         SEPARATOR
+         MENUITEM "~Goto Line..."           ACTION ::GotoLine()
       ENDMENU
 
       MENUITEM " ~Run "
@@ -424,6 +507,9 @@ METHOD OpenFile() CLASS HbIde
    local lDummy, lOk := .F.
    local aPrgs := Directory( "*.prg" )
 
+   oDlg:bRepaint = { || ::Repaint() }
+   ::SuspendStatus()
+
    AEval( aPrgs, { | aPrg, n | aPrgs[ n ] := aPrg[ 1 ] } )
    if Len( aPrgs ) == 0
       AAdd( aPrgs, "" )
@@ -457,6 +543,7 @@ METHOD OpenFile() CLASS HbIde
       STATE { || oDlg:End() }
 
    oDlg:Activate( GetList )
+   ::ResumeStatus()
 
    if lOk .and. ! Empty( cFileName )
       if ! ::oWndCode:lVisible
@@ -468,6 +555,55 @@ METHOD OpenFile() CLASS HbIde
    endif 
 
 return nil   
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD SaveFile() CLASS HbIde
+
+   ::oEditor:SaveFile()
+   ::oWndCode:cCaption = ::oEditor:cFile
+   ::oWndCode:Refresh()
+   ::oEditor:Display()
+   ::oEditor:ShowCursor()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FindDialog() CLASS HbIde
+
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local cText := PadR( ::oEditor:cFindText, 30 ), oGetFind
+
+   oDlg = HBWindow():Dialog( "Find", 40, 7, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   ::SuspendStatus()
+
+   @ oDlg:nTop + 2, oDlg:nLeft + 3 GET cText COLOR "W/B,W+/B,W+/W,GR+/W"
+
+   with object oGetFind := ATail( GetList )
+      :CapRow = oDlg:nTop + 1
+      :CapCol = oDlg:nLeft + 3
+      :Caption = "&Search for:"
+      :Display()
+   end
+
+   @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || lOk := .T., oDlg:End() }
+
+   @ oDlg:nTop + 4, oDlg:nLeft + 14 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::ResumeStatus()
+
+   if lOk .and. ! Empty( cText )
+      ::oEditor:FindText( AllTrim( cText ) )
+      ::oEditor:ShowCursor()
+      ::ShowStatus()
+   endif
+
+return nil
 
 //-----------------------------------------------------------------------------------------//
 
