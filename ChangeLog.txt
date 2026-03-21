@@ -1,0 +1,64 @@
+HbIde ChangeLog
+================
+
+2026-03-21
+----------
+
+  Editor de codigo
+  ----------------
+  - Corregido syntax highlighting de comentarios // (ahora colorea toda la linea)
+  - Corregido syntax highlighting: soporte para comentarios de bloque /* */
+  - Corregido syntax highlighting: soporte para strings con comilla simple
+  - Corregido keyword matching con delimitadores (evita falsos positivos como "AT" dentro de "DATA")
+  - Corregidas comas faltantes en lista de keywords (VIRTUAL, MENU, ENDMENU, CLEAR)
+  - Ampliada lista de keywords: CLASS, ELSEIF, BEGIN, SEQUENCE, RECOVER, PROCEDURE, #DEFINE, etc.
+  - Corregido bug del mouse wheel que solo funcionaba una vez (lMouseWheel nunca se reseteaba)
+  - Corregido procesamiento doble de eventos mouse wheel en Activate()
+  - Corregida variable 'n' no declarada en CallStack()
+  - Corregido offset de 4 columnas del gutter en K_ENTER (cortaba texto en posicion incorrecta)
+  - Corregido offset de 4 columnas en K_DEL (borraba caracter equivocado)
+  - Corregido offset de 4 columnas en K_BS al unir lineas (Backspace al inicio de linea)
+  - Corregido SetPos fuera de pantalla que causaba scroll del terminal
+  - Implementado Home/End con awareness del gutter de 4 columnas
+  - Implementado Ctrl+Y para borrar linea (delegando a Super:Edit)
+  - Implementado F2 para guardar archivo
+  - Implementado flecha derecha al final de linea salta a la siguiente
+  - Implementado flecha izquierda al inicio de linea salta al final de la anterior
+  - Implementado doble click para seleccionar palabra (con highlight visual N/W)
+  - Implementado clipboard interno con Copy/Paste/Duplicate via menu Edit
+  - Implementado Find (F5) y Find Next (F3) con wrap-around
+  - Implementado Save desde menu File con actualizacion del titulo de ventana
+
+  Sistema de ventanas
+  -------------------
+  - Implementado sistema de ventanas virtuales con callback bRepaint
+  - Las ventanas pueden moverse parcialmente fuera de pantalla sin perder su imagen
+  - Implementado cVirtImage: imagen virtual de la ventana guardada cuando esta completamente visible
+  - RestBlock mejorado: maneja ventanas que salen por arriba (nTop < 0)
+  - DrawShadow: dibuja sombra parcial (solo derecha o solo inferior segun visibilidad)
+  - Corregido SetPos fuera de pantalla al soltar ventana parcialmente fuera
+  - Corregido idle handler: no llama Refresh() cuando ventana esta parcialmente fuera
+  - Corregido parpadeo del status bar: SuspendStatus/ResumeStatus al abrir/cerrar dialogos
+  - Hide() usa bRepaint cuando disponible (repinta fondo en vez de restaurar cBackImage incompleto)
+  - Fallback al sistema clasico de cBackImage cuando bRepaint no esta disponible
+
+  Dialogos y controles
+  --------------------
+  - Implementado dialogo Compiler Options con grupos enmarcados estilo Turbo Vision
+  - Implementados CheckBoxes con estilo [X] / [ ] (Turbo Vision)
+  - Implementados RadioButtons con estilo (bullet) / ( ) (Turbo Vision)
+  - Custom ChkDisplay(): sobreescribe Display del CheckBox via __ClsModMsg
+    - Aceleradores siempre amarillos (GR+/BG) independiente del foco
+    - Caption blanco (W+/BG) con foco, negro (N/BG) sin foco
+    - Brackets [ ] cambian color con el foco
+    - Color del acelerador almacenado en ::cargo (evita limitacion de 4 colores del setter)
+  - Custom RadDisplay(): sobreescribe Display del RadioButton via __ClsModMsg
+    - Caption blanco solo para el radio seleccionado (usa ::lBuffer, no ::lHasFocus)
+    - Acelerador amarillo solo para el radio seleccionado
+    - Corregido bug: RadioGroup:setFocus() pone lHasFocus en TODOS los botones
+  - RadioGroup sin marco propio (coldBox/hotBox vacios), usa grupo manual con hb_DispBox
+  - Grupos con marco single-line en fondo blanco, interior cyan (hb_Scroll)
+  - Botones OK/Cancel/Help en verde (GR+/G) consistente con demas dialogos
+  - Implementado dialogo Find (F5) con campo de busqueda
+  - Conectados items del menu Edit: Copy, Paste, Delete Line, Duplicate, Find, Goto Line
+  - Conectado menu Options > Compiler Flags al nuevo dialogo

@@ -53,6 +53,7 @@ CLASS HbIde
    METHOD Repaint()
    METHOD SuspendStatus()
    METHOD ResumeStatus()
+   METHOD CompilerFlags()
 
 ENDCLASS
 
@@ -76,6 +77,8 @@ METHOD New() CLASS HBIde
    Hb_GtInfo( HB_GTI_FONTSIZE , 25 ) 
 
    __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
+   __ClsModMsg( CheckBox( 0, 0 ):ClassH, "DISPLAY", @ChkDisplay() )
+   __ClsModMsg( RadioButto( 0, 0 ):ClassH, "DISPLAY", @RadDisplay() )
 
    ::nIdleStatus = hb_IdleAdd( { || ::ShowStatus() } )
 
@@ -458,7 +461,7 @@ METHOD BuildMenu() CLASS HBIde
 
       MENUITEM " ~Options "
       MENU
-         MENUITEM "~Compiler Flags... "
+         MENUITEM "~Compiler Flags... " ACTION ::CompilerFlags()
          MENUITEM "~Display... "        
          SEPARATOR
          MENUITEM "De~signer..."       ACTION ::Designer() 
@@ -570,6 +573,131 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+METHOD CompilerFlags() CLASS HbIde
+
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local lWarnings := .T., lDebug := .F., lStrict := .T.
+   local lIncremental := .F., lOptimize := .F., lAutoRun := .F.
+   local cCompiler := "GCC", aCompilers[ 4 ]
+   local cChkStyle := "[X ]", cRadStyle := "(" + Chr( 7 ) + " )"
+   local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
+   local nT, nL, nR, nB
+
+   // Turbo Vision gray dialog colors
+   // Normal:       N/W    (black on gray)
+   // Accelerator:  GR+/W  (yellow on gray)
+   // Focused:      N/G    (black on green)
+   // Button:       N/BG   (black on cyan)
+   // Button focus: W+/G   (bright white on green)
+   // Btn accel:    GR+/BG (yellow on cyan)
+   // Group title:  W+/W   (bright white on gray)
+
+   oDlg = HBWindow():Dialog( "Compiler Options", 56, 16, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   ::SuspendStatus()
+
+   nT = oDlg:nTop
+   nL = oDlg:nLeft
+   nR = oDlg:nRight
+   nB = oDlg:nBottom
+
+   // Group: Compiler
+   hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 24, ;
+               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+   hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 23,,, "N/BG" )
+   hb_DispOutAt( nT + 1, nL + 4, " Compiler ", "N/W" )
+
+   aCompilers[ 1 ] = RadioButto( nT + 2, nL + 4, "&GCC" )
+   aCompilers[ 2 ] = RadioButto( nT + 3, nL + 4, "&MSVC" )
+   aCompilers[ 3 ] = RadioButto( nT + 4, nL + 4, "&Borland C" )
+   aCompilers[ 4 ] = RadioButto( nT + 5, nL + 4, "C&lang" )
+
+   AEval( aCompilers, { | o | o:colorSpec := cRadClr, o:cargo := "GR+/BG" } )
+
+   @ nT + 2, nL + 3, nT + 6, nL + 23 GET cCompiler ;
+      RADIOGROUP aCompilers STYLE cRadStyle
+
+   ATail( GetList ):Control:coldBox := ""
+   ATail( GetList ):Control:hotBox := ""
+   // Redraw group frame (radiogroup Display already drew its own frame)
+   hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 24, ;
+               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+   hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 23,,, "N/BG" )
+   hb_DispOutAt( nT + 1, nL + 4, " Compiler ", "N/W" )
+   ATail( GetList ):Control:Display()
+
+   // Group: Options
+   hb_DispBox( nT + 1, nL + 26, nT + 7, nR - 2, ;
+               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+   hb_Scroll( nT + 2, nL + 27, nT + 6, nR - 3,,, "N/BG" )
+   hb_DispOutAt( nT + 1, nL + 28, " Options ", "N/W" )
+
+   @ nT + 2, nL + 28 GET lWarnings ;
+      CHECKBOX CAPTION "&Warnings" STYLE cChkStyle ;
+      COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := "GR+/BG"
+   ATail( GetList ):Control:Display()
+
+   @ nT + 3, nL + 28 GET lDebug ;
+      CHECKBOX CAPTION "&Debug info" STYLE cChkStyle ;
+      COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := "GR+/BG"
+   ATail( GetList ):Control:Display()
+
+   @ nT + 4, nL + 28 GET lStrict ;
+      CHECKBOX CAPTION "S&trict types" STYLE cChkStyle ;
+      COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := "GR+/BG"
+   ATail( GetList ):Control:Display()
+
+   @ nT + 5, nL + 28 GET lIncremental ;
+      CHECKBOX CAPTION "&Incremental" STYLE cChkStyle ;
+      COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := "GR+/BG"
+   ATail( GetList ):Control:Display()
+
+   // Group: Build
+   hb_DispBox( nT + 8, nL + 2, nT + 12, nR - 2, ;
+               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+   hb_Scroll( nT + 9, nL + 3, nT + 11, nR - 3,,, "N/BG" )
+   hb_DispOutAt( nT + 8, nL + 4, " Build ", "N/W" )
+
+   @ nT + 9, nL + 4 GET lOptimize ;
+      CHECKBOX CAPTION "O&ptimize code" STYLE cChkStyle ;
+      COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := "GR+/BG"
+   ATail( GetList ):Control:Display()
+
+   @ nT + 10, nL + 4 GET lAutoRun ;
+      CHECKBOX CAPTION "&Run after build" STYLE cChkStyle ;
+      COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := "GR+/BG"
+   ATail( GetList ):Control:Display()
+
+   // Buttons
+   @ nB - 2, nL + 10 GET lDummy PUSHBUTTON ;
+      CAPTION "  &OK  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || lOk := .T., oDlg:End() }
+
+   @ nB - 2, nL + 24 GET lDummy PUSHBUTTON ;
+      CAPTION " &Cancel " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || oDlg:End() }
+
+   @ nB - 2, nL + 38 GET lDummy PUSHBUTTON ;
+      CAPTION "  &Help  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || Alert( "Help not available" ) }
+
+   oDlg:Activate( GetList )
+   ::ResumeStatus()
+
+   if lOk
+      // Flags selected
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD FindDialog() CLASS HbIde
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
@@ -632,5 +760,94 @@ function DoBreak( oError )
    Alert( oError:Description )
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+// Custom CheckBox Display: 5 colors
+// 0: mark unfocused, 1: mark focused, 2: brackets+caption unfocused,
+// 3: caption focused, 4: accelerator (always yellow)
+
+function ChkDisplay()
+
+   local Self := QSelf()
+   local cColor, cAccel, cStyle := ::cStyle, cCaption, nPos
+
+   DispBegin()
+
+   hb_DispOutAt( ::nRow, ::nCol + 1, ;
+      iif( ::lBuffer, SubStr( cStyle, 2, 1 ), SubStr( cStyle, 3, 1 ) ), ;
+      hb_ColorIndex( ::cColorSpec, iif( ::lHasFocus, 1, 0 ) ) )
+
+   cColor := hb_ColorIndex( ::cColorSpec, iif( ::lHasFocus, 3, 2 ) )
+   hb_DispOutAt( ::nRow, ::nCol, Left( cStyle, 1 ), cColor )
+   hb_DispOutAt( ::nRow, ::nCol + 2, Right( cStyle, 1 ), cColor )
+
+   if ! Empty( cCaption := ::cCaption )
+      if ( nPos := At( "&", cCaption ) ) == 0
+      elseif nPos == Len( cCaption )
+         nPos := 0
+      else
+         cCaption := Stuff( cCaption, nPos, 1, "" )
+      endif
+
+      hb_DispOutAt( ::nCapRow, ::nCapCol, cCaption, cColor )
+
+      // Accelerator from cargo (yellow), fallback to index 3
+      if nPos != 0
+         cAccel := iif( ::cargo != nil, ::cargo, hb_ColorIndex( ::cColorSpec, 3 ) )
+         hb_DispOutAt( ::nCapRow, ::nCapCol + nPos - 1, ;
+            SubStr( cCaption, nPos, 1 ), cAccel )
+      endif
+   endif
+
+   DispEnd()
+
+return Self
+
+//-----------------------------------------------------------------------------------------//
+// Custom RadioButton Display: 7 colors
+// 0: unused, 1: bullet unselected, 2: unused, 3: bullet selected,
+// 4: caption unfocused, 5: caption focused, 6: accelerator (always yellow)
+
+function RadDisplay()
+
+   local Self := QSelf()
+   local cColor, cAccel, cStyle := ::cStyle, cCaption, nPos
+
+   DispBegin()
+
+   cColor := iif( ::lBuffer, ;
+      hb_ColorIndex( ::cColorSpec, 3 ), ;
+      hb_ColorIndex( ::cColorSpec, 1 ) )
+   hb_DispOutAt( ::nRow, ::nCol, Left( cStyle, 1 ) + ;
+      iif( ::lBuffer, SubStr( cStyle, 2, 1 ), SubStr( cStyle, 3, 1 ) ) + ;
+      Right( cStyle, 1 ), cColor )
+
+   if ! Empty( cCaption := ::cCaption )
+      if ( nPos := At( "&", cCaption ) ) == 0
+      elseif nPos == Len( cCaption )
+         nPos := 0
+      else
+         cCaption := Stuff( cCaption, nPos, 1, "" )
+      endif
+
+      // Caption: white when this is the selected button, black otherwise
+      hb_DispOutAt( ::nCapRow, ::nCapCol, cCaption, ;
+         hb_ColorIndex( ::cColorSpec, iif( ::lBuffer, 5, 4 ) ) )
+
+      // Accelerator: yellow from cargo when selected, else same as caption
+      if nPos != 0
+         if ::lBuffer .and. ::cargo != nil
+            cAccel := ::cargo
+         else
+            cAccel := hb_ColorIndex( ::cColorSpec, iif( ::lBuffer, 5, 4 ) )
+         endif
+         hb_DispOutAt( ::nCapRow, ::nCapCol + nPos - 1, ;
+            SubStr( cCaption, nPos, 1 ), cAccel )
+      endif
+   endif
+
+   DispEnd()
+
+return Self
 
 //-----------------------------------------------------------------------------------------//
