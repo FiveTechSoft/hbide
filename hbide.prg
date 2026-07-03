@@ -707,19 +707,19 @@ METHOD FindDialog() CLASS HbIde
    oDlg:bRepaint = { || ::Repaint() }
    ::SuspendStatus()
 
-   @ oDlg:nTop + 2, oDlg:nLeft + 3 GET cText COLOR "W/B,W+/B,W+/W,GR+/W"
+   @ oDlg:nTop + 3, oDlg:nLeft + 5 GET cText COLOR "W/B,W+/B,W+/W,GR+/W"
 
    with object oGetFind := ATail( GetList )
-      :CapRow = oDlg:nTop + 1
-      :CapCol = oDlg:nLeft + 3
+      :CapRow = oDlg:nTop + 2
+      :CapCol = oDlg:nLeft + 5
       :Caption = "&Search for:"
       :Display()
    end
 
-   @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+   @ oDlg:nTop + 5, oDlg:nLeft + 11 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || lOk := .T., oDlg:End() }
 
-   @ oDlg:nTop + 4, oDlg:nLeft + 14 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+   @ oDlg:nTop + 5, oDlg:nLeft + 22 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
    oDlg:Activate( GetList )
