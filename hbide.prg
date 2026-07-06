@@ -79,6 +79,8 @@ METHOD New() CLASS HBIde
    __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
    __ClsModMsg( CheckBox( 0, 0 ):ClassH, "DISPLAY", @ChkDisplay() )
    __ClsModMsg( RadioButto( 0, 0 ):ClassH, "DISPLAY", @RadDisplay() )
+   __ClsModMsg( CheckBox( 0, 0 ):ClassH, "HITTEST", @ChkHitTest() )
+   __ClsModMsg( RadioButto( 0, 0 ):ClassH, "HITTEST", @RadHitTest() )
 
    ::nIdleStatus = hb_IdleAdd( { || ::ShowStatus() } )
 
@@ -811,6 +813,73 @@ function ChkDisplay()
 return Self
 
 //-----------------------------------------------------------------------------------------//
+// Patched CheckBox hitTest: applies cargo delta to match visual position
+
+function ChkHitTest( nMRow, nMCol )
+
+   local Self := QSelf()
+   local nDR := 0, nDC := 0, nLen, nPos
+
+   if HB_IsArray( ::cargo )
+      nDR := ::cargo[ 2 ]
+      nDC := ::cargo[ 3 ]
+   endif
+
+   nLen := Len( ::cCaption )
+   if ( nPos := At( "&", ::cCaption ) ) > 0 .and. nPos < nLen
+      nLen--
+   endif
+
+   if nMRow == ::nRow + nDR .and. ;
+      nMCol >= ::nCol + nDC .and. ;
+      nMCol < ::nCol + nDC + 3
+      return 1  // HTCLIENT
+   endif
+
+   if ! Empty( ::cCaption ) .and. ;
+      nMRow == ::nCapRow + nDR .and. ;
+      nMCol >= ::nCapCol + nDC .and. ;
+      nMCol < ::nCapCol + nDC + nLen
+      return 2  // HTCAPTION
+   endif
+
+   return 0  // HTNOWHERE
+
+//-----------------------------------------------------------------------------------------//
+// Patched RadioButton hitTest: applies cargo delta to match visual position
+
+function RadHitTest( nMRow, nMCol )
+
+   local Self := QSelf()
+   local nLen, nPos
+   local nDR := 0, nDC := 0
+
+   if HB_IsArray( ::cargo )
+      nDR := ::cargo[ 2 ]
+      nDC := ::cargo[ 3 ]
+   endif
+
+   nLen := Len( ::cCaption )
+   if ( nPos := At( "&", ::cCaption ) ) > 0 .and. nPos < nLen
+      nLen--
+   endif
+
+   if nMRow == ::Row + nDR .and. ;
+      nMCol >= ::Col + nDC .and. ;
+      nMCol < ::Col + nDC + 3
+      return 1  // HTCLIENT
+   endif
+
+   if ! Empty( ::cCaption ) .and. ;
+      nMRow == ::CapRow + nDR .and. ;
+      nMCol >= ::CapCol + nDC .and. ;
+      nMCol < ::CapCol + nDC + nLen
+      return 1  // HTCLIENT
+   endif
+
+   return 0  // HTNOWHERE
+
+//-----------------------------------------------------------------------------------------//
 // Custom RadioButton Display: 7 colors
 // 0: unused, 1: bullet unselected, 2: unused, 3: bullet selected,
 // 4: caption unfocused, 5: caption focused, 6: accelerator (always yellow)
@@ -831,7 +900,7 @@ function RadDisplay()
    cColor := iif( ::lBuffer, ;
       hb_ColorIndex( ::cColorSpec, 3 ), ;
       hb_ColorIndex( ::cColorSpec, 1 ) )
-   hb_DispOutAt( ::row, ::col, Left( cStyle, 1 ) + ;
+   hb_DispOutAt( ::row + nDR, ::col + nDC, Left( cStyle, 1 ) + ;
       iif( ::lBuffer, SubStr( cStyle, 2, 1 ), SubStr( cStyle, 3, 1 ) ) + ;
       Right( cStyle, 1 ), cColor )
 
@@ -843,18 +912,16 @@ function RadDisplay()
          cCaption := Stuff( cCaption, nPos, 1, "" )
       endif
 
-      // Caption: uses nCapRow/nCapCol + delta (not updated by MoveControls)
-      hb_DispOutAt( ::nCapRow + nDR, ::nCapCol + nDC, cCaption, ;
+      hb_DispOutAt( ::CapRow + nDR, ::CapCol + nDC, cCaption, ;
          hb_ColorIndex( ::cColorSpec, iif( ::lBuffer, 5, 4 ) ) )
 
-      // Accelerator: yellow from cargo when selected, else same as caption
       if nPos != 0
          if ::lBuffer .and. HB_IsArray( ::cargo )
             cAccel := ::cargo[ 1 ]
          else
             cAccel := hb_ColorIndex( ::cColorSpec, iif( ::lBuffer, 5, 4 ) )
          endif
-         hb_DispOutAt( ::nCapRow + nDR, ::nCapCol + nDC + nPos - 1, ;
+         hb_DispOutAt( ::CapRow + nDR, ::CapCol + nDC + nPos - 1, ;
             SubStr( cCaption, nPos, 1 ), cAccel )
       endif
    endif

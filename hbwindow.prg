@@ -309,7 +309,7 @@ METHOD MoveControls( nOldTop, nOldLeft, nOldBottom, nOldRight ) CLASS HbWindow
             oCtrl:CapRow += nDeltaRow
             oCtrl:CapCol += nDeltaCol
          endif
-            if ! Empty( oCtrl:Control )
+             if ! Empty( oCtrl:Control )
                if oCtrl:Control:IsKindOf( "PUSHBUTTON" )
                   oCtrl:Control:row += nDeltaRow
                   oCtrl:Control:col += nDeltaCol
@@ -326,17 +326,23 @@ METHOD MoveControls( nOldTop, nOldLeft, nOldBottom, nOldRight ) CLASS HbWindow
                   oCtrl:Control:cargo[ 2 ] += nDeltaRow
                   oCtrl:Control:cargo[ 3 ] += nDeltaCol
                endif
+               if oCtrl:Control:IsKindOf( "RADIOGROUP" )
+                  oCtrl:Control:top( oCtrl:Control:top() + nDeltaRow )
+                  oCtrl:Control:left( oCtrl:Control:left() + nDeltaCol )
+                  oCtrl:Control:bottom( oCtrl:Control:bottom() + nDeltaRow )
+                  oCtrl:Control:right( oCtrl:Control:right() + nDeltaCol )
+                  if oCtrl:Control:capRow() != nil .and. oCtrl:Control:capRow() != 0
+                     oCtrl:Control:capRow( oCtrl:Control:capRow() + nDeltaRow )
+                     oCtrl:Control:capCol( oCtrl:Control:capCol() + nDeltaCol )
+                  endif
+               endif
             endif
        next
        if HB_IsArray( ::cargo )
           for each oCtrl in ::cargo
-             if HB_IsObject( oCtrl )
-                oCtrl:row += nDeltaRow
-                oCtrl:col += nDeltaCol
-                if HB_IsArray( oCtrl:cargo )
-                   oCtrl:cargo[ 2 ] += nDeltaRow
-                   oCtrl:cargo[ 3 ] += nDeltaCol
-                endif
+             if HB_IsObject( oCtrl ) .and. HB_IsArray( oCtrl:cargo )
+                oCtrl:cargo[ 2 ] += nDeltaRow
+                oCtrl:cargo[ 3 ] += nDeltaCol
              endif
           next
        endif
