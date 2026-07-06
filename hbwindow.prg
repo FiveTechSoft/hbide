@@ -142,14 +142,13 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
            cPrevColor = ::cColor
            nHeight = ::nBottom - ::nTop + 1
            nWidth  = ::nRight - ::nLeft + 1
-           // Save virtual image with original colors when fully visible
            if ::nTop >= 0 .and. ::nLeft >= 0 .and. ;
               ::nBottom <= MaxRow() .and. ::nRight <= MaxCol()
               ::cVirtImage = __dbgSaveScreen( ::nTop, ::nLeft, ::nBottom, ::nRight )
            endif
            ::cColor = "G+/W"
            ::Refresh()
-           cImage = ::cVirtImage
+           cImage = __dbgSaveScreen( ::nTop, ::nLeft, ::nBottom, ::nRight )
            if MRow() != ::nTop .or. MRow() != ::nBottom
               nMRow = MRow() - ::nTop
            else
@@ -180,6 +179,8 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
                  DispEnd()
               endif
            end
+           ::cColor = "W/W"
+           ::Refresh()
            ::cColor = cPrevColor
            ::MoveControls( nOldTop, nOldLeft, nOldBottom, nOldRight )
            nCurRow = nCurRow - nOldTop + ::nTop
@@ -401,5 +402,15 @@ return Self
 static function GetColors()
 
 return { "W+/BG", "N/BG", "R/BG", "N+/BG", "W+/B", "GR+/B", "W/B", "N/W", "R/W", "N/BG", "R/BG" }
+
+//-----------------------------------------------------------------------------------------//
+
+static function DrawBorder( nTop, nLeft, nBottom, nRight, cColor )
+
+   local cBox := hb_UTF8ToStrBox( "┌─┐│┘─└│" )
+
+   hb_DispBox( nTop, nLeft, nBottom, nRight, cBox, cColor )
+
+return nil
 
 //-----------------------------------------------------------------------------------------//
