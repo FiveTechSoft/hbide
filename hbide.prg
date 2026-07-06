@@ -612,7 +612,9 @@ METHOD CompilerFlags() CLASS HbIde
    aCompilers[ 3 ] = RadioButto( nT + 4, nL + 4, "&Borland C" )
    aCompilers[ 4 ] = RadioButto( nT + 5, nL + 4, "C&lang" )
 
-   AEval( aCompilers, { | o | o:colorSpec := cRadClr, o:cargo := "GR+/BG" } )
+    AEval( aCompilers, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
+
+    oDlg:cargo := aCompilers
 
    @ nT + 2, nL + 3, nT + 6, nL + 23 GET cCompiler ;
       RADIOGROUP aCompilers STYLE cRadStyle
@@ -635,25 +637,25 @@ METHOD CompilerFlags() CLASS HbIde
    @ nT + 2, nL + 28 GET lWarnings ;
       CHECKBOX CAPTION "&Warnings" STYLE cChkStyle ;
       COLOR "N/BG,W+/BG,N/BG,W+/BG"
-   ATail( GetList ):Control:cargo := "GR+/BG"
+    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ nT + 3, nL + 28 GET lDebug ;
       CHECKBOX CAPTION "&Debug info" STYLE cChkStyle ;
       COLOR "N/BG,W+/BG,N/BG,W+/BG"
-   ATail( GetList ):Control:cargo := "GR+/BG"
+    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ nT + 4, nL + 28 GET lStrict ;
       CHECKBOX CAPTION "S&trict types" STYLE cChkStyle ;
       COLOR "N/BG,W+/BG,N/BG,W+/BG"
-   ATail( GetList ):Control:cargo := "GR+/BG"
+    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ nT + 5, nL + 28 GET lIncremental ;
       CHECKBOX CAPTION "&Incremental" STYLE cChkStyle ;
       COLOR "N/BG,W+/BG,N/BG,W+/BG"
-   ATail( GetList ):Control:cargo := "GR+/BG"
+    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    // Group: Build
@@ -665,13 +667,13 @@ METHOD CompilerFlags() CLASS HbIde
    @ nT + 9, nL + 4 GET lOptimize ;
       CHECKBOX CAPTION "O&ptimize code" STYLE cChkStyle ;
       COLOR "N/BG,W+/BG,N/BG,W+/BG"
-   ATail( GetList ):Control:cargo := "GR+/BG"
+    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ nT + 10, nL + 4 GET lAutoRun ;
       CHECKBOX CAPTION "&Run after build" STYLE cChkStyle ;
       COLOR "N/BG,W+/BG,N/BG,W+/BG"
-   ATail( GetList ):Control:cargo := "GR+/BG"
+    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    // Buttons
@@ -770,16 +772,22 @@ function ChkDisplay()
 
    local Self := QSelf()
    local cColor, cAccel, cStyle := ::cStyle, cCaption, nPos
+   local nDR := 0, nDC := 0
+
+   if HB_IsArray( ::cargo )
+      nDR := ::cargo[ 2 ]
+      nDC := ::cargo[ 3 ]
+   endif
 
    DispBegin()
 
-   hb_DispOutAt( ::nRow, ::nCol + 1, ;
+   hb_DispOutAt( ::row + nDR, ::col + nDC + 1, ;
       iif( ::lBuffer, SubStr( cStyle, 2, 1 ), SubStr( cStyle, 3, 1 ) ), ;
       hb_ColorIndex( ::cColorSpec, iif( ::lHasFocus, 1, 0 ) ) )
 
    cColor := hb_ColorIndex( ::cColorSpec, iif( ::lHasFocus, 3, 2 ) )
-   hb_DispOutAt( ::nRow, ::nCol, Left( cStyle, 1 ), cColor )
-   hb_DispOutAt( ::nRow, ::nCol + 2, Right( cStyle, 1 ), cColor )
+   hb_DispOutAt( ::row + nDR, ::col + nDC, Left( cStyle, 1 ), cColor )
+   hb_DispOutAt( ::row + nDR, ::col + nDC + 2, Right( cStyle, 1 ), cColor )
 
    if ! Empty( cCaption := ::cCaption )
       if ( nPos := At( "&", cCaption ) ) == 0
@@ -789,12 +797,11 @@ function ChkDisplay()
          cCaption := Stuff( cCaption, nPos, 1, "" )
       endif
 
-      hb_DispOutAt( ::nCapRow, ::nCapCol, cCaption, cColor )
+      hb_DispOutAt( ::nCapRow + nDR, ::nCapCol + nDC, cCaption, cColor )
 
-      // Accelerator from cargo (yellow), fallback to index 3
       if nPos != 0
-         cAccel := iif( ::cargo != nil, ::cargo, hb_ColorIndex( ::cColorSpec, 3 ) )
-         hb_DispOutAt( ::nCapRow, ::nCapCol + nPos - 1, ;
+         cAccel := iif( HB_IsArray( ::cargo ), ::cargo[ 1 ], hb_ColorIndex( ::cColorSpec, 3 ) )
+         hb_DispOutAt( ::nCapRow + nDR, ::nCapCol + nDC + nPos - 1, ;
             SubStr( cCaption, nPos, 1 ), cAccel )
       endif
    endif
@@ -812,13 +819,19 @@ function RadDisplay()
 
    local Self := QSelf()
    local cColor, cAccel, cStyle := ::cStyle, cCaption, nPos
+   local nDR := 0, nDC := 0
+
+   if HB_IsArray( ::cargo )
+      nDR := ::cargo[ 2 ]
+      nDC := ::cargo[ 3 ]
+   endif
 
    DispBegin()
 
    cColor := iif( ::lBuffer, ;
       hb_ColorIndex( ::cColorSpec, 3 ), ;
       hb_ColorIndex( ::cColorSpec, 1 ) )
-   hb_DispOutAt( ::nRow, ::nCol, Left( cStyle, 1 ) + ;
+   hb_DispOutAt( ::row, ::col, Left( cStyle, 1 ) + ;
       iif( ::lBuffer, SubStr( cStyle, 2, 1 ), SubStr( cStyle, 3, 1 ) ) + ;
       Right( cStyle, 1 ), cColor )
 
@@ -830,18 +843,18 @@ function RadDisplay()
          cCaption := Stuff( cCaption, nPos, 1, "" )
       endif
 
-      // Caption: white when this is the selected button, black otherwise
-      hb_DispOutAt( ::nCapRow, ::nCapCol, cCaption, ;
+      // Caption: uses nCapRow/nCapCol + delta (not updated by MoveControls)
+      hb_DispOutAt( ::nCapRow + nDR, ::nCapCol + nDC, cCaption, ;
          hb_ColorIndex( ::cColorSpec, iif( ::lBuffer, 5, 4 ) ) )
 
       // Accelerator: yellow from cargo when selected, else same as caption
       if nPos != 0
-         if ::lBuffer .and. ::cargo != nil
-            cAccel := ::cargo
+         if ::lBuffer .and. HB_IsArray( ::cargo )
+            cAccel := ::cargo[ 1 ]
          else
             cAccel := hb_ColorIndex( ::cColorSpec, iif( ::lBuffer, 5, 4 ) )
          endif
-         hb_DispOutAt( ::nCapRow, ::nCapCol + nPos - 1, ;
+         hb_DispOutAt( ::nCapRow + nDR, ::nCapCol + nDC + nPos - 1, ;
             SubStr( cCaption, nPos, 1 ), cAccel )
       endif
    endif

@@ -296,31 +296,50 @@ return nil
 
 METHOD MoveControls( nOldTop, nOldLeft, nOldBottom, nOldRight ) CLASS HbWindow
 
-   local oCtrl
+   local oCtrl, oItem, nDeltaRow, nDeltaCol
+
+   nDeltaRow := ::nTop - nOldTop
+   nDeltaCol := ::nLeft - nOldLeft
 
    if ! Empty( ::GetList )
       for each oCtrl in ::GetList
-         oCtrl:row += ( ::nTop - nOldTop )
-         oCtrl:col += ( ::nLeft - nOldLeft )
+         oCtrl:row += nDeltaRow
+         oCtrl:col += nDeltaCol
          if ! Empty( oCtrl:Caption )
-            oCtrl:CapRow += ( ::nTop - nOldTop )
-            oCtrl:CapCol += ( ::nLeft - nOldLeft )
+            oCtrl:CapRow += nDeltaRow
+            oCtrl:CapCol += nDeltaCol
          endif
-         if ! Empty( oCtrl:Control )
-            if oCtrl:Control:IsKindOf( "PUSHBUTTON" )
-               oCtrl:Control:row += ( ::nTop - nOldTop )
-               oCtrl:Control:col += ( ::nLeft - nOldLeft )
+            if ! Empty( oCtrl:Control )
+               if oCtrl:Control:IsKindOf( "PUSHBUTTON" )
+                  oCtrl:Control:row += nDeltaRow
+                  oCtrl:Control:col += nDeltaCol
+               endif
+               if oCtrl:Control:IsKindOf( "LISTBOX" )
+                  oCtrl:Control:top    += nDeltaRow
+                  oCtrl:Control:left   += nDeltaCol
+                  oCtrl:Control:bottom += ( ::nBottom - nOldBottom )
+                  oCtrl:Control:right  += ( ::nRight - nOldRight )
+                  oCtrl:Control:CapRow += nDeltaRow
+                  oCtrl:Control:CapCol += nDeltaCol
+               endif
+               if oCtrl:Control:IsKindOf( "CHECKBOX" ) .and. HB_IsArray( oCtrl:Control:cargo )
+                  oCtrl:Control:cargo[ 2 ] += nDeltaRow
+                  oCtrl:Control:cargo[ 3 ] += nDeltaCol
+               endif
             endif
-            if oCtrl:Control:IsKindOf( "LISTBOX" )
-               oCtrl:Control:top    += ( ::nTop - nOldTop )
-               oCtrl:Control:left   += ( ::nLeft - nOldLeft )
-               oCtrl:Control:bottom += ( ::nBottom - nOldBottom )
-               oCtrl:Control:right  += ( ::nRight - nOldRight )
-               oCtrl:Control:CapRow += ( ::nTop - nOldTop )
-               oCtrl:Control:CapCol += ( ::nLeft - nOldLeft )
-            endif
-         endif
-      next
+       next
+       if HB_IsArray( ::cargo )
+          for each oCtrl in ::cargo
+             if HB_IsObject( oCtrl )
+                oCtrl:row += nDeltaRow
+                oCtrl:col += nDeltaCol
+                if HB_IsArray( oCtrl:cargo )
+                   oCtrl:cargo[ 2 ] += nDeltaRow
+                   oCtrl:cargo[ 3 ] += nDeltaCol
+                endif
+             endif
+          next
+       endif
    endif
 
 return nil
