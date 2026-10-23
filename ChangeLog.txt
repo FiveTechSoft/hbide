@@ -62,6 +62,14 @@ HbIde ChangeLog
   - Implementado dialogo Find (F5) con campo de busqueda
   - Conectados items del menu Edit: Copy, Paste, Delete Line, Duplicate, Find, Goto Line
   - Conectado menu Options > Compiler Flags al nuevo dialogo
+2026-10-23: Dialog Designer, colors + per-option radio accelerators
+  - Generated PRG now emits the hbide palettes for every control
+    (GET/CHECKBOX/PUSHBUTTON/RADIOGROUP/LISTBOX COLOR clauses)
+  - Radio items accept & for a per-option accelerator; the generated
+    RadioButto() captions keep it and the letter is painted in a
+    distinct color (green unfocused, bright blue focused)
+  - Verified live: plain letter with the group focused selects the option
+
 2026-10-23: Dialog Designer, RadioGroup + ListBox controls (pure Harbour)
   - Palette, model, JSON persistence, inspector and EditProperties support
     radiogroup (items as CSV, RadioButto array in generated code) and

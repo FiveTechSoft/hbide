@@ -19,6 +19,14 @@
 #define DSN_RADIO     "radiogroup"
 #define DSN_LISTBOX   "listbox"
 
+// control palettes for the generated dialog, from hbide's own dialogs
+// (white dialog background: input GET from hbide.prg, listbox exact hbide palette)
+#define DSN_CLR_GET      "W/B,W+/B,W+/W,GR+/W"
+#define DSN_CLR_CHECKBOX "N/W,BG+/W,N/W,GR+/W"
+#define DSN_CLR_BUTTON   "GR+/G,W+/G,N/G,BG+/G"
+#define DSN_CLR_RADIO    "N/W,N/W,N/W,BG+/W,N/W,GR+/W,BG+/W"
+#define DSN_CLR_LISTBOX  "N/BG,GR+/BG,N/BG,W+/G,W+/W,W+/W,GR+/W"
+
 #define CLR_DIALOG    "W+/W"
 #define CLR_SAY       "N/W"
 #define CLR_GET       "W/B"
@@ -1519,6 +1527,8 @@ function DsnGenCode( hModel )
          case oCtrl[ "type" ] == DSN_RADIO
             cCode += "   aButt" + hb_ntos( oCtrl:__enumIndex() ) + " := " + ;
                      DsnRadioButtsCode( oCtrl ) + hb_eol()
+            cCode += "   AEval( aButt" + hb_ntos( oCtrl:__enumIndex() ) + ;
+                     ", {| o | o:colorSpec := '" + DSN_CLR_RADIO + "' } )" + hb_eol()
          case oCtrl[ "type" ] == DSN_LISTBOX
             cCode += "   aItems" + hb_ntos( oCtrl:__enumIndex() ) + " := " + ;
                      DsnItemsCode( oCtrl ) + hb_eol()
@@ -1538,13 +1548,15 @@ function DsnGenCode( hModel )
          case oCtrl[ "type" ] == DSN_GET
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
-                     " GET " + oCtrl[ "variable" ] + hb_eol()
+                     " GET " + oCtrl[ "variable" ] + ;
+                     " COLOR '" + DSN_CLR_GET + "'" + hb_eol()
 
          case oCtrl[ "type" ] == DSN_CHECKBOX
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
                      " GET " + oCtrl[ "variable" ] + ;
-                     " CHECKBOX CAPTION " + DsnQuote( oCtrl[ "caption" ] ) + hb_eol()
+                     " CHECKBOX CAPTION " + DsnQuote( oCtrl[ "caption" ] ) + ;
+                     " COLOR '" + DSN_CLR_CHECKBOX + "'" + hb_eol()
 
          case oCtrl[ "type" ] == DSN_BUTTON
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
@@ -1552,7 +1564,7 @@ function DsnGenCode( hModel )
                      " GET lDummy PUSHBUTTON CAPTION " + ;
                      DsnQuote( DsnAccelCaption( hb_HGetDef( oCtrl, "caption", "" ), ;
                         hb_HGetDef( oCtrl, "accelerator", "" ) ) ) + " ;" + hb_eol()
-            cCode += "      COLOR 'GR+/G,W+/G,N/G,BG+/G' STATE { || " + ;
+            cCode += "      COLOR '" + DSN_CLR_BUTTON + "' STATE { || " + ;
                      DsnButtonAction( oCtrl ) + " }" + hb_eol()
 
          case oCtrl[ "type" ] == DSN_RADIO .or. oCtrl[ "type" ] == DSN_LISTBOX
@@ -1564,7 +1576,10 @@ function DsnGenCode( hModel )
                      " GET " + oCtrl[ "variable" ] + ;
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
                         " RADIOGROUP aButt", " LISTBOX aItems" ) + ;
-                     hb_ntos( n ) + hb_eol()
+                     hb_ntos( n ) + ;
+                     If( oCtrl[ "type" ] == DSN_RADIO, ;
+                        " COLOR 'N/W,N/W,GR+/W'", ;
+                        " COLOR '" + DSN_CLR_LISTBOX + "'" ) + hb_eol()
       endcase
    next
 

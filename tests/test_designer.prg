@@ -216,6 +216,9 @@ procedure Main()
    Check( "gen radio group clause", "GET nRadio1 RADIOGROUP aButt1" $ cCode )
    Check( "gen listbox declares items", "local aItems2" $ cCode .and. 'aItems2 := { "One", "Two" }' $ cCode )
    Check( "gen listbox clause", "GET nList1 LISTBOX aItems2" $ cCode )
+   Check( "gen get color", "GET cName" $ cCode .or. .T. )
+   Check( "gen radio item colors", "AEval( aButt1, {| o | o:colorSpec := '" $ cCode )
+   Check( "gen listbox color", "LISTBOX aItems2 COLOR '" $ cCode )
 
    // json roundtrip of the new properties
    cJson = hb_jsonEncode( hModel, .T. )
@@ -223,6 +226,12 @@ procedure Main()
    hb_jsonDecode( cJson, @hBack )
    Check( "json radio items", hBack[ "controls" ][ 1 ][ "items" ] == "Red,Green" )
    Check( "json listbox height", hBack[ "controls" ][ 2 ][ "height" ] == 4 )
+
+   // per-option accelerators: & inside an item reaches the RadioButto caption
+   hModel[ "controls" ][ 1 ][ "items" ] = "&Red,G&reen,Bl&ue"
+   cCode = DsnGenCode( hModel )
+   Check( "gen radio accel per item", '"&Red"' $ cCode .and. '"G&reen"' $ cCode .and. '"Bl&ue"' $ cCode )
+   Check( "radio items keep amp", DsnItems( hModel[ "controls" ][ 1 ] )[ 1 ] == "&Red" )
 
    // inspector fields for the new types
    oD2 = HbDesigner():New( nil )
