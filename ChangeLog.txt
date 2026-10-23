@@ -62,3 +62,14 @@ HbIde ChangeLog
   - Implementado dialogo Find (F5) con campo de busqueda
   - Conectados items del menu Edit: Copy, Paste, Delete Line, Duplicate, Find, Goto Line
   - Conectado menu Options > Compiler Flags al nuevo dialogo
+2026-10-23: Dialog Designer, first version (pure Harbour)
+  - New designer.prg: visual dialog designer (Options > Designer)
+  - Palette (F2/right-click): Label (SAY), Input (GET), CheckBox, PushButton
+  - Place/move controls with keyboard or mouse, drag & drop, Del deletes
+  - Enter edits control properties (row, col, caption, variable, width)
+  - F3 dialog properties (caption, name, size)
+  - F9 generates <name>.prg (HBWindow + @ GET code, compiles against hbwindow.prg)
+  - F10 saves the design as JSON, F12 loads it back (round trip)
+  - hbwindow.prg: optional bPopup callback for design mode right-click
+  - hbmenu.prg: fixed popup menus not closing after running an action
+  - docs/designer.md + docs/examples/ + tests/test_designer.prg

@@ -9,6 +9,7 @@
 CLASS HbWindow FROM HbDbWindow
 
    DATA   bInit
+   DATA   bPopup        // design mode: right-click popup callback
    DATA   bRepaint       // callback to repaint background behind this window
    DATA   cVirtImage     // virtual window image (full size, even when partially off-screen)
    DATA   lRedrawPending INIT .F.
@@ -95,18 +96,25 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
          if ::lDesign .and. MRow() > ::nTop .and. MRow() < ::nBottom .and. ;
             MCol() > ::nLeft .and. MCol() < ::nRight
             hb_idleDel( ::nIdle )
+            ::nIdle = nil
 
-            MENU oPopup POPUP
-               MENUITEM "~Add item" ACTION Alert( "add item" )
-               SEPARATOR
-               MENUITEM "~Generate code..." ACTION Alert( "code" )
-            ENDMENU
+            if ::bPopup != nil
+               Eval( ::bPopup )
+            else
+               MENU oPopup POPUP
+                  MENUITEM "~Add item" ACTION Alert( "add item" )
+                  SEPARATOR
+                  MENUITEM "~Generate code..." ACTION Alert( "code" )
+               ENDMENU
 
-            ATail( oPopup:aItems ):bAction = { || Alert( "code" ) }
+               ATail( oPopup:aItems ):bAction = { || Alert( "code" ) }
 
-            ACTIVATE MENU oPopup
+               ACTIVATE MENU oPopup
+            endif
 
-            ::nIdle = hb_IdleAdd( { || ::MouseEvent( MRow(), MCol() ) } )
+            if ::nIdle == nil
+               ::nIdle = hb_IdleAdd( { || ::MouseEvent( MRow(), MCol() ) } )
+            endif
          endif
 
       case ::lDesign .and. MLeftDown() .and. nMRow == ::nBottom .and. nMCol == ::nRight
@@ -267,7 +275,7 @@ return nil
 //                  right cols at nRight+1..nRight+2 (from nTop+1 to nBottom+1)
 // We simulate partial shadow by calling hb_Shadow with clipped rectangles
 
-static function DrawShadow( nTop, nLeft, nBottom, nRight )
+function DrawShadow( nTop, nLeft, nBottom, nRight )
 
    local lBottomVisible := ( nBottom + 1 <= MaxRow() )
    local lRightVisible  := ( nRight + 2 <= MaxCol() )

@@ -152,22 +152,10 @@ return cMessage
 
 METHOD Designer() CLASS HBIde
 
-   local oDlg, GetList := {}, lOk := .F., lDummy
+   local oDesigner := HbDesigner():New( Self )
 
-   oDlg = HBWindow():Dialog( "Title", 35, 15, "W+/W" )
-   oDlg:bRepaint = { || ::Repaint() }
-   ::SuspendStatus()
-   oDlg:lDesign = .T.
+   oDesigner:Activate()
 
-   @ 24, 50 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || lOk := .T., oDlg:End() }
-
-   @ 24, 60 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || oDlg:End() }
-
-   oDlg:Activate( GetList )
-   ::ResumeStatus()
-   
 return nil
 
 //-----------------------------------------------------------------------------------------//

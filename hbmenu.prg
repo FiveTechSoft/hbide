@@ -97,9 +97,11 @@ return oMenuItem
 
 METHOD ClosePopup( nOpenPopup ) CLASS HbMenu
 
-   if ::lPopup 
-      __dbgRestScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2, ::cBackImage )
-      ::cBackImage = nil
+   if ::lPopup
+      if ::cBackImage != nil
+         __dbgRestScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2, ::cBackImage )
+         ::cBackImage = nil
+      endif
       ::nOpenPopup = 0
    else
       ::Super:ClosePopup( nOpenPopup )
@@ -118,6 +120,7 @@ METHOD EvalAction() CLASS HbMenu
       if oMenuItem:bAction != nil
          Eval( oMenuItem:bAction, oMenuItem )
       endif
+      ::ClosePopup( ::nOpenPopup )
    else
       ::Super:EvalAction()   
    endif

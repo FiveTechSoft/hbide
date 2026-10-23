@@ -1,0 +1,36 @@
+{
+  "name": "MyDialog",
+  "caption": "My Dialog",
+  "width": 41,
+  "height": 13,
+  "color": "W+/W",
+  "controls":
+  [
+    {
+      "type": "say",
+      "row": 2,
+      "col": 4,
+      "caption": "Label"
+    },
+    {
+      "type": "get",
+      "row": 4,
+      "col": 4,
+      "variable": "cVar2",
+      "width": 10
+    },
+    {
+      "type": "checkbox",
+      "row": 6,
+      "col": 4,
+      "caption": "Check",
+      "variable": "lVar3"
+    },
+    {
+      "type": "button",
+      "row": 9,
+      "col": 4,
+      "caption": "&OK"
+    }
+  ]
+}
