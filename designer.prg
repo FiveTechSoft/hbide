@@ -16,6 +16,16 @@
 #define DSN_GET       "get"
 #define DSN_BUTTON    "button"
 #define DSN_CHECKBOX  "checkbox"
+#define DSN_RADIO     "radiogroup"
+#define DSN_LISTBOX   "listbox"
+
+// control palettes for the generated dialog, from hbide's own dialogs
+// (white dialog background: input GET from hbide.prg, listbox exact hbide palette)
+#define DSN_CLR_GET      "W/B,W+/B,W+/W,GR+/W"
+#define DSN_CLR_CHECKBOX "N/W,BG+/W,N/W,GR+/W"
+#define DSN_CLR_BUTTON   "GR+/G,W+/G,N/G,BG+/G"
+#define DSN_CLR_RADIO    "N/W,N/W,N/W,BG+/W,N/W,GR+/W,BG+/W"
+#define DSN_CLR_LISTBOX  "N/BG,GR+/BG,N/BG,W+/G,W+/W,W+/W,GR+/W"
 
 #define CLR_DIALOG    "W+/W"
 #define CLR_SAY       "N/W"
@@ -24,6 +34,12 @@
 #define CLR_CHECKBOX  "N/W"
 #define CLR_SELECTED  "N/G"
 #define CLR_GHOST     "N/BG"
+#define CLR_INSP      "W+/B"
+#define CLR_INSP_SEL  "N/GR"
+#define CLR_INSP_VAL  "N/W"
+
+#define HINT_CANVAS   "F2 add | Enter edit | F4 inspector | Del delete | Arrows move | F9 gen | F10 save | Esc exit"
+#define HINT_INSP     "F6 canvas | Enter edit | Left/Right adjust | Ctrl+Arrows move panel | F4 hide"
 
 //-----------------------------------------------------------------------------------------//
 
@@ -45,9 +61,14 @@ CLASS HbDesigner
    DATA cPlacingType INIT ""
    DATA nGhostRow    INIT 1           // ghost position, client relative
    DATA nGhostCol    INIT 1
+   DATA lInspector   INIT .F.         // floating object inspector visible
+   DATA lInspFocus   INIT .F.         // inspector has keyboard focus
+   DATA nInspRow     INIT 2           // inspector screen position
+   DATA nInspCol     INIT 86
+   DATA nInspField   INIT 1           // focused field in the inspector
    DATA nIdleDraw                     // idle handler: redraw controls
    DATA nOldCursor
-   DATA cHint        INIT "F2 add | Enter edit | Del delete | Arrows move | F9 generate | F10 save | Esc exit"
+   DATA cHint        INIT HINT_CANVAS
 
    METHOD New( oIde )
    METHOD Activate()
@@ -58,6 +79,18 @@ CLASS HbDesigner
    METHOD DragControl( nIndex, nMRow, nMCol )
    METHOD DrawControls()
    METHOD EditProperties()
+   METHOD ToggleInspector()
+   METHOD InspFields()
+   METHOD InspRect()
+   METHOD DrawInspector()
+   METHOD DlgMinSize()
+   METHOD InspValue( cKey )
+   METHOD InspSetText( cKey, cVal )
+   METHOD InspAdjust( nDelta )
+   METHOD InspEdit()
+   METHOD InspHit( nMRow, nMCol )
+   METHOD DragInspector( nMRow, nMCol )
+   METHOD InspectorKey( nKey )
    METHOD GeneratePrg()
    METHOD HitClient( nMRow, nMCol )
    METHOD HitTest( nMRow, nMCol )
@@ -85,7 +118,7 @@ return Self
 
 METHOD Activate() CLASS HbDesigner
 
-   local nKey, nIndex
+   local nKey, nIndex, nInspHit
 
    ::nOldCursor = SetCursor( SC_NONE )
    ::oIde:SuspendStatus()
@@ -97,13 +130,31 @@ METHOD Activate() CLASS HbDesigner
 
    ::nIdleDraw = hb_IdleAdd( { || ::DrawControls() } )
 
-   ::ShowHint( "F2 add | Enter edit | Del delete | Arrows move | F9 generate | F10 save | Esc exit" )
+   ::ShowHint( HINT_CANVAS )
 
    while ! ::lEnd
 
       nKey = InKey( 0, INKEY_ALL )
 
+      if ::lInspector .and. ::lInspFocus .and. ::InspectorKey( nKey )
+         loop
+      endif
+
       do case
+         case nKey == K_F4
+            ::ToggleInspector()
+
+         case nKey == K_F6
+            if ::lInspector
+               ::lInspFocus = ! ::lInspFocus
+               if ::lInspFocus
+                  ::ShowHint( HINT_INSP )
+               else
+                  ::ShowHint( HINT_CANVAS )
+               endif
+               ::DrawInspector()
+            endif
+
          case nKey == K_ESC
             if ::lPlacing
                ::lPlacing = .F.
@@ -141,6 +192,7 @@ METHOD Activate() CLASS HbDesigner
          case nKey == K_UP
             if ::lPlacing
                ::nGhostRow = Max( 0, ::nGhostRow - 1 )
+               ::Redraw()
             else
                ::MoveSelected( -1, 0 )
             endif
@@ -148,6 +200,7 @@ METHOD Activate() CLASS HbDesigner
          case nKey == K_DOWN
             if ::lPlacing
                ::nGhostRow = Min( ::oWnd:nBottom - ::oWnd:nTop - 2, ::nGhostRow + 1 )
+               ::Redraw()
             else
                ::MoveSelected( 1, 0 )
             endif
@@ -155,6 +208,7 @@ METHOD Activate() CLASS HbDesigner
          case nKey == K_LEFT
             if ::lPlacing
                ::nGhostCol = Max( 0, ::nGhostCol - 1 )
+               ::Redraw()
             else
                ::MoveSelected( 0, -1 )
             endif
@@ -162,6 +216,7 @@ METHOD Activate() CLASS HbDesigner
          case nKey == K_RIGHT
             if ::lPlacing
                ::nGhostCol = Min( ::oWnd:nRight - ::oWnd:nLeft - 2, ::nGhostCol + 1 )
+               ::Redraw()
             else
                ::MoveSelected( 0, 1 )
             endif
@@ -169,11 +224,15 @@ METHOD Activate() CLASS HbDesigner
          case nKey == K_TAB
             if ! Empty( ::aControls )
                ::nSelected = If( ::nSelected >= Len( ::aControls ), 1, ::nSelected + 1 )
+               ::nInspField = 1
+               ::DrawInspector()
             endif
 
          case nKey == K_SH_TAB
             if ! Empty( ::aControls )
                ::nSelected = If( ::nSelected <= 1, Len( ::aControls ), ::nSelected - 1 )
+               ::nInspField = 1
+               ::DrawInspector()
             endif
 
          case nKey == K_LBUTTONDOWN
@@ -184,12 +243,30 @@ METHOD Activate() CLASS HbDesigner
                   ::AddControl( ::cPlacingType )
                endif
             else
-               nIndex = ::HitTest( MRow(), MCol() )
-               if nIndex > 0
-                  ::nSelected = nIndex
-                  ::DragControl( nIndex, MRow(), MCol() )
+               nInspHit = ::InspHit( MRow(), MCol() )
+               if ::lInspector .and. nInspHit != 0
+                  if nInspHit == -1
+                     ::DragInspector( MRow(), MCol() )
+                  else
+                     ::lInspFocus = .T.
+                     ::nInspField = nInspHit
+                     ::ShowHint( HINT_INSP )
+                     ::DrawInspector()
+                  endif
                else
-                  ::nSelected = 0
+                  if ::lInspFocus
+                     ::lInspFocus = .F.
+                     ::ShowHint( HINT_CANVAS )
+                  endif
+                  nIndex = ::HitTest( MRow(), MCol() )
+                  if nIndex > 0
+                     ::nSelected = nIndex
+                     ::nInspField = 1
+                     ::DragControl( nIndex, MRow(), MCol() )
+                  else
+                     ::nSelected = 0
+                  endif
+                  ::DrawInspector()
                endif
             endif
       endcase
@@ -229,6 +306,8 @@ METHOD PopupMenu() CLASS HbDesigner
       MENUITEM "~Input (GET)"              ACTION cType := DSN_GET
       MENUITEM "Check~Box"                 ACTION cType := DSN_CHECKBOX
       MENUITEM "Push~Button"               ACTION cType := DSN_BUTTON
+      MENUITEM "~RadioGroup"               ACTION cType := DSN_RADIO
+      MENUITEM "~ListBox"                  ACTION cType := DSN_LISTBOX
       SEPARATOR
       MENUITEM "~Dialog properties..."     ACTION cType := "dialog"
       SEPARATOR
@@ -237,7 +316,7 @@ METHOD PopupMenu() CLASS HbDesigner
       MENUITEM "~Generate PRG  F9"         ACTION cType := "gen"
    ENDMENU
 
-   // normalize popup geometry (menu builder defaults do not fit 9 items)
+   // normalize popup geometry (menu builder defaults do not fit 11 items)
    oPopup:nTop    = 21
    oPopup:nLeft   = 30
    oPopup:nRight  = 62
@@ -288,7 +367,17 @@ METHOD AddControl( cType ) CLASS HbDesigner
          oCtrl[ "caption"  ] = "Check"
          oCtrl[ "variable" ] = "lVar" + hb_ntos( Len( ::aControls ) + 1 )
       case cType == DSN_BUTTON
-         oCtrl[ "caption"  ] = "&OK"
+         oCtrl[ "caption"     ] = "OK"
+         oCtrl[ "accelerator" ] = "O"
+         oCtrl[ "action"      ] = "oDlg:End()"
+      case cType == DSN_RADIO
+         oCtrl[ "variable" ] = "nVar" + hb_ntos( Len( ::aControls ) + 1 )
+         oCtrl[ "items"    ] = "Option 1,Option 2,Option 3"
+      case cType == DSN_LISTBOX
+         oCtrl[ "variable" ] = "nVar" + hb_ntos( Len( ::aControls ) + 1 )
+         oCtrl[ "items"    ] = "Item 1,Item 2,Item 3"
+         oCtrl[ "width"    ] = 20
+         oCtrl[ "height"   ] = 6
    endcase
 
    AAdd( ::aControls, oCtrl )
@@ -386,6 +475,10 @@ return 0
 
 METHOD Redraw() CLASS HbDesigner
 
+   if ::oIde == nil .or. ::oWnd == nil
+      return nil
+   endif
+
    DispBegin()
    ::oIde:Repaint()
    ::oWnd:Refresh()
@@ -426,6 +519,9 @@ METHOD DrawControls() CLASS HbDesigner
                                 "variable" => "cVar", ;
                                 "width"    => 10 }, .T., CLR_GHOST )
    endif
+
+   ::DrawInspector()
+
    DispEnd()
 
 return nil
@@ -480,7 +576,7 @@ return nil
 METHOD EditProperties() CLASS HbDesigner
 
    local oCtrl, oDlg, GetList := {}, lOk := .F., lDummy
-   local cCaption, cVariable, nRow, nCol, nWidth
+   local cCaption, cVariable, nRow, nCol, nWidth, cAccel, cAction, cItems, nHeight
    local aSize, nMaxRow, nMaxCol
 
    if ::nSelected < 1 .or. ::nSelected > Len( ::aControls )
@@ -491,15 +587,19 @@ METHOD EditProperties() CLASS HbDesigner
    aSize     = DsnControlSize( oCtrl )
    nMaxRow   = ::oWnd:nBottom - ::oWnd:nTop - 1 - aSize[ 2 ]
    nMaxCol   = ::oWnd:nRight  - ::oWnd:nLeft - 1 - aSize[ 1 ]
-   cCaption  = PadR( hb_HGetDef( oCtrl, "caption", "" ), 30 )
-   cVariable = PadR( hb_HGetDef( oCtrl, "variable", "" ), 20 )
+   cCaption  = PadR( hb_HGetDef( oCtrl, "caption", "" ), Max( 60, Len( hb_HGetDef( oCtrl, "caption", "" ) ) ) + 20 )
+   cVariable = PadR( hb_HGetDef( oCtrl, "variable", "" ), Max( 20, Len( hb_HGetDef( oCtrl, "variable", "" ) ) ) + 10 )
    nRow      = oCtrl[ "row" ]
    nCol      = oCtrl[ "col" ]
    nWidth    = hb_HGetDef( oCtrl, "width", 10 )
+   cAccel    = PadR( hb_HGetDef( oCtrl, "accelerator", "" ), 4 )
+   cAction   = PadR( hb_HGetDef( oCtrl, "action", "" ), Max( 60, Len( hb_HGetDef( oCtrl, "action", "" ) ) ) + 20 )
+   cItems    = PadR( hb_HGetDef( oCtrl, "items", "" ), Max( 60, Len( hb_HGetDef( oCtrl, "items", "" ) ) ) + 20 )
+   nHeight   = hb_HGetDef( oCtrl, "height", 6 )
 
    ::SuspendUI()
 
-   oDlg = HBWindow():Dialog( "Control properties", 44, 11, CLR_DIALOG )
+   oDlg = HBWindow():Dialog( "Control properties", 76, 11, CLR_DIALOG )
    oDlg:bRepaint = { || ::Redraw() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 11 GET nRow PICTURE "999"
@@ -508,18 +608,39 @@ METHOD EditProperties() CLASS HbDesigner
    oDlg:Say( 2, 20, "Col:" )
 
    if oCtrl[ "type" ] $ DSN_SAY + "|" + DSN_BUTTON + "|" + DSN_CHECKBOX
-      @ oDlg:nTop + 4, oDlg:nLeft + 11 GET cCaption
+      @ oDlg:nTop + 4, oDlg:nLeft + 11 GET cCaption PICTURE "@S40"
       oDlg:Say( 4, 2, "Caption:" )
    endif
 
    if oCtrl[ "type" ] $ DSN_GET + "|" + DSN_CHECKBOX
-      @ oDlg:nTop + 5, oDlg:nLeft + 11 GET cVariable
+      @ oDlg:nTop + 5, oDlg:nLeft + 11 GET cVariable PICTURE "@S20"
       oDlg:Say( 5, 2, "Variable:" )
    endif
 
    if oCtrl[ "type" ] == DSN_GET
       @ oDlg:nTop + 6, oDlg:nLeft + 11 GET nWidth PICTURE "999"
       oDlg:Say( 6, 2, "Width:" )
+   endif
+
+   if oCtrl[ "type" ] == DSN_BUTTON
+      @ oDlg:nTop + 5, oDlg:nLeft + 11 GET cAccel
+      oDlg:Say( 5, 2, "Accel:" )
+      @ oDlg:nTop + 6, oDlg:nLeft + 11 GET cAction PICTURE "@S40"
+      oDlg:Say( 6, 2, "Action:" )
+   endif
+
+   if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX
+      @ oDlg:nTop + 4, oDlg:nLeft + 11 GET cVariable PICTURE "@S20"
+      oDlg:Say( 4, 2, "Variable:" )
+      @ oDlg:nTop + 5, oDlg:nLeft + 11 GET cItems PICTURE "@S40"
+      oDlg:Say( 5, 2, "Items:" )
+   endif
+
+   if oCtrl[ "type" ] == DSN_LISTBOX
+      @ oDlg:nTop + 6, oDlg:nLeft + 11 GET nWidth PICTURE "999"
+      oDlg:Say( 6, 2, "Width:" )
+      @ oDlg:nTop + 7, oDlg:nLeft + 11 GET nHeight PICTURE "999"
+      oDlg:Say( 7, 2, "Height:" )
    endif
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 10 GET lDummy PUSHBUTTON ;
@@ -541,11 +662,22 @@ METHOD EditProperties() CLASS HbDesigner
       endif
       if "variable" $ oCtrl
          oCtrl[ "variable" ] = DsnValidVar( cVariable, ;
-            If( oCtrl[ "type" ] == DSN_GET, "cVar", "lVar" ) + ;
+            If( oCtrl[ "type" ] == DSN_GET, "cVar", ;
+               If( oCtrl[ "type" ] == DSN_CHECKBOX, "lVar", "nVar" ) ) + ;
             hb_ntos( ::nSelected ) )
       endif
       if "width" $ oCtrl
          oCtrl[ "width" ] = Max( 4, Min( 40, nWidth ) )
+      endif
+      if "items" $ oCtrl
+         oCtrl[ "items" ] = AllTrim( cItems )
+      endif
+      if oCtrl[ "type" ] == DSN_LISTBOX
+         oCtrl[ "height" ] = Max( 3, Min( 15, nHeight ) )
+      endif
+      if oCtrl[ "type" ] == DSN_BUTTON
+         oCtrl[ "accelerator" ] = Left( StrTran( AllTrim( cAccel ), "&", "" ), 1 )
+         oCtrl[ "action" ]      = AllTrim( cAction )
       endif
       ::lDirty = .T.
       ::Redraw()
@@ -558,17 +690,18 @@ return nil
 METHOD DlgProperties() CLASS HbDesigner
 
    local oDlg, GetList := {}, lOk := .F., lDummy
-   local cCaption := PadR( ::cDlgCaption, 30 )
+   local cCaption := PadR( ::cDlgCaption, Max( 50, Len( ::cDlgCaption ) ) + 10 )
    local cName    := PadR( ::cDlgName, 20 )
    local nWidth   := ::nDlgWidth
    local nHeight  := ::nDlgHeight
+   local aMin
 
    ::SuspendUI()
 
-   oDlg = HBWindow():Dialog( "Dialog properties", 44, 10, CLR_DIALOG )
+   oDlg = HBWindow():Dialog( "Dialog properties", 66, 10, CLR_DIALOG )
    oDlg:bRepaint = { || ::Redraw() }
 
-   @ oDlg:nTop + 2, oDlg:nLeft + 11 GET cCaption
+   @ oDlg:nTop + 2, oDlg:nLeft + 11 GET cCaption PICTURE "@S40"
    oDlg:Say( 2, 2, "Caption:" )
 
    @ oDlg:nTop + 4, oDlg:nLeft + 11 GET cName
@@ -592,6 +725,12 @@ METHOD DlgProperties() CLASS HbDesigner
    ::ResumeUI()
 
    if lOk
+      aMin = ::DlgMinSize()
+      if nWidth < aMin[ 1 ] .or. nHeight < aMin[ 2 ]
+         nWidth   = Max( nWidth, aMin[ 1 ] )
+         nHeight  = Max( nHeight, aMin[ 2 ] )
+         ::ShowHint( "Adjusted to the minimum size: controls inside would be hidden" )
+      endif
       ::cDlgCaption = AllTrim( cCaption )
       ::cDlgName    = DsnValidVar( cName, "MyDialog" )
       ::nDlgWidth   = Max( 20, Min( MaxCol() - 4, nWidth ) )
@@ -696,6 +835,7 @@ METHOD LoadJson() CLASS HbDesigner
    ::nDlgWidth   = hb_HGetDef( hModel, "width", 40 )
    ::nDlgHeight  = hb_HGetDef( hModel, "height", 12 )
    ::aControls   = hModel[ "controls" ]
+   DsnNormalizeControls( ::aControls )
    ::nSelected   = 0
    ::cFileName   = cFile
    ::lDirty      = .F.
@@ -711,6 +851,427 @@ METHOD LoadJson() CLASS HbDesigner
    ::ShowHint( "Loaded " + cFile )
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+
+//-----------------------------------------------------------------------------------------//
+// floating object inspector: non-modal, movable panel synced with the
+// selected control (or the dialog itself when nothing is selected)
+
+METHOD ToggleInspector() CLASS HbDesigner
+
+   ::lInspector = ! ::lInspector
+   if ! ::lInspector
+      ::lInspFocus = .F.
+   endif
+   ::nInspField = 1
+   ::Redraw()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+// { label, key, kind } per field; kind is "num" or "text"
+
+METHOD InspFields() CLASS HbDesigner
+
+   local aFields := {}, oCtrl
+
+   if ::nSelected >= 1 .and. ::nSelected <= Len( ::aControls )
+      oCtrl = ::aControls[ ::nSelected ]
+      AAdd( aFields, { "Row", "row", "num" } )
+      AAdd( aFields, { "Col", "col", "num" } )
+      if oCtrl[ "type" ] $ DSN_SAY + "|" + DSN_BUTTON + "|" + DSN_CHECKBOX
+         AAdd( aFields, { "Caption", "caption", "text" } )
+      endif
+      if oCtrl[ "type" ] $ DSN_GET + "|" + DSN_CHECKBOX
+         AAdd( aFields, { "Variable", "variable", "text" } )
+      endif
+      if oCtrl[ "type" ] == DSN_GET
+         AAdd( aFields, { "Width", "width", "num" } )
+      endif
+      if oCtrl[ "type" ] == DSN_BUTTON
+         AAdd( aFields, { "Accel",  "accelerator", "text" } )
+         AAdd( aFields, { "Action", "action",      "text" } )
+      endif
+      if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX
+         AAdd( aFields, { "Variable", "variable", "text" } )
+         AAdd( aFields, { "Items",    "items",    "text" } )
+      endif
+      if oCtrl[ "type" ] == DSN_LISTBOX
+         AAdd( aFields, { "Width",  "width",  "num" } )
+         AAdd( aFields, { "Height", "height", "num" } )
+      endif
+   else
+      AAdd( aFields, { "Name", "dlgname", "text" } )
+      AAdd( aFields, { "Caption", "dlgcaption", "text" } )
+      AAdd( aFields, { "Width", "dlgwidth", "num" } )
+      AAdd( aFields, { "Height", "dlgheight", "num" } )
+   endif
+
+return aFields
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD InspRect() CLASS HbDesigner
+
+   local nHeight := Len( ::InspFields() ) + 2
+   local nTop    := Max( 0, Min( MaxRow() - nHeight - 2, ::nInspRow ) )
+   local nLeft   := Max( 0, Min( MaxCol() - 33, ::nInspCol ) )   // +2 for the shadow
+
+return { nTop, nLeft, nTop + nHeight - 1, nLeft + 30 }
+
+//-----------------------------------------------------------------------------------------//
+
+// minimum dialog size so no control is left outside (frame included)
+
+METHOD DlgMinSize() CLASS HbDesigner
+
+   local oCtrl, aSize, nMinW := 20, nMinH := 6
+
+   for each oCtrl in ::aControls
+      aSize = DsnControlSize( oCtrl )
+      nMinW = Max( nMinW, oCtrl[ "col" ] + aSize[ 1 ] + 2 )
+      nMinH = Max( nMinH, oCtrl[ "row" ] + aSize[ 2 ] + 2 )
+   next
+
+return { nMinW, nMinH }
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD InspValue( cKey ) CLASS HbDesigner
+
+   local oCtrl
+
+   if ::nSelected >= 1 .and. ::nSelected <= Len( ::aControls )
+      oCtrl = ::aControls[ ::nSelected ]
+      do case
+         case cKey == "row"      ; return hb_ntos( oCtrl[ "row" ] )
+         case cKey == "col"      ; return hb_ntos( oCtrl[ "col" ] )
+         case cKey == "caption"  ; return hb_HGetDef( oCtrl, "caption", "" )
+         case cKey == "variable" ; return hb_HGetDef( oCtrl, "variable", "" )
+         case cKey == "width"    ; return hb_ntos( hb_HGetDef( oCtrl, "width", 10 ) )
+         case cKey == "accelerator" ; return hb_HGetDef( oCtrl, "accelerator", "" )
+         case cKey == "action"      ; return hb_HGetDef( oCtrl, "action", "" )
+         case cKey == "items"       ; return hb_HGetDef( oCtrl, "items", "" )
+         case cKey == "height"      ; return hb_ntos( hb_HGetDef( oCtrl, "height", 6 ) )
+      endcase
+   else
+      do case
+         case cKey == "dlgname"    ; return ::cDlgName
+         case cKey == "dlgcaption" ; return ::cDlgCaption
+         case cKey == "dlgwidth"   ; return hb_ntos( ::nDlgWidth )
+         case cKey == "dlgheight"  ; return hb_ntos( ::nDlgHeight )
+      endcase
+   endif
+
+return ""
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD DrawInspector() CLASS HbDesigner
+
+   local aRect, aFields, n, cLabel, cValue, cColor, nValWidth
+
+   if ! ::lInspector .or. ::oWnd == nil
+      return nil
+   endif
+
+   aFields   = ::InspFields()
+   ::nInspField = Max( 1, Min( Len( aFields ), ::nInspField ) )
+   aRect     = ::InspRect()
+   nValWidth = aRect[ 4 ] - aRect[ 2 ] - 11
+
+   DispBegin()
+   hb_Scroll( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ],,, CLR_INSP )
+   DispBox( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ], 2, CLR_INSP )
+   DrawShadow( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ] )
+   hb_DispOutAt( aRect[ 1 ], aRect[ 2 ] + 2, " Inspector ", CLR_INSP )
+
+   for n = 1 to Len( aFields )
+      cLabel = " " + PadR( aFields[ n ][ 1 ] + ":", 9 )
+      cValue = PadR( Left( ::InspValue( aFields[ n ][ 2 ] ), nValWidth ), nValWidth )
+      if ::lInspFocus .and. n == ::nInspField
+         hb_DispOutAt( aRect[ 1 ] + n, aRect[ 2 ] + 1, PadR( cLabel + cValue, 29 ), CLR_INSP_SEL )
+      else
+         hb_DispOutAt( aRect[ 1 ] + n, aRect[ 2 ] + 1, cLabel, CLR_INSP )
+         hb_DispOutAt( aRect[ 1 ] + n, aRect[ 2 ] + 10, cValue, CLR_INSP_VAL )
+      endif
+   next
+   DispEnd()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD InspSetText( cKey, cVal ) CLASS HbDesigner
+
+   local oCtrl
+
+   cVal = AllTrim( cVal )
+
+   if ::nSelected >= 1 .and. ::nSelected <= Len( ::aControls )
+      oCtrl = ::aControls[ ::nSelected ]
+      do case
+         case cKey == "caption"
+            oCtrl[ "caption" ] = cVal
+         case cKey == "variable"
+            oCtrl[ "variable" ] = DsnValidVar( cVal, ;
+               If( oCtrl[ "type" ] == DSN_GET, "cVar", ;
+                  If( oCtrl[ "type" ] == DSN_CHECKBOX, "lVar", "nVar" ) ) + hb_ntos( ::nSelected ) )
+         case cKey == "accelerator"
+            oCtrl[ "accelerator" ] = Left( StrTran( cVal, "&", "" ), 1 )
+         case cKey == "action"
+            oCtrl[ "action" ] = cVal
+         case cKey == "items"
+            oCtrl[ "items" ] = cVal
+      endcase
+   else
+      do case
+         case cKey == "dlgname"
+            ::cDlgName = DsnValidVar( cVal, "MyDialog" )
+         case cKey == "dlgcaption"
+            ::cDlgCaption = cVal
+            ::oWnd:cCaption = " " + ::cDlgCaption + " "
+      endcase
+   endif
+
+   ::lDirty = .T.
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD InspAdjust( nDelta ) CLASS HbDesigner
+
+   local aFields, cKey, oCtrl, aSize, nMaxRow, nMaxCol, aMin, nNew
+
+   aFields = ::InspFields()
+   if ::nInspField < 1 .or. ::nInspField > Len( aFields )
+      return nil
+   endif
+   if aFields[ ::nInspField ][ 3 ] != "num"
+      return nil
+   endif
+   cKey = aFields[ ::nInspField ][ 2 ]
+
+   if ::nSelected >= 1 .and. ::nSelected <= Len( ::aControls )
+      oCtrl   = ::aControls[ ::nSelected ]
+      aSize   = DsnControlSize( oCtrl )
+      nMaxRow = ::oWnd:nBottom - ::oWnd:nTop - 1 - aSize[ 2 ]
+      nMaxCol = ::oWnd:nRight  - ::oWnd:nLeft - 1 - aSize[ 1 ]
+      do case
+         case cKey == "row"
+            oCtrl[ "row" ] = Max( 0, Min( nMaxRow, oCtrl[ "row" ] + nDelta ) )
+         case cKey == "col"
+            oCtrl[ "col" ] = Max( 0, Min( nMaxCol, oCtrl[ "col" ] + nDelta ) )
+         case cKey == "width"
+            oCtrl[ "width" ] = Max( 4, Min( 40, hb_HGetDef( oCtrl, "width", 10 ) + nDelta ) )
+         case cKey == "height"
+            oCtrl[ "height" ] = Max( 3, Min( 15, hb_HGetDef( oCtrl, "height", 6 ) + nDelta ) )
+      endcase
+   else
+      aMin = ::DlgMinSize()
+      do case
+         case cKey == "dlgwidth"
+            nNew = Max( aMin[ 1 ], Min( MaxCol() - 4, ::nDlgWidth + nDelta ) )
+            if nNew != ::nDlgWidth + nDelta .and. ::nDlgWidth + nDelta < aMin[ 1 ]
+               ::ShowHint( "Minimum width " + hb_ntos( aMin[ 1 ] ) + ": controls inside would be hidden" )
+            else
+               ::ShowHint( HINT_INSP )
+            endif
+            ::nDlgWidth = nNew
+            ::oWnd:nRight = ::oWnd:nLeft + ::nDlgWidth - 1
+         case cKey == "dlgheight"
+            nNew = Max( aMin[ 2 ], Min( MaxRow() - 3, ::nDlgHeight + nDelta ) )
+            if nNew != ::nDlgHeight + nDelta .and. ::nDlgHeight + nDelta < aMin[ 2 ]
+               ::ShowHint( "Minimum height " + hb_ntos( aMin[ 2 ] ) + ": controls inside would be hidden" )
+            else
+               ::ShowHint( HINT_INSP )
+            endif
+            ::nDlgHeight = nNew
+            ::oWnd:nBottom = ::oWnd:nTop + ::nDlgHeight - 1
+      endcase
+   endif
+
+   ::lDirty = .T.
+   ::Redraw()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+// inline edit of a text field inside the inspector
+
+METHOD InspEdit() CLASS HbDesigner
+
+   local aFields, aRect, cKey, cVal, nRow, nCol, nWidth, nKey, lApply := .F.
+   local nPos, nOff
+
+   aFields = ::InspFields()
+   if ::nInspField < 1 .or. ::nInspField > Len( aFields )
+      return nil
+   endif
+   if aFields[ ::nInspField ][ 3 ] != "text"
+      return nil
+   endif
+
+   cKey   = aFields[ ::nInspField ][ 2 ]
+   cVal   = ::InspValue( cKey )
+   aRect  = ::InspRect()
+   nRow   = aRect[ 1 ] + ::nInspField
+   nCol   = aRect[ 2 ] + 10
+   nWidth = aRect[ 4 ] - aRect[ 2 ] - 11
+   nPos   = Len( cVal ) + 1
+   nOff   = 0
+
+   SetCursor( SC_NORMAL )
+   do while .T.
+      // horizontal scroll: keep the cursor inside the visible window
+      if nPos - 1 - nOff > nWidth - 1
+         nOff = nPos - nWidth
+      elseif nPos - 1 - nOff < 0
+         nOff = nPos - 1
+      endif
+      hb_DispOutAt( nRow, nCol, PadR( SubStr( cVal, nOff + 1, nWidth ), nWidth ), CLR_INSP_SEL )
+      DevPos( nRow, nCol + nPos - 1 - nOff )
+      nKey = InKey( 0 )
+      do case
+         case nKey == K_ENTER
+            lApply = .T.
+            exit
+         case nKey == K_ESC
+            exit
+         case nKey == K_LEFT
+            nPos = Max( 1, nPos - 1 )
+         case nKey == K_RIGHT
+            nPos = Min( Len( cVal ) + 1, nPos + 1 )
+         case nKey == K_HOME
+            nPos = 1
+         case nKey == K_END
+            nPos = Len( cVal ) + 1
+         case nKey == K_BS
+            if nPos > 1
+               cVal = Left( cVal, nPos - 2 ) + SubStr( cVal, nPos )
+               nPos--
+            endif
+         case nKey == K_DEL
+            if nPos <= Len( cVal )
+               cVal = Left( cVal, nPos - 1 ) + SubStr( cVal, nPos + 1 )
+            endif
+         case nKey >= 32 .and. nKey <= 255
+            if Len( cVal ) < 200
+               cVal = Left( cVal, nPos - 1 ) + Chr( nKey ) + SubStr( cVal, nPos )
+               nPos++
+            endif
+      endcase
+   enddo
+   SetCursor( SC_NONE )
+
+   if lApply
+      ::InspSetText( cKey, cVal )
+   endif
+   ::Redraw()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+// 0 outside, -1 title bar, n = field index
+
+METHOD InspHit( nMRow, nMCol ) CLASS HbDesigner
+
+   local aRect, nFields
+
+   if ! ::lInspector
+      return 0
+   endif
+
+   aRect   = ::InspRect()
+   nFields = Len( ::InspFields() )
+
+   if nMRow < aRect[ 1 ] .or. nMRow > aRect[ 3 ] .or. ;
+      nMCol < aRect[ 2 ] .or. nMCol > aRect[ 4 ]
+      return 0
+   endif
+   if nMRow == aRect[ 1 ]
+      return -1
+   endif
+   if nMRow >= aRect[ 1 ] + 1 .and. nMRow <= aRect[ 1 ] + nFields
+      return nMRow - aRect[ 1 ]
+   endif
+
+return -1
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD DragInspector( nMRow, nMCol ) CLASS HbDesigner
+
+   local nOffR := nMRow - ::nInspRow
+   local nOffC := nMCol - ::nInspCol
+
+   while MLeftDown()
+      if MRow() - nOffR != ::nInspRow .or. MCol() - nOffC != ::nInspCol
+         ::nInspRow = MRow() - nOffR
+         ::nInspCol = MCol() - nOffC
+         ::Redraw()
+      endif
+   enddo
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+// keys while the inspector has focus; returns .T. when consumed
+
+METHOD InspectorKey( nKey ) CLASS HbDesigner
+
+   local aFields := ::InspFields()
+
+   do case
+      case nKey == K_ESC .or. nKey == K_F6
+         ::lInspFocus = .F.
+         ::ShowHint( HINT_CANVAS )
+         ::DrawInspector()
+
+      case nKey == K_F4
+         ::ToggleInspector()
+
+      case nKey == K_UP
+         ::nInspField = Max( 1, ::nInspField - 1 )
+         ::DrawInspector()
+
+      case nKey == K_DOWN
+         ::nInspField = Min( Len( aFields ), ::nInspField + 1 )
+         ::DrawInspector()
+
+      case nKey == K_LEFT
+         ::InspAdjust( -1 )
+
+      case nKey == K_RIGHT
+         ::InspAdjust( 1 )
+
+      case nKey == K_ENTER
+         ::InspEdit()
+
+      case nKey == K_CTRL_UP
+         ::nInspRow = Max( 0, ::nInspRow - 1 )
+         ::Redraw()
+
+      case nKey == K_CTRL_DOWN
+         ::nInspRow = ::nInspRow + 1
+         ::Redraw()
+
+      case nKey == K_CTRL_LEFT
+         ::nInspCol = Max( 0, ::nInspCol - 1 )
+         ::Redraw()
+
+      case nKey == K_CTRL_RIGHT
+         ::nInspCol = ::nInspCol + 1
+         ::Redraw()
+
+      otherwise
+         return .F.
+   endcase
+
+return .T.
 
 //-----------------------------------------------------------------------------------------//
 
@@ -763,9 +1324,43 @@ function DsnControlSize( oCtrl )
       case oCtrl[ "type" ] == DSN_BUTTON
          nWidth  = Len( hb_HGetDef( oCtrl, "caption", "" ) ) + 3
          nHeight = 2   // caption row + shadow row
+      case oCtrl[ "type" ] == DSN_RADIO
+         nWidth  = 8 + DsnMaxItemLen( oCtrl )
+         nHeight = Len( DsnItems( oCtrl ) ) + 2
+      case oCtrl[ "type" ] == DSN_LISTBOX
+         nWidth  = hb_HGetDef( oCtrl, "width", 20 )
+         nHeight = hb_HGetDef( oCtrl, "height", 6 )
    endcase
 
 return { nWidth, nHeight }
+
+//-----------------------------------------------------------------------------------------//
+// items of a radiogroup/listbox as an array (CSV in the "items" property)
+
+function DsnItems( oCtrl )
+
+   local aItems := {}, cItem
+
+   for each cItem in hb_ATokens( hb_HGetDef( oCtrl, "items", "" ), "," )
+      cItem = AllTrim( cItem )
+      if ! Empty( cItem )
+         AAdd( aItems, cItem )
+      endif
+   next
+
+return aItems
+
+//-----------------------------------------------------------------------------------------//
+
+function DsnMaxItemLen( oCtrl )
+
+   local nMax := 0, cItem
+
+   for each cItem in DsnItems( oCtrl )
+      nMax = Max( nMax, Len( StrTran( cItem, "&", "" ) ) )
+   next
+
+return nMax
 
 //-----------------------------------------------------------------------------------------//
 // draw one control inside the design window (passive, design time only)
@@ -777,7 +1372,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
    local nACol := oWnd:nLeft + 1 + oCtrl[ "col" ]
    local nMaxCol := Min( oWnd:nRight - 1, MaxCol() )
    local cCaption := hb_HGetDef( oCtrl, "caption", "" )
-   local cColor, cText, nWidth, n
+   local cColor, cText, nWidth, n, aSize, aItems
 
    // design time: captions are shown without the & accelerator marker
    cCaption = StrTran( cCaption, "&", "" )
@@ -823,6 +1418,36 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
                hb_DispOutAt( nARow + 1, nACol + 1, Replicate( Chr( 223 ), n ), "N/W" )
             endif
          endif
+
+      case oCtrl[ "type" ] == DSN_RADIO
+         cColor = If( lSelected, cSelColor, CLR_CHECKBOX )
+         aSize  = DsnControlSize( oCtrl )
+         aItems = DsnItems( oCtrl )
+         if nARow + aSize[ 2 ] - 1 < oWnd:nBottom .and. nACol + aSize[ 1 ] - 1 <= nMaxCol
+            DispBox( nARow, nACol, nARow + aSize[ 2 ] - 1, nACol + aSize[ 1 ] - 1, 1, cColor )
+         endif
+         for n = 1 to Len( aItems )
+            cText = If( n == 1, "(*) ", "( ) " ) + StrTran( aItems[ n ], "&", "" )
+            if nARow + n < oWnd:nBottom .and. nARow + n <= MaxRow()
+               hb_DispOutAt( nARow + n, nACol + 2, ;
+                  SubStr( cText, 1, Max( 0, Min( aSize[ 1 ] - 4, nMaxCol - nACol - 1 ) ) ), cColor )
+            endif
+         next
+
+      case oCtrl[ "type" ] == DSN_LISTBOX
+         cColor = If( lSelected, cSelColor, CLR_GET )
+         aSize  = DsnControlSize( oCtrl )
+         aItems = DsnItems( oCtrl )
+         if nARow + aSize[ 2 ] - 1 < oWnd:nBottom .and. nACol + aSize[ 1 ] - 1 <= nMaxCol
+            DispBox( nARow, nACol, nARow + aSize[ 2 ] - 1, nACol + aSize[ 1 ] - 1, 1, cColor )
+         endif
+         for n = 1 to Min( Len( aItems ), aSize[ 2 ] - 2 )
+            cText = PadR( SubStr( StrTran( aItems[ n ], "&", "" ), 1, aSize[ 1 ] - 2 ), aSize[ 1 ] - 2 )
+            if nARow + n < oWnd:nBottom .and. nARow + n <= MaxRow()
+               hb_DispOutAt( nARow + n, nACol + 1, ;
+                  SubStr( cText, 1, Max( 0, nMaxCol - nACol ) ), If( n == 1, "N/W", cColor ) )
+            endif
+         next
    endcase
 
 return
@@ -856,7 +1481,7 @@ return cResult
 function DsnGenCode( hModel )
 
    local cCode := ""
-   local oCtrl, n
+   local oCtrl, n, aSize
    local cName := hb_HGetDef( hModel, "name", "MyDialog" )
 
    cCode += "//" + hb_eol()
@@ -879,6 +1504,12 @@ function DsnGenCode( hModel )
                      hb_ntos( hb_HGetDef( oCtrl, "width", 10 ) ) + " )" + hb_eol()
          case oCtrl[ "type" ] == DSN_CHECKBOX
             cCode += "   local " + oCtrl[ "variable" ] + " := .F." + hb_eol()
+         case oCtrl[ "type" ] == DSN_RADIO
+            cCode += "   local " + oCtrl[ "variable" ] + " := 1" + hb_eol()
+            cCode += "   local aButt" + hb_ntos( oCtrl:__enumIndex() ) + hb_eol()
+         case oCtrl[ "type" ] == DSN_LISTBOX
+            cCode += "   local " + oCtrl[ "variable" ] + " := 1" + hb_eol()
+            cCode += "   local aItems" + hb_ntos( oCtrl:__enumIndex() ) + hb_eol()
       endcase
    next
 
@@ -888,6 +1519,21 @@ function DsnGenCode( hModel )
             hb_ntos( hb_HGetDef( hModel, "width", 40 ) ) + ", " + ;
             hb_ntos( hb_HGetDef( hModel, "height", 12 ) ) + ", " + ;
             DsnQuote( hb_HGetDef( hModel, "color", CLR_DIALOG ) ) + " )" + hb_eol()
+   cCode += hb_eol()
+
+   // item arrays for RADIOGROUP/LISTBOX reference the dialog position
+   for each oCtrl in hModel[ "controls" ]
+      do case
+         case oCtrl[ "type" ] == DSN_RADIO
+            cCode += "   aButt" + hb_ntos( oCtrl:__enumIndex() ) + " := " + ;
+                     DsnRadioButtsCode( oCtrl ) + hb_eol()
+            cCode += "   AEval( aButt" + hb_ntos( oCtrl:__enumIndex() ) + ;
+                     ", {| o | o:colorSpec := '" + DSN_CLR_RADIO + "' } )" + hb_eol()
+         case oCtrl[ "type" ] == DSN_LISTBOX
+            cCode += "   aItems" + hb_ntos( oCtrl:__enumIndex() ) + " := " + ;
+                     DsnItemsCode( oCtrl ) + hb_eol()
+      endcase
+   next
    cCode += hb_eol()
 
    n = 0
@@ -902,19 +1548,38 @@ function DsnGenCode( hModel )
          case oCtrl[ "type" ] == DSN_GET
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
-                     " GET " + oCtrl[ "variable" ] + hb_eol()
+                     " GET " + oCtrl[ "variable" ] + ;
+                     " COLOR '" + DSN_CLR_GET + "'" + hb_eol()
 
          case oCtrl[ "type" ] == DSN_CHECKBOX
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
                      " GET " + oCtrl[ "variable" ] + ;
-                     " CHECKBOX CAPTION " + DsnQuote( oCtrl[ "caption" ] ) + hb_eol()
+                     " CHECKBOX CAPTION " + DsnQuote( oCtrl[ "caption" ] ) + ;
+                     " COLOR '" + DSN_CLR_CHECKBOX + "'" + hb_eol()
 
          case oCtrl[ "type" ] == DSN_BUTTON
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
-                     " GET lDummy PUSHBUTTON CAPTION " + DsnQuote( oCtrl[ "caption" ] ) + " ;" + hb_eol()
-            cCode += "      COLOR 'GR+/G,W+/G,N/G,BG+/G' STATE { || lOk := .T., oDlg:End() }" + hb_eol()
+                     " GET lDummy PUSHBUTTON CAPTION " + ;
+                     DsnQuote( DsnAccelCaption( hb_HGetDef( oCtrl, "caption", "" ), ;
+                        hb_HGetDef( oCtrl, "accelerator", "" ) ) ) + " ;" + hb_eol()
+            cCode += "      COLOR '" + DSN_CLR_BUTTON + "' STATE { || " + ;
+                     DsnButtonAction( oCtrl ) + " }" + hb_eol()
+
+         case oCtrl[ "type" ] == DSN_RADIO .or. oCtrl[ "type" ] == DSN_LISTBOX
+            aSize = DsnControlSize( oCtrl )
+            cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
+                     ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
+                     ", oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + aSize[ 2 ] ) + ;
+                     ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + aSize[ 1 ] ) + ;
+                     " GET " + oCtrl[ "variable" ] + ;
+                     If( oCtrl[ "type" ] == DSN_RADIO, ;
+                        " RADIOGROUP aButt", " LISTBOX aItems" ) + ;
+                     hb_ntos( n ) + ;
+                     If( oCtrl[ "type" ] == DSN_RADIO, ;
+                        " COLOR 'N/W,N/W,GR+/W'", ;
+                        " COLOR '" + DSN_CLR_LISTBOX + "'" ) + hb_eol()
       endcase
    next
 
@@ -927,6 +1592,90 @@ function DsnGenCode( hModel )
    cCode += "return lOk" + hb_eol()
 
 return cCode
+
+//-----------------------------------------------------------------------------------------//
+
+// caption with the & accelerator marker applied at the accelerator letter;
+// if the letter is not in the caption it is appended so the key stays real
+
+function DsnAccelCaption( cCaption, cAccel )
+
+   local nPos
+
+   cCaption = StrTran( hb_defaultValue( cCaption, "" ), "&", "" )
+   cAccel   = Left( StrTran( AllTrim( hb_defaultValue( cAccel, "" ) ), "&", "" ), 1 )
+
+   if ! Empty( cAccel )
+      nPos = At( Upper( cAccel ), Upper( cCaption ) )
+      if nPos > 0
+         cCaption = Stuff( cCaption, nPos, 0, "&" )
+      else
+         cCaption += " (&" + cAccel + ")"
+      endif
+   endif
+
+return cCaption
+
+//-----------------------------------------------------------------------------------------//
+
+function DsnButtonAction( oCtrl )
+
+   local cAction := AllTrim( hb_HGetDef( oCtrl, "action", "" ) )
+
+return If( Empty( cAction ), "lOk := .T., oDlg:End()", cAction )
+
+//-----------------------------------------------------------------------------------------//
+
+// legacy models keep the & inside the caption: move it to the accelerator property
+
+procedure DsnNormalizeControls( aControls )
+
+   local oCtrl, nPos, cCaption
+
+   for each oCtrl in aControls
+      if hb_HGetDef( oCtrl, "type", "" ) == DSN_BUTTON
+         cCaption = hb_HGetDef( oCtrl, "caption", "" )
+         if ( nPos := At( "&", cCaption ) ) > 0
+            if Empty( hb_HGetDef( oCtrl, "accelerator", "" ) )
+               oCtrl[ "accelerator" ] = SubStr( cCaption, nPos + 1, 1 )
+            endif
+            oCtrl[ "caption" ] = StrTran( cCaption, "&", "" )
+         endif
+      endif
+   next
+
+return
+
+//-----------------------------------------------------------------------------------------//
+
+// { "One", "Two" } literal for a control's items
+
+static function DsnItemsCode( oCtrl )
+
+   local aItems := DsnItems( oCtrl )
+   local cCode  := "{", n
+
+   for n = 1 to Len( aItems )
+      cCode += If( n > 1, ", ", " " ) + DsnQuote( aItems[ n ] )
+   next
+
+return cCode + If( Len( aItems ) > 0, " }", "}" )
+
+//-----------------------------------------------------------------------------------------//
+// array of RadioButto() objects matching a radiogroup control's position and items
+
+static function DsnRadioButtsCode( oCtrl )
+
+   local aItems := DsnItems( oCtrl )
+   local cCode  := "{", n
+
+   for n = 1 to Len( aItems )
+      cCode += If( n > 1, ", ", " " ) + "RadioButto( oDlg:nTop + " + ;
+               hb_ntos( oCtrl[ "row" ] + 1 + n ) + ", oDlg:nLeft + " + ;
+               hb_ntos( oCtrl[ "col" ] + 3 ) + ", " + DsnQuote( aItems[ n ] ) + " )"
+   next
+
+return cCode + If( Len( aItems ) > 0, " }", "}" )
 
 //-----------------------------------------------------------------------------------------//
 

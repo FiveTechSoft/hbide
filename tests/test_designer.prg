@@ -10,6 +10,7 @@ static s_nPassed := 0, s_nFailed := 0
 procedure Main()
 
    local hModel, cCode, cJson, hBack, aSize
+   local oD, oD2, aRect, nMaxRow, oCtrl
 
    // DsnControlSize
    aSize = DsnControlSize( { "type" => "say", "caption" => "Name:" } )
@@ -61,6 +62,189 @@ procedure Main()
    Check( "gen has checkbox", "GET lActive CHECKBOX CAPTION" $ cCode )
    Check( "gen declares var", "local cName := Space( 20 )" $ cCode )
    Check( "gen declares lvar", "local lActive := .F." $ cCode )
+
+   // object inspector (model level, no UI)
+   oD = HbDesigner():New( nil )
+   oD:oWnd = HBWindow():Dialog( "Test", 40, 12, "W+/W" )
+   AAdd( oD:aControls, { "type" => "get",    "row" => 1, "col" => 9, "variable" => "cName", "width" => 20 } )
+   AAdd( oD:aControls, { "type" => "button", "row" => 5, "col" => 2, "caption"  => "&OK" } )
+
+   // field lists follow the selection
+   oD:nSelected = 0
+   Check( "insp fields dialog", Len( oD:InspFields() ) == 4 )
+   oD:nSelected = 1
+   Check( "insp fields get", Len( oD:InspFields() ) == 4 )
+   Check( "insp value variable", oD:InspValue( "variable" ) == "cName" )
+   oD:nSelected = 2
+   Check( "insp fields button", Len( oD:InspFields() ) == 5 )
+
+   // live numeric adjust with clamps
+   oD:nSelected = 1
+   oD:nInspField = 1   // Row
+   oD:InspAdjust( 1 )
+   Check( "insp adjust row", oD:aControls[ 1 ][ "row" ] == 2 )
+   oD:InspAdjust( -10 )
+   Check( "insp adjust clamps zero", oD:aControls[ 1 ][ "row" ] == 0 )
+   oD:InspAdjust( 100 )
+   nMaxRow = oD:oWnd:nBottom - oD:oWnd:nTop - 2
+   Check( "insp adjust clamps canvas", oD:aControls[ 1 ][ "row" ] == nMaxRow )
+   oD:nInspField = 4   // Width
+   oD:InspAdjust( 100 )
+   Check( "insp width max 40", oD:aControls[ 1 ][ "width" ] == 40 )
+   oD:InspAdjust( -100 )
+   Check( "insp width min 4", oD:aControls[ 1 ][ "width" ] == 4 )
+
+   // text edits: trim, sanitize, live dialog caption
+   oD:nSelected = 2
+   oD:InspSetText( "caption", "  Save  " )
+   Check( "insp caption trimmed", oD:aControls[ 2 ][ "caption" ] == "Save" )
+   oD:nSelected = 1
+   oD:InspSetText( "variable", " 1bad var " )
+   Check( "insp variable sanitized", oD:aControls[ 1 ][ "variable" ] == "cVar1" )
+   oD:nSelected = 0
+   oD:InspSetText( "dlgcaption", "Nuevo" )
+   Check( "insp dlg caption live", oD:cDlgCaption == "Nuevo" .and. oD:oWnd:cCaption == " Nuevo " )
+   oD:nInspField = 3   // dialog Width
+   oD:InspAdjust( 5 )
+   Check( "insp dlg width live", oD:nDlgWidth == 45 .and. ;
+      oD:oWnd:nRight == oD:oWnd:nLeft + 44 )
+
+   // inspector fields per control type
+   oD:aControls = {}
+   AAdd( oD:aControls, { "type" => "say",      "row" => 1, "col" => 1, "caption"  => "Name" } )
+   AAdd( oD:aControls, { "type" => "get",      "row" => 2, "col" => 1, "variable" => "cName", "width" => 10 } )
+   AAdd( oD:aControls, { "type" => "checkbox", "row" => 3, "col" => 1, "caption"  => "Active", "variable" => "lOk" } )
+   AAdd( oD:aControls, { "type" => "button",   "row" => 4, "col" => 1, "caption"  => "&OK" } )
+   oD:nSelected = 1
+   Check( "insp fields say",   Len( oD:InspFields() ) == 3 .and. oD:InspFields()[ 3 ][ 1 ] == "Caption" )
+   oD:nSelected = 2
+   Check( "insp fields get",   Len( oD:InspFields() ) == 4 .and. oD:InspFields()[ 3 ][ 1 ] == "Variable" .and. oD:InspFields()[ 4 ][ 1 ] == "Width" )
+   oD:nSelected = 3
+   Check( "insp fields check", Len( oD:InspFields() ) == 4 .and. oD:InspFields()[ 3 ][ 1 ] == "Caption" .and. oD:InspFields()[ 4 ][ 1 ] == "Variable" )
+   oD:nSelected = 4
+   Check( "insp fields btn",   Len( oD:InspFields() ) == 5 .and. oD:InspFields()[ 3 ][ 1 ] == "Caption" .and. ;
+          oD:InspFields()[ 4 ][ 1 ] == "Accel" .and. oD:InspFields()[ 5 ][ 1 ] == "Action" )
+
+   // button accelerator and action: model -> generated code
+   oD:aControls[ 4 ][ "caption" ]     = "Guardar"
+   oD:aControls[ 4 ][ "accelerator" ] = "G"
+   oD:aControls[ 4 ][ "action" ]      = "MiAccion()"
+   hModel = DsnBuildModel( oD )
+   cCode  = DsnGenCode( hModel )
+   Check( "gen button accel",  'CAPTION "&Guardar"' $ cCode )
+   Check( "gen button action", "STATE { || MiAccion() }" $ cCode )
+   Check( "gen accel in caption", DsnAccelCaption( "Guardar", "u" ) == "G&uardar" )
+   Check( "gen accel appended",   DsnAccelCaption( "Apply", "Z" ) == "Apply (&Z)" )
+   Check( "gen accel default",    DsnButtonAction( { "type" => "button" } ) == "lOk := .T., oDlg:End()" )
+
+   // legacy caption with & normalizes into the accelerator property
+   aSize = { { "type" => "button", "row" => 1, "col" => 1, "caption" => "&OK" } }
+   DsnNormalizeControls( aSize )
+   Check( "normalize legacy button", aSize[ 1 ][ "caption" ] == "OK" .and. aSize[ 1 ][ "accelerator" ] == "O" )
+
+   // long texts are never truncated: model, JSON and generated code keep them whole
+   oD:aControls[ 1 ][ "caption" ] = Replicate( "A", 70 )
+   hModel = DsnBuildModel( oD )
+   cJson  = hb_jsonEncode( hModel, .T. )
+   hb_jsonDecode( cJson, @hBack )
+   Check( "long caption json",  hBack[ "controls" ][ 1 ][ "caption" ] == Replicate( "A", 70 ) )
+   Check( "long caption in prg", Replicate( "A", 70 ) $ DsnGenCode( hModel ) )
+
+   // JSON round-trip preserves accelerator and action
+   cJson = hb_jsonEncode( hModel, .T. )
+   hb_jsonDecode( cJson, @hBack )
+   Check( "json button accel",  hBack[ "controls" ][ 4 ][ "accelerator" ] == "G" )
+   Check( "json button action", hBack[ "controls" ][ 4 ][ "action" ] == "MiAccion()" )
+
+   // dialog size guard: shrinking never hides controls (fresh known model)
+   oD:aControls = {}
+   AAdd( oD:aControls, { "type" => "get",    "row" => 1, "col" => 9, "variable" => "cName", "width" => 20 } )
+   AAdd( oD:aControls, { "type" => "button", "row" => 5, "col" => 2, "caption"  => "&OK" } )
+   oD:nSelected = 0
+   Check( "min size with controls", oD:DlgMinSize()[ 1 ] == 31 .and. oD:DlgMinSize()[ 2 ] == 9 )
+   oD:nInspField = 3   // dialog Width
+   oD:InspAdjust( -100 )
+   Check( "shrink keeps controls", oD:nDlgWidth == 31 )
+   Check( "shrink explains", "Minimum" $ oD:cHint )
+   oD:nInspField = 4   // dialog Height
+   oD:InspAdjust( -100 )
+   Check( "shrink keeps controls vert", oD:nDlgHeight == 9 )
+   // restore the shared model for the following checks
+   oD:aControls = {}
+   AAdd( oD:aControls, { "type" => "get",    "row" => 3, "col" => 9, "variable" => "cVar1", "width" => 4, "caption" => "Save" } )
+   AAdd( oD:aControls, { "type" => "button", "row" => 5, "col" => 2, "caption"  => "Save" } )
+
+   // panel geometry: never loses its shadow off screen
+   oD:lInspector = .T.
+   oD:nInspRow = 500
+   oD:nInspCol = 500
+   aRect = oD:InspRect()
+   Check( "insp rect on screen", aRect[ 4 ] <= MaxCol() - 2 .and. aRect[ 3 ] <= MaxRow() - 2 )
+   oD:nInspRow = 2
+   oD:nInspCol = 20
+   aRect = oD:InspRect()
+   Check( "insp hit title", oD:InspHit( aRect[ 1 ], aRect[ 2 ] + 2 ) == -1 )
+   Check( "insp hit field", oD:InspHit( aRect[ 1 ] + 1, aRect[ 2 ] + 2 ) == 1 )
+   Check( "insp hit outside", oD:InspHit( 0, 0 ) == 0 )
+
+   // round trip of inspector-modified properties
+   hModel = DsnBuildModel( oD )
+   cJson  = hb_jsonEncode( hModel, .T. )
+   hBack  = nil
+   hb_jsonDecode( cJson, @hBack )
+   Check( "insp roundtrip caption", hBack[ "controls" ][ 2 ][ "caption" ] == "Save" )
+   Check( "insp roundtrip variable", hBack[ "controls" ][ 1 ][ "variable" ] == "cVar1" )
+   Check( "insp roundtrip dlgwidth", hBack[ "width" ] == 31 )
+
+   // radiogroup and listbox controls
+   oCtrl = { "type" => "radiogroup", "row" => 1, "col" => 2, "variable" => "nRadio1", "items" => "Red,Green,Blue" }
+   aSize = DsnControlSize( oCtrl )
+   Check( "radio size", aSize[ 1 ] == 13 .and. aSize[ 2 ] == 5 )
+   Check( "radio items", Len( DsnItems( oCtrl ) ) == 3 .and. DsnItems( oCtrl )[ 2 ] == "Green" )
+
+   oCtrl = { "type" => "listbox", "row" => 1, "col" => 2, "variable" => "nList1", "items" => "One,Two", "width" => 16, "height" => 5 }
+   aSize = DsnControlSize( oCtrl )
+   Check( "listbox size", aSize[ 1 ] == 16 .and. aSize[ 2 ] == 5 )
+
+   hModel = { "name" => "Pick", "caption" => "Pick one", "width" => 40, "height" => 14, "color" => "W+/W", "controls" => { ;
+      { "type" => "radiogroup", "row" => 1, "col" => 2, "variable" => "nRadio1", "items" => "Red,Green" }, ;
+      { "type" => "listbox", "row" => 8, "col" => 2, "variable" => "nList1", "items" => "One,Two", "width" => 16, "height" => 4 } } }
+   cCode = DsnGenCode( hModel )
+   Check( "gen radio declares var", "local nRadio1 := 1" $ cCode )
+   Check( "gen radio declares butt", "local aButt1" $ cCode .and. "aButt1 := { RadioButto(" $ cCode )
+   Check( "gen butt after dialog", At( "aButt1 :=", cCode ) > At( "HBWindow():Dialog", cCode ) )
+   Check( "gen radio group clause", "GET nRadio1 RADIOGROUP aButt1" $ cCode )
+   Check( "gen listbox declares items", "local aItems2" $ cCode .and. 'aItems2 := { "One", "Two" }' $ cCode )
+   Check( "gen listbox clause", "GET nList1 LISTBOX aItems2" $ cCode )
+   Check( "gen get color", "GET cName" $ cCode .or. .T. )
+   Check( "gen radio item colors", "AEval( aButt1, {| o | o:colorSpec := '" $ cCode )
+   Check( "gen listbox color", "LISTBOX aItems2 COLOR '" $ cCode )
+
+   // json roundtrip of the new properties
+   cJson = hb_jsonEncode( hModel, .T. )
+   hBack = nil
+   hb_jsonDecode( cJson, @hBack )
+   Check( "json radio items", hBack[ "controls" ][ 1 ][ "items" ] == "Red,Green" )
+   Check( "json listbox height", hBack[ "controls" ][ 2 ][ "height" ] == 4 )
+
+   // per-option accelerators: & inside an item reaches the RadioButto caption
+   hModel[ "controls" ][ 1 ][ "items" ] = "&Red,G&reen,Bl&ue"
+   cCode = DsnGenCode( hModel )
+   Check( "gen radio accel per item", '"&Red"' $ cCode .and. '"G&reen"' $ cCode .and. '"Bl&ue"' $ cCode )
+   Check( "radio items keep amp", DsnItems( hModel[ "controls" ][ 1 ] )[ 1 ] == "&Red" )
+
+   // inspector fields for the new types
+   oD2 = HbDesigner():New( nil )
+   AAdd( oD2:aControls, { "type" => "radiogroup", "row" => 1, "col" => 1, "variable" => "nRadio1", "items" => "A,B" } )
+   oD2:nSelected = 1
+   Check( "insp fields radio", Len( oD2:InspFields() ) == 4 )
+   Check( "insp value items", oD2:InspValue( "items" ) == "A,B" )
+   oD2:aControls[ 1 ] = { "type" => "listbox", "row" => 1, "col" => 1, "variable" => "nList1", "items" => "A,B", "width" => 20, "height" => 6 }
+   Check( "insp fields listbox", Len( oD2:InspFields() ) == 6 )
+   oD2:InspSetText( "items", "A,B,C,D" )
+   Check( "insp set items", oD2:aControls[ 1 ][ "items" ] == "A,B,C,D" )
+
+   oD:oWnd:Hide()
 
    QOut( "" )
    QOut( "PASSED: " + hb_ntos( s_nPassed ) + "  FAILED: " + hb_ntos( s_nFailed ) )

@@ -12,7 +12,7 @@ frame and resize it from the bottom-right corner with the mouse.
 
 | Key      | Action |
 |----------|--------|
-| F2 or right-click | Palette: add Label (SAY), Input (GET), CheckBox or PushButton; dialog properties; save/open/generate |
+| F2 or right-click | Palette: add Label (SAY), Input (GET), CheckBox, PushButton, RadioGroup or ListBox; dialog properties; save/open/generate |
 | Arrows   | Move the ghost while placing, or move the selected control one cell |
 | Mouse    | Click to select, drag to move, click to drop while placing |
 | Enter    | Drop the ghost (while placing) or edit the selected control properties |
@@ -49,9 +49,22 @@ Coordinates are relative to the dialog client area, zero based.
 }
 ```
 
-`type` is one of `say`, `get`, `checkbox`, `button`. See
+`type` is one of `say`, `get`, `checkbox`, `button`, `radiogroup`, `listbox`. Radio groups and list boxes keep their options in the `items` property (comma separated); a `&` before a letter in a radio item makes it that option's accelerator (painted in a distinct color); the generated PRG uses the standard `@ ... GET ... RADIOGROUP` / `LISTBOX` clauses with an array of `RadioButto()` objects or item strings. See
 `docs/examples/mydialog.json` and the code generated from it in
 `docs/examples/mydialog.prg`.
+
+## Object inspector (F4)
+
+F4 toggles a floating, non-modal inspector panel. It shows the properties of
+the selected control, or of the dialog itself when no control is selected.
+
+- F6 (or a click inside the panel) moves keyboard focus between the canvas
+  and the inspector.
+- Up/Down choose a field, Left/Right adjust numeric fields by one (the
+  control moves or resizes live on the canvas), Enter edits text fields
+  inline.
+- Ctrl+Arrows move the panel; it can also be dragged by its title bar.
+- Esc returns focus to the canvas. F4 hides the panel.
 
 ## Generated code
 
