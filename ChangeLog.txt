@@ -62,6 +62,17 @@ HbIde ChangeLog
   - Implementado dialogo Find (F5) con campo de busqueda
   - Conectados items del menu Edit: Copy, Paste, Delete Line, Duplicate, Find, Goto Line
   - Conectado menu Options > Compiler Flags al nuevo dialogo
+2026-10-23: Dialog Designer, RadioGroup + ListBox controls (pure Harbour)
+  - Palette, model, JSON persistence, inspector and EditProperties support
+    radiogroup (items as CSV, RadioButto array in generated code) and
+    listbox (items, width, height; standard LISTBOX clause in generated code)
+  - Verified live: radio selection and listbox highlight move in the generated dialog
+
+2026-10-23: Dialog Designer, object inspector (pure Harbour)
+   - F4 floating non-modal inspector synced with the selected control
+   - Edit caption/variable inline, adjust row/col/width with live feedback
+   - Dialog properties when no control is selected; movable panel
+
 2026-10-23: Dialog Designer, first version (pure Harbour)
   - New designer.prg: visual dialog designer (Options > Designer)
   - Palette (F2/right-click): Label (SAY), Input (GET), CheckBox, PushButton
