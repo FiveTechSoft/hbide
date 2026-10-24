@@ -298,6 +298,15 @@ Two caveats stay open:
   so every control stays reachable without touching the model or
   the generated coordinates. Moving a control repaints the canvas,
   so no ghost of its old position remains.
+- Codepage-aware button painting: the caption pads (CP437 255, U+00A0)
+  and the shadow half blocks convert through hb_UTF8ToStr() for the
+  active codepage, so under the UTF-8 opt-in buttons no longer show '?'
+  around the caption or on the shadow row while CP437 stays
+  byte-identical. Generated dialogs emit their own DsnBtnPads() and
+  DsnBtnShades() helpers, so a standalone generated .prg gets the same
+  behavior without linking hbbutton.prg. On the canvas, a listbox or
+  radiogroup wider than the viewport keeps its frame clipped to the
+  visible area instead of losing the box completely (DsnFrameClip()).
 - Checkbox glyph: Harbour's stock checkbox paints CP437 0xFB (the square
   root glyph) for the checked state; in a UTF-8 terminal that byte renders
   as "u with circumflex" (the EN codepage, the only one selectable in this
