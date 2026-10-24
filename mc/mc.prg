@@ -89,6 +89,8 @@ CLASS MCApp
    DATA   lVerboseOp      INIT .T.
    DATA   lInternalView   INIT .T.
    DATA   lInternalEdit   INIT .T.
+   DATA   lCdFollowsLinks INIT .T.
+   DATA   lSIUnits        INIT .F.
    DATA   cExternalView   INIT "less"
    DATA   cExternalEdit   INIT "vi"
    DATA   lScrollPages    INIT .T.
@@ -1470,8 +1472,9 @@ METHOD OptionsConfig() CLASS MCApp
    local lMkA := ::lMkdirAutoname
    local lVerb := ::lVerboseOp
    local lIV := ::lInternalView, lIE := ::lInternalEdit
+   local lCdL := ::lCdFollowsLinks
 
-   oDlg = HBWindow():Dialog( "Configuration", 44, 17, "W+/W" )
+   oDlg = HBWindow():Dialog( "Configuration", 44, 18, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lHidden ;
@@ -1524,6 +1527,11 @@ METHOD OptionsConfig() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
+   @ oDlg:nTop + 12, oDlg:nLeft + 3 GET lCdL ;
+      CHECKBOX CAPTION "Cd follows lin&ks" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
@@ -1550,6 +1558,7 @@ METHOD OptionsConfig() CLASS MCApp
       ::lVerboseOp := lVerb
       ::lInternalView := lIV
       ::lInternalEdit := lIE
+      ::lCdFollowsLinks := lCdL
       ::Rescan()
    endif
 
@@ -1624,8 +1633,9 @@ METHOD OptionsPanel() CLASS MCApp
    local lFT := ::lFileTypes
    local lFR := ::lFastReload
    local lSP := ::lScrollPages, lSC := ::lScrollCenter, lMP := ::lMousePages
+   local lSI := ::lSIUnits
 
-   oDlg = HBWindow():Dialog( "Panel options", 44, 17, "W+/W" )
+   oDlg = HBWindow():Dialog( "Panel options", 44, 18, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lMix ;
@@ -1678,6 +1688,11 @@ METHOD OptionsPanel() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
+   @ oDlg:nTop + 12, oDlg:nLeft + 3 GET lSI ;
+      CHECKBOX CAPTION "Use SI si&ze units" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
@@ -1704,6 +1719,7 @@ METHOD OptionsPanel() CLASS MCApp
       ::lScrollPages := lSP
       ::lScrollCenter := lSC
       ::lMousePages := lMP
+      ::lSIUnits := lSI
       ::Rescan()
    endif
 
@@ -3335,6 +3351,8 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "scrollpages"    ; ::lScrollPages := ( cVal == "1" )
          case cKey == "scrollcenter"   ; ::lScrollCenter := ( cVal == "1" )
          case cKey == "mousepages"     ; ::lMousePages := ( cVal == "1" )
+         case cKey == "cdsymlinks"     ; ::lCdFollowsLinks := ( cVal == "1" )
+         case cKey == "siunits"        ; ::lSIUnits := ( cVal == "1" )
          case cKey == "equalsplit"     ; ::lEqualSplit := ( cVal == "1" )
          case cKey == "horizontal"     ; ::lHorizontal := ( cVal == "1" )
          case cKey == "menubar"        ; ::lMenubar := ( cVal == "1" )
@@ -3390,6 +3408,8 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "scrollpages=" + If( ::lScrollPages, "1", "0" ) + hb_eol()
    cTxt += "scrollcenter=" + If( ::lScrollCenter, "1", "0" ) + hb_eol()
    cTxt += "mousepages=" + If( ::lMousePages, "1", "0" ) + hb_eol()
+   cTxt += "cdsymlinks=" + If( ::lCdFollowsLinks, "1", "0" ) + hb_eol()
+   cTxt += "siunits=" + If( ::lSIUnits, "1", "0" ) + hb_eol()
    cTxt += "equalsplit=" + If( ::lEqualSplit, "1", "0" ) + hb_eol()
    cTxt += "horizontal=" + If( ::lHorizontal, "1", "0" ) + hb_eol()
    cTxt += "menubar=" + If( ::lMenubar, "1", "0" ) + hb_eol()
