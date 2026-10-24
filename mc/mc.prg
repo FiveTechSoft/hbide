@@ -1549,7 +1549,8 @@ return hb_FNameMerge( cDest, hb_FNameNameExt( aEntry[ P_NAME ] ) )
 
 function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
 
-   local lOk := .T., aChild, cFrom := MCRealPath( cSrc ), cTo := MCRealPath( cDst )
+   local lOk := .T., lCreated := .F., aChild
+   local cFrom := MCRealPath( cSrc ), cTo := MCRealPath( cDst )
 
    // Never truncate the source or recursively copy a directory into itself.
    if Empty( cFrom ) .or. Empty( cTo ) .or. cFrom == cTo .or. ;
@@ -1564,9 +1565,12 @@ function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
       return .F.
    endif
    if hb_DirExists( cSrc )
-      if ! hb_DirExists( cDst ) .and. hb_DirCreate( cDst ) != 0
-         MCMsgBox( "Copy", "Cannot create directory:" + Chr( 10 ) + cDst )
-         return .F.
+      if ! hb_DirExists( cDst )
+         if hb_DirCreate( cDst ) != 0
+            MCMsgBox( "Copy", "Cannot create directory:" + Chr( 10 ) + cDst )
+            return .F.
+         endif
+         lCreated := .T.
       endif
       for each aChild in Directory( hb_DirSepAdd( cSrc ) + "*", "DHS" )
          if aChild[ F_NAME ] != "." .and. aChild[ F_NAME ] != ".."
@@ -1576,6 +1580,21 @@ function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
             endif
          endif
       next
+      if ! lOk
+         // Roll back a directory this operation itself created, so a failed
+         // copy does not leave a partial tree at the destination. The cleanup
+         // runs before the metadata below is applied, while the new tree is
+         // still writable; a pre-existing destination is never touched.
+         if lCreated .and. ! DeleteTree( cDst )
+            MCMsgBox( "Copy", "The failed copy could not be fully removed:" + Chr( 10 ) + cDst )
+         endif
+      elseif lCreated
+         // Keep the source directory's permissions and mtime. Applied after
+         // the children are in place so a read-only source dir cannot block
+         // its own copy.
+         hb_ProcessRun( MCShWrap( "chmod --reference=" + ShellQuote( cSrc ) + " " + ShellQuote( cDst ) ),, )
+         hb_ProcessRun( MCShWrap( "touch --reference=" + ShellQuote( cSrc ) + " " + ShellQuote( cDst ) ),, )
+      endif
       return lOk
    endif
    if hb_FileExists( cDst ) .and. lConfirm .and. ! lAll
@@ -1680,6 +1699,8 @@ function FCopyText( cSrc, cDst )
          return .F.
       endif
    endif
+   // Keep the source file's modification time on the destination.
+   hb_ProcessRun( MCShWrap( "touch --reference=" + ShellQuote( cSrc ) + " " + ShellQuote( cDst ) ),, )
 return .T.
 
 
@@ -1758,7 +1779,8 @@ static function MoveItem( cSrc, cDst, oApp )
       return .F.
    endif
    if ! CopyItem( cSrc, cDst, .T., @lAll, oApp )
-      return .F.   // copy failed: source untouched, partial copy may remain
+      return .F.   // copy failed: source untouched; CopyItem removes a partial
+                   // destination it created itself
    endif
    if hb_DirExists( cSrc )
       return DeleteTree( cSrc )
