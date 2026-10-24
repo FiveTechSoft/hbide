@@ -1443,6 +1443,10 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
    local nACol := oWnd:nLeft + 1 + oCtrl[ "col" ]
    local nMaxCol := Min( oWnd:nRight - 1, MaxCol() )
    local cCaption := hb_HGetDef( oCtrl, "caption", "" )
+   local aDlgPair := DsnDlgPair( oWnd:cColor )
+   local lDarkDlg := aDlgPair[ 2 ] != "W"
+   local cDlgText := aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ]
+   local cShadow  := If( lDarkDlg, "N/N", "N/W" )
    local cColor, cText, nWidth, n, aSize, aItems
 
    // design time: & marks accelerators on checkbox/button captions, so it is
@@ -1458,40 +1462,40 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
 
    do case
       case oCtrl[ "type" ] == DSN_SAY
-         cColor = If( lSelected, cSelColor, CLR_SAY )
+         cColor = If( lSelected, cSelColor, If( lDarkDlg, cDlgText, CLR_SAY ) )
          cText  = SubStr( cCaption, 1, Max( 0, nMaxCol - nACol + 1 ) )
          hb_DispOutAt( nARow, nACol, cText, cColor )
 
       case oCtrl[ "type" ] == DSN_GET
-         cColor = If( lSelected, cSelColor, CLR_GET )
+         cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", CLR_GET ) )
          nWidth = hb_HGetDef( oCtrl, "width", 10 )
          hb_DispOutAt( nARow, nACol, ;
             Replicate( Chr( 176 ), Min( nWidth, Max( 0, nMaxCol - nACol + 1 ) ) ), cColor )
 
       case oCtrl[ "type" ] == DSN_CHECKBOX
-         cColor = If( lSelected, cSelColor, CLR_CHECKBOX )
+         cColor = If( lSelected, cSelColor, If( lDarkDlg, cDlgText, CLR_CHECKBOX ) )
          cText  = SubStr( "[ ] " + StrTran( cCaption, "&", "" ), 1, Max( 0, nMaxCol - nACol + 1 ) )
          hb_DispOutAt( nARow, nACol, cText, cColor )
 
       case oCtrl[ "type" ] == DSN_BUTTON
-         cColor = If( lSelected, cSelColor, CLR_BUTTON )
+         cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", CLR_BUTTON ) )
          cText  = " " + StrTran( cCaption, "&", "" ) + " "
          nWidth = Len( cText )
          hb_DispOutAt( nARow, nACol, ;
             SubStr( cText, 1, Max( 0, nMaxCol - nACol + 1 ) ), cColor )
          // shadow: right cell + bottom row, same look as the runtime PushButton
          if nACol + nWidth <= nMaxCol
-            hb_DispOutAt( nARow, nACol + nWidth, Chr( 220 ), "N/W" )
+            hb_DispOutAt( nARow, nACol + nWidth, Chr( 220 ), cShadow )
          endif
          if nARow + 1 < oWnd:nBottom .and. nARow + 1 <= MaxRow()
             n = Min( nWidth, Max( 0, nMaxCol - nACol ) )
             if n > 0
-               hb_DispOutAt( nARow + 1, nACol + 1, Replicate( Chr( 223 ), n ), "N/W" )
+               hb_DispOutAt( nARow + 1, nACol + 1, Replicate( Chr( 223 ), n ), cShadow )
             endif
          endif
 
       case oCtrl[ "type" ] == DSN_RADIO
-         cColor = If( lSelected, cSelColor, CLR_CHECKBOX )
+         cColor = If( lSelected, cSelColor, If( lDarkDlg, cDlgText, CLR_CHECKBOX ) )
          aSize  = DsnControlSize( oCtrl )
          aItems = DsnItems( oCtrl )
          if nARow + aSize[ 2 ] - 1 < oWnd:nBottom .and. nACol + aSize[ 1 ] - 1 <= nMaxCol
@@ -1506,7 +1510,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
          next
 
       case oCtrl[ "type" ] == DSN_LISTBOX
-         cColor = If( lSelected, cSelColor, CLR_GET )
+         cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", CLR_GET ) )
          aSize  = DsnControlSize( oCtrl )
          aItems = DsnItems( oCtrl )
          if nARow + aSize[ 2 ] - 1 < oWnd:nBottom .and. nACol + aSize[ 1 ] - 1 <= nMaxCol
@@ -1516,7 +1520,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
             cText = PadR( SubStr( aItems[ n ], 1, aSize[ 1 ] - 2 ), aSize[ 1 ] - 2 )
             if nARow + n < oWnd:nBottom .and. nARow + n <= MaxRow()
                hb_DispOutAt( nARow + n, nACol + 1, ;
-                  SubStr( cText, 1, Max( 0, nMaxCol - nACol ) ), If( n == 1, "N/W", cColor ) )
+                  SubStr( cText, 1, Max( 0, nMaxCol - nACol ) ), If( n == 1, If( lDarkDlg, "W+/N", "N/W" ), cColor ) )
             endif
          next
    endcase
@@ -1556,6 +1560,8 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
    local hDeclared := { => }   // variable name => bound type (C/L/N)
    local hGenVars  := { => }   // control index => variable name used (model untouched)
    local cName := hb_HGetDef( hModel, "name", "MyDialog" )
+   local cDlgColor := hb_HGetDef( hModel, "color", CLR_DIALOG )
+   local aDlgPair  := DsnDlgPair( cDlgColor )   // control palettes derive from it
 
    nSkipped   = 0
    nConflicts = 0
@@ -1607,8 +1613,15 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
    cCode += "   oDlg = HBWindow():Dialog( " + DsnQuote( hb_HGetDef( hModel, "caption", "Dialog" ) ) + ", " + ;
             hb_ntos( hb_HGetDef( hModel, "width", 40 ) ) + ", " + ;
             hb_ntos( hb_HGetDef( hModel, "height", 12 ) ) + ", " + ;
-            DsnQuote( hb_HGetDef( hModel, "color", CLR_DIALOG ) ) + " )" + hb_eol()
+            DsnQuote( cDlgColor ) + " )" + hb_eol()
    cCode += hb_eol()
+   if aDlgPair[ 2 ] != "W"
+      // hbbutton's BtnDisplay paints its 3D shadow hardcoded "N/W", which
+      // shows as a white shadow on a colored dialog: re-register the same
+      // display with the shadow on the dialog background instead
+      cCode += "   __ClsModMsg( PushButton( 0, 0 ):ClassH, 'DISPLAY', @DsnBtnDisplay() )" + hb_eol()
+      cCode += hb_eol()
+   endif
 
    // item arrays for RADIOGROUP/LISTBOX reference the dialog position
    for each oCtrl in hModel[ "controls" ]
@@ -1618,7 +1631,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                cCode += "   aButt" + hb_ntos( oCtrl:__enumIndex() ) + " := " + ;
                         DsnRadioButtsCode( oCtrl ) + hb_eol()
                cCode += "   AEval( aButt" + hb_ntos( oCtrl:__enumIndex() ) + ;
-                        ", {| o | o:colorSpec := '" + DSN_CLR_RADIO + "' } )" + hb_eol()
+                        ", {| o | o:colorSpec := '" + DsnClrRadioFor( cDlgColor ) + "' } )" + hb_eol()
             endif
          case oCtrl[ "type" ] == DSN_LISTBOX
             if ! Empty( DsnItems( oCtrl ) )
@@ -1634,15 +1647,24 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
       n++
       do case
          case oCtrl[ "type" ] == DSN_SAY
-            cCode += "   oDlg:Say( " + hb_ntos( oCtrl[ "row" ] + 1 ) + ", " + ;
-                     hb_ntos( oCtrl[ "col" ] + 1 ) + ", " + ;
-                     DsnQuote( oCtrl[ "caption" ] ) + " )" + hb_eol()
+            if aDlgPair[ 2 ] == "W"
+               cCode += "   oDlg:Say( " + hb_ntos( oCtrl[ "row" ] + 1 ) + ", " + ;
+                        hb_ntos( oCtrl[ "col" ] + 1 ) + ", " + ;
+                        DsnQuote( oCtrl[ "caption" ] ) + " )" + hb_eol()
+            else
+               // oDlg:Say has no color parameter (it paints GetColors()[ 8 ],
+               // a gray background that clashes with a colored dialog)
+               cCode += "   hb_DispOutAt( oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
+                        ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ", " + ;
+                        DsnQuote( oCtrl[ "caption" ] ) + ", '" + aDlgPair[ 1 ] + "/" + ;
+                        aDlgPair[ 2 ] + "' )" + hb_eol()
+            endif
 
          case oCtrl[ "type" ] == DSN_GET
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
                      " GET " + hGenVars[ n ] + ;
-                     " COLOR '" + DSN_CLR_GET + "'" + hb_eol()
+                     " COLOR '" + DsnClrGetFor( cDlgColor ) + "'" + hb_eol()
 
          case oCtrl[ "type" ] == DSN_CHECKBOX
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
@@ -1650,7 +1672,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                      " GET " + hGenVars[ n ] + ;
                      " CHECKBOX CAPTION " + DsnQuote( oCtrl[ "caption" ] ) + ;
                      " STYLE '[X ]'" + ;
-                     " COLOR '" + DSN_CLR_CHECKBOX + "'" + hb_eol()
+                     " COLOR '" + DsnClrCheckBoxFor( cDlgColor ) + "'" + hb_eol()
 
          case oCtrl[ "type" ] == DSN_BUTTON
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
@@ -1658,7 +1680,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                      " GET lDummy PUSHBUTTON CAPTION " + ;
                      DsnQuote( DsnAccelCaption( hb_HGetDef( oCtrl, "caption", "" ), ;
                         hb_HGetDef( oCtrl, "accelerator", "" ) ) ) + " ;" + hb_eol()
-            cCode += "      COLOR '" + DSN_CLR_BUTTON + "' STATE { || " + ;
+            cCode += "      COLOR '" + DsnClrButtonFor( cDlgColor ) + "' STATE { || " + ;
                      DsnButtonAction( oCtrl ) + " }" + hb_eol()
 
          case ( oCtrl[ "type" ] == DSN_RADIO .or. oCtrl[ "type" ] == DSN_LISTBOX ) .and. ;
@@ -1680,8 +1702,10 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                         " RADIOGROUP aButt", " LISTBOX aItems" ) + ;
                      hb_ntos( n ) + ;
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
-                        " COLOR 'N/W,N/W,GR+/W'", ;
-                        " COLOR '" + DSN_CLR_LISTBOX + "'" ) + hb_eol()
+                        " COLOR '" + If( aDlgPair[ 2 ] == "W", "N/W,N/W,GR+/W", ;
+                           aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ] + "," + ;
+                           aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ] + ",Y+/" + aDlgPair[ 2 ] ) + "'", ;
+                        " COLOR '" + DsnClrListBoxFor( cDlgColor ) + "'" ) + hb_eol()
       endcase
    next
 
@@ -1692,6 +1716,11 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
    cCode += "   oDlg:Activate( GetList )" + hb_eol()
    cCode += hb_eol()
    cCode += "return lOk" + hb_eol()
+
+   if aDlgPair[ 2 ] != "W"
+      cCode += hb_eol()
+      cCode += DsnBtnDisplayCode( aDlgPair[ 2 ] )
+   endif
 
 return cCode
 
@@ -1932,6 +1961,171 @@ static function DsnValidColorToken( cTok )
    endif
 
 return .T.
+
+//-----------------------------------------------------------------------------------------//
+
+// first fg/bg pair of a color string: { cFg, cBg }; cBg is the bare
+// uppercase letter (modifiers stripped). Defaults to the white dialog.
+function DsnDlgPair( cColor )
+
+   local cFirst := AllTrim( hb_defaultValue( cColor, "" ) )
+   local nAt, cFg, cBg
+
+   if Empty( cFirst )
+      cFirst = CLR_DIALOG
+   endif
+   nAt = At( ",", cFirst )
+   if nAt > 0
+      cFirst = AllTrim( Left( cFirst, nAt - 1 ) )
+   endif
+   nAt = At( "/", cFirst )
+   if nAt > 0
+      cFg = AllTrim( Left( cFirst, nAt - 1 ) )
+      cBg = AllTrim( SubStr( cFirst, nAt + 1 ) )
+   else
+      cFg = cFirst
+      cBg = "N"
+   endif
+   cBg = Upper( StrTran( StrTran( cBg, "+", "" ), "*", "" ) )
+   if Empty( cBg )
+      cBg = "N"
+   endif
+   if Empty( cFg )
+      cFg = "W+"
+   endif
+
+return { cFg, cBg }
+
+//-----------------------------------------------------------------------------------------//
+// runtime palettes derived from the dialog color. The default white
+// dialog keeps hbide's own palettes byte-exact (regression); any other
+// dialog background gets a readable scheme painted on that background.
+
+function DsnClrGetFor( cDlgColor )
+
+   if DsnDlgPair( cDlgColor )[ 2 ] == "W"
+      return DSN_CLR_GET
+   endif
+
+return "N/W,B/W,N/W,GR+/W"
+
+function DsnClrCheckBoxFor( cDlgColor )
+
+   local aPair := DsnDlgPair( cDlgColor )
+   local cText := aPair[ 1 ] + "/" + aPair[ 2 ]
+
+   if aPair[ 2 ] == "W"
+      return DSN_CLR_CHECKBOX
+   endif
+
+return cText + ",Y+/" + aPair[ 2 ] + "," + cText + ",GR+/" + aPair[ 2 ]
+
+function DsnClrButtonFor( cDlgColor )
+
+   if DsnDlgPair( cDlgColor )[ 2 ] == "W"
+      return DSN_CLR_BUTTON
+   endif
+
+return "N/W,W+/N,N/W,R/W"
+
+function DsnClrRadioFor( cDlgColor )
+
+   local aPair := DsnDlgPair( cDlgColor )
+   local cText := aPair[ 1 ] + "/" + aPair[ 2 ]
+
+   if aPair[ 2 ] == "W"
+      return DSN_CLR_RADIO
+   endif
+
+return cText + "," + cText + "," + cText + ",Y+/" + aPair[ 2 ] + "," + ;
+       cText + ",GR+/" + aPair[ 2 ] + ",Y+/" + aPair[ 2 ]
+
+function DsnClrListBoxFor( cDlgColor )
+
+   if DsnDlgPair( cDlgColor )[ 2 ] == "W"
+      return DSN_CLR_LISTBOX
+   endif
+
+return "N/W,W+/N,N/W,W+/G,N/W,W+/W,GR+/W"
+
+//-----------------------------------------------------------------------------------------//
+// text of the DsnBtnDisplay() function emitted into generated dialogs on a
+// colored background: the same 3D pushbutton display hbbutton registers
+// (BtnDisplay, frozen), with the hardcoded "N/W" shadow repainted as
+// "N/<bg>" so the shadow reads dark on the dialog background.
+
+static function DsnBtnDisplayCode( cBg )
+
+   local cCode := ""
+   local cShadow := "N/" + cBg
+
+   cCode += "// pushbutton display override: same 3D look as hbbutton's BtnDisplay," + hb_eol()
+   cCode += "// with the shadow painted on the dialog background" + hb_eol()
+   cCode += "function DsnBtnDisplay()" + hb_eol()
+   cCode += hb_eol()
+   cCode += "   local Self := QSelf()" + hb_eol()
+   cCode += hb_eol()
+   cCode += "   local cColor" + hb_eol()
+   cCode += "   local cStyle := Chr( 255 ) + Chr( 255 )" + hb_eol()
+   cCode += "   local cCaption := ::cCaption" + hb_eol()
+   cCode += "   local nRow := ::nRow" + hb_eol()
+   cCode += "   local nCol := ::nCol" + hb_eol()
+   cCode += "   local nPos" + hb_eol()
+   cCode += hb_eol()
+   cCode += "   DispBegin()" + hb_eol()
+   cCode += hb_eol()
+   cCode += "   do case" + hb_eol()
+   cCode += "   case ::lBuffer" + hb_eol()
+   cCode += '      cColor := hb_ColorIndex( ::cColorSpec, 2 )' + hb_eol()
+   cCode += "   case ::lHasFocus" + hb_eol()
+   cCode += '      cColor := hb_ColorIndex( ::cColorSpec, 1 )' + hb_eol()
+   cCode += "   otherwise" + hb_eol()
+   cCode += '      cColor := hb_ColorIndex( ::cColorSpec, 0 )' + hb_eol()
+   cCode += "   endcase" + hb_eol()
+   cCode += hb_eol()
+   cCode += '   if ( nPos := At( "&", cCaption ) ) == 0' + hb_eol()
+   cCode += "   elseif nPos == Len( cCaption )" + hb_eol()
+   cCode += "      nPos := 0" + hb_eol()
+   cCode += "   else" + hb_eol()
+   cCode += '      cCaption := Stuff( cCaption, nPos, 1, "" )' + hb_eol()
+   cCode += "   endif" + hb_eol()
+   cCode += hb_eol()
+   cCode += "   if ! Empty( cStyle )" + hb_eol()
+   cCode += hb_eol()
+   cCode += "      nCol++" + hb_eol()
+   cCode += hb_eol()
+   cCode += "      if Len( cStyle ) == 2" + hb_eol()
+   cCode += "         if ::lBuffer" + hb_eol()
+   cCode += '            hb_DispOutAt( ::nRow, ::nCol, " ", "' + cShadow + '" )' + hb_eol()
+   cCode += "         endif" + hb_eol()
+   cCode += '         hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), SubStr( cStyle, 1, 1 ), cColor )' + hb_eol()
+   cCode += '         hb_DispOutAt( ::nRow, ::nCol + Len( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), SubStr( cStyle, 2, 1 ), cColor )' + hb_eol()
+   cCode += "      else" + hb_eol()
+   cCode += "         nRow++" + hb_eol()
+   cCode += '         hb_DispBox( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), ::nRow + 2, ::nCol + Len( cCaption ) + 1, cStyle, cColor )' + hb_eol()
+   cCode += "      endif" + hb_eol()
+   cCode += "   endif" + hb_eol()
+   cCode += hb_eol()
+   cCode += "   if ! Empty( cCaption )" + hb_eol()
+   cCode += hb_eol()
+   cCode += '      hb_DispOutAt( nRow, nCol + If( ::lBuffer, 1, 0 ), cCaption, cColor )' + hb_eol()
+   cCode += hb_eol()
+   cCode += "      if nPos != 0" + hb_eol()
+   cCode += '         hb_DispOutAt( nRow, nCol + nPos - 1 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
+   cCode += '                       SubStr( cCaption, nPos, 1 ), hb_ColorIndex( ::cColorSpec, 3 ) )' + hb_eol()
+   cCode += "      endif" + hb_eol()
+   cCode += "   endif" + hb_eol()
+   cCode += hb_eol()
+   cCode += '   hb_DispOutAt( nRow, ::nCol + Len( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
+   cCode += '                 If( ::lBuffer, " ", Chr( 220 ) ), "' + cShadow + '" )' + hb_eol()
+   cCode += '   hb_DispOutAt( ::nRow + 1, ::nCol + 1,;' + hb_eol()
+   cCode += '                 Replicate( If( ::lBuffer, " ", Chr( 223 ) ), Len( cCaption ) + 2 ), "' + cShadow + '" )' + hb_eol()
+   cCode += hb_eol()
+   cCode += "   DispEnd()" + hb_eol()
+   cCode += hb_eol()
+   cCode += "return Self" + hb_eol()
+
+return cCode
 
 //-----------------------------------------------------------------------------------------//
 
