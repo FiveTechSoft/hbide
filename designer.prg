@@ -1264,6 +1264,10 @@ METHOD EditProperties() CLASS HbDesigner
       ::Redraw()
    endif
 
+   if lOk .and. DsnListSBarHidden( oCtrl )
+      ::ShowHint( "Listbox height < 6 with overflowing items: scrollbar won't be drawn" )
+   endif
+
 return nil
 
 //-----------------------------------------------------------------------------------------//
@@ -2061,8 +2065,9 @@ return .T.
 METHOD GeneratePrg() CLASS HbDesigner
 
    local hModel := DsnBuildModel( Self )
-   local nSkipped := 0, nConflicts := 0
+   local nSkipped := 0, nConflicts := 0, nSBarHidden := 0
    local cCode  := DsnGenCode( hModel, @nSkipped, @nConflicts )
+   local oCtrl
    local cFile  := Lower( ::cDlgName ) + ".prg"
 
    if File( cFile )
@@ -2074,10 +2079,19 @@ METHOD GeneratePrg() CLASS HbDesigner
       ::ResumeUI()
    endif
 
+   nSBarHidden = 0
+   for each oCtrl in hModel[ "controls" ]
+      if DsnListSBarHidden( oCtrl )
+         nSBarHidden++
+      endif
+   next
+
    if DsnSafeMemoWrit( cFile, cCode )
       ::ShowHint( "Generated " + cFile + ;
          If( nSkipped > 0, " (" + hb_ntos( nSkipped ) + " without items skipped)", "" ) + ;
-         If( nConflicts > 0, " (" + hb_ntos( nConflicts ) + " name conflicts resolved)", "" ) )
+         If( nConflicts > 0, " (" + hb_ntos( nConflicts ) + " name conflicts resolved)", "" ) + ;
+         If( nSBarHidden > 0, " (" + hb_ntos( nSBarHidden ) + ;
+            " listbox height<6: scrollbar won't be drawn)", "" ) )
       return cFile
    else
       ::ShowHint( "Could not write " + cFile + ": check the path" )
@@ -2365,6 +2379,23 @@ function DsnItems( oCtrl )
    next
 
 return aItems
+
+//-----------------------------------------------------------------------------------------//
+// .T. when a listbox's items overflow its visible rows (so codegen emits
+// SCROLLBAR) but its height is under 6: the stock ScrollBar needs a bar
+// length >= 2 (height - 4) to draw, so the bar stays invisible. Used to
+// warn without blocking or resizing.
+
+function DsnListSBarHidden( oCtrl )
+
+   local nHeight
+
+   if oCtrl[ "type" ] != DSN_LISTBOX
+      return .F.
+   endif
+   nHeight = hb_HGetDef( oCtrl, "height", 6 )
+
+return nHeight < 6 .and. Len( DsnItems( oCtrl ) ) > nHeight - 2
 
 //-----------------------------------------------------------------------------------------//
 
@@ -2691,6 +2722,10 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
 
          case oCtrl[ "type" ] == DSN_RADIO .or. oCtrl[ "type" ] == DSN_LISTBOX
             aSize = DsnControlSize( oCtrl )
+            if DsnListSBarHidden( oCtrl )
+               cCode += "   // warning: listbox " + hGenVars[ n ] + ;
+                        " height < 6: the scrollbar will not be drawn" + hb_eol()
+            endif
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
                      ", oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + aSize[ 2 ] ) + ;
