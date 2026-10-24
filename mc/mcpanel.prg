@@ -202,6 +202,7 @@ METHOD Rescan() CLASS MCPanel
 
    local aDir, aEntry, cFull
    local lShowHidden := ::oApp:lShowHidden
+   local aNames, cCmd, cOut := "", aModes, n, cName, cMode
 
    ::hStat  := { => }
    ::hLinks := { => }
@@ -264,6 +265,41 @@ METHOD Rescan() CLASS MCPanel
          endif
       endif
    next
+
+   // file type highlight: one stat pass marks executables (local fs only);
+   // order of stat output lines follows the argument order
+   if ::oApp:lFileTypes
+      aNames := {}
+      for each aEntry in ::aFiles
+         if ! aEntry[ P_DIR ]
+            AAdd( aNames, aEntry[ P_NAME ] )
+         endif
+      next
+      if ! Empty( aNames )
+         cCmd := "for f in"
+         for each cName in aNames
+            cCmd += " " + ShellQuote( hb_FNameMerge( ::cPath, cName ) )
+         next
+         // -L: exec if the TARGET is executable (a symlink itself is 777);
+         // the loop prints 'x' for unresolvable names so lines stay aligned
+         cCmd += '; do stat -c %a -L -- "$f" 2>/dev/null || echo x; done'
+         if Len( cCmd ) < 8000 .and. hb_ProcessRun( MCShWrap( cCmd ),, @cOut ) == 0
+            aModes := hb_ATokens( cOut, hb_eol() )
+            n := 0
+            for each aEntry in ::aFiles
+               if ! aEntry[ P_DIR ]
+                  n++
+                  if n <= Len( aModes )
+                     cMode := AllTrim( aModes[ n ] )
+                     if "1" $ cMode .or. "3" $ cMode .or. "5" $ cMode .or. "7" $ cMode
+                        AAdd( aEntry, .T. )   // P_EXEC
+                     endif
+                  endif
+               endif
+            next
+         endif
+      endif
+   endif
 
    if ::oApp:lComputeTotals
       ::ComputeDirSizes()
@@ -968,6 +1004,9 @@ METHOD EntryColor( aEntry, lOnBar ) CLASS MCPanel
    endif
    if aEntry[ P_DIR ]
       return aPal[ CLR_DIR ]
+   endif
+   if ::oApp:lFileTypes .and. Len( aEntry ) >= 8 .and. aEntry[ 8 ]
+      return aPal[ CLR_EXEC ]
    endif
 
 return aPal[ CLR_PANEL ]
