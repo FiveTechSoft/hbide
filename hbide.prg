@@ -44,7 +44,7 @@ CLASS HbIde
    METHOD Start()
    METHOD Script()
    METHOD Activate()
-   METHOD End() INLINE ::lEnd := .T.   
+   METHOD End()   
    METHOD SaveScreen() INLINE ::cBackScreen := SaveScreen( 0, 0, MaxRow(), MaxCol() )  
    METHOD OpenFile()
    METHOD GotoLine()
@@ -602,6 +602,18 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+METHOD End() CLASS HbIde
+
+   if ::CheckUnsaved()
+      ::lEnd := .T.
+   else
+      ::Repaint()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 // Returns .T. when it is safe to drop the current buffer:
 // no changes, or user saved (and the save persisted), or user discarded.
 METHOD CheckUnsaved() CLASS HbIde
@@ -628,11 +640,25 @@ return lGo
 
 METHOD SaveFile() CLASS HbIde
 
+   local cTmp
+
    // tvedit-style safety net: keep the previous disk version as .bak.
    // The copy runs BEFORE writing, so a failed write leaves both intact.
    if ! Empty( ::oEditor:cFile ) .and. File( ::oEditor:cFile )
-      if hb_FCopy( ::oEditor:cFile, ::oEditor:cFile + ".bak" ) != 0
-         Alert( "Could not create the .bak copy; saving anyway" )
+      cTmp := ::oEditor:cFile + ".bak.tmp"
+      if File( cTmp )
+         FErase( cTmp )
+      endif
+      if hb_FCopy( ::oEditor:cFile, cTmp ) != 0
+         FErase( cTmp )   // drop any partial copy
+         Alert( "Could not create the .bak copy; the previous .bak is preserved. Saving anyway" )
+      else
+         if File( ::oEditor:cFile + ".bak" )
+            FErase( ::oEditor:cFile + ".bak" )
+         endif
+         if FRename( cTmp, ::oEditor:cFile + ".bak" ) != 0
+            Alert( "Could not rename the .bak copy; saving anyway" )
+         endif
       endif
    endif
 
