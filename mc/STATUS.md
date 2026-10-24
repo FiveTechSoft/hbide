@@ -99,14 +99,20 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   patterns, Mkdir autoname). Mkdir autoname verified live: with it on,
   F7 opens Make Directory prefilled with the name under the cursor
   (hbsubdir); with it off the GET opens empty
-- Panel options: 6 working checkboxes (Mix all files, Show backup files,
+- Panel options: 7 working checkboxes (Mix all files, Show backup files,
   Mark moves down, Show hidden files, Lynx-like motion, File types
-  highlight) - mark-moves-down off keeps the cursor on Insert.
+  highlight, Fast dir reload) - mark-moves-down off keeps the cursor on Insert.
   Lynx-like motion verified live both ways: Right enters the dir under
   the cursor, Left goes back to the parent. File types highlight
   verified live: executables render bright green (one stat pass per
   rescan, -L so a symlink takes its target's mode, broken links never
-  shift the alignment); non-executables and symlinks unchanged
+  shift the alignment); non-executables and symlinks unchanged.
+  Scope: dirs and executables only - mc's per-extension type rules
+  (media/docs/archives/sources) are NOT classified yet. 7th checkbox:
+  Fast dir reload - verified by controlled external change: OFF
+  detects the dir mtime change on panel switch and rescans (created
+  file appears), ON keeps the stale listing (deleted file still
+  shown) until C-r
 - Options persist to ~/.hbmc.ini: save+load round-trip verified; Auto save
   setup saves the current options on quit
 - Appearance: theme change applies live - Turbo Vision cyan palette
