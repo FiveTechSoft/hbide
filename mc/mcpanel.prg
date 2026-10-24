@@ -628,8 +628,29 @@ return nil
 METHOD Move( nKey ) CLASS MCPanel
 
    do case
-      case nKey == K_UP    ; ::nCurrent--
-      case nKey == K_DOWN  ; ::nCurrent++
+      case nKey == K_UP
+         ::nCurrent--
+         if ! ::lBrief .and. ::nCurrent >= 1
+            if ::oApp:lScrollPages .and. ::nCurrent < ::nOffset + 1
+               // hit the top edge: scroll half a page (mc move_up)
+               ::nOffset := Max( ::nOffset - Int( ::VisibleRows() / 2 ), 0 )
+            elseif ::oApp:lScrollCenter .and. ;
+                   ::nCurrent - 1 - ::nOffset < Int( ::VisibleRows() / 2 ) .and. ::nOffset > 0
+               ::nOffset--
+            endif
+         endif
+      case nKey == K_DOWN
+         ::nCurrent++
+         if ! ::lBrief .and. ::nCurrent <= Len( ::aFiles )
+            if ::oApp:lScrollPages .and. ::nCurrent - 1 - ::nOffset == ::VisibleRows()
+               // hit the bottom edge: scroll half a page (mc move_down)
+               ::nOffset := Min( ::nOffset + Int( ::VisibleRows() / 2 ), ;
+                                 Max( Len( ::aFiles ) - ::VisibleRows(), 0 ) )
+            elseif ::oApp:lScrollCenter .and. ;
+                   ::nCurrent - 1 - ::nOffset > Int( ::VisibleRows() / 2 )
+               ::nOffset := Min( ::nOffset + 1, Max( Len( ::aFiles ) - ::VisibleRows(), 0 ) )
+            endif
+         endif
       case nKey == K_LEFT  ; If( ::lBrief, ::nCurrent -= ::VisibleRows(), )
       case nKey == K_RIGHT ; If( ::lBrief, ::nCurrent += ::VisibleRows(), )
       case nKey == K_PGUP  ; ::nCurrent -= ::PageSize()
