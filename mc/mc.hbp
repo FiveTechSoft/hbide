@@ -1,6 +1,7 @@
 mc.prg
 mcpanel.prg
 mcvfs.prg
+mcarcwrite.prg
 mcview.prg
 ../hbwindow.prg
 ../hbmenu.prg
