@@ -232,12 +232,18 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   own .mc.menu entries visible
 - Preallocate: posix_fallocate() through the new mcposix.c (MC_FAllocate),
   wired into BOTH the foreground (FCopyText) and background (jobs) copy
-  paths like mc's shared copy code. PROVEN with filesystem evidence on an
-  800MB copy: option ON -> the destination temp file already showed
-  size 838860800 with all blocks physically allocated at the very first
-  sample of the copy; option OFF -> size and allocation grew with the
-  written data (98MB -> 825MB progressive samples). A sparse file of the
-  same size shows 8 blocks vs 204800 for the fallocated one
+  paths like mc's shared copy code. PROVEN with filesystem evidence on
+  BOTH routes: foreground 800MB copy ON -> dest temp already showed
+  size 838860800 fully block-allocated at the first sample, OFF -> size
+  and allocation grew with written data (98MB -> 825MB); background
+  120MB copy ON -> temp at full 125829120 allocated 0.2s after start,
+  OFF -> exact 256KB chunk-wise growth (262144, 524288, ...). A sparse
+  file of the same size shows 8 blocks vs 204800 for the fallocated one.
+  Failure path (mc file.c:2701-2713): the foreground copy asks with a
+  Retry / Copy anyway / Abort file dialog - proven by forcing EFBIG via
+  RLIMIT_FSIZE: dialog shown, Abort skipped the file, temp removed, no
+  bytes written; a background job cannot ask and logs the errno, then
+  copies anyway
 - COW file cloning: FICLONE ioctl (MC_CloneFile) tried first when the
   destination does not exist (mc file.c:2606 contract), silent fallback
   to the normal copy on failure, like mc. The sandbox filesystem (ext4)
@@ -255,9 +261,9 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   shared menu class (HBDbMenu/HbMenu, repo-root, read-only here) only
   supports dropping the menu immediately; mc's default bar-lit state
   needs a dedicated bar handler in mc/
-- Preallocate failure path: a background job logs the errno and copies
-  anyway, the foreground copy continues silently; mc shows a retry/skip
-  dialog instead (file.c:2713)
+- Preallocate failure in a background job: logs the errno and copies
+  anyway; mc pauses the job with the same retry/skip prompt - the
+  foreground dialog is implemented and proven, the bg prompt is not
 - COW: the actual reflink effect is env-blocked (no COW-capable
   filesystem in the sandbox); only the attempt + fallback are proven
 
