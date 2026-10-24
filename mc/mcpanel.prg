@@ -114,6 +114,12 @@ return nil
 
 METHOD GoDir( cPath ) CLASS MCPanel
 
+   if MCVfsKind( cPath ) != "local" .and. MCVfsList( cPath ) == nil
+      MCMsgBox( "VFS", "Cannot list:" + Chr( 10 ) + cPath + Chr( 10 ) + ;
+                "Staying in the current directory." )
+      return nil
+   endif
+
    ::cPath     := hb_PathNormalize( cPath )
    ::cMode     := "listing"
    ::nCurrent  := 1
@@ -132,6 +138,30 @@ METHOD Rescan() CLASS MCPanel
 
    if ::cMode == "panelize"
       return nil   // panelize content is managed by the panelize action
+   endif
+
+   if MCVfsKind( ::cPath ) != "local"
+      ::aFiles := {}
+      ::lSizesComputed := .F.
+      AAdd( ::aFiles, { "/..", 0, CToD( "" ), "", "D", .T., .F. } )
+      aDir := MCVfsList( ::cPath )
+      if aDir == nil
+         ::SortFiles()
+         ::FixScroll()
+         return nil
+      endif
+      for each aEntry in aDir
+         if ! lShowHidden .and. Left( aEntry[ 1 ], 1 ) == "."
+            loop
+         endif
+         if aEntry[ 6 ] .or. FilterMatch( aEntry[ 1 ], ::cFilter, ::lCaseSens )
+            AAdd( ::aFiles, { aEntry[ 1 ], aEntry[ 2 ], aEntry[ 3 ], aEntry[ 4 ], ;
+                              aEntry[ 5 ], aEntry[ 6 ], .F. } )
+         endif
+      next
+      ::SortFiles()
+      ::FixScroll()
+      return nil
    endif
 
    ::aFiles := {}
@@ -417,15 +447,27 @@ METHOD EnterKey() CLASS MCPanel
 
    if aEntry[ P_DIR ]
       if aEntry[ P_NAME ] == "/.."
-         ::GoDir( hb_FNameDir( ::cPath ) )
+         if MCVfsKind( ::cPath ) != "local"
+            ::GoDir( MCVfsParent( ::cPath ) )
+         else
+            ::GoDir( hb_FNameDir( ::cPath ) )
+         endif
       else
          ::GoDir( hb_FNameMerge( ::cPath, aEntry[ P_NAME ] ) )
       endif
       return nil
    endif
 
-   // regular file: extension binding, else view
+   // regular file: archives open as directories, extension binding, else view
    cFull := hb_FNameMerge( ::cPath, aEntry[ P_NAME ] )
+   if MCVfsKind( ::cPath ) == "local" .and. ! Empty( MCVfsArchiveScheme( cFull ) )
+      ::GoDir( cFull + "#" + MCVfsArchiveScheme( cFull ) + "/" )
+      return nil
+   endif
+   if MCVfsKind( cFull ) != "local"
+      MCVfsViewFile( cFull )
+      return nil
+   endif
    cCmd := ExtBinding( Lower( hb_FNameExt( cFull ) ) )
    if ! Empty( cCmd )
       cCmd := StrTran( cCmd, "%f", ShellQuote( cFull ) )
@@ -639,19 +681,37 @@ METHOD DisplayQuickView() CLASS MCPanel
 
    local oOther := If( Self == ::oApp:oPanel1, ::oApp:oPanel2, ::oApp:oPanel1 ), aEntry := oOther:Current()
    local nW := ::nRight - ::nLeft - 1, nRows := ::VisibleRows()
-   local aLines := {}, cFull, n
+   local aLines := {}, cFull, n, aX
 
    hb_Scroll( ::nTop + 1, ::nLeft + 1, ::nBottom - 1, ::nRight - 1, 0, 0, ::oApp:aPalette[ CLR_PANEL ], " " )
    if aEntry != nil
       if aEntry[ P_DIR ]
-         cFull := If( aEntry[ P_NAME ] == "/..", hb_FNameDir( oOther:cPath ), ;
+         cFull := If( aEntry[ P_NAME ] == "/..", ;
+                      If( MCVfsKind( oOther:cPath ) == "local", hb_FNameDir( oOther:cPath ), MCVfsParent( oOther:cPath ) ), ;
                       MCEntryPath( oOther, aEntry ) )
          aLines := { "Directory: " + cFull, "" }
-         AEval( Directory( hb_DirSepAdd( cFull ) + "*", "DHS" ), ;
-                { | a | AAdd( aLines, a[ F_NAME ] + If( hb_DirExists( hb_FNameMerge( cFull, a[ F_NAME ] ) ), "/", "" ) ) } )
+         if MCVfsKind( cFull ) != "local"
+            aX := MCVfsList( cFull )
+            if aX != nil
+               AEval( aX, { | a | AAdd( aLines, a[ 1 ] + If( a[ 6 ], "/", "" ) ) } )
+            endif
+         else
+            AEval( Directory( hb_DirSepAdd( cFull ) + "*", "DHS" ), ;
+                   { | a | AAdd( aLines, a[ F_NAME ] + If( hb_DirExists( hb_FNameMerge( cFull, a[ F_NAME ] ) ), "/", "" ) ) } )
+         endif
       else
          cFull := MCEntryPath( oOther, aEntry )
-         aLines := hb_aTokens( StrTran( Left( MemoRead( cFull ), 60000 ), Chr( 13 ) ), Chr( 10 ) )
+         if MCVfsKind( cFull ) != "local"
+            aX := MCVfsExtract( cFull, MCVfsTmpDir(), .F. )
+            if aX == nil
+               aLines := { "(cannot extract archive member)" }
+            else
+               aLines := hb_aTokens( StrTran( Left( MemoRead( aX[ 1 ] ), 60000 ), Chr( 13 ) ), Chr( 10 ) )
+               DeleteTree( aX[ 2 ] )
+            endif
+         else
+            aLines := hb_aTokens( StrTran( Left( MemoRead( cFull ), 60000 ), Chr( 13 ) ), Chr( 10 ) )
+         endif
       endif
    endif
    for n := 1 to Min( nRows, Len( aLines ) )
