@@ -64,6 +64,36 @@ code. Dogfooding model: a "Find" dialog built entirely with the designer
 - Hint bar distinguishes move vs resize: "Arrows move Mouse resizes"
   (canvas and post-drop variants).
 
+- Move/resize/delete dogfood: arrow-move shifts the selected control one
+  cell per key, Del deletes it and ^Z restores it, click selects a
+  listbox and dragging its bottom-right handle resizes it; the resize is
+  a normal undoable model edit (^Z reverts the extra row).
+- ListBox empty interior: after a mouse resize the rows below the last
+  item kept showing the dialog background even when selected. The canvas
+  painter only drew item rows; it now fills the empty interior with the
+  control color, matching the runtime listbox, which paints the whole
+  box with its own colorspec (live captures: uniform green selected,
+  uniform blue unselected).
+- RadioGroup value roundtrip (generated runtime): keyboard (Tab to the
+  group, Down to Option 2, OK) applies nVar=2; direct mouse clicks on
+  options move the selection (clicked row -> selection via the MouseClick
+  screen-marker scan) and OK applies nVar=3. Verified against an
+  instrumented build that dumps the dialog vars after Activate.
+- Full build cycle: F2 palette -> CheckBox -> ghost placement with
+  status-bar guidance -> click drops it; F4 inspector (F6/click focuses
+  the panel, Up/Down pick a field, Enter opens the inline GET, Enter
+  applies) renames its caption; F9 confirms the overwrite and
+  regenerates the PRG with the new control; F11 "Save JSON as..." writes
+  the model (9 controls, new checkbox included) to a scratch file; F12
+  reopens it intact. The regenerated PRG compiles and runs, and the new
+  checkbox toggles by mouse at runtime.
+- Persistence scope note: F9 regenerates the PRG from the in-memory
+  model, not from the previous PRG text. The 12-item listbox literal
+  once seen in a generated finddlg.prg was a manual edit of that PRG;
+  the model (and finddlg.json) holds 3 items, so a regen drops manual
+  PRG edits. Model/JSON roundtrip is the covered persistence path;
+  PRG-to-model import is not a feature.
+
 ## Harness notes (how to reproduce)
 
 - Launch: xterm on DISPLAY :99, geometry 82x26, `metaSendsEscape: true`,
