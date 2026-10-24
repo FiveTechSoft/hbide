@@ -122,8 +122,10 @@ points to the same entry from the new location). Tested across
 ext4->tmpfs (/tmp->/dev/shm):
 
 * Copy fails partway (unreadable file inside a tree): the source is left
-  untouched, a partial copy may remain at the destination, and the failure
-  is reported with a per-item count.
+  untouched and a destination directory created by the operation itself is
+  removed again (rollback verified for both copy and move). A pre-existing
+  destination keeps whatever partial content was written into it; the
+  failure is reported with a per-item count.
 * Copy succeeds but the source removal fails partway (read-only directory
   inside the tree): the destination holds a complete copy and the source may
   be left partially deleted; the failure is reported. Everything removed from
@@ -131,9 +133,13 @@ ext4->tmpfs (/tmp->/dev/shm):
   is not atomic and the tree can be left split between both locations.
 
 Metadata on copy/move: regular files keep their permission bits
-(chmod --reference onto the temporary copy); file mtimes are NOT preserved
-(copied files get the copy time); directory permissions are NOT preserved
-(created with the process umask). Recursive delete unlinks
+(chmod --reference onto the temporary copy) and modification time
+(touch --reference after placement). A directory created by the copy keeps
+the source directory's permissions and mtime, applied after its contents
+are in place so a read-only source dir cannot block its own copy; a
+pre-existing destination directory keeps its own metadata. Ownership is
+not preserved. Verified with a 751 directory carrying 2020/2021 mtimes
+copied ext4->tmpfs. Recursive delete unlinks
 symbolic links without traversing their target.
 
 Overwrite protection: a copy writes to a temporary file in the destination
@@ -146,5 +152,6 @@ preserved at the backup path named in the error message. Verified with
 induced read errors (/proc/self/mem), a read-only destination directory, and
 an LD_PRELOAD shim simulating rename failures: move-aside success, successful
 restore and preserved-backup cases all exercised against the real binary.
-Fully transactional multi-file semantics, metadata beyond permissions
-(chmod --reference) and concurrent filesystem changes are not covered.
+Fully transactional multi-file semantics, metadata beyond permission
+bits and mtime (ownership, ACLs, xattrs) and concurrent filesystem
+changes are not covered.
