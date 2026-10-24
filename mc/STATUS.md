@@ -21,10 +21,27 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - Hard link (inode verified)
 - Background jobs dialog
 - Edit external file, Edit menu file
-- Dialog buttons redone in authentic MC style after user review:
-  "[ Caption ]" text buttons on the dialog background (no blocks, no
-  per-button shadow) - unfocused black-on-gray with red hotkey, focused
-  black-on-cyan with yellow hotkey (reference: mc lib/widget/button.c)
+- Dialog buttons redone after user review: per-button "style" property
+  (contract shared with the designer): STYLE "brackets" = authentic MC
+  text buttons "[ Caption ]" on the dialog background (hotkey red,
+  focused black-on-cyan with yellow hotkey; reference: mc
+  lib/widget/button.c); any other style = hbide block button with solid
+  shadow. Both verified live in one dialog. NOTE: the RTL style SETGET
+  only accepts 0/2/8-char values, so "brackets" (8) passes but a STYLE
+  clause value like "shadow" (6) raises PUSHBUTTON/1001 - relayed to the
+  designer for their codegen. Per-GET COLOR honored again: body colors
+  come from the spec (indices 0/1/2), hotkey from index 3 unfocused,
+  derived bright-yellow-on-focus-bg focused (RTL single hotkey slot
+  cannot be right in both states). Default button marked [< >] via
+  GUISEND cargo := .T. and Enter made real MC semantics: Enter on any
+  non-button control fires the default (verified: checkbox -> OK applied;
+  focused Cancel still wins over the default)
+- Dialog checkboxes in MC colors: unfocused black-on-gray with red
+  hotkey, focused black-on-cyan with yellow hotkey (was: all captions
+  cyan at once). Vendored ChkDisplay override in mcbutton.prg; RTL
+  CheckBox untouched
+- Turbo Vision cyan theme: directories now bright white on cyan (was
+  gray-on-cyan, weak contrast)
 - Move (F6): overwrite confirmation (decline keeps both files; accept
   replaces the destination; directories and VFS stay protected)
 - DlgInput: prefilled GET opens with cursor after the text (End + walk back
