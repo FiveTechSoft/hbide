@@ -53,8 +53,14 @@
 ## Limitaciones reales (declaradas, no resueltas)
 
 - ~~El sello fecha+hora+tamaño puede no detectar una edicion de mismo tamaño~~
-  RESUELTO (2026-10-24 noche): DiskStamp incluye hb_MD5 del contenido
-  (archivos <= 8 MB; mayores conservan el sello simple). Verificado en vivo:
+  RESUELTO con cobertura exacta (2026-10-24 noche): DiskStamp incluye hb_MD5
+  del contenido para archivos <= 8 MB. Coste medido de lectura+MD5 por chequeo
+  (cache caliente, esta maquina): 0.15 ms (100 KB), 1.6 ms (1 MB),
+  12.9 ms (8 MB), 60 ms (32 MB) - el cap de 8 MB acota la pausa a ~13 ms por
+  chequeo de 2 s (<1% de un nucleo); 32 MB seria una pausa visible. Archivos
+  > 8 MB: el watch compara solo fecha+hora+tamaño (una edicion de mismo
+  tamaño dentro del mismo segundo puede pasar inadvertida hasta guardar) y
+  se avisa una vez al abrir el archivo. Verificado en vivo:
   edicion externa de mismo tamaño con mtime preservado via touch -r detectada
   tanto en variante limpia (recarga automatica) como sucia (Reload/Keep mine).
 - ~~La recarga tras cambio externo va al inicio del archivo~~ RESUELTO
