@@ -114,13 +114,20 @@ return nil
 
 METHOD GoDir( cPath ) CLASS MCPanel
 
-   if MCVfsKind( cPath ) != "local" .and. MCVfsList( cPath ) == nil
-      MCMsgBox( "VFS", "Cannot list:" + Chr( 10 ) + cPath + Chr( 10 ) + ;
-                "Staying in the current directory." )
-      return nil
-   endif
+   local cErr
 
-   ::cPath     := hb_PathNormalize( cPath )
+   if MCVfsKind( cPath ) != "local"
+      if MCVfsList( cPath ) == nil
+         cErr := MCVfsTakeError()
+         MCMsgBox( "VFS", "Cannot list:" + Chr( 10 ) + cPath + ;
+                   If( Empty( cErr ), "", Chr( 10 ) + "Reason: " + cErr ) + Chr( 10 ) + ;
+                   "Staying in the current directory." )
+         return nil
+      endif
+      ::cPath := cPath   // VFS paths are absolute by construction; normalize would mangle "scheme://"
+   else
+      ::cPath := hb_PathNormalize( cPath )
+   endif
    ::cMode     := "listing"
    ::nCurrent  := 1
    ::nOffset   := 0
@@ -453,7 +460,7 @@ METHOD EnterKey() CLASS MCPanel
             ::GoDir( hb_FNameDir( ::cPath ) )
          endif
       else
-         ::GoDir( hb_FNameMerge( ::cPath, aEntry[ P_NAME ] ) )
+         ::GoDir( MCEntryPath( Self, aEntry ) )
       endif
       return nil
    endif
@@ -704,7 +711,7 @@ METHOD DisplayQuickView() CLASS MCPanel
          if MCVfsKind( cFull ) != "local"
             aX := MCVfsExtract( cFull, MCVfsTmpDir(), .F. )
             if aX == nil
-               aLines := { "(cannot extract archive member)" }
+               aLines := { "(cannot read this member)" }
             else
                aLines := hb_aTokens( StrTran( Left( MemoRead( aX[ 1 ] ), 60000 ), Chr( 13 ) ), Chr( 10 ) )
                DeleteTree( aX[ 2 ], .T. )
