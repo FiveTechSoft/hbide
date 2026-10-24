@@ -90,7 +90,7 @@ CLASS MCApp
    METHOD GrabScreen()
    METHOD SetTheme( nTheme )
    METHOD LoadCfg()
-   METHOD SaveCfg()
+   METHOD SaveCfg( lQuiet )
    METHOD CfgFile()    INLINE hb_DirSepAdd( hb_GetEnv( "HOME" ) ) + ".hbmc.ini"
 
    // menu action entry points (implemented in mcmenu.prg)
@@ -823,9 +823,10 @@ return lOk
 METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
-   local cPick := Space( 1 ), oLbx, nW := 0, cItem
+   local nPick, oLbx, nW := 0, cItem  // numeric GET var: listbox Select() positions by index and the position round-trips through the var
 
-   DEFAULT nDef := 1
+   hb_default( @nDef, 1 )
+   nPick := nDef
 
    if Empty( aItems )
       return 0
@@ -836,7 +837,7 @@ METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
    oDlg = HBWindow():Dialog( cTitle, nW, Min( Len( aItems ) + 6, 24 ), "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
-   @ oDlg:nTop + 1, oDlg:nLeft + 2, oDlg:nBottom - 3, oDlg:nRight - 2 GET cPick LISTBOX aItems ;
+   @ oDlg:nTop + 1, oDlg:nLeft + 2, oDlg:nBottom - 3, oDlg:nRight - 2 GET nPick LISTBOX aItems ;
       COLOR "N/BG,GR+/BG,N/BG,W+/G,W+/W,W+/W,GR+/W"
    oLbx := ATail( GetList ):Control
    oLbx:Display()
@@ -856,7 +857,7 @@ METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
    ::Repaint()
 
    if lOk
-      return AScan( aItems, { | c | c == cPick } ) 
+      return oLbx:value  // current listbox position; the GET var round-trip via buffer is unreliable
    endif
 
 return 0
@@ -1348,8 +1349,8 @@ return nil
 METHOD OptionsAppearance() CLASS MCApp
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
-   local cTheme := StrTran( aNames[ ::nTheme ], "&", "" ), aRad[ 3 ], n
    local aNames := { "&Midnight Commander classic", "&Turbo Vision cyan", "Monochro&me" }
+   local cTheme := StrTran( aNames[ ::nTheme ], "&", "" ), aRad[ 3 ], n
    local cRadStyle := "(" + Chr( 7 ) + " )"
    local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
 
@@ -2135,7 +2136,7 @@ METHOD Hotlist() CLASS MCApp
       ::ActivePanel():GoDir( ::aHotlist[ n ][ 2 ] )
    elseif n == Len( ::aHotlist ) + 1
       AAdd( ::aHotlist, { hb_FNameName( hb_DirSepDel( ::ActivePanel():cPath ) ), ::ActivePanel():cPath } )
-      ::SaveCfg()
+      ::SaveCfg( .T. )
    elseif n == Len( ::aHotlist ) + 2 .and. ! Empty( ::aHotlist )
       // remove: ask which one
       aItems := {}
@@ -2144,7 +2145,7 @@ METHOD Hotlist() CLASS MCApp
       if n > 0 .and. n <= Len( ::aHotlist )
          ADel( ::aHotlist, n )
          ASize( ::aHotlist, Len( ::aHotlist ) - 1 )
-         ::SaveCfg()
+         ::SaveCfg( .T. )
       endif
    endif
    ::Repaint()
@@ -2280,7 +2281,7 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
-METHOD SaveCfg() CLASS MCApp
+METHOD SaveCfg( lQuiet ) CLASS MCApp
 
    local cTxt := "# Harbour Commander configuration" + hb_eol(), aEntry, c
 
@@ -2304,10 +2305,14 @@ METHOD SaveCfg() CLASS MCApp
       cTxt += "history|" + c + hb_eol()
    next
 
-   if hb_MemoWrit( ::CfgFile(), cTxt )
-      MCMsgBox( "Save setup", "Configuration saved to:" + Chr( 10 ) + ::CfgFile() )
+   if ! hb_defaultValue( lQuiet, .F. )
+      if hb_MemoWrit( ::CfgFile(), cTxt )
+         MCMsgBox( "Save setup", "Configuration saved to:" + Chr( 10 ) + ::CfgFile() )
+      else
+         MCMsgBox( "Save setup", "Could not write:" + Chr( 10 ) + ::CfgFile() )
+      endif
    else
-      MCMsgBox( "Save setup", "Could not write:" + Chr( 10 ) + ::CfgFile() )
+      hb_MemoWrit( ::CfgFile(), cTxt )
    endif
    ::Repaint()
 
