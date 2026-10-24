@@ -41,7 +41,9 @@ load brings the previous dialog back). A burst of arrow-key moves, one
 mouse drag or one inspector adjust streak is a single undo step. Cut, paste and every other model change are
 single undo steps too. The
 history is in-memory only (kept to 100 steps, oldest dropped) and is not
-written to the JSON file.
+written to the JSON file. The hint line keeps reporting the live undo
+depth after each change: while an Undo/Redo status is showing, a new push
+updates the count in place instead of leaving the stale one on screen.
 
 ### Copy/paste
 
