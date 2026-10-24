@@ -81,7 +81,7 @@ Legend: **done** = implemented and verified on screen in this build.
 | Panel options | light | |
 | Confirmation dialog | light | confirm overwrite/delete/execute/quit |
 | Appearance | light | color themes |
-| Save setup | done | persists to `~/.hbmc.cfg` |
+| Save setup | done | persists to `~/.hbmc.ini` |
 
 ### Command line and shell
 | MC feature | Status | Notes |
@@ -104,3 +104,16 @@ Legend: **done** = implemented and verified on screen in this build.
 
 All file-operation tests run on throwaway trees under `/tmp/hbmc-test/`.
 Never on user files.
+
+## Safety and current platform limits
+
+This revision is tested on Linux. Shell execution, chmod/chown, links and
+information fields use `/bin/sh` and POSIX/GNU utilities. Windows support is
+not validated. This is a demo, not a replacement for production MC yet.
+
+Copy refuses the same file (including hard-link aliases), a directory inside
+itself, and source/destination symbolic links. Recursive failures are reported.
+Move refuses an existing target rather than replacing it; cross-filesystem
+moves of directories and links remain pending. Recursive delete unlinks
+symbolic links without traversing their target. Metadata preservation,
+transactional rollback and concurrent filesystem changes are not covered.
