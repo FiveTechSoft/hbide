@@ -707,7 +707,7 @@ METHOD DisplayQuickView() CLASS MCPanel
                aLines := { "(cannot extract archive member)" }
             else
                aLines := hb_aTokens( StrTran( Left( MemoRead( aX[ 1 ] ), 60000 ), Chr( 13 ) ), Chr( 10 ) )
-               DeleteTree( aX[ 2 ] )
+               DeleteTree( aX[ 2 ], .T. )
             endif
          else
             aLines := hb_aTokens( StrTran( Left( MemoRead( cFull ), 60000 ), Chr( 13 ) ), Chr( 10 ) )
