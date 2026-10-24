@@ -1,0 +1,75 @@
+{
+  "name": "BuildOptions",
+  "caption": "Build options",
+  "width": 56,
+  "height": 22,
+  "color": "W+/W",
+  "controls":
+  [
+    {
+      "type": "say",
+      "row": 1,
+      "col": 2,
+      "caption": "Project:"
+    },
+    {
+      "type": "say",
+      "row": 3,
+      "col": 2,
+      "caption": "Output dir:"
+    },
+    {
+      "type": "get",
+      "row": 1,
+      "col": 12,
+      "variable": "cProject",
+      "width": 20
+    },
+    {
+      "type": "get",
+      "row": 3,
+      "col": 14,
+      "variable": "cOutput",
+      "width": 26
+    },
+    {
+      "type": "checkbox",
+      "row": 5,
+      "col": 2,
+      "caption": "Debug mode",
+      "variable": "lDebug"
+    },
+    {
+      "type": "radiogroup",
+      "row": 8,
+      "col": 24,
+      "variable": "nTarget",
+      "items": "&Exe,&Library,&Dll"
+    },
+    {
+      "type": "button",
+      "row": 12,
+      "col": 2,
+      "caption": "Build",
+      "accelerator": "B",
+      "action": "lOk := .T., oDlg:End()"
+    },
+    {
+      "type": "button",
+      "row": 12,
+      "col": 14,
+      "caption": "Cancel",
+      "accelerator": "C",
+      "action": "oDlg:End()"
+    },
+    {
+      "type": "listbox",
+      "row": 14,
+      "col": 6,
+      "variable": "cFile",
+      "items": "Main.prg,Utils.prg,Res.rc",
+      "width": 40,
+      "height": 6
+    }
+  ]
+}
