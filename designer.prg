@@ -582,7 +582,7 @@ return nil
 
 METHOD EditProperties() CLASS HbDesigner
 
-   local oCtrl, oDlg, GetList := {}, lOk := .F., lDummy
+   local oCtrl, oDlg, GetList := {}, lOk := .F., lCancel := .F., lDummy
    local cCaption, cVariable, nRow, nCol, nWidth, cAccel, cAction, cItems, nHeight
    local aSize, nMaxRow, nMaxCol
 
@@ -656,10 +656,16 @@ METHOD EditProperties() CLASS HbDesigner
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 24 GET lDummy PUSHBUTTON ;
       CAPTION " &Cancel " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || oDlg:End() }
+      STATE { || lCancel := .T., oDlg:End() }
 
    oDlg:Activate( GetList )
    ::ResumeUI()
+
+   // Predictable close: only Esc or the Cancel pushbutton discard; ending the
+   // READ by moving past the last GET (Enter/Down) commits the edits.
+   if ! lOk .and. ! lCancel .and. LastKey() != K_ESC
+      lOk := .T.
+   endif
 
    if lOk
       oCtrl[ "row" ] = Max( 0, Min( nMaxRow, nRow ) )
@@ -696,7 +702,7 @@ return nil
 
 METHOD DlgProperties() CLASS HbDesigner
 
-   local oDlg, GetList := {}, lOk := .F., lDummy
+   local oDlg, GetList := {}, lOk := .F., lCancel := .F., lDummy
    local cCaption := PadR( ::cDlgCaption, Max( 50, Len( ::cDlgCaption ) ) + 10 )
    local cName    := PadR( ::cDlgName, 20 )
    local nWidth   := ::nDlgWidth
@@ -726,10 +732,16 @@ METHOD DlgProperties() CLASS HbDesigner
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 24 GET lDummy PUSHBUTTON ;
       CAPTION " &Cancel " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || oDlg:End() }
+      STATE { || lCancel := .T., oDlg:End() }
 
    oDlg:Activate( GetList )
    ::ResumeUI()
+
+   // Predictable close: only Esc or the Cancel pushbutton discard; ending the
+   // READ by moving past the last GET (Enter/Down) commits the edits.
+   if ! lOk .and. ! lCancel .and. LastKey() != K_ESC
+      lOk := .T.
+   endif
 
    if lOk
       aMin = ::DlgMinSize()
@@ -757,7 +769,7 @@ return nil
 
 METHOD SelectFileName( cTitle, cDefault ) CLASS HbDesigner
 
-   local oDlg, GetList := {}, lOk := .F., lDummy
+   local oDlg, GetList := {}, lOk := .F., lCancel := .F., lDummy
    local cFile := PadR( cDefault, 35 )
 
    ::SuspendUI()
@@ -774,10 +786,16 @@ METHOD SelectFileName( cTitle, cDefault ) CLASS HbDesigner
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 28 GET lDummy PUSHBUTTON ;
       CAPTION " &Cancel " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || oDlg:End() }
+      STATE { || lCancel := .T., oDlg:End() }
 
    oDlg:Activate( GetList )
    ::ResumeUI()
+
+   // Predictable close: only Esc or the Cancel pushbutton discard; ending the
+   // READ by moving past the last GET (Enter/Down) commits the edits.
+   if ! lOk .and. ! lCancel .and. LastKey() != K_ESC
+      lOk := .T.
+   endif
 
    if ! lOk
       return ""
