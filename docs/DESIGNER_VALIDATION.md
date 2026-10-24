@@ -34,10 +34,18 @@ code. Dogfooding model: a "Find" dialog built entirely with the designer
   Escape exits with .F..
 - ListBox paging: PgDn/PgUp page the focused listbox by its visible rows
   (It1 -> It4 -> It7 -> It10, PgUp back to It7) without leaving the READ;
-  clamped at both ends; Escape still exits with .F.. PgDn on a non-listbox
-  control keeps stock reader behavior. Implemented in HBWindow:Activate
-  (SetKey trap + clamped Down/Up injection, same var-sync path as the
-  mouse layer), so every generated dialog gets it. The generated LISTBOX
+  clamped at both ends; Escape still exits with .F.. Mouse focus works
+  too: clicking a listbox row focuses the control and selects that row,
+  and PgDn/PgUp page from there (click on row 2 -> It2, PgDn -> It5,
+  PgUp -> It2). PgDn on a non-listbox control keeps stock reader
+  behavior (replay untrapped, READ exits with .F. on the last GET).
+  Implemented in HBWindow:Activate (SetKey trap + clamped Down/Up
+  injection, same var-sync path as the mouse layer), so every generated
+  dialog gets it. The trap saves previous handlers on a stack, so
+  consecutive and nested dialogs restore their own level, and a leaked
+  idle re-arm after the READ is a no-op. Suite covers: page clamps at
+  the first/last item, handler restore, consecutive and nested
+  install/remove, idle-leak guard (322 checks). The generated LISTBOX
   carries no SCROLLBAR clause.
 - List control palettes: no constant cyan. RadioGroup selected marker is
   bright black on the dialog background; ListBox rows paint on the dialog
