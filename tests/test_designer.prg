@@ -10,7 +10,7 @@ static s_nPassed := 0, s_nFailed := 0
 procedure Main()
 
    local hModel, cCode, cJson, hBack, aSize
-   local oD, oD2, aRect, nMaxRow, nMaxCol, oCtrl
+   local oD, oD2, aRect, nMaxRow, nMaxCol, oCtrl, cCellRef, cCellNow
 
    // DsnControlSize
    aSize = DsnControlSize( { "type" => "say", "caption" => "Name:" } )
@@ -389,6 +389,42 @@ procedure Main()
 
    oD:oWnd:Hide()
 
+   // inspector must stay above the dialog frame across suspend/resume idle cycles:
+   // HBWindow:MouseEvent repaints the window frame on plain mouse idles (its
+   // otherwise branch), so the redraw idle must be registered after the mouse
+   // idle; ResumeUI used to re-register them in the wrong order
+   SetMode( 25, 80 )
+   CLS
+   oD2 = HbDesigner():New( TStubIde():New() )
+   oD2:oWnd = HBWindow():Dialog( oD2:cDlgCaption, oD2:nDlgWidth, oD2:nDlgHeight, oD2:cDlgColor )
+   oD2:oWnd:bRepaint = { || oD2:oIde:Repaint() }
+   oD2:oWnd:lDesign  = .T.
+   oD2:lInspector = .T.
+   oD2:nInspRow = oD2:oWnd:nTop              // inspector over the dialog title row
+   oD2:nInspCol = oD2:oWnd:nLeft + 10
+   oD2:SuspendUI()
+   oD2:ResumeUI()
+   oD2:DrawControls()                         // reference: inspector painted last
+   cCellRef = SaveScreen( oD2:oWnd:nTop, oD2:oWnd:nLeft + 12, ;
+                          oD2:oWnd:nTop, oD2:oWnd:nLeft + 12 )
+   oD2:oWnd:Refresh()                         // frame painted over inspector
+   cCellNow = SaveScreen( oD2:oWnd:nTop, oD2:oWnd:nLeft + 12, ;
+                          oD2:oWnd:nTop, oD2:oWnd:nLeft + 12 )
+   Check( "idle layering test discriminates", cCellNow != cCellRef )
+   oD2:DrawControls()                         // back to inspector-last
+   // hb_idleState() runs idle tasks round-robin, one per call: two calls cover
+   // both designer idles. With no mouse button held, neither may repaint the
+   // dialog frame: HBWindow:MouseEvent's otherwise branch calls Refresh() on
+   // every plain mouse idle, which would overpaint controls and the inspector
+   hb_idleState()
+   hb_idleState()
+   cCellNow = SaveScreen( oD2:oWnd:nTop, oD2:oWnd:nLeft + 12, ;
+                          oD2:oWnd:nTop, oD2:oWnd:nLeft + 12 )
+   Check( "plain mouse idle keeps inspector over dialog frame", cCellNow == cCellRef )
+   hb_IdleDel( oD2:oWnd:nIdle )
+   hb_IdleDel( oD2:nIdleDraw )
+   oD2:oWnd:Hide()
+
    QOut( "" )
    QOut( "PASSED: " + hb_ntos( s_nPassed ) + "  FAILED: " + hb_ntos( s_nFailed ) )
    ErrorLevel( If( s_nFailed == 0, 0, 1 ) )
@@ -418,3 +454,9 @@ procedure Check( cWhat, lOk )
    endif
 
 return
+
+CLASS TStubIde
+   METHOD SuspendStatus() INLINE nil
+   METHOD ResumeStatus()  INLINE nil
+   METHOD Repaint()       INLINE nil
+ENDCLASS
