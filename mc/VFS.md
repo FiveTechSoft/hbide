@@ -63,15 +63,27 @@ Integration points (concrete):
    via temp archive). Fixtures: generated archives under /tmp, all
    throwaway. First provider because it needs no network and exercises the
    full routing layer.
-2. FTP read-only, anonymous only: public anonymous services (for example a
-   GNU mirror) as test fixtures; LIST/RETR via curl. Write paths stay
-   pending until a credential-free write target exists; no credentials
-   means anonymous FTP only.
-3. SFTP and shell link (FISH): both ride on SSH exec channels. Blocked on
-   test infrastructure: needs either a public credential-free SSH test
-   service (none known) or a throwaway sshd inside the sandbox (user-level
-   sshd on a high port with generated throwaway keys). Decision pending
-   with main; until then these stay "pending" in the matrix with this note.
+2. FTP read-only, anonymous only: IMPLEMENTED (ftp://). List/RETR via
+   curl; dates use the classic LIST format (recent entries carry no year;
+   the current year is assumed). Test fixture: the public anonymous
+   ftp.gnu.org. Write paths stay pending until a credential-free write
+   target exists; no credentials means anonymous FTP only. stdin is closed
+   on every curl call so an unexpected password prompt can never block
+   the UI.
+3. SFTP (sftp://) and shell link (sh://, FISH-style): IMPLEMENTED
+   read-only. The fixture decision landed 2026-10-24: a throwaway
+   user-level sshd on 127.0.0.1:22227 with generated ephemeral keys,
+   authorized by main, shut down after tests. sftp:// rides curl/libssh
+   (the real SFTP protocol; auth from the user's default ssh keys and
+   known_hosts, never command-line credentials). sh:// rides ssh exec
+   channels (BatchMode, ConnectTimeout, per-call timeout): `ls -lA
+   --time-style=long-iso` for List, `cat` for Read; it needs a GNU ls on
+   the remote end. Directory copy-out materializes recursively using only
+   List + Fetch (protocol-true, no shell assumptions for sftp/ftp); any
+   link inside the subtree refuses the whole copy, fail-closed. Single
+   remote entries that are links are refused on view/copy: links are
+   shown but never followed, same policy as extfs. Write/delete/move are
+   refused with a message.
 4. extfs beyond tar/zip (rpm, deb, iso, ...): same pattern per tool, added
    on demand.
 
