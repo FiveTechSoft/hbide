@@ -64,6 +64,8 @@ function MCJobsAdd( aFiles, cDesc, lMove )
       "state" => "queued", ;
       "err"   => "", ;
       "errlog" => "", ;
+      "logfail" => .F., ;
+      "logwarned" => .F., ;
       "moved" => 0, ;
       "nolink" => .F., ;
       "skipdirs" => {} } )
@@ -177,21 +179,33 @@ static function JobErr( j, cPath, cWhy )
    local cLine := hb_FNameNameExt( cPath ) + ": " + cWhy
    local hLog
 
-   if Empty( j[ "errlog" ] )
+   if Empty( j[ "errlog" ] ) .and. ! j[ "logfail" ]
       hLog := hb_FTempCreate( hb_DirTemp(), "hbmclog",, @j[ "errlog" ] )
       if hLog == F_ERROR
          j[ "errlog" ] := ""
+         j[ "logfail" ] := .T.
       else
          FClose( hLog )
       endif
    endif
-   if ! Empty( j[ "errlog" ] )
+   if ! j[ "logfail" ]
       hLog := FOpen( j[ "errlog" ], FO_WRITE )
-      if hLog != F_ERROR
+      if hLog == F_ERROR
+         j[ "logfail" ] := .T.
+      else
          FSeek( hLog, 0, FS_END )
-         FWrite( hLog, cLine + hb_eol() )
+         // a short write silently drops the detail: detect and declare it
+         if FWrite( hLog, cLine + hb_eol() ) != Len( cLine + hb_eol() )
+            j[ "logfail" ] := .T.
+         endif
          FClose( hLog )
       endif
+   endif
+   if j[ "logfail" ] .and. ! j[ "logwarned" ]
+      // never claim a complete log when the log itself failed: say so inline
+      j[ "err" ] := Left( j[ "err" ], 3800 ) + ;
+         "[full error log unavailable (write failed); this capped summary is the only record] "
+      j[ "logwarned" ] := .T.
    endif
    if Len( j[ "err" ] ) < 4000
       j[ "err" ] += cLine + "; "
@@ -208,11 +222,20 @@ return nil
 // exists, the inline summary otherwise.
 function MCJobsErrText( j )
 
+   local cLog := ""
+
    if ! Empty( j[ "errlog" ] ) .and. hb_FileExists( j[ "errlog" ] )
-      return MemoRead( j[ "errlog" ] )
+      cLog := MemoRead( j[ "errlog" ] )
+      if ! Empty( cLog )
+         return cLog
+      endif
    endif
 
-return StrTran( j[ "err" ], "; ", ";" + Chr( 10 ) )
+   // the log is missing or unreadable: fall back to the inline summary and
+   // say explicitly that the detail may be incomplete
+   return StrTran( j[ "err" ], "; ", ";" + Chr( 10 ) ) + ;
+      If( j[ "logfail" ] .or. ! Empty( j[ "errlog" ] ), ;
+          Chr( 10 ) + "[warning: full error log unavailable; this summary may be incomplete]", "" )
 
 //-----------------------------------------------------------------------------------------//
 
