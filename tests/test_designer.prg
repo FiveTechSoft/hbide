@@ -251,6 +251,19 @@ procedure Main()
       { "type" => "listbox", "row" => 1, "col" => 2, "variable" => "nList1", ;
         "items" => "I1,I2,I3", "width" => 16, "height" => 5 } } } )
    Check( "gen listbox no scrollbar when fits", ! ( " SCROLLBAR" $ cCode ) )
+   // hidden-scrollbar warning: overflow + height < 6 (stock bar needs height >= 6 to draw)
+   Check( "sbar hidden flag h5", DsnListSBarHidden( { "type" => "listbox", "items" => "I1,I2,I3,I4,I5", "height" => 5 } ) )
+   Check( "sbar hidden flag h7", ! DsnListSBarHidden( { "type" => "listbox", "items" => "I1,I2,I3,I4,I5,I6", "height" => 7 } ) )
+   Check( "sbar hidden flag fits", ! DsnListSBarHidden( { "type" => "listbox", "items" => "I1,I2", "height" => 5 } ) )
+   Check( "sbar hidden flag radio", ! DsnListSBarHidden( { "type" => "radio", "items" => "I1,I2,I3,I4,I5", "height" => 3 } ) )
+   cCode = DsnGenCode( { "caption" => "T", "width" => 40, "height" => 14, "controls" => { ;
+      { "type" => "listbox", "row" => 1, "col" => 2, "variable" => "nList1", ;
+        "items" => "I1,I2,I3,I4,I5,I6,I7,I8,I9,I10,I11,I12,I13,I14,I15", "width" => 16, "height" => 5 } } } )
+   Check( "gen warns hidden scrollbar", "scrollbar will not be drawn" $ cCode )
+   cCode = DsnGenCode( { "caption" => "T", "width" => 40, "height" => 14, "controls" => { ;
+      { "type" => "listbox", "row" => 1, "col" => 2, "variable" => "nList1", ;
+        "items" => "I1,I2,I3,I4,I5,I6,I7,I8,I9,I10,I11,I12,I13,I14,I15", "width" => 16, "height" => 7 } } } )
+   Check( "gen no warning when bar fits", ! ( "scrollbar will not be drawn" $ cCode ) )
    // json roundtrip of the new properties
    cJson = hb_jsonEncode( hModel, .T. )
    hBack = nil
