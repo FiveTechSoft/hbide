@@ -32,6 +32,7 @@ CLASS HbIde
    DATA   nOldCursor
    DATA   lEnd
    DATA   nIdleStatus
+   DATA   nLastDiskCheck
 
    METHOD New()
    METHOD About()   
@@ -51,6 +52,9 @@ CLASS HbIde
    METHOD ReplaceDialog()
    METHOD FindDialog()
    METHOD CheckUnsaved()
+   METHOD CheckDiskChange()
+   METHOD ReloadFromDisk()
+   METHOD ConfirmOverwrite()
    METHOD SaveFile()
    METHOD Repaint()
    METHOD SuspendStatus()
@@ -86,6 +90,7 @@ METHOD New() CLASS HBIde
    __ClsModMsg( RadioButto( 0, 0 ):ClassH, "HITTEST", @RadHitTest() )
 
    ::nIdleStatus = hb_IdleAdd( { || ::ShowStatus() } )
+   ::nLastDiskCheck = 0
 
    ErrorBlock( { | oError | ::MsgInfo( CallStack( oError ), "Error" ) } )
 
@@ -330,7 +335,7 @@ METHOD Activate() CLASS HBIde
    ::oEditor:Goto( 1, 5 )
 
    while ! ::lEnd
-      nKey = InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
+      nKey = InKey( 1, INKEY_ALL + HB_INKEY_GTEVENT )   // 1s: lets the disk-change poll run idle
 
       if nKey == K_ESC .and. ! ::oMenu:IsOpen()
          if ::oEditor:Changed()
@@ -419,6 +424,11 @@ METHOD Activate() CLASS HBIde
             endif
          endif
       endif
+
+      if Seconds() - ::nLastDiskCheck >= 2 .or. Seconds() < ::nLastDiskCheck
+         ::nLastDiskCheck := Seconds()
+         ::CheckDiskChange()
+      endif
    end
 
    ::Hide()
@@ -491,6 +501,10 @@ return oMenu
 METHOD Start() CLASS HbIde
 
    local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, nDot, cBase
+
+   if ! ::ConfirmOverwrite()
+      return nil
+   endif
 
    ::oEditor:SaveFile()
 
@@ -640,9 +654,72 @@ return lGo
 
 //-----------------------------------------------------------------------------------------//
 
+// External-change watch (tvedit DiskStamp/CheckDiskChanges model, adapted to
+// the single-buffer HBIde). The stamp is date+time+size: a same-size edit
+// inside the filesystem timestamp resolution keeps the same stamp and is
+// only caught by the save-time guard when it also changes the stamp.
+METHOD CheckDiskChange() CLASS HbIde
+
+   local cStamp
+
+   if ::oMenu:IsOpen() .or. Empty( ::oEditor:cFile )
+      return nil
+   endif
+
+   cStamp := ::oEditor:DiskStamp( ::oEditor:cFile )
+   if Empty( cStamp ) .or. cStamp == ::oEditor:cSeenStamp
+      return nil
+   endif
+
+   // mark as seen first: "Keep mine" must not re-ask for this same change;
+   // the next own save warns before overwriting the external version
+   ::oEditor:cSeenStamp := cStamp
+
+   if ! ::oEditor:Changed()
+      Alert( "File changed on disk; reloaded: " + ::oEditor:cFile )
+      ::ReloadFromDisk()
+   else
+      if Alert( "File changed on disk and you have unsaved changes", ;
+                { "&Reload", "&Keep mine" } ) == 1
+         ::ReloadFromDisk()
+      endif
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ReloadFromDisk() CLASS HbIde
+
+   ::oEditor:LoadFile( ::oEditor:cFile )
+   ::oEditor:Goto( 1, 5 )
+   ::Repaint()
+   ::oEditor:ShowCursor()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ConfirmOverwrite() CLASS HbIde
+
+   if ::oEditor:DiskChangedSinceLoad()
+      if Alert( "File changed on disk since it was loaded/saved. Overwrite it?", ;
+                { "&Overwrite", "&Cancel" } ) != 1
+         return .F.
+      endif
+   endif
+
+return .T.
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD SaveFile() CLASS HbIde
 
    local cTmp
+
+   if ! ::ConfirmOverwrite()
+      return nil
+   endif
 
    // tvedit-style safety net: keep the previous disk version as .bak.
    // The copy runs BEFORE writing, so a failed write leaves both intact.
