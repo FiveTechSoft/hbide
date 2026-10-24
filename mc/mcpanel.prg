@@ -53,7 +53,7 @@ CLASS MCPanel
 
    DATA   cPath
    DATA   aFiles      INIT {}
-   DATA   hStat       INIT { => }   // name => { nAtime, nCtime, nInode }, filled lazily for the atime/ctime/inode sorts
+   DATA   hStat       INIT { => }   // name => { nAtime, nCtime, nInode, cAtimeStr, cCtimeStr }, filled lazily
    DATA   hLinks      INIT { => }   // name => symlink target, filled by Rescan (local fs only)
    DATA   nCurrent    INIT 1
    DATA   nOffset     INIT 0
@@ -295,15 +295,16 @@ METHOD FillStat() CLASS MCPanel
       cCmd += " " + ShellQuote( a )
    next
    if hb_ProcessRun( MCShWrap( "cd " + ShellQuote( ::cPath ) + ;
-          " && stat -c '%i|%X|%Z' --" + cCmd + " 2>/dev/null" ),, @cOut ) != 0
+          " && stat -c '%i|%X|%Z|%x|%z' --" + cCmd + " 2>/dev/null" ),, @cOut ) != 0
       return nil
    endif
    aLines := hb_ATokens( cOut, Chr( 10 ) )
    nMax := Min( Len( aLines ), Len( aNames ) )
    for n := 1 to nMax
       aT := hb_ATokens( aLines[ n ], "|" )
-      if Len( aT ) == 3
-         ::hStat[ aNames[ n ] ] := { Val( aT[ 2 ] ), Val( aT[ 3 ] ), Val( aT[ 1 ] ) }
+      if Len( aT ) == 5
+         ::hStat[ aNames[ n ] ] := { Val( aT[ 2 ] ), Val( aT[ 3 ] ), Val( aT[ 1 ] ), ;
+                                     AllTrim( aT[ 4 ] ), AllTrim( aT[ 5 ] ) }
       endif
    next
    // a partial result means the tree changed mid-stat; retry once fresh
@@ -669,6 +670,14 @@ METHOD EnterKey() CLASS MCPanel
       cCmd := StrTran( cCmd, "%f", ShellQuote( cFull ) )
       ::oApp:cCmdLine := cCmd
       ::oApp:RunCommand()
+   elseif hb_ProcessRun( MCShWrap( "test -x " + ShellQuote( cFull ) + " && test ! -d " + ShellQuote( cFull ) ) ) == 0
+      // executable regular file: mc runs it, asking first when
+      // "confirm execute" is on
+      if ! ::oApp:lConfirmExecute .or. ;
+         ::oApp:DlgConfirm( "Execute", "Execute " + aEntry[ P_NAME ] + "?", "&Execute" )
+         ::oApp:cCmdLine := ShellQuote( cFull )
+         ::oApp:RunCommand()
+      endif
    else
       MCViewer( cFull )
    endif
@@ -802,6 +811,9 @@ METHOD DisplayListing() CLASS MCPanel
 
    if ::cListMode == "long" .or. ( ::cListMode == "user" .and. MCUFmtNeedsLong( ::cUserFmt ) )
       ::FillLong()
+   endif
+   if ::cListMode == "user" .and. MCUFmtNeedsStat( ::cUserFmt )
+      ::FillStat()
    endif
    // header
    if ::lBrief
@@ -1307,7 +1319,12 @@ METHOD EntryUser( aEntry, nWidth ) CLASS MCPanel
             case cWord == "mtime"
                cPart += MCShortDate( aEntry[ P_DATE ], aEntry[ P_TIME ] )
             case cWord == "atime" .or. cWord == "ctime"
-               cPart += Space( 12 )   // epoch atime/ctime: not converted in the demo, blank cell
+               if hb_HHasKey( ::hStat, aEntry[ P_NAME ] )
+                  cPart += MCShortDate( hb_SToD( StrTran( Left( ::hStat[ aEntry[ P_NAME ], If( cWord == "atime", 4, 5 ) ], 10 ), "-", "" ) ), ;
+                                        SubStr( ::hStat[ aEntry[ P_NAME ], If( cWord == "atime", 4, 5 ) ], 12, 5 ) )
+               else
+                  cPart += Space( 12 )
+               endif
             case cWord == "perm"
                cPart += If( hb_HHasKey( ::hLong, aEntry[ P_NAME ] ), PadR( ::hLong[ aEntry[ P_NAME ], 1 ], 10 ), Space( 10 ) )
             case cWord == "nlink"
@@ -1355,6 +1372,18 @@ function MCUFmtNeedsLong( cFmt )
    for each cWord in hb_ATokens( StrTran( Lower( cFmt ), "|", " " ) )
       if cWord == "perm" .or. cWord == "nlink" .or. cWord == "owner" .or. ;
          cWord == "group" .or. cWord == "type"
+         return .T.
+      endif
+   next
+
+return .F.
+
+function MCUFmtNeedsStat( cFmt )
+
+   local cWord
+
+   for each cWord in hb_ATokens( StrTran( Lower( cFmt ), "|", " " ) )
+      if cWord == "atime" .or. cWord == "ctime"
          return .T.
       endif
    next
