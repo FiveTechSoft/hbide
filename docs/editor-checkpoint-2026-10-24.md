@@ -301,15 +301,21 @@
 
 ### Limitaciones de teclado documentadas (editor)
 
-- Ctrl+Left NO salta palabra: gttrm entrega Ctrl+Left como codigo 26, que en
-  inkey.ch es alias de K_CTRL_Z (Undo). Sin mascara extendida global son
-  indistinguibles, asi que Undo conserva el codigo y el salto a palabra
-  izquierda queda en Alt+Left (gttrm lo entrega como 411, sin ambiguedad).
-  Ctrl+Right si funciona como salto a palabra derecha.
-- Shift+flechas no selecciona: con la mascara de eventos actual llegan como
-  flechas simples (el modificador se pierde antes de la app). El mecanismo
-  vigente de seleccion por rango es el ancla F8 (ToggleMark): F8 fija el
-  origen, mover el cursor define el rango, y Copy/Cut/Undo operan sobre el.
+- ~~Ctrl+Left NO salta palabra~~ RESUELTO (2026-10-24 noche): el bucle
+  principal pide HB_INKEY_EXT; gttrm entrega Ctrl+Left como codigo extendido
+  (HB_KX_LEFT+HB_KF_CTRL) distinguible de Ctrl+Z, y el editor lo liga a
+  WordJump(.F.). nKeyStd=hb_keyStd() alimenta todas las rutas preexistentes
+  (menus, teclas F, raton, dialogos) con los codigos clasicos de siempre.
+  Verificado en vivo: Ctrl+Left salta al inicio de palabra SIN tocar el
+  texto, Ctrl+Z sigue deshaciendo, Ctrl+Right salta a la derecha, Alt+E abre
+  el menu Edit, F5 abre Find, tecleo y clicks de raton normales. GTs sin
+  codigos extendidos conservan el comportamiento anterior (Ctrl+Left=Undo),
+  documentado en el codigo. Alt+Left sigue como segundo salto izquierdo.
+- ~~Shift+flechas no selecciona~~ RESUELTO (2026-10-24 noche): con la mascara
+  extendida llegan distintos; el editor fija el ancla F8 si no hay y mueve
+  con la tecla base - el resaltado de rango y Copy/Cut ya consumian
+  SelRange(). Verificado en vivo: Shift+Left x3 marca el rango (indicador
+  MARK en status) con resaltado N/W visible sobre "XYZ".
 - Cambiar cualquiera de los dos comportamientos requiere activar
   HB_INKEY_EXT a nivel global de la app, decision descartada de momento por
   su alcance transversal (menus, GETs, designer, commander).
