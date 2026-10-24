@@ -10,8 +10,8 @@ function HBIDEHelpTopics()
       "It edits Harbour source with syntax colors, builds and runs it with hbmk2, " + ;
       "runs snippets in memory as scripts, and includes a visual dialog designer " + ;
       "(Options > Designer)." + hb_eol() + hb_eol() + ;
-      "Menus open with the mouse. On Linux terminals Alt+letter menu keys are not " + ;
-      "available; use the mouse or the shortcut keys listed in 'Keyboard shortcuts'." } )
+      "Menus open with the mouse or with Alt plus the highlighted letter " + ;
+      "(for example Alt+F for File). The full list is in 'Keyboard shortcuts'." } )
 
    AAdd( a, { "file new open save as exit bak backup", "File menu", ;
       "New            Starts an empty buffer ('noname.prg'). If the current buffer has" + hb_eol() + ;
