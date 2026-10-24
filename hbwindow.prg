@@ -3,6 +3,7 @@
 #include "box.ch"
 #include "setcurs.ch"
 #include "hbmenu.ch"
+#include "button.ch"
 
 //-----------------------------------------------------------------------------------------//
 
@@ -120,7 +121,7 @@ return nil
 
 METHOD MouseClick( nR, nC ) CLASS HbWindow
 
-   local oGet, oHit := nil, cCls := "", nHitRow := -999, nHitCol := -999
+   local oGet, oHit := nil, cCls := "", nHitRow := -999, nHitCol := -999, nHit2 := 0
    local nCur, nTgt, cKeys, nIdx, nCurV, nRight, nBottom, nHitBot := -1, nJ, nK, cK, nI2, cLine, nIdx2
 
    if Empty( ::GetList ) .or. GetActive() == nil
@@ -187,6 +188,19 @@ METHOD MouseClick( nR, nC ) CLASS HbWindow
          cKeys += Chr( K_SPACE )
       case cCls == "LISTBOX" .or. cCls == "RADIOGROUP"
          // select the clicked item; items start one row below the frame top
+         if cCls == "LISTBOX" .and. oHit:control:vScroll != NIL
+            nHit2 := oHit:control:vScroll:hitTest( nR, nC )
+            do case
+            case nHit2 == HTSCROLLUNITDEC ; cKeys += Chr( K_UP )
+            case nHit2 == HTSCROLLUNITINC ; cKeys += Chr( K_DOWN )
+            case nHit2 == HTSCROLLBLOCKDEC ; cKeys += Chr( K_PGUP )
+            case nHit2 == HTSCROLLBLOCKINC ; cKeys += Chr( K_PGDN )
+            endcase
+            if nHit2 != 0
+               __Keyboard( cKeys )
+               return .T.
+            endif
+         endif
          nIdx := nR - oHit:row - 1
          if nIdx >= 0
             if cCls == "RADIOGROUP"
@@ -204,28 +218,18 @@ METHOD MouseClick( nR, nC ) CLASS HbWindow
                   endif
                next
             else
-               // listbox: the GET buffer stays NIL, so read the bar from the
-               // screen: the selected row has a different color attribute
-               // the bar is the only item row with a different attribute;
-               // only rows with item text count (the listbox may be
-               // taller than its item count)
-               nCurV := -1
-               nJ    := oHit:col + 2
-               nIdx2 := -1
-               nK    := 0
-               for nI2 := oHit:row + 2 to nHitBot - 1
-                  if ScrCharCode( nI2, nJ ) != 32
-                     if ScrAttrCode( nI2, nJ ) != ScrAttrCode( oHit:row + 1, nJ )
-                        nK++
-                        nIdx2 := nI2 - oHit:row - 1
-                     endif
-                  endif
-               next
-               if nK == 1
-                  nCurV := nIdx2  // one row stands out: that is the bar
-               else
-                  nCurV := 0      // all others differ (or none): bar on first row
+               // listbox: the clicked row is a VISIBLE offset; the absolute
+               // item is the scroll offset (public topItem) plus that row.
+               // The bar position is the GET variable, updated live by the
+               // READ (the screen-attribute scan this replaces misread the
+               // bar whenever only two item rows were visible, and the raw
+               // row offset was wrong once the list was scrolled)
+               nIdx += oHit:control:topItem
+               nCurV := oHit:varGet()
+               if ! HB_ISNUMERIC( nCurV )
+                  nCurV := 1
                endif
+               nIdx := Max( 1, Min( oHit:control:itemCount, nIdx ) )
             endif
             if nCurV >= 0 .and. nIdx != nCurV
                cKeys += Replicate( Chr( If( nIdx > nCurV, K_DOWN, K_UP ) ), Abs( nIdx - nCurV ) )
