@@ -662,6 +662,17 @@ function MCVfsCopy( cSrc, cDst, lConfirm, lAll, oApp )
    local aE, aX, lOk, cErr
 
    if MCVfsKind( cDst ) != "local"
+      if ( MCVfsKind( cDst ) == "uzip" .or. MCVfsKind( cDst ) == "utar" ) .and. ;
+         MCVfsKind( cSrc ) == "local"
+         // local -> archive: staged add with backup/rollback (mcarcwrite.prg)
+         if MCVfsArchiveAdd( cDst, cSrc )
+            return .T.
+         endif
+         cErr := MCVfsTakeError()
+         MCMsgBox( "Copy", "Cannot add to the archive:" + Chr( 10 ) + cDst + ;
+                   If( Empty( cErr ), "", Chr( 10 ) + "Reason: " + cErr ) )
+         return .F.
+      endif
       MCMsgBox( "Copy", "The " + MCVfsKind( cDst ) + " provider is read-only in this demo:" + Chr( 10 ) + ;
                 "no writing, deleting or moving into it. Nothing changed." )
       return .F.
