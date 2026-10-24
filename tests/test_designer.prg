@@ -689,6 +689,25 @@ procedure Main()
    Check( "snap move never sticks", oD2:aControls[ 1 ][ "row" ] == 4 )
    Check( "toggle is not a history entry", Len( oD2:aUndo ) == 1 )
 
+   // generate and open (QueueOpen contract)
+   oD2 = HbDesigner():New( TStubIdeQueue() )
+   oD2:cDlgName = "gqotest1"
+   oD2:GenerateAndOpen()
+   Check( "gen+open writes the file", File( "gqotest1.prg" ) )
+   Check( "gen+open enqueues on the IDE", Len( oD2:oIde:aQueued ) == 1 .and. oD2:oIde:aQueued[ 1 ] == "gqotest1.prg" )
+   Check( "gen+open exits when clean", oD2:lEnd )
+   FErase( "gqotest1.prg" )
+   oD2 = HbDesigner():New( TStubIde() )
+   oD2:cDlgName = "gqotest2"
+   oD2:GenerateAndOpen()
+   Check( "gen+open without QueueOpen still writes", File( "gqotest2.prg" ) )
+   Check( "gen+open without QueueOpen does not exit", ! oD2:lEnd )
+   FErase( "gqotest2.prg" )
+   oD2 = HbDesigner():New( TStubIdeQueue() )
+   oD2:cDlgName = "gqono/such"
+   oD2:GenerateAndOpen()
+   Check( "failed write enqueues nothing", Empty( oD2:oIde:aQueued ) )
+   Check( "failed write does not exit", ! oD2:lEnd )
    QOut( "" )
    QOut( "PASSED: " + hb_ntos( s_nPassed ) + "  FAILED: " + hb_ntos( s_nFailed ) )
    ErrorLevel( If( s_nFailed == 0, 0, 1 ) )
@@ -723,4 +742,12 @@ CLASS TStubIde
    METHOD SuspendStatus() INLINE nil
    METHOD ResumeStatus()  INLINE nil
    METHOD Repaint()       INLINE nil
+ENDCLASS
+
+CLASS TStubIdeQueue
+   DATA aQueued INIT {}
+   METHOD SuspendStatus() INLINE nil
+   METHOD ResumeStatus()  INLINE nil
+   METHOD Repaint()       INLINE nil
+   METHOD QueueOpen( cFile ) INLINE AAdd( ::aQueued, cFile )
 ENDCLASS
