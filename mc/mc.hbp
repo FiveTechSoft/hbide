@@ -8,3 +8,4 @@ mcview.prg
 ../hbwindow.prg
 ../hbmenu.prg
 mcbutton.prg
+mcposix.c
