@@ -199,6 +199,7 @@ METHOD Activate() CLASS HbDesigner
    ::RegisterIdles()
 
    ::ShowHint( HINT_CANVAS )
+   DsnTrace( "DSN start max=" + Str( MaxRow(), 3 ) + "," + Str( MaxCol(), 4 ) )
 
    while ! ::lEnd
 
@@ -379,6 +380,9 @@ METHOD Activate() CLASS HbDesigner
                ::DrawInspector()
             endif
 
+         case nKey == K_LBUTTONUP
+            DsnTrace( "UP mainloop r=" + Str( MRow(), 4 ) + " c=" + Str( MCol(), 4 ) )
+
          case nKey == K_LBUTTONDOWN
             if ::lPlacing
                if ::HitClient( MRow(), MCol() )
@@ -402,7 +406,15 @@ METHOD Activate() CLASS HbDesigner
                      ::lInspFocus = .F.
                      ::ShowHint( HINT_CANVAS )
                   endif
+                  DsnTrace( "PRESS r=" + Str( MRow(), 4 ) + " c=" + Str( MCol(), 4 ) + ;
+                     " wnd=" + Str( ::oWnd:nTop, 3 ) + "," + Str( ::oWnd:nLeft, 3 ) + ;
+                     " view=" + Str( ::nViewRow, 3 ) + "," + Str( ::nViewCol, 3 ) )
                   nIndex = ::HitTest( MRow(), MCol() )
+                  DsnTrace( "HIT idx=" + Str( nIndex, 3 ) + ;
+                     If( Len( ::aControls ) > 0, " c1=" + Str( ::aControls[ 1 ][ "row" ], 3 ) + ;
+                     "," + Str( ::aControls[ 1 ][ "col" ], 3 ) + " sz=" + ;
+                     Str( DsnControlSize( ::aControls[ 1 ] )[ 1 ], 3 ) + "," + ;
+                     Str( DsnControlSize( ::aControls[ 1 ] )[ 2 ], 3 ), "" ) )
                   if nIndex > 0
                      ::nSelected = nIndex
                      ::nInspField = 1
@@ -852,12 +864,15 @@ METHOD DragControl( nIndex, nMRow, nMCol ) CLASS HbDesigner
    local nOffR  := nMRow - ( ::oWnd:nTop + 1 + oCtrl[ "row" ] - ::nViewRow )
    local nOffC  := nMCol - ( ::oWnd:nLeft + 1 + oCtrl[ "col" ] - ::nViewCol )
    local nNewRow, nNewCol, nMaxRow, nMaxCol
+   local nIter  := 0
 
    nMaxRow = ::nDlgHeight - 2 - aSize[ 2 ]
    nMaxCol = ::nDlgWidth  - 2 - aSize[ 1 ]
 
+   DsnTrace( "DRAG enter idx=" + Str( nIndex, 3 ) + " leftdown=" + If( MLeftDown(), "T", "F" ) )
    ::BeginBurst()
    while MLeftDown()
+      nIter++
       nNewRow = Max( 0, Min( nMaxRow, MRow() - ::oWnd:nTop - 1 - nOffR + ::nViewRow ) )
       nNewCol = Max( 0, Min( nMaxCol, MCol() - ::oWnd:nLeft - 1 - nOffC + ::nViewCol ) )
       if ::lSnap
@@ -873,6 +888,7 @@ METHOD DragControl( nIndex, nMRow, nMCol ) CLASS HbDesigner
    enddo
 
    ::CommitBurst()
+   DsnTrace( "DRAG exit iter=" + Str( nIter, 6 ) + " row=" + Str( oCtrl[ "row" ], 3 ) + " col=" + Str( oCtrl[ "col" ], 3 ) )
 
 return nil
 
@@ -911,9 +927,12 @@ METHOD DragResize( nIndex ) CLASS HbDesigner
 
    local oCtrl := ::aControls[ nIndex ]
    local aSize, nTW, nTH
+   local nIter := 0
 
+   DsnTrace( "RESIZE enter idx=" + Str( nIndex, 3 ) + " leftdown=" + If( MLeftDown(), "T", "F" ) )
    ::BeginBurst()
    while MLeftDown()
+      nIter++
       aSize = DsnControlSize( oCtrl )
       nTW   = MCol() - ::oWnd:nLeft - 1 - oCtrl[ "col" ] + ::nViewCol + 1
       nTH   = MRow() - ::oWnd:nTop - 1 - oCtrl[ "row" ] + ::nViewRow + 1
@@ -929,6 +948,8 @@ METHOD DragResize( nIndex ) CLASS HbDesigner
    enddo
 
    ::CommitBurst()
+   aSize = DsnControlSize( oCtrl )
+   DsnTrace( "RESIZE exit iter=" + Str( nIter, 6 ) + " w=" + Str( aSize[ 1 ], 3 ) + " h=" + Str( aSize[ 2 ], 3 ) )
 
 return nil
 
@@ -1032,7 +1053,7 @@ METHOD DrawControls() CLASS HbDesigner
    if ! ::lPlacing
       aRect = ::ResizeHandlePos()
       if aRect[ 1 ] >= 0 .and. ::HitClient( aRect[ 1 ], aRect[ 2 ] )
-         hb_DispOutAt( aRect[ 1 ], aRect[ 2 ], hb_UTF8ToStr( "█" ), "N+/W" )
+         hb_DispOutAt( aRect[ 1 ], aRect[ 2 ], hb_UTF8ToStr( "â" ), "N+/W" )
       endif
    endif
 
@@ -1396,6 +1417,9 @@ METHOD FitWindow() CLASS HbDesigner
       :nRight  = :nLeft + aSize[ 1 ] - 1
       :nBottom = :nTop + aSize[ 2 ] - 1
    end
+   DsnTrace( "FIT rect=" + Str( ::oWnd:nTop, 3 ) + "," + Str( ::oWnd:nLeft, 3 ) + ;
+      "-" + Str( ::oWnd:nBottom, 3 ) + "," + Str( ::oWnd:nRight, 3 ) + ;
+      " max=" + Str( MaxRow(), 3 ) + "," + Str( MaxCol(), 4 ) )
 
 return nil
 
@@ -2465,7 +2489,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
          cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", CLR_GET ) )
          nWidth = hb_HGetDef( oCtrl, "width", 10 )
          hb_DispOutAt( nARow, nACol, ;
-            Replicate( hb_UTF8ToStr( "░" ), Min( nWidth, Max( 0, nMaxCol - nACol + 1 ) ) ), cColor )
+            Replicate( hb_UTF8ToStr( "â" ), Min( nWidth, Max( 0, nMaxCol - nACol + 1 ) ) ), cColor )
 
       case oCtrl[ "type" ] == DSN_CHECKBOX
          cColor = If( lSelected, cSelColor, If( lDarkDlg, cDlgText, CLR_CHECKBOX ) )
@@ -2486,12 +2510,12 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
                SubStr( cText, 1, Max( 0, nMaxCol - nACol + 1 ) ), cColor )
             // shadow: right cell + bottom row, same look as the runtime PushButton
             if nACol + nWidth <= nMaxCol
-               hb_DispOutAt( nARow, nACol + nWidth, hb_UTF8ToStr( "▄" ), cShadow )
+               hb_DispOutAt( nARow, nACol + nWidth, hb_UTF8ToStr( "â" ), cShadow )
             endif
             if nARow + 1 < oWnd:nBottom .and. nARow + 1 <= MaxRow()
                n = Min( nWidth, Max( 0, nMaxCol - nACol ) )
                if n > 0
-                  hb_DispOutAt( nARow + 1, nACol + 1, Replicate( hb_UTF8ToStr( "▀" ), n ), cShadow )
+                  hb_DispOutAt( nARow + 1, nACol + 1, Replicate( hb_UTF8ToStr( "â" ), n ), cShadow )
                endif
             endif
          endif
@@ -3405,11 +3429,11 @@ static function DsnBtnDisplayCode( cBg )
    cCode += hb_eol()
    cCode += "function DsnBtnPads()" + hb_eol()
    cCode += hb_eol()
-   cCode += 'return { hb_UTF8ToStr( " " ), hb_UTF8ToStr( " " ) }' + hb_eol()
+   cCode += 'return { hb_UTF8ToStr( "Â " ), hb_UTF8ToStr( "Â " ) }' + hb_eol()
    cCode += hb_eol()
    cCode += "function DsnBtnShades()" + hb_eol()
    cCode += hb_eol()
-   cCode += 'return { hb_UTF8ToStr( "▄" ), hb_UTF8ToStr( "▀" ) }' + hb_eol()
+   cCode += 'return { hb_UTF8ToStr( "â" ), hb_UTF8ToStr( "â" ) }' + hb_eol()
    cCode += hb_eol()
    cCode += "// pushbutton hit test override: same extent as hbbutton's BtnHitTest," + hb_eol()
    cCode += "// covering the full painted width of the bracket look" + hb_eol()
@@ -3597,3 +3621,29 @@ return { nWidth, 8, 4, aCols }
 // the loop variable would fire the LAST index for every button)
 static function DsnConfirmState( oDlg, nIdx, aRes )
 return { || aRes[ 1 ] := nIdx, oDlg:End() }
+
+//-----------------------------------------------------------------------------------------//
+// debug trace for mouse/drag diagnosis; active only with DSN_TRACE set
+
+// DsnTrace: optional designer input diagnostics, disabled by default.
+// Set env DSN_TRACE=1 to append timestamped lines to /tmp/dsn_trace.log.
+// Logs coordinates, control indices and geometry only; never captions,
+// control names or other model content.
+function DsnTrace( cMsg )
+
+   local h
+
+   if Empty( hb_GetEnv( "DSN_TRACE" ) )
+      return nil
+   endif
+   if ( h := FOpen( "/tmp/dsn_trace.log", 2 ) ) != -1
+      FSeek( h, 0, 2 )
+   else
+      h := FCreate( "/tmp/dsn_trace.log" )
+   endif
+   if h != -1
+      FWrite( h, hb_TToS( hb_DateTime() ) + " " + cMsg + hb_eol() )
+      FClose( h )
+   endif
+
+return nil
