@@ -112,8 +112,21 @@ information fields use `/bin/sh` and POSIX/GNU utilities. Windows support is
 not validated. This is a demo, not a replacement for production MC yet.
 
 Copy refuses the same file (including hard-link aliases), a directory inside
-itself, and source/destination symbolic links. Recursive failures are reported.
+itself, a destination that is an existing directory, and source/destination
+symbolic links. Recursive failures are reported.
 Move refuses an existing target rather than replacing it; cross-filesystem
 moves of directories and links remain pending. Recursive delete unlinks
-symbolic links without traversing their target. Metadata preservation,
-transactional rollback and concurrent filesystem changes are not covered.
+symbolic links without traversing their target.
+
+Overwrite protection: a copy writes to a temporary file in the destination
+directory and replaces the destination only after a complete, verified copy
+(FRead() returns 0 on both EOF and error; FError() tells them apart). If the
+final rename fails where rename does not replace existing files (Windows
+rename semantics), the previous destination is moved aside to a unique name
+and restored if the retry fails; if even the restore fails, its content is
+preserved at the backup path named in the error message. Verified with
+induced read errors (/proc/self/mem), a read-only destination directory, and
+an LD_PRELOAD shim simulating rename failures: move-aside success, successful
+restore and preserved-backup cases all exercised against the real binary.
+Fully transactional multi-file semantics, metadata beyond permissions
+(chmod --reference) and concurrent filesystem changes are not covered.
