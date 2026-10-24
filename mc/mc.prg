@@ -813,11 +813,11 @@ METHOD DlgConfirm( cTitle, cMsg, cOk ) CLASS MCApp
    // Cancel first: initial focus and any stray key fire the safe button.
    // Tab/Down moves focus to the action button, Enter fires the focused one.
    @ oDlg:nBottom - 2, oDlg:nLeft + Int( nW / 2 ) - 8 GET lDummy PUSHBUTTON ;
-      CAPTION " &Cancel " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      CAPTION " &Cancel " COLOR "W+/G,W/N,W+/G,BG+/G" ;
       STATE { || oDlg:End() }
 
    @ oDlg:nBottom - 2, oDlg:nLeft + Int( nW / 2 ) + 2 GET lDummy PUSHBUTTON ;
-      CAPTION " " + cOk + " " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      CAPTION " " + cOk + " " COLOR "W+/G,W/N,W+/G,BG+/G" ;
       STATE { || lOk := .T., oDlg:End() }
 
    oDlg:Activate( GetList )
@@ -1602,14 +1602,17 @@ return ! Empty( cOne ) .and. cOne == cTwo
 
 function FCopyText( cSrc, cDst )
 
-   local nSrc, nDst, cBuf := Space( 65536 ), nRead, lOk := .T.
+   local nSrc, nDst, cBuf := Space( 65536 ), nRead, lOk, cTmp := ""
 
    nSrc := FOpen( cSrc, 0 )
    if nSrc < 0
       MCMsgBox( "Copy", "Cannot open:" + Chr( 10 ) + cSrc )
       return .F.
    endif
-   nDst := FCreate( cDst )
+   // Write to a temp file in the destination directory first: an existing
+   // destination is only replaced after a complete, successful copy, so a
+   // failed overwrite never destroys the previous file.
+   nDst := hb_FTempCreate( hb_DirSepAdd( hb_FNameDir( cDst ) ), "hbmc",, @cTmp )
    if nDst < 0
       FClose( nSrc )
       MCMsgBox( "Copy", "Cannot create:" + Chr( 10 ) + cDst )
@@ -1617,17 +1620,31 @@ function FCopyText( cSrc, cDst )
    endif
    while ( nRead := FRead( nSrc, @cBuf, 65536 ) ) > 0
       if FWrite( nDst, Left( cBuf, nRead ) ) != nRead
-         lOk := .F.
          exit
       endif
    end
-   if FError() != 0
-      lOk := .F.
-   endif
+   lOk := ( nRead == 0 .and. FError() == 0 )   // FRead() returns 0 both at EOF and on error; FError() tells them apart
    FClose( nSrc )
    FClose( nDst )
+   if ! lOk
+      FErase( cTmp )
+      MCMsgBox( "Copy", "Copy failed:" + Chr( 10 ) + cSrc + Chr( 10 ) + ;
+                "The previous destination was left unchanged." )
+      return .F.
+   endif
+   // hb_FTempCreate() uses 0600; give the copy the source file's permissions
+   hb_ProcessRun( MCShWrap( "chmod --reference=" + ShellQuote( cSrc ) + " " + ShellQuote( cTmp ) ),, )
+   if FRename( cTmp, cDst ) != 0
+      // rename(2) replaces an existing destination on POSIX; if it did not,
+      // remove the old file explicitly and retry once
+      if FErase( cDst ) != 0 .or. FRename( cTmp, cDst ) != 0
+         FErase( cTmp )
+         MCMsgBox( "Copy", "Cannot replace destination:" + Chr( 10 ) + cDst )
+         return .F.
+      endif
+   endif
+return .T.
 
-return lOk
 
 //-----------------------------------------------------------------------------------------//
 
