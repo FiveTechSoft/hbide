@@ -143,6 +143,8 @@ METHOD New() CLASS HBIde
    __ClsModMsg( CheckBox( 0, 0 ):ClassH, "HITTEST", @ChkHitTest() )
    __ClsModMsg( RadioButto( 0, 0 ):ClassH, "HITTEST", @RadHitTest() )
 
+   DsnGetUInstall()
+
    ::nIdleStatus = hb_IdleAdd( { || ::ShowStatus() } )
    ::nLastDiskCheck = 0
 
@@ -1177,17 +1179,22 @@ return cFlags
 static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit )
 
    local cText := hb_defaultValue( cInit, "" )
-   local nPos := Len( cText ) + 1, nOfs := 0, nKey, cKey
+   local nPos := Len( cText ) + 1, nOfs := 1, nKey, cKey, cVis, nPrev
    local lInsert := .T., nOldCursor := SetCursor( SC_NORMAL )
 
+   // positions are byte offsets, always kept on character boundaries
    do while .T.
-      if nPos < nOfs + 1
-         nOfs := nPos - 1
-      elseif nPos > nOfs + nWidth
-         nOfs := nPos - nWidth
+      if nPos < nOfs
+         nOfs := nPos
       endif
-      hb_DispOutAt( nRow, nCol, PadR( SubStr( cText, nOfs + 1, nWidth ), nWidth ), "W/B" )
-      SetPos( nRow, nCol + nPos - nOfs - 1 )
+      // scroll right until the cursor cell is visible
+      do while hb_ULen( SubStr( cText, nOfs, nPos - nOfs ) ) >= nWidth .and. nOfs < nPos
+         nOfs := GetUNext( cText, nOfs )
+      enddo
+      cVis := GetUCellSlice( cText, nOfs, nWidth )
+      cVis += Space( Max( 0, nWidth - hb_ULen( cVis ) ) )
+      hb_DispOutAt( nRow, nCol, cVis, "W/B" )
+      SetPos( nRow, nCol + hb_ULen( SubStr( cText, nOfs, nPos - nOfs ) ) )
 
       nKey := Inkey( 0, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
       do case
@@ -1201,9 +1208,9 @@ static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit )
          SetCursor( nOldCursor )
          return { cText, .F., .T. }
       case nKey == K_LEFT
-         nPos := Max( nPos - 1, 1 )
+         nPos := GetUPrev( cText, nPos )
       case nKey == K_RIGHT
-         nPos := Min( nPos + 1, Len( cText ) + 1 )
+         nPos := GetUNext( cText, nPos )
       case nKey == K_HOME
          nPos := 1
       case nKey == K_END
@@ -1212,16 +1219,18 @@ static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit )
          lInsert := ! lInsert
       case nKey == K_BS
          if nPos > 1
-            cText := Stuff( cText, --nPos, 1, "" )
+            nPrev := GetUPrev( cText, nPos )
+            cText := Stuff( cText, nPrev, nPos - nPrev, "" )
+            nPos := nPrev
          endif
       case nKey == K_DEL
          if nPos <= Len( cText )
-            cText := Stuff( cText, nPos, 1, "" )
+            cText := Stuff( cText, nPos, GetUCharLen( cText, nPos ), "" )
          endif
       otherwise
          cKey := hb_keyChar( nKey )
          if Len( cKey ) > 0   // not Empty(): a typed SPACE is real data here
-            cText := Stuff( cText, nPos, If( lInsert, 0, 1 ), cKey )
+            cText := Stuff( cText, nPos, If( lInsert, 0, GetUCharLen( cText, nPos ) ), cKey )
             nPos += Len( cKey )
          endif
       endcase
