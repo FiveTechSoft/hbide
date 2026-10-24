@@ -114,6 +114,8 @@ CLASS MCApp
    DATA   lMousePages     INIT .T.
    DATA   lEqualSplit     INIT .T.
    DATA   lHorizontal     INIT .F.
+   DATA   nScrRows        INIT 0
+   DATA   nScrCols        INIT 0
    DATA   lMenubar        INIT .T.
    DATA   lCmdlineBar     INIT .T.
    DATA   lKeybar         INIT .T.
@@ -125,6 +127,7 @@ CLASS MCApp
    METHOD Activate()
    METHOD Layout()
    METHOD Repaint()
+   METHOD CheckResize()
    METHOD ShowMenuBar()
    METHOD ShowCmdLine()
    METHOD ShowKeyBar()
@@ -320,6 +323,29 @@ METHOD GrabScreen() CLASS MCApp
    ::cBackScreen := SaveScreen( 0, 0, MaxRow(), MaxCol() )
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Terminal resize (SIGWINCH): the GT updates MaxRow()/MaxCol() and repaints
+// its shadow buffer as-is, which leaves the old layout's pixels outside the
+// new geometry (double chrome). mc redraws cleanly on WINCH; do the same:
+// wipe the whole screen and relayout+repaint inside a single DispBegin so
+// the clear is never visible.
+METHOD CheckResize() CLASS MCApp
+
+   if MaxRow() != ::nScrRows .or. MaxCol() != ::nScrCols
+      ::nScrRows := MaxRow()
+      ::nScrCols := MaxCol()
+      DispBegin()
+      hb_Scroll( 0, 0, ::nScrRows, ::nScrCols, 0, 0, "W/N", " " )
+      SetPos( 0, 0 )
+      ::Layout()
+      ::Repaint()
+      DispEnd()
+      return .T.
+   endif
+
+return .F.
 
 //-----------------------------------------------------------------------------------------//
 
@@ -587,6 +613,8 @@ METHOD Activate() CLASS MCApp
    ::Layout()
    ::Rescan()
    ::Repaint()
+   ::nScrRows := MaxRow()
+   ::nScrCols := MaxCol()
 
    // mc auto_menu (setup.c:99 default FALSE): invoke the user menu at
    // startup (mc filemanager.c:1460 MSG_IDLE -> CK_UserMenu)
@@ -604,8 +632,13 @@ METHOD Activate() CLASS MCApp
             ::Rescan()
             ::Repaint()
          endif
+         ::CheckResize()
          loop
       endif
+      // Resize arrives as HB_INKEY_NEW_EVENT( HB_K_RESIZE ) (gttrm) or plain
+      // K_RESIZE (gtcrs); either way it only needs a relayout, and any other
+      // key that rode along still gets processed below.
+      ::CheckResize()
       nFlags  := hb_keyMod( nKeyRaw )
       nKey    := ::TranslateKey( hb_keyStd( nKeyRaw ) )
       lCtrl   := hb_bitAnd( nFlags, HB_KF_CTRL ) != 0
