@@ -4,6 +4,7 @@
 //
 
 #include "hbclass.ch"
+#include "inkey.ch"
 
 static s_nPassed := 0, s_nFailed := 0
 
@@ -790,6 +791,7 @@ procedure MenuTests()
 
    local oPopup, oBar, oSub, lRan := .F.
    local oD, cCode, cJson, hModel
+   local bSentDn, bSentUp
 
    // standalone popup (designer F2 palette path)
    oPopup := HbMenu():New( .T. )
@@ -851,6 +853,46 @@ procedure MenuTests()
    Check( "esc layering inspector", DsnEscTarget( .F., .T., .T. ) == "inspector" )
    Check( "esc layering dirty", DsnEscTarget( .F., .F., .T. ) == "dirty" )
    Check( "esc layering exit", DsnEscTarget( .F., .F., .F. ) == "exit" )
+
+   // PgDn/PgUp listbox paging: clamped page sizes
+   Check( "page steps full down",      HBListBoxPageSteps( 1, 1, 3, 12 ) == 3 )
+   Check( "page steps partial last",   HBListBoxPageSteps( 1, 10, 3, 12 ) == 2 )
+   Check( "page steps clamp last",     HBListBoxPageSteps( 1, 12, 3, 12 ) == 0 )
+   Check( "page steps clamp first",    HBListBoxPageSteps( -1, 1, 3, 12 ) == 0 )
+   Check( "page steps full up",        HBListBoxPageSteps( -1, 10, 3, 12 ) == 3 )
+   Check( "page steps partial first",  HBListBoxPageSteps( -1, 2, 3, 12 ) == 1 )
+
+   // page trap install/remove: restore, nested and consecutive dialogs
+   bSentDn := { || "sentinel-dn" }
+   bSentUp := { || "sentinel-up" }
+   SetKey( K_PGDN, bSentDn )
+   SetKey( K_PGUP, bSentUp )
+   HBPageTrapInstall()
+   Check( "page trap armed depth 1", HBPageTrapDepth() == 1 )
+   HBPageTrapInstall()
+   Check( "page trap nested depth 2", HBPageTrapDepth() == 2 )
+   HBPageTrapRemove()
+   Check( "page trap nested keeps outer", HBPageTrapDepth() == 1 )
+   HBPageTrapRemove()
+   Check( "page trap disarmed", HBPageTrapDepth() == 0 )
+   Check( "page trap restores pgdn", HB_ISBLOCK( SetKey( K_PGDN ) ) .and. Eval( SetKey( K_PGDN ) ) == "sentinel-dn" )
+   Check( "page trap restores pgup", HB_ISBLOCK( SetKey( K_PGUP ) ) .and. Eval( SetKey( K_PGUP ) ) == "sentinel-up" )
+   HBPageTrapInstall()
+   HBPageTrapRemove()
+   Check( "page trap consecutive restores", HB_ISBLOCK( SetKey( K_PGDN ) ) .and. Eval( SetKey( K_PGDN ) ) == "sentinel-dn" )
+
+   // a leaked idle re-arm after the READ must not reinstall a handler
+   HBRekeyRestore( K_PGUP, { || "leaked" }, { nil } )
+   Check( "page trap no idle leak", Eval( SetKey( K_PGUP ) ) == "sentinel-up" )
+
+   // while armed, the idle re-arm does reinstall (normal rekey path)
+   HBPageTrapInstall()
+   HBRekeyRestore( K_PGUP, { || "rearmed" }, { nil } )
+   Check( "page trap idle rearm while armed", Eval( SetKey( K_PGUP ) ) == "rearmed" )
+   HBPageTrapRemove()
+   Check( "page trap restore after rearm", Eval( SetKey( K_PGUP ) ) == "sentinel-up" )
+   SetKey( K_PGDN, NIL )
+   SetKey( K_PGUP, NIL )
 
    // custom focus swaps the focused slots, white and colored backgrounds
    Check( "get focus custom white", DsnClrGetFor( "W+/W", "Y+/R" ) == "W/B,Y+/R,W+/W,GR+/W" )
