@@ -38,19 +38,19 @@ static function MCViewerRun( cTitle, cText )
       nLeft := Max( nLeft, 0 )
       DispBegin()
       hb_Scroll( 0, 0, MaxRow(), MaxCol(), 0, 0, "N/BG", " " )
-      hb_DispOutAt( 0, 0, PadR( " " + hb_UTF8SubStr( cTitle, 1, nW - 30 ) + ;
+      hb_DispOutAt( 0, 0, hb_UPadR( " " + hb_UTF8SubStr( cTitle, 1, nW - 30 ) + ;
                     "  " + If( lHex, "Hex", If( lWrap, "Wrap", "Text" ) ) + ;
                     "  line " + hb_ntos( nTop + 1 ) + "/" + hb_ntos( Len( aLines ) ), nW ), "N/W" )
       if lHex
          ViewerHex( cText, nHexOff, nRows, nW )
       else
          for nRow := 1 to Min( nRows, Len( aLines ) - nTop )
-            hb_DispOutAt( nRow, 0, PadR( hb_UTF8SubStr( aLines[ nTop + nRow ], nLeft + 1, ;
+            hb_DispOutAt( nRow, 0, hb_UPadR( hb_UTF8SubStr( aLines[ nTop + nRow ], nLeft + 1, ;
                           If( lWrap, nW, nW ) ), nW ), "N/BG" )
          next
       endif
       cStatus := " F3 quit  F4 hex  F2 wrap  F5 goto  F7 search  arrows scroll "
-      hb_DispOutAt( MaxRow(), 0, PadR( cStatus, nW ), "N/W" )
+      hb_DispOutAt( MaxRow(), 0, hb_UPadR( cStatus, nW ), "N/W" )
       DispEnd()
 
       nKey := InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
@@ -204,7 +204,7 @@ function MCEditFile( cFile )
    oEditor:Display()
 
    while ! lEnd
-      hb_DispOutAt( MaxRow(), 0, PadR( " F2 save  F10/Esc quit  " + cFile + ;
+      hb_DispOutAt( MaxRow(), 0, hb_UPadR( " F2 save  F10/Esc quit  " + cFile + ;
                     If( oEditor:Changed(), " [modified]", "" ), MaxCol() + 1 ), "N/W" )
       nKey := InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
       do case
@@ -242,7 +242,7 @@ static function DlgConfirmS( cMsg )
 
    hb_DispBox( nRow, nCol, nRow + 4, nCol + 40, hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "N/W" )
    hb_Scroll( nRow + 1, nCol + 1, nRow + 3, nCol + 39, 0, 0, "N/W", " " )
-   hb_DispOutAt( nRow + 2, nCol + 2, PadR( cMsg, 38 ), "N/W" )
+   hb_DispOutAt( nRow + 2, nCol + 2, hb_UPadR( cMsg, 38 ), "N/W" )
    hb_DispOutAt( nRow + 3, nCol + 2, "Y = yes, N = no", "N/W" )
    while .T.
       nKey := InKey( 0 )
