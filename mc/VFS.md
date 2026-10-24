@@ -58,11 +58,19 @@ Integration points (concrete):
 ## Providers, in implementation order
 
 1. extfs (local, no server): browse archives in place. `tar tf` / `unzip -l`
-   for List, `tar xOf` / `unzip -p` for Read. Write/Delete/Mkdir only where
-   the tool supports it safely (zip: yes via `zip`/`zip -d`; tar: rewrite
-   via temp archive). Fixtures: generated archives under /tmp, all
-   throwaway. First provider because it needs no network and exercises the
-   full routing layer.
+   for List, `tar xOf` / `unzip -p` for Read. Write landed 2026-10-24
+   (mcarcwrite.prg): F5 add, F8 delete member and F7 mkdir member work
+   inside ZIP and TAR panels. Nothing is edited in place: every change
+   goes through a staging tree (ZIP merges via `zip -r` / `zip -d`; TAR
+   is extracted, modified and repacked with compression by extension).
+   The original TAR is backed up next to itself (.hbbak) and restored on
+   any repack failure; temp names never collide with member names.
+   Verified: byte-exact preservation of untouched members including
+   dotfiles, add/delete/mkdir round-trips, a read-only archive fails with
+   a message and stays byte-identical with no temp leftovers, symlink
+   copies and archive->archive copies are refused. Fixtures: generated
+   archives under /tmp, all throwaway. First provider because it needs
+   no network and exercises the full routing layer.
 2. FTP read-only, anonymous only: IMPLEMENTED (ftp://). List/RETR via
    curl; dates use the classic LIST format (recent entries carry no year;
    the current year is assumed). Test fixture: the public anonymous
