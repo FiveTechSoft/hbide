@@ -11,7 +11,7 @@ procedure Main()
 
    local hModel, cCode, cJson, hBack, aSize
    local oD, oD2, aRect, nMaxRow, nMaxCol, oCtrl, cCellRef, cCellNow
-   local oDlg, nCell
+   local oDlg, nCell, cBefore, cAfter
 
    // DsnControlSize
    aSize = DsnControlSize( { "type" => "say", "caption" => "Name:" } )
@@ -435,10 +435,24 @@ procedure Main()
       oDlg:nTop == 0 .and. oDlg:nLeft == 0 .and. ;
       oDlg:nBottom == MaxRow() .and. oDlg:nRight == MaxCol() )
    Check( "oversized dialog reports clamp", oDlg:lClamped )
+   Check( "oversized dialog keeps requested size", ;
+      oDlg:nReqWidth == 100 .and. oDlg:nReqHeight == 45 )
    nCell = Asc( SaveScreen( 0, 0, 0, 0 ) )
    Check( "oversized dialog paints its frame", nCell != 32 .and. nCell != 0 )
    oDlg:Hide()
    Check( "hide restores screen after clamp", Asc( SaveScreen( 0, 0, 0, 0 ) ) == 32 )
+
+   // full-buffer proof: paint a deterministic screen, open an oversized
+   // dialog, hide it and require the whole visible area back byte-exact
+   CLS
+   for nCell = 0 to MaxRow()
+      hb_DispOutAt( nCell, 0, Replicate( Chr( 65 + nCell ), MaxCol() + 1 ) )
+   next
+   cBefore = SaveScreen( 0, 0, MaxRow(), MaxCol() )
+   oDlg = HBWindow():Dialog( "Big", 100, 45, "W+/B" )
+   oDlg:Hide()
+   cAfter = SaveScreen( 0, 0, MaxRow(), MaxCol() )
+   Check( "oversized hide restores full screen", cAfter == cBefore )
 
    oDlg = HBWindow():Dialog( "Small", 40, 10, "W+/B" )
    Check( "fitting dialog keeps its geometry", ;
@@ -447,6 +461,8 @@ procedure Main()
       oDlg:nLeft == Int( ( MaxCol() / 2 ) - 20 ) .and. ;
       oDlg:nRight == Int( ( MaxCol() / 2 ) + 20 ) )
    Check( "fitting dialog is not clamped", ! oDlg:lClamped )
+   Check( "fitting dialog keeps requested size", ;
+      oDlg:nReqWidth == 40 .and. oDlg:nReqHeight == 10 )
    oDlg:Hide()
 
    // placing ghost clamps to the last origin where the whole control fits,
