@@ -694,6 +694,11 @@ METHOD LoadFile( cFileName ) CLASS HBSrcEdit
    ::cFile := cFileName
    xRet := ::LoadText( cRaw )
 
+   if hb_FSize( cFileName ) > 8 * 1024 * 1024
+      Alert( "File larger than 8 MB: the disk watch compares date+time+size " + ;
+             "only, so a same-size external edit may go unnoticed until you save" )
+   endif
+
    ::cSeenStamp := ::cLoadStamp := ::DiskStamp( ::cFile )
 
 return xRet
@@ -703,7 +708,10 @@ return xRet
 // date+time+size+content stamp of the file on disk ("" when missing or
 // unreadable). The MD5 of the bytes catches a same-size edit inside the
 // filesystem timestamp resolution, which the plain stamp could not tell
-// apart. Files over 8 MB keep the plain stamp to bound the watch cost.
+// apart. Cap: files over 8 MB keep the plain stamp - measured cost of
+// read+MD5 per watch check here: 0.15 ms (100 KB), 1.6 ms (1 MB),
+// 12.9 ms (8 MB), 60 ms (32 MB); 8 MB bounds the hitch at ~13 ms per
+// 2-second check, 32 MB would be a visible 60 ms hitch.
 METHOD DiskStamp( cFile ) CLASS HBSrcEdit
 
    local aDir, cStamp
