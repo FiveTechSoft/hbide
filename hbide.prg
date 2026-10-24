@@ -67,6 +67,14 @@ METHOD New() CLASS HBIde
    Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
    SetMode( 40, 120 )
 
+   // xterm defaults to 8-bit meta (eightBitInput): Alt+o arrives as raw byte
+   // 0xEF and leaks into the editor instead of opening menus. Ask xterm for
+   // ESC-prefix meta (its metaSendsEscape mode) so Alt+letter works without
+   // the user having to configure the terminal. Restored on exit.
+   if "xterm" $ Lower( GetEnv( "TERM" ) )
+      XTermMetaEsc( .T. )
+   endif
+
    ::oMenu       = ::BuildMenu()
    ::oWndCode    = HBWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
    ::oEditor     = BuildEditor()
@@ -333,6 +341,12 @@ METHOD Activate() CLASS HBIde
       if nKey >= K_ALT_Q .and. nKey <= K_ALT_M
          SetCursor( SC_NONE )
          ::oMenu:ProcessKey( nKey )
+         if ! ::oMenu:IsOpen()
+            if ::oWndCode:lVisible
+               ::oEditor:ShowCursor()
+            endif
+         endif
+         loop   // Alt combos are menu-reserved: never fall through to the editor
       endif
 
       // Handle F5 for Find
@@ -408,6 +422,10 @@ METHOD Activate() CLASS HBIde
    end
 
    ::Hide()
+
+   if "xterm" $ Lower( GetEnv( "TERM" ) )
+      XTermMetaEsc( .F. )   // restore xterm meta modes
+   endif
 
 return nil
 
@@ -917,5 +935,28 @@ function RadDisplay()
    DispEnd()
 
 return Self
+
+//-----------------------------------------------------------------------------------------//
+
+//-----------------------------------------------------------------------------------------//
+
+// Ask xterm for ESC-prefix meta (eightBitInput off + metaSendsEscape on) or
+// restore its defaults. QQOut cannot be used: gttrm draws OutStd into the
+// screen buffer instead of forwarding it to the terminal, so the escape
+// never reaches xterm. Writing to /dev/tty bypasses the GT.
+function XTermMetaEsc( lOn )
+
+   local nH := FOpen( "/dev/tty", 1 )   // FO_WRITE
+
+   if nH != -1
+      if lOn
+         FWrite( nH, Chr( 27 ) + "[?1034l" + Chr( 27 ) + "[?1036h" )
+      else
+         FWrite( nH, Chr( 27 ) + "[?1036l" + Chr( 27 ) + "[?1034h" )
+      endif
+      FClose( nH )
+   endif
+
+return nil
 
 //-----------------------------------------------------------------------------------------//
