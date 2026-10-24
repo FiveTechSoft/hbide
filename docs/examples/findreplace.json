@@ -1,0 +1,90 @@
+{
+  "name": "FindReplace",
+  "caption": "Find and Replace",
+  "width": 62,
+  "height": 22,
+  "color": "W+/W",
+  "controls":
+  [
+    {
+      "type": "say",
+      "row": 2,
+      "col": 2,
+      "caption": "Find what:"
+    },
+    {
+      "type": "get",
+      "row": 2,
+      "col": 13,
+      "variable": "cFind",
+      "width": 24
+    },
+    {
+      "type": "say",
+      "row": 4,
+      "col": 2,
+      "caption": "Replace with:"
+    },
+    {
+      "type": "get",
+      "row": 4,
+      "col": 16,
+      "variable": "cReplace",
+      "width": 24
+    },
+    {
+      "type": "checkbox",
+      "row": 6,
+      "col": 2,
+      "caption": "Case sensitive",
+      "variable": "lCase"
+    },
+    {
+      "type": "checkbox",
+      "row": 7,
+      "col": 2,
+      "caption": "Whole words only",
+      "variable": "lWhole"
+    },
+    {
+      "type": "radiogroup",
+      "row": 6,
+      "col": 32,
+      "variable": "nDir",
+      "items": "&Up,&Down"
+    },
+    {
+      "type": "listbox",
+      "row": 10,
+      "col": 2,
+      "variable": "nFile",
+      "items": "main,utils,res,readme,hbide,editor,hbwindow,hbmenu",
+      "width": 24,
+      "height": 6
+    },
+    {
+      "type": "button",
+      "row": 16,
+      "col": 8,
+      "caption": "Find",
+      "accelerator": "F",
+      "action": "lOk := .T., oDlg:End()"
+    },
+    {
+      "type": "button",
+      "row": 16,
+      "col": 20,
+      "caption": "Replace All",
+      "accelerator": "R",
+      "action": "lOk := .T., oDlg:End()"
+    },
+    {
+      "type": "button",
+      "row": 16,
+      "col": 38,
+      "caption": "Cancel",
+      "accelerator": "C",
+      "action": "oDlg:End()"
+    }
+  ]
+}
