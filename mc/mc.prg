@@ -1741,14 +1741,23 @@ static function MoveItem( cSrc, cDst, oApp )
    if FRename( cSrc, cDst ) == 0
       return .T.
    endif
-   if hb_DirExists( cSrc ) .or. ! Empty( hb_FLinkRead( cSrc ) )
-      MCMsgBox( "Rename/Move", "Cross-filesystem directory/link move is not supported yet." )
+   // Cross-filesystem fallback: copy first and remove the source only after
+   // a complete copy, so a partial failure never deletes data.
+   if ! Empty( hb_FLinkRead( cSrc ) )
+      // Recreate the symlink at the destination, then remove the original.
+      if hb_FLinkSym( hb_FLinkRead( cSrc ), cDst ) == 0
+         return FErase( cSrc ) == 0
+      endif
+      MCMsgBox( "Rename/Move", "Cannot create link:" + Chr( 10 ) + cDst )
       return .F.
    endif
-   if CopyItem( cSrc, cDst, .T., @lAll, oApp )
-      return FErase( cSrc ) == 0
+   if ! CopyItem( cSrc, cDst, .T., @lAll, oApp )
+      return .F.   // copy failed: source untouched, partial copy may remain
    endif
-return .F.
+   if hb_DirExists( cSrc )
+      return DeleteTree( cSrc )
+   endif
+return FErase( cSrc ) == 0
 
 //-----------------------------------------------------------------------------------------//
 
