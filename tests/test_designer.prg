@@ -286,6 +286,8 @@ procedure Main()
    Check( "clr listbox contrast", "COLOR 'N/W,W+/N,N/W,W+/G,N/W,W+/W,GR+/W'" $ cCode )
    Check( "clr button display override", "__ClsModMsg( PushButton( 0, 0 ):ClassH, 'DISPLAY', @DsnBtnDisplay() )" $ cCode ;
           .and. "function DsnBtnDisplay()" $ cCode )
+   Check( "clr button hittest override", "__ClsModMsg( PushButton( 0, 0 ):ClassH, 'HITTEST', @DsnBtnHitTest() )" $ cCode ;
+          .and. "function DsnBtnHitTest( nMRow, nMCol )" $ cCode .and. 'nLen += 4' $ cCode )
    Check( "clr shadow on dialog bg", ', "N/B" )' $ cCode )
 
    // default white dialog keeps hbide palettes byte-exact (regression)
@@ -299,7 +301,8 @@ procedure Main()
    Check( "def get palette", "COLOR 'W/B,W+/B,W+/W,GR+/W'" $ cCode )
    Check( "def checkbox palette", "COLOR 'N/W,BG+/W,N/W,GR+/W'" $ cCode )
    Check( "def button palette", "COLOR 'GR+/G,W+/G,N/G,BG+/G'" $ cCode )
-   Check( "def no override", ! ( "__ClsModMsg" $ cCode ) .and. ! ( "DsnBtnDisplay" $ cCode ) )
+   Check( "def no override", ! ( "__ClsModMsg" $ cCode ) .and. ! ( "DsnBtnDisplay" $ cCode ) ;
+          .and. ! ( "DsnBtnHitTest" $ cCode ) )
 
    // canvas button shadow follows the dialog background (runtime equivalence)
    Check( "shadow default white", DsnCanvasShadowFor( "W+/W" ) == "N/W" )
