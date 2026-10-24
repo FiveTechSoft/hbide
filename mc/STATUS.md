@@ -227,6 +227,12 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - Esc key mode generalized to all 13 dialogs via the MCDlgEscArm helper:
   with Single press OFF, one Esc keeps the dialog and Esc Esc closes it;
   proven live in both the Configuration and the UserMenu dialogs
+- Drop down menus (mc drop_menus, setup.c:101, default FALSE): dedicated
+  bar handler in mc/ (the shared HbMenu class only supports dropping
+  immediately). OFF: F9 lights the bar without dropping, Left/Right move
+  the highlight along the bar, Enter/Down drops the current menu, Esc or
+  any other key unlights the bar - all proven in captures. ON: F9 drops
+  the Left menu immediately (proven). Ini round-trip 0/1 verified
 - Auto menus: the user menu opens by itself at startup when ON (mc
   filemanager.c:1460 MSG_IDLE -> user menu), proven live with the user's
   own .mc.menu entries visible
@@ -259,10 +265,6 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 ## Light (partial)
 
-- Drop down menus: checkbox + ini persist; the behavior is pending - the
-  shared menu class (HBDbMenu/HbMenu, repo-root, read-only here) only
-  supports dropping the menu immediately; mc's default bar-lit state
-  needs a dedicated bar handler in mc/
 - COW: the actual reflink effect is env-blocked (no COW-capable
   filesystem in the sandbox); only the attempt + fallback are proven
 
