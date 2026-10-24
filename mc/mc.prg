@@ -82,6 +82,8 @@ CLASS MCApp
    DATA   lShellPatterns  INIT .T.
    DATA   lShowBackup     INIT .T.
    DATA   lMarkDown       INIT .T.
+   DATA   lLynxMotion     INIT .F.
+   DATA   lMkdirAutoname  INIT .F.
    DATA   lEqualSplit     INIT .T.
    DATA   lHorizontal     INIT .F.
    DATA   lMenubar        INIT .T.
@@ -616,7 +618,13 @@ METHOD Activate() CLASS MCApp
 
          case ( nKey == K_UP .or. nKey == K_DOWN .or. nKey == K_LEFT .or. nKey == K_RIGHT .or. ;
                 nKey == K_PGUP .or. nKey == K_PGDN .or. nKey == K_HOME .or. nKey == K_END ) .and. nFlags == 0
-            ::ActivePanel():Move( nKey )
+            if ::lLynxMotion .and. nKey == K_RIGHT .and. ::ActivePanel():LynxEnter()
+               // entered the dir under the cursor
+            elseif ::lLynxMotion .and. nKey == K_LEFT .and. ::ActivePanel():LynxUp()
+               // went to the parent dir
+            else
+               ::ActivePanel():Move( nKey )
+            endif
             ::Repaint()
 
          case nKey == K_INS .and. nFlags == 0
@@ -1445,8 +1453,9 @@ METHOD OptionsConfig() CLASS MCApp
    local lHidden := ::lShowHidden, lMini := ::lMiniStatus
    local lTotals := ::lComputeTotals, lFree := ::lShowFreeSpace
    local lSave := ::lAutoSaveSetup, lPat := ::lShellPatterns
+   local lMkA := ::lMkdirAutoname
 
-   oDlg = HBWindow():Dialog( "Configuration", 44, 13, "W+/W" )
+   oDlg = HBWindow():Dialog( "Configuration", 44, 14, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lHidden ;
@@ -1479,6 +1488,11 @@ METHOD OptionsConfig() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
+   @ oDlg:nTop + 8, oDlg:nLeft + 3 GET lMkA ;
+      CHECKBOX CAPTION "Mkdi&r autoname" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
@@ -1501,6 +1515,7 @@ METHOD OptionsConfig() CLASS MCApp
       ::lShowFreeSpace := lFree
       ::lAutoSaveSetup := lSave
       ::lShellPatterns := lPat
+      ::lMkdirAutoname := lMkA
       ::Rescan()
    endif
 
@@ -1571,8 +1586,9 @@ METHOD OptionsPanel() CLASS MCApp
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
    local lMix := ::lMixDirs, lBak := ::lShowBackup, lMd := ::lMarkDown
+   local lHidden := ::lShowHidden, lLynx := ::lLynxMotion
 
-   oDlg = HBWindow():Dialog( "Panel options", 44, 10, "W+/W" )
+   oDlg = HBWindow():Dialog( "Panel options", 44, 12, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lMix ;
@@ -1587,6 +1603,16 @@ METHOD OptionsPanel() CLASS MCApp
 
    @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lMd ;
       CHECKBOX CAPTION "Mar&k moves down" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 5, oDlg:nLeft + 3 GET lHidden ;
+      CHECKBOX CAPTION "Show &hidden files" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 6, oDlg:nLeft + 3 GET lLynx ;
+      CHECKBOX CAPTION "L&ynx-like motion" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
@@ -1609,6 +1635,8 @@ METHOD OptionsPanel() CLASS MCApp
       ::lMixDirs := lMix
       ::lShowBackup := lBak
       ::lMarkDown := lMd
+      ::lShowHidden := lHidden
+      ::lLynxMotion := lLynx
       ::Rescan()
    endif
 
@@ -2508,7 +2536,9 @@ METHOD FileMkdir() CLASS MCApp
       MCMsgBox( "Make Directory", "Mkdir is not supported on this provider (read-only VFS)." )
       return nil
    endif
-   cName := ::DlgInput( "Make Directory", "New directory:", "", 45 )
+   cName := ::DlgInput( "Make Directory", "New directory:", ;
+      If( ::lMkdirAutoname .and. ::ActivePanel():Current() != nil, ;
+          ::ActivePanel():Current()[ P_NAME ], "" ), 45 )
 
    if cName != nil .and. ! Empty( cName )
       cKind := MCVfsKind( ::ActivePanel():cPath )
@@ -3199,6 +3229,8 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "shellpatterns"  ; ::lShellPatterns := ( cVal == "1" )
          case cKey == "showbackup"     ; ::lShowBackup := ( cVal == "1" )
          case cKey == "markdown"       ; ::lMarkDown := ( cVal == "1" )
+         case cKey == "lynxmotion"     ; ::lLynxMotion := ( cVal == "1" )
+         case cKey == "mkdirautoname"  ; ::lMkdirAutoname := ( cVal == "1" )
          case cKey == "equalsplit"     ; ::lEqualSplit := ( cVal == "1" )
          case cKey == "horizontal"     ; ::lHorizontal := ( cVal == "1" )
          case cKey == "menubar"        ; ::lMenubar := ( cVal == "1" )
@@ -3242,6 +3274,8 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "shellpatterns=" + If( ::lShellPatterns, "1", "0" ) + hb_eol()
    cTxt += "showbackup=" + If( ::lShowBackup, "1", "0" ) + hb_eol()
    cTxt += "markdown=" + If( ::lMarkDown, "1", "0" ) + hb_eol()
+   cTxt += "lynxmotion=" + If( ::lLynxMotion, "1", "0" ) + hb_eol()
+   cTxt += "mkdirautoname=" + If( ::lMkdirAutoname, "1", "0" ) + hb_eol()
    cTxt += "equalsplit=" + If( ::lEqualSplit, "1", "0" ) + hb_eol()
    cTxt += "horizontal=" + If( ::lHorizontal, "1", "0" ) + hb_eol()
    cTxt += "menubar=" + If( ::lMenubar, "1", "0" ) + hb_eol()
