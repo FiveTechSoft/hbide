@@ -1,0 +1,155 @@
+HbIde ChangeLog
+================
+
+2026-10-25
+----------
+
+  Editor de codigo (rama editor-fixes, sin merge)
+  -----------------------------------------------
+  - Corregido: hotkeys de Alert muertos con opciones "&Save"/... (071f368);
+    hb_gt_def_Alert compara la tecla con el primer caracter de la opcion,
+    que con '&' es el propio '&'. Opciones sin '&'
+  - Corregido: marcos 'oooo'/'cccc' en modo UTF8 (d8eb435); hb_DispBox
+    parsea con el BOXCP del GT y el frame se generaba con hb_UTF8ToStr
+    (CP anfitrion). hb_UTF8ToStrBox en HelpView y Compiler Flags
+  - Help "Welcome": ya no afirma que Alt+letra no abre menus en Linux
+    (31c1b6f)
+  - Matriz completa del IDE verificada en vivo (File/Edit/Run/Options/Help,
+    Alerts, UTF-8). Checkpoint completo, pruebas y limitaciones:
+    docs/editor-checkpoint-2026-10-25.md
+
+2026-10-24
+----------
+
+  Editor de codigo (rama editor-fixes, sin merge)
+  -----------------------------------------------
+  - Corregido: DeleteLine/PasteLine/DuplicateLine ya no dependen del modo INS/OVR
+  - Corregido: modo insert por defecto con indicador INS/OVR
+  - Corregidos dialogos Open y Find (layout, botones, teclear nombre)
+  - Corregido: Escape/File>Exit/Open con cambios preguntan Save/Discard/Cancel
+  - Implementado undo/redo (Ctrl+Z/Ctrl+U) con marcador de guardado fiable
+  - Implementada copia .bak conservadora al guardar
+  - Implementado Replace (ReplaceAll + dialogo), entrada literal con RTrim
+  - Corregido prefill de GETs que corrompia la entrada en Find/Replace
+  - Implementada vigilancia de cambios externos (DiskStamp): aviso/recarga,
+    Reload/Keep mine, guardia Overwrite/Cancel al guardar y en Run
+  - Corregido: borrado externo ya no se confunde con "sin cambios";
+    decision Recrear/Cancelar antes de escribir
+  - Checkpoint completo, pruebas y limitaciones: docs/editor-checkpoint-2026-10-24.md
+
+  Editor de codigo, segunda tanda (2026-10-24 tarde)
+  ---------------------------------------------------
+  - Implementado File>New real (plantilla, guardia unsaved con Discard)
+  - Implementado File>Save As real (dialogo, escritura, retitulado);
+    Save (F2) delega en Save As cuando el buffer no tiene nombre
+  - Compiler Flags: dialogo persistente (Warnings/Debug info/Strict) y
+    flags aplicados en Run>Start via hbmk2 -comp= (la forma larga
+    -compiler= hace fallar hbmk2 3.2.1dev: bug upstream reproducido)
+  - Implementados Help>Contents y Help>Index (help.prg, 9 temas que
+    documentan el comportamiento real del IDE; visor con marco; Index
+    abre el tema directo desde la busqueda)
+  - Implementado Options>Display: presets 40x120/30x100/25x80.
+    Verificado ida y vuelta 40x120->25x80->40x120 con contenido intacto;
+    si el terminal rechaza el resize (p.ej. xterm sin allowWindowOps)
+    se revierte y avisa "Terminal does not support WxH"
+  - Menus Alt+letra: funcionan cuando el terminal envia meta ESC-prefix
+    (gttrm entrega K_ALT_*). En xterm hace falta -xrm 'XTerm*metaSendsEscape:
+    true'; con el default eightBitInput el byte alto (p.ej. 0xEF=Alt+o)
+    se filtraba al buffer del editor. La nota previa "Alt no abre menus
+    en gttrm" era un artefacto de configuracion del terminal
+  - Glifos CP437 (botones, sombras): render correcto exige DOS capas:
+    xterm arrancado con locale UTF-8 y el proceso hbide con LANG
+    conteniendo "UTF-8" (gttrm activa su modo UTF-8 via getenv("LANG"))
+  - Actualizacion del checkpoint: docs/editor-checkpoint-2026-10-24.md
+
+2026-03-21
+----------
+
+  Editor de codigo
+  ----------------
+  - Corregido syntax highlighting de comentarios // (ahora colorea toda la linea)
+  - Corregido syntax highlighting: soporte para comentarios de bloque /* */
+  - Corregido syntax highlighting: soporte para strings con comilla simple
+  - Corregido keyword matching con delimitadores (evita falsos positivos como "AT" dentro de "DATA")
+  - Corregidas comas faltantes en lista de keywords (VIRTUAL, MENU, ENDMENU, CLEAR)
+  - Ampliada lista de keywords: CLASS, ELSEIF, BEGIN, SEQUENCE, RECOVER, PROCEDURE, #DEFINE, etc.
+  - Corregido bug del mouse wheel que solo funcionaba una vez (lMouseWheel nunca se reseteaba)
+  - Corregido procesamiento doble de eventos mouse wheel en Activate()
+  - Corregida variable 'n' no declarada en CallStack()
+  - Corregido offset de 4 columnas del gutter en K_ENTER (cortaba texto en posicion incorrecta)
+  - Corregido offset de 4 columnas en K_DEL (borraba caracter equivocado)
+  - Corregido offset de 4 columnas en K_BS al unir lineas (Backspace al inicio de linea)
+  - Corregido SetPos fuera de pantalla que causaba scroll del terminal
+  - Implementado Home/End con awareness del gutter de 4 columnas
+  - Implementado Ctrl+Y para borrar linea (delegando a Super:Edit)
+  - Implementado F2 para guardar archivo
+  - Implementado flecha derecha al final de linea salta a la siguiente
+  - Implementado flecha izquierda al inicio de linea salta al final de la anterior
+  - Implementado doble click para seleccionar palabra (con highlight visual N/W)
+  - Implementado clipboard interno con Copy/Paste/Duplicate via menu Edit
+  - Implementado Find (F5) y Find Next (F3) con wrap-around
+  - Implementado Save desde menu File con actualizacion del titulo de ventana
+
+  Sistema de ventanas
+  -------------------
+  - Implementado sistema de ventanas virtuales con callback bRepaint
+  - Las ventanas pueden moverse parcialmente fuera de pantalla sin perder su imagen
+  - Implementado cVirtImage: imagen virtual de la ventana guardada cuando esta completamente visible
+  - RestBlock mejorado: maneja ventanas que salen por arriba (nTop < 0)
+  - DrawShadow: dibuja sombra parcial (solo derecha o solo inferior segun visibilidad)
+  - Corregido SetPos fuera de pantalla al soltar ventana parcialmente fuera
+  - Corregido idle handler: no llama Refresh() cuando ventana esta parcialmente fuera
+  - Corregido parpadeo del status bar: SuspendStatus/ResumeStatus al abrir/cerrar dialogos
+  - Hide() usa bRepaint cuando disponible (repinta fondo en vez de restaurar cBackImage incompleto)
+  - Fallback al sistema clasico de cBackImage cuando bRepaint no esta disponible
+
+  Dialogos y controles
+  --------------------
+  - Implementado dialogo Compiler Options con grupos enmarcados estilo Turbo Vision
+  - Implementados CheckBoxes con estilo [X] / [ ] (Turbo Vision)
+  - Implementados RadioButtons con estilo (bullet) / ( ) (Turbo Vision)
+  - Custom ChkDisplay(): sobreescribe Display del CheckBox via __ClsModMsg
+    - Aceleradores siempre amarillos (GR+/BG) independiente del foco
+    - Caption blanco (W+/BG) con foco, negro (N/BG) sin foco
+    - Brackets [ ] cambian color con el foco
+    - Color del acelerador almacenado en ::cargo (evita limitacion de 4 colores del setter)
+  - Custom RadDisplay(): sobreescribe Display del RadioButton via __ClsModMsg
+    - Caption blanco solo para el radio seleccionado (usa ::lBuffer, no ::lHasFocus)
+    - Acelerador amarillo solo para el radio seleccionado
+    - Corregido bug: RadioGroup:setFocus() pone lHasFocus en TODOS los botones
+  - RadioGroup sin marco propio (coldBox/hotBox vacios), usa grupo manual con hb_DispBox
+  - Grupos con marco single-line en fondo blanco, interior cyan (hb_Scroll)
+  - Botones OK/Cancel/Help en verde (GR+/G) consistente con demas dialogos
+  - Implementado dialogo Find (F5) con campo de busqueda
+  - Conectados items del menu Edit: Copy, Paste, Delete Line, Duplicate, Find, Goto Line
+  - Conectado menu Options > Compiler Flags al nuevo dialogo
+2026-10-23: Dialog Designer, colors + per-option radio accelerators
+  - Generated PRG now emits the hbide palettes for every control
+    (GET/CHECKBOX/PUSHBUTTON/RADIOGROUP/LISTBOX COLOR clauses)
+  - Radio items accept & for a per-option accelerator; the generated
+    RadioButto() captions keep it and the letter is painted in a
+    distinct color (green unfocused, bright blue focused)
+  - Verified live: plain letter with the group focused selects the option
+
+2026-10-23: Dialog Designer, RadioGroup + ListBox controls (pure Harbour)
+  - Palette, model, JSON persistence, inspector and EditProperties support
+    radiogroup (items as CSV, RadioButto array in generated code) and
+    listbox (items, width, height; standard LISTBOX clause in generated code)
+  - Verified live: radio selection and listbox highlight move in the generated dialog
+
+2026-10-23: Dialog Designer, object inspector (pure Harbour)
+   - F4 floating non-modal inspector synced with the selected control
+   - Edit caption/variable inline, adjust row/col/width with live feedback
+   - Dialog properties when no control is selected; movable panel
+
+2026-10-23: Dialog Designer, first version (pure Harbour)
+  - New designer.prg: visual dialog designer (Options > Designer)
+  - Palette (F2/right-click): Label (SAY), Input (GET), CheckBox, PushButton
+  - Place/move controls with keyboard or mouse, drag & drop, Del deletes
+  - Enter edits control properties (row, col, caption, variable, width)
+  - F3 dialog properties (caption, name, size)
+  - F9 generates <name>.prg (HBWindow + @ GET code, compiles against hbwindow.prg)
+  - F10 saves the design as JSON, F12 loads it back (round trip)
+  - hbwindow.prg: optional bPopup callback for design mode right-click
+  - hbmenu.prg: fixed popup menus not closing after running an action
+  - docs/designer.md + docs/examples/ + tests/test_designer.prg

@@ -1,0 +1,30 @@
+hbide.prg
+editor.prg
+hbmenu.prg
+hbwindow.prg
+designer.prg
+hbbutton.prg
+hbgetu.prg
+
+help.prg
+
+# Vendored Harbour source debugger (from harbour/src/debug, GPL like Harbour).
+# Local change in debugger.prg: Quit() (Alt+X) breaks out to the IDE's
+# SEQUENCE instead of __Quit(), so exiting the debugger aborts only the
+# debugged program and returns to the IDE.
+# libhbdebug stays linked for the dbgentry.c VM glue only; the linker pulls
+# just that module since the classes are resolved by the vendored sources.
+hbdebug/dbgbrwsr.prg
+hbdebug/dbghelp.prg
+hbdebug/dbgmenu.prg
+hbdebug/dbgtarr.prg
+hbdebug/dbgthsh.prg
+hbdebug/dbgtinp.prg
+hbdebug/dbgtmenu.prg
+hbdebug/dbgtmitm.prg
+hbdebug/dbgtobj.prg
+hbdebug/dbgtwin.prg
+hbdebug/dbgwa.prg
+hbdebug/tbrwtext.prg
+hbdebug/debugger.prg
+hbdebug/dbgentry.c
