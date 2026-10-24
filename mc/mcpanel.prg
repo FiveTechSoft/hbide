@@ -45,6 +45,7 @@ function MCCpDecode( cText, cId )
 
 return cOut
 #include "directry.ch"
+#include "fileio.ch"
 
 //-----------------------------------------------------------------------------------------//
 
@@ -211,7 +212,7 @@ METHOD Rescan() CLASS MCPanel
          if ! lShowHidden .and. Left( aEntry[ 1 ], 1 ) == "."
             loop
          endif
-         if aEntry[ 6 ] .or. FilterMatch( aEntry[ 1 ], ::cFilter, ::lCaseSens )
+         if aEntry[ 6 ] .or. FilterMatch( aEntry[ 1 ], ::cFilter, ::lCaseSens, ::oApp:lShellPatterns )
             AAdd( ::aFiles, { aEntry[ 1 ], aEntry[ 2 ], aEntry[ 3 ], aEntry[ 4 ], ;
                               aEntry[ 5 ], aEntry[ 6 ], .F. } )
          endif
@@ -233,6 +234,9 @@ METHOD Rescan() CLASS MCPanel
       if ! lShowHidden .and. Left( aEntry[ F_NAME ], 1 ) == "."
          loop
       endif
+      if ! ::oApp:lShowBackup .and. Right( aEntry[ F_NAME ], 1 ) == "~"
+         loop
+      endif
       cFull := hb_FNameMerge( ::cPath, aEntry[ F_NAME ] )
       if "L" $ aEntry[ F_ATTR ]
          ::hLinks[ aEntry[ F_NAME ] ] := MCLinkTarget( cFull )
@@ -241,13 +245,16 @@ METHOD Rescan() CLASS MCPanel
          AAdd( ::aFiles, { aEntry[ F_NAME ], 0, aEntry[ F_DATE ], aEntry[ F_TIME ], ;
                            aEntry[ F_ATTR ], .T., .F. } )
       else
-         if FilterMatch( aEntry[ F_NAME ], ::cFilter, ::lCaseSens )
+         if FilterMatch( aEntry[ F_NAME ], ::cFilter, ::lCaseSens, ::oApp:lShellPatterns )
             AAdd( ::aFiles, { aEntry[ F_NAME ], aEntry[ F_SIZE ], aEntry[ F_DATE ], ;
                               aEntry[ F_TIME ], aEntry[ F_ATTR ], .F., .F. } )
          endif
       endif
    next
 
+   if ::oApp:lComputeTotals
+      ::ComputeDirSizes()
+   endif
    ::SortFiles()
    ::FixScroll()
 
@@ -428,6 +435,9 @@ METHOD MiniStatus() CLASS MCPanel
    if Len( ::MarkedEntries() ) > 0
       cInfo += "  [" + hb_ntos( Len( ::MarkedEntries() ) ) + " marked]"
    endif
+   if ::oApp:lShowFreeSpace .and. MCVfsKind( ::cPath ) == "local"
+      cInfo += "  Free: " + MCSizeShort( hb_DiskSpace( ::cPath, HB_DISK_AVAIL ) )
+   endif
 
 return cInfo
 
@@ -562,7 +572,9 @@ METHOD MarkCurrent() CLASS MCPanel
 
    if aEntry != nil .and. aEntry[ P_NAME ] != "/.."
       aEntry[ P_MARKED ] := ! aEntry[ P_MARKED ]
-      ::nCurrent++
+      if ::oApp:lMarkDown
+         ::nCurrent++
+      endif
       ::FixScroll()
    endif
 
@@ -804,7 +816,7 @@ METHOD DisplayListing() CLASS MCPanel
                if hb_HHasKey( ::hLinks, aEntry[ P_NAME ] )
                   cName += " -> " + MCCpDecode( ::hLinks[ aEntry[ P_NAME ] ], ::cCp )
                endif
-               cLine := hb_UPadR( hb_UTF8SubStr( " " + cName, 1, nCellW ), nCellW )
+               cLine := hb_UPadR( hb_UTF8SubStr( " " + cName, 1, nCellW - 1 ), nCellW )   // trailing blank cell before the next column
                cColor := ::EntryColor( aEntry, nIdx == ::nCurrent .and. ::lActive )
                hb_DispOutAt( ::nTop + 1 + n, nX, cLine, cColor )
             else
@@ -857,7 +869,7 @@ METHOD EntryLine( aEntry, nWidth ) CLASS MCPanel
    cTime := If( Empty( aEntry[ P_DATE ] ), Space( 16 ), ;
                 DToC( aEntry[ P_DATE ] ) + " " + Left( aEntry[ P_TIME ], 5 ) )
 
-   cLine := " " + hb_UPadR( hb_UTF8SubStr( cName, 1, nWidth - 27 ), nWidth - 27 ) + ;
+   cLine := " " + hb_UPadR( hb_UTF8SubStr( cName, 1, nWidth - 28 ), nWidth - 27 ) + ;   // one blank cell always separates Name from Size
             cSize + " " + cTime
 
 return hb_UPadR( cLine, nWidth )   // cell-based: UTF-8 names pad to cells, not bytes
@@ -1011,10 +1023,15 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
-function FilterMatch( cName, cFilter, lCaseSens )
+function FilterMatch( cName, cFilter, lCaseSens, lShellPatterns )
 
    local aMasks := hb_aTokens( hb_defaultValue( cFilter, "*" ), "; " ), cMask
 
+   hb_defaultValue( @lShellPatterns, .T. )
+   if ! lShellPatterns
+      // mc shell-patterns off: the mask is a plain substring, not a glob
+      return If( lCaseSens, cFilter $ cName, Lower( cFilter ) $ Lower( cName ) )
+   endif
    for each cMask in aMasks
       if Empty( cMask )
          loop
@@ -1043,6 +1060,20 @@ function MCLinkTarget( cFull )
    hb_ProcessRun( MCShWrap( "readlink " + ShellQuote( cFull ) ),, @cTarget )
 
 return AllTrim( StrTran( StrTran( cTarget, Chr( 13 ) ), Chr( 10 ) ) )
+
+//-----------------------------------------------------------------------------------------//
+
+// short human size for the mini-status free-space readout
+function MCSizeShort( nBytes )
+
+   if nBytes >= 1073741824
+      return AllTrim( Str( Round( nBytes / 1073741824, 1 ), 8, 1 ) ) + "G"
+   endif
+   if nBytes >= 1048576
+      return AllTrim( Str( Round( nBytes / 1048576, 1 ), 8, 1 ) ) + "M"
+   endif
+
+return AllTrim( Str( Round( nBytes / 1024, 0 ), 10, 0 ) ) + "K"
 
 //-----------------------------------------------------------------------------------------//
 
