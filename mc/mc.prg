@@ -100,6 +100,8 @@ CLASS MCApp
    DATA   lAskNewFile   INIT .F.  // mc default FALSE (mc setup.c:108)
    DATA   lAutoMenus    INIT .F.  // mc default FALSE (mc setup.c:99)
    DATA   lDropMenus    INIT .F.  // mc default FALSE (mc setup.c:101)
+   DATA   lBarLit       INIT .F.  // menu bar highlighted without dropdown (drop_menus=FALSE)
+   DATA   nBarItem      INIT 0
    DATA   lShowAllAmbig INIT .F.  // mc default FALSE (mc lib/global.c:76)
    DATA   lRotatingDash INIT .T.  // mc default TRUE (mc layout.c:86)
    DATA   lPreallocate  INIT .F.  // mc: vfs preallocate_space, default FALSE
@@ -200,6 +202,9 @@ CLASS MCApp
    METHOD DlgConfirm( cTitle, cMsg, cOk, lSafeDefault )
    METHOD DlgList( cTitle, aItems, nDef )
    METHOD OtherPanelRef()
+   METHOD MenuBarLight()
+   METHOD MenuBarUnlight()
+   METHOD MenuBarMove( nDelta )
 
 ENDCLASS
 
@@ -629,6 +634,26 @@ METHOD Activate() CLASS MCApp
          loop
       endif
 
+      if ::lBarLit
+         if nKey == K_ESC
+            ::MenuBarUnlight()
+            loop
+         elseif nKey == K_LEFT
+            ::MenuBarMove( -1 )
+            loop
+         elseif nKey == K_RIGHT
+            ::MenuBarMove( 1 )
+            loop
+         elseif nKey == K_ENTER .or. nKey == K_DOWN
+            ::lBarLit := .F.
+            ::oMenu:ShowPopup( ::nBarItem )
+            ::nBarItem := 0
+            loop
+         else
+            ::MenuBarUnlight()   // any other key: bar off, key processed normally
+         endif
+      endif
+
       if ::oMenu:IsOpen()
          ::oMenu:ProcessKey( nKey )
          if ! ::oMenu:IsOpen()
@@ -656,7 +681,15 @@ METHOD Activate() CLASS MCApp
          case nKey == K_F6  ; ::FileMove()
          case nKey == K_F7  ; ::FileMkdir()
          case nKey == K_F8  ; ::FileDelete()
-         case nKey == K_F9  ; ( SetCursor( SC_NONE ), ::oMenu:ProcessKey( K_ALT_L ) )
+         case nKey == K_F9
+            SetCursor( SC_NONE )
+            // mc drop_menus (setup.c:101, default FALSE): F9 lights the menu
+            // bar without dropping the menu; ON drops it immediately
+            if ::lDropMenus
+               ::oMenu:ProcessKey( K_ALT_L )
+            else
+               ::MenuBarLight()
+            endif
          case nKey == K_F10 ; ::Quit()
 
          case nKey == K_TAB .and. nFlags == 0 ; ::SwitchPanel()
@@ -3175,6 +3208,62 @@ return nil
  * mctools.prg - Command menu actions, help, about, and configuration
  */
 
+
+//-----------------------------------------------------------------------------------------//
+
+// mc drop_menus=FALSE bar state: F9 lights the bar; Left/Right move the
+// highlight without dropping any menu; Enter/Down drops the current one
+// (mc menubar_activate with drop_menus off, filemanager.c:336/351).
+METHOD MenuBarLight() CLASS MCApp
+
+   ::lBarLit := .T.
+   ::nBarItem := 1
+   ::oMenu:aItems[ 1 ]:Display( ::oMenu:cClrHilite, ::oMenu:cClrHotFocus )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD MenuBarUnlight() CLASS MCApp
+
+   if ::lBarLit
+      ::lBarLit := .F.
+      if ::nBarItem >= 1 .and. ::nBarItem <= Len( ::oMenu:aItems )
+         ::oMenu:aItems[ ::nBarItem ]:Display( ::oMenu:cClrPopup, ::oMenu:cClrHotKey )
+      endif
+      ::nBarItem := 0
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD MenuBarMove( nDelta ) CLASS MCApp
+
+   local n := ::nBarItem, nMax := Len( ::oMenu:aItems )
+
+   if n < 1
+      return nil
+   endif
+   ::oMenu:aItems[ n ]:Display( ::oMenu:cClrPopup, ::oMenu:cClrHotKey )
+   n += nDelta
+   if n < 1
+      n := nMax
+   elseif n > nMax
+      n := 1
+   endif
+   do while hb_LeftEq( ::oMenu:aItems[ n ]:cPrompt, "-" )
+      n += nDelta
+      if n < 1
+         n := nMax
+      elseif n > nMax
+         n := 1
+      endif
+   enddo
+   ::nBarItem := n
+   ::oMenu:aItems[ n ]:Display( ::oMenu:cClrHilite, ::oMenu:cClrHotFocus )
+
+return nil
 
 //-----------------------------------------------------------------------------------------//
 
