@@ -61,6 +61,7 @@ function MCJobsAdd( aFiles, cDesc, lMove )
       "tmp"   => "", ;
       "state" => "queued", ;
       "err"   => "", ;
+      "moved" => 0, ;
       "skipdirs" => {} } )
 
 return Len( s_aJobs )
@@ -82,6 +83,9 @@ function MCJobsCancel( nIdx )
    endif
    MCCloseJob( j )
    j[ "state" ] := "cancelled"
+   if j[ "move" ] .and. j[ "moved" ] > 0
+      JobErr( j, j[ "desc" ], "PARTIAL MOVE: " + hb_ntos( j[ "moved" ] ) + " item(s) stay at destination; no rollback" )
+   endif
 
 return .T.
 
@@ -137,8 +141,8 @@ return .F.
 static function JobErr( j, cPath, cWhy )
 
    j[ "err" ] += hb_FNameNameExt( cPath ) + ": " + cWhy + "; "
-   if Len( j[ "err" ] ) > 200
-      j[ "err" ] := Left( j[ "err" ], 200 ) + "..."
+   if Len( j[ "err" ] ) > 180
+      j[ "err" ] := Left( j[ "err" ], 180 )
    endif
 
 return nil
@@ -176,15 +180,19 @@ function MCJobsStep()
       j[ "idx" ]++
       do case
          case f[ 1 ] == "mkdir"
-            if hb_DirExists( f[ 3 ] )
-               if j[ "move" ]
-                  // Raced in after enqueue: a move never merges into an
-                  // existing destination dir; its subtree stays in place.
-                  JobErr( j, f[ 3 ], "destination exists; move does not overwrite" )
-                  AAdd( j[ "skipdirs" ], hb_DirSepAdd( f[ 3 ] ) )
+            // mkdir(2) is atomic: EEXIST means the dir was already there or
+            // raced in - no check-then-create window.
+            if hb_DirCreate( f[ 3 ] ) != 0
+               if hb_DirExists( f[ 3 ] )
+                  if j[ "move" ]
+                     // A move never merges into an existing destination dir.
+                     JobErr( j, f[ 3 ], "destination exists; move does not overwrite" )
+                     AAdd( j[ "skipdirs" ], hb_DirSepAdd( f[ 3 ] ) )
+                  endif
+                  // copy: merging into an existing dir is the intended semantics
+               else
+                  JobErr( j, f[ 3 ], "cannot create directory" )
                endif
-            elseif hb_DirCreate( f[ 3 ] ) != 0
-               JobErr( j, f[ 3 ], "cannot create directory" )
             endif
          case f[ 1 ] == "dirmeta"
             if JobSkipped( j, f[ 3 ] )
@@ -207,15 +215,22 @@ function MCJobsStep()
                JobErr( j, f[ 3 ], "parent directory not moved" )
                return .T.
             elseif j[ "move" ]
+               // Atomic no-clobber publish: a hard link fails EEXIST and can
+               // never replace a destination that raced in (same dir = same
+               // filesystem by construction).
+               if hb_ProcessRun( MCShWrap( "ln -- " + ShellQuote( f[ 2 ] ) + " " + ShellQuote( f[ 3 ] ) + " 2>/dev/null" ),, ) == 0
+                  j[ "done" ] += f[ 4 ]
+                  j[ "moved" ]++
+                  if FErase( f[ 2 ] ) != 0
+                     JobErr( j, f[ 2 ], "linked to destination but source not removed" )
+                  endif
+                  return .T.
+               endif
                if File( f[ 3 ] ) .or. hb_DirExists( f[ 3 ] )
                   JobErr( j, f[ 3 ], "destination exists; move does not overwrite" )
                   return .T.
                endif
-               // Same-filesystem move: rename in place and the entry is done.
-               if FRename( f[ 2 ], f[ 3 ] ) == 0
-                  j[ "done" ] += f[ 4 ]
-                  return .T.
-               endif
+               // No destination: the link failed across filesystems; copy+delete below.
             endif
             // "file": open the source and a temp file in the destination dir.
             j[ "hSrc" ] := FOpen( f[ 2 ], 0 )
@@ -277,10 +292,24 @@ static function JobFinishFile( j )
 
    // hb_FTempCreate() uses 0600; give the copy the source file's permissions.
    hb_ProcessRun( MCShWrap( "chmod --reference=" + ShellQuote( f[ 2 ] ) + " " + ShellQuote( cTmp ) ),, )
-   if j[ "move" ] .and. ( File( f[ 3 ] ) .or. hb_DirExists( f[ 3 ] ) )
-      // Raced in during the copy: a move never overwrites; source kept.
-      FErase( cTmp )
-      JobErr( j, f[ 3 ], "destination appeared during move; source kept" )
+   if j[ "move" ]
+      // Atomic no-clobber publish: link the complete temp into place; EEXIST
+      // can never replace a destination that raced in during the copy.
+      if hb_ProcessRun( MCShWrap( "ln -- " + ShellQuote( cTmp ) + " " + ShellQuote( f[ 3 ] ) + " 2>/dev/null" ),, ) != 0
+         FErase( cTmp )
+         if File( f[ 3 ] ) .or. hb_DirExists( f[ 3 ] )
+            JobErr( j, f[ 3 ], "destination appeared during move; source kept" )
+         else
+            JobErr( j, f[ 3 ], "cannot create destination" )
+         endif
+         return nil
+      endif
+      FErase( cTmp )   // drop the temp name; the data is published
+      j[ "moved" ]++
+      hb_ProcessRun( MCShWrap( "touch --reference=" + ShellQuote( f[ 2 ] ) + " " + ShellQuote( f[ 3 ] ) + " 2>/dev/null" ),, )
+      if FErase( f[ 2 ] ) != 0
+         JobErr( j, f[ 2 ], "copied but source not removed" )
+      endif
       return nil
    endif
    if FRename( cTmp, f[ 3 ] ) != 0
