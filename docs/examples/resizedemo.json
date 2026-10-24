@@ -1,0 +1,44 @@
+{
+ "name": "ResizeDemo",
+ "caption": "Resize Demo",
+ "width": 70,
+ "height": 24,
+ "color": "W+/B",
+ "controls": [
+  {
+   "type": "say",
+   "row": 2,
+   "col": 3,
+   "caption": "Nombre:"
+  },
+  {
+   "type": "get",
+   "row": 2,
+   "col": 11,
+   "variable": "cNombre",
+   "width": 12
+  },
+  {
+   "type": "listbox",
+   "row": 5,
+   "col": 3,
+   "variable": "nLista",
+   "width": 14,
+   "height": 5,
+   "items": "Alpha,Beta,Gamma,Delta"
+  },
+  {
+   "type": "button",
+   "row": 20,
+   "col": 3,
+   "caption": "&Aceptar",
+   "action": "lOk := .T., oDlg:End()"
+  },
+  {
+   "type": "button",
+   "row": 20,
+   "col": 16,
+   "caption": "&Cancelar"
+  }
+ ]
+}
