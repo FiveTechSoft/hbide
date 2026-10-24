@@ -580,7 +580,7 @@ METHOD BuildMenu() CLASS HBIde
          SEPARATOR
          MENUITEM "~Find...         F5 "    ACTION ::FindDialog()
          MENUITEM "~Repeat Last Find F3"    ACTION ( ::oEditor:FindNext(), ::oEditor:ShowCursor() )
-         MENUITEM "R~eplace... "              ACTION ::ReplaceDialog()
+         MENUITEM "Repl~ace... "              ACTION ::ReplaceDialog()
          SEPARATOR
          MENUITEM "~Goto Line..."           ACTION ::GotoLine()
       ENDMENU
@@ -1685,17 +1685,17 @@ static function HBIDE_PaintFlagsGroups( oDlg )
    local nR := oDlg:nRight
 
    hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 24, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+               hb_UTF8ToStr( "ââââââââ" ), "N/W" )
    hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 23,,, "N/BG" )
    hb_DispOutAt( nT + 1, nL + 4, " Compiler ", "N/W" )
 
    hb_DispBox( nT + 1, nL + 26, nT + 7, nR - 2, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+               hb_UTF8ToStr( "ââââââââ" ), "N/W" )
    hb_Scroll( nT + 2, nL + 27, nT + 6, nR - 3,,, "N/BG" )
    hb_DispOutAt( nT + 1, nL + 28, " Options ", "N/W" )
 
    hb_DispBox( nT + 8, nL + 2, nT + 12, nR - 2, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+               hb_UTF8ToStr( "ââââââââ" ), "N/W" )
    hb_Scroll( nT + 9, nL + 3, nT + 11, nR - 3,,, "N/BG" )
    hb_DispOutAt( nT + 8, nL + 4, " Build ", "N/W" )
 
@@ -1747,7 +1747,7 @@ METHOD HelpView( cTitle, cText, lNested ) CLASS HbIde
    ::SuspendStatus()
    DispBegin()
    hb_DispBox( nT - 1, nL - 1, nB + 1, nR + 1, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "W+/W" )
+               hb_UTF8ToStr( "ââââââââ" ), "W+/W" )
    hb_Scroll( nT, nL, nB, nR,,, "W/B" )
    hb_DispOutAt( nT - 1, nL + 2, " " + cTitle + " ", "W+/W" )
    hb_DispOutAt( nB + 2, nL, "Esc: back", "W+/BG" )
