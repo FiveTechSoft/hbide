@@ -142,13 +142,20 @@ are in place so a read-only source dir cannot block its own copy; a
 pre-existing destination directory keeps its own metadata. Ownership is
 not preserved. Verified with a 751 directory carrying 2020/2021 mtimes
 copied ext4->tmpfs. Recursive delete unlinks
-symbolic links without traversing their target. Before removal the tree is
-made traversable (chmod -R u+rwX): trees coming out of archives or
-read-only sources can carry directories without owner permissions that
+symbolic links without traversing their target. Trees the app itself
+created (extract wraps, rollback targets, session temp) are made
+traversable before removal (chmod -R u+rwX): trees coming out of archives
+or read-only sources can carry directories without owner permissions that
 would otherwise strand partial trees on rollback, refusal cleanup and
-session-temp cleanup. Verified with a refused archive dir extraction whose
-wrap carried a permission-less dir holding outside-pointing links: the
-wrap is now fully removed and nothing persists outside the temp area.
+session-temp cleanup. The prep is scoped to those app-owned trees only;
+user-initiated deletes never change permissions, and a failed delete of a
+user tree with unwritable directories is reported and can leave partial
+content (the pre-existing behavior). chmod -R does not traverse symlinks,
+verified against a tree whose links pointed at a sentinel with mode 400:
+the sentinel's permissions and content were untouched. Verified end to end
+with a refused archive dir extraction whose wrap carried a
+permission-less dir holding outside-pointing links: the wrap is fully
+removed and nothing persists outside the temp area.
 
 Overwrite protection: a copy writes to a temporary file in the destination
 directory and replaces the destination only after a complete, verified copy
