@@ -157,3 +157,21 @@ restore and preserved-backup cases all exercised against the real binary.
 Fully transactional multi-file semantics, metadata beyond permission
 bits and mtime (ownership, ACLs, xattrs) and concurrent filesystem
 changes are not covered.
+
+Archive extraction safety (extfs, tar/tar.gz/zip): members whose paths
+contain `..` or are absolute are hidden from listings and never extracted;
+a leading `./` is normalized away. Link members are listed but never
+followed: viewing or copying an individual link member is refused, and
+copying a directory out of an archive is refused entirely when any member
+of its subtree fails extraction, so a tree containing a symlink or
+hardlink aimed outside the archive (including chains of links listed
+before their children) cannot be copied out. Verified with generated
+fixtures whose link chains pointed at a sentinel directory outside the
+extraction area: GNU tar and unzip themselves refuse to write through the
+link, the whole copy is refused with a message, and the sentinel stays
+untouched; an innocent file inside the same tree still copies normally.
+Member names with shell metacharacters are never passed to a shell
+unquoted and are never executed. A truncated archive is refused. Passing
+these fixtures does not prove that no escape path exists; read-only
+access inside archives remains the current documented limit, not the
+final closure of the objective.
