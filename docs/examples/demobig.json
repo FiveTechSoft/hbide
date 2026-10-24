@@ -1,0 +1,57 @@
+{
+ "name": "DemoBig",
+ "caption": "Big Dialog",
+ "width": 100,
+ "height": 42,
+ "color": "W+/B",
+ "controls": [
+  {
+   "type": "say",
+   "row": 2,
+   "col": 3,
+   "caption": "Nombre:"
+  },
+  {
+   "type": "get",
+   "row": 2,
+   "col": 11,
+   "variable": "cNombre",
+   "width": 20
+  },
+  {
+   "type": "checkbox",
+   "row": 4,
+   "col": 3,
+   "caption": "&Acepta",
+   "variable": "lAcepta"
+  },
+  {
+   "type": "radiogroup",
+   "row": 6,
+   "col": 3,
+   "variable": "nOpcion",
+   "items": "&Uno,&Dos,&Tres"
+  },
+  {
+   "type": "listbox",
+   "row": 12,
+   "col": 3,
+   "variable": "nLista",
+   "items": "Alpha,Beta,Gamma"
+  },
+  {
+   "type": "button",
+   "row": 20,
+   "col": 3,
+   "caption": "&Aceptar",
+   "action": "lOk := .T., oDlg:End()"
+  },
+  {
+   "type": "button",
+   "row": 36,
+   "col": 84,
+   "caption": "&Fuera",
+   "action": "Alert( \"FueraOK\" )"
+  }
+ ]
+}
