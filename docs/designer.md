@@ -253,7 +253,11 @@ Two caveats stay open:
   the dialog background (hbbutton's stock display hardcodes a white
   shadow, so the generated PRG re-registers the same display with the
   shadow repainted "N/<bg>"); the canvas preview paints the same
-  derived scheme.
+  derived scheme, including the half-height button shadow.
+- Viewport fit: loading a dialog, resizing it in F3 or from the
+  inspector repositions the design window so it and its shadow stay
+  fully on screen; sizes are clamped to the screen and to the minimum
+  that keeps every control visible.
 - Checkbox glyph: Harbour's stock checkbox paints CP437 0xFB (the square
   root glyph) for the checked state; in a UTF-8 terminal that byte renders
   as "u with circumflex" (the EN codepage, the only one selectable in this
