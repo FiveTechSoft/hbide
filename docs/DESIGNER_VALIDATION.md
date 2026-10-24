@@ -111,6 +111,21 @@ code. Dogfooding model: a "Find" dialog built entirely with the designer
 - xwd captures the screen region, including occluding windows: kill or
   move other xterms before capturing or the shot shows the occluder.
 
+## Inspector inline edit (live-verified, dsn61 captures)
+
+- The inline editor now echoes while typing: the control-redraw idle
+  (hb_IdleAdd DrawControls -> DrawInspector) was repainting the inspector
+  on every InKey tick, wiping the edit overlay the same instant it was
+  drawn. InspEdit wraps its loop in SuspendUI()/ResumeUI().
+- DsnNormKey gained: K_END mapping (EXT 18 was unmapped, End was a no-op
+  in every EXT loop), printable pass-through (gttrm delivers text events
+  with a 0x200 marker in the modifier word, shift pre-applied in nLow;
+  the marker is masked off, not treated as a modifier), and BackSpace
+  (gttrm EXT delivers nLow 23; classic 8 also accepted).
+- Verified end to end in xterm: Home/End/BackSpace/Del, shifted symbols
+  ("<", ">"), Ctrl+Y field clear (DSNK_CTRL_Y), Enter apply, live echo
+  with visible cursor, roundtrip apply preserved the original caption.
+
 ## Known limits / open items
 
 - No keyboard resize binding: resize is mouse-drag only; the hint bar now
