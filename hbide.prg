@@ -645,19 +645,18 @@ METHOD SaveFile() CLASS HbIde
    // tvedit-style safety net: keep the previous disk version as .bak.
    // The copy runs BEFORE writing, so a failed write leaves both intact.
    if ! Empty( ::oEditor:cFile ) .and. File( ::oEditor:cFile )
-      cTmp := ::oEditor:cFile + ".bak.tmp"
+      // unique temp name: never delete preexisting content assuming it is ours
+      cTmp := ::oEditor:cFile + ".bak." + StrZero( hb_randomInt( 999999 ), 6 ) + ".tmp"
       if File( cTmp )
-         FErase( cTmp )
-      endif
-      if hb_FCopy( ::oEditor:cFile, cTmp ) != 0
-         FErase( cTmp )   // drop any partial copy
+         Alert( "Could not create the .bak copy (temp name in use); the previous .bak is preserved. Saving anyway" )
+      elseif hb_FCopy( ::oEditor:cFile, cTmp ) != 0
+         FErase( cTmp )   // drop the partial copy we just made
          Alert( "Could not create the .bak copy; the previous .bak is preserved. Saving anyway" )
-      else
-         if File( ::oEditor:cFile + ".bak" )
-            FErase( ::oEditor:cFile + ".bak" )
-         endif
+      elseif FRename( cTmp, ::oEditor:cFile + ".bak" ) != 0
+         // rename over an existing file fails on some platforms; erase and retry once
+         FErase( ::oEditor:cFile + ".bak" )
          if FRename( cTmp, ::oEditor:cFile + ".bak" ) != 0
-            Alert( "Could not rename the .bak copy; saving anyway" )
+            Alert( "Could not update the .bak copy; the new backup is kept as " + cTmp + ". Saving anyway" )
          endif
       endif
    endif
