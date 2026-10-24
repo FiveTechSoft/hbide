@@ -242,6 +242,15 @@ procedure Main()
    cCode = DsnGenCode( { "caption" => "T", "width" => 40, "height" => 12, "controls" => { ;
       { "type" => "listbox", "row" => 1, "col" => 2, "variable" => "nList2", "items" => "R&D.prg,&One", "width" => 16, "height" => 4 } } } )
    Check( "gen listbox keeps items verbatim", '"R&D.prg"' $ cCode .and. '"&One"' $ cCode )
+   // scrollbar clause: only when the items overflow the visible rows (height - 2 frame)
+   cCode = DsnGenCode( { "caption" => "T", "width" => 40, "height" => 14, "controls" => { ;
+      { "type" => "listbox", "row" => 1, "col" => 2, "variable" => "nList1", ;
+        "items" => "I1,I2,I3,I4,I5,I6,I7,I8,I9,I10,I11,I12,I13,I14,I15", "width" => 16, "height" => 5 } } } )
+   Check( "gen listbox scrollbar overflow", "LISTBOX aItems1 SCROLLBAR COLOR" $ cCode )
+   cCode = DsnGenCode( { "caption" => "T", "width" => 40, "height" => 14, "controls" => { ;
+      { "type" => "listbox", "row" => 1, "col" => 2, "variable" => "nList1", ;
+        "items" => "I1,I2,I3", "width" => 16, "height" => 5 } } } )
+   Check( "gen listbox no scrollbar when fits", ! ( " SCROLLBAR" $ cCode ) )
    // json roundtrip of the new properties
    cJson = hb_jsonEncode( hModel, .T. )
    hBack = nil
