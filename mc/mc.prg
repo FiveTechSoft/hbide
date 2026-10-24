@@ -1838,11 +1838,11 @@ METHOD BgJobs() CLASS MCApp
 
       aJobs := MCJobsList()
       nSel := Min( nSel, Max( Len( aJobs ), 1 ) )
-      hb_Scroll( nT + 1, nL + 1, nT + 11, nL + 62,,, "N/W" )
+      hb_Scroll( nT + 1, nL + 1, nT + 9, nL + 62,,, "N/W" )
       if Empty( aJobs )
          hb_DispOutAt( nT + 5, nL + 24, "No background jobs", "N/W" )
       else
-         for n := 1 to Min( Len( aJobs ), 10 )
+         for n := 1 to Min( Len( aJobs ), 9 )
             j := aJobs[ n ]
             cState := j[ "state" ]
             if j[ "total" ] > 0
@@ -1858,11 +1858,13 @@ METHOD BgJobs() CLASS MCApp
                      If( ! Empty( j[ "err" ] ), " !", "" )
             hb_DispOutAt( nT + 1 + n, nL + 2, cLine, If( n == nSel, "W+/G", "N/W" ) )
          next
-         // Per-entry problems, shown for the selected job: an "error" job
-         // here is never a "done" one.
+         // Per-entry problems for the selected job, in full (3 lines): an
+         // "error" job here is never a "done" one.
          j := aJobs[ Min( nSel, Len( aJobs ) ) ]
-         hb_DispOutAt( nT + 12, nL + 2, hb_UPadR( hb_UTF8SubStr( j[ "err" ], 1, 60 ), 60 ), ;
-            If( Empty( j[ "err" ] ), "N/W", "W+/R" ) )
+         for n := 0 to 2
+            hb_DispOutAt( nT + 10 + n, nL + 2, hb_UPadR( hb_UTF8SubStr( j[ "err" ], n * 60 + 1, 60 ), 60 ), ;
+               If( Empty( j[ "err" ] ), "N/W", "W+/R" ) )
+         next
       endif
 
       // hb_keyStd(): with HB_INKEY_EXT, printable keys arrive as extended
