@@ -530,7 +530,7 @@ return aOut
 
 METHOD EnterKey() CLASS MCPanel
 
-   local aEntry := ::Current(), cFull, cCmd
+   local aEntry := ::Current(), cFull, cCmd, cUp
 
    if aEntry == nil
       return nil
@@ -559,7 +559,10 @@ METHOD EnterKey() CLASS MCPanel
          if MCVfsKind( ::cPath ) != "local"
             ::GoDir( MCVfsParent( ::cPath ) )
          else
-            ::GoDir( hb_FNameDir( ::cPath ) )
+            // hb_FNameDir() of a slash-terminated path returns the path
+            // itself; chop the trailing slash or ".." never goes up
+            cUp := iif( Right( ::cPath, 1 ) == "/", hb_StrShrink( ::cPath, 1 ), ::cPath )
+            ::GoDir( iif( Empty( cUp ), "/", hb_FNameDir( cUp ) ) )
          endif
       else
          ::GoDir( MCEntryPath( Self, aEntry ) )
