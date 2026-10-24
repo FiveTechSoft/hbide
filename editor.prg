@@ -81,6 +81,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD DuplicateLine()
    METHOD FindText( cText )
    METHOD FindNext()
+   METHOD ReplaceAll( cFind, cReplace )
    METHOD SelectWord( nRow, nTextCol )
    METHOD ClearSelection()
 
@@ -208,6 +209,44 @@ METHOD FindNext() CLASS HBSrcEdit
    endif
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// replace every occurrence (case-insensitive) in the whole buffer.
+// Recorded as a single undoable op.  Adapted from tvedit.prg ReplaceSel().
+METHOD ReplaceAll( cFind, cReplace ) CLASS HBSrcEdit
+
+   LOCAL n, nPos, nFrom, cLine, cNew, nCount := 0
+   LOCAL aOld := {}, aNew := {}
+   LOCAL cFindU := Upper( cFind )
+
+   if Empty( cFind )
+      return 0
+   endif
+
+   for n = 1 to Len( ::aText )
+      AAdd( aOld, ::aText[ n ]:cText )
+      cLine := ::aText[ n ]:cText
+      cNew := ""
+      nFrom := 1
+      while ( nPos := At( cFindU, Upper( SubStr( cLine, nFrom ) ) ) ) > 0
+         cNew += SubStr( cLine, nFrom, nPos - 1 ) + cReplace
+         nFrom += nPos - 1 + Len( cFind )
+         nCount++
+      end
+      AAdd( aNew, cNew + SubStr( cLine, nFrom ) )
+   next
+
+   if nCount > 0
+      for n = 1 to Len( ::aText )
+         ::aText[ n ]:cText := aNew[ n ]
+      next
+      ::PushOp( 1, aOld, aNew )
+      ::lDirty := .T.
+      ::RefreshWindow()
+   endif
+
+return nCount
 
 //-----------------------------------------------------------------------------------------//
 
