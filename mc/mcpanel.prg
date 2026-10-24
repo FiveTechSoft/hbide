@@ -509,7 +509,7 @@ METHOD QuickSearch() CLASS MCPanel
    local cSearch := "", nKey, n, cName
 
    while .T.
-      hb_DispOutAt( ::nBottom - 1, ::nLeft + 1, PadR( "Quick search: " + cSearch, ::nRight - ::nLeft - 1 ), "W+/BG" )
+      hb_DispOutAt( ::nBottom - 1, ::nLeft + 1, hb_UPadR( "Quick search: " + cSearch, ::nRight - ::nLeft - 1 ), "W+/BG" )
       nKey := InKey( 0 )
       if nKey == K_ESC .or. nKey == K_ENTER
          exit
@@ -617,7 +617,7 @@ METHOD DisplayListing() CLASS MCPanel
    else
       cHdr := " Name" + Space( Max( 1, nW - 27 ) ) + "Size      MTime"
    endif
-   hb_DispOutAt( ::nTop + 1, ::nLeft + 1, PadR( cHdr, nW ), oApp:aPalette[ CLR_HEADER ] )
+   hb_DispOutAt( ::nTop + 1, ::nLeft + 1, hb_UPadR( cHdr, nW ), oApp:aPalette[ CLR_HEADER ] )
 
    for n := 1 to nRows
       nIdx := ::nOffset + n
@@ -633,7 +633,7 @@ METHOD DisplayListing() CLASS MCPanel
 
    // mini status
    if oApp:lMiniStatus
-      hb_DispOutAt( ::nBottom - 1, ::nLeft + 1, PadR( ::MiniStatus(), nW ), oApp:aPalette[ CLR_MINI ] )
+      hb_DispOutAt( ::nBottom - 1, ::nLeft + 1, hb_UPadR( ::MiniStatus(), nW ), oApp:aPalette[ CLR_MINI ] )
    endif
 
 return nil
@@ -648,7 +648,7 @@ METHOD EntryLine( aEntry, nWidth ) CLASS MCPanel
       cName += "/"
    endif
    if ::lBrief
-      return PadR( " " + cName, nWidth )
+      return hb_UPadR( " " + cName, nWidth )
    endif
    if aEntry[ P_DIR ]
       cSize := If( aEntry[ P_NAME ] == "/..", "UP--DIR ", ;
@@ -659,10 +659,10 @@ METHOD EntryLine( aEntry, nWidth ) CLASS MCPanel
    cTime := If( Empty( aEntry[ P_DATE ] ), Space( 16 ), ;
                 DToC( aEntry[ P_DATE ] ) + " " + Left( aEntry[ P_TIME ], 5 ) )
 
-   cLine := " " + PadR( hb_UTF8SubStr( cName, 1, nWidth - 27 ), nWidth - 27 ) + ;
+   cLine := " " + hb_UPadR( hb_UTF8SubStr( cName, 1, nWidth - 27 ), nWidth - 27 ) + ;
             cSize + " " + cTime
 
-return PadR( cLine, nWidth )
+return hb_UPadR( cLine, nWidth )   // cell-based: UTF-8 names pad to cells, not bytes
 
 //-----------------------------------------------------------------------------------------//
 
@@ -722,7 +722,7 @@ METHOD DisplayQuickView() CLASS MCPanel
       endif
    endif
    for n := 1 to Min( nRows, Len( aLines ) )
-      hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, PadR( hb_UTF8SubStr( aLines[ n ], 1, nW ), nW ), ::oApp:aPalette[ CLR_PANEL ] )
+      hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, hb_UPadR( hb_UTF8SubStr( aLines[ n ], 1, nW ), nW ), ::oApp:aPalette[ CLR_PANEL ] )
    next
 
 return nil
@@ -761,7 +761,7 @@ METHOD DisplayInfo() CLASS MCPanel
       AAdd( aLines, AllTrim( cOut ) )
    endif
    AEval( aLines, { | c, n | If( ::nTop + 1 + n < ::nBottom, ;
-       hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, PadR( hb_UTF8SubStr( c, 1, nW ), nW ), ::oApp:aPalette[ CLR_PANEL ] ), ) } )
+       hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, hb_UPadR( hb_UTF8SubStr( c, 1, nW ), nW ), ::oApp:aPalette[ CLR_PANEL ] ), ) } )
 
 return nil
 
@@ -781,7 +781,7 @@ METHOD DisplayTree() CLASS MCPanel
       nIdx := ::nOffset + n
       if nIdx <= Len( ::aTree )
          cLine := Space( ::aTree[ nIdx ][ 2 ] * 2 ) + ::aTree[ nIdx ][ 1 ]
-         hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, PadR( hb_UTF8SubStr( cLine, 1, nW ), nW ), ;
+         hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, hb_UPadR( hb_UTF8SubStr( cLine, 1, nW ), nW ), ;
                        If( nIdx == ::nCurrent .and. ::lActive, ::oApp:aPalette[ CLR_BAR ], ::oApp:aPalette[ CLR_DIR ] ) )
       endif
    next
