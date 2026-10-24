@@ -97,16 +97,11 @@ return nil
 
 METHOD PasteLine() CLASS HBSrcEdit
 
-   local cSaved
-
    if ! Empty( ::cClipboard )
-      cSaved = ::cClipboard
-      ::nCol = hb_ULen( ::aText[ ::nRow ]:cText ) + 1
-      ::Super:Edit( K_ENTER )
-      // Super already advanced to new line
+      // Insert below current line; independent of insert/overstrike mode
+      ::InsertLine( ::cClipboard, .F., ::nRow + 1 )
       ::lDirty := .T.
-      ::aText[ ::nRow ]:cText = cSaved
-      ::GoTo( ::nRow, 5 )
+      ::GoTo( ::nRow + 1, 5 )
       ::Display()
    endif
 
@@ -118,13 +113,9 @@ METHOD DeleteLine() CLASS HBSrcEdit
 
    if Len( ::aText ) > 1
       ::cClipboard = ::aText[ ::nRow ]:cText
-      ::aText[ ::nRow ]:cText = ""
-      ::nCol = 1
-      if ::nRow < Len( ::aText )
-         ::Super:Edit( K_DEL )
-      endif
+      ::RemoveLine( ::nRow )
       ::lDirty := .T.
-      ::GoTo( ::nRow, 5 )
+      ::GoTo( ::nRow, 5 )  // GoTo clamps nRow to LineCount
       ::Display()
    endif
 
@@ -134,15 +125,10 @@ return nil
 
 METHOD DuplicateLine() CLASS HBSrcEdit
 
-   local cSaved := ::aText[ ::nRow ]:cText
-
-   // Go to end of current line, set nCol to text position for Super, split
-   ::nCol = hb_ULen( ::aText[ ::nRow ]:cText ) + 1
-   ::Super:Edit( K_ENTER )
-   // Super already advanced to new line
+   // Insert a copy below current line; independent of insert/overstrike mode
+   ::InsertLine( ::aText[ ::nRow ]:cText, .F., ::nRow + 1 )
    ::lDirty := .T.
-   ::aText[ ::nRow ]:cText = cSaved
-   ::GoTo( ::nRow, 5 )
+   ::GoTo( ::nRow + 1, 5 )
    ::Display()
 
 return nil
