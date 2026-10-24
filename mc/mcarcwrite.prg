@@ -70,9 +70,19 @@ static function MCTarRepack( cArchive, cTree )
    if lOk
       FErase( cBak )
    else
-      MCVfsSetError( "repack failed; original archive restored" )
+      // The archive itself is never opened for writing (we write .hbtmp
+      // and rename over it), so on failure the original is still
+      // byte-identical. Keep the backup for inspection; if the archive
+      // somehow vanished, try to put the backup back in place.
       if hb_FileExists( cBak )
-         hb_ProcessRun( MCShWrap( "mv " + ShellQuote( cBak ) + " " + ShellQuote( cArchive ) + " 2>/dev/null" ) )
+         if ! hb_FileExists( cArchive )
+            hb_ProcessRun( MCShWrap( "mv " + ShellQuote( cBak ) + " " + ShellQuote( cArchive ) + " 2>/dev/null" ) )
+            MCVfsSetError( "repack failed; original restored from backup" )
+         else
+            MCVfsSetError( "repack failed; original archive untouched, backup kept at " + cBak )
+         endif
+      else
+         MCVfsSetError( "repack failed before backup; original archive untouched" )
       endif
    endif
 
