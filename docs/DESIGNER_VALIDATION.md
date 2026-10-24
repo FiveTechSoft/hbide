@@ -25,6 +25,12 @@ code. Dogfooding model: a "Find" dialog built entirely with the designer
   (caption/name/width/height/colors).
 - RadioGroup/ListBox runtime navigation: Down moves selection/cursor,
   list scrolls, Escape exits with .F.
+- List control palettes: no constant cyan. RadioGroup selected marker is
+  bright black on the dialog background; ListBox rows paint on the dialog
+  background, current item is subtle bright black, focused cursor is the
+  green bar; moving the cursor leaves no color trail (runtime captures).
+- Hint bar distinguishes move vs resize: "Arrows move Mouse resizes"
+  (canvas and post-drop variants).
 
 ## Harness notes (how to reproduce)
 
@@ -37,11 +43,8 @@ code. Dogfooding model: a "Find" dialog built entirely with the designer
 
 ## Known limits / open items
 
-- No keyboard resize binding: resize is mouse-drag only (hint bar wording
-  "Arrows move resize" is ambiguous; arrows only move).
-- Cosmetic: each list control paints one item in cyan at all times
-  (radio selected option, listbox trail item); navigation and values are
-  correct - repaint polish only.
+- No keyboard resize binding: resize is mouse-drag only; the hint bar now
+  says so explicitly ("Arrows move Mouse resizes").
 - The "?" glyph issue reported in IDE-integrated runs was isolated by the
   IDE lane to DispBox output outside the IDE (same xterm/launcher, both
   EN and UTF-8 codepages clean); not attributable to hbwindow/designer.
