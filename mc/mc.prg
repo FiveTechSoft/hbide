@@ -1601,7 +1601,7 @@ function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
          // copy does not leave a partial tree at the destination. The cleanup
          // runs before the metadata below is applied, while the new tree is
          // still writable; a pre-existing destination is never touched.
-         if lCreated .and. ! DeleteTree( cDst )
+         if lCreated .and. ! DeleteTree( cDst, .T. )
             MCMsgBox( "Copy", "The failed copy could not be fully removed:" + Chr( 10 ) + cDst )
          endif
       elseif lCreated
@@ -1818,14 +1818,16 @@ function DeleteTree( cPath, lPrep )
       return FErase( cPath ) == 0
    endif
    if lPrep == NIL
-      lPrep := .T.
+      lPrep := .F.
    endif
    if lPrep
-      // trees from archives or read-only sources can carry dirs without
-      // owner rwx, which would make the recursion below silently stop;
-      // make the tree traversable/removable first. chmod -R ignores
-      // symlinks during traversal, and cPath itself is never a symlink
-      // here (handled above).
+      // only for trees the app itself created (extract wraps, rollback
+      // targets, session temp): trees from archives or read-only sources
+      // can carry dirs without owner rwx, which would make the recursion
+      // below silently stop. chmod -R does not traverse symlinks (verified:
+      // a link in the tree pointing outside is not followed) and cPath
+      // itself is never a symlink here (handled above). User-owned trees
+      // (F8 delete) never get their permissions touched.
       hb_ProcessRun( MCShWrap( "chmod -R u+rwX -- " + ShellQuote( cPath ) + " 2>/dev/null" ),, )
    endif
    for each aDir in Directory( hb_DirSepAdd( cPath ) + "*", "DHS" )
