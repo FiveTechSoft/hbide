@@ -450,6 +450,7 @@ return nil
 METHOD Quit() CLASS MCApp
 
    if ! ::lConfirmExit .or. ::DlgConfirm( "Quit", "Do you really want to quit the Commander?", "&Quit" )
+      MCVfsCleanup()
       ::lEnd := .T.
    endif
 
@@ -1418,10 +1419,15 @@ return nil
 
 METHOD FileView() CLASS MCApp
 
-   local aEntry := ::ActivePanel():Current()
+   local aEntry := ::ActivePanel():Current(), cFull
 
    if aEntry != nil .and. ! aEntry[ P_DIR ]
-      MCViewer( MCEntryPath( ::ActivePanel(), aEntry ) )
+      cFull := MCEntryPath( ::ActivePanel(), aEntry )
+      if MCVfsKind( cFull ) == "local"
+         MCViewer( cFull )
+      else
+         MCVfsViewFile( cFull )
+      endif
    elseif aEntry != nil
       MCMsgBox( "View", "Cannot view a directory." )
    endif
@@ -1478,7 +1484,11 @@ METHOD FileEdit() CLASS MCApp
    local aEntry := ::ActivePanel():Current()
 
    if aEntry != nil .and. ! aEntry[ P_DIR ]
-      MCEditFile( MCEntryPath( ::ActivePanel(), aEntry ) )
+      if MCVfsKind( MCEntryPath( ::ActivePanel(), aEntry ) ) != "local"
+         MCMsgBox( "Edit", "Editing inside archives is not supported yet (read-only VFS)." )
+      else
+         MCEditFile( MCEntryPath( ::ActivePanel(), aEntry ) )
+      endif
    elseif aEntry != nil
       MCMsgBox( "Edit", "Cannot edit a directory." )
    endif
@@ -1550,7 +1560,13 @@ return hb_FNameMerge( cDest, hb_FNameNameExt( aEntry[ P_NAME ] ) )
 function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
 
    local lOk := .T., lCreated := .F., aChild
-   local cFrom := MCRealPath( cSrc ), cTo := MCRealPath( cDst )
+   local cFrom, cTo
+
+   if MCVfsKind( cSrc ) != "local" .or. MCVfsKind( cDst ) != "local"
+      return MCVfsCopy( cSrc, cDst, lConfirm, @lAll, oApp )
+   endif
+   cFrom := MCRealPath( cSrc )
+   cTo := MCRealPath( cDst )
 
    // Never truncate the source or recursively copy a directory into itself.
    if Empty( cFrom ) .or. Empty( cTo ) .or. cFrom == cTo .or. ;
@@ -1613,7 +1629,7 @@ return AllTrim( StrTran( cOut, Chr( 10 ), "" ) )
 
 static function MCSameFile( cA, cB )
    local cOne := "", cTwo := ""
-   hb_ProcessRun( MCShWrap( "stat -Lc '%d:%i' -- " + ShellQuote( cA ) ),, @cOne )
+   hb_ProcessRun( MCShWrap( "stat -Lc '%d:%i' -- " + ShellQuote( cA ) + " 2>/dev/null" ),, @cOne )
    hb_ProcessRun( MCShWrap( "stat -Lc '%d:%i' -- " + ShellQuote( cB ) + " 2>/dev/null" ),, @cTwo )
 return ! Empty( cOne ) .and. cOne == cTwo
 
@@ -1750,6 +1766,11 @@ return nil
 
 static function MoveItem( cSrc, cDst, oApp )
    local lAll := .F., cTarget
+   if MCVfsKind( cSrc ) != "local" .or. MCVfsKind( cDst ) != "local"
+      MCMsgBox( "Rename/Move", "Moving to or from archives is not supported yet (read-only VFS)." + Chr( 10 ) + ;
+                "Use Copy instead. Nothing changed." )
+      return .F.
+   endif
    if MCSameFile( cSrc, cDst )
       MCMsgBox( "Rename/Move", "Source and destination are the same file." )
       return .F.
@@ -1839,6 +1860,11 @@ METHOD FileDelete() CLASS MCApp
 
    local oSrc := ::ActivePanel(), aMarked := oSrc:MarkedEntries(), aEntry
    local nDeleted := 0, nFailed := 0, cFull
+
+   if MCVfsKind( oSrc:cPath ) != "local"
+      MCMsgBox( "Delete", "Deleting inside archives is not supported yet (read-only VFS)." )
+      return nil
+   endif
 
    if Empty( aMarked )
       aEntry := oSrc:Current()
