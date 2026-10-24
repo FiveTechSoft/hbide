@@ -264,7 +264,7 @@ function MCVfsExtract( cPath, cDstDir, lDir )
               " -- " + ShellQuote( "./" + a[ 3 ] + If( lDir, "/", "" ) ) + " 2>/dev/null"
    else
       cCmd := "cd " + ShellQuote( cWrap ) + " && unzip -o -q " + ShellQuote( a[ 2 ] ) + ;
-              " " + ShellQuote( a[ 3 ] + If( lDir, "/*", "" ) )
+              " " + ShellQuote( a[ 3 ] + If( lDir, "/*", "" ) ) + " 2>/dev/null"
    endif
    if hb_ProcessRun( MCShWrap( cCmd ),, @cOut ) != 0
       DeleteTree( cWrap )
