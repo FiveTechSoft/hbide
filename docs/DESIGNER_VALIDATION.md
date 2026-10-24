@@ -25,6 +25,15 @@ code. Dogfooding model: a "Find" dialog built entirely with the designer
   (caption/name/width/height/colors).
 - RadioGroup/ListBox runtime navigation: Down moves selection/cursor,
   list scrolls, Escape exits with .F.
+- Inspector: F4 opens/closes the panel, F6 toggles keyboard focus, Esc is
+  layered - focused Esc unfocuses, unfocused Esc closes the panel, the next
+  Esc offers exit. (Before 9ff3757, Esc with the panel open exited the
+  designer directly.)
+- ListBox scroll: 12 items in a 5-row box; Down moves the cursor past the
+  visible window and the list scrolls (It4/It5/It6 shown after 5 Downs);
+  Escape exits with .F.. PgDn while on the listbox (last GET) exits the
+  READ with .F. - stock Harbour reader behavior; the generated LISTBOX
+  does not page on PgDn and carries no SCROLLBAR clause.
 - List control palettes: no constant cyan. RadioGroup selected marker is
   bright black on the dialog background; ListBox rows paint on the dialog
   background, current item is subtle bright black, focused cursor is the
