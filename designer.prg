@@ -118,7 +118,7 @@ return Self
 
 METHOD Activate() CLASS HbDesigner
 
-   local nKey, nIndex, nInspHit
+   local nKey, nIndex, nInspHit, nChoice
 
    ::nOldCursor = SetCursor( SC_NONE )
    ::oIde:SuspendStatus()
@@ -158,7 +158,14 @@ METHOD Activate() CLASS HbDesigner
          case nKey == K_ESC
             if ::lPlacing
                ::lPlacing = .F.
-            elseif ! ::lDirty .or. Alert( "Discard unsaved changes?", { "Yes", "No" } ) == 1
+            elseif ::lDirty
+               ::SuspendUI()
+               nChoice = Alert( "Discard unsaved changes?", { "Yes", "No" } )
+               ::ResumeUI()
+               if nChoice == 1
+                  ::lEnd = .T.
+               endif
+            else
                ::lEnd = .T.
             endif
 
@@ -305,9 +312,9 @@ METHOD PopupMenu() CLASS HbDesigner
       MENUITEM "~Label (SAY)"              ACTION cType := DSN_SAY
       MENUITEM "~Input (GET)"              ACTION cType := DSN_GET
       MENUITEM "Check~Box"                 ACTION cType := DSN_CHECKBOX
-      MENUITEM "Push~Button"               ACTION cType := DSN_BUTTON
+      MENUITEM "~PushButton"               ACTION cType := DSN_BUTTON
       MENUITEM "~RadioGroup"               ACTION cType := DSN_RADIO
-      MENUITEM "~ListBox"                  ACTION cType := DSN_LISTBOX
+      MENUITEM "ListBo~x"                  ACTION cType := DSN_LISTBOX
       SEPARATOR
       MENUITEM "~Dialog properties..."     ACTION cType := "dialog"
       SEPARATOR
@@ -319,8 +326,8 @@ METHOD PopupMenu() CLASS HbDesigner
    // normalize popup geometry (menu builder defaults do not fit 11 items)
    oPopup:nTop    = 21
    oPopup:nLeft   = 30
-   oPopup:nRight  = 62
-   oPopup:nBottom = oPopup:nTop + Len( oPopup:aItems ) + 1
+   oPopup:nRight  = Min( 62, MaxCol() )
+   oPopup:nBottom = Min( oPopup:nTop + Len( oPopup:aItems ) + 1, MaxRow() )
    for each oItem in oPopup:aItems
       oItem:nRow = oPopup:nTop + oItem:__enumIndex()
       oItem:nCol = oPopup:nLeft + 1
@@ -361,20 +368,20 @@ METHOD AddControl( cType ) CLASS HbDesigner
       case cType == DSN_SAY
          oCtrl[ "caption" ] = "Label"
       case cType == DSN_GET
-         oCtrl[ "variable" ] = "cVar" + hb_ntos( Len( ::aControls ) + 1 )
+         oCtrl[ "variable" ] = DsnUniqueVar( ::aControls, "cVar" )
          oCtrl[ "width"    ] = 10
       case cType == DSN_CHECKBOX
          oCtrl[ "caption"  ] = "Check"
-         oCtrl[ "variable" ] = "lVar" + hb_ntos( Len( ::aControls ) + 1 )
+         oCtrl[ "variable" ] = DsnUniqueVar( ::aControls, "lVar" )
       case cType == DSN_BUTTON
          oCtrl[ "caption"     ] = "OK"
          oCtrl[ "accelerator" ] = "O"
          oCtrl[ "action"      ] = "oDlg:End()"
       case cType == DSN_RADIO
-         oCtrl[ "variable" ] = "nVar" + hb_ntos( Len( ::aControls ) + 1 )
+         oCtrl[ "variable" ] = DsnUniqueVar( ::aControls, "nVar" )
          oCtrl[ "items"    ] = "Option 1,Option 2,Option 3"
       case cType == DSN_LISTBOX
-         oCtrl[ "variable" ] = "nVar" + hb_ntos( Len( ::aControls ) + 1 )
+         oCtrl[ "variable" ] = DsnUniqueVar( ::aControls, "nVar" )
          oCtrl[ "items"    ] = "Item 1,Item 2,Item 3"
          oCtrl[ "width"    ] = 20
          oCtrl[ "height"   ] = 6
@@ -809,7 +816,7 @@ return nil
 
 METHOD LoadJson() CLASS HbDesigner
 
-   local cFile, cJson, hModel := nil
+   local cFile, cJson, hModel := nil, aMin, nSkipped
 
    cFile = ::SelectFileName( "Open a JSON dialog", ::cFileName )
    if Empty( cFile )
@@ -824,21 +831,39 @@ METHOD LoadJson() CLASS HbDesigner
    cJson = MemoRead( cFile )
    hb_jsonDecode( cJson, @hModel )
 
-   if ! HB_IsHash( hModel ) .or. ! ( "controls" $ hModel )
+   if ! DsnValidModel( hModel )
       ::ShowHint( "Invalid dialog JSON: " + cFile )
       return nil
    endif
 
-   ::cDlgName    = hb_HGetDef( hModel, "name", "MyDialog" )
-   ::cDlgCaption = hb_HGetDef( hModel, "caption", "My Dialog" )
-   ::cDlgColor   = hb_HGetDef( hModel, "color", CLR_DIALOG )
-   ::nDlgWidth   = hb_HGetDef( hModel, "width", 40 )
-   ::nDlgHeight  = hb_HGetDef( hModel, "height", 12 )
+   ::cDlgName    = DsnValidVar( DsnStr( hb_HGetDef( hModel, "name", "" ), "" ), "MyDialog" )
+   ::cDlgCaption = DsnStr( hb_HGetDef( hModel, "caption", "" ), "My Dialog" )
+   if Empty( ::cDlgCaption )
+      ::cDlgCaption = "My Dialog"
+   endif
+   ::cDlgColor   = DsnStr( hb_HGetDef( hModel, "color", "" ), CLR_DIALOG )
    ::aControls   = hModel[ "controls" ]
+   nSkipped      = Len( ::aControls )
    DsnNormalizeControls( ::aControls )
+   nSkipped      -= Len( ::aControls )
+   // clamp the dialog to the screen and grow it so no control is left outside
+   ::nDlgWidth   = Max( 20, Min( MaxCol() - 4, Int( DsnNum( hb_HGetDef( hModel, "width", 40 ), 40 ) ) ) )
+   ::nDlgHeight  = Max( 6, Min( MaxRow() - 3, Int( DsnNum( hb_HGetDef( hModel, "height", 12 ), 12 ) ) ) )
+   aMin          = ::DlgMinSize()
+   ::nDlgWidth   = Min( MaxCol() - 4, Max( ::nDlgWidth, aMin[ 1 ] ) )
+   ::nDlgHeight  = Min( MaxRow() - 3, Max( ::nDlgHeight, aMin[ 2 ] ) )
    ::nSelected   = 0
-   ::cFileName   = cFile
-   ::lDirty      = .F.
+   ::lPlacing    = .F.
+   if nSkipped > 0
+      // entries were skipped: keep the original file intact by asking a name
+      ::cFileName   = ""
+      ::lDirty      = .T.
+      ::ShowHint( "Loaded " + cFile + " (" + hb_ntos( nSkipped ) + ;
+         " invalid entries skipped)" )
+   else
+      ::cFileName   = cFile
+      ::lDirty      = .F.
+   endif
 
    with object ::oWnd
       :nRight   = :nLeft + ::nDlgWidth - 1
@@ -848,7 +873,9 @@ METHOD LoadJson() CLASS HbDesigner
    end
 
    ::Redraw()
-   ::ShowHint( "Loaded " + cFile )
+   if nSkipped == 0
+      ::ShowHint( "Loaded " + cFile )
+   endif
 
 return nil
 
@@ -1278,11 +1305,23 @@ return .T.
 METHOD GeneratePrg() CLASS HbDesigner
 
    local hModel := DsnBuildModel( Self )
-   local cCode  := DsnGenCode( hModel )
+   local nSkipped := 0, nConflicts := 0
+   local cCode  := DsnGenCode( hModel, @nSkipped, @nConflicts )
    local cFile  := Lower( ::cDlgName ) + ".prg"
 
+   if File( cFile )
+      ::SuspendUI()
+      if Alert( "Overwrite " + cFile + "?", { "Yes", "No" } ) != 1
+         ::ResumeUI()
+         return nil
+      endif
+      ::ResumeUI()
+   endif
+
    hb_MemoWrit( cFile, cCode )
-   ::ShowHint( "Generated " + cFile )
+   ::ShowHint( "Generated " + cFile + ;
+      If( nSkipped > 0, " (" + hb_ntos( nSkipped ) + " without items skipped)", "" ) + ;
+      If( nConflicts > 0, " (" + hb_ntos( nConflicts ) + " name conflicts resolved)", "" ) )
 
 return nil
 
@@ -1320,7 +1359,7 @@ function DsnControlSize( oCtrl )
       case oCtrl[ "type" ] == DSN_GET
          nWidth = hb_HGetDef( oCtrl, "width", 10 )
       case oCtrl[ "type" ] == DSN_CHECKBOX
-         nWidth = 4 + Len( hb_HGetDef( oCtrl, "caption", "" ) )
+         nWidth = 4 + Len( StrTran( hb_HGetDef( oCtrl, "caption", "" ), "&", "" ) )
       case oCtrl[ "type" ] == DSN_BUTTON
          nWidth  = Len( hb_HGetDef( oCtrl, "caption", "" ) ) + 3
          nHeight = 2   // caption row + shadow row
@@ -1374,8 +1413,8 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
    local cCaption := hb_HGetDef( oCtrl, "caption", "" )
    local cColor, cText, nWidth, n, aSize, aItems
 
-   // design time: captions are shown without the & accelerator marker
-   cCaption = StrTran( cCaption, "&", "" )
+   // design time: & marks accelerators on checkbox/button captions, so it is
+   // not drawn there; SAY captions are literal (runtime Say shows & as-is)
 
    hb_default( @lSelected, .F. )
    hb_default( @cSelColor, CLR_SELECTED )
@@ -1399,12 +1438,12 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
 
       case oCtrl[ "type" ] == DSN_CHECKBOX
          cColor = If( lSelected, cSelColor, CLR_CHECKBOX )
-         cText  = SubStr( "[ ] " + cCaption, 1, Max( 0, nMaxCol - nACol + 1 ) )
+         cText  = SubStr( "[ ] " + StrTran( cCaption, "&", "" ), 1, Max( 0, nMaxCol - nACol + 1 ) )
          hb_DispOutAt( nARow, nACol, cText, cColor )
 
       case oCtrl[ "type" ] == DSN_BUTTON
          cColor = If( lSelected, cSelColor, CLR_BUTTON )
-         cText  = " " + cCaption + " "
+         cText  = " " + StrTran( cCaption, "&", "" ) + " "
          nWidth = Len( cText )
          hb_DispOutAt( nARow, nACol, ;
             SubStr( cText, 1, Max( 0, nMaxCol - nACol + 1 ) ), cColor )
@@ -1478,11 +1517,16 @@ return cResult
 // generate the .prg that rebuilds the dialog with HBWindow.
 // hModel is the hash produced by DsnBuildModel() (or read from JSON)
 
-function DsnGenCode( hModel )
+function DsnGenCode( hModel, nSkipped, nConflicts )
 
    local cCode := ""
-   local oCtrl, n, aSize
+   local oCtrl, n, aSize, cVar, cType, lNew
+   local hDeclared := { => }   // variable name => bound type (C/L/N)
+   local hGenVars  := { => }   // control index => variable name used (model untouched)
    local cName := hb_HGetDef( hModel, "name", "MyDialog" )
+
+   nSkipped   = 0
+   nConflicts = 0
 
    cCode += "//" + hb_eol()
    cCode += "// " + Lower( cName ) + ".prg - dialog generated by the HbIde designer" + hb_eol()
@@ -1496,19 +1540,32 @@ function DsnGenCode( hModel )
    cCode += hb_eol()
    cCode += "   local oDlg, GetList := {}, lOk := .F." + hb_eol()
 
-   // variables used by GETs and CHECKBOXes
+   // variables used by the bound controls; a name is declared only once.
+   // Two controls may share a name only when the type matches; a text GET
+   // and a logical CHECKBOX with the same name get separate variables.
    for each oCtrl in hModel[ "controls" ]
+      cType = DsnVarType( oCtrl )
+      if cType == "" .or. ( oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX .and. Empty( DsnItems( oCtrl ) ) )
+         loop
+      endif
+      lNew = .F.
+      cVar = DsnResolveVar( hDeclared, oCtrl[ "variable" ], cType, @nConflicts, @lNew )
+      hGenVars[ oCtrl:__enumIndex() ] = cVar
+      if lNew
+         do case
+            case cType == "C"
+               cCode += "   local " + cVar + " := Space( " + ;
+                        hb_ntos( hb_HGetDef( oCtrl, "width", 10 ) ) + " )" + hb_eol()
+            case cType == "L"
+               cCode += "   local " + cVar + " := .F." + hb_eol()
+            case cType == "N"
+               cCode += "   local " + cVar + " := 1" + hb_eol()
+         endcase
+      endif
       do case
-         case oCtrl[ "type" ] == DSN_GET
-            cCode += "   local " + oCtrl[ "variable" ] + " := Space( " + ;
-                     hb_ntos( hb_HGetDef( oCtrl, "width", 10 ) ) + " )" + hb_eol()
-         case oCtrl[ "type" ] == DSN_CHECKBOX
-            cCode += "   local " + oCtrl[ "variable" ] + " := .F." + hb_eol()
          case oCtrl[ "type" ] == DSN_RADIO
-            cCode += "   local " + oCtrl[ "variable" ] + " := 1" + hb_eol()
             cCode += "   local aButt" + hb_ntos( oCtrl:__enumIndex() ) + hb_eol()
          case oCtrl[ "type" ] == DSN_LISTBOX
-            cCode += "   local " + oCtrl[ "variable" ] + " := 1" + hb_eol()
             cCode += "   local aItems" + hb_ntos( oCtrl:__enumIndex() ) + hb_eol()
       endcase
    next
@@ -1525,13 +1582,17 @@ function DsnGenCode( hModel )
    for each oCtrl in hModel[ "controls" ]
       do case
          case oCtrl[ "type" ] == DSN_RADIO
-            cCode += "   aButt" + hb_ntos( oCtrl:__enumIndex() ) + " := " + ;
-                     DsnRadioButtsCode( oCtrl ) + hb_eol()
-            cCode += "   AEval( aButt" + hb_ntos( oCtrl:__enumIndex() ) + ;
-                     ", {| o | o:colorSpec := '" + DSN_CLR_RADIO + "' } )" + hb_eol()
+            if ! Empty( DsnItems( oCtrl ) )
+               cCode += "   aButt" + hb_ntos( oCtrl:__enumIndex() ) + " := " + ;
+                        DsnRadioButtsCode( oCtrl ) + hb_eol()
+               cCode += "   AEval( aButt" + hb_ntos( oCtrl:__enumIndex() ) + ;
+                        ", {| o | o:colorSpec := '" + DSN_CLR_RADIO + "' } )" + hb_eol()
+            endif
          case oCtrl[ "type" ] == DSN_LISTBOX
-            cCode += "   aItems" + hb_ntos( oCtrl:__enumIndex() ) + " := " + ;
-                     DsnItemsCode( oCtrl ) + hb_eol()
+            if ! Empty( DsnItems( oCtrl ) )
+               cCode += "   aItems" + hb_ntos( oCtrl:__enumIndex() ) + " := " + ;
+                        DsnItemsCode( oCtrl ) + hb_eol()
+            endif
       endcase
    next
    cCode += hb_eol()
@@ -1548,13 +1609,13 @@ function DsnGenCode( hModel )
          case oCtrl[ "type" ] == DSN_GET
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
-                     " GET " + oCtrl[ "variable" ] + ;
+                     " GET " + hGenVars[ n ] + ;
                      " COLOR '" + DSN_CLR_GET + "'" + hb_eol()
 
          case oCtrl[ "type" ] == DSN_CHECKBOX
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
-                     " GET " + oCtrl[ "variable" ] + ;
+                     " GET " + hGenVars[ n ] + ;
                      " CHECKBOX CAPTION " + DsnQuote( oCtrl[ "caption" ] ) + ;
                      " COLOR '" + DSN_CLR_CHECKBOX + "'" + hb_eol()
 
@@ -1567,13 +1628,21 @@ function DsnGenCode( hModel )
             cCode += "      COLOR '" + DSN_CLR_BUTTON + "' STATE { || " + ;
                      DsnButtonAction( oCtrl ) + " }" + hb_eol()
 
+         case ( oCtrl[ "type" ] == DSN_RADIO .or. oCtrl[ "type" ] == DSN_LISTBOX ) .and. ;
+               Empty( DsnItems( oCtrl ) )
+            // an item-less radio/listbox cannot run: note it and skip it
+            nSkipped++
+            cCode += "   // skipped " + oCtrl[ "type" ] + " at row " + ;
+                     hb_ntos( oCtrl[ "row" ] + 1 ) + ", col " + ;
+                     hb_ntos( oCtrl[ "col" ] + 1 ) + ": no items" + hb_eol()
+
          case oCtrl[ "type" ] == DSN_RADIO .or. oCtrl[ "type" ] == DSN_LISTBOX
             aSize = DsnControlSize( oCtrl )
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
                      ", oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + aSize[ 2 ] ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + aSize[ 1 ] ) + ;
-                     " GET " + oCtrl[ "variable" ] + ;
+                     " GET " + hGenVars[ n ] + ;
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
                         " RADIOGROUP aButt", " LISTBOX aItems" ) + ;
                      hb_ntos( n ) + ;
@@ -1618,6 +1687,50 @@ return cCaption
 
 //-----------------------------------------------------------------------------------------//
 
+// bound type of a control: C text, L logical, N numeric, "" unbound
+
+function DsnVarType( oCtrl )
+
+   do case
+      case oCtrl[ "type" ] == DSN_GET      ; return "C"
+      case oCtrl[ "type" ] == DSN_CHECKBOX ; return "L"
+      case oCtrl[ "type" ] == DSN_RADIO .or. oCtrl[ "type" ] == DSN_LISTBOX
+         return "N"
+   endcase
+
+return ""
+
+//-----------------------------------------------------------------------------------------//
+// declare cVar with cType; on a name clash with another type pick a free
+// numbered variant and count the conflict
+
+function DsnResolveVar( hDeclared, cVar, cType, nConflicts, lNew )
+
+   local n, cNew
+
+   if ! ( cVar $ hDeclared )
+      hDeclared[ cVar ] = cType
+      lNew = .T.
+      return cVar
+   endif
+   if hDeclared[ cVar ] == cType
+      return cVar   // same name, same type: share the variable
+   endif
+
+   nConflicts++
+   n = 2
+   cNew = cVar + hb_ntos( n )
+   while cNew $ hDeclared
+      n++
+      cNew = cVar + hb_ntos( n )
+   enddo
+   hDeclared[ cNew ] = cType
+   lNew = .T.
+
+return cNew
+
+//-----------------------------------------------------------------------------------------//
+
 function DsnButtonAction( oCtrl )
 
    local cAction := AllTrim( hb_HGetDef( oCtrl, "action", "" ) )
@@ -1626,14 +1739,72 @@ return If( Empty( cAction ), "lOk := .T., oDlg:End()", cAction )
 
 //-----------------------------------------------------------------------------------------//
 
-// legacy models keep the & inside the caption: move it to the accelerator property
+// normalize controls read from JSON: drop foreign entries, coerce field
+// types (hand-edited files may hold strings where numbers are expected) and
+// migrate legacy button captions with & into the accelerator property
 
 procedure DsnNormalizeControls( aControls )
 
-   local oCtrl, nPos, cCaption
+   local oCtrl, nPos, cCaption, n, cType, cPrefix
+   local cTypes := "|" + DSN_SAY + "|" + DSN_GET + "|" + DSN_CHECKBOX + "|" + ;
+                   DSN_BUTTON + "|" + DSN_RADIO + "|" + DSN_LISTBOX + "|"
+
+   // drop entries that are not usable controls
+   for n = Len( aControls ) to 1 step -1
+      oCtrl = aControls[ n ]
+      cType = If( HB_IsHash( oCtrl ), hb_HGetDef( oCtrl, "type", "" ), "" )
+      if ! HB_IsString( cType ) .or. ! ( "|" + cType + "|" $ cTypes )
+         hb_ADel( aControls, n, .T. )
+      endif
+   next
 
    for each oCtrl in aControls
-      if hb_HGetDef( oCtrl, "type", "" ) == DSN_BUTTON
+      // numeric geometry
+      oCtrl[ "row" ] = Max( 0, Int( DsnNum( hb_HGetDef( oCtrl, "row", 0 ), 0 ) ) )
+      oCtrl[ "col" ] = Max( 0, Int( DsnNum( hb_HGetDef( oCtrl, "col", 0 ), 0 ) ) )
+
+      // text fields must be strings
+      if "caption" $ oCtrl .and. ! HB_IsString( oCtrl[ "caption" ] )
+         oCtrl[ "caption" ] = ""
+      endif
+      if "accelerator" $ oCtrl .and. ! HB_IsString( oCtrl[ "accelerator" ] )
+         oCtrl[ "accelerator" ] = ""
+      endif
+      if "action" $ oCtrl .and. ! HB_IsString( oCtrl[ "action" ] )
+         oCtrl[ "action" ] = ""
+      endif
+
+      // items accepts a CSV string or a JSON array of strings
+      if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX
+         if HB_IsArray( hb_HGetDef( oCtrl, "items", "" ) )
+            oCtrl[ "items" ] = DsnItemsFromArray( oCtrl[ "items" ] )
+         elseif ! HB_IsString( oCtrl[ "items" ] )
+            oCtrl[ "items" ] = ""
+         endif
+      endif
+
+      // sizes with the same clamps as the properties dialog
+      if oCtrl[ "type" ] == DSN_GET
+         oCtrl[ "width" ] = Max( 4, Min( 40, Int( DsnNum( hb_HGetDef( oCtrl, "width", 10 ), 10 ) ) ) )
+      endif
+      if oCtrl[ "type" ] == DSN_LISTBOX
+         oCtrl[ "width" ]  = Max( 4, Min( 40, Int( DsnNum( hb_HGetDef( oCtrl, "width", 20 ), 20 ) ) ) )
+         oCtrl[ "height" ] = Max( 3, Min( 15, Int( DsnNum( hb_HGetDef( oCtrl, "height", 6 ), 6 ) ) ) )
+      endif
+
+      // every bound control needs a valid, non-empty variable name
+      if oCtrl[ "type" ] $ DSN_GET + "|" + DSN_CHECKBOX + "|" + DSN_RADIO + "|" + DSN_LISTBOX
+         cPrefix = If( oCtrl[ "type" ] == DSN_GET, "cVar", ;
+                  If( oCtrl[ "type" ] == DSN_CHECKBOX, "lVar", "nVar" ) )
+         if Empty( DsnValidVar( hb_HGetDef( oCtrl, "variable", "" ), "" ) )
+            oCtrl[ "variable" ] = DsnUniqueVar( aControls, cPrefix )
+         else
+            oCtrl[ "variable" ] = DsnValidVar( oCtrl[ "variable" ], cPrefix )
+         endif
+      endif
+
+      // legacy models keep the & inside the caption: move it to the accelerator property
+      if oCtrl[ "type" ] == DSN_BUTTON
          cCaption = hb_HGetDef( oCtrl, "caption", "" )
          if ( nPos := At( "&", cCaption ) ) > 0
             if Empty( hb_HGetDef( oCtrl, "accelerator", "" ) )
@@ -1645,6 +1816,83 @@ procedure DsnNormalizeControls( aControls )
    next
 
 return
+
+//-----------------------------------------------------------------------------------------//
+// model read from JSON is usable: a hash with an array of controls
+
+function DsnValidModel( hModel )
+
+return HB_IsHash( hModel ) .and. "controls" $ hModel .and. HB_IsArray( hModel[ "controls" ] )
+
+//-----------------------------------------------------------------------------------------//
+// first free variable name with a prefix: cVar1, cVar2, ...
+
+function DsnUniqueVar( aControls, cPrefix )
+
+   local n := 1
+
+   while DsnVarUsed( aControls, cPrefix + hb_ntos( n ) )
+      n++
+   enddo
+
+return cPrefix + hb_ntos( n )
+
+//-----------------------------------------------------------------------------------------//
+
+static function DsnVarUsed( aControls, cName )
+
+   local oCtrl
+
+   for each oCtrl in aControls
+      if HB_IsHash( oCtrl ) .and. hb_HGetDef( oCtrl, "variable", "" ) == cName
+         return .T.
+      endif
+   next
+
+return .F.
+
+//-----------------------------------------------------------------------------------------//
+// JSON array of strings -> CSV "items" property
+
+function DsnItemsFromArray( aItems )
+
+   local cResult := "", u
+
+   for each u in aItems
+      if HB_IsString( u ) .and. ! Empty( AllTrim( u ) )
+         cResult += If( Empty( cResult ), "", "," ) + AllTrim( u )
+      endif
+   next
+
+return cResult
+
+//-----------------------------------------------------------------------------------------//
+// coercions for values read from hand-edited JSON
+
+static function DsnStr( u, cDefault )
+
+return If( HB_IsString( u ), u, cDefault )
+
+//-----------------------------------------------------------------------------------------//
+
+static function DsnNum( u, nDefault )
+
+   local c, n, lOk
+
+   if HB_IsString( u )
+      // digit strings are coerced, anything else falls back to the default
+      c = AllTrim( u )
+      lOk = ! Empty( c )
+      for n = 1 to Len( c )
+         if ! IsDigit( SubStr( c, n, 1 ) )
+            lOk = .F.
+            exit
+         endif
+      next
+      u = If( lOk, Val( c ), nDefault )
+   endif
+
+return If( HB_IsNumeric( u ), u, nDefault )
 
 //-----------------------------------------------------------------------------------------//
 
