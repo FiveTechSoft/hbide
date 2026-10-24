@@ -331,7 +331,22 @@ METHOD Activate() CLASS HBIde
       nKey = InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
 
       if nKey == K_ESC .and. ! ::oMenu:IsOpen()
-         ::lEnd = .T.
+         if ::oEditor:Changed()
+            switch Alert( "Unsaved changes", { "&Save", "&Discard", "&Cancel" } )
+            case 1
+               ::SaveFile()
+               if ! ::oEditor:Changed()
+                  ::lEnd = .T.
+               endif
+               exit
+            case 2
+               ::lEnd = .T.
+               exit
+            end
+            ::Repaint()
+         else
+            ::lEnd = .T.
+         endif
       endif
 
       if nKey >= K_ALT_Q .and. nKey <= K_ALT_M
