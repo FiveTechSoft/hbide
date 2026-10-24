@@ -239,7 +239,15 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   while background jobs run, gated on lRotatingDash and lMenubar. Proven
   live on a 20 MB background copy (F5 -> Background): 84 writes to the
   corner cell cycling through the four glyphs in order, copy completed
-  intact. Erase-after-finish and option-off erase still pending proof
+  intact. Erase proven: after the job the cell is blanked (last corner
+  writes are spaces); with rotatingdash=0 in the ini not a single corner
+  write happens during the same copy
+- Idle-loop resize revalidated live on the final bytes after the
+  BISECT-calls regression: window resized 200x60 -> ~100x31 -> ~185x55 ->
+  ~147x43 in the X harness, every step relayouts with single clean
+  borders, no residual paint from previous sizes, keybar intact
+  (native-res crops). Dialogs during resize remain inert under gttrm
+  (documented limit, extended inkey events filtered by the dialog READ)
 - Drop down menus (mc drop_menus, setup.c:101, default FALSE): dedicated
   bar handler in mc/ (the shared HbMenu class only supports dropping
   immediately). OFF: F9 lights the bar without dropping, Left/Right move
@@ -299,8 +307,7 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 - Complete: show all (show_all_if_ambiguous): needs M-Tab completion
   infrastructure in dialog GETs (lib/widget input completion)
-- Rotating dash erase-after-finish and option-OFF path: implemented,
-  not yet proven live
+
 
 ## Env-blocked (out of demo scope by design)
 
