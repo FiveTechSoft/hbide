@@ -140,6 +140,7 @@ CLASS HbDesigner
    METHOD InspValue( cKey )
    METHOD InspSetText( cKey, cVal )
    METHOD InspAdjust( nDelta )
+   METHOD InspCycle( nDelta )
    METHOD InspEdit()
    METHOD InspHit( nMRow, nMCol )
    METHOD DragInspector( nMRow, nMCol )
@@ -1018,7 +1019,7 @@ METHOD DrawControls() CLASS HbDesigner
    if ! ::lPlacing
       aRect = ::ResizeHandlePos()
       if aRect[ 1 ] >= 0 .and. ::HitClient( aRect[ 1 ], aRect[ 2 ] )
-         hb_DispOutAt( aRect[ 1 ], aRect[ 2 ], Chr( 219 ), "N+/W" )
+         hb_DispOutAt( aRect[ 1 ], aRect[ 2 ], hb_UTF8ToStr( "█" ), "N+/W" )
       endif
    endif
 
@@ -1566,7 +1567,7 @@ METHOD ToggleInspector() CLASS HbDesigner
 return nil
 
 //-----------------------------------------------------------------------------------------//
-// { label, key, kind } per field; kind is "num" or "text"
+// { label, key, kind } per field; kind is "num", "text" or "choice"
 
 METHOD InspFields() CLASS HbDesigner
 
@@ -1588,6 +1589,7 @@ METHOD InspFields() CLASS HbDesigner
       if oCtrl[ "type" ] == DSN_BUTTON
          AAdd( aFields, { "Accel",  "accelerator", "text" } )
          AAdd( aFields, { "Action", "action",      "text" } )
+         AAdd( aFields, { "Style",  "style",       "choice" } )
       endif
       if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX
          AAdd( aFields, { "Variable", "variable", "text" } )
@@ -1648,6 +1650,7 @@ METHOD InspValue( cKey ) CLASS HbDesigner
          case cKey == "width"    ; return hb_ntos( hb_HGetDef( oCtrl, "width", 10 ) )
          case cKey == "accelerator" ; return hb_HGetDef( oCtrl, "accelerator", "" )
          case cKey == "action"      ; return hb_HGetDef( oCtrl, "action", "" )
+         case cKey == "style"       ; return hb_HGetDef( oCtrl, "style", "shadow" )
          case cKey == "items"       ; return hb_HGetDef( oCtrl, "items", "" )
          case cKey == "height"      ; return hb_ntos( hb_HGetDef( oCtrl, "height", 6 ) )
       endcase
@@ -1745,6 +1748,10 @@ METHOD InspAdjust( nDelta ) CLASS HbDesigner
    if ::nInspField < 1 .or. ::nInspField > Len( aFields )
       return nil
    endif
+   if aFields[ ::nInspField ][ 3 ] == "choice"
+      ::InspCycle( nDelta )
+      return nil
+   endif
    if aFields[ ::nInspField ][ 3 ] != "num"
       return nil
    endif
@@ -1796,6 +1803,46 @@ METHOD InspAdjust( nDelta ) CLASS HbDesigner
 return nil
 
 //-----------------------------------------------------------------------------------------//
+// cycle a "choice" inspector field through its values (Left/Right/Enter)
+
+METHOD InspCycle( nDelta ) CLASS HbDesigner
+
+   local aFields, cKey, oCtrl, aValues := {}, nPos
+
+   aFields = ::InspFields()
+   if ::nInspField < 1 .or. ::nInspField > Len( aFields )
+      return nil
+   endif
+   if aFields[ ::nInspField ][ 3 ] != "choice"
+      return nil
+   endif
+   if ::nSelected < 1 .or. ::nSelected > Len( ::aControls )
+      return nil
+   endif
+   cKey  = aFields[ ::nInspField ][ 2 ]
+   oCtrl = ::aControls[ ::nSelected ]
+   do case
+      case cKey == "style"
+         aValues = { "shadow", "brackets" }
+   endcase
+   if Empty( aValues )
+      return nil
+   endif
+   nPos = AScan( aValues, hb_HGetDef( oCtrl, cKey, aValues[ 1 ] ) )
+   if nPos == 0
+      nPos = 1
+   endif
+   nPos = 1 + Mod( nPos - 1 + nDelta + Len( aValues ), Len( aValues ) )
+
+   ::BeginBurst()
+   oCtrl[ cKey ] = aValues[ nPos ]
+   ::CommitBurst()
+   ::lDirty = .T.
+   ::Redraw()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
 // inline edit of a text field inside the inspector
 
 METHOD InspEdit() CLASS HbDesigner
@@ -1805,6 +1852,10 @@ METHOD InspEdit() CLASS HbDesigner
 
    aFields = ::InspFields()
    if ::nInspField < 1 .or. ::nInspField > Len( aFields )
+      return nil
+   endif
+   if aFields[ ::nInspField ][ 3 ] == "choice"
+      ::InspCycle( 1 )
       return nil
    endif
    if aFields[ ::nInspField ][ 3 ] != "text"
@@ -2195,6 +2246,7 @@ function DsnNewControl( cType, aControls )
          oCtrl[ "caption"     ] = "OK"
          oCtrl[ "accelerator" ] = "O"
          oCtrl[ "action"      ] = "lOk := .T., oDlg:End()"
+         oCtrl[ "style"       ] = "shadow"
       case cType == DSN_RADIO
          oCtrl[ "variable" ] = DsnUniqueVar( aControls, "nVar" )
          oCtrl[ "items"    ] = "Option 1,Option 2,Option 3"
@@ -2221,8 +2273,13 @@ function DsnControlSize( oCtrl )
       case oCtrl[ "type" ] == DSN_CHECKBOX
          nWidth = 4 + Len( StrTran( hb_HGetDef( oCtrl, "caption", "" ), "&", "" ) )
       case oCtrl[ "type" ] == DSN_BUTTON
-         nWidth  = Len( hb_HGetDef( oCtrl, "caption", "" ) ) + 3
-         nHeight = 2   // caption row + shadow row
+         if hb_HGetDef( oCtrl, "style", "shadow" ) == "brackets"
+            nWidth  = Len( hb_HGetDef( oCtrl, "caption", "" ) ) + 4   // "[ Caption ]"
+            nHeight = 1
+         else
+            nWidth  = Len( hb_HGetDef( oCtrl, "caption", "" ) ) + 3
+            nHeight = 2   // caption row + shadow row
+         endif
       case oCtrl[ "type" ] == DSN_RADIO
          nWidth  = 8 + DsnMaxItemLen( oCtrl )
          nHeight = Len( DsnItems( oCtrl ) ) + 2
@@ -2359,7 +2416,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
          cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", CLR_GET ) )
          nWidth = hb_HGetDef( oCtrl, "width", 10 )
          hb_DispOutAt( nARow, nACol, ;
-            Replicate( Chr( 176 ), Min( nWidth, Max( 0, nMaxCol - nACol + 1 ) ) ), cColor )
+            Replicate( hb_UTF8ToStr( "░" ), Min( nWidth, Max( 0, nMaxCol - nACol + 1 ) ) ), cColor )
 
       case oCtrl[ "type" ] == DSN_CHECKBOX
          cColor = If( lSelected, cSelColor, If( lDarkDlg, cDlgText, CLR_CHECKBOX ) )
@@ -2368,18 +2425,25 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
 
       case oCtrl[ "type" ] == DSN_BUTTON
          cColor = If( lSelected, CLR_SEL_BTN, If( lDarkDlg, "N/W", CLR_BUTTON ) )
-         cText  = " " + StrTran( cCaption, "&", "" ) + " "
-         nWidth = Len( cText )
-         hb_DispOutAt( nARow, nACol, ;
-            SubStr( cText, 1, Max( 0, nMaxCol - nACol + 1 ) ), cColor )
-         // shadow: right cell + bottom row, same look as the runtime PushButton
-         if nACol + nWidth <= nMaxCol
-            hb_DispOutAt( nARow, nACol + nWidth, Chr( 220 ), cShadow )
-         endif
-         if nARow + 1 < oWnd:nBottom .and. nARow + 1 <= MaxRow()
-            n = Min( nWidth, Max( 0, nMaxCol - nACol ) )
-            if n > 0
-               hb_DispOutAt( nARow + 1, nACol + 1, Replicate( Chr( 223 ), n ), cShadow )
+         if hb_HGetDef( oCtrl, "style", "shadow" ) == "brackets"
+            // bracket look: "[ Caption ]" on one row, no shadow
+            cText = "[ " + StrTran( cCaption, "&", "" ) + " ]"
+            hb_DispOutAt( nARow, nACol, ;
+               SubStr( cText, 1, Max( 0, nMaxCol - nACol + 1 ) ), cColor )
+         else
+            cText  = " " + StrTran( cCaption, "&", "" ) + " "
+            nWidth = Len( cText )
+            hb_DispOutAt( nARow, nACol, ;
+               SubStr( cText, 1, Max( 0, nMaxCol - nACol + 1 ) ), cColor )
+            // shadow: right cell + bottom row, same look as the runtime PushButton
+            if nACol + nWidth <= nMaxCol
+               hb_DispOutAt( nARow, nACol + nWidth, hb_UTF8ToStr( "▄" ), cShadow )
+            endif
+            if nARow + 1 < oWnd:nBottom .and. nARow + 1 <= MaxRow()
+               n = Min( nWidth, Max( 0, nMaxCol - nACol ) )
+               if n > 0
+                  hb_DispOutAt( nARow + 1, nACol + 1, Replicate( hb_UTF8ToStr( "▀" ), n ), cShadow )
+               endif
             endif
          endif
 
@@ -2594,7 +2658,9 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                      DsnQuote( DsnAccelCaption( hb_HGetDef( oCtrl, "caption", "" ), ;
                         hb_HGetDef( oCtrl, "accelerator", "" ) ) ) + " ;" + hb_eol()
             cCode += "      COLOR '" + DsnClrButtonFor( cDlgColor ) + "' STATE { || " + ;
-                     DsnButtonAction( oCtrl ) + " }" + hb_eol()
+                     DsnButtonAction( oCtrl ) + " }" + ;
+                     If( hb_HGetDef( oCtrl, "style", "shadow" ) == "brackets", ;
+                        " STYLE '[]'", "" ) + hb_eol()
 
          case ( oCtrl[ "type" ] == DSN_RADIO .or. oCtrl[ "type" ] == DSN_LISTBOX ) .and. ;
                Empty( DsnItems( oCtrl ) )
@@ -3204,14 +3270,15 @@ static function DsnBtnDisplayCode( cBg )
    local cCode := ""
    local cShadow := "N/" + cBg
 
-   cCode += "// pushbutton display override: same 3D look as hbbutton's BtnDisplay," + hb_eol()
+   cCode += "// pushbutton display override: same look as hbbutton's BtnDisplay" + hb_eol()
+   cCode += "// (3D shadow by default, bracket look on a two-char STYLE)," + hb_eol()
    cCode += "// with the shadow painted on the dialog background" + hb_eol()
    cCode += "function DsnBtnDisplay()" + hb_eol()
    cCode += hb_eol()
    cCode += "   local Self := QSelf()" + hb_eol()
    cCode += hb_eol()
    cCode += "   local cColor" + hb_eol()
-   cCode += "   local cStyle := DsnBtnPads()" + hb_eol()
+   cCode += "   local aPads := DsnBtnPads()" + hb_eol()
    cCode += "   local cCaption := ::cCaption" + hb_eol()
    cCode += "   local nRow := ::nRow" + hb_eol()
    cCode += "   local nCol := ::nCol" + hb_eol()
@@ -3228,22 +3295,37 @@ static function DsnBtnDisplayCode( cBg )
    cCode += '      cColor := hb_ColorIndex( ::cColorSpec, 0 )' + hb_eol()
    cCode += "   endcase" + hb_eol()
    cCode += hb_eol()
-   cCode += '   if ( nPos := At( "&", cCaption ) ) == 0' + hb_eol()
-   cCode += "   elseif nPos == Len( cCaption )" + hb_eol()
+   cCode += '   if ( nPos := hb_UAt( "&", cCaption ) ) == 0' + hb_eol()
+   cCode += "   elseif nPos == hb_ULen( cCaption )" + hb_eol()
    cCode += "      nPos := 0" + hb_eol()
    cCode += "   else" + hb_eol()
-   cCode += '      cCaption := Stuff( cCaption, nPos, 1, "" )' + hb_eol()
+   cCode += '      cCaption := hb_ULeft( cCaption, nPos - 1 ) + hb_USubStr( cCaption, nPos + 1 )' + hb_eol()
    cCode += "   endif" + hb_eol()
    cCode += hb_eol()
-   cCode += "   if ! Empty( cStyle )" + hb_eol()
+   cCode += '   if Len( ::cStyle ) == 2 .and. ::cStyle != "<>"' + hb_eol()
+   cCode += hb_eol()
+   cCode += '      // bracket look (STYLE "[]" etc.): one row, no shadow' + hb_eol()
+   cCode += "      hb_DispOutAt( ::nRow, ::nCol, ;" + hb_eol()
+   cCode += '         hb_ULeft( ::cStyle, 1 ) + " " + cCaption + " " + hb_USubStr( ::cStyle, 2, 1 ), cColor )' + hb_eol()
+   cCode += "      if nPos != 0" + hb_eol()
+   cCode += "         hb_DispOutAt( ::nRow, ::nCol + nPos + 1, ;" + hb_eol()
+   cCode += "            hb_USubStr( cCaption, nPos, 1 ), hb_ColorIndex( ::cColorSpec, 3 ) )" + hb_eol()
+   cCode += "      endif" + hb_eol()
+   cCode += hb_eol()
+   cCode += "      DispEnd()" + hb_eol()
+   cCode += hb_eol()
+   cCode += "      return Self" + hb_eol()
+   cCode += "   endif" + hb_eol()
+   cCode += hb_eol()
+   cCode += "   if ! Empty( aPads )" + hb_eol()
    cCode += hb_eol()
    cCode += "      nCol++" + hb_eol()
    cCode += hb_eol()
    cCode += "      if ::lBuffer" + hb_eol()
    cCode += '         hb_DispOutAt( ::nRow, ::nCol, " ", "' + cShadow + '" )' + hb_eol()
    cCode += "      endif" + hb_eol()
-   cCode += '      hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), cStyle[ 1 ], cColor )' + hb_eol()
-   cCode += '      hb_DispOutAt( ::nRow, ::nCol + Len( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), cStyle[ 2 ], cColor )' + hb_eol()
+   cCode += '      hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), aPads[ 1 ], cColor )' + hb_eol()
+   cCode += '      hb_DispOutAt( ::nRow, ::nCol + hb_ULen( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), aPads[ 2 ], cColor )' + hb_eol()
    cCode += "   endif" + hb_eol()
    cCode += hb_eol()
    cCode += "   if ! Empty( cCaption )" + hb_eol()
@@ -3252,21 +3334,19 @@ static function DsnBtnDisplayCode( cBg )
    cCode += hb_eol()
    cCode += "      if nPos != 0" + hb_eol()
    cCode += '         hb_DispOutAt( nRow, nCol + nPos - 1 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
-   cCode += '                       SubStr( cCaption, nPos, 1 ), hb_ColorIndex( ::cColorSpec, 3 ) )' + hb_eol()
+   cCode += '                       hb_USubStr( cCaption, nPos, 1 ), hb_ColorIndex( ::cColorSpec, 3 ) )' + hb_eol()
    cCode += "      endif" + hb_eol()
    cCode += "   endif" + hb_eol()
    cCode += hb_eol()
-   cCode += '   hb_DispOutAt( nRow, ::nCol + Len( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
+   cCode += '   hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
    cCode += '                 If( ::lBuffer, " ", DsnBtnShades()[ 1 ] ), "' + cShadow + '" )' + hb_eol()
    cCode += '   hb_DispOutAt( ::nRow + 1, ::nCol + 1,;' + hb_eol()
-   cCode += '                 Replicate( If( ::lBuffer, " ", DsnBtnShades()[ 2 ] ), Len( cCaption ) + 2 ), "' + cShadow + '" )' + hb_eol()
+   cCode += '                 Replicate( If( ::lBuffer, " ", DsnBtnShades()[ 2 ] ), hb_ULen( cCaption ) + 2 ), "' + cShadow + '" )' + hb_eol()
    cCode += hb_eol()
    cCode += "   DispEnd()" + hb_eol()
    cCode += hb_eol()
    cCode += "return Self" + hb_eol()
    cCode += hb_eol()
-   cCode += "// caption pads and shadow half blocks follow the active codepage:" + hb_eol()
-   cCode += "// CP437 keeps the raw bytes, the UTF-8 opt-in gets valid encodings" + hb_eol()
    cCode += "function DsnBtnPads()" + hb_eol()
    cCode += hb_eol()
    cCode += 'return { hb_UTF8ToStr( " " ), hb_UTF8ToStr( " " ) }' + hb_eol()
