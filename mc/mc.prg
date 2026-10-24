@@ -190,10 +190,11 @@ METHOD New( cStartDir ) CLASS MCApp
    // MC classic, TV cyan, mono
    ::aThemes := { ;
       { "W/B",   "W+/B",  "GR+/B",  "N/BG",  "GR+/BG", "W/B",  "GR+/B",  "GR+/B", "W/B"   }, ;
-      { "N/BG",  "N+/BG", "GR+/BG", "W+/B",  "GR+/B",  "N/BG", "N+/BG",  "N+/BG","N/BG"  }, ;
+      { "N/BG",  "W+/BG", "GR+/BG", "W+/B",  "GR+/B",  "N/BG", "N+/BG",  "N+/BG","N/BG"  }, ;
       { "N/W",   "W+/W",  "N/W",    "W/N",   "W+/N",   "N/W",  "W+/W",   "W+/W", "N/W"   } }
 
    __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
+   __ClsModMsg( CheckBox( 0, 0 ):ClassH, "DISPLAY", @ChkDisplay() )
 
    ::aKeyBind := {}
    for n := 1 to 10
@@ -834,14 +835,16 @@ function MCMsgBox( cTitle, cText )
    next
 
    @ oDlg:nBottom - 2, oDlg:nLeft + Int( ( nW ) / 2 ) - 3 GET lOk PUSHBUTTON ;
-      CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      CAPTION " &OK " COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. ;
       STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
 
 return nil
@@ -873,18 +876,20 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
    next
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. ;
       STATE { || lOk := .T., oDlg:End() }
 
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" ;
       STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -915,18 +920,20 @@ METHOD DlgConfirm( cTitle, cMsg, cOk ) CLASS MCApp
    // Cancel first: initial focus and any stray key fire the safe button.
    // Tab/Down moves focus to the action button, Enter fires the focused one.
    @ oDlg:nBottom - 2, oDlg:nLeft + Int( nW / 2 ) - 8 GET lDummy PUSHBUTTON ;
-      CAPTION " &Cancel " COLOR "W+/G,W/N,W+/G,BG+/G" ;
+      CAPTION " &Cancel " COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. ;
       STATE { || oDlg:End() }
 
    @ oDlg:nBottom - 2, oDlg:nLeft + Int( nW / 2 ) + 2 GET lDummy PUSHBUTTON ;
-      CAPTION " " + cOk + " " COLOR "W+/G,W/N,W+/G,BG+/G" ;
+      CAPTION " " + cOk + " " COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" ;
       STATE { || lOk := .T., oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -960,18 +967,20 @@ METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
    endif
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. ;
       STATE { || lOk := .T., oDlg:End() }
 
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" ;
       STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1261,20 +1270,22 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    @ oDlg:nTop + 8, oDlg:nLeft + 12 GET cUF COLOR "N/BG,W+/BG,N/BG,GR+/BG"
 
    @ oDlg:nTop + 9, oDlg:nLeft + 3 GET lUMS ;
-      CHECKBOX CAPTION "user &mini status" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "user &mini status" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1346,25 +1357,27 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    hb_DispOutAt( nT + 11, nL + 4, " Options ", "N/W" )
 
    @ nT + 12, nL + 5 GET lRev ;
-      CHECKBOX CAPTION "&Reverse" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "&Reverse" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ nT + 13, nL + 5 GET lCase ;
-      CHECKBOX CAPTION "&Case sensitive" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "&Case sensitive" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, nL + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1430,45 +1443,47 @@ METHOD OptionsConfig() CLASS MCApp
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lHidden ;
-      CHECKBOX CAPTION "Show &hidden files" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "Show &hidden files" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET lMini ;
-      CHECKBOX CAPTION "Show &mini-status" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "Show &mini-status" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lTotals ;
-      CHECKBOX CAPTION "Compute &totals" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "Compute &totals" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nTop + 5, oDlg:nLeft + 3 GET lFree ;
-      CHECKBOX CAPTION "Show &free space" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "Show &free space" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nTop + 6, oDlg:nLeft + 3 GET lSave ;
-      CHECKBOX CAPTION "Auto &save setup" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "Auto &save setup" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nTop + 7, oDlg:nLeft + 3 GET lPat ;
-      CHECKBOX CAPTION "Shell &patterns" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "Shell &patterns" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1496,36 +1511,38 @@ METHOD OptionsLayout() CLASS MCApp
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lEq ;
-      CHECKBOX CAPTION "&Equal split" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "&Equal split" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET lHor ;
-      CHECKBOX CAPTION "&Horizontal split" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "&Horizontal split" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
    @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lMb ;
-      CHECKBOX CAPTION "&Menubar visible" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "&Menubar visible" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
    @ oDlg:nTop + 5, oDlg:nLeft + 3 GET lCl ;
-      CHECKBOX CAPTION "&Command prompt" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "&Command prompt" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
    @ oDlg:nTop + 6, oDlg:nLeft + 3 GET lKb ;
-      CHECKBOX CAPTION "&Keybar visible" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "&Keybar visible" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1552,30 +1569,32 @@ METHOD OptionsPanel() CLASS MCApp
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lMix ;
-      CHECKBOX CAPTION "&Mix all files (no dirs first)" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "&Mix all files (no dirs first)" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET lBak ;
-      CHECKBOX CAPTION "Show &backup files" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "Show &backup files" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lMd ;
-      CHECKBOX CAPTION "Mar&k moves down" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "Mar&k moves down" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1600,32 +1619,34 @@ METHOD OptionsConfirm() CLASS MCApp
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lDel ;
-      CHECKBOX CAPTION "&Delete" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "&Delete" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET lOvr ;
-      CHECKBOX CAPTION "&Overwrite" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "&Overwrite" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
    @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lExe ;
-      CHECKBOX CAPTION "E&xecute" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "E&xecute" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
    @ oDlg:nTop + 5, oDlg:nLeft + 3 GET lExit ;
-      CHECKBOX CAPTION "E&xit" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      CHECKBOX CAPTION "E&xit" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1671,9 +1692,9 @@ METHOD OptionsAppearance() CLASS MCApp
       RADIOGROUP aRad STYLE cRadStyle COLOR "N/W,N/BG,GR+/BG"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -1682,7 +1703,9 @@ METHOD OptionsAppearance() CLASS MCApp
    // the group's edges
    Set( _SET_ESCAPE, .T. )
    Set( _SET_DELIMITERS, .F. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_DELIMITERS, .T. )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
@@ -1875,17 +1898,19 @@ METHOD DlgCopy( nCount, cDefault, cAction, cVerb ) CLASS MCApp
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET cValue COLOR "W/B,W+/B,W+/W,GR+/W"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 5 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nLeft + 21 GET lDummy PUSHBUTTON CAPTION " &Background " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lBg := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || lBg := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -2654,21 +2679,23 @@ METHOD FileChmod() CLASS MCApp
 
    for n := 1 to 9
       @ oDlg:nTop + 1 + n, oDlg:nLeft + 4 GET aChk[ n ] ;
-         CHECKBOX CAPTION aLabels[ n ] STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+         CHECKBOX CAPTION aLabels[ n ] STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
       ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
       ATail( GetList ):Control:Display()
    next
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &Set  " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    Set( _SET_ESCAPE, .T. )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
+   SetKey( K_ENTER, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -3249,3 +3276,27 @@ return nil
 
 
 //-----------------------------------------------------------------------------------------//
+
+// Enter inside dialogs: focused pushbutton fires (reader parity); any other
+// control fires the dialog default button (cargo .T., shown as [< >]) -
+// Midnight Commander semantics.
+function MCDlgEnter( aGets )
+
+   local oGet := GetActive(), o
+
+   if oGet != NIL .and. oGet:Control != NIL .and. ;
+      oGet:Control:IsKindOf( "PUSHBUTTON" )
+      oGet:Control:Select()
+   else
+      for each o in aGets
+         if o:Control != NIL .and. o:Control:IsKindOf( "PUSHBUTTON" ) .and. ;
+            o:Control:cargo == .T.
+            if HB_ISEVALITEM( o:Control:sBlock )
+               Eval( o:Control:sBlock )
+            endif
+            exit
+         endif
+      next
+   endif
+
+return NIL
