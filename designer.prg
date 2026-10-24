@@ -707,11 +707,12 @@ METHOD DlgProperties() CLASS HbDesigner
    local cName    := PadR( ::cDlgName, 20 )
    local nWidth   := ::nDlgWidth
    local nHeight  := ::nDlgHeight
+   local cColor   := PadR( ::cDlgColor, 20 )
    local aMin
 
    ::SuspendUI()
 
-   oDlg = HBWindow():Dialog( "Dialog properties", 66, 10, CLR_DIALOG )
+   oDlg = HBWindow():Dialog( "Dialog properties", 66, 12, CLR_DIALOG )
    oDlg:bRepaint = { || ::Redraw() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 11 GET cCaption PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
@@ -725,6 +726,9 @@ METHOD DlgProperties() CLASS HbDesigner
 
    @ oDlg:nTop + 6, oDlg:nLeft + 27 GET nHeight PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
    oDlg:Say( 6, 20, "Height:" )
+
+   @ oDlg:nTop + 8, oDlg:nLeft + 11 GET cColor PICTURE "@S20" COLOR "N/W,W+/B,W+/W,GR+/W"
+   oDlg:Say( 8, 2, "Color:" )
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 10 GET lDummy PUSHBUTTON ;
       CAPTION "  &OK  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
@@ -754,10 +758,20 @@ METHOD DlgProperties() CLASS HbDesigner
       ::cDlgName    = DsnValidVar( cName, "MyDialog" )
       ::nDlgWidth   = Max( 20, Min( MaxCol() - 4, nWidth ) )
       ::nDlgHeight  = Max( 6, Min( MaxRow() - 3, nHeight ) )
+      if Empty( AllTrim( cColor ) )
+         if AllTrim( cColor ) != ::cDlgColor
+            ::ShowHint( "Color left empty: keeping " + ::cDlgColor )
+         endif
+      elseif ! DsnValidColor( AllTrim( cColor ) )
+         ::ShowHint( "Invalid color '" + AllTrim( cColor ) + "': keeping " + ::cDlgColor )
+      else
+         ::cDlgColor = AllTrim( cColor )
+      endif
       with object ::oWnd
          :nRight   = :nLeft + ::nDlgWidth - 1
          :nBottom  = :nTop + ::nDlgHeight - 1
          :cCaption = " " + ::cDlgCaption + " "
+         :cColor   = ::cDlgColor
       end
       ::lDirty = .T.
       ::Redraw()
@@ -1855,6 +1869,69 @@ function DsnUniqueVar( aControls, cPrefix )
    enddo
 
 return cPrefix + hb_ntos( n )
+
+//-----------------------------------------------------------------------------------------//
+
+static function DsnValidColor( cColor )
+
+   local cItem, aPair, cTok
+
+   if Empty( cColor ) .or. Len( cColor ) > 30
+      return .F.
+   endif
+
+   // no empty items: reject leading/trailing/doubled separators
+   if Left( cColor, 1 ) $ ",/" .or. Right( cColor, 1 ) $ ",/"
+      return .F.
+   endif
+   if ",," $ cColor .or. "//" $ cColor .or. ",/" $ cColor .or. "/," $ cColor
+      return .F.
+   endif
+
+   // each comma item is one color pair: "fg" or "fg/bg"
+   for each cItem in hb_aTokens( cColor, "," )
+      aPair = hb_aTokens( cItem, "/" )
+      if Empty( cItem ) .or. Len( aPair ) > 2
+         return .F.
+      endif
+      for each cTok in aPair
+         if ! DsnValidColorToken( cTok )
+            return .F.
+         endif
+      next
+   next
+
+return .T.
+
+//-----------------------------------------------------------------------------------------//
+
+// one side of a color pair: Harbour color letters, then optional + (bright) / * (blink)
+static function DsnValidColorToken( cTok )
+
+   local n, c, lMod := .F.
+
+   if Empty( cTok ) .or. Len( cTok ) > 6
+      return .F.
+   endif
+
+   for n = 1 to Len( cTok )
+      c = Upper( SubStr( cTok, n, 1 ) )
+      if c $ "+*"
+         lMod := .T.
+      elseif c $ "WBGRNCMYUIX"
+         if lMod
+            return .F.
+         endif
+      else
+         return .F.
+      endif
+   next
+
+   if lMod .and. Len( cTok ) == 1
+      return .F.
+   endif
+
+return .T.
 
 //-----------------------------------------------------------------------------------------//
 
