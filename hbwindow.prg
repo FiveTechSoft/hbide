@@ -27,6 +27,11 @@ CLASS HbWindow FROM HbDbWindow
    DATA   nIdleRead      // idle hook that feeds mouse clicks into READ
    DATA   nPendRow, nPendCol, nPendAt  // queued mouse click while READ is busy
    DATA   lReadMouse INIT .F.  // left button state seen by the idle hook
+   DATA   nMinW          // min width when resizing with the mouse (frame incl.)
+   DATA   nMinH          // min height when resizing with the mouse (frame incl.)
+   DATA   nMaxBottom     // lowest row the window may occupy (NIL = MaxRow())
+   DATA   nMaxRight      // rightmost col the window may occupy (NIL = MaxCol())
+   DATA   bAfterDrag     // block evaluated after a mouse drag/resize ends (designer hook restore)
    DATA   GetList
    DATA   lDesign INIT .F.
    DATA   lClamped INIT .F.   // .T. when Dialog() had to move/cut the window to fit the screen
@@ -72,6 +77,8 @@ METHOD New( nTop, nLeft, nBottom, nRight, cCaption, cColor ) CLASS HBWindow
    ::nRight   = nRight
    ::cCaption = cCaption
    ::cColor   = hb_defaultValue( cColor, GetColors()[ 1 ] )
+   ::nMinW    = 6
+   ::nMinH    = 3
 
 return Self
 
@@ -317,8 +324,8 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
                else
                   ::Hide()
                endif
-               ::nBottom = MRow()
-               ::nRight = MCol()
+               ::nBottom = Max( ::nTop + ::nMinH - 1, Min( MaxBtm( Self ), MRow() ) )
+               ::nRight  = Max( ::nLeft + ::nMinW - 1, Min( MaxRgt( Self ), MCol() ) )
                ::Show( .T. )
                if ! Empty( ::GetList )
                   for each oCtrl in ::GetList
@@ -329,6 +336,12 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
                DispEnd()
             endif
          end
+         if ::bRepaint != nil
+            Eval( ::bRepaint )
+         endif
+         if ::bAfterDrag != nil
+            Eval( ::bAfterDrag )
+         endif
 
       case MLeftDown() .and. ;
            ( ( ( nMRow == ::nTop .or. nMRow == ::nBottom ) .and. nMCol >= ::nLeft .and. nMCol <= ::nRight ) .or. ;
@@ -366,8 +379,8 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
                  else
                     __dbgRestScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2, cBackImage )
                  endif
-                 ::nTop  = MRow() - nMRow
-                 ::nLeft = MCol() - nMCol
+                 ::nTop    = Max( 0, Min( MaxBtm( Self ) - nHeight + 1, MRow() - nMRow ) )
+                 ::nLeft   = Max( 0, Min( MaxRgt( Self ) - nWidth + 1, MCol() - nMCol ) )
                  ::nBottom = ::nTop + nHeight - 1
                  ::nRight = ::nLeft + nWidth - 1
                  if ::bRepaint == nil
@@ -412,6 +425,9 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
               else
                  SetCursor( SC_NONE )
               endif
+           endif
+           if ::bAfterDrag != nil
+              Eval( ::bAfterDrag )
            endif
 
       otherwise
@@ -581,7 +597,7 @@ METHOD Show( lFocused ) CLASS HbWindow
       Eval( ::bInit, Self )
    endif
 
-   if lFocused
+   if lFocused .and. ::nIdle == nil
       ::nIdle = hb_IdleAdd( { || ::MouseEvent( MRow(), MCol() ) } )
    endif
 
@@ -636,6 +652,18 @@ METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit ) CLASS HbWindow
    ::Show()
 
 return Self
+
+//-----------------------------------------------------------------------------------------//
+
+static function MaxBtm( oWnd )
+
+return If( oWnd:nMaxBottom == NIL, MaxRow(), oWnd:nMaxBottom )
+
+//-----------------------------------------------------------------------------------------//
+
+static function MaxRgt( oWnd )
+
+return If( oWnd:nMaxRight == NIL, MaxCol(), oWnd:nMaxRight )
 
 //-----------------------------------------------------------------------------------------//
 
