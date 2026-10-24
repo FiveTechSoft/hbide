@@ -181,8 +181,11 @@ function RadDisplay()
    if ! Empty( ::cCaption )
       nCapRow := If( ! Empty( ::capRow ) .and. ! Empty( ::capCol ), ::capRow, ::nRow )
       nCapCol := If( ! Empty( ::capRow ) .and. ! Empty( ::capCol ), ::capCol, ::nCol + Len( cStyle ) + 1 )
-      hb_DispOutAt( nCapRow, nCapCol, ::cCaption, cColor )
-      if ( nPos := At( "&", ::cCaption ) ) > 0
+      // paint the caption without "&" and recolor the hotkey letter in place
+      // (nPos keeps the pre-strip index, which equals the painted offset)
+      nPos := At( "&", ::cCaption )
+      hb_DispOutAt( nCapRow, nCapCol, StrTran( ::cCaption, "&", "" ), cColor )
+      if nPos > 0
          hb_DispOutAt( nCapRow, nCapCol + nPos - 1, SubStr( ::cCaption, nPos + 1, 1 ), cKeyColor )
       endif
    endif
