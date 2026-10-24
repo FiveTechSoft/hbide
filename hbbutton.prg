@@ -21,6 +21,28 @@ function BtnDisplay()
    ENDCASE
 
    IF ( nPos := At( "&", cCaption ) ) == 0
+
+   local Self := QSelf()
+
+   LOCAL cColor
+   LOCAL cStyle := Chr( 255 )+ Chr( 255 ) // ::cStyle
+   LOCAL cCaption := ::cCaption
+   LOCAL nRow := ::nRow
+   LOCAL nCol := ::nCol
+   LOCAL nPos
+
+   DispBegin()
+
+   DO CASE
+   CASE ::lBuffer
+      cColor := hb_ColorIndex( ::cColorSpec, 2 )
+   CASE ::lHasFocus
+      cColor := hb_ColorIndex( ::cColorSpec, 1 )
+   OTHERWISE
+      cColor := hb_ColorIndex( ::cColorSpec, 0 )
+   ENDCASE
+
+   IF ( nPos := At( "&", cCaption ) ) == 0
    ELSEIF nPos == Len( cCaption )
       nPos := 0
    ELSE
@@ -61,3 +83,13 @@ function BtnDisplay()
    DispEnd()
 
    RETURN Self
+
+// Registers the hbide PushButton display (with its 3D shadow) for any
+// program that links this file, including designer-generated dialogs
+// compiled standalone. hbide.prg applies the same patch for the IDE;
+// repeating __ClsModMsg with the same method is harmless.
+INIT PROCEDURE BtnPatch()
+
+   __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
+
+return
