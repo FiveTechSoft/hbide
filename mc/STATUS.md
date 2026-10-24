@@ -21,7 +21,10 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - Hard link (inode verified)
 - Background jobs dialog
 - Edit external file, Edit menu file
-- Dialog buttons with solid Turbo Vision shadow
+- Dialog buttons redone in authentic MC style after user review:
+  "[ Caption ]" text buttons on the dialog background (no blocks, no
+  per-button shadow) - unfocused black-on-gray with red hotkey, focused
+  black-on-cyan with yellow hotkey (reference: mc lib/widget/button.c)
 - Move (F6): overwrite confirmation (decline keeps both files; accept
   replaces the destination; directories and VFS stay protected)
 - DlgInput: prefilled GET opens with cursor after the text (End + walk back
@@ -42,8 +45,9 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   group, size, mtime) and User defined (columns split by "|", fields
   name/ext/size/bsize/mtime/perm/nlink/owner/group/type/mark/space,
   "half" = half-width column) + user mini status option. atime/ctime
-  render blank in the demo. Per-panel formats persist to ~/.hbmc.ini
-  (save+load round-trip verified, restart restores them)
+  render real local times (extra stat fetched lazily, only when the
+  user format references %x/%z or the inode). Per-panel formats persist
+  to ~/.hbmc.ini (save+load round-trip verified, restart restores them)
 - Layout: horizontal / vertical panel split
 - Configuration dialog: 6 working checkboxes (Show hidden files, Show
   mini-status, Compute totals, Show free space, Auto save setup, Shell
@@ -52,17 +56,29 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   Mark moves down) - mark-moves-down off keeps the cursor on Insert
 - Options persist to ~/.hbmc.ini: save+load round-trip verified; Auto save
   setup saves the current options on quit
+- Appearance: theme change applies live - Turbo Vision cyan palette
+  verified on screen and reverted to classic; radiogroup selection read
+  fixed in code (same bug class as sort order)
+- Confirmation dialog: 4 checkboxes (Delete, Overwrite, Execute, Exit),
+  all exercised. Delete on -> "Delete 1 item(s)?" dialog; Delete off ->
+  file removed without asking (verified with a sacrificial fixture).
+  Execute on -> "Execute <name>?" dialog on Enter for executables;
+  accepting runs the command and its output is shown
+  (hello-from-mc). Overwrite verified in the Move block, Exit earlier.
+- Executable files: Enter offers to run them (with confirmation when
+  enabled) through the command line
+- Learn keys: dialog lists F1..F10 with current bindings; relearn
+  captures the next key press (F10 Quit relearned to F12: F12 opened
+  Quit, F10 inert), binding saved to ~/.hbmc.ini (learnkey10=-41) and
+  still active after an app restart; relearned back to F10 afterwards
 
 ## Light (partial)
 
-- Appearance dialog: radiogroup selection read fixed in code (same bug
-  class as sort order); visual theme change not yet verified
-- Confirmation dialog: 4 checkboxes (Delete, Overwrite, Execute, Exit);
-  exit confirmation verified, the rest not yet exercised
+- (none right now)
 
 ## Pending (not implemented / not verified)
 
-- Learn keys
+- (none right now)
 
 ## Env-blocked (out of demo scope by design)
 
