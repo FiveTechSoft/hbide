@@ -45,8 +45,18 @@ code. Dogfooding model: a "Find" dialog built entirely with the designer
   consecutive and nested dialogs restore their own level, and a leaked
   idle re-arm after the READ is a no-op. Suite covers: page clamps at
   the first/last item, handler restore, consecutive and nested
-  install/remove, idle-leak guard (322 checks). The generated LISTBOX
-  carries no SCROLLBAR clause.
+  install/remove, idle-leak guard. The generated LISTBOX carries no
+  SCROLLBAR clause.
+- Clipboard and history: Tab selects a control, ^C copies it (hint
+  "Copied <type>"), ^V pastes a fresh clone one cell off with a fresh
+  unique variable name (hint "Pasted <type>", second label visible one
+  row below the original), ^Z undoes the paste, ^Y redoes it (canvas
+  captures each step). ^C/^X with no selection now show "Select a
+  control first (Tab / click)" instead of failing silently.
+- Dialog colors roundtrip: F3 opens Dialog properties, clicking the
+  Back field focuses it, typing overstrikes W -> B, OK repaints the
+  whole canvas in the new palette (buttons, radio and listbox
+  recombine), and reopening F3 shows Back: B persisted.
 - List control palettes: no constant cyan. RadioGroup selected marker is
   bright black on the dialog background; ListBox rows paint on the dialog
   background, current item is subtle bright black, focused cursor is the
