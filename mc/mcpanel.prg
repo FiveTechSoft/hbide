@@ -29,6 +29,7 @@ CLASS MCPanel
    DATA   aTree       INIT {}
    DATA   oApp
    DATA   aDirSizes   INIT { => }
+   DATA   lSizesComputed INIT .F.
 
    METHOD New( cPath )
    METHOD SetPos( nT, nL, nB, nR )
@@ -87,7 +88,7 @@ return nil
 METHOD Export() CLASS MCPanel
 
 return { ::cPath, ::aFiles, ::nCurrent, ::nOffset, ::cSort, ::lReverse, ;
-         ::lCaseSens, ::cFilter, ::lBrief, ::cMode, ::aDirSizes }
+         ::lCaseSens, ::cFilter, ::lBrief, ::cMode, ::aDirSizes, ::lSizesComputed }
 
 //-----------------------------------------------------------------------------------------//
 
@@ -104,6 +105,7 @@ METHOD Import( a ) CLASS MCPanel
    ::lBrief    := a[ 9 ]
    ::cMode     := a[ 10 ]
    ::aDirSizes := a[ 11 ]
+   ::lSizesComputed := a[ 12 ]
    ::FixScroll()
 
 return nil
@@ -133,6 +135,7 @@ METHOD Rescan() CLASS MCPanel
    endif
 
    ::aFiles := {}
+   ::lSizesComputed := .F.
    AAdd( ::aFiles, { "/..", 0, CToD( "" ), "", "D", .T., .F. } )
 
    aDir := Directory( hb_DirSepAdd( ::cPath ) + "*", "DHS" )
@@ -494,6 +497,8 @@ METHOD ComputeDirSizes() CLASS MCPanel
       endif
    next
 
+   ::lSizesComputed := .T.
+
 return nil
 
 //-----------------------------------------------------------------------------------------//
@@ -598,7 +603,7 @@ METHOD EntryLine( aEntry, nWidth ) CLASS MCPanel
    endif
    if aEntry[ P_DIR ]
       cSize := If( aEntry[ P_NAME ] == "/..", "UP--DIR ", ;
-              If( aEntry[ P_SIZE ] > 0, Str( aEntry[ P_SIZE ], 8 ), "SUB-DIR " ) )
+              If( ::lSizesComputed, Str( aEntry[ P_SIZE ], 8 ), "SUB-DIR " ) )
    else
       cSize := If( aEntry[ P_SIZE ] < 0, PadL( "?", 8 ), Str( aEntry[ P_SIZE ], 8 ) )
    endif
