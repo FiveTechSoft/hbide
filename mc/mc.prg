@@ -87,6 +87,13 @@ CLASS MCApp
    DATA   lFileTypes      INIT .T.
    DATA   lFastReload     INIT .F.
    DATA   lVerboseOp      INIT .T.
+   DATA   lInternalView   INIT .T.
+   DATA   lInternalEdit   INIT .T.
+   DATA   cExternalView   INIT "less"
+   DATA   cExternalEdit   INIT "vi"
+   DATA   lScrollPages    INIT .T.
+   DATA   lScrollCenter   INIT .F.
+   DATA   lMousePages     INIT .T.
    DATA   lEqualSplit     INIT .T.
    DATA   lHorizontal     INIT .F.
    DATA   lMenubar        INIT .T.
@@ -140,6 +147,7 @@ CLASS MCApp
    METHOD FileViewName()
    METHOD FileFilteredView()
    METHOD FileEdit()
+   METHOD RunExternal( cCmd, cFull )
    METHOD FileCopy()
    METHOD FileChmod()
    METHOD FileLink()
@@ -616,10 +624,10 @@ METHOD Activate() CLASS MCApp
          case nKey == K_LDBLCLK
             ::MouseClick( MRow(), MCol(), .T. )
          case nKey == K_MWFORWARD
-            ::ActivePanel():Scroll( -3 )
+            ::ActivePanel():Scroll( -If( ::lMousePages, ::ActivePanel():VisibleRows(), 3 ) )
             ::Repaint()
          case nKey == K_MWBACKWARD
-            ::ActivePanel():Scroll( 3 )
+            ::ActivePanel():Scroll( If( ::lMousePages, ::ActivePanel():VisibleRows(), 3 ) )
             ::Repaint()
 
          case ( nKey == K_UP .or. nKey == K_DOWN .or. nKey == K_LEFT .or. nKey == K_RIGHT .or. ;
@@ -1461,8 +1469,9 @@ METHOD OptionsConfig() CLASS MCApp
    local lSave := ::lAutoSaveSetup, lPat := ::lShellPatterns
    local lMkA := ::lMkdirAutoname
    local lVerb := ::lVerboseOp
+   local lIV := ::lInternalView, lIE := ::lInternalEdit
 
-   oDlg = HBWindow():Dialog( "Configuration", 44, 15, "W+/W" )
+   oDlg = HBWindow():Dialog( "Configuration", 44, 17, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lHidden ;
@@ -1505,6 +1514,16 @@ METHOD OptionsConfig() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
+   @ oDlg:nTop + 10, oDlg:nLeft + 3 GET lIV ;
+      CHECKBOX CAPTION "Use internal vie&w" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 11, oDlg:nLeft + 3 GET lIE ;
+      CHECKBOX CAPTION "Use internal edi&t" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
@@ -1529,6 +1548,8 @@ METHOD OptionsConfig() CLASS MCApp
       ::lShellPatterns := lPat
       ::lMkdirAutoname := lMkA
       ::lVerboseOp := lVerb
+      ::lInternalView := lIV
+      ::lInternalEdit := lIE
       ::Rescan()
    endif
 
@@ -1602,8 +1623,9 @@ METHOD OptionsPanel() CLASS MCApp
    local lHidden := ::lShowHidden, lLynx := ::lLynxMotion
    local lFT := ::lFileTypes
    local lFR := ::lFastReload
+   local lSP := ::lScrollPages, lSC := ::lScrollCenter, lMP := ::lMousePages
 
-   oDlg = HBWindow():Dialog( "Panel options", 44, 14, "W+/W" )
+   oDlg = HBWindow():Dialog( "Panel options", 44, 17, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lMix ;
@@ -1641,6 +1663,21 @@ METHOD OptionsPanel() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
+   @ oDlg:nTop + 9, oDlg:nLeft + 3 GET lSP ;
+      CHECKBOX CAPTION "Pa&ge scrolling" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 10, oDlg:nLeft + 3 GET lSC ;
+      CHECKBOX CAPTION "Center &scrolling" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 11, oDlg:nLeft + 3 GET lMP ;
+      CHECKBOX CAPTION "&Mouse page scrolling" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
@@ -1664,6 +1701,9 @@ METHOD OptionsPanel() CLASS MCApp
       ::lLynxMotion := lLynx
       ::lFileTypes := lFT
       ::lFastReload := lFR
+      ::lScrollPages := lSP
+      ::lScrollCenter := lSC
+      ::lMousePages := lMP
       ::Rescan()
    endif
 
@@ -1797,7 +1837,9 @@ METHOD FileView() CLASS MCApp
    if aEntry != nil .and. ! aEntry[ P_DIR ]
       cFull := MCEntryPath( ::ActivePanel(), aEntry )
       if MCVfsKind( cFull ) == "local"
-         if ! Empty( ::ActivePanel():cCp )
+         if ! ::lInternalView
+            ::RunExternal( ::cExternalView, cFull )
+         elseif ! Empty( ::ActivePanel():cCp )
             MCViewerText( MCCpDecode( cFull, ::ActivePanel():cCp ) + "  [" + ::ActivePanel():cCp + "]", ;
                           MCCpDecode( MemoRead( cFull ), ::ActivePanel():cCp ) )
          else
@@ -1864,6 +1906,8 @@ METHOD FileEdit() CLASS MCApp
    if aEntry != nil .and. ! aEntry[ P_DIR ]
       if MCVfsKind( MCEntryPath( ::ActivePanel(), aEntry ) ) != "local"
          MCMsgBox( "Edit", "Editing VFS entries is not supported yet (read-only VFS)." )
+      elseif ! ::lInternalEdit
+         ::RunExternal( ::cExternalEdit, MCEntryPath( ::ActivePanel(), aEntry ) )
       else
          MCEditFile( MCEntryPath( ::ActivePanel(), aEntry ) )
       endif
@@ -1871,6 +1915,20 @@ METHOD FileEdit() CLASS MCApp
       MCMsgBox( "Edit", "Cannot edit a directory." )
    endif
    ::ActivePanel():Rescan()
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Use internal view/edit OFF: hand the file to the configured external
+// program in the same terminal (mc exec + refresh). less/vi set their own
+// termios and restore on exit, so the app's raw mode survives the handoff.
+METHOD RunExternal( cCmd, cFull ) CLASS MCApp
+
+   DispEnd()
+   hb_ProcessRun( cCmd + " " + ShellQuote( cFull ) )
+   DispBegin()
    ::Repaint()
 
 return nil
@@ -3270,6 +3328,13 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "filetypes"      ; ::lFileTypes := ( cVal == "1" )
          case cKey == "fastreload"     ; ::lFastReload := ( cVal == "1" )
          case cKey == "verbose"        ; ::lVerboseOp := ( cVal == "1" )
+         case cKey == "internalview"   ; ::lInternalView := ( cVal == "1" )
+         case cKey == "internaledit"   ; ::lInternalEdit := ( cVal == "1" )
+         case cKey == "externalview"   ; ::cExternalView := cVal
+         case cKey == "externaledit"   ; ::cExternalEdit := cVal
+         case cKey == "scrollpages"    ; ::lScrollPages := ( cVal == "1" )
+         case cKey == "scrollcenter"   ; ::lScrollCenter := ( cVal == "1" )
+         case cKey == "mousepages"     ; ::lMousePages := ( cVal == "1" )
          case cKey == "equalsplit"     ; ::lEqualSplit := ( cVal == "1" )
          case cKey == "horizontal"     ; ::lHorizontal := ( cVal == "1" )
          case cKey == "menubar"        ; ::lMenubar := ( cVal == "1" )
@@ -3318,6 +3383,13 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "filetypes=" + If( ::lFileTypes, "1", "0" ) + hb_eol()
    cTxt += "fastreload=" + If( ::lFastReload, "1", "0" ) + hb_eol()
    cTxt += "verbose=" + If( ::lVerboseOp, "1", "0" ) + hb_eol()
+   cTxt += "internalview=" + If( ::lInternalView, "1", "0" ) + hb_eol()
+   cTxt += "internaledit=" + If( ::lInternalEdit, "1", "0" ) + hb_eol()
+   cTxt += "externalview=" + ::cExternalView + hb_eol()
+   cTxt += "externaledit=" + ::cExternalEdit + hb_eol()
+   cTxt += "scrollpages=" + If( ::lScrollPages, "1", "0" ) + hb_eol()
+   cTxt += "scrollcenter=" + If( ::lScrollCenter, "1", "0" ) + hb_eol()
+   cTxt += "mousepages=" + If( ::lMousePages, "1", "0" ) + hb_eol()
    cTxt += "equalsplit=" + If( ::lEqualSplit, "1", "0" ) + hb_eol()
    cTxt += "horizontal=" + If( ::lHorizontal, "1", "0" ) + hb_eol()
    cTxt += "menubar=" + If( ::lMenubar, "1", "0" ) + hb_eol()
