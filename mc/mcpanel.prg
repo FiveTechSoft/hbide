@@ -478,6 +478,7 @@ METHOD QuickSearch() CLASS MCPanel
          endif
       next
    end
+   ::Display()
 
 return nil
 
@@ -675,7 +676,7 @@ METHOD DisplayInfo() CLASS MCPanel
       endif
       AAdd( aLines, "Modified: " + If( Empty( aEntry[ P_DATE ] ), "-", DToC( aEntry[ P_DATE ] ) + " " + aEntry[ P_TIME ] ) )
       AAdd( aLines, "Attrs:    " + aEntry[ P_ATTR ] )
-      hb_ProcessRun( MCShWrap( "stat -c 'Mode:     %A (%a)%nLinks:    %h' " + ShellQuote( cFull ) ),, @cOut )
+      hb_ProcessRun( MCShWrap( "stat -c 'Mode:     %A (%a)\nLinks:    %h' " + ShellQuote( cFull ) ),, @cOut )
       AEval( hb_aTokens( StrTran( cOut, Chr( 13 ) ), Chr( 10 ) ), { | c | AAdd( aLines, c ) } )
       cOut := ""
       hb_ProcessRun( MCShWrap( "readlink " + ShellQuote( cFull ) ),, @cOut )
