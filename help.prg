@@ -77,8 +77,9 @@ function HBIDEHelpTopics()
       "- Buffer clean: the file is reloaded and you are told." + hb_eol() + ;
       "- Buffer dirty: you choose Reload or Keep mine." + hb_eol() + ;
       "- File deleted outside: the buffer is kept; saving asks before recreating." + hb_eol() + hb_eol() + ;
-      "Limit: the watch uses date+time+size; a same-size edit inside the" + hb_eol() + ;
-      "filesystem timestamp resolution may go unnoticed until you save." } )
+      "The watch compares date+time+size plus a content checksum (files up" + hb_eol() + ;
+      "to 8 MB), so even a same-size edit that keeps the file timestamp is" + hb_eol() + ;
+      "caught. A reload keeps your cursor where it was." } )
 
    AAdd( a, { "about version harbour fivetech", "About hbide", ;
       "hbide - Harbour IDE" + hb_eol() + ;
