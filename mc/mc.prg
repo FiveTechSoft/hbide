@@ -1846,9 +1846,10 @@ return .T.
 
 //-----------------------------------------------------------------------------------------//
 
-// Background move: same queue with the move flag. Foreground MoveItem
-// semantics are kept: no overwrite of existing destinations (such entries
-// are skipped up front), VFS refused, symlinks skipped by MCGather.
+// Background move: same queue with the move flag. The queue is
+// non-interactive, so entries whose destination exists are still skipped
+// up front (foreground MoveItem asks and overwrites instead); VFS refused,
+// symlinks skipped by MCGather.
 METHOD FileMoveBg( oSrc, aMarked, cDest ) CLASS MCApp
 
    local aFiles := {}, aSkipped := {}, aEntry, aItem, aExist := {}, aNew
@@ -2265,10 +2266,19 @@ static function MoveItem( cSrc, cDst, oApp )
       MCMsgBox( "Rename/Move", "Source and destination are the same file." )
       return .F.
    endif
-   if hb_FileExists( cDst ) .or. hb_DirExists( cDst ) .or. ! Empty( hb_FLinkRead( cDst ) )
-      // Preserve the destination until explicit replacement semantics are tested.
-      MCMsgBox( "Rename/Move", "Destination exists. Move cancelled; no overwrite." )
+   if hb_DirExists( cDst ) .and. Empty( hb_FLinkRead( cDst ) )
+      // A real directory is never replaced; a symlink (even to a dir) is.
+      MCMsgBox( "Rename/Move", "Destination is a directory:" + Chr( 10 ) + cDst )
       return .F.
+   endif
+   if hb_FileExists( cDst ) .or. ! Empty( hb_FLinkRead( cDst ) )
+      // mc overwrite semantics: confirm when confirmations are on, then
+      // replace - rename(2) swaps a file or symlink destination atomically.
+      if oApp:lConfirmOverwrite .and. ;
+         ! oApp:DlgConfirm( "Overwrite", "File exists:" + Chr( 10 ) + cDst + Chr( 10 ) + "Overwrite?", "&Overwrite" )
+         return .F.
+      endif
+      lAll := .T.  // confirmation granted (or off): CopyItem must not re-ask
    endif
    if FRename( cSrc, cDst ) == 0
       return .T.
@@ -2282,6 +2292,14 @@ static function MoveItem( cSrc, cDst, oApp )
       cTarget := hb_FLinkRead( cSrc )
       if Left( cTarget, 1 ) != "/"
          cTarget := hb_PathNormalize( hb_DirSepAdd( hb_FNameDir( cSrc ) ) + cTarget )
+      endif
+      // linkat(2) cannot replace an existing destination; the overwrite
+      // was already confirmed above, so remove it before relinking.
+      if hb_FileExists( cDst ) .or. ! Empty( hb_FLinkRead( cDst ) )
+         if FErase( cDst ) != 0
+            MCMsgBox( "Rename/Move", "Cannot replace:" + Chr( 10 ) + cDst )
+            return .F.
+         endif
       endif
       if hb_FLinkSym( cTarget, cDst ) == 0
          return FErase( cSrc ) == 0
