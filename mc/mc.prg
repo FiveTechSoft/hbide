@@ -1858,6 +1858,11 @@ METHOD BgJobs() CLASS MCApp
                      If( ! Empty( j[ "err" ] ), " !", "" )
             hb_DispOutAt( nT + 1 + n, nL + 2, cLine, If( n == nSel, "W+/G", "N/W" ) )
          next
+         // Per-entry problems, shown for the selected job: an "error" job
+         // here is never a "done" one.
+         j := aJobs[ Min( nSel, Len( aJobs ) ) ]
+         hb_DispOutAt( nT + 12, nL + 2, hb_UPadR( hb_UTF8SubStr( j[ "err" ], 1, 60 ), 60 ), ;
+            If( Empty( j[ "err" ] ), "N/W", "W+/R" ) )
       endif
 
       // hb_keyStd(): with HB_INKEY_EXT, printable keys arrive as extended
