@@ -78,7 +78,7 @@ procedure Main()
    Check( "insp fields get", Len( oD:InspFields() ) == 4 )
    Check( "insp value variable", oD:InspValue( "variable" ) == "cName" )
    oD:nSelected = 2
-   Check( "insp fields button", Len( oD:InspFields() ) == 5 )
+   Check( "insp fields button", Len( oD:InspFields() ) == 6 )
 
    // live numeric adjust with clamps
    oD:nSelected = 1
@@ -141,8 +141,9 @@ procedure Main()
    oD:nSelected = 3
    Check( "insp fields check", Len( oD:InspFields() ) == 4 .and. oD:InspFields()[ 3 ][ 1 ] == "Caption" .and. oD:InspFields()[ 4 ][ 1 ] == "Variable" )
    oD:nSelected = 4
-   Check( "insp fields btn",   Len( oD:InspFields() ) == 5 .and. oD:InspFields()[ 3 ][ 1 ] == "Caption" .and. ;
-          oD:InspFields()[ 4 ][ 1 ] == "Accel" .and. oD:InspFields()[ 5 ][ 1 ] == "Action" )
+   Check( "insp fields btn",   Len( oD:InspFields() ) == 6 .and. oD:InspFields()[ 3 ][ 1 ] == "Caption" .and. ;
+          oD:InspFields()[ 4 ][ 1 ] == "Accel" .and. oD:InspFields()[ 5 ][ 1 ] == "Action" .and. ;
+          oD:InspFields()[ 6 ][ 1 ] == "Style" .and. oD:InspFields()[ 6 ][ 3 ] == "choice" )
 
    // button accelerator and action: model -> generated code
    oD:aControls[ 4 ][ "caption" ]     = "Guardar"
@@ -973,6 +974,35 @@ procedure MenuTests()
       DsnButtonAction( { => } ) == "lOk := .T., oDlg:End()" )
    Check( "button action verbatim when set", ;
       DsnButtonAction( { "action" => "lCancel := .T., oDlg:End()" } ) == "lCancel := .T., oDlg:End()" )
+
+   // button STYLE property: default shadow, brackets sizes, codegen clause
+   Check( "new button default style", DsnNewControl( "button", {} )[ "style" ] == "shadow" )
+   Check( "button shadow size", ;
+      DsnControlSize( { "type" => "button", "caption" => "OK" } )[ 1 ] == 5 .and. ;
+      DsnControlSize( { "type" => "button", "caption" => "OK" } )[ 2 ] == 2 )
+   Check( "button brackets size", ;
+      DsnControlSize( { "type" => "button", "caption" => "OK", "style" => "brackets" } )[ 1 ] == 6 .and. ;
+      DsnControlSize( { "type" => "button", "caption" => "OK", "style" => "brackets" } )[ 2 ] == 1 )
+   hb_jsonDecode( '{ "name": "Btns", "caption": "B", "width": 40, "height": 12, "controls": [' + ;
+      '{ "type": "button", "row": 2, "col": 2, "caption": "One", "accelerator": "O", ' + ;
+      '"action": "oDlg:End()", "style": "shadow" },' + ;
+      '{ "type": "button", "row": 5, "col": 2, "caption": "Two", "accelerator": "T", ' + ;
+      '"action": "oDlg:End()", "style": "brackets" } ] }', @hModel )
+   cCode = DsnGenCode( hModel )
+   Check( "codegen brackets style clause", ;
+      Len( cCode ) > 0 .and. At( "STYLE '[]'", cCode ) > 0 .and. ;
+      At( "STYLE '[]'", StrTran( cCode, "STYLE '[]'", Space( 9 ) ) ) == 0 )
+   Check( "codegen style clause on brackets button only", ;
+      At( "STYLE '[]'", cCode ) > At( "Two", cCode ) .and. At( "Two", cCode ) > At( "One", cCode ) )
+
+   // style survives the JSON roundtrip through the designer model
+   oD = HbDesigner():New( nil )
+   oD:ApplyModel( hModel )
+   Check( "style roundtrip shadow", oD:aControls[ 1 ][ "style" ] == "shadow" )
+   Check( "style roundtrip brackets", oD:aControls[ 2 ][ "style" ] == "brackets" )
+   // legacy control without the key reads as shadow everywhere
+   Check( "style legacy default", ;
+      DsnControlSize( { "type" => "button", "caption" => "OK" } )[ 2 ] == 2 )
    // (pixel proof that a "~"-less item no longer paints a hotkey char one
    // cell left of its prompt is the live palette screenshot: the headless
    // GT keeps no readable screen buffer for SaveScreen)
