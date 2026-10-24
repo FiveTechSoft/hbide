@@ -109,6 +109,8 @@ CLASS MCPanel
    METHOD MarkCurrent()
    METHOD MarkedEntries()
    METHOD EnterKey()
+   METHOD LynxEnter()
+   METHOD LynxUp()
    METHOD QuickSearch()
    METHOD ComputeDirSizes()
    METHOD DirSize( cPath, nLevel )
@@ -610,6 +612,42 @@ METHOD MarkedEntries() CLASS MCPanel
    next
 
 return aOut
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD LynxEnter() CLASS MCPanel
+
+   // Lynx-like motion: Right enters the dir under the cursor
+   local aEntry := ::Current()
+
+   if ::cMode == "panelize" .or. ::cMode == "tree"
+      return .F.
+   endif
+   if aEntry != nil .and. aEntry[ P_DIR ] .and. aEntry[ P_NAME ] != "/.."
+      ::GoDir( MCEntryPath( Self, aEntry ) )
+      return .T.
+   endif
+
+return .F.
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD LynxUp() CLASS MCPanel
+
+   // Lynx-like motion: Left goes to the parent dir (same rules as "/..")
+   local cUp
+
+   if ::cMode == "panelize" .or. ::cMode == "tree"
+      return .F.
+   endif
+   if MCVfsKind( ::cPath ) != "local"
+      ::GoDir( MCVfsParent( ::cPath ) )
+   else
+      cUp := iif( Right( ::cPath, 1 ) == "/", hb_StrShrink( ::cPath, 1 ), ::cPath )
+      ::GoDir( iif( Empty( cUp ), "/", hb_FNameDir( cUp ) ) )
+   endif
+
+return .T.
 
 //-----------------------------------------------------------------------------------------//
 
