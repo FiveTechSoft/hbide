@@ -789,6 +789,7 @@ ENDCLASS
 procedure MenuTests()
 
    local oPopup, oBar, oSub, lRan := .F.
+   local oD, cCode, cJson, hModel
 
    // standalone popup (designer F2 palette path)
    oPopup := HbMenu():New( .T. )
@@ -830,6 +831,79 @@ procedure MenuTests()
       Len( StrTran( oPopup:aItems[ 2 ]:cPrompt, "~" ) ) )
    Check( "pad target width", ;
       Len( StrTran( oPopup:aItems[ 1 ]:cPrompt, "~" ) ) == 40 - 10 - 1 )
+
+   // dialog color split: background / text / focus properties
+   oD = HbDesigner():New( nil )
+   oD:cDlgColor = "G+/B"
+   Check( "dlgcolor split back", oD:cDlgClrBack == "B" )
+   Check( "dlgcolor split text", oD:cDlgClrText == "G+" )
+   Check( "dlgcolor recombines", oD:cDlgColor == "G+/B" )
+   Check( "dlgcolor focus default", oD:cDlgClrFocus == "W+/B" )
+
+   // byte-exact regression: default focus keeps the stock palettes
+   Check( "get palette default focus", DsnClrGetFor( "W+/W" ) == "W/B,W+/B,W+/W,GR+/W" )
+   Check( "checkbox palette default focus", DsnClrCheckBoxFor( "W+/W" ) == "N/W,BG+/W,N/W,GR+/W" )
+   Check( "button palette default focus", DsnClrButtonFor( "W+/W" ) == "GR+/G,W+/G,N/G,BG+/G" )
+   Check( "radio palette default focus", DsnClrRadioFor( "W+/W" ) == "N/W,N/W,N/W,BG+/W,N/W,GR+/W,BG+/W" )
+   Check( "listbox palette default focus", DsnClrListBoxFor( "W+/W" ) == "N/BG,GR+/BG,N/BG,W+/G,W+/W,W+/W,GR+/W" )
+
+   // custom focus swaps the focused slots, white and colored backgrounds
+   Check( "get focus custom white", DsnClrGetFor( "W+/W", "Y+/R" ) == "W/B,Y+/R,W+/W,GR+/W" )
+   Check( "get focus custom colored", DsnClrGetFor( "W+/B", "Y+/R" ) == "N/W,Y+/R,N/W,GR+/W" )
+   Check( "checkbox focus custom", DsnClrCheckBoxFor( "W+/W", "Y+/R" ) == "N/W,Y+/R,N/W,GR+/W" )
+   Check( "button focus custom white", DsnClrButtonFor( "W+/W", "Y+/R" ) == "GR+/G,Y+/R,N/G,BG+/G" )
+   Check( "button focus custom colored", DsnClrButtonFor( "W+/B", "Y+/R" ) == "N/W,Y+/R,N/W,R/W" )
+   Check( "radio focus custom", DsnClrRadioFor( "W+/W", "Y+/R" ) == "N/W,N/W,N/W,Y+/R,N/W,GR+/W,Y+/R" )
+   Check( "listbox focus custom colored", DsnClrListBoxFor( "W+/B", "Y+/R" ) == "N/W,Y+/R,N/W,W+/G,N/W,W+/W,GR+/W" )
+
+   // codegen: split properties compose the dialog spec and reach the GET palette
+   hb_jsonDecode( '{ "name": "Trio", "caption": "My Dialog", "width": 40, "height": 12, ' + ;
+      '"colortext": "Y+", "colorback": "B", "colorfocus": "Y+/R", ' + ;
+      '"controls": [ { "type": "get", "row": 3, "col": 3, "variable": "cName", "width": 10 } ] }', @hModel )
+   cCode = DsnGenCode( hModel )
+   Check( "codegen trio dialog spec", 'HBWindow():Dialog( "My Dialog", 40, 12, "Y+/B" )' $ cCode )
+   Check( "codegen trio get focus", "COLOR 'N/W,Y+/R,N/W,GR+/W'" $ cCode )
+
+   // codegen: legacy combined-only model keeps the old output
+   hb_jsonDecode( '{ "name": "Old", "caption": "My Dialog", "width": 40, "height": 12, ' + ;
+      '"color": "G+/B", "controls": [] }', @hModel )
+   Check( "codegen legacy color", 'HBWindow():Dialog( "My Dialog", 40, 12, "G+/B" )' $ DsnGenCode( hModel ) )
+
+   // codegen: an empty color never reaches the emitted Dialog()
+   hb_jsonDecode( '{ "name": "NoClr", "caption": "My Dialog", "width": 40, "height": 12, ' + ;
+      '"color": "", "controls": [] }', @hModel )
+   Check( "codegen empty color falls back", 'HBWindow():Dialog( "My Dialog", 40, 12, "W+/W" )' $ DsnGenCode( hModel ) )
+
+   // JSON roundtrip: split keys survive build model -> encode -> decode -> apply
+   oD = HbDesigner():New( nil )
+   oD:cDlgClrBack  = "B"
+   oD:cDlgClrText  = "Y+"
+   oD:cDlgClrFocus = "Y+/R"
+   cJson = hb_jsonEncode( DsnBuildModel( oD ), .T. )
+   hb_jsonDecode( cJson, @hModel )
+   oD = HbDesigner():New( nil )
+   oD:ApplyModel( hModel )
+   Check( "roundtrip back", oD:cDlgClrBack == "B" )
+   Check( "roundtrip text", oD:cDlgClrText == "Y+" )
+   Check( "roundtrip focus", oD:cDlgClrFocus == "Y+/R" )
+   Check( "roundtrip combined", oD:cDlgColor == "Y+/B" )
+
+   // old JSON: only the legacy combined "color" key
+   hb_jsonDecode( '{ "name": "Old", "caption": "Old Dlg", "color": "G+/B", ' + ;
+      '"width": 40, "height": 12, "controls": [] }', @hModel )
+   oD = HbDesigner():New( nil )
+   oD:ApplyModel( hModel )
+   Check( "old json combined", oD:cDlgColor == "G+/B" )
+   Check( "old json text derived", oD:cDlgClrText == "G+" )
+   Check( "old json back derived", oD:cDlgClrBack == "B" )
+   Check( "old json focus default", oD:cDlgClrFocus == "W+/B" )
+
+   // missing color key: the stock dialog color applies, not an empty string
+   hb_jsonDecode( '{ "name": "Bare", "caption": "Bare Dlg", ' + ;
+      '"width": 40, "height": 12, "controls": [] }', @hModel )
+   oD = HbDesigner():New( nil )
+   oD:ApplyModel( hModel )
+   Check( "bare json color fallback", oD:cDlgColor == "W+/W" )
    // (pixel proof that a "~"-less item no longer paints a hotkey char one
    // cell left of its prompt is the live palette screenshot: the headless
    // GT keeps no readable screen buffer for SaveScreen)
