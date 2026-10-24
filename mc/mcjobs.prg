@@ -60,7 +60,8 @@ function MCJobsAdd( aFiles, cDesc, lMove )
       "hDst"  => -1, ;
       "tmp"   => "", ;
       "state" => "queued", ;
-      "err"   => "" } )
+      "err"   => "", ;
+      "skipdirs" => {} } )
 
 return Len( s_aJobs )
 
@@ -118,6 +119,21 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+// True when cDst sits inside a destination dir a move refused to touch.
+static function JobSkipped( j, cDst )
+
+   local d
+
+   for each d in j[ "skipdirs" ]
+      if Left( hb_DirSepAdd( cDst ), Len( d ) ) == d
+         return .T.
+      endif
+   next
+
+return .F.
+
+//-----------------------------------------------------------------------------------------//
+
 static function JobErr( j, cPath, cWhy )
 
    j[ "err" ] += hb_FNameNameExt( cPath ) + ": " + cWhy + "; "
@@ -160,11 +176,20 @@ function MCJobsStep()
       j[ "idx" ]++
       do case
          case f[ 1 ] == "mkdir"
-            if ! hb_DirExists( f[ 3 ] ) .and. hb_DirCreate( f[ 3 ] ) != 0
+            if hb_DirExists( f[ 3 ] )
+               if j[ "move" ]
+                  // Raced in after enqueue: a move never merges into an
+                  // existing destination dir; its subtree stays in place.
+                  JobErr( j, f[ 3 ], "destination exists; move does not overwrite" )
+                  AAdd( j[ "skipdirs" ], hb_DirSepAdd( f[ 3 ] ) )
+               endif
+            elseif hb_DirCreate( f[ 3 ] ) != 0
                JobErr( j, f[ 3 ], "cannot create directory" )
             endif
          case f[ 1 ] == "dirmeta"
-            if Len( f ) >= 6 .and. f[ 5 ] > 0
+            if JobSkipped( j, f[ 3 ] )
+               // Parent dir was not moved: leave the source tree untouched.
+            elseif Len( f ) >= 6 .and. f[ 5 ] > 0
                // Snapshot taken at enqueue: immune to source mutation by moves.
                hb_ProcessRun( MCShWrap( "chmod " + f[ 6 ] + " -- " + ShellQuote( f[ 3 ] ) + " 2>/dev/null" ),, )
                hb_ProcessRun( MCShWrap( "touch -d '@" + hb_ntos( f[ 5 ] ) + "' " + ShellQuote( f[ 3 ] ) + " 2>/dev/null" ),, )
@@ -178,7 +203,10 @@ function MCJobsStep()
          otherwise
             // "file": a move never overwrites (foreground MoveItem semantics);
             // an existing destination raced in after enqueue is skipped.
-            if j[ "move" ]
+            if JobSkipped( j, f[ 3 ] )
+               JobErr( j, f[ 3 ], "parent directory not moved" )
+               return .T.
+            elseif j[ "move" ]
                if File( f[ 3 ] ) .or. hb_DirExists( f[ 3 ] )
                   JobErr( j, f[ 3 ], "destination exists; move does not overwrite" )
                   return .T.
@@ -249,6 +277,12 @@ static function JobFinishFile( j )
 
    // hb_FTempCreate() uses 0600; give the copy the source file's permissions.
    hb_ProcessRun( MCShWrap( "chmod --reference=" + ShellQuote( f[ 2 ] ) + " " + ShellQuote( cTmp ) ),, )
+   if j[ "move" ] .and. ( File( f[ 3 ] ) .or. hb_DirExists( f[ 3 ] ) )
+      // Raced in during the copy: a move never overwrites; source kept.
+      FErase( cTmp )
+      JobErr( j, f[ 3 ], "destination appeared during move; source kept" )
+      return nil
+   endif
    if FRename( cTmp, f[ 3 ] ) != 0
       if File( f[ 3 ] )
          // Move the previous destination aside, retry, restore on failure.
