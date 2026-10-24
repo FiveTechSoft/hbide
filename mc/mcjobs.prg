@@ -1,3 +1,5 @@
+#include "fileio.ch"
+
 /*
  * mcjobs.prg - background copy queue for the Commander demo
  *
@@ -61,6 +63,7 @@ function MCJobsAdd( aFiles, cDesc, lMove )
       "tmp"   => "", ;
       "state" => "queued", ;
       "err"   => "", ;
+      "errlog" => "", ;
       "moved" => 0, ;
       "nolink" => .F., ;
       "skipdirs" => {} } )
@@ -165,12 +168,65 @@ return .F.
 
 //-----------------------------------------------------------------------------------------//
 
+// Every problem is appended to the job's full log file (no cap, nothing is
+// lost silently: Enter in the Background jobs dialog shows it whole).
+// j[ "err" ] is only the inline display summary, capped with an explicit
+// " ..." tail when the log grows past it.
 static function JobErr( j, cPath, cWhy )
 
-   j[ "err" ] += hb_FNameNameExt( cPath ) + ": " + cWhy + "; "
-   if Len( j[ "err" ] ) > 4000
-      j[ "err" ] := Left( j[ "err" ], 4000 ) + " ..."
+   local cLine := hb_FNameNameExt( cPath ) + ": " + cWhy
+   local hLog
+
+   if Empty( j[ "errlog" ] )
+      hLog := hb_FTempCreate( hb_DirTemp(), "hbmclog",, @j[ "errlog" ] )
+      if hLog == F_ERROR
+         j[ "errlog" ] := ""
+      else
+         FClose( hLog )
+      endif
    endif
+   if ! Empty( j[ "errlog" ] )
+      hLog := FOpen( j[ "errlog" ], FO_WRITE )
+      if hLog != F_ERROR
+         FSeek( hLog, 0, FS_END )
+         FWrite( hLog, cLine + hb_eol() )
+         FClose( hLog )
+      endif
+   endif
+   if Len( j[ "err" ] ) < 4000
+      j[ "err" ] += cLine + "; "
+      if Len( j[ "err" ] ) > 4000
+         j[ "err" ] := Left( j[ "err" ], 4000 ) + " ..."
+      endif
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Full problem list of a job for the viewer: the uncapped log file when it
+// exists, the inline summary otherwise.
+function MCJobsErrText( j )
+
+   if ! Empty( j[ "errlog" ] ) .and. hb_FileExists( j[ "errlog" ] )
+      return MemoRead( j[ "errlog" ] )
+   endif
+
+return StrTran( j[ "err" ], "; ", ";" + Chr( 10 ) )
+
+//-----------------------------------------------------------------------------------------//
+
+// Remove this session's job logs (called on clean quit).
+function MCJobsCleanup()
+
+   local j
+
+   for each j in s_aJobs
+      if ! Empty( j[ "errlog" ] )
+         FErase( j[ "errlog" ] )
+         j[ "errlog" ] := ""
+      endif
+   next
 
 return nil
 
