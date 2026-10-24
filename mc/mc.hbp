@@ -5,4 +5,4 @@ mcarcwrite.prg
 mcview.prg
 ../hbwindow.prg
 ../hbmenu.prg
-../hbbutton.prg
+mcbutton.prg
