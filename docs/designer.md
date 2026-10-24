@@ -51,6 +51,16 @@ original; consecutive pastes keep offsetting so the copies do not stack.
 Pasted controls get a fresh unique variable name. The clipboard is
 in-memory and holds one control.
 
+### Snap to grid
+
+F7 toggles snap mode (also in the F2 palette). While it is on, the canvas
+paints a faint dot grid and every placement quantizes to a 2x2 cell grid:
+the ghost drop position, arrow-key moves, mouse drags and mouse resizes.
+Positions and sizes that are already aligned do not change. The toggle is
+not a model change: it adds no undo step and is not saved to the JSON; it
+starts off in every session. The grid step is fixed at 2 rows x 2 cols
+(there is no per-dialog configuration).
+
 Size note: the width/height you see in F3 and in the JSON are the values
 passed to `HBWindow():Dialog()` in the generated code. That constructor
 centers with a half-size convention, so the painted frame spans one cell
