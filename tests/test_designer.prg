@@ -904,6 +904,15 @@ procedure MenuTests()
    oD = HbDesigner():New( nil )
    oD:ApplyModel( hModel )
    Check( "bare json color fallback", oD:cDlgColor == "W+/W" )
+
+   // a new PushButton starts with the full default action: ending the dialog
+   // must also confirm lOk, otherwise OK and Cancel behave the same
+   Check( "new button default action", ;
+      DsnNewControl( "button", {} )[ "action" ] == "lOk := .T., oDlg:End()" )
+   Check( "button action fallback on empty", ;
+      DsnButtonAction( { => } ) == "lOk := .T., oDlg:End()" )
+   Check( "button action verbatim when set", ;
+      DsnButtonAction( { "action" => "lCancel := .T., oDlg:End()" } ) == "lCancel := .T., oDlg:End()" )
    // (pixel proof that a "~"-less item no longer paints a hotkey char one
    // cell left of its prompt is the live palette screenshot: the headless
    // GT keeps no readable screen buffer for SaveScreen)
