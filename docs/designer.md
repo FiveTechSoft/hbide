@@ -127,6 +127,15 @@ exit is accepted (declining queues nothing). If the write fails or the
 overwrite is cancelled nothing is queued and the designer stays open. Against an IDE
 without `QueueOpen` it just generates, like F9.
 
+A button's `style` property chooses its look: `shadow` (default) draws the
+3D block with a drop shadow (two rows tall), `brackets` draws the classic
+`[ Caption ]` form on a single row. The inspector exposes it as a `Style`
+field that cycles with Left/Right or Enter. Old JSON files without the key
+load as `shadow`. The generated PRG adds `STYLE '[]'` to the
+`@ ... GET ... PUSHBUTTON` clause of bracket buttons; hbbutton's registered
+display (and the copy emitted into colored dialogs) honors any two-character
+STYLE as the bracket pair and keeps the 3D shadow for the default.
+
 A button's `action` property is inserted verbatim into the generated
 `STATE { || ... }` block, so it must be a Harbour expression that links in
 the program that runs the dialog. Use RTL functions such as
@@ -184,14 +193,16 @@ the keyboard.
 - Designer popup geometry clamped to MaxRow()/MaxCol() so it never draws
   off-screen on terminals smaller than the menu.
 
-### Display encoding note (investigated, not a defect)
+### Display encoding note
 
-The designer draws button shadows and GET fills with CP437 bytes
-(`Chr(220)`, `Chr(223)`, `Chr(176)`), matching `hbwindow.prg`. gttrm
-detects UTF-8 terminals (LANG/IUTF8) and translates those bytes to UTF-8
-block glyphs automatically; verified at byte level (Chr(220) -> E2 96 84
-on a UTF-8 terminal). Strange glyphs only appear when the terminal itself
-runs a mismatched locale (e.g. Latin-1 xterm), which affects every CP437
+The designer converts its block glyphs at paint time
+(`hb_UTF8ToStr( "█" )`, `"░"`, `"▄"`, `"▀"`), so they stay the raw CP437
+bytes under CP437 and become proper multi-byte UTF-8 under the UTF-8
+codepage opt-in. The earlier raw-byte paint showed U+FFFD on a UTF-8
+terminal; an older note here claimed gttrm re-coded those bytes
+automatically, which did not hold on a real UTF-8 xterm. Strange glyphs
+may still appear when the terminal itself runs a mismatched locale
+(e.g. Latin-1 xterm), which affects every CP437
 byte the app emits, not just the designer.
 
 ### Verified interactively (Xvfb + xdotool, real app)
