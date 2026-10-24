@@ -517,6 +517,21 @@ procedure Main()
    Check( "gen uses resized listbox size", ;
       "oDlg:nTop + 13, oDlg:nLeft + 25" $ cCode )
 
+   // frame clipping: a control wider or taller than the drawable area keeps
+   // a clipped frame (DispBox edges) instead of losing the box completely;
+   // fewer than two visible rows or columns means no drawable box
+   Check( "frame clip fully inside", ;
+      DsnFrameClip( 5, 5, 14, 5, 30, 79 )[ 1 ] == 9 .and. ;
+      DsnFrameClip( 5, 5, 14, 5, 30, 79 )[ 2 ] == 18 )
+   Check( "frame clip right edge", ;
+      DsnFrameClip( 5, 70, 14, 5, 30, 79 )[ 1 ] == 9 .and. ;
+      DsnFrameClip( 5, 70, 14, 5, 30, 79 )[ 2 ] == 79 )
+   Check( "frame clip bottom edge", ;
+      DsnFrameClip( 5, 5, 14, 30, 20, 79 )[ 1 ] == 19 .and. ;
+      DsnFrameClip( 5, 5, 14, 30, 20, 79 )[ 2 ] == 18 )
+   Check( "frame clip one column left is nil", DsnFrameClip( 5, 79, 14, 5, 30, 79 ) == NIL )
+   Check( "frame clip one row left is nil", DsnFrameClip( 19, 5, 14, 5, 20, 79 ) == NIL )
+
    // button shadow glyphs follow the active codepage: CP437 keeps the raw
    // half blocks (byte-identical to the old Chr(220)/Chr(223)), the UTF-8
    // opt-in gets the multi-byte encoding so they no longer render as '?'
@@ -527,6 +542,24 @@ procedure Main()
       HbBtnShadowChars()[ 1 ] == hb_UTF8ToStr( "▄" ) .and. ;
       Len( HbBtnShadowChars()[ 1 ] ) > 1 )
    hb_cdpSelect( "EN" )
+
+   // caption pads follow the active codepage the same way: CP437 keeps the
+   // raw Chr(255) pair, the UTF-8 opt-in gets the two-byte U+00A0 encoding
+   Check( "button pads cp437 bytes", ;
+      HbBtnPadChars()[ 1 ] == Chr( 255 ) .and. HbBtnPadChars()[ 2 ] == Chr( 255 ) )
+   hb_cdpSelect( "UTF8" )
+   Check( "button pads utf8 encoded", ;
+      HbBtnPadChars()[ 1 ] == Chr( 194 ) + Chr( 160 ) .and. ;
+      HbBtnPadChars()[ 2 ] == Chr( 194 ) + Chr( 160 ) )
+   hb_cdpSelect( "EN" )
+
+   // generated dialogs emit the same codepage-aware button display: pads
+   // and shadow half blocks convert for the active codepage, no raw CP437
+   // bytes that render as '?' under the UTF-8 opt-in
+   Check( "gen button pads cp-aware", "DsnBtnPads()" $ cCode )
+   Check( "gen button shades cp-aware", "DsnBtnShades()" $ cCode )
+   Check( "gen no raw cp437 pad bytes", ! "Chr( 255 )" $ cCode )
+   Check( "gen no raw cp437 shadow bytes", ! ( "Chr( 220 )" $ cCode ) )
 
    QOut( "" )
    QOut( "PASSED: " + hb_ntos( s_nPassed ) + "  FAILED: " + hb_ntos( s_nFailed ) )
