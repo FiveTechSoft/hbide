@@ -21,25 +21,44 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - Hard link (inode verified)
 - Background jobs dialog
 - Edit external file, Edit menu file
-- Dialog buttons redone after user review: per-button "style" property
-  (contract shared with the designer): STYLE "brackets" = authentic MC
-  text buttons "[ Caption ]" on the dialog background (hotkey red,
-  focused black-on-cyan with yellow hotkey; reference: mc
-  lib/widget/button.c); any other style = hbide block button with solid
-  shadow. Both verified live in one dialog. NOTE: the RTL style SETGET
-  only accepts 0/2/8-char values, so "brackets" (8) passes but a STYLE
-  clause value like "shadow" (6) raises PUSHBUTTON/1001 - relayed to the
-  designer for their codegen. Per-GET COLOR honored again: body colors
-  come from the spec (indices 0/1/2), hotkey from index 3 unfocused,
-  derived bright-yellow-on-focus-bg focused (RTL single hotkey slot
-  cannot be right in both states). Default button marked [< >] via
-  GUISEND cargo := .T. and Enter made real MC semantics: Enter on any
-  non-button control fires the default (verified: checkbox -> OK applied;
-  focused Cancel still wins over the default)
+- Dialog buttons redone after user review: per-button "style" property.
+  Runtime contract aligned with the designer's real codegen (their
+  8044b9c/fcff867/f68ed65, relayed via main): codegen emits STYLE "[]"
+  for brackets and omits the STYLE clause for shadow (RTL default "<>"
+  3D block); "brackets" is kept as a legacy alias, and a STYLE value
+  like "shadow" (6 chars) is never emitted because the RTL style SETGET
+  only accepts 0/2/8-char values (PUSHBUTTON/1001 otherwise). Brackets
+  = authentic MC text buttons "[ Caption ]" on the dialog background
+  (hotkey red, focused black-on-cyan with yellow hotkey; reference: mc
+  lib/widget/button.c); anything else = hbide block button with solid
+  shadow. Both verified live in one dialog, including a scratch dialog
+  written exactly like the designer's generated code (one STYLE "[]",
+  one STYLE omitted) run through the Commander overrides. Mouse hit test
+  matches the same contract as the designer's DsnBtnHitTest (vendored
+  BtnHitTest in mcbutton.prg): brackets width = caption-without-& + 4
+  (+2 for the [< >] default marker), height 1, closing bracket clickable;
+  shadow width = caption + 2 clickable (3 painted with the shadow cell),
+  height 2. Dialog layouts compute positions from those rendered widths
+  (confirmation dialog [< Cancel >] / [ Quit ] verified with real air
+  between buttons, full dialog crop). Per-GET COLOR honored again: body
+  colors come from the spec (indices 0/1/2), hotkey from index 3
+  unfocused, derived bright-yellow-on-focus-bg focused (RTL single
+  hotkey slot cannot be right in both states). Default button marked
+  [< >] via GUISEND cargo := .T. and Enter made real MC semantics:
+  Enter on any non-button control fires the default (verified: checkbox
+  -> OK applied; focused Cancel still wins over the default)
 - Dialog checkboxes in MC colors: unfocused black-on-gray with red
   hotkey, focused black-on-cyan with yellow hotkey (was: all captions
   cyan at once). Vendored ChkDisplay override in mcbutton.prg; RTL
   CheckBox untouched
+- Dialog radiogroups in MC colors: the selected row draws black-on-cyan
+  with yellow hotkey, the other rows black-on-gray with red hotkeys
+  (was: every row caption cyan at once). Vendored RadDisplay override in
+  mcbutton.prg (RTL RadioButtn untouched); RTL marks every item focused
+  when the group has focus, so the current row is taken from the
+  selected item (lBuffer), which is how mc radiogroups read. Verified
+  live in Appearance, Listing format and Sort order (arrow keys move
+  the highlight with the selection)
 - Turbo Vision cyan theme: directories now bright white on cyan (was
   gray-on-cyan, weak contrast)
 - Move (F6): overwrite confirmation (decline keeps both files; accept
