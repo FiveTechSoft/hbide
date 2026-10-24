@@ -679,6 +679,8 @@ METHOD CopySelected() CLASS HbDesigner
       ::oClipboard  = DsnCloneValue( ::aControls[ ::nSelected ] )
       ::nPasteCount = 0
       ::ShowHint( "Copied " + ::oClipboard[ "type" ] + " (^V paste)" )
+   else
+      ::ShowHint( "Select a control first (Tab / click)" )
    endif
 
 return nil
@@ -697,6 +699,8 @@ METHOD CutSelected() CLASS HbDesigner
       ::Redraw()
       ::DrawInspector()
       ::ShowHint( "Cut " + ::oClipboard[ "type" ] + " (^V paste, ^Z undo)" )
+   else
+      ::ShowHint( "Select a control first (Tab / click)" )
    endif
 
 return nil
