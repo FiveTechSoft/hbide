@@ -165,3 +165,46 @@ itself (height 31 -> 22 via numeric replace, items "&Main.prg,..." cleaned to
 "Main.prg,Utils.prg,Res.rc"), saved, regenerated, recompiled and run; the
 listbox renders and navigates the verbatim items, Build accepts (lOk = .T.)
 and Cancel exits with no effects (lOk = .F.).
+
+## Mouse support in dialogs (2026-10-24)
+
+During READ (HbWindow:Activate) an idle hook polls the mouse: clicking a
+control moves focus to it, clicking a checkbox toggles it, clicking a
+pushbutton activates it, and clicking a listbox or radiogroup item selects
+it by stuffing the exact Up/Down keystrokes (commits 9238a98, cf944d3).
+
+Control geometry and state are read from the screen buffer, not from the
+control internals, which are PROTECTED in Harbour's control classes and
+whose GET buffers stay NIL:
+
+- Framed hit-test: each framed control's real extents are recovered by
+  scanning the SaveScreen bytes for its border characters. Single- and
+  double-line styles are accepted, in both CP437 and UTF-16-low-byte
+  encodings (gttrm under a UTF-8 terminal stores UTF-16 low bytes).
+  Double-line matters because focused controls redraw their frame double.
+  Items live one row inside the frame.
+- Current radiogroup selection: the "(*)" marker next to the control
+  origin on screen.
+- Current listbox selection: the item row whose attribute byte differs
+  from the first item row (the selection bar). Only rows with text count,
+  so a listbox taller than its items still maps correctly.
+- Clicks arriving while READ is busy navigating between GETs are queued
+  and retried for up to 3 s from the idle hook instead of being dropped.
+
+Known limits, pending variant testing before this can be called general:
+color schemes where the selection-bar attribute equals the first row's,
+scrolled listboxes (item-to-row mapping with a scroll offset is untested),
+and non-standard frame styles. Verified so far on docs/examples/
+buildoptions with the stock colors: clicks select Exe/Library/Dll and
+Main.prg/Utils.prg/Res.rc in both directions, each control independently
+of the other, clicks outside and on frame borders are no-ops, and the
+checkbox still toggles by click.
+
+## Designer popup close contract
+
+In the designer's own popups (control properties, dialog properties, file
+pickers): Esc or the Cancel pushbutton discards the edits; any other READ
+exit (OK pushbutton, Ctrl+W) commits them. Before commit 3659afa, Ctrl+W
+silently discarded edits. Generated dialogs keep their own semantics: the
+code generator cannot know which button is Cancel, so they close via
+their buttons or Esc.
