@@ -94,9 +94,16 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   user format references %x/%z or the inode). Per-panel formats persist
   to ~/.hbmc.ini (save+load round-trip verified, restart restores them)
 - Layout: horizontal / vertical panel split
-- Configuration dialog: 8 working checkboxes (Show hidden files, Show
+- Configuration dialog: 10 working checkboxes (Show hidden files, Show
   mini-status, Compute totals, Show free space, Auto save setup, Shell
-  patterns, Mkdir autoname, Verbose operation). Mkdir autoname verified
+  patterns, Mkdir autoname, Verbose operation, Use internal view, Use
+  internal edit). Use internal view/edit verified live both ways: ON
+  (mc default) F3/F4 use the built-in viewer/editor; OFF F3 hands the
+  file to the configured external viewer (less, verified on screen with
+  the file's real content, q returns to intact panels) and F4 to the
+  configured external editor (vi, verified with the real file loaded,
+  :q! returns to intact panels). External commands are configurable
+  (externalview/externaledit ini keys, defaults less/vi). Mkdir autoname verified
   live: with it on, F7 opens Make Directory prefilled with the name
   under the cursor (hbsubdir); with it off the GET opens empty.
   Verbose operation verified live both ways on copy: ON names each
@@ -104,13 +111,27 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   file to /tmp/hbmc-verbose.log (the detail mc's operation dialog shows
   live for long operations; instant on the fixtures, so the log is the
   inspectable artifact); OFF shows counts only and writes no log.
+  Move shares the same loop and was tested on its own: a rename-move
+  appended its "move ... -> ..." line to the log.
   Fast dir reload edge documented: detection is mtime-second based, so
   a change that leaves the dir mtime at the scanned second (tested by
   resetting the mtime after creating a file) is NOT picked up on panel
   switch until C-r - same granularity limit as mc's own mtime check
-- Panel options: 7 working checkboxes (Mix all files, Show backup files,
-  Mark moves down, Show hidden files, Lynx-like motion, File types
-  highlight, Fast dir reload) - mark-moves-down off keeps the cursor on Insert.
+- Panel options: 10 working checkboxes (Mix all files, Show backup
+  files, Mark moves down, Show hidden files, Lynx-like motion, File
+  types highlight, Fast dir reload, Scroll pages, Center scrolling,
+  Mouse wheel pages) - mark-moves-down off keeps the cursor on Insert.
+  Scroll trio live-verified in their ON direction on a 189-entry
+  panel: Scroll pages ON (mc default) makes PgDn past the last visible
+  row jump a half page (cursor f07 -> f14, top offset follows).
+  Center scrolling ON keeps the cursor centered once past the middle
+  (top follows the cursor). Mouse wheel pages ON (mc default):
+  wheel-down at the top of a long panel moves a full page (cursor /..
+  -> f14). The OFF directions of the three toggles are implemented but
+  NOT yet exercised live. Scroll-pages edge logic follows mc's
+  move_up/move_down semantics for the non-brief modes; brief
+  (columnwise) mode keeps its own column navigation - edge cases there
+  are NOT covered.
   Lynx-like motion verified live both ways: Right enters the dir under
   the cursor, Left goes back to the parent. File types highlight
   verified live: executables render bright green (one stat pass per
@@ -122,8 +143,10 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   detects the dir mtime change on panel switch and rescans (created
   file appears), ON keeps the stale listing (deleted file still
   shown) until C-r
-- Options persist to ~/.hbmc.ini: save+load round-trip verified; Auto save
-  setup saves the current options on quit
+- Options persist to ~/.hbmc.ini: save+load round-trip verified for
+  every option key including the scroll trio and internal/external
+  view/edit (Options -> Save setup writes them all, verified by
+  reading the file); Auto save setup saves the current options on quit
 - Appearance: theme change applies live - Turbo Vision cyan palette
   verified on screen and reverted to classic; radiogroup selection read
   fixed in code (same bug class as sort order)
