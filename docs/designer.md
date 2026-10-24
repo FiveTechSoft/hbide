@@ -18,6 +18,7 @@ frame and resize it from the bottom-right corner with the mouse.
 | Enter    | Drop the ghost (while placing) or edit the selected control properties |
 | Tab / Shift+Tab | Select next / previous control |
 | Del      | Delete the selected control |
+| Ctrl+Z / Ctrl+Y | Undo / redo the last model change (see "Undo/redo" below) |
 | F3       | Dialog properties (caption, name, width, height, color) |
 | F9       | Generate `<name>.prg` |
 | F10      | Save `<name>.json` (the status bar only says "Saved" when the write really succeeded; a bad path reports "Could not write") |
@@ -28,6 +29,26 @@ frame and resize it from the bottom-right corner with the mouse.
 Control properties (Enter on a selected control): row, column, caption,
 variable and width, depending on the control type. Variables are normalized
 to valid Harbour identifiers.
+
+### Undo/redo
+
+Ctrl+Z undoes the last model change and Ctrl+Y redoes it; the F2 palette
+also has Undo/Redo entries. Every action that changes the model is covered:
+adding, deleting, moving, resizing and editing a control, the dialog
+properties (F3), the inspector edits, and loading a JSON file (undoing a
+load brings the previous dialog back). A burst of arrow-key moves, one
+mouse drag or one inspector adjust streak is a single undo step. The
+history is in-memory only (kept to 100 steps, oldest dropped) and is not
+written to the JSON file.
+
+Size note: the width/height you see in F3 and in the JSON are the values
+passed to `HBWindow():Dialog()` in the generated code. That constructor
+centers with a half-size convention, so the painted frame spans one cell
+more than the requested size, both on the design canvas and in the
+generated runtime. The designer normalizes its canvas on open/load so the
+canvas, the F3 values and the saved JSON always agree (a dialog saved
+before this normalization may load with width/height one cell larger than
+designed; saving it again keeps the loaded values, stable afterwards).
 
 ## JSON format
 
@@ -157,7 +178,7 @@ byte the app emits, not just the designer.
 
 ## Roadmap (not in this version)
 
-- Undo/redo, copy/paste of controls
+- Copy/paste of controls
 - Grid/snap and alignment helpers
 - Opening the generated .prg directly in the editor
 
