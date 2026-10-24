@@ -56,6 +56,12 @@ CLASS MCApp
    DATA   oCmdLine
    DATA   cCp1        INIT ""        // panel display charsets from cfg
    DATA   cCp2        INIT ""
+   DATA   cListMode1  INIT "full"    // per-panel listing formats from cfg
+   DATA   cListMode2  INIT "full"
+   DATA   cUserFmt1   INIT "half name | size"
+   DATA   cUserFmt2   INIT "half name | size"
+   DATA   lUserMini1  INIT .F.
+   DATA   lUserMini2  INIT .F.
    DATA   cLastOutput  INIT ""
    DATA   aHistory     INIT {}
    DATA   aHotlist     INIT {}
@@ -194,6 +200,14 @@ METHOD New( cStartDir ) CLASS MCApp
    ::oPanel2:oApp := Self
    ::oPanel1:cCp := ::cCp1
    ::oPanel2:cCp := ::cCp2
+   ::oPanel1:cListMode := ::cListMode1
+   ::oPanel2:cListMode := ::cListMode2
+   ::oPanel1:lBrief := ( ::cListMode1 == "brief" )
+   ::oPanel2:lBrief := ( ::cListMode2 == "brief" )
+   ::oPanel1:cUserFmt := ::cUserFmt1
+   ::oPanel2:cUserFmt := ::cUserFmt2
+   ::oPanel1:lUserMiniStatus := ::lUserMini1
+   ::oPanel2:lUserMiniStatus := ::lUserMini2
 
    ::oMenu := ::BuildMenu()
    SetCursor( SC_NONE )
@@ -1206,11 +1220,16 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
 
    local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
    local oDlg, GetList := {}, lDummy, lOk := .F.
-   local nFmt := If( oPanel:lBrief, 2, 1 ), aFmt[ 2 ], n
+   local nFmt := AScan( { "full", "brief", "long", "user" }, oPanel:cListMode ), aFmt[ 4 ], n
+   local cUF := PadR( oPanel:cUserFmt, 28 ), lUMS := oPanel:lUserMiniStatus
    local cRadStyle := "(" + Chr( 7 ) + " )"
    local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
 
-   oDlg = HBWindow():Dialog( "Listing format", 36, 9, "W+/W" )
+   if nFmt == 0
+      nFmt := 1
+   endif
+
+   oDlg = HBWindow():Dialog( "Listing format", 46, 13, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    // same layout pattern as OptionsAppearance: equal-width captions with a
@@ -1218,14 +1237,22 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    // var so the underlying GET buffer is a single hidden digit, and the
    // default single-line group frame on its own rows around the items
    aFmt[ 1 ] := RadioButto( oDlg:nTop + 2, oDlg:nLeft + 4, " " + PadR( "&Full file list", 16 ) )
-   aFmt[ 1 ]:capCol := oDlg:nLeft + 7
    aFmt[ 2 ] := RadioButto( oDlg:nTop + 3, oDlg:nLeft + 4, " " + PadR( "&Brief file list", 16 ) )
-   aFmt[ 2 ]:capCol := oDlg:nLeft + 7
-   AEval( aFmt, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
+   aFmt[ 3 ] := RadioButto( oDlg:nTop + 4, oDlg:nLeft + 4, " " + PadR( "&Long file list", 16 ) )
+   aFmt[ 4 ] := RadioButto( oDlg:nTop + 5, oDlg:nLeft + 4, " " + PadR( "&User defined", 16 ) )
+   AEval( aFmt, { | o | o:capCol := oDlg:nLeft + 7, o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
    oDlg:cargo := aFmt
 
-   @ oDlg:nTop + 1, oDlg:nLeft + 3, oDlg:nTop + 4, oDlg:nLeft + 25 GET nFmt ;
+   @ oDlg:nTop + 1, oDlg:nLeft + 3, oDlg:nTop + 6, oDlg:nLeft + 25 GET nFmt ;
       RADIOGROUP aFmt STYLE cRadStyle COLOR "N/W,N/BG,GR+/BG"
+
+   oDlg:Say( oDlg:nTop + 8, oDlg:nLeft + 3, "Format:" )
+   @ oDlg:nTop + 8, oDlg:nLeft + 12 GET cUF COLOR "N/BG,W+/BG,N/BG,GR+/BG"
+
+   @ oDlg:nTop + 9, oDlg:nLeft + 3 GET lUMS ;
+      CHECKBOX CAPTION "user &mini status" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
@@ -1244,9 +1271,14 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
       // numeric GET buffer round-trip is unreliable; read the items
       n := AScan( aFmt, { | o | o:buffer } )
       if n == 0
-         n := Min( Max( 1, Int( nFmt ) ), 2 )
+         n := Min( Max( 1, Int( nFmt ) ), 4 )
       endif
+      oPanel:cListMode := { "full", "brief", "long", "user" }[ n ]
       oPanel:lBrief := ( n == 2 )
+      if ! Empty( AllTrim( cUF ) )
+         oPanel:cUserFmt := AllTrim( cUF )
+      endif
+      oPanel:lUserMiniStatus := lUMS
       ::Repaint()
    endif
 
@@ -3067,6 +3099,12 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "theme"          ; ::nTheme := Max( 1, Min( 3, Val( cVal ) ) )
          case cKey == "cpleft"        ; ::cCp1 := If( MCCpValid( cVal ), cVal, "" )
          case cKey == "cpright"       ; ::cCp2 := If( MCCpValid( cVal ), cVal, "" )
+         case cKey == "listmode1"     ; if AScan( { "full", "brief", "long", "user" }, cVal ) > 0 ; ::cListMode1 := cVal ; endif
+         case cKey == "listmode2"     ; if AScan( { "full", "brief", "long", "user" }, cVal ) > 0 ; ::cListMode2 := cVal ; endif
+         case cKey == "userfmt1"      ; if ! Empty( cVal ) ; ::cUserFmt1 := cVal ; endif
+         case cKey == "userfmt2"      ; if ! Empty( cVal ) ; ::cUserFmt2 := cVal ; endif
+         case cKey == "usermini1"     ; ::lUserMini1 := ( cVal == "1" )
+         case cKey == "usermini2"     ; ::lUserMini2 := ( cVal == "1" )
       endcase
    next
 
@@ -3099,6 +3137,12 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "theme=" + hb_ntos( ::nTheme ) + hb_eol()
    cTxt += "cpleft=" + ::oPanel1:cCp + hb_eol()
    cTxt += "cpright=" + ::oPanel2:cCp + hb_eol()
+   cTxt += "listmode1=" + ::oPanel1:cListMode + hb_eol()
+   cTxt += "listmode2=" + ::oPanel2:cListMode + hb_eol()
+   cTxt += "userfmt1=" + ::oPanel1:cUserFmt + hb_eol()
+   cTxt += "userfmt2=" + ::oPanel2:cUserFmt + hb_eol()
+   cTxt += "usermini1=" + If( ::oPanel1:lUserMiniStatus, "1", "0" ) + hb_eol()
+   cTxt += "usermini2=" + If( ::oPanel2:lUserMiniStatus, "1", "0" ) + hb_eol()
    for each aEntry in ::aHotlist
       cTxt += "hotlist|" + aEntry[ 1 ] + "|" + aEntry[ 2 ] + hb_eol()
    next
