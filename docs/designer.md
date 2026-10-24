@@ -20,7 +20,7 @@ frame and resize it from the bottom-right corner with the mouse.
 | Del      | Delete the selected control |
 | F3       | Dialog properties (caption, name, width, height, color) |
 | F9       | Generate `<name>.prg` |
-| F10      | Save `<name>.json` |
+| F10      | Save `<name>.json` (the status bar only says "Saved" when the write really succeeded; a bad path reports "Could not write") |
 | F12      | Load a JSON dialog |
 | Esc      | Cancel placing / exit (asks if there are unsaved changes) |
 
