@@ -1728,7 +1728,7 @@ return nil
 //-----------------------------------------------------------------------------------------//
 
 static function MoveItem( cSrc, cDst, oApp )
-   local lAll := .F.
+   local lAll := .F., cTarget
    if MCSameFile( cSrc, cDst )
       MCMsgBox( "Rename/Move", "Source and destination are the same file." )
       return .F.
@@ -1745,7 +1745,13 @@ static function MoveItem( cSrc, cDst, oApp )
    // a complete copy, so a partial failure never deletes data.
    if ! Empty( hb_FLinkRead( cSrc ) )
       // Recreate the symlink at the destination, then remove the original.
-      if hb_FLinkSym( hb_FLinkRead( cSrc ), cDst ) == 0
+      // A relative target only names the same file next to the SOURCE;
+      // resolve it to an absolute path so the moved link keeps its meaning.
+      cTarget := hb_FLinkRead( cSrc )
+      if Left( cTarget, 1 ) != "/"
+         cTarget := hb_PathNormalize( hb_DirSepAdd( hb_FNameDir( cSrc ) ) + cTarget )
+      endif
+      if hb_FLinkSym( cTarget, cDst ) == 0
          return FErase( cSrc ) == 0
       endif
       MCMsgBox( "Rename/Move", "Cannot create link:" + Chr( 10 ) + cDst )
