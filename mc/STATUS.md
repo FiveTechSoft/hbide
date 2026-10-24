@@ -94,11 +94,20 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   user format references %x/%z or the inode). Per-panel formats persist
   to ~/.hbmc.ini (save+load round-trip verified, restart restores them)
 - Layout: horizontal / vertical panel split
-- Configuration dialog: 7 working checkboxes (Show hidden files, Show
+- Configuration dialog: 8 working checkboxes (Show hidden files, Show
   mini-status, Compute totals, Show free space, Auto save setup, Shell
-  patterns, Mkdir autoname). Mkdir autoname verified live: with it on,
-  F7 opens Make Directory prefilled with the name under the cursor
-  (hbsubdir); with it off the GET opens empty
+  patterns, Mkdir autoname, Verbose operation). Mkdir autoname verified
+  live: with it on, F7 opens Make Directory prefilled with the name
+  under the cursor (hbsubdir); with it off the GET opens empty.
+  Verbose operation verified live both ways on copy: ON names each
+  processed file in the completion summary and appends one line per
+  file to /tmp/hbmc-verbose.log (the detail mc's operation dialog shows
+  live for long operations; instant on the fixtures, so the log is the
+  inspectable artifact); OFF shows counts only and writes no log.
+  Fast dir reload edge documented: detection is mtime-second based, so
+  a change that leaves the dir mtime at the scanned second (tested by
+  resetting the mtime after creating a file) is NOT picked up on panel
+  switch until C-r - same granularity limit as mc's own mtime check
 - Panel options: 7 working checkboxes (Mix all files, Show backup files,
   Mark moves down, Show hidden files, Lynx-like motion, File types
   highlight, Fast dir reload) - mark-moves-down off keeps the cursor on Insert.
