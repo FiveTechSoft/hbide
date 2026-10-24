@@ -700,12 +700,13 @@ return xRet
 
 //-----------------------------------------------------------------------------------------//
 
-// date+time+size stamp of the file on disk ("" when missing/unreadable).
-// Coverage limit: a same-size edit within the filesystem timestamp
-// resolution keeps the same stamp and is not detected.
+// date+time+size+content stamp of the file on disk ("" when missing or
+// unreadable). The MD5 of the bytes catches a same-size edit inside the
+// filesystem timestamp resolution, which the plain stamp could not tell
+// apart. Files over 8 MB keep the plain stamp to bound the watch cost.
 METHOD DiskStamp( cFile ) CLASS HBSrcEdit
 
-   local aDir
+   local aDir, cStamp
 
    if Empty( cFile ) .or. ! File( cFile )
       return ""
@@ -716,7 +717,12 @@ METHOD DiskStamp( cFile ) CLASS HBSrcEdit
       return ""
    endif
 
-return DToS( aDir[ 1, 3 ] ) + "|" + aDir[ 1, 4 ] + "|" + hb_ntos( aDir[ 1, 2 ] )
+   cStamp := DToS( aDir[ 1, 3 ] ) + "|" + aDir[ 1, 4 ] + "|" + hb_ntos( aDir[ 1, 2 ] )
+   if aDir[ 1, 2 ] <= 8 * 1024 * 1024
+      cStamp += "|" + hb_MD5( hb_MemoRead( cFile ) )
+   endif
+
+return cStamp
 
 //-----------------------------------------------------------------------------------------//
 
