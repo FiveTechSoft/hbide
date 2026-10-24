@@ -56,6 +56,7 @@ CLASS MCApp
    DATA   oCmdLine
    DATA   cCp1        INIT ""        // panel display charsets from cfg
    DATA   cCp2        INIT ""
+   DATA   aKeyBind    INIT {}        // { { triggerCode, canonical K_Fn }, x 10 }: learnable F1..F10
    DATA   cListMode1  INIT "full"    // per-panel listing formats from cfg
    DATA   cListMode2  INIT "full"
    DATA   cUserFmt1   INIT "half name | size"
@@ -157,6 +158,8 @@ CLASS MCApp
    METHOD OptionsPanel()
    METHOD OptionsConfirm()
    METHOD OptionsAppearance()
+   METHOD LearnKeys()
+   METHOD TranslateKey( nKey )
    METHOD HelpDialog()
    METHOD About()
    METHOD Quit()
@@ -175,6 +178,8 @@ ENDCLASS
 
 METHOD New( cStartDir ) CLASS MCApp
 
+   local n
+
    SET SCOREBOARD OFF
    SET DATE FORMAT TO "yyyy-mm-dd"
 
@@ -189,6 +194,11 @@ METHOD New( cStartDir ) CLASS MCApp
       { "N/W",   "W+/W",  "N/W",    "W/N",   "W+/N",   "N/W",  "W+/W",   "W+/W", "N/W"   } }
 
    __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
+
+   ::aKeyBind := {}
+   for n := 1 to 10
+      AAdd( ::aKeyBind, { MCKeyDefaults()[ n ], MCKeyDefaults()[ n ] } )
+   next
 
    ::LoadCfg()
    ::oCmdLine := MCCommandLine():New( self )
@@ -524,7 +534,7 @@ METHOD Activate() CLASS MCApp
          loop
       endif
       nFlags  := hb_keyMod( nKeyRaw )
-      nKey    := hb_keyStd( nKeyRaw )
+      nKey    := ::TranslateKey( hb_keyStd( nKeyRaw ) )
       lCtrl   := hb_bitAnd( nFlags, HB_KF_CTRL ) != 0
       lDone := .T.
 
@@ -1088,6 +1098,7 @@ METHOD BuildMenu() CLASS MCApp
          MENUITEM "~Panel options..."     ACTION ::OptionsPanel()
          MENUITEM "C~onfirmation..."      ACTION ::OptionsConfirm()
          MENUITEM "~Appearance..."        ACTION ::OptionsAppearance()
+         MENUITEM "~Learn keys..."        ACTION ::LearnKeys()
          SEPARATOR
          MENUITEM "~Save setup"           ACTION ::SaveCfg()
       ENDMENU
@@ -2941,6 +2952,11 @@ METHOD Hotlist() CLASS MCApp
 
    local aItems := {}, aEntry, n
 
+   for n := 1 to 10
+      if ! Empty( ::aKeyBind ) .and. ::aKeyBind[ n ][ 1 ] != MCKeyDefaults()[ n ]
+         cTxt += "learnkey" + hb_ntos( n ) + "=" + hb_ntos( ::aKeyBind[ n ][ 1 ] ) + hb_eol()
+      endif
+   next
    for each aEntry in ::aHotlist
       AAdd( aItems, aEntry[ 1 ] + "  (" + aEntry[ 2 ] + ")" )
    next
@@ -3055,9 +3071,67 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+METHOD TranslateKey( nKey ) CLASS MCApp
+
+   // learned F-key bindings: map the incoming code to the canonical
+   // K_Fn the dispatch below understands (mc "Learn keys")
+   local a
+
+   for each a in ::aKeyBind
+      if nKey == a[ 1 ]
+         return a[ 2 ]
+      endif
+   next
+
+return nKey
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD LearnKeys() CLASS MCApp
+
+   local aDef := MCKeyDefaults()
+   local aNames := { "Help", "Menu", "View", "Edit", "Copy", ;
+                     "RenMov", "Mkdir", "Delete", "PullDn", "Quit" }
+   local aItems := {}, n, nPick, oDlg, nKey
+
+   for n := 1 to 10
+      AAdd( aItems, PadR( "F" + hb_ntos( n ) + " " + aNames[ n ], 14 ) + ;
+            If( ::aKeyBind[ n ][ 1 ] == aDef[ n ], "(default)", ;
+                "(key code " + hb_ntos( ::aKeyBind[ n ][ 1 ] ) + ")" ) )
+   next
+
+   nPick := ::DlgList( "Learn keys", aItems, 1 )
+   if nPick == 0
+      return nil
+   endif
+
+   // raw capture window: no READ, a single Inkey; Esc cancels
+   oDlg := HBWindow():Dialog( "Learn keys", 52, 8, "W+/W" )
+   oDlg:Say( 2, 3, "Press the new key for F" + hb_ntos( nPick ) + " " + aNames[ nPick ] )
+   oDlg:Say( 3, 3, "(Esc cancels; the old binding is replaced)" )
+   nKey := Inkey( 0 )
+   oDlg:Hide()
+   ::Repaint()
+
+   if nKey != K_ESC
+      ::aKeyBind[ nPick ][ 1 ] := nKey
+      MCMsgBox( "Learn keys", "F" + hb_ntos( nPick ) + " " + aNames[ nPick ] + ;
+                " now answers to key code " + hb_ntos( nKey ) )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+function MCKeyDefaults()
+
+return { K_F1, K_F2, K_F3, K_F4, K_F5, K_F6, K_F7, K_F8, K_F9, K_F10 }
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD LoadCfg() CLASS MCApp
 
-   local cFile := ::CfgFile(), cLine, cKey, cVal
+   local cFile := ::CfgFile(), cLine, cKey, cVal, n
 
    if ! hb_FileExists( cFile )
       return nil
@@ -3105,6 +3179,11 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "userfmt2"      ; if ! Empty( cVal ) ; ::cUserFmt2 := cVal ; endif
          case cKey == "usermini1"     ; ::lUserMini1 := ( cVal == "1" )
          case cKey == "usermini2"     ; ::lUserMini2 := ( cVal == "1" )
+         case Left( cKey, 8 ) == "learnkey"
+            n := Val( SubStr( cKey, 9 ) )
+            if n >= 1 .and. n <= 10 .and. Val( cVal ) != 0
+               ::aKeyBind[ n ][ 1 ] := Val( cVal )
+            endif
       endcase
    next
 
@@ -3114,7 +3193,7 @@ return nil
 
 METHOD SaveCfg( lQuiet ) CLASS MCApp
 
-   local cTxt := "# Harbour Commander configuration" + hb_eol(), aEntry, c
+   local cTxt := "# Harbour Commander configuration" + hb_eol(), aEntry, c, n
 
    cTxt += "showhidden=" + If( ::lShowHidden, "1", "0" ) + hb_eol()
    cTxt += "confirmdelete=" + If( ::lConfirmDelete, "1", "0" ) + hb_eol()
@@ -3143,6 +3222,11 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "userfmt2=" + ::oPanel2:cUserFmt + hb_eol()
    cTxt += "usermini1=" + If( ::oPanel1:lUserMiniStatus, "1", "0" ) + hb_eol()
    cTxt += "usermini2=" + If( ::oPanel2:lUserMiniStatus, "1", "0" ) + hb_eol()
+   for n := 1 to 10
+      if ! Empty( ::aKeyBind ) .and. ::aKeyBind[ n ][ 1 ] != MCKeyDefaults()[ n ]
+         cTxt += "learnkey" + hb_ntos( n ) + "=" + hb_ntos( ::aKeyBind[ n ][ 1 ] ) + hb_eol()
+      endif
+   next
    for each aEntry in ::aHotlist
       cTxt += "hotlist|" + aEntry[ 1 ] + "|" + aEntry[ 2 ] + hb_eol()
    next
