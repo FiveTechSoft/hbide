@@ -116,9 +116,24 @@ itself, a destination that is an existing directory, and source/destination
 symbolic links. Recursive failures are reported.
 Move refuses an existing target rather than replacing it. Cross-filesystem
 moves copy first and remove the source only after a complete copy: directories
-recurse and symlinks are recreated with their original target, so a partial
-failure never deletes data. Verified across ext4->tmpfs (/tmp->/dev/shm) for
-nested trees and symlinks. Recursive delete unlinks
+recurse and symlinks are recreated with their original target (a relative
+target is converted to absolute against the source directory, so it still
+points to the same entry from the new location). Tested across
+ext4->tmpfs (/tmp->/dev/shm):
+
+* Copy fails partway (unreadable file inside a tree): the source is left
+  untouched, a partial copy may remain at the destination, and the failure
+  is reported with a per-item count.
+* Copy succeeds but the source removal fails partway (read-only directory
+  inside the tree): the destination holds a complete copy and the source may
+  be left partially deleted; the failure is reported. Everything removed from
+  the source exists at the destination in this scenario, but the operation
+  is not atomic and the tree can be left split between both locations.
+
+Metadata on copy/move: regular files keep their permission bits
+(chmod --reference onto the temporary copy); file mtimes are NOT preserved
+(copied files get the copy time); directory permissions are NOT preserved
+(created with the process umask). Recursive delete unlinks
 symbolic links without traversing their target.
 
 Overwrite protection: a copy writes to a temporary file in the destination
