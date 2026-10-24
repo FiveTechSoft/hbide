@@ -85,9 +85,47 @@ ready to compile against hbide's own `hbwindow.prg` (see
 - `tests/test_designer.prg`: non-interactive checks for the model, the
   JSON round trip and the code generator.
 
+## Robustness fixes (second pass)
+
+- Popup menus created by the designer no longer crash with error 9001 on
+  letter hotkeys: standalone popups (lPopup) handle their own hotkeys in
+  `hbmenu.prg` instead of deferring to the top-bar menu handler.
+- Duplicate hotkeys in the designer popup renamed ("~PushButton",
+  "ListBo~x") so every item is reachable by keyboard.
+- `DsnUniqueVar()` + type-aware generator: a repeated variable name with an
+  incompatible type (text vs logical vs numeric) is renamed in the generated
+  code (`cName` -> `cName2`) and counted in the hint; the model is untouched.
+- RadioGroup/ListBox without items are skipped in generated code with an
+  explanatory comment instead of emitting broken `@ ... RADIO` lines.
+- LoadJson validates the model (`DsnValidModel`) and normalizes control
+  fields with coercion/clamps (`DsnNormalizeControls`); invalid entries are
+  skipped and reported in the hint, the original file is never overwritten
+  on load (cFileName cleared, dialog marked dirty when entries are skipped).
+- SAY captions draw "&" literally; checkbox width excludes the "&" marker.
+- F9 asks for confirmation before overwriting an existing .prg (Alert).
+- Alert dialogs suspend/resume the designer UI so the canvas repaints.
+- Designer popup geometry clamped to MaxRow()/MaxCol() so it never draws
+  off-screen on terminals smaller than the menu.
+
+### Display encoding note (investigated, not a defect)
+
+The designer draws button shadows and GET fills with CP437 bytes
+(`Chr(220)`, `Chr(223)`, `Chr(176)`), matching `hbwindow.prg`. gttrm
+detects UTF-8 terminals (LANG/IUTF8) and translates those bytes to UTF-8
+block glyphs automatically; verified at byte level (Chr(220) -> E2 96 84
+on a UTF-8 terminal). Strange glyphs only appear when the terminal itself
+runs a mismatched locale (e.g. Latin-1 xterm), which affects every CP437
+byte the app emits, not just the designer.
+
+### Verified interactively (Xvfb + xdotool, real app)
+
+- Mouse drag of a control updates its row/col (inspector shows new values).
+- Inspector panel drags by its title bar.
+- Full flow: open designer, place all control types, generate, save JSON,
+  reload, discard confirmation.
+
 ## Roadmap (not in this version)
 
-- RadioButton and ListBox controls
 - Control resize handles (only move is supported)
 - Undo/redo, copy/paste of controls
 - Grid/snap and alignment helpers
