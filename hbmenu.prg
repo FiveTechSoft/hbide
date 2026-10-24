@@ -243,6 +243,17 @@ METHOD ProcessKey( nKey ) CLASS HbMenu
       case nKey == K_MWFORWARD   
          ::GoUp()
 
+      case ::lPopup .and. IsAlpha( hb_keyChar( nKey ) )
+         // standalone popup: plain letters pick the item with that hotkey;
+         // deferring them to the top-bar handler treats an action block as a
+         // submenu and crashes (error 9001)
+         if ( nItem := ::GetHotKeyPos( Upper( hb_keyChar( nKey ) ) ) ) != 0
+            ::DeHilite()
+            ::nOpenPopup = nItem
+            ::aItems[ nItem ]:Display( ::cClrHilite, ::cClrHotFocus )
+            ::EvalAction()
+         endif
+
       case nKey >= K_ALT_Q .and. nKey <= K_ALT_M
          if ( n := ::GetHotKeyPos( __dbgAltToKey( nKey ) ) ) != 0
             IF n != ::nOpenPopup
