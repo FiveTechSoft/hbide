@@ -1904,7 +1904,7 @@ static function DsnItemsCode( oCtrl )
    local cCode  := "{", n
 
    for n = 1 to Len( aItems )
-      cCode += If( n > 1, ", ", " " ) + DsnQuote( aItems[ n ] )
+      cCode += If( n > 1, ", ", " " ) + DsnQuote( StrTran( aItems[ n ], "&", "" ) )
    next
 
 return cCode + If( Len( aItems ) > 0, " }", "}" )
