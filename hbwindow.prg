@@ -216,7 +216,8 @@ METHOD HitGetAt( nR, nC ) CLASS HBWindow
             endif
             if AScan( { 191, 187, 16, 87 }, ScrCharCode( oGet:row, nRight ) ) > 0 .and. ;
                AScan( { 192, 200, 20, 90 }, ScrCharCode( nBottom, oGet:col ) ) > 0 .and. ;
-               nR > oGet:row .and. nR < nBottom .and. nC > oGet:col .and. nC < nRight .and. ;
+               nR > oGet:row .and. nR < nBottom .and. nC > oGet:col .and. ;
+               ( nC < nRight .or. ( cCls == "LISTBOX" .and. oGet:control:vScroll != NIL .and. nC == nRight ) ) .and. ;
                ( oGet:row > nHitRow .or. ( oGet:row == nHitRow .and. oGet:col > nHitCol ) )
                oHit    := oGet
                nHitRow := oGet:row
