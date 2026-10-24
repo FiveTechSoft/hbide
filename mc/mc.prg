@@ -2542,7 +2542,7 @@ function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
          return .F.
       endif
    endif
-return FCopyText( cSrc, cDst, oApp:lPreallocate, oApp:lCowClone )
+return FCopyText( cSrc, cDst, oApp:lPreallocate, oApp:lCowClone, oApp )
 
 static function MCRealPath( cPath )
    local cOut := ""
@@ -2559,10 +2559,10 @@ return ! Empty( cOne ) .and. cOne == cTwo
 
 //-----------------------------------------------------------------------------------------//
 
-function FCopyText( cSrc, cDst, lPrealloc, lCowClone )
+function FCopyText( cSrc, cDst, lPrealloc, lCowClone, oApp )
 
    local nSrc, nDst, cBuf := Space( 65536 ), nRead, lOk, cTmp := ""
-   local cBak := "", nBak, lRestored, nSize
+   local cBak := "", nBak, lRestored, nSize, nAl := 0, nPick := 0
 
    lPrealloc := hb_defaultValue( lPrealloc, .F. )
    lCowClone := hb_defaultValue( lCowClone, .F. )
@@ -2601,9 +2601,23 @@ function FCopyText( cSrc, cDst, lPrealloc, lCowClone )
    if lPrealloc
       nSize := FSeek( nSrc, 0, FS_END )
       FSeek( nSrc, 0, FS_SET )
-      if nSize > 0
-         MC_FAllocate( nDst, 0, nSize )
-      endif
+      // mc file.c:2701-2713: on preallocate failure mc asks the user;
+      // retry re-attempts the reservation, copy-anyway continues without
+      // it (mc's "try copy anyway"), abort skips this file.
+      while nSize > 0 .and. ( nAl := MC_FAllocate( nDst, 0, nSize ) ) != 0
+         nPick := oApp:DlgList( "Cannot preallocate space (errno " + hb_ntos( nAl ) + ")", ;
+                                { "&Retry", "&Copy anyway", "&Abort file" }, 2 )
+         if nPick == 1
+            loop
+         elseif nPick == 2
+            exit
+         else
+            FClose( nSrc )
+            FClose( nDst )
+            FErase( cTmp )
+            return .F.
+         endif
+      enddo
    endif
    while ( nRead := FRead( nSrc, @cBuf, 65536 ) ) > 0
       if FWrite( nDst, Left( cBuf, nRead ) ) != nRead
