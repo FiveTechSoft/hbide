@@ -32,6 +32,7 @@ CLASS HbIde
    DATA   nOldCursor
    DATA   lEnd
    DATA   nIdleStatus
+   DATA   cPendingOpen  INIT ""   // .prg queued by the designer to open on exit
 
    METHOD New()
    METHOD About()   
@@ -54,6 +55,9 @@ CLASS HbIde
    METHOD SuspendStatus()
    METHOD ResumeStatus()
    METHOD CompilerFlags()
+   METHOD QueueOpen( cFile )
+   METHOD ClearPendingOpen()
+   METHOD OpenInEditor( cFileName )
 
 ENDCLASS
 
@@ -161,8 +165,17 @@ return cMessage
 METHOD Designer() CLASS HBIde
 
    local oDesigner := HbDesigner():New( Self )
+   local cPending
 
    oDesigner:Activate()
+   // The designer queues a generated .prg with QueueOpen(); opening it while
+   // the designer UI is active would mix two window stacks, so it opens here,
+   // once the designer session has fully ended.
+   if ! Empty( ::cPendingOpen )
+      cPending := ::cPendingOpen
+      ::cPendingOpen := ""
+      ::OpenInEditor( cPending )
+   endif
 
 return nil
 
@@ -569,6 +582,46 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+// Contract for the dialog designer: queue a generated .prg to be opened in
+// the source editor when the designer session ends. No UI here.
+METHOD QueueOpen( cFile ) CLASS HBIde
+
+   ::cPendingOpen := cFile
+
+return nil
+
+// Cancels a queued open (e.g. the designer queued and its dirty-model exit
+// was then refused): clears the slot so no stale file opens on a later
+// designer exit. No UI.
+METHOD ClearPendingOpen() CLASS HBIde
+
+   ::cPendingOpen := ""
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Picker-free open of an existing file in the code editor. Same core steps
+// as OpenFile()'s confirmed path. Returns .T. when the file was opened.
+METHOD OpenInEditor( cFileName ) CLASS HBIde
+
+   if ! File( cFileName )
+      Alert( "File not found: " + cFileName )
+      return .F.
+   endif
+   if ! ::oWndCode:lVisible
+      ::oWndCode:Show( .F. )
+   endif
+   ::oEditor:LoadFile( cFileName )
+   ::oEditor:Display()
+   ::oEditor:Goto( 1, 5 )
+   ::oWndCode:cCaption = cFileName
+   ::oWndCode:Refresh()
+
+return .T.
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD SaveFile() CLASS HbIde
 
    ::oEditor:SaveFile()
@@ -611,7 +664,7 @@ METHOD CompilerFlags() CLASS HbIde
 
    // Group: Compiler
    hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 24, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+               hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "N/W" )
    hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 23,,, "N/BG" )
    hb_DispOutAt( nT + 1, nL + 4, " Compiler ", "N/W" )
 
@@ -631,14 +684,14 @@ METHOD CompilerFlags() CLASS HbIde
    ATail( GetList ):Control:hotBox := ""
    // Redraw group frame (radiogroup Display already drew its own frame)
    hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 24, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+               hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "N/W" )
    hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 23,,, "N/BG" )
    hb_DispOutAt( nT + 1, nL + 4, " Compiler ", "N/W" )
    ATail( GetList ):Control:Display()
 
    // Group: Options
    hb_DispBox( nT + 1, nL + 26, nT + 7, nR - 2, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+               hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "N/W" )
    hb_Scroll( nT + 2, nL + 27, nT + 6, nR - 3,,, "N/BG" )
    hb_DispOutAt( nT + 1, nL + 28, " Options ", "N/W" )
 
@@ -668,7 +721,7 @@ METHOD CompilerFlags() CLASS HbIde
 
    // Group: Build
    hb_DispBox( nT + 8, nL + 2, nT + 12, nR - 2, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+               hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "N/W" )
    hb_Scroll( nT + 9, nL + 3, nT + 11, nR - 3,,, "N/BG" )
    hb_DispOutAt( nT + 8, nL + 4, " Build ", "N/W" )
 
