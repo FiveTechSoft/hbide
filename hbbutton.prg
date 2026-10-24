@@ -20,11 +20,11 @@ function BtnDisplay()
       cColor := hb_ColorIndex( ::cColorSpec, 0 )
    ENDCASE
 
-   IF ( nPos := At( "&", cCaption ) ) == 0
-   ELSEIF nPos == Len( cCaption )
+   IF ( nPos := hb_UAt( "&", cCaption ) ) == 0
+   ELSEIF nPos == hb_ULen( cCaption )
       nPos := 0
    ELSE
-      cCaption := Stuff( cCaption, nPos, 1, "" )
+      cCaption := hb_ULeft( cCaption, nPos - 1 ) + hb_USubStr( cCaption, nPos + 1 )
    ENDIF
 
    IF ! Empty( cStyle )
@@ -35,7 +35,7 @@ function BtnDisplay()
          hb_DispOutAt( ::nRow, ::nCol, " ", "N/W" )
       endif
       hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), cStyle[ 1 ], cColor )
-      hb_DispOutAt( ::nRow, ::nCol + Len( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), cStyle[ 2 ], cColor )
+      hb_DispOutAt( ::nRow, ::nCol + hb_ULen( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), cStyle[ 2 ], cColor )
    ENDIF
 
    IF ! Empty( cCaption )
@@ -44,14 +44,14 @@ function BtnDisplay()
 
       IF nPos != 0
          hb_DispOutAt( nRow, nCol + nPos - 1 + If( ::lBuffer, 1, 0 ),;
-                       SubStr( cCaption, nPos, 1 ), hb_ColorIndex( ::cColorSpec, 3 ) )
+                       hb_USubStr( cCaption, nPos, 1 ), hb_ColorIndex( ::cColorSpec, 3 ) )
       ENDIF
    ENDIF
 
-   hb_DispOutAt( nRow, ::nCol + Len( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;
+   hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;
                  If( ::lBuffer, " ", HbBtnShadowChars()[ 1 ] ), "N/W" )
    hb_DispOutAt( ::nRow + 1, ::nCol + 1,;
-                 Replicate( If( ::lBuffer, " ", HbBtnShadowChars()[ 2 ] ), Len( cCaption ) + 2 ), "N/W" )
+                 Replicate( If( ::lBuffer, " ", HbBtnShadowChars()[ 2 ] ), hb_ULen( cCaption ) + 2 ), "N/W" )
 
    DispEnd()
 
