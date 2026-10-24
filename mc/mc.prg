@@ -30,6 +30,12 @@ function Main( cStartDir )
    Set( _SET_ESCAPE, .F. )  // Esc must not cancel the program at InKey()
    Set( _SET_CANCEL, .F. )  // Alt+C is quick cd, not Harbour's cancel key
 
+   // File names are raw filesystem bytes; on Linux that is UTF-8. Running
+   // the whole app on the UTF-8 codepage makes the display layer pass
+   // those bytes through untranslated (non-lossy) instead of mangling
+   // them through an 8-bit CP. ASCII UI text is unaffected.
+   hb_cdpSelect( "UTF8" )
+
    oApp := MCApp():New( hb_defaultValue( cStartDir, hb_cwd() ) )
 
    oApp:Activate()
@@ -259,7 +265,7 @@ METHOD ShowCmdLine() CLASS MCApp
    local cPrompt := ::ActivePanel():cPath + "$ "
    local cText := cPrompt + ::cCmdLine
 
-   hb_DispOutAt( nRow, 0, PadR( hb_UTF8SubStr( cText, Max( 1, hb_ULen( cText ) - MaxCol() ) ), MaxCol() + 1 ), "N/W" )
+   hb_DispOutAt( nRow, 0, hb_UPadR( hb_UTF8SubStr( cText, Max( 1, hb_ULen( cText ) - MaxCol() ) ), MaxCol() + 1 ), "N/W" )
    SetCursor( SC_NORMAL )
    SetPos( nRow, Min( Len( cText ), MaxCol() ) )
    SetCursor( SC_NONE )
