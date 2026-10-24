@@ -281,6 +281,27 @@ procedure Main()
    Check( "def button palette", "COLOR 'GR+/G,W+/G,N/G,BG+/G'" $ cCode )
    Check( "def no override", ! ( "__ClsModMsg" $ cCode ) .and. ! ( "DsnBtnDisplay" $ cCode ) )
 
+   // canvas button shadow follows the dialog background (runtime equivalence)
+   Check( "shadow default white", DsnCanvasShadowFor( "W+/W" ) == "N/W" )
+   Check( "shadow blue dialog",  DsnCanvasShadowFor( "W+/B" ) == "N/B" )
+   Check( "shadow black dialog", DsnCanvasShadowFor( "GR+/N" ) == "N/N" )
+
+   // DsnFitRect: the design window and its shadow always stay on screen
+   Check( "fit keeps fitting window", DsnFitRect( 19, 5, 41, 13, 79, 23 )[ 1 ] == 19 .and. ;
+          DsnFitRect( 19, 5, 41, 13, 79, 23 )[ 2 ] == 5 )
+   Check( "fit shifts big dialog", DsnFitRect( 19, 5, 62, 22, 79, 23 )[ 1 ] == 16 .and. ;
+          DsnFitRect( 19, 5, 62, 22, 79, 23 )[ 2 ] == 0 )
+   Check( "fit clamps to zero", DsnFitRect( 30, 10, 76, 22, 79, 23 )[ 1 ] == 2 .and. ;
+          DsnFitRect( 30, 10, 76, 22, 79, 23 )[ 2 ] == 0 )
+   Check( "fit leaves shadow room", DsnFitRect( 19, 5, 62, 22, 79, 23 )[ 1 ] + 62 + 1 <= 79 .and. ;
+          DsnFitRect( 19, 5, 62, 22, 79, 23 )[ 2 ] + 22 + 1 <= 23 )
+   Check( "view keeps fitting dialog", DsnViewSize( 40, 12, 79, 23 )[ 1 ] == 40 .and. ;
+          DsnViewSize( 40, 12, 79, 23 )[ 2 ] == 12 )
+   Check( "view clamps big dialog", DsnViewSize( 62, 22, 65, 21 )[ 1 ] == 61 .and. ;
+          DsnViewSize( 62, 22, 65, 21 )[ 2 ] == 18 )
+   Check( "view clamps only overflow", DsnViewSize( 62, 12, 65, 21 )[ 1 ] == 61 .and. ;
+          DsnViewSize( 62, 12, 65, 21 )[ 2 ] == 12 )
+
 
 
    // --- robustness: unique variables, JSON validation, generation guards ---
