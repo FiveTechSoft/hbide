@@ -578,8 +578,8 @@ METHOD Activate() CLASS MCApp
             ::ActivePanel():Scroll( 3 )
             ::Repaint()
 
-         case ( nKey == K_UP .or. nKey == K_DOWN .or. nKey == K_PGUP .or. nKey == K_PGDN .or. ;
-                nKey == K_HOME .or. nKey == K_END ) .and. nFlags == 0
+         case ( nKey == K_UP .or. nKey == K_DOWN .or. nKey == K_LEFT .or. nKey == K_RIGHT .or. ;
+                nKey == K_PGUP .or. nKey == K_PGDN .or. nKey == K_HOME .or. nKey == K_END ) .and. nFlags == 0
             ::ActivePanel():Move( nKey )
             ::Repaint()
 
@@ -674,7 +674,7 @@ METHOD MouseClick( nRow, nCol, lDbl ) CLASS MCApp
          if nP != ::nActive
             ::nActive := nP
          endif
-         nIdx := oPanel:RowToIndex( nRow )
+         nIdx := oPanel:RowToIndex( nRow, nCol )
          if nIdx > 0
             oPanel:nCurrent := nIdx
             oPanel:FixScroll()
