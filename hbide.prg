@@ -449,6 +449,9 @@ METHOD BuildMenu() CLASS HBIde
 
       MENUITEM " ~Edit "
       MENU
+         MENUITEM "U~ndo           Ctrl+Z"   ACTION ( ::oEditor:Undo(), ::oEditor:ShowCursor() )
+         MENUITEM "R~edo           Ctrl+U"   ACTION ( ::oEditor:Redo(), ::oEditor:ShowCursor() )
+         SEPARATOR
          MENUITEM "~Copy "                  ACTION ::oEditor:CopyLine()
          MENUITEM "~Paste "                 ACTION ( ::oEditor:PasteLine(), ::oEditor:ShowCursor() )
          SEPARATOR
