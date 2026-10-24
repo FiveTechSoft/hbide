@@ -93,6 +93,7 @@ CLASS MCApp
    DATA   lSafeDelete    INIT .F.  // mc default: both safe_* are FALSE (mc setup.c)
    DATA   lSafeOverwrite INIT .F.
    DATA   nPauseAfterRun INIT 1   // mc default: pause_on_dumb_terminals (mc execute.c:60)
+   DATA   lClassicProgressbar INIT .T.  // mc default TRUE (mc filegui.c:160)
    DATA   lSIUnits        INIT .F.
    DATA   cExternalView   INIT "less"
    DATA   cExternalEdit   INIT "vi"
@@ -1496,6 +1497,7 @@ METHOD OptionsConfig() CLASS MCApp
    local lCdL := ::lCdFollowsLinks
    local lSD := ::lSafeDelete, lSOv := ::lSafeOverwrite
    local nPauseRun := ::nPauseAfterRun + 1, aPar[ 3 ], nT, nL, n
+   local lCP := ::lClassicProgressbar
    local cFrame := hb_UTF8ToStrBox( "┌─┐│┘─└│" )
 
    oDlg = HBWindow():Dialog( "Configuration", 44, 25, "W+/W" )
@@ -1568,23 +1570,28 @@ METHOD OptionsConfig() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
+   @ oDlg:nTop + 15, oDlg:nLeft + 3 GET lCP ;
+      CHECKBOX CAPTION "Classic pro&gressbar" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
    // Radio: Pause after run (mc: Never / On dumb terminals / Always)
-   hb_DispBox( nT + 15, nL + 2, nT + 19, nL + 41, cFrame, "N/W" )
-   hb_Scroll( nT + 16, nL + 3, nT + 18, nL + 40,,, "N/W" )
-   hb_DispOutAt( nT + 15, nL + 4, " Pause after run ", "N/W" )
-   aPar[ 1 ] := RadioButto( nT + 16, nL + 5, " " + PadR( "&Never", 28 ) )
-   aPar[ 2 ] := RadioButto( nT + 17, nL + 5, " " + PadR( "On d&umb terminals", 28 ) )
-   aPar[ 3 ] := RadioButto( nT + 18, nL + 5, " " + PadR( "Al&ways", 28 ) )
+   hb_DispBox( nT + 16, nL + 2, nT + 20, nL + 41, cFrame, "N/W" )
+   hb_Scroll( nT + 17, nL + 3, nT + 19, nL + 40,,, "N/W" )
+   hb_DispOutAt( nT + 16, nL + 4, " Pause after run ", "N/W" )
+   aPar[ 1 ] := RadioButto( nT + 17, nL + 5, " " + PadR( "&Never", 28 ) )
+   aPar[ 2 ] := RadioButto( nT + 18, nL + 5, " " + PadR( "On d&umb terminals", 28 ) )
+   aPar[ 3 ] := RadioButto( nT + 19, nL + 5, " " + PadR( "Al&ways", 28 ) )
    AEval( aPar, { | o | o:capCol := nL + 9, o:colorSpec := "N/W,N/BG,N/W,N/W,N/W,R/W,N/BG", o:cargo := { "GR+/BG", 0, 0 } } )
    oDlg:cargo := aPar
-   @ nT + 15, nL + 2, nT + 19, nL + 41 GET nPauseRun ;
+   @ nT + 16, nL + 2, nT + 20, nL + 41 GET nPauseRun ;
       RADIOGROUP aPar STYLE "(" + Chr( 7 ) + " )" COLOR "N/W,N/BG,GR+/BG"
    // focused state would otherwise repaint a DOUBLE-line default frame over
    // the single-line manual one
    ATail( GetList ):Control:hotBox := cFrame
-   hb_DispBox( nT + 15, nL + 2, nT + 19, nL + 41, cFrame, "N/W" )
-   hb_Scroll( nT + 16, nL + 3, nT + 18, nL + 40,,, "N/W" )
-   hb_DispOutAt( nT + 15, nL + 4, " Pause after run ", "N/W" )
+   hb_DispBox( nT + 16, nL + 2, nT + 20, nL + 41, cFrame, "N/W" )
+   hb_Scroll( nT + 17, nL + 3, nT + 19, nL + 40,,, "N/W" )
+   hb_DispOutAt( nT + 16, nL + 4, " Pause after run ", "N/W" )
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
@@ -1616,6 +1623,7 @@ METHOD OptionsConfig() CLASS MCApp
       ::lSafeDelete := lSD
       ::lSafeOverwrite := lSOv
       ::lCdFollowsLinks := lCdL
+      ::lClassicProgressbar := lCP
       // numeric GET buffer round-trip is unreliable; read the items
       n := AScan( aPar, { | o | o:buffer } )
       if n == 0
@@ -2280,6 +2288,9 @@ METHOD BgJobs() CLASS MCApp
 
    local oDlg, nSel := 1, lEnd := .F., nKey, n, j, aJobs
    local nT, nL, nPct, nFill, cState, cLine, cKey
+   // mc filegui.c:915/931: with classic progressbar OFF and the RIGHT panel
+   // active, the gauge grows right-to-left
+   local lRTL := ! ::lClassicProgressbar .and. ::ActivePanel() == ::oPanel2
 
    oDlg = HBWindow():Dialog( "Background jobs", 64, 15, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
@@ -2308,7 +2319,8 @@ METHOD BgJobs() CLASS MCApp
             nFill := Int( nPct / 10 )
             cLine := hb_UPadR( hb_UTF8SubStr( j[ "desc" ], 1, 25 ), 25 ) + " " + ;
                      hb_UPadR( cState, 9 ) + " [" + ;
-                     Replicate( "#", nFill ) + Replicate( "-", 10 - nFill ) + "] " + ;
+                     If( lRTL, Replicate( "-", 10 - nFill ) + Replicate( "#", nFill ), ;
+                               Replicate( "#", nFill ) + Replicate( "-", 10 - nFill ) ) + "] " + ;
                      hb_UPadR( hb_ntos( nPct ) + "%", 4 ) + ;
                      If( ! Empty( j[ "err" ] ), " !", "" )
             hb_DispOutAt( nT + 1 + n, nL + 2, cLine, If( n == nSel, "W+/G", "N/W" ) )
@@ -3433,6 +3445,7 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "mousepages"     ; ::lMousePages := ( cVal == "1" )
          case cKey == "cdsymlinks"     ; ::lCdFollowsLinks := ( cVal == "1" )
          case cKey == "pauseafterrun"  ; ::nPauseAfterRun := Min( Max( 0, Val( cVal ) ), 2 )
+         case cKey == "classicprogressbar" ; ::lClassicProgressbar := ( cVal == "1" )
          case cKey == "safedelete"     ; ::lSafeDelete := ( cVal == "1" )
          case cKey == "safeoverwrite"  ; ::lSafeOverwrite := ( cVal == "1" )
          case cKey == "siunits"        ; ::lSIUnits := ( cVal == "1" )
@@ -3493,6 +3506,7 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "mousepages=" + If( ::lMousePages, "1", "0" ) + hb_eol()
    cTxt += "cdsymlinks=" + If( ::lCdFollowsLinks, "1", "0" ) + hb_eol()
    cTxt += "pauseafterrun=" + hb_ntos( ::nPauseAfterRun ) + hb_eol()
+   cTxt += "classicprogressbar=" + If( ::lClassicProgressbar, "1", "0" ) + hb_eol()
    cTxt += "safedelete=" + If( ::lSafeDelete, "1", "0" ) + hb_eol()
    cTxt += "safeoverwrite=" + If( ::lSafeOverwrite, "1", "0" ) + hb_eol()
    cTxt += "siunits=" + If( ::lSIUnits, "1", "0" ) + hb_eol()
