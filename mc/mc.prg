@@ -145,8 +145,9 @@ CLASS MCApp
    METHOD About()
    METHOD Quit()
    METHOD DlgInput( cTitle, cLabel, cDefault, nLen )
-   METHOD DlgCopy( nCount, cDefault, cAction )
+   METHOD DlgCopy( nCount, cDefault, cAction, cVerb )
    METHOD FileCopyBg( oSrc, aMarked, cDest )
+   METHOD FileMoveBg( oSrc, aMarked, cDest )
    METHOD BgJobs()
    METHOD DlgConfirm( cTitle, cMsg, cOk )
    METHOD DlgList( cTitle, aItems, nDef )
@@ -1592,15 +1593,22 @@ METHOD FileCopy() CLASS MCApp
    endif
 
    aTargets := AEval( aMarked, { | a | a[ P_NAME ] },,, .T. )
-   cDest := ::DlgCopy( Len( aMarked ), hb_DirSepAdd( oDst:cPath ), @cAction )
-   if cDest == nil
-      return nil
-   endif
-   cDest := MCAbsPath( oDst:cPath, cDest )
-   if cAction == "bg"
-      ::FileCopyBg( oSrc, aMarked, cDest )
-      return nil
-   endif
+   cDest := hb_DirSepAdd( oDst:cPath )
+   do while .T.
+      cDest := ::DlgCopy( Len( aMarked ), cDest, @cAction )
+      if cDest == nil
+         return nil
+      endif
+      cDest := MCAbsPath( oDst:cPath, cDest )
+      if cAction != "bg"
+         exit
+      endif
+      if ::FileCopyBg( oSrc, aMarked, cDest )
+         return nil
+      endif
+      // Refused (nothing to copy left the user informed): reopen the dialog
+      // so OK can run the same copy in the foreground.
+   enddo
    if Len( aMarked ) > 1 .and. ! hb_DirExists( cDest )
       hb_DirCreate( cDest )
    endif
@@ -1636,14 +1644,15 @@ return hb_FNameMerge( cDest, hb_FNameNameExt( aEntry[ P_NAME ] ) )
 // Copy destination dialog with the same layout as GNU mc: destination input
 // plus [ OK ] [ Background ] [ Cancel ]. Returns the typed destination, or
 // nil on Cancel/Esc; cAction comes back "ok" or "bg".
-METHOD DlgCopy( nCount, cDefault, cAction ) CLASS MCApp
+METHOD DlgCopy( nCount, cDefault, cAction, cVerb ) CLASS MCApp
 
    local oDlg, GetList := {}, lDummy, lOk := .F., lBg := .F.
    local cValue := PadR( hb_defaultValue( cDefault, "" ), 55 )
 
-   oDlg = HBWindow():Dialog( "Copy", 66, 8, "W+/W" )
+   DEFAULT cVerb := "Copy"
+   oDlg = HBWindow():Dialog( cVerb, 66, 8, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
-   oDlg:Say( 2, 3, "Copy " + hb_ntos( nCount ) + " item(s) to:" )
+   oDlg:Say( 2, 3, cVerb + " " + hb_ntos( nCount ) + " item(s) to:" )
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET cValue COLOR "W/B,W+/B,W+/W,GR+/W"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 5 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
@@ -1676,7 +1685,7 @@ METHOD FileCopyBg( oSrc, aMarked, cDest ) CLASS MCApp
    if MCVfsKind( oSrc:cPath ) != "local" .or. MCVfsKind( cDest ) != "local"
       MCMsgBox( "Copy", "Background copy is only available for local files." + Chr( 10 ) + ;
                 "Use OK to run this copy in the foreground." )
-      return nil
+      return .F.
    endif
 
    for each aEntry in aMarked
@@ -1707,21 +1716,72 @@ METHOD FileCopyBg( oSrc, aMarked, cDest ) CLASS MCApp
 
    if Empty( aFiles )
       MCMsgBox( "Copy", "Nothing to copy." )
-      return nil
+      return .F.
    endif
    if ! Empty( aSkipped )
       MCMsgBox( "Copy", hb_ntos( Len( aSkipped ) ) + " item(s) skipped (unsafe, unsupported or kept)." )
    endif
    MCJobsAdd( aFiles, hb_ntos( Len( aMarked ) ) + " item(s) -> " + cDest )
 
-return nil
+return .T.
+
+//-----------------------------------------------------------------------------------------//
+
+// Background move: same queue with the move flag. Foreground MoveItem
+// semantics are kept: no overwrite of existing destinations (such entries
+// are skipped up front), VFS refused, symlinks skipped by MCGather.
+METHOD FileMoveBg( oSrc, aMarked, cDest ) CLASS MCApp
+
+   local aFiles := {}, aSkipped := {}, aEntry, aItem, aExist := {}, aNew
+
+   if MCVfsKind( oSrc:cPath ) != "local" .or. MCVfsKind( cDest ) != "local"
+      MCMsgBox( "Rename/Move", "Background move is only available for local files." + Chr( 10 ) + ;
+                "Use OK to run this move in the foreground." )
+      return .F.
+   endif
+
+   for each aEntry in aMarked
+      MCGather( MCEntryPath( oSrc, aEntry ), DestFor( cDest, aEntry, Len( aMarked ) ), aFiles, aSkipped )
+   next
+
+   // Move never overwrites: drop entries whose destination already exists.
+   for each aItem in aFiles
+      if aItem[ 1 ] == "file" .and. ;
+         ( hb_FileExists( aItem[ 3 ] ) .or. ! Empty( hb_FLinkRead( aItem[ 3 ] ) ) )
+         AAdd( aExist, aItem )
+      endif
+   next
+   if ! Empty( aExist )
+      for each aItem in aExist
+         AAdd( aSkipped, aItem[ 3 ] )
+      next
+      aNew := {}
+      for each aItem in aFiles
+         if AScan( aExist, { | e | e == aItem } ) == 0
+            AAdd( aNew, aItem )
+         endif
+      next
+      aFiles := aNew
+   endif
+
+   if Empty( aFiles )
+      MCMsgBox( "Rename/Move", "Nothing to move." )
+      return .F.
+   endif
+   if ! Empty( aSkipped )
+      MCMsgBox( "Rename/Move", hb_ntos( Len( aSkipped ) ) + ;
+                " item(s) skipped (unsafe, unsupported or destination exists)." )
+   endif
+   MCJobsAdd( aFiles, "move " + hb_ntos( Len( aMarked ) ) + " item(s) -> " + cDest, .T. )
+
+return .T.
 
 //-----------------------------------------------------------------------------------------//
 
 // Recursive flatten for the background queue; never prompts.
 static function MCGather( cSrc, cDst, aFiles, aSkipped )
 
-   local cFrom := MCRealPath( cSrc ), cTo := MCRealPath( cDst ), aChild
+   local cFrom := MCRealPath( cSrc ), cTo := MCRealPath( cDst ), aChild, cStat, aStat
 
    if Empty( cFrom ) .or. Empty( cTo ) .or. cFrom == cTo .or. ;
       ( hb_DirExists( cSrc ) .and. Left( cTo, Len( hb_DirSepAdd( cFrom ) ) ) == hb_DirSepAdd( cFrom ) ) .or. ;
@@ -1741,7 +1801,16 @@ static function MCGather( cSrc, cDst, aFiles, aSkipped )
                       hb_FNameMerge( cDst, aChild[ F_NAME ] ), aFiles, aSkipped )
          endif
       next
-      AAdd( aFiles, { "dirmeta", cSrc, cDst, 0 } )
+      // Snapshot perms/mtime NOW: a move empties the source dirs before the
+      // dirmeta step runs, which would mutate the mtimes --reference reads.
+      cStat := ""
+      hb_ProcessRun( MCShWrap( "stat -c '%Y %a' -- " + ShellQuote( cSrc ) + " 2>/dev/null" ),, @cStat )
+      aStat := hb_ATokens( StrTran( cStat, hb_eol(), " " ) )
+      if Len( aStat ) >= 2
+         AAdd( aFiles, { "dirmeta", cSrc, cDst, 0, Val( aStat[ 1 ] ), aStat[ 2 ] } )
+      else
+         AAdd( aFiles, { "dirmeta", cSrc, cDst, 0 } )
+      endif
       return nil
    endif
    AAdd( aFiles, { "file", cSrc, cDst, hb_FSize( cSrc ) } )
@@ -1991,7 +2060,7 @@ METHOD FileMove() CLASS MCApp
 
    local oSrc := ::ActivePanel(), oDst := ::OtherPanel()
    local aMarked := oSrc:MarkedEntries(), aEntry
-   local cDest, nMoved := 0, nFailed := 0
+   local cDest, cAction := "ok", nMoved := 0, nFailed := 0
 
    if Empty( aMarked )
       aEntry := oSrc:Current()
@@ -2002,14 +2071,23 @@ METHOD FileMove() CLASS MCApp
       aMarked := { aEntry }
    endif
 
-   cDest := ::DlgInput( "Rename/Move", "Move " + hb_ntos( Len( aMarked ) ) + " item(s) to:", ;
-                        If( Len( aMarked ) == 1, ;
-                            hb_FNameMerge( oDst:cPath, aMarked[ 1 ][ P_NAME ] ), ;
-                            hb_DirSepAdd( oDst:cPath ) ), 55 )
-   if cDest == nil
-      return nil
-   endif
-   cDest := MCAbsPath( oDst:cPath, cDest )
+   cDest := If( Len( aMarked ) == 1, ;
+                hb_FNameMerge( oDst:cPath, aMarked[ 1 ][ P_NAME ] ), ;
+                hb_DirSepAdd( oDst:cPath ) )
+   do while .T.
+      cDest := ::DlgCopy( Len( aMarked ), cDest, @cAction, "Move" )
+      if cDest == nil
+         return nil
+      endif
+      cDest := MCAbsPath( oDst:cPath, cDest )
+      if cAction != "bg"
+         exit
+      endif
+      if ::FileMoveBg( oSrc, aMarked, cDest )
+         return nil
+      endif
+      // Refused: reopen the dialog so OK can run the move in the foreground.
+   enddo
 
    for each aEntry in aMarked
       if MoveItem( MCEntryPath( oSrc, aEntry ), ;
