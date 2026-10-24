@@ -39,7 +39,7 @@
 #define CLR_INSP_SEL  "N/GR"
 #define CLR_INSP_VAL  "N/W"
 
-#define HINT_CANVAS   "F2 add | Enter edit | F4 inspector | Del delete | Arrows move | F9 gen | F10 save | Esc exit"
+#define HINT_CANVAS   "F2 add Enter edit F4 insp Del Arrows move corner resize F9 gen F10 save Esc"
 #define HINT_INSP     "F6 canvas | Enter edit | Left/Right adjust | Ctrl+Arrows move panel | F4 hide"
 
 //-----------------------------------------------------------------------------------------//
@@ -82,6 +82,9 @@ CLASS HbDesigner
    METHOD DlgProperties()
    METHOD FitWindow()
    METHOD DragControl( nIndex, nMRow, nMCol )
+   METHOD DragResize( nIndex )
+   METHOD HandleHit( nMRow, nMCol )
+   METHOD ResizeHandlePos()
    METHOD DrawControls()
    METHOD EditProperties()
    METHOD ToggleInspector()
@@ -309,7 +312,11 @@ METHOD Activate() CLASS HbDesigner
                   if nIndex > 0
                      ::nSelected = nIndex
                      ::nInspField = 1
-                     ::DragControl( nIndex, MRow(), MCol() )
+                     if ::HandleHit( MRow(), MCol() )
+                        ::DragResize( nIndex )
+                     else
+                        ::DragControl( nIndex, MRow(), MCol() )
+                     endif
                   else
                      ::nSelected = 0
                   endif
@@ -526,6 +533,55 @@ METHOD DragControl( nIndex, nMRow, nMCol ) CLASS HbDesigner
 return nil
 
 //-----------------------------------------------------------------------------------------//
+// screen position of the selected control's resize handle (bottom-right
+// cell), or { -1, -1 } when there is no resizable selection
+
+METHOD ResizeHandlePos() CLASS HbDesigner
+
+   local oCtrl, aSize
+
+   if ::nSelected >= 1 .and. ::nSelected <= Len( ::aControls )
+      oCtrl = ::aControls[ ::nSelected ]
+      if DsnResizable( oCtrl )
+         aSize = DsnControlSize( oCtrl )
+         return { ::oWnd:nTop + 1 + oCtrl[ "row" ] - ::nViewRow + aSize[ 2 ] - 1, ;
+                  ::oWnd:nLeft + 1 + oCtrl[ "col" ] - ::nViewCol + aSize[ 1 ] - 1 }
+      endif
+   endif
+
+return { -1, -1 }
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD HandleHit( nMRow, nMCol ) CLASS HbDesigner
+
+   local aPos := ::ResizeHandlePos()
+
+return aPos[ 1 ] >= 0 .and. nMRow == aPos[ 1 ] .and. nMCol == aPos[ 2 ]
+
+//-----------------------------------------------------------------------------------------//
+// drag the selected control's resize handle: the control grows/shrinks with
+// the mouse, clamped by DsnResize to its minimum and to the dialog interior
+
+METHOD DragResize( nIndex ) CLASS HbDesigner
+
+   local oCtrl := ::aControls[ nIndex ]
+   local aSize, nTW, nTH
+
+   while MLeftDown()
+      aSize = DsnControlSize( oCtrl )
+      nTW   = MCol() - ::oWnd:nLeft - 1 - oCtrl[ "col" ] + ::nViewCol + 1
+      nTH   = MRow() - ::oWnd:nTop - 1 - oCtrl[ "row" ] + ::nViewRow + 1
+      if DsnResize( oCtrl, nTW - aSize[ 1 ], nTH - aSize[ 2 ], ;
+                    ::nDlgWidth, ::nDlgHeight )
+         ::lDirty = .T.
+         ::Redraw()
+      endif
+   enddo
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
 // returns 1-based index of the control at an absolute screen position
 
 METHOD HitTest( nMRow, nMCol ) CLASS HbDesigner
@@ -573,7 +629,7 @@ return nil
 
 METHOD DrawControls() CLASS HbDesigner
 
-   local n, oCtrl
+   local n, oCtrl, aRect
 
    if ::oWnd == nil .or. ! ::oWnd:lVisible
       return nil
@@ -597,6 +653,14 @@ METHOD DrawControls() CLASS HbDesigner
       oCtrl[ "row" ] = ::nGhostRow
       oCtrl[ "col" ] = ::nGhostCol
       DsnDrawControl( ::oWnd, oCtrl, .T., CLR_GHOST, ::nViewRow, ::nViewCol )
+   endif
+
+   // resize handle: bottom-right cell of the selected resizable control
+   if ! ::lPlacing
+      aRect = ::ResizeHandlePos()
+      if aRect[ 1 ] >= 0 .and. ::HitClient( aRect[ 1 ], aRect[ 2 ] )
+         hb_DispOutAt( aRect[ 1 ], aRect[ 2 ], Chr( 219 ), "N+/W" )
+      endif
    endif
 
    ::DrawInspector()
@@ -1581,6 +1645,48 @@ function DsnControlSize( oCtrl )
    endcase
 
 return { nWidth, nHeight }
+
+//-----------------------------------------------------------------------------------------//
+// resize a control by deltas, clamped to its minimum size and to the dialog
+// interior; only GET (width) and LISTBOX (width and height) are resizable -
+// the rest derive their size from caption/items. Returns .T. when it changed.
+
+function DsnResizable( oCtrl )
+
+return oCtrl[ "type" ] == DSN_GET .or. oCtrl[ "type" ] == DSN_LISTBOX
+
+//-----------------------------------------------------------------------------------------//
+
+function DsnResize( oCtrl, nDWidth, nDHeight, nDlgWidth, nDlgHeight )
+
+   local lChanged := .F.
+   local nW, nH
+
+   do case
+      case oCtrl[ "type" ] == DSN_GET
+         nW = Max( 1, Min( nDlgWidth - 2 - oCtrl[ "col" ], ;
+              hb_HGetDef( oCtrl, "width", 10 ) + nDWidth ) )
+         if nW != hb_HGetDef( oCtrl, "width", 10 )
+            oCtrl[ "width" ] = nW
+            lChanged = .T.
+         endif
+
+      case oCtrl[ "type" ] == DSN_LISTBOX
+         nW = Max( 4, Min( nDlgWidth - 2 - oCtrl[ "col" ], ;
+              hb_HGetDef( oCtrl, "width", 20 ) + nDWidth ) )
+         nH = Max( 3, Min( nDlgHeight - 2 - oCtrl[ "row" ], ;
+              hb_HGetDef( oCtrl, "height", 6 ) + nDHeight ) )
+         if nW != hb_HGetDef( oCtrl, "width", 20 )
+            oCtrl[ "width" ] = nW
+            lChanged = .T.
+         endif
+         if nH != hb_HGetDef( oCtrl, "height", 6 )
+            oCtrl[ "height" ] = nH
+            lChanged = .T.
+         endif
+   endcase
+
+return lChanged
 
 //-----------------------------------------------------------------------------------------//
 // items of a radiogroup/listbox as an array (CSV in the "items" property)
