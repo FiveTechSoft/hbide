@@ -374,6 +374,9 @@ METHOD SpinTick( lActive ) CLASS MCApp
    if ! ::lMenubar
       return nil   // the dash lives in the menu bar row; no bar, nowhere to draw
    endif
+   if ! ::lRotatingDash
+      lActive := .F.   // option off (layout.c:86): fall through to erase
+   endif
    if lActive
       ::nSpinPos := ( ::nSpinPos % 4 ) + 1
       hb_DispOutAt( 0, MaxCol(), aCh[ ::nSpinPos ], "N/BG" )
