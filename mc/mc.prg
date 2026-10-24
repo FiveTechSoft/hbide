@@ -1831,11 +1831,12 @@ METHOD BgJobs() CLASS MCApp
    oDlg:bRepaint = { || ::Repaint() }
    nT := oDlg:nTop
    nL := oDlg:nLeft
-   oDlg:Say( oDlg:nBottom - oDlg:nTop - 1, 3, "C: cancel job    Esc: close" )
+   oDlg:Say( oDlg:nBottom - oDlg:nTop - 1, 3, "C: cancel  Enter: full errors  Esc: close" )
 
    while ! lEnd
       MCJobsStep()
 
+      cErr := ""
       aJobs := MCJobsList()
       nSel := Min( nSel, Max( Len( aJobs ), 1 ) )
       hb_Scroll( nT + 1, nL + 1, nT + 9, nL + 62,,, "N/W" )
@@ -1861,9 +1862,14 @@ METHOD BgJobs() CLASS MCApp
          // Per-entry problems for the selected job, in full (3 lines): an
          // "error" job here is never a "done" one.
          j := aJobs[ Min( nSel, Len( aJobs ) ) ]
+         // First 180 chars inline; a "..." tail marks that Enter shows all.
+         cErr := j[ "err" ]
+         if hb_UTF8Len( cErr ) > 180
+            cErr := hb_UTF8SubStr( cErr, 1, 177 ) + "..."
+         endif
          for n := 0 to 2
-            hb_DispOutAt( nT + 10 + n, nL + 2, hb_UPadR( hb_UTF8SubStr( j[ "err" ], n * 60 + 1, 60 ), 60 ), ;
-               If( Empty( j[ "err" ] ), "N/W", "W+/R" ) )
+            hb_DispOutAt( nT + 10 + n, nL + 2, hb_UPadR( hb_UTF8SubStr( cErr, n * 60 + 1, 60 ), 60 ), ;
+               If( Empty( cErr ), "N/W", "W+/R" ) )
          next
       endif
 
@@ -1875,6 +1881,14 @@ METHOD BgJobs() CLASS MCApp
             loop
          case nKey == K_ESC
             lEnd := .T.
+         case nKey == K_ENTER
+            if ! Empty( aJobs )
+               j := aJobs[ Min( nSel, Len( aJobs ) ) ]
+               if ! Empty( j[ "err" ] )
+                  MCViewerText( "Problems in: " + j[ "desc" ], ;
+                     StrTran( j[ "err" ], "; ", ";" + Chr( 10 ) ) )
+               endif
+            endif
          case nKey == K_UP
             nSel := Max( 1, nSel - 1 )
          case nKey == K_DOWN
