@@ -19,6 +19,7 @@ frame and resize it from the bottom-right corner with the mouse.
 | Tab / Shift+Tab | Select next / previous control |
 | Del      | Delete the selected control |
 | Ctrl+Z / Ctrl+Y | Undo / redo the last model change (see "Undo/redo" below) |
+| Ctrl+C / Ctrl+X / Ctrl+V | Copy / cut / paste the selected control |
 | F3       | Dialog properties (caption, name, width, height, color) |
 | F9       | Generate `<name>.prg` |
 | F10      | Save `<name>.json` (the status bar only says "Saved" when the write really succeeded; a bad path reports "Could not write") |
@@ -37,9 +38,18 @@ also has Undo/Redo entries. Every action that changes the model is covered:
 adding, deleting, moving, resizing and editing a control, the dialog
 properties (F3), the inspector edits, and loading a JSON file (undoing a
 load brings the previous dialog back). A burst of arrow-key moves, one
-mouse drag or one inspector adjust streak is a single undo step. The
+mouse drag or one inspector adjust streak is a single undo step. Cut, paste and every other model change are
+single undo steps too. The
 history is in-memory only (kept to 100 steps, oldest dropped) and is not
 written to the JSON file.
+
+### Copy/paste
+
+Ctrl+C copies the selected control, Ctrl+X cuts it (copy + delete in one
+undo step) and Ctrl+V pastes a fresh clone one cell down/right from the
+original; consecutive pastes keep offsetting so the copies do not stack.
+Pasted controls get a fresh unique variable name. The clipboard is
+in-memory and holds one control.
 
 Size note: the width/height you see in F3 and in the JSON are the values
 passed to `HBWindow():Dialog()` in the generated code. That constructor
@@ -178,7 +188,6 @@ byte the app emits, not just the designer.
 
 ## Roadmap (not in this version)
 
-- Copy/paste of controls
 - Grid/snap and alignment helpers
 - Opening the generated .prg directly in the editor
 
