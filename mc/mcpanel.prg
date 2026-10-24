@@ -53,6 +53,7 @@ CLASS MCPanel
    DATA   cPath
    DATA   aFiles      INIT {}
    DATA   hStat       INIT { => }   // name => { nAtime, nCtime, nInode }, filled lazily for the atime/ctime/inode sorts
+   DATA   hLinks      INIT { => }   // name => symlink target, filled by Rescan (local fs only)
    DATA   nCurrent    INIT 1
    DATA   nOffset     INIT 0
    DATA   nTop        INIT 1
@@ -132,7 +133,8 @@ return nil
 METHOD Export() CLASS MCPanel
 
 return { ::cPath, ::aFiles, ::nCurrent, ::nOffset, ::cSort, ::lReverse, ;
-         ::lCaseSens, ::cFilter, ::lBrief, ::cMode, ::aDirSizes, ::lSizesComputed }
+         ::lCaseSens, ::cFilter, ::lBrief, ::cMode, ::aDirSizes, ::lSizesComputed, ;
+         ::hLinks }
 
 //-----------------------------------------------------------------------------------------//
 
@@ -150,6 +152,7 @@ METHOD Import( a ) CLASS MCPanel
    ::cMode     := a[ 10 ]
    ::aDirSizes := a[ 11 ]
    ::lSizesComputed := a[ 12 ]
+   ::hLinks := If( Len( a ) >= 13, a[ 13 ], { => } )
    ::FixScroll()
 
 return nil
@@ -187,7 +190,8 @@ METHOD Rescan() CLASS MCPanel
    local aDir, aEntry, cFull
    local lShowHidden := ::oApp:lShowHidden
 
-   ::hStat := { => }
+   ::hStat  := { => }
+   ::hLinks := { => }
 
    if ::cMode == "panelize"
       return nil   // panelize content is managed by the panelize action
@@ -230,6 +234,9 @@ METHOD Rescan() CLASS MCPanel
          loop
       endif
       cFull := hb_FNameMerge( ::cPath, aEntry[ F_NAME ] )
+      if "L" $ aEntry[ F_ATTR ]
+         ::hLinks[ aEntry[ F_NAME ] ] := MCLinkTarget( cFull )
+      endif
       if hb_DirExists( cFull )
          AAdd( ::aFiles, { aEntry[ F_NAME ], 0, aEntry[ F_DATE ], aEntry[ F_TIME ], ;
                            aEntry[ F_ATTR ], .T., .F. } )
@@ -794,6 +801,9 @@ METHOD DisplayListing() CLASS MCPanel
                if aEntry[ P_DIR ] .and. aEntry[ P_NAME ] != "/.."
                   cName += "/"
                endif
+               if hb_HHasKey( ::hLinks, aEntry[ P_NAME ] )
+                  cName += " -> " + MCCpDecode( ::hLinks[ aEntry[ P_NAME ] ], ::cCp )
+               endif
                cLine := hb_UPadR( hb_UTF8SubStr( " " + cName, 1, nCellW ), nCellW )
                cColor := ::EntryColor( aEntry, nIdx == ::nCurrent .and. ::lActive )
                hb_DispOutAt( ::nTop + 1 + n, nX, cLine, cColor )
@@ -831,6 +841,9 @@ METHOD EntryLine( aEntry, nWidth ) CLASS MCPanel
 
    if aEntry[ P_DIR ] .and. aEntry[ P_NAME ] != "/.."
       cName += "/"
+   endif
+   if hb_HHasKey( ::hLinks, aEntry[ P_NAME ] )
+      cName += " -> " + MCCpDecode( ::hLinks[ aEntry[ P_NAME ] ], ::cCp )
    endif
    if ::lBrief
       return hb_UPadR( " " + cName, nWidth )
@@ -1018,6 +1031,18 @@ function FilterMatch( cName, cFilter, lCaseSens )
    next
 
 return .F.
+
+//-----------------------------------------------------------------------------------------//
+
+// resolve a symlink's target via the same shell pattern the symlink
+// actions use (Harbour has no native readlink)
+function MCLinkTarget( cFull )
+
+   local cTarget := ""
+
+   hb_ProcessRun( MCShWrap( "readlink " + ShellQuote( cFull ) ),, @cTarget )
+
+return AllTrim( StrTran( StrTran( cTarget, Chr( 13 ) ), Chr( 10 ) ) )
 
 //-----------------------------------------------------------------------------------------//
 
