@@ -2602,6 +2602,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
       // shows as a white shadow on a colored dialog: re-register the same
       // display with the shadow on the dialog background instead
       cCode += "   __ClsModMsg( PushButton( 0, 0 ):ClassH, 'DISPLAY', @DsnBtnDisplay() )" + hb_eol()
+      cCode += "   __ClsModMsg( PushButton( 0, 0 ):ClassH, 'HITTEST', @DsnBtnHitTest() )" + hb_eol()
       cCode += hb_eol()
    endif
 
@@ -3359,6 +3360,30 @@ static function DsnBtnDisplayCode( cBg )
    cCode += "function DsnBtnShades()" + hb_eol()
    cCode += hb_eol()
    cCode += 'return { hb_UTF8ToStr( "▄" ), hb_UTF8ToStr( "▀" ) }' + hb_eol()
+   cCode += hb_eol()
+   cCode += "// pushbutton hit test override: same extent as hbbutton's BtnHitTest," + hb_eol()
+   cCode += "// covering the full painted width of the bracket look" + hb_eol()
+   cCode += "function DsnBtnHitTest( nMRow, nMCol )" + hb_eol()
+   cCode += hb_eol()
+   cCode += "   local Self := QSelf()" + hb_eol()
+   cCode += "   local nLen := hb_ULen( ::cCaption )" + hb_eol()
+   cCode += "   local nAccelPos" + hb_eol()
+   cCode += hb_eol()
+   cCode += '   if ( nAccelPos := hb_UAt( "&", ::cCaption ) ) > 0 .and. nAccelPos < nLen' + hb_eol()
+   cCode += "      nLen--" + hb_eol()
+   cCode += "   endif" + hb_eol()
+   cCode += '   if Len( ::cStyle ) == 2 .and. ::cStyle != "<>"' + hb_eol()
+   cCode += '      nLen += 4   // "[ " + caption + " ]"' + hb_eol()
+   cCode += "   else" + hb_eol()
+   cCode += "      nLen += 2   // stock extent: pads around the caption" + hb_eol()
+   cCode += "   endif" + hb_eol()
+   cCode += hb_eol()
+   cCode += "   if nMRow >= ::Row .and. nMCol >= ::Col .and. ;" + hb_eol()
+   cCode += "      nMRow < ::Row + 1 .and. nMCol < ::Col + nLen" + hb_eol()
+   cCode += "      return -2049   // HTCLIENT" + hb_eol()
+   cCode += "   endif" + hb_eol()
+   cCode += hb_eol()
+   cCode += "return 0   // HTNOWHERE" + hb_eol()
 
 return cCode
 
