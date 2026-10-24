@@ -138,7 +138,8 @@ literal words: the RTL style SETGET only accepts 0, 2 or 8 chars).
 hbbutton's registered display (and the copy emitted into colored dialogs)
 honors any two-character STYLE as the bracket pair and keeps the 3D shadow
 for the default; its hitTest override covers the full painted width of the
-bracket look so the closing bracket cell stays clickable.
+bracket look so the closing bracket cell stays clickable, and the emitted
+override registers the same hitTest alongside the display.
 
 A button's `action` property is inserted verbatim into the generated
 `STATE { || ... }` block, so it must be a Harbour expression that links in
