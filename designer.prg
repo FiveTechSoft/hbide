@@ -1635,6 +1635,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
                      " GET " + hGenVars[ n ] + ;
                      " CHECKBOX CAPTION " + DsnQuote( oCtrl[ "caption" ] ) + ;
+                     " STYLE '[X ]'" + ;
                      " COLOR '" + DSN_CLR_CHECKBOX + "'" + hb_eol()
 
          case oCtrl[ "type" ] == DSN_BUTTON
