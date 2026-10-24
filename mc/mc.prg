@@ -828,6 +828,12 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
    oDlg:Say( 2, 3, cLabel )
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET cValue COLOR "W/B,W+/B,W+/W,GR+/W"
 
+   // Cursor after the prefilled text (mc behavior): GET:setFocus() forces
+   // pos := 1, so a pre-READ :pos assignment cannot survive; queue an End
+   // key instead - the first GET consumes it and lands the cursor at the
+   // end of the prefilled value instead of overtyping its prefix.
+   hb_keyPut( K_END )
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || lOk := .T., oDlg:End() }
