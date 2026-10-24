@@ -63,7 +63,8 @@ the selected control, or of the dialog itself when no control is selected.
   and the inspector.
 - Up/Down choose a field, Left/Right adjust numeric fields by one (the
   control moves or resizes live on the canvas), Enter edits text fields
-  inline.
+  inline. While editing, Ctrl+Y clears the whole field (as in a GET),
+  Home/End move the cursor, Enter commits and Esc discards.
 - Ctrl+Arrows move the panel; it can also be dragged by its title bar.
 - Esc returns focus to the canvas. F4 hides the panel.
 
@@ -73,6 +74,14 @@ F9 writes `<name>.prg` with a function `Dlg_<Name>()` that recreates the
 dialog with `HBWindow():Dialog()`, `oDlg:Say()` and `@ ... GET` commands,
 ready to compile against hbide's own `hbwindow.prg` (see
 `docs/examples/mydialog.prg`).
+
+A button's `action` property is inserted verbatim into the generated
+`STATE { || ... }` block, so it must be a Harbour expression that links in
+the program that runs the dialog. Use RTL functions such as
+`Alert( "Hi" )`; `MsgInfo()` is a method of the IDE (`HBIde`), not a global
+function, so a standalone build of the generated PRG fails to link with
+`undefined reference to HB_FUN_MSGINFO`. When empty, the action defaults to
+`lOk := .T., oDlg:End()`.
 
 ## Architecture notes
 
