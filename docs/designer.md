@@ -130,11 +130,15 @@ without `QueueOpen` it just generates, like F9.
 A button's `style` property chooses its look: `shadow` (default) draws the
 3D block with a drop shadow (two rows tall), `brackets` draws the classic
 `[ Caption ]` form on a single row. The inspector exposes it as a `Style`
-field that cycles with Left/Right or Enter. Old JSON files without the key
-load as `shadow`. The generated PRG adds `STYLE '[]'` to the
-`@ ... GET ... PUSHBUTTON` clause of bracket buttons; hbbutton's registered
-display (and the copy emitted into colored dialogs) honors any two-character
-STYLE as the bracket pair and keeps the 3D shadow for the default.
+field that cycles with Left/Right or Enter; the Control properties dialog
+(Enter on a selected button) offers the same choice as a checkbox. Old JSON
+files without the key load as `shadow`. The generated PRG adds `STYLE '[]'`
+to the `@ ... GET ... PUSHBUTTON` clause of bracket buttons (never the
+literal words: the RTL style SETGET only accepts 0, 2 or 8 chars).
+hbbutton's registered display (and the copy emitted into colored dialogs)
+honors any two-character STYLE as the bracket pair and keeps the 3D shadow
+for the default; its hitTest override covers the full painted width of the
+bracket look so the closing bracket cell stays clickable.
 
 A button's `action` property is inserted verbatim into the generated
 `STATE { || ... }` block, so it must be a Harbour expression that links in
