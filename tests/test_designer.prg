@@ -11,6 +11,7 @@ procedure Main()
 
    local hModel, cCode, cJson, hBack, aSize
    local oD, oD2, aRect, nMaxRow, nMaxCol, oCtrl, cCellRef, cCellNow
+   local oDlg, nCell
 
    // DsnControlSize
    aSize = DsnControlSize( { "type" => "say", "caption" => "Name:" } )
@@ -424,6 +425,29 @@ procedure Main()
    hb_IdleDel( oD2:oWnd:nIdle )
    hb_IdleDel( oD2:nIdleDraw )
    oD2:oWnd:Hide()
+
+   // HBWindow:Dialog() larger than the screen used to paint corrupted (the
+   // centered coordinates go negative and GT rejects the whole frame): it is
+   // now moved on-screen and cut to the screen size, keeping the relative
+   // control offsets, and reports it through lClamped
+   oDlg = HBWindow():Dialog( "Big", 100, 45, "W+/B" )
+   Check( "oversized dialog clamped on-screen", ;
+      oDlg:nTop == 0 .and. oDlg:nLeft == 0 .and. ;
+      oDlg:nBottom == MaxRow() .and. oDlg:nRight == MaxCol() )
+   Check( "oversized dialog reports clamp", oDlg:lClamped )
+   nCell = Asc( SaveScreen( 0, 0, 0, 0 ) )
+   Check( "oversized dialog paints its frame", nCell != 32 .and. nCell != 0 )
+   oDlg:Hide()
+   Check( "hide restores screen after clamp", Asc( SaveScreen( 0, 0, 0, 0 ) ) == 32 )
+
+   oDlg = HBWindow():Dialog( "Small", 40, 10, "W+/B" )
+   Check( "fitting dialog keeps its geometry", ;
+      oDlg:nTop == Int( ( MaxRow() / 2 ) - 5 ) .and. ;
+      oDlg:nBottom == Int( ( MaxRow() / 2 ) + 5 ) .and. ;
+      oDlg:nLeft == Int( ( MaxCol() / 2 ) - 20 ) .and. ;
+      oDlg:nRight == Int( ( MaxCol() / 2 ) + 20 ) )
+   Check( "fitting dialog is not clamped", ! oDlg:lClamped )
+   oDlg:Hide()
 
    // placing ghost clamps to the last origin where the whole control fits,
    // so it never vanishes past an edge while moving it with the arrows
