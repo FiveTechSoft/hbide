@@ -31,9 +31,14 @@ code. Dogfooding model: a "Find" dialog built entirely with the designer
   designer directly.)
 - ListBox scroll: 12 items in a 5-row box; Down moves the cursor past the
   visible window and the list scrolls (It4/It5/It6 shown after 5 Downs);
-  Escape exits with .F.. PgDn while on the listbox (last GET) exits the
-  READ with .F. - stock Harbour reader behavior; the generated LISTBOX
-  does not page on PgDn and carries no SCROLLBAR clause.
+  Escape exits with .F..
+- ListBox paging: PgDn/PgUp page the focused listbox by its visible rows
+  (It1 -> It4 -> It7 -> It10, PgUp back to It7) without leaving the READ;
+  clamped at both ends; Escape still exits with .F.. PgDn on a non-listbox
+  control keeps stock reader behavior. Implemented in HBWindow:Activate
+  (SetKey trap + clamped Down/Up injection, same var-sync path as the
+  mouse layer), so every generated dialog gets it. The generated LISTBOX
+  carries no SCROLLBAR clause.
 - List control palettes: no constant cyan. RadioGroup selected marker is
   bright black on the dialog background; ListBox rows paint on the dialog
   background, current item is subtle bright black, focused cursor is the
