@@ -29,6 +29,10 @@ CLASS HbMenu FROM HBDbMenu
 
    METHOD Display()
 
+   METHOD PaintItem( oMenuItem, cClrText, cClrHot )
+
+   METHOD PadPrompts()
+
    METHOD ProcessKey( nKey )   
 
 ENDCLASS
@@ -65,13 +69,9 @@ METHOD Activate() CLASS HbMenu
    local oMenuItem
 
    ::nRight += 8
-   for each oMenuItem in ::aItems
-      if oMenuItem:cPrompt != "-" 
-         oMenuItem:cPrompt += Space( ::nRight - ::nLeft - Len( oMenuItem:cPrompt ) )
-      endif   
-   next   
+   ::PadPrompts()
    ::Display()
-   ::aItems[ 1 ]:Display( ::cClrHilite, ::cClrHotFocus )
+   ::PaintItem( ::aItems[ 1 ], ::cClrHilite, ::cClrHotFocus )
    ::nOpenPopup = 1
 
    while ::nOpenPopup != 0
@@ -104,6 +104,44 @@ METHOD AddItem( oMenuItem ) CLASS HbMenu
    AAdd( ATail( ::aMenus ):aItems, oMenuItem )
 
 return oMenuItem
+
+
+//-----------------------------------------------------------------------------------------//
+// Pad every prompt to the same VISIBLE width: the tilde of a mnemonic does not
+// paint, so it must not count (a "~"-less item otherwise lands one cell wider
+// and its highlight crosses the popup's right border).
+//
+METHOD PadPrompts() CLASS HbMenu
+
+   local oMenuItem
+
+   for each oMenuItem in ::aItems
+      if oMenuItem:cPrompt != "-"
+         oMenuItem:cPrompt += Space( ::nRight - ::nLeft - 1 - ;
+            Len( StrTran( oMenuItem:cPrompt, "~" ) ) )
+      endif
+   next
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+// The base HBDbMenuItem:Display() assumes every prompt carries a "~" hotkey:
+// without one, At("~")==0 makes it write SubStr(cPrompt,1,1) one cell LEFT of
+// the item in hotkey color (the red "G" before "Generate and open"). Route all
+// item painting through here so a "~"-less prompt draws as plain text only.
+//
+METHOD PaintItem( oMenuItem, cClrText, cClrHot ) CLASS HbMenu
+
+   if "~" $ oMenuItem:cPrompt
+      oMenuItem:Display( cClrText, cClrHot )
+   else
+      hb_DispOutAt( oMenuItem:nRow, oMenuItem:nCol, oMenuItem:cPrompt, cClrText )
+      if oMenuItem:Checked
+         hb_DispOutAtBox( oMenuItem:nRow, oMenuItem:nCol, hb_UTF8ToStrBox( "√" ), cClrText )
+      endif
+   endif
+
+return nil
 
 //-----------------------------------------------------------------------------------------//
 // A standalone popup positions its items in AddItem() and has no parent item.
@@ -203,7 +241,7 @@ METHOD Display() CLASS HbMenu
          hb_DispOutAtBox( oMenuItem:nRow, ::nLeft, ;
             hb_UTF8ToStrBox( "├" + Replicate( "─", ::nRight - ::nLeft - 1 ) + "┤" ), ::cClrPopup )
       ELSE
-         oMenuItem:Display( ::cClrPopup, ::cClrHotKey )
+         ::PaintItem( oMenuItem, ::cClrPopup, ::cClrHotKey )
       ENDIF
    NEXT
 
@@ -223,7 +261,7 @@ METHOD ProcessKey( nKey ) CLASS HbMenu
             else
                ::DeHilite()
                ::nOpenPopup := nItem
-               ::aItems[ nItem ]:Display( ::cClrHilite, ::cClrHotFocus )
+               ::PaintItem( ::aItems[ nItem ], ::cClrHilite, ::cClrHotFocus )
                ::Close()
                ::nOpenPopup = nItem
                ::EvalAction()
@@ -252,7 +290,7 @@ METHOD ProcessKey( nKey ) CLASS HbMenu
             else   
                ::nOpenPopup = Len( ::aItems )
             endif      
-            ::aItems[ ::nOpenPopup ]:Display( ::cClrHilite, ::cClrHotFocus )
+            ::PaintItem( ::aItems[ ::nOpenPopup ], ::cClrHilite, ::cClrHotFocus )
          else
             ::Super:ProcessKey( nKey )   
          endif   
@@ -269,7 +307,7 @@ METHOD ProcessKey( nKey ) CLASS HbMenu
             else   
                ::nOpenPopup = 1
             endif      
-            ::aItems[ ::nOpenPopup ]:Display( ::cClrHilite, ::cClrHotFocus )
+            ::PaintItem( ::aItems[ ::nOpenPopup ], ::cClrHilite, ::cClrHotFocus )
          else
             ::Super:ProcessKey( nKey )   
          endif   
@@ -291,7 +329,7 @@ METHOD ProcessKey( nKey ) CLASS HbMenu
                hb_LeftEq( ::aItems[ ::nOpenPopup ]:cPrompt, "-" )
                ++::nOpenPopup
             end
-            ::aItems[ ::nOpenPopup ]:Display( ::cClrHilite, ::cClrHotFocus )
+            ::PaintItem( ::aItems[ ::nOpenPopup ], ::cClrHilite, ::cClrHotFocus )
          else
             ::Super:ProcessKey( nKey )
          endif
@@ -304,7 +342,7 @@ METHOD ProcessKey( nKey ) CLASS HbMenu
                hb_LeftEq( ::aItems[ ::nOpenPopup ]:cPrompt, "-" )
                --::nOpenPopup
             end
-            ::aItems[ ::nOpenPopup ]:Display( ::cClrHilite, ::cClrHotFocus )
+            ::PaintItem( ::aItems[ ::nOpenPopup ], ::cClrHilite, ::cClrHotFocus )
          else
             ::Super:ProcessKey( nKey )
          endif
@@ -316,7 +354,7 @@ METHOD ProcessKey( nKey ) CLASS HbMenu
          if ( nItem := ::GetHotKeyPos( Upper( hb_keyChar( nKey ) ) ) ) != 0
             ::DeHilite()
             ::nOpenPopup = nItem
-            ::aItems[ nItem ]:Display( ::cClrHilite, ::cClrHotFocus )
+            ::PaintItem( ::aItems[ nItem ], ::cClrHilite, ::cClrHotFocus )
             ::EvalAction()
          endif
 
