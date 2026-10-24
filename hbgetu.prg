@@ -34,9 +34,12 @@
 #include 'getexit.ch'
 #include 'setcurs.ch'
 #include 'set.ch'
+#include "button.ch"
 
 static s_lInstalled := .F.
 static s_bMouseRoute := NIL
+static s_aMouseStash := {}   // FIFO { nKey, nRow, nCol, nSession }: ratón capturado en ventanas de animación
+static s_nGuiSession := 0    // id de sesión modal (anidados); anti-entrega en modal equivocado
 
 // índices de color del GET (copia de los #define locales de tget.prg)
 #define GET_CLR_UNSELECTED      0
@@ -596,7 +599,7 @@ function GetUReader( oMenu, aMsg )
             if hb_bitand( nKey, 0x7F000000 ) == 0x44000000 .OR. ;
                hb_bitand( nKey, 0x7F000000 ) == 0x45000000
                if s_bMouseRoute != NIL
-                  Eval( s_bMouseRoute, nKey, oGet )
+                  Eval( s_bMouseRoute, nKey, oGet, MRow(), MCol() )
                endif
                loop
             endif
@@ -659,6 +662,151 @@ return Self
 
 
 
+
+// ---------------------------------------------------------------------------
+// GetUGUIReader - reemplazo de HBGetList:GUIReader (controles GUI C53:
+// checkbox/radiogroup/listbox/pushbtn). MISMO contrato que GetUReader:
+// máscara Set(_SET_EVENTMASK)+HB_INKEY_EXT (+LDOWN 2 +LUP 4 solo con ruta),
+// clases de ratón 0x44/0x45 SIEMPRE consumidas y despachadas a la ruta ANTES
+// de GUIApplyKey, y normalización hb_keyStd del resto (códigos clásicos
+// idénticos a los de hoy para flechas/ENTER/ESPACIO/aceleradores).
+//
+// OJO de scope: la vía C53 invoca GUIReader desde un BLOQUE oGet:reader
+// (capturado en código de aplicación) -> proc plano GUIREADER de getsys53 ->
+// envío de método. En esa cadena el emisor no es un método de HBGetList y el
+// chequeo de PROTECTED contra el frame emisor FALLA (BASE/1003) aunque Self
+// sea correcto (probado en vivo: QSelf():ClassName()="HBGETLIST" y
+// ::nHitCode BASE/1003). Por eso el método instalado es un shell fino que
+// pasa Self como PARÁMETRO a GetUGUIReaderImpl, función FRIEND registrada:
+// el acceso oGL:<ivar protegido> desde friend sí pasa (mismo patrón que los
+// helpers GetU* sobre la clase Get).
+// Alcance auditado: cubre SOLO el bucle GUIReader; DateMsg (:810) y
+// TBReader (:1365/1369) NO cambian (ver informe a main).
+// ---------------------------------------------------------------------------
+
+function GetUGUIReader( oGet, oMenu, aMsg )
+return GetUGUIReaderImpl( QSelf(), oGet, oMenu, aMsg )
+
+function GetUGUIReaderImpl( oGL, oGet, oMenu, aMsg )
+
+   local oGUI
+   local nKey
+
+   s_nGuiSession++
+   // Política segura anti doble-submit: los gestos conservados pertenecen a la
+   // ACTIVACIÓN que los capturó. Al activarse otro control o abrirse un modal
+   // hijo, cualquier gesto pendiente de la activación anterior se DESCARTA:
+   // solo se despacha lo capturado dentro de esta misma activación.
+   s_aMouseStash := {}
+
+   if HB_ISOBJECT( oGet:control ) .AND. ;
+      oGL:nLastExitState == GE_SHORTCUT .OR. ;
+      oGL:nLastExitState == GE_MOUSEHIT .OR. ;
+      oGL:GetPreValidate( oGet, aMsg )
+
+      oGL:ShowGetMsg( oGet, aMsg )
+
+      oGL:nLastExitState := 0
+
+      // Activate the GET for reading
+      oGUI := oGet:control
+      oGUI:Select( oGet:varGet() )
+      oGUI:setFocus()
+
+      if oGet:exitState == GE_NOEXIT  // Added.
+         do case
+         case oGL:nHitCode > 0
+            oGUI:Select( oGL:nHitCode )
+         case oGL:nHitCode == HTCAPTION
+            oGUI:Select()
+         case oGL:nHitCode == HTCLIENT
+            oGUI:Select( K_LBUTTONDOWN )
+         case oGL:nHitCode == HTDROPBUTTON
+            oGUI:Open()
+         case oGL:nHitCode >= HTSCROLLFIRST .AND. ;
+              oGL:nHitCode <= HTSCROLLLAST
+            oGUI:Scroll( oGL:nHitCode )
+         endcase
+      endif
+
+      oGL:nHitCode := 0
+
+      do while oGet:exitState == GE_NOEXIT .AND. ! oGL:lKillRead
+
+         // Check for initial typeout (no editable positions)
+         if oGUI:typeOut
+            oGet:exitState := GE_ENTER
+         endif
+
+         // Apply keystrokes until exit
+         do while oGet:exitState == GE_NOEXIT .AND. ! oGL:lKillRead
+            // ratón conservado por animaciones de Select: FIFO, solo ESTA sesión
+            do while len( s_aMouseStash ) > 0 .AND. s_aMouseStash[ 1 ][ 4 ] == s_nGuiSession
+               if s_bMouseRoute != NIL
+                  Eval( s_bMouseRoute, hb_bitOr( 0x44000000, s_aMouseStash[ 1 ][ 1 ] ), oGet, s_aMouseStash[ 1 ][ 2 ], s_aMouseStash[ 1 ][ 3 ] )
+               endif
+               hb_ADel( s_aMouseStash, 1, .T. )
+            enddo
+            // mismo contrato de máscara que GetUReader
+            if s_bMouseRoute != NIL
+               nKey := Inkey( 0, hb_bitOr( Set( _SET_EVENTMASK ), HB_INKEY_EXT, 2 + 4 ) )
+            else
+               nKey := Inkey( 0, hb_bitOr( Set( _SET_EVENTMASK ), HB_INKEY_EXT ) )
+            endif
+
+            // clase ratón (0x44/0x45): SIEMPRE consumida, NUNCA tecla
+            if hb_bitand( nKey, 0x7F000000 ) == 0x44000000 .OR. ;
+               hb_bitand( nKey, 0x7F000000 ) == 0x45000000
+               if s_bMouseRoute != NIL
+                  Eval( s_bMouseRoute, nKey, oGet, MRow(), MCol() )
+               endif
+               loop
+            endif
+
+            // hb_keyStd: flechas/ENTER/ESPACIO/aceleradores llegan a
+            // GUIApplyKey con los mismos códigos clásicos que hoy
+            oGL:GUIApplyKey( oGet, oGUI, hb_keyStd( nKey ), oMenu, aMsg )
+
+            oGL:ShowGetMsg( oGet, aMsg )
+         enddo
+
+         if oGL:nLastExitState != GE_SHORTCUT .AND. ;
+            oGL:nLastExitState != GE_MOUSEHIT .AND. ;
+            ! oGL:GetPostValidate( oGet, aMsg )
+            oGet:exitState := GE_NOEXIT
+         endif
+      enddo
+
+      // De-activate the GET
+      switch oGUI:ClassName()
+      case "LISTBOX"
+      case "RADIOGROUP"
+         if HB_ISNUMERIC( oGet:varGet() )
+            oGet:varPut( oGUI:value )
+            exit
+         endif
+         /* fallthrough */
+      otherwise
+         oGet:varPut( oGUI:buffer )
+      endswitch
+      oGUI:killFocus()
+
+      oGL:EraseGetMsg( aMsg )
+
+      if oGUI:ClassName() == "LISTBOX" .AND. ;
+         oGUI:dropDown .AND. ;
+         oGUI:isOpen
+
+         oGUI:Close()
+      endif
+
+   endif
+
+   s_nGuiSession--
+   GetUPurgeStash()
+
+return oGL
+
 // ---------------------------------------------------------------------------
 // INTERFAZ PÚBLICA (acordada con el diseñador vía main)
 // ---------------------------------------------------------------------------
@@ -678,6 +826,98 @@ return bPrev
 // (RightLow/LeftLow/Insert/OverStrike/DeleteLow/Display) y los friends son
 // los que hacen posible la edición UTF8 char-wise (cursor, borrado entero,
 // display por celdas). Instalar solo el Reader perdería las mejoras UTF8.
+
+// ---------------------------------------------------------------------------
+// PushButton:Select shadow (animacion que NO drena eventos ajenos).
+// Replica exacta del Select del core (pushbtn.prg:126-160) salvo los bucles
+// de espera: el stock DESCARTA el primer evento distinto que cierra el bucle;
+// esta version lo REINYECTA con hb_keyIns (cabeza de cola: orden preservado,
+// una sola reinyeccion por evento, sin duplicar; 0=timeout sale sin tocar).
+// Todo lo que toca (hasFocus/buffer/sBlock/setFocus/display) es EXPORTED.
+// ---------------------------------------------------------------------------
+
+// Ratón dentro de ventana de animación: hb_keyIns NO reencola ratón (probado),
+// así que se conserva en cola propia con coordenadas AL CAPTURAR y sesión modal.
+function GetUStashMouse( nKey )
+
+   if nKey >= K_MOUSEMOVE .AND. nKey <= K_MWBACKWARD
+      aadd( s_aMouseStash, { nKey, MRow(), MCol(), s_nGuiSession } )
+      return .T.
+   endif
+
+   return .F.
+
+function GetUPurgeStash()
+
+   local i := len( s_aMouseStash )
+
+   do while i >= 1
+      if s_aMouseStash[ i ][ 4 ] > s_nGuiSession
+         hb_ADel( s_aMouseStash, i, .T. )
+      endif
+      i--
+   enddo
+
+   return nil
+
+function GetUPBSelect( nPos )
+
+   return GetUPBSelectImpl( QSelf(), nPos )
+
+function GetUPBSelectImpl( oPB, nPos )
+
+   local nNext, nFirst
+
+   if oPB:lHasFocus
+      oPB:lBuffer := .T.
+      oPB:display()
+
+      if HB_ISNUMERIC( nPos )
+         if nPos == K_SPACE
+            nFirst := Inkey( 0.4, hb_bitOr( Set( _SET_EVENTMASK ), INKEY_MOVE + INKEY_LDOWN + INKEY_LUP + INKEY_RDOWN + INKEY_RUP + INKEY_MMIDDLE + INKEY_MWHEEL ) )
+            if nFirst != 0 .AND. nFirst != K_SPACE
+               if ! GetUStashMouse( nFirst )
+                  hb_keyIns( nFirst )
+               endif
+            endif
+            do while .T.
+               nNext := Inkey( 0.1, hb_bitOr( Set( _SET_EVENTMASK ), INKEY_MOVE + INKEY_LDOWN + INKEY_LUP + INKEY_RDOWN + INKEY_RUP + INKEY_MMIDDLE + INKEY_MWHEEL ) )
+               if nNext == K_SPACE
+                  loop
+               endif
+               if nNext != 0
+                  if ! GetUStashMouse( nNext )
+                     hb_keyIns( nNext )
+                  endif
+               endif
+               exit
+            enddo
+         else
+            do while .T.
+               nNext := Inkey( 0, hb_bitOr( Set( _SET_EVENTMASK ), INKEY_MOVE + INKEY_LDOWN + INKEY_LUP + INKEY_RDOWN + INKEY_RUP + INKEY_MMIDDLE + INKEY_MWHEEL ) )
+               if nNext == nPos
+                  loop
+               endif
+               if nNext != 0
+                  if ! GetUStashMouse( nNext )
+                     hb_keyIns( nNext )
+                  endif
+               endif
+               exit
+            enddo
+         endif
+      endif
+
+      if HB_ISEVALITEM( oPB:bSBlock )
+         Eval( oPB:bSBlock )
+      endif
+
+      oPB:lBuffer := .F.
+      oPB:display()
+   endif
+
+   return oPB
+
 procedure DsnGetUInstall()
    if s_lInstalled
       return
@@ -690,6 +930,10 @@ procedure DsnGetUInstall()
    __ClsModMsg( GetNew():ClassH, "DELETELOW", @GetUDeleteLow() )
    __ClsModMsg( GetNew():ClassH, "DISPLAY", @GetUDisplay() )
    __ClsModMsg( HBGetList():New( {} ):ClassH, "READER", @GetUReader() )
+   __ClsModMsg( HBGetList():New( {} ):ClassH, "GUIREADER", @GetUGUIReader() )
+   __ClsModMsg( PushButton():New( 0, 0, "" ):ClassH, "SELECT", @GetUPBSelect() )
+   __ClsAddFriend( PushButton():New( 0, 0, "" ):ClassH, __dynsN2Sym( "GETUPBSELECTIMPL" ) )
+   __ClsAddFriend( HBGetList():New( {} ):ClassH, __dynsN2Sym( "GETUGUIREADERIMPL" ) )
    GetUFriends( GetNew():ClassH )
    return
 
