@@ -90,7 +90,9 @@ CLASS MCPanel
    METHOD TitleText()
    METHOD MiniStatus()
    METHOD VisibleRows() INLINE ::nBottom - ::nTop - 3
-   METHOD RowToIndex( nRow )
+   METHOD RowToIndex( nRow, nCol )
+   METHOD BriefLayout()          // -> { nColW, nCols } for multi-column brief
+   METHOD PageSize()             // visible entries: rows, or cols*rows in brief
    METHOD FixScroll()
    METHOD Scroll( nDelta )
    METHOD Move( nKey )
@@ -424,12 +426,22 @@ return cInfo
 
 //-----------------------------------------------------------------------------------------//
 
-METHOD RowToIndex( nRow ) CLASS MCPanel
+METHOD RowToIndex( nRow, nCol ) CLASS MCPanel
 
    local nRel := nRow - ::nTop - 2   // frame + header
+   local aLay, nC
 
    if nRel < 0 .or. nRel >= ::VisibleRows()
       return 0
+   endif
+
+   if ::lBrief .and. nCol != nil
+      aLay := ::BriefLayout()
+      nC := Int( ( nCol - ::nLeft - 1 ) / aLay[ 1 ] )
+      if nC < 0 .or. nC >= aLay[ 2 ]
+         return 0
+      endif
+      nRel += nC * ::VisibleRows()
    endif
 
    nRel += ::nOffset + 1
@@ -441,7 +453,29 @@ return nRel
 
 //-----------------------------------------------------------------------------------------//
 
+METHOD BriefLayout() CLASS MCPanel
+
+   local nW := Max( 8, ::nRight - ::nLeft - 1 ), nMax := 0, aEntry
+
+   for each aEntry in ::aFiles
+      nMax := Max( nMax, hb_ULen( MCCpDecode( aEntry[ P_NAME ], ::cCp ) ) + ;
+                   If( aEntry[ P_DIR ] .and. aEntry[ P_NAME ] != "/..", 1, 0 ) )
+   next
+   nMax := Min( Max( nMax + 3, 10 ), nW )   // leading space + 2-cell gap
+
+return { nMax, Max( 1, Int( nW / nMax ) ) }
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD PageSize() CLASS MCPanel
+
+return If( ::lBrief, ::BriefLayout()[ 2 ] * ::VisibleRows(), ::VisibleRows() )
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD FixScroll() CLASS MCPanel
+
+   local nRows, nCols
 
    if ::nCurrent < 1
       ::nCurrent := 1
@@ -449,11 +483,24 @@ METHOD FixScroll() CLASS MCPanel
    if ::nCurrent > Len( ::aFiles )
       ::nCurrent := Len( ::aFiles )
    endif
-   if ::nCurrent <= ::nOffset
-      ::nOffset := ::nCurrent - 1
-   endif
-   if ::nCurrent > ::nOffset + ::VisibleRows()
-      ::nOffset := ::nCurrent - ::VisibleRows()
+   if ::lBrief
+      // brief is column-major: keep the offset aligned to column starts so
+      // columns always begin at the panel top (mc-style columnwise scroll)
+      nRows := ::VisibleRows()
+      nCols := ::BriefLayout()[ 2 ]
+      if ::nCurrent <= ::nOffset
+         ::nOffset := Int( ( ::nCurrent - 1 ) / nRows ) * nRows
+      endif
+      if ::nCurrent > ::nOffset + nRows * nCols
+         ::nOffset := ( Int( ( ::nCurrent - 1 ) / nRows ) - nCols + 1 ) * nRows
+      endif
+   else
+      if ::nCurrent <= ::nOffset
+         ::nOffset := ::nCurrent - 1
+      endif
+      if ::nCurrent > ::nOffset + ::VisibleRows()
+         ::nOffset := ::nCurrent - ::VisibleRows()
+      endif
    endif
    if ::nOffset < 0
       ::nOffset := 0
@@ -477,8 +524,10 @@ METHOD Move( nKey ) CLASS MCPanel
    do case
       case nKey == K_UP    ; ::nCurrent--
       case nKey == K_DOWN  ; ::nCurrent++
-      case nKey == K_PGUP  ; ::nCurrent -= ::VisibleRows()
-      case nKey == K_PGDN  ; ::nCurrent += ::VisibleRows()
+      case nKey == K_LEFT  ; If( ::lBrief, ::nCurrent -= ::VisibleRows(), )
+      case nKey == K_RIGHT ; If( ::lBrief, ::nCurrent += ::VisibleRows(), )
+      case nKey == K_PGUP  ; ::nCurrent -= ::PageSize()
+      case nKey == K_PGDN  ; ::nCurrent += ::PageSize()
       case nKey == K_HOME  ; ::nCurrent := 1
       case nKey == K_END   ; ::nCurrent := Len( ::aFiles )
    endcase
@@ -702,7 +751,7 @@ METHOD Display() CLASS MCPanel
    if ::nOffset > 0 .and. ::cMode == "listing"
       hb_DispOutAt( ::nTop, ::nLeft + 1, hb_UTF8ToStr( "↑" ), cFrame )
    endif
-   if ::cMode == "listing" .and. ::nOffset + nRows < Len( ::aFiles )
+   if ::cMode == "listing" .and. ::nOffset + ::PageSize() < Len( ::aFiles )
       hb_DispOutAt( ::nTop, ::nRight - 1, hb_UTF8ToStr( "↓" ), cFrame )
    endif
 
@@ -714,7 +763,7 @@ METHOD DisplayListing() CLASS MCPanel
 
    local oApp := ::oApp, nW := ::nRight - ::nLeft - 1
    local nRows := ::VisibleRows(), n, nIdx, aEntry, cLine, cColor
-   local cHdr
+   local cHdr, aLay, nColW, nCols, nC, nX, nCellW, cName
 
    // header
    if ::lBrief
@@ -724,17 +773,48 @@ METHOD DisplayListing() CLASS MCPanel
    endif
    hb_DispOutAt( ::nTop + 1, ::nLeft + 1, hb_UPadR( cHdr, nW ), oApp:aPalette[ CLR_HEADER ] )
 
-   for n := 1 to nRows
-      nIdx := ::nOffset + n
-      if nIdx <= Len( ::aFiles )
-         aEntry := ::aFiles[ nIdx ]
-         cLine := ::EntryLine( aEntry, nW )
-         cColor := ::EntryColor( aEntry, nIdx == ::nCurrent .and. ::lActive )
-         hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, cLine, cColor )
-      else
-         hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, Space( nW ), oApp:aPalette[ CLR_PANEL ] )
-      endif
-   next
+   if ::lBrief
+      // column-major multi-column layout (mc brief style);
+      // clear the whole body first so narrower grids erase old full-mode lines
+      hb_Scroll( ::nTop + 2, ::nLeft + 1, ::nBottom - 1, ::nRight - 1, 0, 0, oApp:aPalette[ CLR_PANEL ], " " )
+      aLay := ::BriefLayout()
+      nColW := aLay[ 1 ]
+      nCols := aLay[ 2 ]
+      for nC := 0 to nCols - 1
+         nX := ::nLeft + 1 + nC * nColW
+         nCellW := Min( nColW, ::nRight - nX )
+         if nCellW < 2
+            exit
+         endif
+         for n := 1 to nRows
+            nIdx := ::nOffset + nC * nRows + n
+            if nIdx <= Len( ::aFiles )
+               aEntry := ::aFiles[ nIdx ]
+               cName := MCCpDecode( aEntry[ P_NAME ], ::cCp )
+               if aEntry[ P_DIR ] .and. aEntry[ P_NAME ] != "/.."
+                  cName += "/"
+               endif
+               cLine := hb_UPadR( hb_UTF8SubStr( " " + cName, 1, nCellW ), nCellW )
+               cColor := ::EntryColor( aEntry, nIdx == ::nCurrent .and. ::lActive )
+               hb_DispOutAt( ::nTop + 1 + n, nX, cLine, cColor )
+            else
+               hb_DispOutAt( ::nTop + 1 + n, nX, Space( nCellW ), oApp:aPalette[ CLR_PANEL ] )
+            endif
+         next
+      next
+   else
+      for n := 1 to nRows
+         nIdx := ::nOffset + n
+         if nIdx <= Len( ::aFiles )
+            aEntry := ::aFiles[ nIdx ]
+            cLine := ::EntryLine( aEntry, nW )
+            cColor := ::EntryColor( aEntry, nIdx == ::nCurrent .and. ::lActive )
+            hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, cLine, cColor )
+         else
+            hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, Space( nW ), oApp:aPalette[ CLR_PANEL ] )
+         endif
+      next
+   endif
 
    // mini status
    if oApp:lMiniStatus
