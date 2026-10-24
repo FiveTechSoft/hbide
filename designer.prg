@@ -105,6 +105,7 @@ CLASS HbDesigner
    METHOD EnsureSelectedVisible()
    METHOD PopupMenu()
    METHOD Redraw()
+   METHOD RegisterIdles()
    METHOD ResumeUI()
    METHOD SaveJson( lAskName )
    METHOD SelectFileName( cTitle, cDefault )
@@ -135,7 +136,7 @@ METHOD Activate() CLASS HbDesigner
    ::oWnd:lDesign  = .T.
    ::oWnd:bPopup   = { || ::PopupMenu() }
 
-   ::nIdleDraw = hb_IdleAdd( { || ::DrawControls() } )
+   ::RegisterIdles()
 
    ::ShowHint( HINT_CANVAS )
 
@@ -656,15 +657,34 @@ return nil
 
 METHOD ResumeUI() CLASS HbDesigner
 
+   ::RegisterIdles()
+   ::Redraw()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+// (re)install the designer idles. The window's own Show() registers a raw
+// mouse idle whose HBWindow:MouseEvent otherwise branch repaints the whole
+// window frame on EVERY mouse idle, even with no button pressed; that frame
+// repaint lands after the redraw idle and visibly eats any control or
+// inspector cell overlapping the frame (title row, right column). The
+// designer replaces it with a gated idle that only forwards mouse events
+// while a button is held (window drag, resize, popup, close), which are the
+// only cases MouseEvent acts on.
+
+METHOD RegisterIdles() CLASS HbDesigner
+
+   if ::oWnd != nil .and. ::oWnd:lVisible
+      if ::oWnd:nIdle != nil
+         hb_IdleDel( ::oWnd:nIdle )
+      endif
+      ::oWnd:nIdle = hb_IdleAdd( { || If( MLeftDown() .or. MRightDown(), ;
+                                           ::oWnd:MouseEvent( MRow(), MCol() ), nil ) } )
+   endif
+
    if ::nIdleDraw == nil
       ::nIdleDraw = hb_IdleAdd( { || ::DrawControls() } )
    endif
-
-   if ::oWnd != nil .and. ::oWnd:nIdle == nil .and. ::oWnd:lVisible
-      ::oWnd:nIdle = hb_IdleAdd( { || ::oWnd:MouseEvent( MRow(), MCol() ) } )
-   endif
-
-   ::Redraw()
 
 return nil
 
