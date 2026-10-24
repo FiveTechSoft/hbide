@@ -304,6 +304,9 @@ procedure Main()
    Check( "pan clamps to dialog edge", DsnPanClamp( 10, 62, 60 ) == 2 )
    Check( "pan keeps zero", DsnPanClamp( 0, 62, 60 ) == 0 .and. DsnPanClamp( -4, 62, 60 ) == 0 )
    Check( "pan no room to scroll", DsnPanClamp( 5, 40, 60 ) == 0 )
+   Check( "write ok returns true", DsnSafeMemoWrit( hb_DirTemp() + "/dsn_t.json", "{}" ) .and. ;
+          File( hb_DirTemp() + "/dsn_t.json" ) )
+   Check( "write bad path returns false", ! DsnSafeMemoWrit( "/no/such/dir/x.json", "{}" ) )
 
 
 
