@@ -708,8 +708,8 @@ METHOD Activate() CLASS MCApp
             ::Rescan()
             ::Repaint()
          endif
-         // ::SpinTick( MCJobsNeedTick() )  BISECT
-         // ::CheckResize()  BISECT
+         ::SpinTick( MCJobsNeedTick() )
+         ::CheckResize()
          loop
       endif
       // Resize arrives as HB_INKEY_NEW_EVENT( HB_K_RESIZE ) (gttrm) or plain
