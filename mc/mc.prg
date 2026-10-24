@@ -760,11 +760,20 @@ return hb_PathNormalize( hb_FNameMerge( cBase, cPath ) )
 function MCMsgBox( cTitle, cText )
 
    local oDlg, GetList := {}, lOk := .F.
-   local aLines := hb_aTokens( hb_defaultValue( cText, "" ), Chr( 10 ) ), cLine, nRow := 2
-   local nW := 0
+   local aLines := {}, cLine, nRow := 2
+   local nW := 0, nMaxW := Min( 92, MaxCol() - 8 )
+
+   // wrap long lines to the visible area, cell-based (UTF-8 safe)
+   for each cLine in hb_aTokens( hb_defaultValue( cText, "" ), Chr( 10 ) )
+      while hb_ULen( cLine ) > nMaxW
+         AAdd( aLines, hb_UTF8SubStr( cLine, 1, nMaxW ) )
+         cLine := hb_UTF8SubStr( cLine, nMaxW + 1 )
+      enddo
+      AAdd( aLines, cLine )
+   next
 
    AEval( aLines, { | c | nW := Max( nW, hb_ULen( c ) ) } )
-   nW := Min( Max( nW + 8, 30 ), 100 )
+   nW := Min( Max( nW + 8, 30 ), nMaxW + 4 )
 
    oDlg = HBWindow():Dialog( cTitle, nW, Len( aLines ) + 5, "W+/W" )
    for each cLine in aLines
