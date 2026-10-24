@@ -58,6 +58,7 @@ CLASS HbDesigner
    DATA lDirty       INIT .F.
    DATA lEnd         INIT .F.
    DATA lPlacing     INIT .F.         // placing a new control
+   DATA lViewClamp   INIT .F.         // design window is smaller than the dialog (viewport clamp)
    DATA cPlacingType INIT ""
    DATA nGhostRow    INIT 1           // ghost position, client relative
    DATA nGhostCol    INIT 1
@@ -425,6 +426,7 @@ METHOD MoveSelected( nDRow, nDCol ) CLASS HbDesigner
       oCtrl[ "row" ] = Max( 0, Min( nMaxRow, oCtrl[ "row" ] + nDRow ) )
       oCtrl[ "col" ] = Max( 0, Min( nMaxCol, oCtrl[ "col" ] + nDCol ) )
       ::lDirty = .T.
+      ::Redraw()
    endif
 
 return nil
@@ -509,9 +511,12 @@ METHOD DrawControls() CLASS HbDesigner
       return nil
    endif
 
-   // keep the model in sync with window moves/resizes done by mouse
-   ::nDlgWidth  = ::oWnd:nRight - ::oWnd:nLeft + 1
-   ::nDlgHeight = ::oWnd:nBottom - ::oWnd:nTop + 1
+   // keep the model in sync with window moves/resizes done by mouse,
+   // except when the window is a clamped viewport onto a larger dialog
+   if ! ::lViewClamp
+      ::nDlgWidth  = ::oWnd:nRight - ::oWnd:nLeft + 1
+      ::nDlgHeight = ::oWnd:nBottom - ::oWnd:nTop + 1
+   endif
 
    DispBegin()
    for n = 1 to Len( ::aControls )
@@ -757,8 +762,8 @@ METHOD DlgProperties() CLASS HbDesigner
       endif
       ::cDlgCaption = AllTrim( cCaption )
       ::cDlgName    = DsnValidVar( cName, "MyDialog" )
-      ::nDlgWidth   = Max( 20, Min( MaxCol() - 4, nWidth ) )
-      ::nDlgHeight  = Max( 6, Min( MaxRow() - 3, nHeight ) )
+      ::nDlgWidth   = Max( 20, nWidth )
+      ::nDlgHeight  = Max( 6, nHeight )
       if Empty( AllTrim( cColor ) )
          if AllTrim( cColor ) != ::cDlgColor
             ::ShowHint( "Color left empty: keeping " + ::cDlgColor )
@@ -782,15 +787,23 @@ return nil
 //-----------------------------------------------------------------------------------------//
 // keep the design window and its shadow fully on screen: when a size
 // change (load, F3, inspector resize) would push an edge out, shift the
-// window back. Width/height are already clamped by the callers.
+// window back. The dialog model keeps its true size; when it does not
+// fit the screen the window acts as a viewport onto it (lViewClamp) and
+// controls beyond the edge are clipped on the canvas, never in the model.
 
 METHOD FitWindow() CLASS HbDesigner
 
+   local aSize := DsnViewSize( ::nDlgWidth, ::nDlgHeight, MaxCol(), MaxRow() )
+   local aPos  := DsnFitRect( ::oWnd:nLeft, ::oWnd:nTop, ;
+                              aSize[ 1 ], aSize[ 2 ], MaxCol(), MaxRow() )
+
+   ::lViewClamp = aSize[ 1 ] < ::nDlgWidth .or. aSize[ 2 ] < ::nDlgHeight
+
    with object ::oWnd
-      :nLeft   = Max( 0, Min( :nLeft, MaxCol() - ::nDlgWidth - 1 ) )
-      :nTop    = Max( 0, Min( :nTop, MaxRow() - ::nDlgHeight - 1 ) )
-      :nRight  = :nLeft + ::nDlgWidth - 1
-      :nBottom = :nTop + ::nDlgHeight - 1
+      :nLeft   = aPos[ 1 ]
+      :nTop    = aPos[ 2 ]
+      :nRight  = :nLeft + aSize[ 1 ] - 1
+      :nBottom = :nTop + aSize[ 2 ] - 1
    end
 
 return nil
@@ -894,12 +907,13 @@ METHOD LoadJson() CLASS HbDesigner
    nSkipped      = Len( ::aControls )
    DsnNormalizeControls( ::aControls )
    nSkipped      -= Len( ::aControls )
-   // clamp the dialog to the screen and grow it so no control is left outside
-   ::nDlgWidth   = Max( 20, Min( MaxCol() - 4, Int( DsnNum( hb_HGetDef( hModel, "width", 40 ), 40 ) ) ) )
-   ::nDlgHeight  = Max( 6, Min( MaxRow() - 3, Int( DsnNum( hb_HGetDef( hModel, "height", 12 ), 12 ) ) ) )
+   // the model keeps the saved size, grown so no control is left outside;
+   // FitWindow() clamps the design window to the screen when needed
+   ::nDlgWidth   = Max( 20, Int( DsnNum( hb_HGetDef( hModel, "width", 40 ), 40 ) ) )
+   ::nDlgHeight  = Max( 6, Int( DsnNum( hb_HGetDef( hModel, "height", 12 ), 12 ) ) )
    aMin          = ::DlgMinSize()
-   ::nDlgWidth   = Min( MaxCol() - 4, Max( ::nDlgWidth, aMin[ 1 ] ) )
-   ::nDlgHeight  = Min( MaxRow() - 3, Max( ::nDlgHeight, aMin[ 2 ] ) )
+   ::nDlgWidth   = Max( ::nDlgWidth, aMin[ 1 ] )
+   ::nDlgHeight  = Max( ::nDlgHeight, aMin[ 2 ] )
    ::nSelected   = 0
    ::lPlacing    = .F.
    if nSkipped > 0
@@ -1148,7 +1162,7 @@ METHOD InspAdjust( nDelta ) CLASS HbDesigner
       aMin = ::DlgMinSize()
       do case
          case cKey == "dlgwidth"
-            nNew = Max( aMin[ 1 ], Min( MaxCol() - 4, ::nDlgWidth + nDelta ) )
+            nNew = Max( aMin[ 1 ], ::nDlgWidth + nDelta )
             if nNew != ::nDlgWidth + nDelta .and. ::nDlgWidth + nDelta < aMin[ 1 ]
                ::ShowHint( "Minimum width " + hb_ntos( aMin[ 1 ] ) + ": controls inside would be hidden" )
             else
@@ -1156,7 +1170,7 @@ METHOD InspAdjust( nDelta ) CLASS HbDesigner
             endif
             ::nDlgWidth = nNew
          case cKey == "dlgheight"
-            nNew = Max( aMin[ 2 ], Min( MaxRow() - 3, ::nDlgHeight + nDelta ) )
+            nNew = Max( aMin[ 2 ], ::nDlgHeight + nDelta )
             if nNew != ::nDlgHeight + nDelta .and. ::nDlgHeight + nDelta < aMin[ 2 ]
                ::ShowHint( "Minimum height " + hb_ntos( aMin[ 2 ] ) + ": controls inside would be hidden" )
             else
@@ -1460,7 +1474,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
    local aDlgPair := DsnDlgPair( oWnd:cColor )
    local lDarkDlg := aDlgPair[ 2 ] != "W"
    local cDlgText := aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ]
-   local cShadow  := If( lDarkDlg, "N/" + aDlgPair[ 2 ], "N/W" )   // half-block on the dialog bg, same height as the runtime shadow
+   local cShadow  := DsnCanvasShadowFor( oWnd:cColor )   // half-block on the dialog bg, same height as the runtime shadow
    local cColor, cText, nWidth, n, aSize, aItems
 
    // design time: & marks accelerators on checkbox/button captions, so it is
@@ -2061,6 +2075,41 @@ function DsnClrListBoxFor( cDlgColor )
    endif
 
 return "N/W,W+/N,N/W,W+/G,N/W,W+/W,GR+/W"
+
+//-----------------------------------------------------------------------------------------//
+// canvas button shadow for a dialog color: the stock white dialog keeps
+// the original "N/W"; any other background gets the runtime look, a
+// half-block shadow on the dialog background.
+
+function DsnCanvasShadowFor( cDlgColor )
+
+   local aPair := DsnDlgPair( cDlgColor )
+
+   if aPair[ 2 ] == "W"
+      return "N/W"
+   endif
+
+return "N/" + aPair[ 2 ]
+
+//-----------------------------------------------------------------------------------------//
+// top-left that keeps a nWidth x nHeight window and its shadow fully on a
+// (0..nMaxCol, 0..nMaxRow) screen: shift left/up only when it overflows.
+// Pure function so the fit rules are testable without a window.
+
+// window size for a dialog on a given screen: never larger than the
+// screen (with margin for the frame and shadow); the dialog model may
+// be bigger, and then the window acts as a viewport onto it
+
+function DsnViewSize( nDlgWidth, nDlgHeight, nMaxCol, nMaxRow )
+
+return { Min( nDlgWidth, nMaxCol - 4 ), Min( nDlgHeight, nMaxRow - 3 ) }
+
+//-----------------------------------------------------------------------------------------//
+
+function DsnFitRect( nLeft, nTop, nWidth, nHeight, nMaxCol, nMaxRow )
+
+return { Max( 0, Min( nLeft, nMaxCol - nWidth - 1 ) ), ;
+         Max( 0, Min( nTop,  nMaxRow - nHeight - 1 ) ) }
 
 //-----------------------------------------------------------------------------------------//
 // text of the DsnBtnDisplay() function emitted into generated dialogs on a
