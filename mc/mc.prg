@@ -25,7 +25,12 @@
 
 function Main( cStartDir )
 
-   local oApp := MCApp():New( hb_defaultValue( cStartDir, hb_cwd() ) )
+   local oApp
+
+   Set( _SET_ESCAPE, .F. )  // Esc must not cancel the program at InKey()
+   Set( _SET_CANCEL, .F. )  // Alt+C is quick cd, not Harbour's cancel key
+
+   oApp := MCApp():New( hb_defaultValue( cStartDir, hb_cwd() ) )
 
    oApp:Activate()
 
@@ -408,7 +413,7 @@ return nil
 
 METHOD QuickCd() CLASS MCApp
 
-   local cPath := ::DlgInput( "Quick cd", "Path:", ::ActivePanel():cPath, 50 )
+   local cPath := ::DlgInput( "Quick cd", "Path:", "", 50 )
 
    if cPath != nil
       cPath := MCAbsPath( ::ActivePanel():cPath, cPath )
@@ -521,7 +526,7 @@ METHOD Activate() CLASS MCApp
          case nKey == K_CTRL_R .and. lCtrl ; ::Rescan()
          case nKey == K_CTRL_S .and. lCtrl ; ::QuickSearch()
          case nKey == K_CTRL_X .and. lCtrl ; ::nPrefixKey := nKey
-         case nKey == K_CTRL_ENTER .and. lCtrl ; ::CmdInsertName()
+         case nKey == K_CTRL_ENTER ; ::CmdInsertName()
 
          case nKey == K_LBUTTONDOWN
             ::MouseClick( MRow(), MCol(), .F. )
@@ -2317,3 +2322,4 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    ::Repaint()
 
 return nil
+
