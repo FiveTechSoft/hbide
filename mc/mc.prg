@@ -86,6 +86,7 @@ CLASS MCApp
    DATA   lMkdirAutoname  INIT .F.
    DATA   lFileTypes      INIT .T.
    DATA   lFastReload     INIT .F.
+   DATA   lVerboseOp      INIT .T.
    DATA   lEqualSplit     INIT .T.
    DATA   lHorizontal     INIT .F.
    DATA   lMenubar        INIT .T.
@@ -1459,8 +1460,9 @@ METHOD OptionsConfig() CLASS MCApp
    local lTotals := ::lComputeTotals, lFree := ::lShowFreeSpace
    local lSave := ::lAutoSaveSetup, lPat := ::lShellPatterns
    local lMkA := ::lMkdirAutoname
+   local lVerb := ::lVerboseOp
 
-   oDlg = HBWindow():Dialog( "Configuration", 44, 14, "W+/W" )
+   oDlg = HBWindow():Dialog( "Configuration", 44, 15, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lHidden ;
@@ -1498,6 +1500,11 @@ METHOD OptionsConfig() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
+   @ oDlg:nTop + 9, oDlg:nLeft + 3 GET lVerb ;
+      CHECKBOX CAPTION "&Verbose operation" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
@@ -1521,6 +1528,7 @@ METHOD OptionsConfig() CLASS MCApp
       ::lAutoSaveSetup := lSave
       ::lShellPatterns := lPat
       ::lMkdirAutoname := lMkA
+      ::lVerboseOp := lVerb
       ::Rescan()
    endif
 
@@ -1910,6 +1918,10 @@ METHOD FileCopy() CLASS MCApp
    endif
 
    for each aEntry in aMarked
+      if ::lVerboseOp
+         MCVerboseLog( "copy " + MCEntryPath( oSrc, aEntry ) + " -> " + ;
+                       DestFor( cDest, aEntry, Len( aMarked ) ) )
+      endif
       if CopyItem( MCEntryPath( oSrc, aEntry ), ;
                    DestFor( cDest, aEntry, Len( aMarked ) ), ;
                    ::lConfirmOverwrite, @lAll, Self )
@@ -1921,7 +1933,8 @@ METHOD FileCopy() CLASS MCApp
 
    ::Rescan()
    MCMsgBox( "Copy", hb_ntos( nCopied ) + " item(s) copied" + ;
-             If( nSkipped > 0, ", " + hb_ntos( nSkipped ) + " skipped", "" ) + "." )
+             If( nSkipped > 0, ", " + hb_ntos( nSkipped ) + " skipped", "" ) + ;
+             If( ::lVerboseOp, ":" + Chr( 10 ) + MCListNames( aMarked, 5 ), "." ) )
 
 return nil
 
@@ -2422,6 +2435,10 @@ METHOD FileMove() CLASS MCApp
    enddo
 
    for each aEntry in aMarked
+      if ::lVerboseOp
+         MCVerboseLog( "move " + MCEntryPath( oSrc, aEntry ) + " -> " + ;
+                       DestFor( cDest, aEntry, Len( aMarked ) ) )
+      endif
       if MoveItem( MCEntryPath( oSrc, aEntry ), ;
                    DestFor( cDest, aEntry, Len( aMarked ) ), Self )
          nMoved++
@@ -3252,6 +3269,7 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "mkdirautoname"  ; ::lMkdirAutoname := ( cVal == "1" )
          case cKey == "filetypes"      ; ::lFileTypes := ( cVal == "1" )
          case cKey == "fastreload"     ; ::lFastReload := ( cVal == "1" )
+         case cKey == "verbose"        ; ::lVerboseOp := ( cVal == "1" )
          case cKey == "equalsplit"     ; ::lEqualSplit := ( cVal == "1" )
          case cKey == "horizontal"     ; ::lHorizontal := ( cVal == "1" )
          case cKey == "menubar"        ; ::lMenubar := ( cVal == "1" )
@@ -3299,6 +3317,7 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "mkdirautoname=" + If( ::lMkdirAutoname, "1", "0" ) + hb_eol()
    cTxt += "filetypes=" + If( ::lFileTypes, "1", "0" ) + hb_eol()
    cTxt += "fastreload=" + If( ::lFastReload, "1", "0" ) + hb_eol()
+   cTxt += "verbose=" + If( ::lVerboseOp, "1", "0" ) + hb_eol()
    cTxt += "equalsplit=" + If( ::lEqualSplit, "1", "0" ) + hb_eol()
    cTxt += "horizontal=" + If( ::lHorizontal, "1", "0" ) + hb_eol()
    cTxt += "menubar=" + If( ::lMenubar, "1", "0" ) + hb_eol()
@@ -3364,3 +3383,42 @@ function MCDlgEnter( aGets )
    endif
 
 return NIL
+
+//-----------------------------------------------------------------------------------------//
+
+// Verbose operation instrumentation: one line per processed file, the same
+// detail mc's operation dialog shows live for long operations (instant on
+// the demo fixtures, so the log is the inspectable artifact).
+static function MCVerboseLog( cLine )
+
+   local nH := FOpen( "/tmp/hbmc-verbose.log", 1 )   // FO_WRITE
+
+   if nH == -1
+      nH := FCreate( "/tmp/hbmc-verbose.log" )
+   endif
+   if nH != -1
+      FSeek( nH, 0, 2 )   // FS_END
+      FWrite( nH, cLine + hb_eol() )
+      FClose( nH )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+static function MCListNames( aMarked, nMax )
+
+   local cOut := "", n := 0, aEntry
+
+   for each aEntry in aMarked
+      if aEntry[ P_NAME ] == "/.."
+         loop
+      endif
+      n++
+      if n > nMax
+         return cOut + ", ..."
+      endif
+      cOut += If( n == 1, "", ", " ) + aEntry[ P_NAME ]
+   next
+
+return cOut
