@@ -69,7 +69,10 @@ Integration points (concrete):
    ftp.gnu.org. Write paths stay pending until a credential-free write
    target exists; no credentials means anonymous FTP only. stdin is closed
    on every curl call so an unexpected password prompt can never block
-   the UI.
+   the UI. Paths are percent-encoded per byte (MCCurlUrl): names with
+   spaces, %, # or UTF-8 bytes work on both curl providers; verified
+   against the fixture. A year-less LIST date assumes the current year and
+   falls back to the previous one when that would land in the future.
 3. SFTP (sftp://) and shell link (sh://, FISH-style): IMPLEMENTED
    read-only. The fixture decision landed 2026-10-24: a throwaway
    user-level sshd on 127.0.0.1:22227 with generated ephemeral keys,
