@@ -56,9 +56,18 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   (was: every row caption cyan at once). Vendored RadDisplay override in
   mcbutton.prg (RTL RadioButtn untouched); RTL marks every item focused
   when the group has focus, so the current row is taken from the
-  selected item (lBuffer), which is how mc radiogroups read. Verified
-  live in Appearance, Listing format and Sort order (arrow keys move
-  the highlight with the selection)
+  selected item (lBuffer), which is how mc radiogroups read. Hotkey is
+  painted by recoloring the existing caption letter in place (RTL
+  DISPLAY keeps the "&" raw, which duplicated letters: "MMidnight");
+  verified live with single colored hotkeys in Appearance, Listing
+  format and Sort order. Verified live in Appearance, Listing format
+  and Sort order (arrow keys move the highlight with the selection)
+- Mouse inside dialogs verified live (xdotool at window-pixel coords):
+  clicking a radio row selects it (Appearance -> Monochrome) and
+  clicking a brackets button fires it, including the closing bracket
+  (Print and Cancel both fired; Cancel left the theme untouched).
+  BtnHitTest was instrumented to confirm the hit coords land on the
+  control's own rect before the test was reverted
 - Turbo Vision cyan theme: directories now bright white on cyan (was
   gray-on-cyan, weak contrast)
 - Move (F6): overwrite confirmation (decline keeps both files; accept
