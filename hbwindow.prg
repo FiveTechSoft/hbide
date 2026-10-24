@@ -1,9 +1,16 @@
+
 #include "hbclass.ch"
 #include "inkey.ch"
 #include "box.ch"
 #include "setcurs.ch"
 #include "hbmenu.ch"
 #include "button.ch"
+#include "set.ch"
+
+// raw gttrm mouse event codes (measured: Inkey EXT delivers 0x44000000+code)
+#define DSNK_MLDOWN  1002
+#define DSNK_MLUP    1003
+#define DSNK_MLDBL   1006
 
 static s_aTrapStack := {}  // saved PgDn/PgUp handlers per armed READ level (nesting-safe)
 
@@ -25,13 +32,15 @@ CLASS HbWindow FROM HbDbWindow
    DATA   lRedrawPending INIT .F.
    DATA   nIdle          // allows mouse support in READ
    DATA   nIdleRead      // idle hook that feeds mouse clicks into READ
-   DATA   nPendRow, nPendCol, nPendAt  // queued mouse click while READ is busy
-   DATA   lReadMouse INIT .F.  // left button state seen by the idle hook
    DATA   nMinW          // min width when resizing with the mouse (frame incl.)
    DATA   nMinH          // min height when resizing with the mouse (frame incl.)
    DATA   nMaxBottom     // lowest row the window may occupy (NIL = MaxRow())
+   DATA   bAfterDrag    // block evaluated after a mouse drag/resize ends (designer hook restore)
    DATA   nMaxRight      // rightmost col the window may occupy (NIL = MaxCol())
-   DATA   bAfterDrag     // block evaluated after a mouse drag/resize ends (designer hook restore)
+   DATA   oArmGet        // GET armed by a mouse DOWN (route mode)
+   DATA   lSkipUp        // swallow the UP after a double-click event
+   DATA   nPendRow, nPendCol, nPendAt  // queued mouse click while READ is busy
+   DATA   lReadMouse INIT .F.  // left button state seen by the idle hook
    DATA   GetList
    DATA   lDesign INIT .F.
    DATA   lClamped INIT .F.   // .T. when Dialog() had to move/cut the window to fit the screen
@@ -42,6 +51,9 @@ CLASS HbWindow FROM HbDbWindow
 
    METHOD ReadMouse()        // polls the mouse while READ waits
    METHOD MouseClick( nR, nC )  // focuses/activates the clicked GET
+   METHOD HitGetAt( nR, nC )    // { oGet, nBottomFrame } under a screen point
+   METHOD FocusGet( oGet )      // keyboard-driven focus, no activation
+   METHOD DsnMouseRoute( nKey, oWnd, oGet )  // synchronous reader mouse route
 
    METHOD End() INLINE ReadKill( .T. )
 
@@ -79,6 +91,8 @@ METHOD New( nTop, nLeft, nBottom, nRight, cCaption, cColor ) CLASS HBWindow
    ::cColor   = hb_defaultValue( cColor, GetColors()[ 1 ] )
    ::nMinW    = 6
    ::nMinH    = 3
+   ::oArmGet  = nil
+   ::lSkipUp  = .F.
 
 return Self
 
@@ -86,12 +100,27 @@ return Self
 
 METHOD Activate( GetList ) CLASS HbWindow
 
-   ::GetList = GetList
-   ::lReadMouse := MLeftDown()
-   ::nIdleRead = hb_IdleAdd( { || ::ReadMouse() } )
+   local bPrevRoute, lRoute := hb_GetEnv( "DSN_NOROUTE" ) != "1"
+
+   DsnGetUInstall()
+   ::GetList  = GetList
+   ::oArmGet := nil
+   ::lSkipUp := .F.
+   ::nPendRow := nil
+   if lRoute
+      // reader route mode: mouse events arrive synchronously inside the
+      // READ; the MLeftDown() polling hook would double-process clicks
+      bPrevRoute := SetGetUMouseRoute( { | nK, oG | ::DsnMouseRoute( nK, Self, oG ) } )
+   else
+      ::lReadMouse := MLeftDown()
+      ::nIdleRead = hb_IdleAdd( { || ::ReadMouse() } )
+   endif
    HBPageTrapInstall()
    READ
    HBPageTrapRemove()
+   if lRoute
+      SetGetUMouseRoute( bPrevRoute )
+   endif
    if ::nIdleRead != nil
       hb_IdleDel( ::nIdleRead )
       ::nIdleRead := nil
@@ -109,8 +138,11 @@ METHOD ReadMouse() CLASS HbWindow
 
    local lNow := MLeftDown()
 
+   if lNow .and. ! ::lReadMouse
+   endif
    if ::lReadMouse .and. ! lNow
       // click released: queue it; the READ may be busy navigating
+      ::lReadMouse := .F.
       ::nPendRow := MRow()
       ::nPendCol := MCol()
       ::nPendAt  := Seconds()
@@ -133,14 +165,35 @@ return nil
 // goes to the first GET and Tab advances, so the READ state stays
 // consistent. Returns .T. when a GET was hit.
 
-METHOD MouseClick( nR, nC ) CLASS HbWindow
+// Mouse button edge from the InKey event stream (armed in Activate via
+// SetKey under a widened _SET_EVENTMASK): race-free alternative to the
+// ReadMouse() polling, which can miss press/release pairs shorter than
+// its poll cycle. Both paths guard on ::lReadMouse, so the first edge
+// seen wins and no click is queued twice.
 
-   local oGet, oHit := nil, cCls := "", nHitRow := -999, nHitCol := -999, nHit2 := 0
-   local nCur, nTgt, cKeys, nIdx, nCurV, nRight, nBottom, nHitBot := -1, nJ, nK, cK, nI2, cLine, nIdx2
+METHOD MouseEdge( lDown ) CLASS HbWindow
 
-   if Empty( ::GetList ) .or. GetActive() == nil
-      return .F.  // READ busy between GETs: caller retries
+   if lDown
+      ::lReadMouse := .T.
+   elseif ::lReadMouse
+      ::lReadMouse := .F.
+      ::nPendRow := MRow()
+      ::nPendCol := MCol()
+      ::nPendAt  := Seconds()
    endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Hit-tests a screen point against the GETs of ::GetList.
+// Returns { oHit, nHitBot }: the GET under ( nR, nC ) (NIL when none) and
+// the bottom frame row for framed controls.
+
+METHOD HitGetAt( nR, nC ) CLASS HBWindow
+
+   local oGet, oHit := nil, cCls := "", nHitRow := -999, nHitCol := -999
+   local nRight, nBottom, nHitBot := -1
 
    for each oGet in ::GetList
       cCls := If( Empty( oGet:control ), "", Upper( oGet:control:className() ) )
@@ -159,6 +212,8 @@ METHOD MouseClick( nR, nC ) CLASS HbWindow
             do while nBottom < MaxRow() - 1 .and. AScan( { 179, 186, 2, 81 }, ScrCharCode( nBottom, oGet:col ) ) > 0
                nBottom++
             enddo
+            if cCls == "LISTBOX"
+            endif
             if AScan( { 191, 187, 16, 87 }, ScrCharCode( oGet:row, nRight ) ) > 0 .and. ;
                AScan( { 192, 200, 20, 90 }, ScrCharCode( nBottom, oGet:col ) ) > 0 .and. ;
                nR > oGet:row .and. nR < nBottom .and. nC > oGet:col .and. nC < nRight .and. ;
@@ -180,6 +235,22 @@ METHOD MouseClick( nR, nC ) CLASS HbWindow
             endif
       endcase
    next
+
+return { oHit, nHitBot }
+
+METHOD MouseClick( nR, nC ) CLASS HbWindow
+
+   local oGet, oHit := nil, cCls := "", nHitRow := -999, nHitCol := -999, nHit2 := 0
+   local nCur, nTgt, cKeys, nIdx, nCurV, nRight, nBottom, nHitBot := -1, nJ, nK, cK, nI2, cLine, nIdx2
+   local aHitScan
+
+   if Empty( ::GetList ) .or. GetActive() == nil
+      return .F.  // READ busy between GETs: caller retries
+   endif
+
+   aHitScan := ::HitGetAt( nR, nC )
+   oHit    := aHitScan[ 1 ]
+   nHitBot := aHitScan[ 2 ]
 
    if oHit == nil
       return .T.  // click outside any control: handled, nothing to do
@@ -261,6 +332,73 @@ METHOD MouseClick( nR, nC ) CLASS HbWindow
       hb_MemoWrit( "/tmp/mc.log", If( File( "/tmp/mc.log" ), MemoRead( "/tmp/mc.log" ), "" ) + cLine )
    #endif
    __Keyboard( cKeys )
+
+return .T.
+
+//-----------------------------------------------------------------------------------------//
+
+// Moves READ focus to oGet through the keyboard (Ctrl+Home then Tab), so
+// READ navigation state stays consistent. No activation key is injected.
+
+METHOD FocusGet( oGet ) CLASS HBWindow
+
+   local nTgt := AScan( ::GetList, { | g | g == oGet } )
+   local nTabs := nTgt - 1
+
+   if nTgt > 0 .and. GetActive() != NIL .and. ! ( GetActive() == oGet )
+      if hb_GetEnv( "DSN_FGTABS" ) != ""
+         nTabs := Val( hb_GetEnv( "DSN_FGTABS" ) )
+      endif
+      __Keyboard( Chr( K_CTRL_HOME ) + Replicate( Chr( K_TAB ), nTabs ) )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Synchronous mouse route called from GetUReader (hbgetu.prg) while the
+// READ waits on this window. Events arrive as 0x44000000+code; coordinates
+// come from MRow()/MCol() at consume time.
+// Semantics: DOWN arms the control under the pointer (and focuses it);
+// UP activates only when it lands on the SAME armed control; a double
+// click arrives as DOWN,UP,DBL,UP so the DBL flags the next UP to be
+// swallowed: one activation per double click, never two.
+
+METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow
+
+   local nCode := hb_bitAnd( nKey, 0xFFFFFF )
+   local aHit, oHit, cCls
+
+   do case
+   case nCode == DSNK_MLDOWN
+      aHit := ::HitGetAt( MRow(), MCol() )
+      ::oArmGet := aHit[ 1 ]
+      ::lSkipUp := .F.
+      cCls := If( ::oArmGet != nil .and. ! Empty( ::oArmGet:control ), ;
+                  Upper( ::oArmGet:control:className() ), "-" )
+      // no focus injection here: injecting keys while the paired UP event
+      // is still in flight makes that UP vanish inside READ navigation
+      // (measured 2026-10-24); focus/activation happen on the UP instead
+   case nCode == DSNK_MLDBL
+      // do NOT re-arm: the UP that follows must not activate again
+      ::lSkipUp := .T.
+   case nCode == DSNK_MLUP
+      if ::lSkipUp
+         ::lSkipUp := .F.
+         ::oArmGet := nil
+      elseif ::oArmGet == nil
+      else
+         aHit := ::HitGetAt( MRow(), MCol() )
+         oHit := aHit[ 1 ]
+         if oHit != NIL .and. oHit == ::oArmGet
+            ::MouseClick( MRow(), MCol() )   // proven focus+activation path
+         elseif oHit != NIL
+            ::FocusGet( oHit )               // press-out release-in: focus, no activation
+         else
+         endif
+         ::oArmGet := nil
+      endif
+   endcase
 
 return .T.
 
@@ -382,7 +520,7 @@ METHOD MouseEvent( nMRow, nMCol ) CLASS HbWindow
                  ::nTop    = Max( 0, Min( MaxBtm( Self ) - nHeight + 1, MRow() - nMRow ) )
                  ::nLeft   = Max( 0, Min( MaxRgt( Self ) - nWidth + 1, MCol() - nMCol ) )
                  ::nBottom = ::nTop + nHeight - 1
-                 ::nRight = ::nLeft + nWidth - 1
+                 ::nRight  = ::nLeft + nWidth - 1
                  if ::bRepaint == nil
                     cBackImage = __dbgSaveScreen( ::nTop, ::nLeft, ::nBottom + 1, ::nRight + 2 )
                  endif
