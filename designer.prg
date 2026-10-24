@@ -106,6 +106,7 @@ CLASS HbDesigner
    METHOD PopupMenu()
    METHOD Redraw()
    METHOD RegisterIdles()
+   METHOD ClampGhost()
    METHOD ResumeUI()
    METHOD SaveJson( lAskName )
    METHOD SelectFileName( cTitle, cDefault )
@@ -209,7 +210,8 @@ METHOD Activate() CLASS HbDesigner
 
          case nKey == K_UP
             if ::lPlacing
-               ::nGhostRow = Max( 0, ::nGhostRow - 1 )
+               ::nGhostRow--
+               ::ClampGhost()
                ::Redraw()
             else
                ::MoveSelected( -1, 0 )
@@ -217,7 +219,8 @@ METHOD Activate() CLASS HbDesigner
 
          case nKey == K_DOWN
             if ::lPlacing
-               ::nGhostRow = Min( ::nDlgHeight - 2, ::nGhostRow + 1 )
+               ::nGhostRow++
+               ::ClampGhost()
                ::Redraw()
             else
                ::MoveSelected( 1, 0 )
@@ -225,7 +228,8 @@ METHOD Activate() CLASS HbDesigner
 
          case nKey == K_LEFT
             if ::lPlacing
-               ::nGhostCol = Max( 0, ::nGhostCol - 1 )
+               ::nGhostCol--
+               ::ClampGhost()
                ::Redraw()
             else
                ::MoveSelected( 0, -1 )
@@ -233,7 +237,8 @@ METHOD Activate() CLASS HbDesigner
 
          case nKey == K_RIGHT
             if ::lPlacing
-               ::nGhostCol = Min( ::nDlgWidth - 2, ::nGhostCol + 1 )
+               ::nGhostCol++
+               ::ClampGhost()
                ::Redraw()
             else
                ::MoveSelected( 0, 1 )
@@ -399,32 +404,10 @@ return nil
 METHOD AddControl( cType ) CLASS HbDesigner
 
    local aSize
-   local oCtrl := { "type" => cType, ;
-                    "row"  => ::nGhostRow, ;
-                    "col"  => ::nGhostCol }
+   local oCtrl := DsnNewControl( cType, ::aControls )
 
-   do case
-      case cType == DSN_SAY
-         oCtrl[ "caption" ] = "Label"
-      case cType == DSN_GET
-         oCtrl[ "variable" ] = DsnUniqueVar( ::aControls, "cVar" )
-         oCtrl[ "width"    ] = 10
-      case cType == DSN_CHECKBOX
-         oCtrl[ "caption"  ] = "Check"
-         oCtrl[ "variable" ] = DsnUniqueVar( ::aControls, "lVar" )
-      case cType == DSN_BUTTON
-         oCtrl[ "caption"     ] = "OK"
-         oCtrl[ "accelerator" ] = "O"
-         oCtrl[ "action"      ] = "oDlg:End()"
-      case cType == DSN_RADIO
-         oCtrl[ "variable" ] = DsnUniqueVar( ::aControls, "nVar" )
-         oCtrl[ "items"    ] = "Option 1,Option 2,Option 3"
-      case cType == DSN_LISTBOX
-         oCtrl[ "variable" ] = DsnUniqueVar( ::aControls, "nVar" )
-         oCtrl[ "items"    ] = "Item 1,Item 2,Item 3"
-         oCtrl[ "width"    ] = 20
-         oCtrl[ "height"   ] = 6
-   endcase
+   oCtrl[ "row" ] = ::nGhostRow
+   oCtrl[ "col" ] = ::nGhostCol
 
    aSize = DsnControlSize( oCtrl )
    oCtrl[ "row" ] = Max( 0, Min( ::nDlgHeight - 2 - aSize[ 2 ], oCtrl[ "row" ] ) )
@@ -610,12 +593,10 @@ METHOD DrawControls() CLASS HbDesigner
    next
 
    if ::lPlacing
-      DsnDrawControl( ::oWnd, { "type"     => ::cPlacingType, ;
-                                "row"      => ::nGhostRow, ;
-                                "col"      => ::nGhostCol, ;
-                                "caption"  => "Label", ;
-                                "variable" => "cVar", ;
-                                "width"    => 10 }, .T., CLR_GHOST, ::nViewRow, ::nViewCol )
+      oCtrl = DsnNewControl( ::cPlacingType, ::aControls )
+      oCtrl[ "row" ] = ::nGhostRow
+      oCtrl[ "col" ] = ::nGhostCol
+      DsnDrawControl( ::oWnd, oCtrl, .T., CLR_GHOST, ::nViewRow, ::nViewCol )
    endif
 
    ::DrawInspector()
@@ -650,6 +631,21 @@ METHOD SuspendUI() CLASS HbDesigner
       hb_IdleDel( ::oWnd:nIdle )
       ::oWnd:nIdle = nil
    endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// clamp the placing ghost origin so the whole control stays inside the
+// dialog interior - the same limits AddControl applies on drop, so the ghost
+// never vanishes or teleports when it reaches an edge
+
+METHOD ClampGhost() CLASS HbDesigner
+
+   local aSize := DsnControlSize( DsnNewControl( ::cPlacingType, ::aControls ) )
+
+   ::nGhostRow = Max( 0, Min( ::nDlgHeight - 2 - aSize[ 2 ], ::nGhostRow ) )
+   ::nGhostCol = Max( 0, Min( ::nDlgWidth  - 2 - aSize[ 1 ], ::nGhostCol ) )
 
 return nil
 
@@ -1523,6 +1519,40 @@ return hModel
 
 //-----------------------------------------------------------------------------------------//
 // size of a control in cells: { nWidth, nHeight }
+
+// default model for a new control of each type; used by AddControl and by the
+// placing ghost so the ghost shows the real size the control will have
+
+function DsnNewControl( cType, aControls )
+
+   local oCtrl := { "type" => cType, "row" => 0, "col" => 0 }
+
+   do case
+      case cType == DSN_SAY
+         oCtrl[ "caption" ] = "Label"
+      case cType == DSN_GET
+         oCtrl[ "variable" ] = DsnUniqueVar( aControls, "cVar" )
+         oCtrl[ "width"    ] = 10
+      case cType == DSN_CHECKBOX
+         oCtrl[ "caption"  ] = "Check"
+         oCtrl[ "variable" ] = DsnUniqueVar( aControls, "lVar" )
+      case cType == DSN_BUTTON
+         oCtrl[ "caption"     ] = "OK"
+         oCtrl[ "accelerator" ] = "O"
+         oCtrl[ "action"      ] = "oDlg:End()"
+      case cType == DSN_RADIO
+         oCtrl[ "variable" ] = DsnUniqueVar( aControls, "nVar" )
+         oCtrl[ "items"    ] = "Option 1,Option 2,Option 3"
+      case cType == DSN_LISTBOX
+         oCtrl[ "variable" ] = DsnUniqueVar( aControls, "nVar" )
+         oCtrl[ "items"    ] = "Item 1,Item 2,Item 3"
+         oCtrl[ "width"    ] = 20
+         oCtrl[ "height"   ] = 6
+   endcase
+
+return oCtrl
+
+//-----------------------------------------------------------------------------------------//
 
 function DsnControlSize( oCtrl )
 
