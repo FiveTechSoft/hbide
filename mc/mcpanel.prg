@@ -189,7 +189,11 @@ METHOD GoDir( cPath ) CLASS MCPanel
       endif
       ::cPath := cPath   // VFS paths are absolute by construction; normalize would mangle "scheme://"
    else
-      ::cPath := hb_PathNormalize( cPath )
+      if ! ::oApp:lCdFollowsLinks
+         ::cPath := MCRealPath( cPath )
+      else
+         ::cPath := hb_PathNormalize( cPath )
+      endif
    endif
    ::cMode     := "listing"
    ::nCurrent  := 1
@@ -1033,9 +1037,9 @@ METHOD EntryLine( aEntry, nWidth ) CLASS MCPanel
    endif
    if aEntry[ P_DIR ]
       cSize := If( aEntry[ P_NAME ] == "/..", "UP--DIR ", ;
-              If( ::lSizesComputed, Str( aEntry[ P_SIZE ], 8 ), "SUB-DIR " ) )
+              If( ::lSizesComputed, MCSizeColumn( aEntry[ P_SIZE ], ::oApp:lSIUnits ), "SUB-DIR " ) )
    else
-      cSize := If( aEntry[ P_SIZE ] < 0, PadL( "?", 8 ), Str( aEntry[ P_SIZE ], 8 ) )
+      cSize := If( aEntry[ P_SIZE ] < 0, PadL( "?", 8 ), MCSizeColumn( aEntry[ P_SIZE ], ::oApp:lSIUnits ) )
    endif
    cTime := If( Empty( aEntry[ P_DATE ] ), Space( 16 ), ;
                 DToC( aEntry[ P_DATE ] ) + " " + Left( aEntry[ P_TIME ], 5 ) )
@@ -1254,6 +1258,47 @@ return AllTrim( Str( Round( nBytes / 1024, 0 ), 10, 0 ) ) + "K"
 
 //-----------------------------------------------------------------------------------------//
 
+// size column: raw bytes while they fit 8 chars, then K/M/G with a
+// 1024 divisor (default) or 1000 ("Use SI size units")
+function MCSizeColumn( nBytes, lSI )
+
+   local cRaw := AllTrim( Str( nBytes, 20 ) ), nDiv
+
+   if Len( cRaw ) <= 8
+      return PadL( cRaw, 8 )
+   endif
+
+   nDiv := If( lSI, 1000, 1024 )
+
+   if nBytes >= nDiv * nDiv * nDiv
+      return PadL( AllTrim( Str( nBytes / ( nDiv * nDiv * nDiv ), 10, 1 ) ) + "G", 8 )
+   endif
+   if nBytes >= nDiv * nDiv
+      return PadL( AllTrim( Str( nBytes / ( nDiv * nDiv ), 10, 1 ) ) + "M", 8 )
+   endif
+
+return PadL( AllTrim( Str( nBytes / nDiv, 10, 1 ) ) + "K", 8 )
+
+//-----------------------------------------------------------------------------------------//
+
+// physical path resolution for "Cd follows links" OFF (mc's cd_symlinks=0):
+// resolves the symlink chain to the real directory
+function MCRealPath( cPath )
+
+   local cOut := "", nRet
+
+   nRet := hb_ProcessRun( MCShWrap( "cd " + ShellQuote( cPath ) + " && pwd -P" ),, @cOut )
+   if nRet == 0
+      cOut := StrTran( StrTran( cOut, Chr( 13 ), "" ), Chr( 10 ), "" )
+      if ! Empty( cOut )
+         return hb_PathNormalize( cOut )
+      endif
+   endif
+
+return hb_PathNormalize( cPath )
+
+//-----------------------------------------------------------------------------------------//
+
 function MCShWrap( cScript )
 // hb_ProcessRun() execs without a shell; pipes, redirections, && need sh -c.
 return "/bin/sh -c " + ShellQuote( cScript )
@@ -1362,9 +1407,9 @@ METHOD EntryLong( aEntry, nWidth ) CLASS MCPanel
    endif
    if aEntry[ P_DIR ]
       cSize := If( aEntry[ P_NAME ] == "/..", "UP--DIR ", ;
-              If( ::lSizesComputed, Str( aEntry[ P_SIZE ], 8 ), "SUB-DIR " ) )
+              If( ::lSizesComputed, MCSizeColumn( aEntry[ P_SIZE ], ::oApp:lSIUnits ), "SUB-DIR " ) )
    else
-      cSize := If( aEntry[ P_SIZE ] < 0, PadL( "?", 8 ), Str( aEntry[ P_SIZE ], 8 ) )
+      cSize := If( aEntry[ P_SIZE ] < 0, PadL( "?", 8 ), MCSizeColumn( aEntry[ P_SIZE ], ::oApp:lSIUnits ) )
    endif
    cTime := MCShortDate( aEntry[ P_DATE ], aEntry[ P_TIME ] )
 
@@ -1444,9 +1489,9 @@ METHOD EntryUser( aEntry, nWidth ) CLASS MCPanel
             case cWord == "size" .or. cWord == "bsize"
                if aEntry[ P_DIR ]
                   cPart += If( aEntry[ P_NAME ] == "/..", "UP--DIR ", ;
-                          If( ::lSizesComputed, Str( aEntry[ P_SIZE ], 8 ), "SUB-DIR " ) )
+                          If( ::lSizesComputed, MCSizeColumn( aEntry[ P_SIZE ], ::oApp:lSIUnits ), "SUB-DIR " ) )
                else
-                  cPart += If( aEntry[ P_SIZE ] < 0, PadL( "?", 8 ), Str( aEntry[ P_SIZE ], 8 ) )
+                  cPart += If( aEntry[ P_SIZE ] < 0, PadL( "?", 8 ), MCSizeColumn( aEntry[ P_SIZE ], ::oApp:lSIUnits ) )
                endif
             case cWord == "mtime"
                cPart += MCShortDate( aEntry[ P_DATE ], aEntry[ P_TIME ] )
