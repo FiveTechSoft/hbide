@@ -6,6 +6,13 @@
 
 //-----------------------------------------------------------------------------------------//
 
+static function ScrCharCode( nR, nC )
+   // screen byte at (nR,nC); SaveScreen returns char+attr pairs
+   return Asc( SaveScreen( nR, nC, nR, nC ) )
+
+static function ScrAttrCode( nR, nC )
+   return Asc( SubStr( SaveScreen( nR, nC, nR, nC ), 3, 1 ) )
+
 CLASS HbWindow FROM HbDbWindow
 
    DATA   bInit
@@ -15,6 +22,7 @@ CLASS HbWindow FROM HbDbWindow
    DATA   lRedrawPending INIT .F.
    DATA   nIdle          // allows mouse support in READ
    DATA   nIdleRead      // idle hook that feeds mouse clicks into READ
+   DATA   nPendRow, nPendCol, nPendAt  // queued mouse click while READ is busy
    DATA   lReadMouse INIT .F.  // left button state seen by the idle hook
    DATA   GetList
    DATA   lDesign INIT .F.
@@ -87,9 +95,19 @@ METHOD ReadMouse() CLASS HbWindow
    local lNow := MLeftDown()
 
    if ::lReadMouse .and. ! lNow
-      ::MouseClick( MRow(), MCol() )
+      // click released: queue it; the READ may be busy navigating
+      ::nPendRow := MRow()
+      ::nPendCol := MCol()
+      ::nPendAt  := Seconds()
    endif
    ::lReadMouse := lNow
+   if ::nPendRow != nil
+      // MouseClick returns .F. only while the READ is between GETs; retry
+      // briefly, then drop the click
+      if ::MouseClick( ::nPendRow, ::nPendCol ) .or. Seconds() - ::nPendAt > 3
+         ::nPendRow := nil
+      endif
+   endif
 
 return nil
 
@@ -103,22 +121,37 @@ return nil
 METHOD MouseClick( nR, nC ) CLASS HbWindow
 
    local oGet, oHit := nil, cCls := "", nHitRow := -999, nHitCol := -999
-   local nCur, nTgt, cKeys
+   local nCur, nTgt, cKeys, nIdx, nCurV, nRight, nBottom, nHitBot := -1, nJ, nK, cK, nI2, cLine, nIdx2
 
    if Empty( ::GetList ) .or. GetActive() == nil
-      return .F.
+      return .F.  // READ busy between GETs: caller retries
    endif
 
    for each oGet in ::GetList
       cCls := If( Empty( oGet:control ), "", Upper( oGet:control:className() ) )
       do case
          case cCls == "LISTBOX" .or. cCls == "RADIOGROUP"
-            // multi-row controls: any row from their top downwards
-            if nR >= oGet:row .and. nC >= oGet:col .and. nC <= oGet:col + 40 .and. ;
+            // framed multi-row controls: recover the frame extents from the
+            // screen border characters (control internals are protected);
+            // items live one row inside the frame, so the frame rows miss
+            // border bytes differ by codepage: CP437 (196/179/191/192) or
+            // UTF-16 low bytes under UTF-8 terminals (0/2/16/20)
+            nRight := oGet:col + 1
+            do while nRight < MaxCol() - 1 .and. AScan( { 196, 205, 0, 80 }, ScrCharCode( oGet:row, nRight ) ) > 0
+               nRight++
+            enddo
+            nBottom := oGet:row + 1
+            do while nBottom < MaxRow() - 1 .and. AScan( { 179, 186, 2, 81 }, ScrCharCode( nBottom, oGet:col ) ) > 0
+               nBottom++
+            enddo
+            if AScan( { 191, 187, 16, 87 }, ScrCharCode( oGet:row, nRight ) ) > 0 .and. ;
+               AScan( { 192, 200, 20, 90 }, ScrCharCode( nBottom, oGet:col ) ) > 0 .and. ;
+               nR > oGet:row .and. nR < nBottom .and. nC > oGet:col .and. nC < nRight .and. ;
                ( oGet:row > nHitRow .or. ( oGet:row == nHitRow .and. oGet:col > nHitCol ) )
-               oHit := oGet
+               oHit    := oGet
                nHitRow := oGet:row
                nHitCol := oGet:col
+               nHitBot := nBottom
             endif
          otherwise
             // single-row controls (plain GET, CHECKBOX, PUSHBUTTON, radio item);
@@ -134,7 +167,7 @@ METHOD MouseClick( nR, nC ) CLASS HbWindow
    next
 
    if oHit == nil
-      return .F.
+      return .T.  // click outside any control: handled, nothing to do
    endif
 
    nCur := AScan( ::GetList, { | g | g == GetActive() } )
@@ -152,7 +185,63 @@ METHOD MouseClick( nR, nC ) CLASS HbWindow
          cKeys += Chr( K_ENTER )
       case cCls == "CHECKBOX"
          cKeys += Chr( K_SPACE )
+      case cCls == "LISTBOX" .or. cCls == "RADIOGROUP"
+         // select the clicked item; items start one row below the frame top
+         nIdx := nR - oHit:row - 1
+         if nIdx >= 0
+            if cCls == "RADIOGROUP"
+               // current selection from the "(*)" marker inside the frame
+               nCurV := -1
+               for nJ := oHit:row + 1 to nHitBot - 1
+                  for nK := oHit:col + 1 to oHit:col + 5
+                     if ScrCharCode( nJ, nK ) == 42  // '*' of the "(*)" marker
+                        nCurV := nJ - oHit:row - 1
+                        exit
+                     endif
+                  next
+                  if nCurV >= 0
+                     exit
+                  endif
+               next
+            else
+               // listbox: the GET buffer stays NIL, so read the bar from the
+               // screen: the selected row has a different color attribute
+               // the bar is the only item row with a different attribute;
+               // only rows with item text count (the listbox may be
+               // taller than its item count)
+               nCurV := -1
+               nJ    := oHit:col + 2
+               nIdx2 := -1
+               nK    := 0
+               for nI2 := oHit:row + 2 to nHitBot - 1
+                  if ScrCharCode( nI2, nJ ) != 32
+                     if ScrAttrCode( nI2, nJ ) != ScrAttrCode( oHit:row + 1, nJ )
+                        nK++
+                        nIdx2 := nI2 - oHit:row - 1
+                     endif
+                  endif
+               next
+               if nK == 1
+                  nCurV := nIdx2  // one row stands out: that is the bar
+               else
+                  nCurV := 0      // all others differ (or none): bar on first row
+               endif
+            endif
+            if nCurV >= 0 .and. nIdx != nCurV
+               cKeys += Replicate( Chr( If( nIdx > nCurV, K_DOWN, K_UP ) ), Abs( nIdx - nCurV ) )
+            endif
+         endif
    endcase
+   #ifdef MC_DEBUG
+      cK := ""
+      for nI2 := 1 to Len( cKeys )
+         cK += hb_ntos( Asc( SubStr( cKeys, nI2, 1 ) ) ) + ","
+      next
+      cLine := "r=" + hb_ntos( nR ) + " c=" + hb_ntos( nC ) + " hit=" + cCls + " tgt=" + hb_ntos( nTgt ) + ;
+               " cur=" + hb_ntos( nCur ) + " idx=" + hb_ValToStr( nIdx ) + " curv=" + hb_ValToStr( nCurV ) + ;
+               " keys=" + cK + hb_eol()
+      hb_MemoWrit( "/tmp/mc.log", If( File( "/tmp/mc.log" ), MemoRead( "/tmp/mc.log" ), "" ) + cLine )
+   #endif
    __Keyboard( cKeys )
 
 return .T.
