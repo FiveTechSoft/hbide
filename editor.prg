@@ -5,6 +5,8 @@
 #define _REFRESH_LINE   1
 #define _REFRESH_ALL    2
 
+#define MAX_UNDO        300
+
 //-----------------------------------------------------------------------------------------//
 
 function BuildEditor()
@@ -49,8 +51,22 @@ CLASS HBSrcEdit FROM HBEditor
    DATA   nSelRow      INIT 0
    DATA   nSelStart    INIT 0
    DATA   nSelEnd      INIT 0
+   DATA   aUndo        INIT {}
+   DATA   aRedo        INIT {}
+   DATA   nSavedUndoLen INIT 0
+   DATA   lInUndo      INIT .F.
+   DATA   lOpRecorded  INIT .F.
 
    METHOD Edit( nKey )
+   METHOD EditKey( nKey )
+   METHOD LinesSnapshot()
+   METHOD RecordEdit( aBefore )
+   METHOD PushOp( nRow, aOld, aNew )
+   METHOD ApplyOp( aOp, lInverse )
+   METHOD Undo()
+   METHOD Redo()
+   METHOD LoadText( cText )
+   METHOD SaveFile()
    METHOD Display()
    METHOD DisplayLine( nLine )
    METHOD LineColor( nLine ) INLINE ;
@@ -99,6 +115,7 @@ METHOD PasteLine() CLASS HBSrcEdit
 
    if ! Empty( ::cClipboard )
       // Insert below current line; independent of insert/overstrike mode
+      ::PushOp( ::nRow + 1, {}, { ::cClipboard } )
       ::InsertLine( ::cClipboard, .F., ::nRow + 1 )
       ::lDirty := .T.
       ::GoTo( ::nRow + 1, 5 )
@@ -113,6 +130,7 @@ METHOD DeleteLine() CLASS HBSrcEdit
 
    if Len( ::aText ) > 1
       ::cClipboard = ::aText[ ::nRow ]:cText
+      ::PushOp( ::nRow, { ::cClipboard }, {} )
       ::RemoveLine( ::nRow )
       ::lDirty := .T.
       ::GoTo( ::nRow, 5 )  // GoTo clamps nRow to LineCount
@@ -126,6 +144,7 @@ return nil
 METHOD DuplicateLine() CLASS HBSrcEdit
 
    // Insert a copy below current line; independent of insert/overstrike mode
+   ::PushOp( ::nRow + 1, {}, { ::aText[ ::nRow ]:cText } )
    ::InsertLine( ::aText[ ::nRow ]:cText, .F., ::nRow + 1 )
    ::lDirty := .T.
    ::GoTo( ::nRow + 1, 5 )
@@ -237,10 +256,35 @@ return nil
 
 METHOD Edit( nKey ) CLASS HBSrcEdit
 
+   local aBefore := ::LinesSnapshot()
+
+   ::lOpRecorded := .F.
+   ::EditKey( nKey )
+
+   if ::lInUndo
+      ::lInUndo := .F.
+   elseif ! ::lOpRecorded
+      ::RecordEdit( aBefore )
+   endif
+
+return Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD EditKey( nKey ) CLASS HBSrcEdit
+
    local nKeyStd := hb_keyStd( nKey )
    local cKey, oLine, nPos
 
    do case
+      case nKeyStd == K_CTRL_Z
+           ::lInUndo := .T.
+           ::Undo()
+
+      case nKeyStd == K_CTRL_U
+           ::lInUndo := .T.
+           ::Redo()
+
       case nKey == K_LDBLCLK
            ::GoTo( MRow() - ::nTop + ::nFirstRow, Max( MCol() - ::nLeft + ::nFirstCol, 5 ), _REFRESH_ALL )
            ::SelectWord( ::nRow, ::nCol - 4 )
@@ -348,6 +392,181 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
    endif
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD LinesSnapshot() CLASS HBSrcEdit
+
+   local aLines := Array( Len( ::aText ) ), n
+
+   for n = 1 to Len( ::aText )
+      aLines[ n ] := ::aText[ n ]:cText
+   next
+
+return aLines
+
+//-----------------------------------------------------------------------------------------//
+
+// Diff-based op recorder: finds the changed line span between snapshots
+METHOD RecordEdit( aBefore ) CLASS HBSrcEdit
+
+   local aAfter := ::LinesSnapshot()
+   local nB := Len( aBefore ), nA := Len( aAfter )
+   local nPre := 0, nSuf := 0, i
+   local aOld := {}, aNew := {}
+
+   while nPre < Min( nB, nA ) .and. aBefore[ nPre + 1 ] == aAfter[ nPre + 1 ]
+      nPre++
+   end
+   while nSuf < Min( nB - nPre, nA - nPre ) .and. ;
+         aBefore[ nB - nSuf ] == aAfter[ nA - nSuf ]
+      nSuf++
+   end
+
+   if nPre + nSuf >= nB .and. nPre + nSuf >= nA
+      return Self   // no text change
+   endif
+
+   for i := nPre + 1 to nB - nSuf
+      AAdd( aOld, aBefore[ i ] )
+   next
+   for i := nPre + 1 to nA - nSuf
+      AAdd( aNew, aAfter[ i ] )
+   next
+
+   ::PushOp( nPre + 1, aOld, aNew )
+
+return Self
+
+//-----------------------------------------------------------------------------------------//
+
+// Undo stack ops: { nRow, aOldLines, aNewLines } replaces aOld with aNew at nRow
+// (model adapted from tvedit's PushUndo, reworked for HBEditor's line array)
+METHOD PushOp( nRow, aOld, aNew ) CLASS HBSrcEdit
+
+   local aLast, i, lSame
+
+   if Len( aOld ) == Len( aNew )
+      lSame := .T.
+      for i = 1 to Len( aOld )
+         if aOld[ i ] != aNew[ i ]
+            lSame := .F.
+            exit
+         endif
+      next
+      if lSame
+         return Self
+      endif
+   endif
+
+   // fuse consecutive single-line edits on the same line (typing bursts)
+   if Len( ::aUndo ) > 0
+      aLast := ATail( ::aUndo )
+      if Len( aLast[ 2 ] ) == 1 .and. Len( aLast[ 3 ] ) == 1 .and. ;
+         Len( aOld ) == 1 .and. Len( aNew ) == 1 .and. ;
+         aLast[ 1 ] == nRow .and. aLast[ 3, 1 ] == aOld[ 1 ]
+         aLast[ 3, 1 ] := aNew[ 1 ]
+         ::aRedo := {}
+         ::lOpRecorded := .T.
+         return Self
+      endif
+   endif
+
+   AAdd( ::aUndo, { nRow, aOld, aNew } )
+   ::aRedo := {}
+   if Len( ::aUndo ) > MAX_UNDO
+      ADel( ::aUndo, 1 )
+      ASize( ::aUndo, Len( ::aUndo ) - 1 )
+   endif
+   ::lOpRecorded := .T.
+
+return Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ApplyOp( aOp, lInverse ) CLASS HBSrcEdit
+
+   local aDel := iif( lInverse, aOp[ 3 ], aOp[ 2 ] )
+   local aIns := iif( lInverse, aOp[ 2 ], aOp[ 3 ] )
+   local nRow := aOp[ 1 ], i
+
+   for i = 1 to Len( aDel )
+      ::RemoveLine( nRow )
+   next
+   for i = 1 to Len( aIns )
+      if nRow + i - 1 > Len( ::aText )
+         ::AddLine( aIns[ i ], .F. )
+      else
+         ::InsertLine( aIns[ i ], .F., nRow + i - 1 )
+      endif
+   next
+
+return Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Undo() CLASS HBSrcEdit
+
+   local aOp
+
+   if Len( ::aUndo ) == 0
+      return Self
+   endif
+
+   aOp := ATail( ::aUndo )
+   ASize( ::aUndo, Len( ::aUndo ) - 1 )
+   ::ApplyOp( aOp, .T. )
+   AAdd( ::aRedo, aOp )
+   ::lDirty := ( Len( ::aUndo ) != ::nSavedUndoLen )
+   ::ClearSelection()
+   ::GoTo( Min( aOp[ 1 ], ::LineCount() ), 5, _REFRESH_ALL )
+
+return Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Redo() CLASS HBSrcEdit
+
+   local aOp
+
+   if Len( ::aRedo ) == 0
+      return Self
+   endif
+
+   aOp := ATail( ::aRedo )
+   ASize( ::aRedo, Len( ::aRedo ) - 1 )
+   ::ApplyOp( aOp, .F. )
+   AAdd( ::aUndo, aOp )
+   ::lDirty := ( Len( ::aUndo ) != ::nSavedUndoLen )
+   ::ClearSelection()
+   ::GoTo( Min( aOp[ 1 ], ::LineCount() ), 5, _REFRESH_ALL )
+
+return Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD LoadText( cText ) CLASS HBSrcEdit
+
+   local xRet := ::Super:LoadText( cText )
+
+   ::aUndo := {}
+   ::aRedo := {}
+   ::nSavedUndoLen := 0
+   ::lInUndo := .F.
+
+return xRet
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD SaveFile() CLASS HBSrcEdit
+
+   local lOk := ::Super:SaveFile()
+
+   if lOk
+      ::nSavedUndoLen := Len( ::aUndo )
+   endif
+
+return lOk
 
 //-----------------------------------------------------------------------------------------//
 
