@@ -53,6 +53,7 @@ CLASS MCApp
    DATA   lEnd         INIT .F.
    DATA   cBackScreen
    DATA   cCmdLine     INIT ""
+   DATA   oCmdLine
    DATA   cLastOutput  INIT ""
    DATA   aHistory     INIT {}
    DATA   aHotlist     INIT {}
@@ -175,6 +176,7 @@ METHOD New( cStartDir ) CLASS MCApp
    __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
 
    ::LoadCfg()
+   ::oCmdLine := MCCommandLine():New( self )
    ::SetTheme( ::nTheme )
 
    ::oPanel1 := MCPanel():New( cStartDir )
@@ -203,7 +205,7 @@ return nil
 METHOD Layout() CLASS MCApp
 
    local nTop    := If( ::lMenubar, 1, 0 )
-   local nBottom := MaxRow() - If( ::lKeybar, 1, 0 ) - If( ::lCmdlineBar, 1, 0 )
+   local nBottom := MaxRow() - If( ::lKeybar, 1, 0 ) - If( ::lCmdlineBar, 2, 0 )
    local nMidCol := Int( MaxCol() / 2 )
    local nMidRow := Int( ( nBottom - nTop + 1 ) / 2 ) + nTop - 1
 
@@ -265,14 +267,7 @@ return nil
 
 METHOD ShowCmdLine() CLASS MCApp
 
-   local nRow := MaxRow() - If( ::lKeybar, 1, 0 )
-   local cPrompt := ::ActivePanel():cPath + "$ "
-   local cText := cPrompt + ::cCmdLine
-
-   hb_DispOutAt( nRow, 0, hb_UPadR( hb_UTF8SubStr( cText, Max( 1, hb_ULen( cText ) - MaxCol() ) ), MaxCol() + 1 ), "N/W" )
-   SetCursor( SC_NORMAL )
-   SetPos( nRow, Min( Len( cText ), MaxCol() ) )
-   SetCursor( SC_NONE )
+   ::oCmdLine:Show()
 
 return nil
 
@@ -354,7 +349,8 @@ METHOD CmdInsertName() CLASS MCApp
    local aEntry := ::ActivePanel():Current()
 
    if aEntry != nil
-      ::cCmdLine += ShellQuote( MCEntryPath( ::ActivePanel(), aEntry ) ) + " "
+      ::oCmdLine:Append( ShellQuote( MCEntryPath( ::ActivePanel(), aEntry ) ) + " " )
+      ::cCmdLine := ::oCmdLine:cText
       ::ShowCmdLine()
    endif
 
@@ -398,6 +394,7 @@ METHOD RunCommand() CLASS MCApp
       ::ShowOutput( ::cLastOutput )
       ::Rescan()
    endif
+   ::oCmdLine:SetText( "" )
    ::cCmdLine := ""
    ::Repaint()
 
@@ -535,6 +532,12 @@ METHOD Activate() CLASS MCApp
          loop
       endif
 
+      if ::lCmdlineBar .and. ::oCmdLine:HandleKey( nKey, lCtrl )
+         ::cCmdLine := ::oCmdLine:cText
+         ::Repaint()
+         loop
+      endif
+
       do case
          case nKey >= K_ALT_Q .and. nKey <= K_ALT_M .or. ;
               nKey >= K_ALT_A .and. nKey <= K_ALT_Z
@@ -592,27 +595,17 @@ METHOD Activate() CLASS MCApp
             if ( nAlt := MCA_ESCAlt( nKey2 ) ) != 0
                ::AltKey( nAlt )
             else
+               ::oCmdLine:SetText( "" )
                ::cCmdLine := ""
                ::Repaint()
             endif
-
-         case nKey == K_BS
-            if ! Empty( ::cCmdLine )
-               ::cCmdLine := Left( ::cCmdLine, Len( ::cCmdLine ) - 1 )
-            endif
-            ::Repaint()
 
          case nKey == 43 .and. Empty( ::cCmdLine ) ; ::SelectGroup( .T. )    // '+'
          case nKey == 45 .and. Empty( ::cCmdLine ) ; ::SelectGroup( .F. )    // '-'
          case nKey == 42 .and. Empty( ::cCmdLine ) ; ::InvertSelection()     // '*'
 
          otherwise
-            if nKey >= 32 .and. nKey < 256
-               ::cCmdLine += Chr( nKey )
-               ::Repaint()
-            else
-               lDone := .F.
-            endif
+            lDone := .F.
       endcase
    end
 
@@ -2681,7 +2674,8 @@ METHOD CmdHistory() CLASS MCApp
    endif
    n := ::DlgList( "Command history", AReverse2( AClone( ::aHistory ) ) )
    if n > 0
-      ::cCmdLine := AReverse2( AClone( ::aHistory ) )[ n ]
+      ::oCmdLine:SetText( AReverse2( AClone( ::aHistory ) )[ n ] )
+      ::cCmdLine := ::oCmdLine:cText
    endif
    ::Repaint()
 
