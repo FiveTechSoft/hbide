@@ -94,10 +94,13 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   user format references %x/%z or the inode). Per-panel formats persist
   to ~/.hbmc.ini (save+load round-trip verified, restart restores them)
 - Layout: horizontal / vertical panel split
-- Configuration dialog: 10 working checkboxes (Show hidden files, Show
+- Configuration dialog: 11 working checkboxes (Show hidden files, Show
   mini-status, Compute totals, Show free space, Auto save setup, Shell
   patterns, Mkdir autoname, Verbose operation, Use internal view, Use
-  internal edit). Use internal view/edit verified live both ways: ON
+  internal edit, Cd follows links). Cd follows links verified live both
+  ways on a dir symlink (dirlink -> /tmp/hbmany): ON (mc default) Enter
+  keeps the logical path (panel title /tmp/hbdest/dirlink); OFF resolves
+  to the physical target (title /tmp/hbmany) Use internal view/edit verified live both ways: ON
   (mc default) F3/F4 use the built-in viewer/editor; OFF F3 hands the
   file to the configured external viewer (less, verified on screen with
   the file's real content, q returns to intact panels) and F4 to the
@@ -117,10 +120,15 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   a change that leaves the dir mtime at the scanned second (tested by
   resetting the mtime after creating a file) is NOT picked up on panel
   switch until C-r - same granularity limit as mc's own mtime check
-- Panel options: 10 working checkboxes (Mix all files, Show backup
+- Panel options: 11 working checkboxes (Mix all files, Show backup
   files, Mark moves down, Show hidden files, Lynx-like motion, File
   types highlight, Fast dir reload, Scroll pages, Center scrolling,
-  Mouse wheel pages) - mark-moves-down off keeps the cursor on Insert.
+  Mouse wheel pages, Use SI size units). SI units verified live both
+  ways on a 104857600-byte file: OFF (mc default) shows 100.0M (1024
+  divisor); ON shows 104.9M (1000 divisor); raw byte counts still show
+  while the value fits 8 chars. The same width-safe formatter fixed a
+  real overflow found during this test: the User defined size field
+  rendered ******** for 104857600 bytes and now shows the K/M/G form - mark-moves-down off keeps the cursor on Insert.
   Scroll trio verified on a 189-entry panel (/tmp/hbmany, 14 visible
   file rows). Page scrolling, both directions with the exact same
   input (Home, then 15 x Down, one edge cross): ON (mc default) the
