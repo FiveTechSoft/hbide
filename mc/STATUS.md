@@ -301,9 +301,17 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 ## Known limits
 
-- Terminal resize: the panels view now relayouts cleanly on SIGWINCH (full
-  wipe + layout + repaint in one DispBegin). A READ-modal dialog open during
-  the resize does not relayout until it closes.
+- Terminal resize: the panels view relayouts cleanly on SIGWINCH (full
+  wipe + layout + repaint in one DispBegin, driven from the main loop which
+  reads keys with HB_INKEY_EXT). Dialogs: resize redraw is wired
+  (MCDlgResizeArm/Redraw: full wipe + frame Refresh + replay of recorded
+  MCDlgSay lines + control Display, armed from an idle task and from both
+  resize key codes) but INERT under gttrm: a dialog's plain-READ Inkey( 0 )
+  filters the extended resize event and Harbour does not pump idle tasks
+  during that blocking wait, so the redraw never fires there; it should fire
+  on GTs that deliver plain K_RESIZE or pump idles. A real fix needs an
+  app-owned dialog read loop with HB_INKEY_EXT (bigger refactor). Dialog
+  operation itself is unaffected on every GT.
 - Keystroke injection (XTEST) can lose characters mid-session; tests drive
   the app in short batches with a verifying screenshot after each step.
 - Dialog GET width follows the variable length (PadR), not @S pictures.
