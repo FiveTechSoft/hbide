@@ -222,7 +222,6 @@ procedure Main()
    cCode = DsnGenCode( { "caption" => "T", "width" => 40, "height" => 12, "controls" => { ;
       { "type" => "listbox", "row" => 1, "col" => 2, "variable" => "nList2", "items" => "R&D.prg,&One", "width" => 16, "height" => 4 } } } )
    Check( "gen listbox keeps items verbatim", '"R&D.prg"' $ cCode .and. '"&One"' $ cCode )
-
    // json roundtrip of the new properties
    cJson = hb_jsonEncode( hModel, .T. )
    hBack = nil
@@ -246,6 +245,42 @@ procedure Main()
    Check( "insp fields listbox", Len( oD2:InspFields() ) == 6 )
    oD2:InspSetText( "items", "A,B,C,D" )
    Check( "insp set items", oD2:aControls[ 1 ][ "items" ] == "A,B,C,D" )
+
+   // DsnDlgPair parses the first pair, defaults to the white dialog
+   Check( "dlgpair blue",  DsnDlgPair( "W+/B, N/W" )[ 1 ] == "W+" .and. DsnDlgPair( "W+/B, N/W" )[ 2 ] == "B" )
+   Check( "dlgpair black", DsnDlgPair( "GR+/N" )[ 2 ] == "N" )
+   Check( "dlgpair default", DsnDlgPair( "" )[ 2 ] == "W" )
+
+   // colored dialog: control palettes derive from the dialog background
+   hModel = { "name" => "Clr", "caption" => "C", "width" => 40, "height" => 12, "color" => "W+/B", "controls" => { ;
+      { "type" => "say", "row" => 1, "col" => 2, "caption" => "Lbl" }, ;
+      { "type" => "get", "row" => 2, "col" => 2, "variable" => "cV1", "width" => 8 }, ;
+      { "type" => "checkbox", "row" => 3, "col" => 2, "caption" => "Ck", "variable" => "lV1" }, ;
+      { "type" => "button", "row" => 4, "col" => 2, "caption" => "OK" }, ;
+      { "type" => "listbox", "row" => 5, "col" => 2, "variable" => "nL1", "items" => "One,Two", "width" => 12, "height" => 4 } } }
+   cCode = DsnGenCode( hModel )
+   Check( "clr say inherits", "hb_DispOutAt( oDlg:nTop" $ cCode .and. "'W+/B' )" $ cCode .and. ! ( "oDlg:Say(" $ cCode ) )
+   Check( "clr get contrast", "COLOR 'N/W,B/W,N/W,GR+/W'" $ cCode )
+   Check( "clr checkbox inherits", "COLOR 'W+/B,Y+/B,W+/B,GR+/B'" $ cCode )
+   Check( "clr button contrast", "COLOR 'N/W,W+/N,N/W,R/W'" $ cCode )
+   Check( "clr listbox contrast", "COLOR 'N/W,W+/N,N/W,W+/G,N/W,W+/W,GR+/W'" $ cCode )
+   Check( "clr button display override", "__ClsModMsg( PushButton( 0, 0 ):ClassH, 'DISPLAY', @DsnBtnDisplay() )" $ cCode ;
+          .and. "function DsnBtnDisplay()" $ cCode )
+   Check( "clr shadow on dialog bg", ', "N/B" )' $ cCode )
+
+   // default white dialog keeps hbide palettes byte-exact (regression)
+   hModel = { "name" => "Def", "caption" => "D", "width" => 40, "height" => 12, "controls" => { ;
+      { "type" => "say", "row" => 1, "col" => 2, "caption" => "Lbl" }, ;
+      { "type" => "get", "row" => 2, "col" => 2, "variable" => "cV2", "width" => 8 }, ;
+      { "type" => "checkbox", "row" => 3, "col" => 2, "caption" => "Ck", "variable" => "lV2" }, ;
+      { "type" => "button", "row" => 4, "col" => 2, "caption" => "OK" } } }
+   cCode = DsnGenCode( hModel )
+   Check( "def say keeps oDlg:Say", "oDlg:Say(" $ cCode )
+   Check( "def get palette", "COLOR 'W/B,W+/B,W+/W,GR+/W'" $ cCode )
+   Check( "def checkbox palette", "COLOR 'N/W,BG+/W,N/W,GR+/W'" $ cCode )
+   Check( "def button palette", "COLOR 'GR+/G,W+/G,N/G,BG+/G'" $ cCode )
+   Check( "def no override", ! ( "__ClsModMsg" $ cCode ) .and. ! ( "DsnBtnDisplay" $ cCode ) )
+
 
 
    // --- robustness: unique variables, JSON validation, generation guards ---
