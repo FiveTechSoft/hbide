@@ -145,13 +145,18 @@ byte the app emits, not just the designer.
 ### Verified interactively (Xvfb + xdotool, real app)
 
 - Mouse drag of a control updates its row/col (inspector shows new values).
+- Resize handles: a selected GET or LISTBOX shows a bottom-right handle;
+  dragging it resizes the control (GET width, LISTBOX width and height),
+  clamped to the dialog interior and to minimum sizes (GET 1, LISTBOX 4x3).
+  Sizes derive from caption/items for the other types, so they have no
+  handle; keyboard resize is available through the inspector Width/Height
+  fields. Overlap with other controls is allowed, as with move.
 - Inspector panel drags by its title bar.
 - Full flow: open designer, place all control types, generate, save JSON,
   reload, discard confirmation.
 
 ## Roadmap (not in this version)
 
-- Control resize handles (only move is supported)
 - Undo/redo, copy/paste of controls
 - Grid/snap and alignment helpers
 - Opening the generated .prg directly in the editor
