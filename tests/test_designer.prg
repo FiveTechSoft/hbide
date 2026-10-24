@@ -517,6 +517,17 @@ procedure Main()
    Check( "gen uses resized listbox size", ;
       "oDlg:nTop + 13, oDlg:nLeft + 25" $ cCode )
 
+   // button shadow glyphs follow the active codepage: CP437 keeps the raw
+   // half blocks (byte-identical to the old Chr(220)/Chr(223)), the UTF-8
+   // opt-in gets the multi-byte encoding so they no longer render as '?'
+   Check( "button shadow cp437 bytes", ;
+      HbBtnShadowChars()[ 1 ] == Chr( 220 ) .and. HbBtnShadowChars()[ 2 ] == Chr( 223 ) )
+   hb_cdpSelect( "UTF8" )
+   Check( "button shadow utf8 encoded", ;
+      HbBtnShadowChars()[ 1 ] == hb_UTF8ToStr( "▄" ) .and. ;
+      Len( HbBtnShadowChars()[ 1 ] ) > 1 )
+   hb_cdpSelect( "EN" )
+
    QOut( "" )
    QOut( "PASSED: " + hb_ntos( s_nPassed ) + "  FAILED: " + hb_ntos( s_nFailed ) )
    ErrorLevel( If( s_nFailed == 0, 0, 1 ) )
