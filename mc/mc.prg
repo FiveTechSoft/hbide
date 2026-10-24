@@ -1589,7 +1589,7 @@ function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
          lCreated := .T.
       endif
       for each aChild in Directory( hb_DirSepAdd( cSrc ) + "*", "DHS" )
-         if aChild[ F_NAME ] != "." .and. aChild[ F_NAME ] != ".."
+         if !( aChild[ F_NAME ] == "." ) .and. !( aChild[ F_NAME ] == ".." )   // exact: != is a prefix compare with SET EXACT off
             if ! CopyItem( hb_FNameMerge( cSrc, aChild[ F_NAME ] ), ;
                            hb_FNameMerge( cDst, aChild[ F_NAME ] ), lConfirm, @lAll, oApp )
                lOk := .F.
@@ -2473,3 +2473,6 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    ::Repaint()
 
 return nil
+
+
+//-----------------------------------------------------------------------------------------//
