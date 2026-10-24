@@ -52,10 +52,16 @@
 
 ## Limitaciones reales (declaradas, no resueltas)
 
-- El sello fecha+hora+tamaño puede no detectar una edicion de mismo tamaño
-  dentro de la resolucion temporal del filesystem; no hay verificacion de
-  contenido.
-- La recarga tras cambio externo va al inicio del archivo (no conserva cursor).
+- ~~El sello fecha+hora+tamaño puede no detectar una edicion de mismo tamaño~~
+  RESUELTO (2026-10-24 noche): DiskStamp incluye hb_MD5 del contenido
+  (archivos <= 8 MB; mayores conservan el sello simple). Verificado en vivo:
+  edicion externa de mismo tamaño con mtime preservado via touch -r detectada
+  tanto en variante limpia (recarga automatica) como sucia (Reload/Keep mine).
+- ~~La recarga tras cambio externo va al inicio del archivo~~ RESUELTO
+  (2026-10-24 noche): ReloadFromDisk conserva RowPos/ColPos y los clampa al
+  texto recargado (archivo encogido: cursor a la ultima linea valida).
+  Verificado en vivo: cursor en 15/6 tras recarga; 30->10 lineas: fila 11
+  (linea vacia final del modelo), col 1.
 - Si el archivo reaparece tras un borrado, se trata como cambio externo normal.
 - En esta GT los menus se abren con raton; Alt+letra no abre menus en Linux
   gttrm (colision con la entrada española; posible via HB_INKEY_EXT, no
