@@ -94,11 +94,16 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   user format references %x/%z or the inode). Per-panel formats persist
   to ~/.hbmc.ini (save+load round-trip verified, restart restores them)
 - Layout: horizontal / vertical panel split
-- Configuration dialog: 6 working checkboxes (Show hidden files, Show
+- Configuration dialog: 7 working checkboxes (Show hidden files, Show
   mini-status, Compute totals, Show free space, Auto save setup, Shell
-  patterns)
-- Panel options: 3 working checkboxes (Mix all files, Show backup files,
-  Mark moves down) - mark-moves-down off keeps the cursor on Insert
+  patterns, Mkdir autoname). Mkdir autoname verified live: with it on,
+  F7 opens Make Directory prefilled with the name under the cursor
+  (hbsubdir); with it off the GET opens empty
+- Panel options: 5 working checkboxes (Mix all files, Show backup files,
+  Mark moves down, Show hidden files, Lynx-like motion) -
+  mark-moves-down off keeps the cursor on Insert. Lynx-like motion
+  verified live both ways: Right enters the dir under the cursor,
+  Left goes back to the parent
 - Options persist to ~/.hbmc.ini: save+load round-trip verified; Auto save
   setup saves the current options on quit
 - Appearance: theme change applies live - Turbo Vision cyan palette
