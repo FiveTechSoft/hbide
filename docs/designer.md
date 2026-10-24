@@ -130,3 +130,15 @@ byte the app emits, not just the designer.
 - Undo/redo, copy/paste of controls
 - Grid/snap and alignment helpers
 - Opening the generated .prg directly in the editor
+
+## Property popup focus indicator (2026-10-24)
+
+The Control properties, Dialog properties and file-name popups now give every
+plain GET an explicit color (`N/W,W+/B,W+/W,GR+/W`), so the focused field shows
+a solid blue highlight. Previously these GETs inherited the dialog color, so
+there was no visible focus indicator and blind editing could corrupt fields.
+Verified interactively: built the `docs/examples/buildoptions.json` dialog with
+the designer itself (8 controls, distinct Build/Cancel actions), generated the
+PRG, compiled it and ran it: typing, Tab navigation, checkbox, radiogroup
+accelerators and both button paths (Build sets lOk, Cancel ends with no
+effects) all work.
