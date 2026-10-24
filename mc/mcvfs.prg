@@ -317,15 +317,34 @@ return aRet
 
 //-----------------------------------------------------------------------------------------//
 
+static function MCCurlUrl( cScheme, cHost, cPath )
+
+   // percent-encode every BYTE outside the unreserved set; "/" survives as
+   // the path separator. Byte-level (hb_B*) so UTF-8 names encode per byte.
+   local cOut := "", n, c
+
+   for n := 1 to hb_BLen( cPath )
+      c := hb_BSubStr( cPath, n, 1 )
+      if c $ "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~/"
+         cOut += c
+      else
+         cOut += "%" + Upper( hb_StrToHex( c ) )
+      endif
+   next
+
+return cScheme + "://" + cHost + cOut
+
+//-----------------------------------------------------------------------------------------//
+
 static function MCVfsCurlList( cScheme, cHost, cDir )
 
    // sftp/ftp listing through curl. Credentials are never passed on the
    // command line: sftp rides the user's default ssh keys and known_hosts;
    // ftp is anonymous. stdin is closed so an unexpected password prompt
    // can never block the UI.
-   local cUrl := cScheme + "://" + cHost + cDir
+   local cUrl := MCCurlUrl( cScheme, cHost, cDir )
    local cOut := "", cErr := "", aRet := {}, cLine, aT, cName
-   local nPos, cMM, cYear, cTime
+   local nPos, cMM, cTime, dTmp
 
    if Right( cUrl, 1 ) != "/"
       cUrl += "/"
@@ -358,13 +377,19 @@ static function MCVfsCurlList( cScheme, cHost, cDir )
          loop
       endif
       if ":" $ aT[ 8 ]
-         cYear := hb_ntos( Year( Date() ) )   // server omits the year for recent files
+         // server omits the year for recent files: assume the current year,
+         // but a date that would land in the future is from the previous one
+         // (same rule as ls)
          cTime := aT[ 8 ]
+         dTmp := hb_SToD( hb_ntos( Year( Date() ) ) + cMM + PadL( aT[ 7 ], 2, "0" ) )
+         if dTmp > Date() + 1
+            dTmp := hb_SToD( hb_ntos( Year( Date() ) - 1 ) + cMM + PadL( aT[ 7 ], 2, "0" ) )
+         endif
       else
-         cYear := aT[ 8 ]
+         dTmp := hb_SToD( aT[ 8 ] + cMM + PadL( aT[ 7 ], 2, "0" ) )
          cTime := ""
       endif
-      AAdd( aRet, { cName, Val( aT[ 5 ] ), hb_SToD( cYear + cMM + PadL( aT[ 7 ], 2, "0" ) ), ;
+      AAdd( aRet, { cName, Val( aT[ 5 ] ), dTmp, ;
                     cTime, aT[ 1 ], Left( aT[ 1 ], 1 ) == "d" } )
    next
 
@@ -409,7 +434,7 @@ static function MCVfsFetchFile( cScheme, cHost, cRemote, cDst )
               " > " + ShellQuote( cDst )
    else
       cCmd := "timeout 120 curl -sS --max-time 110 " + ;
-              ShellQuote( cScheme + "://" + cHost + cRemote ) + " -o " + ShellQuote( cDst ) + ;
+              ShellQuote( MCCurlUrl( cScheme, cHost, cRemote ) ) + " -o " + ShellQuote( cDst ) + ;
               " < /dev/null"
    endif
    if hb_ProcessRun( MCShWrap( cCmd ),, @cOut, @cErr ) != 0
