@@ -193,8 +193,9 @@ whose GET buffers stay NIL:
 
 Known limits, pending variant testing before this can be called general:
 color schemes where the selection-bar attribute equals the first row's,
-scrolled listboxes (item-to-row mapping with a scroll offset is untested),
-and non-standard frame styles. Verified so far on docs/examples/
+and non-standard frame styles. Scrolled listboxes are covered: clicking a
+visible row selects topItem + row (verified on docs/examples/findreplace,
+see below). Verified so far on docs/examples/
 buildoptions with the stock colors: clicks select Exe/Library/Dll and
 Main.prg/Utils.prg/Res.rc in both directions, each control independently
 of the other, clicks outside and on frame borders are no-ops, and the
@@ -208,3 +209,39 @@ exit (OK pushbutton, Ctrl+W) commits them. Before commit 3659afa, Ctrl+W
 silently discarded edits. Generated dialogs keep their own semantics: the
 code generator cannot know which button is Cancel, so they close via
 their buttons or Esc.
+
+## Find and Replace example: variants and listbox geometry (2026-10-24)
+
+docs/examples/findreplace.json (10 controls: two SAY/GET pairs, two
+checkboxes, a radiogroup, a listbox, three pushbuttons) was edited, saved,
+regenerated, recompiled and verified interactively in two variants:
+
+- Dialog resize via F3 dialog properties: 56x20 -> 62x22 (numeric replace
+  on Width/Height), F10 save, F9 generate (Overwrite? -> Yes).
+- Listbox height 4 -> 6 via the object inspector (F4, F6 to focus, Down to
+  the Height field, Right to adjust): the canvas reflects the new height
+  immediately and the regenerated PRG carries it.
+
+Listbox effective geometry: a listbox of height N shows N - 2 item rows;
+the top and bottom frame rows are not items. Height 4 -> 2 visible rows and
+height 6 -> 4 visible rows are both correct, not defects.
+
+Both variants compiled clean and passed the same runtime battery in a
+separate xterm: typing into a GET, checkbox toggle by click, radiogroup
+selection by click, listbox item selection by click, scrolling with Down
+and clicking a visible row after the scroll (bar lands on the absolute
+item, topItem + row), and the Find pushbutton closing the dialog with
+lOk = .T.
+
+Two caveats stay open:
+
+- Dialog-level color: F3 exposes Caption/Name/Width/Height only. Choosing
+  the dialog color from the designer is a PENDING feature; it is not
+  implemented and is not closed by this note.
+- Checkbox glyph: Harbour's stock checkbox paints CP437 0xFB (the square
+  root glyph) for the checked state; in a UTF-8 terminal that byte renders
+  as "u with circumflex" (the EN codepage, the only one selectable in this
+  build, maps 0xFB to U+00FB instead of U+221A; hb_cdpSelect("CP437") is a
+  no-op and "ES" raises an argument error). Generated dialogs therefore
+  emit STYLE "[X ]", the same ASCII style the IDE itself uses, so the
+  checked state is a portable [X] everywhere.
