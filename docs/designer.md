@@ -142,3 +142,26 @@ the designer itself (8 controls, distinct Build/Cancel actions), generated the
 PRG, compiled it and ran it: typing, Tab navigation, checkbox, radiogroup
 accelerators and both button paths (Build sets lOk, Cancel ends with no
 effects) all work.
+
+## Field entry behavior and listbox item data (2026-10-24, second pass)
+
+Characterized per keystroke while editing the example dialog:
+
+- Numeric GETs (PICTURE "999", e.g. Width/Height): the first key on a freshly
+  focused field replaces the whole value, so typing "22" over "31" yields 22.
+- Text GETs (e.g. Items, Caption): typing on a freshly focused field overtypes
+  at the cursor and any tail of the old value survives. The focused field shows
+  a solid highlight, so the remaining tail is visible; delete it explicitly.
+  This is stock Harbour GET behavior, not a designer defect.
+- Popups commit through their OK pushbutton; clicking OK is the reliable way
+  to apply edits.
+
+Listbox items are data, not prompts: the codegen now emits them verbatim into
+the generated array and the designer canvas paints them verbatim, so literal
+values such as "R&D.prg" survive round trips. Radio items keep "&" as the
+hotkey marker. Covered by tests/test_designer.prg (107 checks) and verified
+interactively: docs/examples/buildoptions.json was repaired in the designer
+itself (height 31 -> 22 via numeric replace, items "&Main.prg,..." cleaned to
+"Main.prg,Utils.prg,Res.rc"), saved, regenerated, recompiled and run; the
+listbox renders and navigates the verbatim items, Build accepts (lOk = .T.)
+and Cancel exits with no effects (lOk = .F.).
