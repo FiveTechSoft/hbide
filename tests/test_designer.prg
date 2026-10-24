@@ -11,7 +11,7 @@ procedure Main()
 
    local hModel, cCode, cJson, hBack, aSize
    local oD, oD2, aRect, nMaxRow, nMaxCol, oCtrl, cCellRef, cCellNow
-   local oDlg, nCell, cBefore, cAfter
+   local oDlg, nCell, cBefore, cAfter, hS0, hS1, aU, aR, hT
 
    // DsnControlSize
    aSize = DsnControlSize( { "type" => "say", "caption" => "Name:" } )
@@ -560,6 +560,80 @@ procedure Main()
    Check( "gen button shades cp-aware", "DsnBtnShades()" $ cCode )
    Check( "gen no raw cp437 pad bytes", ! "Chr( 255 )" $ cCode )
    Check( "gen no raw cp437 shadow bytes", ! ( "Chr( 220 )" $ cCode ) )
+
+   // undo/redo history: deep copies, equality, stack ops, burst coalescing
+   hT = { "h" => { "x" => "y" }, "l" => { 1, 2 } }
+   hS1 = DsnCloneValue( hT )
+   hT[ "h" ][ "x" ] = "z"
+   hT[ "l" ][ 1 ] = 99
+   Check( "clone detaches nested hash", hS1[ "h" ][ "x" ] == "y" )
+   Check( "clone detaches nested array", hS1[ "l" ][ 1 ] == 1 )
+
+   oD = HbDesigner():New( TStubIde() )
+   oD:cDlgName = "Hist"
+   AAdd( oD:aControls, { "type" => "say", "row" => 1, "col" => 2, "caption" => "One" } )
+   oD:nSelected = 1
+   hS0 = DsnSnapshot( oD )
+   oD:aControls[ 1 ][ "row" ] = 9
+   Check( "snapshot is a deep copy", hS0[ "controls" ][ 1 ][ "row" ] == 1 )
+   Check( "snap equal same state", DsnSnapEqual( hS0, hS0 ) )
+   Check( "snap detects change", ! DsnSnapEqual( hS0, DsnSnapshot( oD ) ) )
+
+   aU = {}
+   aR = { { "mark" => "old" } }
+   DsnHistPush( aU, aR, hS0 )
+   Check( "push adds to undo", Len( aU ) == 1 )
+   Check( "push clears redo", Len( aR ) == 0 )
+
+   aU = {}
+   for nCell = 1 to 105
+      DsnHistPush( aU, aR, { "mark" => nCell } )
+   next
+   Check( "history capped at 100", Len( aU ) == 100 )
+   Check( "oldest snapshot dropped", aU[ 1 ][ "mark" ] == 6 )
+
+   hS1 = DsnSnapshot( oD )   // row 9 state
+   aU = {}
+   aR = {}
+   DsnHistPush( aU, aR, hS0 )
+   hT = DsnHistUndo( aU, aR, hS1 )
+   Check( "undo returns previous state", hT[ "controls" ][ 1 ][ "row" ] == 1 )
+   Check( "undo pushes current to redo", Len( aR ) == 1 .and. aR[ 1 ][ "controls" ][ 1 ][ "row" ] == 9 )
+   Check( "undo empties undo stack", Empty( aU ) )
+   Check( "undo on empty is nil", DsnHistUndo( aU, aR, hS0 ) == nil )
+   hT = DsnHistRedo( aR, aU, hS0 )
+   Check( "redo returns next state", hT[ "controls" ][ 1 ][ "row" ] == 9 )
+   Check( "redo pushes current to undo", Len( aU ) == 1 )
+   Check( "redo on empty is nil", DsnHistRedo( aR, aU, hS0 ) == nil )
+
+   oD2 = HbDesigner():New( TStubIde() )
+   oD2:cDlgName = "Cycle"
+   oD2:PushHistory()
+   AAdd( oD2:aControls, { "type" => "get", "row" => 2, "col" => 2, "variable" => "cA", "width" => 8 } )
+   oD2:PushHistory()
+   oD2:aControls[ 1 ][ "row" ] = 5
+   Check( "two actions stacked", Len( oD2:aUndo ) == 2 )
+   hT = DsnHistUndo( oD2:aUndo, oD2:aRedo, DsnSnapshot( oD2 ) )
+   Check( "first undo restores pre-move", hT[ "controls" ][ 1 ][ "row" ] == 2 )
+   hT = DsnHistUndo( oD2:aUndo, oD2:aRedo, hT )
+   Check( "second undo restores empty model", Empty( hT[ "controls" ] ) )
+   Check( "both states on redo stack", Len( oD2:aRedo ) == 2 )
+   DsnHistPush( oD2:aUndo, oD2:aRedo, hS0 )
+   Check( "new action clears redo", Empty( oD2:aRedo ) )
+
+   // burst coalescing: consecutive moves are one undo step, no-ops push nothing
+   oD2 = HbDesigner():New( TStubIde() )
+   AAdd( oD2:aControls, { "type" => "say", "row" => 1, "col" => 1, "caption" => "X" } )
+   oD2:nSelected = 1
+   oD2:BeginBurst()
+   oD2:CommitBurst()
+   Check( "no-op burst pushes nothing", Empty( oD2:aUndo ) )
+   oD2:aControls[ 1 ][ "row" ] = 3
+   oD2:CommitBurst()
+   Check( "burst pushes pre-burst state", Len( oD2:aUndo ) == 1 .and. oD2:aUndo[ 1 ][ "controls" ][ 1 ][ "row" ] == 1 )
+   oD2:aControls[ 1 ][ "row" ] = 4
+   oD2:CommitBurst()
+   Check( "burst stays one undo step", Len( oD2:aUndo ) == 1 )
 
    QOut( "" )
    QOut( "PASSED: " + hb_ntos( s_nPassed ) + "  FAILED: " + hb_ntos( s_nFailed ) )
