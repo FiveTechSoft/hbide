@@ -62,6 +62,7 @@ function MCJobsAdd( aFiles, cDesc, lMove )
       "state" => "queued", ;
       "err"   => "", ;
       "moved" => 0, ;
+      "nolink" => .F., ;
       "skipdirs" => {} } )
 
 return Len( s_aJobs )
@@ -123,6 +124,32 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+// Atomic no-clobber publish via hard link (ln): EEXIST can never replace a
+// raced-in destination. Returns 0 published, 1 destination exists,
+// 2 cross-device, 3 filesystem cannot hard-link, 4 other failure.
+static function MCLinkNoClobber( cSrc, cDst, /*@*/ cOut )
+
+   local nRet
+
+   cOut := ""
+   nRet := hb_ProcessRun( MCShWrap( "ln -- " + ShellQuote( cSrc ) + " " + ShellQuote( cDst ) + " 2>&1" ),, @cOut )
+   if nRet == 0
+      return 0
+   endif
+   if "File exists" $ cOut
+      return 1
+   endif
+   if "cross-device" $ cOut
+      return 2
+   endif
+   if "Operation not permitted" $ cOut .or. "ot supported" $ cOut .or. "Function not implemented" $ cOut
+      return 3
+   endif
+
+return 4
+
+//-----------------------------------------------------------------------------------------//
+
 // True when cDst sits inside a destination dir a move refused to touch.
 static function JobSkipped( j, cDst )
 
@@ -141,8 +168,8 @@ return .F.
 static function JobErr( j, cPath, cWhy )
 
    j[ "err" ] += hb_FNameNameExt( cPath ) + ": " + cWhy + "; "
-   if Len( j[ "err" ] ) > 180
-      j[ "err" ] := Left( j[ "err" ], 180 )
+   if Len( j[ "err" ] ) > 4000
+      j[ "err" ] := Left( j[ "err" ], 4000 ) + " ..."
    endif
 
 return nil
@@ -154,7 +181,7 @@ return nil
 function MCJobsStep()
 
    local i, j, f, cTmp := ""
-   local cBuf, nRead
+   local cBuf, nRead, nLink, cLinkOut
 
    for i := 1 to Len( s_aJobs )
       j := s_aJobs[ i ]
@@ -215,10 +242,11 @@ function MCJobsStep()
                JobErr( j, f[ 3 ], "parent directory not moved" )
                return .T.
             elseif j[ "move" ]
-               // Atomic no-clobber publish: a hard link fails EEXIST and can
-               // never replace a destination that raced in (same dir = same
-               // filesystem by construction).
-               if hb_ProcessRun( MCShWrap( "ln -- " + ShellQuote( f[ 2 ] ) + " " + ShellQuote( f[ 3 ] ) + " 2>/dev/null" ),, ) == 0
+               if j[ "nolink" ]
+                  return .T.   // fs cannot publish safely; already reported
+               endif
+               nLink := MCLinkNoClobber( f[ 2 ], f[ 3 ], @cLinkOut )
+               if nLink == 0
                   j[ "done" ] += f[ 4 ]
                   j[ "moved" ]++
                   if FErase( f[ 2 ] ) != 0
@@ -226,11 +254,20 @@ function MCJobsStep()
                   endif
                   return .T.
                endif
-               if File( f[ 3 ] ) .or. hb_DirExists( f[ 3 ] )
+               if nLink == 1
                   JobErr( j, f[ 3 ], "destination exists; move does not overwrite" )
                   return .T.
                endif
-               // No destination: the link failed across filesystems; copy+delete below.
+               if nLink == 3
+                  j[ "nolink" ] := .T.
+                  JobErr( j, f[ 3 ], "destination filesystem cannot hard-link; background move refused (no overwrite-capable fallback)" )
+                  return .T.
+               endif
+               if nLink == 4
+                  JobErr( j, f[ 3 ], "link failed; source kept" )
+                  return .T.
+               endif
+               // nLink == 2: cross-device; chunked copy+delete below.
             endif
             // "file": open the source and a temp file in the destination dir.
             j[ "hSrc" ] := FOpen( f[ 2 ], 0 )
@@ -281,7 +318,7 @@ return .T.
 // the previous file.
 static function JobFinishFile( j )
 
-   local f := j[ "cur" ], cTmp := j[ "tmp" ], cBak := "", nBak
+   local f := j[ "cur" ], cTmp := j[ "tmp" ], cBak := "", nBak, nLink, cLinkOut
 
    FClose( j[ "hSrc" ] )
    FClose( j[ "hDst" ] )
@@ -295,13 +332,18 @@ static function JobFinishFile( j )
    if j[ "move" ]
       // Atomic no-clobber publish: link the complete temp into place; EEXIST
       // can never replace a destination that raced in during the copy.
-      if hb_ProcessRun( MCShWrap( "ln -- " + ShellQuote( cTmp ) + " " + ShellQuote( f[ 3 ] ) + " 2>/dev/null" ),, ) != 0
+      nLink := MCLinkNoClobber( cTmp, f[ 3 ], @cLinkOut )
+      if nLink != 0
          FErase( cTmp )
-         if File( f[ 3 ] ) .or. hb_DirExists( f[ 3 ] )
-            JobErr( j, f[ 3 ], "destination appeared during move; source kept" )
-         else
-            JobErr( j, f[ 3 ], "cannot create destination" )
-         endif
+         do case
+            case nLink == 1
+               JobErr( j, f[ 3 ], "destination appeared during move; source kept" )
+            case nLink == 3
+               j[ "nolink" ] := .T.
+               JobErr( j, f[ 3 ], "destination filesystem cannot hard-link; source kept" )
+            otherwise
+               JobErr( j, f[ 3 ], "cannot create destination" )
+         endcase
          return nil
       endif
       FErase( cTmp )   // drop the temp name; the data is published
