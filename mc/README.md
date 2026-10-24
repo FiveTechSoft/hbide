@@ -79,7 +79,7 @@ Legend: **done** = implemented and verified on screen in this build.
 | Configuration dialog | light | |
 | Layout dialog | light | panels, menubar, keybar, command line |
 | Panel options | light | |
-| Confirmation dialog | light | confirm overwrite/delete/execute/quit |
+| Confirmation dialog | done | confirm overwrite/delete/execute/quit; Cancel is the focused default, Tab+Enter confirms, Escape cancels; verified on disk (overwrite yes/no, tagged delete, symlink delete keeps target) |
 | Appearance | light | color themes |
 | Save setup | done | persists to `~/.hbmc.ini` |
 
@@ -97,7 +97,7 @@ Legend: **done** = implemented and verified on screen in this build.
 | Encoding selector | pending | terminal is UTF-8 |
 | Advanced chown/chattr, atime/ctime/inode sort orders | pending | |
 | Background copy/move queue | pending | operations are synchronous |
-| Dialog confirm needs Enter twice | known quirk | hbide plain `READ` semantics: first Enter leaves the GET, second activates the button - same as hbide's own dialogs |
+| Text GETs need Enter twice | known quirk | hbide plain `READ` semantics: first Enter leaves the GET, second activates the focused button - same as hbide's own dialogs. Pushbuttons fire on Enter when focused; confirm dialogs put Cancel first so a stray Enter/Escape never destroys data |
 | ESC = meta prefix | note | ESC followed by a letter acts as Alt+letter, as in MC |
 
 ## Test fixtures
