@@ -97,7 +97,7 @@ Legend: **done** = implemented and verified on screen in this build.
 ### Pending / divergences from the original
 | MC feature | Status | Notes |
 |---|---|---|
-| SMB / "Network" VFS | pending | FTP, SFTP and shell link landed read-only (matrix above); SMB has no credential-free fixture to test against |
+| SMB / "Network" VFS | pending | FTP, SFTP and shell link landed read-only (matrix above); SMB is untested because the test sandbox has no Samba tooling (no smbd/smbclient); an anonymous local share would need no credentials, so no secrets are required to test it |
 | VFS: extfs rpm/iso | blocked | .deb landed via the u7z provider (matrix above); rpm/iso need rpm2cpio / isoinfo / xorriso, none installed in the test sandbox |
 | "Learn keys" dialog | divergence | replaced by F1 help; no fake key-recorder |
 | hbbutton.prg vendored as mc/mcbutton.prg | divergence | the shared ../hbbutton.prg (sibling lanes) uses raw CP437 glyph bytes that render as replacement chars under the UTF-8 codepage; mc builds against a vendored copy whose glyphs are built at runtime as UTF-8 bytes (hb_BChar). The shared file is untouched; if it changes upstream, re-vendor mcbutton.prg |
