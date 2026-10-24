@@ -827,7 +827,7 @@ METHOD ReplaceDialog() CLASS HbIde
       :Display()
    end
 
-   @ oDlg:nTop + 6, oDlg:nLeft + 5 SAY "(trailing blanks are ignored)" COLOR "N/W"
+   @ oDlg:nTop + 6, oDlg:nLeft + 5 SAY "(trailing blanks ignored)" COLOR "N/W"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 11 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || lOk := .T., oDlg:End() }
@@ -839,7 +839,7 @@ METHOD ReplaceDialog() CLASS HbIde
    ::ResumeStatus()
 
    if lOk .and. ! Empty( cFind )
-      nCount := ::oEditor:ReplaceAll( AllTrim( cFind ), RTrim( cReplace ) )
+      nCount := ::oEditor:ReplaceAll( RTrim( cFind ), RTrim( cReplace ) )
       ::oEditor:ShowCursor()
       Alert( hb_ntos( nCount ) + " replacement(s)" )
    endif
@@ -876,7 +876,7 @@ METHOD FindDialog() CLASS HbIde
    ::ResumeStatus()
 
    if lOk .and. ! Empty( cText )
-      ::oEditor:FindText( AllTrim( cText ) )
+      ::oEditor:FindText( RTrim( cText ) )
       ::oEditor:ShowCursor()
       ::ShowStatus()
    endif
