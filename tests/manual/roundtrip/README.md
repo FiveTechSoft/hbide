@@ -21,6 +21,20 @@ Each `*_run.prg` is the generated dialog with one instrumentation line
 appended after `oDlg:Activate( GetList )` that writes the control values
 to `/tmp/{radio,list,mix}_result.txt`.
 
+## Terminal locale
+
+Run each case in an xterm started under a UTF-8 locale - the locale must
+be set on the xterm process itself, not only on the app inside it:
+
+    env LANG=C.UTF-8 xterm -e /tmp/runradio
+
+The dialog frame glyphs (close box, borders) are CP437 bytes that the
+terminal layer translates to UTF-8 only when the terminal answers as a
+UTF-8 terminal; an xterm started without a UTF-8 locale runs in latin-1
+mode and shows artifacts (for example the close box renders as þ instead
+of ■). That is a terminal display artifact, not a bug in the generated
+code.
+
 ## Build and run one case
 
     hbmk2 -quiet -o/tmp/runradio /tmp/runradio.prg /tmp/radiotest_run.prg \
