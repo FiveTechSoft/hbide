@@ -5,6 +5,8 @@
 #include "hbmenu.ch"
 #include "button.ch"
 
+static s_lPageTrap := .F.  // PgDn/PgUp listbox paging trap armed during READ
+
 //-----------------------------------------------------------------------------------------//
 
 static function ScrCharCode( nR, nC )
@@ -77,10 +79,18 @@ return Self
 
 METHOD Activate( GetList ) CLASS HbWindow
 
+   local bOldPgDn, bOldPgUp
+
    ::GetList = GetList
    ::lReadMouse := MLeftDown()
-   ::nIdleRead := hb_IdleAdd( { || ::ReadMouse() } )
+   ::nIdleRead = hb_IdleAdd( { || ::ReadMouse() } )
+   bOldPgDn  := SetKey( K_PGDN )
+   bOldPgUp  := SetKey( K_PGUP )
+   HBListBoxPageKeys( .T. )
    READ
+   s_lPageTrap := .F.
+   SetKey( K_PGDN, bOldPgDn )
+   SetKey( K_PGUP, bOldPgUp )
    if ::nIdleRead != nil
       hb_IdleDel( ::nIdleRead )
       ::nIdleRead := nil
@@ -650,3 +660,72 @@ static function DrawBorder( nTop, nLeft, nBottom, nRight, cColor )
 return nil
 
 //-----------------------------------------------------------------------------------------//
+
+//-----------------------------------------------------------------------------------------//
+
+// PgDn/PgUp page the focused LISTBOX instead of ending the READ (stock
+// reader behavior): the trap turns each key into a clamped burst of
+// Down/Up presses, the same path the mouse scrollbar uses, so the GET
+// variable stays in sync. Other controls replay the key untrapped, so
+// stock PgDn/PgUp behavior (jump/exit) is preserved for them.
+
+function HBListBoxPageKeys( lInstall )
+
+   if lInstall
+      s_lPageTrap := .T.
+      SetKey( K_PGDN, { || HBListBoxPage( 1 ) } )
+      SetKey( K_PGUP, { || HBListBoxPage( -1 ) } )
+   else
+      s_lPageTrap := .F.
+      SetKey( K_PGDN, NIL )
+      SetKey( K_PGUP, NIL )
+   endif
+
+return nil
+
+function HBListBoxPage( nDir )
+
+   local oGet := GetActive()
+   local oCtl, nVis, nCur, nSteps
+
+   if oGet != nil .and. oGet:control != nil .and. oGet:control:IsKindOf( "LISTBOX" )
+      oCtl := oGet:control
+      nVis := iif( __objHasData( oCtl, "BOTTOM" ) .and. __objHasData( oCtl, "TOP" ), ;
+                   Max( 1, oCtl:bottom - oCtl:top - 1 ), 3 )
+      nCur := oGet:varGet()
+      if ! HB_ISNUMERIC( nCur )
+         nCur := 1
+      endif
+      nSteps := iif( nDir > 0, Min( nVis, oCtl:itemCount - nCur ), Min( nVis, nCur - 1 ) )
+      __Keyboard( Replicate( Chr( iif( nDir > 0, K_DOWN, K_UP ) ), Max( 0, nSteps ) ) )
+   else
+      HBRekeyUntrapped( iif( nDir > 0, K_PGDN, K_PGUP ) )
+   endif
+
+return nil
+
+// Replay a PgDn/PgUp for a non-listbox control without trapping it again:
+// clear the trap, reinject the key for the reader, and re-arm the trap
+// once the system goes idle (after the replayed key was read). If the
+// READ ended in between, s_lPageTrap is already .F. and the re-arm is
+// skipped so no handler leaks into the caller.
+
+static function HBRekeyUntrapped( nKey )
+
+   local bOld := SetKey( nKey )
+   local aId  := { nil }
+
+   SetKey( nKey, NIL )
+   hb_keyPut( nKey )
+   aId[ 1 ] := hb_IdleAdd( { || HBRekeyRestore( nKey, bOld, aId ) } )
+
+return nil
+
+static function HBRekeyRestore( nKey, bOld, aId )
+
+   if s_lPageTrap
+      SetKey( nKey, bOld )
+   endif
+   hb_IdleDel( aId[ 1 ] )
+
+return nil
