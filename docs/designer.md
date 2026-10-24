@@ -221,11 +221,14 @@ whose GET buffers stay NIL:
 - Clicks arriving while READ is busy navigating between GETs are queued
   and retried for up to 3 s from the idle hook instead of being dropped.
 
-Known limits, pending variant testing before this can be called general:
-color schemes where the selection-bar attribute equals the first row's,
-and non-standard frame styles. Scrolled listboxes are covered: clicking a
-visible row selects topItem + row (verified on docs/examples/findreplace,
-see below). Verified so far on docs/examples/
+Variant testing done: the W+/W stock scheme (buildoptions), a W+/BG cyan
+scheme (all control types clicked: listbox item 3, checkbox toggle,
+radiogroup move, Build activation with lOk = .T. and byte-exact restore),
+and the same clicks under the UTF-8 codepage opt-in (UTF-16-low-byte
+frame scan). Remaining known limits: color schemes where the
+selection-bar attribute equals the first row's, and non-standard frame
+styles. Scrolled listboxes are covered: clicking a visible row selects
+topItem + row (verified on docs/examples/findreplace, see below). Verified so far on docs/examples/
 buildoptions with the stock colors: clicks select Exe/Library/Dll and
 Main.prg/Utils.prg/Res.rc in both directions, each control independently
 of the other, clicks outside and on frame borders are no-ops, and the
