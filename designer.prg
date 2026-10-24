@@ -185,8 +185,10 @@ METHOD Activate() CLASS HbDesigner
    ::oIde:SuspendStatus()
 
    ::oWnd = HBWindow():Dialog( ::cDlgCaption, ::nDlgWidth, ::nDlgHeight, ::cDlgColor )
-   ::oWnd:bRepaint = { || ::oIde:Repaint() }
+   ::oWnd:bRepaint   = { || ::Redraw() }
+   ::oWnd:bAfterDrag = { || ::RegisterIdles(), ::Redraw() }
    ::oWnd:lDesign  = .T.
+   ::oWnd:nMaxBottom = MaxRow() - 1   // keep the status bar row clear
    ::oWnd:bPopup   = { || ::PopupMenu() }
 
    // HBWindow():Dialog() centers with a half-size convention, so the window
@@ -978,7 +980,7 @@ return nil
 
 METHOD DrawControls() CLASS HbDesigner
 
-   local n, nR, nC, oCtrl, aRect
+   local n, nR, nC, oCtrl, aRect, aSz, nMinW, nMinH
 
    if ::oWnd == nil .or. ! ::oWnd:lVisible
       return nil
@@ -990,6 +992,17 @@ METHOD DrawControls() CLASS HbDesigner
       ::nDlgWidth  = ::oWnd:nRight - ::oWnd:nLeft + 1
       ::nDlgHeight = ::oWnd:nBottom - ::oWnd:nTop + 1
    endif
+
+   // mouse-resize floor: never shrink the form below its controls' bbox
+   nMinW = 6
+   nMinH = 3
+   for n = 1 to Len( ::aControls )
+      aSz = DsnControlSize( ::aControls[ n ] )
+      nMinW = Max( nMinW, ::aControls[ n ][ "col" ] + aSz[ 1 ] + 2 )
+      nMinH = Max( nMinH, ::aControls[ n ][ "row" ] + aSz[ 2 ] + 2 )
+   next
+   ::oWnd:nMinW = nMinW
+   ::oWnd:nMinH = nMinH
 
    DispBegin()
    if ::lSnap
