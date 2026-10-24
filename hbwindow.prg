@@ -5,7 +5,7 @@
 #include "hbmenu.ch"
 #include "button.ch"
 
-static s_lPageTrap := .F.  // PgDn/PgUp listbox paging trap armed during READ
+static s_aTrapStack := {}  // saved PgDn/PgUp handlers per armed READ level (nesting-safe)
 
 //-----------------------------------------------------------------------------------------//
 
@@ -79,18 +79,12 @@ return Self
 
 METHOD Activate( GetList ) CLASS HbWindow
 
-   local bOldPgDn, bOldPgUp
-
    ::GetList = GetList
    ::lReadMouse := MLeftDown()
    ::nIdleRead = hb_IdleAdd( { || ::ReadMouse() } )
-   bOldPgDn  := SetKey( K_PGDN )
-   bOldPgUp  := SetKey( K_PGUP )
-   HBListBoxPageKeys( .T. )
+   HBPageTrapInstall()
    READ
-   s_lPageTrap := .F.
-   SetKey( K_PGDN, bOldPgDn )
-   SetKey( K_PGUP, bOldPgUp )
+   HBPageTrapRemove()
    if ::nIdleRead != nil
       hb_IdleDel( ::nIdleRead )
       ::nIdleRead := nil
@@ -669,19 +663,36 @@ return nil
 // variable stays in sync. Other controls replay the key untrapped, so
 // stock PgDn/PgUp behavior (jump/exit) is preserved for them.
 
-function HBListBoxPageKeys( lInstall )
+// Arm/disarm the PgDn/PgUp listbox paging trap around a READ. Install
+// saves the previous handlers on a stack so consecutive and nested
+// dialogs each restore their own level; removing an inner level leaves
+// the outer one armed.
 
-   if lInstall
-      s_lPageTrap := .T.
-      SetKey( K_PGDN, { || HBListBoxPage( 1 ) } )
-      SetKey( K_PGUP, { || HBListBoxPage( -1 ) } )
-   else
-      s_lPageTrap := .F.
-      SetKey( K_PGDN, NIL )
-      SetKey( K_PGUP, NIL )
+function HBPageTrapInstall()
+
+   AAdd( s_aTrapStack, { { K_PGDN, SetKey( K_PGDN ) }, { K_PGUP, SetKey( K_PGUP ) } } )
+   SetKey( K_PGDN, { || HBListBoxPage( 1 ) } )
+   SetKey( K_PGUP, { || HBListBoxPage( -1 ) } )
+
+return nil
+
+function HBPageTrapRemove()
+
+   local aLevel, aPair
+
+   if ! Empty( s_aTrapStack )
+      aLevel := ATail( s_aTrapStack )
+      ASize( s_aTrapStack, Len( s_aTrapStack ) - 1 )
+      for each aPair in aLevel
+         SetKey( aPair[ 1 ], aPair[ 2 ] )
+      next
    endif
 
 return nil
+
+function HBPageTrapDepth()
+
+return Len( s_aTrapStack )
 
 function HBListBoxPage( nDir )
 
@@ -696,7 +707,7 @@ function HBListBoxPage( nDir )
       if ! HB_ISNUMERIC( nCur )
          nCur := 1
       endif
-      nSteps := iif( nDir > 0, Min( nVis, oCtl:itemCount - nCur ), Min( nVis, nCur - 1 ) )
+      nSteps := HBListBoxPageSteps( nDir, nCur, nVis, oCtl:itemCount )
       __Keyboard( Replicate( Chr( iif( nDir > 0, K_DOWN, K_UP ) ), Max( 0, nSteps ) ) )
    else
       HBRekeyUntrapped( iif( nDir > 0, K_PGDN, K_PGUP ) )
@@ -704,13 +715,19 @@ function HBListBoxPage( nDir )
 
 return nil
 
+// Clamped page size: never past the first or last item.
+
+function HBListBoxPageSteps( nDir, nCur, nVis, nCount )
+
+return Max( 0, iif( nDir > 0, Min( nVis, nCount - nCur ), Min( nVis, nCur - 1 ) ) )
+
 // Replay a PgDn/PgUp for a non-listbox control without trapping it again:
 // clear the trap, reinject the key for the reader, and re-arm the trap
 // once the system goes idle (after the replayed key was read). If the
-// READ ended in between, s_lPageTrap is already .F. and the re-arm is
-// skipped so no handler leaks into the caller.
+// READ ended in between, the trap stack is already empty and the
+// re-arm is skipped so no handler leaks into the caller.
 
-static function HBRekeyUntrapped( nKey )
+function HBRekeyUntrapped( nKey )
 
    local bOld := SetKey( nKey )
    local aId  := { nil }
@@ -721,11 +738,13 @@ static function HBRekeyUntrapped( nKey )
 
 return nil
 
-static function HBRekeyRestore( nKey, bOld, aId )
+function HBRekeyRestore( nKey, bOld, aId )
 
-   if s_lPageTrap
+   if ! Empty( s_aTrapStack )
       SetKey( nKey, bOld )
    endif
-   hb_IdleDel( aId[ 1 ] )
+   if aId[ 1 ] != nil
+      hb_IdleDel( aId[ 1 ] )
+   endif
 
 return nil
