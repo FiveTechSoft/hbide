@@ -391,14 +391,49 @@ return nil
 METHOD ShowKeyBar() CLASS MCApp
 
    local aKeys := { "Help", "Menu", "View", "Edit", "Copy", "RenMov", "Mkdir", "Delete", "PullDn", "Quit" }
-   local n, cLabel, nCol := 0
+   local n, nPrev := 0, nW, cNum
+   local nCols := MaxCol() + 1, nPos := 0, dv, md
+   local aEnds := Array( 10 )
 
-   hb_DispOutAt( MaxRow(), 0, Space( MaxCol() + 1 ), "N/N" )
+   // mc buttonbar.c:63: distribute the full width among the 10 buttons
+   // (never less than 7 each; below that, tail buttons drop off) and
+   // truncate each label to its button width (str_fit_to_term J_LEFT_FIT),
+   // so all 10 keys stay visible at any width >= 70.
+   if nCols < 70
+      for n := 1 to 10
+         if nPos + 7 <= nCols
+            nPos += 7
+         endif
+         aEnds[ n ] := nPos
+      next
+   else
+      dv := Int( nCols / 10 )
+      md := nCols % 10
+      for n := 1 to 5
+         nPos += dv
+         if 5 - n < Int( md / 2 )
+            nPos++
+         endif
+         aEnds[ n ] := nPos
+      next
+      for n := 6 to 10
+         nPos += dv
+         if 10 - n < Int( ( md + 1 ) / 2 )
+            nPos++
+         endif
+         aEnds[ n ] := nPos
+      next
+   endif
+
+   hb_DispOutAt( MaxRow(), 0, Space( nCols ), "N/N" )
    for n := 1 to 10
-      cLabel := If( n < 10, " " + hb_ntos( n ) + PadR( aKeys[ n ], 9 ), "10" + PadR( aKeys[ n ], 8 ) )
-      hb_DispOutAt( MaxRow(), nCol, Left( cLabel, 2 ), "BG+/N" )
-      hb_DispOutAt( MaxRow(), nCol + 2, SubStr( cLabel, 3 ), "W/N" )
-      nCol += 12
+      nW := aEnds[ n ] - nPrev
+      if nW > 0
+         cNum := If( n < 10, " " + hb_ntos( n ), "10" )
+         hb_DispOutAt( MaxRow(), nPrev, cNum, "BG+/N" )
+         hb_DispOutAt( MaxRow(), nPrev + 2, PadR( Left( aKeys[ n ], Max( 0, nW - 2 ) ), Max( 0, nW - 2 ) ), "W/N" )
+      endif
+      nPrev := aEnds[ n ]
    next
 
 return nil
