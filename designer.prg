@@ -609,44 +609,44 @@ METHOD EditProperties() CLASS HbDesigner
    oDlg = HBWindow():Dialog( "Control properties", 76, 11, CLR_DIALOG )
    oDlg:bRepaint = { || ::Redraw() }
 
-   @ oDlg:nTop + 2, oDlg:nLeft + 11 GET nRow PICTURE "999"
-   @ oDlg:nTop + 2, oDlg:nLeft + 25 GET nCol PICTURE "999"
+   @ oDlg:nTop + 2, oDlg:nLeft + 11 GET nRow PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
+   @ oDlg:nTop + 2, oDlg:nLeft + 25 GET nCol PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
    oDlg:Say( 2, 2, "Row:" )
    oDlg:Say( 2, 20, "Col:" )
 
    if oCtrl[ "type" ] $ DSN_SAY + "|" + DSN_BUTTON + "|" + DSN_CHECKBOX
-      @ oDlg:nTop + 4, oDlg:nLeft + 11 GET cCaption PICTURE "@S40"
+      @ oDlg:nTop + 4, oDlg:nLeft + 11 GET cCaption PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 4, 2, "Caption:" )
    endif
 
    if oCtrl[ "type" ] $ DSN_GET + "|" + DSN_CHECKBOX
-      @ oDlg:nTop + 5, oDlg:nLeft + 11 GET cVariable PICTURE "@S20"
+      @ oDlg:nTop + 5, oDlg:nLeft + 11 GET cVariable PICTURE "@S20" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 5, 2, "Variable:" )
    endif
 
    if oCtrl[ "type" ] == DSN_GET
-      @ oDlg:nTop + 6, oDlg:nLeft + 11 GET nWidth PICTURE "999"
+      @ oDlg:nTop + 6, oDlg:nLeft + 11 GET nWidth PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 6, 2, "Width:" )
    endif
 
    if oCtrl[ "type" ] == DSN_BUTTON
-      @ oDlg:nTop + 5, oDlg:nLeft + 11 GET cAccel
+      @ oDlg:nTop + 5, oDlg:nLeft + 11 GET cAccel COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 5, 2, "Accel:" )
-      @ oDlg:nTop + 6, oDlg:nLeft + 11 GET cAction PICTURE "@S40"
+      @ oDlg:nTop + 6, oDlg:nLeft + 11 GET cAction PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 6, 2, "Action:" )
    endif
 
    if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX
-      @ oDlg:nTop + 4, oDlg:nLeft + 11 GET cVariable PICTURE "@S20"
+      @ oDlg:nTop + 4, oDlg:nLeft + 11 GET cVariable PICTURE "@S20" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 4, 2, "Variable:" )
-      @ oDlg:nTop + 5, oDlg:nLeft + 11 GET cItems PICTURE "@S40"
+      @ oDlg:nTop + 5, oDlg:nLeft + 11 GET cItems PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 5, 2, "Items:" )
    endif
 
    if oCtrl[ "type" ] == DSN_LISTBOX
-      @ oDlg:nTop + 6, oDlg:nLeft + 11 GET nWidth PICTURE "999"
+      @ oDlg:nTop + 6, oDlg:nLeft + 11 GET nWidth PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 6, 2, "Width:" )
-      @ oDlg:nTop + 7, oDlg:nLeft + 11 GET nHeight PICTURE "999"
+      @ oDlg:nTop + 7, oDlg:nLeft + 11 GET nHeight PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 7, 2, "Height:" )
    endif
 
@@ -708,16 +708,16 @@ METHOD DlgProperties() CLASS HbDesigner
    oDlg = HBWindow():Dialog( "Dialog properties", 66, 10, CLR_DIALOG )
    oDlg:bRepaint = { || ::Redraw() }
 
-   @ oDlg:nTop + 2, oDlg:nLeft + 11 GET cCaption PICTURE "@S40"
+   @ oDlg:nTop + 2, oDlg:nLeft + 11 GET cCaption PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
    oDlg:Say( 2, 2, "Caption:" )
 
-   @ oDlg:nTop + 4, oDlg:nLeft + 11 GET cName
+   @ oDlg:nTop + 4, oDlg:nLeft + 11 GET cName COLOR "N/W,W+/B,W+/W,GR+/W"
    oDlg:Say( 4, 2, "Name:" )
 
-   @ oDlg:nTop + 6, oDlg:nLeft + 11 GET nWidth PICTURE "999"
+   @ oDlg:nTop + 6, oDlg:nLeft + 11 GET nWidth PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
    oDlg:Say( 6, 2, "Width:" )
 
-   @ oDlg:nTop + 6, oDlg:nLeft + 27 GET nHeight PICTURE "999"
+   @ oDlg:nTop + 6, oDlg:nLeft + 27 GET nHeight PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
    oDlg:Say( 6, 20, "Height:" )
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 10 GET lDummy PUSHBUTTON ;
@@ -765,7 +765,7 @@ METHOD SelectFileName( cTitle, cDefault ) CLASS HbDesigner
    oDlg = HBWindow():Dialog( cTitle, 45, 7, CLR_DIALOG )
    oDlg:bRepaint = { || ::Redraw() }
 
-   @ oDlg:nTop + 2, oDlg:nLeft + 8 GET cFile
+   @ oDlg:nTop + 2, oDlg:nLeft + 8 GET cFile COLOR "N/W,W+/B,W+/W,GR+/W"
    oDlg:Say( 2, 2, "File:" )
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 14 GET lDummy PUSHBUTTON ;
