@@ -94,10 +94,11 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   user format references %x/%z or the inode). Per-panel formats persist
   to ~/.hbmc.ini (save+load round-trip verified, restart restores them)
 - Layout: horizontal / vertical panel split
-- Configuration dialog: 13 working checkboxes (Show hidden files, Show
+- Configuration dialog: 14 working checkboxes (Show hidden files, Show
   mini-status, Compute totals, Show free space, Auto save setup, Shell
   patterns, Mkdir autoname, Verbose operation, Use internal view, Use
-  internal edit, Cd follows links, Safe delete, Safe overwrite) plus a
+  internal edit, Cd follows links, Safe delete, Safe overwrite, Classic
+  progressbar) plus a
   Pause after run radio group (Never / On dumb terminals / Always) with
   the exact mc semantics verified in mc's own source (master
   src/execute.c:60 default = pause_on_dumb_terminals; execute.c:331-333
@@ -120,7 +121,19 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   [< Overwrite >]; overwrite ON -> [< Cancel >]. The [< >] default
   marker always follows the preselected button. Both persist to
   ~/.hbmc.ini (safedelete/safeoverwrite keys, save round-trip 1->0
-  verified). Cd follows links verified live both
+  verified). Classic
+  progressbar follows mc's own source (master src/filemanager/
+  filegui.c:160 default TRUE; filegui.c:915/931 gauge direction: with
+  the option OFF and the right panel active the gauge is right-aligned
+  and grows right-to-left, otherwise left-to-right): the 14th
+  Configuration checkbox switches the Background jobs gauge direction.
+  Verified live both ways with real 100 MiB background copies: ON +
+  left panel active -> "[###-------] 37%" -> "[####------] 42%"
+  growing left-to-right; OFF + right panel active ->
+  "[----------#] 15%" -> "[--------###] 31%" right-aligned growing
+  right-to-left; both jobs finished "done 100%" with the full
+  104857600 bytes on disk. Persists to ~/.hbmc.ini
+  (classicprogressbar key, save round-trip 1->0->1 verified). Cd follows links verified live both
   ways on a dir symlink (dirlink -> /tmp/hbmany): ON (mc default) Enter
   keeps the logical path (panel title /tmp/hbdest/dirlink); OFF resolves
   to the physical target (title /tmp/hbmany) Use internal view/edit verified live both ways: ON
