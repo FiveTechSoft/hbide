@@ -83,6 +83,17 @@ function, so a standalone build of the generated PRG fails to link with
 `undefined reference to HB_FUN_MSGINFO`. When empty, the action defaults to
 `lOk := .T., oDlg:End()`.
 
+Dialogs larger than the terminal: the generated dialog is clamped to the
+visible screen (`HBWindow:Dialog()` centers the window and reports the
+adjustment through its `lClamped` data). The window keeps its frame and
+title, the controls that fall inside the screen work normally, and
+controls beyond the visible area stay reachable with the keyboard
+(Tab/Shift+Tab) even though they are not painted. The designer canvas
+supports dialogs bigger than the screen with Ctrl+Arrow panning; at
+runtime, resize the terminal or keep the design within the terminal size
+so every control is visible.
+
+
 ## Architecture notes
 
 - `designer.prg`: all the designer. The `HbDesigner` class owns the UI;
