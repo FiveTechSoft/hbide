@@ -62,6 +62,7 @@ ENDCLASS
 METHOD New() CLASS HBIde
 
    SET SCOREBOARD OFF
+   Set( _SET_INSERT, .T. )   // editor works in insert mode by default (D4)
    
    ::SaveScreen()
    Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
@@ -173,7 +174,8 @@ METHOD About() CLASS HBIde
    oDlg:SayCenter( "Copyright (c) 1999-2023 by" )
    oDlg:SayCenter( "The Harbour Project", 2 )
 
-   @ 23, 56 GET lOk PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+   @ oDlg:nBottom - 2, oDlg:nLeft + Int( ( oDlg:nRight - oDlg:nLeft ) / 2 ) - 3 GET lOk ;
+      PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
    oDlg:Activate( GetList )
@@ -192,12 +194,13 @@ METHOD GotoLine() CLASS HBIde
    oDlg:bRepaint = { || ::Repaint() }
    ::SuspendStatus()
 
-   @ 18, 57 GET nLine CAPTION "number:" COLOR "W/B,W+/B,W+/W,GR+/W"
+   // Controls positioned relative to the dialog frame (D2)
+   @ oDlg:nTop + 2, oDlg:nLeft + 13 GET nLine CAPTION "number:" COLOR "W/B,W+/B,W+/W,GR+/W"
 
-   @ 21, 50 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+   @ oDlg:nBottom - 2, oDlg:nLeft + 5 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || lOk := .T., oDlg:End() }
 
-   @ 21, 60 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+   @ oDlg:nBottom - 2, oDlg:nLeft + 15 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
    oDlg:Activate( GetList )
@@ -284,6 +287,7 @@ METHOD ShowStatus() CLASS HBIde
 
    DispBegin()
    hb_DispOutAt( MaxRow(), 0, Space( MaxCol() + 1 ), aColors[ 8 ] )
+   hb_DispOutAt( MaxRow(), 2, iif( Set( _SET_INSERT ), "INS", "OVR" ), aColors[ 8 ] )
    hb_DispOutAt( MaxRow(), MaxCol() - 17,;
                  "row: " + AllTrim( Str( ::oEditor:RowPos() ) ) + ", " + ;
                  "col: " + AllTrim( Str( ::oEditor:ColPos() - 4 ) ) + " ",;
@@ -472,20 +476,38 @@ return oMenu
 
 METHOD Start() CLASS HbIde
 
+   local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, nDot, cBase
+
    ::oEditor:SaveFile()
 
+   if Empty( cFile ) .or. cFile == "noname.prg" .and. ! File( cFile )
+      Alert( "Nothing to run: save the file first" )
+      return nil
+   endif
+
+   // files are opened as bare names in the current dir
+   nDot = RAt( ".", cFile )
+   cBase = iif( nDot > 1, Left( cFile, nDot - 1 ), cFile )
+
+   // hbmk2 must be on PATH (Windows build not verified here)
    do case
       case Left( OS(), 7 ) == "Windows"
-         hb_Run( "c:/harbour/bin/win/msvc/hbmk2 noname.prg -comp=bcc > info.txt" )
-         Alert( MemoRead( "info.txt" ) )
-         hb_Run( "noname.exe" )
-
-      case Left( OS(), 5 ) == "Linux"
-         hb_Run( "../harbour/bin/darwin/clang/hbmk2 noname.prg > info.txt" )
-         Alert( MemoRead( "./info.txt" ) )
-         hb_Run( "./noname" )
+         cExe = cBase + ".exe"
+      otherwise
+         cExe = "./" + cBase
    endcase
 
+   hb_Run( "hbmk2 " + cFile + " > info.txt 2>&1" )
+   cOut = MemoRead( "info.txt" )
+   Alert( iif( Empty( cOut ), "Build OK: " + cExe, cOut ) )
+
+   if File( cExe )
+      hb_Run( cExe )
+   else
+      Alert( "Build failed or hbmk2 not on PATH; executable not found: " + cExe )
+   endif
+
+   ::Repaint()
    SetCursor( SC_NORMAL )
 
 return nil
@@ -494,11 +516,12 @@ return nil
 
 METHOD OpenFile() CLASS HbIde 
 
-   local oDlg := HbWindow():Dialog( "Open a file", 38, 17, "W+/W" )
+   local oDlg := HbWindow():Dialog( "Open a file", 46, 18, "W+/W" )
    local GetList := {}, oGetName, oListBox
    local cFileName := Space( 25 ), cPickFileName := ""
    local lDummy, lOk := .F.
    local aPrgs := Directory( "*.prg" )
+   local nT, nL, nR, nB
 
    oDlg:bRepaint = { || ::Repaint() }
    ::SuspendStatus()
@@ -506,45 +529,59 @@ METHOD OpenFile() CLASS HbIde
    AEval( aPrgs, { | aPrg, n | aPrgs[ n ] := aPrg[ 1 ] } )
    if Len( aPrgs ) == 0
       AAdd( aPrgs, "" )
-   endif   
-   
-   @ 14, 42 GET cFileName COLOR "W/B,W+/B,W+/W,GR+/W"
+   endif
+
+   // Controls positioned relative to the dialog frame (D2)
+   nT = oDlg:nTop
+   nL = oDlg:nLeft
+   nR = oDlg:nRight
+   nB = oDlg:nBottom
+
+   @ nT + 3, nL + 3 GET cFileName COLOR "W/B,W+/B,W+/W,GR+/W"
 
    with object oGetName := ATail( GetList )  
-      :CapRow = 13   
-      :CapCol = 42   
+      :CapRow = nT + 2   
+      :CapCol = nL + 3   
       :Caption = "File to ope&n"
       :Display()
    end   
 
-   @ 17, 42, 27, 66 GET cPickFileName LISTBOX aPrgs ;
+   @ nT + 5, nL + 3, nB - 3, nR - 3 GET cPickFileName LISTBOX aPrgs ;
       COLOR "N/BG,GR+/BG,N/BG,W+/G,W+/W,W+/W,GR+/W" ;
       STATE { || If( oListBox != nil, ( oGetName:VarPut( Space( 25 ) ), oGetName:Display(),;
                      oGetName:VarPut( oListBox:buffer ), oGetName:Assign(), oGetName:Display() ),) }
 
    with object oListBox := ATail( GetList ):Control  
-      :CapRow = 16   
-      :CapCol = 43   
+      :CapRow = nT + 4   
+      :CapCol = nL + 4   
       :Caption = "&Files"   
       :Display()
    end   
 
-   @ 14, 68 GET lDummy PUSHBUTTON CAPTION "  &OK  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+   @ nB - 2, nR - 19 GET lDummy PUSHBUTTON CAPTION "  &OK  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End(), lOk := .T. }
 
-   @ 16, 68 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+   @ nB - 2, nR - 10 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
    oDlg:Activate( GetList )
    ::ResumeStatus()
 
+   cFileName = AllTrim( cFileName )   // the GET is Space( 25 ): trim padding (D6)
+
    if lOk .and. ! Empty( cFileName )
-      if ! ::oWndCode:lVisible
-         ::oWndCode:Show( .F. )
+      if ! File( cFileName )
+         Alert( "File not found: " + cFileName )
+      else
+         if ! ::oWndCode:lVisible
+            ::oWndCode:Show( .F. )
+         endif
+         ::oEditor:LoadFile( cFileName )
+         ::oEditor:Display()
+         ::oEditor:Goto( 1, 5 )
+         ::oWndCode:cCaption = cFileName
+         ::oWndCode:Refresh()
       endif
-      ::oEditor:LoadFile( cFileName )
-      ::oEditor:Display()
-      ::oEditor:Goto( 1, 5 )
    endif 
 
 return nil   
