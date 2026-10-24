@@ -745,10 +745,10 @@ METHOD FindDialog() CLASS HbIde
       :Display()
    end
 
-   @ oDlg:nTop + 5, oDlg:nLeft + 11 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+   @ oDlg:nBottom - 2, oDlg:nLeft + 11 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || lOk := .T., oDlg:End() }
 
-   @ oDlg:nTop + 5, oDlg:nLeft + 22 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+   @ oDlg:nBottom - 2, oDlg:nLeft + 22 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
    oDlg:Activate( GetList )
