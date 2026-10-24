@@ -136,3 +136,58 @@ code. Dogfooding model: a "Find" dialog built entirely with the designer
   The UTF-8 opt-in is intentionally not used by codegen.
 - Publish flow: atomic /edit/ editor fill per file (EditorView dispatch);
   delete+upload is forbidden to avoid windows with missing sources.
+
+## 2026-10-25 checkpoint: QueueOpen publish clarification, drag diagnostics, full flow
+
+### Factual clarification of commit a2b269d
+
+a2b269d carries GitHub's auto-default commit message ("Update print statement
+from 'Hello' to 'Goodbye'"), which does not describe its content. The commit
+actually contains: the QueueOpen contract in hbide.prg
+(cPendingOpen/QueueOpen/ClearPendingOpen/OpenInEditor, the post-Activate
+pending-open block, and the caption refresh) and four
+hb_UTF8ToStr -> hb_UTF8ToStrBox conversions ported from editor-fixes d8eb435.
+History is kept as-is per repo policy; this entry is the correction.
+
+### Drag diagnostics: prior "fast gesture" limitation retracted
+
+Traced with the new DSN_TRACE instrumentation plus a gttrm mouse logger on
+the same transport: the flakiness previously attributed to fast drag gestures
+was a test-harness aiming error (window-relative screenshot coordinates used
+as root coordinates), not an application defect and not a timing constraint.
+
+- Fast move-drag: single +36px jump moved a RadioGroup col 8 -> 14
+  (DragControl exit after ~2ms). Fast resize-drag: single +30px jump grew a
+  GET width 16 -> 21. Both land directly; DragControl/DragResize busy-poll
+  MLeftDown()/MRow()/MCol() and do not consume the Inkey queue; the button-up
+  event arrives queued in the main loop after the drag (benign).
+- Transport check: paced, burst and jump mouse sequences are delivered 1:1
+  (XTEST -> Xvfb -> xterm -> gttrm -> Inkey), no coalescing or loss.
+- The earlier "~300ms pacing" guidance and the "deselect on drag" and dead
+  Open-dialog-OK click observations were all the same aiming error.
+
+### DsnTrace instrumentation
+
+designer.prg logs optional diagnostics to /tmp/dsn_trace.log only when the
+DSN_TRACE env var is set; disabled by default, no effect otherwise. Logged:
+PRESS/HIT (pointer, window rect, view offsets, control index and geometry),
+DRAG/RESIZE enter+exit with iteration counts, main-loop UP, window fit, and
+designer start. Coordinates and geometry only - never captions, control
+names or other model content.
+
+### Full real-use flow (this session)
+
+Composition arranged without overlapping controls (RadioGroup (2,8), GET
+(8,10) width 21), saved via F10, regenerated via "Generate and open"
+(overwrite confirm -> editor opens mydialog.prg through the QueueOpen path),
+compiled externally with hbmk2 and run standalone: the dialog renders as
+designed and is interactive (radiogroup selection changes on click).
+Suite: 359/359 with the instrumentation in place.
+
+Known limitation: codegen emits a plain `Dlg_<Name>()` function with no Main
+entry point, so running a generated dialog needs a wrapper procedure plus the
+support modules (hbwindow, hbmenu, hbbutton, hbgetu) linked in, as done above.
+Direct Run of a generated dialog from the IDE is therefore not claimed. The
+IDE Run > Start item is broken on this branch under Linux (hardcoded
+darwin/clang hbmk2 path and hardcoded noname.prg); a working Start exists on
+editor-fixes and its integration is being coordinated with the IDE lane.
