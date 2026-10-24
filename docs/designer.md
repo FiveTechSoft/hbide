@@ -85,13 +85,17 @@ function, so a standalone build of the generated PRG fails to link with
 
 Dialogs larger than the terminal: the generated dialog is clamped to the
 visible screen (`HBWindow:Dialog()` centers the window and reports the
-adjustment through its `lClamped` data). The window keeps its frame and
+adjustment through `lClamped`, and the originally requested size stays
+available in `nReqWidth`/`nReqHeight`). The window keeps its frame and
 title, the controls that fall inside the screen work normally, and
 controls beyond the visible area stay reachable with the keyboard
 (Tab/Shift+Tab) even though they are not painted. The designer canvas
 supports dialogs bigger than the screen with Ctrl+Arrow panning; at
 runtime, resize the terminal or keep the design within the terminal size
-so every control is visible.
+so every control is visible. See `docs/examples/demobig.json` and the
+code generated from it in `docs/examples/demobig.prg` for a reproducible
+oversized dialog with an off-screen button whose action still fires from
+the keyboard.
 
 
 ## Architecture notes
