@@ -214,13 +214,63 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   Quit, F10 inert), binding saved to ~/.hbmc.ini (learnkey10=-41) and
   still active after an app restart; relearned back to F10 afterwards
 
+- Configuration dialog restructured to mc's real two-column layout
+  (groupboxes File operations / Esc key mode / Pause after run | Other
+  options) per src/filemanager/boxes.c:560+; 9 new options wired with
+  DATA + ini, defaults cited from mc source: Single press (old_esc_mode,
+  default TRUE, lib/tty/key.c:94), Timeout 1000000us (key.c:96), Ask new
+  file name (FALSE, src/setup.c:108), Auto menus (FALSE, setup.c:99),
+  Drop down menus (FALSE, setup.c:101), Complete: show all (FALSE,
+  lib/global.c:76), Rotating dash (TRUE, src/filemanager/layout.c:86),
+  Preallocate (FALSE, lib/global.c:109), COW file cloning (TRUE,
+  lib/global.c:110). Ini round-trips verified (0->1->0 by UI and by file)
+- Esc key mode generalized to all 13 dialogs via the MCDlgEscArm helper:
+  with Single press OFF, one Esc keeps the dialog and Esc Esc closes it;
+  proven live in both the Configuration and the UserMenu dialogs
+- Auto menus: the user menu opens by itself at startup when ON (mc
+  filemanager.c:1460 MSG_IDLE -> user menu), proven live with the user's
+  own .mc.menu entries visible
+- Preallocate: posix_fallocate() through the new mcposix.c (MC_FAllocate),
+  wired into BOTH the foreground (FCopyText) and background (jobs) copy
+  paths like mc's shared copy code. PROVEN with filesystem evidence on an
+  800MB copy: option ON -> the destination temp file already showed
+  size 838860800 with all blocks physically allocated at the very first
+  sample of the copy; option OFF -> size and allocation grew with the
+  written data (98MB -> 825MB progressive samples). A sparse file of the
+  same size shows 8 blocks vs 204800 for the fallocated one
+- COW file cloning: FICLONE ioctl (MC_CloneFile) tried first when the
+  destination does not exist (mc file.c:2606 contract), silent fallback
+  to the normal copy on failure, like mc. The sandbox filesystem (ext4)
+  has no reflink support: the syscall returns EOPNOTSUPP (errno 95,
+  verified directly), so the real clone effect is env-blocked; the
+  fallback path is proven (copies complete, md5-identical) - exactly what
+  real mc does on ext4
+- Regression fixed: MCMsgBox (a plain function, also the ErrorBlock
+  handler) referenced the app instance and crashed any message box with a
+  recursive error dialog; fixed via a module-level app handle
+
 ## Light (partial)
 
-- (none right now)
+- Drop down menus: checkbox + ini persist; the behavior is pending - the
+  shared menu class (HBDbMenu/HbMenu, repo-root, read-only here) only
+  supports dropping the menu immediately; mc's default bar-lit state
+  needs a dedicated bar handler in mc/
+- Preallocate failure path: a background job logs the errno and copies
+  anyway, the foreground copy continues silently; mc shows a retry/skip
+  dialog instead (file.c:2713)
+- COW: the actual reflink effect is env-blocked (no COW-capable
+  filesystem in the sandbox); only the attempt + fallback are proven
 
 ## Pending (not implemented / not verified)
 
-- (none right now)
+- Ask new file name (editor_ask_filename_before_edit): Shift-F4 new-file
+  edit should ask the file name first (src/filemanager/cmd.c:715)
+- Complete: show all (show_all_if_ambiguous): needs M-Tab completion
+  infrastructure in dialog GETs (lib/widget input completion)
+- Rotating dash behavior: spinner in the top-right corner during long
+  operations (layout.c:1026+)
+- Timeout field: editable in the dialog but not yet applied to the Esc
+  key mode timing
 
 ## Env-blocked (out of demo scope by design)
 
@@ -228,6 +278,7 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - extfs helpers that need extra packages (rpm/iso tools)
 - chattr/chown operations requiring other-owner privileges
 - Any network VFS needing credentials or private servers
+- COW reflink effect: no COW-capable filesystem (btrfs/xfs) available
 
 ## Known limits
 
