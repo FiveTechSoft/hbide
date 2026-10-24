@@ -161,6 +161,7 @@ CLASS HbDesigner
    METHOD SaveJson( lAskName )
    METHOD SelectFileName( cTitle, cDefault )
    METHOD ShowHint( cText )
+   METHOD HintUndoRefresh()
    METHOD SuspendUI()
 
 ENDCLASS
@@ -576,6 +577,7 @@ METHOD PushSnapshot( hSnap ) CLASS HbDesigner
    DsnHistPush( ::aUndo, ::aRedo, hSnap )
    ::hPending     = nil
    ::lPendingUsed = .T.
+   ::HintUndoRefresh()
 
 return nil
 
@@ -607,6 +609,7 @@ METHOD CommitBurst() CLASS HbDesigner
       DsnHistPush( ::aUndo, ::aRedo, ::hPending )
       ::hPending     = nil
       ::lPendingUsed = .T.
+      ::HintUndoRefresh()
    endif
 
 return nil
@@ -1034,6 +1037,18 @@ METHOD ShowHint( cText ) CLASS HbDesigner
    endif
 
    hb_DispOutAt( MaxRow(), 0, PadR( ::cHint, MaxCol() + 1 ), "N/W" )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+// keep an already-visible undo/redo status line truthful after a new push;
+// key-help hints (canvas, inspector, ...) are left alone
+
+METHOD HintUndoRefresh() CLASS HbDesigner
+
+   if Left( ::cHint, 5 ) == "Undo " .or. Left( ::cHint, 5 ) == "Redo "
+      ::ShowHint( "Undo (" + hb_ntos( Len( ::aUndo ) ) + " more, ^Y redo)" )
+   endif
 
 return nil
 
