@@ -94,6 +94,15 @@ CLASS MCApp
    DATA   lSafeOverwrite INIT .F.
    DATA   nPauseAfterRun INIT 1   // mc default: pause_on_dumb_terminals (mc execute.c:60)
    DATA   lClassicProgressbar INIT .T.  // mc default TRUE (mc filegui.c:160)
+   DATA   lSinglePress  INIT .T.  // mc default TRUE (mc lib/tty/key.c:94)
+   DATA   nEscTimeout   INIT 1000000  // us; mc default G_USEC_PER_SEC (key.c:96)
+   DATA   lAskNewFile   INIT .F.  // mc default FALSE (mc setup.c:108)
+   DATA   lAutoMenus    INIT .F.  // mc default FALSE (mc setup.c:99)
+   DATA   lDropMenus    INIT .F.  // mc default FALSE (mc setup.c:101)
+   DATA   lShowAllAmbig INIT .F.  // mc default FALSE (mc lib/global.c:76)
+   DATA   lRotatingDash INIT .T.  // mc default TRUE (mc layout.c:86)
+   DATA   lPreallocate  INIT .F.  // mc: vfs preallocate_space, default FALSE
+   DATA   lCowClone     INIT .F.  // mc: vfs file_cloning, default FALSE
    DATA   lSIUnits        INIT .F.
    DATA   cExternalView   INIT "less"
    DATA   cExternalEdit   INIT "vi"
@@ -556,6 +565,13 @@ METHOD Activate() CLASS MCApp
    ::Rescan()
    ::Repaint()
 
+   // mc auto_menu (setup.c:99 default FALSE): invoke the user menu at
+   // startup (mc filemanager.c:1460 MSG_IDLE -> CK_UserMenu)
+   if ::lAutoMenus
+      ::UserMenu()
+      ::Repaint()
+   endif
+
    while ! ::lEnd
       nKeyRaw := InKey( If( MCJobsNeedTick(), 0.2, 0 ), HB_INKEY_ALL + HB_INKEY_EXT )
       if nKeyRaw == 0
@@ -623,7 +639,14 @@ METHOD Activate() CLASS MCApp
          case nKey == K_F6  ; ::FileMove()
          case nKey == K_F7  ; ::FileMkdir()
          case nKey == K_F8  ; ::FileDelete()
-         case nKey == K_F9  ; ( SetCursor( SC_NONE ), ::oMenu:ProcessKey( K_ALT_L ) )
+         case nKey == K_F9
+            SetCursor( SC_NONE )
+            ::oMenu:ProcessKey( K_ALT_L )
+            // mc drop_menus (setup.c:101 default FALSE): F9 drops the
+            // pulldown at once instead of only lighting the menu title
+            if ::lDropMenus .and. ::oMenu:IsOpen()
+               ::oMenu:ProcessKey( K_DOWN )
+            endif
          case nKey == K_F10 ; ::Quit()
 
          case nKey == K_TAB .and. nFlags == 0 ; ::SwitchPanel()
@@ -1487,111 +1510,144 @@ return nil
 
 METHOD OptionsConfig() CLASS MCApp
 
-   local oDlg, GetList := {}, lDummy, lOk := .F.
-   local lHidden := ::lShowHidden, lMini := ::lMiniStatus
-   local lTotals := ::lComputeTotals, lFree := ::lShowFreeSpace
-   local lSave := ::lAutoSaveSetup, lPat := ::lShellPatterns
-   local lMkA := ::lMkdirAutoname
-   local lVerb := ::lVerboseOp
-   local lIV := ::lInternalView, lIE := ::lInternalEdit
-   local lCdL := ::lCdFollowsLinks
+   // Layout mirrors mc's real configure_box (mc src/filemanager/boxes.c:560+):
+   // left column = File operations + Esc key mode + Pause after run groups,
+   // right column = Other options group
+   local oDlg, GetList := {}, lDummy, lOk := .F., nEsc := 0, oTmo
+   local lVerb := ::lVerboseOp, lTotals := ::lComputeTotals
+   local lCP := ::lClassicProgressbar, lMkA := ::lMkdirAutoname
+   local lPre := ::lPreallocate, lCow := ::lCowClone
+   local lSPress := ::lSinglePress, cTimeout := hb_ntos( ::nEscTimeout )
+   local lIE := ::lInternalEdit, lIV := ::lInternalView
+   local lAsk := ::lAskNewFile, lAM := ::lAutoMenus, lDM := ::lDropMenus
+   local lPat := ::lShellPatterns, lSA := ::lShowAllAmbig
+   local lRD := ::lRotatingDash, lCdL := ::lCdFollowsLinks
    local lSD := ::lSafeDelete, lSOv := ::lSafeOverwrite
-   local nPauseRun := ::nPauseAfterRun + 1, aPar[ 3 ], nT, nL, n
-   local lCP := ::lClassicProgressbar
-   local cFrame := hb_UTF8ToStrBox( "┌─┐│┘─└│" )
+   local lSave := ::lAutoSaveSetup
+   local nPauseRun := ::nPauseAfterRun + 1, aPar[ 3 ], nT, nL, nLC, nRC, n
+   local cFrame := hb_UTF8ToStrBox( "ââââââââ" )
 
-   oDlg = HBWindow():Dialog( "Configuration", 44, 25, "W+/W" )
+   oDlg = HBWindow():Dialog( "Configuration", 64, 21, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
    nT := oDlg:nTop
    nL := oDlg:nLeft
+   nLC := nL + 2
+   nRC := nL + 33
 
-   @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lHidden ;
-      CHECKBOX CAPTION "Show &hidden files" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
-   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
-   ATail( GetList ):Control:Display()
+   // ---- left column: File operations
+   hb_DispBox( nT + 1, nLC, nT + 8, nLC + 29, cFrame, "N/W" )
+   hb_Scroll( nT + 2, nLC + 1, nT + 7, nLC + 28,,, "N/W" )
+   hb_DispOutAt( nT + 1, nLC + 2, " File operations ", "N/W" )
 
-   @ oDlg:nTop + 3, oDlg:nLeft + 3 GET lMini ;
-      CHECKBOX CAPTION "Show &mini-status" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
-   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
-   ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lTotals ;
-      CHECKBOX CAPTION "Compute &totals" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
-   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
-   ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 5, oDlg:nLeft + 3 GET lFree ;
-      CHECKBOX CAPTION "Show &free space" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
-   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
-   ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 6, oDlg:nLeft + 3 GET lSave ;
-      CHECKBOX CAPTION "Auto &save setup" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
-   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
-   ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 7, oDlg:nLeft + 3 GET lPat ;
-      CHECKBOX CAPTION "Shell &patterns" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
-   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
-   ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 8, oDlg:nLeft + 3 GET lMkA ;
-      CHECKBOX CAPTION "Mkdi&r autoname" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
-   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
-   ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 9, oDlg:nLeft + 3 GET lVerb ;
+   @ nT + 2, nLC + 2 GET lVerb ;
       CHECKBOX CAPTION "&Verbose operation" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 10, oDlg:nLeft + 3 GET lIV ;
-      CHECKBOX CAPTION "Use internal vie&w" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   @ nT + 3, nLC + 2 GET lTotals ;
+      CHECKBOX CAPTION "Compute &totals" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 11, oDlg:nLeft + 3 GET lIE ;
-      CHECKBOX CAPTION "Use internal edi&t" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
-   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
-   ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 12, oDlg:nLeft + 3 GET lCdL ;
-      CHECKBOX CAPTION "Cd follows lin&ks" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
-   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
-   ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 13, oDlg:nLeft + 3 GET lSD ;
-      CHECKBOX CAPTION "Sa&fe delete" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
-   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
-   ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 14, oDlg:nLeft + 3 GET lSOv ;
-      CHECKBOX CAPTION "Safe overwrite" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
-   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
-   ATail( GetList ):Control:Display()
-
-   @ oDlg:nTop + 15, oDlg:nLeft + 3 GET lCP ;
+   @ nT + 4, nLC + 2 GET lCP ;
       CHECKBOX CAPTION "Classic pro&gressbar" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
+   @ nT + 5, nLC + 2 GET lMkA ;
+      CHECKBOX CAPTION "Mkdi&r autoname" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 6, nLC + 2 GET lPre ;
+      CHECKBOX CAPTION "&Preallocate space" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 7, nLC + 2 GET lCow ;
+      CHECKBOX CAPTION "Use COW file cloning" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
 
-   // Radio: Pause after run (mc: Never / On dumb terminals / Always)
-   hb_DispBox( nT + 16, nL + 2, nT + 20, nL + 41, cFrame, "N/W" )
-   hb_Scroll( nT + 17, nL + 3, nT + 19, nL + 40,,, "N/W" )
-   hb_DispOutAt( nT + 16, nL + 4, " Pause after run ", "N/W" )
-   aPar[ 1 ] := RadioButto( nT + 17, nL + 5, " " + PadR( "&Never", 28 ) )
-   aPar[ 2 ] := RadioButto( nT + 18, nL + 5, " " + PadR( "On d&umb terminals", 28 ) )
-   aPar[ 3 ] := RadioButto( nT + 19, nL + 5, " " + PadR( "Al&ways", 28 ) )
-   AEval( aPar, { | o | o:capCol := nL + 9, o:colorSpec := "N/W,N/BG,N/W,N/W,N/W,R/W,N/BG", o:cargo := { "GR+/BG", 0, 0 } } )
+   // ---- left column: Esc key mode
+   hb_DispBox( nT + 9, nLC, nT + 12, nLC + 29, cFrame, "N/W" )
+   hb_Scroll( nT + 10, nLC + 1, nT + 11, nLC + 28,,, "N/W" )
+   hb_DispOutAt( nT + 9, nLC + 2, " Esc key mode ", "N/W" )
+
+   @ nT + 10, nLC + 2 GET lSPress ;
+      CHECKBOX CAPTION "S&ingle press" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   hb_DispOutAt( nT + 11, nLC + 4, "Timeout:", "N/W" )
+   @ nT + 11, nLC + 14 GET cTimeout PICTURE "9999999999"
+   oTmo := ATail( GetList )
+
+   // ---- left column: Pause after run (mc: Never / On dumb terminals / Always)
+   hb_DispBox( nT + 13, nLC, nT + 17, nLC + 29, cFrame, "N/W" )
+   hb_Scroll( nT + 14, nLC + 1, nT + 16, nLC + 28,,, "N/W" )
+   hb_DispOutAt( nT + 13, nLC + 2, " Pause after run ", "N/W" )
+   aPar[ 1 ] := RadioButto( nT + 14, nLC + 3, " " + PadR( "&Never", 21 ) )
+   aPar[ 2 ] := RadioButto( nT + 15, nLC + 3, " " + PadR( "On d&umb terminals", 21 ) )
+   aPar[ 3 ] := RadioButto( nT + 16, nLC + 3, " " + PadR( "Al&ways", 21 ) )
+   AEval( aPar, { | o | o:capCol := nLC + 7, o:colorSpec := "N/W,N/BG,N/W,N/W,N/W,R/W,N/BG", o:cargo := { "GR+/BG", 0, 0 } } )
    oDlg:cargo := aPar
-   @ nT + 16, nL + 2, nT + 20, nL + 41 GET nPauseRun ;
+   @ nT + 13, nLC, nT + 17, nLC + 29 GET nPauseRun ;
       RADIOGROUP aPar STYLE "(" + Chr( 7 ) + " )" COLOR "N/W,N/BG,GR+/BG"
    // focused state would otherwise repaint a DOUBLE-line default frame over
    // the single-line manual one
    ATail( GetList ):Control:hotBox := cFrame
-   hb_DispBox( nT + 16, nL + 2, nT + 20, nL + 41, cFrame, "N/W" )
-   hb_Scroll( nT + 17, nL + 3, nT + 19, nL + 40,,, "N/W" )
-   hb_DispOutAt( nT + 16, nL + 4, " Pause after run ", "N/W" )
+   hb_DispBox( nT + 13, nLC, nT + 17, nLC + 29, cFrame, "N/W" )
+   hb_Scroll( nT + 14, nLC + 1, nT + 16, nLC + 28,,, "N/W" )
+   hb_DispOutAt( nT + 13, nLC + 2, " Pause after run ", "N/W" )
+   ATail( GetList ):Control:Display()
+
+   // ---- right column: Other options
+   hb_DispBox( nT + 1, nRC, nT + 15, nRC + 29, cFrame, "N/W" )
+   hb_Scroll( nT + 2, nRC + 1, nT + 14, nRC + 28,,, "N/W" )
+   hb_DispOutAt( nT + 1, nRC + 2, " Other options ", "N/W" )
+
+   @ nT + 2, nRC + 2 GET lIE ;
+      CHECKBOX CAPTION "Use internal edi&t" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 3, nRC + 2 GET lIV ;
+      CHECKBOX CAPTION "Use internal vie&w" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 4, nRC + 2 GET lAsk ;
+      CHECKBOX CAPTION "A&sk new file name" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 5, nRC + 2 GET lAM ;
+      CHECKBOX CAPTION "Auto m&enus" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 6, nRC + 2 GET lDM ;
+      CHECKBOX CAPTION "&Drop down menus" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 7, nRC + 2 GET lPat ;
+      CHECKBOX CAPTION "S&hell patterns" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 8, nRC + 2 GET lSA ;
+      CHECKBOX CAPTION "Co&mplete: show all" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 9, nRC + 2 GET lRD ;
+      CHECKBOX CAPTION "Rotating d&ash" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 10, nRC + 2 GET lCdL ;
+      CHECKBOX CAPTION "Cd follows lin&ks" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 11, nRC + 2 GET lSD ;
+      CHECKBOX CAPTION "Sa&fe delete" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 12, nRC + 2 GET lSOv ;
+      CHECKBOX CAPTION "Safe overwrite" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ nT + 13, nRC + 2 GET lSave ;
+      CHECKBOX CAPTION "A&uto save setup" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
@@ -1599,31 +1655,41 @@ METHOD OptionsConfig() CLASS MCApp
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
 
-   // Esc = Cancel inside dialogs: enable the READ exit key just for the
-   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
-   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   // Esc = Cancel inside dialogs. mc old_esc_mode (lib/tty/key.c:94, default
+   // TRUE = "Single press" on): a lone Esc cancels. With the option OFF the
+   // Esc key is only a prefix and the dialog closes on Esc Esc.
+   Set( _SET_ESCAPE, lSPress )
+   if ! lSPress
+      SetKey( K_ESC, { || ( ++nEsc >= 2 .and. ( oDlg:End(), .T. ) ) } )
+   endif
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
-      ::lShowHidden := lHidden
-      ::lMiniStatus := lMini
-      ::lComputeTotals := lTotals
-      ::lShowFreeSpace := lFree
-      ::lAutoSaveSetup := lSave
-      ::lShellPatterns := lPat
-      ::lMkdirAutoname := lMkA
       ::lVerboseOp := lVerb
-      ::lInternalView := lIV
+      ::lComputeTotals := lTotals
+      ::lClassicProgressbar := lCP
+      ::lMkdirAutoname := lMkA
+      ::lPreallocate := lPre
+      ::lCowClone := lCow
+      ::lSinglePress := lSPress
+      ::nEscTimeout := Int( Val( AllTrim( cTimeout ) ) )
       ::lInternalEdit := lIE
+      ::lInternalView := lIV
+      ::lAskNewFile := lAsk
+      ::lAutoMenus := lAM
+      ::lDropMenus := lDM
+      ::lShellPatterns := lPat
+      ::lShowAllAmbig := lSA
+      ::lRotatingDash := lRD
+      ::lCdFollowsLinks := lCdL
       ::lSafeDelete := lSD
       ::lSafeOverwrite := lSOv
-      ::lCdFollowsLinks := lCdL
-      ::lClassicProgressbar := lCP
+      ::lAutoSaveSetup := lSave
       // numeric GET buffer round-trip is unreliable; read the items
       n := AScan( aPar, { | o | o:buffer } )
       if n == 0
@@ -1641,7 +1707,7 @@ METHOD OptionsLayout() CLASS MCApp
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
    local lEq := ::lEqualSplit, lHor := ::lHorizontal, lMb := ::lMenubar
-   local lCl := ::lCmdlineBar, lKb := ::lKeybar
+   local lCl := ::lCmdlineBar, lKb := ::lKeybar, lFree := ::lShowFreeSpace
 
    oDlg = HBWindow():Dialog( "Layout", 44, 12, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
@@ -1667,7 +1733,12 @@ METHOD OptionsLayout() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
-   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      @ oDlg:nTop + 7, oDlg:nLeft + 3 GET lFree ;
+      CHECKBOX CAPTION "Show &free space" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+@ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
@@ -1688,6 +1759,7 @@ METHOD OptionsLayout() CLASS MCApp
       ::lMenubar := lMb
       ::lCmdlineBar := lCl
       ::lKeybar := lKb
+      ::lShowFreeSpace := lFree
       ::Layout()
       ::Repaint()
    endif
@@ -1704,7 +1776,7 @@ METHOD OptionsPanel() CLASS MCApp
    local lFT := ::lFileTypes
    local lFR := ::lFastReload
    local lSP := ::lScrollPages, lSC := ::lScrollCenter, lMP := ::lMousePages
-   local lSI := ::lSIUnits
+   local lSI := ::lSIUnits, lMini := ::lMiniStatus
 
    oDlg = HBWindow():Dialog( "Panel options", 44, 18, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
@@ -1764,7 +1836,12 @@ METHOD OptionsPanel() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
-   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      @ oDlg:nTop + 13, oDlg:nLeft + 3 GET lMini ;
+      CHECKBOX CAPTION "Show mi&ni-status" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+@ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
@@ -1791,6 +1868,7 @@ METHOD OptionsPanel() CLASS MCApp
       ::lScrollCenter := lSC
       ::lMousePages := lMP
       ::lSIUnits := lSI
+      ::lMiniStatus := lMini
       ::Rescan()
    endif
 
@@ -3446,6 +3524,15 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "cdsymlinks"     ; ::lCdFollowsLinks := ( cVal == "1" )
          case cKey == "pauseafterrun"  ; ::nPauseAfterRun := Min( Max( 0, Val( cVal ) ), 2 )
          case cKey == "classicprogressbar" ; ::lClassicProgressbar := ( cVal == "1" )
+         case cKey == "singlepress"    ; ::lSinglePress := ( cVal == "1" )
+         case cKey == "esctimeout"     ; ::nEscTimeout := Int( Val( cVal ) )
+         case cKey == "asknewfile"     ; ::lAskNewFile := ( cVal == "1" )
+         case cKey == "automenus"      ; ::lAutoMenus := ( cVal == "1" )
+         case cKey == "dropdownmenus"  ; ::lDropMenus := ( cVal == "1" )
+         case cKey == "showallambig"   ; ::lShowAllAmbig := ( cVal == "1" )
+         case cKey == "rotatingdash"   ; ::lRotatingDash := ( cVal == "1" )
+         case cKey == "preallocate"    ; ::lPreallocate := ( cVal == "1" )
+         case cKey == "cowcloning"     ; ::lCowClone := ( cVal == "1" )
          case cKey == "safedelete"     ; ::lSafeDelete := ( cVal == "1" )
          case cKey == "safeoverwrite"  ; ::lSafeOverwrite := ( cVal == "1" )
          case cKey == "siunits"        ; ::lSIUnits := ( cVal == "1" )
@@ -3507,6 +3594,15 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "cdsymlinks=" + If( ::lCdFollowsLinks, "1", "0" ) + hb_eol()
    cTxt += "pauseafterrun=" + hb_ntos( ::nPauseAfterRun ) + hb_eol()
    cTxt += "classicprogressbar=" + If( ::lClassicProgressbar, "1", "0" ) + hb_eol()
+   cTxt += "singlepress=" + If( ::lSinglePress, "1", "0" ) + hb_eol()
+   cTxt += "esctimeout=" + hb_ntos( ::nEscTimeout ) + hb_eol()
+   cTxt += "asknewfile=" + If( ::lAskNewFile, "1", "0" ) + hb_eol()
+   cTxt += "automenus=" + If( ::lAutoMenus, "1", "0" ) + hb_eol()
+   cTxt += "dropdownmenus=" + If( ::lDropMenus, "1", "0" ) + hb_eol()
+   cTxt += "showallambig=" + If( ::lShowAllAmbig, "1", "0" ) + hb_eol()
+   cTxt += "rotatingdash=" + If( ::lRotatingDash, "1", "0" ) + hb_eol()
+   cTxt += "preallocate=" + If( ::lPreallocate, "1", "0" ) + hb_eol()
+   cTxt += "cowcloning=" + If( ::lCowClone, "1", "0" ) + hb_eol()
    cTxt += "safedelete=" + If( ::lSafeDelete, "1", "0" ) + hb_eol()
    cTxt += "safeoverwrite=" + If( ::lSafeOverwrite, "1", "0" ) + hb_eol()
    cTxt += "siunits=" + If( ::lSIUnits, "1", "0" ) + hb_eol()
