@@ -228,6 +228,9 @@ METHOD Activate() CLASS HbDesigner
          case nKey == K_ESC
             if ::lPlacing
                ::lPlacing = .F.
+            elseif ::lInspector
+               // close the panel before offering to exit
+               ::ToggleInspector()
             elseif ::lDirty
                ::SuspendUI()
                nChoice = Alert( "Discard unsaved changes?", { "Yes", "No" } )
