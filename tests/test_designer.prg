@@ -1022,4 +1022,16 @@ procedure MenuTests()
    // cell left of its prompt is the live palette screenshot: the headless
    // GT keeps no readable screen buffer for SaveScreen)
 
+   // DsnConfirm layout: text and button row fit, buttons centered, on-screen
+   aLay = DsnConfirmLayout( "Discard unsaved changes?", { "&Yes", "&No" }, 80 )
+   Check( "confirm layout width fits text", aLay[ 1 ] == 32 )
+   Check( "confirm layout height and row", aLay[ 2 ] == 8 .and. aLay[ 3 ] == 4 )
+   Check( "confirm layout two buttons centered", ;
+      aLay[ 4 ][ 1 ] == 5 .and. aLay[ 4 ][ 2 ] == 17 )
+   aLay = DsnConfirmLayout( "OK?", { "&OK" }, 80 )
+   Check( "confirm layout single button min width", aLay[ 1 ] == 16 )
+   Check( "confirm layout single button centered", aLay[ 4 ][ 1 ] == 3 )
+   aLay = DsnConfirmLayout( Replicate( "X", 200 ), { "&Yes", "&No" }, 80 )
+   Check( "confirm layout clamps to screen", aLay[ 1 ] == 76 )
+
 return
