@@ -92,6 +92,7 @@ CLASS MCApp
    DATA   lCdFollowsLinks INIT .T.
    DATA   lSafeDelete    INIT .F.  // mc default: both safe_* are FALSE (mc setup.c)
    DATA   lSafeOverwrite INIT .F.
+   DATA   nPauseAfterRun INIT 1   // mc default: pause_on_dumb_terminals (mc execute.c:60)
    DATA   lSIUnits        INIT .F.
    DATA   cExternalView   INIT "less"
    DATA   cExternalEdit   INIT "vi"
@@ -381,12 +382,18 @@ return nil
 
 METHOD PanelsOnOff() CLASS MCApp
 
-   local nKey
+   local nKey, aLines, nFirst, n
 
    DispBegin()
    hb_Scroll( 0, 0, MaxRow(), MaxCol(), 0, 0, "W/N", " " )
    if ! Empty( ::cLastOutput )
-      hb_DispOutAt( 1, 0, hb_UTF8SubStr( ::cLastOutput, Max( 1, hb_ULen( ::cLastOutput ) - 4000 ) ), "W/N" )
+      // split into lines like ShowOutput: hb_DispOutAt renders hb_eol() as
+      // a glyph box otherwise
+      aLines := hb_aTokens( StrTran( ::cLastOutput, Chr( 13 ) ), Chr( 10 ) )
+      nFirst := Max( 1, Len( aLines ) - MaxRow() + 1 )
+      for n := nFirst to Len( aLines )
+         hb_DispOutAt( n - nFirst, 0, PadR( aLines[ n ], MaxCol() + 1 ), "W/N" )
+      next
    endif
    hb_DispOutAt( MaxRow(), 0, " Press any key to return to the panels ", "N/W" )
    DispEnd()
@@ -449,7 +456,10 @@ METHOD RunCommand() CLASS MCApp
       nRet := hb_ProcessRun( MCShWrap( "cd " + ShellQuote( ::ActivePanel():cPath ) + " && " + cCmd ),, @cOut, @cErr )
       ::cLastOutput := "$ " + cCmd + hb_eol() + cOut + cErr + ;
          If( nRet != 0, hb_eol() + "(exit code " + hb_ntos( nRet ) + ")", "" )
-      ::ShowOutput( ::cLastOutput )
+      // mc execute.c:331: pause only when the option says so
+      if MCPauseShown( ::nPauseAfterRun )
+         ::ShowOutput( ::cLastOutput )
+      endif
       ::Rescan()
    endif
    ::oCmdLine:SetText( "" )
@@ -1485,9 +1495,13 @@ METHOD OptionsConfig() CLASS MCApp
    local lIV := ::lInternalView, lIE := ::lInternalEdit
    local lCdL := ::lCdFollowsLinks
    local lSD := ::lSafeDelete, lSOv := ::lSafeOverwrite
+   local nPauseRun := ::nPauseAfterRun + 1, aPar[ 3 ], nT, nL, n
+   local cFrame := hb_UTF8ToStrBox( "┌─┐│┘─└│" )
 
-   oDlg = HBWindow():Dialog( "Configuration", 44, 20, "W+/W" )
+   oDlg = HBWindow():Dialog( "Configuration", 44, 25, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
+   nT := oDlg:nTop
+   nL := oDlg:nLeft
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lHidden ;
       CHECKBOX CAPTION "Show &hidden files" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
@@ -1554,6 +1568,25 @@ METHOD OptionsConfig() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
+   // Radio: Pause after run (mc: Never / On dumb terminals / Always)
+   hb_DispBox( nT + 15, nL + 2, nT + 19, nL + 41, cFrame, "N/W" )
+   hb_Scroll( nT + 16, nL + 3, nT + 18, nL + 40,,, "N/W" )
+   hb_DispOutAt( nT + 15, nL + 4, " Pause after run ", "N/W" )
+   aPar[ 1 ] := RadioButto( nT + 16, nL + 5, " " + PadR( "&Never", 28 ) )
+   aPar[ 2 ] := RadioButto( nT + 17, nL + 5, " " + PadR( "On d&umb terminals", 28 ) )
+   aPar[ 3 ] := RadioButto( nT + 18, nL + 5, " " + PadR( "Al&ways", 28 ) )
+   AEval( aPar, { | o | o:capCol := nL + 9, o:colorSpec := "N/W,N/BG,N/W,N/W,N/W,R/W,N/BG", o:cargo := { "GR+/BG", 0, 0 } } )
+   oDlg:cargo := aPar
+   @ nT + 15, nL + 2, nT + 19, nL + 41 GET nPauseRun ;
+      RADIOGROUP aPar STYLE "(" + Chr( 7 ) + " )" COLOR "N/W,N/BG,GR+/BG"
+   // focused state would otherwise repaint a DOUBLE-line default frame over
+   // the single-line manual one
+   ATail( GetList ):Control:hotBox := cFrame
+   hb_DispBox( nT + 15, nL + 2, nT + 19, nL + 41, cFrame, "N/W" )
+   hb_Scroll( nT + 16, nL + 3, nT + 18, nL + 40,,, "N/W" )
+   hb_DispOutAt( nT + 15, nL + 4, " Pause after run ", "N/W" )
+   ATail( GetList ):Control:Display()
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
@@ -1583,6 +1616,12 @@ METHOD OptionsConfig() CLASS MCApp
       ::lSafeDelete := lSD
       ::lSafeOverwrite := lSOv
       ::lCdFollowsLinks := lCdL
+      // numeric GET buffer round-trip is unreliable; read the items
+      n := AScan( aPar, { | o | o:buffer } )
+      if n == 0
+         n := Min( Max( 1, Int( nPauseRun ) ), 3 )
+      endif
+      ::nPauseAfterRun := n - 1
       ::Rescan()
    endif
 
@@ -3321,6 +3360,23 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+// mc execute.c:331-333: pause if Always, or (On dumb terminals AND not an
+// xterm-ish terminal AND not on the Linux console)
+function MCPauseShown( nOpt )
+
+   local cTerm := Lower( GetEnv( "TERM" ) )
+
+   if nOpt == 2
+      return .T.
+   endif
+   if nOpt == 1
+      return !( "xterm" $ cTerm ) .and. cTerm != "linux"
+   endif
+
+return .F.
+
+//-----------------------------------------------------------------------------------------//
+
 function MCKeyDefaults()
 
 return { K_F1, K_F2, K_F3, K_F4, K_F5, K_F6, K_F7, K_F8, K_F9, K_F10 }
@@ -3376,6 +3432,7 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "scrollcenter"   ; ::lScrollCenter := ( cVal == "1" )
          case cKey == "mousepages"     ; ::lMousePages := ( cVal == "1" )
          case cKey == "cdsymlinks"     ; ::lCdFollowsLinks := ( cVal == "1" )
+         case cKey == "pauseafterrun"  ; ::nPauseAfterRun := Min( Max( 0, Val( cVal ) ), 2 )
          case cKey == "safedelete"     ; ::lSafeDelete := ( cVal == "1" )
          case cKey == "safeoverwrite"  ; ::lSafeOverwrite := ( cVal == "1" )
          case cKey == "siunits"        ; ::lSIUnits := ( cVal == "1" )
@@ -3435,6 +3492,7 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "scrollcenter=" + If( ::lScrollCenter, "1", "0" ) + hb_eol()
    cTxt += "mousepages=" + If( ::lMousePages, "1", "0" ) + hb_eol()
    cTxt += "cdsymlinks=" + If( ::lCdFollowsLinks, "1", "0" ) + hb_eol()
+   cTxt += "pauseafterrun=" + hb_ntos( ::nPauseAfterRun ) + hb_eol()
    cTxt += "safedelete=" + If( ::lSafeDelete, "1", "0" ) + hb_eol()
    cTxt += "safeoverwrite=" + If( ::lSafeOverwrite, "1", "0" ) + hb_eol()
    cTxt += "siunits=" + If( ::lSIUnits, "1", "0" ) + hb_eol()
