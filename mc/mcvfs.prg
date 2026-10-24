@@ -113,6 +113,12 @@ static function MCVfsTarList( cArchive, cInner )
       endif
       nPos := At( aT[ 5 ], cLine ) + Len( aT[ 5 ] )
       cName := AllTrim( SubStr( cLine, nPos ) )
+      if Left( cName, 2 ) == "./"
+         cName := SubStr( cName, 3 )   // GNU tar stores "./name" for "tar cf arch ."
+      endif
+      if Left( aT[ 1 ], 1 ) == "l" .and. " -> " $ cName
+         cName := Left( cName, At( " -> ", cName ) - 1 )   // shown, never followed
+      endif
       if ! Empty( cPrefix ) .and. Left( cName, Len( cPrefix ) ) != cPrefix
          loop
       endif
@@ -253,7 +259,9 @@ function MCVfsExtract( cPath, cDstDir, lDir )
    cWrap := cName
    if a[ 1 ] == "utar"
       cCmd := "tar xf " + ShellQuote( a[ 2 ] ) + " -C " + ShellQuote( cWrap ) + ;
-              " -- " + ShellQuote( a[ 3 ] + If( lDir, "/", "" ) )
+              " -- " + ShellQuote( a[ 3 ] + If( lDir, "/", "" ) ) + ;
+              " 2>/dev/null || tar xf " + ShellQuote( a[ 2 ] ) + " -C " + ShellQuote( cWrap ) + ;
+              " -- " + ShellQuote( "./" + a[ 3 ] + If( lDir, "/", "" ) ) + " 2>/dev/null"
    else
       cCmd := "cd " + ShellQuote( cWrap ) + " && unzip -o -q " + ShellQuote( a[ 2 ] ) + ;
               " " + ShellQuote( a[ 3 ] + If( lDir, "/*", "" ) )
@@ -279,6 +287,12 @@ function MCVfsViewFile( cPath )
 
    if aX == nil
       MCMsgBox( "VFS", "Cannot extract:" + Chr( 10 ) + cPath )
+      return nil
+   endif
+   if ! Empty( hb_FLinkRead( aX[ 1 ] ) )
+      // a link member could point outside the archive; never follow it
+      DeleteTree( aX[ 2 ] )
+      MCMsgBox( "VFS", "Archive member is a link and is not followed:" + Chr( 10 ) + cPath )
       return nil
    endif
    MCViewerText( cPath + "  (read-only, extracted copy)", MemoRead( aX[ 1 ] ) )
