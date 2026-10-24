@@ -1,0 +1,2242 @@
+/*
+ * mc.prg - Midnight Commander style dual-panel file manager
+ * Built with the hbide GUI classes (hbwindow/hbmenu/hbbutton) over Harbour GT.
+ * Turbo Vision look. Pure Harbour; external commands only for chmod/ln/chown.
+ */
+
+#include "hbclass.ch"
+#include "../hbmenu.ch"
+#include "inkey.ch"
+#include "setcurs.ch"
+#include "hbgtinfo.ch"
+#include "box.ch"
+#include "mc.ch"
+#include "directry.ch"
+
+#xcommand DEFAULT <uVar1> := <uVal1> ;
+   [, <uVarN> := <uValN> ] => ;
+      If( <uVar1> == nil, <uVar1> := <uVal1>, ) ;;
+    [ If( <uVarN> == nil, <uVarN> := <uValN>, ); ]
+
+#define HB_INKEY_GTEVENT   1024
+
+
+//-----------------------------------------------------------------------------------------//
+
+function Main( cStartDir )
+
+   local oApp := MCApp():New( hb_defaultValue( cStartDir, hb_cwd() ) )
+
+   oApp:Activate()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+CLASS MCApp
+
+   DATA   oPanel1
+   DATA   oPanel2
+   DATA   nActive      INIT 1
+   DATA   oMenu
+   DATA   lEnd         INIT .F.
+   DATA   cBackScreen
+   DATA   cCmdLine     INIT ""
+   DATA   cLastOutput  INIT ""
+   DATA   aHistory     INIT {}
+   DATA   aHotlist     INIT {}
+   DATA   nPrefixKey   INIT 0
+
+   // configuration (persisted)
+   DATA   lShowHidden     INIT .F.
+   DATA   lConfirmDelete  INIT .T.
+   DATA   lConfirmOverwrite INIT .T.
+   DATA   lConfirmExecute INIT .T.
+   DATA   lConfirmExit    INIT .T.
+   DATA   lMiniStatus     INIT .T.
+   DATA   lMixDirs        INIT .F.
+   DATA   lEqualSplit     INIT .T.
+   DATA   lHorizontal     INIT .F.
+   DATA   lMenubar        INIT .T.
+   DATA   lCmdlineBar     INIT .T.
+   DATA   lKeybar         INIT .T.
+   DATA   nTheme          INIT 1
+   DATA   aThemes
+   DATA   aPalette
+
+   METHOD New( cStartDir )
+   METHOD Activate()
+   METHOD Layout()
+   METHOD Repaint()
+   METHOD ShowMenuBar()
+   METHOD ShowCmdLine()
+   METHOD ShowKeyBar()
+   METHOD ActivePanel() INLINE If( ::nActive == 1, ::oPanel1, ::oPanel2 )
+   METHOD OtherPanel()  INLINE If( ::nActive == 1, ::oPanel2, ::oPanel1 )
+   METHOD SwitchPanel()
+   METHOD SwapPanels()
+   METHOD Rescan()
+   METHOD PanelsOnOff()
+   METHOD RunCommand()
+   METHOD ShowOutput( cOutput )
+   METHOD CmdInsertName()
+   METHOD QuickCd()
+   METHOD QuickSearch()
+   METHOD DirSizes()
+   METHOD CompareDirs()
+   METHOD BuildMenu()
+   METHOD AltKey( nKey )
+   METHOD MouseClick( nRow, nCol, lDbl )
+   METHOD GrabScreen()
+   METHOD SetTheme( nTheme )
+   METHOD LoadCfg()
+   METHOD SaveCfg()
+   METHOD CfgFile()    INLINE hb_DirSepAdd( hb_GetEnv( "HOME" ) ) + ".hbmc.ini"
+
+   // menu action entry points (implemented in mcmenu.prg)
+   METHOD PanelListing( nPanel )
+   METHOD PanelQuickView( nPanel )
+   METHOD PanelInfo( nPanel )
+   METHOD PanelTree( nPanel )
+   METHOD Panelize( nPanel )
+   METHOD ListingFormat( nPanel )
+   METHOD SortOrder( nPanel )
+   METHOD FilterDlg( nPanel )
+   METHOD FileView()
+   METHOD FileViewName()
+   METHOD FileFilteredView()
+   METHOD FileEdit()
+   METHOD FileCopy()
+   METHOD FileChmod()
+   METHOD FileLink()
+   METHOD FileSymlink()
+   METHOD FileEditSymlink()
+   METHOD FileChown()
+   METHOD FileMove()
+   METHOD FileMkdir()
+   METHOD FileDelete()
+   METHOD SelectGroup( lSelect )
+   METHOD InvertSelection()
+   METHOD UserMenu()
+   METHOD DirectoryTreeDlg()
+   METHOD FindFile()
+   METHOD CmdHistory()
+   METHOD Hotlist()
+   METHOD EditExtFile()
+   METHOD EditMenuFile()
+   METHOD OptionsConfig()
+   METHOD OptionsLayout()
+   METHOD OptionsPanel()
+   METHOD OptionsConfirm()
+   METHOD OptionsAppearance()
+   METHOD HelpDialog()
+   METHOD About()
+   METHOD Quit()
+   METHOD DlgInput( cTitle, cLabel, cDefault, nLen )
+   METHOD DlgConfirm( cTitle, cMsg, cOk )
+   METHOD DlgList( cTitle, aItems, nDef )
+   METHOD OtherPanelRef()
+
+ENDCLASS
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD New( cStartDir ) CLASS MCApp
+
+   SET SCOREBOARD OFF
+   SET DATE FORMAT TO "yyyy-mm-dd"
+
+   ::GrabScreen()
+   Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
+   SetMode( 40, 120 )
+
+   // MC classic, TV cyan, mono
+   ::aThemes := { ;
+      { "W/B",   "W+/B",  "GR+/B",  "N/BG",  "GR+/BG", "W/B",  "GR+/B",  "GR+/B", "W/B"   }, ;
+      { "N/BG",  "N+/BG", "GR+/BG", "W+/B",  "GR+/B",  "N/BG", "N+/BG",  "N+/BG","N/BG"  }, ;
+      { "N/W",   "W+/W",  "N/W",    "W/N",   "W+/N",   "N/W",  "W+/W",   "W+/W", "N/W"   } }
+
+   __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
+
+   ::LoadCfg()
+   ::SetTheme( ::nTheme )
+
+   ::oPanel1 := MCPanel():New( cStartDir )
+   ::oPanel2 := MCPanel():New( cStartDir )
+   ::oPanel1:oApp := Self
+   ::oPanel2:oApp := Self
+
+   ::oMenu := ::BuildMenu()
+   SetCursor( SC_NONE )
+
+   ErrorBlock( { | oError | MCMsgBox( "Error", MCErrorMsg( oError ) ) } )
+
+return Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD SetTheme( nTheme ) CLASS MCApp
+
+   ::nTheme := nTheme
+   ::aPalette := ::aThemes[ ::nTheme ]
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Layout() CLASS MCApp
+
+   local nTop    := If( ::lMenubar, 1, 0 )
+   local nBottom := MaxRow() - If( ::lKeybar, 1, 0 ) - If( ::lCmdlineBar, 1, 0 )
+   local nMidCol := Int( MaxCol() / 2 )
+   local nMidRow := Int( ( nBottom - nTop + 1 ) / 2 ) + nTop - 1
+
+   if ::lHorizontal
+      ::oPanel1:SetPos( nTop, 0, nMidRow, MaxCol() )
+      ::oPanel2:SetPos( nMidRow + 1, 0, nBottom, MaxCol() )
+   else
+      if ::lEqualSplit
+         ::oPanel1:SetPos( nTop, 0, nBottom, nMidCol + 1 )
+         ::oPanel2:SetPos( nTop, nMidCol + 1, nBottom, MaxCol() )
+      else
+         ::oPanel1:SetPos( nTop, 0, nBottom, Int( MaxCol() * 2 / 3 ) )
+         ::oPanel2:SetPos( nTop, Int( MaxCol() * 2 / 3 ) + 1, nBottom, MaxCol() )
+      endif
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD GrabScreen() CLASS MCApp
+
+   ::cBackScreen := SaveScreen( 0, 0, MaxRow(), MaxCol() )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Repaint() CLASS MCApp
+
+   DispBegin()
+   if ::lMenubar
+      ::ShowMenuBar()
+   endif
+   ::oPanel1:lActive := ( ::nActive == 1 )
+   ::oPanel2:lActive := ( ::nActive == 2 )
+   ::oPanel1:Display()
+   ::oPanel2:Display()
+   if ::lCmdlineBar
+      ::ShowCmdLine()
+   endif
+   if ::lKeybar
+      ::ShowKeyBar()
+   endif
+   DispEnd()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ShowMenuBar() CLASS MCApp
+
+   ::oMenu:LoadColors()
+   ::oMenu:Display()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ShowCmdLine() CLASS MCApp
+
+   local nRow := MaxRow() - If( ::lKeybar, 1, 0 )
+   local cPrompt := ::ActivePanel():cPath + "$ "
+   local cText := cPrompt + ::cCmdLine
+
+   hb_DispOutAt( nRow, 0, PadR( hb_UTF8SubStr( cText, Max( 1, hb_ULen( cText ) - MaxCol() ) ), MaxCol() + 1 ), "N/W" )
+   SetCursor( SC_NORMAL )
+   SetPos( nRow, Min( Len( cText ), MaxCol() ) )
+   SetCursor( SC_NONE )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ShowKeyBar() CLASS MCApp
+
+   local aKeys := { "Help", "Menu", "View", "Edit", "Copy", "RenMov", "Mkdir", "Delete", "PullDn", "Quit" }
+   local n, cLabel, nCol := 0
+
+   hb_DispOutAt( MaxRow(), 0, Space( MaxCol() + 1 ), "N/N" )
+   for n := 1 to 10
+      cLabel := If( n < 10, " " + hb_ntos( n ) + PadR( aKeys[ n ], 9 ), "10" + PadR( aKeys[ n ], 8 ) )
+      hb_DispOutAt( MaxRow(), nCol, Left( cLabel, 2 ), "BG+/N" )
+      hb_DispOutAt( MaxRow(), nCol + 2, SubStr( cLabel, 3 ), "W/N" )
+      nCol += 12
+   next
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD SwitchPanel() CLASS MCApp
+
+   ::nActive := If( ::nActive == 1, 2, 1 )
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD SwapPanels() CLASS MCApp
+
+   local a1 := ::oPanel1:Export(), a2 := ::oPanel2:Export()
+
+   ::oPanel1:Import( a2 )
+   ::oPanel2:Import( a1 )
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Rescan() CLASS MCApp
+
+   ::oPanel1:Rescan()
+   ::oPanel2:Rescan()
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD PanelsOnOff() CLASS MCApp
+
+   local nKey
+
+   DispBegin()
+   hb_Scroll( 0, 0, MaxRow(), MaxCol(), 0, 0, "W/N", " " )
+   if ! Empty( ::cLastOutput )
+      hb_DispOutAt( 1, 0, hb_UTF8SubStr( ::cLastOutput, Max( 1, hb_ULen( ::cLastOutput ) - 4000 ) ), "W/N" )
+   endif
+   hb_DispOutAt( MaxRow(), 0, " Press any key to return to the panels ", "N/W" )
+   DispEnd()
+   nKey := InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
+   if nKey >= K_ALT_Q .and. nKey <= K_ALT_M  // allow menu shortcut while hidden
+      ::Repaint()
+      ::oMenu:ProcessKey( nKey )
+   else
+      ::Repaint()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD CmdInsertName() CLASS MCApp
+
+   local aEntry := ::ActivePanel():Current()
+
+   if aEntry != nil
+      ::cCmdLine += ShellQuote( hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] ) ) + " "
+      ::ShowCmdLine()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD RunCommand() CLASS MCApp
+
+   local cCmd := AllTrim( ::cCmdLine ), cOut := "", cErr := "", nRet
+   local cFull
+
+   if Empty( cCmd )
+      return nil
+   endif
+
+   AAdd( ::aHistory, cCmd )
+   if Len( ::aHistory ) > 30
+      ADel( ::aHistory, 1 )
+      ASize( ::aHistory, 30 )
+   endif
+
+   if Left( cCmd, 3 ) == "cd " .or. cCmd == "cd"
+      cFull := MCAbsPath( ::ActivePanel():cPath, SubStr( cCmd + " ", 4 ) )
+      if hb_DirExists( cFull )
+         ::ActivePanel():GoDir( cFull )
+      else
+         MCMsgBox( "cd", "Directory does not exist:" + Chr( 10 ) + cFull )
+      endif
+   else
+      if ::lConfirmExecute
+         ::cLastOutput := "$ " + cCmd + hb_eol()
+      else
+         ::cLastOutput := ""
+      endif
+      nRet := hb_ProcessRun( MCShWrap( "cd " + ShellQuote( ::ActivePanel():cPath ) + " && " + cCmd ),, @cOut, @cErr )
+      ::cLastOutput := "$ " + cCmd + hb_eol() + cOut + cErr + ;
+         If( nRet != 0, hb_eol() + "(exit code " + hb_ntos( nRet ) + ")", "" )
+      ::ShowOutput( ::cLastOutput )
+      ::Rescan()
+   endif
+   ::cCmdLine := ""
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ShowOutput( cOutput ) CLASS MCApp
+
+   local aLines := hb_aTokens( StrTran( cOutput, Chr( 13 ) ), Chr( 10 ) )
+   local nMax := MaxRow() - 1, nFirst := Max( 1, Len( aLines ) - nMax + 1 ), n, nRow := 0
+
+   hb_Scroll( 0, 0, MaxRow(), MaxCol(), 0, 0, "W/N", " " )
+   for n := nFirst to Len( aLines )
+      hb_DispOutAt( nRow++, 0, PadR( aLines[ n ], MaxCol() + 1 ), "W/N" )
+      if nRow > nMax
+         exit
+      endif
+   next
+   hb_DispOutAt( MaxRow(), 0, " Press any key to return to the panels ", "N/W" )
+   InKey( 0, INKEY_ALL + HB_INKEY_GTEVENT )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD QuickCd() CLASS MCApp
+
+   local cPath := ::DlgInput( "Quick cd", "Path:", ::ActivePanel():cPath, 50 )
+
+   if cPath != nil
+      cPath := MCAbsPath( ::ActivePanel():cPath, cPath )
+      if hb_DirExists( cPath )
+         ::ActivePanel():GoDir( cPath )
+      else
+         MCMsgBox( "Quick cd", "Directory does not exist:" + Chr( 10 ) + cPath )
+      endif
+      ::Repaint()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD QuickSearch() CLASS MCApp
+
+   ::ActivePanel():QuickSearch()
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD DirSizes() CLASS MCApp
+
+   ::ActivePanel():ComputeDirSizes()
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Quit() CLASS MCApp
+
+   if ! ::lConfirmExit .or. ::DlgConfirm( "Quit", "Do you really want to quit the Commander?", "&Quit" )
+      ::lEnd := .T.
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Activate() CLASS MCApp
+
+   local nKey, nKeyRaw, nFlags, lCtrl, nKey2, nAlt, lDone, cK
+
+   ::Layout()
+   ::Rescan()
+   ::Repaint()
+
+   while ! ::lEnd
+      nKeyRaw := InKey( 0, HB_INKEY_ALL + HB_INKEY_EXT )
+      nFlags  := hb_keyMod( nKeyRaw )
+      nKey    := hb_keyStd( nKeyRaw )
+      lCtrl   := hb_bitAnd( nFlags, HB_KF_CTRL ) != 0
+      lDone := .T.
+
+      // Ctrl+X prefix commands
+      if ::nPrefixKey != 0
+         ::nPrefixKey := 0
+         cK := ""
+         if lCtrl .and. nKey >= 1 .and. nKey <= 26
+            cK := Chr( nKey + 64 )
+         elseif nKey >= 32 .and. nKey < 256
+            cK := Upper( Chr( nKey ) )
+         endif
+         do case
+            case cK == "D" ; ::CompareDirs()
+            case cK == "C" ; ::FileChmod()
+            case cK == "O" ; ::FileChown()
+            case cK == "L" ; ::FileLink()
+            case cK == "S" ; ::FileSymlink()
+            case cK == "I" ; ::PanelInfo( 3 - ::nActive )
+            case cK == "Q" ; ::PanelQuickView( 3 - ::nActive )
+            case cK == "T" ; ::PanelTree( ::nActive )
+            case cK == "P" ; ::Panelize( ::nActive )
+         endcase
+         ::Repaint()
+         loop
+      endif
+
+      if ::oMenu:IsOpen()
+         ::oMenu:ProcessKey( nKey )
+         if ! ::oMenu:IsOpen()
+            ::Repaint()
+         endif
+         loop
+      endif
+
+      do case
+         case nKey >= K_ALT_Q .and. nKey <= K_ALT_M .or. ;
+              nKey >= K_ALT_A .and. nKey <= K_ALT_Z
+            ::AltKey( nKey )
+
+         case nKey == K_F1  ; ::HelpDialog()
+         case nKey == K_F2  ; ::UserMenu()
+         case nKey == K_F3  ; ::FileView()
+         case nKey == K_F4  ; ::FileEdit()
+         case nKey == K_F5  ; ::FileCopy()
+         case nKey == K_F6  ; ::FileMove()
+         case nKey == K_F7  ; ::FileMkdir()
+         case nKey == K_F8  ; ::FileDelete()
+         case nKey == K_F9  ; ( SetCursor( SC_NONE ), ::oMenu:ProcessKey( K_ALT_L ) )
+         case nKey == K_F10 ; ::Quit()
+
+         case nKey == K_TAB .and. nFlags == 0 ; ::SwitchPanel()
+         case nKey == K_CTRL_U .and. lCtrl ; ::SwapPanels()
+         case nKey == K_CTRL_O .and. lCtrl ; ::PanelsOnOff()
+         case nKey == K_CTRL_R .and. lCtrl ; ::Rescan()
+         case nKey == K_CTRL_S .and. lCtrl ; ::QuickSearch()
+         case nKey == K_CTRL_X .and. lCtrl ; ::nPrefixKey := nKey
+         case nKey == K_CTRL_ENTER .and. lCtrl ; ::CmdInsertName()
+
+         case nKey == K_LBUTTONDOWN
+            ::MouseClick( MRow(), MCol(), .F. )
+         case nKey == K_LDBLCLK
+            ::MouseClick( MRow(), MCol(), .T. )
+         case nKey == K_MWFORWARD
+            ::ActivePanel():Scroll( -3 )
+            ::Repaint()
+         case nKey == K_MWBACKWARD
+            ::ActivePanel():Scroll( 3 )
+            ::Repaint()
+
+         case ( nKey == K_UP .or. nKey == K_DOWN .or. nKey == K_PGUP .or. nKey == K_PGDN .or. ;
+                nKey == K_HOME .or. nKey == K_END ) .and. nFlags == 0
+            ::ActivePanel():Move( nKey )
+            ::Repaint()
+
+         case nKey == K_INS .and. nFlags == 0
+            ::ActivePanel():MarkCurrent()
+            ::Repaint()
+
+         case nKey == K_ENTER
+            if Empty( ::cCmdLine )
+               ::ActivePanel():EnterKey()
+               ::Repaint()
+            else
+               ::RunCommand()
+            endif
+
+         case nKey == K_ESC
+            nKey2 := InKey( 0.04 )
+            if ( nAlt := MCA_ESCAlt( nKey2 ) ) != 0
+               ::AltKey( nAlt )
+            else
+               ::cCmdLine := ""
+               ::Repaint()
+            endif
+
+         case nKey == K_BS
+            if ! Empty( ::cCmdLine )
+               ::cCmdLine := Left( ::cCmdLine, Len( ::cCmdLine ) - 1 )
+            endif
+            ::Repaint()
+
+         case nKey == 43 .and. Empty( ::cCmdLine ) ; ::SelectGroup( .T. )    // '+'
+         case nKey == 45 .and. Empty( ::cCmdLine ) ; ::SelectGroup( .F. )    // '-'
+         case nKey == 42 .and. Empty( ::cCmdLine ) ; ::InvertSelection()     // '*'
+
+         otherwise
+            if nKey >= 32 .and. nKey < 256
+               ::cCmdLine += Chr( nKey )
+               ::Repaint()
+            else
+               lDone := .F.
+            endif
+      endcase
+   end
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD AltKey( nKey ) CLASS MCApp
+
+   do case
+      case nKey == K_ALT_C ; ::QuickCd()
+      case nKey == K_ALT_H ; ::CmdHistory()
+      case nKey == K_ALT_O ; ( ::OtherPanel():GoDir( ::ActivePanel():cPath ), ::Repaint() )
+      otherwise
+         SetCursor( SC_NONE )
+         ::oMenu:ProcessKey( nKey )
+         if ! ::oMenu:IsOpen()
+            ::Repaint()
+         endif
+   endcase
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD MouseClick( nRow, nCol, lDbl ) CLASS MCApp
+
+   local oPanel, nIdx, nP
+
+   if nRow == 0 .and. ::lMenubar
+      SetCursor( SC_NONE )
+      ::oMenu:ProcessKey( K_LBUTTONDOWN )
+      if ! ::oMenu:IsOpen()
+         ::Repaint()
+      endif
+      return nil
+   endif
+
+   if ::lKeybar .and. nRow == MaxRow()
+      do case
+         case nCol < 12  ; ::HelpDialog()
+         case nCol < 24  ; ::UserMenu()
+         case nCol < 36  ; ::FileView()
+         case nCol < 48  ; ::FileEdit()
+         case nCol < 60  ; ::FileCopy()
+         case nCol < 72  ; ::FileMove()
+         case nCol < 84  ; ::FileMkdir()
+         case nCol < 96  ; ::FileDelete()
+         case nCol < 108 ; ( SetCursor( SC_NONE ), ::oMenu:ProcessKey( K_ALT_L ) )
+         otherwise       ; ::Quit()
+      endcase
+      ::Repaint()
+      return nil
+   endif
+
+   for nP := 1 to 2
+      oPanel := If( nP == 1, ::oPanel1, ::oPanel2 )
+      if nRow >= oPanel:nTop .and. nRow <= oPanel:nBottom .and. ;
+         nCol >= oPanel:nLeft .and. nCol <= oPanel:nRight
+         if nP != ::nActive
+            ::nActive := nP
+         endif
+         nIdx := oPanel:RowToIndex( nRow )
+         if nIdx > 0
+            oPanel:nCurrent := nIdx
+            oPanel:FixScroll()
+         endif
+         if lDbl
+            oPanel:EnterKey()
+         endif
+         exit
+      endif
+   next
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD CompareDirs() CLASS MCApp
+
+   local oA := ::ActivePanel(), oB := ::OtherPanel()
+   local aEntry, nFound, nMarked := 0
+
+   if oA:cMode != "listing" .or. oB:cMode != "listing"
+      MCMsgBox( "Compare directories", "Both panels must be in file listing mode." )
+      return nil
+   endif
+
+   for each aEntry in oA:aFiles
+      if aEntry[ P_NAME ] == "/.."
+         loop
+      endif
+      nFound := AScan( oB:aFiles, { | a | a[ P_NAME ] == aEntry[ P_NAME ] } )
+      if nFound == 0 .or. ;
+         oB:aFiles[ nFound ][ P_SIZE ] != aEntry[ P_SIZE ] .or. ;
+         oB:aFiles[ nFound ][ P_DATE ] != aEntry[ P_DATE ]
+         aEntry[ P_MARKED ] := .T.
+         nMarked++
+      else
+         aEntry[ P_MARKED ] := .F.
+      endif
+   next
+   ::Repaint()
+   MCMsgBox( "Compare directories", hb_ntos( nMarked ) + " file(s) marked in the active panel:" + Chr( 10 ) + ;
+      "missing in the other panel, or different size/date." )
+
+return nil
+
+/*
+ * mcdialogs.prg - shared dialogs for the Commander, built with hbide GUI idioms
+ */
+
+
+//-----------------------------------------------------------------------------------------//
+
+// ESC prefix maps to Alt+key (MC meta prefix): ESC,f == Alt+F
+static function MCA_ESCAlt( nKey )
+
+   local nAlt := 0
+   local aMap := { 286, 304, 302, 288, 274, 289, 290, 291, 279, 292, 293, 294, 306, ;
+                   305, 280, 281, 272, 275, 287, 276, 278, 303, 273, 301, 277, 300 }
+
+   if nKey >= 97 .and. nKey <= 122      // a-z
+      nAlt := aMap[ nKey - 96 ]
+   endif
+
+return nAlt
+
+//-----------------------------------------------------------------------------------------//
+
+// Resolve a user-typed path: absolute stays, relative merges into cBase
+static function MCAbsPath( cBase, cPath )
+
+   cPath := AllTrim( hb_defaultValue( cPath, "" ) )
+   if Left( cPath, 1 ) == "/"
+      return hb_PathNormalize( cPath )
+   endif
+
+return hb_PathNormalize( hb_FNameMerge( cBase, cPath ) )
+
+//-----------------------------------------------------------------------------------------//
+
+function MCMsgBox( cTitle, cText )
+
+   local oDlg, GetList := {}, lOk := .F.
+   local aLines := hb_aTokens( hb_defaultValue( cText, "" ), Chr( 10 ) ), cLine, nRow := 2
+   local nW := 0
+
+   AEval( aLines, { | c | nW := Max( nW, hb_ULen( c ) ) } )
+   nW := Min( Max( nW + 8, 30 ), 100 )
+
+   oDlg = HBWindow():Dialog( cTitle, nW, Len( aLines ) + 5, "W+/W" )
+   for each cLine in aLines
+      oDlg:Say( nRow++, 2, cLine )
+   next
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + Int( ( nW ) / 2 ) - 3 GET lOk PUSHBUTTON ;
+      CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
+
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local cValue := PadR( hb_defaultValue( cDefault, "" ), hb_defaultValue( nLen, 40 ) )
+
+   DEFAULT nLen := 40
+
+   oDlg = HBWindow():Dialog( cTitle, Max( nLen + 8, Len( cLabel ) + 8 ), 8, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+
+   oDlg:Say( 2, 3, cLabel )
+   @ oDlg:nTop + 3, oDlg:nLeft + 3 GET cValue COLOR "W/B,W+/B,W+/W,GR+/W"
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || lOk := .T., oDlg:End() }
+
+   @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+   if lOk
+      return AllTrim( cValue )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD DlgConfirm( cTitle, cMsg, cOk ) CLASS MCApp
+
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local aLines := hb_aTokens( hb_defaultValue( cMsg, "" ), Chr( 10 ) ), cLine, nRow := 2, nW := 0
+
+   DEFAULT cOk := "&Yes"
+
+   AEval( aLines, { | c | nW := Max( nW, hb_ULen( c ) ) } )
+   nW := Min( Max( nW + 8, 34 ), 100 )
+
+   oDlg = HBWindow():Dialog( cTitle, nW, Len( aLines ) + 5, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   for each cLine in aLines
+      oDlg:Say( nRow++, 2, cLine )
+   next
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + Int( nW / 2 ) - 8 GET lDummy PUSHBUTTON ;
+      CAPTION " " + cOk + " " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || lOk := .T., oDlg:End() }
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + Int( nW / 2 ) + 2 GET lDummy PUSHBUTTON ;
+      CAPTION " &Cancel " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+return lOk
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
+
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local cPick := Space( 1 ), oLbx, nW := 0, cItem
+
+   DEFAULT nDef := 1
+
+   if Empty( aItems )
+      return 0
+   endif
+   AEval( aItems, { | c | nW := Max( nW, hb_ULen( c ) ) } )
+   nW := Min( Max( nW + 8, 40 ), 100 )
+
+   oDlg = HBWindow():Dialog( cTitle, nW, Min( Len( aItems ) + 6, 24 ), "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+
+   @ oDlg:nTop + 1, oDlg:nLeft + 2, oDlg:nBottom - 3, oDlg:nRight - 2 GET cPick LISTBOX aItems ;
+      COLOR "N/BG,GR+/BG,N/BG,W+/G,W+/W,W+/W,GR+/W"
+   oLbx := ATail( GetList ):Control
+   oLbx:Display()
+   if nDef > 1
+      oLbx:HitTest( 0, 0 )  // noop keep focus
+   endif
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || lOk := .T., oDlg:End() }
+
+   @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+   if lOk
+      return AScan( aItems, { | c | c == cPick } ) 
+   endif
+
+return 0
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD OtherPanelRef() CLASS MCApp
+
+   local oOther := ::OtherPanel()
+
+   if oOther:cMode == "quickview" .or. oOther:cMode == "info"
+      DispBegin()
+      oOther:Display()
+      DispEnd()
+   endif
+
+return nil
+
+/*
+ * mcmenu.prg - menu bar and option dialogs of the Commander
+ * Menu structure mirrors GNU Midnight Commander (local build, no VFS items).
+ */
+
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD BuildMenu() CLASS MCApp
+
+   local oMenu
+
+   MENU oMenu
+      MENUITEM " ~Left "
+      MENU
+         MENUITEM "File listin~g"        ACTION ::PanelListing( 1 )
+         MENUITEM "~Quick view     C-x q" ACTION ::PanelQuickView( 1 )
+         MENUITEM "~Info           C-x i" ACTION ::PanelInfo( 1 )
+         MENUITEM "~Tree           C-x t" ACTION ::PanelTree( 1 )
+         MENUITEM "Paneli~ze       C-x p" ACTION ::Panelize( 1 )
+         SEPARATOR
+         MENUITEM "~Listing format..."    ACTION ::ListingFormat( 1 )
+         MENUITEM "~Sort order..."        ACTION ::SortOrder( 1 )
+         MENUITEM "~Filter..."            ACTION ::FilterDlg( 1 )
+         SEPARATOR
+         MENUITEM "~Rescan         C-r"   ACTION ::Rescan()
+      ENDMENU
+
+      MENUITEM " ~File "
+      MENU
+         MENUITEM "~View             F3"  ACTION ::FileView()
+         MENUITEM "Vie~w file..."         ACTION ::FileViewName()
+         MENUITEM "~Filtered view"        ACTION ::FileFilteredView()
+         MENUITEM "~Edit             F4"  ACTION ::FileEdit()
+         MENUITEM "~Copy             F5"  ACTION ::FileCopy()
+         MENUITEM "C~hmod          C-x c" ACTION ::FileChmod()
+         MENUITEM "~Link           C-x l" ACTION ::FileLink()
+         MENUITEM "~Symlink        C-x s" ACTION ::FileSymlink()
+         MENUITEM "Edit s~ymlink"         ACTION ::FileEditSymlink()
+         MENUITEM "Ch~own          C-x o" ACTION ::FileChown()
+         MENUITEM "~Rename/Move      F6"  ACTION ::FileMove()
+         MENUITEM "~Mkdir            F7"  ACTION ::FileMkdir()
+         MENUITEM "~Delete           F8"  ACTION ::FileDelete()
+         MENUITEM "Quick c~d       M-c"   ACTION ::QuickCd()
+         SEPARATOR
+         MENUITEM "Select ~group     +"   ACTION ::SelectGroup( .T. )
+         MENUITEM "U~nselect group   -"   ACTION ::SelectGroup( .F. )
+         MENUITEM "~Invert selection *"   ACTION ::InvertSelection()
+         SEPARATOR
+         MENUITEM "E~xit            F10"  ACTION ::Quit()
+      ENDMENU
+
+      MENUITEM " ~Command "
+      MENU
+         MENUITEM "~User menu        F2"  ACTION ::UserMenu()
+         MENUITEM "~Directory tree"       ACTION ::DirectoryTreeDlg()
+         MENUITEM "~Find file"            ACTION ::FindFile()
+         MENUITEM "S~wap panels      C-u" ACTION ::SwapPanels()
+         MENUITEM "Switch ~panels on/off C-o" ACTION ::PanelsOnOff()
+         MENUITEM "~Compare directories C-x d" ACTION ::CompareDirs()
+         MENUITEM "Show directory s~izes" ACTION ::DirSizes()
+         MENUITEM "Command ~history  M-h" ACTION ::CmdHistory()
+         MENUITEM "Di~rectory hotlist"    ACTION ::Hotlist()
+         SEPARATOR
+         MENUITEM "Edit ~extension file"  ACTION ::EditExtFile()
+         MENUITEM "Edit ~menu file"       ACTION ::EditMenuFile()
+      ENDMENU
+
+      MENUITEM " ~Options "
+      MENU
+         MENUITEM "~Configuration..."     ACTION ::OptionsConfig()
+         MENUITEM "~Layout..."            ACTION ::OptionsLayout()
+         MENUITEM "~Panel options..."     ACTION ::OptionsPanel()
+         MENUITEM "C~onfirmation..."      ACTION ::OptionsConfirm()
+         MENUITEM "~Appearance..."        ACTION ::OptionsAppearance()
+         SEPARATOR
+         MENUITEM "~Save setup"           ACTION ::SaveCfg()
+      ENDMENU
+
+      MENUITEM " ~Right "
+      MENU
+         MENUITEM "File listin~g"        ACTION ::PanelListing( 2 )
+         MENUITEM "~Quick view     C-x q" ACTION ::PanelQuickView( 2 )
+         MENUITEM "~Info           C-x i" ACTION ::PanelInfo( 2 )
+         MENUITEM "~Tree           C-x t" ACTION ::PanelTree( 2 )
+         MENUITEM "Paneli~ze       C-x p" ACTION ::Panelize( 2 )
+         SEPARATOR
+         MENUITEM "~Listing format..."    ACTION ::ListingFormat( 2 )
+         MENUITEM "~Sort order..."        ACTION ::SortOrder( 2 )
+         MENUITEM "~Filter..."            ACTION ::FilterDlg( 2 )
+         SEPARATOR
+         MENUITEM "~Rescan         C-r"   ACTION ::Rescan()
+      ENDMENU
+   ENDMENU
+
+   oMenu:LoadColors()
+
+return oMenu
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD PanelListing( nPanel ) CLASS MCApp
+
+   local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
+
+   oPanel:cMode := "listing"
+   oPanel:Rescan()
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD PanelQuickView( nPanel ) CLASS MCApp
+
+   local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
+
+   oPanel:cMode := If( oPanel:cMode == "quickview", "listing", "quickview" )
+   if oPanel:cMode == "listing"
+      oPanel:Rescan()
+   endif
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD PanelInfo( nPanel ) CLASS MCApp
+
+   local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
+
+   oPanel:cMode := If( oPanel:cMode == "info", "listing", "info" )
+   if oPanel:cMode == "listing"
+      oPanel:Rescan()
+   endif
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD PanelTree( nPanel ) CLASS MCApp
+
+   local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
+
+   if oPanel:cMode == "tree"
+      oPanel:cMode := "listing"
+      oPanel:Rescan()
+   else
+      oPanel:cMode := "tree"
+      oPanel:aTree := {}
+      oPanel:nCurrent := 1
+      oPanel:nOffset := 0
+   endif
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Panelize( nPanel ) CLASS MCApp
+
+   local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
+   local cCmd := ::DlgInput( "External panelize", "Command (prints file paths):", "find . -type f -name '*.prg'", 45 )
+   local cOut := "", cLine
+
+   if cCmd == nil
+      return nil
+   endif
+   hb_ProcessRun( MCShWrap( "cd " + ShellQuote( oPanel:cPath ) + " && " + cCmd ),, @cOut )
+   oPanel:aFiles := {}
+   AAdd( oPanel:aFiles, { "/..", 0, CToD( "" ), "", "D", .T., .F. } )
+   for each cLine in hb_aTokens( StrTran( cOut, Chr( 13 ) ), Chr( 10 ) )
+      cLine := AllTrim( cLine )
+      if ! Empty( cLine )
+         cLine := MCAbsPath( oPanel:cPath, cLine )
+         AAdd( oPanel:aFiles, { cLine, 0, CToD( "" ), "", "", hb_DirExists( cLine ), .F. } )
+      endif
+   next
+   oPanel:cMode := "panelize"
+   oPanel:nCurrent := 1
+   oPanel:nOffset := 0
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ListingFormat( nPanel ) CLASS MCApp
+
+   local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local cFmt := If( oPanel:lBrief, "Brief file list", "Full file list" ), aFmt[ 2 ]
+   local cRadStyle := "(" + Chr( 7 ) + " )"
+   local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
+
+   oDlg = HBWindow():Dialog( "Listing format", 36, 9, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+
+   aFmt[ 1 ] := RadioButto( oDlg:nTop + 2, oDlg:nLeft + 3, "&Full file list" )
+   aFmt[ 2 ] := RadioButto( oDlg:nTop + 3, oDlg:nLeft + 3, "&Brief file list" )
+   AEval( aFmt, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
+   oDlg:cargo := aFmt
+
+   @ oDlg:nTop + 2, oDlg:nLeft + 2, oDlg:nTop + 3, oDlg:nLeft + 24 GET cFmt ;
+      RADIOGROUP aFmt STYLE cRadStyle
+   ATail( GetList ):Control:coldBox := ""
+   ATail( GetList ):Control:hotBox := ""
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+   @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+   if lOk
+      oPanel:lBrief := ( AllTrim( cFmt ) == "Brief file list" )
+      ::Repaint()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD SortOrder( nPanel ) CLASS MCApp
+
+   local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local aNames := { "&Name", "&Extension", "&Size", "&Modify time", "&Unsorted" }
+   local aKeys  := { "name", "ext", "size", "mtime", "unsorted" }
+   local cSort := StrTran( aNames[ AScan( aKeys, oPanel:cSort ) ], "&", "" ), aRad[ 5 ], n
+   local lRev := oPanel:lReverse, lCase := oPanel:lCaseSens
+   local cRadStyle := "(" + Chr( 7 ) + " )"
+   local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
+
+   oDlg = HBWindow():Dialog( "Sort order", 34, 12, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+
+   for n := 1 to 5
+      aRad[ n ] := RadioButto( oDlg:nTop + 1 + n, oDlg:nLeft + 4, aNames[ n ] )
+   next
+   AEval( aRad, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
+   oDlg:cargo := aRad
+
+   @ oDlg:nTop + 2, oDlg:nLeft + 3, oDlg:nTop + 6, oDlg:nLeft + 22 GET cSort ;
+      RADIOGROUP aRad STYLE cRadStyle
+   ATail( GetList ):Control:coldBox := ""
+   ATail( GetList ):Control:hotBox := ""
+
+   @ oDlg:nTop + 7, oDlg:nLeft + 4 GET lRev ;
+      CHECKBOX CAPTION "&Reverse" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 8, oDlg:nLeft + 4 GET lCase ;
+      CHECKBOX CAPTION "&Case sensitive" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+   @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+   if lOk
+      oPanel:cSort := aKeys[ Max( 1, AScan( aNames, { | c | StrTran( c, "&", "" ) == AllTrim( cSort ) } ) ) ]
+      oPanel:lReverse := lRev
+      oPanel:lCaseSens := lCase
+      oPanel:SortFiles()
+      ::Repaint()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FilterDlg( nPanel ) CLASS MCApp
+
+   local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
+   local cFilter := ::DlgInput( "Filter", "File mask (e.g. *.prg or * for all):", oPanel:cFilter, 40 )
+
+   if cFilter != nil
+      oPanel:cFilter := If( Empty( cFilter ), "*", cFilter )
+      oPanel:Rescan()
+      ::Repaint()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD OptionsConfig() CLASS MCApp
+
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local lHidden := ::lShowHidden, lMini := ::lMiniStatus
+
+   oDlg = HBWindow():Dialog( "Configuration", 44, 9, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+
+   @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lHidden ;
+      CHECKBOX CAPTION "Show &hidden files" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 3, oDlg:nLeft + 3 GET lMini ;
+      CHECKBOX CAPTION "Show &mini-status" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+   @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+   if lOk
+      ::lShowHidden := lHidden
+      ::lMiniStatus := lMini
+      ::Rescan()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD OptionsLayout() CLASS MCApp
+
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local lEq := ::lEqualSplit, lHor := ::lHorizontal, lMb := ::lMenubar
+   local lCl := ::lCmdlineBar, lKb := ::lKeybar
+
+   oDlg = HBWindow():Dialog( "Layout", 44, 12, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+
+   @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lEq ;
+      CHECKBOX CAPTION "&Equal split" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ oDlg:nTop + 3, oDlg:nLeft + 3 GET lHor ;
+      CHECKBOX CAPTION "&Horizontal split" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lMb ;
+      CHECKBOX CAPTION "&Menubar visible" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ oDlg:nTop + 5, oDlg:nLeft + 3 GET lCl ;
+      CHECKBOX CAPTION "&Command prompt" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ oDlg:nTop + 6, oDlg:nLeft + 3 GET lKb ;
+      CHECKBOX CAPTION "&Keybar visible" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+   @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+   if lOk
+      ::lEqualSplit := lEq
+      ::lHorizontal := lHor
+      ::lMenubar := lMb
+      ::lCmdlineBar := lCl
+      ::lKeybar := lKb
+      ::Layout()
+      ::Repaint()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD OptionsPanel() CLASS MCApp
+
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local lMix := ::lMixDirs
+
+   oDlg = HBWindow():Dialog( "Panel options", 44, 8, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+
+   @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lMix ;
+      CHECKBOX CAPTION "&Mix all files (no dirs first)" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+   @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+   if lOk
+      ::lMixDirs := lMix
+      ::Rescan()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD OptionsConfirm() CLASS MCApp
+
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local lDel := ::lConfirmDelete, lOvr := ::lConfirmOverwrite
+   local lExe := ::lConfirmExecute, lExit := ::lConfirmExit
+
+   oDlg = HBWindow():Dialog( "Confirmation", 44, 11, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+
+   @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lDel ;
+      CHECKBOX CAPTION "&Delete" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ oDlg:nTop + 3, oDlg:nLeft + 3 GET lOvr ;
+      CHECKBOX CAPTION "&Overwrite" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lExe ;
+      CHECKBOX CAPTION "E&xecute" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+   @ oDlg:nTop + 5, oDlg:nLeft + 3 GET lExit ;
+      CHECKBOX CAPTION "E&xit" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+   @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+   if lOk
+      ::lConfirmDelete    := lDel
+      ::lConfirmOverwrite := lOvr
+      ::lConfirmExecute   := lExe
+      ::lConfirmExit      := lExit
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD OptionsAppearance() CLASS MCApp
+
+   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local cTheme := StrTran( aNames[ ::nTheme ], "&", "" ), aRad[ 3 ], n
+   local aNames := { "&Midnight Commander classic", "&Turbo Vision cyan", "Monochro&me" }
+   local cRadStyle := "(" + Chr( 7 ) + " )"
+   local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
+
+   oDlg = HBWindow():Dialog( "Appearance", 40, 10, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+
+   for n := 1 to 3
+      aRad[ n ] := RadioButto( oDlg:nTop + 1 + n, oDlg:nLeft + 4, aNames[ n ] )
+   next
+   AEval( aRad, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
+   oDlg:cargo := aRad
+
+   @ oDlg:nTop + 2, oDlg:nLeft + 3, oDlg:nTop + 4, oDlg:nLeft + 32 GET cTheme ;
+      RADIOGROUP aRad STYLE cRadStyle
+   ATail( GetList ):Control:coldBox := ""
+   ATail( GetList ):Control:hotBox := ""
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+   @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+   if lOk
+      ::SetTheme( Max( 1, AScan( aNames, { | c | StrTran( c, "&", "" ) == AllTrim( cTheme ) } ) ) )
+      ::Repaint()
+   endif
+
+return nil
+
+/*
+ * mcops.prg - file operations and Command-menu actions of the Commander
+ */
+
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileView() CLASS MCApp
+
+   local aEntry := ::ActivePanel():Current()
+
+   if aEntry != nil .and. ! aEntry[ P_DIR ]
+      MCViewer( hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] ) )
+   elseif aEntry != nil
+      MCMsgBox( "View", "Cannot view a directory." )
+   endif
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileViewName() CLASS MCApp
+
+   local cFile := ::DlgInput( "View file", "File name:", hb_FNameMerge( ::ActivePanel():cPath, "" ), 50 )
+
+   if cFile != nil
+      cFile := MCAbsPath( ::ActivePanel():cPath, cFile )
+      if hb_FileExists( cFile )
+         MCViewer( cFile )
+      else
+         MCMsgBox( "View file", "File not found:" + Chr( 10 ) + cFile )
+      endif
+   endif
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileFilteredView() CLASS MCApp
+
+   local aEntry := ::ActivePanel():Current()
+   local cCmd, cOut := "", cFull
+
+   if aEntry == nil .or. aEntry[ P_DIR ]
+      MCMsgBox( "Filtered view", "Select a regular file first." )
+      return nil
+   endif
+
+   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   cCmd := ::DlgInput( "Filtered view", "Command (%f = file):", "cat -n %f", 45 )
+   if cCmd == nil
+      return nil
+   endif
+   cCmd := StrTran( cCmd, "%f", ShellQuote( cFull ) )
+   hb_ProcessRun( MCShWrap( "cd " + ShellQuote( ::ActivePanel():cPath ) + " && " + cCmd + " 2>&1" ),, @cOut )
+   MCViewerText( aEntry[ P_NAME ] + " filtered through: " + cCmd, cOut )
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileEdit() CLASS MCApp
+
+   local aEntry := ::ActivePanel():Current()
+
+   if aEntry != nil .and. ! aEntry[ P_DIR ]
+      MCEditFile( hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] ) )
+   elseif aEntry != nil
+      MCMsgBox( "Edit", "Cannot edit a directory." )
+   endif
+   ::ActivePanel():Rescan()
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileCopy() CLASS MCApp
+
+   local oSrc := ::ActivePanel(), oDst := ::OtherPanel()
+   local aMarked := oSrc:MarkedEntries(), aTargets, aEntry
+   local cDest, lAll := .F., nCopied := 0, nSkipped := 0
+
+   if oDst:cMode != "listing"
+      MCMsgBox( "Copy", "The other panel must be in file listing mode." )
+      return nil
+   endif
+   if Empty( aMarked )
+      aEntry := oSrc:Current()
+      if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
+         MCMsgBox( "Copy", "Nothing to copy." )
+         return nil
+      endif
+      aMarked := { aEntry }
+   endif
+
+   aTargets := AEval( aMarked, { | a | a[ P_NAME ] },,, .T. )
+   cDest := ::DlgInput( "Copy", "Copy " + hb_ntos( Len( aMarked ) ) + " item(s) to:", ;
+                        hb_DirSepAdd( oDst:cPath ), 55 )
+   if cDest == nil
+      return nil
+   endif
+   cDest := MCAbsPath( oDst:cPath, cDest )
+   if Len( aMarked ) > 1 .and. ! hb_DirExists( cDest )
+      hb_DirCreate( cDest )
+   endif
+
+   for each aEntry in aMarked
+      if CopyItem( hb_FNameMerge( oSrc:cPath, aEntry[ P_NAME ] ), ;
+                   DestFor( cDest, aEntry, Len( aMarked ) ), ;
+                   ::lConfirmOverwrite, @lAll, Self )
+         nCopied++
+      else
+         nSkipped++
+      endif
+   next
+
+   ::Rescan()
+   MCMsgBox( "Copy", hb_ntos( nCopied ) + " item(s) copied" + ;
+             If( nSkipped > 0, ", " + hb_ntos( nSkipped ) + " skipped", "" ) + "." )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+static function DestFor( cDest, aEntry, nCount )
+
+   if nCount == 1 .and. ! hb_DirExists( cDest )
+      return cDest   // rename-while-copy single file
+   endif
+
+return hb_FNameMerge( cDest, hb_FNameNameExt( aEntry[ P_NAME ] ) )
+
+//-----------------------------------------------------------------------------------------//
+
+function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
+
+   local lOk := .T.
+
+   if hb_DirExists( cSrc )
+      if ! hb_DirExists( cDst ) .and. hb_DirCreate( cDst ) != 0
+         MCMsgBox( "Copy", "Cannot create directory:" + Chr( 10 ) + cDst )
+         return .F.
+      endif
+      AEval( Directory( hb_DirSepAdd( cSrc ) + "*", "DHS" ), { | a | ;
+         If( a[ F_NAME ] == "." .or. a[ F_NAME ] == "..", nil, ;
+             ( CopyItem( hb_FNameMerge( cSrc, a[ F_NAME ] ), ;
+                         hb_FNameMerge( cDst, a[ F_NAME ] ), lConfirm, @lAll, oApp ), nil ) ) } )
+      return .T.
+   endif
+
+   if hb_FileExists( cDst ) .and. lConfirm .and. ! lAll
+      lOk := oApp:DlgConfirm( "Overwrite", "File exists:" + Chr( 10 ) + cDst + Chr( 10 ) + "Overwrite?", "&Overwrite" )
+      if ! lOk
+         return .F.
+      endif
+   endif
+
+return FCopyText( cSrc, cDst )
+
+//-----------------------------------------------------------------------------------------//
+
+function FCopyText( cSrc, cDst )
+
+   local nSrc, nDst, cBuf := Space( 65536 ), nRead, lOk := .T.
+
+   nSrc := FOpen( cSrc, 0 )
+   if nSrc < 0
+      MCMsgBox( "Copy", "Cannot open:" + Chr( 10 ) + cSrc )
+      return .F.
+   endif
+   nDst := FCreate( cDst )
+   if nDst < 0
+      FClose( nSrc )
+      MCMsgBox( "Copy", "Cannot create:" + Chr( 10 ) + cDst )
+      return .F.
+   endif
+   while ( nRead := FRead( nSrc, @cBuf, 65536 ) ) > 0
+      if FWrite( nDst, Left( cBuf, nRead ) ) != nRead
+         lOk := .F.
+         exit
+      endif
+   end
+   FClose( nSrc )
+   FClose( nDst )
+
+return lOk
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileMove() CLASS MCApp
+
+   local oSrc := ::ActivePanel(), oDst := ::OtherPanel()
+   local aMarked := oSrc:MarkedEntries(), aEntry
+   local cDest, nMoved := 0, nFailed := 0
+
+   if Empty( aMarked )
+      aEntry := oSrc:Current()
+      if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
+         MCMsgBox( "Rename/Move", "Nothing to move." )
+         return nil
+      endif
+      aMarked := { aEntry }
+   endif
+
+   cDest := ::DlgInput( "Rename/Move", "Move " + hb_ntos( Len( aMarked ) ) + " item(s) to:", ;
+                        If( Len( aMarked ) == 1, ;
+                            hb_FNameMerge( oDst:cPath, aMarked[ 1 ][ P_NAME ] ), ;
+                            hb_DirSepAdd( oDst:cPath ) ), 55 )
+   if cDest == nil
+      return nil
+   endif
+   cDest := MCAbsPath( oDst:cPath, cDest )
+
+   for each aEntry in aMarked
+      if MoveItem( hb_FNameMerge( oSrc:cPath, aEntry[ P_NAME ] ), ;
+                   DestFor( cDest, aEntry, Len( aMarked ) ) )
+         nMoved++
+      else
+         nFailed++
+      endif
+   next
+
+   ::Rescan()
+   if nFailed > 0
+      MCMsgBox( "Rename/Move", hb_ntos( nMoved ) + " moved, " + hb_ntos( nFailed ) + " failed." )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+static function MoveItem( cSrc, cDst )
+
+   if FRename( cSrc, cDst ) == 0
+      return .T.
+   endif
+   // across filesystems: copy + delete
+   if FCopyText( cSrc, cDst )
+      if hb_DirExists( cSrc )
+         return DeleteTree( cSrc )
+      endif
+      return FErase( cSrc ) == 0
+   endif
+
+return .F.
+
+//-----------------------------------------------------------------------------------------//
+
+function DeleteTree( cPath )
+
+   local aDir
+
+   for each aDir in Directory( hb_DirSepAdd( cPath ) + "*", "DHS" )
+      if aDir[ F_NAME ] == "." .or. aDir[ F_NAME ] == ".."
+         loop
+      endif
+      if hb_DirExists( hb_FNameMerge( cPath, aDir[ F_NAME ] ) )
+         DeleteTree( hb_FNameMerge( cPath, aDir[ F_NAME ] ) )
+      else
+         FErase( hb_FNameMerge( cPath, aDir[ F_NAME ] ) )
+      endif
+   next
+
+return hb_DirDelete( cPath ) == 0
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileMkdir() CLASS MCApp
+
+   local cName := ::DlgInput( "Make Directory", "New directory:", "", 45 )
+
+   if cName != nil .and. ! Empty( cName )
+      cName := MCAbsPath( ::ActivePanel():cPath, cName )
+      if hb_DirCreate( cName ) != 0
+         MCMsgBox( "Make Directory", "Cannot create:" + Chr( 10 ) + cName )
+      endif
+      ::Rescan()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileDelete() CLASS MCApp
+
+   local oSrc := ::ActivePanel(), aMarked := oSrc:MarkedEntries(), aEntry
+   local nDeleted := 0, nFailed := 0, cFull
+
+   if Empty( aMarked )
+      aEntry := oSrc:Current()
+      if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
+         MCMsgBox( "Delete", "Nothing to delete." )
+         return nil
+      endif
+      aMarked := { aEntry }
+   endif
+
+   if ::lConfirmDelete
+      if ! ::DlgConfirm( "Delete", "Delete " + hb_ntos( Len( aMarked ) ) + " item(s)?" + Chr( 10 ) + ;
+                         aMarked[ 1 ][ P_NAME ] + If( Len( aMarked ) > 1, " ...", "" ), "&Delete" )
+         return nil
+      endif
+   endif
+
+   for each aEntry in aMarked
+      cFull := hb_FNameMerge( oSrc:cPath, aEntry[ P_NAME ] )
+      if aEntry[ P_DIR ]
+         if DeleteTree( cFull )
+            nDeleted++
+         else
+            nFailed++
+         endif
+      else
+         if FErase( cFull ) == 0
+            nDeleted++
+         else
+            nFailed++
+         endif
+      endif
+   next
+
+   ::Rescan()
+   if nFailed > 0
+      MCMsgBox( "Delete", hb_ntos( nDeleted ) + " deleted, " + hb_ntos( nFailed ) + " failed." )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD SelectGroup( lSelect ) CLASS MCApp
+
+   local oPanel := ::ActivePanel()
+   local cMask := ::DlgInput( If( lSelect, "Select group", "Unselect group" ), ;
+                              "File mask:", "*", 30 )
+   local aEntry, n := 0
+
+   if cMask == nil
+      return nil
+   endif
+   for each aEntry in oPanel:aFiles
+      if ! aEntry[ P_DIR ] .and. FilterMatch( aEntry[ P_NAME ], cMask, oPanel:lCaseSens )
+         aEntry[ P_MARKED ] := lSelect
+         n++
+      endif
+   next
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD InvertSelection() CLASS MCApp
+
+   local aEntry
+
+   for each aEntry in ::ActivePanel():aFiles
+      if aEntry[ P_NAME ] != "/.."
+         aEntry[ P_MARKED ] := ! aEntry[ P_MARKED ]
+      endif
+   next
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileChmod() CLASS MCApp
+
+   local aEntry := ::ActivePanel():Current()
+   local cFull, cMode := "", cOut := "", nRet, oDlg, GetList := {}, lDummy, lOk := .F.
+   local aChk[ 9 ], aLabels := { "owner read", "owner write", "owner exec", ;
+                                 "group read", "group write", "group exec", ;
+                                 "other read", "other write", "other exec" }
+   local n, nMode := 0, cCur := ""
+
+   if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
+      return nil
+   endif
+   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   hb_ProcessRun( MCShWrap( "stat -c %a " + ShellQuote( cFull ) ),, @cCur )
+   nMode := Val( AllTrim( cCur ) )   // octal digits as decimal number, e.g. 644
+
+   // expand octal digits into bit flags
+   aChk[ 1 ] := hb_bitAnd( OctalDigit( nMode, 100 ), 4 ) != 0
+   aChk[ 2 ] := hb_bitAnd( OctalDigit( nMode, 100 ), 2 ) != 0
+   aChk[ 3 ] := hb_bitAnd( OctalDigit( nMode, 100 ), 1 ) != 0
+   aChk[ 4 ] := hb_bitAnd( OctalDigit( nMode, 10 ), 4 ) != 0
+   aChk[ 5 ] := hb_bitAnd( OctalDigit( nMode, 10 ), 2 ) != 0
+   aChk[ 6 ] := hb_bitAnd( OctalDigit( nMode, 10 ), 1 ) != 0
+   aChk[ 7 ] := hb_bitAnd( OctalDigit( nMode, 1 ), 4 ) != 0
+   aChk[ 8 ] := hb_bitAnd( OctalDigit( nMode, 1 ), 2 ) != 0
+   aChk[ 9 ] := hb_bitAnd( OctalDigit( nMode, 1 ), 1 ) != 0
+
+   oDlg = HBWindow():Dialog( "Chmod " + aEntry[ P_NAME ], 46, 13, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+
+   for n := 1 to 9
+      @ oDlg:nTop + 1 + n, oDlg:nLeft + 4 GET aChk[ n ] ;
+         CHECKBOX CAPTION aLabels[ n ] STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+      ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+      ATail( GetList ):Control:Display()
+   next
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &Set  " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+   @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+   if lOk
+      cMode := hb_ntos( If( aChk[1],4,0 ) + If( aChk[2],2,0 ) + If( aChk[3],1,0 ) ) + ;
+               hb_ntos( If( aChk[4],4,0 ) + If( aChk[5],2,0 ) + If( aChk[6],1,0 ) ) + ;
+               hb_ntos( If( aChk[7],4,0 ) + If( aChk[8],2,0 ) + If( aChk[9],1,0 ) )
+      nRet := hb_ProcessRun( MCShWrap( "chmod " + cMode + " " + ShellQuote( cFull ) + " 2>&1" ),, @cOut )
+      if nRet != 0
+         MCMsgBox( "Chmod", cOut )
+      endif
+      ::Rescan()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+static function OctalDigit( nMode, nPlace )
+
+return Int( nMode / nPlace ) % 10
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileLink() CLASS MCApp
+
+   local aEntry := ::ActivePanel():Current()
+   local cLink, cFull, cOut := "", nRet
+
+   if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
+      return nil
+   endif
+   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   cLink := ::DlgInput( "Link", "Hard link " + aEntry[ P_NAME ] + " to:", ;
+                        hb_FNameMerge( ::OtherPanel():cPath, aEntry[ P_NAME ] ), 55 )
+   if cLink != nil
+      nRet := hb_ProcessRun( MCShWrap( "ln " + ShellQuote( cFull ) + " " + ;
+                             ShellQuote( MCAbsPath( ::ActivePanel():cPath, cLink ) ) + " 2>&1" ),, @cOut )
+      if nRet != 0
+         MCMsgBox( "Link", cOut )
+      endif
+      ::Rescan()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileSymlink() CLASS MCApp
+
+   local aEntry := ::ActivePanel():Current()
+   local cLink, cFull, cOut := "", nRet
+
+   if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
+      return nil
+   endif
+   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   cLink := ::DlgInput( "Symlink", "Symbolic link name:", ;
+                        hb_FNameMerge( ::OtherPanel():cPath, aEntry[ P_NAME ] ), 55 )
+   if cLink != nil
+      nRet := hb_ProcessRun( MCShWrap( "ln -s " + ShellQuote( cFull ) + " " + ;
+                             ShellQuote( MCAbsPath( ::ActivePanel():cPath, cLink ) ) + " 2>&1" ),, @cOut )
+      if nRet != 0
+         MCMsgBox( "Symlink", cOut )
+      endif
+      ::Rescan()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileEditSymlink() CLASS MCApp
+
+   local aEntry := ::ActivePanel():Current()
+   local cFull, cTarget := "", cNew, cOut := "", nRet
+
+   if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
+      return nil
+   endif
+   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   hb_ProcessRun( MCShWrap( "readlink " + ShellQuote( cFull ) ),, @cTarget )
+   cTarget := AllTrim( cTarget )
+   if Empty( cTarget )
+      MCMsgBox( "Edit symlink", "Not a symbolic link:" + Chr( 10 ) + cFull )
+      return nil
+   endif
+   cNew := ::DlgInput( "Edit symlink", "New target for " + aEntry[ P_NAME ] + ":", cTarget, 55 )
+   if cNew != nil .and. cNew != cTarget
+      nRet := hb_ProcessRun( MCShWrap( "ln -sfn " + ShellQuote( cNew ) + " " + ShellQuote( cFull ) + " 2>&1" ),, @cOut )
+      if nRet != 0
+         MCMsgBox( "Edit symlink", cOut )
+      endif
+      ::Rescan()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FileChown() CLASS MCApp
+
+   local aEntry := ::ActivePanel():Current()
+   local cOwner, cFull, cOut := "", nRet
+
+   if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
+      return nil
+   endif
+   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   cOwner := ::DlgInput( "Chown", "New owner[:group] for " + aEntry[ P_NAME ] + ":", hb_GetEnv( "USER" ), 40 )
+   if cOwner != nil .and. ! Empty( cOwner )
+      nRet := hb_ProcessRun( MCShWrap( "chown " + ShellQuote( cOwner ) + " " + ShellQuote( cFull ) + " 2>&1" ),, @cOut )
+      if nRet != 0
+         MCMsgBox( "Chown", cOut )
+      endif
+      ::Rescan()
+   endif
+
+return nil
+
+/*
+ * mctools.prg - Command menu actions, help, about, and configuration
+ */
+
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD UserMenu() CLASS MCApp
+
+   local aItems := {}, aCmds := {}, cLine, cFile, n, cOut := "", cCmd
+   local cLocal := hb_FNameMerge( ::ActivePanel():cPath, ".mc.menu" )
+   local cHome := hb_DirSepAdd( hb_GetEnv( "HOME" ) ) + ".mc.menu"
+
+   // format per line: key|label|command   (%f = current file)
+   cFile := If( hb_FileExists( cLocal ), cLocal, If( hb_FileExists( cHome ), cHome, "" ) )
+   if ! Empty( cFile )
+      for each cLine in hb_aTokens( StrTran( MemoRead( cFile ), Chr( 13 ) ), Chr( 10 ) )
+         cLine := AllTrim( cLine )
+         if Empty( cLine ) .or. Left( cLine, 1 ) == "#"
+            loop
+         endif
+         if hb_TokenCount( cLine, "|" ) >= 3
+            AAdd( aItems, hb_TokenGet( cLine, 1, "|" ) + "  " + hb_TokenGet( cLine, 2, "|" ) )
+            AAdd( aCmds, hb_TokenGet( cLine, 3, "|" ) )
+         endif
+      next
+   else
+      aItems := { "c  Compile current file with hbmk2", "g  git status", "l  ls -la" }
+      aCmds  := { "hbmk2 %f 2>&1 || true", "git status 2>&1 || true", "ls -la" }
+   endif
+
+   n := ::DlgList( "User menu" + If( Empty( cFile ), " (built-in defaults)", "" ), aItems )
+   if n > 0
+      cCmd := aCmds[ n ]
+      if At( "%f", cCmd ) > 0
+         if ::ActivePanel():Current() == nil
+            return nil
+         endif
+         cCmd := StrTran( cCmd, "%f", ShellQuote( hb_FNameMerge( ::ActivePanel():cPath, ;
+                         ::ActivePanel():Current()[ P_NAME ] ) ) )
+      endif
+      hb_ProcessRun( MCShWrap( "cd " + ShellQuote( ::ActivePanel():cPath ) + " && " + cCmd + " 2>&1" ),, @cOut )
+      ::cLastOutput := "$ " + cCmd + hb_eol() + cOut
+      ::ShowOutput( ::cLastOutput )
+      ::Rescan()
+   endif
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD DirectoryTreeDlg() CLASS MCApp
+
+   local aTree := {}, aItems := {}, aEntry, n
+
+   TreeScan( ::ActivePanel():cPath, 0, aTree )
+   for each aEntry in aTree
+      AAdd( aItems, Space( aEntry[ 2 ] * 2 ) + aEntry[ 1 ] )
+   next
+
+   n := ::DlgList( "Directory tree", aItems )
+   if n > 0
+      ::ActivePanel():GoDir( aTree[ n ][ 3 ] )
+   endif
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FindFile() CLASS MCApp
+
+   local cMask := ::DlgInput( "Find file", "File mask:", "*", 30 )
+   local cContent, aFound := {}, aItems := {}, cStart, n
+
+   if cMask == nil
+      return nil
+   endif
+   cContent := ::DlgInput( "Find file", "Containing text (empty = any):", "", 40 )
+   if cContent == nil
+      return nil
+   endif
+   cStart := ::ActivePanel():cPath
+
+   FindScan( cStart, cMask, cContent, aFound, 0 )
+   if Empty( aFound )
+      MCMsgBox( "Find file", "No files found." )
+      return nil
+   endif
+   AEval( aFound, { | c | AAdd( aItems, hb_UTF8SubStr( c, Max( 1, hb_ULen( c ) - 95 ) ) ) } )
+   n := ::DlgList( "Find results (" + hb_ntos( Len( aFound ) ) + ")", aItems )
+   if n > 0
+      ::ActivePanel():GoDir( hb_FNameDir( aFound[ n ] ) )
+      ::ActivePanel():SelectName( hb_FNameNameExt( aFound[ n ] ) )
+   endif
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+static function FindScan( cPath, cMask, cContent, aFound, nLevel )
+
+   local aDir, cFull
+
+   if nLevel > 10 .or. Len( aFound ) > 500
+      return nil
+   endif
+   for each aDir in Directory( hb_DirSepAdd( cPath ) + "*", "DHS" )
+      if aDir[ 1 ] == "." .or. aDir[ 1 ] == ".." .or. Left( aDir[ 1 ], 1 ) == "."
+         loop
+      endif
+      cFull := hb_FNameMerge( cPath, aDir[ 1 ] )
+      if hb_DirExists( cFull )
+         FindScan( cFull, cMask, cContent, aFound, nLevel + 1 )
+      elseif hb_FileMatch( Lower( aDir[ 1 ] ), Lower( cMask ) )
+         if Empty( cContent ) .or. Lower( cContent ) $ Lower( Left( MemoRead( cFull ), 200000 ) )
+            AAdd( aFound, cFull )
+         endif
+      endif
+   next
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD CmdHistory() CLASS MCApp
+
+   local n
+
+   if Empty( ::aHistory )
+      MCMsgBox( "Command history", "The command history is empty." )
+      return nil
+   endif
+   n := ::DlgList( "Command history", AReverse2( AClone( ::aHistory ) ) )
+   if n > 0
+      ::cCmdLine := AReverse2( AClone( ::aHistory ) )[ n ]
+   endif
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+static function AReverse2( a )
+
+   local n, aOut := {}
+
+   for n := Len( a ) to 1 step -1
+      AAdd( aOut, a[ n ] )
+   next
+
+return aOut
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Hotlist() CLASS MCApp
+
+   local aItems := {}, aEntry, n
+
+   for each aEntry in ::aHotlist
+      AAdd( aItems, aEntry[ 1 ] + "  (" + aEntry[ 2 ] + ")" )
+   next
+   AAdd( aItems, "+ Add current directory" )
+   AAdd( aItems, "- Remove selected" )
+
+   n := ::DlgList( "Directory hotlist", aItems )
+   if n > 0 .and. n <= Len( ::aHotlist )
+      ::ActivePanel():GoDir( ::aHotlist[ n ][ 2 ] )
+   elseif n == Len( ::aHotlist ) + 1
+      AAdd( ::aHotlist, { hb_FNameName( hb_DirSepDel( ::ActivePanel():cPath ) ), ::ActivePanel():cPath } )
+      ::SaveCfg()
+   elseif n == Len( ::aHotlist ) + 2 .and. ! Empty( ::aHotlist )
+      // remove: ask which one
+      aItems := {}
+      AEval( ::aHotlist, { | a | AAdd( aItems, a[ 1 ] + "  (" + a[ 2 ] + ")" ) } )
+      n := ::DlgList( "Remove from hotlist", aItems )
+      if n > 0 .and. n <= Len( ::aHotlist )
+         ADel( ::aHotlist, n )
+         ASize( ::aHotlist, Len( ::aHotlist ) - 1 )
+         ::SaveCfg()
+      endif
+   endif
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD EditExtFile() CLASS MCApp
+
+   local cFile := hb_DirSepAdd( hb_GetEnv( "HOME" ) ) + ".hbmc.ext"
+
+   if ! hb_FileExists( cFile )
+      hb_MemoWrit( cFile, "# extension bindings: ext=command  (%f = file)" + hb_eol() + ;
+                   "# prg=hbmk2 %f" + hb_eol() )
+   endif
+   MCEditFile( cFile )
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD EditMenuFile() CLASS MCApp
+
+   local cFile := hb_DirSepAdd( hb_GetEnv( "HOME" ) ) + ".mc.menu"
+
+   if ! hb_FileExists( cFile )
+      hb_MemoWrit( cFile, "# user menu: key|label|command  (%f = current file)" + hb_eol() + ;
+                   "c|Compile current file|hbmk2 %f" + hb_eol() + ;
+                   "g|git status|git status" + hb_eol() )
+   endif
+   MCEditFile( cFile )
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD HelpDialog() CLASS MCApp
+
+   MCViewerText( "Harbour Commander - Help", ;
+      "Harbour Commander - a Midnight Commander style file manager" + hb_eol() + ;
+      "built with the hbide GUI classes (Turbo Vision look)." + hb_eol() + hb_eol() + ;
+      "PANELS" + hb_eol() + ;
+      "  Tab            switch active panel" + hb_eol() + ;
+      "  Arrows/PgUp/PgDn/Home/End   move selection" + hb_eol() + ;
+      "  Enter          enter directory / open file (extension binding or view)" + hb_eol() + ;
+      "  Ins            mark/unmark file" + hb_eol() + ;
+      "  + - *          select / unselect group / invert selection" + hb_eol() + ;
+      "  C-s            quick search" + hb_eol() + ;
+      "  C-r            rescan both panels" + hb_eol() + ;
+      "  C-u            swap panels" + hb_eol() + ;
+      "  C-o            panels on/off (shows last command output)" + hb_eol() + ;
+      "  C-x d          compare directories" + hb_eol() + ;
+      "  C-x i/q/t/p    info / quick view / tree / panelize" + hb_eol() + ;
+      "  C-x c/o/l/s    chmod / chown / link / symlink" + hb_eol() + ;
+      "  M-c            quick cd     M-h  command history" + hb_eol() + ;
+      "  M-o            other panel chdirs to this directory" + hb_eol() + hb_eol() + ;
+      "FUNCTION KEYS" + hb_eol() + ;
+      "  F1 Help  F2 User menu  F3 View  F4 Edit  F5 Copy" + hb_eol() + ;
+      "  F6 Rename/Move  F7 Mkdir  F8 Delete  F9 PullDn  F10 Quit" + hb_eol() + hb_eol() + ;
+      "COMMAND LINE" + hb_eol() + ;
+      "  Type to enter a command, Enter runs it, C-Enter inserts the" + hb_eol() + ;
+      "  current file name, Esc clears. 'cd dir' changes the panel." + hb_eol() + hb_eol() + ;
+      "VIEWER" + hb_eol() + ;
+      "  F3/Esc/q quit  F4 hex mode  F2 wrap  F5 goto line  F7 search" + hb_eol() + hb_eol() + ;
+      "EDITOR" + hb_eol() + ;
+      "  F2 save  F10/Esc quit (asks to save when modified)" + hb_eol() + hb_eol() + ;
+      "FILES" + hb_eol() + ;
+      "  ~/.hbmc.ini   saved configuration, hotlist and history" + hb_eol() + ;
+      "  ~/.hbmc.ext   extension bindings for Enter on a file" + hb_eol() + ;
+      "  ~/.mc.menu or ./.mc.menu   user menu (F2)" + hb_eol() )
+
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD About() CLASS MCApp
+
+   MCMsgBox( "About", ;
+      "Harbour Commander 1.0" + Chr( 10 ) + ;
+      "A Midnight Commander style file manager" + Chr( 10 ) + ;
+      "written in Harbour with the hbide GUI classes." + Chr( 10 ) + Chr( 10 ) + ;
+      "FiveTechSoft / hbide demo" )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD LoadCfg() CLASS MCApp
+
+   local cFile := ::CfgFile(), cLine, cKey, cVal
+
+   if ! hb_FileExists( cFile )
+      return nil
+   endif
+   for each cLine in hb_aTokens( StrTran( MemoRead( cFile ), Chr( 13 ) ), Chr( 10 ) )
+      cLine := AllTrim( cLine )
+      if Empty( cLine ) .or. Left( cLine, 1 ) == "#"
+         loop
+      endif
+      if Left( cLine, 8 ) == "hotlist|"
+         AAdd( ::aHotlist, { hb_TokenGet( cLine, 2, "|" ), hb_TokenGet( cLine, 3, "|" ) } )
+         loop
+      endif
+      if Left( cLine, 8 ) == "history|"
+         AAdd( ::aHistory, SubStr( cLine, 9 ) )
+         loop
+      endif
+      cKey := Lower( hb_TokenGet( cLine, 1, "=" ) )
+      cVal := hb_TokenGet( cLine, 2, "=" )
+      do case
+         case cKey == "showhidden"     ; ::lShowHidden := ( cVal == "1" )
+         case cKey == "confirmdelete"  ; ::lConfirmDelete := ( cVal == "1" )
+         case cKey == "confirmoverwrite" ; ::lConfirmOverwrite := ( cVal == "1" )
+         case cKey == "confirmexecute" ; ::lConfirmExecute := ( cVal == "1" )
+         case cKey == "confirmexit"    ; ::lConfirmExit := ( cVal == "1" )
+         case cKey == "ministatus"     ; ::lMiniStatus := ( cVal == "1" )
+         case cKey == "mixdirs"        ; ::lMixDirs := ( cVal == "1" )
+         case cKey == "equalsplit"     ; ::lEqualSplit := ( cVal == "1" )
+         case cKey == "horizontal"     ; ::lHorizontal := ( cVal == "1" )
+         case cKey == "menubar"        ; ::lMenubar := ( cVal == "1" )
+         case cKey == "cmdlinebar"     ; ::lCmdlineBar := ( cVal == "1" )
+         case cKey == "keybar"         ; ::lKeybar := ( cVal == "1" )
+         case cKey == "theme"          ; ::nTheme := Max( 1, Min( 3, Val( cVal ) ) )
+      endcase
+   next
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD SaveCfg() CLASS MCApp
+
+   local cTxt := "# Harbour Commander configuration" + hb_eol(), aEntry, c
+
+   cTxt += "showhidden=" + If( ::lShowHidden, "1", "0" ) + hb_eol()
+   cTxt += "confirmdelete=" + If( ::lConfirmDelete, "1", "0" ) + hb_eol()
+   cTxt += "confirmoverwrite=" + If( ::lConfirmOverwrite, "1", "0" ) + hb_eol()
+   cTxt += "confirmexecute=" + If( ::lConfirmExecute, "1", "0" ) + hb_eol()
+   cTxt += "confirmexit=" + If( ::lConfirmExit, "1", "0" ) + hb_eol()
+   cTxt += "ministatus=" + If( ::lMiniStatus, "1", "0" ) + hb_eol()
+   cTxt += "mixdirs=" + If( ::lMixDirs, "1", "0" ) + hb_eol()
+   cTxt += "equalsplit=" + If( ::lEqualSplit, "1", "0" ) + hb_eol()
+   cTxt += "horizontal=" + If( ::lHorizontal, "1", "0" ) + hb_eol()
+   cTxt += "menubar=" + If( ::lMenubar, "1", "0" ) + hb_eol()
+   cTxt += "cmdlinebar=" + If( ::lCmdlineBar, "1", "0" ) + hb_eol()
+   cTxt += "keybar=" + If( ::lKeybar, "1", "0" ) + hb_eol()
+   cTxt += "theme=" + hb_ntos( ::nTheme ) + hb_eol()
+   for each aEntry in ::aHotlist
+      cTxt += "hotlist|" + aEntry[ 1 ] + "|" + aEntry[ 2 ] + hb_eol()
+   next
+   for each c in ::aHistory
+      cTxt += "history|" + c + hb_eol()
+   next
+
+   if hb_MemoWrit( ::CfgFile(), cTxt )
+      MCMsgBox( "Save setup", "Configuration saved to:" + Chr( 10 ) + ::CfgFile() )
+   else
+      MCMsgBox( "Save setup", "Could not write:" + Chr( 10 ) + ::CfgFile() )
+   endif
+   ::Repaint()
+
+return nil
