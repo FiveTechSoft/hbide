@@ -104,12 +104,16 @@ function MCVfsArchiveAdd( cDstUrl, cSrc )
 
    local a := MCVfsSplit( cDstUrl ), lDir := hb_DirExists( cSrc )
    local cWrap, cTree, cInnerDir, cName, cTop, cCmd, cOut := "", lOk := .F.
+   local lDstIsDir := Right( cDstUrl, 1 ) == "/"
 
    if a == nil .or. ! ( a[ 1 ] == "uzip" .or. a[ 1 ] == "utar" )
       return .F.
    endif
-   cName := hb_FNameNameExt( cDstUrl )
-   cInnerDir := hb_FNameDir( a[ 3 ] )
+   // A trailing slash names a member directory (the F5 dialog offers the
+   // panel URL with one): the item keeps its own name inside it. Without
+   // it the url is the full member path (rename-while-copy).
+   cName := If( lDstIsDir, hb_FNameNameExt( cSrc ), hb_FNameNameExt( cDstUrl ) )
+   cInnerDir := If( lDstIsDir, a[ 3 ], hb_FNameDir( a[ 3 ] ) )
    if cInnerDir == "/"
       cInnerDir := ""
    endif
@@ -132,7 +136,7 @@ function MCVfsArchiveAdd( cDstUrl, cSrc )
       DeleteTree( cWrap, .T. )
       return .F.
    endif
-   if ! CopyItem( cSrc, hb_FNameMerge( cTree, hb_FNameMerge( cInnerDir, cName ) ), .F., nil, nil )
+   if ! CopyItem( cSrc, hb_FNameMerge( cTree, If( Empty( cInnerDir ), cName, cInnerDir + "/" + cName ) ), .F., nil, nil )
       MCVfsSetError( "cannot stage item" )
       DeleteTree( cWrap, .T. )
       return .F.
