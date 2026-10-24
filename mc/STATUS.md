@@ -301,6 +301,9 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 ## Known limits
 
+- Terminal resize: the panels view now relayouts cleanly on SIGWINCH (full
+  wipe + layout + repaint in one DispBegin). A READ-modal dialog open during
+  the resize does not relayout until it closes.
 - Keystroke injection (XTEST) can lose characters mid-session; tests drive
   the app in short batches with a verifying screenshot after each step.
 - Dialog GET width follows the variable length (PadR), not @S pictures.
