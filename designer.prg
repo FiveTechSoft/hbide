@@ -397,6 +397,7 @@ return nil
 
 METHOD AddControl( cType ) CLASS HbDesigner
 
+   local aSize
    local oCtrl := { "type" => cType, ;
                     "row"  => ::nGhostRow, ;
                     "col"  => ::nGhostCol }
@@ -423,6 +424,10 @@ METHOD AddControl( cType ) CLASS HbDesigner
          oCtrl[ "width"    ] = 20
          oCtrl[ "height"   ] = 6
    endcase
+
+   aSize = DsnControlSize( oCtrl )
+   oCtrl[ "row" ] = Max( 0, Min( ::nDlgHeight - 2 - aSize[ 2 ], oCtrl[ "row" ] ) )
+   oCtrl[ "col" ] = Max( 0, Min( ::nDlgWidth  - 2 - aSize[ 1 ], oCtrl[ "col" ] ) )
 
    AAdd( ::aControls, oCtrl )
    ::nSelected = Len( ::aControls )
@@ -456,8 +461,8 @@ METHOD MoveSelected( nDRow, nDCol ) CLASS HbDesigner
    if ::nSelected >= 1 .and. ::nSelected <= Len( ::aControls )
       oCtrl   = ::aControls[ ::nSelected ]
       aSize   = DsnControlSize( oCtrl )
-      nMaxRow = ::nDlgHeight - 1 - aSize[ 2 ]
-      nMaxCol = ::nDlgWidth  - 1 - aSize[ 1 ]
+      nMaxRow = ::nDlgHeight - 2 - aSize[ 2 ]
+      nMaxCol = ::nDlgWidth  - 2 - aSize[ 1 ]
       oCtrl[ "row" ] = Max( 0, Min( nMaxRow, oCtrl[ "row" ] + nDRow ) )
       oCtrl[ "col" ] = Max( 0, Min( nMaxCol, oCtrl[ "col" ] + nDCol ) )
       ::lDirty = .T.
@@ -520,8 +525,8 @@ METHOD DragControl( nIndex, nMRow, nMCol ) CLASS HbDesigner
    local nOffC  := nMCol - ( ::oWnd:nLeft + 1 + oCtrl[ "col" ] - ::nViewCol )
    local nNewRow, nNewCol, nMaxRow, nMaxCol
 
-   nMaxRow = ::nDlgHeight - 1 - aSize[ 2 ]
-   nMaxCol = ::nDlgWidth  - 1 - aSize[ 1 ]
+   nMaxRow = ::nDlgHeight - 2 - aSize[ 2 ]
+   nMaxCol = ::nDlgWidth  - 2 - aSize[ 1 ]
 
    while MLeftDown()
       nNewRow = Max( 0, Min( nMaxRow, MRow() - ::oWnd:nTop - 1 - nOffR + ::nViewRow ) )
