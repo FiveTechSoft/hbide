@@ -94,10 +94,22 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   user format references %x/%z or the inode). Per-panel formats persist
   to ~/.hbmc.ini (save+load round-trip verified, restart restores them)
 - Layout: horizontal / vertical panel split
-- Configuration dialog: 11 working checkboxes (Show hidden files, Show
+- Configuration dialog: 13 working checkboxes (Show hidden files, Show
   mini-status, Compute totals, Show free space, Auto save setup, Shell
   patterns, Mkdir autoname, Verbose operation, Use internal view, Use
-  internal edit, Cd follows links). Cd follows links verified live both
+  internal edit, Cd follows links, Safe delete, Safe overwrite). Safe
+  delete / Safe overwrite follow the exact mc semantics verified in mc's
+  own source (master src/setup.c: both default FALSE; src/filemanager/
+  file.c query_set_sel(1) and filegui.c:674 select the "No" button only
+  when the option is ON): the option only moves the PRESELECTED button
+  in the delete/overwrite confirmation - ON preselects Cancel, OFF (mc
+  default) preselects the action. Verified live all four ways: delete
+  OFF -> [< Delete >] focused and Enter really deletes; delete ON ->
+  [< Cancel >] focused and Enter keeps the file; overwrite OFF ->
+  [< Overwrite >]; overwrite ON -> [< Cancel >]. The [< >] default
+  marker always follows the preselected button. Both persist to
+  ~/.hbmc.ini (safedelete/safeoverwrite keys, save round-trip 1->0
+  verified). Cd follows links verified live both
   ways on a dir symlink (dirlink -> /tmp/hbmany): ON (mc default) Enter
   keeps the logical path (panel title /tmp/hbdest/dirlink); OFF resolves
   to the physical target (title /tmp/hbmany) Use internal view/edit verified live both ways: ON
