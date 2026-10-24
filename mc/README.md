@@ -114,8 +114,11 @@ not validated. This is a demo, not a replacement for production MC yet.
 Copy refuses the same file (including hard-link aliases), a directory inside
 itself, a destination that is an existing directory, and source/destination
 symbolic links. Recursive failures are reported.
-Move refuses an existing target rather than replacing it; cross-filesystem
-moves of directories and links remain pending. Recursive delete unlinks
+Move refuses an existing target rather than replacing it. Cross-filesystem
+moves copy first and remove the source only after a complete copy: directories
+recurse and symlinks are recreated with their original target, so a partial
+failure never deletes data. Verified across ext4->tmpfs (/tmp->/dev/shm) for
+nested trees and symlinks. Recursive delete unlinks
 symbolic links without traversing their target.
 
 Overwrite protection: a copy writes to a temporary file in the destination
