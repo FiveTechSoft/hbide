@@ -1186,22 +1186,26 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
 
    local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
    local oDlg, GetList := {}, lDummy, lOk := .F.
-   local cFmt := If( oPanel:lBrief, "Brief file list", "Full file list" ), aFmt[ 2 ]
+   local nFmt := If( oPanel:lBrief, 2, 1 ), aFmt[ 2 ]
    local cRadStyle := "(" + Chr( 7 ) + " )"
    local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
 
    oDlg = HBWindow():Dialog( "Listing format", 36, 9, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
-   aFmt[ 1 ] := RadioButto( oDlg:nTop + 2, oDlg:nLeft + 3, "&Full file list" )
-   aFmt[ 2 ] := RadioButto( oDlg:nTop + 3, oDlg:nLeft + 3, "&Brief file list" )
+   // same layout pattern as OptionsAppearance: equal-width captions with a
+   // leading space (capCol = col + 3 paints the gap after ")"), numeric GET
+   // var so the underlying GET buffer is a single hidden digit, and the
+   // default single-line group frame on its own rows around the items
+   aFmt[ 1 ] := RadioButto( oDlg:nTop + 2, oDlg:nLeft + 4, " " + PadR( "&Full file list", 16 ) )
+   aFmt[ 1 ]:capCol := oDlg:nLeft + 7
+   aFmt[ 2 ] := RadioButto( oDlg:nTop + 3, oDlg:nLeft + 4, " " + PadR( "&Brief file list", 16 ) )
+   aFmt[ 2 ]:capCol := oDlg:nLeft + 7
    AEval( aFmt, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
    oDlg:cargo := aFmt
 
-   @ oDlg:nTop + 2, oDlg:nLeft + 2, oDlg:nTop + 3, oDlg:nLeft + 24 GET cFmt ;
-      RADIOGROUP aFmt STYLE cRadStyle
-   ATail( GetList ):Control:coldBox := Space( 8 )  // invisible frame: "" falls back to the default box
-   ATail( GetList ):Control:hotBox := Space( 8 )
+   @ oDlg:nTop + 1, oDlg:nLeft + 3, oDlg:nTop + 4, oDlg:nLeft + 25 GET nFmt ;
+      RADIOGROUP aFmt STYLE cRadStyle COLOR "N/W,N/BG,GR+/BG"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
@@ -1217,7 +1221,7 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    ::Repaint()
 
    if lOk
-      oPanel:lBrief := ( AllTrim( cFmt ) == "Brief file list" )
+      oPanel:lBrief := ( Int( nFmt ) == 2 )
       ::Repaint()
    endif
 
@@ -1231,7 +1235,7 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    local oDlg, GetList := {}, lDummy, lOk := .F.
    local aNames := { "&Name", "&Extension", "&Size", "&Modify time", "&Access time", "&Change time", "&Inode", "&Unsorted" }
    local aKeys  := { "name", "ext", "size", "mtime", "atime", "ctime", "inode", "unsorted" }
-   local cSort := StrTran( aNames[ AScan( aKeys, oPanel:cSort ) ], "&", "" ), aRad[ 8 ], n
+   local nSort := Max( 1, AScan( aKeys, oPanel:cSort ) ), aRad[ 8 ], n
    local lRev := oPanel:lReverse, lCase := oPanel:lCaseSens
    local cRadStyle := "(" + Chr( 7 ) + " )"
    local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
@@ -1254,10 +1258,14 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    AEval( aRad, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
    oDlg:cargo := aRad
 
-   @ nT + 2, nL + 4, nT + 9, nL + 33 GET cSort ;
-      RADIOGROUP aRad STYLE cRadStyle
-   ATail( GetList ):Control:coldBox := Space( 8 )  // invisible frame: "" falls back to the default box
-   ATail( GetList ):Control:hotBox := Space( 8 )
+   // numeric GET var: the GET buffer is a single digit that lands on the
+   // group frame corner (the box rect coincides with the manual frame), not
+   // a caption string bleeding over the cyan fill
+   @ nT + 1, nL + 2, nT + 10, nL + 35 GET nSort ;
+      RADIOGROUP aRad STYLE cRadStyle COLOR "N/W,N/BG,GR+/BG"
+   // focused state would otherwise repaint a DOUBLE-line default frame over
+   // the single-line manual one
+   ATail( GetList ):Control:hotBox := cFrame
    // Redraw group frame (radiogroup Display already drew its own frame)
    hb_DispBox( nT + 1, nL + 2, nT + 10, nL + 35, cFrame, "N/W" )
    hb_Scroll( nT + 2, nL + 3, nT + 9, nL + 34,,, "N/BG" )
@@ -1293,7 +1301,7 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    ::Repaint()
 
    if lOk
-      oPanel:cSort := aKeys[ Max( 1, AScan( aNames, { | c | StrTran( c, "&", "" ) == AllTrim( cSort ) } ) ) ]
+      oPanel:cSort := aKeys[ Min( Max( 1, Int( nSort ) ), 8 ) ]
       oPanel:lReverse := lRev
       oPanel:lCaseSens := lCase
       oPanel:SortFiles()
