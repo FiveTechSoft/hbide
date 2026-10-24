@@ -17,6 +17,8 @@
 // bright yellow on the focus background) because the RTL single hotkey
 // slot cannot be right in both states.
 
+#include "button.ch"
+
 function BtnDisplay()
 
    local Self := QSelf()
@@ -24,7 +26,8 @@ function BtnDisplay()
    LOCAL cBody, cHot, cBg
    LOCAL cCaption := ::cCaption
    LOCAL nPos, cOut, nW
-   LOCAL lBrackets := ( ::cStyle == "brackets" )
+   // designer codegen emits STYLE "[]" for brackets; "brackets" kept as legacy alias
+   LOCAL lBrackets := ( ::cStyle == "[]" .or. ::cStyle == "brackets" )
    LOCAL lDefault  := ( ::cargo == .T. )
 
    DispBegin()
@@ -119,3 +122,69 @@ function ChkDisplay()
    DispEnd()
 
    RETURN Self
+
+//-----------------------------------------------------------------------------------------//
+
+// hit test honoring the rendered sizes: brackets "[ text ]" = caption + 4,
+// "[< text >]" = caption + 6, block buttons = caption + 4 x 2 rows
+function BtnHitTest( nMRow, nMCol )
+
+   local Self := QSelf()
+   local nLen := hb_ULen( StrTran( ::cCaption, "&", "" ) )
+   local nH := 1
+
+   if ::cStyle == "[]" .or. ::cStyle == "brackets"
+      nLen += 4
+      if ::cargo == .T.
+         nLen += 2   // "[< >]" default marker
+      endif
+   else
+      nLen += 2      // clickable face; the shadow cell is painted, not clickable
+      nH := 2
+   endif
+
+   if nMRow >= ::nRow .and. nMRow < ::nRow + nH .and. ;
+      nMCol >= ::nCol .and. nMCol < ::nCol + nLen
+      return HTCLIENT
+   endif
+
+return HTNOWHERE
+
+//-----------------------------------------------------------------------------------------//
+
+// RadioButtn display, mc style: the FOCUSED item draws glyph + caption in
+// black-on-cyan, other items black-on-gray; the hotkey is red unfocused and
+// yellow on the focused row.  colorSpec contract (vendored): index 4 caption
+// normal, index 5 hotkey normal, index 6 focused body.
+function RadDisplay()
+
+   local Self := QSelf()
+   local cStyle, cColor, cKeyColor, nPos, nCapRow, nCapCol
+   local lCurrent
+
+   cStyle := Left( ::cStyle, 1 ) + If( ::lBuffer, SubStr( ::cStyle, 2, 1 ), " " ) + SubStr( ::cStyle, 3 )
+
+   // RadioGroup:setFocus() marks EVERY item focused; the current row is the
+   // selected one (lBuffer), like mc: that row goes black-on-cyan, the rest
+   // stay black-on-gray.
+   lCurrent := ( ::lHasFocus .and. ::lBuffer )
+
+   cColor := If( lCurrent, ;
+                 hb_ColorIndex( ::colorSpec, 6 ), ;
+                 hb_ColorIndex( ::colorSpec, 4 ) )
+   cKeyColor := If( lCurrent, ;
+                    "GR+/" + SubStr( cColor, At( "/", cColor ) + 1 ), ;
+                    hb_ColorIndex( ::colorSpec, 5 ) )
+
+   hb_DispOutAt( ::nRow, ::nCol, cStyle, cColor )
+
+   if ! Empty( ::cCaption )
+      nCapRow := If( ! Empty( ::capRow ) .and. ! Empty( ::capCol ), ::capRow, ::nRow )
+      nCapCol := If( ! Empty( ::capRow ) .and. ! Empty( ::capCol ), ::capCol, ::nCol + Len( cStyle ) + 1 )
+      hb_DispOutAt( nCapRow, nCapCol, ::cCaption, cColor )
+      if ( nPos := At( "&", ::cCaption ) ) > 0
+         hb_DispOutAt( nCapRow, nCapCol + nPos - 1, SubStr( ::cCaption, nPos + 1, 1 ), cKeyColor )
+      endif
+   endif
+
+return nil
