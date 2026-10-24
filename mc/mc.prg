@@ -90,6 +90,8 @@ CLASS MCApp
    DATA   lInternalView   INIT .T.
    DATA   lInternalEdit   INIT .T.
    DATA   lCdFollowsLinks INIT .T.
+   DATA   lSafeDelete    INIT .F.  // mc default: both safe_* are FALSE (mc setup.c)
+   DATA   lSafeOverwrite INIT .F.
    DATA   lSIUnits        INIT .F.
    DATA   cExternalView   INIT "less"
    DATA   cExternalEdit   INIT "vi"
@@ -183,7 +185,7 @@ CLASS MCApp
    METHOD FileCopyBg( oSrc, aMarked, cDest )
    METHOD FileMoveBg( oSrc, aMarked, cDest )
    METHOD BgJobs()
-   METHOD DlgConfirm( cTitle, cMsg, cOk )
+   METHOD DlgConfirm( cTitle, cMsg, cOk, lSafeDefault )
    METHOD DlgList( cTitle, aItems, nDef )
    METHOD OtherPanelRef()
 
@@ -927,13 +929,14 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
-METHOD DlgConfirm( cTitle, cMsg, cOk ) CLASS MCApp
+METHOD DlgConfirm( cTitle, cMsg, cOk, lSafeDefault ) CLASS MCApp
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
    local aLines := hb_aTokens( hb_defaultValue( cMsg, "" ), Chr( 10 ) ), cLine, nRow := 2, nW := 0
    local nColCancel, nColAction
 
    DEFAULT cOk := "&Yes"
+   DEFAULT lSafeDefault := .T.
 
    AEval( aLines, { | c | nW := Max( nW, hb_ULen( c ) ) } )
    nW := Min( Max( nW + 8, 34 ), 100 )
@@ -944,19 +947,27 @@ METHOD DlgConfirm( cTitle, cMsg, cOk ) CLASS MCApp
       oDlg:Say( nRow++, 2, cLine )
    next
 
-   // Cancel first: initial focus and any stray key fire the safe button.
-   // Tab/Down moves focus to the action button, Enter fires the focused one.
-   // Positions come from the rendered widths ([< Cancel >] = 12 cells) so
-   // the default marker never runs into the action button.
+   // lSafeDefault = mc's safe_delete/safe_overwrite semantics: .T. puts the
+   // initial focus on Cancel (any stray key fires the safe button); .F. puts
+   // it on the action button, like mc preselecting "&Yes". Creation order
+   // sets the initial focus; physical layout never changes (Cancel left).
    nColCancel := oDlg:nLeft + Int( ( nW - ( 12 + 4 + Len( AllTrim( cOk ) ) + 4 ) ) / 2 )
    nColAction := nColCancel + 12 + 4
-   @ oDlg:nBottom - 2, nColCancel GET lDummy PUSHBUTTON ;
-      CAPTION " &Cancel " COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. ;
-      STATE { || oDlg:End() }
-
-   @ oDlg:nBottom - 2, nColAction GET lDummy PUSHBUTTON ;
-      CAPTION " " + cOk + " " COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" ;
-      STATE { || lOk := .T., oDlg:End() }
+   if lSafeDefault
+      @ oDlg:nBottom - 2, nColCancel GET lDummy PUSHBUTTON ;
+         CAPTION " &Cancel " COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. ;
+         STATE { || oDlg:End() }
+      @ oDlg:nBottom - 2, nColAction GET lDummy PUSHBUTTON ;
+         CAPTION " " + cOk + " " COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" ;
+         STATE { || lOk := .T., oDlg:End() }
+   else
+      @ oDlg:nBottom - 2, nColAction GET lDummy PUSHBUTTON ;
+         CAPTION " " + cOk + " " COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. ;
+         STATE { || lOk := .T., oDlg:End() }
+      @ oDlg:nBottom - 2, nColCancel GET lDummy PUSHBUTTON ;
+         CAPTION " &Cancel " COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" ;
+         STATE { || oDlg:End() }
+   endif
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -1473,8 +1484,9 @@ METHOD OptionsConfig() CLASS MCApp
    local lVerb := ::lVerboseOp
    local lIV := ::lInternalView, lIE := ::lInternalEdit
    local lCdL := ::lCdFollowsLinks
+   local lSD := ::lSafeDelete, lSOv := ::lSafeOverwrite
 
-   oDlg = HBWindow():Dialog( "Configuration", 44, 18, "W+/W" )
+   oDlg = HBWindow():Dialog( "Configuration", 44, 20, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lHidden ;
@@ -1532,6 +1544,16 @@ METHOD OptionsConfig() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
+   @ oDlg:nTop + 13, oDlg:nLeft + 3 GET lSD ;
+      CHECKBOX CAPTION "Sa&fe delete" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 14, oDlg:nLeft + 3 GET lSOv ;
+      CHECKBOX CAPTION "Safe overwrite" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
@@ -1558,6 +1580,8 @@ METHOD OptionsConfig() CLASS MCApp
       ::lVerboseOp := lVerb
       ::lInternalView := lIV
       ::lInternalEdit := lIE
+      ::lSafeDelete := lSD
+      ::lSafeOverwrite := lSOv
       ::lCdFollowsLinks := lCdL
       ::Rescan()
    endif
@@ -2090,7 +2114,7 @@ METHOD FileCopyBg( oSrc, aMarked, cDest ) CLASS MCApp
       next
       if ! Empty( aExist ) .and. ! ::DlgConfirm( "Overwrite", ;
             hb_ntos( Len( aExist ) ) + " destination file(s) exist." + Chr( 10 ) + ;
-            "Overwrite them?", "&Overwrite" )
+            "Overwrite them?", "&Overwrite", ::lSafeOverwrite )
          for each aItem in aExist
             AAdd( aSkipped, aItem[ 3 ] )
          next
@@ -2367,7 +2391,7 @@ function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
       return lOk
    endif
    if hb_FileExists( cDst ) .and. lConfirm .and. ! lAll
-      if ! oApp:DlgConfirm( "Overwrite", "File exists:" + Chr( 10 ) + cDst + Chr( 10 ) + "Overwrite?", "&Overwrite" )
+      if ! oApp:DlgConfirm( "Overwrite", "File exists:" + Chr( 10 ) + cDst + Chr( 10 ) + "Overwrite?", "&Overwrite", oApp:lSafeOverwrite )
          return .F.
       endif
    endif
@@ -2550,7 +2574,7 @@ static function MoveItem( cSrc, cDst, oApp )
       // mc overwrite semantics: confirm when confirmations are on, then
       // replace - rename(2) swaps a file or symlink destination atomically.
       if oApp:lConfirmOverwrite .and. ;
-         ! oApp:DlgConfirm( "Overwrite", "File exists:" + Chr( 10 ) + cDst + Chr( 10 ) + "Overwrite?", "&Overwrite" )
+         ! oApp:DlgConfirm( "Overwrite", "File exists:" + Chr( 10 ) + cDst + Chr( 10 ) + "Overwrite?", "&Overwrite", oApp:lSafeOverwrite )
          return .F.
       endif
       lAll := .T.  // confirmation granted (or off): CopyItem must not re-ask
@@ -2693,7 +2717,7 @@ METHOD FileDelete() CLASS MCApp
       endif
       if ::lConfirmDelete
          if ! ::DlgConfirm( "Delete", "Delete " + hb_ntos( Len( aMarked ) ) + " member(s) from the archive?" + Chr( 10 ) + ;
-                            aMarked[ 1 ][ P_NAME ] + If( Len( aMarked ) > 1, " ...", "" ), "&Delete" )
+                            aMarked[ 1 ][ P_NAME ] + If( Len( aMarked ) > 1, " ...", "" ), "&Delete", ::lSafeDelete )
             return nil
          endif
       endif
@@ -2726,7 +2750,7 @@ METHOD FileDelete() CLASS MCApp
 
    if ::lConfirmDelete
       if ! ::DlgConfirm( "Delete", "Delete " + hb_ntos( Len( aMarked ) ) + " item(s)?" + Chr( 10 ) + ;
-                         aMarked[ 1 ][ P_NAME ] + If( Len( aMarked ) > 1, " ...", "" ), "&Delete" )
+                         aMarked[ 1 ][ P_NAME ] + If( Len( aMarked ) > 1, " ...", "" ), "&Delete", ::lSafeDelete )
          return nil
       endif
    endif
@@ -3352,6 +3376,8 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "scrollcenter"   ; ::lScrollCenter := ( cVal == "1" )
          case cKey == "mousepages"     ; ::lMousePages := ( cVal == "1" )
          case cKey == "cdsymlinks"     ; ::lCdFollowsLinks := ( cVal == "1" )
+         case cKey == "safedelete"     ; ::lSafeDelete := ( cVal == "1" )
+         case cKey == "safeoverwrite"  ; ::lSafeOverwrite := ( cVal == "1" )
          case cKey == "siunits"        ; ::lSIUnits := ( cVal == "1" )
          case cKey == "equalsplit"     ; ::lEqualSplit := ( cVal == "1" )
          case cKey == "horizontal"     ; ::lHorizontal := ( cVal == "1" )
@@ -3409,6 +3435,8 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "scrollcenter=" + If( ::lScrollCenter, "1", "0" ) + hb_eol()
    cTxt += "mousepages=" + If( ::lMousePages, "1", "0" ) + hb_eol()
    cTxt += "cdsymlinks=" + If( ::lCdFollowsLinks, "1", "0" ) + hb_eol()
+   cTxt += "safedelete=" + If( ::lSafeDelete, "1", "0" ) + hb_eol()
+   cTxt += "safeoverwrite=" + If( ::lSafeOverwrite, "1", "0" ) + hb_eol()
    cTxt += "siunits=" + If( ::lSIUnits, "1", "0" ) + hb_eol()
    cTxt += "equalsplit=" + If( ::lEqualSplit, "1", "0" ) + hb_eol()
    cTxt += "horizontal=" + If( ::lHorizontal, "1", "0" ) + hb_eol()
