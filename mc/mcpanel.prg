@@ -55,6 +55,7 @@ CLASS MCPanel
    DATA   aFiles      INIT {}
    DATA   hStat       INIT { => }   // name => { nAtime, nCtime, nInode, cAtimeStr, cCtimeStr }, filled lazily
    DATA   hLinks      INIT { => }   // name => symlink target, filled by Rescan (local fs only)
+   DATA   nDirMTime   INIT 0      // dir mtime at last scan (fast dir reload check)
    DATA   nCurrent    INIT 1
    DATA   nOffset     INIT 0
    DATA   nTop        INIT 1
@@ -83,6 +84,8 @@ CLASS MCPanel
    METHOD Export()
    METHOD Import( a )
    METHOD Rescan()
+   METHOD ReloadIfChanged()
+   METHOD DirMTime()
    METHOD GoDir( cPath )
    METHOD SortFiles()
    METHOD FillStat()
@@ -198,6 +201,36 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+METHOD DirMTime() CLASS MCPanel
+
+   local cOut := ""
+
+   if hb_ProcessRun( MCShWrap( "stat -c %Y -- " + ShellQuote( ::cPath ) ),, @cOut ) == 0
+      return Val( AllTrim( cOut ) )
+   endif
+
+return 0
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ReloadIfChanged() CLASS MCPanel
+
+   // mc "fast dir reload" OFF: entering this panel re-reads the dir when
+   // its mtime changed since the last scan; ON: only C-r rescans
+   if ::cMode == "panelize" .or. ::cMode == "tree"
+      return nil
+   endif
+   if MCVfsKind( ::cPath ) != "local"
+      return nil
+   endif
+   if ::DirMTime() != ::nDirMTime
+      ::Rescan()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD Rescan() CLASS MCPanel
 
    local aDir, aEntry, cFull
@@ -306,6 +339,7 @@ METHOD Rescan() CLASS MCPanel
    endif
    ::SortFiles()
    ::FixScroll()
+   ::nDirMTime := ::DirMTime()
 
 return nil
 
