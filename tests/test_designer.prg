@@ -485,6 +485,38 @@ procedure Main()
    oD2:ClampGhost()
    Check( "oversized ghost pinned at 0", oD2:nGhostRow == 0 )
 
+   // control resize handles: GET width and LISTBOX width/height resize by
+   // deltas, clamped to their minimums and to the dialog interior; other
+   // types derive their size from caption/items and do not resize
+   oCtrl = { "type" => "get", "row" => 2, "col" => 3, "width" => 10 }
+   Check( "resize get wider", DsnResize( oCtrl, 5, 0, 56, 18 ) .and. oCtrl[ "width" ] == 15 )
+   Check( "resize get min width", DsnResize( oCtrl, -99, 0, 56, 18 ) .and. oCtrl[ "width" ] == 1 )
+   Check( "resize get clamped to dialog", DsnResize( oCtrl, 99, 0, 56, 18 ) .and. ;
+      oCtrl[ "width" ] == 56 - 2 - 3 )
+   Check( "get is resizable", DsnResizable( oCtrl ) )
+   oCtrl = { "type" => "listbox", "row" => 4, "col" => 3, "width" => 20, "height" => 6, "items" => "A,B" }
+   Check( "resize listbox taller", DsnResize( oCtrl, 0, 3, 56, 18 ) .and. oCtrl[ "height" ] == 9 )
+   Check( "resize listbox minimums", DsnResize( oCtrl, -99, -99, 56, 18 ) .and. ;
+      oCtrl[ "width" ] == 4 .and. oCtrl[ "height" ] == 3 )
+   Check( "resize listbox clamped to dialog", DsnResize( oCtrl, 99, 99, 56, 18 ) .and. ;
+      oCtrl[ "width" ] == 56 - 2 - 3 .and. oCtrl[ "height" ] == 18 - 2 - 4 )
+   oCtrl = { "type" => "say", "row" => 0, "col" => 0, "caption" => "Name:" }
+   Check( "resize say is a no-op", ! DsnResize( oCtrl, 5, 5, 56, 18 ) )
+   Check( "say is not resizable", ! DsnResizable( oCtrl ) )
+
+   // codegen follows the resized size: the GET var widens, the LISTBOX
+   // bottom/right coordinates move with the new width/height
+   hModel = { "name" => "ResizeDemo", "caption" => "Resize", "width" => 56, ;
+              "height" => 18, "color" => "W+/B", ;
+              "controls" => { ;
+                 { "type" => "get", "row" => 2, "col" => 3, "variable" => "cTxt", "width" => 15 }, ;
+                 { "type" => "listbox", "row" => 4, "col" => 3, "variable" => "nLb", ;
+                   "items" => "A,B", "width" => 22, "height" => 9 } } }
+   cCode = DsnGenCode( hModel, @nMaxRow, @nMaxCol )
+   Check( "gen uses resized get width", "Space( 15 )" $ cCode )
+   Check( "gen uses resized listbox size", ;
+      "oDlg:nTop + 13, oDlg:nLeft + 25" $ cCode )
+
    QOut( "" )
    QOut( "PASSED: " + hb_ntos( s_nPassed ) + "  FAILED: " + hb_ntos( s_nFailed ) )
    ErrorLevel( If( s_nFailed == 0, 0, 1 ) )
