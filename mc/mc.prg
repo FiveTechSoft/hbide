@@ -470,6 +470,7 @@ METHOD Quit() CLASS MCApp
       MCJobsCancelAll()
    endif
    if ! ::lConfirmExit .or. ::DlgConfirm( "Quit", "Do you really want to quit the Commander?", "&Quit" )
+      MCJobsCleanup()
       MCVfsCleanup()
       ::lEnd := .T.
    endif
@@ -1885,8 +1886,15 @@ METHOD BgJobs() CLASS MCApp
             if ! Empty( aJobs )
                j := aJobs[ Min( nSel, Len( aJobs ) ) ]
                if ! Empty( j[ "err" ] )
-                  MCViewerText( "Problems in: " + j[ "desc" ], ;
-                     StrTran( j[ "err" ], "; ", ";" + Chr( 10 ) ) )
+                  // Suspend the dialog's idle mouse task: hbwindow's idle
+                  // Refresh() would otherwise repaint the dialog frame over
+                  // the full-screen viewer. Re-registered on return.
+                  if oDlg:nIdle != nil
+                     hb_IdleDel( oDlg:nIdle )
+                     oDlg:nIdle := nil
+                  endif
+                  MCViewerText( "Problems in: " + j[ "desc" ], MCJobsErrText( j ) )
+                  oDlg:nIdle := hb_IdleAdd( { || oDlg:MouseEvent( MRow(), MCol() ) } )
                endif
             endif
          case nKey == K_UP
