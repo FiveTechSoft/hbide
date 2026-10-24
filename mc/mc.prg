@@ -639,14 +639,7 @@ METHOD Activate() CLASS MCApp
          case nKey == K_F6  ; ::FileMove()
          case nKey == K_F7  ; ::FileMkdir()
          case nKey == K_F8  ; ::FileDelete()
-         case nKey == K_F9
-            SetCursor( SC_NONE )
-            ::oMenu:ProcessKey( K_ALT_L )
-            // mc drop_menus (setup.c:101 default FALSE): F9 drops the
-            // pulldown at once instead of only lighting the menu title
-            if ::lDropMenus .and. ::oMenu:IsOpen()
-               ::oMenu:ProcessKey( K_DOWN )
-            endif
+         case nKey == K_F9  ; ( SetCursor( SC_NONE ), ::oMenu:ProcessKey( K_ALT_L ) )
          case nKey == K_F10 ; ::Quit()
 
          case nKey == K_TAB .and. nFlags == 0 ; ::SwitchPanel()
@@ -903,10 +896,11 @@ function MCMsgBox( cTitle, cText )
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
 
 return nil
@@ -948,10 +942,11 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1006,10 +1001,11 @@ METHOD DlgConfirm( cTitle, cMsg, cOk, lSafeDefault ) CLASS MCApp
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1053,10 +1049,11 @@ METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1358,10 +1355,11 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1450,10 +1448,11 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1525,7 +1524,7 @@ METHOD OptionsConfig() CLASS MCApp
    local lSD := ::lSafeDelete, lSOv := ::lSafeOverwrite
    local lSave := ::lAutoSaveSetup
    local nPauseRun := ::nPauseAfterRun + 1, aPar[ 3 ], nT, nL, nLC, nRC, n
-   local cFrame := hb_UTF8ToStrBox( "ââââââââ" )
+   local cFrame := hb_UTF8ToStrBox( "┌─┐│┘─└│" )
 
    oDlg = HBWindow():Dialog( "Configuration", 64, 21, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
@@ -1658,10 +1657,7 @@ METHOD OptionsConfig() CLASS MCApp
    // Esc = Cancel inside dialogs. mc old_esc_mode (lib/tty/key.c:94, default
    // TRUE = "Single press" on): a lone Esc cancels. With the option OFF the
    // Esc key is only a prefix and the dialog closes on Esc Esc.
-   Set( _SET_ESCAPE, lSPress )
-   if ! lSPress
-      SetKey( K_ESC, { || ( ++nEsc >= 2 .and. ( oDlg:End(), .T. ) ) } )
-   endif
+   MCDlgEscArm( oDlg, lSPress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
@@ -1746,10 +1742,11 @@ METHOD OptionsLayout() CLASS MCApp
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1849,10 +1846,11 @@ METHOD OptionsPanel() CLASS MCApp
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1910,10 +1908,11 @@ METHOD OptionsConfirm() CLASS MCApp
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1968,11 +1967,12 @@ METHOD OptionsAppearance() CLASS MCApp
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    // SET DELIMITERS OFF too: the GET's bracket delimiters would paint at
    // the group's edges
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    Set( _SET_DELIMITERS, .F. )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_DELIMITERS, .T. )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
@@ -2197,10 +2197,11 @@ METHOD DlgCopy( nCount, cDefault, cAction, cVerb ) CLASS MCApp
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -2992,10 +2993,11 @@ METHOD FileChmod() CLASS MCApp
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   Set( _SET_ESCAPE, .T. )
+   MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -3651,6 +3653,27 @@ return nil
 // Enter inside dialogs: focused pushbutton fires (reader parity); any other
 // control fires the dialog default button (cargo .T., shown as [< >]) -
 // Midnight Commander semantics.
+// Esc = Cancel inside dialogs, honoring the Esc key mode option
+// (mc old_esc_mode, lib/tty/key.c:94 default TRUE = "Single press" ON):
+// ON -> a lone Esc cancels (READ exit key); OFF -> Esc is only a prefix
+// and the dialog closes on Esc Esc. The app keeps _SET_ESCAPE OFF in the
+// main loop; each dialog arms this just for its own READ.
+function MCDlgEscArm( oDlg, lSingle )
+
+   static nEscCount := 0
+
+   nEscCount := 0
+   Set( _SET_ESCAPE, lSingle )
+   if lSingle
+      SetKey( K_ESC, NIL )
+   else
+      SetKey( K_ESC, { || ( ++nEscCount >= 2 .and. ( oDlg:End(), .T. ) ) } )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 function MCDlgEnter( aGets )
 
    local oGet := GetActive(), o
