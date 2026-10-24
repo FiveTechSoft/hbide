@@ -13,6 +13,7 @@ CLASS MCPanel
 
    DATA   cPath
    DATA   aFiles      INIT {}
+   DATA   hStat       INIT { => }   // name => { nAtime, nCtime, nInode }, filled lazily for the atime/ctime/inode sorts
    DATA   nCurrent    INIT 1
    DATA   nOffset     INIT 0
    DATA   nTop        INIT 1
@@ -38,6 +39,7 @@ CLASS MCPanel
    METHOD Rescan()
    METHOD GoDir( cPath )
    METHOD SortFiles()
+   METHOD FillStat()
    METHOD Display()
    METHOD DisplayListing()
    METHOD DisplayQuickView()
@@ -143,6 +145,8 @@ METHOD Rescan() CLASS MCPanel
    local aDir, aEntry, cFull
    local lShowHidden := ::oApp:lShowHidden
 
+   ::hStat := { => }
+
    if ::cMode == "panelize"
       return nil   // panelize content is managed by the panelize action
    endif
@@ -202,6 +206,48 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+METHOD FillStat() CLASS MCPanel
+
+   // atime/ctime/inode are not in Harbour's Directory(): fetch them on
+   // demand with ONE batched stat call (local panels only; VFS providers
+   // do not carry these fields and compare equal, falling back to name).
+   local aNames := {}, a, cOut := "", cCmd := "", aLines, aT, n, nMax
+   local lRetry := .F.
+
+   for each a in ::aFiles
+      if a[ P_NAME ] != "/.." .and. ! hb_HHasKey( ::hStat, a[ P_NAME ] )
+         AAdd( aNames, a[ P_NAME ] )
+      endif
+   next
+   if Empty( aNames )
+      return nil
+   endif
+   // stat output lines follow the argument order, so names never appear
+   // in the output and no quoting inside a name can break the mapping
+   for each a in aNames
+      cCmd += " " + ShellQuote( a )
+   next
+   if hb_ProcessRun( MCShWrap( "cd " + ShellQuote( ::cPath ) + ;
+          " && stat -c '%i|%X|%Z' --" + cCmd + " 2>/dev/null" ),, @cOut ) != 0
+      return nil
+   endif
+   aLines := hb_ATokens( cOut, Chr( 10 ) )
+   nMax := Min( Len( aLines ), Len( aNames ) )
+   for n := 1 to nMax
+      aT := hb_ATokens( aLines[ n ], "|" )
+      if Len( aT ) == 3
+         ::hStat[ aNames[ n ] ] := { Val( aT[ 2 ] ), Val( aT[ 3 ] ), Val( aT[ 1 ] ) }
+      endif
+   next
+   // a partial result means the tree changed mid-stat; retry once fresh
+   if Len( aLines ) < Len( aNames ) .and. ! lRetry
+      ::hStat := { => }
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD SortFiles() CLASS MCPanel
 
    local aRest, lMix := ::oApp:lMixDirs, n
@@ -216,8 +262,13 @@ METHOD SortFiles() CLASS MCPanel
       AAdd( aRest, ::aFiles[ n ] )
    next
 
+   if ( ::cSort == "atime" .or. ::cSort == "ctime" .or. ::cSort == "inode" ) .and. ;
+      MCVfsKind( ::cPath ) == "local"
+      ::FillStat()
+   endif
+
    if ::cSort != "unsorted"
-      ASort( aRest,,, { | a, b | PanelCompare( a, b, ::cSort, ::lCaseSens, lMix ) } )
+      ASort( aRest,,, { | a, b | PanelCompare( a, b, ::cSort, ::lCaseSens, lMix, ::hStat ) } )
       if ::lReverse
          aRest := ARev( aRest )
       endif
@@ -244,9 +295,9 @@ return aOut
 
 //-----------------------------------------------------------------------------------------//
 
-static function PanelCompare( a, b, cSort, lCaseSens, lMix )
+static function PanelCompare( a, b, cSort, lCaseSens, lMix, hStat )
 
-   local n := .F., cA, cB
+   local n := .F., cA, cB, nA, nB
 
    if ! lMix .and. a[ P_DIR ] != b[ P_DIR ]
       return a[ P_DIR ]   // directories first
@@ -277,6 +328,17 @@ static function PanelCompare( a, b, cSort, lCaseSens, lMix )
             n := a[ P_TIME ] <= b[ P_TIME ]
          else
             n := a[ P_DATE ] < b[ P_DATE ]
+         endif
+      case cSort == "atime" .or. cSort == "ctime" .or. cSort == "inode"
+         // { atime, ctime, inode }; missing (VFS or unstated) compares as 0
+         nA := If( hStat != nil .and. hb_HHasKey( hStat, a[ P_NAME ] ), ;
+                   hStat[ a[ P_NAME ] ][ If( cSort == "atime", 1, If( cSort == "ctime", 2, 3 ) ) ], 0 )
+         nB := If( hStat != nil .and. hb_HHasKey( hStat, b[ P_NAME ] ), ;
+                   hStat[ b[ P_NAME ] ][ If( cSort == "atime", 1, If( cSort == "ctime", 2, 3 ) ) ], 0 )
+         if nA == nB
+            n := Lower( a[ P_NAME ] ) < Lower( b[ P_NAME ] )
+         else
+            n := nA < nB
          endif
    endcase
 
