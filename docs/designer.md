@@ -253,7 +253,10 @@ Two caveats stay open:
   the dialog background (hbbutton's stock display hardcodes a white
   shadow, so the generated PRG re-registers the same display with the
   shadow repainted "N/<bg>"); the canvas preview paints the same
-  derived scheme, including the half-height button shadow.
+  derived scheme, including the half-height button shadow. On the
+  canvas the selected PushButton paints yellow-on-black so the
+  selection stands out against the green button look; that highlight
+  is editor-only and is never emitted in the generated code.
 - Viewport fit: loading a dialog, resizing it in F3 or from the
   inspector repositions the design window so it and its shadow stay
   fully on screen. The model keeps the dialog's saved size (grown to
