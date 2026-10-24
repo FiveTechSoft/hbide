@@ -145,6 +145,9 @@ CLASS MCApp
    METHOD About()
    METHOD Quit()
    METHOD DlgInput( cTitle, cLabel, cDefault, nLen )
+   METHOD DlgCopy( nCount, cDefault, cAction )
+   METHOD FileCopyBg( oSrc, aMarked, cDest )
+   METHOD BgJobs()
    METHOD DlgConfirm( cTitle, cMsg, cOk )
    METHOD DlgList( cTitle, aItems, nDef )
    METHOD OtherPanelRef()
@@ -458,6 +461,13 @@ return nil
 
 METHOD Quit() CLASS MCApp
 
+   if MCJobsActive()
+      if ! ::DlgConfirm( "Quit", "Background jobs are still running." + Chr( 10 ) + ;
+                         "Cancel them and quit?", "&Quit" )
+         return nil
+      endif
+      MCJobsCancelAll()
+   endif
    if ! ::lConfirmExit .or. ::DlgConfirm( "Quit", "Do you really want to quit the Commander?", "&Quit" )
       MCVfsCleanup()
       ::lEnd := .T.
@@ -476,7 +486,16 @@ METHOD Activate() CLASS MCApp
    ::Repaint()
 
    while ! ::lEnd
-      nKeyRaw := InKey( 0, HB_INKEY_ALL + HB_INKEY_EXT )
+      nKeyRaw := InKey( If( MCJobsNeedTick(), 0.2, 0 ), HB_INKEY_ALL + HB_INKEY_EXT )
+      if nKeyRaw == 0
+         // Idle tick: advance the background copy queue one chunk.
+         MCJobsStep()
+         if MCJobsTakeFinished()
+            ::Rescan()
+            ::Repaint()
+         endif
+         loop
+      endif
       nFlags  := hb_keyMod( nKeyRaw )
       nKey    := hb_keyStd( nKeyRaw )
       lCtrl   := hb_bitAnd( nFlags, HB_KF_CTRL ) != 0
@@ -978,6 +997,7 @@ METHOD BuildMenu() CLASS MCApp
          MENUITEM "Show directory s~izes" ACTION ::DirSizes()
          MENUITEM "Command ~history  M-h" ACTION ::CmdHistory()
          MENUITEM "Di~rectory hotlist"    ACTION ::Hotlist()
+         MENUITEM "~Background jobs"      ACTION ::BgJobs()
          SEPARATOR
          MENUITEM "Edit ~extension file"  ACTION ::EditExtFile()
          MENUITEM "Edit ~menu file"       ACTION ::EditMenuFile()
@@ -1556,7 +1576,7 @@ METHOD FileCopy() CLASS MCApp
 
    local oSrc := ::ActivePanel(), oDst := ::OtherPanel()
    local aMarked := oSrc:MarkedEntries(), aTargets, aEntry
-   local cDest, lAll := .F., nCopied := 0, nSkipped := 0
+   local cDest, cAction := "ok", lAll := .F., nCopied := 0, nSkipped := 0
 
    if oDst:cMode != "listing"
       MCMsgBox( "Copy", "The other panel must be in file listing mode." )
@@ -1572,12 +1592,15 @@ METHOD FileCopy() CLASS MCApp
    endif
 
    aTargets := AEval( aMarked, { | a | a[ P_NAME ] },,, .T. )
-   cDest := ::DlgInput( "Copy", "Copy " + hb_ntos( Len( aMarked ) ) + " item(s) to:", ;
-                        hb_DirSepAdd( oDst:cPath ), 55 )
+   cDest := ::DlgCopy( Len( aMarked ), hb_DirSepAdd( oDst:cPath ), @cAction )
    if cDest == nil
       return nil
    endif
    cDest := MCAbsPath( oDst:cPath, cDest )
+   if cAction == "bg"
+      ::FileCopyBg( oSrc, aMarked, cDest )
+      return nil
+   endif
    if Len( aMarked ) > 1 .and. ! hb_DirExists( cDest )
       hb_DirCreate( cDest )
    endif
@@ -1607,6 +1630,195 @@ static function DestFor( cDest, aEntry, nCount )
    endif
 
 return hb_FNameMerge( cDest, hb_FNameNameExt( aEntry[ P_NAME ] ) )
+
+//-----------------------------------------------------------------------------------------//
+
+// Copy destination dialog with the same layout as GNU mc: destination input
+// plus [ OK ] [ Background ] [ Cancel ]. Returns the typed destination, or
+// nil on Cancel/Esc; cAction comes back "ok" or "bg".
+METHOD DlgCopy( nCount, cDefault, cAction ) CLASS MCApp
+
+   local oDlg, GetList := {}, lDummy, lOk := .F., lBg := .F.
+   local cValue := PadR( hb_defaultValue( cDefault, "" ), 55 )
+
+   oDlg = HBWindow():Dialog( "Copy", 66, 8, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   oDlg:Say( 2, 3, "Copy " + hb_ntos( nCount ) + " item(s) to:" )
+   @ oDlg:nTop + 3, oDlg:nLeft + 3 GET cValue COLOR "W/B,W+/B,W+/W,GR+/W"
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 5 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
+   @ oDlg:nBottom - 2, oDlg:nLeft + 21 GET lDummy PUSHBUTTON CAPTION " &Background " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lBg := .T., oDlg:End() }
+   @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
+      COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::Repaint()
+
+   if lOk .or. lBg
+      cAction := If( lBg, "bg", "ok" )
+      return AllTrim( cValue )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Queue a copy in the background. The tree is flattened up front so the
+// jobs dialog can show real progress; symlinks and unsafe source/destination
+// pairs are skipped with the same rules as the foreground copy. One up-front
+// overwrite decision covers the whole queue, like the foreground "all" flow.
+METHOD FileCopyBg( oSrc, aMarked, cDest ) CLASS MCApp
+
+   local aFiles := {}, aSkipped := {}, aEntry, aItem, aExist := {}, aNew
+
+   if MCVfsKind( oSrc:cPath ) != "local" .or. MCVfsKind( cDest ) != "local"
+      MCMsgBox( "Copy", "Background copy is only available for local files." + Chr( 10 ) + ;
+                "Use OK to run this copy in the foreground." )
+      return nil
+   endif
+
+   for each aEntry in aMarked
+      MCGather( MCEntryPath( oSrc, aEntry ), DestFor( cDest, aEntry, Len( aMarked ) ), aFiles, aSkipped )
+   next
+
+   if ::lConfirmOverwrite
+      for each aItem in aFiles
+         if aItem[ 1 ] == "file" .and. hb_FileExists( aItem[ 3 ] )
+            AAdd( aExist, aItem )
+         endif
+      next
+      if ! Empty( aExist ) .and. ! ::DlgConfirm( "Overwrite", ;
+            hb_ntos( Len( aExist ) ) + " destination file(s) exist." + Chr( 10 ) + ;
+            "Overwrite them?", "&Overwrite" )
+         for each aItem in aExist
+            AAdd( aSkipped, aItem[ 3 ] )
+         next
+         aNew := {}
+         for each aItem in aFiles
+            if AScan( aExist, { | e | e == aItem } ) == 0
+               AAdd( aNew, aItem )
+            endif
+         next
+         aFiles := aNew
+      endif
+   endif
+
+   if Empty( aFiles )
+      MCMsgBox( "Copy", "Nothing to copy." )
+      return nil
+   endif
+   if ! Empty( aSkipped )
+      MCMsgBox( "Copy", hb_ntos( Len( aSkipped ) ) + " item(s) skipped (unsafe, unsupported or kept)." )
+   endif
+   MCJobsAdd( aFiles, hb_ntos( Len( aMarked ) ) + " item(s) -> " + cDest )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Recursive flatten for the background queue; never prompts.
+static function MCGather( cSrc, cDst, aFiles, aSkipped )
+
+   local cFrom := MCRealPath( cSrc ), cTo := MCRealPath( cDst ), aChild
+
+   if Empty( cFrom ) .or. Empty( cTo ) .or. cFrom == cTo .or. ;
+      ( hb_DirExists( cSrc ) .and. Left( cTo, Len( hb_DirSepAdd( cFrom ) ) ) == hb_DirSepAdd( cFrom ) ) .or. ;
+      MCSameFile( cSrc, cDst )
+      AAdd( aSkipped, cSrc )
+      return nil
+   endif
+   if ! Empty( hb_FLinkRead( cSrc ) ) .or. ! Empty( hb_FLinkRead( cDst ) )
+      AAdd( aSkipped, cSrc )
+      return nil
+   endif
+   if hb_DirExists( cSrc )
+      AAdd( aFiles, { "mkdir", cSrc, cDst, 0 } )
+      for each aChild in Directory( hb_DirSepAdd( cSrc ) + "*", "DHS" )
+         if !( aChild[ F_NAME ] == "." ) .and. !( aChild[ F_NAME ] == ".." )
+            MCGather( hb_FNameMerge( cSrc, aChild[ F_NAME ] ), ;
+                      hb_FNameMerge( cDst, aChild[ F_NAME ] ), aFiles, aSkipped )
+         endif
+      next
+      AAdd( aFiles, { "dirmeta", cSrc, cDst, 0 } )
+      return nil
+   endif
+   AAdd( aFiles, { "file", cSrc, cDst, hb_FSize( cSrc ) } )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Command > Background jobs: live list of the copy queue. Hand-rolled loop
+// (no READ) so progress keeps moving while the dialog is open: each idle
+// tick advances the queue one chunk and redraws.
+METHOD BgJobs() CLASS MCApp
+
+   local oDlg, nSel := 1, lEnd := .F., nKey, n, j, aJobs
+   local nT, nL, nPct, nFill, cState, cLine, cKey
+
+   oDlg = HBWindow():Dialog( "Background jobs", 64, 15, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   nT := oDlg:nTop
+   nL := oDlg:nLeft
+   oDlg:Say( oDlg:nBottom - oDlg:nTop - 1, 3, "C: cancel job    Esc: close" )
+
+   while ! lEnd
+      MCJobsStep()
+
+      aJobs := MCJobsList()
+      nSel := Min( nSel, Max( Len( aJobs ), 1 ) )
+      hb_Scroll( nT + 1, nL + 1, nT + 11, nL + 62,,, "N/W" )
+      if Empty( aJobs )
+         hb_DispOutAt( nT + 5, nL + 24, "No background jobs", "N/W" )
+      else
+         for n := 1 to Min( Len( aJobs ), 10 )
+            j := aJobs[ n ]
+            cState := j[ "state" ]
+            if j[ "total" ] > 0
+               nPct := Int( j[ "done" ] * 100 / j[ "total" ] )
+            else
+               nPct := If( cState == "done", 100, 0 )
+            endif
+            nFill := Int( nPct / 10 )
+            cLine := hb_UPadR( hb_UTF8SubStr( j[ "desc" ], 1, 25 ), 25 ) + " " + ;
+                     hb_UPadR( cState, 9 ) + " [" + ;
+                     Replicate( "#", nFill ) + Replicate( "-", 10 - nFill ) + "] " + ;
+                     hb_UPadR( hb_ntos( nPct ) + "%", 4 ) + ;
+                     If( ! Empty( j[ "err" ] ), " !", "" )
+            hb_DispOutAt( nT + 1 + n, nL + 2, cLine, If( n == nSel, "W+/G", "N/W" ) )
+         next
+      endif
+
+      // hb_keyStd(): with HB_INKEY_EXT, printable keys arrive as extended
+      // codes (99 becomes 11240735); normalize like the main loop does.
+      nKey := hb_keyStd( InKey( 0.2, HB_INKEY_ALL + HB_INKEY_EXT ) )
+      do case
+         case nKey == 0
+            loop
+         case nKey == K_ESC
+            lEnd := .T.
+         case nKey == K_UP
+            nSel := Max( 1, nSel - 1 )
+         case nKey == K_DOWN
+            nSel := Min( Max( Len( aJobs ), 1 ), nSel + 1 )
+         case nKey == K_LBUTTONDOWN
+            if MRow() == nT .and. MCol() == nL + 2
+               lEnd := .T.   // window close button
+            endif
+         otherwise
+            cKey := If( nKey >= 32 .and. nKey < 256, Upper( Chr( nKey ) ), "" )
+            if cKey == "C" .and. ! Empty( aJobs )
+               MCJobsCancel( nSel )
+            endif
+      endcase
+   enddo
+
+   oDlg:Hide()
+   ::Repaint()
+
+return nil
 
 //-----------------------------------------------------------------------------------------//
 
