@@ -84,7 +84,8 @@ CLASS HbIde
    METHOD ApplyDisplay( nRows, nCols )
    METHOD HelpContents()
    METHOD HelpIndex()
-   METHOD HelpView( cTitle, cText )
+   METHOD HelpView( cTitle, cText, lNested )
+   METHOD HelpTopic( cTitle )
    METHOD HelpPick( aTopics, cCaption )
 
 ENDCLASS
@@ -1014,7 +1015,7 @@ METHOD CompilerFlags() CLASS HbIde
    local oDlg, GetList := {}, lDummy, lOk := .F.
    local lWarnings := ::lWarnings, lDebug := ::lDebugInfo, lStrict := ::lStrict
    local lIncremental := ::lIncremental, lOptimize := ::lOptimize, lAutoRun := ::lAutoRun
-   local cCompiler := ::cCompiler, aCompilers[ 4 ]
+   local cCompiler := ::cCompiler, aCompilers[ 4 ], bPaint
    local cChkStyle := "[X ]", cRadStyle := "(" + Chr( 7 ) + " )"
    local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
    local nT, nL, nR, nB
@@ -1036,12 +1037,10 @@ METHOD CompilerFlags() CLASS HbIde
    nL = oDlg:nLeft
    nR = oDlg:nRight
    nB = oDlg:nBottom
+   bPaint := { || HBIDE_PaintFlagsGroups( oDlg ) }
 
-   // Group: Compiler
-   hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 24, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
-   hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 23,,, "N/BG" )
-   hb_DispOutAt( nT + 1, nL + 4, " Compiler ", "N/W" )
+   // Groups: Compiler, Options, Build
+   Eval( bPaint )
 
    aCompilers[ 1 ] = RadioButto( nT + 2, nL + 4, "&GCC" )
    aCompilers[ 2 ] = RadioButto( nT + 3, nL + 4, "&MSVC" )
@@ -1057,18 +1056,9 @@ METHOD CompilerFlags() CLASS HbIde
 
    ATail( GetList ):Control:coldBox := ""
    ATail( GetList ):Control:hotBox := ""
-   // Redraw group frame (radiogroup Display already drew its own frame)
-   hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 24, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
-   hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 23,,, "N/BG" )
-   hb_DispOutAt( nT + 1, nL + 4, " Compiler ", "N/W" )
+   // Redraw group frames (radiogroup Display already drew its own frame)
+   Eval( bPaint )
    ATail( GetList ):Control:Display()
-
-   // Group: Options
-   hb_DispBox( nT + 1, nL + 26, nT + 7, nR - 2, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
-   hb_Scroll( nT + 2, nL + 27, nT + 6, nR - 3,,, "N/BG" )
-   hb_DispOutAt( nT + 1, nL + 28, " Options ", "N/W" )
 
    @ nT + 2, nL + 28 GET lWarnings ;
       CHECKBOX CAPTION "&Warnings" STYLE cChkStyle ;
@@ -1094,11 +1084,6 @@ METHOD CompilerFlags() CLASS HbIde
     ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
-   // Group: Build
-   hb_DispBox( nT + 8, nL + 2, nT + 12, nR - 2, ;
-               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
-   hb_Scroll( nT + 9, nL + 3, nT + 11, nR - 3,,, "N/BG" )
-   hb_DispOutAt( nT + 8, nL + 4, " Build ", "N/W" )
 
    @ nT + 9, nL + 4 GET lOptimize ;
       CHECKBOX CAPTION "O&ptimize code" STYLE cChkStyle ;
@@ -1123,7 +1108,7 @@ METHOD CompilerFlags() CLASS HbIde
 
    @ nB - 2, nL + 38 GET lDummy PUSHBUTTON ;
       CAPTION "  &Help  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || Alert( "Help not available" ) }
+      STATE { || HBIDE_DialogHelp( oDlg, GetList, { || ::HelpTopic( "Options menu" ) }, bPaint ) }
 
    oDlg:Activate( GetList )
    ::ResumeStatus()
@@ -1690,7 +1675,71 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
-METHOD HelpView( cTitle, cText ) CLASS HbIde
+
+
+// Paints the three labeled group frames of the Compiler Flags dialog.
+// Used for the initial paint and to restore them after a nested dialog.
+static function HBIDE_PaintFlagsGroups( oDlg )
+
+   local nT := oDlg:nTop, nL := oDlg:nLeft
+   local nR := oDlg:nRight
+
+   hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 24, ;
+               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+   hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 23,,, "N/BG" )
+   hb_DispOutAt( nT + 1, nL + 4, " Compiler ", "N/W" )
+
+   hb_DispBox( nT + 1, nL + 26, nT + 7, nR - 2, ;
+               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+   hb_Scroll( nT + 2, nL + 27, nT + 6, nR - 3,,, "N/BG" )
+   hb_DispOutAt( nT + 1, nL + 28, " Options ", "N/W" )
+
+   hb_DispBox( nT + 8, nL + 2, nT + 12, nR - 2, ;
+               hb_UTF8ToStr( "┌─┐│┘─└│" ), "N/W" )
+   hb_Scroll( nT + 9, nL + 3, nT + 11, nR - 3,,, "N/BG" )
+   hb_DispOutAt( nT + 8, nL + 4, " Build ", "N/W" )
+
+return nil
+
+// Runs a help action over a modal GET dialog without visual overlap:
+// Hide() drops the dialog idle repaint task and clears its area, the help
+// draws on the clean IDE background, then the dialog and its GETs redraw.
+static function HBIDE_DialogHelp( oDlg, GetList, bHelp, bPaint )
+
+   local oCtrl
+
+   oDlg:Hide()
+   Eval( bHelp )
+   oDlg:Show( .T. )
+   if bPaint != nil
+      Eval( bPaint )
+   endif
+   for each oCtrl in GetList
+      if oCtrl:Control != nil
+         oCtrl:Control:Display()
+      endif
+   next
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD HelpTopic( cTitle ) CLASS HbIde
+
+   local aTopics := HBIDEHelpTopics()
+   local n := AScan( aTopics, { | t | t[ 2 ] == cTitle } )
+
+   if n > 0
+      ::HelpView( aTopics[ n, 2 ], aTopics[ n, 3 ], .T. )
+   else
+      Alert( "Help not available" )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD HelpView( cTitle, cText, lNested ) CLASS HbIde
 
    local cScr := SaveScreen( 0, 0, MaxRow(), MaxCol() )
    local nT := 3, nL := 15, nB := MaxRow() - 4, nR := MaxCol() - 15
@@ -1708,8 +1757,10 @@ METHOD HelpView( cTitle, cText ) CLASS HbIde
 
    RestScreen( 0, 0, MaxRow(), MaxCol(), cScr )
    ::ResumeStatus()
-   ::Repaint()
-   ::oEditor:ShowCursor()
+   if ! hb_defaultValue( lNested, .F. )
+      ::Repaint()
+      ::oEditor:ShowCursor()
+   endif
 
 return nil
 
