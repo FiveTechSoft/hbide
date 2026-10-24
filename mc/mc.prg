@@ -85,6 +85,7 @@ CLASS MCApp
    DATA   lLynxMotion     INIT .F.
    DATA   lMkdirAutoname  INIT .F.
    DATA   lFileTypes      INIT .T.
+   DATA   lFastReload     INIT .F.
    DATA   lEqualSplit     INIT .T.
    DATA   lHorizontal     INIT .F.
    DATA   lMenubar        INIT .T.
@@ -334,6 +335,9 @@ return nil
 METHOD SwitchPanel() CLASS MCApp
 
    ::nActive := If( ::nActive == 1, 2, 1 )
+   if ! ::lFastReload
+      ::ActivePanel():ReloadIfChanged()
+   endif
    ::Repaint()
 
 return nil
@@ -1589,8 +1593,9 @@ METHOD OptionsPanel() CLASS MCApp
    local lMix := ::lMixDirs, lBak := ::lShowBackup, lMd := ::lMarkDown
    local lHidden := ::lShowHidden, lLynx := ::lLynxMotion
    local lFT := ::lFileTypes
+   local lFR := ::lFastReload
 
-   oDlg = HBWindow():Dialog( "Panel options", 44, 13, "W+/W" )
+   oDlg = HBWindow():Dialog( "Panel options", 44, 14, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lMix ;
@@ -1623,6 +1628,11 @@ METHOD OptionsPanel() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
+   @ oDlg:nTop + 8, oDlg:nLeft + 3 GET lFR ;
+      CHECKBOX CAPTION "&Fast dir reload" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
@@ -1645,6 +1655,7 @@ METHOD OptionsPanel() CLASS MCApp
       ::lShowHidden := lHidden
       ::lLynxMotion := lLynx
       ::lFileTypes := lFT
+      ::lFastReload := lFR
       ::Rescan()
    endif
 
@@ -3240,6 +3251,7 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "lynxmotion"     ; ::lLynxMotion := ( cVal == "1" )
          case cKey == "mkdirautoname"  ; ::lMkdirAutoname := ( cVal == "1" )
          case cKey == "filetypes"      ; ::lFileTypes := ( cVal == "1" )
+         case cKey == "fastreload"     ; ::lFastReload := ( cVal == "1" )
          case cKey == "equalsplit"     ; ::lEqualSplit := ( cVal == "1" )
          case cKey == "horizontal"     ; ::lHorizontal := ( cVal == "1" )
          case cKey == "menubar"        ; ::lMenubar := ( cVal == "1" )
@@ -3286,6 +3298,7 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "lynxmotion=" + If( ::lLynxMotion, "1", "0" ) + hb_eol()
    cTxt += "mkdirautoname=" + If( ::lMkdirAutoname, "1", "0" ) + hb_eol()
    cTxt += "filetypes=" + If( ::lFileTypes, "1", "0" ) + hb_eol()
+   cTxt += "fastreload=" + If( ::lFastReload, "1", "0" ) + hb_eol()
    cTxt += "equalsplit=" + If( ::lEqualSplit, "1", "0" ) + hb_eol()
    cTxt += "horizontal=" + If( ::lHorizontal, "1", "0" ) + hb_eol()
    cTxt += "menubar=" + If( ::lMenubar, "1", "0" ) + hb_eol()
