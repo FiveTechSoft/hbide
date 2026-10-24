@@ -177,7 +177,7 @@ return Self
 
 METHOD Activate() CLASS HbDesigner
 
-   local nKey, nIndex, nInspHit, nChoice
+   local nKey, nIndex, nInspHit, nChoice, cEsc
 
    ::nOldCursor = SetCursor( SC_NONE )
    ::oIde:SuspendStatus()
@@ -226,12 +226,13 @@ METHOD Activate() CLASS HbDesigner
             endif
 
          case nKey == K_ESC
-            if ::lPlacing
+            cEsc = DsnEscTarget( ::lPlacing, ::lInspector, ::lDirty )
+            if cEsc == "placing"
                ::lPlacing = .F.
-            elseif ::lInspector
+            elseif cEsc == "inspector"
                // close the panel before offering to exit
                ::ToggleInspector()
-            elseif ::lDirty
+            elseif cEsc == "dirty"
                ::SuspendUI()
                nChoice = Alert( "Discard unsaved changes?", { "Yes", "No" } )
                ::ResumeUI()
@@ -3296,3 +3297,23 @@ return cCode + If( Len( aItems ) > 0, " }", "}" )
 static function DsnQuote( cText )
 
 return '"' + StrTran( hb_defaultValue( cText, "" ), '"', "'" ) + '"'
+
+//-----------------------------------------------------------------------------------------//
+
+// Layered Escape target: placement cancel first, then the inspector
+// panel, then the dirty-model confirmation, then exit. Pure helper so
+// the layering is covered by the test suite.
+
+function DsnEscTarget( lPlacing, lInspector, lDirty )
+
+   if lPlacing
+      return "placing"
+   endif
+   if lInspector
+      return "inspector"
+   endif
+   if lDirty
+      return "dirty"
+   endif
+
+return "exit"
