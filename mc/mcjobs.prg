@@ -227,7 +227,9 @@ function MCJobsErrText( j )
    if ! Empty( j[ "errlog" ] ) .and. hb_FileExists( j[ "errlog" ] )
       cLog := MemoRead( j[ "errlog" ] )
       if ! Empty( cLog )
-         return cLog
+         // log exists, but if any write to it failed its content may stop early
+         return cLog + If( j[ "logfail" ], ;
+            Chr( 10 ) + "[warning: writes to this log failed partway; it may be incomplete]", "" )
       endif
    endif
 
