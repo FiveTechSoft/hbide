@@ -803,9 +803,9 @@ return nil
 METHOD ReplaceDialog() CLASS HbIde
 
    local oDlg, GetList := {}, lDummy, lOk := .F., nCount
-   local cFind := PadR( ::oEditor:cFindText, 30 ), cReplace := Space( 30 ), oGetFind
+   local cFind := Space( 30 ), cReplace := Space( 30 ), oGetFind   // no prefill: overwrite-mode typing must not mix with leftover text
 
-   oDlg = HBWindow():Dialog( "Replace", 40, 8, "W+/W" )
+   oDlg = HBWindow():Dialog( "Replace", 40, 9, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
    ::SuspendStatus()
 
@@ -826,6 +826,8 @@ METHOD ReplaceDialog() CLASS HbIde
       :Caption = "&Replace with:"
       :Display()
    end
+
+   @ oDlg:nTop + 6, oDlg:nLeft + 5 SAY "(trailing blanks are ignored)" COLOR "N/W"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 11 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || lOk := .T., oDlg:End() }
@@ -849,7 +851,7 @@ return nil
 METHOD FindDialog() CLASS HbIde
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
-   local cText := PadR( ::oEditor:cFindText, 30 ), oGetFind
+   local cText := Space( 30 ), oGetFind   // no prefill: overwrite-mode typing must not mix with leftover text
 
    oDlg = HBWindow():Dialog( "Find", 40, 7, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
