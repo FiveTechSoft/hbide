@@ -12,7 +12,7 @@ procedure Main()
 
    local hModel, cCode, cJson, hBack, aSize
    local oD, oD2, aRect, nMaxRow, nMaxCol, oCtrl, cCellRef, cCellNow
-   local oDlg, nCell, cBefore, cAfter, hS0, hS1, aU, aR, hT
+   local oDlg, nCell, cBefore, cAfter, hS0, hS1, aU, aR, hT, oBtn
 
    // DsnControlSize
    aSize = DsnControlSize( { "type" => "say", "caption" => "Name:" } )
@@ -1003,6 +1003,18 @@ procedure MenuTests()
    // legacy control without the key reads as shadow everywhere
    Check( "style legacy default", ;
       DsnControlSize( { "type" => "button", "caption" => "OK" } )[ 2 ] == 2 )
+
+   // hitTest covers the real painted extent (HTCLIENT == -2049, HTNOWHERE == 0)
+   SetPos( 10, 10 )
+   oBtn = _PushButt_( "OK", "", "W/B,W+/B,N/B,GR+/B", NIL, NIL, NIL )
+   Check( "hittest shadow caption", oBtn:hitTest( 10, 10 ) == -2049 .and. oBtn:hitTest( 10, 13 ) == -2049 )
+   Check( "hittest shadow past pads", oBtn:hitTest( 10, 14 ) == 0 )
+   Check( "hittest shadow next row", oBtn:hitTest( 11, 11 ) == 0 )
+   oBtn:style := "[]"
+   Check( "hittest brackets closing cell", oBtn:hitTest( 10, 15 ) == -2049 )
+   Check( "hittest brackets past bracket", oBtn:hitTest( 10, 16 ) == 0 )
+   oBtn:style := "()"   // any two-char style is a bracket pair
+   Check( "hittest custom pair", oBtn:hitTest( 10, 15 ) == -2049 )
    // (pixel proof that a "~"-less item no longer paints a hotkey char one
    // cell left of its prompt is the live palette screenshot: the headless
    // GT keeps no readable screen buffer for SaveScreen)
