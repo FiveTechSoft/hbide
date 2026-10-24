@@ -368,3 +368,34 @@ Two caveats stay open:
   checked state is a portable [X] everywhere. The designer canvas
   paints checkboxes in the same ASCII "[ ]" style, so no stray glyph
   appears there either.
+
+## Keyboard input: HB_INKEY_EXT normalization (2026-10-24, third pass)
+
+The classic inkey.ch codes collide: K_DOWN == K_CTRL_X (24), K_UP == K_CTRL_E,
+K_LEFT == K_CTRL_S, K_CTRL_LEFT == K_CTRL_Z, K_CTRL_RIGHT == K_CTRL_B,
+K_CTRL_V == Ins. A do-case picks the first match, so with the classic mask the
+Down arrow ran CutSelected (destructive) and Ctrl+Left was unreachable behind
+Undo. Case order cannot fix aliasing; the codes are identical.
+
+The canvas loop now reads InKey( 0, INKEY_ALL + HB_INKEY_EXT ) and every key
+passes through DsnNormKey(). With EXT the terminal emits
+0x41000000 + ( modifiers << 16 ) + keycode, so each physical key is distinct:
+
+- special keys (mod 0): F(n)=n, Up=13 Down=14 Left=15 Right=16 Home=17 Del=22
+  Tab=24 Esc=25 Return=26 - normalized back to the classic K_* codes
+- Ctrl+letter (mod 2, low = Asc of the uppercase letter): normalized to the
+  private DSNK_CTRL_* range (9100+), never to a colliding classic code
+- Ctrl+arrows (mod 2, low = the arrow's own code 13-16): Ctrl+Up/Down keep the
+  unique classic K_CTRL_UP/K_CTRL_DOWN; Ctrl+Left/Right go to the private
+  DSNK_CTRLLEFT/DSNK_CTRLRIGHT codes
+- Shift+Tab (mod 1, low 24): normalized to K_SH_TAB
+- mouse / GT events carry the classic code in the low 16 bits and pass through
+
+Without EXT support the input passes through unchanged and the loop keeps the
+classic cases as fallback; on such terminals a colliding key resolves to the
+non-destructive action (Down moves; the classic 24 can no longer cut, so
+Ctrl+X is unreachable there instead). Sub-dialogs, GETs and the inspector
+inline editor keep the classic mask so printable text entry is unaffected.
+Verified live (xterm + Xvfb + xdotool): Tab/Shift+Tab cycle, arrows move,
+Ctrl+X/C/V cut-copy-paste, Ctrl+Z/Y undo-redo, Ctrl+arrows pan, F2-F12,
+Enter/Esc/Del, mouse click+drag, save-as JSON round trip.
