@@ -234,6 +234,12 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   167 ms apart closed it; singlepress=1 regression re-proven (one Esc
   closes). NOTE for future PTY tests: F5 with the cursor on "/.." opens
   the "Nothing to copy." msgbox, not DlgCopy - navigate to a file first
+- Rotating dash (layout.c:86, default TRUE): MCApp:SpinTick draws the
+  |/-\\ cycle at the top-right cell (0, MaxCol()) on every idle tick
+  while background jobs run, gated on lRotatingDash and lMenubar. Proven
+  live on a 20 MB background copy (F5 -> Background): 84 writes to the
+  corner cell cycling through the four glyphs in order, copy completed
+  intact. Erase-after-finish and option-off erase still pending proof
 - Drop down menus (mc drop_menus, setup.c:101, default FALSE): dedicated
   bar handler in mc/ (the shared HbMenu class only supports dropping
   immediately). OFF: F9 lights the bar without dropping, Left/Right move
@@ -293,9 +299,8 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 - Complete: show all (show_all_if_ambiguous): needs M-Tab completion
   infrastructure in dialog GETs (lib/widget input completion)
-- Rotating dash behavior: implemented (MCApp:SpinTick draws |/-\\ at the
-  top-right cell while background jobs tick, layout.c:1026+ semantics)
-  but not yet proven live during a long job
+- Rotating dash erase-after-finish and option-OFF path: implemented,
+  not yet proven live
 
 ## Env-blocked (out of demo scope by design)
 
