@@ -338,7 +338,7 @@ METHOD CmdInsertName() CLASS MCApp
    local aEntry := ::ActivePanel():Current()
 
    if aEntry != nil
-      ::cCmdLine += ShellQuote( hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] ) ) + " "
+      ::cCmdLine += ShellQuote( MCEntryPath( ::ActivePanel(), aEntry ) ) + " "
       ::ShowCmdLine()
    endif
 
@@ -694,6 +694,19 @@ return nil
 //-----------------------------------------------------------------------------------------//
 
 // ESC prefix maps to Alt+key (MC meta prefix): ESC,f == Alt+F
+// Full path of a panel entry: panelize rows already store absolute paths,
+// listing rows are names relative to the panel cwd. hb_FNameMerge() would
+// duplicate the base for absolute panelize names.
+function MCEntryPath( oPanel, aEntry )
+
+   if oPanel:cMode == "panelize"
+      return aEntry[ P_NAME ]
+   endif
+
+return hb_FNameMerge( oPanel:cPath, aEntry[ P_NAME ] )
+
+//-----------------------------------------------------------------------------------------//
+
 static function MCA_ESCAlt( nKey )
 
    local nAlt := 0
@@ -1026,7 +1039,7 @@ METHOD Panelize( nPanel ) CLASS MCApp
 
    local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
    local cCmd := ::DlgInput( "External panelize", "Command (e.g. find . -type f -name '*.prg'):", "", 45 )
-   local cOut := "", cLine
+   local cOut := "", cLine, aStat
 
    if cCmd == nil
       return nil
@@ -1037,8 +1050,19 @@ METHOD Panelize( nPanel ) CLASS MCApp
    for each cLine in hb_aTokens( StrTran( cOut, Chr( 13 ) ), Chr( 10 ) )
       cLine := AllTrim( cLine )
       if ! Empty( cLine )
+         // The command's output lines are paths as printed, interpreted
+         // relative to the panel's current directory (MC semantics).
          cLine := MCAbsPath( oPanel:cPath, cLine )
-         AAdd( oPanel:aFiles, { cLine, 0, CToD( "" ), "", "", hb_DirExists( cLine ), .F. } )
+         aStat := Directory( cLine, "DHS" )
+         if ! Empty( aStat )
+            AAdd( oPanel:aFiles, { cLine, If( hb_DirExists( cLine ), 0, aStat[ 1, F_SIZE ] ), ;
+                                   aStat[ 1, F_DATE ], aStat[ 1, F_TIME ], ;
+                                   aStat[ 1, F_ATTR ], hb_DirExists( cLine ), .F. } )
+         else
+            // Path does not exist from the panel cwd: keep the row but show
+            // the metadata as unknown instead of faking zeros.
+            AAdd( oPanel:aFiles, { cLine, -1, CToD( "" ), "", "", .F., .F. } )
+         endif
       endif
    next
    oPanel:cMode := "panelize"
@@ -1370,7 +1394,7 @@ METHOD FileView() CLASS MCApp
    local aEntry := ::ActivePanel():Current()
 
    if aEntry != nil .and. ! aEntry[ P_DIR ]
-      MCViewer( hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] ) )
+      MCViewer( MCEntryPath( ::ActivePanel(), aEntry ) )
    elseif aEntry != nil
       MCMsgBox( "View", "Cannot view a directory." )
    endif
@@ -1408,7 +1432,7 @@ METHOD FileFilteredView() CLASS MCApp
       return nil
    endif
 
-   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   cFull := MCEntryPath( ::ActivePanel(), aEntry )
    cCmd := ::DlgInput( "Filtered view", "Command (%f = file, e.g. cat -n %f):", "", 45 )
    if cCmd == nil
       return nil
@@ -1427,7 +1451,7 @@ METHOD FileEdit() CLASS MCApp
    local aEntry := ::ActivePanel():Current()
 
    if aEntry != nil .and. ! aEntry[ P_DIR ]
-      MCEditFile( hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] ) )
+      MCEditFile( MCEntryPath( ::ActivePanel(), aEntry ) )
    elseif aEntry != nil
       MCMsgBox( "Edit", "Cannot edit a directory." )
    endif
@@ -1469,7 +1493,7 @@ METHOD FileCopy() CLASS MCApp
    endif
 
    for each aEntry in aMarked
-      if CopyItem( hb_FNameMerge( oSrc:cPath, aEntry[ P_NAME ] ), ;
+      if CopyItem( MCEntryPath( oSrc, aEntry ), ;
                    DestFor( cDest, aEntry, Len( aMarked ) ), ;
                    ::lConfirmOverwrite, @lAll, Self )
          nCopied++
@@ -1605,7 +1629,7 @@ METHOD FileMove() CLASS MCApp
    cDest := MCAbsPath( oDst:cPath, cDest )
 
    for each aEntry in aMarked
-      if MoveItem( hb_FNameMerge( oSrc:cPath, aEntry[ P_NAME ] ), ;
+      if MoveItem( MCEntryPath( oSrc, aEntry ), ;
                    DestFor( cDest, aEntry, Len( aMarked ) ), Self )
          nMoved++
       else
@@ -1715,7 +1739,7 @@ METHOD FileDelete() CLASS MCApp
    endif
 
    for each aEntry in aMarked
-      cFull := hb_FNameMerge( oSrc:cPath, aEntry[ P_NAME ] )
+      cFull := MCEntryPath( oSrc, aEntry )
       if aEntry[ P_DIR ]
          if DeleteTree( cFull )
             nDeleted++
@@ -1789,7 +1813,7 @@ METHOD FileChmod() CLASS MCApp
    if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
       return nil
    endif
-   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   cFull := MCEntryPath( ::ActivePanel(), aEntry )
    hb_ProcessRun( MCShWrap( "stat -c %a " + ShellQuote( cFull ) ),, @cCur )
    nMode := Val( AllTrim( cCur ) )   // octal digits as decimal number, e.g. 644
 
@@ -1851,7 +1875,7 @@ METHOD FileLink() CLASS MCApp
    if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
       return nil
    endif
-   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   cFull := MCEntryPath( ::ActivePanel(), aEntry )
    cLink := ::DlgInput( "Link", "Hard link " + aEntry[ P_NAME ] + " to:", ;
                         hb_FNameMerge( ::OtherPanel():cPath, aEntry[ P_NAME ] ), 55 )
    if cLink != nil
@@ -1875,7 +1899,7 @@ METHOD FileSymlink() CLASS MCApp
    if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
       return nil
    endif
-   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   cFull := MCEntryPath( ::ActivePanel(), aEntry )
    cLink := ::DlgInput( "Symlink", "Symbolic link name:", ;
                         hb_FNameMerge( ::OtherPanel():cPath, aEntry[ P_NAME ] ), 55 )
    if cLink != nil
@@ -1899,7 +1923,7 @@ METHOD FileEditSymlink() CLASS MCApp
    if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
       return nil
    endif
-   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   cFull := MCEntryPath( ::ActivePanel(), aEntry )
    hb_ProcessRun( MCShWrap( "readlink " + ShellQuote( cFull ) ),, @cTarget )
    cTarget := AllTrim( cTarget )
    if Empty( cTarget )
@@ -1927,7 +1951,7 @@ METHOD FileChown() CLASS MCApp
    if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
       return nil
    endif
-   cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
+   cFull := MCEntryPath( ::ActivePanel(), aEntry )
    cOwner := ::DlgInput( "Chown", "New owner[:group] for " + aEntry[ P_NAME ] + ":", hb_GetEnv( "USER" ), 40 )
    if cOwner != nil .and. ! Empty( cOwner )
       nRet := hb_ProcessRun( MCShWrap( "chown " + ShellQuote( cOwner ) + " " + ShellQuote( cFull ) + " 2>&1" ),, @cOut )
