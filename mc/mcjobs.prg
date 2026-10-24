@@ -42,13 +42,15 @@ return l
 
 //-----------------------------------------------------------------------------------------//
 
-function MCJobsAdd( aFiles, cDesc )
+function MCJobsAdd( aFiles, cDesc, lMove )
 
    local nTotal := 0
 
+   lMove := hb_defaultValue( lMove, .F. )
    AEval( aFiles, { | f | If( f[ 1 ] == "file", nTotal += f[ 4 ], nil ) } )
    AAdd( s_aJobs, { ;
       "desc"  => cDesc, ;
+      "move"  => lMove, ;
       "files" => aFiles, ;
       "total" => nTotal, ;
       "done"  => 0, ;
@@ -162,9 +164,31 @@ function MCJobsStep()
                JobErr( j, f[ 3 ], "cannot create directory" )
             endif
          case f[ 1 ] == "dirmeta"
-            hb_ProcessRun( MCShWrap( "chmod --reference=" + ShellQuote( f[ 2 ] ) + " " + ShellQuote( f[ 3 ] ) ),, )
-            hb_ProcessRun( MCShWrap( "touch --reference=" + ShellQuote( f[ 2 ] ) + " " + ShellQuote( f[ 3 ] ) ),, )
+            if Len( f ) >= 6 .and. f[ 5 ] > 0
+               // Snapshot taken at enqueue: immune to source mutation by moves.
+               hb_ProcessRun( MCShWrap( "chmod " + f[ 6 ] + " -- " + ShellQuote( f[ 3 ] ) + " 2>/dev/null" ),, )
+               hb_ProcessRun( MCShWrap( "touch -d '@" + hb_ntos( f[ 5 ] ) + "' " + ShellQuote( f[ 3 ] ) + " 2>/dev/null" ),, )
+            else
+               hb_ProcessRun( MCShWrap( "chmod --reference=" + ShellQuote( f[ 2 ] ) + " " + ShellQuote( f[ 3 ] ) + " 2>/dev/null" ),, )
+               hb_ProcessRun( MCShWrap( "touch --reference=" + ShellQuote( f[ 2 ] ) + " " + ShellQuote( f[ 3 ] ) + " 2>/dev/null" ),, )
+            endif
+            if j[ "move" ]
+               DirRemove( f[ 2 ] )   // fails harmlessly if members stayed behind
+            endif
          otherwise
+            // "file": a move never overwrites (foreground MoveItem semantics);
+            // an existing destination raced in after enqueue is skipped.
+            if j[ "move" ]
+               if File( f[ 3 ] ) .or. hb_DirExists( f[ 3 ] )
+                  JobErr( j, f[ 3 ], "destination exists; move does not overwrite" )
+                  return .T.
+               endif
+               // Same-filesystem move: rename in place and the entry is done.
+               if FRename( f[ 2 ], f[ 3 ] ) == 0
+                  j[ "done" ] += f[ 4 ]
+                  return .T.
+               endif
+            endif
             // "file": open the source and a temp file in the destination dir.
             j[ "hSrc" ] := FOpen( f[ 2 ], 0 )
             if j[ "hSrc" ] < 0
@@ -256,6 +280,12 @@ static function JobFinishFile( j )
    endif
    // Keep the source file's modification time on the destination.
    hb_ProcessRun( MCShWrap( "touch --reference=" + ShellQuote( f[ 2 ] ) + " " + ShellQuote( f[ 3 ] ) ),, )
+   if j[ "move" ]
+      // The destination is complete and in place: only now drop the source.
+      if FErase( f[ 2 ] ) != 0
+         JobErr( j, f[ 2 ], "copied but source not removed" )
+      endif
+   endif
 
 return nil
 
