@@ -54,13 +54,21 @@ function BtnDisplay()
    ENDIF
 
    hb_DispOutAt( nRow, ::nCol + Len( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;
-                 If( ::lBuffer, " ", Chr( 220 ) ), "N/W" )
+                 If( ::lBuffer, " ", HbBtnShadowChars()[ 1 ] ), "N/W" )
    hb_DispOutAt( ::nRow + 1, ::nCol + 1,;
-                 Replicate( If( ::lBuffer, " ", Chr( 223 ) ), Len( cCaption ) + 2 ), "N/W" )
+                 Replicate( If( ::lBuffer, " ", HbBtnShadowChars()[ 2 ] ), Len( cCaption ) + 2 ), "N/W" )
 
    DispEnd()
 
    RETURN Self
+
+// Shadow glyphs follow the application's active codepage (same pattern as
+// HBWindow's DrawBorder): under CP437 they are the raw half blocks 220/223,
+// byte-identical to before; under the UTF-8 opt-in they become the proper
+// multi-byte encoding instead of rendering as '?'.
+function HbBtnShadowChars()
+
+return { hb_UTF8ToStr( "▄" ), hb_UTF8ToStr( "▀" ) }
 
 // Registers the hbide PushButton display (with its 3D shadow) for any
 // program that links this file, including designer-generated dialogs
