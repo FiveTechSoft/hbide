@@ -1498,28 +1498,54 @@ return hb_FNameMerge( cDest, hb_FNameNameExt( aEntry[ P_NAME ] ) )
 
 function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
 
-   local lOk := .T.
+   local lOk := .T., aChild, cFrom := MCRealPath( cSrc ), cTo := MCRealPath( cDst )
 
+   // Never truncate the source or recursively copy a directory into itself.
+   if Empty( cFrom ) .or. Empty( cTo ) .or. cFrom == cTo .or. ;
+      ( hb_DirExists( cSrc ) .and. Left( cTo, Len( hb_DirSepAdd( cFrom ) ) ) == hb_DirSepAdd( cFrom ) ) .or. ;
+      MCSameFile( cSrc, cDst )
+      MCMsgBox( "Copy", "Unsafe source/destination combination. Copy cancelled." )
+      return .F.
+   endif
+   // Do not follow source or destination links, including links to directories.
+   if ! Empty( hb_FLinkRead( cSrc ) ) .or. ! Empty( hb_FLinkRead( cDst ) )
+      MCMsgBox( "Copy", "Copying symbolic links is not supported yet. Nothing changed." )
+      return .F.
+   endif
    if hb_DirExists( cSrc )
       if ! hb_DirExists( cDst ) .and. hb_DirCreate( cDst ) != 0
          MCMsgBox( "Copy", "Cannot create directory:" + Chr( 10 ) + cDst )
          return .F.
       endif
-      AEval( Directory( hb_DirSepAdd( cSrc ) + "*", "DHS" ), { | a | ;
-         If( a[ F_NAME ] == "." .or. a[ F_NAME ] == "..", nil, ;
-             ( CopyItem( hb_FNameMerge( cSrc, a[ F_NAME ] ), ;
-                         hb_FNameMerge( cDst, a[ F_NAME ] ), lConfirm, @lAll, oApp ), nil ) ) } )
-      return .T.
+      for each aChild in Directory( hb_DirSepAdd( cSrc ) + "*", "DHS" )
+         if aChild[ F_NAME ] != "." .and. aChild[ F_NAME ] != ".."
+            if ! CopyItem( hb_FNameMerge( cSrc, aChild[ F_NAME ] ), ;
+                           hb_FNameMerge( cDst, aChild[ F_NAME ] ), lConfirm, @lAll, oApp )
+               lOk := .F.
+            endif
+         endif
+      next
+      return lOk
    endif
-
    if hb_FileExists( cDst ) .and. lConfirm .and. ! lAll
-      lOk := oApp:DlgConfirm( "Overwrite", "File exists:" + Chr( 10 ) + cDst + Chr( 10 ) + "Overwrite?", "&Overwrite" )
-      if ! lOk
+      if ! oApp:DlgConfirm( "Overwrite", "File exists:" + Chr( 10 ) + cDst + Chr( 10 ) + "Overwrite?", "&Overwrite" )
          return .F.
       endif
    endif
-
 return FCopyText( cSrc, cDst )
+
+static function MCRealPath( cPath )
+   local cOut := ""
+   if hb_ProcessRun( MCShWrap( "readlink -m -- " + ShellQuote( cPath ) ),, @cOut ) != 0
+      return ""
+   endif
+return AllTrim( StrTran( cOut, Chr( 10 ), "" ) )
+
+static function MCSameFile( cA, cB )
+   local cOne := "", cTwo := ""
+   hb_ProcessRun( MCShWrap( "stat -Lc '%d:%i' -- " + ShellQuote( cA ) ),, @cOne )
+   hb_ProcessRun( MCShWrap( "stat -Lc '%d:%i' -- " + ShellQuote( cB ) + " 2>/dev/null" ),, @cTwo )
+return ! Empty( cOne ) .and. cOne == cTwo
 
 //-----------------------------------------------------------------------------------------//
 
@@ -1544,6 +1570,9 @@ function FCopyText( cSrc, cDst )
          exit
       endif
    end
+   if FError() != 0
+      lOk := .F.
+   endif
    FClose( nSrc )
    FClose( nDst )
 
@@ -1577,7 +1606,7 @@ METHOD FileMove() CLASS MCApp
 
    for each aEntry in aMarked
       if MoveItem( hb_FNameMerge( oSrc:cPath, aEntry[ P_NAME ] ), ;
-                   DestFor( cDest, aEntry, Len( aMarked ) ) )
+                   DestFor( cDest, aEntry, Len( aMarked ) ), Self )
          nMoved++
       else
          nFailed++
@@ -1593,39 +1622,58 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
-static function MoveItem( cSrc, cDst )
-
+static function MoveItem( cSrc, cDst, oApp )
+   local lAll := .F.
+   if MCSameFile( cSrc, cDst )
+      MCMsgBox( "Rename/Move", "Source and destination are the same file." )
+      return .F.
+   endif
+   if hb_FileExists( cDst ) .or. hb_DirExists( cDst ) .or. ! Empty( hb_FLinkRead( cDst ) )
+      // Preserve the destination until explicit replacement semantics are tested.
+      MCMsgBox( "Rename/Move", "Destination exists. Move cancelled; no overwrite." )
+      return .F.
+   endif
    if FRename( cSrc, cDst ) == 0
       return .T.
    endif
-   // across filesystems: copy + delete
-   if FCopyText( cSrc, cDst )
-      if hb_DirExists( cSrc )
-         return DeleteTree( cSrc )
-      endif
+   if hb_DirExists( cSrc ) .or. ! Empty( hb_FLinkRead( cSrc ) )
+      MCMsgBox( "Rename/Move", "Cross-filesystem directory/link move is not supported yet." )
+      return .F.
+   endif
+   if CopyItem( cSrc, cDst, .T., @lAll, oApp )
       return FErase( cSrc ) == 0
    endif
-
 return .F.
 
 //-----------------------------------------------------------------------------------------//
 
 function DeleteTree( cPath )
 
-   local aDir
+   local aDir, lOk := .T.
 
+   if ! Empty( hb_FLinkRead( cPath ) )
+      return FErase( cPath ) == 0
+   endif
    for each aDir in Directory( hb_DirSepAdd( cPath ) + "*", "DHS" )
       if aDir[ F_NAME ] == "." .or. aDir[ F_NAME ] == ".."
          loop
       endif
-      if hb_DirExists( hb_FNameMerge( cPath, aDir[ F_NAME ] ) )
-         DeleteTree( hb_FNameMerge( cPath, aDir[ F_NAME ] ) )
+      if ! Empty( hb_FLinkRead( hb_FNameMerge( cPath, aDir[ F_NAME ] ) ) )
+         if FErase( hb_FNameMerge( cPath, aDir[ F_NAME ] ) ) != 0
+            lOk := .F.
+         endif
+      elseif hb_DirExists( hb_FNameMerge( cPath, aDir[ F_NAME ] ) )
+         if ! DeleteTree( hb_FNameMerge( cPath, aDir[ F_NAME ] ) )
+            lOk := .F.
+         endif
       else
-         FErase( hb_FNameMerge( cPath, aDir[ F_NAME ] ) )
+         if FErase( hb_FNameMerge( cPath, aDir[ F_NAME ] ) ) != 0
+            lOk := .F.
+         endif
       endif
    next
 
-return hb_DirDelete( cPath ) == 0
+return lOk .and. hb_DirDelete( cPath ) == 0
 
 //-----------------------------------------------------------------------------------------//
 
