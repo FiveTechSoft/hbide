@@ -63,6 +63,9 @@ function MCVfsKind( cPath )
    if At( "#uzip/", cPath ) > 0
       return "uzip"
    endif
+   if At( "#u7z/", cPath ) > 0
+      return "u7z"
+   endif
 
 return "local"
 
@@ -78,9 +81,9 @@ function MCVfsSplit( cPath )
    if cScheme == "local"
       return nil
    endif
-   if cScheme == "utar" .or. cScheme == "uzip"
+   if cScheme == "utar" .or. cScheme == "uzip" .or. cScheme == "u7z"
       n := At( "#" + cScheme + "/", cPath )
-      cInner := SubStr( cPath, n + 6 )
+      cInner := SubStr( cPath, n + Len( cScheme ) + 2 )
       if Right( cInner, 1 ) == "/"
          cInner := Left( cInner, Len( cInner ) - 1 )
       endif
@@ -128,7 +131,7 @@ function MCVfsParent( cPath )
    if a == nil
       return hb_FNameDir( cPath )
    endif
-   if a[ 1 ] == "utar" .or. a[ 1 ] == "uzip"
+   if a[ 1 ] == "utar" .or. a[ 1 ] == "uzip" .or. a[ 1 ] == "u7z"
       if Empty( a[ 3 ] )
          return hb_FNameDir( a[ 2 ] )
       endif
@@ -165,6 +168,9 @@ function MCVfsArchiveScheme( cFile )
    if Right( cL, 4 ) == ".zip"
       return "uzip"
    endif
+   if Right( cL, 3 ) == ".7z" .or. Right( cL, 4 ) == ".deb"
+      return "u7z"
+   endif
    if Right( cL, 4 ) == ".tar" .or. Right( cL, 7 ) == ".tar.gz" .or. ;
       Right( cL, 4 ) == ".tgz" .or. Right( cL, 8 ) == ".tar.bz2" .or. ;
       Right( cL, 5 ) == ".tbz2" .or. Right( cL, 7 ) == ".tar.xz"
@@ -189,6 +195,8 @@ function MCVfsList( cPath )
       return MCVfsTarList( a[ 2 ], a[ 3 ] )
    case a[ 1 ] == "uzip"
       return MCVfsZipList( a[ 2 ], a[ 3 ] )
+   case a[ 1 ] == "u7z"
+      return MCVfs7zList( a[ 2 ], a[ 3 ] )
    case a[ 1 ] == "sh"
       return MCVfsShList( a[ 2 ], a[ 3 ] )
    endcase
@@ -272,6 +280,73 @@ static function MCVfsZipList( cArchive, cInner )
       AAdd( aRet, { cRest, Val( aT[ 1 ] ), hb_SToD( StrTran( aT[ 2 ], "-", "" ) ), ;
                     aT[ 3 ], If( lDir, "D", "" ), lDir } )
    next
+
+return aRet
+
+//-----------------------------------------------------------------------------------------//
+
+static function MCVfs7zList( cArchive, cInner )
+
+   // 7z-backed read-only provider (.7z, .deb, anything 7z lists). Parses
+   // the stable -slt property output, never the human table.
+   // p7zip double-encodes UTF-8 names under a UTF-8 locale: force LC_ALL=C. NOTE: blocks
+   // are separated by blank lines but hb_ATokens() skips empty tokens, so
+   // a new "Path = " line is the block boundary (flush the previous one).
+   local cOut := "", aRet := {}, cLine, cName, cRest
+   local cPrefix := If( Empty( cInner ), "", cInner + "/" )
+   local cPath := nil, cSize := "0", cDate := "", cTime := "", lFolder := .F., lSkip := .F.
+
+   if hb_ProcessRun( MCShWrap( "env LC_ALL=C LANG=C 7z l -slt -- " + ShellQuote( cArchive ) + " 2>/dev/null" ),, @cOut ) != 0
+      return nil
+   endif
+   for each cLine in hb_ATokens( cOut, Chr( 10 ) )
+      cLine := StrTran( cLine, Chr( 13 ), "" )
+      if Left( cLine, 7 ) == "Path = "
+         // block boundary: flush the previous block first
+         if cPath != nil .and. ! lSkip
+            cName := cPath
+            if Empty( cPrefix ) .or. Left( cName, Len( cPrefix ) ) == cPrefix
+               cRest := SubStr( cName, Len( cPrefix ) + 1 )
+               if Right( cRest, 1 ) == "/"
+                  cRest := Left( cRest, Len( cRest ) - 1 )
+               endif
+               if ! Empty( cRest ) .and. ! ( "/" $ cRest )
+                  AAdd( aRet, { cRest, Val( cSize ), hb_SToD( StrTran( cDate, "-", "" ) ), ;
+                                cTime, If( lFolder, "D", "-" ), lFolder } )
+               endif
+            endif
+         endif
+         cPath := SubStr( cLine, 8 )
+         cSize := "0"; cDate := ""; cTime := ""; lFolder := .F.; lSkip := .F.
+      elseif Left( cLine, 7 ) == "Folder "
+         lFolder := Right( cLine, 1 ) == "+"
+      elseif Left( cLine, 12 ) == "Attributes ="
+         // p7zip: "Attributes = D_ drwxr-xr-x" for directories
+         lFolder := lFolder .or. Left( AllTrim( SubStr( cLine, 13 ) ), 1 ) == "D"
+      elseif Left( cLine, 6 ) == "Size ="
+         cSize := AllTrim( SubStr( cLine, 7 ) )
+      elseif Left( cLine, 10 ) == "Modified ="
+         // "Modified = 2026-10-24 13:41:27"
+         cDate := SubStr( cLine, 12, 10 )
+         cTime := SubStr( cLine, 23, 5 )
+      elseif Left( cLine, 6 ) == "Type ="
+         lSkip := .T.   // the archive's own header block
+      endif
+   next
+   // trailing block (no following "Path = " line)
+   if cPath != nil .and. ! lSkip
+      cName := cPath
+      if Empty( cPrefix ) .or. Left( cName, Len( cPrefix ) ) == cPrefix
+         cRest := SubStr( cName, Len( cPrefix ) + 1 )
+         if Right( cRest, 1 ) == "/"
+            cRest := Left( cRest, Len( cRest ) - 1 )
+         endif
+         if ! Empty( cRest ) .and. ! ( "/" $ cRest )
+            AAdd( aRet, { cRest, Val( cSize ), hb_SToD( StrTran( cDate, "-", "" ) ), ;
+                          cTime, If( lFolder, "D", "-" ), lFolder } )
+         endif
+      endif
+   endif
 
 return aRet
 
@@ -556,7 +631,7 @@ function MCVfsExtract( cPath, cDstDir, lDir )
    local a := MCVfsSplit( cPath ), cWrap, cCmd, cOut := ""
    local nH, cName := "", cDst
 
-   if a == nil .or. ( ( a[ 1 ] == "utar" .or. a[ 1 ] == "uzip" ) .and. Empty( a[ 3 ] ) )
+   if a == nil .or. ( ( a[ 1 ] == "utar" .or. a[ 1 ] == "uzip" .or. a[ 1 ] == "u7z" ) .and. Empty( a[ 3 ] ) )
       return nil
    endif
    nH := hb_FTempCreate( cDstDir, "hbx",, @cName )
@@ -572,7 +647,10 @@ function MCVfsExtract( cPath, cDstDir, lDir )
    if a[ 1 ] == "sh" .or. a[ 1 ] == "sftp" .or. a[ 1 ] == "ftp"
       return MCVfsExtractRemote( a, cPath, cWrap, lDir )
    endif
-   if a[ 1 ] == "utar"
+   if a[ 1 ] == "u7z"
+      cCmd := "cd " + ShellQuote( cWrap ) + " && env LC_ALL=C LANG=C 7z x -y " + ShellQuote( a[ 2 ] ) + ;
+              " " + ShellQuote( a[ 3 ] ) + " >/dev/null 2>/dev/null"
+   elseif a[ 1 ] == "utar"
       cCmd := "tar xf " + ShellQuote( a[ 2 ] ) + " -C " + ShellQuote( cWrap ) + ;
               " -- " + ShellQuote( a[ 3 ] + If( lDir, "/", "" ) ) + ;
               " 2>/dev/null || tar xf " + ShellQuote( a[ 2 ] ) + " -C " + ShellQuote( cWrap ) + ;
