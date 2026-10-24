@@ -667,7 +667,19 @@ METHOD CheckDiskChange() CLASS HbIde
    endif
 
    cStamp := ::oEditor:DiskStamp( ::oEditor:cFile )
-   if Empty( cStamp ) .or. cStamp == ::oEditor:cSeenStamp
+   if Empty( cStamp )
+      // external deletion: there is nothing to reload, so never touch the
+      // buffer. Notify once and keep it; the save guard asks before recreating
+      if ! Empty( ::oEditor:cSeenStamp )
+         ::oEditor:cSeenStamp := ""
+         Alert( "File deleted on disk; buffer kept: " + ::oEditor:cFile )
+         ::Repaint()
+         ::oEditor:ShowCursor()
+      endif
+      return nil
+   endif
+
+   if cStamp == ::oEditor:cSeenStamp
       return nil
    endif
 
@@ -702,7 +714,12 @@ return nil
 
 METHOD ConfirmOverwrite() CLASS HbIde
 
-   if ::oEditor:DiskChangedSinceLoad()
+   if ::oEditor:FileVanished()
+      if Alert( "File was deleted on disk. Recreate it?", ;
+                { "&Recreate", "&Cancel" } ) != 1
+         return .F.
+      endif
+   elseif ::oEditor:DiskChangedSinceLoad()
       if Alert( "File changed on disk since it was loaded/saved. Overwrite it?", ;
                 { "&Overwrite", "&Cancel" } ) != 1
          return .F.
