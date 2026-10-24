@@ -84,6 +84,7 @@ CLASS MCApp
    DATA   lMarkDown       INIT .T.
    DATA   lLynxMotion     INIT .F.
    DATA   lMkdirAutoname  INIT .F.
+   DATA   lFileTypes      INIT .T.
    DATA   lEqualSplit     INIT .T.
    DATA   lHorizontal     INIT .F.
    DATA   lMenubar        INIT .T.
@@ -191,9 +192,9 @@ METHOD New( cStartDir ) CLASS MCApp
 
    // MC classic, TV cyan, mono
    ::aThemes := { ;
-      { "W/B",   "W+/B",  "GR+/B",  "N/BG",  "GR+/BG", "W/B",  "GR+/B",  "GR+/B", "W/B"   }, ;
-      { "N/BG",  "W+/BG", "GR+/BG", "W+/B",  "GR+/B",  "N/BG", "N+/BG",  "N+/BG","N/BG"  }, ;
-      { "N/W",   "W+/W",  "N/W",    "W/N",   "W+/N",   "N/W",  "W+/W",   "W+/W", "N/W"   } }
+      { "W/B",   "W+/B",  "GR+/B",  "N/BG",  "GR+/BG", "W/B",  "GR+/B",  "GR+/B", "W/B",   "G+/B"  }, ;
+      { "N/BG",  "W+/BG", "GR+/BG", "W+/B",  "GR+/B",  "N/BG", "N+/BG",  "N+/BG","N/BG",  "G+/BG" }, ;
+      { "N/W",   "W+/W",  "N/W",    "W/N",   "W+/N",   "N/W",  "W+/W",   "W+/W", "N/W",   "N/W"   } }
 
    __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
    __ClsModMsg( CheckBox( 0, 0 ):ClassH, "DISPLAY", @ChkDisplay() )
@@ -1587,8 +1588,9 @@ METHOD OptionsPanel() CLASS MCApp
    local oDlg, GetList := {}, lDummy, lOk := .F.
    local lMix := ::lMixDirs, lBak := ::lShowBackup, lMd := ::lMarkDown
    local lHidden := ::lShowHidden, lLynx := ::lLynxMotion
+   local lFT := ::lFileTypes
 
-   oDlg = HBWindow():Dialog( "Panel options", 44, 12, "W+/W" )
+   oDlg = HBWindow():Dialog( "Panel options", 44, 13, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lMix ;
@@ -1616,6 +1618,11 @@ METHOD OptionsPanel() CLASS MCApp
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
+   @ oDlg:nTop + 7, oDlg:nLeft + 3 GET lFT ;
+      CHECKBOX CAPTION "File &types highlight" STYLE "[X ]" COLOR "N/W,N/BG,N/W,R/W"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
@@ -1637,6 +1644,7 @@ METHOD OptionsPanel() CLASS MCApp
       ::lMarkDown := lMd
       ::lShowHidden := lHidden
       ::lLynxMotion := lLynx
+      ::lFileTypes := lFT
       ::Rescan()
    endif
 
@@ -3231,6 +3239,7 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "markdown"       ; ::lMarkDown := ( cVal == "1" )
          case cKey == "lynxmotion"     ; ::lLynxMotion := ( cVal == "1" )
          case cKey == "mkdirautoname"  ; ::lMkdirAutoname := ( cVal == "1" )
+         case cKey == "filetypes"      ; ::lFileTypes := ( cVal == "1" )
          case cKey == "equalsplit"     ; ::lEqualSplit := ( cVal == "1" )
          case cKey == "horizontal"     ; ::lHorizontal := ( cVal == "1" )
          case cKey == "menubar"        ; ::lMenubar := ( cVal == "1" )
@@ -3276,6 +3285,7 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "markdown=" + If( ::lMarkDown, "1", "0" ) + hb_eol()
    cTxt += "lynxmotion=" + If( ::lLynxMotion, "1", "0" ) + hb_eol()
    cTxt += "mkdirautoname=" + If( ::lMkdirAutoname, "1", "0" ) + hb_eol()
+   cTxt += "filetypes=" + If( ::lFileTypes, "1", "0" ) + hb_eol()
    cTxt += "equalsplit=" + If( ::lEqualSplit, "1", "0" ) + hb_eol()
    cTxt += "horizontal=" + If( ::lHorizontal, "1", "0" ) + hb_eol()
    cTxt += "menubar=" + If( ::lMenubar, "1", "0" ) + hb_eol()
