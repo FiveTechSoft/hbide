@@ -18,5 +18,6 @@
 #define CLR_TITLE    7
 #define CLR_HEADER   8
 #define CLR_MINI     9
+#define CLR_EXEC    10
 
 #endif
