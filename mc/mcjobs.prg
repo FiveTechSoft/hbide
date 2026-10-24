@@ -266,7 +266,7 @@ return nil
 function MCJobsStep()
 
    local i, j, f, cTmp := ""
-   local cBuf, nRead, nLink, cLinkOut, nAl := 0
+   local cBuf, nRead, nLink, cLinkOut, nAl := 0, nPick := 0
 
    for i := 1 to Len( s_aJobs )
       j := s_aJobs[ i ]
@@ -384,13 +384,24 @@ function MCJobsStep()
                   j[ "cur" ] := f
                   // mc preallocate_space (lib/global.c:109, default FALSE;
                   // file.c:2701): reserve the destination space up front.
-                  // mc asks on failure; a background job cannot, so it logs
-                  // the errno and copies anyway (mc's "try copy anyway" path).
+                  // mc file.c:2701-2713 pauses the job on failure and asks:
+                  // retry re-attempts, copy-anyway continues (mc's "try copy
+                  // anyway"), abort skips the file. The job pauses while the
+                  // modal is up - no silent fallback when the option is ON.
                   if j[ "prealloc" ] .and. f[ 4 ] > 0
-                     nAl := MC_FAllocate( j[ "hDst" ], 0, f[ 4 ] )
-                     if nAl != 0
-                        JobErr( j, f[ 3 ], "preallocate failed (errno " + hb_ntos( nAl ) + "); copying anyway" )
-                     endif
+                     while ( nAl := MC_FAllocate( j[ "hDst" ], 0, f[ 4 ] ) ) != 0
+                        nPick := __MCApp():DlgList( "Cannot preallocate space (errno " + hb_ntos( nAl ) + ")", ;
+                                                    { "&Retry", "&Copy anyway", "&Abort file" }, 2 )
+                        if nPick == 1
+                           loop
+                        elseif nPick == 2
+                           exit
+                        else
+                           JobErr( j, f[ 3 ], "preallocate aborted by user (errno " + hb_ntos( nAl ) + ")" )
+                           MCCloseJob( j )
+                           return .T.
+                        endif
+                     enddo
                   endif
                endif
             endif
