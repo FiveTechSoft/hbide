@@ -817,7 +817,7 @@ return nil
 
 METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
 
-   local oDlg, GetList := {}, lDummy, lOk := .F.
+   local oDlg, GetList := {}, lDummy, lOk := .F., nBack
    local cValue := PadR( hb_defaultValue( cDefault, "" ), hb_defaultValue( nLen, 40 ) )
 
    DEFAULT nLen := 40
@@ -831,8 +831,13 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
    // Cursor after the prefilled text (mc behavior): GET:setFocus() forces
    // pos := 1, so a pre-READ :pos assignment cannot survive; queue an End
    // key instead - the first GET consumes it and lands the cursor at the
-   // end of the prefilled value instead of overtyping its prefix.
+   // end of the value. The variable stays PadR'd because the dialog renders
+   // the GET with the variable's width, so End lands past the padding: walk
+   // the cursor back over the trailing blanks with queued Left keys.
    hb_keyPut( K_END )
+   for nBack := 1 to nLen - Len( RTrim( cDefault ) )
+      hb_keyPut( K_LEFT )
+   next
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" ;
