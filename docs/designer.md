@@ -261,8 +261,10 @@ Two caveats stay open:
   larger than the screen the design window acts as a viewport onto it,
   controls beyond the edge are clipped on the canvas but never lost
   from the model, and saving or generating keeps the true size.
-  Moving a control repaints the canvas, so no ghost of its old
-  position remains.
+  Ctrl+Arrows pan the canvas and Tab reveals the selected control,
+  so every control stays reachable without touching the model or
+  the generated coordinates. Moving a control repaints the canvas,
+  so no ghost of its old position remains.
 - Checkbox glyph: Harbour's stock checkbox paints CP437 0xFB (the square
   root glyph) for the checked state; in a UTF-8 terminal that byte renders
   as "u with circumflex" (the EN codepage, the only one selectable in this
