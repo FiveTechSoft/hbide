@@ -47,6 +47,7 @@
 #define DSN_CLR_LISTBOX  "N/BG,GR+/BG,N/BG,W+/G,W+/W,W+/W,GR+/W"
 
 #define CLR_DIALOG    "W+/W"
+#define DSN_CLR_FOCUS "W+/B"   // default focused-control pair (stock palettes keep it)
 #define CLR_SAY       "N/W"
 #define CLR_GET       "W/B"
 #define CLR_BUTTON    "GR+/G"
@@ -71,7 +72,12 @@ CLASS HbDesigner
    DATA nSelected    INIT 0           // 1-based index in aControls, 0 = none
    DATA cDlgName     INIT "MyDialog"
    DATA cDlgCaption  INIT "My Dialog"
-   DATA cDlgColor    INIT CLR_DIALOG
+   DATA cDlgClrText  INIT "W+"        // dialog text color (foreground)
+   DATA cDlgClrBack  INIT "W"         // dialog background color
+   DATA cDlgClrFocus INIT DSN_CLR_FOCUS   // focused-control color pair
+   // virtual combined colorspec: reads compose text/back, writes split
+   ACCESS cDlgColor INLINE ::cDlgClrText + "/" + ::cDlgClrBack
+   ASSIGN cDlgColor( c ) INLINE DsnAssignDlgColor( Self, c )
    DATA nDlgWidth    INIT 40
    DATA nDlgHeight   INIT 12
    DATA cFileName    INIT ""          // last JSON file used
@@ -143,6 +149,7 @@ CLASS HbDesigner
    METHOD HitClient( nMRow, nMCol )
    METHOD HitTest( nMRow, nMCol )
    METHOD LoadJson()
+   METHOD ApplyModel( hModel )
    METHOD MoveSelected( nDRow, nDCol )
    METHOD PanView( nDRow, nDCol )
    METHOD EnsureSelectedVisible()
@@ -608,6 +615,7 @@ METHOD ApplySnapshot( hSnap ) CLASS HbDesigner
    ::cDlgName    = hSnap[ "name" ]
    ::cDlgCaption = hSnap[ "caption" ]
    ::cDlgColor   = hSnap[ "color" ]
+   ::cDlgClrFocus = hb_HGetDef( hSnap, "colorfocus", DSN_CLR_FOCUS )
    ::nDlgWidth   = hSnap[ "width" ]
    ::nDlgHeight  = hSnap[ "height" ]
    ::nSelected   = Min( hSnap[ "selected" ], Len( ::aControls ) )
@@ -1225,14 +1233,16 @@ METHOD DlgProperties() CLASS HbDesigner
    local cName    := PadR( ::cDlgName, 20 )
    local nWidth   := ::nDlgWidth
    local nHeight  := ::nDlgHeight
-   local cColor   := PadR( ::cDlgColor, 20 )
+   local cClrBack  := PadR( ::cDlgClrBack, 20 )
+   local cClrText  := PadR( ::cDlgClrText, 20 )
+   local cClrFocus := PadR( ::cDlgClrFocus, 20 )
    local aMin, hBefore
 
    hBefore = DsnSnapshot( Self )
 
    ::SuspendUI()
 
-   oDlg = HBWindow():Dialog( "Dialog properties", 66, 12, CLR_DIALOG )
+   oDlg = HBWindow():Dialog( "Dialog properties", 66, 14, CLR_DIALOG )
    oDlg:bRepaint = { || ::Redraw() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 11 GET cCaption PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
@@ -1247,8 +1257,14 @@ METHOD DlgProperties() CLASS HbDesigner
    @ oDlg:nTop + 6, oDlg:nLeft + 27 GET nHeight PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
    oDlg:Say( 6, 20, "Height:" )
 
-   @ oDlg:nTop + 8, oDlg:nLeft + 11 GET cColor PICTURE "@S20" COLOR "N/W,W+/B,W+/W,GR+/W"
-   oDlg:Say( 8, 2, "Color:" )
+   @ oDlg:nTop + 8, oDlg:nLeft + 11 GET cClrBack PICTURE "@S20" COLOR "N/W,W+/B,W+/W,GR+/W"
+   oDlg:Say( 8, 2, "Back:" )
+
+   @ oDlg:nTop + 9, oDlg:nLeft + 11 GET cClrText PICTURE "@S20" COLOR "N/W,W+/B,W+/W,GR+/W"
+   oDlg:Say( 9, 2, "Text:" )
+
+   @ oDlg:nTop + 10, oDlg:nLeft + 11 GET cClrFocus PICTURE "@S20" COLOR "N/W,W+/B,W+/W,GR+/W"
+   oDlg:Say( 10, 2, "Focus:" )
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 10 GET lDummy PUSHBUTTON ;
       CAPTION "  &OK  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
@@ -1279,14 +1295,26 @@ METHOD DlgProperties() CLASS HbDesigner
       ::cDlgName    = DsnValidVar( cName, "MyDialog" )
       ::nDlgWidth   = Max( 20, nWidth )
       ::nDlgHeight  = Max( 6, nHeight )
-      if Empty( AllTrim( cColor ) )
-         if AllTrim( cColor ) != ::cDlgColor
-            ::ShowHint( "Color left empty: keeping " + ::cDlgColor )
+      if ! Empty( AllTrim( cClrBack ) )
+         if ! DsnValidColor( AllTrim( cClrBack ) )
+            ::ShowHint( "Invalid back color '" + AllTrim( cClrBack ) + "': keeping " + ::cDlgClrBack )
+         else
+            ::cDlgClrBack = AllTrim( cClrBack )
          endif
-      elseif ! DsnValidColor( AllTrim( cColor ) )
-         ::ShowHint( "Invalid color '" + AllTrim( cColor ) + "': keeping " + ::cDlgColor )
-      else
-         ::cDlgColor = AllTrim( cColor )
+      endif
+      if ! Empty( AllTrim( cClrText ) )
+         if ! DsnValidColor( AllTrim( cClrText ) )
+            ::ShowHint( "Invalid text color '" + AllTrim( cClrText ) + "': keeping " + ::cDlgClrText )
+         else
+            ::cDlgClrText = AllTrim( cClrText )
+         endif
+      endif
+      if ! Empty( AllTrim( cClrFocus ) )
+         if ! DsnValidColor( AllTrim( cClrFocus ) )
+            ::ShowHint( "Invalid focus color '" + AllTrim( cClrFocus ) + "': keeping " + ::cDlgClrFocus )
+         else
+            ::cDlgClrFocus = AllTrim( cClrFocus )
+         endif
       endif
       with object ::oWnd
          :cCaption = " " + ::cDlgCaption + " "
@@ -1419,27 +1447,7 @@ METHOD LoadJson() CLASS HbDesigner
       return nil
    endif
 
-   ::cDlgName    = DsnValidVar( DsnStr( hb_HGetDef( hModel, "name", "" ), "" ), "MyDialog" )
-   ::cDlgCaption = DsnStr( hb_HGetDef( hModel, "caption", "" ), "My Dialog" )
-   if Empty( ::cDlgCaption )
-      ::cDlgCaption = "My Dialog"
-   endif
-   ::cDlgColor   = DsnStr( hb_HGetDef( hModel, "color", "" ), CLR_DIALOG )
-   ::aControls   = hModel[ "controls" ]
-   nSkipped      = Len( ::aControls )
-   DsnNormalizeControls( ::aControls )
-   nSkipped      -= Len( ::aControls )
-   // the model keeps the saved size, grown so no control is left outside;
-   // FitWindow() clamps the design window to the screen when needed
-   ::nDlgWidth   = Max( 20, Int( DsnNum( hb_HGetDef( hModel, "width", 40 ), 40 ) ) )
-   ::nDlgHeight  = Max( 6, Int( DsnNum( hb_HGetDef( hModel, "height", 12 ), 12 ) ) )
-   aMin          = ::DlgMinSize()
-   ::nDlgWidth   = Max( ::nDlgWidth, aMin[ 1 ] )
-   ::nDlgHeight  = Max( ::nDlgHeight, aMin[ 2 ] )
-   ::nSelected   = 0
-   ::lPlacing    = .F.
-   ::nViewRow    = 0
-   ::nViewCol    = 0
+   nSkipped = ::ApplyModel( hModel )
    if nSkipped > 0
       // entries were skipped: keep the original file intact by asking a name
       ::cFileName   = ""
@@ -1466,6 +1474,55 @@ METHOD LoadJson() CLASS HbDesigner
    endif
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+// apply a decoded dialog model to the designer: data only, no UI work, so
+// JSON round-trips are testable headless. Returns skipped-control count.
+
+METHOD ApplyModel( hModel ) CLASS HbDesigner
+
+   local aMin, nSkipped, cTmp
+
+   ::cDlgName    = DsnValidVar( DsnStr( hb_HGetDef( hModel, "name", "" ), "" ), "MyDialog" )
+   ::cDlgCaption = DsnStr( hb_HGetDef( hModel, "caption", "" ), "My Dialog" )
+   if Empty( ::cDlgCaption )
+      ::cDlgCaption = "My Dialog"
+   endif
+   ::cDlgColor   = DsnStr( hb_HGetDef( hModel, "color", "" ), CLR_DIALOG )
+   if Empty( AllTrim( ::cDlgColor ) )   // absent or empty key: keep the stock dialog color
+      ::cDlgColor = CLR_DIALOG
+   endif
+   // the split properties win over the legacy combined "color" key;
+   // each applies only when its key is present and non-empty
+   cTmp = DsnStr( hb_HGetDef( hModel, "colortext", "" ), "" )
+   if ! Empty( AllTrim( cTmp ) )
+      ::cDlgClrText = AllTrim( cTmp )
+   endif
+   cTmp = DsnStr( hb_HGetDef( hModel, "colorback", "" ), "" )
+   if ! Empty( AllTrim( cTmp ) )
+      ::cDlgClrBack = AllTrim( cTmp )
+   endif
+   cTmp = DsnStr( hb_HGetDef( hModel, "colorfocus", "" ), "" )
+   if ! Empty( AllTrim( cTmp ) )
+      ::cDlgClrFocus = AllTrim( cTmp )
+   endif
+   ::aControls   = hModel[ "controls" ]
+   nSkipped      = Len( ::aControls )
+   DsnNormalizeControls( ::aControls )
+   nSkipped      -= Len( ::aControls )
+   // the model keeps the saved size, grown so no control is left outside;
+   // FitWindow() clamps the design window to the screen when needed
+   ::nDlgWidth   = Max( 20, Int( DsnNum( hb_HGetDef( hModel, "width", 40 ), 40 ) ) )
+   ::nDlgHeight  = Max( 6, Int( DsnNum( hb_HGetDef( hModel, "height", 12 ), 12 ) ) )
+   aMin          = ::DlgMinSize()
+   ::nDlgWidth   = Max( ::nDlgWidth, aMin[ 1 ] )
+   ::nDlgHeight  = Max( ::nDlgHeight, aMin[ 2 ] )
+   ::nSelected   = 0
+   ::lPlacing    = .F.
+   ::nViewRow    = 0
+   ::nViewCol    = 0
+
+return nSkipped
 
 //-----------------------------------------------------------------------------------------//
 
@@ -2034,6 +2091,9 @@ function DsnBuildModel( oDesigner )
                      "width"    => oDesigner:nDlgWidth, ;
                      "height"   => oDesigner:nDlgHeight, ;
                      "color"    => oDesigner:cDlgColor, ;
+                     "colortext"  => oDesigner:cDlgClrText, ;
+                     "colorback"  => oDesigner:cDlgClrBack, ;
+                     "colorfocus" => oDesigner:cDlgClrFocus, ;
                      "controls" => {} }
    local oCtrl
 
@@ -2323,7 +2383,21 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
    local hGenVars  := { => }   // control index => variable name used (model untouched)
    local cName := hb_HGetDef( hModel, "name", "MyDialog" )
    local cDlgColor := hb_HGetDef( hModel, "color", CLR_DIALOG )
-   local aDlgPair  := DsnDlgPair( cDlgColor )   // control palettes derive from it
+   local cClrFocus := DsnStr( hb_HGetDef( hModel, "colorfocus", "" ), "" )
+   local aDlgPair
+
+   // the split dialog properties win over the combined "color" key
+   if ! Empty( DsnStr( hb_HGetDef( hModel, "colortext", "" ), "" ) )
+      cDlgColor = AllTrim( hb_HGetDef( hModel, "colortext", "W+" ) ) + "/" + ;
+                  AllTrim( hb_HGetDef( hModel, "colorback", "W" ) )
+   endif
+   if Empty( AllTrim( DsnStr( cDlgColor, "" ) ) )
+      cDlgColor = CLR_DIALOG
+   endif
+   aDlgPair = DsnDlgPair( cDlgColor )   // control palettes derive from it
+   if Empty( cClrFocus ) .or. ! DsnValidColor( cClrFocus )
+      cClrFocus = DSN_CLR_FOCUS
+   endif
 
    nSkipped   = 0
    nConflicts = 0
@@ -2426,7 +2500,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
                      " GET " + hGenVars[ n ] + ;
-                     " COLOR '" + DsnClrGetFor( cDlgColor ) + "'" + hb_eol()
+                     " COLOR '" + DsnClrGetFor( cDlgColor, cClrFocus ) + "'" + hb_eol()
 
          case oCtrl[ "type" ] == DSN_CHECKBOX
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
@@ -2434,7 +2508,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                      " GET " + hGenVars[ n ] + ;
                      " CHECKBOX CAPTION " + DsnQuote( oCtrl[ "caption" ] ) + ;
                      " STYLE '[X ]'" + ;
-                     " COLOR '" + DsnClrCheckBoxFor( cDlgColor ) + "'" + hb_eol()
+                     " COLOR '" + DsnClrCheckBoxFor( cDlgColor, cClrFocus ) + "'" + hb_eol()
 
          case oCtrl[ "type" ] == DSN_BUTTON
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
@@ -2464,10 +2538,14 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                         " RADIOGROUP aButt", " LISTBOX aItems" ) + ;
                      hb_ntos( n ) + ;
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
-                        " COLOR '" + If( aDlgPair[ 2 ] == "W", "N/W,N/W,GR+/W", ;
+                        " COLOR '" + If( aDlgPair[ 2 ] == "W", ;
+                           If( cClrFocus == DSN_CLR_FOCUS, "N/W,N/W,GR+/W", ;
+                              "N/W,N/W," + cClrFocus ), ;
                            aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ] + "," + ;
-                           aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ] + ",Y+/" + aDlgPair[ 2 ] ) + "'", ;
-                        " COLOR '" + DsnClrListBoxFor( cDlgColor ) + "'" ) + hb_eol()
+                           aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ] + "," + ;
+                           If( cClrFocus == DSN_CLR_FOCUS, "Y+/" + aDlgPair[ 2 ], ;
+                              cClrFocus ) ) + "'", ;
+                        " COLOR '" + DsnClrListBoxFor( cDlgColor, cClrFocus ) + "'" ) + hb_eol()
       endcase
    next
 
@@ -2728,6 +2806,19 @@ return .T.
 
 // first fg/bg pair of a color string: { cFg, cBg }; cBg is the bare
 // uppercase letter (modifiers stripped). Defaults to the white dialog.
+// ASSIGN target of the virtual cDlgColor: splitting a combined colorspec
+// only touches the text/background properties; focus keeps its own value
+function DsnAssignDlgColor( oDsn, cColor )
+
+   local aPair := DsnDlgPair( cColor )
+
+   oDsn:cDlgClrText = aPair[ 1 ]
+   oDsn:cDlgClrBack = aPair[ 2 ]
+
+return oDsn:cDlgColor
+
+//-----------------------------------------------------------------------------------------//
+
 function DsnDlgPair( cColor )
 
    local cFirst := AllTrim( hb_defaultValue( cColor, "" ) )
@@ -2763,52 +2854,112 @@ return { cFg, cBg }
 // dialog keeps hbide's own palettes byte-exact (regression); any other
 // dialog background gets a readable scheme painted on that background.
 
-function DsnClrGetFor( cDlgColor )
+// replace the given comma-pair slots of a colorspec with the focus pair
+static function DsnClrSetPairs( cSpec, cFocus, aSlots )
+
+   local aItems := hb_aTokens( cSpec, "," )
+   local n, cOut := ""
+
+   for each n in aSlots
+      if n <= Len( aItems )
+         aItems[ n ] = cFocus
+      endif
+   next
+   for each n in aItems
+      cOut += If( n:__enumIndex() > 1, ",", "" ) + n
+   next
+
+return cOut
+
+//-----------------------------------------------------------------------------------------//
+
+function DsnClrGetFor( cDlgColor, cClrFocus )
+
+   hb_default( @cClrFocus, DSN_CLR_FOCUS )
 
    if DsnDlgPair( cDlgColor )[ 2 ] == "W"
-      return DSN_CLR_GET
+      if cClrFocus == DSN_CLR_FOCUS
+         return DSN_CLR_GET
+      endif
+      return DsnClrSetPairs( DSN_CLR_GET, cClrFocus, { 2 } )
+   endif
+   if cClrFocus == DSN_CLR_FOCUS
+      return "N/W,B/W,N/W,GR+/W"
    endif
 
-return "N/W,B/W,N/W,GR+/W"
+return "N/W," + cClrFocus + ",N/W,GR+/W"
 
-function DsnClrCheckBoxFor( cDlgColor )
+function DsnClrCheckBoxFor( cDlgColor, cClrFocus )
 
    local aPair := DsnDlgPair( cDlgColor )
    local cText := aPair[ 1 ] + "/" + aPair[ 2 ]
 
+   hb_default( @cClrFocus, DSN_CLR_FOCUS )
+
    if aPair[ 2 ] == "W"
-      return DSN_CLR_CHECKBOX
+      if cClrFocus == DSN_CLR_FOCUS
+         return DSN_CLR_CHECKBOX
+      endif
+      return DsnClrSetPairs( DSN_CLR_CHECKBOX, cClrFocus, { 2 } )
+   endif
+   if cClrFocus == DSN_CLR_FOCUS
+      return cText + ",Y+/" + aPair[ 2 ] + "," + cText + ",GR+/" + aPair[ 2 ]
    endif
 
-return cText + ",Y+/" + aPair[ 2 ] + "," + cText + ",GR+/" + aPair[ 2 ]
+return cText + "," + cClrFocus + "," + cText + ",GR+/" + aPair[ 2 ]
 
-function DsnClrButtonFor( cDlgColor )
+function DsnClrButtonFor( cDlgColor, cClrFocus )
+
+   hb_default( @cClrFocus, DSN_CLR_FOCUS )
 
    if DsnDlgPair( cDlgColor )[ 2 ] == "W"
-      return DSN_CLR_BUTTON
+      if cClrFocus == DSN_CLR_FOCUS
+         return DSN_CLR_BUTTON
+      endif
+      return DsnClrSetPairs( DSN_CLR_BUTTON, cClrFocus, { 2 } )
+   endif
+   if cClrFocus == DSN_CLR_FOCUS
+      return "N/W,W+/N,N/W,R/W"
    endif
 
-return "N/W,W+/N,N/W,R/W"
+return "N/W," + cClrFocus + ",N/W,R/W"
 
-function DsnClrRadioFor( cDlgColor )
+function DsnClrRadioFor( cDlgColor, cClrFocus )
 
    local aPair := DsnDlgPair( cDlgColor )
    local cText := aPair[ 1 ] + "/" + aPair[ 2 ]
 
+   hb_default( @cClrFocus, DSN_CLR_FOCUS )
+
    if aPair[ 2 ] == "W"
-      return DSN_CLR_RADIO
+      if cClrFocus == DSN_CLR_FOCUS
+         return DSN_CLR_RADIO
+      endif
+      return DsnClrSetPairs( DSN_CLR_RADIO, cClrFocus, { 4, 7 } )
+   endif
+   if cClrFocus == DSN_CLR_FOCUS
+      return cText + "," + cText + "," + cText + ",Y+/" + aPair[ 2 ] + "," + ;
+             cText + ",GR+/" + aPair[ 2 ] + ",Y+/" + aPair[ 2 ]
    endif
 
-return cText + "," + cText + "," + cText + ",Y+/" + aPair[ 2 ] + "," + ;
-       cText + ",GR+/" + aPair[ 2 ] + ",Y+/" + aPair[ 2 ]
+return cText + "," + cText + "," + cText + "," + cClrFocus + "," + ;
+       cText + ",GR+/" + aPair[ 2 ] + "," + cClrFocus
 
-function DsnClrListBoxFor( cDlgColor )
+function DsnClrListBoxFor( cDlgColor, cClrFocus )
+
+   hb_default( @cClrFocus, DSN_CLR_FOCUS )
 
    if DsnDlgPair( cDlgColor )[ 2 ] == "W"
-      return DSN_CLR_LISTBOX
+      if cClrFocus == DSN_CLR_FOCUS
+         return DSN_CLR_LISTBOX
+      endif
+      return DsnClrSetPairs( DSN_CLR_LISTBOX, cClrFocus, { 2 } )
+   endif
+   if cClrFocus == DSN_CLR_FOCUS
+      return "N/W,W+/N,N/W,W+/G,N/W,W+/W,GR+/W"
    endif
 
-return "N/W,W+/N,N/W,W+/G,N/W,W+/W,GR+/W"
+return "N/W," + cClrFocus + ",N/W,W+/G,N/W,W+/W,GR+/W"
 
 //-----------------------------------------------------------------------------------------//
 // canvas button shadow for a dialog color: the stock white dialog keeps
@@ -2886,6 +3037,9 @@ return { "controls" => DsnCloneValue( oDsn:aControls ), ;
          "name"     => oDsn:cDlgName, ;
          "caption"  => oDsn:cDlgCaption, ;
          "color"    => oDsn:cDlgColor, ;
+         "colortext"  => oDsn:cDlgClrText, ;
+         "colorback"  => oDsn:cDlgClrBack, ;
+         "colorfocus" => oDsn:cDlgClrFocus, ;
          "width"    => oDsn:nDlgWidth, ;
          "height"   => oDsn:nDlgHeight }
 
