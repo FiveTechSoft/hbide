@@ -469,6 +469,12 @@ METHOD Activate() CLASS HBIde
       if nKeyStd >= K_ALT_Q .and. nKeyStd <= K_ALT_M
          SetCursor( SC_NONE )
          ::oMenu:ProcessKey( nKeyStd )
+         if ! ::oMenu:IsOpen()
+            if ::oWndCode:lVisible
+               ::oEditor:ShowCursor()
+            endif
+         endif
+         loop   // Alt combos are menu-reserved: never fall through to the editor
       endif
 
       // Handle F5 for Find
