@@ -1807,6 +1807,13 @@ METHOD InspEdit() CLASS HbDesigner
 
    hBefore = DsnSnapshot( Self )
 
+   // the control-redraw idle repaints the inspector on every InKey tick;
+   // suspend it while the inline edit owns those cells
+   ::SuspendUI()
+
+#ifdef DSN_KEYLOG
+   DsnKeyLog( -999 )
+#endif
    SetCursor( SC_NORMAL )
    do while .T.
       // horizontal scroll: keep the cursor inside the visible window
@@ -1817,7 +1824,7 @@ METHOD InspEdit() CLASS HbDesigner
       endif
       hb_DispOutAt( nRow, nCol, PadR( SubStr( cVal, nOff + 1, nWidth ), nWidth ), CLR_INSP_SEL )
       DevPos( nRow, nCol + nPos - 1 - nOff )
-      nKey = InKey( 0 )
+      nKey = DsnNormKey( InKey( 0, INKEY_ALL + HB_INKEY_EXT ) )
       do case
          case nKey == K_ENTER
             lApply = .T.
@@ -1841,7 +1848,7 @@ METHOD InspEdit() CLASS HbDesigner
             if nPos <= Len( cVal )
                cVal = Left( cVal, nPos - 1 ) + SubStr( cVal, nPos + 1 )
             endif
-         case nKey == K_CTRL_Y
+         case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y
             // clear the whole field, as in a Harbour GET
             cVal = ""
             nPos = 1
@@ -1851,8 +1858,12 @@ METHOD InspEdit() CLASS HbDesigner
                nPos++
             endif
       endcase
+#ifdef DSN_KEYLOG
+      DsnKeyLog2( nKey, cVal, nPos )
+#endif
    enddo
    SetCursor( SC_NONE )
+   ::ResumeUI()
 
    if lApply
       ::PushSnapshot( hBefore )
@@ -2041,6 +2052,34 @@ return nil
 // in the low 16 bits. Classic input (terminals without EXT support) passes
 // through unchanged; unknown EXT codes pass through as harmless no-ops.
 //
+#ifdef DSN_KEYLOG
+function DsnKeyLog2( nKey, cVal, nPos )
+   local hf
+   if ! hb_FileExists( "/tmp/dsnkeys.log" )
+      FClose( FCreate( "/tmp/dsnkeys.log" ) )
+   endif
+   hf := FOpen( "/tmp/dsnkeys.log", 2 )
+   if hf != -1
+      FSeek( hf, 0, 2 )
+      FWrite( hf, hb_NToS( nKey ) + "=[" + cVal + "]p" + hb_NToS( nPos ) + " " )
+      FClose( hf )
+   endif
+return nil
+
+function DsnKeyLog( nKey )
+   local hf
+   if ! hb_FileExists( "/tmp/dsnkeys.log" )
+      FClose( FCreate( "/tmp/dsnkeys.log" ) )
+   endif
+   hf := FOpen( "/tmp/dsnkeys.log", 2 )
+   if hf != -1
+      FSeek( hf, 0, 2 )
+      FWrite( hf, hb_NToS( nKey ) + " " )
+      FClose( hf )
+   endif
+return nil
+#endif
+
 function DsnNormKey( nKey )
    local nLow, nMod
    local aFKeys := { K_F1, K_F2, K_F3, K_F4, K_F5, K_F6, K_F7, K_F8, K_F9, K_F10, K_F11, K_F12 }
@@ -2053,6 +2092,10 @@ function DsnNormKey( nKey )
    nMod = hb_BitShift( nKey, -16 )
    if nLow >= 1000                          // mouse / GT event: classic code in low16
       return nLow
+   endif
+   nMod = hb_BitAnd( nMod, 0xFF )          // 0x200 is a text-event marker, not a modifier
+   if ( nMod == 0 .or. nMod == 1 ) .and. nLow >= 32 .and. nLow <= 255
+      return nLow                          // printable ASCII (shift arrives pre-applied)
    endif
    do case
       case nMod == 2                        // Ctrl
@@ -2078,7 +2121,10 @@ function DsnNormKey( nKey )
             case nLow == 14 ; return K_DOWN
             case nLow == 15 ; return K_LEFT
             case nLow == 16 ; return K_RIGHT
+            case nLow == 8  ; return K_BS
+            case nLow == 23 ; return K_BS   // gttrm EXT BackSpace
             case nLow == 17 ; return K_HOME
+            case nLow == 18 ; return K_END
             case nLow == 22 ; return K_DEL
             case nLow == 24 ; return K_TAB
             case nLow == 25 ; return K_ESC
