@@ -21,28 +21,6 @@ function BtnDisplay()
    ENDCASE
 
    IF ( nPos := At( "&", cCaption ) ) == 0
-
-   local Self := QSelf()
-
-   LOCAL cColor
-   LOCAL cStyle := Chr( 255 )+ Chr( 255 ) // ::cStyle
-   LOCAL cCaption := ::cCaption
-   LOCAL nRow := ::nRow
-   LOCAL nCol := ::nCol
-   LOCAL nPos
-
-   DispBegin()
-
-   DO CASE
-   CASE ::lBuffer
-      cColor := hb_ColorIndex( ::cColorSpec, 2 )
-   CASE ::lHasFocus
-      cColor := hb_ColorIndex( ::cColorSpec, 1 )
-   OTHERWISE
-      cColor := hb_ColorIndex( ::cColorSpec, 0 )
-   ENDCASE
-
-   IF ( nPos := At( "&", cCaption ) ) == 0
    ELSEIF nPos == Len( cCaption )
       nPos := 0
    ELSE
