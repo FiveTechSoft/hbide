@@ -188,6 +188,9 @@ METHOD Activate() CLASS HbDesigner
          case nKey == K_F10
             ::SaveJson( .F. )
 
+         case nKey == K_F11
+            ::SaveJson( .T. )
+
          case nKey == K_F12
             ::LoadJson()
 
@@ -350,6 +353,7 @@ METHOD PopupMenu() CLASS HbDesigner
       MENUITEM "~Dialog properties..."     ACTION cType := "dialog"
       SEPARATOR
       MENUITEM "~Save JSON    F10"         ACTION cType := "save"
+      MENUITEM "Save JSON ~as...  F11"     ACTION cType := "saveas"
       MENUITEM "~Open JSON    F12"         ACTION cType := "open"
       MENUITEM "~Generate PRG  F9"         ACTION cType := "gen"
    ENDMENU
@@ -373,6 +377,8 @@ METHOD PopupMenu() CLASS HbDesigner
          ::DlgProperties()
       case cType == "save"
          ::SaveJson( .F. )
+      case cType == "saveas"
+         ::SaveJson( .T. )
       case cType == "open"
          ::LoadJson()
       case cType == "gen"
