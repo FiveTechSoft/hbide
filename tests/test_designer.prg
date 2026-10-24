@@ -10,7 +10,7 @@ static s_nPassed := 0, s_nFailed := 0
 procedure Main()
 
    local hModel, cCode, cJson, hBack, aSize
-   local oD, oD2, aRect, nMaxRow, oCtrl
+   local oD, oD2, aRect, nMaxRow, nMaxCol, oCtrl
 
    // DsnControlSize
    aSize = DsnControlSize( { "type" => "say", "caption" => "Name:" } )
@@ -244,6 +244,67 @@ procedure Main()
    oD2:InspSetText( "items", "A,B,C,D" )
    Check( "insp set items", oD2:aControls[ 1 ][ "items" ] == "A,B,C,D" )
 
+
+   // --- robustness: unique variables, JSON validation, generation guards ---
+
+   // unique variable names: a duplicate local would not compile (harbour E0003)
+   Check( "unique var first", DsnUniqueVar( {}, "cVar" ) == "cVar1" )
+   Check( "unique var skips used", DsnUniqueVar( { { "variable" => "cVar1" } }, "cVar" ) == "cVar2" )
+   Check( "unique var fills gaps", DsnUniqueVar( { { "variable" => "cVar1" }, { "variable" => "cVar2" } }, "cVar" ) == "cVar3" )
+
+   // the generator declares a shared variable only once
+   hModel = { "name" => "Dup", "caption" => "Dup", "width" => 40, "height" => 12, "color" => "W+/W", "controls" => { ;
+      { "type" => "get", "row" => 1, "col" => 2, "variable" => "cName", "width" => 10 }, ;
+      { "type" => "get", "row" => 2, "col" => 2, "variable" => "cName", "width" => 10 } } }
+   cCode = DsnGenCode( hModel )
+   Check( "gen declares once", DsnCountOccur( "local cName", cCode ) == 1 )
+   Check( "gen uses twice", DsnCountOccur( "GET cName", cCode ) == 2 )
+
+   // an item-less radio/listbox cannot run: skipped with a note, never emitted
+   hModel = { "name" => "Empty", "caption" => "Empty", "width" => 40, "height" => 12, "color" => "W+/W", "controls" => { ;
+      { "type" => "radiogroup", "row" => 1, "col" => 2, "variable" => "nR", "items" => "" }, ;
+      { "type" => "listbox", "row" => 4, "col" => 2, "variable" => "nL", "items" => "", "width" => 16, "height" => 4 } } }
+   cCode = DsnGenCode( hModel )
+   Check( "gen skips empty radio", ! ( "RADIOGROUP aButt" $ cCode ) .and. "skipped radiogroup" $ cCode )
+   Check( "gen skips empty listbox", ! ( "LISTBOX aItems" $ cCode ) .and. "skipped listbox" $ cCode )
+   Check( "gen empty declares nothing", ! ( "local nR" $ cCode ) .and. ! ( "local aButt" $ cCode ) )
+
+   // JSON model validation
+   Check( "model rejects scalar", ! DsnValidModel( 5 ) )
+   Check( "model rejects no controls", ! DsnValidModel( { "name" => "X" } ) )
+   Check( "model rejects hash controls", ! DsnValidModel( { "controls" => { "a" => 1 } } ) )
+   Check( "model accepts empty array", DsnValidModel( { "controls" => {} } ) )
+
+   // normalization of hand-edited JSON: foreign entries out, types coerced
+   aSize = { 5, { "type" => "grid", "row" => 1, "col" => 1 }, ;
+      { "type" => "get", "row" => "3", "col" => "2", "width" => "abc" }, ;
+      { "type" => "radiogroup", "row" => 1, "col" => 1, "items" => { "A", "B" } }, ;
+      { "type" => "checkbox", "row" => 2, "col" => 1, "caption" => 7 } }
+   DsnNormalizeControls( aSize )
+   Check( "normalize drops foreign", Len( aSize ) == 3 )
+   Check( "normalize row numeric", aSize[ 1 ][ "row" ] == 3 .and. HB_IsNumeric( aSize[ 1 ][ "row" ] ) )
+   Check( "normalize width default", aSize[ 1 ][ "width" ] == 10 )
+   Check( "normalize var created", aSize[ 1 ][ "variable" ] == "cVar1" )
+   Check( "normalize items array", aSize[ 2 ][ "items" ] == "A,B" )
+   Check( "normalize var radio", aSize[ 2 ][ "variable" ] == "nVar1" )
+   Check( "normalize caption string", aSize[ 3 ][ "caption" ] == "" )
+   Check( "normalize var check", aSize[ 3 ][ "variable" ] == "lVar1" )
+
+   // same name with different types: separate variables, conflict counted
+   hModel = { "name" => "Conf", "caption" => "Conf", "width" => 40, "height" => 12, "color" => "W+/W", "controls" => { ;
+      { "type" => "get", "row" => 1, "col" => 2, "variable" => "cName", "width" => 10 }, ;
+      { "type" => "checkbox", "row" => 2, "col" => 2, "variable" => "cName", "caption" => "Active" } } }
+   cCode = DsnGenCode( hModel, @nMaxRow, @nMaxCol )
+   Check( "conflict counted", nMaxCol == 1 )
+   Check( "conflict text kept", DsnCountOccur( "local cName := Space( 10 )", cCode ) == 1 )
+   Check( "conflict logic renamed", "local cName2 := .F." $ cCode )
+   Check( "conflict get renamed", "GET cName2 CHECKBOX" $ cCode )
+   Check( "same type still shares", DsnCountOccur( "GET cName ", cCode ) == 1 )
+   Check( "model not polluted", ! ( "xgenvar" $ hModel[ "controls" ][ 1 ] ) )
+
+   // checkbox size ignores the & accelerator marker (it is not drawn)
+   Check( "checkbox size no amp", DsnControlSize( { "type" => "checkbox", "caption" => "&Active" } )[ 1 ] == 10 )
+
    oD:oWnd:Hide()
 
    QOut( "" )
@@ -251,6 +312,18 @@ procedure Main()
    ErrorLevel( If( s_nFailed == 0, 0, 1 ) )
 
 return
+
+
+static function DsnCountOccur( cSub, cText )
+
+   local n := 0, nPos := 1
+
+   while ( nPos := hb_At( cSub, cText, nPos ) ) > 0
+      n++
+      nPos += Len( cSub )
+   enddo
+
+return n
 
 procedure Check( cWhat, lOk )
 
