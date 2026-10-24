@@ -2125,7 +2125,7 @@ function DsnNewControl( cType, aControls )
       case cType == DSN_BUTTON
          oCtrl[ "caption"     ] = "OK"
          oCtrl[ "accelerator" ] = "O"
-         oCtrl[ "action"      ] = "oDlg:End()"
+         oCtrl[ "action"      ] = "lOk := .T., oDlg:End()"
       case cType == DSN_RADIO
          oCtrl[ "variable" ] = DsnUniqueVar( aControls, "nVar" )
          oCtrl[ "items"    ] = "Option 1,Option 2,Option 3"
