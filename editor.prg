@@ -75,6 +75,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD DiskStamp( cFile )
    METHOD DiskChanged()
    METHOD DiskChangedSinceLoad()
+   METHOD FileVanished()
    METHOD Display()
    METHOD DisplayLine( nLine )
    METHOD LineColor( nLine ) INLINE ;
@@ -663,6 +664,14 @@ METHOD DiskChangedSinceLoad() CLASS HBSrcEdit
    local cStamp := ::DiskStamp( ::cFile )
 
 return ! Empty( cStamp ) .and. cStamp != ::cLoadStamp
+
+//-----------------------------------------------------------------------------------------//
+
+// the file existed at load/own save and is now missing (external deletion);
+// "" from DiskStamp must never be read as "unchanged"
+METHOD FileVanished() CLASS HBSrcEdit
+
+return ! Empty( ::cLoadStamp ) .and. Empty( ::DiskStamp( ::cFile ) )
 
 //-----------------------------------------------------------------------------------------//
 
