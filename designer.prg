@@ -1353,6 +1353,10 @@ METHOD InspEdit() CLASS HbDesigner
             if nPos <= Len( cVal )
                cVal = Left( cVal, nPos - 1 ) + SubStr( cVal, nPos + 1 )
             endif
+         case nKey == K_CTRL_Y
+            // clear the whole field, as in a Harbour GET
+            cVal = ""
+            nPos = 1
          case nKey >= 32 .and. nKey <= 255
             if Len( cVal ) < 200
                cVal = Left( cVal, nPos - 1 ) + Chr( nKey ) + SubStr( cVal, nPos )
