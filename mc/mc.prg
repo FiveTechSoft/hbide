@@ -29,8 +29,9 @@
 
 // Static-text lines painted on the currently open dialog via MCDlgSay, so
 // MCDlgResizeRedraw can replay them after a terminal resize (HbDbWindow
-// Refresh() only repaints frame + caption).
-static s_oDlgSays := NIL
+// Refresh() only repaints frame + caption). Reset by MCDlgResizeDisarm when
+// the dialog closes. NOTE: Harbour objects cannot be compared with ==/!=
+// (BASE/1072), hence no per-dialog identity check here.
 static s_aDlgSays := {}
 static s_nDlgResizeIdle := NIL
 
@@ -128,6 +129,8 @@ CLASS MCApp
    DATA   lHorizontal     INIT .F.
    DATA   nScrRows        INIT 0
    DATA   nScrCols        INIT 0
+   DATA   nSpinPos        INIT 0
+   DATA   lSpinShown      INIT .F.
    DATA   lMenubar        INIT .T.
    DATA   lCmdlineBar     INIT .T.
    DATA   lKeybar         INIT .T.
@@ -140,6 +143,7 @@ CLASS MCApp
    METHOD Layout()
    METHOD Repaint()
    METHOD CheckResize()
+   METHOD SpinTick( lActive )
    METHOD ShowMenuBar()
    METHOD ShowCmdLine()
    METHOD ShowKeyBar()
@@ -358,6 +362,28 @@ METHOD CheckResize() CLASS MCApp
    endif
 
 return .F.
+
+//-----------------------------------------------------------------------------------------//
+
+// mc rotating_dash (layout.c:86, default TRUE): a spinner in the top-right
+// corner while a long operation runs. The background job queue ticks here.
+METHOD SpinTick( lActive ) CLASS MCApp
+
+   local aCh := { "|", "/", "-", "\" }
+
+   if ! ::lMenubar
+      return nil   // the dash lives in the menu bar row; no bar, nowhere to draw
+   endif
+   if lActive
+      ::nSpinPos := ( ::nSpinPos % 4 ) + 1
+      hb_DispOutAt( 0, MaxCol(), aCh[ ::nSpinPos ], "N/BG" )
+      ::lSpinShown := .T.
+   elseif ::lSpinShown
+      hb_DispOutAt( 0, MaxCol(), " ", "N/BG" )
+      ::lSpinShown := .F.
+   endif
+
+return nil
 
 //-----------------------------------------------------------------------------------------//
 
@@ -679,7 +705,8 @@ METHOD Activate() CLASS MCApp
             ::Rescan()
             ::Repaint()
          endif
-         ::CheckResize()
+         // ::SpinTick( MCJobsNeedTick() )  BISECT
+         // ::CheckResize()  BISECT
          loop
       endif
       // Resize arrives as HB_INKEY_NEW_EVENT( HB_K_RESIZE ) (gttrm) or plain
@@ -3932,18 +3959,35 @@ return nil
 // main loop; each dialog arms this just for its own READ.
 function MCDlgEscArm( oDlg, lSingle )
 
-   static nEscCount := 0
-
-   nEscCount := 0
    Set( _SET_ESCAPE, lSingle )
    if lSingle
       SetKey( K_ESC, NIL )
    else
-      SetKey( K_ESC, { || ( ++nEscCount >= 2 .and. ( oDlg:End(), .T. ) ) } )
+      SetKey( K_ESC, { || MCDlgEscKey( oDlg ) } )
    endif
    MCDlgResizeArm( oDlg )
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// mc old_esc_mode=FALSE (lib/tty/key.c:1741): a lone Esc is only a prefix;
+// Esc Esc within old_esc_mode_timeout (default 1 s, key.c:96) cancels.
+// A longer gap re-arms the wait.
+function MCDlgEscKey( oDlg )
+
+   static nLastEsc := 0
+
+   local nNow := hb_MilliSeconds()
+   local nTO  := If( __MCApp() != NIL, __MCApp():nEscTimeout, 1000000 )
+   local lCancel := ( nNow - nLastEsc ) <= nTO / 1000
+
+   nLastEsc := nNow
+   if lCancel
+      oDlg:End()
+   endif
+
+return .T.
 
 //-----------------------------------------------------------------------------------------//
 
@@ -3982,6 +4026,7 @@ function MCDlgResizeDisarm()
       hb_IdleDel( s_nDlgResizeIdle )
       s_nDlgResizeIdle := NIL
    endif
+   s_aDlgSays := {}
 
 return nil
 
@@ -4025,10 +4070,6 @@ return NIL
 function MCDlgSay( oDlg, nRow, nCol, cLine )
 
    oDlg:Say( nRow, nCol, cLine )
-   if s_oDlgSays != oDlg
-      s_oDlgSays := oDlg
-      s_aDlgSays := {}
-   endif
    AAdd( s_aDlgSays, { nRow, nCol, cLine } )
 
 return nil
