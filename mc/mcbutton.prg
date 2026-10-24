@@ -62,12 +62,14 @@ function BtnDisplay()
       ENDIF
    ENDIF
 
-   // Solid Turbo Vision style shadow (offset 1 right / 1 down); a pressed
+   // Solid Turbo Vision style shadow: the visible face spans ::nCol+1 ..
+   // ::nCol+Len+1 (Len+1 cells); the shadow is that same width shifted one
+   // cell right and one row down (right cell + bottom bar). A pressed
    // (lBuffer) button erases it back to the dialog background.
    hb_DispOutAt( nRow, ::nCol + Len( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;
                  " ", If( ::lBuffer, "N/W", "N/N" ) )
-   hb_DispOutAt( ::nRow + 1, ::nCol + 1,;
-                 Space( Len( cCaption ) + 2 ), If( ::lBuffer, "N/W", "N/N" ) )
+   hb_DispOutAt( ::nRow + 1, ::nCol + 2,;
+                 Space( Len( cCaption ) + 1 ), If( ::lBuffer, "N/W", "N/N" ) )
 
    DispEnd()
 
