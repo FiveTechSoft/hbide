@@ -48,6 +48,7 @@ CLASS HbIde
    METHOD SaveScreen() INLINE ::cBackScreen := SaveScreen( 0, 0, MaxRow(), MaxCol() )  
    METHOD OpenFile()
    METHOD GotoLine()
+   METHOD ReplaceDialog()
    METHOD FindDialog()
    METHOD CheckUnsaved()
    METHOD SaveFile()
@@ -454,6 +455,7 @@ METHOD BuildMenu() CLASS HBIde
          SEPARATOR
          MENUITEM "~Find...         F5 "    ACTION ::FindDialog()
          MENUITEM "~Repeat Last Find F3"    ACTION ( ::oEditor:FindNext(), ::oEditor:ShowCursor() )
+         MENUITEM "R~eplace... "              ACTION ::ReplaceDialog()
          SEPARATOR
          MENUITEM "~Goto Line..."           ACTION ::GotoLine()
       ENDMENU
@@ -792,6 +794,52 @@ METHOD CompilerFlags() CLASS HbIde
 
    if lOk
       // Flags selected
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ReplaceDialog() CLASS HbIde
+
+   local oDlg, GetList := {}, lDummy, lOk := .F., nCount
+   local cFind := PadR( ::oEditor:cFindText, 30 ), cReplace := Space( 30 ), oGetFind
+
+   oDlg = HBWindow():Dialog( "Replace", 40, 8, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   ::SuspendStatus()
+
+   @ oDlg:nTop + 3, oDlg:nLeft + 5 GET cFind COLOR "W/B,W+/B,W+/W,GR+/W"
+
+   with object oGetFind := ATail( GetList )
+      :CapRow = oDlg:nTop + 2
+      :CapCol = oDlg:nLeft + 5
+      :Caption = "&Search for:"
+      :Display()
+   end
+
+   @ oDlg:nTop + 5, oDlg:nLeft + 5 GET cReplace COLOR "W/B,W+/B,W+/W,GR+/W"
+
+   with object ATail( GetList )
+      :CapRow = oDlg:nTop + 4
+      :CapCol = oDlg:nLeft + 5
+      :Caption = "&Replace with:"
+      :Display()
+   end
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 11 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || lOk := .T., oDlg:End() }
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 22 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::ResumeStatus()
+
+   if lOk .and. ! Empty( cFind )
+      nCount := ::oEditor:ReplaceAll( AllTrim( cFind ), RTrim( cReplace ) )
+      ::oEditor:ShowCursor()
+      Alert( hb_ntos( nCount ) + " replacement(s)" )
    endif
 
 return nil
