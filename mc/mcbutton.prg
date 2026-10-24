@@ -1,7 +1,10 @@
 // mcbutton.prg - vendored copy of ../hbbutton.prg for the MC demo.
 // The original is shared with the IDE (sibling lanes) and stays untouched.
-// Only change: CP437 glyph bytes (Chr(255)/Chr(220)/Chr(223)) replaced by
-// their UTF-8 literals, because the demo runs on the UTF-8 codepage.
+// Changes vs the original:
+// - Shadow drawn as solid dark cells (Space with N/N) instead of CP437/UTF-8
+//   half-block glyphs on a dialog-colored background: the half-block trick
+//   left a light half-cell at the shadow's end, a visual defect against the
+//   Turbo Vision look the demo targets.
 // If ../hbbutton.prg changes, re-vendor this file.
 
 function BtnDisplay()
@@ -9,10 +12,6 @@ function BtnDisplay()
    local Self := QSelf()
 
    LOCAL cColor
-   // UTF-8 glyphs built at runtime: source literals get recoded by the
-   // compiler, these are the exact bytes (U+2584/U+2580) that render.
-   LOCAL cHalfDn := hb_BChar( 0xE2 ) + hb_BChar( 0x96 ) + hb_BChar( 0x84 )
-   LOCAL cHalfUp := hb_BChar( 0xE2 ) + hb_BChar( 0x96 ) + hb_BChar( 0x80 )
    LOCAL cStyle := "  " // ::cStyle
    LOCAL cCaption := ::cCaption
    LOCAL nRow := ::nRow
@@ -63,10 +62,12 @@ function BtnDisplay()
       ENDIF
    ENDIF
 
+   // Solid Turbo Vision style shadow (offset 1 right / 1 down); a pressed
+   // (lBuffer) button erases it back to the dialog background.
    hb_DispOutAt( nRow, ::nCol + Len( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;
-                 If( ::lBuffer, " ", cHalfDn ), "N/W" )
+                 " ", If( ::lBuffer, "N/W", "N/N" ) )
    hb_DispOutAt( ::nRow + 1, ::nCol + 1,;
-                 Replicate( If( ::lBuffer, " ", cHalfUp ), Len( cCaption ) + 2 ), "N/W" )
+                 Space( Len( cCaption ) + 2 ), If( ::lBuffer, "N/W", "N/N" ) )
 
    DispEnd()
 
