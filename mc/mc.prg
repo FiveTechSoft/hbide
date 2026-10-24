@@ -195,6 +195,8 @@ METHOD New( cStartDir ) CLASS MCApp
 
    __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
    __ClsModMsg( CheckBox( 0, 0 ):ClassH, "DISPLAY", @ChkDisplay() )
+   __ClsModMsg( PushButton( 0, 0 ):ClassH, "HITTEST", @BtnHitTest() )
+   __ClsModMsg( RadioButto( 0, 0 ):ClassH, "DISPLAY", @RadDisplay() )
 
    ::aKeyBind := {}
    for n := 1 to 10
@@ -835,7 +837,7 @@ function MCMsgBox( cTitle, cText )
    next
 
    @ oDlg:nBottom - 2, oDlg:nLeft + Int( ( nW ) / 2 ) - 3 GET lOk PUSHBUTTON ;
-      CAPTION " &OK " COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. ;
+      CAPTION " &OK " COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. ;
       STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
@@ -876,11 +878,11 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
    next
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. ;
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. ;
       STATE { || lOk := .T., oDlg:End() }
 
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" ;
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" ;
       STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
@@ -905,6 +907,7 @@ METHOD DlgConfirm( cTitle, cMsg, cOk ) CLASS MCApp
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
    local aLines := hb_aTokens( hb_defaultValue( cMsg, "" ), Chr( 10 ) ), cLine, nRow := 2, nW := 0
+   local nColCancel, nColAction
 
    DEFAULT cOk := "&Yes"
 
@@ -919,12 +922,16 @@ METHOD DlgConfirm( cTitle, cMsg, cOk ) CLASS MCApp
 
    // Cancel first: initial focus and any stray key fire the safe button.
    // Tab/Down moves focus to the action button, Enter fires the focused one.
-   @ oDlg:nBottom - 2, oDlg:nLeft + Int( nW / 2 ) - 8 GET lDummy PUSHBUTTON ;
-      CAPTION " &Cancel " COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. ;
+   // Positions come from the rendered widths ([< Cancel >] = 12 cells) so
+   // the default marker never runs into the action button.
+   nColCancel := oDlg:nLeft + Int( ( nW - ( 12 + 4 + Len( AllTrim( cOk ) ) + 4 ) ) / 2 )
+   nColAction := nColCancel + 12 + 4
+   @ oDlg:nBottom - 2, nColCancel GET lDummy PUSHBUTTON ;
+      CAPTION " &Cancel " COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. ;
       STATE { || oDlg:End() }
 
-   @ oDlg:nBottom - 2, oDlg:nLeft + Int( nW / 2 ) + 2 GET lDummy PUSHBUTTON ;
-      CAPTION " " + cOk + " " COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" ;
+   @ oDlg:nBottom - 2, nColAction GET lDummy PUSHBUTTON ;
+      CAPTION " " + cOk + " " COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" ;
       STATE { || lOk := .T., oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
@@ -967,11 +974,11 @@ METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
    endif
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. ;
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. ;
       STATE { || lOk := .T., oDlg:End() }
 
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" ;
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" ;
       STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
@@ -1243,7 +1250,7 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    local nFmt := AScan( { "full", "brief", "long", "user" }, oPanel:cListMode ), aFmt[ 4 ], n
    local cUF := PadR( oPanel:cUserFmt, 28 ), lUMS := oPanel:lUserMiniStatus
    local cRadStyle := "(" + Chr( 7 ) + " )"
-   local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
+   local cRadClr := "N/W,N/BG,N/W,N/W,N/W,R/W,N/BG"
 
    if nFmt == 0
       nFmt := 1
@@ -1260,13 +1267,13 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    aFmt[ 2 ] := RadioButto( oDlg:nTop + 3, oDlg:nLeft + 4, " " + PadR( "&Brief file list", 16 ) )
    aFmt[ 3 ] := RadioButto( oDlg:nTop + 4, oDlg:nLeft + 4, " " + PadR( "&Long file list", 16 ) )
    aFmt[ 4 ] := RadioButto( oDlg:nTop + 5, oDlg:nLeft + 4, " " + PadR( "&User defined", 16 ) )
-   AEval( aFmt, { | o | o:capCol := oDlg:nLeft + 7, o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
+   AEval( aFmt, { | o | o:capCol := oDlg:nLeft + 8, o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
    oDlg:cargo := aFmt
 
    @ oDlg:nTop + 1, oDlg:nLeft + 3, oDlg:nTop + 6, oDlg:nLeft + 25 GET nFmt ;
       RADIOGROUP aFmt STYLE cRadStyle COLOR "N/W,N/BG,GR+/BG"
 
-   oDlg:Say( oDlg:nTop + 8, oDlg:nLeft + 3, "Format:" )
+   oDlg:Say( 8, 3, "Format:" )
    @ oDlg:nTop + 8, oDlg:nLeft + 12 GET cUF COLOR "N/BG,W+/BG,N/BG,GR+/BG"
 
    @ oDlg:nTop + 9, oDlg:nLeft + 3 GET lUMS ;
@@ -1275,9 +1282,9 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -1317,7 +1324,7 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    local nSort := Max( 1, AScan( aKeys, oPanel:cSort ) ), aRad[ 8 ], n
    local lRev := oPanel:lReverse, lCase := oPanel:lCaseSens
    local cRadStyle := "(" + Chr( 7 ) + " )"
-   local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
+   local cRadClr := "N/W,N/BG,N/W,N/W,N/W,R/W,N/BG"
    local cFrame  := hb_UTF8ToStrBox( "┌─┐│┘─└│" )
    local nT, nL
 
@@ -1328,7 +1335,7 @@ METHOD SortOrder( nPanel ) CLASS MCApp
 
    // Group: Sort
    hb_DispBox( nT + 1, nL + 2, nT + 10, nL + 35, cFrame, "N/W" )
-   hb_Scroll( nT + 2, nL + 3, nT + 9, nL + 34,,, "N/BG" )
+   hb_Scroll( nT + 2, nL + 3, nT + 9, nL + 34,,, "N/W" )
    hb_DispOutAt( nT + 1, nL + 4, " Sort ", "N/W" )
 
    for n := 1 to 8
@@ -1347,13 +1354,13 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    ATail( GetList ):Control:hotBox := cFrame
    // Redraw group frame (radiogroup Display already drew its own frame)
    hb_DispBox( nT + 1, nL + 2, nT + 10, nL + 35, cFrame, "N/W" )
-   hb_Scroll( nT + 2, nL + 3, nT + 9, nL + 34,,, "N/BG" )
+   hb_Scroll( nT + 2, nL + 3, nT + 9, nL + 34,,, "N/W" )
    hb_DispOutAt( nT + 1, nL + 4, " Sort ", "N/W" )
    ATail( GetList ):Control:Display()
 
    // Group: Options
    hb_DispBox( nT + 11, nL + 2, nT + 14, nL + 35, cFrame, "N/W" )
-   hb_Scroll( nT + 12, nL + 3, nT + 13, nL + 34,,, "N/BG" )
+   hb_Scroll( nT + 12, nL + 3, nT + 13, nL + 34,,, "N/W" )
    hb_DispOutAt( nT + 11, nL + 4, " Options ", "N/W" )
 
    @ nT + 12, nL + 5 GET lRev ;
@@ -1367,9 +1374,9 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, nL + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -1473,9 +1480,9 @@ METHOD OptionsConfig() CLASS MCApp
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -1532,9 +1539,9 @@ METHOD OptionsLayout() CLASS MCApp
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -1584,9 +1591,9 @@ METHOD OptionsPanel() CLASS MCApp
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -1636,9 +1643,9 @@ METHOD OptionsConfirm() CLASS MCApp
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -1670,7 +1677,7 @@ METHOD OptionsAppearance() CLASS MCApp
    // caption string would bleed through the cells the items do not paint
    local nThemeSel := ::nTheme, aRad[ 3 ], n
    local cRadStyle := "(" + Chr( 7 ) + " )"
-   local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
+   local cRadClr := "N/W,N/BG,N/W,N/W,N/W,R/W,N/BG"
 
    oDlg = HBWindow():Dialog( "Appearance", 40, 10, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
@@ -1680,7 +1687,7 @@ METHOD OptionsAppearance() CLASS MCApp
       // trailing cells show through; leading space + capCol = col + 3
       // paints the gap cell between ")" and the label in the row color
       aRad[ n ] := RadioButto( oDlg:nTop + 1 + n, oDlg:nLeft + 4, " " + PadR( aNames[ n ], 27 ) )
-      aRad[ n ]:capCol := oDlg:nLeft + 7
+      aRad[ n ]:capCol := oDlg:nLeft + 8
    next
    AEval( aRad, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
    oDlg:cargo := aRad
@@ -1692,9 +1699,9 @@ METHOD OptionsAppearance() CLASS MCApp
       RADIOGROUP aRad STYLE cRadStyle COLOR "N/W,N/BG,GR+/BG"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -1898,11 +1905,11 @@ METHOD DlgCopy( nCount, cDefault, cAction, cVerb ) CLASS MCApp
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET cValue COLOR "W/B,W+/B,W+/W,GR+/W"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 5 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nLeft + 21 GET lDummy PUSHBUTTON CAPTION " &Background " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || lBg := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || lBg := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -2685,9 +2692,9 @@ METHOD FileChmod() CLASS MCApp
    next
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &Set  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STYLE "brackets" STATE { || oDlg:End() }
+      COLOR "N/W,N/BG,N/BG,R/W" STYLE "[]" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
