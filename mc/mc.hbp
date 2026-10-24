@@ -1,4 +1,5 @@
 mc.prg
+mccommandline.prg
 mcpanel.prg
 mcvfs.prg
 mcarcwrite.prg
