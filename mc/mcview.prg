@@ -30,6 +30,14 @@ static function MCViewerRun( cTitle, cText )
    local nW := MaxCol() + 1, nRows := MaxRow() - 1, nMaxTop
    local nHexOff := 0, cSearch := "", nRow, cStatus
    local cBack := SaveScreen( 0, 0, MaxRow(), MaxCol() )
+   local nLine
+
+   // mc viewer expands tabs (8-col stops); a raw tab byte paints as a glyph
+   for nLine := 1 to Len( aLines )
+      if Chr( 9 ) $ aLines[ nLine ]
+         aLines[ nLine ] := MCTabExpand( aLines[ nLine ] )
+      endif
+   next
 
    SetCursor( SC_NONE )
    while ! lEnd
@@ -256,3 +264,23 @@ static function DlgConfirmS( cMsg )
    RestScreen( nRow, nCol, nRow + 4, nCol + 40, cBack )
 
 return lRet
+
+//-----------------------------------------------------------------------------------------//
+
+static function MCTabExpand( cLine )
+
+   local cOut := "", nCol := 0, i, cCh
+
+   for i := 1 to Len( cLine )
+      if ( cCh := SubStr( cLine, i, 1 ) ) == Chr( 9 )
+         cOut += Space( 8 - nCol % 8 )
+         nCol += 8 - nCol % 8
+      else
+         cOut += cCh
+         nCol++
+      endif
+   next
+
+return cOut
+
+//-----------------------------------------------------------------------------------------//
