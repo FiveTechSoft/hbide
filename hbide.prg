@@ -805,9 +805,9 @@ return lGo
 //-----------------------------------------------------------------------------------------//
 
 // External-change watch (tvedit DiskStamp/CheckDiskChanges model, adapted to
-// the single-buffer HBIde). The stamp is date+time+size: a same-size edit
-// inside the filesystem timestamp resolution keeps the same stamp and is
-// only caught by the save-time guard when it also changes the stamp.
+// the single-buffer HBIde). The stamp is date+time+size+MD5 of the bytes
+// (<= 8 MB), so a same-size edit inside the filesystem timestamp resolution
+// is detected too; larger files keep the plain stamp.
 METHOD CheckDiskChange() CLASS HbIde
 
    local cStamp
@@ -853,8 +853,15 @@ return nil
 
 METHOD ReloadFromDisk() CLASS HbIde
 
+   // keep the cursor where the user was: reload used to jump to the top.
+   // Clamp to the new text: the file may have shrunk on disk.
+   local nRow := ::oEditor:RowPos()
+   local nCol := ::oEditor:ColPos()
+
    ::oEditor:LoadFile( ::oEditor:cFile )
-   ::oEditor:Goto( 1, 5 )
+   nRow := Min( nRow, ::oEditor:LineCount() )
+   nCol := Min( nCol, ::oEditor:LineLen( nRow ) + 5 )   // gutter-based coords (K_END lands on len+5)
+   ::oEditor:Goto( nRow, nCol )
    ::Repaint()
    ::oEditor:ShowCursor()
 
