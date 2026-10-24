@@ -15,6 +15,8 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - Internal viewer (text mode, scrolling)
 - User menu (F2), Directory tree, History (M-h), Hotlist, Quick cd (M-c)
 - Symlink: create (C-x s), edit guard + retarget, F8 delete
+- Symlinks in the panel: shown as 'name -> target'; links to
+  directories stay browsable (Enter follows the link)
 - Hard link (inode verified)
 - Background jobs dialog
 - Edit external file, Edit menu file
@@ -23,17 +25,17 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   replaces the destination; directories and VFS stay protected)
 - DlgInput: prefilled GET opens with cursor after the text (End + walk back
   over the PadR'd padding)
+- F10 Exit with confirmation dialog (decline stays in the app; accept
+  exits cleanly to the shell)
 
 ## Light (partial)
 
 - Configuration dialog: 2 checkboxes of the ~10 mc has
 - Panel options: 1 option of mc's set
-- Symlink to a directory: listed as a plain dir; no '@' marker or target shown
 
 ## Pending (not implemented / not verified)
 
 - Learn keys
-- F10 Exit with confirmation dialog (code exists; final interactive test)
 - Sort order dialog, Listing mode custom formats
 - Layout / panel split options, Confirmation dialog options (subset exists)
 
