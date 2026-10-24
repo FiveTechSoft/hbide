@@ -86,6 +86,32 @@ function HbBtnPadChars()
 
 return { hb_UTF8ToStr( " " ), hb_UTF8ToStr( " " ) }
 
+// The stock hitTest covers caption + 2 cells for a two-char style, but the
+// bracket look paints "[ Caption ]" (caption + 4 cells): the trailing
+// " ]" would be dead clicks. Cover the real painted extent here; the
+// shadow column of the 3D look stays decorative (not clickable).
+function BtnHitTest( nMRow, nMCol )
+
+   local Self := QSelf()
+   local nLen := hb_ULen( ::cCaption )
+   local nAccelPos
+
+   if ( nAccelPos := hb_UAt( "&", ::cCaption ) ) > 0 .and. nAccelPos < nLen
+      nLen--
+   endif
+   if Len( ::cStyle ) == 2 .and. ::cStyle != "<>"
+      nLen += 4   // "[ " + caption + " ]"
+   else
+      nLen += 2   // stock extent: pads around the caption
+   endif
+
+   if nMRow >= ::Row .and. nMCol >= ::Col .and. ;
+      nMRow < ::Row + 1 .and. nMCol < ::Col + nLen
+      return -2049   // HTCLIENT
+   endif
+
+return 0   // HTNOWHERE
+
 // Registers the hbide PushButton display (with its 3D shadow) for any
 // program that links this file, including designer-generated dialogs
 // compiled standalone. hbide.prg applies the same patch for the IDE;
@@ -93,5 +119,6 @@ return { hb_UTF8ToStr( " " ), hb_UTF8ToStr( " " ) }
 INIT PROCEDURE BtnPatch()
 
    __ClsModMsg( PushButton( 0, 0 ):ClassH, "DISPLAY", @BtnDisplay() )
+   __ClsModMsg( PushButton( 0, 0 ):ClassH, "HITTEST", @BtnHitTest() )
 
 return
