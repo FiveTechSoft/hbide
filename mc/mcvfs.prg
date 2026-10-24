@@ -231,7 +231,7 @@ function MCVfsCleanup()
    // NOTE: exact compare; with SET EXACT off "x" != "/tmp" would be a
    // prefix comparison and never true for dirs under /tmp.
    if !( cDir == "/tmp" )
-      DeleteTree( cDir )
+      DeleteTree( cDir, .T. )
    endif
 
 return nil
@@ -269,12 +269,12 @@ function MCVfsExtract( cPath, cDstDir, lDir )
               " " + ShellQuote( a[ 3 ] + If( lDir, "/*", "" ) ) + " 2>/dev/null"
    endif
    if hb_ProcessRun( MCShWrap( cCmd ),, @cOut ) != 0
-      DeleteTree( cWrap )
+      DeleteTree( cWrap, .T. )
       return nil
    endif
    cDst := hb_FNameMerge( cWrap, a[ 3 ] )
    if ! hb_FileExists( cDst ) .and. ! hb_DirExists( cDst )
-      DeleteTree( cWrap )
+      DeleteTree( cWrap, .T. )
       return nil
    endif
 
@@ -293,12 +293,12 @@ function MCVfsViewFile( cPath )
    endif
    if ! Empty( hb_FLinkRead( aX[ 1 ] ) )
       // a link member could point outside the archive; never follow it
-      DeleteTree( aX[ 2 ] )
+      DeleteTree( aX[ 2 ], .T. )
       MCMsgBox( "VFS", "Archive member is a link and is not followed:" + Chr( 10 ) + cPath )
       return nil
    endif
    MCViewerText( cPath + "  (read-only, extracted copy)", MemoRead( aX[ 1 ] ) )
-   DeleteTree( aX[ 2 ] )
+   DeleteTree( aX[ 2 ], .T. )
 
 return nil
 
@@ -327,7 +327,7 @@ function MCVfsCopy( cSrc, cDst, lConfirm, lAll, oApp )
       return .F.
    endif
    lOk := CopyItem( aX[ 1 ], cDst, lConfirm, @lAll, oApp )
-   DeleteTree( aX[ 2 ] )
+   DeleteTree( aX[ 2 ], .T. )
 
 return lOk
 
