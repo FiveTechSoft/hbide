@@ -165,6 +165,7 @@ CLASS MCApp
    METHOD FileViewName()
    METHOD FileFilteredView()
    METHOD FileEdit()
+   METHOD FileEditNew()
    METHOD RunExternal( cCmd, cFull )
    METHOD FileCopy()
    METHOD FileChmod()
@@ -677,6 +678,7 @@ METHOD Activate() CLASS MCApp
          case nKey == K_F2  ; ::UserMenu()
          case nKey == K_F3  ; ::FileView()
          case nKey == K_F4  ; ::FileEdit()
+         case nKey == K_SH_F4 ; ::FileEditNew()
          case nKey == K_F5  ; ::FileCopy()
          case nKey == K_F6  ; ::FileMove()
          case nKey == K_F7  ; ::FileMkdir()
@@ -2139,6 +2141,41 @@ return nil
 // Use internal view/edit OFF: hand the file to the configured external
 // program in the same terminal (mc exec + refresh). less/vi set their own
 // termios and restore on exit, so the app's raw mode survives the handoff.
+// mc edit_cmd_new (src/filemanager/cmd.c:710): Shift-F4 edits a NEW file.
+// editor_ask_filename_before_edit (setup.c:108, default FALSE) asks the
+// file name first; Cancel returns to the panels, empty opens an unnamed
+// edit (the demo editor needs a path: it opens "noname" in the panel).
+METHOD FileEditNew() CLASS MCApp
+
+   local oPanel := ::ActivePanel(), cName := "", cFull
+
+   if ::lAskNewFile
+      cName := ::DlgInput( "Edit file", "Enter file name:", "", 60 )
+      if cName == nil
+         return nil
+      endif
+      cName := AllTrim( cName )
+   endif
+   if Empty( cName )
+      cName := "noname"
+   endif
+   cFull := MCAbsPath( oPanel:cPath, cName )
+   if MCVfsKind( cFull ) != "local"
+      MCMsgBox( "Edit", "Editing VFS entries is not supported yet (read-only VFS)." )
+      return nil
+   endif
+   if ! ::lInternalEdit
+      ::RunExternal( ::cExternalEdit, cFull )
+   else
+      MCEditFile( cFull )
+   endif
+   oPanel:Rescan()
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD RunExternal( cCmd, cFull ) CLASS MCApp
 
    DispEnd()
