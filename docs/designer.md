@@ -18,7 +18,7 @@ frame and resize it from the bottom-right corner with the mouse.
 | Enter    | Drop the ghost (while placing) or edit the selected control properties |
 | Tab / Shift+Tab | Select next / previous control |
 | Del      | Delete the selected control |
-| F3       | Dialog properties (caption, name, width, height) |
+| F3       | Dialog properties (caption, name, width, height, color) |
 | F9       | Generate `<name>.prg` |
 | F10      | Save `<name>.json` |
 | F12      | Load a JSON dialog |
@@ -235,13 +235,22 @@ lOk = .T.
 
 Two caveats stay open:
 
-- Dialog-level color: F3 exposes Caption/Name/Width/Height only. Choosing
-  the dialog color from the designer is a PENDING feature; it is not
-  implemented and is not closed by this note.
+- Dialog-level color: F3 exposes a Color field for the dialog color
+  (Harbour color string, e.g. "W+/B"); the canvas repaints with the new
+  color as soon as the dialog is accepted. Input is validated
+  structurally (comma-separated fg[/bg] pairs; foreground letters
+  W B G R N C M Y U I X, each with an optional "+" or "*" suffix). Empty
+  input or an invalid string keeps the previous color and says so in the
+  status bar ("Color left empty: keeping ..." / "Invalid color '<x>':
+  keeping ...") instead of failing silently. The color round-trips
+  through F10/F12 as the JSON "color" property and the generated PRG
+  emits it as the last argument of HBWindow():Dialog().
 - Checkbox glyph: Harbour's stock checkbox paints CP437 0xFB (the square
   root glyph) for the checked state; in a UTF-8 terminal that byte renders
   as "u with circumflex" (the EN codepage, the only one selectable in this
   build, maps 0xFB to U+00FB instead of U+221A; hb_cdpSelect("CP437") is a
   no-op and "ES" raises an argument error). Generated dialogs therefore
   emit STYLE "[X ]", the same ASCII style the IDE itself uses, so the
-  checked state is a portable [X] everywhere.
+  checked state is a portable [X] everywhere. The designer canvas
+  paints checkboxes in the same ASCII "[ ]" style, so no stray glyph
+  appears there either.
