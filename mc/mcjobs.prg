@@ -44,11 +44,13 @@ return l
 
 //-----------------------------------------------------------------------------------------//
 
-function MCJobsAdd( aFiles, cDesc, lMove )
+function MCJobsAdd( aFiles, cDesc, lMove, lPrealloc, lCowClone )
 
    local nTotal := 0
 
    lMove := hb_defaultValue( lMove, .F. )
+   lPrealloc := hb_defaultValue( lPrealloc, .F. )
+   lCowClone := hb_defaultValue( lCowClone, .F. )
    AEval( aFiles, { | f | If( f[ 1 ] == "file", nTotal += f[ 4 ], nil ) } )
    AAdd( s_aJobs, { ;
       "desc"  => cDesc, ;
@@ -68,6 +70,8 @@ function MCJobsAdd( aFiles, cDesc, lMove )
       "logwarned" => .F., ;
       "moved" => 0, ;
       "nolink" => .F., ;
+      "prealloc" => lPrealloc, ;
+      "cowclone" => lCowClone, ;
       "skipdirs" => {} } )
 
 return Len( s_aJobs )
@@ -262,7 +266,7 @@ return nil
 function MCJobsStep()
 
    local i, j, f, cTmp := ""
-   local cBuf, nRead, nLink, cLinkOut
+   local cBuf, nRead, nLink, cLinkOut, nAl := 0
 
    for i := 1 to Len( s_aJobs )
       j := s_aJobs[ i ]
@@ -350,6 +354,21 @@ function MCJobsStep()
                endif
                // nLink == 2: cross-device; chunked copy+delete below.
             endif
+            // mc file_cloning (lib/global.c:110, default TRUE): try a
+            // whole-file COW clone first - only when the destination does
+            // not exist (mc file.c:2606). Any failure falls back to the
+            // normal chunked copy, like mc.
+            if j[ "cowclone" ] .and. ! hb_FileExists( f[ 3 ] )
+               if MC_CloneFile( f[ 2 ], f[ 3 ] ) == 0
+                  j[ "done" ] += f[ 4 ]
+                  if j[ "move" ]
+                     if FErase( f[ 2 ] ) != 0
+                        JobErr( j, f[ 2 ], "cloned to destination but source not removed" )
+                     endif
+                  endif
+                  return .T.
+               endif
+            endif
             // "file": open the source and a temp file in the destination dir.
             j[ "hSrc" ] := FOpen( f[ 2 ], 0 )
             if j[ "hSrc" ] < 0
@@ -363,6 +382,16 @@ function MCJobsStep()
                else
                   j[ "tmp" ] := cTmp
                   j[ "cur" ] := f
+                  // mc preallocate_space (lib/global.c:109, default FALSE;
+                  // file.c:2701): reserve the destination space up front.
+                  // mc asks on failure; a background job cannot, so it logs
+                  // the errno and copies anyway (mc's "try copy anyway" path).
+                  if j[ "prealloc" ] .and. f[ 4 ] > 0
+                     nAl := MC_FAllocate( j[ "hDst" ], 0, f[ 4 ] )
+                     if nAl != 0
+                        JobErr( j, f[ 3 ], "preallocate failed (errno " + hb_ntos( nAl ) + "); copying anyway" )
+                     endif
+                  endif
                endif
             endif
       endcase
