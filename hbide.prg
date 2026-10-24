@@ -438,16 +438,21 @@ return nil
 
 METHOD Activate() CLASS HBIde
 
-   local nKey
+   local nKey, nKeyStd
 
    ::lEnd = .F.
    ::Show()
    ::oEditor:Goto( 1, 5 )
 
    while ! ::lEnd
-      nKey = InKey( 1, INKEY_ALL + HB_INKEY_GTEVENT )   // 1s: lets the disk-change poll run idle
+      // HB_INKEY_EXT: gttrm keeps extended codes for keys that the classic
+      // set collapses (Ctrl+Left == K_CTRL_Z, Shift+arrows == plain arrows).
+      // nKeyStd feeds every pre-existing path; the editor also gets the raw
+      // code so it can bind the newly distinct combinations.
+      nKey = InKey( 1, INKEY_ALL + HB_INKEY_GTEVENT + HB_INKEY_EXT )   // 1s: lets the disk-change poll run idle
+      nKeyStd = hb_keyStd( nKey )
 
-      if nKey == K_ESC .and. ! ::oMenu:IsOpen()
+      if nKeyStd == K_ESC .and. ! ::oMenu:IsOpen()
          if ::oEditor:Changed()
             if ::CheckUnsaved()
                ::lEnd = .T.
@@ -459,19 +464,19 @@ METHOD Activate() CLASS HBIde
          endif
       endif
 
-      if nKey >= K_ALT_Q .and. nKey <= K_ALT_M
+      if nKeyStd >= K_ALT_Q .and. nKeyStd <= K_ALT_M
          SetCursor( SC_NONE )
-         ::oMenu:ProcessKey( nKey )
+         ::oMenu:ProcessKey( nKeyStd )
       endif
 
       // Handle F5 for Find
-      if nKey == K_F5 .and. ! ::oMenu:IsOpen()
+      if nKeyStd == K_F5 .and. ! ::oMenu:IsOpen()
          ::FindDialog()
          loop
       endif
 
       // Handle F2 for Save
-      if nKey == K_F2 .and. ! ::oMenu:IsOpen()
+      if nKeyStd == K_F2 .and. ! ::oMenu:IsOpen()
          ::SaveFile()
          loop
       endif
@@ -480,17 +485,17 @@ METHOD Activate() CLASS HBIde
 
 
       // Handle F3 for Find Next
-      if nKey == K_F3 .and. ! ::oMenu:IsOpen()
+      if nKeyStd == K_F3 .and. ! ::oMenu:IsOpen()
          ::oEditor:FindNext()
          ::oEditor:ShowCursor()
          ::ShowStatus()
          loop
       endif
 
-      if nKey == K_LBUTTONDOWN
+      if nKeyStd == K_LBUTTONDOWN
          if MRow() == 0 .or. ::oMenu:IsOpen()
             SetCursor( SC_NONE )
-            ::oMenu:ProcessKey( nKey )
+            ::oMenu:ProcessKey( nKeyStd )
             if ! ::oMenu:IsOpen()
                if ::oWndCode:lVisible
                   ::oEditor:ShowCursor()
@@ -508,9 +513,9 @@ METHOD Activate() CLASS HBIde
                endif
             endif
          endif
-      elseif nKey == K_MWFORWARD .or. nKey == K_MWBACKWARD
+      elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD
          if ::oMenu:IsOpen()
-            ::oMenu:ProcessKey( nKey )
+            ::oMenu:ProcessKey( nKeyStd )
          else
             if ::oWndCode:lVisible
                ::oEditor:Edit( nKey )
@@ -520,7 +525,7 @@ METHOD Activate() CLASS HBIde
          endif
       else
          if ::oMenu:IsOpen()
-            ::oMenu:ProcessKey( nKey )
+            ::oMenu:ProcessKey( nKeyStd )
             if ! ::oMenu:IsOpen()
                if ::oWndCode:lVisible
                   ::oEditor:ShowCursor()
