@@ -120,8 +120,9 @@ The F2 palette also has "Generate and open": it generates the same file
 and, when the IDE supports it (the `QueueOpen` contract), queues the file
 to open in the code editor and leaves the designer so the IDE can process
 its queue. If the model has unsaved changes it asks the same discard
-confirmation as Esc before leaving; if the write fails or the overwrite is
-cancelled nothing is queued and the designer stays open. Against an IDE
+confirmation as Esc before leaving, and only queues the file once that
+exit is accepted (declining queues nothing). If the write fails or the
+overwrite is cancelled nothing is queued and the designer stays open. Against an IDE
 without `QueueOpen` it just generates, like F9.
 
 A button's `action` property is inserted verbatim into the generated
