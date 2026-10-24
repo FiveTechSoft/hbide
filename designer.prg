@@ -1132,7 +1132,7 @@ METHOD EditProperties() CLASS HbDesigner
 
    local oCtrl, oDlg, GetList := {}, lOk := .F., lCancel := .F., lDummy
    local cCaption, cVariable, nRow, nCol, nWidth, cAccel, cAction, cItems, nHeight
-   local aSize, nMaxRow, nMaxCol, hBefore
+   local aSize, nMaxRow, nMaxCol, hBefore, lBrackets
 
    if ::nSelected < 1 .or. ::nSelected > Len( ::aControls )
       return nil
@@ -1148,6 +1148,7 @@ METHOD EditProperties() CLASS HbDesigner
    nRow      = oCtrl[ "row" ]
    nCol      = oCtrl[ "col" ]
    nWidth    = hb_HGetDef( oCtrl, "width", 10 )
+   lBrackets = hb_HGetDef( oCtrl, "style", "shadow" ) == "brackets"
    cAccel    = PadR( hb_HGetDef( oCtrl, "accelerator", "" ), 4 )
    cAction   = PadR( hb_HGetDef( oCtrl, "action", "" ), Max( 60, Len( hb_HGetDef( oCtrl, "action", "" ) ) ) + 20 )
    cItems    = PadR( hb_HGetDef( oCtrl, "items", "" ), Max( 60, Len( hb_HGetDef( oCtrl, "items", "" ) ) ) + 20 )
@@ -1183,6 +1184,9 @@ METHOD EditProperties() CLASS HbDesigner
       oDlg:Say( 5, 2, "Accel:" )
       @ oDlg:nTop + 6, oDlg:nLeft + 11 GET cAction PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 6, 2, "Action:" )
+      @ oDlg:nTop + 7, oDlg:nLeft + 11 GET lBrackets CHECKBOX ;
+         CAPTION "B&rackets look (uncheck for 3D shadow)" STYLE '[X ]' ;
+         COLOR "N/W,BG+/W,N/W,GR+/W"
    endif
 
    if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX
@@ -1241,6 +1245,7 @@ METHOD EditProperties() CLASS HbDesigner
       if oCtrl[ "type" ] == DSN_BUTTON
          oCtrl[ "accelerator" ] = Left( StrTran( AllTrim( cAccel ), "&", "" ), 1 )
          oCtrl[ "action" ]      = AllTrim( cAction )
+         oCtrl[ "style" ]       = If( lBrackets, "brackets", "shadow" )
       endif
       ::lDirty = .T.
       ::Redraw()
