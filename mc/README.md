@@ -55,6 +55,8 @@ Legend: **done** = implemented and verified on screen in this build.
 | Chmod (C-x c) | light | octal or symbolic mode |
 | Chown (C-x o) | light | |
 | Link / Symlink / Edit symlink (C-x l / C-x s) | light | hard, symbolic, relink |
+| VFS: extfs archive browsing (Enter on .tar/.tar.gz/.zip) | light | browse, view and copy OUT with size/mtime preserved; read-only inside (no write/delete/move); verified on nested trees and names with spaces |
+| VFS: FTP / SFTP / shell link | pending | architecture in VFS.md; anonymous FTP next, then SSH schemes against a throwaway loopback sshd fixture |
 | Quick cd (M-c) | light | |
 | Select / Unselect group (+, -), Invert (*) | done | only when the command line is empty, as in MC |
 | Copy/move/delete of *tagged* groups | light | tagged sets follow the same dialogs |
