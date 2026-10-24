@@ -97,7 +97,18 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - Configuration dialog: 13 working checkboxes (Show hidden files, Show
   mini-status, Compute totals, Show free space, Auto save setup, Shell
   patterns, Mkdir autoname, Verbose operation, Use internal view, Use
-  internal edit, Cd follows links, Safe delete, Safe overwrite). Safe
+  internal edit, Cd follows links, Safe delete, Safe overwrite) plus a
+  Pause after run radio group (Never / On dumb terminals / Always) with
+  the exact mc semantics verified in mc's own source (master
+  src/execute.c:60 default = pause_on_dumb_terminals; execute.c:331-333
+  pauses only when Always, or when On dumb terminals AND the terminal
+  is not xterm-ish AND not the Linux console). Verified live all three
+  ways with real commands: Always -> output screen with "Press any key
+  to return to the panels" (echo ALWAYSTEST55 output shown, waits for
+  key); Never -> returns straight to the panels and Ctrl+O reveals the
+  stored output (echo NEVERTEST99); On dumb terminals under xterm ->
+  no pause, matching mc (xterm_flag). Persists to ~/.hbmc.ini
+  (pauseafterrun key, save round-trip 1->2->1 verified). Safe
   delete / Safe overwrite follow the exact mc semantics verified in mc's
   own source (master src/setup.c: both default FALSE; src/filemanager/
   file.c query_set_sel(1) and filegui.c:674 select the "No" button only
