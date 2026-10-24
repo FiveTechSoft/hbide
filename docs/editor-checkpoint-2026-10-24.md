@@ -286,3 +286,18 @@
 - Terminales con meta de 8 bits: comportamiento documentado, sin fix en app
   (indistinguible de entrada internacional legitima).
 - Windows/GTWVT: sin verificar; Display y Alt pueden comportarse distinto.
+
+### Limitaciones de teclado documentadas (editor)
+
+- Ctrl+Left NO salta palabra: gttrm entrega Ctrl+Left como codigo 26, que en
+  inkey.ch es alias de K_CTRL_Z (Undo). Sin mascara extendida global son
+  indistinguibles, asi que Undo conserva el codigo y el salto a palabra
+  izquierda queda en Alt+Left (gttrm lo entrega como 411, sin ambiguedad).
+  Ctrl+Right si funciona como salto a palabra derecha.
+- Shift+flechas no selecciona: con la mascara de eventos actual llegan como
+  flechas simples (el modificador se pierde antes de la app). El mecanismo
+  vigente de seleccion por rango es el ancla F8 (ToggleMark): F8 fija el
+  origen, mover el cursor define el rango, y Copy/Cut/Undo operan sobre el.
+- Cambiar cualquiera de los dos comportamientos requiere activar
+  HB_INKEY_EXT a nivel global de la app, decision descartada de momento por
+  su alcance transversal (menus, GETs, designer, commander).
