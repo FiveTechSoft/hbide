@@ -5,6 +5,45 @@
 #include "hbclass.ch"
 #include "inkey.ch"
 #include "mc.ch"
+
+REQUEST HB_CODEPAGE_ES850, HB_CODEPAGE_CS852, HB_CODEPAGE_RU866, HB_CODEPAGE_RU1251
+REQUEST HB_CODEPAGE_ESWIN, HB_CODEPAGE_ESISO, HB_CODEPAGE_CSISO
+
+/* Panel display charsets (real mc: Alt-e recodes panel display into the
+ * system codepage; "No translation" cancels). id "" means no translation.
+ * Display-only: file operations always use the raw filesystem bytes. */
+
+function MCCpList()
+
+return { { "No translation", "" }, ;
+         { "UTF-8",          "UTF8"  }, ;
+         { "CP437",          "EN"    }, ;
+         { "CP850",          "ES850" }, ;
+         { "CP852",          "CS852" }, ;
+         { "CP866",          "RU866" }, ;
+         { "CP1251",         "RU1251" }, ;
+         { "CP1252",         "ESWIN" }, ;
+         { "ISO-8859-1",     "ESISO" }, ;
+         { "ISO-8859-2",     "CSISO" } }
+
+function MCCpValid( cId )
+
+return AScan( MCCpList(), { | a | a[ 2 ] == cId } ) > 0
+
+function MCCpDecode( cText, cId )
+
+   local cOut
+
+   if Empty( cId ) .or. cId == "UTF8"
+      return cText
+   endif
+   begin sequence with { | e | break( e ) }
+      cOut := hb_StrToUTF8( cText, cId )
+   recover
+      cOut := cText          // unknown/broken id: show raw bytes, never crash
+   end sequence
+
+return cOut
 #include "directry.ch"
 
 //-----------------------------------------------------------------------------------------//
@@ -25,6 +64,7 @@ CLASS MCPanel
    DATA   lReverse    INIT .F.
    DATA   lCaseSens   INIT .F.
    DATA   cFilter     INIT "*"
+   DATA   cCp         INIT ""        // display charset id (MCCpList); "" = no translation
    DATA   lBrief      INIT .F.
    DATA   cMode       INIT "listing"   // listing | quickview | info | tree | panelize
    DATA   aTree       INIT {}
@@ -704,7 +744,7 @@ return nil
 
 METHOD EntryLine( aEntry, nWidth ) CLASS MCPanel
 
-   local cName := aEntry[ P_NAME ], cSize, cTime, cLine
+   local cName := MCCpDecode( aEntry[ P_NAME ], ::cCp ), cSize, cTime, cLine
 
    if aEntry[ P_DIR ] .and. aEntry[ P_NAME ] != "/.."
       cName += "/"
