@@ -19,6 +19,8 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - Background jobs dialog
 - Edit external file, Edit menu file
 - Dialog buttons with solid Turbo Vision shadow
+- Move (F6): overwrite confirmation (decline keeps both files; accept
+  replaces the destination; directories and VFS stay protected)
 - DlgInput: prefilled GET opens with cursor after the text (End + walk back
   over the PadR'd padding)
 
@@ -32,7 +34,6 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 - Learn keys
 - F10 Exit with confirmation dialog (code exists; final interactive test)
-- Move: overwrite confirmation (Copy has the pattern; Move reuses it)
 - Sort order dialog, Listing mode custom formats
 - Layout / panel split options, Confirmation dialog options (subset exists)
 
