@@ -1720,6 +1720,21 @@ return nMax
 // draw one control inside the design window (passive, design time only)
 // nRow/nCol in the control hash are client relative (0 based)
 
+// clips a control's frame rect to the drawable area (window interior and
+// screen) and returns { nBottom, nRight } for DispBox, or NIL when fewer
+// than two rows or columns remain visible (a box needs both dimensions).
+// controls wider or taller than a clamped viewport keep a visible frame
+// instead of losing it completely
+
+function DsnFrameClip( nARow, nACol, nWidth, nHeight, nWndBottom, nMaxCol )
+
+   local nB := Min( Min( nARow + nHeight - 1, nWndBottom - 1 ), MaxRow() )
+   local nR := Min( nACol + nWidth - 1, nMaxCol )
+
+return iif( nB > nARow .and. nR > nACol, { nB, nR }, NIL )
+
+//-----------------------------------------------------------------------------------------//
+
 procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
 
    local nARow, nACol
@@ -1729,7 +1744,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
    local lDarkDlg := aDlgPair[ 2 ] != "W"
    local cDlgText := aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ]
    local cShadow  := DsnCanvasShadowFor( oWnd:cColor )   // half-block on the dialog bg, same height as the runtime shadow
-   local cColor, cText, nWidth, n, aSize, aItems
+   local cColor, cText, nWidth, n, aSize, aItems, aClip
 
    // design time: & marks accelerators on checkbox/button captions, so it is
    // not drawn there; SAY captions are literal (runtime Say shows & as-is)
@@ -1785,8 +1800,9 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
          cColor = If( lSelected, cSelColor, If( lDarkDlg, cDlgText, CLR_CHECKBOX ) )
          aSize  = DsnControlSize( oCtrl )
          aItems = DsnItems( oCtrl )
-         if nARow + aSize[ 2 ] - 1 < oWnd:nBottom .and. nACol + aSize[ 1 ] - 1 <= nMaxCol
-            DispBox( nARow, nACol, nARow + aSize[ 2 ] - 1, nACol + aSize[ 1 ] - 1, 1, cColor )
+         aClip = DsnFrameClip( nARow, nACol, aSize[ 1 ], aSize[ 2 ], oWnd:nBottom, nMaxCol )
+         if aClip != NIL
+            DispBox( nARow, nACol, aClip[ 1 ], aClip[ 2 ], 1, cColor )
          endif
          for n = 1 to Len( aItems )
             cText = If( n == 1, "(*) ", "( ) " ) + StrTran( aItems[ n ], "&", "" )
@@ -1800,8 +1816,9 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
          cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", CLR_GET ) )
          aSize  = DsnControlSize( oCtrl )
          aItems = DsnItems( oCtrl )
-         if nARow + aSize[ 2 ] - 1 < oWnd:nBottom .and. nACol + aSize[ 1 ] - 1 <= nMaxCol
-            DispBox( nARow, nACol, nARow + aSize[ 2 ] - 1, nACol + aSize[ 1 ] - 1, 1, cColor )
+         aClip = DsnFrameClip( nARow, nACol, aSize[ 1 ], aSize[ 2 ], oWnd:nBottom, nMaxCol )
+         if aClip != NIL
+            DispBox( nARow, nACol, aClip[ 1 ], aClip[ 2 ], 1, cColor )
          endif
          for n = 1 to Min( Len( aItems ), aSize[ 2 ] - 2 )
             cText = PadR( SubStr( aItems[ n ], 1, aSize[ 1 ] - 2 ), aSize[ 1 ] - 2 )
@@ -2403,7 +2420,7 @@ static function DsnBtnDisplayCode( cBg )
    cCode += "   local Self := QSelf()" + hb_eol()
    cCode += hb_eol()
    cCode += "   local cColor" + hb_eol()
-   cCode += "   local cStyle := Chr( 255 ) + Chr( 255 )" + hb_eol()
+   cCode += "   local cStyle := DsnBtnPads()" + hb_eol()
    cCode += "   local cCaption := ::cCaption" + hb_eol()
    cCode += "   local nRow := ::nRow" + hb_eol()
    cCode += "   local nCol := ::nCol" + hb_eol()
@@ -2431,16 +2448,11 @@ static function DsnBtnDisplayCode( cBg )
    cCode += hb_eol()
    cCode += "      nCol++" + hb_eol()
    cCode += hb_eol()
-   cCode += "      if Len( cStyle ) == 2" + hb_eol()
-   cCode += "         if ::lBuffer" + hb_eol()
-   cCode += '            hb_DispOutAt( ::nRow, ::nCol, " ", "' + cShadow + '" )' + hb_eol()
-   cCode += "         endif" + hb_eol()
-   cCode += '         hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), SubStr( cStyle, 1, 1 ), cColor )' + hb_eol()
-   cCode += '         hb_DispOutAt( ::nRow, ::nCol + Len( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), SubStr( cStyle, 2, 1 ), cColor )' + hb_eol()
-   cCode += "      else" + hb_eol()
-   cCode += "         nRow++" + hb_eol()
-   cCode += '         hb_DispBox( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), ::nRow + 2, ::nCol + Len( cCaption ) + 1, cStyle, cColor )' + hb_eol()
+   cCode += "      if ::lBuffer" + hb_eol()
+   cCode += '         hb_DispOutAt( ::nRow, ::nCol, " ", "' + cShadow + '" )' + hb_eol()
    cCode += "      endif" + hb_eol()
+   cCode += '      hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), cStyle[ 1 ], cColor )' + hb_eol()
+   cCode += '      hb_DispOutAt( ::nRow, ::nCol + Len( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), cStyle[ 2 ], cColor )' + hb_eol()
    cCode += "   endif" + hb_eol()
    cCode += hb_eol()
    cCode += "   if ! Empty( cCaption )" + hb_eol()
@@ -2454,13 +2466,23 @@ static function DsnBtnDisplayCode( cBg )
    cCode += "   endif" + hb_eol()
    cCode += hb_eol()
    cCode += '   hb_DispOutAt( nRow, ::nCol + Len( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
-   cCode += '                 If( ::lBuffer, " ", Chr( 220 ) ), "' + cShadow + '" )' + hb_eol()
+   cCode += '                 If( ::lBuffer, " ", DsnBtnShades()[ 1 ] ), "' + cShadow + '" )' + hb_eol()
    cCode += '   hb_DispOutAt( ::nRow + 1, ::nCol + 1,;' + hb_eol()
-   cCode += '                 Replicate( If( ::lBuffer, " ", Chr( 223 ) ), Len( cCaption ) + 2 ), "' + cShadow + '" )' + hb_eol()
+   cCode += '                 Replicate( If( ::lBuffer, " ", DsnBtnShades()[ 2 ] ), Len( cCaption ) + 2 ), "' + cShadow + '" )' + hb_eol()
    cCode += hb_eol()
    cCode += "   DispEnd()" + hb_eol()
    cCode += hb_eol()
    cCode += "return Self" + hb_eol()
+   cCode += hb_eol()
+   cCode += "// caption pads and shadow half blocks follow the active codepage:" + hb_eol()
+   cCode += "// CP437 keeps the raw bytes, the UTF-8 opt-in gets valid encodings" + hb_eol()
+   cCode += "function DsnBtnPads()" + hb_eol()
+   cCode += hb_eol()
+   cCode += 'return { hb_UTF8ToStr( " " ), hb_UTF8ToStr( " " ) }' + hb_eol()
+   cCode += hb_eol()
+   cCode += "function DsnBtnShades()" + hb_eol()
+   cCode += hb_eol()
+   cCode += 'return { hb_UTF8ToStr( "▄" ), hb_UTF8ToStr( "▀" ) }' + hb_eol()
 
 return cCode
 
