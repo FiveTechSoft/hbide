@@ -262,6 +262,20 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - Regression fixed: MCMsgBox (a plain function, also the ErrorBlock
   handler) referenced the app instance and crashed any message box with a
   recursive error dialog; fixed via a module-level app handle
+- Ask new file name (mc editor_ask_filename_before_edit, setup.c:108,
+  default FALSE; Shift-F4 = mc edit_cmd_new, cmd.c:710): with the default
+  OFF, Shift-F4 opens the editor directly on a new file; with the option
+  ON, an "Edit file / Enter file name" dialog asks first - Cancel returns
+  to the panels and an empty answer opens "noname". Deviation from mc:
+  mc generates a mcedit.XXXXXX temp name; this editor needs a real path,
+  so the unnamed case uses "noname" in the panel directory. Verified live
+  in BOTH directions (X session + deterministic PTY drive): the dialog
+  appears only when the option is ON, the typed name becomes the edited
+  file (editor status bar shows the full path), F2 saves, Esc quits, the
+  new file is listed in the panel afterwards; Esc on the ask dialog
+  cancels cleanly and creates nothing. OFF direction verified on disk:
+  "noname" created with the typed content and listed after rescan. Ini
+  key asknewfile round-trips 0/1
 
 ## Light (partial)
 
@@ -270,8 +284,6 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 ## Pending (not implemented / not verified)
 
-- Ask new file name (editor_ask_filename_before_edit): Shift-F4 new-file
-  edit should ask the file name first (src/filemanager/cmd.c:715)
 - Complete: show all (show_all_if_ambiguous): needs M-Tab completion
   infrastructure in dialog GETs (lib/widget input completion)
 - Rotating dash behavior: spinner in the top-right corner during long
