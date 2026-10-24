@@ -27,6 +27,7 @@ CLASS HbWindow FROM HbDbWindow
    DATA   lReadMouse INIT .F.  // left button state seen by the idle hook
    DATA   GetList
    DATA   lDesign INIT .F.
+   DATA   lClamped INIT .F.   // .T. when Dialog() had to move/cut the window to fit the screen
 
    METHOD Activate( GetList )
 
@@ -606,6 +607,20 @@ METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit ) CLASS HbWindow
    local nLeft   := Int( ( MaxCol() / 2 ) - ( nWidth / 2 ) )
    local nBottom := Int( ( MaxRow() / 2 ) + ( nHeight / 2 ) )
    local nRight  := Int( ( MaxCol() / 2 ) + ( nWidth / 2 ) )
+
+   // A dialog larger than the screen gets negative top/left coordinates and
+   // its frame and contents paint corrupted. Move it on-screen, keeping as
+   // much of the original design as the terminal can show; controls keep
+   // their relative offsets, so controls that still fall outside the screen
+   // are not visible (they remain reachable by keyboard). ::lClamped tells
+   // the caller the requested size did not fit.
+   ::lClamped := ( nTop < 0 .or. nLeft < 0 .or. nBottom > MaxRow() .or. nRight > MaxCol() )
+   if ::lClamped
+      nTop    := Max( 0, nTop )
+      nLeft   := Max( 0, nLeft )
+      nBottom := Min( MaxRow(), nBottom )
+      nRight  := Min( MaxCol(), nRight )
+   endif
 
    ::New( nTop, nLeft, nBottom, nRight, cCaption, cColor )
    ::bInit   = bInit
