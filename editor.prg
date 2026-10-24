@@ -243,7 +243,7 @@ METHOD ReplaceAll( cFind, cReplace ) CLASS HBSrcEdit
       next
       ::PushOp( 1, aOld, aNew )
       ::lDirty := .T.
-      ::RefreshWindow()
+      ::Display()
    endif
 
 return nCount
