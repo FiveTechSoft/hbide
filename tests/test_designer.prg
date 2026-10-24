@@ -220,8 +220,8 @@ procedure Main()
    Check( "gen radio item colors", "AEval( aButt1, {| o | o:colorSpec := '" $ cCode )
    Check( "gen listbox color", "LISTBOX aItems2 COLOR '" $ cCode )
    cCode = DsnGenCode( { "caption" => "T", "width" => 40, "height" => 12, "controls" => { ;
-      { "type" => "listbox", "row" => 1, "col" => 2, "variable" => "nList2", "items" => "&One,T&wo", "width" => 16, "height" => 4 } } } )
-   Check( "gen listbox strips & from items", '{ "One", "Two" }' $ cCode .and. ! ( "&One" $ cCode ) )
+      { "type" => "listbox", "row" => 1, "col" => 2, "variable" => "nList2", "items" => "R&D.prg,&One", "width" => 16, "height" => 4 } } } )
+   Check( "gen listbox keeps items verbatim", '"R&D.prg"' $ cCode .and. '"&One"' $ cCode )
 
    // json roundtrip of the new properties
    cJson = hb_jsonEncode( hModel, .T. )
