@@ -1200,8 +1200,8 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
 
    @ oDlg:nTop + 2, oDlg:nLeft + 2, oDlg:nTop + 3, oDlg:nLeft + 24 GET cFmt ;
       RADIOGROUP aFmt STYLE cRadStyle
-   ATail( GetList ):Control:coldBox := ""
-   ATail( GetList ):Control:hotBox := ""
+   ATail( GetList ):Control:coldBox := Space( 8 )  // invisible frame: "" falls back to the default box
+   ATail( GetList ):Control:hotBox := Space( 8 )
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
@@ -1256,8 +1256,8 @@ METHOD SortOrder( nPanel ) CLASS MCApp
 
    @ nT + 2, nL + 4, nT + 9, nL + 33 GET cSort ;
       RADIOGROUP aRad STYLE cRadStyle
-   ATail( GetList ):Control:coldBox := ""
-   ATail( GetList ):Control:hotBox := ""
+   ATail( GetList ):Control:coldBox := Space( 8 )  // invisible frame: "" falls back to the default box
+   ATail( GetList ):Control:hotBox := Space( 8 )
    // Redraw group frame (radiogroup Display already drew its own frame)
    hb_DispBox( nT + 1, nL + 2, nT + 10, nL + 35, cFrame, "N/W" )
    hb_Scroll( nT + 2, nL + 3, nT + 9, nL + 34,,, "N/BG" )
@@ -1524,7 +1524,10 @@ METHOD OptionsAppearance() CLASS MCApp
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
    local aNames := { "&Midnight Commander classic", "&Turbo Vision cyan", "Monochro&me" }
-   local cTheme := StrTran( aNames[ ::nTheme ], "&", "" ), aRad[ 3 ], n
+   // numeric GET var: the underlying GET paints its buffer text at the
+   // group's top-left cell; a 1-char index is wiped by the frame, a long
+   // caption string would bleed through the cells the items do not paint
+   local nThemeSel := ::nTheme, aRad[ 3 ], n
    local cRadStyle := "(" + Chr( 7 ) + " )"
    local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
 
@@ -1532,15 +1535,17 @@ METHOD OptionsAppearance() CLASS MCApp
    oDlg:bRepaint = { || ::Repaint() }
 
    for n := 1 to 3
-      aRad[ n ] := RadioButto( oDlg:nTop + 1 + n, oDlg:nLeft + 4, aNames[ n ] )
+      // pad captions to one width: the group's box area otherwise shows
+      // trailing cells in a different color behind the shorter labels
+      aRad[ n ] := RadioButto( oDlg:nTop + 1 + n, oDlg:nLeft + 4, PadR( aNames[ n ], 26 ) )
    next
    AEval( aRad, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
    oDlg:cargo := aRad
 
-   @ oDlg:nTop + 2, oDlg:nLeft + 3, oDlg:nTop + 4, oDlg:nLeft + 32 GET cTheme ;
-      RADIOGROUP aRad STYLE cRadStyle
-   ATail( GetList ):Control:coldBox := ""
-   ATail( GetList ):Control:hotBox := ""
+   @ oDlg:nTop + 2, oDlg:nLeft + 3, oDlg:nTop + 4, oDlg:nLeft + 32 GET nThemeSel ;
+      RADIOGROUP aRad STYLE cRadStyle COLOR "N/BG,N/BG,GR+/BG"
+   ATail( GetList ):Control:coldBox := Space( 8 )  // invisible frame: "" falls back to the default box
+   ATail( GetList ):Control:hotBox := Space( 8 )
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
@@ -1550,13 +1555,17 @@ METHOD OptionsAppearance() CLASS MCApp
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   // SET DELIMITERS OFF too: the GET's bracket delimiters would paint at
+   // the group's edges
    Set( _SET_ESCAPE, .T. )
+   Set( _SET_DELIMITERS, .F. )
    oDlg:Activate( GetList )
+   Set( _SET_DELIMITERS, .T. )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
-      ::SetTheme( Max( 1, AScan( aNames, { | c | StrTran( c, "&", "" ) == AllTrim( cTheme ) } ) ) )
+      ::SetTheme( Min( Max( 1, Int( nThemeSel ) ), 3 ) )
       ::Repaint()
    endif
 
