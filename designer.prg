@@ -33,6 +33,7 @@
 #define CLR_BUTTON    "GR+/G"
 #define CLR_CHECKBOX  "N/W"
 #define CLR_SELECTED  "N/G"
+#define CLR_SEL_BTN   "GR+/N"   // editor-only selection look for buttons (never emitted)
 #define CLR_GHOST     "N/BG"
 #define CLR_INSP      "W+/B"
 #define CLR_INSP_SEL  "N/GR"
@@ -1587,7 +1588,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
          hb_DispOutAt( nARow, nACol, cText, cColor )
 
       case oCtrl[ "type" ] == DSN_BUTTON
-         cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", CLR_BUTTON ) )
+         cColor = If( lSelected, CLR_SEL_BTN, If( lDarkDlg, "N/W", CLR_BUTTON ) )
          cText  = " " + StrTran( cCaption, "&", "" ) + " "
          nWidth = Len( cText )
          hb_DispOutAt( nARow, nACol, ;
