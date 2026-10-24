@@ -894,6 +894,13 @@ procedure MenuTests()
    SetKey( K_PGDN, NIL )
    SetKey( K_PGUP, NIL )
 
+   // clipboard without a selection hints instead of failing silently
+   oD := HbDesigner():New( TStubIde():New() )
+   oD:CopySelected()
+   Check( "copy without selection hints", oD:cHint == "Select a control first (Tab / click)" )
+   oD:CutSelected()
+   Check( "cut without selection hints", oD:cHint == "Select a control first (Tab / click)" )
+
    // custom focus swaps the focused slots, white and colored backgrounds
    Check( "get focus custom white", DsnClrGetFor( "W+/W", "Y+/R" ) == "W/B,Y+/R,W+/W,GR+/W" )
    Check( "get focus custom colored", DsnClrGetFor( "W+/B", "Y+/R" ) == "N/W,Y+/R,N/W,GR+/W" )
