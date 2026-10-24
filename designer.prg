@@ -238,7 +238,7 @@ METHOD Activate() CLASS HbDesigner
                ::ToggleInspector()
             elseif cEsc == "dirty"
                ::SuspendUI()
-               nChoice = Alert( "Discard unsaved changes?", { "Yes", "No" } )
+               nChoice = DsnConfirm( "Discard unsaved changes?", { "&Yes", "&No" } )
                ::ResumeUI()
                if nChoice == 1
                   ::lEnd = .T.
@@ -2067,7 +2067,7 @@ METHOD GeneratePrg() CLASS HbDesigner
 
    if File( cFile )
       ::SuspendUI()
-      if Alert( "Overwrite " + cFile + "?", { "Yes", "No" } ) != 1
+      if DsnConfirm( "Overwrite " + cFile + "?", { "&Yes", "&No" } ) != 1
          ::ResumeUI()
          return nil
       endif
@@ -2102,7 +2102,7 @@ METHOD GenerateAndOpen() CLASS HbDesigner
       if AScan( __objGetMethodList( ::oIde ), {|m| m == "QUEUEOPEN"} ) > 0
          if ::lDirty
             ::SuspendUI()
-            nChoice = Alert( "Discard unsaved changes?", { "Yes", "No" } )
+            nChoice = DsnConfirm( "Discard unsaved changes?", { "&Yes", "&No" } )
             ::ResumeUI()
             if nChoice == 1
                ::oIde:QueueOpen( cFile )   // queued only once the exit is accepted
@@ -3513,3 +3513,50 @@ function DsnEscTarget( lPlacing, lInspector, lDirty )
    endif
 
 return "exit"
+
+//-----------------------------------------------------------------------------------------//
+// Clickable Alert() replacement for designer confirmations: same contract
+// (returns the 1-based option index, 0 on Esc) over a HbWindow with real
+// pushbuttons, so the prompt answers to keyboard (Tab/arrows, Enter, Space,
+// Esc) and to the mouse through the window click path. Focus starts on the
+// first option, like Alert().
+
+function DsnConfirm( cText, aOptions )
+
+   local aLay   := DsnConfirmLayout( cText, aOptions, MaxCol() )
+   local oDlg   := HBWindow():Dialog( "", aLay[ 1 ], aLay[ 2 ], "W+/B" )
+   local aRes   := { 0 }
+   local lDummy, i, GetList := {}
+
+   oDlg:SayCenter( cText, -1 )
+   for i := 1 to Len( aOptions )
+      @ oDlg:nTop + aLay[ 3 ], oDlg:nLeft + aLay[ 4 ][ i ] GET lDummy PUSHBUTTON ;
+         CAPTION aOptions[ i ] COLOR 'N/W,W+/N,N/W,R/W'
+      // STATE <sb> wraps its argument in a codeblock, so a block-returning
+      // factory would be double-wrapped and never run; assign sBlock instead.
+      ATail( GetList ):Control:sBlock := DsnConfirmState( oDlg, i, aRes )
+   next
+   oDlg:Activate( GetList )
+
+return aRes[ 1 ]
+
+// DsnConfirm geometry, pure so the suite can pin it: width fits the text and
+// the button row (12 cols per button) with margins and never leaves the
+// screen; buttons are centered on row 4 of a 8-row dialog.
+function DsnConfirmLayout( cText, aOptions, nMaxCol )
+
+   local nWidth := Min( nMaxCol - 4, Max( Len( cText ) + 8, Len( aOptions ) * 12 + 4 ) )
+   local nFirst := Int( ( nWidth - ( Len( aOptions ) * 12 - 2 ) ) / 2 )
+   local aCols  := {}
+   local i
+
+   for i := 1 to Len( aOptions )
+      AAdd( aCols, nFirst + ( i - 1 ) * 12 )
+   next
+
+return { nWidth, 8, 4, aCols }
+
+// one codeblock per button with the index captured by value (a closure over
+// the loop variable would fire the LAST index for every button)
+static function DsnConfirmState( oDlg, nIdx, aRes )
+return { || aRes[ 1 ] := nIdx, oDlg:End() }
