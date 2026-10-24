@@ -56,7 +56,7 @@ Legend: **done** = implemented and verified on screen in this build.
 | Chown (C-x o) | light | |
 | Link / Symlink / Edit symlink (C-x l / C-x s) | light | hard, symbolic, relink |
 | VFS: extfs archive browsing (Enter on .tar/.tar.gz/.zip) | light | browse, view and copy OUT with size/mtime preserved; read-only inside (no write/delete/move); verified on nested trees and names with spaces |
-| VFS: FTP / SFTP / shell link | pending | architecture in VFS.md; anonymous FTP next, then SSH schemes against a throwaway loopback sshd fixture |
+| VFS: FTP / SFTP / shell link | light | read-only: browse, view and copy OUT (write/delete/move refused with a message). Menu items FTP/Shell/SFTP link plus `cd <url>`. SFTP via curl/libssh (real SFTP protocol), shell link (sh://) via ssh exec (FISH-style, needs GNU ls on the remote), FTP anonymous only via curl. Remote symlinks are shown but never followed; copying a remote directory out is refused entirely if its subtree contains links. Fixtures: throwaway loopback sshd with ephemeral keys (127.0.0.1:22227, authorized by main 2026-10-24) and the public anonymous ftp.gnu.org. Limit: names with spaces fail over the curl-based providers (no URL encoding yet) |
 | Quick cd (M-c) | light | |
 | Select / Unselect group (+, -), Invert (*) | done | only when the command line is empty, as in MC |
 | Copy/move/delete of *tagged* groups | light | tagged sets follow the same dialogs |
@@ -94,7 +94,7 @@ Legend: **done** = implemented and verified on screen in this build.
 ### Pending / divergences from the original
 | MC feature | Status | Notes |
 |---|---|---|
-| FTP / SFTP / SMB / shell-link VFS, "FTP link", "Network" | **pending** | awaiting the user's scope decision; deliberately absent from the menus so no item promises what it does not do |
+| SMB / "Network" VFS | pending | FTP, SFTP and shell link landed read-only (matrix above); SMB has no credential-free fixture to test against |
 | "Learn keys" dialog | divergence | replaced by F1 help; no fake key-recorder |
 | Encoding selector | pending | terminal is UTF-8 |
 | Advanced chown/chattr, atime/ctime/inode sort orders | pending | |
