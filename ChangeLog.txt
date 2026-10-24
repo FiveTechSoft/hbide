@@ -1,6 +1,23 @@
 HbIde ChangeLog
 ================
 
+2026-10-25
+----------
+
+  Editor de codigo (rama editor-fixes, sin merge)
+  -----------------------------------------------
+  - Corregido: hotkeys de Alert muertos con opciones "&Save"/... (071f368);
+    hb_gt_def_Alert compara la tecla con el primer caracter de la opcion,
+    que con '&' es el propio '&'. Opciones sin '&'
+  - Corregido: marcos 'oooo'/'cccc' en modo UTF8 (d8eb435); hb_DispBox
+    parsea con el BOXCP del GT y el frame se generaba con hb_UTF8ToStr
+    (CP anfitrion). hb_UTF8ToStrBox en HelpView y Compiler Flags
+  - Help "Welcome": ya no afirma que Alt+letra no abre menus en Linux
+    (31c1b6f)
+  - Matriz completa del IDE verificada en vivo (File/Edit/Run/Options/Help,
+    Alerts, UTF-8). Checkpoint completo, pruebas y limitaciones:
+    docs/editor-checkpoint-2026-10-25.md
+
 2026-10-24
 ----------
 
