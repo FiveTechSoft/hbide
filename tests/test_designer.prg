@@ -425,6 +425,26 @@ procedure Main()
    hb_IdleDel( oD2:nIdleDraw )
    oD2:oWnd:Hide()
 
+   // placing ghost clamps to the last origin where the whole control fits,
+   // so it never vanishes past an edge while moving it with the arrows
+   oD2 = HbDesigner():New( nil )
+   oD2:nDlgWidth  = 41
+   oD2:nDlgHeight = 14
+   oD2:cPlacingType = "listbox"
+   oD2:nGhostRow = 12
+   oD2:nGhostCol = 39
+   oD2:ClampGhost()
+   Check( "ghost row clamped to fit height", oD2:nGhostRow == 14 - 2 - 6 )
+   Check( "ghost col clamped to fit width", oD2:nGhostCol == 41 - 2 - 20 )
+   oD2:nGhostRow = -3
+   oD2:nGhostCol = -3
+   oD2:ClampGhost()
+   Check( "ghost pinned at origin", oD2:nGhostRow == 0 .and. oD2:nGhostCol == 0 )
+   oD2:nDlgHeight = 5
+   oD2:nGhostRow = 9
+   oD2:ClampGhost()
+   Check( "oversized ghost pinned at 0", oD2:nGhostRow == 0 )
+
    QOut( "" )
    QOut( "PASSED: " + hb_ntos( s_nPassed ) + "  FAILED: " + hb_ntos( s_nFailed ) )
    ErrorLevel( If( s_nFailed == 0, 0, 1 ) )
