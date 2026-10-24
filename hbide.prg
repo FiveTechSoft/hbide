@@ -49,6 +49,7 @@ CLASS HbIde
    METHOD OpenFile()
    METHOD GotoLine()
    METHOD FindDialog()
+   METHOD CheckUnsaved()
    METHOD SaveFile()
    METHOD Repaint()
    METHOD SuspendStatus()
@@ -332,18 +333,11 @@ METHOD Activate() CLASS HBIde
 
       if nKey == K_ESC .and. ! ::oMenu:IsOpen()
          if ::oEditor:Changed()
-            switch Alert( "Unsaved changes", { "&Save", "&Discard", "&Cancel" } )
-            case 1
-               ::SaveFile()
-               if ! ::oEditor:Changed()
-                  ::lEnd = .T.
-               endif
-               exit
-            case 2
+            if ::CheckUnsaved()
                ::lEnd = .T.
-               exit
-            end
-            ::Repaint()
+            else
+               ::Repaint()
+            endif
          else
             ::lEnd = .T.
          endif
@@ -590,6 +584,8 @@ METHOD OpenFile() CLASS HbIde
    if lOk .and. ! Empty( cFileName )
       if ! File( cFileName )
          Alert( "File not found: " + cFileName )
+      elseif ! ::CheckUnsaved()   // opening another file must not drop unsaved work
+         // cancelled: keep editing the current buffer
       else
          if ! ::oWndCode:lVisible
             ::oWndCode:Show( .F. )
@@ -606,7 +602,39 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+// Returns .T. when it is safe to drop the current buffer:
+// no changes, or user saved (and the save persisted), or user discarded.
+METHOD CheckUnsaved() CLASS HbIde
+
+   local lGo := .T.
+
+   if ::oEditor:Changed()
+      switch Alert( "Unsaved changes", { "&Save", "&Discard", "&Cancel" } )
+      case 1
+         ::SaveFile()
+         lGo := ! ::oEditor:Changed()   // a failed save keeps the buffer dirty
+         exit
+      case 2
+         lGo := .T.
+         exit
+      otherwise
+         lGo := .F.
+      end
+   endif
+
+return lGo
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD SaveFile() CLASS HbIde
+
+   // tvedit-style safety net: keep the previous disk version as .bak.
+   // The copy runs BEFORE writing, so a failed write leaves both intact.
+   if ! Empty( ::oEditor:cFile ) .and. File( ::oEditor:cFile )
+      if hb_FCopy( ::oEditor:cFile, ::oEditor:cFile + ".bak" ) != 0
+         Alert( "Could not create the .bak copy; saving anyway" )
+      endif
+   endif
 
    ::oEditor:SaveFile()
    ::oWndCode:cCaption = ::oEditor:cFile
