@@ -142,7 +142,13 @@ are in place so a read-only source dir cannot block its own copy; a
 pre-existing destination directory keeps its own metadata. Ownership is
 not preserved. Verified with a 751 directory carrying 2020/2021 mtimes
 copied ext4->tmpfs. Recursive delete unlinks
-symbolic links without traversing their target.
+symbolic links without traversing their target. Before removal the tree is
+made traversable (chmod -R u+rwX): trees coming out of archives or
+read-only sources can carry directories without owner permissions that
+would otherwise strand partial trees on rollback, refusal cleanup and
+session-temp cleanup. Verified with a refused archive dir extraction whose
+wrap carried a permission-less dir holding outside-pointing links: the
+wrap is now fully removed and nothing persists outside the temp area.
 
 Overwrite protection: a copy writes to a temporary file in the destination
 directory and replaces the destination only after a complete, verified copy
