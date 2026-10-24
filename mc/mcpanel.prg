@@ -68,6 +68,10 @@ CLASS MCPanel
    DATA   cFilter     INIT "*"
    DATA   cCp         INIT ""        // display charset id (MCCpList); "" = no translation
    DATA   lBrief      INIT .F.
+   DATA   cListMode   INIT "full"     // full | brief | long | user
+   DATA   cUserFmt    INIT "half name | size"
+   DATA   lUserMiniStatus INIT .F.
+   DATA   hLong       INIT { => }   // name => { cPerms, cNlink, cOwner, cGroup }, lazy, local only
    DATA   cMode       INIT "listing"   // listing | quickview | info | tree | panelize
    DATA   aTree       INIT {}
    DATA   oApp
@@ -82,6 +86,9 @@ CLASS MCPanel
    METHOD GoDir( cPath )
    METHOD SortFiles()
    METHOD FillStat()
+   METHOD FillLong()
+   METHOD EntryLong( aEntry, nWidth )
+   METHOD EntryUser( aEntry, nWidth )
    METHOD Display()
    METHOD DisplayListing()
    METHOD DisplayQuickView()
@@ -135,7 +142,7 @@ METHOD Export() CLASS MCPanel
 
 return { ::cPath, ::aFiles, ::nCurrent, ::nOffset, ::cSort, ::lReverse, ;
          ::lCaseSens, ::cFilter, ::lBrief, ::cMode, ::aDirSizes, ::lSizesComputed, ;
-         ::hLinks }
+         ::hLinks, ::cListMode, ::cUserFmt, ::lUserMiniStatus }
 
 //-----------------------------------------------------------------------------------------//
 
@@ -154,6 +161,9 @@ METHOD Import( a ) CLASS MCPanel
    ::aDirSizes := a[ 11 ]
    ::lSizesComputed := a[ 12 ]
    ::hLinks := If( Len( a ) >= 13, a[ 13 ], { => } )
+   ::cListMode := If( Len( a ) >= 14, a[ 14 ], If( ::lBrief, "brief", "full" ) )
+   ::cUserFmt := If( Len( a ) >= 15, a[ 15 ], "half name | size" )
+   ::lUserMiniStatus := If( Len( a ) >= 16, a[ 16 ], .F. )
    ::FixScroll()
 
 return nil
@@ -193,6 +203,7 @@ METHOD Rescan() CLASS MCPanel
 
    ::hStat  := { => }
    ::hLinks := { => }
+   ::hLong  := { => }
 
    if ::cMode == "panelize"
       return nil   // panelize content is managed by the panelize action
@@ -424,7 +435,12 @@ METHOD MiniStatus() CLASS MCPanel
    if aEntry == nil
       return ""
    endif
-   if aEntry[ P_DIR ]
+   if ::cListMode == "user" .and. ::lUserMiniStatus
+      if ::cListMode == "user" .and. MCUFmtNeedsLong( ::cUserFmt )
+         ::FillLong()
+      endif
+      cInfo := AllTrim( ::EntryUser( aEntry, Max( 60, ::nRight - ::nLeft - 1 ) ) )
+   elseif aEntry[ P_DIR ]
       cInfo := If( aEntry[ P_NAME ] == "/..", "UP--DIR", "SUB-DIR" )
    else
       cInfo := If( aEntry[ P_SIZE ] < 0, "size unknown", AllTrim( Str( aEntry[ P_SIZE ], 14 ) ) + " bytes" )
@@ -784,9 +800,17 @@ METHOD DisplayListing() CLASS MCPanel
    local nRows := ::VisibleRows(), n, nIdx, aEntry, cLine, cColor
    local cHdr, aLay, nColW, nCols, nC, nX, nCellW, cName
 
+   if ::cListMode == "long" .or. ( ::cListMode == "user" .and. MCUFmtNeedsLong( ::cUserFmt ) )
+      ::FillLong()
+   endif
    // header
    if ::lBrief
       cHdr := " Name"
+   elseif ::cListMode == "long"
+      cHdr := " " + PadR( "Perms", 10 ) + " " + PadL( "Ln", 3 ) + " " + PadR( "Owner", 8 ) + ;
+              " " + PadR( "Group", 8 ) + " " + PadL( "Size", 8 ) + " " + PadR( "MTime", 12 ) + " Name"
+   elseif ::cListMode == "user"
+      cHdr := ""
    else
       cHdr := " Name" + Space( Max( 1, nW - 27 ) ) + "Size      MTime"
    endif
@@ -859,6 +883,12 @@ METHOD EntryLine( aEntry, nWidth ) CLASS MCPanel
    endif
    if ::lBrief
       return hb_UPadR( " " + cName, nWidth )
+   endif
+   if ::cListMode == "long"
+      return ::EntryLong( aEntry, nWidth )
+   endif
+   if ::cListMode == "user"
+      return ::EntryUser( aEntry, nWidth )
    endif
    if aEntry[ P_DIR ]
       cSize := If( aEntry[ P_NAME ] == "/..", "UP--DIR ", ;
@@ -1028,6 +1058,9 @@ function FilterMatch( cName, cFilter, lCaseSens, lShellPatterns )
    local aMasks := hb_aTokens( hb_defaultValue( cFilter, "*" ), "; " ), cMask
 
    hb_defaultValue( @lShellPatterns, .T. )
+   if Empty( cFilter ) .or. cFilter == "*"
+      return .T.   // match-all mask in either mode
+   endif
    if ! lShellPatterns
       // mc shell-patterns off: the mask is a plain substring, not a glob
       return If( lCaseSens, cFilter $ cName, Lower( cFilter ) $ Lower( cName ) )
@@ -1121,3 +1154,209 @@ function MCErrorMsg( oError )
    end
 
 return cMsg
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD FillLong() CLASS MCPanel
+
+   // perms/nlink/owner/group for the long and user listing formats: ONE
+   // batched stat call (local panels only; VFS providers do not carry
+   // these fields, so their cells stay blank). Output lines follow the
+   // argument order, so names never appear and quoting is safe.
+   local aNames := {}, a, cOut := "", cCmd := "", aLines, aT, n, nMax
+
+   if MCVfsKind( ::cPath ) != "local"
+      return nil
+   endif
+   for each a in ::aFiles
+      if a[ P_NAME ] != "/.." .and. ! hb_HHasKey( ::hLong, a[ P_NAME ] )
+         AAdd( aNames, a[ P_NAME ] )
+      endif
+   next
+   if Empty( aNames )
+      return nil
+   endif
+   for each a in aNames
+      cCmd += " " + ShellQuote( a )
+   next
+   if hb_ProcessRun( MCShWrap( "cd " + ShellQuote( ::cPath ) + ;
+          " && stat -c '%A|%h|%U|%G' --" + cCmd + " 2>/dev/null" ),, @cOut ) != 0
+      return nil
+   endif
+   aLines := hb_ATokens( cOut, Chr( 10 ) )
+   nMax := Min( Len( aLines ), Len( aNames ) )
+   for n := 1 to nMax
+      aT := hb_ATokens( aLines[ n ], "|" )
+      if Len( aT ) == 4
+         ::hLong[ aNames[ n ] ] := { AllTrim( aT[ 1 ] ), AllTrim( aT[ 2 ] ), ;
+                                     AllTrim( aT[ 3 ] ), AllTrim( aT[ 4 ] ) }
+      endif
+   next
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD EntryLong( aEntry, nWidth ) CLASS MCPanel
+
+   // ls -l style: perms nlink owner group size mtime name
+   local cName := MCCpDecode( aEntry[ P_NAME ], ::cCp ), aL, cSize, cTime
+   local cPerms := Space( 10 ), cNlink := Space( 3 ), cOwner := Space( 8 ), cGroup := Space( 8 )
+
+   if aEntry[ P_DIR ] .and. aEntry[ P_NAME ] != "/.."
+      cName += "/"
+   endif
+   if hb_HHasKey( ::hLinks, aEntry[ P_NAME ] )
+      cName += " -> " + MCCpDecode( ::hLinks[ aEntry[ P_NAME ] ], ::cCp )
+   endif
+   if hb_HHasKey( ::hLong, aEntry[ P_NAME ] )
+      aL := ::hLong[ aEntry[ P_NAME ] ]
+      cPerms := PadR( aL[ 1 ], 10 )
+      cNlink := PadL( aL[ 2 ], 3 )
+      cOwner := PadR( hb_UTF8SubStr( aL[ 3 ], 1, 8 ), 8 )
+      cGroup := PadR( hb_UTF8SubStr( aL[ 4 ], 1, 8 ), 8 )
+   endif
+   if aEntry[ P_DIR ]
+      cSize := If( aEntry[ P_NAME ] == "/..", "UP--DIR ", ;
+              If( ::lSizesComputed, Str( aEntry[ P_SIZE ], 8 ), "SUB-DIR " ) )
+   else
+      cSize := If( aEntry[ P_SIZE ] < 0, PadL( "?", 8 ), Str( aEntry[ P_SIZE ], 8 ) )
+   endif
+   cTime := MCShortDate( aEntry[ P_DATE ], aEntry[ P_TIME ] )
+
+return hb_UPadR( " " + cPerms + " " + cNlink + " " + cOwner + " " + cGroup + ;
+                 " " + cSize + " " + cTime + " " + ;
+                 hb_UTF8SubStr( cName, 1, Max( 1, nWidth - 56 ) ), nWidth )
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD EntryUser( aEntry, nWidth ) CLASS MCPanel
+
+   // user-defined listing format, subset of mc's: columns separated by
+   // "|", each column a list of fields: name ext size bsize mtime atime
+   // ctime perm nlink owner group type mark space; "half" gives the
+   // column half of the panel width, the rest share what remains.
+   // Unknown words are ignored.
+   local aCols := hb_ATokens( ::cUserFmt, "|" ), nCols := Len( aCols )
+   local aHalf := {}, aWords, cWord, n, nHalfW, nRest, nRestCols, nColW
+   local cLine := "", aL, cName, cPart, nFixed, aFields, lHasName
+
+   for n := 1 to nCols
+      aWords := hb_ATokens( aCols[ n ] )
+      AAdd( aHalf, AScan( aWords, { | w | Lower( w ) == "half" } ) > 0 )
+   next
+   nHalfW   := Int( nWidth / 2 )
+   nRestCols := 0
+   for n := 1 to nCols
+      if ! aHalf[ n ]
+         nRestCols++
+      endif
+   next
+   nRest := nWidth - ( nCols - nRestCols ) * nHalfW
+
+   for n := 1 to nCols
+      nColW := If( aHalf[ n ], nHalfW, Int( nRest / Max( 1, nRestCols ) ) )
+      if n == nCols .and. ! aHalf[ n ]
+         nColW := nWidth - hb_ULen( cLine )   // last column takes the remainder
+      endif
+      aWords := hb_ATokens( aCols[ n ] )
+      aFields := {}
+      for each cWord in aWords
+         if Lower( cWord ) != "half"
+            AAdd( aFields, Lower( cWord ) )
+         endif
+      next
+      // fixed-width fields first; name/ext share what remains
+      nFixed := 0
+      lHasName := .F.
+      for each cWord in aFields
+         do case
+            case cWord == "name" .or. cWord == "ext"
+               lHasName := .T.
+            case cWord == "size" .or. cWord == "bsize" ; nFixed += 8 + 1
+            case cWord == "mtime" .or. cWord == "atime" .or. cWord == "ctime" ; nFixed += 12 + 1
+            case cWord == "perm" ; nFixed += 10 + 1
+            case cWord == "nlink" ; nFixed += 3 + 1
+            case cWord == "owner" .or. cWord == "group" ; nFixed += 8 + 1
+            case cWord == "type" .or. cWord == "mark" .or. cWord == "space" ; nFixed += 1 + 1
+         endcase
+      next
+
+      cPart := ""
+      for each cWord in aFields
+         if ! Empty( cPart )
+            cPart += " "
+         endif
+         do case
+            case cWord == "name" .or. cWord == "ext"
+               cName := If( cWord == "ext", hb_FNameExt( aEntry[ P_NAME ] ), ;
+                            MCCpDecode( aEntry[ P_NAME ], ::cCp ) + ;
+                            If( aEntry[ P_DIR ] .and. aEntry[ P_NAME ] != "/..", "/", "" ) )
+               if cWord == "name" .and. hb_HHasKey( ::hLinks, aEntry[ P_NAME ] )
+                  cName += " -> " + MCCpDecode( ::hLinks[ aEntry[ P_NAME ] ], ::cCp )
+               endif
+               cPart += hb_UPadR( hb_UTF8SubStr( cName, 1, Max( 0, nColW - nFixed - 1 ) ), ;
+                                  Max( 0, nColW - nFixed - 1 ) )
+            case cWord == "size" .or. cWord == "bsize"
+               if aEntry[ P_DIR ]
+                  cPart += If( aEntry[ P_NAME ] == "/..", "UP--DIR ", ;
+                          If( ::lSizesComputed, Str( aEntry[ P_SIZE ], 8 ), "SUB-DIR " ) )
+               else
+                  cPart += If( aEntry[ P_SIZE ] < 0, PadL( "?", 8 ), Str( aEntry[ P_SIZE ], 8 ) )
+               endif
+            case cWord == "mtime"
+               cPart += MCShortDate( aEntry[ P_DATE ], aEntry[ P_TIME ] )
+            case cWord == "atime" .or. cWord == "ctime"
+               cPart += Space( 12 )   // epoch atime/ctime: not converted in the demo, blank cell
+            case cWord == "perm"
+               cPart += If( hb_HHasKey( ::hLong, aEntry[ P_NAME ] ), PadR( ::hLong[ aEntry[ P_NAME ], 1 ], 10 ), Space( 10 ) )
+            case cWord == "nlink"
+               cPart += If( hb_HHasKey( ::hLong, aEntry[ P_NAME ] ), PadL( ::hLong[ aEntry[ P_NAME ], 2 ], 3 ), Space( 3 ) )
+            case cWord == "owner"
+               cPart += If( hb_HHasKey( ::hLong, aEntry[ P_NAME ] ), PadR( ::hLong[ aEntry[ P_NAME ], 3 ], 8 ), Space( 8 ) )
+            case cWord == "group"
+               cPart += If( hb_HHasKey( ::hLong, aEntry[ P_NAME ] ), PadR( ::hLong[ aEntry[ P_NAME ], 4 ], 8 ), Space( 8 ) )
+            case cWord == "type"
+               if hb_HHasKey( ::hLong, aEntry[ P_NAME ] )
+                  cPart += Left( ::hLong[ aEntry[ P_NAME ], 1 ], 1 )
+               else
+                  cPart += If( aEntry[ P_DIR ], "d", "-" )
+               endif
+            case cWord == "mark"
+               cPart += If( aEntry[ P_MARKED ], "*", " " )
+            case cWord == "space"
+               cPart += " "
+         endcase
+      next
+      cLine += hb_UPadR( hb_UTF8SubStr( cPart, 1, Max( 0, nColW - 1 ) ), nColW )
+   next
+
+return hb_UPadR( cLine, nWidth )
+
+//-----------------------------------------------------------------------------------------//
+
+function MCShortDate( dDate, cTime )
+
+   // mc-style 12-char timestamp: "Oct 24 19:20"
+   local aMon := { "Jan", "Feb", "Mar", "Apr", "May", "Jun", ;
+                   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" }
+
+   if Empty( dDate )
+      return Space( 12 )
+   endif
+
+return aMon[ Month( dDate ) ] + " " + PadL( hb_ntos( Day( dDate ) ), 2 ) + " " + PadR( Left( cTime, 5 ), 5 )
+
+function MCUFmtNeedsLong( cFmt )
+
+   // does the user format reference stat-backed fields (perm/nlink/owner/group/type)?
+   local cWord
+
+   for each cWord in hb_ATokens( StrTran( Lower( cFmt ), "|", " " ) )
+      if cWord == "perm" .or. cWord == "nlink" .or. cWord == "owner" .or. ;
+         cWord == "group" .or. cWord == "type"
+         return .T.
+      endif
+   next
+
+return .F.
