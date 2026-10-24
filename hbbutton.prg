@@ -3,7 +3,7 @@ function BtnDisplay()
    local Self := QSelf()
 
    LOCAL cColor
-   LOCAL cStyle := HbBtnPadChars()   // CP-aware caption pads (CP437: two Chr(255))
+   LOCAL aPads := HbBtnPadChars()   // CP-aware caption pads (CP437: two Chr(255))
    LOCAL cCaption := ::cCaption
    LOCAL nRow := ::nRow
    LOCAL nCol := ::nCol
@@ -27,15 +27,30 @@ function BtnDisplay()
       cCaption := hb_ULeft( cCaption, nPos - 1 ) + hb_USubStr( cCaption, nPos + 1 )
    ENDIF
 
-   IF ! Empty( cStyle )
+   IF Len( ::cStyle ) == 2 .AND. ::cStyle != "<>"
+
+      // bracket look (STYLE "[]" etc.): one row, no shadow
+      hb_DispOutAt( ::nRow, ::nCol, ;
+         hb_ULeft( ::cStyle, 1 ) + " " + cCaption + " " + hb_USubStr( ::cStyle, 2, 1 ), cColor )
+      IF nPos != 0
+         hb_DispOutAt( ::nRow, ::nCol + nPos + 1, ;
+            hb_USubStr( cCaption, nPos, 1 ), hb_ColorIndex( ::cColorSpec, 3 ) )
+      ENDIF
+
+      DispEnd()
+
+      RETURN Self
+   ENDIF
+
+   IF ! Empty( aPads )
 
       nCol++
 
       if ::lBuffer
          hb_DispOutAt( ::nRow, ::nCol, " ", "N/W" )
       endif
-      hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), cStyle[ 1 ], cColor )
-      hb_DispOutAt( ::nRow, ::nCol + hb_ULen( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), cStyle[ 2 ], cColor )
+      hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), aPads[ 1 ], cColor )
+      hb_DispOutAt( ::nRow, ::nCol + hb_ULen( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), aPads[ 2 ], cColor )
    ENDIF
 
    IF ! Empty( cCaption )
