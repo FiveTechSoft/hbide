@@ -844,8 +844,8 @@ procedure MenuTests()
    Check( "get palette default focus", DsnClrGetFor( "W+/W" ) == "W/B,W+/B,W+/W,GR+/W" )
    Check( "checkbox palette default focus", DsnClrCheckBoxFor( "W+/W" ) == "N/W,BG+/W,N/W,GR+/W" )
    Check( "button palette default focus", DsnClrButtonFor( "W+/W" ) == "GR+/G,W+/G,N/G,BG+/G" )
-   Check( "radio palette default focus", DsnClrRadioFor( "W+/W" ) == "N/W,N/W,N/W,BG+/W,N/W,GR+/W,BG+/W" )
-   Check( "listbox palette default focus", DsnClrListBoxFor( "W+/W" ) == "N/BG,GR+/BG,N/BG,W+/G,W+/W,W+/W,GR+/W" )
+   Check( "radio palette default focus", DsnClrRadioFor( "W+/W" ) == "N/W,N/W,N/W,N+/W,N/W,GR+/W,BG+/W" )
+   Check( "listbox palette default focus", DsnClrListBoxFor( "W+/W" ) == "N/W,N+/W,N/W,W+/G,W+/W,W+/W,GR+/W" )
 
    // custom focus swaps the focused slots, white and colored backgrounds
    Check( "get focus custom white", DsnClrGetFor( "W+/W", "Y+/R" ) == "W/B,Y+/R,W+/W,GR+/W" )
