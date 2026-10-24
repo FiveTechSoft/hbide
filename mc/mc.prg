@@ -1577,7 +1577,7 @@ METHOD FileView() CLASS MCApp
       cFull := MCEntryPath( ::ActivePanel(), aEntry )
       if MCVfsKind( cFull ) == "local"
          if ! Empty( ::ActivePanel():cCp )
-            MCViewerText( cFull + "  [" + ::ActivePanel():cCp + "]", ;
+            MCViewerText( MCCpDecode( cFull, ::ActivePanel():cCp ) + "  [" + ::ActivePanel():cCp + "]", ;
                           MCCpDecode( MemoRead( cFull ), ::ActivePanel():cCp ) )
          else
             MCViewer( cFull )
