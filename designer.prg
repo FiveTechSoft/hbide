@@ -59,6 +59,8 @@ CLASS HbDesigner
    DATA lEnd         INIT .F.
    DATA lPlacing     INIT .F.         // placing a new control
    DATA lViewClamp   INIT .F.         // design window is smaller than the dialog (viewport clamp)
+   DATA nViewRow     INIT 0           // model coords shown at the window's client origin (pan)
+   DATA nViewCol     INIT 0
    DATA cPlacingType INIT ""
    DATA nGhostRow    INIT 1           // ghost position, client relative
    DATA nGhostCol    INIT 1
@@ -98,6 +100,8 @@ CLASS HbDesigner
    METHOD HitTest( nMRow, nMCol )
    METHOD LoadJson()
    METHOD MoveSelected( nDRow, nDCol )
+   METHOD PanView( nDRow, nDCol )
+   METHOD EnsureSelectedVisible()
    METHOD PopupMenu()
    METHOD Redraw()
    METHOD ResumeUI()
@@ -208,7 +212,7 @@ METHOD Activate() CLASS HbDesigner
 
          case nKey == K_DOWN
             if ::lPlacing
-               ::nGhostRow = Min( ::oWnd:nBottom - ::oWnd:nTop - 2, ::nGhostRow + 1 )
+               ::nGhostRow = Min( ::nDlgHeight - 2, ::nGhostRow + 1 )
                ::Redraw()
             else
                ::MoveSelected( 1, 0 )
@@ -224,16 +228,38 @@ METHOD Activate() CLASS HbDesigner
 
          case nKey == K_RIGHT
             if ::lPlacing
-               ::nGhostCol = Min( ::oWnd:nRight - ::oWnd:nLeft - 2, ::nGhostCol + 1 )
+               ::nGhostCol = Min( ::nDlgWidth - 2, ::nGhostCol + 1 )
                ::Redraw()
             else
                ::MoveSelected( 0, 1 )
+            endif
+
+         case nKey == K_CTRL_UP
+            if ! ::lPlacing
+               ::PanView( -4, 0 )
+            endif
+
+         case nKey == K_CTRL_DOWN
+            if ! ::lPlacing
+               ::PanView( 4, 0 )
+            endif
+
+         case nKey == K_CTRL_LEFT
+            if ! ::lPlacing
+               ::PanView( 0, -4 )
+            endif
+
+         case nKey == K_CTRL_RIGHT
+            if ! ::lPlacing
+               ::PanView( 0, 4 )
             endif
 
          case nKey == K_TAB
             if ! Empty( ::aControls )
                ::nSelected = If( ::nSelected >= Len( ::aControls ), 1, ::nSelected + 1 )
                ::nInspField = 1
+               ::EnsureSelectedVisible()
+               ::Redraw()
                ::DrawInspector()
             endif
 
@@ -241,14 +267,16 @@ METHOD Activate() CLASS HbDesigner
             if ! Empty( ::aControls )
                ::nSelected = If( ::nSelected <= 1, Len( ::aControls ), ::nSelected - 1 )
                ::nInspField = 1
+               ::EnsureSelectedVisible()
+               ::Redraw()
                ::DrawInspector()
             endif
 
          case nKey == K_LBUTTONDOWN
             if ::lPlacing
                if ::HitClient( MRow(), MCol() )
-                  ::nGhostRow = MRow() - ::oWnd:nTop - 1
-                  ::nGhostCol = MCol() - ::oWnd:nLeft - 1
+                  ::nGhostRow = MRow() - ::oWnd:nTop - 1 + ::nViewRow
+                  ::nGhostCol = MCol() - ::oWnd:nLeft - 1 + ::nViewCol
                   ::AddControl( ::cPlacingType )
                endif
             else
@@ -421,12 +449,56 @@ METHOD MoveSelected( nDRow, nDCol ) CLASS HbDesigner
    if ::nSelected >= 1 .and. ::nSelected <= Len( ::aControls )
       oCtrl   = ::aControls[ ::nSelected ]
       aSize   = DsnControlSize( oCtrl )
-      nMaxRow = ::oWnd:nBottom - ::oWnd:nTop - 1 - aSize[ 2 ]
-      nMaxCol = ::oWnd:nRight  - ::oWnd:nLeft - 1 - aSize[ 1 ]
+      nMaxRow = ::nDlgHeight - 1 - aSize[ 2 ]
+      nMaxCol = ::nDlgWidth  - 1 - aSize[ 1 ]
       oCtrl[ "row" ] = Max( 0, Min( nMaxRow, oCtrl[ "row" ] + nDRow ) )
       oCtrl[ "col" ] = Max( 0, Min( nMaxCol, oCtrl[ "col" ] + nDCol ) )
       ::lDirty = .T.
+      ::EnsureSelectedVisible()
       ::Redraw()
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+// pan the canvas over a dialog larger than the window (viewport clamp);
+// model coordinates and codegen are never touched
+
+METHOD PanView( nDRow, nDCol ) CLASS HbDesigner
+
+   local nViewH := ::oWnd:nBottom - ::oWnd:nTop - 1
+   local nViewW := ::oWnd:nRight  - ::oWnd:nLeft - 1
+
+   ::nViewRow = DsnPanClamp( ::nViewRow + nDRow, ::nDlgHeight, nViewH )
+   ::nViewCol = DsnPanClamp( ::nViewCol + nDCol, ::nDlgWidth,  nViewW )
+   ::Redraw()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+// shift the pan origin so the selected control is visible on the canvas
+
+METHOD EnsureSelectedVisible() CLASS HbDesigner
+
+   local oCtrl, aSize, nViewH, nViewW
+
+   if ::lViewClamp .and. ::nSelected >= 1 .and. ::nSelected <= Len( ::aControls )
+      oCtrl  = ::aControls[ ::nSelected ]
+      aSize  = DsnControlSize( oCtrl )
+      nViewH = ::oWnd:nBottom - ::oWnd:nTop - 1
+      nViewW = ::oWnd:nRight  - ::oWnd:nLeft - 1
+      if oCtrl[ "row" ] < ::nViewRow
+         ::nViewRow = oCtrl[ "row" ]
+      elseif oCtrl[ "row" ] + aSize[ 2 ] > ::nViewRow + nViewH
+         ::nViewRow = oCtrl[ "row" ] + aSize[ 2 ] - nViewH
+      endif
+      if oCtrl[ "col" ] < ::nViewCol
+         ::nViewCol = oCtrl[ "col" ]
+      elseif oCtrl[ "col" ] + aSize[ 1 ] > ::nViewCol + nViewW
+         ::nViewCol = oCtrl[ "col" ] + aSize[ 1 ] - nViewW
+      endif
+      ::nViewRow = DsnPanClamp( ::nViewRow, ::nDlgHeight, nViewH )
+      ::nViewCol = DsnPanClamp( ::nViewCol, ::nDlgWidth,  nViewW )
    endif
 
 return nil
@@ -437,16 +509,16 @@ METHOD DragControl( nIndex, nMRow, nMCol ) CLASS HbDesigner
 
    local oCtrl  := ::aControls[ nIndex ]
    local aSize  := DsnControlSize( oCtrl )
-   local nOffR  := nMRow - ( ::oWnd:nTop + 1 + oCtrl[ "row" ] )
-   local nOffC  := nMCol - ( ::oWnd:nLeft + 1 + oCtrl[ "col" ] )
+   local nOffR  := nMRow - ( ::oWnd:nTop + 1 + oCtrl[ "row" ] - ::nViewRow )
+   local nOffC  := nMCol - ( ::oWnd:nLeft + 1 + oCtrl[ "col" ] - ::nViewCol )
    local nNewRow, nNewCol, nMaxRow, nMaxCol
 
-   nMaxRow = ::oWnd:nBottom - ::oWnd:nTop - 1 - aSize[ 2 ]
-   nMaxCol = ::oWnd:nRight  - ::oWnd:nLeft - 1 - aSize[ 1 ]
+   nMaxRow = ::nDlgHeight - 1 - aSize[ 2 ]
+   nMaxCol = ::nDlgWidth  - 1 - aSize[ 1 ]
 
    while MLeftDown()
-      nNewRow = Max( 0, Min( nMaxRow, MRow() - ::oWnd:nTop - 1 - nOffR ) )
-      nNewCol = Max( 0, Min( nMaxCol, MCol() - ::oWnd:nLeft - 1 - nOffC ) )
+      nNewRow = Max( 0, Min( nMaxRow, MRow() - ::oWnd:nTop - 1 - nOffR + ::nViewRow ) )
+      nNewCol = Max( 0, Min( nMaxCol, MCol() - ::oWnd:nLeft - 1 - nOffC + ::nViewCol ) )
       if nNewRow != oCtrl[ "row" ] .or. nNewCol != oCtrl[ "col" ]
          oCtrl[ "row" ] = nNewRow
          oCtrl[ "col" ] = nNewCol
@@ -471,8 +543,8 @@ METHOD HitTest( nMRow, nMCol ) CLASS HbDesigner
    for n = Len( ::aControls ) to 1 step -1
       oCtrl = ::aControls[ n ]
       aSize = DsnControlSize( oCtrl )
-      nARow = ::oWnd:nTop + 1 + oCtrl[ "row" ]
-      nACol = ::oWnd:nLeft + 1 + oCtrl[ "col" ]
+      nARow = ::oWnd:nTop + 1 + oCtrl[ "row" ] - ::nViewRow
+      nACol = ::oWnd:nLeft + 1 + oCtrl[ "col" ] - ::nViewCol
       if nMRow >= nARow .and. nMRow < nARow + aSize[ 2 ] .and. ;
          nMCol >= nACol .and. nMCol < nACol + aSize[ 1 ]
          return n
@@ -521,7 +593,7 @@ METHOD DrawControls() CLASS HbDesigner
    DispBegin()
    for n = 1 to Len( ::aControls )
       oCtrl = ::aControls[ n ]
-      DsnDrawControl( ::oWnd, oCtrl, n == ::nSelected )
+      DsnDrawControl( ::oWnd, oCtrl, n == ::nSelected, NIL, ::nViewRow, ::nViewCol )
    next
 
    if ::lPlacing
@@ -530,7 +602,7 @@ METHOD DrawControls() CLASS HbDesigner
                                 "col"      => ::nGhostCol, ;
                                 "caption"  => "Label", ;
                                 "variable" => "cVar", ;
-                                "width"    => 10 }, .T., CLR_GHOST )
+                                "width"    => 10 }, .T., CLR_GHOST, ::nViewRow, ::nViewCol )
    endif
 
    ::DrawInspector()
@@ -798,6 +870,8 @@ METHOD FitWindow() CLASS HbDesigner
                               aSize[ 1 ], aSize[ 2 ], MaxCol(), MaxRow() )
 
    ::lViewClamp = aSize[ 1 ] < ::nDlgWidth .or. aSize[ 2 ] < ::nDlgHeight
+   ::nViewRow   = DsnPanClamp( ::nViewRow, ::nDlgHeight, aSize[ 2 ] - 2 )
+   ::nViewCol   = DsnPanClamp( ::nViewCol, ::nDlgWidth,  aSize[ 1 ] - 2 )
 
    with object ::oWnd
       :nLeft   = aPos[ 1 ]
@@ -916,6 +990,8 @@ METHOD LoadJson() CLASS HbDesigner
    ::nDlgHeight  = Max( ::nDlgHeight, aMin[ 2 ] )
    ::nSelected   = 0
    ::lPlacing    = .F.
+   ::nViewRow    = 0
+   ::nViewCol    = 0
    if nSkipped > 0
       // entries were skipped: keep the original file intact by asking a name
       ::cFileName   = ""
@@ -935,7 +1011,8 @@ METHOD LoadJson() CLASS HbDesigner
 
    ::Redraw()
    if nSkipped == 0
-      ::ShowHint( "Loaded " + cFile )
+      ::ShowHint( "Loaded " + cFile + ;
+         If( ::lViewClamp, " (small viewport: Ctrl+Arrows pan, Tab reveals)", "" ) )
    endif
 
 return nil
@@ -1465,10 +1542,9 @@ return nMax
 // draw one control inside the design window (passive, design time only)
 // nRow/nCol in the control hash are client relative (0 based)
 
-procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
+procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
 
-   local nARow := oWnd:nTop + 1 + oCtrl[ "row" ]
-   local nACol := oWnd:nLeft + 1 + oCtrl[ "col" ]
+   local nARow, nACol
    local nMaxCol := Min( oWnd:nRight - 1, MaxCol() )
    local cCaption := hb_HGetDef( oCtrl, "caption", "" )
    local aDlgPair := DsnDlgPair( oWnd:cColor )
@@ -1482,6 +1558,11 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
 
    hb_default( @lSelected, .F. )
    hb_default( @cSelColor, CLR_SELECTED )
+   hb_default( @nOffRow, 0 )
+   hb_default( @nOffCol, 0 )
+
+   nARow = oWnd:nTop + 1 + oCtrl[ "row" ] - nOffRow
+   nACol = oWnd:nLeft + 1 + oCtrl[ "col" ] - nOffCol
 
    if nARow <= oWnd:nTop .or. nARow >= oWnd:nBottom .or. ;
       nARow < 0 .or. nARow > MaxRow() .or. nACol > nMaxCol .or. nACol < 0
@@ -2103,6 +2184,13 @@ return "N/" + aPair[ 2 ]
 function DsnViewSize( nDlgWidth, nDlgHeight, nMaxCol, nMaxRow )
 
 return { Min( nDlgWidth, nMaxCol - 4 ), Min( nDlgHeight, nMaxRow - 3 ) }
+
+//-----------------------------------------------------------------------------------------//
+// clamp a pan origin so the window never scrolls past the dialog edges
+
+function DsnPanClamp( nOff, nModel, nView )
+
+return Max( 0, Min( nOff, Max( 0, nModel - nView ) ) )
 
 //-----------------------------------------------------------------------------------------//
 
