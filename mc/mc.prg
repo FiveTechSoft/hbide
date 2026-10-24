@@ -1128,32 +1128,51 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    local lRev := oPanel:lReverse, lCase := oPanel:lCaseSens
    local cRadStyle := "(" + Chr( 7 ) + " )"
    local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
+   local cFrame  := hb_UTF8ToStr( "┌─┐│┘─└│" )
+   local nT, nL
 
-   oDlg = HBWindow():Dialog( "Sort order", 34, 12, "W+/W" )
+   oDlg = HBWindow():Dialog( "Sort order", 38, 15, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
+   nT := oDlg:nTop
+   nL := oDlg:nLeft
+
+   // Group: Sort
+   hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 35, cFrame, "N/W" )
+   hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 34,,, "N/BG" )
+   hb_DispOutAt( nT + 1, nL + 4, " Sort ", "N/W" )
 
    for n := 1 to 5
-      aRad[ n ] := RadioButto( oDlg:nTop + 1 + n, oDlg:nLeft + 4, aNames[ n ] )
+      aRad[ n ] := RadioButto( nT + 1 + n, nL + 5, aNames[ n ] )
    next
    AEval( aRad, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
    oDlg:cargo := aRad
 
-   @ oDlg:nTop + 2, oDlg:nLeft + 3, oDlg:nTop + 6, oDlg:nLeft + 22 GET cSort ;
+   @ nT + 2, nL + 4, nT + 6, nL + 33 GET cSort ;
       RADIOGROUP aRad STYLE cRadStyle
    ATail( GetList ):Control:coldBox := ""
    ATail( GetList ):Control:hotBox := ""
+   // Redraw group frame (radiogroup Display already drew its own frame)
+   hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 35, cFrame, "N/W" )
+   hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 34,,, "N/BG" )
+   hb_DispOutAt( nT + 1, nL + 4, " Sort ", "N/W" )
+   ATail( GetList ):Control:Display()
 
-   @ oDlg:nTop + 7, oDlg:nLeft + 4 GET lRev ;
+   // Group: Options
+   hb_DispBox( nT + 8, nL + 2, nT + 11, nL + 35, cFrame, "N/W" )
+   hb_Scroll( nT + 9, nL + 3, nT + 10, nL + 34,,, "N/BG" )
+   hb_DispOutAt( nT + 8, nL + 4, " Options ", "N/W" )
+
+   @ nT + 9, nL + 5 GET lRev ;
       CHECKBOX CAPTION "&Reverse" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
-   @ oDlg:nTop + 8, oDlg:nLeft + 4 GET lCase ;
+   @ nT + 10, nL + 5 GET lCase ;
       CHECKBOX CAPTION "&Case sensitive" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
-   @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
+   @ oDlg:nBottom - 2, nL + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
@@ -1978,7 +1997,7 @@ return nil
 
 METHOD UserMenu() CLASS MCApp
 
-   local aItems := {}, aCmds := {}, cLine, cFile, n, cOut := "", cCmd
+   local aItems := {}, aCmds := {}, cLine, cFile, n, cOut := "", cCmd, nRet
    local cLocal := hb_FNameMerge( ::ActivePanel():cPath, ".mc.menu" )
    local cHome := hb_DirSepAdd( hb_GetEnv( "HOME" ) ) + ".mc.menu"
 
@@ -1997,7 +2016,7 @@ METHOD UserMenu() CLASS MCApp
       next
    else
       aItems := { "c  Compile current file with hbmk2", "g  git status", "l  ls -la" }
-      aCmds  := { "hbmk2 %f 2>&1 || true", "git status 2>&1 || true", "ls -la" }
+      aCmds  := { "hbmk2 %f 2>&1", "git status 2>&1", "ls -la" }
    endif
 
    n := ::DlgList( "User menu" + If( Empty( cFile ), " (built-in defaults)", "" ), aItems )
@@ -2010,8 +2029,9 @@ METHOD UserMenu() CLASS MCApp
          cCmd := StrTran( cCmd, "%f", ShellQuote( hb_FNameMerge( ::ActivePanel():cPath, ;
                          ::ActivePanel():Current()[ P_NAME ] ) ) )
       endif
-      hb_ProcessRun( MCShWrap( "cd " + ShellQuote( ::ActivePanel():cPath ) + " && " + cCmd + " 2>&1" ),, @cOut )
-      ::cLastOutput := "$ " + cCmd + hb_eol() + cOut
+      nRet := hb_ProcessRun( MCShWrap( "cd " + ShellQuote( ::ActivePanel():cPath ) + " && " + cCmd + " 2>&1" ),, @cOut )
+      ::cLastOutput := "$ " + cCmd + hb_eol() + cOut + ;
+         If( nRet != 0, hb_eol() + "(exit code " + hb_ntos( nRet ) + ")", "" )
       ::ShowOutput( ::cLastOutput )
       ::Rescan()
    endif
@@ -2180,8 +2200,9 @@ METHOD EditMenuFile() CLASS MCApp
 
    if ! hb_FileExists( cFile )
       hb_MemoWrit( cFile, "# user menu: key|label|command  (%f = current file)" + hb_eol() + ;
-                   "c|Compile current file|hbmk2 %f" + hb_eol() + ;
-                   "g|git status|git status" + hb_eol() )
+                   "c|Compile current file with hbmk2|hbmk2 %f 2>&1" + hb_eol() + ;
+                   "g|git status|git status 2>&1" + hb_eol() + ;
+                   "l|ls -la|ls -la" + hb_eol() )
    endif
    MCEditFile( cFile )
    ::Repaint()
@@ -2322,4 +2343,3 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    ::Repaint()
 
 return nil
-
