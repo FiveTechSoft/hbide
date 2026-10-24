@@ -1,0 +1,57 @@
+{
+ "name": "DemoClean",
+ "caption": "Demo Dialog",
+ "width": 56,
+ "height": 18,
+ "color": "W+/B",
+ "controls": [
+  {
+   "type": "say",
+   "row": 2,
+   "col": 3,
+   "caption": "Name:"
+  },
+  {
+   "type": "get",
+   "row": 2,
+   "col": 10,
+   "variable": "cName",
+   "width": 20
+  },
+  {
+   "type": "checkbox",
+   "row": 4,
+   "col": 3,
+   "caption": "&Acepta terminos",
+   "variable": "lAcepta"
+  },
+  {
+   "type": "radiogroup",
+   "row": 6,
+   "col": 3,
+   "variable": "nOpcion",
+   "items": "&Uno,&Dos,&Tres"
+  },
+  {
+   "type": "listbox",
+   "row": 6,
+   "col": 20,
+   "variable": "nLista",
+   "items": "Alpha,Beta,Gamma"
+  },
+  {
+   "type": "button",
+   "row": 12,
+   "col": 20,
+   "caption": "&Build",
+   "accelerator": "B",
+   "action": "Alert( \"Build OK\" )"
+  },
+  {
+   "type": "button",
+   "row": 12,
+   "col": 34,
+   "caption": "&Cancel"
+  }
+ ]
+}
