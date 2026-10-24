@@ -12,6 +12,7 @@
 #include "box.ch"
 #include "mc.ch"
 #include "directry.ch"
+#include "fileio.ch"
 
 #xcommand DEFAULT <uVar1> := <uVal1> ;
    [, <uVarN> := <uValN> ] => ;
@@ -253,9 +254,25 @@ METHOD New( cStartDir ) CLASS MCApp
    ::oMenu := ::BuildMenu()
    SetCursor( SC_NONE )
 
+   __MCApp( Self )
+
    ErrorBlock( { | oError | MCMsgBox( "Error", MCErrorMsg( oError ) ) } )
 
 return Self
+
+//-----------------------------------------------------------------------------------------//
+
+// Module-level handle to the running app, for plain functions (MCMsgBox is
+// also the ErrorBlock handler, where Self is not available).
+function __MCApp( oApp )
+
+   static s_oApp
+
+   if PCount() > 0
+      s_oApp := oApp
+   endif
+
+return s_oApp
 
 //-----------------------------------------------------------------------------------------//
 
@@ -896,7 +913,7 @@ function MCMsgBox( cTitle, cText )
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
-   MCDlgEscArm( oDlg, ::lSinglePress )
+   MCDlgEscArm( oDlg, If( __MCApp() != NIL, __MCApp():lSinglePress, .T. ) )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
@@ -2525,7 +2542,7 @@ function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
          return .F.
       endif
    endif
-return FCopyText( cSrc, cDst )
+return FCopyText( cSrc, cDst, oApp:lPreallocate, oApp:lCowClone )
 
 static function MCRealPath( cPath )
    local cOut := ""
@@ -2542,10 +2559,22 @@ return ! Empty( cOne ) .and. cOne == cTwo
 
 //-----------------------------------------------------------------------------------------//
 
-function FCopyText( cSrc, cDst )
+function FCopyText( cSrc, cDst, lPrealloc, lCowClone )
 
    local nSrc, nDst, cBuf := Space( 65536 ), nRead, lOk, cTmp := ""
-   local cBak := "", nBak, lRestored
+   local cBak := "", nBak, lRestored, nSize
+
+   lPrealloc := hb_defaultValue( lPrealloc, .F. )
+   lCowClone := hb_defaultValue( lCowClone, .F. )
+
+   // mc file_cloning (lib/global.c:110, default TRUE): whole-file COW clone
+   // first, only when the destination does not exist (mc file.c:2606); any
+   // failure falls back to the normal copy, like mc.
+   if lCowClone .and. ! hb_FileExists( cDst )
+      if MC_CloneFile( cSrc, cDst ) == 0
+         return .T.
+      endif
+   endif
 
    if hb_DirExists( cDst )
       MCMsgBox( "Copy", "Destination is a directory:" + Chr( 10 ) + cDst )
@@ -2565,6 +2594,16 @@ function FCopyText( cSrc, cDst )
       FClose( nSrc )
       MCMsgBox( "Copy", "Cannot create:" + Chr( 10 ) + cDst )
       return .F.
+   endif
+   // mc preallocate_space (lib/global.c:109, default FALSE; file.c:2701):
+   // reserve the destination space up front; on failure copy anyway, like
+   // mc's fallback after the error prompt.
+   if lPrealloc
+      nSize := FSeek( nSrc, 0, FS_END )
+      FSeek( nSrc, 0, FS_SET )
+      if nSize > 0
+         MC_FAllocate( nDst, 0, nSize )
+      endif
    endif
    while ( nRead := FRead( nSrc, @cBuf, 65536 ) ) > 0
       if FWrite( nDst, Left( cBuf, nRead ) ) != nRead
