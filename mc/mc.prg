@@ -102,7 +102,7 @@ CLASS MCApp
    DATA   lShowAllAmbig INIT .F.  // mc default FALSE (mc lib/global.c:76)
    DATA   lRotatingDash INIT .T.  // mc default TRUE (mc layout.c:86)
    DATA   lPreallocate  INIT .F.  // mc: vfs preallocate_space, default FALSE
-   DATA   lCowClone     INIT .F.  // mc: vfs file_cloning, default FALSE
+   DATA   lCowClone     INIT .T.  // mc: vfs file_cloning, default TRUE (lib/global.c:110)
    DATA   lSIUnits        INIT .F.
    DATA   cExternalView   INIT "less"
    DATA   cExternalEdit   INIT "vi"
@@ -2261,7 +2261,7 @@ METHOD FileCopyBg( oSrc, aMarked, cDest ) CLASS MCApp
    if ! Empty( aSkipped )
       MCMsgBox( "Copy", hb_ntos( Len( aSkipped ) ) + " item(s) skipped (unsafe, unsupported or kept)." )
    endif
-   MCJobsAdd( aFiles, hb_ntos( Len( aMarked ) ) + " item(s) -> " + cDest )
+   MCJobsAdd( aFiles, hb_ntos( Len( aMarked ) ) + " item(s) -> " + cDest,, ::lPreallocate, ::lCowClone )
 
 return .T.
 
@@ -2313,7 +2313,7 @@ METHOD FileMoveBg( oSrc, aMarked, cDest ) CLASS MCApp
       MCMsgBox( "Rename/Move", hb_ntos( Len( aSkipped ) ) + ;
                 " item(s) skipped (unsafe, unsupported or destination exists)." )
    endif
-   MCJobsAdd( aFiles, "move " + hb_ntos( Len( aMarked ) ) + " item(s) -> " + cDest, .T. )
+   MCJobsAdd( aFiles, "move " + hb_ntos( Len( aMarked ) ) + " item(s) -> " + cDest, .T., ::lPreallocate, ::lCowClone )
 
 return .T.
 
