@@ -94,6 +94,23 @@ procedure Main()
    oD:InspAdjust( -100 )
    Check( "insp width min 4", oD:aControls[ 1 ][ "width" ] == 4 )
 
+   // move/drop clamps match EditProperties: last usable origin is
+   // nDlgHeight-2-aSize (borders take rows/cols 0 and n-1, row 0 maps to 1)
+   oD:nSelected = 1   // the get: height 1, width already adjusted to 4 above
+   oD:MoveSelected( 100, 100 )
+   Check( "move clamps row", oD:aControls[ 1 ][ "row" ] == 12 - 2 - 1 )
+   Check( "move clamps col", oD:aControls[ 1 ][ "col" ] == 40 - 2 - 4 )
+   oD:MoveSelected( -100, -100 )
+   Check( "move clamps zero", oD:aControls[ 1 ][ "row" ] == 0 .and. ;
+          oD:aControls[ 1 ][ "col" ] == 0 )
+
+   oD:nGhostRow = 100
+   oD:nGhostCol = 100
+   oD:AddControl( "listbox" )
+   Check( "drop clamps listbox row", oD:aControls[ Len( oD:aControls ) ][ "row" ] == 12 - 2 - 6 )
+   Check( "drop clamps listbox col", oD:aControls[ Len( oD:aControls ) ][ "col" ] == 40 - 2 - 20 )
+   hb_ADel( oD:aControls, Len( oD:aControls ), .T. )
+
    // text edits: trim, sanitize, live dialog caption
    oD:nSelected = 2
    oD:InspSetText( "caption", "  Save  " )
