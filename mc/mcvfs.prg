@@ -228,7 +228,9 @@ function MCVfsCleanup()
 
    local cDir := MCVfsTmpDir()
 
-   if cDir != "/tmp"
+   // NOTE: exact compare; with SET EXACT off "x" != "/tmp" would be a
+   // prefix comparison and never true for dirs under /tmp.
+   if !( cDir == "/tmp" )
       DeleteTree( cDir )
    endif
 
