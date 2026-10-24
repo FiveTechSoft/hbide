@@ -1481,7 +1481,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
             DispBox( nARow, nACol, nARow + aSize[ 2 ] - 1, nACol + aSize[ 1 ] - 1, 1, cColor )
          endif
          for n = 1 to Min( Len( aItems ), aSize[ 2 ] - 2 )
-            cText = PadR( SubStr( StrTran( aItems[ n ], "&", "" ), 1, aSize[ 1 ] - 2 ), aSize[ 1 ] - 2 )
+            cText = PadR( SubStr( aItems[ n ], 1, aSize[ 1 ] - 2 ), aSize[ 1 ] - 2 )
             if nARow + n < oWnd:nBottom .and. nARow + n <= MaxRow()
                hb_DispOutAt( nARow + n, nACol + 1, ;
                   SubStr( cText, 1, Max( 0, nMaxCol - nACol ) ), If( n == 1, "N/W", cColor ) )
@@ -1904,7 +1904,7 @@ static function DsnItemsCode( oCtrl )
    local cCode  := "{", n
 
    for n = 1 to Len( aItems )
-      cCode += If( n > 1, ", ", " " ) + DsnQuote( StrTran( aItems[ n ], "&", "" ) )
+      cCode += If( n > 1, ", ", " " ) + DsnQuote( aItems[ n ] )
    next
 
 return cCode + If( Len( aItems ) > 0, " }", "}" )
