@@ -1908,8 +1908,15 @@ return lOk .and. hb_DirDelete( cPath ) == 0
 
 METHOD FileMkdir() CLASS MCApp
 
-   local cName := ::DlgInput( "Make Directory", "New directory:", "", 45 )
-   local cKind, cErr
+   local cName, cErr
+   local cKind := MCVfsKind( ::ActivePanel():cPath )
+
+   // refuse up front on providers that cannot take a new member
+   if cKind != "local" .and. cKind != "uzip" .and. cKind != "utar"
+      MCMsgBox( "Make Directory", "Mkdir is not supported on this provider (read-only VFS)." )
+      return nil
+   endif
+   cName := ::DlgInput( "Make Directory", "New directory:", "", 45 )
 
    if cName != nil .and. ! Empty( cName )
       cKind := MCVfsKind( ::ActivePanel():cPath )
