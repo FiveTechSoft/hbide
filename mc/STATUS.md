@@ -121,14 +121,21 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   files, Mark moves down, Show hidden files, Lynx-like motion, File
   types highlight, Fast dir reload, Scroll pages, Center scrolling,
   Mouse wheel pages) - mark-moves-down off keeps the cursor on Insert.
-  Scroll trio live-verified in their ON direction on a 189-entry
-  panel: Scroll pages ON (mc default) makes PgDn past the last visible
-  row jump a half page (cursor f07 -> f14, top offset follows).
-  Center scrolling ON keeps the cursor centered once past the middle
-  (top follows the cursor). Mouse wheel pages ON (mc default):
-  wheel-down at the top of a long panel moves a full page (cursor /..
-  -> f14). The OFF directions of the three toggles are implemented but
-  NOT yet exercised live. Scroll-pages edge logic follows mc's
+  Scroll trio verified on a 189-entry panel (/tmp/hbmany, 14 visible
+  file rows). Page scrolling, both directions with the exact same
+  input (Home, then 15 x Down, one edge cross): ON (mc default) the
+  viewport jumps a half page at the cross - top lands on f07 and the
+  cursor (f15) sits mid-panel at row 9; OFF the viewport scrolls one
+  line per cross - top lands on f02 and the cursor (f15) stays on the
+  bottom row. Center scrolling ON keeps the cursor centered once past
+  the middle (observed: cursor f08 centered in an f01..f14 viewport);
+  OFF (mc default) is the mode exercised by the Page-scrolling tests
+  above, where the cursor ends off-center as expected. Mouse page
+  scrolling, both directions with one wheel-down notch at the top of
+  the listing: ON (mc default) moves the cursor a full page (f14 in
+  the f01.. viewport); OFF moves 3 rows (/.. -> f03, viewport
+  unchanged). Toggles restored to mc defaults afterwards (page ON,
+  center OFF, mouse ON). Scroll edge logic follows mc's
   move_up/move_down semantics for the non-brief modes; brief
   (columnwise) mode keeps its own column navigation - edge cases there
   are NOT covered.
