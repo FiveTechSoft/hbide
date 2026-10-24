@@ -301,6 +301,9 @@ procedure Main()
           DsnViewSize( 62, 22, 65, 21 )[ 2 ] == 18 )
    Check( "view clamps only overflow", DsnViewSize( 62, 12, 65, 21 )[ 1 ] == 61 .and. ;
           DsnViewSize( 62, 12, 65, 21 )[ 2 ] == 12 )
+   Check( "pan clamps to dialog edge", DsnPanClamp( 10, 62, 60 ) == 2 )
+   Check( "pan keeps zero", DsnPanClamp( 0, 62, 60 ) == 0 .and. DsnPanClamp( -4, 62, 60 ) == 0 )
+   Check( "pan no room to scroll", DsnPanClamp( 5, 40, 60 ) == 0 )
 
 
 
