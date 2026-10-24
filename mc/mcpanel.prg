@@ -269,7 +269,7 @@ METHOD MiniStatus() CLASS MCPanel
    if aEntry[ P_DIR ]
       cInfo := If( aEntry[ P_NAME ] == "/..", "UP--DIR", "SUB-DIR" )
    else
-      cInfo := AllTrim( Str( aEntry[ P_SIZE ], 14 ) ) + " bytes"
+      cInfo := If( aEntry[ P_SIZE ] < 0, "size unknown", AllTrim( Str( aEntry[ P_SIZE ], 14 ) ) + " bytes" )
       if ! Empty( aEntry[ P_DATE ] )
          cInfo += "  " + DToC( aEntry[ P_DATE ] ) + " " + aEntry[ P_TIME ]
       endif
@@ -490,7 +490,7 @@ METHOD ComputeDirSizes() CLASS MCPanel
 
    for each aEntry in ::aFiles
       if aEntry[ P_DIR ] .and. aEntry[ P_NAME ] != "/.."
-         aEntry[ P_SIZE ] := ::DirSize( hb_FNameMerge( ::cPath, aEntry[ P_NAME ] ), 0 )
+         aEntry[ P_SIZE ] := ::DirSize( MCEntryPath( Self, aEntry ), 0 )
       endif
    next
 
@@ -600,7 +600,7 @@ METHOD EntryLine( aEntry, nWidth ) CLASS MCPanel
       cSize := If( aEntry[ P_NAME ] == "/..", "UP--DIR ", ;
               If( aEntry[ P_SIZE ] > 0, Str( aEntry[ P_SIZE ], 8 ), "SUB-DIR " ) )
    else
-      cSize := Str( aEntry[ P_SIZE ], 8 )
+      cSize := If( aEntry[ P_SIZE ] < 0, PadL( "?", 8 ), Str( aEntry[ P_SIZE ], 8 ) )
    endif
    cTime := If( Empty( aEntry[ P_DATE ] ), Space( 16 ), ;
                 DToC( aEntry[ P_DATE ] ) + " " + Left( aEntry[ P_TIME ], 5 ) )
@@ -640,12 +640,12 @@ METHOD DisplayQuickView() CLASS MCPanel
    if aEntry != nil
       if aEntry[ P_DIR ]
          cFull := If( aEntry[ P_NAME ] == "/..", hb_FNameDir( oOther:cPath ), ;
-                      hb_FNameMerge( oOther:cPath, aEntry[ P_NAME ] ) )
+                      MCEntryPath( oOther, aEntry ) )
          aLines := { "Directory: " + cFull, "" }
          AEval( Directory( hb_DirSepAdd( cFull ) + "*", "DHS" ), ;
                 { | a | AAdd( aLines, a[ F_NAME ] + If( hb_DirExists( hb_FNameMerge( cFull, a[ F_NAME ] ) ), "/", "" ) ) } )
       else
-         cFull := hb_FNameMerge( oOther:cPath, aEntry[ P_NAME ] )
+         cFull := MCEntryPath( oOther, aEntry )
          aLines := hb_aTokens( StrTran( Left( MemoRead( cFull ), 60000 ), Chr( 13 ) ), Chr( 10 ) )
       endif
    endif
@@ -672,11 +672,11 @@ METHOD DisplayInfo() CLASS MCPanel
          AAdd( aLines, "Type:     directory" )
       else
          AAdd( aLines, "Type:     regular file" )
-         AAdd( aLines, "Size:     " + hb_ntos( aEntry[ P_SIZE ] ) + " bytes" )
+         AAdd( aLines, "Size:     " + If( aEntry[ P_SIZE ] < 0, "unknown", hb_ntos( aEntry[ P_SIZE ] ) + " bytes" ) )
       endif
       AAdd( aLines, "Modified: " + If( Empty( aEntry[ P_DATE ] ), "-", DToC( aEntry[ P_DATE ] ) + " " + aEntry[ P_TIME ] ) )
       AAdd( aLines, "Attrs:    " + aEntry[ P_ATTR ] )
-      hb_ProcessRun( MCShWrap( "stat -c 'Mode:     %A (%a)\nLinks:    %h' " + ShellQuote( cFull ) ),, @cOut )
+      hb_ProcessRun( MCShWrap( "stat -c 'Mode:     %A (%a)" + Chr( 10 ) + "Links:    %h' " + ShellQuote( cFull ) ),, @cOut )
       AEval( hb_aTokens( StrTran( cOut, Chr( 13 ) ), Chr( 10 ) ), { | c | AAdd( aLines, c ) } )
       cOut := ""
       hb_ProcessRun( MCShWrap( "readlink " + ShellQuote( cFull ) ),, @cOut )
