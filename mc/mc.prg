@@ -20,7 +20,19 @@
     [ If( <uVarN> == nil, <uVarN> := <uValN>, ); ]
 
 #define HB_INKEY_GTEVENT   1024
+// HB_INKEY_NEW_EVENT( HB_K_RESIZE ): how gttrm reports SIGWINCH through
+// Inkey( HB_INKEY_EXT ) (gtcrs reports plain HB_K_RESIZE)
+#define MC_K_RESIZE_EVT    1174406221
 
+
+//-----------------------------------------------------------------------------------------//
+
+// Static-text lines painted on the currently open dialog via MCDlgSay, so
+// MCDlgResizeRedraw can replay them after a terminal resize (HbDbWindow
+// Refresh() only repaints frame + caption).
+static s_oDlgSays := NIL
+static s_aDlgSays := {}
+static s_nDlgResizeIdle := NIL
 
 //-----------------------------------------------------------------------------------------//
 
@@ -1006,7 +1018,7 @@ function MCMsgBox( cTitle, cText )
 
    oDlg = HBWindow():Dialog( cTitle, nW, Len( aLines ) + 5, "W+/W" )
    for each cLine in aLines
-      oDlg:Say( nRow++, 2, cLine )
+      MCDlgSay( oDlg,  nRow++, 2, cLine )
    next
 
    @ oDlg:nBottom - 2, oDlg:nLeft + Int( ( nW ) / 2 ) - 3 GET lOk PUSHBUTTON ;
@@ -1021,6 +1033,7 @@ function MCMsgBox( cTitle, cText )
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
 
 return nil
@@ -1037,7 +1050,7 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
    oDlg = HBWindow():Dialog( cTitle, Max( nLen + 8, Len( cLabel ) + 8 ), 8, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
-   oDlg:Say( 2, 3, cLabel )
+   MCDlgSay( oDlg,  2, 3, cLabel )
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET cValue COLOR "W/B,W+/B,W+/W,GR+/W"
 
    // Cursor after the prefilled text (mc behavior): GET:setFocus() forces
@@ -1067,6 +1080,7 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1093,7 +1107,7 @@ METHOD DlgConfirm( cTitle, cMsg, cOk, lSafeDefault ) CLASS MCApp
    oDlg = HBWindow():Dialog( cTitle, nW, Len( aLines ) + 5, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
    for each cLine in aLines
-      oDlg:Say( nRow++, 2, cLine )
+      MCDlgSay( oDlg,  nRow++, 2, cLine )
    next
 
    // lSafeDefault = mc's safe_delete/safe_overwrite semantics: .T. puts the
@@ -1126,6 +1140,7 @@ METHOD DlgConfirm( cTitle, cMsg, cOk, lSafeDefault ) CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1174,6 +1189,7 @@ METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1459,7 +1475,7 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    @ oDlg:nTop + 1, oDlg:nLeft + 3, oDlg:nTop + 6, oDlg:nLeft + 25 GET nFmt ;
       RADIOGROUP aFmt STYLE cRadStyle COLOR "N/W,N/BG,GR+/BG"
 
-   oDlg:Say( 8, 3, "Format:" )
+   MCDlgSay( oDlg,  8, 3, "Format:" )
    @ oDlg:nTop + 8, oDlg:nLeft + 12 GET cUF COLOR "N/BG,W+/BG,N/BG,GR+/BG"
 
    @ oDlg:nTop + 9, oDlg:nLeft + 3 GET lUMS ;
@@ -1480,6 +1496,7 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1573,6 +1590,7 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1782,6 +1800,7 @@ METHOD OptionsConfig() CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1867,6 +1886,7 @@ METHOD OptionsLayout() CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -1971,6 +1991,7 @@ METHOD OptionsPanel() CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -2033,6 +2054,7 @@ METHOD OptionsConfirm() CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -2093,6 +2115,7 @@ METHOD OptionsAppearance() CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_DELIMITERS, .T. )
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
@@ -2339,7 +2362,7 @@ METHOD DlgCopy( nCount, cDefault, cAction, cVerb ) CLASS MCApp
    DEFAULT cVerb := "Copy"
    oDlg = HBWindow():Dialog( cVerb, 66, 8, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
-   oDlg:Say( 2, 3, cVerb + " " + hb_ntos( nCount ) + " item(s) to:" )
+   MCDlgSay( oDlg,  2, 3, cVerb + " " + hb_ntos( nCount ) + " item(s) to:" )
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET cValue COLOR "W/B,W+/B,W+/W,GR+/W"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 5 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
@@ -2357,6 +2380,7 @@ METHOD DlgCopy( nCount, cDefault, cAction, cVerb ) CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -2530,7 +2554,7 @@ METHOD BgJobs() CLASS MCApp
    oDlg:bRepaint = { || ::Repaint() }
    nT := oDlg:nTop
    nL := oDlg:nLeft
-   oDlg:Say( oDlg:nBottom - oDlg:nTop - 1, 3, "C: cancel  Enter: full errors  Esc: close" )
+   MCDlgSay( oDlg,  oDlg:nBottom - oDlg:nTop - 1, 3, "C: cancel  Enter: full errors  Esc: close" )
 
    while ! lEnd
       MCJobsStep()
@@ -3189,6 +3213,7 @@ METHOD FileChmod() CLASS MCApp
    oDlg:Activate( GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
+   MCDlgResizeDisarm()
    Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
@@ -3683,8 +3708,8 @@ METHOD LearnKeys() CLASS MCApp
 
    // raw capture window: no READ, a single Inkey; Esc cancels
    oDlg := HBWindow():Dialog( "Learn keys", 52, 8, "W+/W" )
-   oDlg:Say( 2, 3, "Press the new key for F" + hb_ntos( nPick ) + " " + aNames[ nPick ] )
-   oDlg:Say( 3, 3, "(Esc cancels; the old binding is replaced)" )
+   MCDlgSay( oDlg,  2, 3, "Press the new key for F" + hb_ntos( nPick ) + " " + aNames[ nPick ] )
+   MCDlgSay( oDlg,  3, 3, "(Esc cancels; the old binding is replaced)" )
    nKey := Inkey( 0 )
    oDlg:Hide()
    ::Repaint()
@@ -3916,6 +3941,95 @@ function MCDlgEscArm( oDlg, lSingle )
    else
       SetKey( K_ESC, { || ( ++nEscCount >= 2 .and. ( oDlg:End(), .T. ) ) } )
    endif
+   MCDlgResizeArm( oDlg )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+function MCDlgResizeArm( oDlg )
+
+   local aGeo := { MaxRow(), MaxCol() }
+
+   // the READ in dialogs waits on plain Inkey( 0 ), which filters out the
+   // extended resize event; idle tasks DO run during that wait (that is how
+   // the window mouse idle fires), so watch the geometry from one.
+   SetKey( MC_K_RESIZE_EVT, { || MCDlgResizeRedraw( oDlg ) } )
+   SetKey( HB_K_RESIZE,     { || MCDlgResizeRedraw( oDlg ) } )
+   s_nDlgResizeIdle := hb_IdleAdd( { || MCDlgResizeIdle( oDlg, aGeo ) } )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+function MCDlgResizeIdle( oDlg, aGeo )
+
+   if MaxRow() != aGeo[ 1 ] .or. MaxCol() != aGeo[ 2 ]
+      aGeo[ 1 ] := MaxRow()
+      aGeo[ 2 ] := MaxCol()
+      MCDlgResizeRedraw( oDlg )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+function MCDlgResizeDisarm()
+
+   SetKey( MC_K_RESIZE_EVT, NIL )
+   SetKey( HB_K_RESIZE,     NIL )
+   if s_nDlgResizeIdle != NIL
+      hb_IdleDel( s_nDlgResizeIdle )
+      s_nDlgResizeIdle := NIL
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// mc dlg_redraw on WINCH: wipe the stale GT replay and repaint the dialog.
+// The window keeps its current position/size (as mc dialogs do); anything
+// now off-screen is clipped by the GT. Refresh() redraws frame + caption
+// without re-running bInit or adding idle handlers; Says and controls are
+// replayed on top.
+function MCDlgResizeRedraw( oDlg )
+
+   local o, a
+
+   DispBegin()
+   hb_Scroll( 0, 0, MaxRow(), MaxCol(), 0, 0, "W/N", " " )
+   SetPos( 0, 0 )
+   oDlg:Refresh()
+   for each a in s_aDlgSays
+      oDlg:Say( a[ 1 ], a[ 2 ], a[ 3 ] )
+   next
+   if HB_ISARRAY( oDlg:GetList )
+      for each o in oDlg:GetList
+         if o:Control != NIL
+            o:Control:Display()
+         else
+            o:Display()
+         endif
+      next
+   endif
+   DispEnd()
+   if GetActive() != NIL .and. GetActive():Control != NIL
+      GetActive():Control:setFocus()
+   endif
+
+return NIL
+
+//-----------------------------------------------------------------------------------------//
+
+// Like oDlg:Say() but records the line so MCDlgResizeRedraw can replay it.
+function MCDlgSay( oDlg, nRow, nCol, cLine )
+
+   oDlg:Say( nRow, nCol, cLine )
+   if s_oDlgSays != oDlg
+      s_oDlgSays := oDlg
+      s_aDlgSays := {}
+   endif
+   AAdd( s_aDlgSays, { nRow, nCol, cLine } )
 
 return nil
 
