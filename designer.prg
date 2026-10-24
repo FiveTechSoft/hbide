@@ -43,8 +43,8 @@
 #define DSN_CLR_GET      "W/B,W+/B,W+/W,GR+/W"
 #define DSN_CLR_CHECKBOX "N/W,BG+/W,N/W,GR+/W"
 #define DSN_CLR_BUTTON   "GR+/G,W+/G,N/G,BG+/G"
-#define DSN_CLR_RADIO    "N/W,N/W,N/W,BG+/W,N/W,GR+/W,BG+/W"
-#define DSN_CLR_LISTBOX  "N/BG,GR+/BG,N/BG,W+/G,W+/W,W+/W,GR+/W"
+#define DSN_CLR_RADIO    "N/W,N/W,N/W,N+/W,N/W,GR+/W,BG+/W"
+#define DSN_CLR_LISTBOX  "N/W,N+/W,N/W,W+/G,W+/W,W+/W,GR+/W"
 
 #define CLR_DIALOG    "W+/W"
 #define DSN_CLR_FOCUS "W+/B"   // default focused-control pair (stock palettes keep it)
@@ -59,7 +59,7 @@
 #define CLR_INSP_SEL  "N/GR"
 #define CLR_INSP_VAL  "N/W"
 
-#define HINT_CANVAS   "F2 add Enter edit F4 insp Del Arrows move resize ^Z/^Y F9 gen F10 save Esc"
+#define HINT_CANVAS   "F2 add Enter edit F4 insp Del Arrows move Mouse resizes ^Z/^Y F9 gen F10 save Esc"
 #define HINT_INSP     "F6 canvas | Enter edit | Left/Right adjust | Ctrl+Arrows move panel | F4 hide"
 
 //-----------------------------------------------------------------------------------------//
@@ -535,7 +535,7 @@ METHOD AddControl( cType ) CLASS HbDesigner
    ::lPlacing  = .F.
    ::lDirty    = .T.
 
-   ::ShowHint( "F2 add | Enter edit | Del delete | Arrows move | F9 generate | F10 save | Esc exit" )
+   ::ShowHint( "Enter edit | Del delete | Arrows move | Mouse resizes | F9 gen | F10 save | Esc" )
    ::Redraw()
 
 return nil
