@@ -1160,7 +1160,7 @@ METHOD DrawInspector() CLASS HbDesigner
    aFields   = ::InspFields()
    ::nInspField = Max( 1, Min( Len( aFields ), ::nInspField ) )
    aRect     = ::InspRect()
-   nValWidth = aRect[ 4 ] - aRect[ 2 ] - 11
+   nValWidth = aRect[ 4 ] - aRect[ 2 ] - 12
 
    DispBegin()
    hb_Scroll( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ],,, CLR_INSP )
@@ -1175,7 +1175,7 @@ METHOD DrawInspector() CLASS HbDesigner
          hb_DispOutAt( aRect[ 1 ] + n, aRect[ 2 ] + 1, PadR( cLabel + cValue, 29 ), CLR_INSP_SEL )
       else
          hb_DispOutAt( aRect[ 1 ] + n, aRect[ 2 ] + 1, cLabel, CLR_INSP )
-         hb_DispOutAt( aRect[ 1 ] + n, aRect[ 2 ] + 10, cValue, CLR_INSP_VAL )
+         hb_DispOutAt( aRect[ 1 ] + n, aRect[ 2 ] + 11, cValue, CLR_INSP_VAL )
       endif
    next
    DispEnd()
@@ -1298,8 +1298,8 @@ METHOD InspEdit() CLASS HbDesigner
    cVal   = ::InspValue( cKey )
    aRect  = ::InspRect()
    nRow   = aRect[ 1 ] + ::nInspField
-   nCol   = aRect[ 2 ] + 10
-   nWidth = aRect[ 4 ] - aRect[ 2 ] - 11
+   nCol   = aRect[ 2 ] + 11
+   nWidth = aRect[ 4 ] - aRect[ 2 ] - 12
    nPos   = Len( cVal ) + 1
    nOff   = 0
 
