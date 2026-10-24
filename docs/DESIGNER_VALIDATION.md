@@ -40,6 +40,14 @@ code. Dogfooding model: a "Find" dialog built entirely with the designer
   headless GT - no screen-readback tests possible).
 - Mouse cell->pixel for a window at +X+Y: px = X+2+9*(col-0.5),
   py = Y+2+18*(row-0.5), cells 1-based (font 18 => cell ~9x18 px).
+- The standalone harness oIde:Repaint() must emulate HBIde:Repaint()'s
+  full-screen erase. With a no-op Repaint the Dialog() half-size centering
+  (+1 row/col span, normalized by the designer's FitWindow) leaves stale
+  frame cells after the first Redraw; in the real IDE the full-screen
+  erase clears them, so the +1 frame is only a transient flash at open,
+  not a persistent repaint defect (verified pixel-wise, k139-k142).
+- xwd captures the screen region, including occluding windows: kill or
+  move other xterms before capturing or the shot shows the occluder.
 
 ## Known limits / open items
 
