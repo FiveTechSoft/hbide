@@ -63,15 +63,24 @@
   se avisa una vez al abrir el archivo. Verificado en vivo:
   edicion externa de mismo tamaño con mtime preservado via touch -r detectada
   tanto en variante limpia (recarga automatica) como sucia (Reload/Keep mine).
+  Fluidez verificada a ambos lados del cap: 6.9 MB (hash ACTIVO en cada
+  chequeo): tecleo de 40 caracteres, 40/40 en pantalla sin perdida ni pausa
+  visible; 8.9 MB (sin hash): navegacion 20 cursores en 1 s.
 - ~~La recarga tras cambio externo va al inicio del archivo~~ RESUELTO
   (2026-10-24 noche): ReloadFromDisk conserva RowPos/ColPos y los clampa al
   texto recargado (archivo encogido: cursor a la ultima linea valida).
   Verificado en vivo: cursor en 15/6 tras recarga; 30->10 lineas: fila 11
   (linea vacia final del modelo), col 1.
 - Si el archivo reaparece tras un borrado, se trata como cambio externo normal.
-- En esta GT los menus se abren con raton; Alt+letra no abre menus en Linux
-  gttrm (colision con la entrada española; posible via HB_INKEY_EXT, no
-  evaluado).
+- Alt+letra y menus: en xterm FUNCIONA (verificado en vivo 2026-10-24
+  noche: Alt+E/F/O abren los menus) porque el IDE fuerza metaSendsEscape +
+  eightBitInput-off al arrancar (XTermMetaEsc, ESC[?1034l ESC[?1036h), asi
+  Alt+letra llega como ESC-prefijo y gttrm lo entrega como codigo Alt
+  clasico. La limitacion REAL queda en terminales que no aceptan esos
+  modos y usan meta de 8 bits: ahi Alt+letra es un byte alto
+  indistinguible de entrada internacional legitima (ambiguedad de bytes,
+  no de codigos: HB_INKEY_EXT no la resuelve). Otras GTs (consola Linux,
+  GTWVT/Windows): sin verificar, sin cobertura inventada.
 - EOL: hbide.prg sigue CRLF y editor.prg LF, convencion previa del repo.
 
 ## No solicitado / no implementado (funciones nuevas, no fallos)
