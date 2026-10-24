@@ -1053,7 +1053,7 @@ METHOD DrawControls() CLASS HbDesigner
    if ! ::lPlacing
       aRect = ::ResizeHandlePos()
       if aRect[ 1 ] >= 0 .and. ::HitClient( aRect[ 1 ], aRect[ 2 ] )
-         hb_DispOutAt( aRect[ 1 ], aRect[ 2 ], hb_UTF8ToStr( "â" ), "N+/W" )
+         hb_DispOutAt( aRect[ 1 ], aRect[ 2 ], hb_UTF8ToStr( "█" ), "N+/W" )
       endif
    endif
 
@@ -2489,7 +2489,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
          cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", CLR_GET ) )
          nWidth = hb_HGetDef( oCtrl, "width", 10 )
          hb_DispOutAt( nARow, nACol, ;
-            Replicate( hb_UTF8ToStr( "â" ), Min( nWidth, Max( 0, nMaxCol - nACol + 1 ) ) ), cColor )
+            Replicate( hb_UTF8ToStr( "░" ), Min( nWidth, Max( 0, nMaxCol - nACol + 1 ) ) ), cColor )
 
       case oCtrl[ "type" ] == DSN_CHECKBOX
          cColor = If( lSelected, cSelColor, If( lDarkDlg, cDlgText, CLR_CHECKBOX ) )
@@ -2510,12 +2510,12 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
                SubStr( cText, 1, Max( 0, nMaxCol - nACol + 1 ) ), cColor )
             // shadow: right cell + bottom row, same look as the runtime PushButton
             if nACol + nWidth <= nMaxCol
-               hb_DispOutAt( nARow, nACol + nWidth, hb_UTF8ToStr( "â" ), cShadow )
+               hb_DispOutAt( nARow, nACol + nWidth, hb_UTF8ToStr( "▄" ), cShadow )
             endif
             if nARow + 1 < oWnd:nBottom .and. nARow + 1 <= MaxRow()
                n = Min( nWidth, Max( 0, nMaxCol - nACol ) )
                if n > 0
-                  hb_DispOutAt( nARow + 1, nACol + 1, Replicate( hb_UTF8ToStr( "â" ), n ), cShadow )
+                  hb_DispOutAt( nARow + 1, nACol + 1, Replicate( hb_UTF8ToStr( "▀" ), n ), cShadow )
                endif
             endif
          endif
@@ -3429,11 +3429,11 @@ static function DsnBtnDisplayCode( cBg )
    cCode += hb_eol()
    cCode += "function DsnBtnPads()" + hb_eol()
    cCode += hb_eol()
-   cCode += 'return { hb_UTF8ToStr( "Â " ), hb_UTF8ToStr( "Â " ) }' + hb_eol()
+   cCode += 'return { hb_UTF8ToStr( " " ), hb_UTF8ToStr( " " ) }' + hb_eol()
    cCode += hb_eol()
    cCode += "function DsnBtnShades()" + hb_eol()
    cCode += hb_eol()
-   cCode += 'return { hb_UTF8ToStr( "â" ), hb_UTF8ToStr( "â" ) }' + hb_eol()
+   cCode += 'return { hb_UTF8ToStr( "▄" ), hb_UTF8ToStr( "▀" ) }' + hb_eol()
    cCode += hb_eol()
    cCode += "// pushbutton hit test override: same extent as hbbutton's BtnHitTest," + hb_eol()
    cCode += "// covering the full painted width of the bracket look" + hb_eol()
