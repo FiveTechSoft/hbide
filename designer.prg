@@ -2353,6 +2353,14 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
                   SubStr( cText, 1, Max( 0, nMaxCol - nACol ) ), If( n == 1, If( lDarkDlg, "W+/N", "N/W" ), cColor ) )
             endif
          next
+         // fill empty interior rows so the box keeps a uniform background,
+         // like the runtime listbox (otherwise the dialog bg shows through)
+         for n = Len( aItems ) + 1 to aSize[ 2 ] - 2
+            if nARow + n < oWnd:nBottom .and. nARow + n <= MaxRow()
+               hb_DispOutAt( nARow + n, nACol + 1, ;
+                  Space( Max( 0, Min( aSize[ 1 ] - 2, nMaxCol - nACol ) ) ), cColor )
+            endif
+         next
    endcase
 
 return
