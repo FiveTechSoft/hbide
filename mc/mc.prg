@@ -107,6 +107,7 @@ CLASS MCApp
    METHOD ListingFormat( nPanel )
    METHOD SortOrder( nPanel )
    METHOD FilterDlg( nPanel )
+   METHOD VfsLink( nPanel, cScheme )
    METHOD FileView()
    METHOD FileViewName()
    METHOD FileFilteredView()
@@ -368,7 +369,9 @@ METHOD RunCommand() CLASS MCApp
 
    if Left( cCmd, 3 ) == "cd " .or. cCmd == "cd"
       cFull := MCAbsPath( ::ActivePanel():cPath, SubStr( cCmd + " ", 4 ) )
-      if hb_DirExists( cFull )
+      if MCVfsKind( cFull ) != "local"
+         ::ActivePanel():GoDir( cFull )   // VFS destinations are validated by listing them
+      elseif hb_DirExists( cFull )
          ::ActivePanel():GoDir( cFull )
       else
          MCMsgBox( "cd", "Directory does not exist:" + Chr( 10 ) + cFull )
@@ -708,6 +711,9 @@ function MCEntryPath( oPanel, aEntry )
    if oPanel:cMode == "panelize"
       return aEntry[ P_NAME ]
    endif
+   if MCVfsKind( oPanel:cPath ) != "local"
+      return MCVfsChild( oPanel:cPath, aEntry[ P_NAME ] )
+   endif
 
 return hb_FNameMerge( oPanel:cPath, aEntry[ P_NAME ] )
 
@@ -731,8 +737,14 @@ return nAlt
 static function MCAbsPath( cBase, cPath )
 
    cPath := AllTrim( hb_defaultValue( cPath, "" ) )
+   if MCVfsKind( cPath ) != "local"
+      return cPath   // VFS URLs are absolute by construction
+   endif
    if Left( cPath, 1 ) == "/"
       return hb_PathNormalize( cPath )
+   endif
+   if MCVfsKind( cBase ) != "local"
+      return MCVfsChild( cBase, cPath )
    endif
 
 return hb_PathNormalize( hb_FNameMerge( cBase, cPath ) )
@@ -910,6 +922,10 @@ METHOD BuildMenu() CLASS MCApp
          MENUITEM "~Filter..."            ACTION ::FilterDlg( 1 )
          SEPARATOR
          MENUITEM "~Rescan         C-r"   ACTION ::Rescan()
+         SEPARATOR
+         MENUITEM "F~TP link..."          ACTION ::VfsLink( 1, "ftp" )
+         MENUITEM "S~hell link..."        ACTION ::VfsLink( 1, "sh" )
+         MENUITEM "SFT~P link..."         ACTION ::VfsLink( 1, "sftp" )
       ENDMENU
 
       MENUITEM " ~File "
@@ -976,6 +992,10 @@ METHOD BuildMenu() CLASS MCApp
          MENUITEM "~Filter..."            ACTION ::FilterDlg( 2 )
          SEPARATOR
          MENUITEM "~Rescan         C-r"   ACTION ::Rescan()
+         SEPARATOR
+         MENUITEM "F~TP link..."          ACTION ::VfsLink( 2, "ftp" )
+         MENUITEM "S~hell link..."        ACTION ::VfsLink( 2, "sh" )
+         MENUITEM "SFT~P link..."         ACTION ::VfsLink( 2, "sftp" )
       ENDMENU
    ENDMENU
 
@@ -1205,6 +1225,24 @@ METHOD FilterDlg( nPanel ) CLASS MCApp
       oPanel:Rescan()
       ::Repaint()
    endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD VfsLink( nPanel, cScheme ) CLASS MCApp
+
+   // Left/Right menu "FTP link...", "Shell link...", "SFTP link...": open a
+   // remote VFS directory in that panel. All providers are read-only.
+   local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
+   local cTitle := If( cScheme == "ftp", "FTP link", If( cScheme == "sh", "Shell link", "SFTP link" ) )
+   local cUrl := ::DlgInput( cTitle, cScheme + "://[user@]host[:port]/path:", cScheme + "://", 55 )
+
+   if cUrl == nil .or. Empty( AllTrim( cUrl ) ) .or. AllTrim( cUrl ) == cScheme + "://"
+      return nil
+   endif
+   oPanel:GoDir( AllTrim( cUrl ) )
+   ::Repaint()
 
 return nil
 
@@ -1485,7 +1523,7 @@ METHOD FileEdit() CLASS MCApp
 
    if aEntry != nil .and. ! aEntry[ P_DIR ]
       if MCVfsKind( MCEntryPath( ::ActivePanel(), aEntry ) ) != "local"
-         MCMsgBox( "Edit", "Editing inside archives is not supported yet (read-only VFS)." )
+         MCMsgBox( "Edit", "Editing VFS entries is not supported yet (read-only VFS)." )
       else
          MCEditFile( MCEntryPath( ::ActivePanel(), aEntry ) )
       endif
@@ -1767,7 +1805,7 @@ return nil
 static function MoveItem( cSrc, cDst, oApp )
    local lAll := .F., cTarget
    if MCVfsKind( cSrc ) != "local" .or. MCVfsKind( cDst ) != "local"
-      MCMsgBox( "Rename/Move", "Moving to or from archives is not supported yet (read-only VFS)." + Chr( 10 ) + ;
+      MCMsgBox( "Rename/Move", "Moving to or from a VFS is not supported yet (read-only VFS)." + Chr( 10 ) + ;
                 "Use Copy instead. Nothing changed." )
       return .F.
    endif
@@ -1875,7 +1913,7 @@ METHOD FileDelete() CLASS MCApp
    local nDeleted := 0, nFailed := 0, cFull
 
    if MCVfsKind( oSrc:cPath ) != "local"
-      MCMsgBox( "Delete", "Deleting inside archives is not supported yet (read-only VFS)." )
+      MCMsgBox( "Delete", "Deleting VFS entries is not supported yet (read-only VFS)." )
       return nil
    endif
 
