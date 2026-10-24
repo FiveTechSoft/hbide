@@ -1894,8 +1894,24 @@ return lOk .and. hb_DirDelete( cPath ) == 0
 METHOD FileMkdir() CLASS MCApp
 
    local cName := ::DlgInput( "Make Directory", "New directory:", "", 45 )
+   local cKind, cErr
 
    if cName != nil .and. ! Empty( cName )
+      cKind := MCVfsKind( ::ActivePanel():cPath )
+      if cKind == "uzip" .or. cKind == "utar"
+         if MCVfsArchiveMkdir( ::ActivePanel():cPath, cName )
+            ::Rescan()
+         else
+            cErr := MCVfsTakeError()
+            MCMsgBox( "Make Directory", "Cannot create member directory." + ;
+                      If( Empty( cErr ), "", Chr( 10 ) + "Reason: " + cErr ) )
+         endif
+         return nil
+      endif
+      if cKind != "local"
+         MCMsgBox( "Make Directory", "Mkdir is not supported on this provider (read-only VFS)." )
+         return nil
+      endif
       cName := MCAbsPath( ::ActivePanel():cPath, cName )
       if hb_DirCreate( cName ) != 0
          MCMsgBox( "Make Directory", "Cannot create:" + Chr( 10 ) + cName )
@@ -1910,8 +1926,36 @@ return nil
 METHOD FileDelete() CLASS MCApp
 
    local oSrc := ::ActivePanel(), aMarked := oSrc:MarkedEntries(), aEntry
-   local nDeleted := 0, nFailed := 0, cFull
+   local nDeleted := 0, nFailed := 0, cFull, aNames, cErr
 
+   if MCVfsKind( oSrc:cPath ) == "uzip" .or. MCVfsKind( oSrc:cPath ) == "utar"
+      if Empty( aMarked )
+         aEntry := oSrc:Current()
+         if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
+            MCMsgBox( "Delete", "Nothing to delete." )
+            return nil
+         endif
+         aMarked := { aEntry }
+      endif
+      if ::lConfirmDelete
+         if ! ::DlgConfirm( "Delete", "Delete " + hb_ntos( Len( aMarked ) ) + " member(s) from the archive?" + Chr( 10 ) + ;
+                            aMarked[ 1 ][ P_NAME ] + If( Len( aMarked ) > 1, " ...", "" ), "&Delete" )
+            return nil
+         endif
+      endif
+      aNames := {}
+      for each aEntry in aMarked
+         AAdd( aNames, aEntry[ P_NAME ] )
+      next
+      if MCVfsArchiveDelete( oSrc:cPath, aNames )
+         ::Rescan()
+      else
+         cErr := MCVfsTakeError()
+         MCMsgBox( "Delete", "Cannot update the archive." + ;
+                   If( Empty( cErr ), "", Chr( 10 ) + "Reason: " + cErr ) )
+      endif
+      return nil
+   endif
    if MCVfsKind( oSrc:cPath ) != "local"
       MCMsgBox( "Delete", "Deleting VFS entries is not supported yet (read-only VFS)." )
       return nil
