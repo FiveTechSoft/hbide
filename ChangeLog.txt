@@ -1,6 +1,25 @@
 HbIde ChangeLog
 ================
 
+2026-10-24
+----------
+
+  Editor de codigo (rama editor-fixes, sin merge)
+  -----------------------------------------------
+  - Corregido: DeleteLine/PasteLine/DuplicateLine ya no dependen del modo INS/OVR
+  - Corregido: modo insert por defecto con indicador INS/OVR
+  - Corregidos dialogos Open y Find (layout, botones, teclear nombre)
+  - Corregido: Escape/File>Exit/Open con cambios preguntan Save/Discard/Cancel
+  - Implementado undo/redo (Ctrl+Z/Ctrl+U) con marcador de guardado fiable
+  - Implementada copia .bak conservadora al guardar
+  - Implementado Replace (ReplaceAll + dialogo), entrada literal con RTrim
+  - Corregido prefill de GETs que corrompia la entrada en Find/Replace
+  - Implementada vigilancia de cambios externos (DiskStamp): aviso/recarga,
+    Reload/Keep mine, guardia Overwrite/Cancel al guardar y en Run
+  - Corregido: borrado externo ya no se confunde con "sin cambios";
+    decision Recrear/Cancelar antes de escribir
+  - Checkpoint completo, pruebas y limitaciones: docs/editor-checkpoint-2026-10-24.md
+
 2026-03-21
 ----------
 
