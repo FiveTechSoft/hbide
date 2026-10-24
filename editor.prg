@@ -345,9 +345,33 @@ return Self
 METHOD EditKey( nKey ) CLASS HBSrcEdit
 
    local nKeyStd := hb_keyStd( nKey )
+   local nKeyExt := hb_keyExt( nKey )   // HB_KX_* when an extended special key, else 0
+   local nKeyMod := hb_keyMod( nKey )   // HB_KF_* flags of the extended code
    local cKey, oLine, nPos
 
    do case
+      // Distinct only under HB_INKEY_EXT: the classic set delivers Ctrl+Left
+      // as 26 == K_CTRL_Z, so this case must run before the Undo one.
+      case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0
+           ::WordJump( .F. )
+
+      // Shift+arrows/Home/End: extended mode stops collapsing them into
+      // plain movement. Reuse the F8 anchor: set it if absent, then move;
+      // the range highlight and Copy/Cut already read SelRange().
+      case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;
+           hb_bitAnd( nKeyMod, hb_bitOr( HB_KF_SHIFT, HB_KF_CTRL, HB_KF_ALT ) ) == HB_KF_SHIFT
+           if ! ::lMark
+              ::ToggleMark()
+           endif
+           do case
+              case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )
+              case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )
+              case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )
+              case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )
+              case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )
+              case nKeyExt == HB_KX_END    ; ::EditKey( K_END )
+           endcase
+
       case nKeyStd == K_CTRL_Z
            ::lInUndo := .T.
            ::Undo()
@@ -356,18 +380,18 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            ::lInUndo := .T.
            ::Redo()
 
-      case nKey == K_LDBLCLK
+      case nKeyStd == K_LDBLCLK
            ::GoTo( MRow() - ::nTop + ::nFirstRow, Max( MCol() - ::nLeft + ::nFirstCol, 5 ), _REFRESH_ALL )
            ::SelectWord( ::nRow, ::nCol - 4 )
 
-      case nKey == K_LBUTTONDOWN
+      case nKeyStd == K_LBUTTONDOWN
            ::ClearSelection()
            ::GoTo( MRow() - ::nTop + ::nFirstRow, Max( MCol() - ::nLeft + ::nFirstCol, 5 ), _REFRESH_ALL )
 
-      case nKey == K_MWBACKWARD
+      case nKeyStd == K_MWBACKWARD
            ::Super:Edit( K_DOWN )
 
-      case nKey == K_MWFORWARD
+      case nKeyStd == K_MWFORWARD
            ::Super:Edit( K_UP )
 
       case nKeyStd == K_BS
@@ -426,26 +450,25 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
       case nKeyStd == K_CTRL_RIGHT
            ::WordJump( .T. )
 
-      // Left word jump: K_CTRL_LEFT shares code 26 with K_CTRL_Z (inkey.ch),
-      // so it stays Undo. Alt+Left is unambiguous (gttrm delivers raw 411).
-      case nKey == K_ALT_LEFT
+      // Alt+Left stays as a second left word jump (works in both modes).
+      case nKeyStd == K_ALT_LEFT
            ::WordJump( .F. )
 
-      // K_CTRL_LEFT == K_CTRL_Z (26) in inkey.ch: terminal GTs deliver 26 for
-      // both Ctrl+Left and Ctrl+Z, so a Ctrl+Left case is unreachable here or
-      // would steal Undo. Undo keeps the code; left word jump stays unbound
-      // until a GT delivers a distinct code. WordJump( .F. ) is ready for it.
+      // Ctrl+Left word jump is bound above via the extended code: in classic
+      // inkey both Ctrl+Left and Ctrl+Z arrive as 26, so only a GT delivering
+      // extended codes (gttrm + HB_INKEY_EXT, wired in the IDE loop) can tell
+      // them apart; elsewhere Ctrl+Left keeps arriving as Undo, as before.
 
       case nKeyStd == K_CTRL_Y
            ::DeleteLine()
 
-      case nKey == K_F2
+      case nKeyStd == K_F2
            ::SaveFile()
 
       // Range selection anchor (provisional binding: F8 is unbound in
       // HBEditor, editor.prg and hbide.prg; Shift+arrows collapse to plain
       // arrows under the current event mask, so they cannot carry this yet)
-      case nKey == K_F8
+      case nKeyStd == K_F8
            ::ToggleMark()
 
       case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;
