@@ -245,6 +245,15 @@ Two caveats stay open:
   keeping ...") instead of failing silently. The color round-trips
   through F10/F12 as the JSON "color" property and the generated PRG
   emits it as the last argument of HBWindow():Dialog().
+  Control palettes derive from the dialog color: the default white
+  dialog keeps hbide's own palettes byte-exact, and on any other
+  background Say/CheckBox/RadioGroup captions paint in the dialog's
+  own fg/bg, GET and ListBox fields paint black-on-white for contrast,
+  and PushButtons paint as a white button. The button shadow follows
+  the dialog background (hbbutton's stock display hardcodes a white
+  shadow, so the generated PRG re-registers the same display with the
+  shadow repainted "N/<bg>"); the canvas preview paints the same
+  derived scheme.
 - Checkbox glyph: Harbour's stock checkbox paints CP437 0xFB (the square
   root glyph) for the checked state; in a UTF-8 terminal that byte renders
   as "u with circumflex" (the EN codepage, the only one selectable in this
