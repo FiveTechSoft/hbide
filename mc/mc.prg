@@ -804,7 +804,12 @@ function MCMsgBox( cTitle, cText )
       CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
 
 return nil
 
@@ -831,7 +836,12 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
       COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
@@ -868,7 +878,12 @@ METHOD DlgConfirm( cTitle, cMsg, cOk ) CLASS MCApp
       CAPTION " " + cOk + " " COLOR "W+/G,W/N,W+/G,BG+/G" ;
       STATE { || lOk := .T., oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
 return lOk
@@ -908,7 +923,12 @@ METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
       COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
@@ -1188,7 +1208,12 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
@@ -1259,7 +1284,12 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
@@ -1330,7 +1360,12 @@ METHOD OptionsConfig() CLASS MCApp
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
@@ -1378,7 +1413,12 @@ METHOD OptionsLayout() CLASS MCApp
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
@@ -1413,7 +1453,12 @@ METHOD OptionsPanel() CLASS MCApp
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
@@ -1456,7 +1501,12 @@ METHOD OptionsConfirm() CLASS MCApp
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
@@ -1497,7 +1547,12 @@ METHOD OptionsAppearance() CLASS MCApp
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
@@ -1690,7 +1745,12 @@ METHOD DlgCopy( nCount, cDefault, cAction, cVerb ) CLASS MCApp
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk .or. lBg
@@ -2450,7 +2510,12 @@ METHOD FileChmod() CLASS MCApp
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || oDlg:End() }
 
+   // Esc = Cancel inside dialogs: enable the READ exit key just for the
+   // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
+   // an Esc-terminated READ leaves lOk .F., so previous config is preserved
+   Set( _SET_ESCAPE, .T. )
    oDlg:Activate( GetList )
+   Set( _SET_ESCAPE, .F. )
    ::Repaint()
 
    if lOk
