@@ -1430,19 +1430,19 @@ function ChkDisplay()
    DispBegin()
 
    hb_DispOutAt( ::row + nDR, ::col + nDC + 1, ;
-      iif( ::lBuffer, SubStr( cStyle, 2, 1 ), SubStr( cStyle, 3, 1 ) ), ;
+      iif( ::lBuffer, hb_USubStr( cStyle, 2, 1 ), hb_USubStr( cStyle, 3, 1 ) ), ;
       hb_ColorIndex( ::cColorSpec, iif( ::lHasFocus, 1, 0 ) ) )
 
    cColor := hb_ColorIndex( ::cColorSpec, iif( ::lHasFocus, 3, 2 ) )
-   hb_DispOutAt( ::row + nDR, ::col + nDC, Left( cStyle, 1 ), cColor )
-   hb_DispOutAt( ::row + nDR, ::col + nDC + 2, Right( cStyle, 1 ), cColor )
+   hb_DispOutAt( ::row + nDR, ::col + nDC, hb_ULeft( cStyle, 1 ), cColor )
+   hb_DispOutAt( ::row + nDR, ::col + nDC + 2, hb_URight( cStyle, 1 ), cColor )
 
    if ! Empty( cCaption := ::cCaption )
-      if ( nPos := At( "&", cCaption ) ) == 0
-      elseif nPos == Len( cCaption )
+      if ( nPos := hb_UAt( "&", cCaption ) ) == 0
+      elseif nPos == hb_ULen( cCaption )
          nPos := 0
       else
-         cCaption := Stuff( cCaption, nPos, 1, "" )
+         cCaption := hb_ULeft( cCaption, nPos - 1 ) + hb_USubStr( cCaption, nPos + 1 )
       endif
 
       hb_DispOutAt( ::nCapRow + nDR, ::nCapCol + nDC, cCaption, cColor )
@@ -1450,7 +1450,7 @@ function ChkDisplay()
       if nPos != 0
          cAccel := iif( HB_IsArray( ::cargo ), ::cargo[ 1 ], hb_ColorIndex( ::cColorSpec, 3 ) )
          hb_DispOutAt( ::nCapRow + nDR, ::nCapCol + nDC + nPos - 1, ;
-            SubStr( cCaption, nPos, 1 ), cAccel )
+            hb_USubStr( cCaption, nPos, 1 ), cAccel )
       endif
    endif
 
@@ -1471,8 +1471,8 @@ function ChkHitTest( nMRow, nMCol )
       nDC := ::cargo[ 3 ]
    endif
 
-   nLen := Len( ::cCaption )
-   if ( nPos := At( "&", ::cCaption ) ) > 0 .and. nPos < nLen
+   nLen := hb_ULen( ::cCaption )
+   if ( nPos := hb_UAt( "&", ::cCaption ) ) > 0 .and. nPos < nLen
       nLen--
    endif
 
@@ -1505,8 +1505,8 @@ function RadHitTest( nMRow, nMCol )
       nDC := ::cargo[ 3 ]
    endif
 
-   nLen := Len( ::cCaption )
-   if ( nPos := At( "&", ::cCaption ) ) > 0 .and. nPos < nLen
+   nLen := hb_ULen( ::cCaption )
+   if ( nPos := hb_UAt( "&", ::cCaption ) ) > 0 .and. nPos < nLen
       nLen--
    endif
 
@@ -1546,16 +1546,16 @@ function RadDisplay()
    cColor := iif( ::lBuffer, ;
       hb_ColorIndex( ::cColorSpec, 3 ), ;
       hb_ColorIndex( ::cColorSpec, 1 ) )
-   hb_DispOutAt( ::row + nDR, ::col + nDC, Left( cStyle, 1 ) + ;
-      iif( ::lBuffer, SubStr( cStyle, 2, 1 ), SubStr( cStyle, 3, 1 ) ) + ;
-      Right( cStyle, 1 ), cColor )
+   hb_DispOutAt( ::row + nDR, ::col + nDC, hb_ULeft( cStyle, 1 ) + ;
+      iif( ::lBuffer, hb_USubStr( cStyle, 2, 1 ), hb_USubStr( cStyle, 3, 1 ) ) + ;
+      hb_URight( cStyle, 1 ), cColor )
 
    if ! Empty( cCaption := ::cCaption )
-      if ( nPos := At( "&", cCaption ) ) == 0
-      elseif nPos == Len( cCaption )
+      if ( nPos := hb_UAt( "&", cCaption ) ) == 0
+      elseif nPos == hb_ULen( cCaption )
          nPos := 0
       else
-         cCaption := Stuff( cCaption, nPos, 1, "" )
+         cCaption := hb_ULeft( cCaption, nPos - 1 ) + hb_USubStr( cCaption, nPos + 1 )
       endif
 
       hb_DispOutAt( ::CapRow + nDR, ::CapCol + nDC, cCaption, ;
@@ -1568,7 +1568,7 @@ function RadDisplay()
             cAccel := hb_ColorIndex( ::cColorSpec, iif( ::lBuffer, 5, 4 ) )
          endif
          hb_DispOutAt( ::CapRow + nDR, ::CapCol + nDC + nPos - 1, ;
-            SubStr( cCaption, nPos, 1 ), cAccel )
+            hb_USubStr( cCaption, nPos, 1 ), cAccel )
       endif
    endif
 
