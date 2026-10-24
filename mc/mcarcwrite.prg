@@ -54,6 +54,14 @@ static function MCTarRepack( cArchive, cTree )
    local cBak := cArchive + ".hbbak", cOut := ""
    local cFlag := MCTarCompFlag( cArchive ), lOk
 
+   if hb_FileExists( cBak )
+      // A leftover backup means a previous repack failed and nobody has
+      // inspected it yet. Never overwrite it silently: it may be the only
+      // copy of that earlier original.
+      MCVfsSetError( "backup from a previous failed repack exists:" + Chr( 10 ) + cBak + ;
+                     Chr( 10 ) + "Inspect or remove it first. Nothing changed." )
+      return .F.
+   endif
    if hb_FileExists( cArchive )
       if hb_ProcessRun( MCShWrap( "cp -p " + ShellQuote( cArchive ) + " " + ShellQuote( cBak ) + " 2>/dev/null" ) ) != 0
          MCVfsSetError( "cannot create backup copy" )
