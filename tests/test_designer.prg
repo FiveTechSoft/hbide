@@ -660,6 +660,35 @@ procedure Main()
    oD2:PasteClipboard()
    Check( "paste with empty clipboard is a no-op", Empty( oD2:aControls ) .and. Empty( oD2:aUndo ) )
 
+   // snap to grid (F7)
+   oD2 = HbDesigner():New( TStubIde() )
+   Check( "snap off by default", ! oD2:lSnap )
+   oD2:lSnap = .T.
+   Check( "snap 0,0 keeps", oD2:SnapPos( 0, 0 )[ 1 ] == 0 .and. oD2:SnapPos( 0, 0 )[ 2 ] == 0 )
+   Check( "snap rounds to grid", oD2:SnapPos( 3, 5 )[ 1 ] == 4 .and. oD2:SnapPos( 3, 5 )[ 2 ] == 6 )
+   Check( "snap keeps aligned", oD2:SnapPos( 2, 2 )[ 1 ] == 2 .and. oD2:SnapPos( 2, 2 )[ 2 ] == 2 )
+   oD2:lSnap = .F.
+   Check( "snap off is identity", oD2:SnapPos( 3, 5 )[ 1 ] == 3 .and. oD2:SnapPos( 3, 5 )[ 2 ] == 5 )
+   oD2:ToggleSnap()
+   Check( "toggle turns on", oD2:lSnap )
+   oD2:ToggleSnap()
+   Check( "toggle turns off", ! oD2:lSnap )
+   oD2:lSnap = .T.
+   oD2:nDlgWidth = 41
+   oD2:nDlgHeight = 13
+   oD2:cPlacingType = "get"
+   oD2:nGhostRow = 3
+   oD2:nGhostCol = 5
+   oD2:ClampGhost()
+   Check( "ghost snapped to grid", oD2:nGhostRow == 4 .and. oD2:nGhostCol == 6 )
+   AAdd( oD2:aControls, { "type" => "get", "row" => 4, "col" => 6, "variable" => "cVar1", "width" => 10 } )
+   oD2:nSelected = 1
+   oD2:MoveSelected( 1, 0 )
+   Check( "move snapped to grid", oD2:aControls[ 1 ][ "row" ] == 6 )
+   oD2:MoveSelected( -1, 0 )
+   Check( "snap move never sticks", oD2:aControls[ 1 ][ "row" ] == 4 )
+   Check( "toggle is not a history entry", Len( oD2:aUndo ) == 1 )
+
    QOut( "" )
    QOut( "PASSED: " + hb_ntos( s_nPassed ) + "  FAILED: " + hb_ntos( s_nFailed ) )
    ErrorLevel( If( s_nFailed == 0, 0, 1 ) )
