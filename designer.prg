@@ -2699,6 +2699,8 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
                         " RADIOGROUP aButt", " LISTBOX aItems" ) + ;
                      hb_ntos( n ) + ;
+                     If( oCtrl[ "type" ] == DSN_LISTBOX .and. ;
+                        Len( DsnItems( oCtrl ) ) > aSize[ 2 ] - 2, " SCROLLBAR", "" ) + ;
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
                         " COLOR '" + If( aDlgPair[ 2 ] == "W", ;
                            If( cClrFocus == DSN_CLR_FOCUS, "N/W,N/W,GR+/W", ;
