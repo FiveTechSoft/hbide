@@ -58,6 +58,8 @@ CLASS HBSrcEdit FROM HBEditor
    DATA   nSavedUndoLen INIT 0
    DATA   lInUndo      INIT .F.
    DATA   lOpRecorded  INIT .F.
+   DATA   cSeenStamp   INIT ""   // disk stamp last seen (detection, load, own save)
+   DATA   cLoadStamp   INIT ""   // disk stamp at last load/own save (save guard)
 
    METHOD Edit( nKey )
    METHOD EditKey( nKey )
@@ -68,7 +70,11 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD Undo()
    METHOD Redo()
    METHOD LoadText( cText )
+   METHOD LoadFile( cFileName )
    METHOD SaveFile()
+   METHOD DiskStamp( cFile )
+   METHOD DiskChanged()
+   METHOD DiskChangedSinceLoad()
    METHOD Display()
    METHOD DisplayLine( nLine )
    METHOD LineColor( nLine ) INLINE ;
@@ -612,12 +618,61 @@ return xRet
 
 //-----------------------------------------------------------------------------------------//
 
+METHOD LoadFile( cFileName ) CLASS HBSrcEdit
+
+   local xRet := ::Super:LoadFile( cFileName )
+
+   ::cSeenStamp := ::cLoadStamp := ::DiskStamp( ::cFile )
+
+return xRet
+
+//-----------------------------------------------------------------------------------------//
+
+// date+time+size stamp of the file on disk ("" when missing/unreadable).
+// Coverage limit: a same-size edit within the filesystem timestamp
+// resolution keeps the same stamp and is not detected.
+METHOD DiskStamp( cFile ) CLASS HBSrcEdit
+
+   local aDir
+
+   if Empty( cFile ) .or. ! File( cFile )
+      return ""
+   endif
+
+   aDir := Directory( cFile )
+   if Len( aDir ) == 0
+      return ""
+   endif
+
+return DToS( aDir[ 1, 3 ] ) + "|" + aDir[ 1, 4 ] + "|" + hb_ntos( aDir[ 1, 2 ] )
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD DiskChanged() CLASS HBSrcEdit
+
+   local cStamp := ::DiskStamp( ::cFile )
+
+return ! Empty( cStamp ) .and. cStamp != ::cSeenStamp
+
+//-----------------------------------------------------------------------------------------//
+
+// save-time guard: the disk version moved since our last load/own save,
+// even when the change was already acknowledged ("Keep mine")
+METHOD DiskChangedSinceLoad() CLASS HBSrcEdit
+
+   local cStamp := ::DiskStamp( ::cFile )
+
+return ! Empty( cStamp ) .and. cStamp != ::cLoadStamp
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD SaveFile() CLASS HBSrcEdit
 
    local lOk := ::Super:SaveFile()
 
    if lOk
       ::nSavedUndoLen := Len( ::aUndo )
+      ::cSeenStamp := ::cLoadStamp := ::DiskStamp( ::cFile )   // our own save is not an external change
    endif
 
 return lOk
