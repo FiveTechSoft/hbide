@@ -69,6 +69,12 @@ CLASS MCApp
    DATA   lConfirmExit    INIT .T.
    DATA   lMiniStatus     INIT .T.
    DATA   lMixDirs        INIT .F.
+   DATA   lComputeTotals  INIT .F.
+   DATA   lShowFreeSpace  INIT .T.
+   DATA   lAutoSaveSetup  INIT .T.
+   DATA   lShellPatterns  INIT .T.
+   DATA   lShowBackup     INIT .T.
+   DATA   lMarkDown       INIT .T.
    DATA   lEqualSplit     INIT .T.
    DATA   lHorizontal     INIT .F.
    DATA   lMenubar        INIT .T.
@@ -474,6 +480,9 @@ METHOD Quit() CLASS MCApp
    if ! ::lConfirmExit .or. ::DlgConfirm( "Quit", "Do you really want to quit the Commander?", "&Quit" )
       MCJobsCleanup()
       MCVfsCleanup()
+      if ::lAutoSaveSetup
+         ::SaveCfg( .T. )
+      endif
       ::lEnd := .T.
    endif
 
@@ -1197,7 +1206,7 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
 
    local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
    local oDlg, GetList := {}, lDummy, lOk := .F.
-   local nFmt := If( oPanel:lBrief, 2, 1 ), aFmt[ 2 ]
+   local nFmt := If( oPanel:lBrief, 2, 1 ), aFmt[ 2 ], n
    local cRadStyle := "(" + Chr( 7 ) + " )"
    local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
 
@@ -1232,7 +1241,12 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    ::Repaint()
 
    if lOk
-      oPanel:lBrief := ( Int( nFmt ) == 2 )
+      // numeric GET buffer round-trip is unreliable; read the items
+      n := AScan( aFmt, { | o | o:buffer } )
+      if n == 0
+         n := Min( Max( 1, Int( nFmt ) ), 2 )
+      endif
+      oPanel:lBrief := ( n == 2 )
       ::Repaint()
    endif
 
@@ -1312,7 +1326,13 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    ::Repaint()
 
    if lOk
-      oPanel:cSort := aKeys[ Min( Max( 1, Int( nSort ) ), 8 ) ]
+      // the numeric GET buffer round-trip is unreliable; read the
+      // radiogroup items directly (lBuffer on the selected button)
+      n := AScan( aRad, { | o | o:buffer } )
+      if n == 0
+         n := Min( Max( 1, Int( nSort ) ), 8 )
+      endif
+      oPanel:cSort := aKeys[ n ]
       oPanel:lReverse := lRev
       oPanel:lCaseSens := lCase
       oPanel:SortFiles()
@@ -1360,8 +1380,10 @@ METHOD OptionsConfig() CLASS MCApp
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
    local lHidden := ::lShowHidden, lMini := ::lMiniStatus
+   local lTotals := ::lComputeTotals, lFree := ::lShowFreeSpace
+   local lSave := ::lAutoSaveSetup, lPat := ::lShellPatterns
 
-   oDlg = HBWindow():Dialog( "Configuration", 44, 9, "W+/W" )
+   oDlg = HBWindow():Dialog( "Configuration", 44, 13, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lHidden ;
@@ -1371,6 +1393,26 @@ METHOD OptionsConfig() CLASS MCApp
 
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET lMini ;
       CHECKBOX CAPTION "Show &mini-status" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lTotals ;
+      CHECKBOX CAPTION "Compute &totals" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 5, oDlg:nLeft + 3 GET lFree ;
+      CHECKBOX CAPTION "Show &free space" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 6, oDlg:nLeft + 3 GET lSave ;
+      CHECKBOX CAPTION "Auto &save setup" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 7, oDlg:nLeft + 3 GET lPat ;
+      CHECKBOX CAPTION "Shell &patterns" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
@@ -1390,6 +1432,10 @@ METHOD OptionsConfig() CLASS MCApp
    if lOk
       ::lShowHidden := lHidden
       ::lMiniStatus := lMini
+      ::lComputeTotals := lTotals
+      ::lShowFreeSpace := lFree
+      ::lAutoSaveSetup := lSave
+      ::lShellPatterns := lPat
       ::Rescan()
    endif
 
@@ -1457,13 +1503,23 @@ return nil
 METHOD OptionsPanel() CLASS MCApp
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
-   local lMix := ::lMixDirs
+   local lMix := ::lMixDirs, lBak := ::lShowBackup, lMd := ::lMarkDown
 
-   oDlg = HBWindow():Dialog( "Panel options", 44, 8, "W+/W" )
+   oDlg = HBWindow():Dialog( "Panel options", 44, 10, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lMix ;
       CHECKBOX CAPTION "&Mix all files (no dirs first)" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 3, oDlg:nLeft + 3 GET lBak ;
+      CHECKBOX CAPTION "Show &backup files" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
+   ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
+   ATail( GetList ):Control:Display()
+
+   @ oDlg:nTop + 4, oDlg:nLeft + 3 GET lMd ;
+      CHECKBOX CAPTION "Mar&k moves down" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
@@ -1482,6 +1538,8 @@ METHOD OptionsPanel() CLASS MCApp
 
    if lOk
       ::lMixDirs := lMix
+      ::lShowBackup := lBak
+      ::lMarkDown := lMd
       ::Rescan()
    endif
 
@@ -1587,7 +1645,11 @@ METHOD OptionsAppearance() CLASS MCApp
    ::Repaint()
 
    if lOk
-      ::SetTheme( Min( Max( 1, Int( nThemeSel ) ), 3 ) )
+      n := AScan( aRad, { | o | o:buffer } )
+      if n == 0
+         n := Min( Max( 1, Int( nThemeSel ) ), 3 )
+      endif
+      ::SetTheme( n )
       ::Repaint()
    endif
 
@@ -2491,7 +2553,7 @@ METHOD SelectGroup( lSelect ) CLASS MCApp
       return nil
    endif
    for each aEntry in oPanel:aFiles
-      if ! aEntry[ P_DIR ] .and. FilterMatch( aEntry[ P_NAME ], cMask, oPanel:lCaseSens )
+      if ! aEntry[ P_DIR ] .and. FilterMatch( aEntry[ P_NAME ], cMask, oPanel:lCaseSens, ::lShellPatterns )
          aEntry[ P_MARKED ] := lSelect
          n++
       endif
@@ -2991,6 +3053,12 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "confirmexit"    ; ::lConfirmExit := ( cVal == "1" )
          case cKey == "ministatus"     ; ::lMiniStatus := ( cVal == "1" )
          case cKey == "mixdirs"        ; ::lMixDirs := ( cVal == "1" )
+         case cKey == "computetotals"  ; ::lComputeTotals := ( cVal == "1" )
+         case cKey == "showfreespace"  ; ::lShowFreeSpace := ( cVal == "1" )
+         case cKey == "autosavesetup"  ; ::lAutoSaveSetup := ( cVal == "1" )
+         case cKey == "shellpatterns"  ; ::lShellPatterns := ( cVal == "1" )
+         case cKey == "showbackup"     ; ::lShowBackup := ( cVal == "1" )
+         case cKey == "markdown"       ; ::lMarkDown := ( cVal == "1" )
          case cKey == "equalsplit"     ; ::lEqualSplit := ( cVal == "1" )
          case cKey == "horizontal"     ; ::lHorizontal := ( cVal == "1" )
          case cKey == "menubar"        ; ::lMenubar := ( cVal == "1" )
@@ -3017,6 +3085,12 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "confirmexit=" + If( ::lConfirmExit, "1", "0" ) + hb_eol()
    cTxt += "ministatus=" + If( ::lMiniStatus, "1", "0" ) + hb_eol()
    cTxt += "mixdirs=" + If( ::lMixDirs, "1", "0" ) + hb_eol()
+   cTxt += "computetotals=" + If( ::lComputeTotals, "1", "0" ) + hb_eol()
+   cTxt += "showfreespace=" + If( ::lShowFreeSpace, "1", "0" ) + hb_eol()
+   cTxt += "autosavesetup=" + If( ::lAutoSaveSetup, "1", "0" ) + hb_eol()
+   cTxt += "shellpatterns=" + If( ::lShellPatterns, "1", "0" ) + hb_eol()
+   cTxt += "showbackup=" + If( ::lShowBackup, "1", "0" ) + hb_eol()
+   cTxt += "markdown=" + If( ::lMarkDown, "1", "0" ) + hb_eol()
    cTxt += "equalsplit=" + If( ::lEqualSplit, "1", "0" ) + hb_eol()
    cTxt += "horizontal=" + If( ::lHorizontal, "1", "0" ) + hb_eol()
    cTxt += "menubar=" + If( ::lMenubar, "1", "0" ) + hb_eol()
