@@ -256,8 +256,13 @@ Two caveats stay open:
   derived scheme, including the half-height button shadow.
 - Viewport fit: loading a dialog, resizing it in F3 or from the
   inspector repositions the design window so it and its shadow stay
-  fully on screen; sizes are clamped to the screen and to the minimum
-  that keeps every control visible.
+  fully on screen. The model keeps the dialog's saved size (grown to
+  the minimum that keeps every control visible); when the dialog is
+  larger than the screen the design window acts as a viewport onto it,
+  controls beyond the edge are clipped on the canvas but never lost
+  from the model, and saving or generating keeps the true size.
+  Moving a control repaints the canvas, so no ghost of its old
+  position remains.
 - Checkbox glyph: Harbour's stock checkbox paints CP437 0xFB (the square
   root glyph) for the checked state; in a UTF-8 terminal that byte renders
   as "u with circumflex" (the EN codepage, the only one selectable in this
