@@ -1160,52 +1160,52 @@ METHOD SortOrder( nPanel ) CLASS MCApp
 
    local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
    local oDlg, GetList := {}, lDummy, lOk := .F.
-   local aNames := { "&Name", "&Extension", "&Size", "&Modify time", "&Unsorted" }
-   local aKeys  := { "name", "ext", "size", "mtime", "unsorted" }
-   local cSort := StrTran( aNames[ AScan( aKeys, oPanel:cSort ) ], "&", "" ), aRad[ 5 ], n
+   local aNames := { "&Name", "&Extension", "&Size", "&Modify time", "&Access time", "&Change time", "&Inode", "&Unsorted" }
+   local aKeys  := { "name", "ext", "size", "mtime", "atime", "ctime", "inode", "unsorted" }
+   local cSort := StrTran( aNames[ AScan( aKeys, oPanel:cSort ) ], "&", "" ), aRad[ 8 ], n
    local lRev := oPanel:lReverse, lCase := oPanel:lCaseSens
    local cRadStyle := "(" + Chr( 7 ) + " )"
    local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
-   local cFrame  := hb_UTF8ToStr( "┌─┐│┘─└│" )
+   local cFrame  := hb_UTF8ToStrBox( "┌─┐│┘─└│" )
    local nT, nL
 
-   oDlg = HBWindow():Dialog( "Sort order", 38, 15, "W+/W" )
+   oDlg = HBWindow():Dialog( "Sort order", 38, 18, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
    nT := oDlg:nTop
    nL := oDlg:nLeft
 
    // Group: Sort
-   hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 35, cFrame, "N/W" )
-   hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 34,,, "N/BG" )
+   hb_DispBox( nT + 1, nL + 2, nT + 10, nL + 35, cFrame, "N/W" )
+   hb_Scroll( nT + 2, nL + 3, nT + 9, nL + 34,,, "N/BG" )
    hb_DispOutAt( nT + 1, nL + 4, " Sort ", "N/W" )
 
-   for n := 1 to 5
+   for n := 1 to 8
       aRad[ n ] := RadioButto( nT + 1 + n, nL + 5, aNames[ n ] )
    next
    AEval( aRad, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
    oDlg:cargo := aRad
 
-   @ nT + 2, nL + 4, nT + 6, nL + 33 GET cSort ;
+   @ nT + 2, nL + 4, nT + 9, nL + 33 GET cSort ;
       RADIOGROUP aRad STYLE cRadStyle
    ATail( GetList ):Control:coldBox := ""
    ATail( GetList ):Control:hotBox := ""
    // Redraw group frame (radiogroup Display already drew its own frame)
-   hb_DispBox( nT + 1, nL + 2, nT + 7, nL + 35, cFrame, "N/W" )
-   hb_Scroll( nT + 2, nL + 3, nT + 6, nL + 34,,, "N/BG" )
+   hb_DispBox( nT + 1, nL + 2, nT + 10, nL + 35, cFrame, "N/W" )
+   hb_Scroll( nT + 2, nL + 3, nT + 9, nL + 34,,, "N/BG" )
    hb_DispOutAt( nT + 1, nL + 4, " Sort ", "N/W" )
    ATail( GetList ):Control:Display()
 
    // Group: Options
-   hb_DispBox( nT + 8, nL + 2, nT + 11, nL + 35, cFrame, "N/W" )
-   hb_Scroll( nT + 9, nL + 3, nT + 10, nL + 34,,, "N/BG" )
-   hb_DispOutAt( nT + 8, nL + 4, " Options ", "N/W" )
+   hb_DispBox( nT + 11, nL + 2, nT + 14, nL + 35, cFrame, "N/W" )
+   hb_Scroll( nT + 12, nL + 3, nT + 13, nL + 34,,, "N/BG" )
+   hb_DispOutAt( nT + 11, nL + 4, " Options ", "N/W" )
 
-   @ nT + 9, nL + 5 GET lRev ;
+   @ nT + 12, nL + 5 GET lRev ;
       CHECKBOX CAPTION "&Reverse" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
 
-   @ nT + 10, nL + 5 GET lCase ;
+   @ nT + 13, nL + 5 GET lCase ;
       CHECKBOX CAPTION "&Case sensitive" STYLE "[X ]" COLOR "N/BG,W+/BG,N/BG,W+/BG"
    ATail( GetList ):Control:cargo := { "GR+/BG", 0, 0 }
    ATail( GetList ):Control:Display()
