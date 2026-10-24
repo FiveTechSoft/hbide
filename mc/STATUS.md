@@ -33,8 +33,17 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - Mini status bar shows free disk space (Show free space)
 - Backup files (~) hidden from panels unless Show backup files is on
 - Select/Filter group: shell patterns on, plain substring match when off
-- Sort order dialog: radiogroup selection now applies (size sort verified
-  live; per-panel sort state kept when the split changes)
+- Sort order dialog: selection now applies (size sort verified live;
+  per-panel sort state kept when the split changes). Note: the numeric
+  GET round-trip is unreliable in the Commander's dialogs, so radio
+  selection is read from the control buffer - scoped to mc/, NOT an
+  hbide-wide defect (the designer's generated PRG applies it correctly)
+- Listing format: Full, Brief, Long (ls -l style: perms, nlink, owner,
+  group, size, mtime) and User defined (columns split by "|", fields
+  name/ext/size/bsize/mtime/perm/nlink/owner/group/type/mark/space,
+  "half" = half-width column) + user mini status option. atime/ctime
+  render blank in the demo. Per-panel formats persist to ~/.hbmc.ini
+  (save+load round-trip verified, restart restores them)
 - Layout: horizontal / vertical panel split
 - Configuration dialog: 6 working checkboxes (Show hidden files, Show
   mini-status, Compute totals, Show free space, Auto save setup, Shell
@@ -54,7 +63,6 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 ## Pending (not implemented / not verified)
 
 - Learn keys
-- Listing mode custom formats
 
 ## Env-blocked (out of demo scope by design)
 
