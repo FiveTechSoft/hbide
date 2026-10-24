@@ -1535,17 +1535,20 @@ METHOD OptionsAppearance() CLASS MCApp
    oDlg:bRepaint = { || ::Repaint() }
 
    for n := 1 to 3
-      // pad captions to one width: the group's box area otherwise shows
-      // trailing cells in a different color behind the shorter labels
-      aRad[ n ] := RadioButto( oDlg:nTop + 1 + n, oDlg:nLeft + 4, PadR( aNames[ n ], 26 ) )
+      // captions share one width (27 = longest name with "&") so no
+      // trailing cells show through; leading space + capCol = col + 3
+      // paints the gap cell between ")" and the label in the row color
+      aRad[ n ] := RadioButto( oDlg:nTop + 1 + n, oDlg:nLeft + 4, " " + PadR( aNames[ n ], 27 ) )
+      aRad[ n ]:capCol := oDlg:nLeft + 7
    next
    AEval( aRad, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
    oDlg:cargo := aRad
 
-   @ oDlg:nTop + 2, oDlg:nLeft + 3, oDlg:nTop + 4, oDlg:nLeft + 32 GET nThemeSel ;
-      RADIOGROUP aRad STYLE cRadStyle COLOR "N/BG,N/BG,GR+/BG"
-   ATail( GetList ):Control:coldBox := Space( 8 )  // invisible frame: "" falls back to the default box
-   ATail( GetList ):Control:hotBox := Space( 8 )
+   // keep the default single-line group frame (authentic mc look) but give
+   // it its own rows/cols around the items: one blank row above/below and
+   // margin columns, in the dialog background color so it reads as chrome
+   @ oDlg:nTop + 1, oDlg:nLeft + 3, oDlg:nTop + 5, oDlg:nLeft + 36 GET nThemeSel ;
+      RADIOGROUP aRad STYLE cRadStyle COLOR "N/W,N/BG,GR+/BG"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "GR+/G,W+/G,N/G,BG+/G" STATE { || lOk := .T., oDlg:End() }
