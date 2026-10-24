@@ -14,10 +14,15 @@ CLASS HbWindow FROM HbDbWindow
    DATA   cVirtImage     // virtual window image (full size, even when partially off-screen)
    DATA   lRedrawPending INIT .F.
    DATA   nIdle          // allows mouse support in READ
+   DATA   nIdleRead      // idle hook that feeds mouse clicks into READ
+   DATA   lReadMouse INIT .F.  // left button state seen by the idle hook
    DATA   GetList
    DATA   lDesign INIT .F.
 
    METHOD Activate( GetList )
+
+   METHOD ReadMouse()        // polls the mouse while READ waits
+   METHOD MouseClick( nR, nC )  // focuses/activates the clicked GET
 
    METHOD End() INLINE ReadKill( .T. )
 
@@ -61,10 +66,96 @@ return Self
 METHOD Activate( GetList ) CLASS HbWindow
 
    ::GetList = GetList
+   ::lReadMouse := MLeftDown()
+   ::nIdleRead := hb_IdleAdd( { || ::ReadMouse() } )
    READ
+   if ::nIdleRead != nil
+      hb_IdleDel( ::nIdleRead )
+      ::nIdleRead := nil
+   endif
    ::Hide()
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Polls the left mouse button while READ waits and turns a click
+// (press followed by release) into a focus/activation request.
+
+METHOD ReadMouse() CLASS HbWindow
+
+   local lNow := MLeftDown()
+
+   if ::lReadMouse .and. ! lNow
+      ::MouseClick( MRow(), MCol() )
+   endif
+   ::lReadMouse := lNow
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Focuses the GET under the click and, for pushbuttons and checkboxes,
+// also activates it. Focus is moved through the reader itself: Ctrl+Home
+// goes to the first GET and Tab advances, so the READ state stays
+// consistent. Returns .T. when a GET was hit.
+
+METHOD MouseClick( nR, nC ) CLASS HbWindow
+
+   local oGet, oHit := nil, cCls := "", nHitRow := -999, nHitCol := -999
+   local nCur, nTgt, cKeys
+
+   if Empty( ::GetList ) .or. GetActive() == nil
+      return .F.
+   endif
+
+   for each oGet in ::GetList
+      cCls := If( Empty( oGet:control ), "", Upper( oGet:control:className() ) )
+      do case
+         case cCls == "LISTBOX" .or. cCls == "RADIOGROUP"
+            // multi-row controls: any row from their top downwards
+            if nR >= oGet:row .and. nC >= oGet:col .and. nC <= oGet:col + 40 .and. ;
+               ( oGet:row > nHitRow .or. ( oGet:row == nHitRow .and. oGet:col > nHitCol ) )
+               oHit := oGet
+               nHitRow := oGet:row
+               nHitCol := oGet:col
+            endif
+         otherwise
+            // single-row controls (plain GET, CHECKBOX, PUSHBUTTON, radio item);
+            // a pushbutton also owns its 3D shadow row just below
+            if ( nR == oGet:row .or. ( cCls == "PUSHBUTTON" .and. nR == oGet:row + 1 ) ) .and. ;
+               nC >= oGet:col .and. nC <= oGet:col + If( oGet:buffer != nil, Len( oGet:buffer ), 30 ) .and. ;
+               ( oGet:row > nHitRow .or. ( oGet:row == nHitRow .and. oGet:col > nHitCol ) )
+               oHit := oGet
+               nHitRow := oGet:row
+               nHitCol := oGet:col
+            endif
+      endcase
+   next
+
+   if oHit == nil
+      return .F.
+   endif
+
+   nCur := AScan( ::GetList, { | g | g == GetActive() } )
+   nTgt := AScan( ::GetList, { | g | g == oHit } )
+   if nCur == 0 .or. nTgt == 0
+      return .F.
+   endif
+
+   // go to the first GET, then Tab forward to the target; moving past the
+   // last GET would end the READ, so never wrap around
+   cKeys := Chr( K_CTRL_HOME ) + Replicate( Chr( K_TAB ), nTgt - 1 )
+   cCls := If( Empty( oHit:control ), "", Upper( oHit:control:className() ) )
+   do case
+      case cCls == "PUSHBUTTON"
+         cKeys += Chr( K_ENTER )
+      case cCls == "CHECKBOX"
+         cKeys += Chr( K_SPACE )
+   endcase
+   __Keyboard( cKeys )
+
+return .T.
 
 //-----------------------------------------------------------------------------------------//
 
