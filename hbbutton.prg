@@ -3,7 +3,7 @@ function BtnDisplay()
    local Self := QSelf()
 
    LOCAL cColor
-   LOCAL cStyle := Chr( 255 )+ Chr( 255 ) // ::cStyle
+   LOCAL cStyle := HbBtnPadChars()   // CP-aware caption pads (CP437: two Chr(255))
    LOCAL cCaption := ::cCaption
    LOCAL nRow := ::nRow
    LOCAL nCol := ::nCol
@@ -31,16 +31,11 @@ function BtnDisplay()
 
       nCol++
 
-      IF Len( cStyle ) == 2
-         if ::lBuffer
-            hb_DispOutAt( ::nRow, ::nCol, " ", "N/W" )
-         endif   
-         hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), SubStr( cStyle, 1, 1 ), cColor )
-         hb_DispOutAt( ::nRow, ::nCol + Len( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), SubStr( cStyle, 2, 1 ), cColor )
-      ELSE
-         nRow++
-         hb_DispBox( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), ::nRow + 2, ::nCol + Len( cCaption ) + 1, cStyle, cColor )
-      ENDIF
+      if ::lBuffer
+         hb_DispOutAt( ::nRow, ::nCol, " ", "N/W" )
+      endif
+      hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), cStyle[ 1 ], cColor )
+      hb_DispOutAt( ::nRow, ::nCol + Len( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), cStyle[ 2 ], cColor )
    ENDIF
 
    IF ! Empty( cCaption )
@@ -69,6 +64,12 @@ function BtnDisplay()
 function HbBtnShadowChars()
 
 return { hb_UTF8ToStr( "▄" ), hb_UTF8ToStr( "▀" ) }
+
+// the two pads flanking the caption: U+00A0 (CP437 255) converted for the active
+// codepage, so under the UTF-8 opt-in they stay valid instead of rendering as ?
+function HbBtnPadChars()
+
+return { hb_UTF8ToStr( " " ), hb_UTF8ToStr( " " ) }
 
 // Registers the hbide PushButton display (with its 3D shadow) for any
 // program that links this file, including designer-generated dialogs
