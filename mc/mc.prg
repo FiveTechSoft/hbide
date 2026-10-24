@@ -54,6 +54,8 @@ CLASS MCApp
    DATA   cBackScreen
    DATA   cCmdLine     INIT ""
    DATA   oCmdLine
+   DATA   cCp1        INIT ""        // panel display charsets from cfg
+   DATA   cCp2        INIT ""
    DATA   cLastOutput  INIT ""
    DATA   aHistory     INIT {}
    DATA   aHotlist     INIT {}
@@ -111,6 +113,7 @@ CLASS MCApp
    METHOD PanelInfo( nPanel )
    METHOD PanelTree( nPanel )
    METHOD Panelize( nPanel )
+   METHOD PanelCharset()
    METHOD ListingFormat( nPanel )
    METHOD SortOrder( nPanel )
    METHOD FilterDlg( nPanel )
@@ -183,6 +186,8 @@ METHOD New( cStartDir ) CLASS MCApp
    ::oPanel2 := MCPanel():New( cStartDir )
    ::oPanel1:oApp := Self
    ::oPanel2:oApp := Self
+   ::oPanel1:cCp := ::cCp1
+   ::oPanel2:cCp := ::cCp2
 
    ::oMenu := ::BuildMenu()
    SetCursor( SC_NONE )
@@ -619,6 +624,7 @@ METHOD AltKey( nKey ) CLASS MCApp
       case nKey == K_ALT_C ; ::QuickCd()
       case nKey == K_ALT_H ; ::CmdHistory()
       case nKey == K_ALT_O ; ( ::OtherPanel():GoDir( ::ActivePanel():cPath ), ::Repaint() )
+      case nKey == K_ALT_E ; ::PanelCharset()
       otherwise
          SetCursor( SC_NONE )
          ::oMenu:ProcessKey( nKey )
@@ -910,6 +916,29 @@ METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
    endif
 
 return 0
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD PanelCharset() CLASS MCApp
+
+   // real mc: Alt-e changes the charset of the panel, recoding display
+   // into the system codepage; "No translation" cancels the recoding
+   local aCp := MCCpList(), aLabels := {}, nCur := 1, n
+   local oP := ::ActivePanel()
+
+   for n := 1 to Len( aCp )
+      AAdd( aLabels, aCp[ n ][ 1 ] )
+      if aCp[ n ][ 2 ] == oP:cCp
+         nCur := n
+      endif
+   next
+   n := ::DlgList( "Panel charset (display only)", aLabels, nCur )
+   if n > 0
+      oP:cCp := aCp[ n ][ 2 ]
+   endif
+   ::Repaint()
+
+return nil
 
 //-----------------------------------------------------------------------------------------//
 
@@ -1492,7 +1521,12 @@ METHOD FileView() CLASS MCApp
    if aEntry != nil .and. ! aEntry[ P_DIR ]
       cFull := MCEntryPath( ::ActivePanel(), aEntry )
       if MCVfsKind( cFull ) == "local"
-         MCViewer( cFull )
+         if ! Empty( ::ActivePanel():cCp )
+            MCViewerText( cFull + "  [" + ::ActivePanel():cCp + "]", ;
+                          MCCpDecode( MemoRead( cFull ), ::ActivePanel():cCp ) )
+         else
+            MCViewer( cFull )
+         endif
       else
          MCVfsViewFile( cFull )
       endif
@@ -2849,6 +2883,8 @@ METHOD LoadCfg() CLASS MCApp
          case cKey == "cmdlinebar"     ; ::lCmdlineBar := ( cVal == "1" )
          case cKey == "keybar"         ; ::lKeybar := ( cVal == "1" )
          case cKey == "theme"          ; ::nTheme := Max( 1, Min( 3, Val( cVal ) ) )
+         case cKey == "cpleft"        ; ::cCp1 := If( MCCpValid( cVal ), cVal, "" )
+         case cKey == "cpright"       ; ::cCp2 := If( MCCpValid( cVal ), cVal, "" )
       endcase
    next
 
@@ -2873,6 +2909,8 @@ METHOD SaveCfg( lQuiet ) CLASS MCApp
    cTxt += "cmdlinebar=" + If( ::lCmdlineBar, "1", "0" ) + hb_eol()
    cTxt += "keybar=" + If( ::lKeybar, "1", "0" ) + hb_eol()
    cTxt += "theme=" + hb_ntos( ::nTheme ) + hb_eol()
+   cTxt += "cpleft=" + ::oPanel1:cCp + hb_eol()
+   cTxt += "cpright=" + ::oPanel2:cCp + hb_eol()
    for each aEntry in ::aHotlist
       cTxt += "hotlist|" + aEntry[ 1 ] + "|" + aEntry[ 2 ] + hb_eol()
    next
