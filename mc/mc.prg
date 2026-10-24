@@ -1025,7 +1025,7 @@ return nil
 METHOD Panelize( nPanel ) CLASS MCApp
 
    local oPanel := If( nPanel == 1, ::oPanel1, ::oPanel2 )
-   local cCmd := ::DlgInput( "External panelize", "Command (prints file paths):", "find . -type f -name '*.prg'", 45 )
+   local cCmd := ::DlgInput( "External panelize", "Command (e.g. find . -type f -name '*.prg'):", "", 45 )
    local cOut := "", cLine
 
    if cCmd == nil
@@ -1409,7 +1409,7 @@ METHOD FileFilteredView() CLASS MCApp
    endif
 
    cFull := hb_FNameMerge( ::ActivePanel():cPath, aEntry[ P_NAME ] )
-   cCmd := ::DlgInput( "Filtered view", "Command (%f = file):", "cat -n %f", 45 )
+   cCmd := ::DlgInput( "Filtered view", "Command (%f = file, e.g. cat -n %f):", "", 45 )
    if cCmd == nil
       return nil
    endif
