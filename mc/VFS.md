@@ -95,8 +95,14 @@ Integration points (concrete):
    remote entries that are links are refused on view/copy: links are
    shown but never followed, same policy as extfs. Write/delete/move are
    refused with a message.
-4. extfs beyond tar/zip (rpm, deb, iso, ...): same pattern per tool, added
-   on demand.
+4. u7z (landed): .7z and .deb (anything `7z l` reads), read-only. Listing
+   parses `7z l -slt` property output (never the human table); blocks are
+   separated by blank lines which hb_ATokens() drops, so the block
+   boundary is the next `Path = ` line plus a final flush. p7zip 16.02
+   double-encodes UTF-8 names under a UTF-8 locale, so every 7z call is
+   pinned to LC_ALL=C LANG=C. Extract via `7z x -y` into the staging dir.
+5. extfs beyond tar/zip/7z/deb (rpm, iso, ...): same pattern per tool;
+   blocked in the sandbox - no rpm2cpio / isoinfo / xorriso available.
 
 ## Failure and safety semantics
 
