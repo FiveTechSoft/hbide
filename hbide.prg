@@ -800,7 +800,7 @@ METHOD CheckUnsaved() CLASS HbIde
    local lGo := .T.
 
    if ::oEditor:Changed()
-      switch Alert( "Unsaved changes", { "&Save", "&Discard", "&Cancel" } )
+      switch Alert( "Unsaved changes", { "Save", "Discard", "Cancel" } )
       case 1
          ::SaveFile()
          lGo := ! ::oEditor:Changed()   // a failed save keeps the buffer dirty
@@ -855,7 +855,7 @@ METHOD CheckDiskChange() CLASS HbIde
       ::ReloadFromDisk()
    else
       if Alert( "File changed on disk and you have unsaved changes", ;
-                { "&Reload", "&Keep mine" } ) == 1
+                { "Reload", "Keep mine" } ) == 1
          ::ReloadFromDisk()
       endif
    endif
@@ -886,12 +886,12 @@ METHOD ConfirmOverwrite() CLASS HbIde
 
    if ::oEditor:FileVanished()
       if Alert( "File was deleted on disk. Recreate it?", ;
-                { "&Recreate", "&Cancel" } ) != 1
+                { "Recreate", "Cancel" } ) != 1
          return .F.
       endif
    elseif ::oEditor:DiskChangedSinceLoad()
       if Alert( "File changed on disk since it was loaded/saved. Overwrite it?", ;
-                { "&Overwrite", "&Cancel" } ) != 1
+                { "Overwrite", "Cancel" } ) != 1
          return .F.
       endif
    endif
@@ -975,7 +975,7 @@ METHOD SaveAs() CLASS HbIde
 
    if cName != ::oEditor:cFile
       if File( cName )
-         if Alert( "File exists: " + cName, { "&Overwrite", "&Cancel" } ) != 1
+         if Alert( "File exists: " + cName, { "Overwrite", "Cancel" } ) != 1
             ::Repaint()
             return nil
          endif
