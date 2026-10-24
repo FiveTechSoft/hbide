@@ -76,6 +76,7 @@ CLASS HbDesigner
    METHOD AddControl( cType )
    METHOD DeleteSelected()
    METHOD DlgProperties()
+   METHOD FitWindow()
    METHOD DragControl( nIndex, nMRow, nMCol )
    METHOD DrawControls()
    METHOD EditProperties()
@@ -768,14 +769,29 @@ METHOD DlgProperties() CLASS HbDesigner
          ::cDlgColor = AllTrim( cColor )
       endif
       with object ::oWnd
-         :nRight   = :nLeft + ::nDlgWidth - 1
-         :nBottom  = :nTop + ::nDlgHeight - 1
          :cCaption = " " + ::cDlgCaption + " "
          :cColor   = ::cDlgColor
       end
+      ::FitWindow()
       ::lDirty = .T.
       ::Redraw()
    endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+// keep the design window and its shadow fully on screen: when a size
+// change (load, F3, inspector resize) would push an edge out, shift the
+// window back. Width/height are already clamped by the callers.
+
+METHOD FitWindow() CLASS HbDesigner
+
+   with object ::oWnd
+      :nLeft   = Max( 0, Min( :nLeft, MaxCol() - ::nDlgWidth - 1 ) )
+      :nTop    = Max( 0, Min( :nTop, MaxRow() - ::nDlgHeight - 1 ) )
+      :nRight  = :nLeft + ::nDlgWidth - 1
+      :nBottom = :nTop + ::nDlgHeight - 1
+   end
 
 return nil
 
@@ -898,11 +914,10 @@ METHOD LoadJson() CLASS HbDesigner
    endif
 
    with object ::oWnd
-      :nRight   = :nLeft + ::nDlgWidth - 1
-      :nBottom  = :nTop + ::nDlgHeight - 1
       :cCaption = " " + ::cDlgCaption + " "
       :cColor   = ::cDlgColor
    end
+   ::FitWindow()
 
    ::Redraw()
    if nSkipped == 0
@@ -1140,7 +1155,6 @@ METHOD InspAdjust( nDelta ) CLASS HbDesigner
                ::ShowHint( HINT_INSP )
             endif
             ::nDlgWidth = nNew
-            ::oWnd:nRight = ::oWnd:nLeft + ::nDlgWidth - 1
          case cKey == "dlgheight"
             nNew = Max( aMin[ 2 ], Min( MaxRow() - 3, ::nDlgHeight + nDelta ) )
             if nNew != ::nDlgHeight + nDelta .and. ::nDlgHeight + nDelta < aMin[ 2 ]
@@ -1149,8 +1163,8 @@ METHOD InspAdjust( nDelta ) CLASS HbDesigner
                ::ShowHint( HINT_INSP )
             endif
             ::nDlgHeight = nNew
-            ::oWnd:nBottom = ::oWnd:nTop + ::nDlgHeight - 1
       endcase
+      ::FitWindow()
    endif
 
    ::lDirty = .T.
@@ -1446,7 +1460,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor )
    local aDlgPair := DsnDlgPair( oWnd:cColor )
    local lDarkDlg := aDlgPair[ 2 ] != "W"
    local cDlgText := aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ]
-   local cShadow  := If( lDarkDlg, "N/N", "N/W" )
+   local cShadow  := If( lDarkDlg, "N/" + aDlgPair[ 2 ], "N/W" )   // half-block on the dialog bg, same height as the runtime shadow
    local cColor, cText, nWidth, n, aSize, aItems
 
    // design time: & marks accelerators on checkbox/button captions, so it is
