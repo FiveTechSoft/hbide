@@ -942,9 +942,12 @@ METHOD SaveJson( lAskName ) CLASS HbDesigner
 
    hModel = DsnBuildModel( Self )
 
-   hb_MemoWrit( ::cFileName, hb_jsonEncode( hModel, .T. ) )
-   ::lDirty = .F.
-   ::ShowHint( "Saved " + ::cFileName )
+   if DsnSafeMemoWrit( ::cFileName, hb_jsonEncode( hModel, .T. ) )
+      ::lDirty = .F.
+      ::ShowHint( "Saved " + ::cFileName )
+   else
+      ::ShowHint( "Could not write " + ::cFileName + ": check the path" )
+   endif
 
 return nil
 
@@ -1456,10 +1459,13 @@ METHOD GeneratePrg() CLASS HbDesigner
       ::ResumeUI()
    endif
 
-   hb_MemoWrit( cFile, cCode )
-   ::ShowHint( "Generated " + cFile + ;
-      If( nSkipped > 0, " (" + hb_ntos( nSkipped ) + " without items skipped)", "" ) + ;
-      If( nConflicts > 0, " (" + hb_ntos( nConflicts ) + " name conflicts resolved)", "" ) )
+   if DsnSafeMemoWrit( cFile, cCode )
+      ::ShowHint( "Generated " + cFile + ;
+         If( nSkipped > 0, " (" + hb_ntos( nSkipped ) + " without items skipped)", "" ) + ;
+         If( nConflicts > 0, " (" + hb_ntos( nConflicts ) + " name conflicts resolved)", "" ) )
+   else
+      ::ShowHint( "Could not write " + cFile + ": check the path" )
+   endif
 
 return nil
 
@@ -2185,6 +2191,14 @@ return "N/" + aPair[ 2 ]
 function DsnViewSize( nDlgWidth, nDlgHeight, nMaxCol, nMaxRow )
 
 return { Min( nDlgWidth, nMaxCol - 4 ), Min( nDlgHeight, nMaxRow - 3 ) }
+
+//-----------------------------------------------------------------------------------------//
+// hb_MemoWrit wrapper with an explicit success result, so callers can
+// tell the user when a write fails instead of claiming a save
+
+function DsnSafeMemoWrit( cFile, cText )
+
+return hb_MemoWrit( cFile, cText )
 
 //-----------------------------------------------------------------------------------------//
 // clamp a pan origin so the window never scrolls past the dialog edges
