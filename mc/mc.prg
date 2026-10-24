@@ -810,13 +810,15 @@ METHOD DlgConfirm( cTitle, cMsg, cOk ) CLASS MCApp
       oDlg:Say( nRow++, 2, cLine )
    next
 
+   // Cancel first: initial focus and any stray key fire the safe button.
+   // Tab/Down moves focus to the action button, Enter fires the focused one.
    @ oDlg:nBottom - 2, oDlg:nLeft + Int( nW / 2 ) - 8 GET lDummy PUSHBUTTON ;
-      CAPTION " " + cOk + " " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || lOk := .T., oDlg:End() }
-
-   @ oDlg:nBottom - 2, oDlg:nLeft + Int( nW / 2 ) + 2 GET lDummy PUSHBUTTON ;
       CAPTION " &Cancel " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + Int( nW / 2 ) + 2 GET lDummy PUSHBUTTON ;
+      CAPTION " " + cOk + " " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || lOk := .T., oDlg:End() }
 
    oDlg:Activate( GetList )
    ::Repaint()
