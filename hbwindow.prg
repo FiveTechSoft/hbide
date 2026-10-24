@@ -28,6 +28,8 @@ CLASS HbWindow FROM HbDbWindow
    DATA   GetList
    DATA   lDesign INIT .F.
    DATA   lClamped INIT .F.   // .T. when Dialog() had to move/cut the window to fit the screen
+   DATA   nReqWidth INIT 0     // size requested in Dialog(), before any clamp
+   DATA   nReqHeight INIT 0
 
    METHOD Activate( GetList )
 
@@ -614,6 +616,8 @@ METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit ) CLASS HbWindow
    // their relative offsets, so controls that still fall outside the screen
    // are not visible (they remain reachable by keyboard). ::lClamped tells
    // the caller the requested size did not fit.
+   ::nReqWidth  := nWidth
+   ::nReqHeight := nHeight
    ::lClamped := ( nTop < 0 .or. nLeft < 0 .or. nBottom > MaxRow() .or. nRight > MaxCol() )
    if ::lClamped
       nTop    := Max( 0, nTop )
