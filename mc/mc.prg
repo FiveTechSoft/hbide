@@ -1603,6 +1603,12 @@ return ! Empty( cOne ) .and. cOne == cTwo
 function FCopyText( cSrc, cDst )
 
    local nSrc, nDst, cBuf := Space( 65536 ), nRead, lOk, cTmp := ""
+   local cBak := "", nBak, lRestored
+
+   if hb_DirExists( cDst )
+      MCMsgBox( "Copy", "Destination is a directory:" + Chr( 10 ) + cDst )
+      return .F.
+   endif
 
    nSrc := FOpen( cSrc, 0 )
    if nSrc < 0
@@ -1635,11 +1641,42 @@ function FCopyText( cSrc, cDst )
    // hb_FTempCreate() uses 0600; give the copy the source file's permissions
    hb_ProcessRun( MCShWrap( "chmod --reference=" + ShellQuote( cSrc ) + " " + ShellQuote( cTmp ) ),, )
    if FRename( cTmp, cDst ) != 0
-      // rename(2) replaces an existing destination on POSIX; if it did not,
-      // remove the old file explicitly and retry once
-      if FErase( cDst ) != 0 .or. FRename( cTmp, cDst ) != 0
+      // rename(2) replaces an existing destination atomically on POSIX, but
+      // not everywhere (Windows rename() refuses an existing target). Never
+      // erase the previous destination to retry: move it aside, retry, and
+      // restore it if the retry fails, so a failed overwrite cannot lose it.
+      if File( cDst )
+         nBak := hb_FTempCreate( hb_DirSepAdd( hb_FNameDir( cDst ) ), "hbmc",, @cBak )
+         if nBak < 0
+            FErase( cTmp )
+            MCMsgBox( "Copy", "Cannot replace destination:" + Chr( 10 ) + cDst + Chr( 10 ) + ;
+                      "The previous destination was left unchanged." )
+            return .F.
+         endif
+         FClose( nBak )
+         FErase( cBak )  // keep the unique name, free the slot
+         if FRename( cDst, cBak ) != 0
+            FErase( cTmp )
+            MCMsgBox( "Copy", "Cannot replace destination:" + Chr( 10 ) + cDst + Chr( 10 ) + ;
+                      "The previous destination was left unchanged." )
+            return .F.
+         endif
+         if FRename( cTmp, cDst ) != 0
+            lRestored := ( FRename( cBak, cDst ) == 0 )
+            FErase( cTmp )
+            if lRestored
+               MCMsgBox( "Copy", "Cannot replace destination:" + Chr( 10 ) + cDst + Chr( 10 ) + ;
+                         "The previous destination was left unchanged." )
+            else
+               MCMsgBox( "Copy", "Cannot replace destination:" + Chr( 10 ) + cDst + Chr( 10 ) + ;
+                         "Its previous content was preserved as:" + Chr( 10 ) + cBak )
+            endif
+            return .F.
+         endif
+         FErase( cBak )  // replace succeeded: drop the moved-aside original
+      else
          FErase( cTmp )
-         MCMsgBox( "Copy", "Cannot replace destination:" + Chr( 10 ) + cDst )
+         MCMsgBox( "Copy", "Cannot create:" + Chr( 10 ) + cDst )
          return .F.
       endif
    endif
