@@ -5,7 +5,9 @@
 #define _REFRESH_LINE   1
 #define _REFRESH_ALL    2
 
+#ifndef MAX_UNDO
 #define MAX_UNDO        300
+#endif
 
 //-----------------------------------------------------------------------------------------//
 
@@ -459,8 +461,15 @@ METHOD PushOp( nRow, aOld, aNew ) CLASS HBSrcEdit
       endif
    endif
 
-   // fuse consecutive single-line edits on the same line (typing bursts)
-   if Len( ::aUndo ) > 0
+   // saved state unreachable once a new edit lands after undoing past it
+   if Len( ::aUndo ) < ::nSavedUndoLen
+      ::nSavedUndoLen := -1
+   endif
+
+   // fuse consecutive single-line edits on the same line (typing bursts);
+   // never fuse onto the op that marks the saved state, or the buffer
+   // would differ from disk while Len( aUndo ) still matches
+   if Len( ::aUndo ) > 0 .and. Len( ::aUndo ) != ::nSavedUndoLen
       aLast := ATail( ::aUndo )
       if Len( aLast[ 2 ] ) == 1 .and. Len( aLast[ 3 ] ) == 1 .and. ;
          Len( aOld ) == 1 .and. Len( aNew ) == 1 .and. ;
@@ -477,6 +486,12 @@ METHOD PushOp( nRow, aOld, aNew ) CLASS HBSrcEdit
    if Len( ::aUndo ) > MAX_UNDO
       ADel( ::aUndo, 1 )
       ASize( ::aUndo, Len( ::aUndo ) - 1 )
+      // keep the saved marker aligned with the truncated stack
+      if ::nSavedUndoLen > 0
+         ::nSavedUndoLen--
+      elseif ::nSavedUndoLen == 0
+         ::nSavedUndoLen := -1   // saved state fell off the stack
+      endif
    endif
    ::lOpRecorded := .T.
 
