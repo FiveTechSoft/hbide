@@ -1810,12 +1810,23 @@ return FErase( cSrc ) == 0
 
 //-----------------------------------------------------------------------------------------//
 
-function DeleteTree( cPath )
+function DeleteTree( cPath, lPrep )
 
    local aDir, lOk := .T.
 
    if ! Empty( hb_FLinkRead( cPath ) )
       return FErase( cPath ) == 0
+   endif
+   if lPrep == NIL
+      lPrep := .T.
+   endif
+   if lPrep
+      // trees from archives or read-only sources can carry dirs without
+      // owner rwx, which would make the recursion below silently stop;
+      // make the tree traversable/removable first. chmod -R ignores
+      // symlinks during traversal, and cPath itself is never a symlink
+      // here (handled above).
+      hb_ProcessRun( MCShWrap( "chmod -R u+rwX -- " + ShellQuote( cPath ) + " 2>/dev/null" ),, )
    endif
    for each aDir in Directory( hb_DirSepAdd( cPath ) + "*", "DHS" )
       if aDir[ F_NAME ] == "." .or. aDir[ F_NAME ] == ".."
@@ -1826,7 +1837,7 @@ function DeleteTree( cPath )
             lOk := .F.
          endif
       elseif hb_DirExists( hb_FNameMerge( cPath, aDir[ F_NAME ] ) )
-         if ! DeleteTree( hb_FNameMerge( cPath, aDir[ F_NAME ] ) )
+         if ! DeleteTree( hb_FNameMerge( cPath, aDir[ F_NAME ] ), .F. )
             lOk := .F.
          endif
       else
