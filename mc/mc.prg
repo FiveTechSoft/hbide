@@ -4399,23 +4399,7 @@ return nil
 
 function MCDlgEnter( aGets )
 
-   local oGet := GetActive(), o, nH := FOpen( "/tmp/runner.log", 1 )
-
-   if nH == -1
-      nH := FCreate( "/tmp/runner.log" )
-   else
-      FSeek( nH, 0, 2 )
-   endif
-   FWrite( nH, "ENTER " + ValType( oGet ) + " ctrl=" + hb_ValToStr( oGet:Control != NIL ) + Chr( 10 ) )
-   if oGet != NIL .and. oGet:Control != NIL
-      FWrite( nH, "  cls=" + oGet:Control:ClassName() + Chr( 10 ) )
-   endif
-   for each o in aGets
-      if o:Control != NIL
-         FWrite( nH, "  scan " + o:Control:ClassName() + " cargo=" + hb_ValToStr( o:Control:cargo ) + " sb=" + ValType( o:Control:sBlock ) + Chr( 10 ) )
-      endif
-   next
-   FClose( nH )
+   local oGet := GetActive(), o
 
    if oGet != NIL .and. oGet:Control != NIL .and. ;
       oGet:Control:IsKindOf( "PUSHBUTTON" )
