@@ -228,3 +228,23 @@ requires hbmk2 on the IDE process PATH.
 Still documented: designer codegen emits a Main-less Dlg_<Name>() function,
 so running a generated dialog keeps requiring a wrapper plus the support
 modules; no auto-wrapper is added in this block.
+
+## 2026-10-25 addendum: editor lane final rounds (baseline eaadb60)
+
+Two later editor-fixes rounds were integrated verbatim after byte-level
+divergence checks (this branch's copies were identical to the editor lane's
+pre-change versions both times, so nothing local was lost):
+
+- 926c109 (commits c5958bf/8ef49bf/529580d): editor.prg multiline block
+  comments with state management, cache-frontier fix, phantom-highlight
+  repaint fix; ChangeLog and editor checkpoint doc updates.
+- 7b7259f/a93240b/d7222fe/e2b2f00 (commits 50012ad/c4557a4/025e759/eaadb60):
+  HBIDE_MsgAlert (defined in hbide.prg) replaces Alert at 25 call sites with
+  the accepted visual style (white dialog, green pushbuttons, shadow),
+  Enter/Space fires the focused button, SetKey state is restored; editor.prg,
+  ChangeLog and checkpoint doc updated accordingly.
+
+hbide.hbp, help.prg, hbdebug/ and this branch's designer files were not
+touched by these rounds; hbbutton.prg stays as this branch's superset.
+Verified on the final remote bytes at eaadb60: hbmk2 build clean
+(0 errors/warnings), suite 359/359. Windows remains unverified.
