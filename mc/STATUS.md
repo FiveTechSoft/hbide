@@ -95,6 +95,15 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   right-click on archivo1.txt renders the entry bright yellow and the
   mini-status shows "[1 marked]", second right-click unmarks (color
   and counter revert), directory docs/ marks too.
+- (2026-10-25, later) Double-click acts as Enter (user request:
+  "doble click ha de funcionar como enter"). gttrm's X10 mouse
+  reporting sends plain presses and never emits K_LDBLCLK, so the
+  main key loop detects it app-side: a second left press on the same
+  cell within 400 ms calls MouseClick with lDbl=.T. (panel EnterKey).
+  Verified in the PTY harness (double press enters docs/; a pair
+  700 ms apart does NOT) and live in the browser demo: double-click
+  on docs/ enters it (title bar /home/demo/docs, empty listing),
+  double-click on /.. returns to /home/demo.
 - (2026-10-25, later) Mouse wheel default changed to line scrolling per
   user report ("la rueda del raton no se mueve bien en las columnas
   verticales de archivos"). Measured in the live browser demo (120-file
