@@ -683,7 +683,7 @@ METHOD BuildMenu() CLASS HBIde
          MENUITEM "~Paste "                 ACTION ( ::oEditor:PasteLine(), ::oEditor:ShowCursor() )
          SEPARATOR
          MENUITEM "~Delete Line  Ctrl+Y"    ACTION ( ::oEditor:DeleteLine(), ::oEditor:ShowCursor() )
-         MENUITEM "D~uplicate Line "        ACTION ( ::oEditor:DuplicateLine(), ::oEditor:ShowCursor() )
+         MENUITEM "Dup~licate Line "        ACTION ( ::oEditor:DuplicateLine(), ::oEditor:ShowCursor() )
          SEPARATOR
          MENUITEM "~Find...         F5 "    ACTION ::FindDialog()
          MENUITEM "~Repeat Last Find F3"    ACTION ( ::oEditor:FindNext(), ::oEditor:ShowCursor() )
@@ -1345,6 +1345,13 @@ METHOD ReplaceDialog() CLASS HbIde
    local oDlg, GetList := {}, lDummy, lOk := .F., nCount
    local cFind := "", cReplace := "", aIn   // free-form fields: trailing blanks are real data
 
+   // prefill from the marked block when it fits on one line; this only
+   // seeds the search text, it does NOT scope the replace to the selection
+   cFind := ::oEditor:SelectionText()
+   if hb_eol() $ cFind
+      cFind := ""
+   endif
+
    oDlg = HBWindow():Dialog( "Replace", 40, 9, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
    ::SuspendStatus()
@@ -1395,6 +1402,13 @@ METHOD FindDialog() CLASS HbIde
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
    local cText := "", aIn   // free-form field: trailing blanks are real data
+
+   // prefill from the marked block when it fits on one line; this only
+   // seeds the search text, it does NOT scope the search to the selection
+   cText := ::oEditor:SelectionText()
+   if hb_eol() $ cText
+      cText := ""
+   endif
 
    oDlg = HBWindow():Dialog( "Find", 40, 7, "W+/W" )
    oDlg:bRepaint = { || ::Repaint() }
