@@ -108,6 +108,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD SelectionText()
    METHOD CopySelection()
    METHOD CutSelection()
+   METHOD SelDelete( aSel )
 
 ENDCLASS
 
@@ -141,10 +142,23 @@ return nil
 
 METHOD PasteLine() CLASS HBSrcEdit
 
+   local aLines, n
+
    if ! Empty( ::cClipboard )
+      ::ClearSelection()   // same stale-mark guard as CopySelection
+      // A copied/cut block carries hb_eol() between its lines: split it back
+      // into real lines (hb_ATokens with lAll=.T. keeps empty ones) instead
+      // of embedding the eol bytes inside a single model line.
+      aLines := hb_ATokens( ::cClipboard, hb_eol(), .T. )
       // Insert below current line; independent of insert/overstrike mode
-      ::PushOp( ::nRow + 1, {}, { ::cClipboard } )
-      ::InsertLine( ::cClipboard, .F., ::nRow + 1 )
+      ::PushOp( ::nRow + 1, {}, aLines )
+      for n := 1 to Len( aLines )
+         if ::nRow + n > Len( ::aText )
+            ::AddLine( aLines[ n ], .F. )
+         else
+            ::InsertLine( aLines[ n ], .F., ::nRow + n )
+         endif
+      next
       ::lDirty := .T.
       ::GoTo( ::nRow + 1, 5 )
       ::Display()
@@ -400,6 +414,9 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            ::Super:Edit( K_UP )
 
       case nKeyStd == K_BS
+           if ::SelRange() != NIL
+              ::SelDelete( ::SelRange() )
+           else
            ::ClearSelection()
            IF ::nCol > 5
               ::lDirty := .T.
@@ -414,16 +431,25 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
               ::Super:Edit( K_DEL )
               ::GoTo( ::nRow, nPos + 5, _REFRESH_ALL )
            ENDIF
+           endif
 
       case nKeyStd == K_DEL
+           if ::SelRange() != NIL
+              ::SelDelete( ::SelRange() )
+           else
            ::ClearSelection()
            nPos = ::nCol
            ::nCol = Max( ::nCol - 4, 1 )
            ::Super:Edit( nKey )
            ::GoTo( ::nRow, nPos, _REFRESH_ALL )
+           endif
 
       case nKeyStd == K_ENTER
-           ::ClearSelection()
+           if ::SelRange() != NIL
+              ::SelDelete( ::SelRange() )
+           else
+              ::ClearSelection()
+           endif
            ::nCol = Max( ::nCol - 4, 1 )
            ::Super:Edit( nKey )
            ::GoTo( ::nRow, 5 )
@@ -480,7 +506,11 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            Space( TabCount( ::nTabWidth, ::nCol ) ), ;
            hb_keyChar( nKey ) ) )
 
-           ::ClearSelection()
+           if ::SelRange() != NIL
+              ::SelDelete( ::SelRange() )
+           else
+              ::ClearSelection()
+           endif
            ::lDirty := .T.
            oLine := ::aText[ ::nRow ]
            IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0
@@ -534,6 +564,12 @@ return aLines
 //-----------------------------------------------------------------------------------------//
 
 // Diff-based op recorder: finds the changed line span between snapshots
+// Exact string equality immune to the default SET EXACT OFF ragged compare:
+// with EXACT OFF, "abc" == "" (and "abc" == "ab") is .T., which silently
+// discards undo ops whose new line is empty or a prefix of the old one.
+STATIC FUNCTION HBIDE_StrEq( cA, cB )
+return Len( cA ) == Len( cB ) .and. cA == cB
+
 METHOD RecordEdit( aBefore ) CLASS HBSrcEdit
 
    local aAfter := ::LinesSnapshot()
@@ -541,11 +577,11 @@ METHOD RecordEdit( aBefore ) CLASS HBSrcEdit
    local nPre := 0, nSuf := 0, i
    local aOld := {}, aNew := {}
 
-   while nPre < Min( nB, nA ) .and. aBefore[ nPre + 1 ] == aAfter[ nPre + 1 ]
+   while nPre < Min( nB, nA ) .and. HBIDE_StrEq( aBefore[ nPre + 1 ], aAfter[ nPre + 1 ] )
       nPre++
    end
    while nSuf < Min( nB - nPre, nA - nPre ) .and. ;
-         aBefore[ nB - nSuf ] == aAfter[ nA - nSuf ]
+         HBIDE_StrEq( aBefore[ nB - nSuf ], aAfter[ nA - nSuf ] )
       nSuf++
    end
 
@@ -575,7 +611,7 @@ METHOD PushOp( nRow, aOld, aNew ) CLASS HBSrcEdit
    if Len( aOld ) == Len( aNew )
       lSame := .T.
       for i = 1 to Len( aOld )
-         if aOld[ i ] != aNew[ i ]
+         if ! HBIDE_StrEq( aOld[ i ], aNew[ i ] )
             lSame := .F.
             exit
          endif
@@ -1141,7 +1177,11 @@ METHOD CopySelection() CLASS HBSrcEdit
    local aSel := ::SelRange()
 
    if aSel != NIL
-      ::cClipboard = ::SelectionText()
+      ::cClipboard := ::SelectionText()
+      // Exit extend mode after copying: with the F8 persistent-anchor model
+      // the mark otherwise survives and a later typing burst or Cut would
+      // silently operate on a stale, still-extended range.
+      ::ClearSelection()
    endif
 
 return nil
@@ -1152,19 +1192,33 @@ return nil
 METHOD CutSelection() CLASS HBSrcEdit
 
    local aSel := ::SelRange()
-   local aOld, cMerged, n
+   local aOld
 
    if aSel == NIL
       return nil
    endif
    ::cClipboard = ::SelectionText()
-   aOld = {}
+   aOld = ::SelDelete( aSel )
+   ::PushOp( aSel[ 1 ], aOld, { ::aText[ aSel[ 1 ] ]:cText } )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Delete the marked range from the model WITHOUT recording an undo op:
+// CutSelection records it explicitly, while the destructive-key paths in
+// EditKey (type-over, Del, BS, Enter) let the Edit() wrapper's RecordEdit
+// fuse delete + following edit into a single undoable op.
+// Returns the removed lines (aOld); cursor lands at the block start.
+METHOD SelDelete( aSel ) CLASS HBSrcEdit
+
+   local aOld := {}, cMerged, n
+
    for n = aSel[ 1 ] to aSel[ 3 ]
       AAdd( aOld, ::aText[ n ]:cText )
    next
    cMerged = hb_USubStr( aOld[ 1 ], 1, aSel[ 2 ] - 5 ) + ;
              hb_USubStr( aOld[ Len( aOld ) ], aSel[ 4 ] - 4 )
-   ::PushOp( aSel[ 1 ], aOld, { cMerged } )
    ::aText[ aSel[ 1 ] ]:cText := cMerged
    for n = aSel[ 1 ] + 1 to aSel[ 3 ]
       ::RemoveLine( aSel[ 1 ] + 1 )
@@ -1173,7 +1227,7 @@ METHOD CutSelection() CLASS HBSrcEdit
    ::lDirty = .T.
    ::GoTo( aSel[ 1 ], aSel[ 2 ], _REFRESH_ALL )
 
-return nil
+return aOld
 
 //-----------------------------------------------------------------------------------------//
 
