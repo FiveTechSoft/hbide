@@ -68,3 +68,33 @@ Toda entrada ejecutada via menu Alt+letra o atajo, con captura inspeccionada:
 - El proceso hijo de Run>Start comparte la pantalla del terminal: su salida
   pisa la del IDE hasta que termina y el IDE se repinta.
 - Cobertura global 100% y scroll de raton NO se afirman.
+
+## Correcciones 2026-10-25 (segunda tanda, rama editor-fixes)
+
+### Comentarios de bloque multilinea
+- Limitacion original: DisplayLine tokenizaba linea a linea con estado de
+  comentario local por linea; la continuacion de un /* */ se pintaba como
+  codigo (limitacion de diseno, no regresion).
+- Implementado cache aBlkCmt/nBlkDirty: estado de bloque por linea con
+  recomputo perezoso desde la primera linea invalidada (ganchos en
+  PushOp, ApplyOp y LoadText). ScanBlkLine replica el tokenizador:
+  cadenas con /* dentro no abren comentario y // congela el estado.
+- Pruebas en vivo (capturas verificadas): apertura con lineas 22-23 rosa;
+  apagar delimitador (borrar /* recolorea el cuerpo a codigo); deshacer
+  restaura el rosa; cierre anticipado (*/ al inicio de la linea 23);
+  cadena con marcadores sigue en color cadena; // con /* dentro no abre
+  bloque; scroll dentro de bloque de 58 lineas y de 19.987 lineas;
+  cierre correcto tras scroll en archivo grande.
+- Coste medido (benchmark independiente + prueba en vivo): 108 ms peor
+  caso de escaneo completo de 20.000 lineas; ~0 ms por repintado de las
+  28 lineas visibles; sin demora perceptible al saltar a la linea 19990
+  ni al recolorear tras editar la linea 3 de un archivo de 19.993 lineas.
+
+### Resaltado fantasma tras saltos largos
+- Causa: MoveCursor de HBEditor mueve con _REFRESH_NONE en Ctrl+Home/End
+  y EditKey solo repintaba la linea nueva y sus vecinas; la linea previa
+  quedaba pintada como actual (visible tras Undo al restaurar una linea).
+- Corregido: EditKey recuerda la fila de pantalla previa y la repinta
+  cuando el salto es de mas de una linea.
+- Verificado: ctrl+y + ctrl+z + ctrl+Home ya no deja barra fantasma;
+  undo/redo sigue pixel-exacto (AE=0 de redo contra estado editado).
