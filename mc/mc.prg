@@ -4501,6 +4501,12 @@ function MCDlgResizeRedraw( oDlg )
    // refill the dialog face + shadow the way HBDbWindow:Show() paints
    // them (Refresh() below only redraws frame + caption)
    if __MCApp() != NIL
+      // re-layout before repainting: without this the panels keep the
+      // pre-resize geometry (old MaxCol() split, old row budget) and the
+      // right border/title and mini-status rows land outside the new
+      // size. Layout() re-applies Equal split / custom ratio and the
+      // auto-brief threshold for the current geometry.
+      __MCApp():Layout()
       __MCApp():Repaint()
    endif
    hb_Scroll( oDlg:nTop, oDlg:nLeft, oDlg:nBottom, oDlg:nRight,,, oDlg:cColor )
