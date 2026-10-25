@@ -66,6 +66,21 @@
 - La parada inicial del debugger es en la linea del init proc del wrapper,
   no en la linea 1 de Main.
 
+## Monitor de variables (verificado con efecto)
+
+Fixture con local/static/private/public + DYNAMIC, ejecucion detenida tras
+las asignaciones (pty, ventana Monitor visible):
+- Local solo -> NL <Local,N>=1; Public solo -> NU <Public,N>=5 (mas GETLIST,
+  public interno de Harbour); Private solo -> NP; Static solo -> NS.
+- All -> los cinco listados con tipo y valor correctos.
+- Al desactivar todos los flags la ventana Monitor se cierra (HideVars).
+- LIMITACION REAL: Monitor>Global no puede mostrar nada en esta compilacion.
+  Harbour no soporta variables GLOBAL: hb_dbg_vmVarGCount/__DBGVMVARGLIST en
+  src/vm/hvm.c son stubs "#if 0" mantenidos "only for compatibility with
+  xHarbour debugger", y la gramatica (harbour.y) no tiene declaracion GLOBAL
+  (DYNAMIC es solo una declaracion extern; una asignacion posterior crea
+  una private, que es como aparece en el Monitor). No es un bug del IDE.
+
 ## Pendiente
 
 - Spot-check del path editor F9 BP + Run>Debug (presets) tras el fix 1.
