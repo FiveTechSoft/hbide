@@ -212,9 +212,19 @@ HbIde ChangeLog
     editor con el buffer intacto y el debugger se puede reabrir
   - Nota UX: el cursor del code window arranca en la linea de ejecucion
     actual (no en la linea 1); F9 sin mover el cursor crea el BP ahi
+  - Corregido (Windows): Run>Debug fallaba con "Open error" al generar
+    el nombre unico del .hrb temporal: hb_MilliSeconds() en Windows es
+    uptime (GetTickCount), no ms desde medianoche, y en maquinas con
+    mucho uptime desborda el Str(...,15,3) produciendo asteriscos -
+    nombre invalido en Windows (CreateFile STATUS_OBJECT_NAME_INVALID,
+    diagnosticado con traza WINEDEBUG=+file bajo Wine). Ahora se usa
+    hb_MilliSeconds() % 1000000 con Str(...,10,3)
+  - Verificado en vivo Windows via Wine 5.5 + Xvfb: Run>Debug abre el
+    debugger completo (ventana de codigo con el fuente transformado
+    Main->__Main + init __hbide_debug__, ventana Command), el programa
+    corre y se vuelve al editor con el buffer intacto
   - Pendiente (alcance ampliado 2026-10-25): revisar todas las funciones
-    y opciones del debugger de Harbour y exponerlas desde el IDE;
-    Windows sin verificar
+    y opciones del debugger de Harbour y exponerlas desde el IDE
 
 2026-10-23: Dialog Designer, colors + per-option radio accelerators
   - Generated PRG now emits the hbide palettes for every control
