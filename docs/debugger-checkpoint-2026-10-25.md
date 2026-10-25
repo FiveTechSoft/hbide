@@ -100,6 +100,20 @@ las asignaciones (pty, ventana Monitor visible):
   upstream definitiva. F4 (App Screen) es la alternativa para ver la
   pantalla de la app. Avance funcional != correccion visual aqui.
 
+## Defecto conocido en investigacion (pre-existente, no del carril debugger)
+
+Tras una sesion de debugger (Run>Debug, Alt+X para salir), Help>Contents:
+la tecla 'c' no abre el picker de temas, el foco queda en el sistema de
+menus y el siguiente Enter dispara "Error BASE/1004 No exported method:
+EVAL" (stack: HBDBMENU:EVALACTION(247) <- HBMENU:EVALACTION(200) <-
+HBDBMENU:PROCESSKEY(464) <- HBMENU:PROCESSKEY(380) <- HBIDE:ACTIVATE(630);
+el dialogo se cierra con OK y la app sigue). Desde arranque limpio la
+ayuda funciona en ambas plataformas. Reproducido en Linux (pty) y Windows
+(Wine). La maquinaria afectada (HbMenu/HBDbMenu) no la toco el carril
+debugger; la rama si la modifico en el carril designer (44b8a1f, 05f6591,
+b73fd64 - sospechosos no probados). Hipotesis: estado de menu contaminado
+tras la sesion de debugger (nOpenPopup/popup stale).
+
 ## Pendiente
 
 - Spot-check del path editor F9 BP + Run>Debug (presets) tras el fix 1.
