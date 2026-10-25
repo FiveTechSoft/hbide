@@ -36,6 +36,11 @@
 // (BASE/1072), hence no per-dialog identity check here.
 static s_aDlgSays := {}
 static s_nDlgResizeIdle := NIL
+// last left-press for app-side double-click detection (gttrm's X10
+// protocol never emits K_LDBLCLK, so the key loop derives it)
+static s_nLClickMs := 0
+static s_nLClickRow := -1
+static s_nLClickCol := -1
 
 //-----------------------------------------------------------------------------------------//
 
@@ -833,7 +838,19 @@ METHOD Activate() CLASS MCApp
          case nKey == K_CTRL_ENTER ; ::CmdInsertName()
 
          case nKey == K_LBUTTONDOWN
-            ::MouseClick( MRow(), MCol(), .F. )
+            // mc panel.c: a second left press on the same cell inside the
+            // double-click window acts as Enter (gttrm's X10 reporting
+            // sends plain presses, never K_LDBLCLK, so detect it here)
+            if s_nLClickMs > 0 .and. hb_MilliSeconds() - s_nLClickMs <= 400 .and. ;
+               MRow() == s_nLClickRow .and. MCol() == s_nLClickCol
+               s_nLClickMs := 0
+               ::MouseClick( MRow(), MCol(), .T. )
+            else
+               s_nLClickMs := hb_MilliSeconds()
+               s_nLClickRow := MRow()
+               s_nLClickCol := MCol()
+               ::MouseClick( MRow(), MCol(), .F. )
+            endif
          case nKey == K_LDBLCLK
             ::MouseClick( MRow(), MCol(), .T. )
          case nKey == K_RBUTTONDOWN
