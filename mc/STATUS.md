@@ -86,6 +86,15 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   real click on an empty panel area no longer corrupts the layout
   (before/after xterm buffer dumps + cropped capture). PTY regression:
   F7 typing still lands the full name on disk
+- (2026-10-25, later) Right mouse button marks/unmarks the file or
+  directory under the cursor (user request: "el click derecho del raton
+  ha de seleccionar ficheros y/o carpetas"). mc panel.c semantics: the
+  selection bar does not move and "/.." can never be marked, same as
+  MarkCurrent(). Verified twice: PTY harness with the X10 mouse
+  protocol gttrm emits (1002 tracking), and live xterm.js pixels -
+  right-click on archivo1.txt renders the entry bright yellow and the
+  mini-status shows "[1 marked]", second right-click unmarks (color
+  and counter revert), directory docs/ marks too.
 - (2026-10-25, later) Mouse wheel default changed to line scrolling per
   user report ("la rueda del raton no se mueve bien en las columnas
   verticales de archivos"). Measured in the live browser demo (120-file
