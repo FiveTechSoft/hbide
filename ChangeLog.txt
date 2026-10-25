@@ -282,3 +282,10 @@ HbIde ChangeLog
 
 2026-10-25 hbide.exe: rebuild Windows con breakpoints F9, desplazamiento de
   marcas al editar y cursor visible en la ventana de codigo del debugger.
+
+2026-10-25 BP deletion policy: deleting the marked instruction (single line
+  or multi-line selection containing it) DROPS the mark - a BP never stops
+  silently on a different instruction. Undo restores the text, not the mark
+  (explicit policy). Splitting a marked line keeps the mark on the first
+  fragment; marks inside an edited range follow their instruction text
+  preferring the same relative slot (duplicate lines cannot steal a mark).

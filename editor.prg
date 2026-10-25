@@ -1191,10 +1191,24 @@ METHOD AdjustBPs( nRow, aOld, aNew ) CLASS HBSrcEdit
          AAdd( aKept, nBP + nDelta )
       elseif nBP < nRow
          AAdd( aKept, nBP )
-      elseif ( nAt := AScan( aNew, { | c | HBIDE_StrEq( c, aOld[ nBP - nRow + 1 ] ) } ) ) > 0
-         AAdd( aKept, nRow + nAt - 1 )
       else
-         AAdd( aKept, nRow )
+         // mark inside the replaced range: follow its instruction text,
+         // preferring the same relative slot so duplicate lines can't
+         // steal the mark
+         nAt := 0
+         if nBP - nRow + 1 <= Len( aNew ) .and. ;
+            HBIDE_StrEq( aNew[ nBP - nRow + 1 ], aOld[ nBP - nRow + 1 ] )
+            nAt := nBP - nRow + 1
+         else
+            nAt := AScan( aNew, { | c | HBIDE_StrEq( c, aOld[ nBP - nRow + 1 ] ) } )
+         endif
+         if nAt > 0
+            AAdd( aKept, nRow + nAt - 1 )
+         elseif nDelta > 0
+            AAdd( aKept, nRow )   // line split: mark stays on the first fragment
+         endif
+         // net deletion of the marked instruction: the mark is DROPPED.
+         // A BP must never stop silently on a different instruction.
       endif
    next
    ::aBPs := aKept
