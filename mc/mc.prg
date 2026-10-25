@@ -126,7 +126,11 @@ CLASS MCApp
    DATA   cExternalEdit   INIT "vi"
    DATA   lScrollPages    INIT .T.
    DATA   lScrollCenter   INIT .F.
-   DATA   lMousePages     INIT .T.
+   // Wheel: scroll by lines, not pages. A whole page per notch made the
+   // wheel feel broken in file columns (one notch skipped ~38 files and
+   // dead-clamped at the ends). "Mouse page scrolling" stays available in
+   // Options for users who want page jumps.
+   DATA   lMousePages     INIT .F.
    DATA   lEqualSplit     INIT .T.
    DATA   lHorizontal     INIT .F.
    DATA   nScrRows        INIT 0
@@ -241,7 +245,11 @@ METHOD New( cStartDir ) CLASS MCApp
 
    ::GrabScreen()
    Set( _SET_EVENTMASK, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
-   SetMode( 40, 120 )
+   // No SetMode(): forcing 40x120 emits a terminal resize REQUEST which
+   // fights the terminal's own size (browser demo: wrapper stty -> SetMode
+   // request -> xterm.js fit = resize storm at every session start, and a
+   // late GT shadow repaint left stale 50-row pixels over the status rows).
+   // mc adapts to the terminal's real size via CheckResize().
 
    // MC classic, TV cyan, mono
    ::aThemes := { ;

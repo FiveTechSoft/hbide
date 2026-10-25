@@ -72,6 +72,34 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   demo). Fix: queue K_END only when the buffer has real prefill content
   (the sh:// case the key was added for). Verified: full "testdir" types
   and lands on disk, prefill path unchanged
+- (2026-10-25, later) FIXED startup resize storm that left stale pixels
+  over the status/keybar rows in the browser demo: the demo wrapper
+  forced "stty rows 50 cols 160", mc's own SetMode( 40, 120 ) then
+  emitted a terminal resize request, and xterm.js fit resized a third
+  time; a late GT shadow repaint landed after the app's clean
+  CheckResize repaint and left the rows above the keybar corrupted
+  (stale panel borders, stray clock fragments like a lone "8" or "57").
+  Fix: mc no longer calls SetMode at startup (it adapts to the real
+  terminal size via CheckResize) and the wrapper no longer forces stty -
+  ttyd sizes the pty to the client. Verified in the live browser demo at
+  160x46: fresh session renders clean down through the keybar, and a
+  real click on an empty panel area no longer corrupts the layout
+  (before/after xterm buffer dumps + cropped capture). PTY regression:
+  F7 typing still lands the full name on disk
+- (2026-10-25, later) Mouse wheel default changed to line scrolling per
+  user report ("la rueda del raton no se mueve bien en las columnas
+  verticales de archivos"). Measured in the live browser demo (120-file
+  dir, cursor tracked by cell attributes): with page scrolling one
+  notch moved a FULL PAGE (f001 -> f038 -> f076 -> f114 -> f120, with
+  dead notches once clamped at the end). With "Mouse page scrolling"
+  now OFF by default, one notch moves exactly 3 files in both
+  directions (/.. -> f003 -> f006 -> ... and back f018 -> f015 -> ...),
+  the viewport scrolls one line per crossing once the cursor reaches
+  the bottom row (top advanced to f014 by notch 14), and 40 rapid
+  notches land exactly on f120 with no overshoot. The Options toggle
+  still enables page jumps for users who want them. mc upstream ships
+  mouse_move_pages on; we deliberately diverge because a whole page per
+  notch read as broken in the demo
 - Dialog checkboxes in MC colors: unfocused black-on-gray with red
   hotkey, focused black-on-cyan with yellow hotkey (was: all captions
   cyan at once). Vendored ChkDisplay override in mcbutton.prg; RTL
@@ -215,7 +243,8 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   the listing: ON (mc default) moves the cursor a full page (f14 in
   the f01.. viewport); OFF moves 3 rows (/.. -> f03, viewport
   unchanged). Toggles restored to mc defaults afterwards (page ON,
-  center OFF, mouse ON). Scroll edge logic follows mc's
+  center OFF, mouse ON - the mouse default was later changed to OFF,
+  see the dated wheel entry in the fixes section above). Scroll edge logic follows mc's
   move_up/move_down semantics for the non-brief modes; brief
   (columnwise) mode keeps its own column navigation - edge cases there
   are NOT covered.
