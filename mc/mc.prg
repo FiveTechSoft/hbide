@@ -4496,6 +4496,17 @@ function MCDlgResizeRedraw( oDlg )
    DispBegin()
    hb_Scroll( 0, 0, MaxRow(), MaxCol(), 0, 0, "W/N", " " )
    SetPos( 0, 0 )
+   // the wipe above erases everything to black: repaint the app chrome
+   // (menubar, panels, command line, keybar) or it stays black, and
+   // refill the dialog face + shadow the way HBDbWindow:Show() paints
+   // them (Refresh() below only redraws frame + caption)
+   if __MCApp() != NIL
+      __MCApp():Repaint()
+   endif
+   hb_Scroll( oDlg:nTop, oDlg:nLeft, oDlg:nBottom, oDlg:nRight,,, oDlg:cColor )
+   if oDlg:lShadow
+      hb_Shadow( oDlg:nTop, oDlg:nLeft, oDlg:nBottom, oDlg:nRight )
+   endif
    oDlg:Refresh()
    for each a in s_aDlgSays
       oDlg:Say( a[ 1 ], a[ 2 ], a[ 3 ] )
