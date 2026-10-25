@@ -58,6 +58,19 @@
 FUNCTION __dbgBuildMenu( oDebugger )  // Builds the debugger pulldown menu
 
    LOCAL oMenu
+   // HBDbMenu:aMenus is a process-wide THREAD STATIC construction stack,
+   // and it never empties: the host app's menubar stays on it after its
+   // own Build(). Building the debugger menu on top of that stack made
+   // New() flag the debugger bar as a popup, and the final Build() (stack
+   // depth 2) ran the nested-submenu branch: it overwrote the host bar's
+   // LAST item bAction ("~Help" in hbide) with the debugger bar object.
+   // Afterwards Alt+H opened the debugger bar as the Help popup (its items
+   // have no "C" hotkey, so Contents did nothing) and Enter Eval()ed a bar
+   // item whose bAction is a submenu OBJECT -> BASE/1004 "No exported
+   // method: EVAL". Build on a private stack and restore the host's.
+   LOCAL uOldMenus := HBDbMenu():aMenus
+
+   HBDbMenu():aMenus := NIL
 
    MENU oMenu
       MENUITEM " ~File "
@@ -200,5 +213,7 @@ FUNCTION __dbgBuildMenu( oDebugger )  // Builds the debugger pulldown menu
       ENDMENU
 
    ENDMENU
+
+   HBDbMenu():aMenus := uOldMenus
 
    RETURN oMenu
