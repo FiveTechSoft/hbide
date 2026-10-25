@@ -735,20 +735,22 @@ METHOD Start() CLASS HbIde
       return nil
    endif
 
-   // hbmk2 writes the binary to the CURRENT dir under the bare source name,
-   // even when the file was opened via a full path (RAt(".") on the full
-   // path used to build a bogus "./"+fullpath that File() never found)
-   cBase = hb_FNameName( cFile )
+   // Build next to the SOURCE: hbmk2's default output is the bare name in
+   // CWD, which silently collides when two sources share a basename in
+   // different dirs. Erase any previous binary first so a failed build can
+   // never run or report a STALE executable as success.
+   cBase = hb_FNameDir( cFile ) + hb_FNameName( cFile )   // dir part may be empty
 
    // hbmk2 must be on PATH (Windows build not verified here)
    do case
       case Left( OS(), 7 ) == "Windows"
          cExe = cBase + ".exe"
       otherwise
-         cExe = "./" + cBase
+         cExe = iif( Empty( hb_FNameDir( cFile ) ), "./", "" ) + cBase
    endcase
 
-   hb_Run( "hbmk2" + ::BuildFlags() + " " + cFile + " > info.txt 2>&1" )
+   FErase( cExe )
+   hb_Run( "hbmk2" + ::BuildFlags() + " -o" + cExe + " " + cFile + " > info.txt 2>&1" )
    cOut = MemoRead( "info.txt" )
    // hbmk2 progress uses raw CR as a separator; show it as line breaks
    // instead of CP437 glyphs (chr(13) renders as a music note)
