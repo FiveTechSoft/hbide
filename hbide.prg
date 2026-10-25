@@ -37,7 +37,7 @@ CLASS HbIde
    DATA   lEnd
    DATA   nIdleStatus
    DATA   nLastDiskCheck
-   DATA   cCompiler    INIT "GCC"
+   DATA   cCompiler    INIT HBIDE_DefCompiler()
    DATA   lWarnings    INIT .T.
    DATA   lDebugInfo   INIT .F.
    DATA   lStrict      INIT .T.
@@ -1131,12 +1131,25 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+// Default compiler for the Compiler Options dialog. hbmk2 on Windows does
+// not accept -comp=gcc (that id is for unix hosts); "mingw64" matches the
+// standard mingw-w64 toolchain of a 64-bit Windows Harbour install.
+static function HBIDE_DefCompiler()
+
+#ifdef __PLATFORM__WINDOWS
+return "MinGW64"
+#else
+return "GCC"
+#endif
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD CompilerFlags() CLASS HbIde
 
    local oDlg, GetList := {}, lDummy, lOk := .F.
    local lWarnings := ::lWarnings, lDebug := ::lDebugInfo, lStrict := ::lStrict
    local lIncremental := ::lIncremental, lOptimize := ::lOptimize, lAutoRun := ::lAutoRun
-   local cCompiler := ::cCompiler, aCompilers[ 4 ], bPaint
+   local cCompiler := ::cCompiler, aCompilers[ 5 ], bPaint
    local cChkStyle := "[X ]", cRadStyle := "(" + Chr( 7 ) + " )"
    local cRadClr := "N/BG,N/BG,N/BG,W+/BG,N/BG,W+/BG,GR+/BG"
    local nT, nL, nR, nB
@@ -1167,6 +1180,7 @@ METHOD CompilerFlags() CLASS HbIde
    aCompilers[ 2 ] = RadioButto( nT + 3, nL + 4, "&MSVC" )
    aCompilers[ 3 ] = RadioButto( nT + 4, nL + 4, "&Borland C" )
    aCompilers[ 4 ] = RadioButto( nT + 5, nL + 4, "C&lang" )
+   aCompilers[ 5 ] = RadioButto( nT + 6, nL + 4, "M&inGW64" )
 
     AEval( aCompilers, { | o | o:colorSpec := cRadClr, o:cargo := { "GR+/BG", 0, 0 } } )
 
@@ -1255,7 +1269,7 @@ return nil
 METHOD BuildFlags() CLASS HbIde
 
    local cFlags := ""
-   local aIds := { "GCC" => "gcc", "MSVC" => "msvc", "Borland C" => "bcc", "Clang" => "clang" }
+   local aIds := { "GCC" => "gcc", "MSVC" => "msvc", "Borland C" => "bcc", "Clang" => "clang", "MinGW64" => "mingw64" }
 
    if hb_HHasKey( aIds, ::cCompiler )
       cFlags += " -comp=" + aIds[ ::cCompiler ]
