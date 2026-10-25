@@ -45,7 +45,8 @@ function BtnDisplay()
    cHot := If( ::lHasFocus .or. ::lBuffer, "GR+/" + cBg, ;
                If( Empty( hb_ColorIndex( ::cColorSpec, 3 ) ), "R/" + cBg, hb_ColorIndex( ::cColorSpec, 3 ) ) )
 
-   cCaption := AllTrim( cCaption )
+   // Padding is significant for the shadow style (it sets the face width);
+   // only the brackets style trims, adjusting the hotkey offset accordingly.
    IF ( nPos := At( "&", cCaption ) ) == 0
    ELSEIF nPos == Len( cCaption )
       nPos := 0
@@ -54,6 +55,10 @@ function BtnDisplay()
    ENDIF
 
    IF lBrackets
+      IF nPos != 0
+         nPos -= Len( cCaption ) - Len( LTrim( cCaption ) )
+      ENDIF
+      cCaption := AllTrim( cCaption )
       cOut := If( lDefault, "[< ", "[ " ) + cCaption + If( lDefault, " >]", " ]" )
       hb_DispOutAt( ::nRow, ::nCol, cOut, cBody )
       IF nPos != 0
@@ -63,18 +68,32 @@ function BtnDisplay()
    ELSE
       // "<>" is only the RTL default (no explicit STYLE): paint clean caps.
       // User, 2026-10-25: shadow buttons show a plain label, no < > or [].
+      // Face width keeps the caption's own padding (CAPTION "  &OK  "): the
+      // original AllTrim shrank short buttons until the shadow slab was as
+      // wide as the face ("black blocks", user 2026-10-25). The shadow is
+      // the hbide half-block strip (Chr(220)/Chr(223), ../hbbutton.prg):
+      // half a cell tall/deep, displaced one right and one down, not the
+      // full-cell N/N slabs that read as thick blocks under each button.
       cCaps := If( Len( ::cStyle ) == 2 .and. ! ::cStyle == "<>", ::cStyle, "  " )
-      nW := Len( cCaption ) + 2
-      hb_DispOutAt( ::nRow, ::nCol,;
-         SubStr( cCaps, 1, 1 ) + " " + ;
-         cCaption + " " + ;
+      nW := Len( cCaption )
+      IF ::lBuffer
+         hb_DispOutAt( ::nRow, ::nCol, " ", "N/W" )
+      ENDIF
+      hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ),;
+         SubStr( cCaps, 1, 1 ) + ;
+         cCaption + ;
          SubStr( cCaps, 2, 1 ), cBody )
       IF nPos != 0
-         hb_DispOutAt( ::nRow, ::nCol + nPos + 1, SubStr( cCaption, nPos, 1 ), cHot )
+         hb_DispOutAt( ::nRow, ::nCol + nPos + If( ::lBuffer, 1, 0 ),;
+            SubStr( cCaption, nPos, 1 ), cHot )
       ENDIF
-      hb_DispOutAt( ::nRow, ::nCol + nW + 2, " ", If( ::lBuffer, "N/W", "N/N" ) )
-      hb_DispOutAt( ::nRow + 1, ::nCol + 2, Space( nW + 1 ),;
-         If( ::lBuffer, "N/W", "N/N" ) )
+      // gttrm cannot emit half-block glyphs (U+2580/U+2584 render as '?'),
+      // so the discreet shadow is a full cell in dark gray (N+) instead of
+      // the heavy solid black (N) slab: same +1/+1 geometry, half the weight.
+      hb_DispOutAt( ::nRow, ::nCol + nW + 2,;
+         If( ::lBuffer, " ", " " ), If( ::lBuffer, "N/W", "N/N+" ) )
+      hb_DispOutAt( ::nRow + 1, ::nCol + 1,;
+         Replicate( " ", nW + 2 ), If( ::lBuffer, "N/W", "N/N+" ) )
    ENDIF
 
    DispEnd()

@@ -1071,7 +1071,7 @@ function MCMsgBox( cTitle, cText )
    next
 
    @ oDlg:nBottom - 2, oDlg:nLeft + Int( ( nW ) / 2 ) - 3 GET lOk PUSHBUTTON ;
-      CAPTION " &OK " COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. ;
+      CAPTION " &OK " COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. ;
       STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
@@ -1115,11 +1115,11 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
    ENDIF
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. ;
+      COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. ;
       STATE { || lOk := .T., oDlg:End() }
 
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" ;
+      COLOR "W/B,N/BG,N/BG,GR+/B" ;
       STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
@@ -1168,17 +1168,17 @@ METHOD DlgConfirm( cTitle, cMsg, cOk, lSafeDefault ) CLASS MCApp
    nColAction := nColCancel + 11 + 4
    if lSafeDefault
       @ oDlg:nBottom - 2, nColCancel GET lDummy PUSHBUTTON ;
-         CAPTION " &Cancel " COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. ;
+         CAPTION " &Cancel " COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. ;
          STATE { || oDlg:End() }
       @ oDlg:nBottom - 2, nColAction GET lDummy PUSHBUTTON ;
-         CAPTION " " + cOk + " " COLOR "N/W,N/BG,N/BG,R/W" ;
+         CAPTION " " + cOk + " " COLOR "W/B,N/BG,N/BG,GR+/B" ;
          STATE { || lOk := .T., oDlg:End() }
    else
       @ oDlg:nBottom - 2, nColAction GET lDummy PUSHBUTTON ;
-         CAPTION " " + cOk + " " COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. ;
+         CAPTION " " + cOk + " " COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. ;
          STATE { || lOk := .T., oDlg:End() }
       @ oDlg:nBottom - 2, nColCancel GET lDummy PUSHBUTTON ;
-         CAPTION " &Cancel " COLOR "N/W,N/BG,N/BG,R/W" ;
+         CAPTION " &Cancel " COLOR "W/B,N/BG,N/BG,GR+/B" ;
          STATE { || oDlg:End() }
    endif
 
@@ -1224,11 +1224,11 @@ METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
    endif
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. ;
+      COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. ;
       STATE { || lOk := .T., oDlg:End() }
 
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" ;
+      COLOR "W/B,N/BG,N/BG,GR+/B" ;
       STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
@@ -1535,9 +1535,9 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STATE { || oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -1629,9 +1629,9 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, nL + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STATE { || oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -1839,9 +1839,9 @@ METHOD OptionsConfig() CLASS MCApp
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STATE { || oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs. mc old_esc_mode (lib/tty/key.c:94, default
    // TRUE = "Single press" on): a lone Esc cancels. With the option OFF the
@@ -1925,9 +1925,9 @@ METHOD OptionsLayout() CLASS MCApp
    ATail( GetList ):Control:Display()
 
 @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STATE { || oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -2030,9 +2030,9 @@ METHOD OptionsPanel() CLASS MCApp
    ATail( GetList ):Control:Display()
 
 @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STATE { || oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -2093,9 +2093,9 @@ METHOD OptionsConfirm() CLASS MCApp
    ATail( GetList ):Control:Display()
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STATE { || oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -2151,9 +2151,9 @@ METHOD OptionsAppearance() CLASS MCApp
       RADIOGROUP aRad STYLE cRadStyle COLOR "N/W,N/BG,GR+/BG"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STATE { || oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -2417,11 +2417,11 @@ METHOD DlgCopy( nCount, cDefault, cAction, cVerb ) CLASS MCApp
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET cValue COLOR "W/B,W+/B,W+/W,GR+/W"
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 5 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nLeft + 21 GET lDummy PUSHBUTTON CAPTION " &Background " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STATE { || lBg := .T., oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" STATE { || lBg := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STATE { || oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);
@@ -3362,9 +3362,9 @@ METHOD FileChmod() CLASS MCApp
    next
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &Set  " ;
-      COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" GUISEND cargo := .T. STATE { || lOk := .T., oDlg:End() }
    @ oDlg:nBottom - 2, oDlg:nRight - 12 GET lDummy PUSHBUTTON CAPTION " &Cancel " ;
-      COLOR "N/W,N/BG,N/BG,R/W" STATE { || oDlg:End() }
+      COLOR "W/B,N/BG,N/BG,GR+/B" STATE { || oDlg:End() }
 
    // Esc = Cancel inside dialogs: enable the READ exit key just for the
    // dialog (app keeps _SET_ESCAPE OFF so Esc never kills the main loop);

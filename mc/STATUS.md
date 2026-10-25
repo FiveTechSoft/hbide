@@ -114,6 +114,24 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   listing, complete keybar), desktop unchanged (bar hidden, full
   listing). The demo wrapper's touch bar no longer overlaps the
   command/keybar rows (flexbox column instead of a fixed overlay)
+- (2026-10-25, later still) FIXED dialog buttons after user review
+  ("esas sombras de los botones estan mal" / "esos botones no estan
+  bien. Se exigente y meticuloso"): the shadow style painted faces in
+  the dialog background color (invisible buttons) and AllTrim shrank
+  short captions until the solid black shadow slab was as wide as the
+  face itself - the "thick black blocks" in the Delete/ZIP captures.
+  Now the face keeps the caption's own padding (proper proportions),
+  renders as a real colored block (white on blue normal, black on cyan
+  focused) with a bright yellow hotkey letter, and the shadow stays a
+  single cell right plus a single row down. gttrm cannot emit the
+  original hbbutton half-block glyphs (Chr(220)/Chr(223) come out as
+  '?'; tested U+2580/U+2584, shades and box translation), so the
+  full-cell strip with the +1/+1 offset is the faithful geometry on
+  this terminal. Verified in PTY (face bg 0000af, focus face 00afaf,
+  shadow nW+2 wide at +1 col/+1 row, clean labels) and in the live
+  demo with real pixel inspection of the Mkdir, Delete and Create ZIP
+  dialogs, focused and unfocused; Enter still fires the default
+  button and Esc cancels.
 - (2026-10-25, later) NEW Command menu "Cre~ate ZIP archive..." (user
   request: "puedes implementarle la opcion de crear ficheros zip"):
   packs the marked entries - or the current entry when nothing is
