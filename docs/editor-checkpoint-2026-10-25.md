@@ -85,10 +85,21 @@ Toda entrada ejecutada via menu Alt+letra o atajo, con captura inspeccionada:
   cadena con marcadores sigue en color cadena; // con /* dentro no abre
   bloque; scroll dentro de bloque de 58 lineas y de 19.987 lineas;
   cierre correcto tras scroll en archivo grande.
-- Coste medido (benchmark independiente + prueba en vivo): 108 ms peor
-  caso de escaneo completo de 20.000 lineas; ~0 ms por repintado de las
-  28 lineas visibles; sin demora perceptible al saltar a la linea 19990
-  ni al recolorear tras editar la linea 3 de un archivo de 19.993 lineas.
+- Coste: microbenchmark del escaner aislado (no ejercita la ruta
+  incremental del editor; NO es una cifra end-to-end): 108 ms peor caso
+  de escaneo completo de 20.000 lineas; ~0 ms por repintado de las 28
+  lineas visibles. Lo verificado en vivo es comportamental: sin demora
+  perceptible al saltar a la linea 19990 ni al recolorear tras editar
+  la linea 3 de un archivo de 19.993 lineas.
+- Trazabilidad: la primera version (3cab730) tenia un fallo de
+  reanudacion del cache incremental: al recomputar desde la primera
+  linea invalidada usaba el estado INICIAL almacenado de la linea
+  frontera en lugar de su estado FINAL, y podia dejar coloreado
+  incorrecto tras editar dentro de un bloque. Detectado en prueba en
+  vivo (el montaje a escala reducida llego a dar un falso positivo;
+  la comprobacion a resolucion completa lo destapo). Corregido en
+  926c109 re-escaneando la linea frontera (nBlkDirty-1) antes de
+  reanudar. Verificado con recortes a resolucion completa.
 
 ### Resaltado fantasma tras saltos largos
 - Causa: MoveCursor de HBEditor mueve con _REFRESH_NONE en Ctrl+Home/End
@@ -98,3 +109,27 @@ Toda entrada ejecutada via menu Alt+letra o atajo, con captura inspeccionada:
   cuando el salto es de mas de una linea.
 - Verificado: ctrl+y + ctrl+z + ctrl+Home ya no deja barra fantasma;
   undo/redo sigue pixel-exacto (AE=0 de redo contra estado editado).
+
+## Dialogos de mensajes con estetica Turbo Vision (rama editor-fixes)
+
+- Peticion del usuario: los mensajes en dialogo rojo (Alert del GT)
+  pasan a dialogo blanco con botones verdes con sombra, incluida la
+  confirmacion de guardar/descartar.
+- Implementado HBIDE_MsgAlert( cMessage, aOptions, cTitle ) en
+  hbide.prg: dialogo HBWindow blanco ("W+/W") con marco doble y
+  botones verdes con sombra ("GR+/G,W+/G,N/G,BG+/G"), ajuste de linea
+  a 60 columnas, mismo contrato que Alert() (indice 1-based, 0 en Esc).
+  Sustituye las 22 llamadas Alert() de hbide.prg y 3 de editor.prg.
+- Activacion: hotkey de la inicial de cada boton (mayuscula y
+  minuscula, via SetKey), Enter y Espacio sobre el boton enfocado
+  (tambien via SetKey: el READ del GET no activa pushbuttons con
+  Enter/Espacio por si solo, comprobado en vivo), Esc cancela.
+  Todas las trampas SetKey se restauran al cerrar (SetKey(n, NIL)
+  elimina la trampa, verificado con prueba independiente).
+- Pruebas en vivo (capturas verificadas a resolucion completa):
+  guardar/descartar/cancelar con los tres caminos (hotkey 's' guarda,
+  hotkey 'd' descarta sin tocar el archivo, Esc cancela y vuelve al
+  editor); "N replacement(s)" con OK; "File not found" tras
+  File/Open con nombre inexistente, sin fuga de hotkeys al menu
+  (regresion detectada y corregida: Enter no cerraba el dialogo de un
+  solo boton y la tecla 'o' quedaba atrapada por la trampa del OK).
