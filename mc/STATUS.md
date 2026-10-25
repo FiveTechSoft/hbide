@@ -543,7 +543,24 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   open-time position on resize (mc behavior) and a dialog larger than
   the new terminal still clips; below the usable minimum size no layout
   integrity is promised. Dialog repositioning/clamping (including its
-  shadow) on shrink is still pending.
+  shadow) on shrink: attempted 2026-10-25 in three iterations and
+  WITHDRAWN from mc-demo and from the live demo. v1
+  (HbWindow:MoveControls) and v2 (guarded accessor shifts) left RTL
+  checkboxes/pushbuttons/radio frames behind - root cause proven with
+  a probe binary against the RTL: __objHasMethod() does not see SETGET
+  methods, and the MoveControls cargo branch does not fit mc's
+  checkbox cargo (color array). v3 (direct per-class accessor shifts)
+  passed an isolated PTY/pyte harness resize (180x60 -> 140x44, all
+  controls aligned, command line and keybar clear) but corrupted the
+  live xterm.js screen on the same shrink (dialog half drawn, large
+  black region below, garbage rows persisting after Esc); cause under
+  investigation, suspected state drift across repeated resizes. The
+  clamp commits were reverted from mc-demo (tip back at the 946fd0f
+  state) and the work continues on branch mc-clamp-wip, explicitly
+  not for the demo. Deployed demo binary: fresh build of 946fd0f,
+  md5 ea64aa6f3d6794cb719f91667bc73ed3. No further clamp deploys
+  without an approved isolated resize+close test and a live gated
+  verification.
 - Keystroke injection (XTEST) can lose characters mid-session; tests drive
   the app in short batches with a verifying screenshot after each step.
 - Dialog GET width follows the variable length (PadR), not @S pictures.
