@@ -722,7 +722,7 @@ return oMenu
 
 METHOD Start() CLASS HbIde
 
-   local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, nDot, cBase
+   local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, cBase
 
    if ! ::ConfirmOverwrite()
       return nil
@@ -735,9 +735,10 @@ METHOD Start() CLASS HbIde
       return nil
    endif
 
-   // files are opened as bare names in the current dir
-   nDot = RAt( ".", cFile )
-   cBase = iif( nDot > 1, Left( cFile, nDot - 1 ), cFile )
+   // hbmk2 writes the binary to the CURRENT dir under the bare source name,
+   // even when the file was opened via a full path (RAt(".") on the full
+   // path used to build a bogus "./"+fullpath that File() never found)
+   cBase = hb_FNameName( cFile )
 
    // hbmk2 must be on PATH (Windows build not verified here)
    do case
@@ -749,6 +750,10 @@ METHOD Start() CLASS HbIde
 
    hb_Run( "hbmk2" + ::BuildFlags() + " " + cFile + " > info.txt 2>&1" )
    cOut = MemoRead( "info.txt" )
+   // hbmk2 progress uses raw CR as a separator; show it as line breaks
+   // instead of CP437 glyphs (chr(13) renders as a music note)
+   cOut := StrTran( cOut, Chr( 13 ) + Chr( 10 ), Chr( 10 ) )
+   cOut := StrTran( cOut, Chr( 13 ), Chr( 10 ) )
    HBIDE_MsgAlert( iif( Empty( cOut ), "Build OK: " + cExe, cOut ) )
 
    if File( cExe )
