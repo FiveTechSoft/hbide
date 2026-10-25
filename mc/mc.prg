@@ -1062,7 +1062,7 @@ function MCMsgBox( cTitle, cText )
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    MCDlgEscArm( oDlg, If( __MCApp() != NIL, __MCApp():lSinglePress, .T. ) )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -1109,7 +1109,7 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -1169,7 +1169,7 @@ METHOD DlgConfirm( cTitle, cMsg, cOk, lSafeDefault ) CLASS MCApp
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -1525,7 +1525,7 @@ METHOD ListingFormat( nPanel ) CLASS MCApp
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -1619,7 +1619,7 @@ METHOD SortOrder( nPanel ) CLASS MCApp
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -1829,7 +1829,7 @@ METHOD OptionsConfig() CLASS MCApp
    // Esc key is only a prefix and the dialog closes on Esc Esc.
    MCDlgEscArm( oDlg, lSPress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -1915,7 +1915,7 @@ METHOD OptionsLayout() CLASS MCApp
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -2020,7 +2020,7 @@ METHOD OptionsPanel() CLASS MCApp
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -2083,7 +2083,7 @@ METHOD OptionsConfirm() CLASS MCApp
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -2144,7 +2144,7 @@ METHOD OptionsAppearance() CLASS MCApp
    MCDlgEscArm( oDlg, ::lSinglePress )
    Set( _SET_DELIMITERS, .F. )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -3242,7 +3242,7 @@ METHOD FileChmod() CLASS MCApp
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
