@@ -162,6 +162,46 @@ HbIde ChangeLog
   - Limitaciones: doble-clic no sintetiza bajo gttrm en pty (entorno, no
     cobertura Windows); Windows sin verificar
 
+  Construccion de EXEs desde el IDE (Run>Start) y correcciones
+  ------------------------------------------------------------
+  - Corregido: con el fuente abierto por ruta completa, el build era
+    bueno pero el IDE comprobaba File() sobre ".//ruta/absoluta" y
+    mostraba "Build failed" (cb418dc); ahora busca el exe por nombre base
+  - Corregido: la salida de hbmk2 en el dialogo mostraba glyphs (CR de
+    progreso); ahora se traducen a saltos de linea (cb418dc)
+  - Corregido: un binario viejo del mismo nombre podia sobrevivir a un
+    build fallido y confundir la comprobacion/ejecucion; Run>Start borra
+    el exe previo ANTES de compilar y genera la salida con -o junto al
+    fuente, asi dos fuentes con el mismo basename en directorios
+    distintos no colisionan (808c45c)
+  - Verificado en vivo (pty gttrm, Linux): exe ELF real construido y
+    ejecutado ("hola desde exe", EXIT 0) con autorun desde el IDE; error
+    de compilador legible; binario viejo borrado y nunca ejecutado tras
+    el fallo (alerta "Build failed" correcta); mismo basename en otro
+    directorio genera y ejecuta su propio exe ("from exedir"), no el del
+    CWD. Windows pendiente (toolchain Windows/Wine en curso)
+
+  Debugger Harbour integrado (Run>Debug): verificacion en vivo
+  ------------------------------------------------------------
+  - El debugger ya estaba integrado (hbdebug/ vendored en hbide.hbp);
+    Run>Debug compila el buffer a un .hrb unico y entra con vista de
+    fuente y ventana Command
+  - Verificado en vivo (pty gttrm, Linux): BP con F9 sobre la linea del
+    cursor del code window (marca roja; "list bp" lo confirma), Go F5 con
+    parada en el BP, ToCursor F7 (parada en la linea del cursor con las
+    variables ya actualizadas), Step F8 (ENTRA en funciones: de la
+    llamada a AddNum salta a su primera linea), Trace F10 (ejecuta la
+    llamada completa y para en la siguiente linea del nivel actual;
+    convencion historica del debugger de Harbour: hb_dbgSetTrace arma
+    bTraceOver = trace-over), consulta de variables con ? (0 -> 1 -> 15),
+    salida del programa visible ("total:         15"), Alt+X vuelve al
+    editor con el buffer intacto y el debugger se puede reabrir
+  - Nota UX: el cursor del code window arranca en la linea de ejecucion
+    actual (no en la linea 1); F9 sin mover el cursor crea el BP ahi
+  - Pendiente (alcance ampliado 2026-10-25): revisar todas las funciones
+    y opciones del debugger de Harbour y exponerlas desde el IDE;
+    Windows sin verificar
+
 2026-10-23: Dialog Designer, colors + per-option radio accelerators
   - Generated PRG now emits the hbide palettes for every control
     (GET/CHECKBOX/PUSHBUTTON/RADIOGROUP/LISTBOX COLOR clauses)
