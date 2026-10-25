@@ -137,6 +137,31 @@ HbIde ChangeLog
   - Implementado dialogo Find (F5) con campo de busqueda
   - Conectados items del menu Edit: Copy, Paste, Delete Line, Duplicate, Find, Goto Line
   - Conectado menu Options > Compiler Flags al nuevo dialogo
+  Pruebas de bloques de texto (seleccion F8 / shift+flechas) y correcciones
+  -------------------------------------------------------------------------
+  - Corregido: pegar un bloque multilinea lo insertaba como UNA linea con
+    los saltos incrustados; PasteLine divide el portapapeles por hb_eol()
+    conservando lineas vacias, como una unica op de undo
+  - Corregido: teclear/Del/BS/Enter con seleccion activa no sustituia el
+    bloque (escribia al final o borraba 1 char); ahora borran el rango y la
+    edicion queda fusionada en una sola op de undo (SelDelete + RecordEdit)
+  - Corregido: PushOp/RecordEdit descartaban ops de undo cuya linea nueva
+    era vacia o prefijo de la anterior (comparacion "ragged" con SET EXACT
+    OFF: "abc" == "" es .T.); nueva HBIDE_StrEq() de comparacion exacta
+  - Corregido: copiar/pegar dejaba la marca F8 activa y un Cut o tecleo
+    posterior operaba sobre un rango obsoleto extendido; CopySelection y
+    PasteLine cierran ahora el modo seleccion
+  - Menu Edit: "Duplicate Line" usa ahora 'l' (colisionaba con "Cut" en
+    'u', que ejecutaba Duplicate); todos los mnemonicos quedan unicos
+  - Find (F5) y Replace precargan la seleccion de una linea como texto a
+    buscar (NO limitan la busqueda/reemplazo a la seleccion)
+  - Verificado en vivo sobre binario Linux (pty gttrm): copia/corte/pegado
+    de bloques con lineas vacias y UTF-8 (á/ñ byte-exacto en disco),
+    seleccion inversa, undo/redo por operacion de bloque, type-over,
+    Del/BS de bloque, precarga de Find/Replace. Suite: 359/359
+  - Limitaciones: doble-clic no sintetiza bajo gttrm en pty (entorno, no
+    cobertura Windows); Windows sin verificar
+
 2026-10-23: Dialog Designer, colors + per-option radio accelerators
   - Generated PRG now emits the hbide palettes for every control
     (GET/CHECKBOX/PUSHBUTTON/RADIOGROUP/LISTBOX COLOR clauses)
