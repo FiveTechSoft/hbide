@@ -62,6 +62,7 @@ CLASS HBSrcEdit FROM HBEditor
    DATA   nBlkDirty    INIT 1    // first line whose block-comment state is stale
    DATA   aBPs         INIT {}   // debugger breakpoints: absolute line numbers (F9)
    DATA   cClrBP       INIT "W+/R"
+   DATA   lBPsMoved    INIT .F. // AdjustBPs moved a mark; Edit() repaints
    DATA   nSavedUndoLen INIT 0
    DATA   lInUndo      INIT .F.
    DATA   lOpRecorded  INIT .F.
@@ -107,6 +108,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD HasMark()                        INLINE ::lMark
    METHOD ToggleMark()
    METHOD ToggleBP()
+   METHOD AdjustBPs( nRow, aOld, aNew )
    METHOD SelRange()
    METHOD SelectionText()
    METHOD CopySelection()
@@ -357,6 +359,13 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
       ::lInUndo := .F.
    elseif ! ::lOpRecorded
       ::RecordEdit( aBefore )
+      // RecordEdit adjusts breakpoints in PushOp, but edits on this path
+      // (Enter, typing, paste) already repainted inside EditKey: repaint so
+      // the gutter shows the marks on their shifted lines at once
+      if ::lBPsMoved
+         ::lBPsMoved := .F.
+         ::Display()
+      endif
    endif
 
 return Self
@@ -650,6 +659,7 @@ METHOD PushOp( nRow, aOld, aNew ) CLASS HBSrcEdit
       endif
    endif
 
+   ::AdjustBPs( nRow, aOld, aNew )
    AAdd( ::aUndo, { nRow, aOld, aNew } )
    ::aRedo := {}
    if Len( ::aUndo ) > MAX_UNDO
@@ -675,6 +685,7 @@ METHOD ApplyOp( aOp, lInverse ) CLASS HBSrcEdit
    local nRow := aOp[ 1 ], i
 
    ::nBlkDirty := Min( ::nBlkDirty, nRow )
+   ::AdjustBPs( nRow, aDel, aIns )
 
    for i = 1 to Len( aDel )
       ::RemoveLine( nRow )
@@ -1156,6 +1167,39 @@ METHOD ToggleBP() CLASS HBSrcEdit
    ::DisplayLine( ::nRow - ::nFirstRow + ::nTop )
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// keep breakpoints glued to their instruction across an edit that replaces
+// aOld with aNew at nRow (called by PushOp and ApplyOp, so undo/redo shift
+// symmetrically). A BP below the range shifts by the line delta; a BP above
+// is untouched; a BP inside the range follows its line text when it
+// survives, otherwise stays visible at the top of the range: it always
+// stops where the gutter shows it, never silently on another instruction.
+METHOD AdjustBPs( nRow, aOld, aNew ) CLASS HBSrcEdit
+
+   local nDelta := Len( aNew ) - Len( aOld )
+   local nOldEnd := nRow + Len( aOld ) - 1
+   local aKept := {}, nBP, nAt
+
+   if nDelta == 0
+      return Self   // in-place text edits keep every mark
+   endif
+   ::lBPsMoved := .T.
+   for each nBP in ::aBPs
+      if nBP > nOldEnd
+         AAdd( aKept, nBP + nDelta )
+      elseif nBP < nRow
+         AAdd( aKept, nBP )
+      elseif ( nAt := AScan( aNew, { | c | HBIDE_StrEq( c, aOld[ nBP - nRow + 1 ] ) } ) ) > 0
+         AAdd( aKept, nRow + nAt - 1 )
+      else
+         AAdd( aKept, nRow )
+      endif
+   next
+   ::aBPs := aKept
+
+return Self
 
 //-----------------------------------------------------------------------------------------//
 

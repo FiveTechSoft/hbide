@@ -2103,7 +2103,8 @@ METHOD PROCEDURE Open( cFileName ) CLASS HBDebugger
       ::oBrwText := HBBrwText():New( ::oWndCode:nTop + 1, ::oWndCode:nLeft + 1, ;
          ::oWndCode:nBottom - 1, ::oWndCode:nRight - 1, cFileName, ;
          __dbgColors()[ 2 ] + "," + __dbgColors()[ 5 ] + "," + ;
-         __dbgColors()[ 3 ] + "," + __dbgColors()[ 6 ], ;
+         __dbgColors()[ 3 ] + "," + __dbgColors()[ 6 ] + "," + ;
+         __dbgColors()[ 1 ], ;
          ::lLineNumbers, ::nTabWidth )
       ::oWndCode:Browser := ::oBrwText
       ::oWndCode:SetCaption( ::cPrgName )
@@ -2147,7 +2148,8 @@ METHOD OpenPPO() CLASS HBDebugger
       ::oBrwText := HBBrwText():New( ::oWndCode:nTop + 1, ::oWndCode:nLeft + 1, ;
          ::oWndCode:nBottom - 1, ::oWndCode:nRight - 1, ::cPrgName, ;
          __dbgColors()[ 2 ] + "," + __dbgColors()[ 5 ] + "," + ;
-         __dbgColors()[ 3 ] + "," + __dbgColors()[ 6 ], ::lLineNumbers, ::nTabWidth )
+         __dbgColors()[ 3 ] + "," + __dbgColors()[ 6 ] + "," + ;
+         __dbgColors()[ 1 ], ::lLineNumbers, ::nTabWidth )
       ::oWndCode:Browser := ::oBrwText
       ::oWndCode:SetCaption( ::cPrgName )
       ::oWndCode:Refresh()  // to force the window caption to update
@@ -2764,7 +2766,8 @@ METHOD PROCEDURE ShowCodeLine( nProc ) CLASS HBDebugger
                ::oBrwText := HBBrwText():New( ::oWndCode:nTop + 1, ::oWndCode:nLeft + 1, ;
                   ::oWndCode:nBottom - 1, ::oWndCode:nRight - 1, cPrgName, ;
                   __dbgColors()[ 2 ] + "," + __dbgColors()[ 5 ] + "," + ;
-                  __dbgColors()[ 3 ] + "," + __dbgColors()[ 6 ], ;
+                  __dbgColors()[ 3 ] + "," + __dbgColors()[ 6 ] + "," + ;
+                  __dbgColors()[ 1 ], ;
                   ::lLineNumbers, ::nTabWidth )
 
                ::oWndCode:Browser := ::oBrwText

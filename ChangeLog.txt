@@ -267,3 +267,15 @@ HbIde ChangeLog
   Verified on Linux: F9 mark, red BP gutter at debug open, go stops at the
   marked line, ? <var> evaluates at the stop. Breakpoints reset on
   New/Open/Reload. (editor.prg, hbide.prg, hbdebug/debugger.prg)
+
+2026-10-25 breakpoints follow the code: inserting/deleting lines above a mark
+  shifts it (PushOp/ApplyOp, so undo/redo shift symmetrically); a mark always
+  stops where the gutter shows it. Edit() repaints after RecordEdit when a
+  mark moved (edits repaint inside EditKey, before PushOp).
+  Debugger code window: the browse cursor row is now visible (colorSpec gains
+  a cursor slot using colors[1]); before, arrows moved RowPos with no visual
+  feedback on both Linux and Windows (verified by instrumentation: keys
+  arrived correctly as K_UP/K_DOWN, CodeWindowProcessKey moved the cursor).
+  Verified Linux pty + Windows Wine: editor arrows move row, F9 red gutter,
+  preset BP visible at debug open, F5 stops at the marked line, arrows move
+  the visible cursor. (editor.prg, hbdebug/debugger.prg, hbdebug/tbrwtext.prg)

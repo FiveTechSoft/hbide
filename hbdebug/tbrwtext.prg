@@ -175,10 +175,13 @@ METHOD GetLineColor() CLASS HBBrwText
 
    LOCAL aColor
 
+   // second slot paints the browse cursor row: slot 5 (colors[1]) makes the
+   // cursor visible on ordinary and BP lines; the active (exec) line keeps
+   // its own highlight so both stay distinct when the cursor moves away
    IF __dbgIsBreak( __dbg():pInfo, ::cFileName, ::nRow ) >= 0
-      aColor := iif( ::nRow == ::nActiveLine, { 4, 4 }, { 3, 3 } )
+      aColor := iif( ::nRow == ::nActiveLine, { 4, 4 }, { 3, 5 } )
    ELSE
-      aColor := iif( ::nRow == ::nActiveLine, { 2, 2 }, { 1, 1 } )
+      aColor := iif( ::nRow == ::nActiveLine, { 2, 2 }, { 1, 5 } )
    ENDIF
 
    RETURN aColor
