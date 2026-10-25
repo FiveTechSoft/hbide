@@ -491,8 +491,11 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   validation, hotkeys, GUI controls and GE_* states. MCDlgRun() replaces
   HbWindow:Activate per dialog (shared hbwindow.prg untouched) and
   replicates the global ReadModal() active-GetList registration.
-- Migrated: all 14 dialog sites (DlgCopy, DlgList, DlgInput, DlgConfirm,
-  MCMsgBox and the 9 options/config dialogs). Per-dialog proven so far:
+- Migrated: all 13 MCDlgRun call sites (grep 'MCDlgRun(' reports 14 hits:
+  13 calls + the function definition line): MCMsgBox, DlgInput, DlgConfirm,
+  DlgList, DlgCopy, FileChmod, ListingFormat, SortOrder, Configuration,
+  Layout, Panel options, Confirmation and Appearance. Learn keys rides
+  DlgList and Save setup has no dialog of its own. Per-dialog proven so far:
   DlgCopy and DlgList, on the final bytes with
   PTY matrices on three option homes (defaults / single-press Esc /
   double-Esc with timeout): dialog open, typing reaches the GET buffer,
@@ -525,6 +528,22 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   Appearance, plus the earlier DlgCopy and DlgList proofs. Note: the
   View/Quit dialog titles collide with the permanent F-key bar labels,
   so close for those two was verified by dialog-content absence instead.
+  Two resize defects found and fixed from live-demo pixel captures
+  (2026-10-25): (1) dialog-open resize wiped colors to black -
+  MCDlgResizeRedraw only repainted frame+caption; it now repaints the
+  app chrome and refills face+shadow the way Show() paints them. (2)
+  dialog-open resize kept the pre-resize panel geometry (old absolute
+  split, right border/title and mini-status rows clipped away) - it now
+  re-runs Layout() before repainting, preserving Equal split (50/50) or
+  the custom ratio and re-evaluating auto-brief. Verified with
+  xterm-gated live captures (cols/canvas polled, never timed sleeps):
+  Configuration 200x60 -> 140x44 keeps the equal split, both panel
+  titles, borders, columns and mini-status inside the new size, and the
+  restore to 200x60 is pixel-clean. Honest limits: dialogs keep their
+  open-time position on resize (mc behavior) and a dialog larger than
+  the new terminal still clips; below the usable minimum size no layout
+  integrity is promised. Dialog repositioning/clamping (including its
+  shadow) on shrink is still pending.
 - Keystroke injection (XTEST) can lose characters mid-session; tests drive
   the app in short batches with a verifying screenshot after each step.
 - Dialog GET width follows the variable length (PadR), not @S pictures.
