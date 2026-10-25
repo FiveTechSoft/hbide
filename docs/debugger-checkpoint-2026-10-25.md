@@ -23,7 +23,16 @@
    Detectado con sonda temporal: "nClr=5 len=4 spec=[N/BG,W+/B,R/BG,GR+/B]".
    Fix: LoadColors anade aClr[1] como 5o slot, igualando HBBrwText:New.
    Inocuo para los browses de stack/vars/point (sus colorBlocks <= 4).
-2. Prefill de InputBox (commit 6d36850, bloque anterior ya entregado):
+2. Restore Settings no aplicaba TabWidth al browse en vivo (commit posterior).
+   Causa: el caso TABWIDTH de DoScript asignaba ::nTabWidth sin propagarlo a
+   ::oBrwText:nTabWidth ni refrescar (bug presente tambien en upstream
+   harbour/src/debug/debugger.prg); el dialogo Options>Tab Width si lo hace.
+   Detectado al verificar el efecto real del Restore: la marca de BP volvia
+   pero la expansion de tabs no. Fix: misma propagacion con guarda NIL que
+   ya usa LineNumbers(). Verificado: archivo con tab real, Restore cambia la
+   expansion igual que el dialogo (D==B, distinto de A/C con ancho 4).
+   NUM ON/OFF revisado: ya enruta por ::LineNumbers(), que propaga bien.
+3. Prefill de InputBox (commit 6d36850, bloque anterior ya entregado):
    el primer caracter tecleado reemplaza la seleccion completa; la edicion
    normal y Cancel se conservan.
 

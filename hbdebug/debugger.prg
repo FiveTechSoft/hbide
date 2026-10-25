@@ -1100,6 +1100,10 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
       CASE hb_LeftEq( "TABWIDTH", cParam1 )
          IF IsDigit( cParam2 )
             ::nTabWidth := Min( Val( cParam2 ), 16 )
+            IF ::oBrwText != NIL
+               ::oBrwText:nTabWidth := ::nTabWidth
+               ::oBrwText:RefreshAll()
+            ENDIF
          ELSE
             ::TabWidth()
          ENDIF
