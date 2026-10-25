@@ -514,11 +514,17 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   wipe + layout + repaint in one DispBegin, driven from the main loop which
   reads keys with HB_INKEY_EXT). Dialogs relayout live through the
   runner's DlgInkey, which reads with HB_INKEY_ALL+HB_INKEY_EXT, catches
-  the extended resize event and fires MCDlgResizeRedraw (proven on
-  DlgCopy: 200x60 -> 140x44 -> 200x60 with the dialog frame, fields and
-  buttons re-laid out; the resize path is shared by every dialog now that
-  all sites run on MCDlgRun, but per-dialog resize proof exists only for
-  DlgCopy and DlgList so far).
+  the extended resize event and fires MCDlgResizeRedraw. Per-dialog
+  resize proof now covers all 13 MCDlgRun sites (2026-10-25): a PTY
+  battery with a DSR-answering harness (so gttrm runs its real UTF-8
+  output path) drove every dialog through 200x60 -> 140x44 -> 200x60,
+  asserting dialog title, content and process liveness at each size and
+  a clean close afterwards: MCMsgBox (F3 on a directory), Chmod (C-x c),
+  Mkdir (DlgInput, F7), Quit confirm (DlgConfirm, F10), Listing format,
+  Sort order, Configuration, Layout, Panel options, Confirmation and
+  Appearance, plus the earlier DlgCopy and DlgList proofs. Note: the
+  View/Quit dialog titles collide with the permanent F-key bar labels,
+  so close for those two was verified by dialog-content absence instead.
 - Keystroke injection (XTEST) can lose characters mid-session; tests drive
   the app in short batches with a verifying screenshot after each step.
 - Dialog GET width follows the variable length (PadR), not @S pictures.
