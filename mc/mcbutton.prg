@@ -94,10 +94,18 @@ function BtnDisplay()
       // which xterm.js answers correctly; a dumb PTY that answers the probe
       // with the wrong column renders '?' instead (test-harness caveat, not
       // an app defect).
-      hb_DispOutAt( ::nRow, ::nCol + nW + 2,;
-         If( ::lBuffer, " ", "▄" ), "N/W" )
-      hb_DispOutAt( ::nRow + 1, ::nCol + 1,;
-         Replicate( If( ::lBuffer, " ", "▀" ), nW + 2 ), "N/W" )
+      // Pressed (lBuffer): the face shifts one cell right into the shadow
+      // column, so it already covers nCol+nW+2 - repainting that cell with a
+      // blank here would cut the face one cell short (user report
+      // 2026-10-25: "al pulsar un boton, el ancho del boton no tiene el
+      // ancho correcto"). Shadows are only painted unpressed; pressed just
+      // erases the bottom strip.
+      if ! ::lBuffer
+         hb_DispOutAt( ::nRow, ::nCol + nW + 2, "▄", "N/W" )
+         hb_DispOutAt( ::nRow + 1, ::nCol + 1, Replicate( "▀", nW + 2 ), "N/W" )
+      else
+         hb_DispOutAt( ::nRow + 1, ::nCol + 1, Replicate( " ", nW + 2 ), "N/W" )
+      endif
    ENDIF
 
    DispEnd()
