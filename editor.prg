@@ -792,7 +792,7 @@ METHOD LoadFile( cFileName ) CLASS HBSrcEdit
       else
          ::lUtf8Bom := .F.   // raw view: the BOM stays in the bytes shown/saved
          ::lUtf8Raw := .T.
-         Alert( "UTF-8 file with characters outside CP437: opened raw " + ;
+         HBIDE_MsgAlert( "UTF-8 file with characters outside CP437: opened raw " + ;
                 "to avoid data loss on save" )
       endif
    endif
@@ -801,7 +801,7 @@ METHOD LoadFile( cFileName ) CLASS HBSrcEdit
    xRet := ::LoadText( cRaw )
 
    if hb_FSize( cFileName ) > 8 * 1024 * 1024
-      Alert( "File larger than 8 MB: the disk watch compares date+time+size " + ;
+      HBIDE_MsgAlert( "File larger than 8 MB: the disk watch compares date+time+size " + ;
              "only, so a same-size external edit may go unnoticed until you save" )
    endif
 
@@ -874,7 +874,7 @@ METHOD SaveFile() CLASS HBSrcEdit
    // backspace inside it) makes the bytes no longer valid UTF-8. Saving
    // that would corrupt the original file, so block it explicitly.
    if ::lUtf8Raw .and. ! HBIDE_Utf8Valid( ::GetText() )
-      Alert( "Save blocked: the edit broke UTF-8 multibyte sequences " + ;
+      HBIDE_MsgAlert( "Save blocked: the edit broke UTF-8 multibyte sequences " + ;
              "and would corrupt the file" )
       return .F.
    endif
