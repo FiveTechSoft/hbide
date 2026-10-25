@@ -193,6 +193,7 @@ CLASS MCApp
    METHOD FileEditNew()
    METHOD RunExternal( cCmd, cFull )
    METHOD FileCopy()
+   METHOD ZipCreate()
    METHOD FileChmod()
    METHOD FileLink()
    METHOD FileSymlink()
@@ -1342,6 +1343,7 @@ METHOD BuildMenu() CLASS MCApp
          MENUITEM "Switch ~panels on/off C-o" ACTION ::PanelsOnOff()
          MENUITEM "~Compare directories C-x d" ACTION ::CompareDirs()
          MENUITEM "Show directory s~izes" ACTION ::DirSizes()
+         MENUITEM "Cre~ate ZIP archive..."  ACTION ::ZipCreate()
          MENUITEM "Command ~history  M-h" ACTION ::CmdHistory()
          MENUITEM "Di~rectory hotlist"    ACTION ::Hotlist()
          MENUITEM "~Background jobs"      ACTION ::BgJobs()
@@ -2484,6 +2486,116 @@ METHOD FileCopyBg( oSrc, aMarked, cDest ) CLASS MCApp
    MCJobsAdd( aFiles, hb_ntos( Len( aMarked ) ) + " item(s) -> " + cDest,, ::lPreallocate, ::lCowClone )
 
 return .T.
+
+//-----------------------------------------------------------------------------------------//
+
+// Create a ZIP archive from the marked entries (or the current one) in the
+// active panel's directory. The selection is staged in a scratch tree and
+// packed with one Info-ZIP run, so sources are only ever read. zip -r
+// MERGES into an existing archive, so an existing target is never reused:
+// it needs an explicit replace confirmation (safe default) and starts
+// fresh. On failure the partial archive is removed.
+METHOD ZipCreate() CLASS MCApp
+
+   local oSrc := ::ActivePanel()
+   local aMarked := oSrc:MarkedEntries(), aEntry, aNames := {}
+   local cName, cZip, cStage, cTree, cCmd, cN, cOut := "", lOk
+
+   if MCVfsKind( oSrc:cPath ) != "local"
+      MCMsgBox( "Create ZIP", "Creating archives is only available on local directories." )
+      return nil
+   endif
+   if oSrc:cMode != "listing"
+      MCMsgBox( "Create ZIP", "The active panel must be in file listing mode." )
+      return nil
+   endif
+   if Empty( aMarked )
+      aEntry := oSrc:Current()
+      if aEntry == nil .or. aEntry[ P_NAME ] == "/.."
+         MCMsgBox( "Create ZIP", "Nothing to archive." )
+         return nil
+      endif
+      aMarked := { aEntry }
+   endif
+
+   cName := If( Len( aMarked ) == 1, hb_FNameName( aMarked[ 1 ][ P_NAME ] ), "archive" ) + ".zip"
+   cName := ::DlgInput( "Create ZIP", "Archive name (created in the current directory):", cName, 45 )
+   if cName == nil
+      return nil
+   endif
+   cName := AllTrim( cName )
+   if Empty( cName )
+      return nil
+   endif
+   if Lower( hb_FNameExt( cName ) ) != ".zip"
+      cName += ".zip"
+   endif
+   if ! Empty( hb_FNameDir( cName ) )
+      MCMsgBox( "Create ZIP", "Type a plain file name; the archive is created in the current directory." )
+      return nil
+   endif
+   cZip := MCAbsPath( oSrc:cPath, cName )
+
+   if hb_FileExists( cZip ) .or. hb_DirExists( cZip )
+      if ! ::DlgConfirm( "Create ZIP", cName + " already exists." + Chr( 10 ) + ;
+                         "Replace it with the new archive?", "&Replace", .T. )
+         return nil
+      endif
+      FErase( cZip )
+   endif
+
+   cStage := MCZipStageDir()
+   if cStage == nil
+      MCMsgBox( "Create ZIP", "Cannot create a staging directory." )
+      return nil
+   endif
+   cTree := hb_FNameMerge( cStage, "tree" )
+   hb_DirCreate( cTree )
+   for each aEntry in aMarked
+      AAdd( aNames, aEntry[ P_NAME ] )
+      if ! CopyItem( MCEntryPath( oSrc, aEntry ), hb_FNameMerge( cTree, aEntry[ P_NAME ] ), .F., nil, Self )
+         MCMsgBox( "Create ZIP", "Cannot stage " + aEntry[ P_NAME ] )
+         DeleteTree( cStage, .T. )
+         return nil
+      endif
+   next
+
+   cCmd := "cd " + ShellQuote( cTree ) + " && zip -q -r -X " + ShellQuote( cZip ) + " --"
+   for each cN in aNames
+      cCmd += " " + ShellQuote( cN )
+   next
+   lOk := hb_ProcessRun( MCShWrap( cCmd ),, @cOut ) == 0 .and. hb_FileExists( cZip )
+   DeleteTree( cStage, .T. )
+   if ! lOk
+      FErase( cZip )
+      MCMsgBox( "Create ZIP", "zip failed:" + Chr( 10 ) + Left( cOut, 200 ) )
+      return nil
+   endif
+
+   ::Rescan()
+   MCMsgBox( "Create ZIP", hb_ntos( Len( aNames ) ) + " item(s) archived into " + cName + ;
+             " (" + hb_ntos( hb_FSize( cZip ) ) + " bytes)." )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// fresh empty staging dir under the VFS tmp area (mirrors MCStageDir in
+// mcarcwrite.prg, which is private to that file)
+static function MCZipStageDir()
+
+   local cName := "", nH := hb_FTempCreate( MCVfsTmpDir(), "hbz",, @cName )
+
+   if nH < 0
+      return nil
+   endif
+   FClose( nH )
+   FErase( cName )
+   if hb_DirCreate( cName ) != 0
+      return nil
+   endif
+
+return cName
 
 //-----------------------------------------------------------------------------------------//
 

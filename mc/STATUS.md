@@ -100,6 +100,24 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   still enables page jumps for users who want them. mc upstream ships
   mouse_move_pages on; we deliberately diverge because a whole page per
   notch read as broken in the demo
+- (2026-10-25, later) NEW Command menu "Cre~ate ZIP archive..." (user
+  request: "puedes implementarle la opcion de crear ficheros zip"):
+  packs the marked entries - or the current entry when nothing is
+  marked - into a zip in the active panel's directory (local panels
+  only). The selection is staged in a scratch tree and packed with a
+  single Info-ZIP run; sources are only ever read. zip -r MERGES into
+  an existing archive, so an existing target is never reused silently:
+  it needs an explicit Replace confirmation (safe default Cancel, Esc
+  cancels) and then starts from a fresh file; a failed run removes the
+  partial archive. Verified over PTY: tagged subdir + a.txt ->
+  archive.zip (unzip -l lists subdir/ plus its 2 files and a.txt;
+  extracted bytes identical to the originals); single unmarked file ->
+  a.zip from the default name; the prefilled name is editable (cleared
+  and retyped in the dialog); existing target -> confirm dialog, Esc
+  leaves the old file byte-identical, Tab+Enter on Replace produces a
+  fresh valid archive. Not covered: plain-letter button hotkeys in
+  dialogs (pre-existing across all dialogs - Tab, clicks and Enter on
+  the focused/default button are the verified paths)
 - Dialog checkboxes in MC colors: unfocused black-on-gray with red
   hotkey, focused black-on-cyan with yellow hotkey (was: all captions
   cyan at once). Vendored ChkDisplay override in mcbutton.prg; RTL
