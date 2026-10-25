@@ -4492,6 +4492,7 @@ return nil
 function MCDlgResizeRedraw( oDlg )
 
    local o, a
+   local nShB, nShR, nMaxB, nMaxR, nDRow, nDCol, nOT, nOL, nOB, nOR
 
    DispBegin()
    hb_Scroll( 0, 0, MaxRow(), MaxCol(), 0, 0, "W/N", " " )
@@ -4508,6 +4509,44 @@ function MCDlgResizeRedraw( oDlg )
       // auto-brief threshold for the current geometry.
       __MCApp():Layout()
       __MCApp():Repaint()
+   endif
+   // Keep the dialog and its half-cell shadow inside the usable area
+   // (below the menubar, above the command line / keybar) when the whole
+   // window still fits there: shift it, moving GETs and controls with it
+   // through the same MoveControls() contract the mouse Move() uses. A
+   // dialog bigger than the usable area stays put and clips, as in mc.
+   nShB := If( oDlg:lShadow, 1, 0 )
+   nShR := If( oDlg:lShadow, 2, 0 )
+   nMaxB := MaxRow() - nShB
+   nMaxR := MaxCol() - nShR
+   if __MCApp() != NIL
+      if __MCApp():lKeybar
+         nMaxB -= 1
+      endif
+      if __MCApp():lCmdlineBar
+         nMaxB -= 2
+      endif
+   endif
+   nDRow := 0
+   nDCol := 0
+   if oDlg:nBottom - oDlg:nTop <= nMaxB - 1
+      nDRow := Min( 0, nMaxB - oDlg:nBottom )
+      nDRow := Max( nDRow, 1 - oDlg:nTop )
+   endif
+   if oDlg:nRight - oDlg:nLeft <= nMaxR
+      nDCol := Min( 0, nMaxR - oDlg:nRight )
+      nDCol := Max( nDCol, -oDlg:nLeft )
+   endif
+   if nDRow != 0 .or. nDCol != 0
+      nOT := oDlg:nTop
+      nOL := oDlg:nLeft
+      nOB := oDlg:nBottom
+      nOR := oDlg:nRight
+      oDlg:nTop    += nDRow
+      oDlg:nBottom += nDRow
+      oDlg:nLeft   += nDCol
+      oDlg:nRight  += nDCol
+      oDlg:MoveControls( nOT, nOL, nOB, nOR )
    endif
    hb_Scroll( oDlg:nTop, oDlg:nLeft, oDlg:nBottom, oDlg:nRight,,, oDlg:cColor )
    if oDlg:lShadow
