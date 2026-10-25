@@ -17,6 +17,13 @@ HbIde ChangeLog
   - Matriz completa del IDE verificada en vivo (File/Edit/Run/Options/Help,
     Alerts, UTF-8). Checkpoint completo, pruebas y limitaciones:
     docs/editor-checkpoint-2026-10-25.md
+  - Nuevo: comentarios de bloque /* */ multilinea coloreados, con cache
+    incremental por linea (invalidacion desde la primera linea editada;
+    cadenas con /* dentro y comentarios // respetados). Coste medido:
+    108 ms peor caso (archivo de 20.000 lineas, salto al final), ~0 ms
+    en repintado normal de edicion
+  - Corregido: resaltado fantasma de la linea actual tras saltos de mas
+    de una linea (Ctrl+Home/End, Undo/Redo); la linea previa se repinta
 
 2026-10-24
 ----------
