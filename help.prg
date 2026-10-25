@@ -57,7 +57,36 @@ function HBIDEHelpTopics()
       "         resulting program unless 'Run after build' is off." + hb_eol() + hb_eol() + ;
       "Script   Compiles the buffer in memory and runs it inside the IDE process." + hb_eol() + ;
       "         Runtime errors are shown in a dialog." + hb_eol() + hb_eol() + ;
-      "Debug    (see its own topic once available)" } )
+      "Debug    Builds the current file with debug info and opens it in the" + hb_eol() + ;
+      "         integrated Harbour debugger. Breakpoints set in the editor" + hb_eol() + ;
+      "         with F9 (red gutter marks) are applied automatically." + hb_eol() + ;
+      "         See the 'Debugger' topic." } )
+
+   AAdd( a, { "debugger debug breakpoint watchpoint tracepoint step trace goto monitor", "Debugger", ;
+      "Execution keys" + hb_eol() + ;
+      "   F5 Go / stop at breakpoint   F7 Run to cursor   F8 Step into" + hb_eol() + ;
+      "   F10 Trace over               Ctrl+F5 Next routine" + hb_eol() + ;
+      "   Run > Animate steps automatically (Run > sPeed sets the pace)." + hb_eol() + ;
+      "   F4 swaps to the application screen; File > Resume returns the view" + hb_eol() + ;
+      "   to the execution point (it does NOT restart the program)." + hb_eol() + hb_eol() + ;
+      "The first stop is on the wrapper's init procedure line, not on the" + hb_eol() + ;
+      "first line of Main: press F5 or F7 to reach your code." + hb_eol() + hb_eol() + ;
+      "Points" + hb_eol() + ;
+      "   Breakpoints stop execution (F9 in the editor or in the debugger," + hb_eol() + ;
+      "   Point menu, or 'BP <line>' in the Command window)." + hb_eol() + ;
+      "   Watchpoints only display their value; they do not stop (upstream" + hb_eol() + ;
+      "   Harbour semantics). Tracepoints stop when the value changes." + hb_eol() + hb_eol() + ;
+      "Command window: ? <expr> evaluates, BP <n> toggles a breakpoint," + hb_eol() + ;
+      "NUM ON/OFF toggles line numbers, ANIMATE starts animation." + hb_eol() + hb_eol() + ;
+      "Windows: Tab / Shift+Tab cycle focus between the open windows" + hb_eol() + ;
+      "(code, Monitor, Command...). Monitor menu shows variables by scope" + hb_eol() + ;
+      "(Local, Static, Private, Public). 'Global' lists nothing: current" + hb_eol() + ;
+      "Harbour does not implement GLOBAL variables (xHarbour-only legacy)." + hb_eol() + hb_eol() + ;
+      "Options > Save/Restore Settings persists colors, tab width, monitor" + hb_eol() + ;
+      "flags and breakpoints to init.cld and applies them back." + hb_eol() + hb_eol() + ;
+      "Not implemented upstream (menu entries alert 'Not implemented yet!'): " + hb_eol() + ;
+      "Window Move/Size/Zoom/Iconize/Tile, Options Exchange Screens," + hb_eol() + ;
+      "swap on Input, Menu Bar." } )
 
    AAdd( a, { "options compiler flags display designer strict warnings incremental optimize", "Options menu", ;
       "Compiler Flags...   Build options used by Run > Start:" + hb_eol() + ;
