@@ -8,8 +8,9 @@
 //      "[ Caption ]" drawn on the dialog background: width = caption + 4,
 //      height 1, no per-button shadow.
 //   anything else ("shadow", "<>", any 2-char pair) -> hbide block button:
-//      colored face with the pair chars as caps (spaces when not a 2-char
-//      pair) and a solid shadow one cell right and one row down (height 2).
+//      colored face with a solid shadow one cell right and one row down
+//      (height 2). Caps are the pair chars for an explicit custom pair; the
+//      RTL "<>" default paints clean spaces (plain label, user 2026-10-25).
 // A button whose cargo is .T. is the dialog default and renders as
 // "[< Caption >]" in the brackets style (mc's DEFPUSH_BUTTON).
 // Colors: the body honors ::cColorSpec indices 0/1/2 (normal/focus/buffer);
@@ -23,7 +24,7 @@ function BtnDisplay()
 
    local Self := QSelf()
 
-   LOCAL cBody, cHot, cBg
+   LOCAL cBody, cHot, cBg, cCaps
    LOCAL cCaption := ::cCaption
    LOCAL nPos, cOut, nW
    // designer codegen emits STYLE "[]" for brackets; "brackets" kept as legacy alias
@@ -60,11 +61,14 @@ function BtnDisplay()
             SubStr( cCaption, nPos, 1 ), cHot )
       ENDIF
    ELSE
+      // "<>" is only the RTL default (no explicit STYLE): paint clean caps.
+      // User, 2026-10-25: shadow buttons show a plain label, no < > or [].
+      cCaps := If( Len( ::cStyle ) == 2 .and. ! ::cStyle == "<>", ::cStyle, "  " )
       nW := Len( cCaption ) + 2
       hb_DispOutAt( ::nRow, ::nCol,;
-         If( Len( ::cStyle ) == 2, SubStr( ::cStyle, 1, 1 ), " " ) + " " + ;
+         SubStr( cCaps, 1, 1 ) + " " + ;
          cCaption + " " + ;
-         If( Len( ::cStyle ) == 2, SubStr( ::cStyle, 2, 1 ), " " ), cBody )
+         SubStr( cCaps, 2, 1 ), cBody )
       IF nPos != 0
          hb_DispOutAt( ::nRow, ::nCol + nPos + 1, SubStr( cCaption, nPos, 1 ), cHot )
       ENDIF

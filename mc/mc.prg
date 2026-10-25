@@ -1088,11 +1088,14 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
    // Cursor after the prefilled text (mc behavior): GET:setFocus() forces
    // pos := 1, so a pre-READ :pos assignment cannot survive; queue an End
    // key instead - the first GET consumes it and lands the cursor after the
-   // last non-blank char. Harbour RTL GET:end() already lands past the
-   // RTrim'd content (tget.prg: nLastCharPos := Len(RTrim(cBuffer))+1), so
-   // no further walking is needed (an earlier Left-walk underflowed to
-   // pos 1 and typing then overtyped the prefill, e.g. destroying "sh://").
-   hb_keyPut( K_END )
+   // last non-blank char. Only when there IS prefilled content: on an empty
+   // (all-space) buffer tget.prg GET:end() takes its ELSE branch
+   // (nPos := ::nMaxEdit) and lands on the LAST cell, so the first typed
+   // char filled the buffer end and typeOut exited the GET after one key
+   // (mkdir got a one-letter name). Empty field: setFocus's pos 1 is right.
+   IF ! Empty( RTrim( cValue ) )
+      hb_keyPut( K_END )
+   ENDIF
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION "  &OK  " ;
       COLOR "N/W,N/BG,N/BG,R/W" GUISEND cargo := .T. ;

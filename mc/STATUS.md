@@ -57,6 +57,21 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   fire (Cancel keeps the file, Delete removes it), no bracket rendering
   remains in any dialog (PTY render asserts), DlgConfirm button centering
   recomputed for the shadow widths
+- (2026-10-25, later) Clean button labels per user follow-up ("si usan
+  sombra, no deben mostrar < > ni corchetes"): the RTL "<>" default style
+  no longer paints angle caps on shadow buttons; explicit custom pairs
+  still honored. Verified on the new build: no "< OK >"/"< Cancel >" in
+  any dialog (PTY render asserts), real X captures (mkdir + delete
+  confirm) cropped to the app area
+- (2026-10-25, later) FIXED dialog typing regression: DlgInput always
+  queued K_END for the GET; on an EMPTY (all-space) buffer tget.prg
+  GET:end() takes its ELSE branch (nPos := ::nMaxEdit) landing on the
+  LAST cell, so the first typed char filled the buffer end and typeOut
+  exited the GET after one key (mkdir got a one-letter name; reproduced
+  over PTY with strace - bytes reached the app - and in the live browser
+  demo). Fix: queue K_END only when the buffer has real prefill content
+  (the sh:// case the key was added for). Verified: full "testdir" types
+  and lands on disk, prefill path unchanged
 - Dialog checkboxes in MC colors: unfocused black-on-gray with red
   hotkey, focused black-on-cyan with yellow hotkey (was: all captions
   cyan at once). Vendored ChkDisplay override in mcbutton.prg; RTL
