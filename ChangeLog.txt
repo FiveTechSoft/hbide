@@ -223,6 +223,10 @@ HbIde ChangeLog
     debugger completo (ventana de codigo con el fuente transformado
     Main->__Main + init __hbide_debug__, ventana Command), el programa
     corre y se vuelve al editor con el buffer intacto
+  - Verificado en vivo Windows via Wine: parada en breakpoint y
+    evaluacion de variables - comando "bp 4" en la ventana Command, Go
+    F5 para en la linea 4 (for), ? n devuelve NIL (aun sin asignar,
+    correcto), Trace F10 avanza a la linea 5 y ? n devuelve 1
   - Pendiente (alcance ampliado 2026-10-25): revisar todas las funciones
     y opciones del debugger de Harbour y exponerlas desde el IDE
 
