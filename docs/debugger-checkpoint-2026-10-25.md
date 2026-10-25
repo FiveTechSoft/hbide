@@ -100,19 +100,45 @@ las asignaciones (pty, ventana Monitor visible):
   upstream definitiva. F4 (App Screen) es la alternativa para ver la
   pantalla de la app. Avance funcional != correccion visual aqui.
 
-## Defecto conocido en investigacion (pre-existente, no del carril debugger)
+## Defecto Help-tras-debugger: CORREGIDO (7865ae2)
 
-Tras una sesion de debugger (Run>Debug, Alt+X para salir), Help>Contents:
-la tecla 'c' no abre el picker de temas, el foco queda en el sistema de
-menus y el siguiente Enter dispara "Error BASE/1004 No exported method:
-EVAL" (stack: HBDBMENU:EVALACTION(247) <- HBMENU:EVALACTION(200) <-
-HBDBMENU:PROCESSKEY(464) <- HBMENU:PROCESSKEY(380) <- HBIDE:ACTIVATE(630);
-el dialogo se cierra con OK y la app sigue). Desde arranque limpio la
-ayuda funciona en ambas plataformas. Reproducido en Linux (pty) y Windows
-(Wine). La maquinaria afectada (HbMenu/HBDbMenu) no la toco el carril
-debugger; la rama si la modifico en el carril designer (44b8a1f, 05f6591,
-b73fd64 - sospechosos no probados). Hipotesis: estado de menu contaminado
-tras la sesion de debugger (nOpenPopup/popup stale).
+Sintoma original: tras una sesion de debugger (Run>Debug, Alt+X para
+salir), Help>Contents no abria el picker de temas ('c' era no-op) y un
+Enter posterior disparaba "Error BASE/1004 No exported method: EVAL"
+(la app sobrevivia tras OK). Reproducido en Linux (pty) y Windows (Wine).
+
+Causa raiz (probada con instrumentacion): HBDbMenu:aMenus es un THREAD
+STATIC de construccion compartido por todo el proceso y nunca se vacia:
+la barra del IDE permanece en el tras BuildMenu(). __dbgBuildMenu()
+(hbdebug/dbgmenu.prg) construia el menu del debugger sobre esa pila, asi
+que New() marcaba la barra del debugger como popup y el Build() final
+(profundidad 2) ejecutaba la rama de sub-menu anidado: sobrescribia el
+bAction del ULTIMO item de la barra del IDE ("~Help") con el objeto
+barra del debugger. Despues Alt+H abria la barra del debugger como popup
+de Help (sin hotkey 'C': 'c' no-op; item 7 = "~Options" con bAction =
+OBJETO submenu) y Enter Eval()uaba ese objeto -> BASE/1004. Confirmado
+con log en HBDbMenu:EvalAction: bar=5 popup=7 item=[ ~Options ]
+bAction=O.
+
+Fix (hbdebug/dbgmenu.prg, 15 lineas): construir el menu del debugger en
+una pila privada (save/NIL/restore de aMenus alrededor de MENU...ENDMENU).
+Efecto secundario positivo: la barra del debugger queda lPopup=.F. y se
+posiciona como barra (render limpio, ver capturas).
+
+Verificacion del ciclo debugger->salir->Help->Contents->Debugger:
+- Linux: 3 arranques frescos x 2 aperturas de Contents + 3 sesiones de
+  debugger consecutivas en UN solo proceso: Contents abre el topic
+  Debugger sin EVAL en todos los casos; Help>About abre su dialogo;
+  el menu Options del propio debugger sigue funcionando.
+- Windows (Wine, exe rebuild, capturas reales): sesion 1 y tras 3
+  sesiones Help>Contents abre con el topic Debugger legible y sin error
+  (wfix_02, wfix_03); Help>About abre el dialogo HbIde 1.0 (wfix_06);
+  F4 ida/vuelta limpio: debugger -> app screen (canvas compartido IDE,
+  comportamiento documentado) -> debugger (wfix_07..wfix_09); editor
+  limpio tras Alt+X final (wfix_10). El menu del debugger renderiza
+  correcto desde la sesion 1 (wfix_01).
+- Sin perdida de commits previos; la limitacion visual durante Animate
+  permanece documentada y NO se da por resuelta con estas capturas.
 
 ## Pendiente
 
