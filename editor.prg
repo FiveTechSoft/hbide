@@ -58,6 +58,8 @@ CLASS HBSrcEdit FROM HBEditor
    DATA   nSelEnd      INIT 0
    DATA   aUndo        INIT {}
    DATA   aRedo        INIT {}
+   DATA   aBlkCmt      INIT {}   // per-line flag: the line starts inside a /* */ block
+   DATA   nBlkDirty    INIT 1    // first line whose block-comment state is stale
    DATA   nSavedUndoLen INIT 0
    DATA   lInUndo      INIT .F.
    DATA   lOpRecorded  INIT .F.
@@ -75,6 +77,8 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD ApplyOp( aOp, lInverse )
    METHOD Undo()
    METHOD Redo()
+   METHOD BlkCmtState( nLine )
+   METHOD ScanBlkLine( cText, lIn )
    METHOD LoadText( cText )
    METHOD LoadFile( cFileName )
    METHOD SaveFile()
@@ -347,6 +351,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
    local nKeyStd := hb_keyStd( nKey )
    local nKeyExt := hb_keyExt( nKey )   // HB_KX_* when an extended special key, else 0
    local nKeyMod := hb_keyMod( nKey )   // HB_KF_* flags of the extended code
+   local nOldScrRow := ::Row()
    local cKey, oLine, nPos
 
    do case
@@ -504,6 +509,14 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
       ::DisplayLine( ::Row() + 1 )
    endif
 
+   // Jumps longer than one line (Ctrl+Home/End and friends reach HBEditor's
+   // MoveCursor with _REFRESH_NONE) leave the previous current line painted
+   // with the current-line color; repaint it so the highlight never lingers
+   // on a stale row.
+   if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom
+      ::DisplayLine( nOldScrRow )
+   endif
+
 return nil
 
 //-----------------------------------------------------------------------------------------//
@@ -572,6 +585,8 @@ METHOD PushOp( nRow, aOld, aNew ) CLASS HBSrcEdit
       endif
    endif
 
+   ::nBlkDirty := Min( ::nBlkDirty, nRow )
+
    // saved state unreachable once a new edit lands after undoing past it
    if Len( ::aUndo ) < ::nSavedUndoLen
       ::nSavedUndoLen := -1
@@ -615,6 +630,8 @@ METHOD ApplyOp( aOp, lInverse ) CLASS HBSrcEdit
    local aDel := iif( lInverse, aOp[ 3 ], aOp[ 2 ] )
    local aIns := iif( lInverse, aOp[ 2 ], aOp[ 3 ] )
    local nRow := aOp[ 1 ], i
+
+   ::nBlkDirty := Min( ::nBlkDirty, nRow )
 
    for i = 1 to Len( aDel )
       ::RemoveLine( nRow )
@@ -671,6 +688,67 @@ return Self
 
 //-----------------------------------------------------------------------------------------//
 
+// State cache for multi-line block comments: aBlkCmt[ i ] is .T. when line i
+// begins inside /* */. Recomputed lazily from nBlkDirty; edits and undo/redo
+// invalidate only from their first affected line, so a repaint scans at most
+// from the edited line to the last visible one (O(visible) in the common case,
+// O(changed suffix) after an edit near the top).
+METHOD BlkCmtState( nLine ) CLASS HBSrcEdit
+
+   local i, lState
+
+   if nLine > Len( ::aText )
+      return .F.
+   endif
+
+   if ::nBlkDirty <= nLine
+      ASize( ::aBlkCmt, Len( ::aText ) )
+      lState := iif( ::nBlkDirty > 1, ::aBlkCmt[ ::nBlkDirty - 1 ], .F. )
+      for i := ::nBlkDirty to nLine
+         ::aBlkCmt[ i ] := lState
+         lState := ::ScanBlkLine( ::aText[ i ]:cText, lState )
+      next
+      ::nBlkDirty := nLine + 1
+   endif
+
+return ::aBlkCmt[ nLine ]
+
+//-----------------------------------------------------------------------------------------//
+
+// Scans one line and returns the block-comment state at its end, mirroring
+// DisplayLine's tokenizer: '"' and "'" strings are skipped (/* inside a
+// string does not open a comment) and // ends the scan (a later /* stays a
+// line comment). Byte-level scan: the delimiters and quotes are ASCII and
+// UTF-8 continuation bytes can never alias them.
+METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
+
+   local n := 1, nLen := Len( cText ), c
+
+   while n <= nLen
+      c := SubStr( cText, n, 1 )
+      if lIn
+         if c == "*" .and. SubStr( cText, n, 2 ) == "*/"
+            lIn := .F.
+            n++
+         endif
+      elseif c == '"' .or. c == "'"
+         n++
+         while n <= nLen .and. SubStr( cText, n, 1 ) != c
+            n++
+         end
+      elseif c == "/" .and. SubStr( cText, n, 2 ) == "/*"
+         lIn := .T.
+         n++
+      elseif c == "/" .and. SubStr( cText, n, 2 ) == "//"
+         exit
+      endif
+      n++
+   end
+
+return lIn
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD LoadText( cText ) CLASS HBSrcEdit
 
    local xRet := ::Super:LoadText( cText )
@@ -679,6 +757,7 @@ METHOD LoadText( cText ) CLASS HBSrcEdit
    ::aRedo := {}
    ::nSavedUndoLen := 0
    ::lInUndo := .F.
+   ::nBlkDirty := 1
 
 return xRet
 
@@ -836,6 +915,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
    local n, cLine, cToken := "", cColor, nCol, nStart, nPos, aSel
    local cOperators := ::cOperators
    local lInComment := .F.
+   local lInBlk := ::BlkCmtState( ::nFirstRow + nLine - ::nTop )
 
    DispBegin()
    hb_DispOutAt( nLine, ::nLeft, PadL( ::nFirstRow + nLine - ::nTop, 4 ), "N/W" )
@@ -854,8 +934,22 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
          exit
       endif
 
+      // Continuation of a multi-line block comment: consume to */ or EOL
+      if lInBlk
+         nStart = n
+         while n <= hb_ULen( cLine ) - 1 .and. hb_USubStr( cLine, n, 2 ) != "*/"
+            n++
+         end
+         if n <= hb_ULen( cLine ) - 1
+            n += 2
+            lInBlk := .F.
+         else
+            n = hb_ULen( cLine ) + 1
+         endif
+         cToken = hb_USubStr( cLine, nStart, n - nStart )
+         lInComment = .T.
       // Check for line comment - color rest of line as comment
-      if hb_USubStr( cLine, n, 2 ) == "//"
+      elseif hb_USubStr( cLine, n, 2 ) == "//"
          cToken = hb_USubStr( cLine, n )
          n = hb_ULen( cLine ) + 1
          lInComment = .T.
