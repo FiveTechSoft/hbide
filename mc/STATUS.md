@@ -305,8 +305,14 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 ## Pending (not implemented / not verified)
 
-- MCDlgRunner migration to the remaining 11 dialogs (only DlgCopy and
-  DlgList run on it so far; see "Dialog runner (MCDlgRunner)" below)
+- Per-dialog functional matrix for the 12 dialogs migrated to MCDlgRun
+  in the latest pass (DlgInput, DlgConfirm, MCMsgBox and the 9
+  options/config dialogs): all 14 dialog sites now go through MCDlgRun
+  (0 HbWindow:Activate calls remain), the tree builds clean and the
+  existing PTY batteries (dialog keyboard, M-Tab completion + Esc,
+  mouse) stay green on it, but each of the 12 newly migrated dialogs
+  still needs its own open/edit/confirm/cancel matrix before being
+  called verified per dialog
 
 
 ## Env-blocked (out of demo scope by design)
@@ -327,7 +333,9 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   validation, hotkeys, GUI controls and GE_* states. MCDlgRun() replaces
   HbWindow:Activate per dialog (shared hbwindow.prg untouched) and
   replicates the global ReadModal() active-GetList registration.
-- Migrated so far: DlgCopy and DlgList. Proven on the final bytes with
+- Migrated: all 14 dialog sites (DlgCopy, DlgList, DlgInput, DlgConfirm,
+  MCMsgBox and the 9 options/config dialogs). Per-dialog proven so far:
+  DlgCopy and DlgList, on the final bytes with
   PTY matrices on three option homes (defaults / single-press Esc /
   double-Esc with timeout): dialog open, typing reaches the GET buffer,
   Tab/Shift-Tab, Enter presses the default button and runs the real copy,
@@ -346,13 +354,13 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 - Terminal resize: the panels view relayouts cleanly on SIGWINCH (full
   wipe + layout + repaint in one DispBegin, driven from the main loop which
-  reads keys with HB_INKEY_EXT). Dialogs ON THE RUNNER (DlgCopy, DlgList)
-  relayout live too: the runner's DlgInkey reads with
-  HB_INKEY_ALL+HB_INKEY_EXT, catches the extended resize event and fires
-  MCDlgResizeRedraw (proven: 200x60 -> 140x44 -> 200x60 with the dialog
-  frame, fields and buttons re-laid out). Dialogs still on the classic
-  READ keep the old limit: their plain-READ Inkey( 0 ) filters the
-  extended resize event and the redraw never fires there.
+  reads keys with HB_INKEY_EXT). Dialogs relayout live through the
+  runner's DlgInkey, which reads with HB_INKEY_ALL+HB_INKEY_EXT, catches
+  the extended resize event and fires MCDlgResizeRedraw (proven on
+  DlgCopy: 200x60 -> 140x44 -> 200x60 with the dialog frame, fields and
+  buttons re-laid out; the resize path is shared by every dialog now that
+  all sites run on MCDlgRun, but per-dialog resize proof exists only for
+  DlgCopy and DlgList so far).
 - Keystroke injection (XTEST) can lose characters mid-session; tests drive
   the app in short batches with a verifying screenshot after each step.
 - Dialog GET width follows the variable length (PadR), not @S pictures.
