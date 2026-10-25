@@ -89,6 +89,10 @@ CLASS MCApp
    DATA   aHotlist     INIT {}
    DATA   nPrefixKey   INIT 0
 
+   // per-operation copy state (reset at each FileCopy/MoveItem/ZipCreate)
+   DATA   lCopySkipLinks INIT .F.
+   DATA   lCopyAbort     INIT .F.
+
    // configuration (persisted)
    DATA   lShowHidden     INIT .F.
    DATA   lConfirmDelete  INIT .T.
@@ -227,12 +231,13 @@ CLASS MCApp
    METHOD HelpDialog()
    METHOD About()
    METHOD Quit()
-   METHOD DlgInput( cTitle, cLabel, cDefault, nLen )
+   METHOD DlgInput( cTitle, cLabel, cDefault, nLen, lHide )
    METHOD DlgCopy( nCount, cDefault, cAction, cVerb )
    METHOD FileCopyBg( oSrc, aMarked, cDest )
    METHOD FileMoveBg( oSrc, aMarked, cDest )
    METHOD BgJobs()
    METHOD DlgConfirm( cTitle, cMsg, cOk, lSafeDefault )
+   METHOD DlgQuery( cTitle, cMsg, aButtons, nDef )
    METHOD DlgList( cTitle, aItems, nDef )
    METHOD OtherPanelRef()
    METHOD MenuBarLight()
@@ -929,7 +934,7 @@ return nil
 
 METHOD MouseClick( nRow, nCol, lDbl ) CLASS MCApp
 
-   local oPanel, nIdx, nP
+   local oPanel, nIdx, nP, aSB
 
    if nRow == 0 .and. ::lMenubar
       SetCursor( SC_NONE )
@@ -963,6 +968,24 @@ METHOD MouseClick( nRow, nCol, lDbl ) CLASS MCApp
          nCol >= oPanel:nLeft .and. nCol <= oPanel:nRight
          if nP != ::nActive
             ::nActive := nP
+         endif
+         // scrollbar column: page up/down instead of selecting an entry
+         // (mc editor scrollbar style); a click on the thumb is a no-op
+         aSB := oPanel:ScrollBarState()
+         if aSB[ 1 ] .and. nCol == aSB[ 6 ] .and. nRow >= aSB[ 2 ] .and. nRow <= aSB[ 3 ]
+            // track click flips the view by a full page (scrollbar-style;
+            // Scroll()/Move() only nudge the view to keep the cursor
+            // visible, so from the top they shifted a single row); the
+            // selection bar lands on the first entry of the new page
+            if nRow < aSB[ 4 ]
+               oPanel:nOffset := Max( 0, oPanel:nOffset - oPanel:PageSize() )
+               oPanel:nCurrent := oPanel:nOffset + 1
+            elseif nRow > aSB[ 5 ]
+               oPanel:nOffset := Min( Max( 0, Len( oPanel:aFiles ) - oPanel:VisibleRows() ), ;
+                                      oPanel:nOffset + oPanel:PageSize() )
+               oPanel:nCurrent := oPanel:nOffset + 1
+            endif
+            exit
          endif
          nIdx := oPanel:RowToIndex( nRow, nCol )
          if nIdx > 0
@@ -1142,7 +1165,7 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
-METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
+METHOD DlgInput( cTitle, cLabel, cDefault, nLen, lHide ) CLASS MCApp
 
    local oDlg, GetList := {}, lDummy, lOk := .F., nBack
    local cValue := PadR( hb_defaultValue( cDefault, "" ), hb_defaultValue( nLen, 40 ) )
@@ -1154,6 +1177,17 @@ METHOD DlgInput( cTitle, cLabel, cDefault, nLen ) CLASS MCApp
 
    MCDlgSay( oDlg,  2, 3, cLabel )
    @ oDlg:nTop + 3, oDlg:nLeft + 3 GET cValue COLOR "W/B,W+/B,W+/W,GR+/W"
+   // Password masking: plain Get's lHideInput is PROTECTED in this build
+   // (verified: :hideInput/:lHideInput -> MSGNOTFOUND, :_lHideInput ->
+   // BASE/42), so swap the tail GET for an hb_Get (tgethb.prg), which
+   // publishes the hideInput SETGET; display shows one '*' per typed char
+   // and the buffer keeps the real value
+   if hb_defaultValue( lHide, .F. )
+      GetList[ Len( GetList ) ] := hb_Get():New( oDlg:nTop + 3, oDlg:nLeft + 3, ;
+         {| x | If( x == NIL, cValue, cValue := x ) }, "cValue",, ;
+         "W/B,W+/B,W+/W,GR+/W" )
+      ATail( GetList ):hideInput := .T.
+   endif
 
    // Cursor after the prefilled text (mc behavior): GET:setFocus() forces
    // pos := 1, so a pre-READ :pos assignment cannot survive; queue an End
@@ -1248,6 +1282,122 @@ METHOD DlgConfirm( cTitle, cMsg, cOk, lSafeDefault ) CLASS MCApp
    ::Repaint()
 
 return lOk
+
+//-----------------------------------------------------------------------------------------//
+
+// Multi-choice query box in the style of mc's file-error dialog (file.c:
+// a per-item answer, with batch options so one choice can cover the whole
+// operation). aButtons holds the captions; returns the 1-based index of the
+// chosen button, 0 on Esc. nDef picks the initially focused button:
+// creation order sets the initial focus, physical layout never changes.
+METHOD DlgQuery( cTitle, cMsg, aButtons, nDef ) CLASS MCApp
+
+   local oDlg, GetList := {}, lDummy, nRet := 0
+   local aLines := hb_aTokens( hb_defaultValue( cMsg, "" ), Chr( 10 ) ), cLine, nRow := 2, nW := 0
+   local aBW := {}, aPos := {}, nBTot := 0, nCol0, i, oG, nHK
+
+   DEFAULT nDef := 1
+
+   AEval( aLines, { | c | nW := Max( nW, hb_ULen( c ) ) } )
+   for i := 1 to Len( aButtons )
+      AAdd( aBW, hb_ULen( StrTran( AllTrim( aButtons[ i ] ), "&", "" ) ) + 5 )
+      nBTot += aBW[ i ]
+   next
+   nBTot += 4 * ( Len( aButtons ) - 1 )
+   nW := Min( Max( nW + 8, Max( nBTot + 6, 34 ) ), 100 )
+
+   oDlg = HBWindow():Dialog( cTitle, nW, Len( aLines ) + 5, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   for each cLine in aLines
+      MCDlgSay( oDlg,  nRow++, 2, cLine )
+   next
+
+   // literal blocks per button (like DlgConfirm): each STATE closure keeps
+   // its own index. Up to 4 buttons; layout positions are absolute, so the
+   // default button is moved to the head of GetList afterwards for the
+   // initial focus (creation/array order sets it, layout never changes).
+   nCol0 := oDlg:nLeft + Int( ( nW - nBTot ) / 2 )
+   for i := 1 to Len( aButtons )
+      AAdd( aPos, nCol0 )
+      nCol0 += aBW[ i ] + 4
+   next
+   if Len( aButtons ) >= 1
+      @ oDlg:nBottom - 2, aPos[ 1 ] GET lDummy PUSHBUTTON ;
+         CAPTION " " + aButtons[ 1 ] + " " COLOR "W/B,N/BG,N/BG,GR+/B" ;
+         GUISEND cargo := ( nDef == 1 ) ;
+         STATE { || nRet := 1, oDlg:End() }
+      // mc-style hotkey: the & letter answers the box directly (the READ
+      // has no text field here, so plain letters are safe)
+      nHK := At( "&", aButtons[ 1 ] )
+      if nHK > 0 .and. nHK < Len( aButtons[ 1 ] )
+         SetKey( Asc( Upper( SubStr( aButtons[ 1 ], nHK + 1, 1 ) ) ), { || nRet := 1, oDlg:End() } )
+         SetKey( Asc( Lower( SubStr( aButtons[ 1 ], nHK + 1, 1 ) ) ), { || nRet := 1, oDlg:End() } )
+      endif
+   endif
+   if Len( aButtons ) >= 2
+      @ oDlg:nBottom - 2, aPos[ 2 ] GET lDummy PUSHBUTTON ;
+         CAPTION " " + aButtons[ 2 ] + " " COLOR "W/B,N/BG,N/BG,GR+/B" ;
+         GUISEND cargo := ( nDef == 2 ) ;
+         STATE { || nRet := 2, oDlg:End() }
+      // mc-style hotkey: the & letter answers the box directly (the READ
+      // has no text field here, so plain letters are safe)
+      nHK := At( "&", aButtons[ 2 ] )
+      if nHK > 0 .and. nHK < Len( aButtons[ 2 ] )
+         SetKey( Asc( Upper( SubStr( aButtons[ 2 ], nHK + 1, 1 ) ) ), { || nRet := 2, oDlg:End() } )
+         SetKey( Asc( Lower( SubStr( aButtons[ 2 ], nHK + 1, 1 ) ) ), { || nRet := 2, oDlg:End() } )
+      endif
+   endif
+   if Len( aButtons ) >= 3
+      @ oDlg:nBottom - 2, aPos[ 3 ] GET lDummy PUSHBUTTON ;
+         CAPTION " " + aButtons[ 3 ] + " " COLOR "W/B,N/BG,N/BG,GR+/B" ;
+         GUISEND cargo := ( nDef == 3 ) ;
+         STATE { || nRet := 3, oDlg:End() }
+      // mc-style hotkey: the & letter answers the box directly (the READ
+      // has no text field here, so plain letters are safe)
+      nHK := At( "&", aButtons[ 3 ] )
+      if nHK > 0 .and. nHK < Len( aButtons[ 3 ] )
+         SetKey( Asc( Upper( SubStr( aButtons[ 3 ], nHK + 1, 1 ) ) ), { || nRet := 3, oDlg:End() } )
+         SetKey( Asc( Lower( SubStr( aButtons[ 3 ], nHK + 1, 1 ) ) ), { || nRet := 3, oDlg:End() } )
+      endif
+   endif
+   if Len( aButtons ) >= 4
+      @ oDlg:nBottom - 2, aPos[ 4 ] GET lDummy PUSHBUTTON ;
+         CAPTION " " + aButtons[ 4 ] + " " COLOR "W/B,N/BG,N/BG,GR+/B" ;
+         GUISEND cargo := ( nDef == 4 ) ;
+         STATE { || nRet := 4, oDlg:End() }
+      // mc-style hotkey: the & letter answers the box directly (the READ
+      // has no text field here, so plain letters are safe)
+      nHK := At( "&", aButtons[ 4 ] )
+      if nHK > 0 .and. nHK < Len( aButtons[ 4 ] )
+         SetKey( Asc( Upper( SubStr( aButtons[ 4 ], nHK + 1, 1 ) ) ), { || nRet := 4, oDlg:End() } )
+         SetKey( Asc( Lower( SubStr( aButtons[ 4 ], nHK + 1, 1 ) ) ), { || nRet := 4, oDlg:End() } )
+      endif
+   endif
+   if nDef > 1 .and. nDef <= Len( GetList )
+      oG := GetList[ nDef ]
+      ADel( GetList, nDef )
+      AIns( GetList, 1 )
+      GetList[ 1 ] := oG
+   endif
+
+   // Esc: safe exit, returns 0 (see DlgConfirm for the READ-exit contract)
+   MCDlgEscArm( oDlg, ::lSinglePress )
+   SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
+   MCDlgRun( oDlg, GetList )
+   SetKey( K_ENTER, NIL )
+   SetKey( K_ESC, NIL )
+   for i := 1 to Len( aButtons )
+      nHK := At( "&", aButtons[ i ] )
+      if nHK > 0 .and. nHK < Len( aButtons[ i ] )
+         SetKey( Asc( Upper( SubStr( aButtons[ i ], nHK + 1, 1 ) ) ), NIL )
+         SetKey( Asc( Lower( SubStr( aButtons[ i ], nHK + 1, 1 ) ) ), NIL )
+      endif
+   next
+   MCDlgResizeDisarm()
+   Set( _SET_ESCAPE, .F. )
+   ::Repaint()
+
+return nRet
 
 //-----------------------------------------------------------------------------------------//
 
@@ -2422,7 +2572,12 @@ METHOD FileCopy() CLASS MCApp
       hb_DirCreate( cDest )
    endif
 
+   ::lCopySkipLinks := .F.
+   ::lCopyAbort := .F.
    for each aEntry in aMarked
+      if ::lCopyAbort
+         exit
+      endif
       if ::lVerboseOp
          MCVerboseLog( "copy " + MCEntryPath( oSrc, aEntry ) + " -> " + ;
                        DestFor( cDest, aEntry, Len( aMarked ) ) )
@@ -2439,6 +2594,7 @@ METHOD FileCopy() CLASS MCApp
    ::Rescan()
    MCMsgBox( "Copy", hb_ntos( nCopied ) + " item(s) copied" + ;
              If( nSkipped > 0, ", " + hb_ntos( nSkipped ) + " skipped", "" ) + ;
+             If( ::lCopyAbort, ", aborted", "" ) + ;
              If( ::lVerboseOp, ":" + Chr( 10 ) + MCListNames( aMarked, 5 ), "." ) )
 
 return nil
@@ -2560,7 +2716,7 @@ METHOD ZipCreate() CLASS MCApp
 
    local oSrc := ::ActivePanel()
    local aMarked := oSrc:MarkedEntries(), aEntry, aNames := {}
-   local cName, cZip, cStage, cTree, cCmd, cN, cOut := "", lOk
+   local cName, cZip, cStage, cTree, cCmd, cN, cOut := "", lOk, cPass
 
    if MCVfsKind( oSrc:cPath ) != "local"
       MCMsgBox( "Create ZIP", "Creating archives is only available on local directories." )
@@ -2595,6 +2751,14 @@ METHOD ZipCreate() CLASS MCApp
       MCMsgBox( "Create ZIP", "Type a plain file name; the archive is created in the current directory." )
       return nil
    endif
+   // Optional ZipCrypto password (Info-ZIP -P), masked with '*' while
+   // typing (Harbour Get lHideInput). Esc cancels the creation; a
+   // deliberately empty password means no protection.
+   cPass := ::DlgInput( "Create ZIP", "Password (optional; empty = none):", "", 45, .T. )
+   if cPass == nil
+      return nil
+   endif
+   cPass := AllTrim( cPass )
    cZip := MCAbsPath( oSrc:cPath, cName )
 
    if hb_FileExists( cZip ) .or. hb_DirExists( cZip )
@@ -2612,6 +2776,8 @@ METHOD ZipCreate() CLASS MCApp
    endif
    cTree := hb_FNameMerge( cStage, "tree" )
    hb_DirCreate( cTree )
+   ::lCopySkipLinks := .F.
+   ::lCopyAbort := .F.
    for each aEntry in aMarked
       AAdd( aNames, aEntry[ P_NAME ] )
       if ! CopyItem( MCEntryPath( oSrc, aEntry ), hb_FNameMerge( cTree, aEntry[ P_NAME ] ), .F., nil, Self )
@@ -2621,7 +2787,7 @@ METHOD ZipCreate() CLASS MCApp
       endif
    next
 
-   cCmd := "cd " + ShellQuote( cTree ) + " && zip -q -r -X " + ShellQuote( cZip ) + " --"
+   cCmd := "cd " + ShellQuote( cTree ) + " && zip -q -r -X " + If( ! Empty( cPass ), "-P " + ShellQuote( cPass ) + " ", "" ) + ShellQuote( cZip ) + " --"
    for each cN in aNames
       cCmd += " " + ShellQuote( cN )
    next
@@ -2635,7 +2801,8 @@ METHOD ZipCreate() CLASS MCApp
 
    ::Rescan()
    MCMsgBox( "Create ZIP", hb_ntos( Len( aNames ) ) + " item(s) archived into " + cName + ;
-             " (" + hb_ntos( hb_FSize( cZip ) ) + " bytes)." )
+             " (" + hb_ntos( hb_FSize( cZip ) ) + " bytes)" + ;
+             If( ! Empty( cPass ), ", password protected", "" ) + "." )
 
 return nil
 
@@ -2860,8 +3027,11 @@ return nil
 function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
 
    local lOk := .T., lCreated := .F., aChild
-   local cFrom, cTo
+   local cFrom, cTo, nPick
 
+   if oApp != NIL .and. oApp:lCopyAbort
+      return .F.   // batch copy aborted by the user: no more items, no more boxes
+   endif
    if MCVfsKind( cSrc ) != "local" .or. MCVfsKind( cDst ) != "local"
       return MCVfsCopy( cSrc, cDst, lConfirm, @lAll, oApp )
    endif
@@ -2877,8 +3047,25 @@ function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
    endif
    // Do not follow source or destination links, including links to directories.
    if ! Empty( hb_FLinkRead( cSrc ) ) .or. ! Empty( hb_FLinkRead( cDst ) )
-      MCMsgBox( "Copy", "Copying symbolic links is not supported yet. Nothing changed." )
-      return .F.
+      if oApp == NIL
+         MCMsgBox( "Copy", "Copying symbolic links is not supported yet. Nothing changed." )
+      elseif ! oApp:lCopyAbort .and. ! oApp:lCopySkipLinks
+         // mc file-error box semantics (file.c): a per-item answer with a
+         // batch option, so one choice covers the whole operation instead
+         // of asking again for every link (user 2026-10-25). Retry is not
+         // offered: it could never succeed for an unsupported item.
+         nPick := oApp:DlgQuery( "Copy", ;
+            "Copying symbolic links is not supported yet:" + Chr( 10 ) + ;
+            If( hb_ULen( cSrc ) > 60, "..." + Right( cSrc, 57 ), cSrc ), ;
+            { "&Skip", "Skip a&ll", "&Abort" }, 1 )
+         do case
+         case nPick == 2
+            oApp:lCopySkipLinks := .T.
+         case nPick == 3 .or. nPick == 0   // Abort, or Esc: safe stop
+            oApp:lCopyAbort := .T.
+         endcase
+      endif
+      return .F.   // the item itself is always skipped (never a silent success)
    endif
    if hb_DirExists( cSrc )
       if ! hb_DirExists( cDst )
@@ -2893,6 +3080,9 @@ function CopyItem( cSrc, cDst, lConfirm, lAll, oApp )
             if ! CopyItem( hb_FNameMerge( cSrc, aChild[ F_NAME ] ), ;
                            hb_FNameMerge( cDst, aChild[ F_NAME ] ), lConfirm, @lAll, oApp )
                lOk := .F.
+            endif
+            if oApp != NIL .and. oApp:lCopyAbort
+               exit
             endif
          endif
       next
@@ -3115,6 +3305,10 @@ return nil
 
 static function MoveItem( cSrc, cDst, oApp )
    local lAll := .F., cTarget
+   if oApp != NIL
+      oApp:lCopySkipLinks := .F.
+      oApp:lCopyAbort := .F.
+   endif
    if MCVfsKind( cSrc ) != "local" .or. MCVfsKind( cDst ) != "local"
       MCMsgBox( "Rename/Move", "Moving to or from a VFS is not supported yet (read-only VFS)." + Chr( 10 ) + ;
                 "Use Copy instead. Nothing changed." )
