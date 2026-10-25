@@ -292,3 +292,14 @@ HbIde ChangeLog
 
 2026-10-25 hbide.exe: rebuild Windows con la politica de borrado de marcas BP
   (fuente: commit 3c880eb).
+
+  Debugger (rama designer-robustness, sin merge)
+  ----------------------------------------------
+  Fix crash 9001 en Animate/Colors/sesiones con init.cld: LoadColors
+  reconstruia el colorSpec con 4 slots y GetLineColor usa 5 (cursor
+  visible); ahora incluye aClr[1] como 5o slot (commit edbce02).
+  Restore Settings aplica TabWidth al browse en vivo (bug tambien en
+  upstream; commit 91c6a21). InputBox: el primer caracter reemplaza el
+  prefill seleccionado (commit 6d36850). Verificado en Linux (pty) y
+  Windows (Wine, capturas): debugger abre con init.cld presente, Animate
+  avanza y cierra limpio.
