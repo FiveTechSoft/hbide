@@ -257,7 +257,7 @@ return nil
 METHOD OpenInEditor( cFileName ) CLASS HBIde
 
    if ! File( cFileName )
-      Alert( "File not found: " + cFileName )
+      HBIDE_MsgAlert( "File not found: " + cFileName )
       return .F.
    endif
    if ! ::CheckUnsaved()   // must not drop unsaved work
@@ -355,6 +355,100 @@ METHOD MsgInfo( cText, cTitle ) CLASS HBIde
    ::ResumeStatus()
    
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Turbo Vision-style replacement for the GT default HBIDE_MsgAlert(): white framed
+// dialog with green shadowed buttons, same call contract as HBIDE_MsgAlert():
+// aOptions is an array of plain captions (the first letter, or the one after
+// '&', is the hotkey) and the function returns the 1-based option index,
+// 0 on Escape. The GET system only paints '&' accelerators, so plain hotkey
+// letters are routed through SetKey handlers restored right after Activate.
+
+function HBIDE_MsgAlert( cMessage, aOptions, cTitle )
+
+   local oDlg, GetList := {}, nChoice := 0, i, cMsg, cCap, nRow, nCol
+   local aLines := {}, nW := 0, nBtns := 0, nHot
+   local aHotIdx := {}, aOldKeys := {}, bKey, bChoose, bPress
+   local lDummy
+
+   DEFAULT cTitle := "Message"
+   if Empty( aOptions )
+      aOptions := { "OK" }
+   endif
+
+   // wrap long messages to a 60-column text area
+   for each cMsg in hb_aTokens( cMessage, Chr( 10 ) )
+      do while Len( cMsg ) > 60
+         i := 61
+         do while i > 30 .and. SubStr( cMsg, i, 1 ) != " "
+            i--
+         end
+         if i <= 30
+            i := 61   // no space to wrap at: hard cut
+         endif
+         AAdd( aLines, RTrim( Left( cMsg, i - 1 ) ) )
+         cMsg := LTrim( SubStr( cMsg, i ) )
+      end
+      AAdd( aLines, cMsg )
+   next
+   for each cMsg in aLines
+      nW := Max( nW, hb_ULen( cMsg ) )
+   next
+   nW := Max( nW + 6, 24 )
+   for each cCap in aOptions
+      nBtns += Len( cCap ) + 6
+   next
+   nW := Min( Max( nW, nBtns + 4 ), MaxCol() - 6 )
+
+   oDlg = HBWindow():Dialog( cTitle, nW, Len( aLines ) + 5, "W+/W" )
+
+   nRow := 2
+   for each cMsg in aLines
+      oDlg:Say( nRow++, 3, cMsg )
+   next
+
+   // one shared STATE block: the activated button reports its position
+   bChoose := { || nChoice := AScan( GetList, { | g | g == GetActive() } ), oDlg:End() }
+
+   // one shared SetKey block: LastKey() identifies the hotkey pressed
+   bKey := { || nChoice := aHotIdx[ AScan( aHotIdx, { | e | e[ 1 ] == LastKey() } ) ][ 2 ], ;
+                hb_keyPut( Chr( K_ESC ) ) }
+
+   // Enter and Space press the focused button: the GET read does not activate
+   // pushbuttons with these keys on its own, so trap them like the hotkeys
+   bPress := { || nChoice := AScan( GetList, { | g | g == GetActive() } ), ;
+                  hb_keyPut( Chr( K_ESC ) ) }
+   for each nHot in { K_RETURN, K_SPACE }
+      AAdd( aOldKeys, { nHot, SetKey( nHot ) } )
+      SetKey( nHot, bPress )
+   next
+
+   nCol := Int( ( nW - nBtns ) / 2 ) + 1
+   for i := 1 to Len( aOptions )
+      cCap := aOptions[ i ]
+      nHot := iif( ( nRow := At( "&", cCap ) ) > 0, ;
+                   Asc( Upper( SubStr( cCap, nRow + 1, 1 ) ) ), ;
+                   Asc( Upper( Left( cCap, 1 ) ) ) )
+      AAdd( aHotIdx, { nHot, i } )
+      AAdd( aHotIdx, { nHot + 32, i } )   // lowercase twin
+      AAdd( aOldKeys, { nHot, SetKey( nHot ) } )
+      AAdd( aOldKeys, { nHot + 32, SetKey( nHot + 32 ) } )
+      SetKey( nHot, bKey )
+      SetKey( nHot + 32, bKey )
+      @ oDlg:nBottom - 2, oDlg:nLeft + nCol GET lDummy PUSHBUTTON ;
+         CAPTION " " + cCap + " " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+         STATE bChoose
+      nCol += Len( cCap ) + 6
+   next
+
+   oDlg:Activate( GetList )
+
+   for each cCap in aOldKeys
+      SetKey( cCap[ 1 ], cCap[ 2 ] )
+   next
+
+return nChoice
 
 //-----------------------------------------------------------------------------------------//
 
@@ -637,7 +731,7 @@ METHOD Start() CLASS HbIde
    ::oEditor:SaveFile()
 
    if Empty( cFile ) .or. cFile == "noname.prg" .and. ! File( cFile )
-      Alert( "Nothing to run: save the file first" )
+      HBIDE_MsgAlert( "Nothing to run: save the file first" )
       return nil
    endif
 
@@ -655,16 +749,16 @@ METHOD Start() CLASS HbIde
 
    hb_Run( "hbmk2" + ::BuildFlags() + " " + cFile + " > info.txt 2>&1" )
    cOut = MemoRead( "info.txt" )
-   Alert( iif( Empty( cOut ), "Build OK: " + cExe, cOut ) )
+   HBIDE_MsgAlert( iif( Empty( cOut ), "Build OK: " + cExe, cOut ) )
 
    if File( cExe )
       if ::lAutoRun
          hb_Run( cExe )
       else
-         Alert( "Built (auto-run off): " + cExe )
+         HBIDE_MsgAlert( "Built (auto-run off): " + cExe )
       endif
    else
-      Alert( "Build failed or hbmk2 not on PATH; executable not found: " + cExe )
+      HBIDE_MsgAlert( "Build failed or hbmk2 not on PATH; executable not found: " + cExe )
    endif
 
    ::Repaint()
@@ -753,7 +847,7 @@ METHOD OpenFile() CLASS HbIde
    ::ResumeStatus()
 
    if lTooLong
-      Alert( "Path too long (" + hb_ntos( nTooLong ) + ;
+      HBIDE_MsgAlert( "Path too long (" + hb_ntos( nTooLong ) + ;
              " chars, max 250): " + cTooLong + "..." )
       return nil
    endif
@@ -762,7 +856,7 @@ METHOD OpenFile() CLASS HbIde
 
    if lOk .and. ! Empty( cFileName )
       if ! File( cFileName )
-         Alert( "File not found: " + cFileName )
+         HBIDE_MsgAlert( "File not found: " + cFileName )
       elseif ! ::CheckUnsaved()   // opening another file must not drop unsaved work
          // cancelled: keep editing the current buffer
       else
@@ -800,7 +894,7 @@ METHOD CheckUnsaved() CLASS HbIde
    local lGo := .T.
 
    if ::oEditor:Changed()
-      switch Alert( "Unsaved changes", { "Save", "Discard", "Cancel" } )
+      switch HBIDE_MsgAlert( "Unsaved changes", { "Save", "Discard", "Cancel" } )
       case 1
          ::SaveFile()
          lGo := ! ::oEditor:Changed()   // a failed save keeps the buffer dirty
@@ -835,7 +929,7 @@ METHOD CheckDiskChange() CLASS HbIde
       // buffer. Notify once and keep it; the save guard asks before recreating
       if ! Empty( ::oEditor:cSeenStamp )
          ::oEditor:cSeenStamp := ""
-         Alert( "File deleted on disk; buffer kept: " + ::oEditor:cFile )
+         HBIDE_MsgAlert( "File deleted on disk; buffer kept: " + ::oEditor:cFile )
          ::Repaint()
          ::oEditor:ShowCursor()
       endif
@@ -851,10 +945,10 @@ METHOD CheckDiskChange() CLASS HbIde
    ::oEditor:cSeenStamp := cStamp
 
    if ! ::oEditor:Changed()
-      Alert( "File changed on disk; reloaded: " + ::oEditor:cFile )
+      HBIDE_MsgAlert( "File changed on disk; reloaded: " + ::oEditor:cFile )
       ::ReloadFromDisk()
    else
-      if Alert( "File changed on disk and you have unsaved changes", ;
+      if HBIDE_MsgAlert( "File changed on disk and you have unsaved changes", ;
                 { "Reload", "Keep mine" } ) == 1
          ::ReloadFromDisk()
       endif
@@ -885,12 +979,12 @@ return nil
 METHOD ConfirmOverwrite() CLASS HbIde
 
    if ::oEditor:FileVanished()
-      if Alert( "File was deleted on disk. Recreate it?", ;
+      if HBIDE_MsgAlert( "File was deleted on disk. Recreate it?", ;
                 { "Recreate", "Cancel" } ) != 1
          return .F.
       endif
    elseif ::oEditor:DiskChangedSinceLoad()
-      if Alert( "File changed on disk since it was loaded/saved. Overwrite it?", ;
+      if HBIDE_MsgAlert( "File changed on disk since it was loaded/saved. Overwrite it?", ;
                 { "Overwrite", "Cancel" } ) != 1
          return .F.
       endif
@@ -975,7 +1069,7 @@ METHOD SaveAs() CLASS HbIde
 
    if cName != ::oEditor:cFile
       if File( cName )
-         if Alert( "File exists: " + cName, { "Overwrite", "Cancel" } ) != 1
+         if HBIDE_MsgAlert( "File exists: " + cName, { "Overwrite", "Cancel" } ) != 1
             ::Repaint()
             return nil
          endif
@@ -1007,15 +1101,15 @@ METHOD DoSave() CLASS HbIde
       // unique temp name: never delete preexisting content assuming it is ours
       cTmp := ::oEditor:cFile + ".bak." + StrZero( hb_randomInt( 999999 ), 6 ) + ".tmp"
       if File( cTmp )
-         Alert( "Could not create the .bak copy (temp name in use); the previous .bak is preserved. Saving anyway" )
+         HBIDE_MsgAlert( "Could not create the .bak copy (temp name in use); the previous .bak is preserved. Saving anyway" )
       elseif hb_FCopy( ::oEditor:cFile, cTmp ) != 0
          FErase( cTmp )   // drop the partial copy we just made
-         Alert( "Could not create the .bak copy; the previous .bak is preserved. Saving anyway" )
+         HBIDE_MsgAlert( "Could not create the .bak copy; the previous .bak is preserved. Saving anyway" )
       elseif FRename( cTmp, ::oEditor:cFile + ".bak" ) != 0
          // rename over an existing file fails on some platforms; erase and retry once
          FErase( ::oEditor:cFile + ".bak" )
          if FRename( cTmp, ::oEditor:cFile + ".bak" ) != 0
-            Alert( "Could not update the .bak copy; the new backup is kept as " + cTmp + ". Saving anyway" )
+            HBIDE_MsgAlert( "Could not update the .bak copy; the new backup is kept as " + cTmp + ". Saving anyway" )
          endif
       endif
    endif
@@ -1290,7 +1384,7 @@ METHOD ReplaceDialog() CLASS HbIde
    if lOk .and. Len( cFind ) > 0
       nCount := ::oEditor:ReplaceAll( cFind, cReplace )
       ::oEditor:ShowCursor()
-      Alert( hb_ntos( nCount ) + " replacement(s)" )
+      HBIDE_MsgAlert( hb_ntos( nCount ) + " replacement(s)" )
    endif
 
 return nil
@@ -1422,7 +1516,7 @@ return nil
 
 function DoBreak( oError )
 
-   Alert( oError:Description )
+   HBIDE_MsgAlert( oError:Description )
 
 return nil
 
@@ -1689,7 +1783,7 @@ METHOD HelpIndex() CLASS HbIde
    endif
 
    if Len( aMatch ) == 0
-      Alert( "No help topic matches: " + cKey )
+      HBIDE_MsgAlert( "No help topic matches: " + cKey )
    elseif Len( aMatch ) == 1
       ::HelpView( aMatch[ 1, 2 ], aMatch[ 1, 3 ] )
    else
@@ -1759,7 +1853,7 @@ METHOD HelpTopic( cTitle ) CLASS HbIde
    if n > 0
       ::HelpView( aTopics[ n, 2 ], aTopics[ n, 3 ], .T. )
    else
-      Alert( "Help not available" )
+      HBIDE_MsgAlert( "Help not available" )
    endif
 
 return nil
@@ -1860,7 +1954,7 @@ METHOD ApplyDisplay( nRows, nCols ) CLASS HbIde
    ::oWndCode:Hide()
    if ! SetMode( nRows, nCols ) .or. MaxRow() + 1 != nRows .or. MaxCol() + 1 != nCols
       SetMode( nOldRows, nOldCols )
-      Alert( "Terminal does not support " + hb_ntos( nRows ) + "x" + hb_ntos( nCols ) )
+      HBIDE_MsgAlert( "Terminal does not support " + hb_ntos( nRows ) + "x" + hb_ntos( nCols ) )
       ::oWndCode:Show( .F. )
       ::Repaint()
       ::oEditor:ShowCursor()
