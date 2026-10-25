@@ -109,6 +109,7 @@ CLASS MCPanel
    METHOD BriefLayout()          // -> { nColW, nCols } for multi-column brief
    METHOD EffBrief()             // user brief, or auto-brief on narrow panels
    METHOD PageSize()             // visible entries: rows, or cols*rows in brief
+   METHOD ScrollBarState()       // { .T./.F., top, bottom, thumbTop, thumbBot, col }
    METHOD FixScroll()
    METHOD Scroll( nDelta )
    METHOD Move( nKey )
@@ -549,6 +550,27 @@ return cInfo
 
 //-----------------------------------------------------------------------------------------//
 
+// Panel scrollbar (user request 2026-10-25: "en los paneles con muchos
+// ficheros debe aparecer una barra de scroll en el lado derecho"). Only
+// when the listing overflows: a thin track on the last inner column with
+// a thumb sized and positioned by nOffset / PageSize, like mc's editor
+// scrollbar.
+METHOD ScrollBarState() CLASS MCPanel
+
+   local nTotal := Len( ::aFiles ), nPage := ::PageSize()
+   local nRows := ::VisibleRows(), nThumbH, nThumbTop
+
+   if nTotal <= nPage .or. nRows < 2
+      return { .F. }
+   endif
+   nThumbH := Max( 1, Min( nRows - 1, Round( nRows * nPage / nTotal, 0 ) ) )
+   nThumbTop := ::nTop + 2 + ;
+      Round( ( nRows - nThumbH ) * Min( ::nOffset, nTotal - nPage ) / Max( 1, nTotal - nPage ), 0 )
+
+return { .T., ::nTop + 2, ::nBottom - 2, nThumbTop, nThumbTop + nThumbH - 1, ::nRight - 1 }
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD RowToIndex( nRow, nCol ) CLASS MCPanel
 
    local nRel := nRow - ::nTop - 2   // frame + header
@@ -961,7 +983,7 @@ METHOD DisplayListing() CLASS MCPanel
 
    local oApp := ::oApp, nW := ::nRight - ::nLeft - 1
    local nRows := ::VisibleRows(), n, nIdx, aEntry, cLine, cColor
-   local cHdr, aLay, nColW, nCols, nC, nX, nCellW, cName
+   local cHdr, aLay, nColW, nCols, nC, nX, nCellW, cName, aSB, cBg
 
    if ::cListMode == "long" .or. ( ::cListMode == "user" .and. MCUFmtNeedsLong( ::cUserFmt ) )
       ::FillLong()
@@ -1024,6 +1046,19 @@ METHOD DisplayListing() CLASS MCPanel
             hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, cLine, cColor )
          else
             hb_DispOutAt( ::nTop + 1 + n, ::nLeft + 1, Space( nW ), oApp:aPalette[ CLR_PANEL ] )
+         endif
+      next
+   endif
+
+   // scrollbar: last inner column, painted over the entry lines
+   aSB := ::ScrollBarState()
+   if aSB[ 1 ]
+      cBg := SubStr( oApp:aPalette[ CLR_PANEL ], At( "/", oApp:aPalette[ CLR_PANEL ] ) + 1 )
+      for n := aSB[ 2 ] to aSB[ 3 ]
+         if n >= aSB[ 4 ] .and. n <= aSB[ 5 ]
+            hb_DispOutAt( n, aSB[ 6 ], "█", "W+/" + cBg )
+         else
+            hb_DispOutAt( n, aSB[ 6 ], "░", "N/" + cBg )
          endif
       next
    endif
