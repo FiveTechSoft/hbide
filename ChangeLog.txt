@@ -179,7 +179,21 @@ HbIde ChangeLog
     de compilador legible; binario viejo borrado y nunca ejecutado tras
     el fallo (alerta "Build failed" correcta); mismo basename en otro
     directorio genera y ejecuta su propio exe ("from exedir"), no el del
-    CWD. Windows pendiente (toolchain Windows/Wine en curso)
+    CWD.
+  - Corregido (Windows): hbmk2 en Windows no acepta -comp=gcc (id de
+    hosts unix), asi que Run>Start fallaba siempre con el default "GCC";
+    nuevo valor "MinGW64" en Compiler Options y default por plataforma
+    (HBIDE_DefCompiler(): MinGW64 en Windows, GCC en unix)
+  - Verificado en vivo Windows via Wine 5.5 + Xvfb (cadena Windows
+    completa, sin Linux en el build): hbide.exe PE32+ cross-compilado
+    abre el IDE completo; File>Open y edicion reciben teclado;
+    Run>Start construye wedit.exe PE32+ desde el IDE con hbmk2.exe +
+    harbour.exe + gcc.exe de Windows (winlibs mingw64 en el PATH del
+    prefijo). Notas: (1) el default "Strict types" (-es2) convierte en
+    fatal el warning W0001 (p.ej. variable de bucle for sin local):
+    mismo comportamiento que en Linux; (2) Wine 11.x no arranca en este
+    sandbox (CommitLimit ~991MB vs reserva de ntdll); Wine 5.5 amd64 si
+    - limitacion del entorno de pruebas, no de hbide
 
   Debugger Harbour integrado (Run>Debug): verificacion en vivo
   ------------------------------------------------------------
