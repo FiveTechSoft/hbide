@@ -81,6 +81,24 @@ las asignaciones (pty, ventana Monitor visible):
   (DYNAMIC es solo una declaracion extern; una asignacion posterior crea
   una private, que es como aparece en el Monitor). No es un bug del IDE.
 
+## Limitaciones upstream documentadas (NO son funciones implementadas)
+
+- Window Move/Size/Zoom(F2)/Iconize/Tile y Options Exchange Screens /
+  swap on Input / Menu Bar: stubs de upstream que solo muestran el alert
+  "Not implemented yet!" (verificado las 8). Quedan como limitaciones;
+  construirlas seria funcionalidad nueva, fuera de la semantica upstream.
+- Monitor>Global: ventana vacia siempre (Harbour sin GLOBALs; ver seccion
+  Monitor). 
+- Durante la ejecucion (p.ej. Animate) la salida de la app puede aparecer
+  superpuesta al debugger y quedar bandas sin repintar al hacer scroll:
+  semantica upstream de intercambio de pantallas (app y debugger comparten
+  un unico canvas). Comprobado que SaveAppScreen/RestoreAppScreen/
+  SaveAppState/RestoreAppState/Step/Animate son byte-identicos a
+  harbour/src/debug upstream; el mismo efecto se ve en Linux (gttrm) y
+  Windows (gtwvt). F4 (App Screen) es la via upstream para ver la pantalla
+  de la app limpia. Avance funcional != correccion visual aqui: el
+  comportamiento es el de upstream.
+
 ## Pendiente
 
 - Spot-check del path editor F9 BP + Run>Debug (presets) tras el fix 1.
