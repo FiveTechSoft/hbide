@@ -289,3 +289,6 @@ HbIde ChangeLog
   (explicit policy). Splitting a marked line keeps the mark on the first
   fragment; marks inside an edited range follow their instruction text
   preferring the same relative slot (duplicate lines cannot steal a mark).
+
+2026-10-25 hbide.exe: rebuild Windows con la politica de borrado de marcas BP
+  (fuente: commit 3c880eb).
