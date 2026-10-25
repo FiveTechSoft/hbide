@@ -13,6 +13,8 @@
 #include "mc.ch"
 #include "directry.ch"
 #include "fileio.ch"
+#include "getexit.ch"
+#include "button.ch"
 
 #xcommand DEFAULT <uVar1> := <uVal1> ;
    [, <uVarN> := <uValN> ] => ;
@@ -1216,7 +1218,7 @@ METHOD DlgList( cTitle, aItems, nDef ) CLASS MCApp
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -2407,7 +2409,7 @@ METHOD DlgCopy( nCount, cDefault, cAction, cVerb ) CLASS MCApp
    // an Esc-terminated READ leaves lOk .F., so previous config is preserved
    MCDlgEscArm( oDlg, ::lSinglePress )
    SetKey( K_ENTER, { || MCDlgEnter( GetList ) } )
-   oDlg:Activate( GetList )
+   MCDlgRun( oDlg, GetList )   // local runner: resize + M-Tab reach the dialog
    SetKey( K_ENTER, NIL )
    SetKey( K_ESC, NIL )
    MCDlgResizeDisarm()
@@ -3960,6 +3962,324 @@ return nil
 // ON -> a lone Esc cancels (READ exit key); OFF -> Esc is only a prefix
 // and the dialog closes on Esc Esc. The app keeps _SET_ESCAPE OFF in the
 // main loop; each dialog arms this just for its own READ.
+//-----------------------------------------------------------------------------------------//
+// Local dialog runner: HBGetList subclass whose readers wait on
+// InKey( 0, HB_INKEY_ALL + HB_INKEY_EXT ) instead of plain Inkey( 0 ), so
+// the extended resize event (gttrm) and K_ALT_TAB (mc M-Tab, input
+// completion) actually reach a dialog. Keys are translated with
+// hb_keyStd() to the classic inkey.ch codes that GetApplyKey/GUIApplyKey
+// and the armed SetKeys expect (contract verified in the app main loop:
+// TAB=9, ENTER=13, ESC=27, K_SH_TAB=271, K_F5=-4, K_ALT_TAB=421).
+// Both Reader and GUIReader are verbatim copies of the RTL methods
+// (src/rtl/tgetlist.prg, HB_COMPAT_C53 build) with only the Inkey call
+// swapped for ::DlgInkey().
+
+CLASS MCDlgRunner FROM HBGetList
+
+   DATA   oDlg          // owning HbWindow dialog, for the resize redraw
+   DATA   lCompQuery    INIT .F.  // previous key was M-Tab: arm the query phase
+
+   METHOD Reader( oMenu, aMsg )
+   METHOD GUIReader( oGet, oMenu, aMsg )
+   METHOD DlgInkey()
+
+ENDCLASS
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD DlgInkey() CLASS MCDlgRunner
+
+   local nRaw := InKey( 0, HB_INKEY_ALL + HB_INKEY_EXT )
+   local nKey
+
+   // nested reads (completions list, msgboxes) can leave a stale GetList as
+   // the active one; ReadKill() (HbWindow:End) only reaches the ACTIVE
+   // GetList, so reassert ourselves before every key wait
+   __GetListSetActive( Self )
+
+   if nRaw == MC_K_RESIZE_EVT .or. nRaw == 1101   // gttrm NEW_EVENT / gtcrs plain
+      if ::oDlg != NIL
+         MCDlgResizeRedraw( ::oDlg )
+      endif
+      ::lCompQuery := .F.
+      return 0
+   endif
+   nKey := hb_keyStd( nRaw )
+   if nKey == K_ALT_TAB
+      MCDlgComplete( ::oGet, ::lCompQuery )
+      ::lCompQuery := .T.
+      // the completions list runs its own READ and replaces this dialog's
+      // SetKey handlers (Esc/resize); re-arm ours after it returns
+      if ::oDlg != NIL
+         MCDlgEscArm( ::oDlg, If( __MCApp() != NIL, __MCApp():lSinglePress, .T. ) )
+      endif
+      return 0
+   endif
+   ::lCompQuery := .F.
+
+return nKey
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD Reader( oMenu, aMsg ) CLASS MCDlgRunner
+
+   LOCAL oGet := ::oGet
+   LOCAL nRow
+   LOCAL nCol
+   LOCAL nOldCursor
+   LOCAL nKey
+
+   IF ::nLastExitState == GE_SHORTCUT .OR.;
+      ::nLastExitState == GE_MOUSEHIT .OR.;
+      ::GetPreValidate( oGet, aMsg )
+
+      ::ShowGetMsg( oGet, aMsg )
+
+      ::nHitCode := 0
+      ::nLastExitState := 0
+      oGet:setFocus()
+
+      DO WHILE oGet:exitState == GE_NOEXIT .AND. ! ::lKillRead
+         IF oGet:typeOut
+            oGet:exitState := GE_ENTER
+         ENDIF
+
+         DO WHILE oGet:exitState == GE_NOEXIT .AND. ! ::lKillRead
+            SetCursor( iif( ::nSaveCursor == SC_NONE, SC_NORMAL, ::nSaveCursor ) )
+            nKey := ::DlgInkey()
+            SetCursor( SC_NONE )
+            IF nKey != 0
+               ::GetApplyKey( nKey, oGet, oMenu, aMsg )
+            ENDIF
+            nRow := Row()
+            nCol := Col()
+            ::ShowGetMsg( oGet, aMsg )
+            SetPos( nRow, nCol )
+         ENDDO
+
+         IF ! ::nLastExitState == GE_SHORTCUT .AND. ;
+            ! ::nLastExitState == GE_MOUSEHIT .AND. ;
+            ! ::GetPostValidate( oGet, aMsg )
+            oGet:exitState := GE_NOEXIT
+         ENDIF
+      ENDDO
+
+      nRow := Row()
+      nCol := Col()
+      nOldCursor := SetCursor()
+      oGet:killFocus()
+      SetCursor( nOldCursor )
+      SetPos( nRow, nCol )
+
+      ::EraseGetMsg( aMsg )
+   ENDIF
+
+   RETURN Self
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD GUIReader( oGet, oMenu, aMsg ) CLASS MCDlgRunner
+
+   LOCAL oGUI
+   LOCAL nKey
+
+   IF HB_ISOBJECT( oGet:control ) .AND. ;
+      ::nLastExitState == GE_SHORTCUT .OR. ;
+      ::nLastExitState == GE_MOUSEHIT .OR. ;
+      ::GetPreValidate( oGet, aMsg )
+
+      ::ShowGetMsg( oGet, aMsg )
+
+      ::nLastExitState := 0
+
+      // Activate the GET for reading
+      oGUI := oGet:control
+      oGUI:Select( oGet:varGet() )
+      oGUI:setFocus()
+
+      IF oGet:exitState == GE_NOEXIT  // Added.
+         DO CASE
+         CASE ::nHitCode > 0
+            oGUI:Select( ::nHitCode )
+         CASE ::nHitCode == HTCAPTION
+            oGUI:Select()
+         CASE ::nHitCode == HTCLIENT
+            oGUI:Select( K_LBUTTONDOWN )
+         CASE ::nHitCode == HTDROPBUTTON
+            oGUI:Open()
+         CASE ::nHitCode >= HTSCROLLFIRST .AND. ;
+              ::nHitCode <= HTSCROLLLAST
+            oGUI:Scroll( ::nHitCode )
+         ENDCASE
+      ENDIF
+
+      ::nHitCode := 0
+
+      DO WHILE oGet:exitState == GE_NOEXIT .AND. ! ::lKillRead
+
+         // Check for initial typeout (no editable positions)
+         IF oGUI:typeOut
+            oGet:exitState := GE_ENTER
+         ENDIF
+
+         // Apply keystrokes until exit
+         DO WHILE oGet:exitState == GE_NOEXIT .AND. ! ::lKillRead
+            nKey := ::DlgInkey()
+            IF nKey != 0
+               ::GUIApplyKey( oGet, oGUI, nKey, oMenu, aMsg )
+            ENDIF
+
+            ::ShowGetMsg( oGet, aMsg )
+         ENDDO
+
+         IF ::nLastExitState != GE_SHORTCUT .AND. ;
+            ::nLastExitState != GE_MOUSEHIT .AND. ;
+            ! ::GetPostValidate( oGet, aMsg )
+            oGet:exitState := GE_NOEXIT
+         ENDIF
+      ENDDO
+
+      // De-activate the GET
+      SWITCH oGUI:ClassName()
+      CASE "LISTBOX"
+      CASE "RADIOGROUP"
+         IF HB_ISNUMERIC( oGet:varGet() )
+            oGet:varPut( oGUI:value )
+            EXIT
+         ENDIF
+         /* fallthrough */
+      OTHERWISE
+         oGet:varPut( oGUI:buffer )
+      ENDSWITCH
+      oGUI:killFocus()
+
+      ::EraseGetMsg( aMsg )
+
+      IF oGUI:ClassName() == "LISTBOX" .AND. ;
+         oGUI:dropDown .AND. ;
+         oGUI:isOpen
+
+         oGUI:Close()
+      ENDIF
+
+   ENDIF
+
+   RETURN Self
+
+//-----------------------------------------------------------------------------------------//
+
+// Activate replacement for mc dialogs: same contract (GetList in, READ
+// semantics, Hide on exit) through the local runner so resize and M-Tab
+// work inside dialogs. The shared HbWindow:Activate is untouched.
+function MCDlgRun( oDlg, GetList )
+
+   local oRunner := MCDlgRunner():New( GetList )
+   local oSave := __GetListActive()
+
+   // same registration the global ReadModal() does (getsys.prg), otherwise
+   // ReadKill()/GetActive() hit a stale GetList and the dialog never exits
+   oDlg:GetList := GetList
+   oRunner:oDlg := oDlg
+   __GetListSetActive( oRunner )
+   __GetListLast( oRunner )
+   oRunner:ReadModal()
+   __GetListSetActive( oSave )
+   SetPos( MaxRow() - 1, 0 )
+   oDlg:Hide()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// mc input completion (M-Tab, lib/widget/input_complete.c): completes the
+// path token before the cursor against the filesystem. First M-Tab inserts
+// the common prefix (beep when there is nothing to insert); the list shows
+// on the second M-Tab, or on the first with Complete: show all
+// (show_all_if_ambiguous, lib/global.c:76).
+
+// insert text into a GET the same way typed keys do (GetApplyKey uses
+// oGet:insert() per char); there is no GET:typeText() in this RTL
+static function MCGetInsert( oGet, cText )
+
+   local i
+
+   for i := 1 to Len( cText )
+      oGet:insert( SubStr( cText, i, 1 ) )
+   next
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+function MCDlgComplete( oGet, lSecond )
+
+   local oApp := __MCApp()
+   local cBuf, cDir, cPrefix, aFiles, aMatch := {}, c, cCommon, cIns
+
+   if oGet == NIL .or. oGet:control != NIL
+      return nil   // completion only makes sense on a text GET
+   endif
+
+   cBuf    := Left( oGet:buffer, oGet:pos - 1 )
+   // the token is the path up to the cursor; split dir part / prefix
+   cDir    := hb_FNameDir( cBuf )
+   cPrefix := hb_FNameNameExt( cBuf )
+
+   // Directory() returns { F_NAME, ... } records and honors the mask;
+   // hb_DirScan() dropped masked matches in this build
+   aFiles := Directory( hb_FNameMerge( iif( Empty( cDir ), ".", cDir ), cPrefix + "*" ), "D" )
+   for each c in aFiles
+      c := c[ 1 ]   // F_NAME
+      if !( c == "." .or. c == ".." ) .and. ;
+         !( Len( c ) == Len( cPrefix ) .and. Lower( c ) == Lower( cPrefix ) )   // != is a prefix compare with SET EXACT off: compare length too
+         AAdd( aMatch, c )
+      endif
+   next
+   if Empty( aMatch )
+      Tone( 800, 1 )   // mc beeps when there is no completion
+      return nil
+   endif
+
+   // longest common prefix of the matches
+   cCommon := aMatch[ 1 ]
+   for each c in aMatch
+      do while ! Empty( cCommon ) .and. Lower( Left( c, Len( cCommon ) ) ) != Lower( cCommon )
+         cCommon := Left( cCommon, Len( cCommon ) - 1 )
+      enddo
+   next
+
+   cIns := SubStr( cCommon, Len( cPrefix ) + 1 )
+   if ! Empty( cIns )
+      MCGetInsert( oGet, cIns )
+      if Len( aMatch ) > 1
+         Tone( 800, 1 )   // ambiguous: mc beeps; the list needs another M-Tab
+      endif
+      return nil
+   endif
+   if Len( aMatch ) == 1
+      // unique match already fully typed: close it with a separator if dir
+      if hb_DirExists( hb_FNameMerge( iif( Empty( cDir ), ".", cDir ), aMatch[ 1 ] ) )
+         MCGetInsert( oGet, hb_ps() )
+      endif
+      return nil
+   endif
+   // ambiguous and nothing to insert: the list shows on the second M-Tab,
+   // or right away with Complete: show all (show_all_if_ambiguous)
+   if lSecond .or. ( oApp != NIL .and. oApp:lShowAllAmbig )
+      if oApp != NIL
+         c := oApp:DlgList( "Completions", aMatch, 1 )
+         if HB_ISSTRING( c )   // DlgList returns the text or 0 when cancelled
+            MCGetInsert( oGet, SubStr( c, Len( cPrefix ) + 1 ) )
+         endif
+      endif
+   else
+      Tone( 800, 1 )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 function MCDlgEscArm( oDlg, lSingle )
 
    Set( _SET_ESCAPE, lSingle )
@@ -4081,7 +4401,23 @@ return nil
 
 function MCDlgEnter( aGets )
 
-   local oGet := GetActive(), o
+   local oGet := GetActive(), o, nH := FOpen( "/tmp/runner.log", 1 )
+
+   if nH == -1
+      nH := FCreate( "/tmp/runner.log" )
+   else
+      FSeek( nH, 0, 2 )
+   endif
+   FWrite( nH, "ENTER " + ValType( oGet ) + " ctrl=" + hb_ValToStr( oGet:Control != NIL ) + Chr( 10 ) )
+   if oGet != NIL .and. oGet:Control != NIL
+      FWrite( nH, "  cls=" + oGet:Control:ClassName() + Chr( 10 ) )
+   endif
+   for each o in aGets
+      if o:Control != NIL
+         FWrite( nH, "  scan " + o:Control:ClassName() + " cargo=" + hb_ValToStr( o:Control:cargo ) + " sb=" + ValType( o:Control:sBlock ) + Chr( 10 ) )
+      endif
+   next
+   FClose( nH )
 
    if oGet != NIL .and. oGet:Control != NIL .and. ;
       oGet:Control:IsKindOf( "PUSHBUTTON" )
