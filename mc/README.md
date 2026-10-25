@@ -193,3 +193,41 @@ unquoted and are never executed. A truncated archive is refused. Passing
 these fixtures does not prove that no escape path exists; read-only
 access inside archives remains the current documented limit, not the
 final closure of the objective.
+
+## Browser demo stack (live interactive preview)
+
+The demo is served to a browser through four components, in order:
+a cloudflared quick tunnel, a tiny Python "gate" (single-use launch
+tokens so chat-app link previews do not consume the session), ttyd
+serving xterm.js, and a per-session wrapper that sandboxes and
+launches the mc binary. The gate and tokens are deployment details,
+not part of the Harbour code.
+
+Wrapper shape (per ttyd session):
+
+    stty rows 60 cols 200
+    exec bwrap --clearenv --ro-bind /usr /usr --ro-bind /lib /lib \
+      --ro-bind /lib64 /lib64 --ro-bind /bin /bin --dev /dev --tmpfs /tmp \
+      --bind <demo-home> /home/demo --chdir /home/demo \
+      --setenv HOME /home/demo --setenv TERM xterm-256color \
+      --unshare-all --die-with-parent \
+      prlimit --cpu=600 --as=1073741824 --nproc=64 \
+      timeout --foreground 2700 /home/demo/mc-bin
+
+Critical detail: `timeout` MUST run with `--foreground`. ttyd gives the
+child a controlling terminal; plain `timeout` places the app in a
+background process group, so the first tcsetattr() at GT init is
+blocked with SIGTTOU and the pty stays in cooked mode (icanon + echo).
+The app then paints perfectly but every key and mouse event arrives as
+kernel-echoed caret text (^[[M, ^[[B ...) and nothing is interpreted.
+With --foreground the GT switches the pty to raw mode normally and
+keyboard and mouse work. Diagnosed with strace: TCSETSF returning
+ERESTARTSYS followed by SIGTTOU stop vs TCSETSF = 0 in the working
+case. A side benefit: ttyd can then actually kill the child when the
+WebSocket closes, so bwrap trees no longer outlive their sessions.
+
+Verified end to end through the public tunnel with a real browser
+(cloud Chrome, CDP trusted input): arrow keys move the panel cursor,
+Tab switches panels, and a mouse click on a file row activates that
+panel and positions the cursor, with no echoed escape garbage on the
+command line.
