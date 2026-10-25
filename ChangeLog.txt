@@ -279,3 +279,6 @@ HbIde ChangeLog
   Verified Linux pty + Windows Wine: editor arrows move row, F9 red gutter,
   preset BP visible at debug open, F5 stops at the marked line, arrows move
   the visible cursor. (editor.prg, hbdebug/debugger.prg, hbdebug/tbrwtext.prg)
+
+2026-10-25 hbide.exe: rebuild Windows con breakpoints F9, desplazamiento de
+  marcas al editar y cursor visible en la ventana de codigo del debugger.
