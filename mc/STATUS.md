@@ -594,3 +594,11 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - Dialog GET width follows the variable length (PadR), not @S pictures.
 - RadioButtn selection is read from the control's exported buffer state;
   the numeric GET round-trip is unreliable in hbide GET dialogs.
+
+## 2026-10-25 - Batch symlink options, panel scrollbar, ZIP password (live-verified)
+
+| Feature | State | Evidence |
+| --- | --- | --- |
+| Copy of symlinks in a batch: mc-style choice | LIVE-VERIFIED | One dialog [Skip] [Skip all] [Abort] (keys S/L/A, mouse, Esc=Abort, focus on Skip) per batch, no per-item loop. Live: 4 marked (2 files + 2 links) -> mouse "Skip all" -> "2 item(s) copied, 2 skipped"; disk: files copied, links not created. Harness: Skip re-asks per item; Abort/Esc stops the batch ("..., aborted"). |
+| Panel scrollbar on the right when entries overflow | LIVE-VERIFIED | muchos/ (121 entries): thumb 12 of 37 track cells (proportional), track '░', thumb '█'; 12-entry panel: no bar. Track click flips a full page both ways; thumb click = no-op. Fixed during verification: first cut used Scroll() which only nudged one row from the top; track click now flips a whole page. |
+| Create ZIP: optional password | LIVE-VERIFIED | After the archive name, "Password (optional; empty = none)" masked with '*' (hb_Get hideInput). Esc cancels the creation (no archive); deliberate empty = unprotected. unzip -P ok/wrong/absent verified. ZipCrypto (classic weak ZIP cipher) - do not announce as strong encryption. |
