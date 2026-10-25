@@ -66,6 +66,13 @@ CREATE CLASS HBDbInput
    VAR nSize   AS INTEGER
    VAR cValue  AS CHARACTER
    VAR acColor AS ARRAY
+   // hbide: fresh-input state. While .T. (value untouched since dialog
+   // opened), the first printable character replaces the whole prefilled
+   // content instead of inserting/overtyping inside it, so a default like
+   // the "1" in "Line number" is not accidentally extended ("3" -> "13").
+   // Any key processed by applyKey ends the state, preserving normal
+   // editing; Enter keeps the prefill and Esc cancels as before.
+   VAR lSelectAll AS LOGICAL INIT .T.
 
    EXPORTED:
 
@@ -182,6 +189,10 @@ METHOD applyKey( nKey ) CLASS HBDbInput
       IF hb_keyChar( nKey ) == ""
          lUpdate := .F.
       ELSE
+         IF ::lSelectAll
+            ::cValue := Space( ::nSize )
+            ::nPos := 1
+         ENDIF
          IF Set( _SET_INSERT )
             ::cValue := Left( Stuff( ::cValue, ::nPos, 0, hb_keyChar( nKey ) ), ::nSize )
          ELSE
@@ -192,6 +203,8 @@ METHOD applyKey( nKey ) CLASS HBDbInput
          ENDIF
       ENDIF
    ENDSWITCH
+
+   ::lSelectAll := .F.
 
    IF lUpdate
       ::display()
