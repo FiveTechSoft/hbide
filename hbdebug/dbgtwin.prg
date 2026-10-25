@@ -345,7 +345,7 @@ METHOD PROCEDURE LoadColors() CLASS HBDbWindow
    ::cColor := aClr[ 1 ]
 
    IF ::Browser != NIL
-      ::Browser:ColorSpec := aClr[ 2 ] + "," + aClr[ 5 ] + "," + aClr[ 3 ] + "," + aClr[ 6 ]
+      ::Browser:ColorSpec := aClr[ 2 ] + "," + aClr[ 5 ] + "," + aClr[ 3 ] + "," + aClr[ 6 ] + "," + aClr[ 1 ]
    ENDIF
 
    RETURN
