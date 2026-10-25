@@ -305,8 +305,8 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 ## Pending (not implemented / not verified)
 
-- Complete: show all (show_all_if_ambiguous): needs M-Tab completion
-  infrastructure in dialog GETs (lib/widget input completion)
+- MCDlgRunner migration to the remaining 11 dialogs (only DlgCopy and
+  DlgList run on it so far; see "Dialog runner (MCDlgRunner)" below)
 
 
 ## Env-blocked (out of demo scope by design)
@@ -317,19 +317,42 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 - Any network VFS needing credentials or private servers
 - COW reflink effect: no COW-capable filesystem (btrfs/xfs) available
 
+## Dialog runner (MCDlgRunner)
+
+- CLASS MCDlgRunner FROM HBGetList (Harbour RTL getlist used by hbide):
+  overrides Reader/GUIReader with verbatim RTL copies whose only change is
+  reading keys via InKey( 0, HB_INKEY_ALL+HB_INKEY_EXT ) + hb_keyStd()
+  translation, so dialogs additionally receive M-Tab (K_ALT_TAB), the
+  extended resize event and mouse while the RTL keeps owning focus,
+  validation, hotkeys, GUI controls and GE_* states. MCDlgRun() replaces
+  HbWindow:Activate per dialog (shared hbwindow.prg untouched) and
+  replicates the global ReadModal() active-GetList registration.
+- Migrated so far: DlgCopy and DlgList. Proven on the final bytes with
+  PTY matrices on three option homes (defaults / single-press Esc /
+  double-Esc with timeout): dialog open, typing reaches the GET buffer,
+  Tab/Shift-Tab, Enter presses the default button and runs the real copy,
+  Esc closes in both modes, M-Tab unique/ambiguous completion with beep,
+  second M-Tab opens the Completions list, list selection inserts into the
+  GET, nested list close restores the parent dialog, and mouse clicks on
+  OK / Cancel / GET field / caption close button all work.
+- M-Tab completion in dialog GETs (mc input completion): unique match
+  inserts the rest, ambiguous inserts the common prefix with a beep, a
+  second M-Tab (or Complete: show all = TRUE) opens the Completions list;
+  a trailing path separator is appended when the unique match is a
+  directory. Two-phase "show all" honors show_all_if_ambiguous (default
+  FALSE, lib/global.c:76).
+
 ## Known limits
 
 - Terminal resize: the panels view relayouts cleanly on SIGWINCH (full
   wipe + layout + repaint in one DispBegin, driven from the main loop which
-  reads keys with HB_INKEY_EXT). Dialogs: resize redraw is wired
-  (MCDlgResizeArm/Redraw: full wipe + frame Refresh + replay of recorded
-  MCDlgSay lines + control Display, armed from an idle task and from both
-  resize key codes) but INERT under gttrm: a dialog's plain-READ Inkey( 0 )
-  filters the extended resize event and Harbour does not pump idle tasks
-  during that blocking wait, so the redraw never fires there; it should fire
-  on GTs that deliver plain K_RESIZE or pump idles. A real fix needs an
-  app-owned dialog read loop with HB_INKEY_EXT (bigger refactor). Dialog
-  operation itself is unaffected on every GT.
+  reads keys with HB_INKEY_EXT). Dialogs ON THE RUNNER (DlgCopy, DlgList)
+  relayout live too: the runner's DlgInkey reads with
+  HB_INKEY_ALL+HB_INKEY_EXT, catches the extended resize event and fires
+  MCDlgResizeRedraw (proven: 200x60 -> 140x44 -> 200x60 with the dialog
+  frame, fields and buttons re-laid out). Dialogs still on the classic
+  READ keep the old limit: their plain-READ Inkey( 0 ) filters the
+  extended resize event and the redraw never fires there.
 - Keystroke injection (XTEST) can lose characters mid-session; tests drive
   the app in short batches with a verifying screenshot after each step.
 - Dialog GET width follows the variable length (PadR), not @S pictures.
