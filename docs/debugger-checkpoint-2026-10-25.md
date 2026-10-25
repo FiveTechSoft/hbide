@@ -89,15 +89,16 @@ las asignaciones (pty, ventana Monitor visible):
   construirlas seria funcionalidad nueva, fuera de la semantica upstream.
 - Monitor>Global: ventana vacia siempre (Harbour sin GLOBALs; ver seccion
   Monitor). 
-- Durante la ejecucion (p.ej. Animate) la salida de la app puede aparecer
-  superpuesta al debugger y quedar bandas sin repintar al hacer scroll:
-  semantica upstream de intercambio de pantallas (app y debugger comparten
-  un unico canvas). Comprobado que SaveAppScreen/RestoreAppScreen/
+- Limitacion visual conocida durante la ejecucion (p.ej. Animate): la
+  salida de la app puede aparecer superpuesta al debugger y quedar bandas
+  sin repintar al hacer scroll. Observado igual en Linux (gttrm) y Windows
+  (gtwvt) con nuestra integracion. SaveAppScreen/RestoreAppScreen/
   SaveAppState/RestoreAppState/Step/Animate son byte-identicos a
-  harbour/src/debug upstream; el mismo efecto se ve en Linux (gttrm) y
-  Windows (gtwvt). F4 (App Screen) es la via upstream para ver la pantalla
-  de la app limpia. Avance funcional != correccion visual aqui: el
-  comportamiento es el de upstream.
+  harbour/src/debug upstream, lo que prueba que esos metodos se heredan
+  sin cambios; no descarta interaccion con el canvas/gt del host, y ambas
+  plataformas usan nuestra integracion, asi que no se afirma causalidad
+  upstream definitiva. F4 (App Screen) es la alternativa para ver la
+  pantalla de la app. Avance funcional != correccion visual aqui.
 
 ## Pendiente
 
