@@ -1023,6 +1023,7 @@ METHOD NewFile() CLASS HbIde
    endif
 
    ::oEditor:LoadText( "" )
+   ::oEditor:aBPs := {}
    ::oEditor:cFile := "noname.prg"
    ::oEditor:cSeenStamp := ""
    ::oEditor:cLoadStamp := ""
@@ -1540,6 +1541,8 @@ METHOD Debug() CLASS HbIde
       // run from a uniquely named .hrb file: symbol table recycling is
       // keyed by the load filename ("pcode.hrb" for in-memory bodies)
       hb_MemoWrit( cTmpHrb, oHrb )
+      // editor breakpoints (F9 marks) become the session's initial BPs
+      __hbide_dbgPresetBPs( ::oEditor:aBPs )
       BEGIN SEQUENCE
          bOldError = ErrorBlock( { | o | DoBreak( o ) } )
          hb_HrbRun( HB_HRB_BIND_FORCELOCAL, cTmpHrb )

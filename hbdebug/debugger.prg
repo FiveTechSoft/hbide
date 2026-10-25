@@ -116,6 +116,21 @@ PROCEDURE __dbgEntry( nMode, uParam1, uParam2, uParam3, uParam4 )
 
    RETURN
 
+// Preset breakpoints injected by the host IDE before the session starts
+// (hbide editor F9 marks). Consumed once by HBDebugger:Activate().
+// With an argument it sets the list; with none it returns the current one.
+function __hbide_dbgPresetBPs( aLines )
+
+   static s_aPresetBPs := {}
+
+   if PCount() > 0
+      s_aPresetBPs := hb_defaultValue( aLines, {} )
+   endif
+
+return s_aPresetBPs
+
+//-----------------------------------------------------------------------------------------//
+
 CREATE CLASS HBDebugger
 
    VAR pInfo
@@ -407,6 +422,7 @@ METHOD PROCEDURE CloseDebuggerWindow() CLASS HBDebugger
 METHOD PROCEDURE Activate() CLASS HBDebugger
 
    LOCAL lFirst := .F.
+   LOCAL nLine
 
    ::LoadCallStack()
    ::SaveAppState()
@@ -438,6 +454,17 @@ METHOD PROCEDURE Activate() CLASS HBDebugger
    // Most commands can be executed only after activation
    IF lFirst
       ::LoadSettings()
+   ENDIF
+
+   // host-IDE preset breakpoints: editor line numbers map 1:1 to the
+   // generated module (hbide only appends the trailing init procedure)
+   IF ! Empty( __hbide_dbgPresetBPs() )
+      FOR EACH nLine IN __hbide_dbgPresetBPs()
+         IF HB_ISNUMERIC( nLine )
+            ::BreakPointToggle( nLine, ::cPrgName )
+         ENDIF
+      NEXT
+      __hbide_dbgPresetBPs( {} )
    ENDIF
 
    ::HandleEvent()

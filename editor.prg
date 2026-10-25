@@ -60,6 +60,8 @@ CLASS HBSrcEdit FROM HBEditor
    DATA   aRedo        INIT {}
    DATA   aBlkCmt      INIT {}   // per-line flag: the line starts inside a /* */ block
    DATA   nBlkDirty    INIT 1    // first line whose block-comment state is stale
+   DATA   aBPs         INIT {}   // debugger breakpoints: absolute line numbers (F9)
+   DATA   cClrBP       INIT "W+/R"
    DATA   nSavedUndoLen INIT 0
    DATA   lInUndo      INIT .F.
    DATA   lOpRecorded  INIT .F.
@@ -104,6 +106,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD ClearSelection()
    METHOD HasMark()                        INLINE ::lMark
    METHOD ToggleMark()
+   METHOD ToggleBP()
    METHOD SelRange()
    METHOD SelectionText()
    METHOD CopySelection()
@@ -502,6 +505,10 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
       case nKeyStd == K_F8
            ::ToggleMark()
 
+      // breakpoint on the current line, consumed by Run>Debug
+      case nKeyStd == K_F9
+           ::ToggleBP()
+
       case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;
            Space( TabCount( ::nTabWidth, ::nCol ) ), ;
            hb_keyChar( nKey ) ) )
@@ -834,6 +841,7 @@ METHOD LoadFile( cFileName ) CLASS HBSrcEdit
    endif
 
    ::cFile := cFileName
+   ::aBPs := {}   // breakpoints belong to the previous buffer
    xRet := ::LoadText( cRaw )
 
    if hb_FSize( cFileName ) > 8 * 1024 * 1024
@@ -956,9 +964,11 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
    local cOperators := ::cOperators
    local lInComment := .F.
    local lInBlk := ::BlkCmtState( ::nFirstRow + nLine - ::nTop )
+   local nRowNum := ::nFirstRow + nLine - ::nTop
 
    DispBegin()
-   hb_DispOutAt( nLine, ::nLeft, PadL( ::nFirstRow + nLine - ::nTop, 4 ), "N/W" )
+   hb_DispOutAt( nLine, ::nLeft, PadL( nRowNum, 4 ), ;
+                 iif( AScan( ::aBPs, nRowNum ) > 0, ::cClrBP, "N/W" ) )
    hb_DispOutAt( nLine, ::nLeft + 4,;
                  SubStrPad( cLine := ::GetLine( ::nFirstRow + nLine - ::nTop ),;
                  ::nFirstCol, ::nRight - ::nLeft - 4 + 1 ),;
@@ -1127,6 +1137,23 @@ METHOD ToggleMark() CLASS HBSrcEdit
       ::lMark    = .T.
    endif
    ::Display()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// toggle a debugger breakpoint on the current line; Run>Debug presets them
+METHOD ToggleBP() CLASS HBSrcEdit
+
+   local nAt := AScan( ::aBPs, ::nRow )
+
+   if nAt > 0
+      ADel( ::aBPs, nAt )
+      ASize( ::aBPs, Len( ::aBPs ) - 1 )
+   else
+      AAdd( ::aBPs, ::nRow )
+   endif
+   ::DisplayLine( ::nRow - ::nFirstRow + ::nTop )
 
 return nil
 

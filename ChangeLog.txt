@@ -260,3 +260,10 @@ HbIde ChangeLog
   - hbwindow.prg: optional bPopup callback for design mode right-click
   - hbmenu.prg: fixed popup menus not closing after running an action
   - docs/designer.md + docs/examples/ + tests/test_designer.prg
+
+2026-10-25 editor breakpoints: F9 toggles a breakpoint on the current line
+  (red line number in the gutter). Run>Debug presets them into the session:
+  the debugger stops at each marked line without typing bp commands.
+  Verified on Linux: F9 mark, red BP gutter at debug open, go stops at the
+  marked line, ? <var> evaluates at the stop. Breakpoints reset on
+  New/Open/Reload. (editor.prg, hbide.prg, hbdebug/debugger.prg)
