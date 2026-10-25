@@ -47,3 +47,19 @@ exec bwrap --clearenv --ro-bind /usr /usr --ro-bind /lib /lib \
 - Demo home content is fixtures only (`muchos/` holds 120 small files
   to exercise scrolling). Test litter created by sessions lands on the
   host home and must be cleaned by hand.
+
+## Mobile access (responsive, added 2026-10-25)
+
+Launch links open a small wrapper page (`/m/<session>/`) that embeds the
+ttyd session in a same-origin iframe and adds what ttyd's built-in page
+lacks: a `viewport` meta tag and a touch aux-key bar (Esc, Tab, arrows,
+Intro). The bar only appears on touch/narrow screens
+(`pointer:coarse` or `max-width:700px`); desktop renders exactly as
+before at full window height. Bar buttons send their sequences through
+xterm.js `term.paste()` into the iframe's terminal, so navigation works
+without an OS keyboard; taps inside the terminal reach mc as mouse
+clicks (keybar, menus and dialogs stay tappable). mc adapts to the
+small grid via `CheckResize()` - one more reason it must not force a
+fixed size. Verified with device emulation: 390x844 portrait (46x52,
+bar visible, aux arrows move the panel cursor), 844x390 landscape
+(117x21, fully readable), desktop unchanged (bar hidden, 160x46).
