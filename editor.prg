@@ -703,7 +703,11 @@ METHOD BlkCmtState( nLine ) CLASS HBSrcEdit
 
    if ::nBlkDirty <= nLine
       ASize( ::aBlkCmt, Len( ::aText ) )
-      lState := iif( ::nBlkDirty > 1, ::aBlkCmt[ ::nBlkDirty - 1 ], .F. )
+      // aBlkCmt[i] holds the state at the START of line i; resuming needs the
+      // state at the END of line nBlkDirty-1, so rescan that one line.
+      lState := iif( ::nBlkDirty > 1,;
+                     ::ScanBlkLine( ::aText[ ::nBlkDirty - 1 ]:cText, ;
+                                    ::aBlkCmt[ ::nBlkDirty - 1 ] ), .F. )
       for i := ::nBlkDirty to nLine
          ::aBlkCmt[ i ] := lState
          lState := ::ScanBlkLine( ::aText[ i ]:cText, lState )
