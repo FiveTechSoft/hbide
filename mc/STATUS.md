@@ -72,8 +72,19 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   gray-on-cyan, weak contrast)
 - Move (F6): overwrite confirmation (decline keeps both files; accept
   replaces the destination; directories and VFS stay protected)
-- DlgInput: prefilled GET opens with cursor after the text (End + walk back
-  over the PadR'd padding)
+- DlgInput: prefilled GET opens with cursor after the text. The first
+  version queued End + a walk of Lefts over the PadR'd padding, but Harbour
+  RTL GET:end() already lands at Len(RTrim(cBuffer))+1 (trimmed end), so the
+  walk underflowed to position 1 and typing overtyped the prefill (this is
+  what broke Shell link: "sh://" got overwritten and the panel adopted the
+  bogus local path). Fixed by dropping the walk; verified live in the public
+  demo (screenshot) and by PTY: typing keeps the "sh://" prefix and submit
+  shows the proper VFS error ("Cannot list: sh://... / Reason: ssh: Host key
+  verification failed. / Staying in the current directory.")
+- GoDir refuses nonexistent local dirs with "Cannot chdir to <path> /
+  Staying in the current directory." (mc filemanager.c behavior) instead of
+  adopting the bad path and listing stat errors as fake entries; good dirs
+  still open (both directions PTY-verified)
 - F10 Exit with confirmation dialog (decline stays in the app; accept
   exits cleanly to the shell)
 - Long file names truncated with one separator cell kept before the Size
@@ -314,6 +325,25 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   ("Do you really want to quit?", default &Yes); DlgConfirm's safe
   default had put focus on Cancel. Enter on F10 now quits; the matrix
   asserts the focused default is &Quit
+- MCDlgEnter carried leftover debug instrumentation that logged every Enter
+  to /tmp/runner.log and, while doing so, touched :sBlock on EVERY control
+  of the dialog. RadioGroup has no sBlock method, so Enter inside any
+  radiogroup dialog (Configuration, Appearance, Listing format, Sort order)
+  raised BASE/1004 Message not found and OK never fired. Instrumentation
+  removed; caught by the options battery below, fixed, re-verified
+- Options battery (PTY, second harness; 51 assertions, all green): for
+  Configuration/verbose, Layout/equal split, Panel/mix dirs and
+  Confirmation/delete: dialog opens from its real menu entry, SPACE toggles,
+  OK applies (ini verified after Save setup), Cancel/Esc preserves, reopen
+  shows the applied state. Appearance radiogroup switches theme=2 and back;
+  Listing format switches listmode1=brief (MTime column gone, verified on a
+  faithful pyte render) and back to full; Sort order switches to Size
+  (small file listed before big one, verified on the rendered rows, not the
+  raw byte stream - cursor-addressed repaints do not follow visual order)
+  and back to Name. Harness bugs found and fixed along the way (kept
+  separate from app behavior): F9 only highlights the bar on a fresh ini
+  (dropdownmenus off), DOWN drops the popup; raw-stream substring order is
+  not visual order
 
 ## Light (partial)
 
