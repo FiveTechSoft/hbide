@@ -100,6 +100,20 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   still enables page jumps for users who want them. mc upstream ships
   mouse_move_pages on; we deliberately diverge because a whole page per
   notch read as broken in the demo
+- (2026-10-25, later) NEW narrow-terminal auto-brief for phones (user
+  request: "puedes hacerlo responsive para verlo desde el movil";
+  review follow-up: portrait showed columns but no file names):
+  Layout() flags a panel auto-brief when its inner width drops under
+  34 columns; the panel renders brief (names-only) through EffBrief()
+  unless the user picked a listing format this session, and returns to
+  full the moment the terminal widens. Verified: PTY resize 80x24 ->
+  46x52 shows real names (archivo1.txt, subdir/) and back to 120x40
+  restores Size/MTime; live mobile emulation 390x844 portrait (46x52,
+  names in both panels, tap on the File menu opens it, Mkdir reachable,
+  aux-bar Esc closes the dialog), 844x390 landscape (117x21, full
+  listing, complete keybar), desktop unchanged (bar hidden, full
+  listing). The demo wrapper's touch bar no longer overlaps the
+  command/keybar rows (flexbox column instead of a fixed overlay)
 - (2026-10-25, later) NEW Command menu "Cre~ate ZIP archive..." (user
   request: "puedes implementarle la opcion de crear ficheros zip"):
   packs the marked entries - or the current entry when nothing is

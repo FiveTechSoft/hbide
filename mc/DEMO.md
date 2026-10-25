@@ -10,6 +10,8 @@ tokens, credentials or hostnames; those live only on the demo host.
   `ttyd -W -i 127.0.0.1 -p 7700 /path/to/wrapper.sh`
 - A small token gate (HTTP) issues single-use launch links and proxies
   to ttyd. A quick tunnel (e.g. cloudflared) exposes the gate.
+  The gate code lives in `demo/gate.py` (no tokens or secrets; those
+  are runtime files on the demo host only).
 - `wrapper.sh` (below) sandboxes each session and starts the demo
   binary.
 
@@ -53,9 +55,11 @@ exec bwrap --clearenv --ro-bind /usr /usr --ro-bind /lib /lib \
 Launch links open a small wrapper page (`/m/<session>/`) that embeds the
 ttyd session in a same-origin iframe and adds what ttyd's built-in page
 lacks: a `viewport` meta tag and a touch aux-key bar (Esc, Tab, arrows,
-Intro). The bar only appears on touch/narrow screens
+Intro). The full gate source, wrapper page included, is `demo/gate.py`. The bar only appears on touch/narrow screens
 (`pointer:coarse` or `max-width:700px`); desktop renders exactly as
-before at full window height. Bar buttons send their sequences through
+before at full window height. The bar sits in the flex layout flow
+(never overlays the terminal), so it cannot cover the command line or
+keybar. Bar buttons send their sequences through
 xterm.js `term.paste()` into the iframe's terminal, so navigation works
 without an OS keyboard; taps inside the terminal reach mc as mouse
 clicks (keybar, menus and dialogs stay tappable). mc adapts to the

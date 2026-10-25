@@ -341,6 +341,14 @@ METHOD Layout() CLASS MCApp
       endif
    endif
 
+   // Narrow panels (phones): under ~34 inner columns the full listing
+   // squeezes the Name column out and only sizes/dates survive - switch to
+   // brief (names-only) automatically. Applies only while the user has not
+   // picked a listing format (EffBrief checks cListMode == "full") and is
+   // reevaluated on every resize, so widening the terminal restores full.
+   ::oPanel1:lAutoBrief := ( ::oPanel1:nRight - ::oPanel1:nLeft - 1 ) < 34
+   ::oPanel2:lAutoBrief := ( ::oPanel2:nRight - ::oPanel2:nLeft - 1 ) < 34
+
 return nil
 
 //-----------------------------------------------------------------------------------------//

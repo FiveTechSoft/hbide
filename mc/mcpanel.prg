@@ -69,6 +69,9 @@ CLASS MCPanel
    DATA   cFilter     INIT "*"
    DATA   cCp         INIT ""        // display charset id (MCCpList); "" = no translation
    DATA   lBrief      INIT .F.
+   // set by MCApp:Layout() on narrow terminals; never persisted, never
+   // overrides an explicit user format (see EffBrief)
+   DATA   lAutoBrief  INIT .F.
    DATA   cListMode   INIT "full"     // full | brief | long | user
    DATA   cUserFmt    INIT "half name | size"
    DATA   lUserMiniStatus INIT .F.
@@ -104,6 +107,7 @@ CLASS MCPanel
    METHOD VisibleRows() INLINE ::nBottom - ::nTop - 3
    METHOD RowToIndex( nRow, nCol )
    METHOD BriefLayout()          // -> { nColW, nCols } for multi-column brief
+   METHOD EffBrief()             // user brief, or auto-brief on narrow panels
    METHOD PageSize()             // visible entries: rows, or cols*rows in brief
    METHOD FixScroll()
    METHOD Scroll( nDelta )
@@ -554,7 +558,7 @@ METHOD RowToIndex( nRow, nCol ) CLASS MCPanel
       return 0
    endif
 
-   if ::lBrief .and. nCol != nil
+   if ::EffBrief() .and. nCol != nil
       aLay := ::BriefLayout()
       nC := Int( ( nCol - ::nLeft - 1 ) / aLay[ 1 ] )
       if nC < 0 .or. nC >= aLay[ 2 ]
@@ -569,6 +573,14 @@ METHOD RowToIndex( nRow, nCol ) CLASS MCPanel
    endif
 
 return nRel
+
+//-----------------------------------------------------------------------------------------//
+
+// effective listing mode: user-chosen brief, or automatic brief on narrow
+// panels when the user has not picked a format this session
+METHOD EffBrief() CLASS MCPanel
+
+return ::lBrief .or. ( ::lAutoBrief .and. ::cListMode == "full" )
 
 //-----------------------------------------------------------------------------------------//
 
@@ -588,7 +600,7 @@ return { nMax, Max( 1, Int( nW / nMax ) ) }
 
 METHOD PageSize() CLASS MCPanel
 
-return If( ::lBrief, ::BriefLayout()[ 2 ] * ::VisibleRows(), ::VisibleRows() )
+return If( ::EffBrief(), ::BriefLayout()[ 2 ] * ::VisibleRows(), ::VisibleRows() )
 
 //-----------------------------------------------------------------------------------------//
 
@@ -602,7 +614,7 @@ METHOD FixScroll() CLASS MCPanel
    if ::nCurrent > Len( ::aFiles )
       ::nCurrent := Len( ::aFiles )
    endif
-   if ::lBrief
+   if ::EffBrief()
       // brief is column-major: keep the offset aligned to column starts so
       // columns always begin at the panel top (mc-style columnwise scroll)
       nRows := ::VisibleRows()
@@ -643,7 +655,7 @@ METHOD Move( nKey ) CLASS MCPanel
    do case
       case nKey == K_UP
          ::nCurrent--
-         if ! ::lBrief .and. ::nCurrent >= 1
+         if ! ::EffBrief() .and. ::nCurrent >= 1
             if ::oApp:lScrollPages .and. ::nCurrent < ::nOffset + 1
                // hit the top edge: scroll half a page (mc move_up)
                ::nOffset := Max( ::nOffset - Int( ::VisibleRows() / 2 ), 0 )
@@ -654,7 +666,7 @@ METHOD Move( nKey ) CLASS MCPanel
          endif
       case nKey == K_DOWN
          ::nCurrent++
-         if ! ::lBrief .and. ::nCurrent <= Len( ::aFiles )
+         if ! ::EffBrief() .and. ::nCurrent <= Len( ::aFiles )
             if ::oApp:lScrollPages .and. ::nCurrent - 1 - ::nOffset == ::VisibleRows()
                // hit the bottom edge: scroll half a page (mc move_down)
                ::nOffset := Min( ::nOffset + Int( ::VisibleRows() / 2 ), ;
@@ -664,8 +676,8 @@ METHOD Move( nKey ) CLASS MCPanel
                ::nOffset := Min( ::nOffset + 1, Max( Len( ::aFiles ) - ::VisibleRows(), 0 ) )
             endif
          endif
-      case nKey == K_LEFT  ; If( ::lBrief, ::nCurrent -= ::VisibleRows(), )
-      case nKey == K_RIGHT ; If( ::lBrief, ::nCurrent += ::VisibleRows(), )
+      case nKey == K_LEFT  ; If( ::EffBrief(), ::nCurrent -= ::VisibleRows(), )
+      case nKey == K_RIGHT ; If( ::EffBrief(), ::nCurrent += ::VisibleRows(), )
       case nKey == K_PGUP  ; ::nCurrent -= ::PageSize()
       case nKey == K_PGDN  ; ::nCurrent += ::PageSize()
       case nKey == K_HOME  ; ::nCurrent := 1
@@ -958,7 +970,7 @@ METHOD DisplayListing() CLASS MCPanel
       ::FillStat()
    endif
    // header
-   if ::lBrief
+   if ::EffBrief()
       cHdr := " Name"
    elseif ::cListMode == "long"
       cHdr := " " + PadR( "Perms", 10 ) + " " + PadL( "Ln", 3 ) + " " + PadR( "Owner", 8 ) + ;
@@ -970,7 +982,7 @@ METHOD DisplayListing() CLASS MCPanel
    endif
    hb_DispOutAt( ::nTop + 1, ::nLeft + 1, hb_UPadR( cHdr, nW ), oApp:aPalette[ CLR_HEADER ] )
 
-   if ::lBrief
+   if ::EffBrief()
       // column-major multi-column layout (mc brief style);
       // clear the whole body first so narrower grids erase old full-mode lines
       hb_Scroll( ::nTop + 2, ::nLeft + 1, ::nBottom - 1, ::nRight - 1, 0, 0, oApp:aPalette[ CLR_PANEL ], " " )
@@ -1035,7 +1047,7 @@ METHOD EntryLine( aEntry, nWidth ) CLASS MCPanel
    if hb_HHasKey( ::hLinks, aEntry[ P_NAME ] )
       cName += " -> " + MCCpDecode( ::hLinks[ aEntry[ P_NAME ] ], ::cCp )
    endif
-   if ::lBrief
+   if ::EffBrief()
       return hb_UPadR( " " + cName, nWidth )
    endif
    if ::cListMode == "long"
