@@ -122,16 +122,21 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   face itself - the "thick black blocks" in the Delete/ZIP captures.
   Now the face keeps the caption's own padding (proper proportions),
   renders as a real colored block (white on blue normal, black on cyan
-  focused) with a bright yellow hotkey letter, and the shadow stays a
-  single cell right plus a single row down. gttrm cannot emit the
-  original hbbutton half-block glyphs (Chr(220)/Chr(223) come out as
-  '?'; tested U+2580/U+2584, shades and box translation), so the
-  full-cell strip with the +1/+1 offset is the faithful geometry on
-  this terminal. Verified in PTY (face bg 0000af, focus face 00afaf,
-  shadow nW+2 wide at +1 col/+1 row, clean labels) and in the live
+  focused) with a bright yellow hotkey letter, and the shadow uses the
+  original hbbutton half-block glyphs (U+2584 right edge, U+2580 strip
+  one row down): only HALF of each shadow cell is dark, so the shadow
+  is a thin offset line, not a slab. Verified in PTY and in the live
   demo with real pixel inspection of the Mkdir, Delete and Create ZIP
-  dialogs, focused and unfocused; Enter still fires the default
-  button and Esc cancels.
+  dialogs, focused and unfocused (zoomed crops measured: face ~15px,
+  shadow strip ~8px = half a row); Enter still fires the default
+  button and Esc cancels. Harness note: gttrm decides UTF-8 output via
+  its DSR probe (hb_trm_isUTF8: it prints ENQ CR "í" and expects the
+  cursor to advance exactly one cell); xterm.js answers correctly and
+  gets real half-block glyphs. A PTY harness that answers the probe
+  with the wrong column makes the GT fall back to '?' - my earlier
+  harness did exactly that (answered the screen size) and the '?' was
+  misread as a platform limitation. It is a probe-answer requirement,
+  not a glyph limit.
 - (2026-10-25, later) NEW Command menu "Cre~ate ZIP archive..." (user
   request: "puedes implementarle la opcion de crear ficheros zip"):
   packs the marked entries - or the current entry when nothing is

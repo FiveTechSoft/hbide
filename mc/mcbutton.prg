@@ -87,13 +87,17 @@ function BtnDisplay()
          hb_DispOutAt( ::nRow, ::nCol + nPos + If( ::lBuffer, 1, 0 ),;
             SubStr( cCaption, nPos, 1 ), cHot )
       ENDIF
-      // gttrm cannot emit half-block glyphs (U+2580/U+2584 render as '?'),
-      // so the discreet shadow is a full cell in dark gray (N+) instead of
-      // the heavy solid black (N) slab: same +1/+1 geometry, half the weight.
+      // hbide half-block shadow (../hbbutton.prg): U+2584 at the right edge
+      // and a U+2580 strip one row down, painted with fg=black bg=dialog so
+      // only HALF of each shadow cell is dark. Requires the terminal in
+      // UTF-8 mode: gttrm decides that from its DSR probe (hb_trm_isUTF8),
+      // which xterm.js answers correctly; a dumb PTY that answers the probe
+      // with the wrong column renders '?' instead (test-harness caveat, not
+      // an app defect).
       hb_DispOutAt( ::nRow, ::nCol + nW + 2,;
-         If( ::lBuffer, " ", " " ), If( ::lBuffer, "N/W", "N/N+" ) )
+         If( ::lBuffer, " ", "▄" ), "N/W" )
       hb_DispOutAt( ::nRow + 1, ::nCol + 1,;
-         Replicate( " ", nW + 2 ), If( ::lBuffer, "N/W", "N/N+" ) )
+         Replicate( If( ::lBuffer, " ", "▀" ), nW + 2 ), "N/W" )
    ENDIF
 
    DispEnd()
