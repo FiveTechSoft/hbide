@@ -104,6 +104,16 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   700 ms apart does NOT) and live in the browser demo: double-click
   on docs/ enters it (title bar /home/demo/docs, empty listing),
   double-click on /.. returns to /home/demo.
+- (2026-10-25, later) FIXED pressed shadow-style button width (user
+  report: "al pulsar un boton, el ancho del boton no tiene el ancho
+  correcto"). The pressed face shifts one cell right into the shadow
+  column, but the shadow-erasing blank was repainted on top of the
+  face's last cell: pressed face measured 7 cells vs 8 normal.
+  Shadows are now only painted unpressed; pressed erases only the
+  bottom strip. Verified live cell-by-cell: normal face 51..58 with
+  half-block shadow, pressed face 52..59 (8 cells, caption shifted
+  +1, shadows gone), bottom row clean. Normal/focus look and the
+  user-approved shadow finish unchanged.
 - (2026-10-25, later) Mouse wheel default changed to line scrolling per
   user report ("la rueda del raton no se mueve bien en las columnas
   verticales de archivos"). Measured in the live browser demo (120-file
