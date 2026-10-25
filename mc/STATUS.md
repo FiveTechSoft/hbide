@@ -352,13 +352,16 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 ## Pending (not implemented / not verified)
 
-- Per-dialog functional matrix for the 9 options/config dialogs
-  migrated to MCDlgRun in the latest pass: all 14 dialog sites now go
-  through MCDlgRun (0 HbWindow:Activate calls remain), the tree builds
-  clean and the existing PTY batteries (dialog keyboard, M-Tab
-  completion + Esc, mouse) stay green on it, but each of the 9 options
-  dialogs still needs its own open/edit/confirm/cancel matrix before
-  being called verified per dialog
+- COVERED (2026-10-25): the per-dialog matrix for the 9 options/config
+  dialogs now exists - see "Options battery" under Verified working
+  (Configuration, Layout, Panel options, Confirmation, Appearance,
+  Listing format, Sort order: open/toggle/OK-applies/reopen/Esc
+  preserves, 51 assertions green). Learn keys was verified separately
+  (relearn F10->F12, ini persistence across restart, relearned back).
+  Save setup is exercised as the persisting step of every battery
+  cycle. The two PTY batteries (dialog keyboard, M-Tab completion +
+  Esc, mouse) and the 17-check dialog matrix stay green on the same
+  binary
 
 
 ## Env-blocked (out of demo scope by design)
