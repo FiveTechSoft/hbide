@@ -190,10 +190,19 @@ METHOD GoDir( cPath ) CLASS MCPanel
       ::cPath := cPath   // VFS paths are absolute by construction; normalize would mangle "scheme://"
    else
       if ! ::oApp:lCdFollowsLinks
-         ::cPath := MCRealPath( cPath )
+         cPath := MCRealPath( cPath )
       else
-         ::cPath := hb_PathNormalize( cPath )
+         cPath := hb_PathNormalize( cPath )
       endif
+      // mc filemanager.c: refuse and stay when the target does not exist or
+      // is not a readable directory ("Cannot chdir to ..."); before this the
+      // panel adopted the bad path and listed stat errors as fake entries
+      if ! hb_DirExists( cPath )
+         MCMsgBox( "Error", "Cannot chdir to " + cPath + Chr( 10 ) + ;
+                   "Staying in the current directory." )
+         return nil
+      endif
+      ::cPath := cPath
    endif
    ::cMode     := "listing"
    ::nCurrent  := 1
