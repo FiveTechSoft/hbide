@@ -2717,6 +2717,9 @@ METHOD ZipCreate() CLASS MCApp
    local oSrc := ::ActivePanel()
    local aMarked := oSrc:MarkedEntries(), aEntry, aNames := {}
    local cName, cZip, cStage, cTree, cCmd, cN, cOut := "", lOk, cPass
+   local cLog, cStatusF, cPidF, cScript, cZipArgs, nTotal, nDone, nPct, nFill
+   local cCur, oDlg, nT, nL, nKey, lAborted, nRet, cLogTxt, cLine, cZPid
+   local lRTL
 
    if MCVfsKind( oSrc:cPath ) != "local"
       MCMsgBox( "Create ZIP", "Creating archives is only available on local directories." )
@@ -2787,15 +2790,97 @@ METHOD ZipCreate() CLASS MCApp
       endif
    next
 
-   cCmd := "cd " + ShellQuote( cTree ) + " && zip -q -r -X " + If( ! Empty( cPass ), "-P " + ShellQuote( cPass ) + " ", "" ) + ShellQuote( cZip ) + " --"
+   // Run zip as a background script and show real progress: zip (without
+   // -q) prints one "  adding: <entry>" line per staged entry; the total is
+   // the staged entry count (files and dirs alike, 1:1 with zip's lines).
+   // Completed-units counter only - no size estimates, no animation.
+   cLog     := hb_FNameMerge( cStage, "zip.log" )
+   cStatusF := hb_FNameMerge( cStage, "zip.status" )
+   cPidF    := hb_FNameMerge( cStage, "zip.pid" )
+   cScript  := hb_FNameMerge( cStage, "ziprun.sh" )
+   cZipArgs := "-r -X " + If( ! Empty( cPass ), "-P " + ShellQuote( cPass ) + " ", "" ) + ;
+               ShellQuote( cZip ) + " --"
    for each cN in aNames
-      cCmd += " " + ShellQuote( cN )
+      cZipArgs += " " + ShellQuote( cN )
    next
-   lOk := hb_ProcessRun( MCShWrap( cCmd ),, @cOut ) == 0 .and. hb_FileExists( cZip )
+   hb_MemoWrit( cScript, "#!/bin/sh" + Chr( 10 ) + ;
+      "cd " + ShellQuote( cTree ) + Chr( 10 ) + ;
+      "zip " + cZipArgs + " > " + ShellQuote( cLog ) + " 2>&1 &" + Chr( 10 ) + ;
+      "echo $! > " + ShellQuote( cPidF ) + Chr( 10 ) + ;
+      "wait $!" + Chr( 10 ) + ;
+      "echo $? > " + ShellQuote( cStatusF ) + Chr( 10 ) )
+   hb_ProcessRun( MCShWrap( "find " + ShellQuote( cTree ) + " -mindepth 1 | wc -l" ),, @cOut )
+   nTotal := Max( 1, Val( AllTrim( cOut ) ) )
+   // backgrounded: hb_ProcessRun returns as soon as the outer sh exits
+   hb_ProcessRun( MCShWrap( "sh " + ShellQuote( cScript ) + " >/dev/null 2>&1 &" ) )
+
+   lRTL := ! ::lClassicProgressbar .and. ::ActivePanel() == ::oPanel2
+   lAborted := .F.
+   oDlg = HBWindow():Dialog( "Create ZIP", 66, 8, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   nT := oDlg:nTop
+   nL := oDlg:nLeft
+   oDlg:Say( 2, 3, "Compressing " + cName + " (" + hb_ntos( nTotal ) + " entries)" )
+
+   while ! hb_FileExists( cStatusF )
+      nDone := 0
+      cCur := ""
+      cLogTxt := If( hb_FileExists( cLog ), MemoRead( cLog ), "" )
+      for each cLine in hb_aTokens( cLogTxt, Chr( 10 ) )
+         if "adding:" $ cLine
+            nDone++
+            cCur := AllTrim( cLine )
+         endif
+      next
+      // "  adding: <path> (deflated NN%)" -> <path>
+      if ! Empty( cCur )
+         cCur := SubStr( cCur, At( "adding:", cCur ) + 8 )
+         if RAt( " (", cCur ) > 0
+            cCur := Left( cCur, RAt( " (", cCur ) - 1 )
+         endif
+      endif
+      nPct := Min( 99, Int( nDone * 100 / nTotal ) )
+      nFill := Int( nPct / 2 )   // 50-cell bar
+      hb_DispOutAt( nT + 3, nL + 2, hb_UPadR( hb_UTF8SubStr( cCur, 1, 58 ), 58 ), "N/W" )
+      hb_DispOutAt( nT + 4, nL + 2, "[" + ;
+         If( lRTL, Replicate( "-", 50 - nFill ) + Replicate( "#", nFill ), ;
+                   Replicate( "#", nFill ) + Replicate( "-", 50 - nFill ) ) + ;
+         "] " + hb_UPadR( hb_ntos( nPct ) + "%", 4 ), "N/W" )
+      hb_DispOutAt( nT + 6, nL + 2, hb_ntos( nDone ) + "/" + hb_ntos( nTotal ) + " entries   Esc: cancel", "N/W" )
+      nKey := hb_keyStd( InKey( 0.2, HB_INKEY_ALL + HB_INKEY_EXT ) )
+      if nKey == K_ESC
+         lAborted := .T.
+         if hb_FileExists( cPidF )
+            cZPid := AllTrim( MemoRead( cPidF ) )
+            if ! Empty( cZPid )
+               hb_ProcessRun( MCShWrap( "kill " + cZPid + " 2>/dev/null" ) )
+            endif
+         endif
+         // the script's wait returns and writes the status file; give it a
+         // moment so the loop exits through the normal condition
+         nRet := 0
+         while ! hb_FileExists( cStatusF ) .and. nRet < 25
+            InKey( 0.2 )
+            nRet++
+         end
+      endif
+   end
+
+   nPct := 100
+   nFill := 50
+   hb_DispOutAt( nT + 4, nL + 2, "[" + Replicate( "#", 50 ) + "] 100%", "N/W" )
+   InKey( 0.15 )
+   oDlg:Hide()
+
+   nRet := Val( AllTrim( MemoRead( cStatusF ) ) )
+   cOut := If( hb_FileExists( cLog ), MemoRead( cLog ), "" )
+   lOk := ( nRet == 0 ) .and. ! lAborted .and. hb_FileExists( cZip )
    DeleteTree( cStage, .T. )
    if ! lOk
       FErase( cZip )
-      MCMsgBox( "Create ZIP", "zip failed:" + Chr( 10 ) + Left( cOut, 200 ) )
+      if ! lAborted
+         MCMsgBox( "Create ZIP", "zip failed:" + Chr( 10 ) + Right( cOut, 200 ) )
+      endif
       return nil
    endif
 
