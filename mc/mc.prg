@@ -666,12 +666,12 @@ METHOD Quit() CLASS MCApp
 
    if MCJobsActive()
       if ! ::DlgConfirm( "Quit", "Background jobs are still running." + Chr( 10 ) + ;
-                         "Cancel them and quit?", "&Quit" )
+                         "Cancel them and quit?", "&Quit", .F. )
          return nil
       endif
       MCJobsCancelAll()
    endif
-   if ! ::lConfirmExit .or. ::DlgConfirm( "Quit", "Do you really want to quit the Commander?", "&Quit" )
+   if ! ::lConfirmExit .or. ::DlgConfirm( "Quit", "Do you really want to quit the Commander?", "&Quit", .F. )
       MCJobsCleanup()
       MCVfsCleanup()
       if ::lAutoSaveSetup
