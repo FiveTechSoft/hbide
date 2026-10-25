@@ -298,6 +298,23 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
   "noname" created with the typed content and listed after rescan. Ini
   key asknewfile round-trips 0/1
 
+- Per-dialog PTY matrix, 17/17 green on the migrated runner (fixtures
+  created before app start; throwaway dirs only): DlgInput opens via F7,
+  real mkdir lands on disk and in the panel, Esc cancels without
+  creating; MCMsgBox shows the duplicate-dir error and Enter dismisses
+  it; Select group opens and marks; DlgConfirm delete defaults to
+  &Delete with safe_delete off (Enter deletes, Esc and Tab+Enter=Cancel
+  preserve); FileChmod opens on the entry under the cursor, Set applies
+  the toggled mode on disk (0744 verified), Esc preserves. Harness notes
+  kept separate from app behavior: FileChmod silently returns on "/.."
+  by design, and button focus brackets are painted cell-by-cell so
+  assertions must strip escape sequences first
+- Quit confirm fidelity fix: both Quit confirms (plain and
+  background-jobs) now default to &Quit like real mc's query_dialog
+  ("Do you really want to quit?", default &Yes); DlgConfirm's safe
+  default had put focus on Cancel. Enter on F10 now quits; the matrix
+  asserts the focused default is &Quit
+
 ## Light (partial)
 
 - COW: the actual reflink effect is env-blocked (no COW-capable
@@ -305,14 +322,13 @@ verified. "Env-blocked" = needs infrastructure the demo must not use
 
 ## Pending (not implemented / not verified)
 
-- Per-dialog functional matrix for the 12 dialogs migrated to MCDlgRun
-  in the latest pass (DlgInput, DlgConfirm, MCMsgBox and the 9
-  options/config dialogs): all 14 dialog sites now go through MCDlgRun
-  (0 HbWindow:Activate calls remain), the tree builds clean and the
-  existing PTY batteries (dialog keyboard, M-Tab completion + Esc,
-  mouse) stay green on it, but each of the 12 newly migrated dialogs
-  still needs its own open/edit/confirm/cancel matrix before being
-  called verified per dialog
+- Per-dialog functional matrix for the 9 options/config dialogs
+  migrated to MCDlgRun in the latest pass: all 14 dialog sites now go
+  through MCDlgRun (0 HbWindow:Activate calls remain), the tree builds
+  clean and the existing PTY batteries (dialog keyboard, M-Tab
+  completion + Esc, mouse) stay green on it, but each of the 9 options
+  dialogs still needs its own open/edit/confirm/cancel matrix before
+  being called verified per dialog
 
 
 ## Env-blocked (out of demo scope by design)
