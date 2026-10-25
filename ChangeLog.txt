@@ -19,9 +19,16 @@ HbIde ChangeLog
     docs/editor-checkpoint-2026-10-25.md
   - Nuevo: comentarios de bloque /* */ multilinea coloreados, con cache
     incremental por linea (invalidacion desde la primera linea editada;
-    cadenas con /* dentro y comentarios // respetados). Coste medido:
-    108 ms peor caso (archivo de 20.000 lineas, salto al final), ~0 ms
-    en repintado normal de edicion
+    cadenas con /* dentro y comentarios // respetados). Primera version
+    (3cab730) con fallo de reanudacion del cache; corregido en 926c109.
+    Coste del escaner aislado (microbenchmark, NO end-to-end): 108 ms
+    peor caso sobre 20.000 lineas; en uso real no hay demora perceptible
+    al saltar a la linea 19990 ni al recolorear tras editar la linea 3
+  - Estetica: mensajes del IDE ya no usan el Alert rojo del GT; nuevo
+    HBIDE_MsgAlert() con dialogo blanco y botones verdes con sombra
+    (estilo Turbo Vision): confirmacion de guardar/descartar, archivo
+    no encontrado, resultados de reemplazo y compilacion, etc.
+    Activacion por hotkey, Enter o Espacio
   - Corregido: resaltado fantasma de la linea actual tras saltos de mas
     de una linea (Ctrl+Home/End, Undo/Redo); la linea previa se repinta
 
