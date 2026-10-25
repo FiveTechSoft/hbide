@@ -169,6 +169,7 @@ CLASS MCApp
    METHOD BuildMenu()
    METHOD AltKey( nKey )
    METHOD MouseClick( nRow, nCol, lDbl )
+   METHOD MouseRightClick( nRow, nCol )
    METHOD GrabScreen()
    METHOD SetTheme( nTheme )
    METHOD LoadCfg()
@@ -835,6 +836,8 @@ METHOD Activate() CLASS MCApp
             ::MouseClick( MRow(), MCol(), .F. )
          case nKey == K_LDBLCLK
             ::MouseClick( MRow(), MCol(), .T. )
+         case nKey == K_RBUTTONDOWN
+            ::MouseRightClick( MRow(), MCol() )
          case nKey == K_MWFORWARD
             ::ActivePanel():Scroll( -If( ::lMousePages, ::ActivePanel():VisibleRows(), 3 ) )
             ::Repaint()
@@ -951,6 +954,39 @@ METHOD MouseClick( nRow, nCol, lDbl ) CLASS MCApp
          endif
          if lDbl
             oPanel:EnterKey()
+         endif
+         exit
+      endif
+   next
+   ::Repaint()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// mc panel.c: the right button marks/unmarks the entry under the mouse
+// (files and directories alike); the selection bar does not move and the
+// up-dir entry "/.." can never be marked, same as MarkCurrent()
+METHOD MouseRightClick( nRow, nCol ) CLASS MCApp
+
+   local oPanel, nIdx, nP, aEntry
+
+   if nRow == 0 .or. ( ::lKeybar .and. nRow == MaxRow() )
+      return nil
+   endif
+   for nP := 1 to 2
+      oPanel := If( nP == 1, ::oPanel1, ::oPanel2 )
+      if nRow >= oPanel:nTop .and. nRow <= oPanel:nBottom .and. ;
+         nCol >= oPanel:nLeft .and. nCol <= oPanel:nRight
+         if nP != ::nActive
+            ::nActive := nP
+         endif
+         nIdx := oPanel:RowToIndex( nRow, nCol )
+         if nIdx > 0
+            aEntry := oPanel:aFiles[ nIdx ]
+            if aEntry[ P_NAME ] != "/.."
+               aEntry[ P_MARKED ] := ! aEntry[ P_MARKED ]
+            endif
          endif
          exit
       endif
