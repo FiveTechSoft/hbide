@@ -306,6 +306,13 @@ FUNCTION HBHelpPaint( h, aTopics, g )
    hb_DispBox( g[ "t" ], g[ "l" ], g[ "b" ], g[ "r" ], hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "W+/BG" )
    hb_DispOutAt( g[ "t" ], g[ "l" ] + 2, " hbide - Help ", "W+/BG" )
    hb_DispOutAt( g[ "t" ] + 1, g[ "l" ] + 2, "Tab pane  F7 search  F3 next match  Esc close", "N/BG" )
+   // keep index cursor visible (also after search jumps, which skip input)
+   IF h[ "row" ] < h[ "itop" ]
+      h[ "itop" ] := h[ "row" ]
+   ELSEIF h[ "row" ] > h[ "itop" ] + g[ "idxH" ] - 1
+      h[ "itop" ] := h[ "row" ] - g[ "idxH" ] + 1
+   ENDIF
+   h[ "itop" ] := Min( Max( 1, Len( h[ "rows" ] ) - g[ "idxH" ] + 1 ), Max( 1, h[ "itop" ] ) )
    // index pane
    hb_DispBox( g[ "lbT" ], g[ "lbL" ], g[ "lbB" ], g[ "lbR" ], hb_UTF8ToStrBox( "┌─┐│┘─└│" ), ;
                iif( h[ "pane" ] == "index", "W+/BG", "N/BG" ) )
