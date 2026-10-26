@@ -156,11 +156,18 @@ FUNCTION HBIDEHelpSectionText( nSection, aTopics )
    FOR EACH cTitle IN aSec[ 2 ]
       nTopic := AScan( aTopics, { | t | t[ 2 ] == cTitle } )
       IF nTopic > 0
-         c += "- " + cTitle + ": " + hb_ATokens( StrTran( aTopics[ nTopic, 3 ], Chr(13), "" ), Chr(10), .T. )[ 1 ] + hb_eol()
+         c += "- " + cTitle + ": " + HBHelpOneLine( hb_ATokens( StrTran( aTopics[ nTopic, 3 ], Chr(13), "" ), Chr(10), .T. )[ 1 ] ) + hb_eol()
       ENDIF
    NEXT
    c += hb_eol() + "Enter opens the highlighted entry; Down moves to its topics."
 RETURN c
+
+// First line of a topic as a one-line summary: aligned columns collapse.
+FUNCTION HBHelpOneLine( cLine )
+   DO WHILE "  " $ cLine
+      cLine := StrTran( cLine, "  ", " " )
+   ENDDO
+RETURN AllTrim( cLine )
 
 // All matches of cQuery (already uppercased) over titles and wrapped bodies.
 // Each match: { nTopic, nLine } with nLine over HBIDEHelpLines( body, nW ).
@@ -220,6 +227,15 @@ FUNCTION HBHelpBtnCols( g )
       nX += Len( cCap ) + 7
    NEXT
 RETURN aCols
+
+// Dithered shadow bar under the face, inset; half-block glyphs are not
+// mapped by this GT, so a solid thin strip is not representable.
+FUNCTION HBHelpBtnShadow( nRow, nCol, nLen )
+   LOCAL i
+   FOR i = 2 TO nLen - 1
+      hb_DispOutAt( nRow + 1, nCol + i, Chr( 176 ), "N/BG" )
+   NEXT
+RETURN NIL
 
 // Title and wrapped lines of the selected entry (section overview or topic).
 FUNCTION HBHelpText( h, aTopics, nW )
@@ -341,7 +357,7 @@ FUNCTION HBHelpPaint( h, aTopics, g )
                  iif( h[ "pane" ] == "text", "W+/BG", "N/BG" ) )
    FOR n := 1 TO g[ "txtH" ]
       cLine := iif( h[ "top" ] + n - 1 <= Len( aTxt[ 2 ] ), aTxt[ 2 ][ h[ "top" ] + n - 1 ], "" )
-      hb_DispOutAt( g[ "rbT" ] + n, g[ "rbL" ] + 2, PadR( cLine, g[ "txtW" ] ), "N/BG" )
+      hb_DispOutAt( g[ "rbT" ] + n, g[ "rbL" ] + 2, PadR( Left( cLine, g[ "txtW" ] ), g[ "txtW" ] ), "N/BG" )
    NEXT
    hb_DispOutAt( g[ "rbB" ], g[ "rbL" ] + 2, " " + hb_ntos( h[ "top" ] ) + "/" + hb_ntos( nMaxTop ) + " ", "N/BG" )
    // search / message line
@@ -354,8 +370,7 @@ FUNCTION HBHelpPaint( h, aTopics, g )
    aCols := HBHelpBtnCols( g )
    FOR n := 1 TO Len( g[ "btnCaps" ] )
       cCap := "< " + g[ "btnCaps" ][ n ] + " >"
-      hb_DispOutAt( g[ "btnRow" ] + 1, aCols[ n ][ 1 ] + 1, Space( Len( cCap ) ), "N/N" )
-      hb_DispOutAt( g[ "btnRow" ], aCols[ n ][ 1 ] + Len( cCap ), " ", "N/N" )
+      HBHelpBtnShadow( g[ "btnRow" ], aCols[ n ][ 1 ], Len( cCap ) )
       hb_DispOutAt( g[ "btnRow" ], aCols[ n ][ 1 ], cCap, ;
                     iif( h[ "pane" ] == "buttons" .AND. h[ "btn" ] == n, "W+/G", "W/G" ) )
    NEXT
@@ -482,6 +497,11 @@ FUNCTION HBIDEHelpLines( cText, nWidth )
    LOCAL a := {}, cLine, aSource := hb_ATokens( StrTran( cText, Chr(13), "" ), Chr(10), .T. )
    LOCAL n, nCut
    FOR EACH cLine IN aSource
+      IF "   " $ cLine
+         // preformatted table row: keep columns intact, never re-wrap
+         AAdd( a, RTrim( cLine ) )
+         LOOP
+      ENDIF
       DO WHILE Len( cLine ) > nWidth
          nCut := nWidth
          FOR n := nWidth TO Max( 1, Int( nWidth / 2 ) ) STEP -1
