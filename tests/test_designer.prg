@@ -1,6 +1,6 @@
 //
 // test_designer.prg - non-interactive checks for the designer core functions
-// Run: hbmk2 test_designer.prg ../designer.prg ../hbwindow.prg ../hbmenu.prg ../hbbutton.prg -gttrm
+// Run: hbmk2 test_designer.prg ../designer.prg ../hbwindow.prg ../hbmenu.prg ../hbbutton.prg ../hbgetu.prg -gttrm
 //
 
 #include "hbclass.ch"

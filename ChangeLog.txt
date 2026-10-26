@@ -1,6 +1,17 @@
 HbIde ChangeLog
 ================
 
+2026-10-26
+----------
+
+  Disenador (rama designer-robustness)
+  ------------------------------------
+  - Nuevo: el lienzo del disenador pinta la letra aceleradora de los
+    radiobuttons (la que sigue a '&') en color distinto (rojo intenso
+    sobre dialogos claros, amarillo sobre oscuros), igual que hace el
+    radiogroup en tiempo de ejecucion. Alinea el codigo con
+    docs/designer.md. Suite test_designer: 359/359
+
 2026-10-25
 ----------
 

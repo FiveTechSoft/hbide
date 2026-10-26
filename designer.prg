@@ -2461,7 +2461,8 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
    local lDarkDlg := aDlgPair[ 2 ] != "W"
    local cDlgText := aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ]
    local cShadow  := DsnCanvasShadowFor( oWnd:cColor )   // half-block on the dialog bg, same height as the runtime shadow
-   local cColor, cText, nWidth, n, aSize, aItems, aClip
+   local cColor, cText, nWidth, n, aSize, aItems, aClip, nPos
+   local cHotKey := If( aDlgPair[ 2 ] != "W", "Y+/" + aDlgPair[ 2 ], "R+/W" )
 
    // design time: & marks accelerators on checkbox/button captions, so it is
    // not drawn there; SAY captions are literal (runtime Say shows & as-is)
@@ -2533,6 +2534,13 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
             if nARow + n < oWnd:nBottom .and. nARow + n <= MaxRow()
                hb_DispOutAt( nARow + n, nACol + 2, ;
                   SubStr( cText, 1, Max( 0, Min( aSize[ 1 ] - 4, nMaxCol - nACol - 1 ) ) ), cColor )
+               // accelerator letter (char after &) in a distinct color, as the
+               // runtime radiogroup paints it (designer.md documents this look)
+               nPos = At( "&", aItems[ n ] )
+               if nPos > 0 .and. nPos < Len( aItems[ n ] ) .and. 4 + nPos <= aSize[ 1 ] - 4
+                  hb_DispOutAt( nARow + n, nACol + 2 + 4 + nPos - 1, ;
+                     SubStr( aItems[ n ], nPos + 1, 1 ), cHotKey )
+               endif
             endif
          next
 
