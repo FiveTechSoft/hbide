@@ -57,11 +57,15 @@
 #define CLR_SELECTED  "N/G"
 #define CLR_SEL_BTN   "GR+/N"   // editor-only selection look for buttons (never emitted)
 #define CLR_GHOST     "N/BG"
+#define CLR_CODEVIEW  "N/W"
+#define CLR_CODEVIEW_HL "N/GR"
+
 #define CLR_INSP      "W+/B"
 #define CLR_INSP_SEL  "N/GR"
 #define CLR_INSP_VAL  "N/W"
 
-#define HINT_CANVAS   "F2 add Enter edit F4 insp Del Arrows move Mouse resizes ^Z/^Y F9 gen F10 save Esc"
+#define HINT_CANVAS   "F2 add Enter edit F4 insp F5 prg Del Arrows move ^Z/^Y F9 gen F10 save Esc"
+#define HINT_CODEVIEW "F5 close | +/- scroll | live read-only view: manual code is never touched"
 #define HINT_INSP     "F6 canvas | Enter edit | Left/Right adjust | Ctrl+Arrows move panel | F4 hide"
 
 //-----------------------------------------------------------------------------------------//
@@ -108,6 +112,11 @@ CLASS HbDesigner
    DATA oClipboard                    // last copied/cut control (detached clone)
    DATA nPasteCount  INIT 0           // consecutive pastes: each drops one cell off
    DATA lSnap       INIT .F.          // F7: snap positions/sizes to the grid
+   DATA lCodeView   INIT .F.          // F5: live read-only PRG view visible
+   DATA aCodeLines  INIT {}           // last generated code, split into lines
+   DATA nCodeTop    INIT 1            // first code line shown in the view
+   DATA nCodeAnchor INIT 0            // generated line of the selected control
+   DATA cCodeSig    INIT ""           // model+selection signature of aCodeLines
 
    METHOD New( oIde )
    METHOD Activate()
@@ -138,6 +147,8 @@ CLASS HbDesigner
    METHOD InspFields()
    METHOD InspRect()
    METHOD DrawInspector()
+   METHOD DrawCodeView()
+   METHOD RefreshCodeView()
    METHOD DlgMinSize()
    METHOD InspValue( cKey )
    METHOD InspSetText( cKey, cVal )
@@ -233,12 +244,17 @@ METHOD Activate() CLASS HbDesigner
             endif
 
          case nKey == K_ESC
-            cEsc = DsnEscTarget( ::lPlacing, ::lInspector, ::lDirty )
+            cEsc = DsnEscTarget( ::lPlacing, ::lInspector, ::lDirty, ::lCodeView )
             if cEsc == "placing"
                ::lPlacing = .F.
             elseif cEsc == "inspector"
                // close the panel before offering to exit
                ::ToggleInspector()
+            elseif cEsc == "codeview"
+               // close the live PRG view before offering to exit
+               ::lCodeView = .F.
+               ::ShowHint( HINT_CANVAS )
+               ::Redraw()
             elseif cEsc == "dirty"
                ::SuspendUI()
                nChoice = DsnConfirm( "Discard unsaved changes?", { "&Yes", "&No" } )
@@ -307,6 +323,31 @@ METHOD Activate() CLASS HbDesigner
 
          case nKey == K_F7
             ::ToggleSnap()
+
+         case nKey == K_F5
+            if ! ::lPlacing
+               ::lCodeView = ! ::lCodeView
+               if ::lCodeView
+                  ::cCodeSig = ""   // force regeneration on the next draw
+                  ::ShowHint( HINT_CODEVIEW )
+               else
+                  ::ShowHint( HINT_CANVAS )
+               endif
+               ::Redraw()
+            endif
+
+         case nKey == K_PGUP .or. ( ::lCodeView .and. nKey == Asc( "-" ) )
+            if ::lCodeView
+               ::nCodeTop = Max( 1, ::nCodeTop - ( MaxRow() - 3 ) )
+               ::DrawCodeView()
+            endif
+
+         case nKey == K_PGDN .or. ( ::lCodeView .and. nKey == Asc( "+" ) )
+            if ::lCodeView
+               ::nCodeTop = Min( Max( 1, Len( ::aCodeLines ) - ( MaxRow() - 3 ) + 1 ), ;
+                                 ::nCodeTop + ( MaxRow() - 3 ) )
+               ::DrawCodeView()
+            endif
 
          case nKey == K_UP
             if ::lPlacing
@@ -1060,7 +1101,74 @@ METHOD DrawControls() CLASS HbDesigner
    endif
 
    ::DrawInspector()
+   ::DrawCodeView()
 
+   DispEnd()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD RefreshCodeView() CLASS HbDesigner
+
+   local hModel, cSig, oCtrl
+
+   if ! ::lCodeView
+      return nil
+   endif
+
+   hModel = DsnBuildModel( Self )
+   // regenerate only when the model or the selection changed: the idle
+   // redraw calls this on every tick. NOTE: exact == comparison; with
+   // SET EXACT off, cSig != "" would always be .F. (xBase padding rule)
+   // and the view would never regenerate.
+   begin sequence
+      cSig = hb_jsonEncode( hModel ) + "|" + hb_ntos( ::nSelected )
+      if !( cSig == ::cCodeSig )
+         ::cCodeSig    = cSig
+         ::aCodeLines  = hb_ATokens( StrTran( DsnGenCode( hModel ), Chr( 13 ), "" ), Chr( 10 ) )
+         oCtrl = If( ::nSelected >= 1 .and. ::nSelected <= Len( ::aControls ), ;
+                     ::aControls[ ::nSelected ], NIL )
+         ::nCodeAnchor = DsnCodeFindLine( ::aCodeLines, oCtrl )
+         ::nCodeTop    = DsnCodeViewTop( ::nCodeAnchor, Len( ::aCodeLines ), MaxRow() - 3 )
+      endif
+   recover
+   end
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD DrawCodeView() CLASS HbDesigner
+
+   local nT := 1, nB := MaxRow() - 1
+   local nW := Min( 74, MaxCol() - 3 )
+   local nR := MaxCol() - 2, nL := nR - nW + 1
+   local nViewH, n, nLine, cTitle
+
+   if ! ::lCodeView .or. ::oWnd == nil
+      return nil
+   endif
+
+   ::RefreshCodeView()
+
+   nViewH = nB - nT - 1
+   ::nCodeTop = Max( 1, Min( ::nCodeTop, Max( 1, Len( ::aCodeLines ) - nViewH + 1 ) ) )
+
+   DispBegin()
+   hb_Scroll( nT, nL, nB, nR,,, CLR_CODEVIEW )
+   DispBox( nT, nL, nB, nR, 1, CLR_CODEVIEW )
+   DrawShadow( nT, nL, nB, nR )
+   cTitle = " " + Lower( ::cDlgName ) + ".prg - live view (read-only) "
+   hb_DispOutAt( nT, nL + 2, Left( cTitle, nW - 4 ), "N+/W" )
+   for n = 1 to nViewH
+      nLine = ::nCodeTop + n - 1
+      if nLine >= 1 .and. nLine <= Len( ::aCodeLines )
+         hb_DispOutAt( nT + n, nL + 1, ;
+            PadR( SubStr( ::aCodeLines[ nLine ], 1, nW - 2 ), nW - 2 ), ;
+            If( nLine == ::nCodeAnchor, CLR_CODEVIEW_HL, CLR_CODEVIEW ) )
+      endif
+   next
    DispEnd()
 
 return nil
@@ -2399,8 +2507,19 @@ return lChanged
 function DsnItems( oCtrl )
 
    local aItems := {}, cItem
+   local xItems := hb_HGetDef( oCtrl, "items", "" )
 
-   for each cItem in hb_ATokens( hb_HGetDef( oCtrl, "items", "" ), "," )
+   // a model decoded straight from json may carry items as an array
+   if HB_ISARRAY( xItems )
+      for each cItem in xItems
+         if HB_ISSTRING( cItem ) .and. ! Empty( AllTrim( cItem ) )
+            AAdd( aItems, AllTrim( cItem ) )
+         endif
+      next
+      return aItems
+   endif
+
+   for each cItem in hb_ATokens( xItems, "," )
       cItem = AllTrim( cItem )
       if ! Empty( cItem )
          AAdd( aItems, cItem )
@@ -3621,7 +3740,9 @@ return '"' + StrTran( hb_defaultValue( cText, "" ), '"', "'" ) + '"'
 // panel, then the dirty-model confirmation, then exit. Pure helper so
 // the layering is covered by the test suite.
 
-function DsnEscTarget( lPlacing, lInspector, lDirty )
+function DsnEscTarget( lPlacing, lInspector, lDirty, lCodeView )
+
+   hb_default( @lCodeView, .F. )
 
    if lPlacing
       return "placing"
@@ -3629,11 +3750,53 @@ function DsnEscTarget( lPlacing, lInspector, lDirty )
    if lInspector
       return "inspector"
    endif
+   if lCodeView
+      return "codeview"
+   endif
    if lDirty
       return "dirty"
    endif
 
 return "exit"
+
+//-----------------------------------------------------------------------------------------//
+// 1-based line in the generated code that corresponds to a control: the GET
+// line of its variable, else the line carrying its caption. 0 when neither
+// shows up (or no control is selected)
+
+function DsnCodeFindLine( aLines, oCtrl )
+
+   local cVar, cCaption, n
+
+   if oCtrl == NIL
+      return 0
+   endif
+   cVar     = hb_HGetDef( oCtrl, "variable", "" )
+   cCaption = hb_HGetDef( oCtrl, "caption", "" )
+   if ! Empty( cVar )
+      for n = 1 to Len( aLines )
+         if " GET " + cVar + " " $ aLines[ n ]
+            return n
+         endif
+      next
+   endif
+   if ! Empty( cCaption )
+      for n = 1 to Len( aLines )
+         if '"' + cCaption + '"' $ aLines[ n ]
+            return n
+         endif
+      next
+   endif
+
+return 0
+
+//-----------------------------------------------------------------------------------------//
+// first visible line of the live PRG view: the anchor line near the top,
+// clamped so the view stays inside the generated code
+
+function DsnCodeViewTop( nAnchor, nLines, nViewH )
+
+return Max( 1, Min( If( nAnchor > 0, nAnchor - 3, 1 ), Max( 1, nLines - nViewH + 1 ) ) )
 
 //-----------------------------------------------------------------------------------------//
 // Clickable Alert() replacement for designer confirmations: same contract

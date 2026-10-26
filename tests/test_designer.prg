@@ -885,6 +885,24 @@ procedure MenuTests()
    Check( "esc layering inspector", DsnEscTarget( .F., .T., .T. ) == "inspector" )
    Check( "esc layering dirty", DsnEscTarget( .F., .F., .T. ) == "dirty" )
    Check( "esc layering exit", DsnEscTarget( .F., .F., .F. ) == "exit" )
+   Check( "esc layering codeview", DsnEscTarget( .F., .F., .T., .T. ) == "codeview" )
+   Check( "esc layering inspector beats codeview", DsnEscTarget( .F., .T., .T., .T. ) == "inspector" )
+   Check( "esc layering placing beats codeview", DsnEscTarget( .T., .F., .F., .T. ) == "placing" )
+
+   // live PRG view: anchor line lookup and scroll clamp
+   Check( "codeview find get line", DsnCodeFindLine( ;
+      { "local cName := Space( 10 )", "@ 1, 1 GET cName COLOR 'x'", 'oDlg:Say( 1, 1, "Name:" )' }, ;
+      { "variable" => "cName" } ) == 2 )
+   Check( "codeview find caption line", DsnCodeFindLine( ;
+      { "local lDummy", 'oDlg:Say( 1, 1, "OK" )' }, ;
+      { "caption" => "OK" } ) == 2 )
+   Check( "codeview find none", DsnCodeFindLine( { "local n" }, { "variable" => "cMissing" } ) == 0 )
+   Check( "codeview find nil", DsnCodeFindLine( { "local n" }, NIL ) == 0 )
+   Check( "codeview top anchor", DsnCodeViewTop( 10, 100, 20 ) == 7 )
+   Check( "codeview top first", DsnCodeViewTop( 1, 100, 20 ) == 1 )
+   Check( "codeview top no anchor", DsnCodeViewTop( 0, 100, 20 ) == 1 )
+   Check( "codeview top clamp end", DsnCodeViewTop( 100, 100, 20 ) == 81 )
+   Check( "codeview top short file", DsnCodeViewTop( 5, 10, 20 ) == 1 )
 
    // PgDn/PgUp listbox paging: clamped page sizes
    Check( "page steps full down",      HBListBoxPageSteps( 1, 1, 3, 12 ) == 3 )
