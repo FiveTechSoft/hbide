@@ -220,3 +220,9 @@ Verificacion del ciclo debugger->salir->Help->Contents->Debugger:
 - Recheck after the one-line source change: functions 58/58, session 23/23,
   commands 15/15, startup on/off, CodeBlockTrace on/off, Animate, native
   TabWidth 7/7. Binary md5 b956f35b2557922717092e091d0f41b9.
+
+## 2026-10-26: CallStack effect
+
+- `test_debug_callstack_pty.py`: CALLSTACK ON opens the window with Main;
+  Ctrl-F5 into the next routine adds bump; CALLSTACK OFF hides the window.
+  Complements existing menu Calls view coverage with command-path on/off effect.
