@@ -1913,15 +1913,20 @@ METHOD Debug() CLASS HbIde
    // next hb_hrbLoad() would recycle its symbol table with static
    // initialization deactivated - init procedures (and so the debug
    // break request) would never run again.
-   cTmpPrg := "__hbide_dbg__.prg"
-   // collision-free even for restarts within the same millisecond.
+   // Both temp names get the same unique suffix: a FIXED .prg name in the
+   // user's CWD would silently overwrite (and later erase) a preexisting
+   // user file with that name. The debugger resolves the source by module
+   // name in the CWD, and the unique file exists there for the session.
+   // Collision-free even for restarts within the same millisecond.
    // Modulo: on Windows hb_MilliSeconds() is uptime-based (GetTickCount),
    // not midnight-based, so the raw value overflows the Str() width on
    // long-lived machines and renders asterisks - an invalid filename
    // there (CreateFile STATUS_OBJECT_NAME_INVALID, seen under Wine)
    nDbgSeq++
-   cTmpHrb := "__hbide_dbg__" + LTrim( Str( nDbgSeq ) ) + "_" + ;
-              StrTran( Str( hb_MilliSeconds() % 1000000, 10, 3 ), " ", "0" ) + ".hrb"
+   cTmpPrg := "__hbide_dbg__" + LTrim( Str( nDbgSeq ) ) + "_" + ;
+              StrTran( Str( hb_MilliSeconds() % 1000000, 10, 3 ), " ", "0" )
+   cTmpHrb := cTmpPrg + ".hrb"
+   cTmpPrg += ".prg"
    hb_MemoWrit( cTmpPrg, StrTran( ::oEditor:GetText(), "Main", "__Main" ) + hb_eol() + ;
                          "init procedure __hbide_debug__()" + hb_eol() + ;
                          "   __dbgInvokeDebug( .T. )" + hb_eol() + ;
@@ -1957,6 +1962,12 @@ METHOD Debug() CLASS HbIde
       FErase( cTmpHrb )
       ::Repaint()
       SetCursor( SC_NORMAL )
+   else
+      // loud failure: -n rejects top-level statements (E0001), and a silent
+      // return both confuses the user and leaks the temp source file
+      FErase( cTmpPrg )
+      HBIDE_MsgAlert( "Debug build produced no code: the compiler rejected the buffer " + ;
+                      "(top-level statements need 'procedure Main()')" )
    endif
 
 return nil
