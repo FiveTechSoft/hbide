@@ -1043,6 +1043,9 @@ METHOD Redraw() CLASS HbDesigner
    hb_Scroll( ::oWnd:nTop + 1, ::oWnd:nLeft + 1, ;
               ::oWnd:nBottom - 1, ::oWnd:nRight - 1,,, ::cDlgColor )
    ::DrawControls()
+   if ::lInspector
+      ::DrawInspector()
+   endif
    ::ShowHint()
    DispEnd()
 
@@ -1274,7 +1277,8 @@ METHOD RegisterIdles() CLASS HbDesigner
    endif
 
    if ::nIdleDraw == nil
-      ::nIdleDraw = hb_IdleAdd( { || ::DrawControls() } )
+      ::nIdleDraw = hb_IdleAdd( { || ::DrawControls(), ;
+         If( ::lInspector, ::DrawInspector(), nil ) } )
    endif
 
 return nil
