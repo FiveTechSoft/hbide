@@ -44,6 +44,8 @@ CLASS HbIde
    DATA   lIncremental INIT .F.
    DATA   lOptimize    INIT .F.
    DATA   lAutoRun     INIT .T.
+   DATA   oProject
+   DATA   cProjectHbmk2 INIT "hbmk2"
    DATA   cPendingOpen INIT ""   // file the designer asks hbide to open on exit
 
    METHOD New()
@@ -67,6 +69,8 @@ CLASS HbIde
    METHOD SaveAs()
    METHOD DoSave()
    METHOD BuildFlags()
+   METHOD ProjectOpen()
+   METHOD ProjectDesktop()
    METHOD OpenFile()
    METHOD GotoLine()
    METHOD ReplaceDialog()
@@ -82,6 +86,7 @@ CLASS HbIde
    METHOD CompilerFlags()
    METHOD DisplayOpts()
    METHOD ApplyDisplay( nRows, nCols )
+   METHOD HelpContext()
    METHOD HelpContents()
    METHOD HelpIndex()
    METHOD HelpView( cTitle, cText, lNested )
@@ -571,6 +576,11 @@ METHOD Activate() CLASS HBIde
          loop   // Alt combos are menu-reserved: never fall through to the editor
       endif
 
+      if nKeyStd == K_F1
+         ::HelpContext()
+         loop
+      endif
+
       // Handle F5 for Find
       if nKeyStd == K_F5 .and. ! ::oMenu:IsOpen()
          ::FindDialog()
@@ -692,6 +702,13 @@ METHOD BuildMenu() CLASS HBIde
          MENUITEM "~Goto Line..."           ACTION ::GotoLine()
       ENDMENU
 
+      MENUITEM " ~Project "
+      MENU
+         MENUITEM "~Open .hbp... "       ACTION ::ProjectOpen()
+         MENUITEM "~Sources / Build... " ACTION ::ProjectDesktop()
+         MENUITEM "~Close project "      ACTION ( ::oProject := nil )
+      ENDMENU
+
       MENUITEM " ~Run "
       MENU
          MENUITEM "~Start "            ACTION ::Start()
@@ -801,6 +818,141 @@ METHOD Start() CLASS HbIde
 return nil
 
 //-----------------------------------------------------------------------------------------//
+
+METHOD ProjectOpen() CLASS HbIde 
+
+   local oDlg := HbWindow():Dialog( "Open a project (.hbp)", 46, 18, "W+/W" )
+   local GetList := {}, oGetName, oListBox
+   local cFileName := Space( 250 ), cPickFileName := ""
+   local lDummy, lOk := .F., lTooLong := .F., nTooLong := 0, cTooLong := "", cLastLB := ""
+   local aPrgs := Directory( "*.hbp" )
+   local nT, nL, nR, nB, oNew
+
+   oDlg:bRepaint = { || ::Repaint() }
+   ::SuspendStatus()
+
+   AEval( aPrgs, { | aPrg, n | aPrgs[ n ] := aPrg[ 1 ] } )
+   if Len( aPrgs ) == 0
+      AAdd( aPrgs, "" )
+   endif
+   // seed the sync marker with the listbox's initial selection so merely
+   // tabbing into the list never overwrites a manually typed filename;
+   // only an actual selection change (navigation) syncs the GET.
+   cLastLB := aPrgs[ 1 ]
+
+   // Controls positioned relative to the dialog frame (D2)
+   nT = oDlg:nTop
+   nL = oDlg:nLeft
+   nR = oDlg:nRight
+   nB = oDlg:nBottom
+
+   @ nT + 3, nL + 3 GET cFileName PICTURE "@S37" COLOR "W/B,W+/B,W+/W,GR+/W" ;
+      VALID { || If( LastKey() == K_ENTER, If( Empty( AllTrim( cFileName ) ) .and. oListBox != nil .and. ;
+                     Len( oListBox:buffer ) > 250, ;
+                  ( lTooLong := .T., nTooLong := Len( oListBox:buffer ), ;
+                    cTooLong := Left( oListBox:buffer, 40 ), GetActive():exitState := GE_ESCAPE ), ;
+                  ( lOk := .T., GetActive():exitState := GE_ESCAPE ) ), ), .T. }
+
+   with object oGetName := ATail( GetList )  
+      :CapRow = nT + 2   
+      :CapCol = nL + 3   
+      :Caption = "File to ope&n"
+      :Display()
+   end   
+
+   @ nT + 5, nL + 3, nB - 3, nR - 3 GET cPickFileName LISTBOX aPrgs ;
+      COLOR "N/BG,GR+/BG,N/BG,W+/G,W+/W,W+/W,GR+/W" ;
+      VALID { || If( LastKey() == K_ENTER, If( Empty( AllTrim( cFileName ) ) .and. oListBox != nil .and. ;
+                     Len( oListBox:buffer ) > 250, ;
+                  ( lTooLong := .T., nTooLong := Len( oListBox:buffer ), ;
+                    cTooLong := Left( oListBox:buffer, 40 ), GetActive():exitState := GE_ESCAPE ), ;
+                  ( lOk := .T., GetActive():exitState := GE_ESCAPE ) ), ), .T. } ;
+      STATE { || If( oListBox != nil .and. oListBox:buffer != cLastLB, ;
+               ( cLastLB := oListBox:buffer, ;
+                 If( Len( cLastLB ) > 250, ;
+                     ( oGetName:VarPut( Space( 250 ) ), oGetName:Display() ), ;
+                     ( oGetName:VarPut( cLastLB ), oGetName:Assign(), oGetName:Display() ) ) ), ) }
+
+   with object oListBox := ATail( GetList ):Control  
+      :CapRow = nT + 4   
+      :CapCol = nL + 4   
+      :Caption = "&Files"   
+      :Display()
+   end   
+
+   // names over the GET's 250-char buffer are never truncated into it:
+   // the listbox leaves the GET empty instead, and OK rejects explicitly.
+   // The alert fires after the dialog closes: in-dialog alerts get
+   // overdrawn by the dialog's own repaint cycle.
+   @ nB - 2, nR - 19 GET lDummy PUSHBUTTON CAPTION "  &OK  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || If( Empty( AllTrim( oGetName:VarGet() ) ) .and. ;
+                     oListBox != nil .and. Len( oListBox:buffer ) > 250, ;
+                  ( lTooLong := .T., nTooLong := Len( oListBox:buffer ), ;
+                    cTooLong := Left( oListBox:buffer, 40 ), oDlg:End() ), ;
+                  ( oDlg:End(), lOk := .T. ) ) }
+
+   @ nB - 2, nR - 10 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || oDlg:End() }
+
+   oDlg:Activate( GetList )
+   ::ResumeStatus()
+
+   if lTooLong
+      HBIDE_MsgAlert( "Path too long (" + hb_ntos( nTooLong ) + ;
+             " chars, max 250): " + cTooLong + "..." )
+      return nil
+   endif
+
+   cFileName = AllTrim( cFileName )   // the GET is Space( 250 ): trim padding (D6)
+
+   if lOk .and. ! Empty( cFileName )
+      oNew := HBIDEProject():New()
+      if oNew:Open( cFileName )
+         ::oProject := oNew
+         ::ProjectDesktop()
+      else
+         HBIDE_MsgAlert( oNew:cError )
+      endif
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD ProjectDesktop() CLASS HbIde
+
+   local hNavigate, nAnswer
+
+   if ::oProject == nil
+      HBIDE_MsgAlert( "Open a .hbp with Project > Open first" )
+      return nil
+   endif
+   // A build always reads disk. Never silently compile an outdated buffer.
+   if ::oEditor:Changed()
+      nAnswer := HBIDE_MsgAlert( "The current buffer has unsaved changes. Project builds read disk files.", ;
+         { "Save", "Use disk", "Cancel" } )
+      if nAnswer == 1
+         ::SaveFile()
+         if ::oEditor:Changed()
+            return nil
+         endif
+      elseif nAnswer != 2
+         return nil
+      endif
+   endif
+   ::SuspendStatus()
+   hNavigate := HBIDEProjectDesktop( ::oProject, ::cProjectHbmk2 )
+   ::ResumeStatus()
+   ::Repaint()
+   if hNavigate != nil
+      if ::OpenInEditor( hNavigate[ "path" ] )
+         ::oEditor:Goto( hNavigate[ "line" ], hNavigate[ "column" ] + 4 )
+         ::oEditor:Display()
+      endif
+   endif
+   ::oEditor:ShowCursor()
+
+return nil
 
 METHOD OpenFile() CLASS HbIde 
 
@@ -1271,7 +1423,7 @@ METHOD CompilerFlags() CLASS HbIde
 
    @ nB - 2, nL + 38 GET lDummy PUSHBUTTON ;
       CAPTION "  &Help  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
-      STATE { || HBIDE_DialogHelp( oDlg, GetList, { || ::HelpTopic( "Options menu" ) }, bPaint ) }
+      STATE { || HBIDE_DialogHelp( oDlg, GetList, { || ::HelpTopic( "Compiler flags" ) }, bPaint ) }
 
    oDlg:Activate( GetList )
    ::ResumeStatus()
@@ -1927,26 +2079,43 @@ return nil
 
 METHOD HelpView( cTitle, cText, lNested ) CLASS HbIde
 
-   local cScr := SaveScreen( 0, 0, MaxRow(), MaxCol() )
-   local nT := 3, nL := 15, nB := MaxRow() - 4, nR := MaxCol() - 15
+   local aTopics := HBIDEHelpTopics()
 
+   if AScan( aTopics, { | t | t[ 2 ] == cTitle } ) == 0
+      AAdd( aTopics, { "", cTitle, cText } )
+   endif
    ::SuspendStatus()
-   DispBegin()
-   hb_DispBox( nT - 1, nL - 1, nB + 1, nR + 1, ;
-               hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "W+/W" )
-   hb_Scroll( nT, nL, nB, nR,,, "W/B" )
-   hb_DispOutAt( nT - 1, nL + 2, " " + cTitle + " ", "W+/W" )
-   hb_DispOutAt( nB + 2, nL, "Esc: back", "W+/BG" )
-   DispEnd()
-
-   MemoEdit( cText, nT, nL, nB, nR, .F. )
-
-   RestScreen( 0, 0, MaxRow(), MaxCol(), cScr )
+   HBIDEHelpOpen( cTitle, aTopics )
    ::ResumeStatus()
    if ! hb_defaultValue( lNested, .F. )
       ::Repaint()
       ::oEditor:ShowCursor()
    endif
+
+return nil
+
+// Open help about the highlighted menu command, never execute that command.
+METHOD HelpContext() CLASS HbIde
+
+   local cMenu := "", cItem := "", oPopup, n
+   local lMenu := ::oMenu:IsOpen(), cTitle
+
+   if lMenu
+      n := ::oMenu:nOpenPopup
+      if n > 0 .and. n <= Len( ::oMenu:aItems )
+         cMenu := ::oMenu:aItems[ n ]:cPrompt
+         oPopup := ::oMenu:aItems[ n ]:bAction
+         if HB_ISOBJECT( oPopup ) .and. oPopup:nOpenPopup > 0 .and. ;
+               oPopup:nOpenPopup <= Len( oPopup:aItems )
+            cItem := oPopup:aItems[ oPopup:nOpenPopup ]:cPrompt
+         endif
+      endif
+      ::oMenu:Close()
+   endif
+   cTitle := HBIDEHelpContext( cMenu, cItem )
+   ::HelpTopic( cTitle )
+   ::Repaint()
+   ::oEditor:ShowCursor()
 
 return nil
 

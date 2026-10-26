@@ -499,3 +499,139 @@ FUNCTION HBIDEHelpLines( cText, nWidth )
       AAdd( a, "" )
    ENDIF
    RETURN a
+
+FUNCTION HBIDEHelpContext( cMenu, cItem )
+   LOCAL c := Upper( StrTran( AllTrim( cMenu ), "~" ) )
+   LOCAL cCommand := Upper( StrTran( AllTrim( cItem ), "~" ) )
+   DO CASE
+   CASE "COMPILER" $ cCommand
+      RETURN "Compiler flags"
+   CASE "DISPLAY" $ cCommand
+      RETURN "Display settings"
+   CASE "DESIGNER" $ cCommand
+      RETURN "Dialog designer"
+   CASE "DEBUG" $ cCommand
+      RETURN "Debugger"
+   CASE "FIND" $ cCommand .OR. "REPLACE" $ cCommand .OR. "GOTO" $ cCommand
+      RETURN "Find, Replace, Goto Line"
+   CASE "FILE" $ c
+      RETURN "File menu"
+   CASE "EDIT" $ c
+      RETURN "Edit menu"
+   CASE "RUN" $ c
+      RETURN "Run menu"
+   CASE "OPTIONS" $ c
+      RETURN "Options menu"
+   CASE "HELP" $ c
+      RETURN "Using help"
+   ENDCASE
+   RETURN "Welcome to hbide"
+FUNCTION HBIDEHelpLinks( cTitle, aTopics )
+   LOCAL a := {}, aWanted := {}, c, n
+   DO CASE
+   CASE cTitle == "Welcome to hbide" .OR. cTitle == "Using help"
+      aWanted := { "File menu", "Edit menu", "Run menu", "Dialog designer", "Keyboard shortcuts" }
+   CASE cTitle == "Run menu"
+      aWanted := { "Compiler flags", "Debugger", "File menu" }
+   CASE cTitle == "Options menu"
+      aWanted := { "Compiler flags", "Display settings", "Dialog designer" }
+   CASE cTitle == "Debugger"
+      aWanted := { "Debugger windows", "Run menu", "Keyboard shortcuts" }
+   CASE cTitle == "Debugger windows"
+      aWanted := { "Debugger", "Keyboard shortcuts" }
+   CASE cTitle == "Compiler flags"
+      aWanted := { "Run menu", "Options menu" }
+   CASE cTitle == "Edit menu"
+      aWanted := { "Find, Replace, Goto Line", "Keyboard shortcuts", "File menu" }
+   CASE cTitle == "File menu"
+      aWanted := { "External file changes", "Edit menu", "Run menu" }
+   OTHERWISE
+      aWanted := { "Welcome to hbide", "Keyboard shortcuts", "Using help" }
+   ENDCASE
+   FOR EACH c IN aWanted
+      n := AScan( aTopics, {| t | t[ 2 ] == c } )
+      IF n > 0 .AND. c != cTitle
+         AAdd( a, n )
+      ENDIF
+   NEXT
+   RETURN a
+
+FUNCTION HBIDEHelpOpen( cTitle, aTopics )
+   LOCAL nTopic := AScan( aTopics, {| t | t[ 2 ] == cTitle } )
+   LOCAL nTop := 1, nLink := 1, nKey, n, nTarget, aLines, aLinks
+   LOCAL aHistory := {}, aForward := {}, aState
+   LOCAL nL := Max( 1, Int( ( MaxCol() - 75 ) / 2 ) )
+   LOCAL nR := Min( MaxCol() - 1, nL + 75 ), nT := 2, nB := MaxRow() - 2
+   LOCAL nW := nR - nL - 3, nBody, nLinkRow, nMaxTop
+   LOCAL cSaved := __dbgSaveScreen( 0, 0, MaxRow(), MaxCol() )
+   IF nTopic == 0
+      RETURN .F.
+   ENDIF
+   DO WHILE .T.
+      aLines := HBIDEHelpLines( aTopics[ nTopic, 3 ], nW )
+      aLinks := HBIDEHelpLinks( aTopics[ nTopic, 2 ], aTopics )
+      nBody := Max( 3, nB - nT - Len( aLinks ) - 5 )
+      nMaxTop := Max( 1, Len( aLines ) - nBody + 1 )
+      nTop := Min( nMaxTop, Max( 1, nTop ) )
+      nLink := Min( Len( aLinks ), Max( 1, nLink ) )
+      nLinkRow := nT + nBody + 3
+      DispBegin()
+      hb_Scroll( nT, nL, nB, nR,,, "N/W" )
+      hb_DispBox( nT, nL, nB, nR, hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "N/W" )
+      hb_DispOutAt( nT, nL + 2, " " + Left( aTopics[ nTopic, 2 ], nW - 2 ) + " ", "W+/B" )
+      hb_DispOutAt( nT + 1, nL + 2, PadR( "F1 Contents  Backspace Back  Alt+Right Forward", nW ), "N/BG" )
+      FOR n := 1 TO nBody
+         hb_DispOutAt( nT + 1 + n, nL + 2, PadR( iif( nTop + n - 1 <= Len( aLines ), aLines[ Min( nTop + n - 1, Len( aLines ) ) ], "" ), nW ), "N/W" )
+      NEXT
+      hb_DispOutAt( nLinkRow - 1, nL + 2, PadR( "Related topics (Tab / Enter or click)", nW ), "N/BG" )
+      FOR n := 1 TO Len( aLinks )
+         hb_DispOutAt( nLinkRow + n - 1, nL + 2, PadR( "> " + aTopics[ aLinks[ n ], 2 ], nW ), iif( n == nLink, "W+/B", "B/W" ) )
+      NEXT
+      hb_DispOutAt( nB - 1, nL + 2, PadR( "Up/Down PgUp/PgDn scroll  Esc close  " + hb_ntos( nTop ) + "/" + hb_ntos( nMaxTop ), nW ), "N/BG" )
+      DispEnd()
+      nKey := Inkey( 0, INKEY_ALL + HB_INKEY_EXT )
+      nTarget := 0
+      DO CASE
+      CASE nKey == K_ESC
+         EXIT
+      CASE nKey == K_F1
+         nTarget := AScan( aTopics, {| t | t[ 2 ] == "Using help" } )
+      CASE nKey == K_BS .AND. ! Empty( aHistory )
+         AAdd( aForward, { nTopic, nTop, nLink } )
+         aState := ATail( aHistory ); ASize( aHistory, Len( aHistory ) - 1 )
+         nTopic := aState[ 1 ]; nTop := aState[ 2 ]; nLink := aState[ 3 ]
+      CASE hb_keyStd( nKey ) == K_ALT_RIGHT .AND. ! Empty( aForward )
+         AAdd( aHistory, { nTopic, nTop, nLink } )
+         aState := ATail( aForward ); ASize( aForward, Len( aForward ) - 1 )
+         nTopic := aState[ 1 ]; nTop := aState[ 2 ]; nLink := aState[ 3 ]
+      CASE nKey == K_TAB .AND. Len( aLinks ) > 0
+         nLink := nLink % Len( aLinks ) + 1
+      CASE nKey == K_SH_TAB .AND. Len( aLinks ) > 0
+         nLink := iif( nLink > 1, nLink - 1, Len( aLinks ) )
+      CASE nKey == K_ENTER .AND. Len( aLinks ) > 0
+         nTarget := aLinks[ nLink ]
+      CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR
+         nTarget := aLinks[ MRow() - nLinkRow + 1 ]
+      CASE nKey == K_UP .OR. nKey == K_MWFORWARD
+         nTop--
+      CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD
+         nTop++
+      CASE nKey == K_PGUP
+         nTop -= nBody
+      CASE nKey == K_PGDN
+         nTop += nBody
+      CASE nKey == K_HOME
+         nTop := 1
+      CASE nKey == K_END
+         nTop := nMaxTop
+      ENDCASE
+      IF nTarget > 0 .AND. nTarget != nTopic
+         AAdd( aHistory, { nTopic, nTop, nLink } )
+         IF Len( aHistory ) > 100
+            hb_ADel( aHistory, 1, .T. )
+         ENDIF
+         aForward := {}; nTopic := nTarget; nTop := 1; nLink := 1
+      ENDIF
+   ENDDO
+   __dbgRestScreen( 0, 0, MaxRow(), MaxCol(), cSaved )
+   RETURN .T.

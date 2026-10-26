@@ -7,6 +7,8 @@ hbbutton.prg
 hbgetu.prg
 
 help.prg
+project.prg
+projectui.prg
 
 # Vendored Harbour source debugger (from harbour/src/debug, GPL like Harbour).
 # Local change in debugger.prg: Quit() (Alt+X) breaks out to the IDE's
