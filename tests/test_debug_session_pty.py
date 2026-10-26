@@ -205,7 +205,33 @@ send(b'\r'); pump(0.8)   # dismiss alert
 check('no temp files leaked on failed compile', temps() == [])
 check('sentinel still untouched', open(os.path.join(work, '__hbide_dbg__.prg')).read().strip() == 'SENTINEL-USER-FILE')
 
-# clean exit: BP marks are not text edits, both docs are clean
+# debuggee runtime error: the alert is shown and the session unwinds to the
+# IDE with ALL temps cleaned (previously leaked past the missing RECOVER)
+open(os.path.join(work, 'err3.prg'), 'w').write('procedure Main()\n   local x\n   ? "antes"\n   x := nil + 1\n   ? "despues"\nreturn\n')
+send(b'\x1bf'); pump(0.8); send(b'o')
+t0 = time.time()
+while 'Open a file' not in scr.text() and time.time() - t0 < 4.0:
+    pump(0.3)
+send(work.encode() + b'/err3.prg'); send(b'\r'); pump(1.2)
+check('err3.prg open as third doc', 'err3.prg' in scr.text())
+send(b'\x1br'); pump(0.8); send(b'd')
+t0 = time.time()
+while 'Command' not in scr.text() and time.time() - t0 < 12.0:
+    pump(0.5)
+check('debugger entered for err3', 'Command' in scr.text())
+send(b'\x1b[15~'); pump(2.5)   # F5 Go -> nil + 1 raises
+t0 = time.time()
+while 'Argument error' not in scr.text() and time.time() - t0 < 6.0:
+    pump(0.3)
+t = scr.text()
+check('debuggee runtime error shows an alert', 'Argument error' in t)
+send(b'\r'); pump(1.5)   # dismiss
+t = scr.text()
+check('error path returns to the IDE editor', 'err3.prg' in t and 'Edit' in t)
+check('no temp files leaked on the error path', temps() == [])
+check('sentinel untouched after error path', open(os.path.join(work, '__hbide_dbg__.prg')).read().strip() == 'SENTINEL-USER-FILE')
+
+# clean exit: BP marks are not text edits, all docs are clean
 send(b'\x1b'); pump(1.0)
 t = scr.text()
 if 'Unsaved changes' in t:

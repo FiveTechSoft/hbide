@@ -1,3 +1,10 @@
+import os, sys
+# the in-app build runs hbmk2 from the IDE process: make it findable before
+# the shared core snapshots os.environ for the spawned IDE
+if '/home/sandbox/harbour/bin/linux/gcc' not in os.environ.get('PATH', '').split(':'):
+    os.environ['PATH'] = '/home/sandbox/harbour/bin/linux/gcc:' + os.environ.get('PATH', '')
+    os.execv(sys.executable, [sys.executable] + sys.argv)
+
 import os, pty, sys, struct, fcntl, termios, select, time, signal, shutil, tempfile, re
 
 ROWS, COLS = 25, 80
@@ -125,6 +132,7 @@ def wait_has(name, subs, timeout=6.0, collapse=True):
         pump(0.3)
 
 KF6_CTRL = b'\x1b[17;5~'
+KF9 = b'\x1b[20~'
 
 # project fixture: two sources + .hbp
 open(os.path.join(work, 'demo1.prg'), 'w').write('? "demo1"\nreturn\n')
@@ -195,7 +203,34 @@ send(b'\x1bOS'); pump(0.8)   # F4 -> Messages
 check('messages view shows no-diagnostics state', 'No parsed diagnostics' in scr.text())
 send(b'\x1b'); pump(1.0)   # ESC closes desktop
 
-# clean exit: no dirty docs left
+# dirty NONAME buffer: excluded from the build dirty-check by design (no
+# disk file to save or compare), but the buffer itself must stay intact
+# and dirty across desktop + build - exclusion, not loss
+send(b'\x1bf'); pump(0.8); send(b'n')   # File > New -> fresh noname doc
+pump(1.0)
+check('new noname doc current', 'noname.prg' in scr.text())
+send(b'q'); pump(0.6)
+check('noname dirty content visible', 'q' in ''.join(scr.g[2]))
+send(b'\x1bp'); pump(0.8); send(b's')   # desktop must open WITHOUT prompting
+t0 = time.time()
+while 'SOURCES' not in scr.text() and time.time() - t0 < 4.0:
+    pump(0.3)
+t = scr.text()
+check('desktop opens directly with only a dirty noname (exclusion)', 'SOURCES' in t)
+check('no dirty prompt for noname', 'builds read disk' not in t)
+send(KF9)   # build with the dirty noname still in memory
+t0 = time.time()
+while 'Build OK' not in scr.text() and 'BUILD FAILED' not in scr.text() and time.time() - t0 < 15.0:
+    pump(0.3)
+# the earlier flow saved an 'x' prefix into demo1.prg, so the real build
+# fails on disk content - which also proves the build really ran
+t = scr.text()
+check('build really runs with dirty noname in memory', 'BUILD FAILED' in t and 'ERROR demo1.prg:1' in t)
+send(b'\x1b'); pump(1.0)   # close desktop
+t = scr.text()
+check('noname buffer intact after desktop+build', 'noname.prg' in t and 'q' in ''.join(scr.g[2]))
+
+# clean exit: the dirty noname must STILL be dirty -> exit prompt proves it
 send(b'\x1b'); pump(1.0)
 t = scr.text()
 if 'Unsaved changes' in t:
