@@ -1,3 +1,5 @@
+#include "inkey.ch"
+#include "setcurs.ch"
 // hbide help topics: single source for Help>Contents and Help>Index.
 // Each topic: { keyword list, title, body }
 
@@ -28,7 +30,7 @@ function HBIDEHelpTopics()
    AAdd( a, { "edit undo redo copy paste delete duplicate line clipboard", "Edit menu", ;
       "Undo (Ctrl+Z) / Redo (Ctrl+U)   Text edit history (typing coalesces per line," + hb_eol() + ;
       "                                up to 300 operations)." + hb_eol() + hb_eol() + ;
-      "Copy / Paste                    Whole current line, internal clipboard." + hb_eol() + hb_eol() + ;
+      "Copy / Cut / Paste              Selection when marked; otherwise current line." + hb_eol() + hb_eol() + ;
       "Delete Line (Ctrl+Y)            Removes the current line." + hb_eol() + hb_eol() + ;
       "Duplicate Line                  Inserts a copy of the current line below." } )
 
@@ -84,8 +86,8 @@ function HBIDEHelpTopics()
       "Harbour does not implement GLOBAL variables (xHarbour-only legacy)." + hb_eol() + hb_eol() + ;
       "Options > Save/Restore Settings persists colors, tab width, monitor" + hb_eol() + ;
       "flags and breakpoints to init.cld and applies them back." + hb_eol() + hb_eol() + ;
-      "Not implemented upstream (menu entries alert 'Not implemented yet!'): " + hb_eol() + ;
-      "Window Move/Size/Zoom/Iconize/Tile, Options Exchange Screens," + hb_eol() + ;
+      "Window > Move/Size/Zoom/Tile/Cascade manages debugger panels." + hb_eol() + ;
+      "Not implemented: Iconize, Options Exchange Screens," + hb_eol() + ;
       "swap on Input, Menu Bar." } )
 
    AAdd( a, { "options compiler flags display designer strict warnings incremental optimize", "Options menu", ;
@@ -118,6 +120,62 @@ function HBIDEHelpTopics()
       "Written in Harbour. Uses the Harbour compiler and hbmk2." + hb_eol() + ;
       "The same information is in Help > About..." } )
 
+   AAdd( a, { "help links history contextual f1 back forward", "Using help", ;
+      "F1 opens help for the selected menu or the editor. Related topics at the " + ;
+      "bottom are live links: Tab/Shift+Tab selects one, Enter follows it, or " + ;
+      "click its label." + hb_eol() + hb_eol() + ;
+      "Backspace returns to the previous topic and scroll position. Alt+Right " + ;
+      "moves forward again. Up/Down, PageUp/PageDown, Home and End scroll " + ;
+      "the current topic. Esc closes help without changing your source." + hb_eol() + hb_eol() + ;
+      "The Help menu still offers Contents and keyword Index. Topics describe " + ;
+      "implemented behavior, including remaining limits, rather than promising " + ;
+      "features that are not available." } )
+
+   AAdd( a, { "compiler flags warnings strict debug optimize hbmk2 mingw", "Compiler flags", ;
+      "Options > Compiler Flags controls Run > Start. Choose the compiler that " + ;
+      "exists in your Harbour installation. Windows defaults to MinGW64; " + ;
+      "Linux defaults to GCC." + hb_eol() + hb_eol() + ;
+      "Warnings: -w3 when on, -w0 when off. Strict types: -es2 makes warnings " + ;
+      "fatal. Debug info: -b. Incremental: -inc. Optimize code: -O2." + hb_eol() + hb_eol() + ;
+      "Run after build off means build only. A failed build must never launch " + ;
+      "a stale executable. Run > Debug compiles with debug information for the " + ;
+      "integrated debugger separately." + hb_eol() + hb_eol() + ;
+      "OK applies the choices. Cancel or Esc leaves the previous choices " + ;
+      "unchanged. The Help button opens this topic and returns to the dialog." } )
+
+   AAdd( a, { "display settings rows columns console font", "Display settings", ;
+      "Options > Display changes the console size used by the IDE. The " + ;
+      "available presets are 25x80, 30x100 and 40x120." + ;
+      hb_eol() + hb_eol() + ;
+      "Choose a size that leaves source text and dialog controls readable. " + ;
+      "Apply changes with OK; Cancel keeps the existing size. This changes " + ;
+      "the console grid, not the size of your generated dialog model." } )
+
+   AAdd( a, { "designer palette inspector controls code generation json", "Dialog designer", ;
+      "Options > Designer opens the visual dialog designer. Place labels, " + ;
+      "inputs, checkboxes, radio groups, listboxes and buttons. Move and " + ;
+      "resize controls with the mouse; use the inspector to edit properties." + ;
+      hb_eol() + hb_eol() + ;
+      "The designer saves its model as JSON and generates Harbour PRG source. " + ;
+      "The generated source can be opened in the editor after leaving the " + ;
+      "designer. Preserve manually written source separately from generated " + ;
+      "output. A live generated-code preview does not imply bidirectional " + ;
+      "editing of arbitrary Harbour code." } )
+
+   AAdd( a, { "debugger windows move size zoom tile cascade focus", "Debugger windows", ;
+      "Window > Tile arranges visible source, Monitor, Watch, Calls and " + ;
+      "Command panels without overlap. Window > Cascade overlaps them. " + ;
+      "Tab and Shift+Tab cycle focus; clicking a visible panel brings it forward." + ;
+      hb_eol() + hb_eol() + ;
+      "F2 or Window > Zoom maximizes the focused panel. Invoke it again to " + ;
+      "restore its previous rectangle. Window > Move and Size use arrow keys; " + ;
+      "Enter accepts and Esc cancels. Menu and status rows remain outside " + ;
+      "the desktop. Commands Window Tile, Cascade, Zoom, Move and Size " + ;
+      "provide the same actions." + hb_eol() + hb_eol() + ;
+      "Manual layouts remain through stepping. Save/Restore Settings can " + ;
+      "store panel rectangles. Iconize and the legacy Exchange Screens, " + ;
+      "swap on Input and Menu Bar actions are not implemented. Application " + ;
+      "output during Animate can still damage the display; F4 shows the app screen." } )
 return a
 
 //-----------------------------------------------------------------------------------------//
@@ -480,6 +538,12 @@ FUNCTION HBIDEHelpBrowser( aTopics, nStartTopic )
                 "matches" => {}, "midx" => 0, "msg" => "", "mode" => "", ;
                 "done" => .F. }
    LOCAL cSaved := __dbgSaveScreen( 0, 0, MaxRow(), MaxCol() ), nRow
+   LOCAL cOldCDP
+   // UTF-8 host CP + display translation while the browser runs (same setup
+   // as demos/foxpro.prg) so the half-block button shades render; the IDE
+   // pins CP437 by default, which would show them as "?". Restored on exit.
+   cOldCDP := hb_cdpSelect( "UTF8" )
+   hb_SetDispCP( "EN", "UTF8", .T. )
    IF nStartTopic > 0
       nRow := HBHelpRowOfTopic( h, nStartTopic )
       IF nRow > 0
@@ -490,6 +554,8 @@ FUNCTION HBIDEHelpBrowser( aTopics, nStartTopic )
       HBHelpPaint( h, aTopics, g )
       HBHelpInput( h, aTopics, g, hb_keyStd( Inkey( 0, INKEY_ALL + HB_INKEY_EXT ) ) )
    ENDDO
+   hb_cdpSelect( cOldCDP )
+   hb_SetDispCP( "EN" )
    __dbgRestScreen( 0, 0, MaxRow(), MaxCol(), cSaved )
 RETURN .T.
 
@@ -590,12 +656,15 @@ FUNCTION HBIDEHelpOpen( cTitle, aTopics )
    DO WHILE .T.
       aLines := HBIDEHelpLines( aTopics[ nTopic, 3 ], nW )
       aLinks := HBIDEHelpLinks( aTopics[ nTopic, 2 ], aTopics )
+      nB := Min( MaxRow() - 2, nT + Len( aLines ) + Len( aLinks ) + 5 )
       nBody := Max( 3, nB - nT - Len( aLinks ) - 5 )
       nMaxTop := Max( 1, Len( aLines ) - nBody + 1 )
       nTop := Min( nMaxTop, Max( 1, nTop ) )
       nLink := Min( Len( aLinks ), Max( 1, nLink ) )
       nLinkRow := nT + nBody + 3
       DispBegin()
+      __dbgRestScreen( 0, 0, MaxRow(), MaxCol(), cSaved )
+      hb_Shadow( nT, nL, nB, nR )
       hb_Scroll( nT, nL, nB, nR,,, "N/W" )
       hb_DispBox( nT, nL, nB, nR, hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "N/W" )
       hb_DispOutAt( nT, nL + 2, " " + Left( aTopics[ nTopic, 2 ], nW - 2 ) + " ", "W+/B" )
@@ -609,7 +678,7 @@ FUNCTION HBIDEHelpOpen( cTitle, aTopics )
       NEXT
       hb_DispOutAt( nB - 1, nL + 2, PadR( "Up/Down PgUp/PgDn scroll  Esc close  " + hb_ntos( nTop ) + "/" + hb_ntos( nMaxTop ), nW ), "N/BG" )
       DispEnd()
-      nKey := Inkey( 0, INKEY_ALL + HB_INKEY_EXT )
+      nKey := hb_keyStd( Inkey( 0, INKEY_ALL + HB_INKEY_EXT ) )
       nTarget := 0
       DO CASE
       CASE nKey == K_ESC
