@@ -1956,6 +1956,12 @@ METHOD Debug() CLASS HbIde
       BEGIN SEQUENCE
          bOldError = ErrorBlock( { | o | DoBreak( o ) } )
          hb_HrbRun( HB_HRB_BIND_FORCELOCAL, cTmpHrb )
+      RECOVER
+         // Every exit lands here or after END: normal end, Alt+X abort
+         // (Quit() Break()s expecting this RECOVER) and debuggee runtime
+         // errors (DoBreak already showed the alert). Without it an error
+         // unwound to an outer RECOVER, skipping the cleanup below and
+         // leaking this session's temp files.
       END SEQUENCE
       ErrorBlock( bOldError )
       FErase( cTmpPrg )
