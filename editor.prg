@@ -351,8 +351,19 @@ return nil
 
 METHOD Edit( nKey ) CLASS HBSrcEdit
 
-   local aBefore := ::LinesSnapshot()
+   local aBefore
 
+   // Pure cursor/scroll keys cannot change the text: skip the whole-file
+   // snapshot + diff (cost grows with the file size on every arrow, PgDn,
+   // wheel step). Everything else is recorded exactly as before.
+   if HBIDE_IsNavKey( nKey )
+      ::lOpRecorded := .F.
+      ::EditKey( nKey )
+      ::lInUndo := .F.
+      return Self
+   endif
+
+   aBefore := ::LinesSnapshot()
    ::lOpRecorded := .F.
    ::EditKey( nKey )
 
@@ -570,10 +581,12 @@ return nil
 
 METHOD LinesSnapshot() CLASS HBSrcEdit
 
-   local aLines := Array( Len( ::aText ) ), n
+   // ::aText is an access method: read it once, not once per line
+   local aText := ::aText, nLen := Len( aText )
+   local aLines := Array( nLen ), n
 
-   for n = 1 to Len( ::aText )
-      aLines[ n ] := ::aText[ n ]:cText
+   for n = 1 to nLen
+      aLines[ n ] := aText[ n ]:cText
    next
 
 return aLines
@@ -591,16 +604,21 @@ METHOD RecordEdit( aBefore ) CLASS HBSrcEdit
 
    local aAfter := ::LinesSnapshot()
    local nB := Len( aBefore ), nA := Len( aAfter )
-   local nPre := 0, nSuf := 0, i
+   local nPre := 0, nSuf := 0, i, lExact, nMin
    local aOld := {}, aNew := {}
 
-   while nPre < Min( nB, nA ) .and. HBIDE_StrEq( aBefore[ nPre + 1 ], aAfter[ nPre + 1 ] )
+   // Exact compare without a function call per line: SET EXACT ON makes
+   // == exact for strings (see HBIDE_StrEq); restored right after.
+   lExact := Set( _SET_EXACT, .T. )
+   nMin := Min( nB, nA )
+   while nPre < nMin .and. aBefore[ nPre + 1 ] == aAfter[ nPre + 1 ]
       nPre++
    end
-   while nSuf < Min( nB - nPre, nA - nPre ) .and. ;
-         HBIDE_StrEq( aBefore[ nB - nSuf ], aAfter[ nA - nSuf ] )
+   nMin := Min( nB - nPre, nA - nPre )
+   while nSuf < nMin .and. aBefore[ nB - nSuf ] == aAfter[ nA - nSuf ]
       nSuf++
    end
+   Set( _SET_EXACT, lExact )
 
    if nPre + nSuf >= nB .and. nPre + nSuf >= nA
       return Self   // no text change
@@ -1601,3 +1619,24 @@ return HBIDE_Utf8Valid( cText ) .and. hb_StrToUTF8( cText ) != cText
 function HBIDE_Utf8Bom()
 
 return hb_BChar( 0xEF ) + hb_BChar( 0xBB ) + hb_BChar( 0xBF )
+
+//-----------------------------------------------------------------------------------------//
+
+// Keys that only move the cursor or scroll (never edit the text).
+static function HBIDE_IsNavKey( nKey )
+
+   switch hb_keyStd( nKey )
+      case K_UP
+      case K_DOWN
+      case K_LEFT
+      case K_RIGHT
+      case K_HOME
+      case K_END
+      case K_PGUP
+      case K_PGDN
+      case K_MWFORWARD
+      case K_MWBACKWARD
+         return .T.
+   endswitch
+
+return .F.
