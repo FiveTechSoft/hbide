@@ -33,9 +33,15 @@ las cabeceras de seccion muestran un resumen de sus temas.
 - El buscador no resalta el texto dentro del panel; posiciona el tema
   y la linea.
 - Sin colapsado de secciones: el arbol se muestra expandido.
-- La sombra es trama CP437 difuminada: este GT no mapea semibloques
-  (▄/▐ salen "?"), asi que la sombra solida fina de la referencia no
-  es representable; una celda negra solida se leia como bloque pesado.
+- La sombra de los botones es una barra difuminada inset (trama CP437
+  bajo la cara). Limite del GT (investigado a fondo, 2026-10-26): gttrm tiene un modo
+  Unicode (fUTF8) que se activa por //GTTRM:UTF8, sonda de terminal o LANG;
+  en esta build (r2608271822, UNICODE_BUF) el modo forzado rompe TODA la
+  salida de glifos (probado en VTE real), y en modo normal solo la trama
+  (176-178) y la caja simple (179-206) se mapean via ACSC; los semibloques
+  (219-223) salen "?". La escritura cruda UTF-8 tambien se corrompe en la
+  capa CP del GT. La sombra fina estilo TVision (semibloque inferior) no es
+  representable; hb_gtInfo(HB_GTI_ISUNICODE) permite detectarlo en runtime.
 
 ## Pruebas
 
