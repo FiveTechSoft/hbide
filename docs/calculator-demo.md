@@ -2,10 +2,11 @@
 
 Estudio visual y funcional de una calculadora de 4 operaciones con la
 estetica FoxPro-DOS: dialogo magenta con sombra, display empotrado y
-botones verdes con sombra difuminada (trama CP437 de 50%, una fila abajo y
-una columna a la derecha, inset): en este GT los semibloques no se mapean y
-una celda negra solida completa se lee como un bloque pesado en botones
-pequenos.
+botones verdes con barra de sombra difuminada (trama CP437, una fila abajo,
+inset dos celdas a la izquierda y una a la derecha): este GT solo mapea via
+ACS los bytes de trama y de caja simple (sonda 176-223), los semibloques
+(▄/▐) salen "?", asi que una franja solida fina no es representable; la
+celda solida completa se leia como un bloque pesado (correccion del usuario).
 
 ## Ejecutar
 

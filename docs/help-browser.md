@@ -33,9 +33,10 @@ las cabeceras de seccion muestran un resumen de sus temas.
 - El buscador no resalta el texto dentro del panel; posiciona el tema
   y la linea.
 - Sin colapsado de secciones: el arbol se muestra expandido.
-- La sombra es trama CP437 difuminada: este GT no mapea semibloques
-  (▄/▐ salen "?"), asi que la sombra solida fina de la referencia no
-  es representable; una celda negra solida se leia como bloque pesado.
+- La sombra de los botones es una barra difuminada inset (trama CP437
+  bajo la cara): este GT no mapea semibloques (▄/▐ salen "?"), asi que
+  la franja solida fina de la referencia no es representable; una celda
+  negra solida completa se leia como bloque pesado.
 
 ## Pruebas
 
