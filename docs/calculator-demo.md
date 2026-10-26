@@ -2,8 +2,10 @@
 
 Estudio visual y funcional de una calculadora de 4 operaciones con la
 estetica FoxPro-DOS: dialogo magenta con sombra, display empotrado y
-botones verdes con sombra solida compacta (una fila abajo, una columna a
-la derecha), el mismo patron que FoxButton en demos/foxpro.prg.
+botones verdes con sombra difuminada (trama CP437 de 50%, una fila abajo y
+una columna a la derecha, inset): en este GT los semibloques no se mapean y
+una celda negra solida completa se lee como un bloque pesado en botones
+pequenos.
 
 ## Ejecutar
 
