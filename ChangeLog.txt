@@ -11,6 +11,14 @@ HbIde ChangeLog
     sobre dialogos claros, amarillo sobre oscuros), igual que hace el
     radiogroup en tiempo de ejecucion. Alinea el codigo con
     docs/designer.md. Suite test_designer: 359/359
+  - Nuevo: areas celestes en dialogos claros, en lienzo y en codigo
+    generado: interior del radiogroup (relleno DsnFillArea emitido en el
+    PRG) y fondo del listbox pintados N/BG, letra aceleradora R+/BG;
+    paletas DsnClrRadioFor/DsnClrListBoxFor celestes para fondo blanco.
+    Dialogos de color conservan las paletas anteriores
+  - Corregido: el dialogo del lienzo no quedaba centrado al cargar un
+    JSON o cambiar su tamano (FitWindow conservaba la posicion anterior);
+    ahora se centra siempre en pantalla, como ya hacia el runtime
 
 2026-10-25
 ----------

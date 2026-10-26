@@ -43,8 +43,10 @@
 #define DSN_CLR_GET      "W/B,W+/B,W+/W,GR+/W"
 #define DSN_CLR_CHECKBOX "N/W,BG+/W,N/W,GR+/W"
 #define DSN_CLR_BUTTON   "GR+/G,W+/G,N/G,BG+/G"
-#define DSN_CLR_RADIO    "N/W,N/W,N/W,N+/W,N/W,GR+/W,BG+/W"
-#define DSN_CLR_LISTBOX  "N/W,N+/W,N/W,W+/G,W+/W,W+/W,GR+/W"
+#define DSN_CLR_RADIO    "N/BG,N/BG,N/BG,N+/BG,N/BG,GR+/BG,R+/BG"
+#define DSN_CLR_LISTBOX  "N/BG,N+/BG,N/BG,W+/G,N/BG,W+/BG,GR+/BG"
+#define DSN_CLR_AREA     "N/BG"   // celeste area: radiogroup interior and listbox background
+#define DSN_CLR_AREAKEY  "R+/BG"  // accelerator letter on the celeste area
 
 #define CLR_DIALOG    "W+/W"
 #define DSN_CLR_FOCUS "W+/B"   // default focused-control pair (stock palettes keep it)
@@ -1404,7 +1406,10 @@ return nil
 METHOD FitWindow() CLASS HbDesigner
 
    local aSize := DsnViewSize( ::nDlgWidth, ::nDlgHeight, MaxCol(), MaxRow() )
-   local aPos  := DsnFitRect( ::oWnd:nLeft, ::oWnd:nTop, ;
+   // the canvas dialog is always presented centered on the screen;
+   // DsnFitRect only steps in when the size does not fit
+   local aPos  := DsnFitRect( Int( ( MaxCol() - aSize[ 1 ] ) / 2 ), ;
+                              Int( ( MaxRow() - aSize[ 2 ] ) / 2 ), ;
                               aSize[ 1 ], aSize[ 2 ], MaxCol(), MaxRow() )
 
    ::lViewClamp = aSize[ 1 ] < ::nDlgWidth .or. aSize[ 2 ] < ::nDlgHeight
@@ -2462,7 +2467,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
    local cDlgText := aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ]
    local cShadow  := DsnCanvasShadowFor( oWnd:cColor )   // half-block on the dialog bg, same height as the runtime shadow
    local cColor, cText, nWidth, n, aSize, aItems, aClip, nPos
-   local cHotKey := If( aDlgPair[ 2 ] != "W", "Y+/" + aDlgPair[ 2 ], "R+/W" )
+   local cHotKey := If( aDlgPair[ 2 ] != "W", "Y+/" + aDlgPair[ 2 ], DSN_CLR_AREAKEY )
 
    // design time: & marks accelerators on checkbox/button captions, so it is
    // not drawn there; SAY captions are literal (runtime Say shows & as-is)
@@ -2522,9 +2527,19 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
          endif
 
       case oCtrl[ "type" ] == DSN_RADIO
-         cColor = If( lSelected, cSelColor, If( lDarkDlg, cDlgText, CLR_CHECKBOX ) )
+         cColor = If( lSelected, cSelColor, If( lDarkDlg, cDlgText, DSN_CLR_AREA ) )
          aSize  = DsnControlSize( oCtrl )
          aItems = DsnItems( oCtrl )
+         // celeste interior on light dialogs, like the fill the generated
+         // code paints behind the runtime radiogroup
+         if ! lDarkDlg
+            for n = 1 to aSize[ 2 ] - 2
+               if nARow + n < oWnd:nBottom .and. nARow + n <= MaxRow()
+                  hb_DispOutAt( nARow + n, nACol + 1, ;
+                     Space( Max( 0, Min( aSize[ 1 ] - 2, nMaxCol - nACol - 1 ) ) ), DSN_CLR_AREA )
+               endif
+            next
+         endif
          aClip = DsnFrameClip( nARow, nACol, aSize[ 1 ], aSize[ 2 ], oWnd:nBottom, nMaxCol )
          if aClip != NIL
             DispBox( nARow, nACol, aClip[ 1 ], aClip[ 2 ], 1, cColor )
@@ -2545,7 +2560,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
          next
 
       case oCtrl[ "type" ] == DSN_LISTBOX
-         cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", CLR_GET ) )
+         cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", DSN_CLR_AREA ) )
          aSize  = DsnControlSize( oCtrl )
          aItems = DsnItems( oCtrl )
          aClip = DsnFrameClip( nARow, nACol, aSize[ 1 ], aSize[ 2 ], oWnd:nBottom, nMaxCol )
@@ -2556,7 +2571,7 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
             cText = PadR( SubStr( aItems[ n ], 1, aSize[ 1 ] - 2 ), aSize[ 1 ] - 2 )
             if nARow + n < oWnd:nBottom .and. nARow + n <= MaxRow()
                hb_DispOutAt( nARow + n, nACol + 1, ;
-                  SubStr( cText, 1, Max( 0, nMaxCol - nACol ) ), If( n == 1, If( lDarkDlg, "W+/N", "N/W" ), cColor ) )
+                  SubStr( cText, 1, Max( 0, nMaxCol - nACol ) ), If( n == 1, If( lDarkDlg, "W+/N", "N+/BG" ), cColor ) )
             endif
          next
          // fill empty interior rows so the box keeps a uniform background,
@@ -2601,6 +2616,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
 
    local cCode := ""
    local oCtrl, n, aSize, cVar, cType, lNew
+   local lNeedFill := .F.      // a radiogroup on a light dialog needs its celeste area fill
    local hDeclared := { => }   // variable name => bound type (C/L/N)
    local hGenVars  := { => }   // control index => variable name used (model untouched)
    local cName := hb_HGetDef( hModel, "name", "MyDialog" )
@@ -2691,6 +2707,17 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                         DsnRadioButtsCode( oCtrl ) + hb_eol()
                cCode += "   AEval( aButt" + hb_ntos( oCtrl:__enumIndex() ) + ;
                         ", {| o | o:colorSpec := '" + DsnClrRadioFor( cDlgColor ) + "' } )" + hb_eol()
+               if aDlgPair[ 2 ] == "W"
+                  // celeste interior behind the group: the stock radiogroup
+                  // only paints its caption cells, so the area is filled first
+                  aSize = DsnControlSize( oCtrl )
+                  cCode += "   DsnFillArea( oDlg, oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 2 ) + ;
+                           ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 2 ) + ;
+                           ", oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + aSize[ 2 ] - 1 ) + ;
+                           ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + aSize[ 1 ] - 1 ) + ;
+                           ", 'N/BG' )" + hb_eol()
+                  lNeedFill = .T.
+               endif
             endif
          case oCtrl[ "type" ] == DSN_LISTBOX
             if ! Empty( DsnItems( oCtrl ) )
@@ -2770,8 +2797,8 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                         Len( DsnItems( oCtrl ) ) > aSize[ 2 ] - 2, " SCROLLBAR", "" ) + ;
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
                         " COLOR '" + If( aDlgPair[ 2 ] == "W", ;
-                           If( cClrFocus == DSN_CLR_FOCUS, "N/W,N/W,GR+/W", ;
-                              "N/W,N/W," + cClrFocus ), ;
+                           If( cClrFocus == DSN_CLR_FOCUS, "N/BG,N/BG,GR+/BG", ;
+                              "N/BG,N/BG," + cClrFocus ), ;
                            aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ] + "," + ;
                            aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ] + "," + ;
                            If( cClrFocus == DSN_CLR_FOCUS, "Y+/" + aDlgPair[ 2 ], ;
@@ -2791,6 +2818,10 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
    if aDlgPair[ 2 ] != "W"
       cCode += hb_eol()
       cCode += DsnBtnDisplayCode( aDlgPair[ 2 ] )
+   endif
+   if lNeedFill
+      cCode += hb_eol()
+      cCode += DsnFillAreaCode()
    endif
 
 return cCode
@@ -3352,6 +3383,27 @@ return { Max( 0, Min( nLeft, nMaxCol - nWidth - 1 ) ), ;
 // colored background: the same 3D pushbutton display hbbutton registers
 // (BtnDisplay, frozen), with the hardcoded "N/W" shadow repainted as
 // "N/<bg>" so the shadow reads dark on the dialog background.
+
+static function DsnFillAreaCode()
+
+   local cCode := ""
+
+   cCode += "// fills a dialog rect with a flat color: the celeste area behind" + hb_eol()
+   cCode += "// a radiogroup, whose stock display only paints caption cells" + hb_eol()
+   cCode += "function DsnFillArea( oDlg, nTop, nLeft, nBottom, nRight, cColor )" + hb_eol()
+   cCode += hb_eol()
+   cCode += "   local nRow" + hb_eol()
+   cCode += hb_eol()
+   cCode += "   (oDlg)" + hb_eol()
+   cCode += "   for nRow = nTop to nBottom" + hb_eol()
+   cCode += "      hb_DispOutAt( nRow, nLeft, Space( nRight - nLeft + 1 ), cColor )" + hb_eol()
+   cCode += "   next" + hb_eol()
+   cCode += hb_eol()
+   cCode += "return nil" + hb_eol()
+
+return cCode
+
+//-----------------------------------------------------------------------------------------//
 
 static function DsnBtnDisplayCode( cBg )
 
