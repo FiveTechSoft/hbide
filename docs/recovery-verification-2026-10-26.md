@@ -23,5 +23,7 @@ terminal button glyph defects remain visible. Windows remains unverified.
 
 Remaining work before claiming the entire ROADMAP recovery contract:
 comparison UI, storage retention policy, Windows replacement/lock behavior,
-long-path key limits, and a multi-journal modal E2E cancellation regression.
-No blanket "never loses work" claim is supported.
+long-path key limits.
+Multi-journal modal E2E (tests/test_recovery_multi.py) passes: recover A,
+attempt to recover B, Cancel at CheckUnsaved, save A byte-exactly, B remains
+untouched. No blanket "never loses work" claim is supported.
