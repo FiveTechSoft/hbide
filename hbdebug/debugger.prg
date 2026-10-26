@@ -209,6 +209,7 @@ CREATE CLASS HBDebugger
    VAR nWaFocus          INIT 1
    VAR nCmdWndHight      INIT 3
    VAR lWindowsAutoSized INIT .T.
+   VAR aWindowZoom       INIT {}
 
    METHOD New()
    METHOD Activate()
@@ -344,6 +345,10 @@ CREATE CLASS HBDebugger
    METHOD VarGetValue( aVar )
    METHOD VarSetValue( aVar, uValue )
 
+   METHOD WindowLayout( cMode )
+   METHOD WindowEdit( lSize )
+   METHOD WindowRepaint()
+   METHOD WindowAt( nRow, nCol )
    METHOD ResizeWindows( oWindow )
    METHOD NotSupported() INLINE __dbgAlert( "Not implemented yet!" )
 
@@ -467,6 +472,9 @@ METHOD PROCEDURE Activate() CLASS HBDebugger
       __hbide_dbgPresetBPs( {} )
    ENDIF
 
+   IF ! ::lWindowsAutoSized
+      ::WindowRepaint()
+   ENDIF
    ::HandleEvent()
 
    RETURN
@@ -1217,7 +1225,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
          ::PrevWindow()
       CASE hb_LeftEq( "MOVE", cParam1 )
          IF Empty( cParam2 )
-            ::NotSupported()
+            ::WindowEdit( .F. )
          ELSE
             oWindow := ::aWindows[ ::nCurrentWindow ]
             IF ( n := At( " ", cParam2 ) ) > 0
@@ -1227,10 +1235,11 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
                oWindow:nBottom + Val( cParam2 ) - oWindow:nTop, ;
                oWindow:nRight + n - oWindow:nLeft )
             ::lWindowsAutoSized := .F.
+            ::WindowRepaint()
          ENDIF
       CASE hb_LeftEq( "SIZE", cParam1 )
          IF Empty( cParam2 )
-            ::NotSupported()
+            ::WindowEdit( .T. )
          ELSE
             IF Val( cParam2 ) >= 2 .AND. ;
               ( n := At( " ", cParam2 ) ) > 0 .AND. Val( SubStr( cParam2, n ) ) > 0
@@ -1239,11 +1248,16 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
                                Val( cParam2 ) - 1 + oWindow:nTop, ;
                                Val( SubStr( cParam2, n ) ) - 1 + oWindow:nLeft )
                ::lWindowsAutoSized := .F.
+               ::WindowRepaint()
             ENDIF
          ENDIF
-      CASE hb_LeftEq( "ZOOM", cParam1 ) .OR. ;
-           hb_LeftEq( "ICONIZE", cParam1 ) .OR. ;
-           hb_LeftEq( "TILE", cParam1 )
+      CASE hb_LeftEq( "ZOOM", cParam1 )
+         ::WindowLayout( "ZOOM" )
+      CASE hb_LeftEq( "TILE", cParam1 )
+         ::WindowLayout( "TILE" )
+      CASE hb_LeftEq( "CASCADE", cParam1 )
+         ::WindowLayout( "CASCADE" )
+      CASE hb_LeftEq( "ICONIZE", cParam1 )
          ::NotSupported()
       OTHERWISE
          cResult := "Command error"
@@ -1479,17 +1493,17 @@ METHOD PROCEDURE HandleEvent() CLASS HBDebugger
 
                nMRow := MRow()
                nMCol := MCol()
-               FOR EACH oWnd IN ::aWindows
+               oWnd := ::WindowAt( nMRow, nMCol )
+               IF oWnd != NIL
                   IF oWnd:IsOver( nMRow, nMCol )
                      IF ! oWnd:lFocused
                         ::aWindows[ ::nCurrentWindow ]:Show( .F. )
-                        ::nCurrentWindow := oWnd:__enumIndex()
+                        ::nCurrentWindow := hb_AScan( ::aWindows, oWnd,,, .T. )
                         oWnd:Show( .T. )
                      ENDIF
                      oWnd:LDblClick( nMRow, nMCol )
-                     EXIT
                   ENDIF
-               NEXT
+               ENDIF
             ENDIF
             EXIT
 
@@ -1505,17 +1519,17 @@ METHOD PROCEDURE HandleEvent() CLASS HBDebugger
 
                nMRow := MRow()
                nMCol := MCol()
-               FOR EACH oWnd IN ::aWindows
+               oWnd := ::WindowAt( nMRow, nMCol )
+               IF oWnd != NIL
                   IF oWnd:IsOver( nMRow, nMCol )
                      IF ! oWnd:lFocused
                         ::aWindows[ ::nCurrentWindow ]:Show( .F. )
-                        ::nCurrentWindow := oWnd:__enumIndex()
+                        ::nCurrentWindow := hb_AScan( ::aWindows, oWnd,,, .T. )
                         oWnd:Show( .T. )
                      ENDIF
                      oWnd:LButtonDown( nMRow, nMCol )
-                     EXIT
                   ENDIF
-               NEXT
+               ENDIF
             ENDIF
             EXIT
 
@@ -1571,7 +1585,7 @@ METHOD PROCEDURE HandleEvent() CLASS HBDebugger
             EXIT
 
          CASE K_F2
-            ::NotSupported()
+            ::WindowLayout( "ZOOM" )
             EXIT
 
          CASE K_F4
@@ -1644,6 +1658,11 @@ METHOD PROCEDURE HideCallStack() CLASS HBDebugger
       ENDIF
       ::RemoveWindow( ::oWndStack )
       ::oWndStack := NIL
+      IF ! ::lWindowsAutoSized
+         ::WindowRepaint()
+         DispEnd()
+         RETURN
+      ENDIF
 
       ::oWndCode:Resize( ,,, ::oWndCode:nRight + 16 )
       IF ::oWndVars != NIL
@@ -1667,6 +1686,10 @@ METHOD PROCEDURE HideVars() CLASS HBDebugger
    ENDIF
 
    ::oWndVars:Hide()
+   IF ! ::lWindowsAutoSized
+      ::WindowRepaint()
+      RETURN
+   ENDIF
    IF ::oWndPnt == NIL
       nTop := 1
    ELSE
@@ -2064,6 +2087,10 @@ METHOD PROCEDURE NextWindow() CLASS HBDebugger
       oWnd:Show( .T. )
    ENDIF
 
+   IF ! ::lWindowsAutoSized
+      ::WindowRepaint()
+   ENDIF
+
    RETURN
 
 
@@ -2249,6 +2276,10 @@ METHOD PROCEDURE PrevWindow() CLASS HBDebugger
       oWnd:Show( .T. )
    ENDIF
 
+   IF ! ::lWindowsAutoSized
+      ::WindowRepaint()
+   ENDIF
+
    RETURN
 
 
@@ -2315,6 +2346,12 @@ METHOD ResizeWindows( oWindow ) CLASS HBDebugger
    CASE oWindow == ::oWndPnt
       oWindow2 := ::oWndVars
    ENDCASE
+
+   IF ! ::lWindowsAutoSized
+      oWindow:Show()
+      ::WindowRepaint()
+      RETURN Self
+   ENDIF
 
    DispBegin()
    IF oWindow2 == NIL
@@ -2678,14 +2715,14 @@ METHOD PROCEDURE ShowCallStack() CLASS HBDebugger
 
       DispBegin()
       // Resize code window
-      ::oWndCode:Resize( ,,, ::oWndCode:nRight - 16 )
-      // Resize vars window
-      IF ::oWndVars != NIL
-         ::oWndVars:Resize( ,,, ::oWndVars:nRight - 16 )
-      ENDIF
-      // Resize watchpoints window
-      IF ::oWndPnt != NIL
-         ::oWndPnt:Resize( ,,, ::oWndPnt:nRight - 16 )
+      IF ::lWindowsAutoSized
+         ::oWndCode:Resize( ,,, ::oWndCode:nRight - 16 )
+         IF ::oWndVars != NIL
+            ::oWndVars:Resize( ,,, ::oWndVars:nRight - 16 )
+         ENDIF
+         IF ::oWndPnt != NIL
+            ::oWndPnt:Resize( ,,, ::oWndPnt:nRight - 16 )
+         ENDIF
       ENDIF
       DispEnd()
 
@@ -2865,6 +2902,8 @@ METHOD PROCEDURE ShowVars() CLASS HBDebugger
 
       nBottom := ::oWndVars:nBottom
       DO CASE
+      CASE ! ::lWindowsAutoSized
+         // Keep the user layout through stepping and variable refreshes.
       CASE Len( ::aVars ) == 0
          IF ::oWndVars:nBottom - ::oWndVars:nTop > 1
             nBottom := nTop + 1
@@ -3332,6 +3371,10 @@ METHOD WatchpointInspect( nPos ) CLASS HBDebugger
 METHOD PROCEDURE WatchpointsHide() CLASS HBDebugger
 
    ::oWndPnt:Hide()
+   IF ! ::lWindowsAutoSized
+      ::WindowRepaint()
+      RETURN
+   ENDIF
    ::oWndCode:nTop := iif( ::oWndVars != NIL .AND. ::oWndVars:lVisible, ::oWndVars:nBottom + 1, 1 )
    ::oBrwText:Resize( ::oWndCode:nTop + 1 )
    IF ::aWindows[ ::nCurrentWindow ] == ::oWndPnt
@@ -3432,6 +3475,8 @@ METHOD PROCEDURE WatchpointsShow() CLASS HBDebugger
       ENDIF
       DispBegin()
       DO CASE
+      CASE ! ::lWindowsAutoSized
+         ::oBrwPnt:RefreshAll():ForceStable()
       CASE Len( ::aWatch ) > ::oWndPnt:nBottom - ::oWndPnt:nTop - 1
          // Resize( top, left, bottom, right )
          ::oWndPnt:Resize( ,, ::oWndPnt:nTop + Min( Len( ::aWatch ) + 1, 4 ) )
@@ -3832,3 +3877,159 @@ FUNCTION __dbgValToExp( uVal )
    ENDSWITCH
 
    RETURN "U"
+
+// Borland-style layouts, implemented with hbide's Harbour window primitives.
+// Keep menu/status rows untouched and never discard a hidden panel's state.
+FUNCTION HBIDE_DbgRects( nCount, nRows, nCols, lCascade )
+   LOCAL aRects := {}, i, nColsGrid, nRowsGrid, nR, nC, nOffset
+   IF nCount < 1 .OR. nRows < 5 .OR. nCols < 20
+      RETURN aRects
+   ENDIF
+   IF lCascade
+      FOR i := 1 TO nCount
+         nOffset := ( i - 1 ) % Max( 1, Min( nRows - 4, Int( ( nCols - 20 ) / 2 ) + 1 ) )
+         AAdd( aRects, { 1 + nOffset, nOffset * 2, nRows - 2, nCols - 1 } )
+      NEXT
+   ELSE
+      nColsGrid := Min( nCount, Max( 1, Int( Sqrt( nCount ) + 0.5 ) ) )
+      nRowsGrid := Int( ( nCount + nColsGrid - 1 ) / nColsGrid )
+      IF Int( ( nRows - 2 ) / nRowsGrid ) < 3 .OR. Int( nCols / nColsGrid ) < 12
+         RETURN aRects
+      ENDIF
+      FOR i := 1 TO nCount
+         nR := Int( ( i - 1 ) / nColsGrid )
+         nC := ( i - 1 ) % nColsGrid
+         // Last row fills all remaining width, no empty desktop cell.
+         IF nR == nRowsGrid - 1
+            AAdd( aRects, { 1 + Int( nR * ( nRows - 2 ) / nRowsGrid ), ;
+               Int( nC * nCols / ( nCount - nR * nColsGrid ) ), nRows - 2, ;
+               Int( ( nC + 1 ) * nCols / ( nCount - nR * nColsGrid ) ) - 1 } )
+         ELSE
+            AAdd( aRects, { 1 + Int( nR * ( nRows - 2 ) / nRowsGrid ), ;
+               Int( nC * nCols / nColsGrid ), ;
+               Int( ( nR + 1 ) * ( nRows - 2 ) / nRowsGrid ), ;
+               Int( ( nC + 1 ) * nCols / nColsGrid ) - 1 } )
+         ENDIF
+      NEXT
+   ENDIF
+   RETURN aRects
+
+METHOD WindowRepaint() CLASS HBDebugger
+   LOCAL oWnd, i, cCommand
+   DispBegin()
+   hb_Scroll( 1, 0, ::nMaxRow - 1, ::nMaxCol,,, __dbgColors()[ 1 ] )
+   FOR i := 1 TO Len( ::aWindows )
+      oWnd := ::aWindows[ i ]
+      IF oWnd:lVisible
+         IF oWnd:Browser != NIL
+            oWnd:Browser:Resize( oWnd:nTop + 1, oWnd:nLeft + 1, oWnd:nBottom - 1, oWnd:nRight - 1 )
+         ENDIF
+         IF oWnd == ::oWndCommand .AND. ::oGetCommand != NIL
+            cCommand := ::oGetCommand:getValue()
+            ::oGetCommand := HBDbInput():new( oWnd:nBottom - 1, oWnd:nLeft + 3, ;
+               oWnd:nWidth() - 4, cCommand, __dbgColors()[ 2 ], Max( 256, oWnd:nWidth() - 4 ) )
+            ::oGetCommand:setValue( cCommand )
+         ENDIF
+         oWnd:Show( i == ::nCurrentWindow )
+      ENDIF
+   NEXT
+   // Focused window is drawn last in overlapping layouts.
+   IF Len( ::aWindows ) >= ::nCurrentWindow
+      oWnd := ::aWindows[ ::nCurrentWindow ]
+      IF oWnd:lVisible
+         oWnd:Show( .T. )
+      ENDIF
+   ENDIF
+   ::BarDisplay()
+   DispEnd()
+   RETURN Self
+
+METHOD WindowLayout( cMode ) CLASS HBDebugger
+   LOCAL aVisible := {}, aRects, oWnd, aRect, i, aSave
+   FOR EACH oWnd IN ::aWindows
+      IF oWnd:lVisible
+         AAdd( aVisible, oWnd )
+      ENDIF
+   NEXT
+   IF Empty( aVisible )
+      RETURN Self
+   ENDIF
+   IF ::oWndStack != NIL
+      ::oWndStack:Browser := ::oBrwStack
+   ENDIF
+   IF cMode == "ZOOM"
+      oWnd := ::aWindows[ ::nCurrentWindow ]
+      IF ! oWnd:lVisible
+         RETURN Self
+      ENDIF
+      IF ! Empty( ::aWindowZoom ) .AND. ::aWindowZoom[ 1, 1 ] == oWnd
+         FOR EACH aSave IN ::aWindowZoom
+            aSave[ 1 ]:Resize( aSave[ 2 ], aSave[ 3 ], aSave[ 4 ], aSave[ 5 ] )
+         NEXT
+         ::aWindowZoom := {}
+      ELSE
+         ::aWindowZoom := {}
+         AAdd( ::aWindowZoom, { oWnd, oWnd:nTop, oWnd:nLeft, oWnd:nBottom, oWnd:nRight } )
+         oWnd:Resize( 1, 0, ::nMaxRow - 1, ::nMaxCol )
+      ENDIF
+   ELSE
+      aRects := HBIDE_DbgRects( Len( aVisible ), ::nMaxRow + 1, ::nMaxCol + 1, cMode == "CASCADE" )
+      IF Empty( aRects )
+         __dbgAlert( "Screen too small for this layout" )
+         RETURN Self
+      ENDIF
+      ::aWindowZoom := {}
+      FOR i := 1 TO Len( aVisible )
+         aRect := aRects[ i ]
+         aVisible[ i ]:Resize( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ] )
+      NEXT
+   ENDIF
+   ::lWindowsAutoSized := .F.
+   ::WindowRepaint()
+   RETURN Self
+
+METHOD WindowEdit( lSize ) CLASS HBDebugger
+   LOCAL oWnd := ::aWindows[ ::nCurrentWindow ], aOld, nKey, nDR, nDC
+   aOld := { oWnd:nTop, oWnd:nLeft, oWnd:nBottom, oWnd:nRight }
+   DO WHILE .T.
+      hb_DispOutAt( ::nMaxRow, 0, PadR( iif( lSize, "Size", "Move" ) + ;
+         ": arrows  Enter accept  Esc cancel", ::nMaxCol + 1 ), __dbgColors()[ 8 ] )
+      nKey := __dbgInkey()
+      IF nKey == K_ENTER .OR. nKey == K_ESC
+         EXIT
+      ENDIF
+      nDR := iif( nKey == K_UP, -1, iif( nKey == K_DOWN, 1, 0 ) )
+      nDC := iif( nKey == K_LEFT, -1, iif( nKey == K_RIGHT, 1, 0 ) )
+      IF lSize
+         oWnd:Resize( ,, Max( oWnd:nTop + 3, Min( ::nMaxRow - 1, oWnd:nBottom + nDR ) ), ;
+            Max( oWnd:nLeft + 11, Min( ::nMaxCol, oWnd:nRight + nDC ) ) )
+      ELSE
+         nDR := Max( 1 - oWnd:nTop, Min( ::nMaxRow - 1 - oWnd:nBottom, nDR ) )
+         nDC := Max( -oWnd:nLeft, Min( ::nMaxCol - oWnd:nRight, nDC ) )
+         oWnd:Resize( oWnd:nTop + nDR, oWnd:nLeft + nDC, ;
+            oWnd:nBottom + nDR, oWnd:nRight + nDC )
+      ENDIF
+      ::WindowRepaint()
+   ENDDO
+   IF nKey == K_ESC
+      oWnd:Resize( aOld[ 1 ], aOld[ 2 ], aOld[ 3 ], aOld[ 4 ] )
+   ELSE
+      ::aWindowZoom := {}
+      ::lWindowsAutoSized := .F.
+   ENDIF
+   ::WindowRepaint()
+   RETURN Self
+
+METHOD WindowAt( nRow, nCol ) CLASS HBDebugger
+   LOCAL oWnd, i
+   oWnd := ::aWindows[ ::nCurrentWindow ]
+   IF oWnd:lVisible .AND. oWnd:IsOver( nRow, nCol )
+      RETURN oWnd
+   ENDIF
+   FOR i := Len( ::aWindows ) TO 1 STEP -1
+      oWnd := ::aWindows[ i ]
+      IF oWnd:lVisible .AND. oWnd:IsOver( nRow, nCol )
+         RETURN oWnd
+      ENDIF
+   NEXT
+   RETURN NIL

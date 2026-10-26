@@ -194,12 +194,13 @@ FUNCTION __dbgBuildMenu( oDebugger )  // Builds the debugger pulldown menu
       MENU
          MENUITEM " ~Next      Tab "        ACTION oDebugger:NextWindow()
          MENUITEM " ~Prev   Sh-Tab"         ACTION oDebugger:PrevWindow()
-         MENUITEM " ~Move"                  ACTION oDebugger:NotSupported()
-         MENUITEM " ~Size"                  ACTION oDebugger:NotSupported()
-         MENUITEM " ~Zoom       F2"         ACTION oDebugger:NotSupported()
-         MENUITEM " ~Iconize"               ACTION oDebugger:NotSupported()
+         MENUITEM " ~Move"                  ACTION oDebugger:WindowEdit( .F. )
+         MENUITEM " ~Size"                  ACTION oDebugger:WindowEdit( .T. )
+         MENUITEM " ~Zoom       F2"         ACTION oDebugger:WindowLayout( "ZOOM" )
+         // Iconize is deliberately not advertised until it is implemented.
          SEPARATOR
-         MENUITEM " ~Tile"                  ACTION oDebugger:NotSupported()
+         MENUITEM " ~Tile"                  ACTION oDebugger:WindowLayout( "TILE" )
+         MENUITEM " ~Cascade"               ACTION oDebugger:WindowLayout( "CASCADE" )
       ENDMENU
 
       MENUITEM " ~Help "
