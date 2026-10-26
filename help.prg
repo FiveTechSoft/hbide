@@ -119,3 +119,354 @@ function HBIDEHelpTopics()
       "The same information is in Help > About..." } )
 
 return a
+
+//-----------------------------------------------------------------------------------------//
+// Tree-organized help browser: index on the left, reading pane on the right,
+// TurboVision-style cyan panels and green shadowed buttons.
+// Contents keeps every existing topic; browsing changes no application state.
+
+// Section spec: every topic exactly once, in reading order.
+FUNCTION HBIDEHelpSections()
+RETURN { { "1. Basics", { "Welcome to hbide", "File menu", "Edit menu", ;
+         "Find, Replace, Goto Line", "Keyboard shortcuts", "External file changes" } }, ;
+       { "2. Build and run", { "Run menu", "Compiler flags", "Harbour example" } }, ;
+       { "3. Advanced", { "Debugger", "Debugger windows", "Dialog designer", ;
+         "Options menu", "Display settings" } }, ;
+       { "4. Help and about", { "Using help", "About hbide" } } }
+
+// Flat row list for the index pane: { "S", nSection, cTitle } or { "T", nTopic, cTitle }
+FUNCTION HBIDEHelpTree( aTopics )
+   LOCAL aRows := {}, aSec, cTitle, nTopic, nSec := 0
+   FOR EACH aSec IN HBIDEHelpSections()
+      nSec++
+      AAdd( aRows, { "S", nSec, aSec[ 1 ] } )
+      FOR EACH cTitle IN aSec[ 2 ]
+         nTopic := AScan( aTopics, { | t | t[ 2 ] == cTitle } )
+         IF nTopic > 0
+            AAdd( aRows, { "T", nTopic, cTitle } )
+         ENDIF
+      NEXT
+   NEXT
+RETURN aRows
+
+// Section overview shown in the reading pane when a header row is selected.
+FUNCTION HBIDEHelpSectionText( nSection, aTopics )
+   LOCAL aSec := HBIDEHelpSections()[ nSection ]
+   LOCAL c := aSec[ 1 ] + hb_eol() + hb_eol(), cTitle, nTopic
+   FOR EACH cTitle IN aSec[ 2 ]
+      nTopic := AScan( aTopics, { | t | t[ 2 ] == cTitle } )
+      IF nTopic > 0
+         c += "- " + cTitle + ": " + hb_ATokens( StrTran( aTopics[ nTopic, 3 ], Chr(13), "" ), Chr(10), .T. )[ 1 ] + hb_eol()
+      ENDIF
+   NEXT
+   c += hb_eol() + "Enter opens the highlighted entry; Down moves to its topics."
+RETURN c
+
+// All matches of cQuery (already uppercased) over titles and wrapped bodies.
+// Each match: { nTopic, nLine } with nLine over HBIDEHelpLines( body, nW ).
+FUNCTION HBIDEHelpMatches( aTopics, nW, cQuery )
+   LOCAL a := {}, nT, nL, aLines
+   IF Empty( cQuery )
+      RETURN a
+   ENDIF
+   FOR nT := 1 TO Len( aTopics )
+      IF cQuery $ Upper( aTopics[ nT, 2 ] )
+         AAdd( a, { nT, 1 } )
+      ENDIF
+      aLines := HBIDEHelpLines( aTopics[ nT, 3 ], nW )
+      FOR nL := 1 TO Len( aLines )
+         IF cQuery $ Upper( aLines[ nL ] )
+            AAdd( a, { nT, nL } )
+         ENDIF
+      NEXT
+   NEXT
+RETURN a
+
+// Full help as one Markdown document, in tree order. Returns .T. on success.
+FUNCTION HBIDEHelpExport( aTopics, cFile )
+   LOCAL c := "# hbide - Help" + hb_eol() + hb_eol(), aRow
+   FOR EACH aRow IN HBIDEHelpTree( aTopics )
+      IF aRow[ 1 ] == "S"
+         c += "## " + aRow[ 3 ] + hb_eol() + hb_eol()
+      ELSE
+         c += "### " + aRow[ 3 ] + hb_eol() + hb_eol() + aTopics[ aRow[ 2 ], 3 ] + hb_eol() + hb_eol()
+      ENDIF
+   NEXT
+RETURN hb_MemoWrit( cFile, c )
+
+// Modal geometry, all coordinates absolute.
+FUNCTION HBHelpGeo()
+   LOCAL g := { "t" => 1, "l" => 0, "b" => MaxRow() - 1, "r" => MaxCol() }
+   g[ "lbT" ] := g[ "t" ] + 3
+   g[ "lbB" ] := g[ "b" ] - 5
+   g[ "lbL" ] := g[ "l" ] + 1
+   g[ "lbR" ] := g[ "l" ] + 29
+   g[ "rbT" ] := g[ "t" ] + 3
+   g[ "rbB" ] := g[ "b" ] - 5
+   g[ "rbL" ] := g[ "l" ] + 31
+   g[ "rbR" ] := g[ "r" ] - 1
+   g[ "txtW" ] := g[ "rbR" ] - g[ "rbL" ] - 3
+   g[ "txtH" ] := g[ "rbB" ] - g[ "rbT" ] - 2
+   g[ "idxH" ] := g[ "lbB" ] - g[ "lbT" ] - 1
+   g[ "msgRow" ] := g[ "b" ] - 3
+   g[ "btnRow" ] := g[ "b" ] - 2
+   g[ "btnCaps" ] := { "Search", "Next", "Export .md", "Close" }
+RETURN g
+
+FUNCTION HBHelpBtnCols( g )
+   LOCAL aCols := {}, nX := g[ "l" ] + 4, cCap
+   FOR EACH cCap IN g[ "btnCaps" ]
+      AAdd( aCols, { nX, nX + Len( cCap ) + 5 } )
+      nX += Len( cCap ) + 7
+   NEXT
+RETURN aCols
+
+// Title and wrapped lines of the selected entry (section overview or topic).
+FUNCTION HBHelpText( h, aTopics, nW )
+   LOCAL aRow := h[ "rows" ][ h[ "row" ] ]
+   IF aRow[ 1 ] == "S"
+      RETURN { aRow[ 3 ], HBIDEHelpLines( HBIDEHelpSectionText( aRow[ 2 ], aTopics ), nW ) }
+   ENDIF
+RETURN { aTopics[ aRow[ 2 ], 2 ], HBIDEHelpLines( aTopics[ aRow[ 2 ], 3 ], nW ) }
+
+// Row index of a topic inside the flat row list (0 if absent).
+FUNCTION HBHelpRowOfTopic( h, nTopic )
+   LOCAL n
+   FOR n := 1 TO Len( h[ "rows" ] )
+      IF h[ "rows" ][ n ][ 1 ] == "T" .AND. h[ "rows" ][ n ][ 2 ] == nTopic
+         RETURN n
+      ENDIF
+   NEXT
+RETURN 0
+
+FUNCTION HBHelpJump( h, nMatch )
+   LOCAL aM := h[ "matches" ][ nMatch ]
+   LOCAL nRow := HBHelpRowOfTopic( h, aM[ 1 ] )
+   IF nRow > 0
+      h[ "row" ] := nRow
+      h[ "top" ] := aM[ 2 ]
+   ENDIF
+   h[ "midx" ] := nMatch
+   h[ "msg" ] := "Match " + hb_ntos( nMatch ) + "/" + hb_ntos( Len( h[ "matches" ] ) ) + ;
+                 " for '" + h[ "query" ] + "'"
+RETURN NIL
+
+FUNCTION HBHelpNext( h, aTopics, g )
+   IF Empty( h[ "query" ] )
+      h[ "msg" ] := "No search yet: F7 or the Search button first."
+   ELSE
+      IF Empty( h[ "matches" ] )
+         h[ "matches" ] := HBIDEHelpMatches( aTopics, g[ "txtW" ], Upper( h[ "query" ] ) )
+      ENDIF
+      IF Empty( h[ "matches" ] )
+         h[ "msg" ] := "No match for '" + h[ "query" ] + "'."
+      ELSE
+         HBHelpJump( h, iif( h[ "midx" ] >= Len( h[ "matches" ] ), 1, h[ "midx" ] + 1 ) )
+      ENDIF
+   ENDIF
+RETURN NIL
+
+FUNCTION HBHelpSearchCommit( h, aTopics, g )
+   h[ "mode" ] := ""
+   IF Empty( h[ "query" ] )
+      h[ "matches" ] := {}; h[ "midx" ] := 0
+      h[ "msg" ] := "Empty search."
+   ELSE
+      h[ "matches" ] := HBIDEHelpMatches( aTopics, g[ "txtW" ], Upper( h[ "query" ] ) )
+      IF Empty( h[ "matches" ] )
+         h[ "midx" ] := 0
+         h[ "msg" ] := "No match for '" + h[ "query" ] + "'."
+      ELSE
+         HBHelpJump( h, 1 )
+      ENDIF
+   ENDIF
+RETURN NIL
+
+FUNCTION HBHelpButton( h, aTopics, g, nBtn )
+   DO CASE
+   CASE nBtn == 1
+      h[ "mode" ] := "search"
+   CASE nBtn == 2
+      HBHelpNext( h, aTopics, g )
+   CASE nBtn == 3
+      IF HBIDEHelpExport( aTopics, "hbide-help.md" )
+         h[ "msg" ] := "Wrote hbide-help.md (" + hb_ntos( Len( h[ "rows" ] ) ) + " entries)."
+      ELSE
+         h[ "msg" ] := "Could not write hbide-help.md in this directory."
+      ENDIF
+   CASE nBtn == 4
+      h[ "done" ] := .T.
+   ENDCASE
+RETURN NIL
+
+FUNCTION HBHelpPaint( h, aTopics, g )
+   LOCAL n, aRow, cLine, aTxt, nMaxTop, aCols, cCap
+   DispBegin()
+   hb_Scroll( g[ "t" ], g[ "l" ], g[ "b" ], g[ "r" ], , , "N/BG" )
+   hb_DispBox( g[ "t" ], g[ "l" ], g[ "b" ], g[ "r" ], hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "W+/BG" )
+   hb_DispOutAt( g[ "t" ], g[ "l" ] + 2, " hbide - Help ", "W+/BG" )
+   hb_DispOutAt( g[ "t" ] + 1, g[ "l" ] + 2, "Tab pane  F7 search  F3 next match  Esc close", "N/BG" )
+   // index pane
+   hb_DispBox( g[ "lbT" ], g[ "lbL" ], g[ "lbB" ], g[ "lbR" ], hb_UTF8ToStrBox( "┌─┐│┘─└│" ), ;
+               iif( h[ "pane" ] == "index", "W+/BG", "N/BG" ) )
+   hb_DispOutAt( g[ "lbT" ], g[ "lbL" ] + 2, " Index ", iif( h[ "pane" ] == "index", "W+/BG", "N/BG" ) )
+   FOR n := 1 TO g[ "idxH" ]
+      IF h[ "itop" ] + n - 1 <= Len( h[ "rows" ] )
+         aRow := h[ "rows" ][ h[ "itop" ] + n - 1 ]
+         cLine := iif( aRow[ 1 ] == "S", aRow[ 3 ], "  " + aRow[ 3 ] )
+         IF h[ "itop" ] + n - 1 == h[ "row" ]
+            hb_DispOutAt( g[ "lbT" ] + n, g[ "lbL" ] + 1, PadR( cLine, g[ "lbR" ] - g[ "lbL" ] - 1 ), "N/W" )
+         ELSE
+            hb_DispOutAt( g[ "lbT" ] + n, g[ "lbL" ] + 1, PadR( cLine, g[ "lbR" ] - g[ "lbL" ] - 1 ), ;
+                          iif( aRow[ 1 ] == "S", "W+/BG", "N/BG" ) )
+         ENDIF
+      ELSE
+         hb_DispOutAt( g[ "lbT" ] + n, g[ "lbL" ] + 1, Space( g[ "lbR" ] - g[ "lbL" ] - 1 ), "N/BG" )
+      ENDIF
+   NEXT
+   // reading pane
+   aTxt := HBHelpText( h, aTopics, g[ "txtW" ] )
+   nMaxTop := Max( 1, Len( aTxt[ 2 ] ) - g[ "txtH" ] + 1 )
+   h[ "top" ] := Min( nMaxTop, Max( 1, h[ "top" ] ) )
+   hb_DispBox( g[ "rbT" ], g[ "rbL" ], g[ "rbB" ], g[ "rbR" ], hb_UTF8ToStrBox( "┌─┐│┘─└│" ), ;
+               iif( h[ "pane" ] == "text", "W+/BG", "N/BG" ) )
+   hb_DispOutAt( g[ "rbT" ], g[ "rbL" ] + 2, " " + Left( aTxt[ 1 ], g[ "txtW" ] ) + " ", ;
+                 iif( h[ "pane" ] == "text", "W+/BG", "N/BG" ) )
+   FOR n := 1 TO g[ "txtH" ]
+      cLine := iif( h[ "top" ] + n - 1 <= Len( aTxt[ 2 ] ), aTxt[ 2 ][ h[ "top" ] + n - 1 ], "" )
+      hb_DispOutAt( g[ "rbT" ] + n, g[ "rbL" ] + 2, PadR( cLine, g[ "txtW" ] ), "N/BG" )
+   NEXT
+   hb_DispOutAt( g[ "rbB" ], g[ "rbL" ] + 2, " " + hb_ntos( h[ "top" ] ) + "/" + hb_ntos( nMaxTop ) + " ", "N/BG" )
+   // search / message line
+   IF h[ "mode" ] == "search"
+      hb_DispOutAt( g[ "msgRow" ], g[ "l" ] + 2, PadR( "Search: " + h[ "query" ] + "_", g[ "r" ] - 4 ), "Y+/BG" )
+   ELSE
+      hb_DispOutAt( g[ "msgRow" ], g[ "l" ] + 2, PadR( h[ "msg" ], g[ "r" ] - 4 ), "Y+/BG" )
+   ENDIF
+   // green shadowed buttons
+   aCols := HBHelpBtnCols( g )
+   FOR n := 1 TO Len( g[ "btnCaps" ] )
+      cCap := "< " + g[ "btnCaps" ][ n ] + " >"
+      hb_DispOutAt( g[ "btnRow" ] + 1, aCols[ n ][ 1 ] + 1, Space( Len( cCap ) ), "N/N" )
+      hb_DispOutAt( g[ "btnRow" ], aCols[ n ][ 1 ] + Len( cCap ), " ", "N/N" )
+      hb_DispOutAt( g[ "btnRow" ], aCols[ n ][ 1 ], cCap, ;
+                    iif( h[ "pane" ] == "buttons" .AND. h[ "btn" ] == n, "W+/G", "W/G" ) )
+   NEXT
+   DispEnd()
+RETURN NIL
+
+FUNCTION HBHelpInput( h, aTopics, g, nKey )
+   LOCAL aCols, n
+   IF h[ "mode" ] == "search"
+      DO CASE
+      CASE nKey == K_ESC
+         h[ "mode" ] := ""
+         h[ "msg" ] := "Search cancelled."
+      CASE nKey == K_ENTER
+         HBHelpSearchCommit( h, aTopics, g )
+      CASE nKey == K_BS
+         h[ "query" ] := Left( h[ "query" ], Max( 0, Len( h[ "query" ] ) - 1 ) )
+      CASE nKey >= 32 .AND. nKey <= 126 .AND. Len( h[ "query" ] ) < 30
+         h[ "query" ] += Chr( nKey )
+      ENDCASE
+      RETURN NIL
+   ENDIF
+   DO CASE
+   CASE nKey == K_ESC
+      h[ "done" ] := .T.
+   CASE nKey == K_TAB
+      h[ "pane" ] := iif( h[ "pane" ] == "index", "text", iif( h[ "pane" ] == "text", "buttons", "index" ) )
+   CASE nKey == K_SH_TAB
+      h[ "pane" ] := iif( h[ "pane" ] == "index", "buttons", iif( h[ "pane" ] == "text", "index", "text" ) )
+   CASE nKey == K_F7
+      h[ "mode" ] := "search"
+   CASE nKey == K_F3
+      HBHelpNext( h, aTopics, g )
+   CASE nKey == K_MWFORWARD
+      h[ "top" ]--
+   CASE nKey == K_MWBACKWARD
+      h[ "top" ]++
+   CASE nKey == K_LBUTTONDOWN
+      IF MRow() > g[ "lbT" ] .AND. MRow() <= g[ "lbT" ] + g[ "idxH" ] .AND. MCol() >= g[ "lbL" ] .AND. MCol() <= g[ "lbR" ]
+         IF h[ "itop" ] + MRow() - g[ "lbT" ] - 1 + 1 <= Len( h[ "rows" ] )
+            h[ "row" ] := Min( Len( h[ "rows" ] ), h[ "itop" ] + MRow() - g[ "lbT" ] )
+            h[ "top" ] := 1
+         ENDIF
+         h[ "pane" ] := "index"
+      ELSEIF MRow() > g[ "rbT" ] .AND. MRow() < g[ "rbB" ] .AND. MCol() >= g[ "rbL" ] .AND. MCol() <= g[ "rbR" ]
+         h[ "pane" ] := "text"
+      ELSEIF MRow() == g[ "btnRow" ]
+         aCols := HBHelpBtnCols( g )
+         FOR n := 1 TO Len( aCols )
+            IF MCol() >= aCols[ n ][ 1 ] .AND. MCol() < aCols[ n ][ 2 ]
+               h[ "pane" ] := "buttons"; h[ "btn" ] := n
+               HBHelpButton( h, aTopics, g, n )
+            ENDIF
+         NEXT
+      ENDIF
+   CASE h[ "pane" ] == "index"
+      DO CASE
+      CASE nKey == K_UP    ; h[ "row" ]--
+      CASE nKey == K_DOWN  ; h[ "row" ]++
+      CASE nKey == K_HOME  ; h[ "row" ] := 1
+      CASE nKey == K_END   ; h[ "row" ] := Len( h[ "rows" ] )
+      CASE nKey == K_PGUP  ; h[ "row" ] -= g[ "idxH" ]
+      CASE nKey == K_PGDN  ; h[ "row" ] += g[ "idxH" ]
+      CASE nKey == K_ENTER .OR. nKey == K_RIGHT
+         h[ "pane" ] := "text"
+      ENDCASE
+      h[ "row" ] := Min( Len( h[ "rows" ] ), Max( 1, h[ "row" ] ) )
+      IF nKey == K_UP .OR. nKey == K_DOWN .OR. nKey == K_HOME .OR. nKey == K_END .OR. ;
+         nKey == K_PGUP .OR. nKey == K_PGDN
+         h[ "top" ] := 1
+      ENDIF
+   CASE h[ "pane" ] == "text"
+      DO CASE
+      CASE nKey == K_UP    ; h[ "top" ]--
+      CASE nKey == K_DOWN  ; h[ "top" ]++
+      CASE nKey == K_PGUP  ; h[ "top" ] -= g[ "txtH" ]
+      CASE nKey == K_PGDN  ; h[ "top" ] += g[ "txtH" ]
+      CASE nKey == K_HOME  ; h[ "top" ] := 1
+      CASE nKey == K_END   ; h[ "top" ] := 99999
+      CASE nKey == K_LEFT  ; h[ "row" ] := Max( 1, h[ "row" ] - 1 ) ; h[ "top" ] := 1
+      CASE nKey == K_RIGHT ; h[ "row" ] := Min( Len( h[ "rows" ] ), h[ "row" ] + 1 ) ; h[ "top" ] := 1
+      CASE nKey == K_ENTER ; h[ "pane" ] := "index"
+      ENDCASE
+   CASE h[ "pane" ] == "buttons"
+      DO CASE
+      CASE nKey == K_LEFT  ; h[ "btn" ] := iif( h[ "btn" ] > 1, h[ "btn" ] - 1, Len( g[ "btnCaps" ] ) )
+      CASE nKey == K_RIGHT ; h[ "btn" ] := h[ "btn" ] % Len( g[ "btnCaps" ] ) + 1
+      CASE nKey == K_ENTER ; HBHelpButton( h, aTopics, g, h[ "btn" ] )
+      CASE nKey == K_UP    ; h[ "pane" ] := "index"
+      ENDCASE
+   ENDCASE
+   // keep index cursor visible
+   IF h[ "row" ] < h[ "itop" ]
+      h[ "itop" ] := h[ "row" ]
+   ELSEIF h[ "row" ] > h[ "itop" ] + g[ "idxH" ] - 1
+      h[ "itop" ] := h[ "row" ] - g[ "idxH" ] + 1
+   ENDIF
+   h[ "itop" ] := Min( Max( 1, Len( h[ "rows" ] ) - g[ "idxH" ] + 1 ), Max( 1, h[ "itop" ] ) )
+RETURN NIL
+
+// The browser itself: tree index left, reading pane right, buttons below.
+// nStartTopic is a 1-based index into aTopics (0 = start at the tree root).
+FUNCTION HBIDEHelpBrowser( aTopics, nStartTopic )
+   LOCAL g := HBHelpGeo()
+   LOCAL h := { "rows" => HBIDEHelpTree( aTopics ), "row" => 1, "itop" => 1, ;
+                "pane" => "index", "top" => 1, "btn" => 1, "query" => "", ;
+                "matches" => {}, "midx" => 0, "msg" => "", "mode" => "", ;
+                "done" => .F. }
+   LOCAL cSaved := __dbgSaveScreen( 0, 0, MaxRow(), MaxCol() ), nRow
+   IF nStartTopic > 0
+      nRow := HBHelpRowOfTopic( h, nStartTopic )
+      IF nRow > 0
+         h[ "row" ] := nRow
+      ENDIF
+   ENDIF
+   DO WHILE ! h[ "done" ]
+      HBHelpPaint( h, aTopics, g )
+      HBHelpInput( h, aTopics, g, hb_keyStd( Inkey( 0, INKEY_ALL + HB_INKEY_EXT ) ) )
+   ENDDO
+   __dbgRestScreen( 0, 0, MaxRow(), MaxCol(), cSaved )
+RETURN .T.

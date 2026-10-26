@@ -1798,11 +1798,7 @@ return AScan( aTopics, { | t | t[ 2 ] == oListBox:buffer } )
 
 METHOD HelpContents() CLASS HbIde
 
-   local aTopics := HBIDEHelpTopics(), nPick
-
-   while ( nPick := ::HelpPick( aTopics, "Help - Contents" ) ) > 0
-      ::HelpView( aTopics[ nPick, 2 ], aTopics[ nPick, 3 ] )
-   end
+   HBIDEHelpBrowser( HBIDEHelpTopics(), 0 )
 
 return nil
 
