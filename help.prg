@@ -477,3 +477,25 @@ FUNCTION HBIDEHelpBrowser( aTopics, nStartTopic )
    ENDDO
    __dbgRestScreen( 0, 0, MaxRow(), MaxCol(), cSaved )
 RETURN .T.
+
+FUNCTION HBIDEHelpLines( cText, nWidth )
+   LOCAL a := {}, cLine, aSource := hb_ATokens( StrTran( cText, Chr(13), "" ), Chr(10), .T. )
+   LOCAL n, nCut
+   FOR EACH cLine IN aSource
+      DO WHILE Len( cLine ) > nWidth
+         nCut := nWidth
+         FOR n := nWidth TO Max( 1, Int( nWidth / 2 ) ) STEP -1
+            IF SubStr( cLine, n, 1 ) == " "
+               nCut := n
+               EXIT
+            ENDIF
+         NEXT
+         AAdd( a, RTrim( Left( cLine, nCut ) ) )
+         cLine := LTrim( SubStr( cLine, nCut + 1 ) )
+      ENDDO
+      AAdd( a, cLine )
+   NEXT
+   IF Empty( a )
+      AAdd( a, "" )
+   ENDIF
+   RETURN a
