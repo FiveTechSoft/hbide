@@ -43,7 +43,7 @@ RETURN { "display" => "0", "acc" => 0, "op" => "", "entering" => .T., ;
          "focus" => 1, "error" => .F. }
 
 // button captions in focus order: 1..17
-STATIC FUNCTION CalcButtons()
+FUNCTION CalcButtons()
 RETURN { "C", "7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3", "-", "0", ".", "=", "+" }
 
 // pure state transition; returns the button index pressed (0 = none)
@@ -64,13 +64,13 @@ FUNCTION CalcKey( h, k )
       n := AScan( aB, Upper( Chr( k ) ) )
       IF n > 0
          h["focus"] := n
-         CalcPress( h, cKey )
+         CalcPress( h, aB[ n ] )
          RETURN n
       ENDIF
    ENDCASE
 RETURN 0
 
-STATIC FUNCTION CalcBackspace( h )
+FUNCTION CalcBackspace( h )
    IF h["error"]
       CalcClearAll( h )
    ELSEIF h["entering"] .AND. Len( h["display"] ) > 1
@@ -80,11 +80,11 @@ STATIC FUNCTION CalcBackspace( h )
    ENDIF
 RETURN NIL
 
-STATIC FUNCTION CalcClearAll( h )
+FUNCTION CalcClearAll( h )
    h["display"] := "0" ; h["acc"] := 0 ; h["op"] := "" ; h["entering"] := .T. ; h["error"] := .F.
 RETURN NIL
 
-STATIC FUNCTION CalcPress( h, cB )
+FUNCTION CalcPress( h, cB )
    DO CASE
    CASE cB == "C"
       CalcClearAll( h )
@@ -119,7 +119,7 @@ STATIC FUNCTION CalcPress( h, cB )
    ENDCASE
 RETURN NIL
 
-STATIC FUNCTION CalcApply( h )
+FUNCTION CalcApply( h )
    LOCAL nVal
    IF h["entering"]
       nVal := Val( h["display"] )
@@ -140,9 +140,9 @@ STATIC FUNCTION CalcApply( h )
 RETURN NIL
 
 // compact number rendering: no trailing zeros, dot only when needed
-STATIC FUNCTION CalcNum( n )
+FUNCTION CalcNum( n )
    LOCAL c
-   IF n == Int( n ) .AND. Abs( n ) < 1e12
+   IF n == Int( n ) .AND. Abs( n ) < 1000000000000
       c := LTrim( Str( Int( n ), 12, 0 ) )
    ELSE
       c := AllTrim( Str( n, 12, 6 ) )
@@ -156,7 +156,7 @@ STATIC FUNCTION CalcNum( n )
 RETURN c
 
 // button geometry: index -> { row, col } of its caption on screen
-STATIC FUNCTION CalcBtnRect( n )
+FUNCTION CalcBtnRect( n )
    LOCAL nRow, nCol
    IF n == 1                                     // C
       RETURN { 8, 16 }
