@@ -358,11 +358,26 @@ return nil
 METHOD Edit( nKey ) CLASS HBSrcEdit
 
    local aBefore
+   local cCharKey := iif( hb_keyStd( nKey ) == K_TAB .AND. Set( _SET_INSERT ), ;
+                          Space( TabCount( ::nTabWidth, ::nCol ) ), ;
+                          hb_keyChar( nKey ) )
 
    // Pure cursor/scroll keys cannot change the text: skip the whole-file
    // snapshot + diff (cost grows with the file size on every arrow, PgDn,
    // wheel step). Everything else is recorded exactly as before.
    if HBIDE_IsNavKey( nKey )
+      ::lOpRecorded := .F.
+      ::EditKey( nKey )
+      ::lInUndo := .F.
+      return Self
+   endif
+
+   // Single-char insertion with no selection and no wordwrap edits exactly
+   // one line: EditKey records that one-line op directly via PushOp, so the
+   // whole-file snapshot+diff (O(file size) on EVERY typed char; measured
+   // 2026-10-26: 0.28 -> 4.87 ms/char from 100 to 20k lines) is skipped.
+   // MUST stay in lockstep with the hot branch in EditKey below.
+   if ! HB_ISNULL( cCharKey ) .and. ::SelRange() == NIL .and. ! ::lWordWrap
       ::lOpRecorded := .F.
       ::EditKey( nKey )
       ::lInUndo := .F.
@@ -396,7 +411,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
    local nKeyExt := hb_keyExt( nKey )   // HB_KX_* when an extended special key, else 0
    local nKeyMod := hb_keyMod( nKey )   // HB_KF_* flags of the extended code
    local nOldScrRow := ::Row()
-   local cKey, oLine, nPos, lHotPath, lBlkBefore, lSkipTail := .F.
+   local cKey, oLine, nPos, lHotPath, lBlkBefore, lSkipTail := .F., cOldLine
 
    do case
       // Distinct only under HB_INKEY_EXT: the classic set delivers Ctrl+Left
@@ -556,12 +571,18 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
               // toggles /* or */ recolors everything below
               lBlkBefore := ::BlkCmtState( ::nRow + 1 )
            endif
+           cOldLine := oLine:cText
            oLine:cText := hb_UStuff( oLine:cText, ::nCol - 4, ;
                                      iif( Set( _SET_INSERT ), 0, 1 ), cKey )
            ::nCol += hb_ULen( cKey )
            IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol
               ::ReformParagraph()
            ELSEIF lHotPath
+              if ! ::lWordWrap
+                 // direct one-line undo op: Edit() skipped the whole-file
+                 // snapshot+diff for this key (lockstep comment there)
+                 ::PushOp( ::nRow, { cOldLine }, { oLine:cText } )
+              endif
               ::nBlkDirty := Min( ::nBlkDirty, ::nRow )
               IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore
                  ::GoTo( ::nRow, ::nCol, _REFRESH_ALL )
