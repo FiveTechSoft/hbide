@@ -1132,9 +1132,11 @@ METHOD RecoveryCheck() CLASS HbIde
               { "Recover", "Discard", "Later" }, "Recovery" )
       do case
          case nPick == 1
-            if ! ::CheckUnsaved()
-               loop
-            endif
+            // no pre-CheckUnsaved here: RecoverJournal never clobbers - it
+            // reuses the current doc only when it is a clean noname, switches
+            // +asks when the route is already open, and appends otherwise.
+            // Asking here would force-resolve the buffer recovered one
+            // iteration earlier (batch recovery of several journals).
             ::RecoverJournal( aItem[ 1 ], aItem[ 2 ] )
          case nPick == 2
             HBIDE_RecoveryDeleteBase( aItem[ 1 ] )
