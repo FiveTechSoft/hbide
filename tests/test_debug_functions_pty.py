@@ -85,7 +85,7 @@ open(os.path.join(work, 'fn.prg'), 'w').write(
     '   ? n\n'                    # 4
     'return\n'                    # 5
     'function bump( x )\n'        # 6
-    '   x := x + 41\n'            # 7
+    '\tx := x + 41\n'              # 7
     'return x\n')                 # 8
 
 pid, fd = pty.fork()
@@ -439,6 +439,43 @@ send(b'help\r'); pump(1.2)
 check('Command help opens the Help window', help_window_up())
 send(b'\x1b'); pump(1.0)
 check('Help window closes with ESC', not help_window_up())
+
+# --- Save/Restore Settings round trip: Num Off must persist and come back ---
+# bring the code window to the front of the cascade stack (effect-driven)
+t0 = time.time()
+while re.search(r'x\d+:', scr.text()) is None and time.time() - t0 < 10.0:
+    send(b'\t'); pump(0.7)
+check('Code window brought to front', re.search(r'x\d+:', scr.text()) is not None)
+send(b'\x1bo'); pump(0.6); send(b'l'); pump(1.0)   # line numbers off
+check('Settings: line numbers off before save', not re.search(r'x?\d+:', scr.text()))
+send(b'\x1bo'); pump(0.6); send(b's')               # Save Settings...
+t0 = time.time()
+while 'File name' not in scr.text() and time.time() - t0 < 4.0:
+    pump(0.3)
+send(b'\r'); pump(1.0)                              # accept default init.cld
+cld = os.path.join(work, 'init.cld')
+check('Save Settings writes init.cld with Num Off',
+      os.path.exists(cld) and 'Num Off' in open(cld).read())
+send(b'\x1bo'); pump(0.6); send(b'l'); pump(1.0)   # numbers back on
+check('Settings: line numbers on before restore', re.search(r'x?\d+:', scr.text()) is not None)
+send(b'\x1bo'); pump(0.6); send(b'r')               # Restore Settings...
+t0 = time.time()
+while 'File name' not in scr.text() and time.time() - t0 < 4.0:
+    pump(0.3)
+send(b'\r'); pump(1.5)
+check('Restore Settings reapplies Num Off', not re.search(r'x?\d+:', scr.text()))
+send(b'\x1bo'); pump(0.6); send(b'l'); pump(1.0)   # tidy: numbers on again
+
+# NOTE: a Tab-Width live-render check is BLOCKED by a real app bug: after a
+# PPO round trip the restored code browser drops tab-indented line content
+# (raw byte stream loses 'x := x + 41'; fixture line 7 is tab-indented).
+# Reinstate the check together with the OpenPPO/browser fix.
+
+# --- Options > Colors: modal opens and closes (dialog level) ---
+send(b'\x1bo'); pump(0.6); send(b'c'); pump(1.0)
+check('Colors dialog opens', 'Debugger Colors' in scr.text())
+send(b'\x1b'); pump(1.0)
+check('Colors dialog closes with ESC', 'Debugger Colors' not in scr.text())
 
 # Alt+X back to the IDE
 send(b'\x1bx'); pump(1.5)
