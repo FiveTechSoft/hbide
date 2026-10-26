@@ -87,6 +87,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD LoadText( cText )
    METHOD LoadFile( cFileName )
    METHOD SaveFile()
+   DATA   cRecoveredBase INIT ""
    DATA   lJournalWarned INIT .F.   // one-shot: recovery write failing
    METHOD UpdateJournal()
    METHOD JournalDiscard()
@@ -1195,6 +1196,10 @@ return nil
 
 METHOD JournalDiscard() CLASS HBSrcEdit
 
+   if ! Empty( ::cRecoveredBase )
+      HBIDE_RecoveryDeleteBase( ::cRecoveredBase )
+      ::cRecoveredBase := ""
+   endif
    HBIDE_RecoveryDelete( HBIDE_RecoveryKey( ::cFile ) )
 
 return nil

@@ -1,6 +1,8 @@
 #include "directry.ch"
+#include "fileio.ch"
 
 static s_cSession := ""
+static s_nRecoveryLock := -1
 
 // P0: visible recovery of unsaved buffers (ROADMAP "Recuperacion visible").
 //
@@ -12,8 +14,8 @@ static s_cSession := ""
 // power), so on start the IDE lists every survivor and offers Recover /
 // Discard / Later for each one.
 //
-// Layout per buffer: <key>.journal (raw editor text, byte-exact round trip
-// through GetText()/LoadText()) and <key>.target (the buffer's file name,
+// Layout per buffer: <key>--<session>.journal (raw editor text, byte-exact round trip
+// through GetText()/LoadText()) and <key>--<session>.target (the buffer's file name,
 // or "noname.prg" for the untitled buffer). <key> is an escaped form of the
 // absolute target path, stable across sessions and unique per file.
 
@@ -30,7 +32,7 @@ function HBIDE_RecoveryDir()
       if Empty( cDir )
          cDir := GetEnv( "USERPROFILE" )
       endif
-      cDir := hb_FNameMerge( cDir, ".hbide", "recovery" )
+      cDir := hb_DirSepAdd( cDir ) + ".hbide" + hb_ps() + "recovery"
    endif
    if ! hb_DirExists( cDir )
       hb_DirBuild( cDir )
@@ -75,6 +77,40 @@ return s_cSession
 
 //-----------------------------------------------------------------------------------------//
 
+// Keep an OS file lock for the lifetime of the process. The OS releases
+// it on crash/kill, so startup can distinguish live sessions from survivors.
+function HBIDE_RecoveryOwnSession()
+   local cLock
+   if s_nRecoveryLock < 0
+      cLock := hb_FNameMerge( HBIDE_RecoveryDir(), HBIDE_RecoverySession(), ".lock" )
+      s_nRecoveryLock := FCreate( cLock )
+      if s_nRecoveryLock >= 0 .and. ! hb_FLock( s_nRecoveryLock, 0, 1, HB_FLX_EXCLUSIVE + HB_FLX_NO_WAIT )
+         FClose( s_nRecoveryLock )
+         s_nRecoveryLock := -1
+      endif
+   endif
+return s_nRecoveryLock >= 0
+
+function HBIDE_RecoveryLive( cBase )
+   local nSplit := RAt( "--", cBase ), cLock, nHandle, lLive := .F.
+   if nSplit > 0
+      if SubStr( cBase, nSplit + 2 ) == HBIDE_RecoverySession()
+         return .T.
+      endif
+      cLock := hb_FNameMerge( HBIDE_RecoveryDir(), SubStr( cBase, nSplit + 2 ), ".lock" )
+      if File( cLock )
+         nHandle := FOpen( cLock, FO_READWRITE + FO_SHARED )
+         if nHandle < 0
+            return .T. // cannot establish dead ownership: keep untouched
+         endif
+         lLive := ! hb_FLock( nHandle, 0, 1, HB_FLX_EXCLUSIVE + HB_FLX_NO_WAIT )
+         FClose( nHandle )
+      endif
+   endif
+return lLive
+
+//-----------------------------------------------------------------------------------------//
+
 // Stable, collision-free journal key for a buffer. The untitled buffer gets
 // the fixed key "noname". Every char outside [A-Za-z0-9-.] escapes as "_" +
 // hex, including "_" itself, so distinct paths can never collide. The journal
@@ -113,7 +149,14 @@ function HBIDE_RecoveryWrite( cKey, cTarget, cContent )
    local cDir := HBIDE_RecoveryDir()
    local lOk := .F.
 
-   hb_defaultValue( cTarget, "noname.prg" )
+   cTarget := hb_defaultValue( cTarget, "noname.prg" )
+   if cTarget != "noname.prg"
+      cTarget := HBIDE_RecoveryAbs( cTarget )
+   endif
+
+   if ! HBIDE_RecoveryOwnSession()
+      return .F.
+   endif
 
    begin sequence
       lOk := HBIDE_AtomicPair( hb_FNameMerge( cDir, cKey + "--" + HBIDE_RecoverySession(), ".target" ), cTarget ) .and. ;
@@ -133,6 +176,10 @@ static function HBIDE_AtomicPair( cName, cContent )
 
    begin sequence
       lOk := hb_MemoWrit( cTmp, cContent )
+      if lOk
+         lOk := hb_FSize( cTmp ) == Len( cContent ) .and. ;
+                hb_MemoRead( cTmp ) == cContent
+      endif
       if lOk
          lOk := FRename( cTmp, cName ) == 0
          if ! lOk
@@ -211,7 +258,7 @@ return nil
 
 // Surviving journals: { { cKey, cTarget, nSize, cStamp }, ... }.
 // cStamp is the journal's mtime, for the prompt.
-function HBIDE_RecoveryScan()
+function HBIDE_RecoveryScan( lIncludeLive )
 
    local cDir := HBIDE_RecoveryDir()
    local aOut := {}, aFile, cKey, cTarget, aList
@@ -222,11 +269,16 @@ function HBIDE_RecoveryScan()
       aList := {}
    end sequence
 
+   hb_default( @lIncludeLive, .F. )
+
    for each aFile in aList
       if "D" $ aFile[ F_ATTR ]
          loop
       endif
       cKey := Left( aFile[ F_NAME ], Len( aFile[ F_NAME ] ) - Len( ".journal" ) )
+      if ! lIncludeLive .and. HBIDE_RecoveryLive( cKey )
+         loop
+      endif
       cTarget := hb_MemoRead( hb_FNameMerge( cDir, cKey, ".target" ) )
       do while ! Empty( cTarget ) .and. Right( cTarget, 1 ) $ " " + Chr( 13 ) + Chr( 10 )
          cTarget := Left( cTarget, Len( cTarget ) - 1 )

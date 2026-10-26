@@ -1091,6 +1091,9 @@ METHOD RecoveryCheck() CLASS HbIde
               { "Recover", "Discard", "Later" }, "Recovery" )
       do case
          case nPick == 1
+            if ! ::CheckUnsaved()
+               loop
+            endif
             ::RecoverJournal( aItem[ 1 ], aItem[ 2 ] )
          case nPick == 2
             HBIDE_RecoveryDeleteBase( aItem[ 1 ] )
@@ -1115,7 +1118,7 @@ METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
    ::oEditor:cLoadStamp := ::oEditor:DiskStamp( ::oEditor:cFile )
    ::oEditor:cSeenStamp := ::oEditor:cLoadStamp
    ::oWndCode:cCaption := ::oEditor:cFile
-   HBIDE_RecoveryDeleteBase( cKey )
+   ::oEditor:cRecoveredBase := cKey
    ::Repaint()
    ::oEditor:ShowCursor()
 
