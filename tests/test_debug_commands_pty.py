@@ -171,6 +171,15 @@ try:
     check('Window Iconize collapses the code window content', 'PATH_RESOLVED_MARKER' not in scr.text())
     send(b'\x1bw');wait_for('Iconize',3);send(b'i');pump(.8)
     check('Window Iconize restores the code window content', 'PATH_RESOLVED_MARKER' in scr.text())
+    # Viewport preservation needs the cursor away from the first source row:
+    # the one-row icon strip must not drag the scroll position to the cursor.
+    send(b'file open '+work.encode()+b'/fn.prg\r');pump(.7)
+    send(b'goto 60\r');pump(.6)
+    for _ in range(5): send(b'\x1b[B');pump(.2)
+    view_before=[''.join(r) for r in scr.g[2:17]]
+    send(b'\x1bw');wait_for('Iconize',3);send(b'i');pump(.8)
+    send(b'\x1bw');wait_for('Iconize',3);send(b'i');pump(.8)
+    check('Window Iconize preserves the code window viewport', [''.join(r) for r in scr.g[2:17]] == view_before)
     send(b'\x1bo');pump(.5);send(b't');wait_for('Tab width',4)
     check('INPUT script applied TabWidth 12', any('12' in ''.join(scr.g[i]) for i in range(8,11)))
     send(b'\x1b');pump(.5)

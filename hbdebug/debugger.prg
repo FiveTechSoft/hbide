@@ -3966,14 +3966,24 @@ METHOD WindowIconize() CLASS HBDebugger
    ENDIF
    nAt := AScan( ::aWindowIcon, {| a | a[ 1 ] == oWnd } )
    IF nAt > 0
+      /* Restore: resize while the browser is still detached so its
+         viewport (scroll and cursor row) survives the round trip. */
       oWnd:Resize( ::aWindowIcon[ nAt, 2 ], ::aWindowIcon[ nAt, 3 ], ;
                    ::aWindowIcon[ nAt, 4 ], ::aWindowIcon[ nAt, 5 ] )
+      oWnd:Browser  := ::aWindowIcon[ nAt, 6 ]
+      oWnd:bPainted := ::aWindowIcon[ nAt, 7 ]
       ADel( ::aWindowIcon, nAt )
       ASize( ::aWindowIcon, Len( ::aWindowIcon ) - 1 )
    ELSE
       nTop := Min( oWnd:nTop, ::nMaxRow - 3 )
       nLeft := Min( oWnd:nLeft, ::nMaxCol - 14 )
-      AAdd( ::aWindowIcon, { oWnd, oWnd:nTop, oWnd:nLeft, oWnd:nBottom, oWnd:nRight } )
+      AAdd( ::aWindowIcon, { oWnd, oWnd:nTop, oWnd:nLeft, oWnd:nBottom, oWnd:nRight, ;
+                             oWnd:Browser, oWnd:bPainted } )
+      /* Detach the browser before shrinking: fitting it into the icon strip
+         would force its current row into view and lose the viewport. While
+         iconized only the frame and caption are painted. */
+      oWnd:Browser  := NIL
+      oWnd:bPainted := NIL
       oWnd:Resize( nTop, nLeft, nTop + 2, nLeft + 14 )
    ENDIF
    ::aWindowZoom := {}
@@ -4015,12 +4025,17 @@ METHOD WindowLayout( cMode ) CLASS HBDebugger
    IF Empty( aVisible )
       RETURN Self
    ENDIF
+   // Layout replaces saved icon rectangles; otherwise a later un-iconize
+   // would restore a stale rect over the new layout. Reattach each browser
+   // first so no window is left without its content painter.
+   FOR EACH aSave IN ::aWindowIcon
+      aSave[ 1 ]:Browser  := aSave[ 6 ]
+      aSave[ 1 ]:bPainted := aSave[ 7 ]
+   NEXT
+   ::aWindowIcon := {}
    IF ::oWndStack != NIL
       ::oWndStack:Browser := ::oBrwStack
    ENDIF
-   // Layout replaces saved icon rectangles; otherwise a later un-iconize
-   // would restore a stale rect over the new layout.
-   ::aWindowIcon := {}
    IF cMode == "ZOOM"
       oWnd := ::aWindows[ ::nCurrentWindow ]
       IF ! oWnd:lVisible

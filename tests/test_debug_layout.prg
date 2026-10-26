@@ -1,6 +1,8 @@
 #include "inkey.ch"
+#include "hbclass.ch"
 PROCEDURE Main()
    LOCAL oD, a, aR, n, r, c, i, j, nTests := 0
+   LOCAL oBrw
    FOR EACH r IN { 25, 40, 50 }
       FOR EACH c IN { 80, 120, 160 }
          FOR n := 1 TO 8
@@ -62,6 +64,19 @@ PROCEDURE Main()
    Assert( oD:oWndCode:nBottom == aR[ 3 ] - 1 .AND. oD:oWndCode:nRight == aR[ 4 ] - 1, 'shrink contracts one row/col' )
    oD:WindowResizeStep( 1 )
    Assert( oD:oWndCode:nBottom == aR[ 3 ] .AND. oD:oWndCode:nRight == aR[ 4 ], 'grow restores one row/col' )
+   // Scroll position and cursor row must survive iconize/restore: fitting the
+   // browser into the icon strip lets HBDbBrowser:Configure() clamp rowPos and
+   // shift nFirstVisible, so the browser must stay detached while iconized.
+   oBrw := TFakeBrowser():New()
+   oD:oWndCode:Browser := oBrw
+   oD:WindowIconize()
+   Assert( oD:oWndCode:Browser == NIL, 'iconize detaches browser' )
+   Assert( oBrw:nResizes == 0, 'iconize does not resize the browser' )
+   oD:WindowIconize()
+   Assert( oD:oWndCode:Browser == oBrw, 'restore reattaches browser' )
+   // The dangerous resize is the one into the one-row icon strip; a repaint
+   // with the original geometry is a no-op for a real browser.
+   Assert( AScan( oBrw:aHeights, 1 ) == 0, 'browser never resized to icon strip' )
    hb_MemoWrit( '/tmp/hbide-layout-tests.txt' , 'PASS ' + hb_ntos( nTests ) + ' geometry cases; runtime tile/zoom/restore/move/cancel/size/cascade/iconize/grow/shrink' )
    Inkey( 0.2 )
    RETURN
@@ -72,3 +87,18 @@ PROCEDURE Assert( lOk, cName )
       QUIT
    ENDIF
    RETURN
+
+
+CREATE CLASS TFakeBrowser
+   VAR nResizes INIT 0
+   VAR aHeights INIT {}
+   METHOD New() INLINE Self
+   METHOD Resize( nTop, nLeft, nBottom, nRight )
+ENDCLASS
+
+METHOD Resize( nTop, nLeft, nBottom, nRight ) CLASS TFakeBrowser
+   HB_SYMBOL_UNUSED( nLeft )
+   HB_SYMBOL_UNUSED( nRight )
+   ::nResizes++
+   AAdd( ::aHeights, nBottom - nTop + 1 )
+   RETURN Self
