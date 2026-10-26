@@ -11,7 +11,7 @@ static s_nPassed := 0, s_nFailed := 0
 procedure Main()
 
    local hModel, cCode, cJson, hBack, aSize
-   local oD, oD2, aRect, nMaxRow, nMaxCol, oCtrl, cCellRef, cCellNow
+   local oD, oD2, aRect, nMaxRow, nMaxCol, oCtrl, cCellRef, cCellNow, nI, nJ
    local oDlg, nCell, cBefore, cAfter, hS0, hS1, aU, aR, hT, oBtn
 
    // DsnControlSize
@@ -73,7 +73,13 @@ procedure Main()
 
    // field lists follow the selection
    oD:nSelected = 0
-   Check( "insp fields dialog", Len( oD:InspFields() ) == 4 )
+   Check( "insp fields dialog", Len( oD:InspFields() ) == 7 )
+   Check( "insp fields dialog colors", oD:InspFields()[ 5 ][ 2 ] == "dlgback" .and. ;
+          oD:InspFields()[ 6 ][ 2 ] == "dlgtext" .and. oD:InspFields()[ 7 ][ 2 ] == "dlgfocus" .and. ;
+          oD:InspFields()[ 5 ][ 3 ] == "color" .and. oD:InspFields()[ 7 ][ 3 ] == "color" )
+   Check( "insp value dlgback",  oD:InspValue( "dlgback" )  == oD:cDlgClrBack )
+   Check( "insp value dlgtext",  oD:InspValue( "dlgtext" )  == oD:cDlgClrText )
+   Check( "insp value dlgfocus", oD:InspValue( "dlgfocus" ) == oD:cDlgClrFocus )
    oD:nSelected = 1
    Check( "insp fields get", Len( oD:InspFields() ) == 4 )
    Check( "insp value variable", oD:InspValue( "variable" ) == "cName" )
@@ -292,6 +298,61 @@ procedure Main()
    Check( "dlgpair blue",  DsnDlgPair( "W+/B, N/W" )[ 1 ] == "W+" .and. DsnDlgPair( "W+/B, N/W" )[ 2 ] == "B" )
    Check( "dlgpair black", DsnDlgPair( "GR+/N" )[ 2 ] == "N" )
    Check( "dlgpair default", DsnDlgPair( "" )[ 2 ] == "W" )
+
+   // color picker helpers: grid, token parse/compose, pairs
+   Check( "clrgrid 16", Len( DsnColorGrid() ) == 16 )
+   Check( "clrgrid canonical", AScan( DsnColorGrid(), {| c | DsnColorTokCompose( DsnColorTokParse( c ) ) != c } ) == 0 )
+   Check( "clrgrid gt valid", AScan( DsnColorGrid(), {| c | hb_ColorToN( c + "/W" ) <= 0 } ) == 0 )
+   // no duplicates in the grid
+   nI = 0
+   do while nI < 16
+      nI++
+      nJ = nI
+      do while nJ < 16
+         nJ++
+         if DsnColorGrid()[ nI ] == DsnColorGrid()[ nJ ]
+            Check( "clrgrid unique", .F. )
+            nI = 99
+            exit
+         endif
+      enddo
+   enddo
+   if nI != 99
+      Check( "clrgrid unique", .T. )
+   endif
+   Check( "clrtok plain",  DsnColorTokCompose( DsnColorTokParse( "N" ) ) == "N" )
+   Check( "clrtok bright", DsnColorTokCompose( DsnColorTokParse( "W+" ) ) == "W+" )
+   Check( "clrtok blink",  DsnColorTokCompose( DsnColorTokParse( "R+*" ) ) == "R+*" )
+   Check( "clrtok yellow", DsnColorTokCompose( DsnColorTokParse( "Y" ) ) == "GR+" )
+   Check( "clrtok gr+",    DsnColorTokCompose( DsnColorTokParse( "GR+" ) ) == "GR+" )
+   Check( "clrtok brown",  DsnColorTokCompose( DsnColorTokParse( "GR" ) ) == "GR" )
+   Check( "clrtok alias c",  DsnColorTokCompose( DsnColorTokParse( "C" ) ) == "BG" )
+   Check( "clrtok alias bg", DsnColorTokCompose( DsnColorTokParse( "BG" ) ) == "BG" )
+   Check( "clrtok alias m",  DsnColorTokCompose( DsnColorTokParse( "M+" ) ) == "RB+" )
+   Check( "clrtok alias rb", DsnColorTokCompose( DsnColorTokParse( "RB+" ) ) == "RB+" )
+   Check( "clrtok outside", DsnColorTokParse( "U" ) == NIL .and. DsnColorTokParse( "X" ) == NIL ;
+          .and. DsnColorTokParse( "ZZ" ) == NIL .and. DsnColorTokParse( "" ) == NIL )
+   Check( "clridx first",  DsnColorGridIndex( "N" ) == 1 )
+   Check( "clridx last",   DsnColorGridIndex( "W+" ) == 16 )
+   Check( "clridx alias",  DsnColorGridIndex( "BG" ) == 4 .and. DsnColorGridIndex( "GR+" ) == 15 ;
+          .and. DsnColorGridIndex( "C" ) == 4 .and. DsnColorGridIndex( "Y" ) == 15 )
+   Check( "clridx blink",  DsnColorGridIndex( "R+*" ) == 13 )
+   Check( "clridx outside", DsnColorGridIndex( "U" ) == 0 .and. DsnColorGridIndex( "" ) == 0 )
+   Check( "clrpair split", DsnColorPair( "W+/B, N/W" )[ 1 ] == "W+" .and. DsnColorPair( "W+/B, N/W" )[ 2 ] == "B" )
+   Check( "clrpair fg only", DsnColorPair( "GR" )[ 1 ] == "GR" .and. DsnColorPair( "GR" )[ 2 ] == "W" )
+   Check( "clrpair default", DsnColorPair( "" )[ 1 ] == "W+" .and. DsnColorPair( "" )[ 2 ] == "W" )
+
+   // picked colors flow into generated code: dialog color on the window,
+   // colorfocus inside control palettes (empty dialogs emit no focus pair)
+   hModel = { "name" => "Foc", "caption" => "F", "width" => 40, "height" => 12, ;
+      "color" => "N/B", "colortext" => "N", "colorback" => "B", "colorfocus" => "N/BG", ;
+      "controls" => { { "type" => "get", "row" => 2, "col" => 2, "variable" => "cV1", "width" => 8 } } }
+   cCode = DsnGenCode( hModel )
+   Check( "gen dlg color picked", '"N/B"' $ cCode )
+   Check( "gen focus in get palette", "N/BG" $ cCode )
+   hModel = { "name" => "Foc", "caption" => "F", "width" => 40, "height" => 12, ;
+      "color" => "N/B", "colorfocus" => "N/BG", "controls" => {} }
+   Check( "gen empty dialog no focus leak", ! "N/BG" $ DsnGenCode( hModel ) )
 
    // colored dialog: control palettes derive from the dialog background
    hModel = { "name" => "Clr", "caption" => "C", "width" => 40, "height" => 12, "color" => "W+/B", "controls" => { ;

@@ -156,6 +156,7 @@ CLASS HbDesigner
    METHOD InspAdjust( nDelta )
    METHOD InspCycle( nDelta )
    METHOD InspEdit()
+   METHOD InspPickColor()
    METHOD InspHit( nMRow, nMCol )
    METHOD DragInspector( nMRow, nMCol )
    METHOD InspectorKey( nKey )
@@ -1771,6 +1772,9 @@ METHOD InspFields() CLASS HbDesigner
       AAdd( aFields, { "Caption", "dlgcaption", "text" } )
       AAdd( aFields, { "Width", "dlgwidth", "num" } )
       AAdd( aFields, { "Height", "dlgheight", "num" } )
+      AAdd( aFields, { "Back",  "dlgback",  "color" } )
+      AAdd( aFields, { "Text",  "dlgtext",  "color" } )
+      AAdd( aFields, { "Focus", "dlgfocus", "color" } )
    endif
 
 return aFields
@@ -1827,6 +1831,9 @@ METHOD InspValue( cKey ) CLASS HbDesigner
          case cKey == "dlgcaption" ; return ::cDlgCaption
          case cKey == "dlgwidth"   ; return hb_ntos( ::nDlgWidth )
          case cKey == "dlgheight"  ; return hb_ntos( ::nDlgHeight )
+         case cKey == "dlgback"    ; return ::cDlgClrBack
+         case cKey == "dlgtext"    ; return ::cDlgClrText
+         case cKey == "dlgfocus"   ; return ::cDlgClrFocus
       endcase
    endif
 
@@ -2025,6 +2032,10 @@ METHOD InspEdit() CLASS HbDesigner
       ::InspCycle( 1 )
       return nil
    endif
+   if aFields[ ::nInspField ][ 3 ] == "color"
+      ::InspPickColor()
+      return nil
+   endif
    if aFields[ ::nInspField ][ 3 ] != "text"
       return nil
    endif
@@ -2101,6 +2112,51 @@ METHOD InspEdit() CLASS HbDesigner
    if lApply
       ::PushSnapshot( hBefore )
       ::InspSetText( cKey, cVal )
+   endif
+   ::Redraw()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+// visual picker for the dialog color fields: writes the same validated
+// model properties as the DlgProperties GETs (cDlgClrBack/Text/Focus), so
+// JSON persistence (colorback/colortext/colorfocus) and PRG generation
+// pick the change up with no further plumbing
+
+METHOD InspPickColor() CLASS HbDesigner
+
+   local aFields, cKey, cOld, cNew, cKind, cCtx, hBefore
+
+   if ::oWnd == NIL
+      return nil
+   endif
+   aFields = ::InspFields()
+   if ::nInspField < 1 .or. ::nInspField > Len( aFields )
+      return nil
+   endif
+   if aFields[ ::nInspField ][ 3 ] != "color"
+      return nil
+   endif
+   cKey  = aFields[ ::nInspField ][ 2 ]
+   cOld  = ::InspValue( cKey )
+   cKind = If( cKey == "dlgfocus", "pair", If( cKey == "dlgback", "bg", "fg" ) )
+   cCtx  = If( cKey == "dlgback", ::cDlgClrText, ::cDlgClrBack )
+
+   hBefore = DsnSnapshot( Self )
+
+   ::SuspendUI()
+   cNew = DsnColorPick( cOld, aFields[ ::nInspField ][ 1 ] + " color", cKind, cCtx )
+   ::ResumeUI()
+
+   if cNew != NIL .and. DsnValidColor( cNew )
+      ::PushSnapshot( hBefore )
+      do case
+         case cKey == "dlgback"  ; ::cDlgClrBack  = cNew
+         case cKey == "dlgtext"  ; ::cDlgClrText  = cNew
+         case cKey == "dlgfocus" ; ::cDlgClrFocus = cNew
+      endcase
+      ::oWnd:cColor = ::cDlgColor
+      ::lDirty = .T.
    endif
    ::Redraw()
 
@@ -3190,6 +3246,244 @@ static function DsnValidColorToken( cTok )
    endif
 
 return .T.
+
+//-----------------------------------------------------------------------------------------//
+
+// the 16 foreground colors the visual picker offers, as Harbour color
+// tokens verified against hb_ColorToN(). Cyan/magenta/yellow need the
+// two-letter forms: C, M and Y are accepted by the validator for legacy
+// specs but translate to N/N (invisible) in the GT, so the grid never
+// emits them; the parser maps them onto the working forms. Brown is "GR".
+// Backgrounds have no bright bit in a color pair (it is the blink bit):
+// the background side of the picker offers only the first 8 entries
+
+function DsnColorGrid()
+
+return { "N", "B", "G", "BG", "R", "RB", "GR", "W", ;
+         "N+", "B+", "G+", "BG+", "R+", "RB+", "GR+", "W+" }
+
+//-----------------------------------------------------------------------------------------//
+
+// parse one color token into { cBase, lBright, lBlink }, canonicalizing
+// aliases onto GT-working letters: "C" -> "BG", "M" -> "RB", "Y" -> "GR+".
+// Returns NIL for tokens outside the picker grid (U/I/X, invalid chars)
+
+function DsnColorTokParse( cTok )
+
+   local n, c, cBase := "", lBright := .F., lBlink := .F.
+
+   if Empty( cTok )
+      return NIL
+   endif
+
+   for n = 1 to Len( cTok )
+      c = Upper( SubStr( cTok, n, 1 ) )
+      if c == "+"
+         lBright := .T.
+      elseif c == "*"
+         lBlink := .T.
+      elseif c $ "WBGRNCMYUIX"
+         cBase += c
+      else
+         return NIL
+      endif
+   next
+
+   do case
+      case cBase == "C" ; cBase := "BG"
+      case cBase == "M" ; cBase := "RB"
+      case cBase == "Y"
+         cBase := "GR"
+         lBright := .T.
+   endcase
+
+   if AScan( DsnColorGrid(), cBase + If( lBright, "+", "" ) ) == 0
+      return NIL
+   endif
+
+return { cBase, lBright, lBlink }
+
+//-----------------------------------------------------------------------------------------//
+
+// inverse of DsnColorTokParse: token string, blink preserved
+
+function DsnColorTokCompose( aTok )
+
+return aTok[ 1 ] + If( aTok[ 2 ], "+", "" ) + If( aTok[ 3 ], "*", "" )
+
+//-----------------------------------------------------------------------------------------//
+
+// { fgTok, bgTok } of the first comma item of a color spec; missing sides
+// default to the stock white dialog
+
+function DsnColorPair( cSpec )
+
+   local cFirst := AllTrim( hb_defaultValue( cSpec, "" ) )
+   local nAt, cFg, cBg
+
+   if Empty( cFirst )
+      return { "W+", "W" }
+   endif
+   nAt = At( ",", cFirst )
+   if nAt > 0
+      cFirst = Left( cFirst, nAt - 1 )
+   endif
+   nAt = At( "/", cFirst )
+   if nAt > 0
+      cFg = Left( cFirst, nAt - 1 )
+      cBg = SubStr( cFirst, nAt + 1 )
+   else
+      cFg = cFirst
+      cBg = "W"
+   endif
+
+return { If( Empty( cFg ), "W+", cFg ), If( Empty( cBg ), "W", cBg ) }
+
+//-----------------------------------------------------------------------------------------//
+
+// 1-16 position of a token in DsnColorGrid(), blink ignored; 0 if outside
+
+function DsnColorGridIndex( cTok )
+
+   local aTok := DsnColorTokParse( cTok )
+
+   if aTok == NIL
+      return 0
+   endif
+
+return AScan( DsnColorGrid(), aTok[ 1 ] + If( aTok[ 2 ], "+", "" ) )
+
+//-----------------------------------------------------------------------------------------//
+
+// visual color picker modal for one dialog color property.
+// cKind: "fg" (text color), "bg" (dialog background) or "pair" (focus
+// fg/bg, Tab switches sides, first Enter moves to the background).
+// cCtx is the live counterpart color used for an honest preview (the
+// dialog back when picking text, the dialog text when picking back).
+// Returns the new spec, or NIL on Esc. A blink modifier in the original
+// value is preserved: the grid only edits hue and brightness.
+// Background sides are limited to the 8 non-bright colors: the bright
+// bit of a background is the blink bit, so bright backgrounds do not
+// exist in a color pair and offering them would be decorative.
+
+function DsnColorPick( cCurrent, cTitle, cKind, cCtx )
+
+   local oDlg, aGrid := DsnColorGrid()
+   local aTok, aTokBg, nSide := 1, nCur := { 1, 1 }, nKey, n
+   local lPair := cKind == "pair"
+   local cLight := { "W", "W+", "GR+", "BG", "BG+", "G+", "GR" }
+   local cTok, cCellClr, cPreview, cNew := NIL
+   local nRow1, nRow2, nPrevRow, nHintRow, nRow, nCol, nLim, nSide2
+
+   cCurrent = AllTrim( hb_defaultValue( cCurrent, "" ) )
+   cCtx     = AllTrim( hb_defaultValue( cCtx, "W" ) )
+   if lPair
+      aTok   = DsnColorTokParse( DsnColorPair( cCurrent )[ 1 ] )
+      aTokBg = DsnColorTokParse( DsnColorPair( cCurrent )[ 2 ] )
+   else
+      aTok = DsnColorTokParse( cCurrent )
+   endif
+   if aTok != NIL
+      nCur[ 1 ] = Max( 1, DsnColorGridIndex( DsnColorTokCompose( aTok ) ) )
+   endif
+   if lPair .and. aTokBg != NIL
+      nCur[ 2 ] = Max( 1, Min( 8, DsnColorGridIndex( DsnColorTokCompose( aTokBg ) ) ) )
+   endif
+   if cKind == "bg"
+      nCur[ 1 ] = Min( 8, nCur[ 1 ] )
+   endif
+
+   oDlg = HBWindow():Dialog( " " + cTitle + " ", 54, ;
+      If( lPair, 12, If( cKind == "bg", 8, 9 ) ), CLR_DIALOG )
+   nRow1    = oDlg:nTop + 2
+   nRow2    = If( lPair, oDlg:nTop + 6, 0 )
+   nPrevRow = If( lPair, oDlg:nTop + 9, If( cKind == "bg", oDlg:nTop + 4, oDlg:nTop + 5 ) )
+   nHintRow = oDlg:nBottom - 1
+
+   do while .T.
+      DispBegin()
+      if lPair
+         oDlg:Say( nRow1 - oDlg:nTop - 1, 2, If( nSide == 1, "> ", "  " ) + "Foreground:" )
+         oDlg:Say( nRow2 - oDlg:nTop - 1, 2, If( nSide == 2, "> ", "  " ) + "Background:" )
+      else
+         oDlg:Say( nRow1 - oDlg:nTop - 1, 2, "> Color:" )
+      endif
+      for nSide2 = 1 to If( lPair, 2, 1 )
+         nLim = If( nSide2 == 1 .and. cKind != "bg", 16, 8 )
+         for n = 1 to nLim
+            nRow = If( nSide2 == 1, nRow1, nRow2 ) + Int( ( n - 1 ) / 8 )
+            nCol = oDlg:nLeft + 3 + ( n - 1 ) % 8 * 6
+            cTok = aGrid[ n ]
+            cCellClr = If( AScan( cLight, cTok ) > 0, "N", "W+" ) + "/" + cTok
+            if n == nCur[ nSide2 ]
+               hb_DispOutAt( nRow, nCol, "[" + PadR( cTok, 3 ) + "]", cCellClr )
+            else
+               hb_DispOutAt( nRow, nCol, " " + PadR( cTok, 3 ) + " ", cCellClr )
+            endif
+         next
+      next
+      // honest preview on a black plate: the pick applied the way the
+      // property uses it, readable even when it matches the window color
+      do case
+         case cKind == "fg"
+            cPreview = aGrid[ nCur[ 1 ] ] + "/" + cCtx
+         case cKind == "bg"
+            cPreview = cCtx + "/" + aGrid[ nCur[ 1 ] ]
+         otherwise
+            cPreview = aGrid[ nCur[ 1 ] ] + "/" + aGrid[ nCur[ 2 ] ]
+      endcase
+      hb_DispOutAt( nPrevRow, oDlg:nLeft + 2, "Preview:", "N/W" )
+      hb_DispOutAt( nPrevRow, oDlg:nLeft + 11, "                ", "N/N" )
+      hb_DispOutAt( nPrevRow, oDlg:nLeft + 13, " Sample text ", cPreview )
+      hb_DispOutAt( nPrevRow, oDlg:nLeft + 29, PadR( cPreview, 12 ), "N/W" )
+      hb_DispOutAt( nHintRow, oDlg:nLeft + 2, ;
+         If( lPair, "Arrows move   Tab fg/bg   Enter accept   Esc cancel", ;
+                    "Arrows move   Enter accept   Esc cancel" ), "N/W" )
+      DispEnd()
+
+      nKey = DsnNormKey( InKey( 0, INKEY_ALL + HB_INKEY_EXT ) )
+      nLim = If( nSide == 1 .and. cKind != "bg", 16, 8 )
+      do case
+         case nKey == K_ESC
+            exit
+         case nKey == K_ENTER
+            if lPair .and. nSide == 1
+               nSide = 2
+            else
+               // grid pick + blink preserved from the original value
+               cNew = aGrid[ nCur[ 1 ] ] + If( aTok != NIL .and. aTok[ 3 ], "*", "" )
+               if lPair
+                  cNew += "/" + aGrid[ nCur[ 2 ] ] + If( aTokBg != NIL .and. aTokBg[ 3 ], "*", "" )
+               endif
+               exit
+            endif
+         case nKey == K_LEFT
+            nCur[ nSide ] = 1 + Mod( nCur[ nSide ] - 2 + nLim, nLim )
+         case nKey == K_RIGHT
+            nCur[ nSide ] = 1 + Mod( nCur[ nSide ], nLim )
+         case nKey == K_UP
+            if nLim == 16
+               nCur[ nSide ] -= 8
+               if nCur[ nSide ] < 1
+                  nCur[ nSide ] += 16
+               endif
+            endif
+         case nKey == K_DOWN
+            if nLim == 16
+               nCur[ nSide ] += 8
+               if nCur[ nSide ] > 16
+                  nCur[ nSide ] -= 16
+               endif
+            endif
+         case nKey == K_TAB
+            if lPair
+               nSide = 3 - nSide
+            endif
+      endcase
+   enddo
+   oDlg:Hide()
+
+return cNew
 
 //-----------------------------------------------------------------------------------------//
 
