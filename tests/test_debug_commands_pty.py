@@ -167,6 +167,10 @@ try:
     # Only the configured directory contains this source, never the current dir.
     send(b'file open pathprobe.prg\r');pump(.7)
     check('Path For Files resolves source outside CWD by basename', 'PATH_RESOLVED_MARKER' in scr.text() and 'pathprobe.prg' in scr.text())
+    send(b'\x1bw');wait_for('Iconize',3);send(b'i');pump(.8)
+    check('Window Iconize collapses the code window content', 'PATH_RESOLVED_MARKER' not in scr.text())
+    send(b'\x1bw');wait_for('Iconize',3);send(b'i');pump(.8)
+    check('Window Iconize restores the code window content', 'PATH_RESOLVED_MARKER' in scr.text())
     send(b'\x1bo');pump(.5);send(b't');wait_for('Tab width',4)
     check('INPUT script applied TabWidth 12', any('12' in ''.join(scr.g[i]) for i in range(8,11)))
     send(b'\x1b');pump(.5)

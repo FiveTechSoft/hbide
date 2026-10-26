@@ -211,6 +211,7 @@ CREATE CLASS HBDebugger
    VAR nCmdWndHight      INIT 3
    VAR lWindowsAutoSized INIT .T.
    VAR aWindowZoom       INIT {}
+   VAR aWindowIcon       INIT {}
 
    METHOD New()
    METHOD Activate()
@@ -346,7 +347,9 @@ CREATE CLASS HBDebugger
    METHOD VarGetValue( aVar )
    METHOD VarSetValue( aVar, uValue )
 
+   METHOD WindowIconize()
    METHOD WindowLayout( cMode )
+   METHOD WindowResizeStep( nStep )
    METHOD WindowEdit( lSize )
    METHOD WindowRepaint()
    METHOD WindowAt( nRow, nCol )
@@ -1258,7 +1261,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
       CASE hb_LeftEq( "CASCADE", cParam1 )
          ::WindowLayout( "CASCADE" )
       CASE hb_LeftEq( "ICONIZE", cParam1 )
-         ::NotSupported()
+         ::WindowIconize()
       OTHERWISE
          cResult := "Command error"
       ENDCASE
@@ -1576,8 +1579,11 @@ METHOD PROCEDURE HandleEvent() CLASS HBDebugger
             EXIT
 
          CASE K_ALT_G /* Grow active window */
+            ::WindowResizeStep( 1 )
+            EXIT
+
          CASE K_ALT_S /* Shrink active window */
-            ::NotSupported()
+            ::WindowResizeStep( -1 )
             EXIT
 
          CASE K_F1
@@ -3952,6 +3958,53 @@ METHOD WindowRepaint() CLASS HBDebugger
    DispEnd()
    RETURN Self
 
+METHOD WindowIconize() CLASS HBDebugger
+   LOCAL oWnd := ::aWindows[ ::nCurrentWindow ]
+   LOCAL nAt, nTop, nLeft
+   IF oWnd == NIL .OR. ! oWnd:lVisible
+      RETURN Self
+   ENDIF
+   nAt := AScan( ::aWindowIcon, {| a | a[ 1 ] == oWnd } )
+   IF nAt > 0
+      oWnd:Resize( ::aWindowIcon[ nAt, 2 ], ::aWindowIcon[ nAt, 3 ], ;
+                   ::aWindowIcon[ nAt, 4 ], ::aWindowIcon[ nAt, 5 ] )
+      ADel( ::aWindowIcon, nAt )
+      ASize( ::aWindowIcon, Len( ::aWindowIcon ) - 1 )
+   ELSE
+      nTop := Min( oWnd:nTop, ::nMaxRow - 3 )
+      nLeft := Min( oWnd:nLeft, ::nMaxCol - 14 )
+      AAdd( ::aWindowIcon, { oWnd, oWnd:nTop, oWnd:nLeft, oWnd:nBottom, oWnd:nRight } )
+      oWnd:Resize( nTop, nLeft, nTop + 2, nLeft + 14 )
+   ENDIF
+   ::aWindowZoom := {}
+   ::lWindowsAutoSized := .F.
+   ::cLayoutMode := ""
+   ::WindowRepaint()
+   RETURN Self
+
+METHOD WindowResizeStep( nStep ) CLASS HBDebugger
+   LOCAL oWnd := ::aWindows[ ::nCurrentWindow ]
+   LOCAL nBottom, nRight
+   IF oWnd == NIL .OR. ! oWnd:lVisible
+      RETURN Self
+   ENDIF
+   IF AScan( ::aWindowIcon, {| a | a[ 1 ] == oWnd } ) > 0
+      ::WindowIconize()
+   ENDIF
+   IF nStep > 0
+      nBottom := Min( ::nMaxRow - 1, oWnd:nBottom + 1 )
+      nRight := Min( ::nMaxCol, oWnd:nRight + 1 )
+   ELSE
+      nBottom := Max( oWnd:nTop + 3, oWnd:nBottom - 1 )
+      nRight := Max( oWnd:nLeft + 11, oWnd:nRight - 1 )
+   ENDIF
+   oWnd:Resize( ,, nBottom, nRight )
+   ::aWindowZoom := {}
+   ::lWindowsAutoSized := .F.
+   ::cLayoutMode := ""
+   ::WindowRepaint()
+   RETURN Self
+
 METHOD WindowLayout( cMode ) CLASS HBDebugger
    LOCAL aVisible := {}, aRects, oWnd, aRect, i, aSave
    FOR EACH oWnd IN ::aWindows
@@ -3965,6 +4018,9 @@ METHOD WindowLayout( cMode ) CLASS HBDebugger
    IF ::oWndStack != NIL
       ::oWndStack:Browser := ::oBrwStack
    ENDIF
+   // Layout replaces saved icon rectangles; otherwise a later un-iconize
+   // would restore a stale rect over the new layout.
+   ::aWindowIcon := {}
    IF cMode == "ZOOM"
       oWnd := ::aWindows[ ::nCurrentWindow ]
       IF ! oWnd:lVisible
@@ -4010,6 +4066,9 @@ METHOD WindowLayout( cMode ) CLASS HBDebugger
 
 METHOD WindowEdit( lSize ) CLASS HBDebugger
    LOCAL oWnd := ::aWindows[ ::nCurrentWindow ], aOld, nKey, nDR, nDC
+   IF AScan( ::aWindowIcon, {| a | a[ 1 ] == oWnd } ) > 0
+      ::WindowIconize()
+   ENDIF
    aOld := { oWnd:nTop, oWnd:nLeft, oWnd:nBottom, oWnd:nRight }
    DO WHILE .T.
       hb_DispOutAt( ::nMaxRow, 0, PadR( iif( lSize, "Size", "Move" ) + ;

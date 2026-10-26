@@ -83,10 +83,11 @@ las asignaciones (pty, ventana Monitor visible):
 
 ## Limitaciones upstream documentadas (NO son funciones implementadas)
 
-- Window Move/Size/Zoom(F2)/Iconize/Tile y Options Exchange Screens /
-  swap on Input / Menu Bar: stubs de upstream que solo muestran el alert
-  "Not implemented yet!" (verificado las 8). Quedan como limitaciones;
-  construirlas seria funcionalidad nueva, fuera de la semantica upstream.
+- Window Move/Size/Zoom(F2)/Tile dejaron de ser stubs en ed724c2; Iconize,
+  Grow y Shrink se implementan despues (ver seccion 2026-10-26). Quedan sin
+  implementar Options Exchange Screens, swap on Input y Menu Bar: una
+  declaracion upstream no cierra el alcance; esas tres requieren una ruta
+  tecnica de presentacion/entrada antes de marcarse funcionales.
 - Monitor>Global: ventana vacia siempre (Harbour sin GLOBALs; ver seccion
   Monitor). 
 - Limitacion visual conocida durante la ejecucion (p.ej. Animate): la
@@ -226,3 +227,19 @@ Verificacion del ciclo debugger->salir->Help->Contents->Debugger:
 - `test_debug_callstack_pty.py`: CALLSTACK ON opens the window with Main;
   Ctrl-F5 into the next routine adds bump; CALLSTACK OFF hides the window.
   Complements existing menu Calls view coverage with command-path on/off effect.
+
+## 2026-10-26: window iconize/grow/shrink
+
+- Implemented the remaining geometry stubs: Window > Iconize toggles the
+  active window to one interior row by fifteen columns and restores its saved
+  rectangle; Alt-G/Alt-S grow and shrink the active window one row/column.
+  Manual geometry changes leave managed tile/cascade mode, as Move/Size do.
+- Native layout coverage now includes iconize/restore and shrink/grow. PTY
+  command coverage exercises Window > Iconize collapse/restore on the code
+  window. The old cascade expectation was corrected to the 0ab0ed7 rule:
+  the focused window owns the most-offset front rect.
+- Remaining non-geometry upstream stubs: Exchange Screens, swap on Input,
+  and Menu Bar. They are not closed as "upstream limitations"; Exchange
+  Screens depends on resolving the execution repaint/tearing path, swap on
+  Input needs a reliable debuggee-input signal, and Menu Bar needs a reviewed
+  interaction design while hidden.
