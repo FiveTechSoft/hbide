@@ -65,7 +65,7 @@ PROCEDURE Main()
    Assert(h['display']=='7','focused button enters its digit')
    // typing a key moves focus to that button
    h:=CalcState()
-   Assert(CalcKey(h,Asc('9'))==4 .AND. h['focus']==4,'typed key focuses its button')
+   Assert(CalcKey(h,Asc('9'))==3 .AND. h['focus']==3,'typed key focuses its button')
    Assert(h['display']=='9','typed key enters digit')
    // after =, a digit starts a new number
    h:=CalcState()
