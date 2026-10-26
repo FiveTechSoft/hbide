@@ -54,3 +54,20 @@ reader; no hay mensajes ni callbacks registrados.
   de solo lectura.
 - Persistencia gratis: el modelo se guarda con hb_jsonEncode (linea 1607).
 - Prueba de aditividad: modelo sin eventos -> salida identica a hoy.
+
+## Estado: IMPLEMENTADO y verificado (2026-10-26)
+
+- Inspector en linea (InspFields) y dialogo de propiedades (EditProperties)
+  tienen campos When/Valid (todos los controles), Focus (button, checkbox,
+  radiogroup, listbox) y State (checkbox, listbox; el boton usa Action).
+- Codegen emite clausulas en el orden de las reglas de std.ch; GET con
+  eventos usa la expansion exacta de COLOR (SEND colorDisp) porque la
+  clausula COLOR no admite WHEN/VALID detras.
+- Verificacion runtime real (PTY + stubs con log): NameWhen/NameValid,
+  CkWhen/CkValid/CkFocus(x2: set+kill)/CkState(toggle), BtnWhen/BtnValid/
+  BtnFocus/OkClick, RgWhen/RgValid/RgFocus, LbWhen/LbFocus/LbState(seleccion)
+  disparados al navegar y pulsar; codigo generado compila con hbmk2.
+- test_designer.prg: 405 checks, incluidas aditividad (sin eventos = sin
+  clausulas) y presencia de cada clausula.
+- Precision del usuario (10:20): la sombra inferior Y la lateral derecha de
+  los botones siguen mal; el interim A no es aceptacion visual.

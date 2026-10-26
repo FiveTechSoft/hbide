@@ -61,6 +61,22 @@ procedure Main()
    Check( "gen has dialog", 'HBWindow():Dialog( "Customer data", 50, 14, "W+/W" )' $ cCode )
    Check( "gen has say", 'oDlg:Say( 2, 3, "Name:" )' $ cCode )
    Check( "gen has get", "@ oDlg:nTop + 2, oDlg:nLeft + 10 GET cName" $ cCode )
+   Check( "gen no event clauses without events", ! ( " WHEN {||" $ cCode ) .and. ! ( " VALID {||" $ cCode ) .and. ! ( " FOCUS {||" $ cCode ) )
+
+   // events-routed-to-code: clauses appear only when the model names handlers
+   hModel[ "controls" ][ 2 ][ "when" ]  = "Customer_Name_When()"
+   hModel[ "controls" ][ 2 ][ "valid" ] = "Customer_Name_Valid()"
+   hModel[ "controls" ][ 3 ][ "focus" ] = "CkFocus()"
+   hModel[ "controls" ][ 3 ][ "state" ] = "CkState()"
+   hModel[ "controls" ][ 4 ][ "focus" ] = "BtnFocus()"
+   hModel[ "controls" ][ 4 ][ "when" ]  = "BtnWhen()"
+   cCode = DsnGenCode( hModel )
+   Check( "gen get when/valid + SEND colorDisp", ;
+      "GET cName VALID {|| Customer_Name_Valid() } WHEN {|| Customer_Name_When() } SEND colorDisp(" $ cCode )
+   Check( "gen checkbox focus/state", "' FOCUS {|| CkFocus() } STATE {|| CkState() }" $ cCode )
+   Check( "gen button when + focus keep state action", ;
+      "PUSHBUTTON WHEN {|| BtnWhen() } CAPTION" $ cCode .and. ;
+      "' FOCUS {|| BtnFocus() } STATE { ||" $ cCode )
    Check( "gen has checkbox", "GET lActive CHECKBOX CAPTION" $ cCode )
    Check( "gen declares var", "local cName := Space( 20 )" $ cCode )
    Check( "gen declares lvar", "local lActive := .F." $ cCode )
@@ -81,10 +97,10 @@ procedure Main()
    Check( "insp value dlgtext",  oD:InspValue( "dlgtext" )  == oD:cDlgClrText )
    Check( "insp value dlgfocus", oD:InspValue( "dlgfocus" ) == oD:cDlgClrFocus )
    oD:nSelected = 1
-   Check( "insp fields get", Len( oD:InspFields() ) == 4 )
+   Check( "insp fields get", Len( oD:InspFields() ) == 6 )
    Check( "insp value variable", oD:InspValue( "variable" ) == "cName" )
    oD:nSelected = 2
-   Check( "insp fields button", Len( oD:InspFields() ) == 6 )
+   Check( "insp fields button", Len( oD:InspFields() ) == 9 )
 
    // live numeric adjust with clamps
    oD:nSelected = 1
@@ -143,13 +159,16 @@ procedure Main()
    oD:nSelected = 1
    Check( "insp fields say",   Len( oD:InspFields() ) == 3 .and. oD:InspFields()[ 3 ][ 1 ] == "Caption" )
    oD:nSelected = 2
-   Check( "insp fields get",   Len( oD:InspFields() ) == 4 .and. oD:InspFields()[ 3 ][ 1 ] == "Variable" .and. oD:InspFields()[ 4 ][ 1 ] == "Width" )
+   Check( "insp fields get",   Len( oD:InspFields() ) == 6 .and. oD:InspFields()[ 3 ][ 1 ] == "Variable" .and. oD:InspFields()[ 4 ][ 1 ] == "Width" .and. ;
+          oD:InspFields()[ 5 ][ 1 ] == "When" .and. oD:InspFields()[ 6 ][ 1 ] == "Valid" )
    oD:nSelected = 3
-   Check( "insp fields check", Len( oD:InspFields() ) == 4 .and. oD:InspFields()[ 3 ][ 1 ] == "Caption" .and. oD:InspFields()[ 4 ][ 1 ] == "Variable" )
+   Check( "insp fields check", Len( oD:InspFields() ) == 8 .and. oD:InspFields()[ 3 ][ 1 ] == "Caption" .and. oD:InspFields()[ 4 ][ 1 ] == "Variable" .and. ;
+          oD:InspFields()[ 7 ][ 1 ] == "Focus" .and. oD:InspFields()[ 8 ][ 1 ] == "State" )
    oD:nSelected = 4
-   Check( "insp fields btn",   Len( oD:InspFields() ) == 6 .and. oD:InspFields()[ 3 ][ 1 ] == "Caption" .and. ;
+   Check( "insp fields btn",   Len( oD:InspFields() ) == 9 .and. oD:InspFields()[ 3 ][ 1 ] == "Caption" .and. ;
           oD:InspFields()[ 4 ][ 1 ] == "Accel" .and. oD:InspFields()[ 5 ][ 1 ] == "Action" .and. ;
-          oD:InspFields()[ 6 ][ 1 ] == "Style" .and. oD:InspFields()[ 6 ][ 3 ] == "choice" )
+          oD:InspFields()[ 6 ][ 1 ] == "Style" .and. oD:InspFields()[ 6 ][ 3 ] == "choice" .and. ;
+          oD:InspFields()[ 7 ][ 1 ] == "When" .and. oD:InspFields()[ 9 ][ 1 ] == "Focus" )
 
    // button accelerator and action: model -> generated code
    oD:aControls[ 4 ][ "caption" ]     = "Guardar"
@@ -287,10 +306,10 @@ procedure Main()
    oD2 = HbDesigner():New( nil )
    AAdd( oD2:aControls, { "type" => "radiogroup", "row" => 1, "col" => 1, "variable" => "nRadio1", "items" => "A,B" } )
    oD2:nSelected = 1
-   Check( "insp fields radio", Len( oD2:InspFields() ) == 4 )
+   Check( "insp fields radio", Len( oD2:InspFields() ) == 7 .and. oD2:InspFields()[ 7 ][ 1 ] == "Focus" )
    Check( "insp value items", oD2:InspValue( "items" ) == "A,B" )
    oD2:aControls[ 1 ] = { "type" => "listbox", "row" => 1, "col" => 1, "variable" => "nList1", "items" => "A,B", "width" => 20, "height" => 6 }
-   Check( "insp fields listbox", Len( oD2:InspFields() ) == 6 )
+   Check( "insp fields listbox", Len( oD2:InspFields() ) == 10 .and. oD2:InspFields()[ 9 ][ 1 ] == "Focus" .and. oD2:InspFields()[ 10 ][ 1 ] == "State" )
    oD2:InspSetText( "items", "A,B,C,D" )
    Check( "insp set items", oD2:aControls[ 1 ][ "items" ] == "A,B,C,D" )
 

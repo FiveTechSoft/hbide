@@ -1285,6 +1285,7 @@ METHOD EditProperties() CLASS HbDesigner
 
    local oCtrl, oDlg, GetList := {}, lOk := .F., lCancel := .F., lDummy
    local cCaption, cVariable, nRow, nCol, nWidth, cAccel, cAction, cItems, nHeight
+   local cWhen, cValid, cFocus, cState
    local aSize, nMaxRow, nMaxCol, hBefore, lBrackets
 
    if ::nSelected < 1 .or. ::nSelected > Len( ::aControls )
@@ -1306,10 +1307,14 @@ METHOD EditProperties() CLASS HbDesigner
    cAction   = PadR( hb_HGetDef( oCtrl, "action", "" ), Max( 60, Len( hb_HGetDef( oCtrl, "action", "" ) ) ) + 20 )
    cItems    = PadR( hb_HGetDef( oCtrl, "items", "" ), Max( 60, Len( hb_HGetDef( oCtrl, "items", "" ) ) ) + 20 )
    nHeight   = hb_HGetDef( oCtrl, "height", 6 )
+   cWhen     = PadR( hb_HGetDef( oCtrl, "when", "" ),  Max( 60, Len( hb_HGetDef( oCtrl, "when", "" ) ) ) + 20 )
+   cValid    = PadR( hb_HGetDef( oCtrl, "valid", "" ), Max( 60, Len( hb_HGetDef( oCtrl, "valid", "" ) ) ) + 20 )
+   cFocus    = PadR( hb_HGetDef( oCtrl, "focus", "" ), Max( 60, Len( hb_HGetDef( oCtrl, "focus", "" ) ) ) + 20 )
+   cState    = PadR( hb_HGetDef( oCtrl, "state", "" ), Max( 60, Len( hb_HGetDef( oCtrl, "state", "" ) ) ) + 20 )
 
    ::SuspendUI()
 
-   oDlg = HBWindow():Dialog( "Control properties", 76, 11, CLR_DIALOG )
+   oDlg = HBWindow():Dialog( "Control properties", 76, If( oCtrl[ "type" ] == DSN_SAY, 11, 15 ), CLR_DIALOG )
    oDlg:bRepaint = { || ::Redraw() }
 
    @ oDlg:nTop + 2, oDlg:nLeft + 11 GET nRow PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
@@ -1356,6 +1361,21 @@ METHOD EditProperties() CLASS HbDesigner
       oDlg:Say( 7, 2, "Height:" )
    endif
 
+   if oCtrl[ "type" ] != DSN_SAY
+      @ oDlg:nTop + 8, oDlg:nLeft + 11 GET cWhen PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
+      oDlg:Say( 8, 2, "When:" )
+      @ oDlg:nTop + 9, oDlg:nLeft + 11 GET cValid PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
+      oDlg:Say( 9, 2, "Valid:" )
+      if oCtrl[ "type" ] $ DSN_BUTTON + "|" + DSN_CHECKBOX + "|" + DSN_RADIO + "|" + DSN_LISTBOX
+         @ oDlg:nTop + 10, oDlg:nLeft + 11 GET cFocus PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
+         oDlg:Say( 10, 2, "Focus:" )
+      endif
+      if oCtrl[ "type" ] $ DSN_CHECKBOX + "|" + DSN_LISTBOX
+         @ oDlg:nTop + 11, oDlg:nLeft + 11 GET cState PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
+         oDlg:Say( 11, 2, "State:" )
+      endif
+   endif
+
    @ oDlg:nBottom - 2, oDlg:nLeft + 10 GET lDummy PUSHBUTTON ;
       CAPTION "  &OK  " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || lOk := .T., oDlg:End() }
@@ -1399,6 +1419,12 @@ METHOD EditProperties() CLASS HbDesigner
          oCtrl[ "accelerator" ] = Left( StrTran( AllTrim( cAccel ), "&", "" ), 1 )
          oCtrl[ "action" ]      = AllTrim( cAction )
          oCtrl[ "style" ]       = If( lBrackets, "brackets", "shadow" )
+      endif
+      if oCtrl[ "type" ] != DSN_SAY
+         oCtrl[ "when" ]  = AllTrim( cWhen )
+         oCtrl[ "valid" ] = AllTrim( cValid )
+         oCtrl[ "focus" ] = AllTrim( cFocus )
+         oCtrl[ "state" ] = AllTrim( cState )
       endif
       ::lDirty = .T.
       ::Redraw()
@@ -1767,6 +1793,16 @@ METHOD InspFields() CLASS HbDesigner
          AAdd( aFields, { "Width",  "width",  "num" } )
          AAdd( aFields, { "Height", "height", "num" } )
       endif
+      if oCtrl[ "type" ] != DSN_SAY
+         AAdd( aFields, { "When",  "when",  "text" } )
+         AAdd( aFields, { "Valid", "valid", "text" } )
+         if oCtrl[ "type" ] $ DSN_BUTTON + "|" + DSN_CHECKBOX + "|" + DSN_RADIO + "|" + DSN_LISTBOX
+            AAdd( aFields, { "Focus", "focus", "text" } )
+         endif
+         if oCtrl[ "type" ] $ DSN_CHECKBOX + "|" + DSN_LISTBOX
+            AAdd( aFields, { "State", "state", "text" } )
+         endif
+      endif
    else
       AAdd( aFields, { "Name", "dlgname", "text" } )
       AAdd( aFields, { "Caption", "dlgcaption", "text" } )
@@ -1823,6 +1859,10 @@ METHOD InspValue( cKey ) CLASS HbDesigner
          case cKey == "action"      ; return hb_HGetDef( oCtrl, "action", "" )
          case cKey == "style"       ; return hb_HGetDef( oCtrl, "style", "shadow" )
          case cKey == "items"       ; return hb_HGetDef( oCtrl, "items", "" )
+         case cKey == "when"        ; return hb_HGetDef( oCtrl, "when", "" )
+         case cKey == "valid"       ; return hb_HGetDef( oCtrl, "valid", "" )
+         case cKey == "focus"       ; return hb_HGetDef( oCtrl, "focus", "" )
+         case cKey == "state"       ; return hb_HGetDef( oCtrl, "state", "" )
          case cKey == "height"      ; return hb_ntos( hb_HGetDef( oCtrl, "height", 6 ) )
       endcase
    else
@@ -1897,6 +1937,8 @@ METHOD InspSetText( cKey, cVal ) CLASS HbDesigner
             oCtrl[ "action" ] = cVal
          case cKey == "items"
             oCtrl[ "items" ] = cVal
+         case cKey == "when" .or. cKey == "valid" .or. cKey == "focus" .or. cKey == "state"
+            oCtrl[ cKey ] = cVal
       endcase
    else
       do case
@@ -2930,27 +2972,35 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
             endif
 
          case oCtrl[ "type" ] == DSN_GET
+            // std.ch rule order is VALID/WHEN/SEND: with events the COLOR
+            // clause cannot be used, so emit its exact expansion instead
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
-                     " GET " + hGenVars[ n ] + ;
-                     " COLOR '" + DsnClrGetFor( cDlgColor, cClrFocus ) + "'" + hb_eol()
+                     " GET " + hGenVars[ n ] + DsnEvnWV( oCtrl ) + ;
+                     If( Empty( DsnEvnWV( oCtrl ) ), ;
+                        " COLOR '" + DsnClrGetFor( cDlgColor, cClrFocus ) + "'", ;
+                        " SEND colorDisp( '" + DsnClrGetFor( cDlgColor, cClrFocus ) + "' )" ) + hb_eol()
 
          case oCtrl[ "type" ] == DSN_CHECKBOX
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
                      " GET " + hGenVars[ n ] + ;
-                     " CHECKBOX CAPTION " + DsnQuote( oCtrl[ "caption" ] ) + ;
+                     " CHECKBOX" + DsnEvnWV( oCtrl ) + ;
+                     " CAPTION " + DsnQuote( oCtrl[ "caption" ] ) + ;
                      " STYLE '[X ]'" + ;
-                     " COLOR '" + DsnClrCheckBoxFor( cDlgColor, cClrFocus ) + "'" + hb_eol()
+                     " COLOR '" + DsnClrCheckBoxFor( cDlgColor, cClrFocus ) + "'" + ;
+                     DsnEvnFS( oCtrl ) + hb_eol()
 
          case oCtrl[ "type" ] == DSN_BUTTON
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
-                     " GET lDummy PUSHBUTTON CAPTION " + ;
+                     " GET lDummy PUSHBUTTON" + DsnEvnWV( oCtrl ) + " CAPTION " + ;
                      DsnQuote( DsnAccelCaption( hb_HGetDef( oCtrl, "caption", "" ), ;
                         hb_HGetDef( oCtrl, "accelerator", "" ) ) ) + " ;" + hb_eol()
-            cCode += "      COLOR '" + DsnClrButtonFor( cDlgColor ) + "' STATE { || " + ;
-                     DsnButtonAction( oCtrl ) + " }" + ;
+            cCode += "      COLOR '" + DsnClrButtonFor( cDlgColor ) + "'" + ;
+                     If( Empty( hb_HGetDef( oCtrl, "focus", "" ) ), "", ;
+                        " FOCUS {|| " + AllTrim( oCtrl[ "focus" ] ) + " }" ) + ;
+                     " STATE { || " + DsnButtonAction( oCtrl ) + " }" + ;
                      If( hb_HGetDef( oCtrl, "style", "shadow" ) == "brackets", ;
                         " STYLE '[]'", "" ) + hb_eol()
 
@@ -2975,7 +3025,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                      " GET " + hGenVars[ n ] + ;
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
                         " RADIOGROUP aButt", " LISTBOX aItems" ) + ;
-                     hb_ntos( n ) + ;
+                     hb_ntos( n ) + DsnEvnWV( oCtrl ) + ;
                      If( oCtrl[ "type" ] == DSN_LISTBOX .and. ;
                         Len( DsnItems( oCtrl ) ) > aSize[ 2 ] - 2, " SCROLLBAR", "" ) + ;
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
@@ -2986,7 +3036,11 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                            aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ] + "," + ;
                            If( cClrFocus == DSN_CLR_FOCUS, "Y+/" + aDlgPair[ 2 ], ;
                               cClrFocus ) ) + "'", ;
-                        " COLOR '" + DsnClrListBoxFor( cDlgColor, cClrFocus ) + "'" ) + hb_eol()
+                        " COLOR '" + DsnClrListBoxFor( cDlgColor, cClrFocus ) + "'" ) + ;
+                     If( oCtrl[ "type" ] == DSN_RADIO, ;
+                        If( Empty( hb_HGetDef( oCtrl, "focus", "" ) ), "", ;
+                           " FOCUS {|| " + AllTrim( oCtrl[ "focus" ] ) + " }" ), ;
+                        DsnEvnFS( oCtrl ) ) + hb_eol()
       endcase
    next
 
@@ -3077,6 +3131,35 @@ function DsnResolveVar( hDeclared, cVar, cType, nConflicts, lNew )
 return cNew
 
 //-----------------------------------------------------------------------------------------//
+
+// WHEN/VALID clauses in std.ch rule order (VALID first); empty = no clause,
+// so a model without events generates byte-identical code to before.
+function DsnEvnWV( oCtrl )
+
+   local cCode := ""
+
+   if ! Empty( hb_HGetDef( oCtrl, "valid", "" ) )
+      cCode += " VALID {|| " + AllTrim( oCtrl[ "valid" ] ) + " }"
+   endif
+   if ! Empty( hb_HGetDef( oCtrl, "when", "" ) )
+      cCode += " WHEN {|| " + AllTrim( oCtrl[ "when" ] ) + " }"
+   endif
+
+return cCode
+
+// FOCUS/STATE clauses (FOCUS first; radiogroup has no STATE in std.ch).
+function DsnEvnFS( oCtrl )
+
+   local cCode := ""
+
+   if ! Empty( hb_HGetDef( oCtrl, "focus", "" ) )
+      cCode += " FOCUS {|| " + AllTrim( oCtrl[ "focus" ] ) + " }"
+   endif
+   if ! Empty( hb_HGetDef( oCtrl, "state", "" ) )
+      cCode += " STATE {|| " + AllTrim( oCtrl[ "state" ] ) + " }"
+   endif
+
+return cCode
 
 function DsnButtonAction( oCtrl )
 
