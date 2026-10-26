@@ -921,9 +921,66 @@ return ! Empty( ::cLoadStamp ) .and. Empty( ::DiskStamp( ::cFile ) )
 
 //-----------------------------------------------------------------------------------------//
 
+// Write cContent to cFile without truncating the user's original in place:
+// write a sibling temp file, verify its size, then move it over the
+// destination. On POSIX the rename replaces atomically, so a crash can
+// leave either the old or the new file, never a half-written one; the .bak
+// copy DoSave makes first still covers the rest. On Windows a rename cannot
+// replace an existing file, so the destination is erased first (a brief
+// non-atomic window, also covered by that .bak).
+// NOTE: this Harbour build has no portable stat/chmod API, so the replaced
+// file gets default (umask) permissions; a Unix exec bit on the old file is
+// NOT preserved (it was, when writing in place). Documented trade-off.
+function HBIDE_AtomicWriteFile( cFile, cContent )
+
+   local cTmp, lOk := .F.
+
+   // unique temp name: never clobber preexisting content assuming it is ours
+   cTmp := cFile + ".tmp-" + StrZero( hb_randomInt( 999999 ), 6 )
+   if File( cTmp )
+      return .F.
+   endif
+
+   if hb_MemoWrit( cTmp, cContent ) .and. hb_FSize( cTmp ) == Len( cContent )
+      lOk := HBIDE_ReplaceFile( cTmp, cFile )
+   endif
+
+   if ! lOk
+      FErase( cTmp )   // drop the partial/unused temp we just made
+   endif
+
+return lOk
+
+//-----------------------------------------------------------------------------------------//
+
+// Move cTmp over cTarget. POSIX rename(2) replaces an existing target
+// atomically; on Windows FRename fails while the target exists, so erase it
+// and retry once (caller's .bak covers that window).
+function HBIDE_ReplaceFile( cTmp, cTarget )
+
+#ifdef __PLATFORM__WINDOWS
+   if FRename( cTmp, cTarget ) != 0
+      FErase( cTarget )
+      if FRename( cTmp, cTarget ) != 0
+         return .F.
+      endif
+   endif
+#else
+   if FRename( cTmp, cTarget ) != 0
+      return .F.
+   endif
+#endif
+
+return .T.
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD SaveFile() CLASS HBSrcEdit
 
-   local lOk
+   local lOk, cContent
+   if Empty( ::cFile )
+      return .F.
+   endif
 
    // raw-view UTF-8: an edit that cut a multibyte sequence (cursor/
    // backspace inside it) makes the bytes no longer valid UTF-8. Saving
@@ -934,19 +991,24 @@ METHOD SaveFile() CLASS HBSrcEdit
       return .F.
    endif
 
+   // Atomic write through a verified temp file (see HBIDE_AtomicWriteFile):
+   // the original is never truncated in place. Byte content matches the old
+   // direct-write paths exactly (GetText() with its default argument, same
+   // as the parent's SaveFile used).
    if ::lUtf8
-      lOk := hb_MemoWrit( ::cFile, ;
-               If( ::lUtf8Bom, HBIDE_Utf8Bom(), "" ) + hb_StrToUTF8( ::GetText() ) )
-      if lOk
-         ::lDirty := .F.
-      endif
+      cContent := If( ::lUtf8Bom, HBIDE_Utf8Bom(), "" ) + hb_StrToUTF8( ::GetText() )
    else
-      lOk := ::Super:SaveFile()
+      cContent := ::GetText()
    endif
 
+   lOk := HBIDE_AtomicWriteFile( ::cFile, cContent )
+
    if lOk
+      ::lDirty := .F.
       ::nSavedUndoLen := Len( ::aUndo )
       ::cSeenStamp := ::cLoadStamp := ::DiskStamp( ::cFile )   // our own save is not an external change
+   else
+      HBIDE_MsgAlert( "Save failed: " + ::cFile + " (original left untouched)" )
    endif
 
 return lOk
