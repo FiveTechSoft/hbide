@@ -38,6 +38,19 @@ procedure Main()
       nMs := hb_milliseconds() - t0
       cOut += "nav  " + hb_ntos( nSize ) + " lines: " + hb_ntos( nMs ) + " ms / 100 keys" + hb_eol()
       hb_MemoWrit( "/tmp/hbide-bench-editor.txt", cOut )
+
+      // in-view nav: alternate K_DOWN/K_UP inside the visible page (no
+      // scrolling, so GoTo triggers no full Display) — isolates the cost
+      // of the per-key repaint tail
+      oE:GoTo( 10, 5 )
+      t0 := hb_milliseconds()
+      for i := 1 to 50
+         oE:Edit( K_DOWN )
+         oE:Edit( K_UP )
+      next
+      nMs := hb_milliseconds() - t0
+      cOut += "nav-in-view " + hb_ntos( nSize ) + " lines: " + hb_ntos( nMs ) + " ms / 100 keys" + hb_eol()
+      hb_MemoWrit( "/tmp/hbide-bench-editor.txt", cOut )
    next
 
 return

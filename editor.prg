@@ -563,6 +563,10 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            endif
            ::lDirty := .T.
            oLine := ::aText[ ::nRow ]
+           // capture BEFORE the past-EOL padding below: the recorded undo op
+           // must restore the line as it was, padding included in the new
+           // side only (snapshot+diff did exactly that)
+           cOldLine := oLine:cText
            IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0
               oLine:cText += Space( nPos )
            ENDIF
@@ -571,7 +575,6 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
               // toggles /* or */ recolors everything below
               lBlkBefore := ::BlkCmtState( ::nRow + 1 )
            endif
-           cOldLine := oLine:cText
            oLine:cText := hb_UStuff( oLine:cText, ::nCol - 4, ;
                                      iif( Set( _SET_INSERT ), 0, 1 ), cKey )
            ::nCol += hb_ULen( cKey )
@@ -606,14 +609,26 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
    endcase
 
    if ! lSkipTail
-      if ::Row() > ::nTop
-         ::DisplayLine( ::Row() - 1 )
-      endif
+      if HBIDE_IsNavKey( nKey ) .and. ! ::lMark
+         // Pure cursor move: only the current-row highlight (LineColor)
+         // changes. The new row gains it here; the old row loses it in the
+         // nOldScrRow block below, and same-row moves need no repaint at
+         // all (GoTo repaints everything itself when the view scrolls).
+         // With the F8 range mark active the selection highlight can span
+         // lines, so that path keeps the full 3-line tail.
+         if ::Row() != nOldScrRow
+            ::DisplayLine( ::Row() )
+         endif
+      else
+         if ::Row() > ::nTop
+            ::DisplayLine( ::Row() - 1 )
+         endif
 
-      ::DisplayLine( ::Row() )
+         ::DisplayLine( ::Row() )
 
-      if ::Row() < ::nBottom
-         ::DisplayLine( ::Row() + 1 )
+         if ::Row() < ::nBottom
+            ::DisplayLine( ::Row() + 1 )
+         endif
       endif
    endif
 

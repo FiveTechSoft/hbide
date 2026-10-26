@@ -1,6 +1,6 @@
 #include "hbclass.ch"
 #include "inkey.ch"
-static nPass := 0, nFail := 0
+static nPass := 0, nFail := 0, cLog := ''
 function HBIDE_MsgAlert( cText )
    HB_SYMBOL_UNUSED( cText )
 return 1
@@ -9,6 +9,7 @@ class PaintProbe from HBSrcEdit
    data nFull init 0
    method DisplayLine( n )
    method Display()
+   method Dirty() inline ::lDirty
 endclass
 method DisplayLine( n ) class PaintProbe
    ::nLines++
@@ -17,16 +18,21 @@ method Display() class PaintProbe
    ::nFull++
 return ::Super:Display()
 procedure Check( cName, lOk )
+   local h
    if lOk
       nPass++
    else
       nFail++
       hb_MemoWrit( '/tmp/hbide-repaint-failure.txt', cName )
    endif
+   cLog += iif( lOk, 'PASS ', 'FAIL ' ) + cName + hb_eol()
 return
 procedure Main()
+   // the IDE drives the editor in insert mode; the Harbour default for
+   // SET(_SET_INSERT) is .F., so pin it explicitly for the hot-path checks
    local o := PaintProbe():New( 'local a := 1' + hb_eol() + 'return a', 2, 1, 20, 79, .T. )
    local cText
+   Set( _SET_INSERT, .T. )
    o:GoTo( 1, 5 )
    o:nLines := o:nFull := 0
    o:Edit( Asc( 'x' ) )
@@ -68,11 +74,84 @@ procedure Main()
    o:Edit( K_RIGHT )
    o:Edit( Asc( 'X' ) )
    hb_MemoWrit( '/tmp/hbide-selection-result.txt', o:GetText() )
-   Check( 'selection replaced not appended', o:GetText() == 'Xdef' )
+   // F8 at col 5 + 2xRight selects 2 chars ('ab', end-exclusive); typing X
+   // replaces exactly those. (The old 'Xdef' expectation only passed in
+   // overtype mode, where the typed char ate one more.)
+   Check( 'selection replaced not appended', o:GetText() == 'Xcdef' )
+   // Nav fast path: pure cursor keys repaint only the rows whose
+   // current-line highlight changed; the old row is restored by the
+   // nOldScrRow block, so K_DOWN paints exactly 2 lines, no full repaint.
+   o:LoadText( 'line one' + hb_eol() + 'line two' + hb_eol() + 'line three' )
+   o:GoTo( 1, 5 )
+   o:nLines := o:nFull := 0
+   o:Edit( K_DOWN )
+   Check( 'K_DOWN paints old and new row only', o:nLines == 2 .and. o:nFull == 0 )
+   Check( 'K_DOWN moved cursor', o:Row() == 3 )
+   o:GoTo( 2, 6 )
+   o:nLines := o:nFull := 0
+   o:Edit( K_LEFT )
+   Check( 'K_LEFT same row paints nothing', o:nLines == 0 .and. o:nFull == 0 )
+   Check( 'K_LEFT moved cursor', o:Col() == 5 )
+   // F8 range mark: the selection highlight spans lines, so nav keeps the
+   // full tail (prev/cur/next plus the old-row pass).
+   o:GoTo( 1, 5 )
+   o:Edit( K_F8 )
+   o:nLines := o:nFull := 0
+   o:Edit( K_DOWN )
+   Check( 'K_DOWN with mark keeps full tail', o:nLines >= 3 )
+   o:Edit( K_F8 )
+   // Undo-op equality on the direct-PushOp hot path (insert/overtype/EOL
+   // gap/multibyte/fusing/modified state/cursor): the direct op must behave
+   // exactly like the snapshot+diff op it replaced.
+   o:LoadText( 'abcde' )
+   o:GoTo( 1, 7 )
+   o:Edit( Asc( 'X' ) )
+   Check( 'insert mid-line', o:GetText() == 'abXcde' )
+   o:Undo()
+   Check( 'undo insert restores', o:GetText() == 'abcde' )
+   hb_MemoWrit( '/tmp/rpdbg.txt', hb_StrToHex( o:GetText() ) )
+   Check( 'undo insert clean at saved state', ! o:Dirty() )
+   o:Redo()
+   Check( 'redo insert reapplies', o:GetText() == 'abXcde' )
+   o:Undo()
+   Set( _SET_INSERT, .F. )
+   o:GoTo( 1, 6 )
+   o:Edit( Asc( 'Y' ) )
+   Set( _SET_INSERT, .T. )
+   Check( 'overtype replaces char', o:GetText() == 'aYcde' )
+   o:Undo()
+   Check( 'undo overtype restores', o:GetText() == 'abcde' )
+   o:GoTo( 1, 12 )
+   o:Edit( Asc( 'z' ) )
+   Check( 'typing past EOL pads spaces', o:GetText() == 'abcde  z' )
+   o:Undo()
+   Check( 'undo EOL gap restores exact', o:GetText() == 'abcde' )
+   // a multibyte char arrives from a UTF-8 GT as an extended UNICODE key
+   // (HB_INKEY_EXT_BIT + HB_INKEY_EXT_UNICODE + codepoint; gttrm.c:1374)
+   hb_cdpSelect( 'UTF8' )
+   o:GoTo( 1, 5 )
+   o:Edit( 0x43000000 + 0xE9 )
+   Check( 'multibyte char inserted', o:GetText() == 'éabcde' )
+   o:Undo()
+   Check( 'undo multibyte restores', o:GetText() == 'abcde' )
+   o:GoTo( 1, 10 )
+   o:Edit( Asc( '1' ) )
+   o:Edit( Asc( '2' ) )
+   o:Edit( Asc( '3' ) )
+   Check( 'typing burst fuses', o:GetText() == 'abcde123' .and. Len( o:aUndo ) == 1 )
+   o:Undo()
+   Check( 'fused burst undoes in one op', o:GetText() == 'abcde' .and. ! o:Dirty() )
+   Check( 'cursor lands on op row', o:Row() == 2 .and. o:Col() == 5 )
+   o:ToggleBP()
+   o:Edit( Asc( 'q' ) )
+   Check( 'breakpoint survives hot-path edit', AScan( o:aBPs, 1 ) > 0 )
+   o:Undo()
+   Check( 'breakpoint survives undo', AScan( o:aBPs, 1 ) > 0 .and. o:GetText() == 'abcde' )
    o := PaintProbe():New( 'one two three', 2, 1, 20, 79, .T., 16 )
    o:GoTo( 1, 5 )
    o:Edit( Asc( 'Z' ) )
    Check( 'wordwrap path preserves typed character', Left( o:GetText(), 1 ) == 'Z' )
+   hb_MemoWrit( '/tmp/rpall.txt', cLog )
    hb_MemoWrit( '/tmp/hbide-repaint-tests.txt', 'PASS ' + hb_ntos( nPass ) + ' FAIL ' + hb_ntos( nFail ) )
    if nFail > 0
       ErrorLevel( 1 )
