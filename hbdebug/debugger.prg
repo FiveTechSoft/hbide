@@ -347,6 +347,7 @@ CREATE CLASS HBDebugger
    METHOD VarGetValue( aVar )
    METHOD VarSetValue( aVar, uValue )
 
+   METHOD IsWindowIconized( oWnd )
    METHOD WindowIconize()
    METHOD WindowLayout( cMode )
    METHOD WindowResizeStep( nStep )
@@ -1470,9 +1471,9 @@ METHOD PROCEDURE HandleEvent() CLASS HBDebugger
 
    DO WHILE ! ::lEnd
 
-      IF ::oWndCommand:lFocused
+      IF ::oWndCommand:lFocused .AND. ! ::IsWindowIconized( ::oWndCommand )
          ::oGetCommand:showCursor()
-      ELSEIF ::oWndCode:lFocused .AND. ::oBrwText != NIL
+      ELSEIF ::oWndCode:lFocused .AND. ::oBrwText != NIL .AND. ! ::IsWindowIconized( ::oWndCode )
          ::oBrwText:ForceStable()
          SetCursor( SC_SPECIAL1 )
       ELSE
@@ -3957,6 +3958,9 @@ METHOD WindowRepaint() CLASS HBDebugger
    ::BarDisplay()
    DispEnd()
    RETURN Self
+
+METHOD IsWindowIconized( oWnd ) CLASS HBDebugger
+   RETURN AScan( ::aWindowIcon, {| a | a[ 1 ] == oWnd } ) > 0
 
 METHOD WindowIconize() CLASS HBDebugger
    LOCAL oWnd := ::aWindows[ ::nCurrentWindow ]
