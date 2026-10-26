@@ -136,6 +136,7 @@ CREATE CLASS HBDebugger
    VAR pInfo
    VAR aWindows          INIT {}
    VAR nCurrentWindow    INIT 1
+   VAR cLayoutMode       INIT ""   // last applied WindowLayout mode (""/TILE/CASCADE)
    VAR oPullDown
 
    VAR oWndCode
@@ -2087,7 +2088,11 @@ METHOD PROCEDURE NextWindow() CLASS HBDebugger
       oWnd:Show( .T. )
    ENDIF
 
-   IF ! ::lWindowsAutoSized
+   // In cascade mode the focused window must take the front slot of the
+   // stack; re-applying the layout keeps every title bar visible.
+   IF ::cLayoutMode == "CASCADE"
+      ::WindowLayout( "CASCADE" )
+   ELSEIF ! ::lWindowsAutoSized
       ::WindowRepaint()
    ENDIF
 
@@ -2276,7 +2281,11 @@ METHOD PROCEDURE PrevWindow() CLASS HBDebugger
       oWnd:Show( .T. )
    ENDIF
 
-   IF ! ::lWindowsAutoSized
+   // In cascade mode the focused window must take the front slot of the
+   // stack; re-applying the layout keeps every title bar visible.
+   IF ::cLayoutMode == "CASCADE"
+      ::WindowLayout( "CASCADE" )
+   ELSEIF ! ::lWindowsAutoSized
       ::WindowRepaint()
    ENDIF
 
@@ -3979,6 +3988,18 @@ METHOD WindowLayout( cMode ) CLASS HBDebugger
          RETURN Self
       ENDIF
       ::aWindowZoom := {}
+      ::cLayoutMode := cMode
+      IF cMode == "CASCADE"
+         // Focused window goes to the front of the stack: it gets the last
+         // (most offset) rect and is drawn last, so every other title bar
+         // stays visible in the staircase instead of being covered whole.
+         oWnd := ::aWindows[ ::nCurrentWindow ]
+         IF ( i := AScan( aVisible, {| x | x == oWnd } ) ) > 0
+            ADel( aVisible, i )
+            ASize( aVisible, Len( aVisible ) - 1 )
+            AAdd( aVisible, oWnd )
+         ENDIF
+      ENDIF
       FOR i := 1 TO Len( aVisible )
          aRect := aRects[ i ]
          aVisible[ i ]:Resize( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ] )
@@ -4016,6 +4037,7 @@ METHOD WindowEdit( lSize ) CLASS HBDebugger
    ELSE
       ::aWindowZoom := {}
       ::lWindowsAutoSized := .F.
+      ::cLayoutMode := ""
    ENDIF
    ::WindowRepaint()
    RETURN Self
