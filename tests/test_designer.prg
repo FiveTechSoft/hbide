@@ -77,6 +77,22 @@ procedure Main()
    Check( "gen button when + focus keep state action", ;
       "PUSHBUTTON WHEN {|| BtnWhen() } CAPTION" $ cCode .and. ;
       "' FOCUS {|| BtnFocus() } STATE { ||" $ cCode )
+
+   // event keys survive the JSON save/reload round-trip
+   cJson = hb_jsonEncode( hModel, .T. )
+   hBack = nil
+   hb_jsonDecode( cJson, @hBack )
+   Check( "json event keys roundtrip", ;
+      hBack[ "controls" ][ 2 ][ "when" ] == "Customer_Name_When()" .and. ;
+      hBack[ "controls" ][ 2 ][ "valid" ] == "Customer_Name_Valid()" .and. ;
+      hBack[ "controls" ][ 3 ][ "focus" ] == "CkFocus()" .and. ;
+      hBack[ "controls" ][ 3 ][ "state" ] == "CkState()" .and. ;
+      hBack[ "controls" ][ 4 ][ "focus" ] == "BtnFocus()" .and. ;
+      hBack[ "controls" ][ 4 ][ "when" ]  == "BtnWhen()" )
+   cCode = DsnGenCode( hBack )
+   Check( "gen after json reload keeps clauses", ;
+      "WHEN {|| Customer_Name_When() }" $ cCode .and. ;
+      "STATE {|| CkState() }" $ cCode )
    Check( "gen has checkbox", "GET lActive CHECKBOX CAPTION" $ cCode )
    Check( "gen declares var", "local cName := Space( 20 )" $ cCode )
    Check( "gen declares lvar", "local lActive := .F." $ cCode )

@@ -69,5 +69,3 @@ reader; no hay mensajes ni callbacks registrados.
   disparados al navegar y pulsar; codigo generado compila con hbmk2.
 - test_designer.prg: 405 checks, incluidas aditividad (sin eventos = sin
   clausulas) y presencia de cada clausula.
-- Precision del usuario (10:20): la sombra inferior Y la lateral derecha de
-  los botones siguen mal; el interim A no es aceptacion visual.

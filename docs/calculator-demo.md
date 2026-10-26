@@ -16,6 +16,11 @@ toolchain (requieren build con ncurses/X11: pospuesto). La sombra fina
 estilo TVision (semibloque inferior) no es representable con gttrm;
 hb_gtInfo(HB_GTI_ISUNICODE) permite detectarlo en runtime.
 
+Exigencia vigente del usuario (10:20): la sombra inferior Y la lateral
+derecha siguen mal; la barra difuminada interim NO es aceptacion visual y
+ninguna variante de celda de altura completa lo sera: hacen falta
+semibloques o un GT con Unicode sano.
+
 ## Ejecutar
 
     hbmk2 demos/calculator.prg -gttrm && ./demos/calculator

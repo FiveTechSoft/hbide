@@ -3,6 +3,7 @@
 //   hbmk2 tests/test_help_browser.prg help.prg -gttrm
 // Result file: /tmp/hbide-help-browser-tests.txt
 PROCEDURE Main()
+   LOCAL c
    LOCAL aTopics := HBIDEHelpTopics(), aRows := HBIDEHelpTree( aTopics )
    LOCAL a, n, nTopics := 0, cBefore, cOldCwd := hb_cwd()
    // every topic exactly once, sections in order
@@ -24,6 +25,16 @@ PROCEDURE Main()
    Assert( aTopics[ a[ 1 ][ 1 ], 2 ] == 'Dialog designer' .OR. aTopics[ a[ 1 ][ 1 ], 2 ] == 'Options menu', 'json match in designer/options' )
    Assert( Empty( HBIDEHelpMatches( aTopics, 44, 'ZZZNOPE' ) ), 'no false matches' )
    Assert( Empty( HBIDEHelpMatches( aTopics, 44, '' ) ), 'empty query matches nothing' )
+   // reflow: prose wraps, preformatted table rows keep their columns
+   a := HBIDEHelpLines( aTopics[ AScan( aTopics, { | t | t[ 2 ] == 'Debugger' } ), 3 ], 30 )
+   n := 0
+   FOR EACH c IN a
+      IF 'F5 Go / stop at breakpoint' $ c .AND. 'F7 Run to cursor' $ c
+         n := 1
+      ENDIF
+   NEXT
+   Assert( n == 1, 'preformatted table row not rewrapped' )
+   Assert( HBHelpOneLine( 'New            Starts an empty buffer' ) == 'New Starts an empty buffer', 'one-line summary collapses columns' )
    // export writes real markdown with every topic
    hb_cwd( '/tmp' )
    FErase( '/tmp/hbide-help.md' )
