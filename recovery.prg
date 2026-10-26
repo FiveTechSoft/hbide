@@ -120,9 +120,15 @@ return lLive
 // hits Harbour's ~263-char internal path limit well before NAME_MAX), so a
 // key longer than 120 chars is bounded to a readable 100-char prefix plus a
 // dual 32-bit hash (FNV-1a + djb2, 16 hex chars) of the FULL absolute path.
-// Short keys keep the exact collision-free form; distinct long paths share
-// keys only in the 2^-64 hash space, which long journals could never reach
-// before (their writes always failed).
+// Short keys keep the exact collision-free form. Distinct long paths share
+// a key only if BOTH hashes collide: two different 32-bit hashes of the same
+// input are not independent, so no 2^-64 guarantee is claimed, but an
+// accidental double collision is far less likely than with one hash. Long
+// journals could never exist before (their writes always failed), so no
+// stored key can change meaning. The bound covers the KEY only: an
+// HBIDE_RECOVERY_DIR so long that even a bounded key overflows the path
+// limit still cannot hold journals; writes then fail and the editor warns
+// once per failing streak (support limit, not silent).
 function HBIDE_RecoveryKey( cFile )
 
    local cAbs, cKey := "", n, c

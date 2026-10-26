@@ -18,7 +18,7 @@ proc Main()
 
    local cDir := "/tmp/hbide-recovery-" + StrZero( hb_randomInt( 999999 ), 6 )
    local cKey1, cKey2, cKey3, cKey4, aScan, cBin
-   local cLong1, cLong2, cKeyL1, cKeyL2
+   local cLong1, cLong2, cKeyL1, cKeyL2, cLongDir
 
    hb_SetEnv( "HBIDE_RECOVERY_DIR", cDir )
 
@@ -87,6 +87,15 @@ proc Main()
    HBIDE_RecoveryDelete( "kk" )   // must not raise either
    Check( "delete on missing dir tolerated", .T. )
    hb_SetEnv( "HBIDE_RECOVERY_DIR", cDir )
+
+   // 9b. support limit: a recovery dir so long that even a bounded key
+   // overflows Harbour's full-path limit fails soft (write .F., no raise)
+   cLongDir := "/tmp/" + Replicate( "r", 240 )
+   hb_SetEnv( "HBIDE_RECOVERY_DIR", cLongDir )
+   Check( "overlong recovery dir write fails soft", ! HBIDE_RecoveryWrite( "kk", "k.prg", "x" ) )
+   Check( "overlong recovery dir scan empty", Len( HBIDE_RecoveryScan( .T. ) ) == 0 )
+   hb_SetEnv( "HBIDE_RECOVERY_DIR", cDir )
+   hb_Run( "rm -rf " + cLongDir )
 
    // 10. instance ownership: two sessions over the same path keep separate
    //     journals; save/discard in one never deletes the other's work
