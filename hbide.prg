@@ -76,6 +76,8 @@ CLASS HbIde
    METHOD ReplaceDialog()
    METHOD FindDialog()
    METHOD CheckUnsaved()
+   METHOD RecoveryCheck()
+   METHOD RecoverJournal( cKey, cTarget )
    METHOD CheckDiskChange()
    METHOD ReloadFromDisk()
    METHOD ConfirmOverwrite()
@@ -543,6 +545,7 @@ METHOD Activate() CLASS HBIde
 
    ::lEnd = .F.
    ::Show()
+   ::RecoveryCheck()   // P0: offer back buffers left unsaved by a crash/kill
    ::oEditor:Goto( 1, 5 )
 
    while ! ::lEnd
@@ -655,6 +658,7 @@ METHOD Activate() CLASS HBIde
       if Seconds() - ::nLastDiskCheck >= 2 .or. Seconds() < ::nLastDiskCheck
          ::nLastDiskCheck := Seconds()
          ::CheckDiskChange()
+         ::oEditor:UpdateJournal()
       endif
    end
 
@@ -1073,6 +1077,52 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+// P0: at start, offer back every buffer left unsaved by a session that ended
+// without a clean save/discard (crash, kill, power). "Later" keeps the
+// journal and asks again next start; it is the safe default for doubts.
+METHOD RecoveryCheck() CLASS HbIde
+
+   local aItem, nPick
+
+   for each aItem in HBIDE_RecoveryScan()
+      nPick := HBIDE_MsgAlert( "Unsaved changes from an interrupted session:" + Chr( 10 ) + ;
+              iif( Empty( aItem[ 2 ] ), "noname.prg", aItem[ 2 ] ) + ;
+              " (" + aItem[ 4 ] + ", " + hb_ntos( aItem[ 3 ] ) + " bytes)", ;
+              { "Recover", "Discard", "Later" }, "Recovery" )
+      do case
+         case nPick == 1
+            ::RecoverJournal( aItem[ 1 ], aItem[ 2 ] )
+         case nPick == 2
+            HBIDE_RecoveryDelete( aItem[ 1 ] )
+         otherwise
+            // Later: keep the journal untouched
+      endcase
+   next
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Load a journaled buffer back as dirty content: the disk file stays
+// untouched until the user explicitly saves the recovered work.
+METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
+
+   ::oEditor:LoadText( HBIDE_RecoveryRead( cKey ) )
+   ::oEditor:cFile := iif( Empty( cTarget ), "noname.prg", cTarget )
+   ::oEditor:SetDirty( .T. )
+   // the stamp of the disk version, so the external-change watch does not
+   // fire on the very file this recovery refers to
+   ::oEditor:cLoadStamp := ::oEditor:DiskStamp( ::oEditor:cFile )
+   ::oEditor:cSeenStamp := ::oEditor:cLoadStamp
+   ::oWndCode:cCaption := ::oEditor:cFile
+   HBIDE_RecoveryDelete( cKey )
+   ::Repaint()
+   ::oEditor:ShowCursor()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 // Returns .T. when it is safe to drop the current buffer:
 // no changes, or user saved (and the save persisted), or user discarded.
 METHOD CheckUnsaved() CLASS HbIde
@@ -1086,6 +1136,7 @@ METHOD CheckUnsaved() CLASS HbIde
          lGo := ! ::oEditor:Changed()   // a failed save keeps the buffer dirty
          exit
       case 2
+         ::oEditor:JournalDiscard()   // explicit discard: nothing to recover
          lGo := .T.
          exit
       otherwise
@@ -1224,6 +1275,7 @@ METHOD SaveAs() CLASS HbIde
    local GetList := {}, oGetName, lDummy, lOk := .F.
    local cFileName := Space( 250 )
    local cName
+   local cOldFile := ::oEditor:cFile
 
    oDlg:bRepaint = { || ::Repaint() }
    ::SuspendStatus()
@@ -1269,6 +1321,10 @@ METHOD SaveAs() CLASS HbIde
    endif
 
    ::DoSave()
+   // rename-save succeeded: the old name's journal is stale now
+   if ! ::oEditor:Changed() .and. !( cOldFile == ::oEditor:cFile )
+      HBIDE_RecoveryDelete( HBIDE_RecoveryKey( cOldFile ) )
+   endif
 
 return nil
 

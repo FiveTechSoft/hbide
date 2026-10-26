@@ -4,6 +4,38 @@ HbIde ChangeLog
 2026-10-26
 ----------
 
+  Guardado y recuperacion (rama designer-robustness)
+  --------------------------------------------------
+  - Nuevo (P0 ROADMAP): recuperacion visible de cambios sin guardar.
+    Mientras un buffer esta sucio, la IDE mantiene un journal con su
+    texto completo en ~/.hbide/recovery (sobreescribible con
+    HBIDE_RECOVERY_DIR), refrescado con la cadencia de 2 s del bucle
+    principal. Tras un cierre forzado, el arranque lista cada journal
+    superviviente con ruta, fecha y tamano y ofrece Recuperar / Descartar /
+    Despues. Recuperar devuelve el buffer como contenido sucio sin tocar
+    el fichero en disco hasta que el usuario guarda. El journal se borra
+    al guardar con exito o al descartar explicitamente; SaveAs solo borra
+    el journal del nombre antiguo si el guardado persistio
+  - Escritura del journal atomica (tmp + rename, sidecar .target primero):
+    una caida a mitad de escritura deja a lo sumo un .tmp inerte, nunca un
+    journal roto ofrecido como recuperable. Fallos de E/S del journal
+    (disco lleno, permisos) degradan la recuperacion en silencio y nunca
+    interrumpen la edicion ni el arranque
+  - Durabilidad declarada: se recupera el contenido del ultimo tick de
+    2 s, no cada tecla; una clave por ruta absoluta normalizada (alias o
+    symlinks al mismo fichero generan journals distintos; dos instancias
+    sobre el mismo archivo comparten journal, gana el ultimo escritor)
+  - Corregido: la asignacion externa de lDirty (PROTECTED en HBEditor) en
+    la recuperacion provocaba BASE/42 scope violation; nuevo setter
+    HBSrcEdit:SetDirty()
+  - Pruebas: tests/test_recovery.prg 29/29 (claves, round trip byte-exacto,
+    scan, borrado, debris de crash inerte, directorio no escribible sin
+    error). E2E en Linux: kill -9 con buffer sucio, rearranque, prompt de
+    recuperacion visible, Recuperar y guardado byte-exacto; journal
+    eliminado tras el guardado. Bateria completa en verde: designer 407/407,
+    atomic 37/37, calculator, debug_layout 324, project, project_ui, help,
+    help_browser y foxpro_demo PASS
+
   Disenador (rama designer-robustness)
   ------------------------------------
   - Nuevo: el lienzo del disenador pinta la letra aceleradora de los

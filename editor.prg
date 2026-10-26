@@ -86,6 +86,9 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD LoadText( cText )
    METHOD LoadFile( cFileName )
    METHOD SaveFile()
+   METHOD UpdateJournal()
+   METHOD JournalDiscard()
+   METHOD SetDirty( l )
    METHOD DiskStamp( cFile )
    METHOD DiskChanged()
    METHOD DiskChangedSinceLoad()
@@ -1112,6 +1115,7 @@ METHOD SaveFile() CLASS HBSrcEdit
    lOk := HBIDE_AtomicWriteFile( ::cFile, cContent, @cFailInfo )
 
    if lOk
+      ::JournalDiscard()   // the journal exists only for unsaved work
       ::lDirty := .F.
       ::nSavedUndoLen := Len( ::aUndo )
       ::cSeenStamp := ::cLoadStamp := ::DiskStamp( ::cFile )   // our own save is not an external change
@@ -1120,6 +1124,43 @@ METHOD SaveFile() CLASS HBSrcEdit
    endif
 
 return lOk
+
+//-----------------------------------------------------------------------------------------//
+
+// P0 recovery: while the buffer is dirty, keep its full text in the central
+// recovery journal (2 s cadence from the IDE loop). The journal is deleted
+// on a successful save and on an explicit discard; a survivor at the next
+// start means the previous session ended with neither and is offered back.
+// The else branch self-heals stale journals of this same file (e.g. after a
+// reload-from-disk, which is not a save but drops the dirty state).
+METHOD UpdateJournal() CLASS HBSrcEdit
+
+   if ::lDirty
+      HBIDE_RecoveryWrite( HBIDE_RecoveryKey( ::cFile ), ::cFile, ::GetText() )
+   else
+      HBIDE_RecoveryDelete( HBIDE_RecoveryKey( ::cFile ) )
+   endif
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// lDirty is inherited PROTECTED from HBEditor: external callers (recovery)
+// go through this setter.
+METHOD SetDirty( l ) CLASS HBSrcEdit
+
+   hb_defaultValue( l, .T. )
+   ::lDirty := l
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD JournalDiscard() CLASS HBSrcEdit
+
+   HBIDE_RecoveryDelete( HBIDE_RecoveryKey( ::cFile ) )
+
+return nil
 
 //-----------------------------------------------------------------------------------------//
 

@@ -41,7 +41,7 @@ mismo resultado en Windows. La publicacion del conjunto sigue pendiente.
 | Proyectos | Modelo .hbp, hbmk2, exitcode, Messages y desktop integrados y revalidados por el mantenedor; no confundir integracion local con publicacion. |
 | Regresion de pruebas UI | GTCGI introduce Enter y no sirve para probar esta cola interactiva. Suite aislada GTSTD revalidada 3/3 por el mantenedor, modulo y build IDE correctos; discrepancia cerrada. |
 | Documentos multiples | El flujo examinado sigue siendo de un buffer. Es objetivo, no funcion terminada. |
-| Guardado | Hay comprobaciones de cambios externos y copia .bak. No se ha demostrado guardado atomico ni recuperacion de todos los buffers tras crash. |
+| Guardado | Guardado atomico por fichero demostrado (tmp en el mismo volumen + rename, .bak). Recuperacion visible tras crash/kill: journal central (~/.hbide/recovery) con refresco cada 2 s solo mientras el buffer esta sucio y aviso al arrancar con Recuperar/Descartar/Despues. Durabilidad declarada: se recupera el contenido del ultimo tick de 2 s, no cada tecla; escritura atomica del journal (tmp+rename) para no ofrecer journals rotos; si el journal no se puede escribir, la edicion nunca se interrumpe. Limites declarados: una clave por ruta absoluta (dos instancias sobre el mismo archivo comparten journal; alias/symlinks no se resuelven) y un solo buffer. Verificado en Linux: E2E kill -9 + rearranque + Recuperar + guardado byte-exacto, suite test_recovery 29/29. Pendiente: comparar antes de recuperar y validacion Windows. |
 | Disenador | Tiene flujo propio en evolucion. Preservar su trabajo y separar codigo generado de handlers manuales; no duplicar aqui ese desarrollo. |
 
 Las notas locales con evidencia mas detallada estan en
