@@ -354,7 +354,10 @@ check('exit returns to the debugger', '__hbide_dbg__' in scr.text())
 send(b'? 6*7\r'); pump(1.2)
 check('Command ? evaluates', '42' in scr.text())
 
-# --- menu checkmark state (durable version of the Oct-25 ad-hoc rows) ---
+# --- menu checkmark STATE only (durable version of the Oct-25 ad-hoc
+# rows). These six checks prove menu state, NOT functional effect:
+# RunAtStartup/codeBlockTrace/ShowAllGlobals still lack observable-effect
+# coverage and must not be reported as functionally verified. ---
 def menu_row(name):
     for line in scr.text().split('\n'):
         if name in line:
@@ -403,6 +406,39 @@ if m:
     check('PPO shows preprocessed view', 'PPOMARKERLINE' in scr.text() and '.ppo' in scr.text())
     send(b'\x1bo'); pump(0.9); send(b'p'); pump(1.2)
     check('PPO toggles back to source', 'procedure __Main' in scr.text() and '.ppo' not in scr.text())
+
+# --- Command window interpreter, effect level: bp set/list/toggle, help ---
+def cmd_row():
+    r = None
+    for i in range(ROWS):
+        if re.search(r'>\s*$', ''.join(scr.g[i])):
+            r = i   # the active prompt is the LAST '>' row; earlier ones are history
+    return r
+# focus is effect-verified: the command echo row only appears when the
+# Command window get receives the keys
+focused = False
+for _ in range(4):
+    send(b'list bp\r'); pump(1.2)
+    if '> list bp' in scr.text():
+        focused = True
+        break
+    send(b'\t'); pump(0.7)
+check('Command window focused (echo)', focused)
+
+send(b'bp 7\r'); pump(1.0)
+send(b'list bp\r'); pump(1.2)
+check('Command bp 7 + list bp shows the breakpoint', re.search(r'\)\s*7', scr.text()) is not None)
+send(b'bp 7\r'); pump(1.0)   # toggle off
+send(b'list bp\r'); pump(1.2)
+tail = scr.text()[scr.text().rfind('> list bp'):]
+check('Command bp 7 toggles off (not listed anymore)', re.search(r'\)\s*7', tail) is None)
+
+def help_window_up():
+    return any('Help' in line and 'q' in line for line in scr.text().split('\n'))
+send(b'help\r'); pump(1.2)
+check('Command help opens the Help window', help_window_up())
+send(b'\x1b'); pump(1.0)
+check('Help window closes with ESC', not help_window_up())
 
 # Alt+X back to the IDE
 send(b'\x1bx'); pump(1.5)
