@@ -946,45 +946,57 @@ return ""
 // the destination. On POSIX the rename replaces atomically, so a crash can
 // leave either the old or the new file, never a half-written one. If the
 // original's attributes cannot be read or applied, the save ABORTS without
-// modifying the destination (fail-closed).
-// Symlink policy (documented): when the destination is a symlink the old
-// behaviour is kept - write through the link, in place, into the target.
-// Renaming would silently replace the LINK with a regular file; the in-place
-// write keeps the link and the target's inode and mode, at the price of
-// atomicity for that path only.
-function HBIDE_AtomicWriteFile( cFile, cContent )
+// modifying the destination (fail-closed). On ANY failure the temp with the
+// full new content is KEPT and @cFailInfo names it, so nothing the user
+// wrote is lost even when the destination cannot be touched.
+// Symlink policy (fail-closed, documented): renaming would silently replace
+// the LINK with a regular file, and writing through the link in place would
+// reintroduce the non-atomic truncation this helper removes. Saving to a
+// symlinked destination is REFUSED until a safe strategy exists: the
+// destination and link stay untouched and the new content goes to a named
+// recoverable temp.
+function HBIDE_AtomicWriteFile( cFile, cContent, cFailInfo )
 
    local cTmp, lOk := .F., nAttr := 0, aDir
 
-   aDir := Directory( cFile )
-   if Len( aDir ) > 0 .and. "L" $ aDir[ 1 ][ F_ATTR ]
-      return hb_MemoWrit( cFile, cContent )
-   endif
+   cFailInfo := ""
 
    cTmp := HBIDE_UniqueSibling( cFile )
    if Empty( cTmp )
+      cFailInfo := "no free temp name next to " + cFile
       return .F.
    endif
 
-   do while .T.   // single-exit block; every exit cleans the temp below
+   aDir := Directory( cFile )
+   if Len( aDir ) > 0 .and. "L" $ aDir[ 1 ][ F_ATTR ]
+      hb_MemoWrit( cTmp, cContent )
+      cFailInfo := cFile + " is a symlink: saving there is not safe yet. " + ;
+                   "Destination untouched; your content is recoverable at " + cTmp
+      return .F.
+   endif
+
+   do while .T.   // single-exit block; the temp is kept on every failure
       // read the original's permissions BEFORE touching anything
       if File( cFile ) .and. ! hb_vfAttrGet( cFile, @nAttr )
+         cFailInfo := "could not read attributes of " + cFile + "; destination untouched"
          exit
       endif
       if ! hb_MemoWrit( cTmp, cContent ) .or. hb_FSize( cTmp ) != Len( cContent )
+         cFailInfo := "could not write the temp file; destination untouched"
          exit
       endif
       // stamp the original's permissions on the replacement (aborts above
       // when impossible, so the destination is never silently demoted)
       if File( cFile ) .and. ! hb_vfAttrSet( cTmp, nAttr )
+         cFailInfo := "could not preserve the permissions of " + cFile + "; destination untouched"
          exit
       endif
-      lOk := HBIDE_ReplaceFile( cTmp, cFile )
+      lOk := HBIDE_ReplaceFile( cTmp, cFile, @cFailInfo )
       exit
    enddo
 
-   if ! lOk
-      FErase( cTmp )   // our own temp: the unique name above guarantees it
+   if ! lOk .and. File( cTmp )
+      cFailInfo += " (new content kept at " + cTmp + ")"
    endif
 
 return lOk
@@ -992,40 +1004,70 @@ return lOk
 //-----------------------------------------------------------------------------------------//
 
 // Move cTmp over cTarget, fail-closed: the original destination is never
-// destroyed before the replacement stands in place. POSIX rename(2)
-// replaces an existing target atomically. On Windows FRename cannot replace
-// an existing file, so the destination is PARKED under a temp name first
-// (never erased), the new file moved in, and the original rolled back if
-// the move fails; only a fully successful replacement erases the park copy.
-function HBIDE_ReplaceFile( cTmp, cTarget )
+// destroyed before the replacement stands in place, and every failure path
+// leaves BOTH the original and the new content on disk, named in
+// @cRecovery. POSIX rename(2) replaces an existing target atomically. The
+// Windows path cannot rename over an existing file, so it parks the
+// destination first (never erased), moves the new file in and rolls back on
+// failure; if the ROLLBACK also fails, the original survives at its park
+// name and the new content at cTmp - cRecovery says exactly where. Not
+// atomic on Windows and does not claim to be.
+function HBIDE_ReplaceFile( cTmp, cTarget, cRecovery )
 
+   local lOk
+
+   cRecovery := ""
 #ifdef __PLATFORM__WINDOWS
-   local cHold
-
-   if File( cTarget )
-      cHold := HBIDE_UniqueSibling( cTarget )
-      if Empty( cHold )
-         return .F.
-      endif
-      if FRename( cTarget, cHold ) != 0
-         return .F.                        // destination untouched
-      endif
-      if FRename( cTmp, cTarget ) != 0
-         FRename( cHold, cTarget )         // rollback: destination restored
-         return .F.
-      endif
-      FErase( cHold )                      // replacement complete: drop park copy
-      return .T.
+return HBIDE_ParkReplace( cTmp, cTarget, @cRecovery )
+#else
+   lOk := FRename( cTmp, cTarget ) == 0
+   if ! lOk
+      cRecovery := "rename failed; original untouched at " + cTarget
    endif
+return lOk
 #endif
 
-return FRename( cTmp, cTarget ) == 0
+//-----------------------------------------------------------------------------------------//
+
+// Park-and-replace with rollback. The Windows replace strategy; factored
+// out so fault-injection tests can exercise it on any platform.
+function HBIDE_ParkReplace( cTmp, cTarget, cRecovery )
+
+   local cHold
+
+   cRecovery := ""
+   if ! File( cTarget )
+      if FRename( cTmp, cTarget ) != 0
+         cRecovery := "rename failed; new content kept at " + cTmp
+         return .F.
+      endif
+      return .T.
+   endif
+
+   cHold := HBIDE_UniqueSibling( cTarget )
+   if Empty( cHold )
+      cRecovery := "no free park name; original untouched at " + cTarget + ", new content kept at " + cTmp
+      return .F.
+   endif
+   if FRename( cTarget, cHold ) != 0
+      cRecovery := "could not park the original; it is untouched at " + cTarget + ", new content kept at " + cTmp
+      return .F.
+   endif
+   if FRename( cTmp, cTarget ) != 0
+      if FRename( cHold, cTarget ) != 0
+         cRecovery := "replace and rollback BOTH failed: original preserved as " + cHold + ", new content kept at " + cTmp
+      endif
+      return .F.
+   endif
+   FErase( cHold )   // replacement complete: drop the park copy
+
+return .T.
 
 //-----------------------------------------------------------------------------------------//
 
 METHOD SaveFile() CLASS HBSrcEdit
 
-   local lOk, cContent
+   local lOk, cContent, cFailInfo := ""
    if Empty( ::cFile )
       return .F.
    endif
@@ -1049,14 +1091,14 @@ METHOD SaveFile() CLASS HBSrcEdit
       cContent := ::GetText()
    endif
 
-   lOk := HBIDE_AtomicWriteFile( ::cFile, cContent )
+   lOk := HBIDE_AtomicWriteFile( ::cFile, cContent, @cFailInfo )
 
    if lOk
       ::lDirty := .F.
       ::nSavedUndoLen := Len( ::aUndo )
       ::cSeenStamp := ::cLoadStamp := ::DiskStamp( ::cFile )   // our own save is not an external change
    else
-      HBIDE_MsgAlert( "Save failed: " + ::cFile + " (original left untouched)" )
+      HBIDE_MsgAlert( "Save failed: " + cFailInfo )
    endif
 
 return lOk

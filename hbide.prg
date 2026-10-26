@@ -722,7 +722,7 @@ return oMenu
 
 METHOD Start() CLASS HbIde
 
-   local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, cBase, cExeTmp, cInfo, nRc
+   local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, cBase, cExeTmp, cInfo, nRc, cRecovery := ""
 
    if ! ::ConfirmOverwrite()
       return nil
@@ -781,8 +781,8 @@ METHOD Start() CLASS HbIde
    HBIDE_MsgAlert( iif( Empty( cOut ), "Build OK: " + cExe, cOut ) )
 
    if nRc == 0 .and. File( cExeTmp )
-      if ! HBIDE_ReplaceFile( cExeTmp, cExe )
-         HBIDE_MsgAlert( "Build succeeded but could not replace " + cExe + "; new binary kept as " + cExeTmp )
+      if ! HBIDE_ReplaceFile( cExeTmp, cExe, @cRecovery )
+         HBIDE_MsgAlert( "Build succeeded but could not replace " + cExe + ": " + cRecovery )
       elseif ::lAutoRun
          hb_Run( cExe )
       else
