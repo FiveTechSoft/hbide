@@ -184,3 +184,13 @@ Verificacion del ciclo debugger->salir->Help->Contents->Debugger:
 - ShowAllGlobals remains menu-state coverage. Public variables cannot prove
   this setting: its code filters module GLOBAL/EXTERNAL GLOBAL entries, not
   PUBLICs. This Harbour compiler's GLOBAL limitation remains documented.
+
+## 2026-10-26: CodeBlockTrace differential effect
+
+- `test_debug_codeblock_pty.py`: extended multi-line codeblock, breakpoint on
+  Eval at line 7, then F8. With CodeBlockTrace on, execution stops at line 4
+  (first block statement); off stops at line 5 (block return). Repeated twice,
+  each with fresh on/off processes. This proves the setting skips the block
+  entry event in this Harbour implementation, NOT that it skips every statement
+  inside an extended block. The previous single-line fixture was insufficient.
+- ShowAllGlobals alone remains state-only among the three options discussed.
