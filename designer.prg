@@ -57,15 +57,15 @@
 #define CLR_SELECTED  "N/G"
 #define CLR_SEL_BTN   "GR+/N"   // editor-only selection look for buttons (never emitted)
 #define CLR_GHOST     "N/BG"
-#define CLR_CODEVIEW  "N/W"
-#define CLR_CODEVIEW_HL "N/GR"
+#define CLR_CODEVIEW  "W/B"
+#define CLR_CODEVIEW_HL "N/BG"
 
 #define CLR_INSP      "W+/B"
 #define CLR_INSP_SEL  "N/GR"
 #define CLR_INSP_VAL  "N/W"
 
 #define HINT_CANVAS   "F2 add Enter edit F4 insp F5 prg Del Arrows move ^Z/^Y F9 gen F10 save Esc"
-#define HINT_CODEVIEW "F5 close | +/- scroll | live read-only view: manual code is never touched"
+#define HINT_CODEVIEW "F5 close | +/- scroll | ,/. pan | read-only: manual code is never touched"
 #define HINT_INSP     "F6 canvas | Enter edit | Left/Right adjust | Ctrl+Arrows move panel | F4 hide"
 
 //-----------------------------------------------------------------------------------------//
@@ -115,6 +115,7 @@ CLASS HbDesigner
    DATA lCodeView   INIT .F.          // F5: live read-only PRG view visible
    DATA aCodeLines  INIT {}           // last generated code, split into lines
    DATA nCodeTop    INIT 1            // first code line shown in the view
+   DATA nCodeLeft   INIT 1            // first code column shown in the view
    DATA nCodeAnchor INIT 0            // generated line of the selected control
    DATA cCodeSig    INIT ""           // model+selection signature of aCodeLines
 
@@ -342,6 +343,12 @@ METHOD Activate() CLASS HbDesigner
                ::DrawCodeView()
             endif
 
+         case ::lCodeView .and. nKey == Asc( "," )
+            ::nCodeLeft = Max( 1, ::nCodeLeft - 8 )
+            ::Redraw()
+         case ::lCodeView .and. nKey == Asc( "." )
+            ::nCodeLeft = Min( 240, ::nCodeLeft + 8 )
+            ::Redraw()
          case nKey == K_PGDN .or. ( ::lCodeView .and. nKey == Asc( "+" ) )
             if ::lCodeView
                ::nCodeTop = Min( Max( 1, Len( ::aCodeLines ) - ( MaxRow() - 3 ) + 1 ), ;
@@ -1142,7 +1149,7 @@ return nil
 METHOD DrawCodeView() CLASS HbDesigner
 
    local nT := 1, nB := MaxRow() - 1
-   local nW := Min( 74, MaxCol() - 3 )
+   local nW := Min( 58, MaxCol() - 3 )
    local nR := MaxCol() - 2, nL := nR - nW + 1
    local nViewH, n, nLine, cTitle
 
@@ -1160,12 +1167,13 @@ METHOD DrawCodeView() CLASS HbDesigner
    DispBox( nT, nL, nB, nR, 1, CLR_CODEVIEW )
    DrawShadow( nT, nL, nB, nR )
    cTitle = " " + Lower( ::cDlgName ) + ".prg - live view (read-only) "
-   hb_DispOutAt( nT, nL + 2, Left( cTitle, nW - 4 ), "N+/W" )
+   hb_DispOutAt( nT, nL + 1, PadR( "", nW - 2 ), "N/BG" )
+   hb_DispOutAt( nT, nL + 2, Left( cTitle, nW - 4 ), "N+/BG" )
    for n = 1 to nViewH
       nLine = ::nCodeTop + n - 1
       if nLine >= 1 .and. nLine <= Len( ::aCodeLines )
          hb_DispOutAt( nT + n, nL + 1, ;
-            PadR( SubStr( ::aCodeLines[ nLine ], 1, nW - 2 ), nW - 2 ), ;
+            PadR( SubStr( ::aCodeLines[ nLine ], ::nCodeLeft, nW - 2 ), nW - 2 ), ;
             If( nLine == ::nCodeAnchor, CLR_CODEVIEW_HL, CLR_CODEVIEW ) )
       endif
    next
