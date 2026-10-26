@@ -15,6 +15,9 @@
 
 function BuildEditor()
 
+   // unique within the process: journal filenames also carry the recovery
+   // session id, so a plain counter can never collide across instances
+   static nDocSeq := 0
    local cCode   := "function Main()"  + hb_eol() + hb_eol() + ;
                     '   Alert( "Hello world from Harbour" )' + hb_eol() + hb_eol() + ;
                     "return nil"
@@ -23,6 +26,7 @@ function BuildEditor()
 
    oEditor:SetColor( "W/B,N/BG" )
    oEditor:cFile = "noname.prg"
+   oEditor:cDocId = hb_ntos( ++nDocSeq )
 
 return oEditor
 
@@ -89,6 +93,11 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD SaveFile()
    DATA   cRecoveredBase INIT ""
    DATA   lJournalWarned INIT .F.   // one-shot: recovery write failing
+   DATA   cDocId        INIT ""     // unique per editor instance (multi-doc):
+                                    // journals of unnamed buffers key on it,
+                                    // otherwise two "noname" docs would share
+                                    // one journal and clobber each other
+   METHOD JournalKey()
    METHOD UpdateJournal()
    METHOD JournalDiscard()
    METHOD SetDirty( l )
@@ -1195,10 +1204,24 @@ return lOk
 // start means the previous session ended with neither and is offered back.
 // The else branch self-heals stale journals of this same file (e.g. after a
 // reload-from-disk, which is not a save but drops the dirty state).
+// Journal identity of THIS document: the file key when named, a per-instance
+// key when unnamed, so several unsaved "noname" buffers each keep their own
+// journal (the .target sidecar still records the intended name for the
+// recovery prompt).
+METHOD JournalKey() CLASS HBSrcEdit
+
+   if Empty( ::cFile ) .or. ::cFile == "noname.prg"
+      return "noname-" + ::cDocId
+   endif
+
+return HBIDE_RecoveryKey( ::cFile )
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD UpdateJournal() CLASS HBSrcEdit
 
    if ::lDirty
-      if ! HBIDE_RecoveryWrite( HBIDE_RecoveryKey( ::cFile ), ::cFile, ::GetText() )
+      if ! HBIDE_RecoveryWrite( ::JournalKey(), ::cFile, ::GetText() )
          // journal failing (disk full, permissions): editing must never stop,
          // but the user is warned ONCE per failing streak, so they don't
          // assume crash recovery is active when it isn't
@@ -1212,7 +1235,7 @@ METHOD UpdateJournal() CLASS HBSrcEdit
          ::lJournalWarned := .F.   // a new failure streak warns again
       endif
    else
-      HBIDE_RecoveryDelete( HBIDE_RecoveryKey( ::cFile ) )
+      HBIDE_RecoveryDelete( ::JournalKey() )
    endif
 
 return nil
@@ -1236,7 +1259,7 @@ METHOD JournalDiscard() CLASS HBSrcEdit
       HBIDE_RecoveryDeleteBase( ::cRecoveredBase )
       ::cRecoveredBase := ""
    endif
-   HBIDE_RecoveryDelete( HBIDE_RecoveryKey( ::cFile ) )
+   HBIDE_RecoveryDelete( ::JournalKey() )
 
 return nil
 

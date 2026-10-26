@@ -32,7 +32,11 @@ CLASS HbIde
    DATA   cBackScreen
    DATA   oMenu
    DATA   oWndCode
-   DATA   oEditor
+   // multi-documento: cada HBSrcEdit conserva texto, dirty, undo/redo,
+   // cursor, scroll, seleccion y breakpoints por documento. oEditor sigue
+   // siendo el documento activo para todos los call sites existentes.
+   DATA   aEditors   INIT {}
+   DATA   nCurrent   INIT 1
    DATA   nOldCursor
    DATA   lEnd
    DATA   nIdleStatus
@@ -48,10 +52,12 @@ CLASS HbIde
    DATA   cProjectHbmk2 INIT "hbmk2"
    DATA   cPendingOpen INIT ""   // file the designer asks hbide to open on exit
 
+   ACCESS oEditor   INLINE ::aEditors[ ::nCurrent ]
    METHOD New()
    METHOD About()   
    METHOD BuildMenu()
    METHOD Designer()   
+   METHOD OpenInDoc( cFileName )
    METHOD QueueOpen( cFile )
    METHOD ClearPendingOpen()
    METHOD OpenInEditor( cFileName )
@@ -65,6 +71,13 @@ CLASS HbIde
    METHOD Activate()
    METHOD End()   
    METHOD SaveScreen() INLINE ::cBackScreen := SaveScreen( 0, 0, MaxRow(), MaxCol() )  
+   METHOD NewFile()
+   METHOD CloseFile()
+   METHOD SwitchDoc( n )
+   METHOD NextDoc()
+   METHOD PrevDoc()
+   METHOD FindDoc( cFile )
+   METHOD CheckUnsavedAll()
    METHOD NewFile()
    METHOD SaveAs()
    METHOD DoSave()
@@ -137,7 +150,7 @@ METHOD New() CLASS HBIde
 
    ::oMenu       = ::BuildMenu()
    ::oWndCode    = HBWindow():New( 1, 0, MaxRow() - 1, MaxCol(), "noname.prg", "W/B" )
-   ::oEditor     = BuildEditor()
+   AAdd( ::aEditors, BuildEditor() )
    ::nOldCursor  = SetCursor( SC_NONE )
 
    Hb_GtInfo( HB_GTI_FONTNAME , "Lucida Console" )
@@ -267,17 +280,7 @@ METHOD OpenInEditor( cFileName ) CLASS HBIde
       HBIDE_MsgAlert( "File not found: " + cFileName )
       return .F.
    endif
-   if ! ::CheckUnsaved()   // must not drop unsaved work
-      return .F.
-   endif
-   if ! ::oWndCode:lVisible
-      ::oWndCode:Show( .F. )
-   endif
-   ::oEditor:LoadFile( cFileName )
-   ::oEditor:Display()
-   ::oEditor:Goto( 1, 5 )
-   ::oWndCode:cCaption = cFileName
-   ::oWndCode:Refresh()
+   ::OpenInDoc( cFileName )
 
 return .T.
 
@@ -557,14 +560,10 @@ METHOD Activate() CLASS HBIde
       nKeyStd = hb_keyStd( nKey )
 
       if nKeyStd == K_ESC .and. ! ::oMenu:IsOpen()
-         if ::oEditor:Changed()
-            if ::CheckUnsaved()
-               ::lEnd = .T.
-            else
-               ::Repaint()
-            endif
-         else
+         if ::CheckUnsavedAll()
             ::lEnd = .T.
+         else
+            ::Repaint()
          endif
       endif
 
@@ -594,6 +593,19 @@ METHOD Activate() CLASS HBIde
       if nKeyStd == K_F2 .and. ! ::oMenu:IsOpen()
          ::SaveFile()
          loop
+      endif
+
+      // document switching: Ctrl+F6 next, Ctrl+Shift+F6 previous
+      if ! ::oMenu:IsOpen() .and. Len( ::aEditors ) > 1
+         if nKeyStd == K_CTRL_F6 .or. ;
+            ( hb_keyExt( nKey ) == HB_KX_F6 .and. hb_bitAnd( hb_keyMod( nKey ), HB_KF_CTRL ) != 0 )
+            if hb_bitAnd( hb_keyMod( nKey ), HB_KF_SHIFT ) != 0
+               ::PrevDoc()
+            else
+               ::NextDoc()
+            endif
+            loop
+         endif
       endif
 
 
@@ -658,7 +670,7 @@ METHOD Activate() CLASS HBIde
       if Seconds() - ::nLastDiskCheck >= 2 .or. Seconds() < ::nLastDiskCheck
          ::nLastDiskCheck := Seconds()
          ::CheckDiskChange()
-         ::oEditor:UpdateJournal()
+         AEval( ::aEditors, { | oEd | iif( oEd:Changed(), oEd:UpdateJournal(), NIL ) } )
       endif
    end
 
@@ -683,6 +695,7 @@ METHOD BuildMenu() CLASS HBIde
          MENUITEM "~Open..."          ACTION ::OpenFile()
          MENUITEM "~Save           F2 " ACTION ::SaveFile()
          MENUITEM "Save ~As... "      ACTION ::SaveAs()
+         MENUITEM "~Close "           ACTION ::CloseFile()
          SEPARATOR
          MENUITEM "E~xit"             ACTION ::End()
       ENDMENU
@@ -713,6 +726,10 @@ METHOD BuildMenu() CLASS HBIde
          MENUITEM "~Close project "      ACTION ( ::oProject := nil )
       ENDMENU
 
+      MENUITEM " ~Window "
+         MENUITEM "~Next          Ctrl+F6 "   ACTION ::NextDoc()
+         MENUITEM "~Previous  Ctrl+Shift+F6 " ACTION ::PrevDoc()
+         MENUITEM "~Close "                  ACTION ::CloseFile()
       MENUITEM " ~Run "
       MENU
          MENUITEM "~Start "            ACTION ::Start()
@@ -958,6 +975,37 @@ METHOD ProjectDesktop() CLASS HbIde
 
 return nil
 
+// multi-doc open: an already-open route switches to its document instead
+// of diverging two copies; a fresh untouched "noname" buffer is reused;
+// anything else gets a new document. Never prompts: nothing is dropped.
+METHOD OpenInDoc( cFileName ) CLASS HbIde
+
+   local n := ::FindDoc( cFileName )
+
+   if n > 0
+      ::SwitchDoc( n )
+      return nil
+   endif
+
+   if !( ::oEditor:cFile == "noname.prg" .and. ! ::oEditor:Changed() )
+      AAdd( ::aEditors, BuildEditor() )
+      ::nCurrent := Len( ::aEditors )
+   endif
+
+   if ! ::oWndCode:lVisible
+      ::oWndCode:Show( .F. )
+   endif
+   ::oEditor:LoadFile( cFileName )
+   ::oEditor:Display()
+   ::oEditor:Goto( 1, 5 )
+   ::oWndCode:cCaption := cFileName
+   ::oWndCode:Refresh()
+   ::oEditor:ShowCursor()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 METHOD OpenFile() CLASS HbIde 
 
    local oDlg := HbWindow():Dialog( "Open a file", 46, 18, "W+/W" )
@@ -1047,17 +1095,8 @@ METHOD OpenFile() CLASS HbIde
    if lOk .and. ! Empty( cFileName )
       if ! File( cFileName )
          HBIDE_MsgAlert( "File not found: " + cFileName )
-      elseif ! ::CheckUnsaved()   // opening another file must not drop unsaved work
-         // cancelled: keep editing the current buffer
       else
-         if ! ::oWndCode:lVisible
-            ::oWndCode:Show( .F. )
-         endif
-         ::oEditor:LoadFile( cFileName )
-         ::oEditor:Display()
-         ::oEditor:Goto( 1, 5 )
-         ::oWndCode:cCaption = cFileName
-         ::oWndCode:Refresh()
+         ::OpenInDoc( cFileName )
       endif
    endif 
 
@@ -1067,7 +1106,7 @@ return nil
 
 METHOD End() CLASS HbIde
 
-   if ::CheckUnsaved()
+   if ::CheckUnsavedAll()
       ::lEnd := .T.
    else
       ::Repaint()
@@ -1109,6 +1148,19 @@ return nil
 // Load a journaled buffer back as dirty content: the disk file stays
 // untouched until the user explicitly saves the recovered work.
 METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
+
+   local n := ::FindDoc( cTarget )
+
+   if n > 0
+      ::SwitchDoc( n )
+      if ! ::CheckUnsaved()
+         return nil   // keep the journal; user chose not to drop that buffer
+      endif
+   elseif ::oEditor:cFile != "noname.prg" .or. ::oEditor:Changed()
+      // current doc holds real content: the recovered buffer gets its own doc
+      AAdd( ::aEditors, BuildEditor() )
+      ::nCurrent := Len( ::aEditors )
+   endif
 
    ::oEditor:LoadText( HBIDE_RecoveryReadBase( cKey ) )
    ::oEditor:cFile := iif( Empty( cTarget ), "noname.prg", cTarget )
@@ -1248,27 +1300,115 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+// Multi-documento: New nunca cierra ni pregunta; añade un buffer nuevo y
+// conmuta. El documento anterior conserva todo su estado en su HBSrcEdit.
 METHOD NewFile() CLASS HbIde
+
+   AAdd( ::aEditors, BuildEditor() )
+   ::SwitchDoc( Len( ::aEditors ) )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD SwitchDoc( n ) CLASS HbIde
+
+   if n < 1 .or. n > Len( ::aEditors ) .or. n == ::nCurrent
+      return nil
+   endif
+
+   ::nCurrent := n
+   if ! ::oWndCode:lVisible
+      ::oWndCode:Show( .F. )
+   endif
+   ::oWndCode:cCaption := ::oEditor:cFile
+   ::Repaint()
+   ::oEditor:Display()
+   ::oEditor:ShowCursor()
+   // el nuevo activo puede haber cambiado en disco mientras estaba atras
+   ::CheckDiskChange()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD NextDoc() CLASS HbIde
+
+   ::SwitchDoc( ::nCurrent % Len( ::aEditors ) + 1 )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD PrevDoc() CLASS HbIde
+
+   ::SwitchDoc( iif( ::nCurrent == 1, Len( ::aEditors ), ::nCurrent - 1 ) )
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// indice del documento que ya tiene abierta esta ruta (canonica), 0 si no.
+// Los sin-nombre no casan nunca: cada uno es un buffer distinto.
+METHOD FindDoc( cFile ) CLASS HbIde
+
+   local cAbs, oEd
+
+   if Empty( cFile ) .or. cFile == "noname.prg"
+      return 0
+   endif
+
+   cAbs := HBIDE_RecoveryAbs( cFile )
+   for each oEd in ::aEditors
+      if ! Empty( oEd:cFile ) .and. oEd:cFile != "noname.prg" .and. ;
+         HBIDE_RecoveryAbs( oEd:cFile ) == cAbs
+         return oEd:__enumIndex()
+      endif
+   next
+
+return 0
+
+//-----------------------------------------------------------------------------------------//
+
+// cierre de un documento: pregunta SOLO por ese documento
+METHOD CloseFile() CLASS HbIde
 
    if ! ::CheckUnsaved()
       ::Repaint()
       return nil
    endif
 
-   ::oEditor:LoadText( "" )
-   ::oEditor:aBPs := {}
-   ::oEditor:cFile := "noname.prg"
-   ::oEditor:cSeenStamp := ""
-   ::oEditor:cLoadStamp := ""
-   if ! ::oWndCode:lVisible
-      ::oWndCode:Show( .F. )
+   ADel( ::aEditors, ::nCurrent )
+   ASize( ::aEditors, Len( ::aEditors ) - 1 )
+   if Len( ::aEditors ) == 0
+      AAdd( ::aEditors, BuildEditor() )
    endif
+   ::nCurrent := Min( ::nCurrent, Len( ::aEditors ) )
    ::oWndCode:cCaption := ::oEditor:cFile
    ::Repaint()
-   ::oEditor:Goto( 1, 5 )
+   ::oEditor:Display()
    ::oEditor:ShowCursor()
 
 return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// salida: revisa TODOS los documentos, no solo el activo; cancelar en
+// cualquiera aborta la salida
+METHOD CheckUnsavedAll() CLASS HbIde
+
+   local i
+
+   for i := 1 to Len( ::aEditors )
+      if ::aEditors[ i ]:Changed()
+         ::SwitchDoc( i )
+         if ! ::CheckUnsaved()
+            return .F.
+         endif
+      endif
+   next
+
+return .T.
 
 //-----------------------------------------------------------------------------------------//
 
@@ -1279,6 +1419,8 @@ METHOD SaveAs() CLASS HbIde
    local cFileName := Space( 250 )
    local cName
    local cOldFile := ::oEditor:cFile
+   local cOldKey  := ::oEditor:JournalKey()
+   local nOther
 
    oDlg:bRepaint = { || ::Repaint() }
    ::SuspendStatus()
@@ -1310,6 +1452,12 @@ METHOD SaveAs() CLASS HbIde
    endif
 
    if cName != ::oEditor:cFile
+      nOther := ::FindDoc( cName )
+      if nOther > 0 .and. nOther != ::nCurrent
+         HBIDE_MsgAlert( "Already open in another document: " + cName )
+         ::Repaint()
+         return nil
+      endif
       if File( cName )
          if HBIDE_MsgAlert( "File exists: " + cName, { "Overwrite", "Cancel" } ) != 1
             ::Repaint()
@@ -1326,7 +1474,7 @@ METHOD SaveAs() CLASS HbIde
    ::DoSave()
    // rename-save succeeded: the old name's journal is stale now
    if ! ::oEditor:Changed() .and. !( cOldFile == ::oEditor:cFile )
-      HBIDE_RecoveryDelete( HBIDE_RecoveryKey( cOldFile ) )
+      HBIDE_RecoveryDelete( cOldKey )
    endif
 
 return nil
