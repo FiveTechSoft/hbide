@@ -194,3 +194,14 @@ Verificacion del ciclo debugger->salir->Help->Contents->Debugger:
   entry event in this Harbour implementation, NOT that it skips every statement
   inside an extended block. The previous single-line fixture was insufficient.
 - ShowAllGlobals alone remains state-only among the three options discussed.
+
+## 2026-10-26: remaining independent effects
+
+- Command matrix extended to 15/15 twice: NEXT/PREVIOUS select successive
+  matches, Mono Display changes and restores the actual source palette, and
+  Path For Files resolves a marker source located only in a configured
+  subdirectory (not the current directory). No UI-label-only assertions.
+- `test_debug_animate_pty.py`: no manual steps after Animate, several
+  assignments complete, fixture writes sum=6, IDE returns. Functional outcome
+  only. The already documented tearing/overlap remains OPEN and is not cured
+  or certified by this test.
