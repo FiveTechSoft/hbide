@@ -56,3 +56,16 @@ end, in under 10 minutes following these steps.
 - Swap mc-bin atomically (cp + mv), never over a running binary.
 - The single-use token is consumed only by POST /open; GET /launch is
   a safe check. A 403 without token is correct gate behavior.
+- Access transport: cloudflared 2026.10.3 quick tunnels are single
+  QUIC/UDP connections (this build has no --protocol / --ha-connections
+  flags). On hosts with a flaky UDP path this produces seconds-long
+  Cloudflare 1033/530 errors at the edge on every transport flap.
+  TCP-based alternative, no account: pinggy over SSH (port 443):
+  `ssh -p 443 -tt -o StrictHostKeyChecking=accept-new \
+   -o ServerAliveInterval=30 -R0:localhost:7800 a.pinggy.io`
+  (-tt forces a pty so the server prints the banner with the public
+  URLs; it takes ~45 s. Anonymous sessions expire after ~60 min and are
+  relaunched the same way.) First visit from a browser shows a one-time
+  pinggy "Caution" page with an "Enter site" button. Keep exactly one
+  public URL as primary (state file current_url) and relaunch only on
+  confirmed persistent failure, never preventively over a live session.
