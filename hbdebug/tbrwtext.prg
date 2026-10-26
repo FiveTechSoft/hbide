@@ -75,7 +75,7 @@ CREATE CLASS HBBrwText
    VAR nWidth
    VAR nHeight
 
-   METHOD New( nTop, nLeft, nBottom, nRight, cFileName, cColors, lLineNumbers )
+   METHOD New( nTop, nLeft, nBottom, nRight, cFileName, cColors, lLineNumbers, nTabWidth )
 
    METHOD RefreshAll() INLINE ::oBrw:ForceStable():RefreshAll(), Self
    METHOD ForceStable() INLINE ::oBrw:ForceStable(), Self
@@ -110,13 +110,15 @@ CREATE CLASS HBBrwText
 
    METHOD RowPos() INLINE ::nRow
 
+   METHOD SetTabWidth( nTabWidth )
+   METHOD UpdateLineWidth()
    METHOD LoadFile( cFileName )
 
    VAR colorSpec IS colorSpec IN oBrw
 
 ENDCLASS
 
-METHOD New( nTop, nLeft, nBottom, nRight, cFileName, cColors, lLineNumbers ) CLASS HBBrwText
+METHOD New( nTop, nLeft, nBottom, nRight, cFileName, cColors, lLineNumbers, nTabWidth ) CLASS HBBrwText
 
    LOCAL oCol
 
@@ -129,6 +131,9 @@ METHOD New( nTop, nLeft, nBottom, nRight, cFileName, cColors, lLineNumbers ) CLA
    ::nHeight := nBottom - nTop
 
    ::lLineNumbers := lLineNumbers
+   IF HB_ISNUMERIC( nTabWidth )
+      ::nTabWidth := Max( 1, Min( 16, nTabWidth ) )
+   ENDIF
 
    ::oBrw := HBDbBrowser():New( ::nTop, ::nLeft, ::nBottom, ::nRight )
 
@@ -188,20 +193,36 @@ METHOD GetLineColor() CLASS HBBrwText
 
 METHOD PROCEDURE LoadFile( cFileName ) CLASS HBBrwText
 
-   LOCAL nMaxLineLen := 0
-   LOCAL cLine
-
    ::cFileName := cFileName
    ::aRows := __dbgTextToArray( MemoRead( cFileName ) )
    ::nRows := Len( ::aRows )
    ::nLineNoLen := Len( hb_ntos( ::nRows ) ) + 2
 
+   ::UpdateLineWidth()
+   ::nLineOffset := 1
+
+   RETURN
+
+// The expanded width depends on Tab Width. A width cached at file load
+// truncates lines after increasing it (four tabs at 12 need 48 columns).
+METHOD SetTabWidth( nTabWidth ) CLASS HBBrwText
+
+   ::nTabWidth := Max( 1, Min( 16, nTabWidth ) )
+   ::UpdateLineWidth()
+   ::RefreshAll()
+
+   RETURN Self
+
+METHOD UpdateLineWidth() CLASS HBBrwText
+
+   LOCAL nMaxLineLen := 0
+   LOCAL cLine
+
    FOR EACH cLine IN ::aRows
       nMaxLineLen := Max( nMaxLineLen, ;
-         Len( RTrim( MemoLine( cLine, Len( cLine ) + 256, 1, ::nTabWidth, .F. ) ) ) )
+         Len( RTrim( MemoLine( cLine, Max( 1, Len( cLine ) * ( ::nTabWidth + 1 ) ), 1, ::nTabWidth, .F. ) ) ) )
    NEXT
-   ::nMaxLineLen := nMaxLineLen
-   ::nLineOffset := 1
+   ::nMaxLineLen := Max( 1, nMaxLineLen )
 
    RETURN
 

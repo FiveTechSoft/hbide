@@ -312,7 +312,7 @@ CREATE CLASS HBDebugger
 
    METHOD TabWidth() INLINE ;
       ::nTabWidth := ::InputBox( "Tab width", ::nTabWidth ), ;
-      ::oBrwText:nTabWidth := ::nTabWidth, ::oBrwText:RefreshAll()
+      ::oBrwText:SetTabWidth( ::nTabWidth )
 
    METHOD BreakPointToggle( nLine, cFileName )
    METHOD BreakPointDelete( cPos )
@@ -1110,8 +1110,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
          IF IsDigit( cParam2 )
             ::nTabWidth := Min( Val( cParam2 ), 16 )
             IF ::oBrwText != NIL
-               ::oBrwText:nTabWidth := ::nTabWidth
-               ::oBrwText:RefreshAll()
+               ::oBrwText:SetTabWidth( ::nTabWidth )
             ENDIF
          ELSE
             ::TabWidth()

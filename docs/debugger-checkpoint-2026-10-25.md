@@ -146,3 +146,24 @@ Verificacion del ciclo debugger->salir->Help->Contents->Debugger:
 - Monitor Private/Static/Global, Window Next/Prev, temas de ayuda del IDE
   para WP/TP/teclas/comandos, entradas NotSupported del menu Window.
 - Rebuild y publicacion de hbide.exe en el proximo checkpoint verificado.
+
+## 2026-10-26: Tab Width presentation regression
+
+- Correction: the earlier PPO+TAB absence in the PTY model was a cascade
+  coverage/z-order observation, not lost source. Do not classify it as data loss.
+- Separate reproducible defect: increasing Tab Width from 4 to 12 kept the
+  code browser's old expanded maximum-line width. The generated fixture has
+  four tabs before `x := x + 41`; at width 12 those tabs alone exceed the old
+  limit, so MemoLine returned spaces. The file and buffer remained unchanged.
+- Fix: recalculate expanded line width on Tab Width changes, honor the width
+  supplied to the browser constructor, and size expansion for every tab rather
+  than a fixed extra 256 characters.
+- Linux PTY function matrix: 57/58 before fix, 58/58 twice after fix.
+  The former committed 56/56 did not cover the new live Tab Width effect.
+- Native regression: 7 checks cover 4 -> 12 -> 4, unchanged source/buffer,
+  constructor width, and a line with 100 tabs. The pre-fix implementation fails
+  at the width-12 text assertion; the fix passes all seven.
+- Actual Linux terminal captures inspected at width 4 and 12 show the complete
+  same line moved right. No Windows validation or global visual closure implied.
+- RunAtStartup, CodeBlockTrace and ShowAllGlobals remain menu-state coverage
+  only here, pending independent observable-effect tests.

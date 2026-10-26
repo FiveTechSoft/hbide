@@ -441,11 +441,14 @@ send(b'\x1b'); pump(1.0)
 check('Help window closes with ESC', not help_window_up())
 
 # --- Save/Restore Settings round trip: Num Off must persist and come back ---
-# bring the code window to the front of the cascade stack (effect-driven)
+# bring the code window to the front of the cascade stack (effect-driven):
+# gutter digits bleed through even when covered, so require CONTENT text
+def code_at_front():
+    return 'procedure __Main' in scr.text() and 'x := x + 41' in scr.text()
 t0 = time.time()
-while re.search(r'x\d+:', scr.text()) is None and time.time() - t0 < 10.0:
+while not code_at_front() and time.time() - t0 < 10.0:
     send(b'\t'); pump(0.7)
-check('Code window brought to front', re.search(r'x\d+:', scr.text()) is not None)
+check('Code window brought to front', code_at_front())
 send(b'\x1bo'); pump(0.6); send(b'l'); pump(1.0)   # line numbers off
 check('Settings: line numbers off before save', not re.search(r'x?\d+:', scr.text()))
 send(b'\x1bo'); pump(0.6); send(b's')               # Save Settings...
@@ -466,10 +469,33 @@ send(b'\r'); pump(1.5)
 check('Restore Settings reapplies Num Off', not re.search(r'x?\d+:', scr.text()))
 send(b'\x1bo'); pump(0.6); send(b'l'); pump(1.0)   # tidy: numbers on again
 
-# NOTE: a Tab-Width live-render check is BLOCKED by a real app bug: after a
-# PPO round trip the restored code browser drops tab-indented line content
-# (raw byte stream loses 'x := x + 41'; fixture line 7 is tab-indented).
-# Reinstate the check together with the OpenPPO/browser fix.
+# --- Options > Tab Width: live propagation to the code browse (91c6a21) ---
+# NOTE: an earlier suspicion that PPO restore LOSES tab-indented content was
+# wrong - bisected: line 7's visibility flip-flops with the cascade z-order
+# (a covering window blanks that band); the text itself is always painted.
+def tab_line_col():
+    for line in scr.text().split('\n'):
+        c = line.find('x := x + 41')
+        if c >= 0:
+            return c
+    return None
+t0 = time.time()
+while not code_at_front() and time.time() - t0 < 10.0:
+    send(b'\t'); pump(0.7)
+col4 = tab_line_col()
+send(b'\x1bo'); pump(0.6); send(b't')               # Tab Width...
+t0 = time.time()
+while 'Tab width' not in scr.text() and time.time() - t0 < 4.0:
+    pump(0.3)
+send(b'\x1912\r'); pump(1.2)                      # Ctrl+Y clears the get, set 12
+col12 = tab_line_col()
+check('Tab Width 12 reindents the tabbed line live', col4 is not None and col12 is not None and col12 > col4)
+send(b'\x1bo'); pump(0.6); send(b't')
+t0 = time.time()
+while 'Tab width' not in scr.text() and time.time() - t0 < 4.0:
+    pump(0.3)
+send(b'\x194\r'); pump(1.2)
+check('Tab Width restored to 4', tab_line_col() == col4)
 
 # --- Options > Colors: modal opens and closes (dialog level) ---
 send(b'\x1bo'); pump(0.6); send(b'c'); pump(1.0)
