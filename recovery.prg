@@ -1,5 +1,7 @@
 #include "directry.ch"
 
+static s_cSession := ""
+
 // P0: visible recovery of unsaved buffers (ROADMAP "Recuperacion visible").
 //
 // While a buffer is dirty, the IDE keeps a journal of its full text in a
@@ -54,9 +56,30 @@ return hb_PathNormalize( hb_FNameMerge( hb_cwd(), cFile ) )
 
 //-----------------------------------------------------------------------------------------//
 
+// Session id: unique per IDE process start. It scopes every journal name so
+// that two instances editing the same file keep separate journals and a save
+// or discard in one instance can never delete another instance's unsaved
+// work. HBIDE_RECOVERY_SESSION overrides it (tests).
+function HBIDE_RecoverySession()
+
+   local cEnv := GetEnv( "HBIDE_RECOVERY_SESSION" )
+
+   if ! Empty( cEnv )
+      return cEnv
+   endif
+   if Empty( s_cSession )
+      s_cSession := hb_TToS( hb_DateTime() ) + "_" + StrZero( hb_randomInt( 999999 ), 6 )
+   endif
+
+return s_cSession
+
+//-----------------------------------------------------------------------------------------//
+
 // Stable, collision-free journal key for a buffer. The untitled buffer gets
 // the fixed key "noname". Every char outside [A-Za-z0-9-.] escapes as "_" +
-// hex, including "_" itself, so distinct paths can never collide.
+// hex, including "_" itself, so distinct paths can never collide. The journal
+// FILE is <key>--<session>.journal: the key identifies the buffer, the
+// session identifies the owning instance.
 function HBIDE_RecoveryKey( cFile )
 
    local cAbs, cKey := "", n, c
@@ -93,8 +116,8 @@ function HBIDE_RecoveryWrite( cKey, cTarget, cContent )
    hb_defaultValue( cTarget, "noname.prg" )
 
    begin sequence
-      lOk := HBIDE_AtomicPair( hb_FNameMerge( cDir, cKey, ".target" ), cTarget ) .and. ;
-             HBIDE_AtomicPair( hb_FNameMerge( cDir, cKey, ".journal" ), cContent )
+      lOk := HBIDE_AtomicPair( hb_FNameMerge( cDir, cKey + "--" + HBIDE_RecoverySession(), ".target" ), cTarget ) .and. ;
+             HBIDE_AtomicPair( hb_FNameMerge( cDir, cKey + "--" + HBIDE_RecoverySession(), ".journal" ), cContent )
    recover
       lOk := .F.
    end sequence
@@ -126,12 +149,43 @@ return lOk
 
 //-----------------------------------------------------------------------------------------//
 
+// Exact-name access for journals found by the scan, which may belong to a
+// previous (dead) session: no session suffix is appended here.
+function HBIDE_RecoveryReadBase( cBase )
+
+   local cOut := ""
+
+   begin sequence
+      cOut := hb_MemoRead( hb_FNameMerge( HBIDE_RecoveryDir(), cBase, ".journal" ) )
+   recover
+      cOut := ""
+   end sequence
+
+return cOut
+
+//-----------------------------------------------------------------------------------------//
+
+function HBIDE_RecoveryDeleteBase( cBase )
+
+   local cDir := HBIDE_RecoveryDir()
+
+   begin sequence
+      FErase( hb_FNameMerge( cDir, cBase, ".journal" ) )
+      FErase( hb_FNameMerge( cDir, cBase, ".target" ) )
+      FErase( hb_FNameMerge( cDir, cBase, ".journal" ) + ".tmp" )
+      FErase( hb_FNameMerge( cDir, cBase, ".target" ) + ".tmp" )
+   end sequence
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 function HBIDE_RecoveryRead( cKey )
 
    local cOut := ""
 
    begin sequence
-      cOut := hb_MemoRead( hb_FNameMerge( HBIDE_RecoveryDir(), cKey, ".journal" ) )
+      cOut := hb_MemoRead( hb_FNameMerge( HBIDE_RecoveryDir(), cKey + "--" + HBIDE_RecoverySession(), ".journal" ) )
    recover
       cOut := ""
    end sequence
@@ -145,10 +199,10 @@ function HBIDE_RecoveryDelete( cKey )
    local cDir := HBIDE_RecoveryDir()
 
    begin sequence
-      FErase( hb_FNameMerge( cDir, cKey, ".journal" ) )
-      FErase( hb_FNameMerge( cDir, cKey, ".target" ) )
-      FErase( hb_FNameMerge( cDir, cKey, ".journal" ) + ".tmp" )
-      FErase( hb_FNameMerge( cDir, cKey, ".target" ) + ".tmp" )
+      FErase( hb_FNameMerge( cDir, cKey + "--" + HBIDE_RecoverySession(), ".journal" ) )
+      FErase( hb_FNameMerge( cDir, cKey + "--" + HBIDE_RecoverySession(), ".target" ) )
+      FErase( hb_FNameMerge( cDir, cKey + "--" + HBIDE_RecoverySession(), ".journal" ) + ".tmp" )
+      FErase( hb_FNameMerge( cDir, cKey + "--" + HBIDE_RecoverySession(), ".target" ) + ".tmp" )
    end sequence
 
 return nil

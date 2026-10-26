@@ -1093,7 +1093,7 @@ METHOD RecoveryCheck() CLASS HbIde
          case nPick == 1
             ::RecoverJournal( aItem[ 1 ], aItem[ 2 ] )
          case nPick == 2
-            HBIDE_RecoveryDelete( aItem[ 1 ] )
+            HBIDE_RecoveryDeleteBase( aItem[ 1 ] )
          otherwise
             // Later: keep the journal untouched
       endcase
@@ -1107,7 +1107,7 @@ return nil
 // untouched until the user explicitly saves the recovered work.
 METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
 
-   ::oEditor:LoadText( HBIDE_RecoveryRead( cKey ) )
+   ::oEditor:LoadText( HBIDE_RecoveryReadBase( cKey ) )
    ::oEditor:cFile := iif( Empty( cTarget ), "noname.prg", cTarget )
    ::oEditor:SetDirty( .T. )
    // the stamp of the disk version, so the external-change watch does not
@@ -1115,7 +1115,7 @@ METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
    ::oEditor:cLoadStamp := ::oEditor:DiskStamp( ::oEditor:cFile )
    ::oEditor:cSeenStamp := ::oEditor:cLoadStamp
    ::oWndCode:cCaption := ::oEditor:cFile
-   HBIDE_RecoveryDelete( cKey )
+   HBIDE_RecoveryDeleteBase( cKey )
    ::Repaint()
    ::oEditor:ShowCursor()
 

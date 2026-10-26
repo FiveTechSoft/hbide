@@ -23,16 +23,25 @@ HbIde ChangeLog
     interrumpen la edicion ni el arranque
   - Durabilidad declarada: se recupera el contenido del ultimo tick de
     2 s, no cada tecla; una clave por ruta absoluta normalizada (alias o
-    symlinks al mismo fichero generan journals distintos; dos instancias
-    sobre el mismo archivo comparten journal, gana el ultimo escritor)
+    symlinks al mismo fichero generan journals distintos)
+  - Aislamiento por instancia: el nombre del journal lleva un id de sesion
+    unico por proceso, de modo que dos instancias sobre el mismo archivo
+    mantienen journals separados y guardar/descartar en una nunca borra el
+    trabajo sin guardar de otra. El arranque ofrece los journals de
+    sesiones anteriores por nombre exacto, sin tocar los de la sesion viva
+  - Aviso de degradacion: si el journal no puede escribirse (permisos,
+    disco lleno), la edicion continua pero el editor avisa una vez por
+    racha de fallos; la recuperacion nunca se da por activa en silencio
   - Corregido: la asignacion externa de lDirty (PROTECTED en HBEditor) en
     la recuperacion provocaba BASE/42 scope violation; nuevo setter
     HBSrcEdit:SetDirty()
-  - Pruebas: tests/test_recovery.prg 29/29 (claves, round trip byte-exacto,
+  - Pruebas: tests/test_recovery.prg 36/36 (claves, round trip byte-exacto,
     scan, borrado, debris de crash inerte, directorio no escribible sin
-    error). E2E en Linux: kill -9 con buffer sucio, rearranque, prompt de
-    recuperacion visible, Recuperar y guardado byte-exacto; journal
-    eliminado tras el guardado. Bateria completa en verde: designer 407/407,
+    error, aislamiento por sesion: guardar en una instancia no borra el
+    journal de otra). E2E en Linux: kill -9 con buffer sucio, rearranque,
+    prompt de recuperacion visible, Recuperar y guardado byte-exacto en
+    fichero nuevo creado en ESTA ejecucion; todos los journals eliminados
+    tras el guardado. Bateria completa en verde: designer 407/407,
     atomic 37/37, calculator, debug_layout 324, project, project_ui, help,
     help_browser y foxpro_demo PASS
 

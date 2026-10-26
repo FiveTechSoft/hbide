@@ -86,6 +86,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD LoadText( cText )
    METHOD LoadFile( cFileName )
    METHOD SaveFile()
+   DATA   lJournalWarned INIT .F.   // one-shot: recovery write failing
    METHOD UpdateJournal()
    METHOD JournalDiscard()
    METHOD SetDirty( l )
@@ -1136,7 +1137,19 @@ return lOk
 METHOD UpdateJournal() CLASS HBSrcEdit
 
    if ::lDirty
-      HBIDE_RecoveryWrite( HBIDE_RecoveryKey( ::cFile ), ::cFile, ::GetText() )
+      if ! HBIDE_RecoveryWrite( HBIDE_RecoveryKey( ::cFile ), ::cFile, ::GetText() )
+         // journal failing (disk full, permissions): editing must never stop,
+         // but the user is warned ONCE per failing streak, so they don't
+         // assume crash recovery is active when it isn't
+         if ! ::lJournalWarned
+            ::lJournalWarned := .T.
+            HBIDE_MsgAlert( "Crash recovery journal cannot be written (" + ;
+                            HBIDE_RecoveryDir() + "). Editing continues, but unsaved-changes recovery is OFF.", ;
+                            { "OK" }, "Recovery degraded" )
+         endif
+      else
+         ::lJournalWarned := .F.   // a new failure streak warns again
+      endif
    else
       HBIDE_RecoveryDelete( HBIDE_RecoveryKey( ::cFile ) )
    endif

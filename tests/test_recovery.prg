@@ -48,7 +48,7 @@ proc Main()
    // 4. scan metadata
    aScan := HBIDE_RecoveryScan()
    Check( "scan finds one entry", Len( aScan ) == 1 )
-   Check( "scan key", aScan[ 1 ][ 1 ] == cKey2 )
+   Check( "scan key", aScan[ 1 ][ 1 ] == cKey2 + "--" + HBIDE_RecoverySession() )
    Check( "scan target", aScan[ 1 ][ 2 ] == "/tmp/aa/foo.prg" )
    Check( "scan size", aScan[ 1 ][ 3 ] == Len( cBin ) )
    Check( "scan stamp present", ! Empty( aScan[ 1 ][ 4 ] ) )
@@ -70,8 +70,8 @@ proc Main()
 
    // 8. crash debris is inert: a lone .tmp or a sidecar without journal
    //    must never be offered for recovery
-   hb_MemoWrit( hb_FNameMerge( cDir, "zz.journal" ) + ".tmp", "torn" )
-   hb_MemoWrit( hb_FNameMerge( cDir, "yy.target" ), "/tmp/yy.prg" )
+   hb_MemoWrit( hb_FNameMerge( cDir, "zz--" + HBIDE_RecoverySession() + ".journal" ) + ".tmp", "torn" )
+   hb_MemoWrit( hb_FNameMerge( cDir, "yy--" + HBIDE_RecoverySession() + ".target" ), "/tmp/yy.prg" )
    Check( "orphan tmp not scanned", Len( HBIDE_RecoveryScan() ) == 1 )
    Check( "read of tmp-only key is empty", Empty( HBIDE_RecoveryRead( "zz" ) ) )
    HBIDE_RecoveryDelete( "zz" )
@@ -86,6 +86,21 @@ proc Main()
    HBIDE_RecoveryDelete( "kk" )   // must not raise either
    Check( "delete on missing dir tolerated", .T. )
    hb_SetEnv( "HBIDE_RECOVERY_DIR", cDir )
+
+   // 10. instance ownership: two sessions over the same path keep separate
+   //     journals; save/discard in one never deletes the other's work
+   hb_SetEnv( "HBIDE_RECOVERY_SESSION", "sessA" )
+   Check( "session A write", HBIDE_RecoveryWrite( cKey3, "/tmp/bb/foo.prg", "work of A" ) )
+   hb_SetEnv( "HBIDE_RECOVERY_SESSION", "sessB" )
+   Check( "session B write same path", HBIDE_RecoveryWrite( cKey3, "/tmp/bb/foo.prg", "work of B" ) )
+   Check( "both sessions scanned", Len( HBIDE_RecoveryScan() ) == 3 )
+   HBIDE_RecoveryDelete( cKey3 )   // B saves/discards: only B's journal goes
+   Check( "A journal survives B delete", HBIDE_RecoveryReadBase( cKey3 + "--sessA" ) == "work of A" )
+   Check( "B journal gone", Empty( HBIDE_RecoveryReadBase( cKey3 + "--sessB" ) ) )
+   Check( "scan drops B only", Len( HBIDE_RecoveryScan() ) == 2 )
+   HBIDE_RecoveryDeleteBase( cKey3 + "--sessA" )
+   Check( "base delete cleans A", Len( HBIDE_RecoveryScan() ) == 1 )
+   hb_SetEnv( "HBIDE_RECOVERY_SESSION", "" )
 
    HBIDE_RecoveryDelete( cKey1 )
    hb_Run( "rm -rf " + cDir )
