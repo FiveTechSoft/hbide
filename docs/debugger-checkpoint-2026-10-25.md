@@ -205,3 +205,18 @@ Verificacion del ciclo debugger->salir->Help->Contents->Debugger:
   assignments complete, fixture writes sum=6, IDE returns. Functional outcome
   only. The already documented tearing/overlap remains OPEN and is not cured
   or certified by this test.
+
+## 2026-10-26: PRIVATE HRB linkage and monitor effect
+
+- Found during independent inventory: a debuggee containing `private name := 5`
+  emitted "Unknown or unregistered function symbol"; in combination with other
+  declarations the error path could escalate to 9001. Temporary instrumentation
+  identified the missing operation `__MVPRIVATE`; instrumentation was removed.
+- Fix: REQUEST __MVPRIVATE in hbide.prg so the VM helper is linked for HRB
+  debuggee PRIVATE declarations.
+- `test_debug_monitor_pty.py`: durable before/after regression, 10/10 twice
+  after fix. It fails on the pre-fix binary at debugger entry; then verifies
+  Local/Public/Private/Static type+value, alphabetical Sort effect, All on/off.
+- Recheck after the one-line source change: functions 58/58, session 23/23,
+  commands 15/15, startup on/off, CodeBlockTrace on/off, Animate, native
+  TabWidth 7/7. Binary md5 b956f35b2557922717092e091d0f41b9.

@@ -1,4 +1,5 @@
 REQUEST __DBGENTRY   // link the Harbour source debugger (libhbdebug)
+REQUEST __MVPRIVATE  // HRB debuggee PRIVATE declarations need this VM helper
 
 #include "hbclass.ch"
 #include "hbhrb.ch"
