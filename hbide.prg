@@ -944,21 +944,36 @@ return nil
 
 METHOD ProjectDesktop() CLASS HbIde
 
-   local hNavigate, nAnswer
+   local hNavigate, nAnswer, aDirty := {}, oEd, cMsg := ""
 
    if ::oProject == nil
       HBIDE_MsgAlert( "Open a .hbp with Project > Open first" )
       return nil
    endif
-   // A build always reads disk. Never silently compile an outdated buffer.
-   if ::oEditor:Changed()
-      nAnswer := HBIDE_MsgAlert( "The current buffer has unsaved changes. Project builds read disk files.", ;
-         { "Save", "Use disk", "Cancel" } )
+   // A build always reads disk. Never silently compile an outdated buffer:
+   // with multidoc, ANY dirty document with a real name counts, not only the
+   // current one. Dirty noname buffers are not on disk, so they cannot make
+   // the build stale and are not listed.
+   for each oEd in ::aEditors
+      if oEd:Changed() .and. oEd:cFile != "noname.prg"
+         AAdd( aDirty, oEd:cFile )
+      endif
+   next
+   if ! Empty( aDirty )
+      cMsg := iif( Len( aDirty ) == 1, "The buffer of ", hb_ntos( Len( aDirty ) ) + " buffers have unsaved changes: " ) + ;
+              aDirty[ 1 ] + iif( Len( aDirty ) > 1, " (+" + hb_ntos( Len( aDirty ) - 1 ) + " more)", "" ) + ;
+              ". Project builds read disk files."
+      nAnswer := HBIDE_MsgAlert( cMsg, { "Save", "Use disk", "Cancel" } )
       if nAnswer == 1
-         ::SaveFile()
-         if ::oEditor:Changed()
-            return nil
-         endif
+         for each oEd in ::aEditors
+            if oEd:Changed() .and. oEd:cFile != "noname.prg"
+               ::SwitchDoc( oEd:__enumIndex() )
+               ::SaveFile()
+               if oEd:Changed()
+                  return nil   // a failed save keeps the buffer dirty
+               endif
+            endif
+         next
       elseif nAnswer != 2
          return nil
       endif
