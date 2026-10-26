@@ -167,3 +167,20 @@ Verificacion del ciclo debugger->salir->Help->Contents->Debugger:
   same line moved right. No Windows validation or global visual closure implied.
 - RunAtStartup, CodeBlockTrace and ShowAllGlobals remain menu-state coverage
   only here, pending independent observable-effect tests.
+
+## 2026-10-26: Command and startup effects
+
+- `test_debug_commands_pty.py`: 9/9 twice in fresh Linux sessions. GOTO 3
+  and GOTO 70 move the viewport to the requested line; FIND selects a matching
+  line after a distant GOTO; INPUT runs a real command file (Num Off, TabWidth
+  12, Goto 60), with separate effects checked. NUM ON restores numbers.
+- `test_debug_startup_pty.py`: two fresh processes, default RunAtStartup and
+  init.cld Options NoRunAtStartup. Execution highlight stops on the injected
+  init procedure's return in the default case and on __dbgInvokeDebug in the
+  disabled case. This proves a startup effect at that specific entry point;
+  it is not a claim that either setting starts at the user's Main.
+- CodeBlockTrace remains menu-state coverage: a single-line Eval fixture did
+  not distinguish on/off (both stepped to the following statement).
+- ShowAllGlobals remains menu-state coverage. Public variables cannot prove
+  this setting: its code filters module GLOBAL/EXTERNAL GLOBAL entries, not
+  PUBLICs. This Harbour compiler's GLOBAL limitation remains documented.
