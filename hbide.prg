@@ -727,9 +727,11 @@ METHOD BuildMenu() CLASS HBIde
       ENDMENU
 
       MENUITEM " ~Window "
+      MENU
          MENUITEM "~Next          Ctrl+F6 "   ACTION ::NextDoc()
          MENUITEM "~Previous  Ctrl+Shift+F6 " ACTION ::PrevDoc()
          MENUITEM "~Close "                  ACTION ::CloseFile()
+      ENDMENU
       MENUITEM " ~Run "
       MENU
          MENUITEM "~Start "            ACTION ::Start()
