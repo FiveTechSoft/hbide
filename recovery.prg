@@ -111,11 +111,18 @@ return lLive
 
 //-----------------------------------------------------------------------------------------//
 
-// Stable, collision-free journal key for a buffer. The untitled buffer gets
-// the fixed key "noname". Every char outside [A-Za-z0-9-.] escapes as "_" +
-// hex, including "_" itself, so distinct paths can never collide. The journal
-// FILE is <key>--<session>.journal: the key identifies the buffer, the
-// session identifies the owning instance.
+// Stable journal key for a buffer. The untitled buffer gets the fixed key
+// "noname". Every char outside [A-Za-z0-9-.] escapes as "_" + hex, including
+// "_" itself, so distinct paths can never collide. The journal FILE is
+// <key>--<session>.journal: the key identifies the buffer, the session
+// identifies the owning instance. Long absolute paths would escape into keys
+// that overflow the filename budget of the write pair (the atomic .tmp write
+// hits Harbour's ~263-char internal path limit well before NAME_MAX), so a
+// key longer than 120 chars is bounded to a readable 100-char prefix plus a
+// dual 32-bit hash (FNV-1a + djb2, 16 hex chars) of the FULL absolute path.
+// Short keys keep the exact collision-free form; distinct long paths share
+// keys only in the 2^-64 hash space, which long journals could never reach
+// before (their writes always failed).
 function HBIDE_RecoveryKey( cFile )
 
    local cAbs, cKey := "", n, c
@@ -133,7 +140,30 @@ function HBIDE_RecoveryKey( cFile )
       endif
    next
 
+   if Len( cKey ) > 120
+      cKey := Left( cKey, 100 ) + "_h" + HBIDE_KeyHash( cAbs )
+   endif
+
 return cKey
+
+//-----------------------------------------------------------------------------------------//
+
+// Dual 32-bit hash (FNV-1a + djb2) of a full path, 16 hex chars. Both stay
+// exact: every intermediate fits Harbour's 64-bit integer arithmetic before
+// the low-word mask.
+static function HBIDE_KeyHash( cText )
+
+   local nHash1 := 2166136261  // FNV-1a 32 offset basis
+   local nHash2 := 5381        // djb2 seed
+   local n, nB
+
+   for n := 1 to Len( cText )
+      nB := Asc( SubStr( cText, n, 1 ) )
+      nHash1 := hb_BitAnd( hb_BitXor( nHash1, nB ) * 16777619, 0xFFFFFFFF )
+      nHash2 := hb_BitAnd( nHash2 * 33 + nB, 0xFFFFFFFF )
+   next
+
+return hb_NumToHex( nHash1, 8 ) + hb_NumToHex( nHash2, 8 )
 
 //-----------------------------------------------------------------------------------------//
 

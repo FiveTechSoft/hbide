@@ -18,6 +18,7 @@ proc Main()
 
    local cDir := "/tmp/hbide-recovery-" + StrZero( hb_randomInt( 999999 ), 6 )
    local cKey1, cKey2, cKey3, cKey4, aScan, cBin
+   local cLong1, cLong2, cKeyL1, cKeyL2
 
    hb_SetEnv( "HBIDE_RECOVERY_DIR", cDir )
 
@@ -101,6 +102,25 @@ proc Main()
    HBIDE_RecoveryDeleteBase( cKey3 + "--sessA" )
    Check( "base delete cleans A", Len( HBIDE_RecoveryScan( .T. ) ) == 1 )
    hb_SetEnv( "HBIDE_RECOVERY_SESSION", "" )
+
+   // 6. long absolute paths: the escaped key would overflow the filename
+   // budget (Harbour path limit via the atomic .tmp write), so it is
+   // bounded to prefix + dual-hash of the full path and stays writable.
+   cLong1 := "/tmp/" + Replicate( "a", 110 ) + "/" + Replicate( "b", 110 ) + ".prg"
+   cLong2 := "/tmp/" + Replicate( "a", 110 ) + "/" + Replicate( "c", 110 ) + ".prg"
+   cKeyL1 := HBIDE_RecoveryKey( cLong1 )
+   cKeyL2 := HBIDE_RecoveryKey( cLong2 )
+   Check( "long key bounded to 120", Len( cKeyL1 ) <= 120 )
+   Check( "long key keeps readable prefix", Left( cKeyL1, 15 ) == "_2Ftmp_2Faaaaaa" )
+   Check( "long key stable", cKeyL1 == HBIDE_RecoveryKey( cLong1 ) )
+   Check( "long keys differ when only tail differs", !( cKeyL1 == cKeyL2 ) )
+   cBin := Replicate( "deep content ", 20 ) + hb_eol() + Chr( 0 ) + Chr( 26 ) + "end"
+   Check( "long journal write ok", HBIDE_RecoveryWrite( cKeyL1, cLong1, cBin ) )
+   Check( "long journal read byte-exact", HBIDE_RecoveryRead( cKeyL1 ) == cBin )
+   Check( "long sidecar holds full target", ;
+          hb_MemoRead( hb_FNameMerge( cDir, cKeyL1 + "--" + HBIDE_RecoverySession(), ".target" ) ) == cLong1 )
+   HBIDE_RecoveryDelete( cKeyL1 )
+   Check( "long journal delete", ! File( hb_FNameMerge( cDir, cKeyL1, ".journal" ) ) )
 
    HBIDE_RecoveryDelete( cKey1 )
    hb_Run( "rm -rf " + cDir )
