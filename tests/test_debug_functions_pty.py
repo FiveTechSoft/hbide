@@ -354,6 +354,56 @@ check('exit returns to the debugger', '__hbide_dbg__' in scr.text())
 send(b'? 6*7\r'); pump(1.2)
 check('Command ? evaluates', '42' in scr.text())
 
+# --- menu checkmark state (durable version of the Oct-25 ad-hoc rows) ---
+def menu_row(name):
+    for line in scr.text().split('\n'):
+        if name in line:
+            return line
+    return ''
+
+# checked rows render a CP437 \xFB (sqrt) before the prompt; the UTF-8
+# screen model surfaces it as U+FFFD
+def is_checked(row, name):
+    return re.search(r'[\u221a\ufffd]\s*' + re.escape(name), row) is not None
+
+send(b'\x1bo'); pump(0.9)
+row = menu_row('Run at startup')
+check('Run at startup checked by default (Clipper compatible)', is_checked(row, 'Run at startup'))
+send(b'u'); pump(0.9)
+send(b'\x1bo'); pump(0.9)
+row = menu_row('Run at startup')
+check('Run at startup unchecks after toggle', 'Run at startup' in row and not is_checked(row, 'Run at startup'))
+send(b'u'); pump(0.9)   # restore default
+
+send(b'\x1bo'); pump(0.9)
+row = menu_row('codeBlock Trace')
+check('codeBlock Trace checked by default', is_checked(row, 'codeBlock Trace'))
+send(b'b'); pump(0.9)
+send(b'\x1bo'); pump(0.9)
+row = menu_row('codeBlock Trace')
+check('codeBlock Trace unchecks after toggle', 'codeBlock Trace' in row and not is_checked(row, 'codeBlock Trace'))
+send(b'b'); pump(0.9)   # restore default
+
+send(b'\x1bm'); pump(0.9)
+row = menu_row('Show all Globals')
+check('Show all Globals unchecked by default', 'Show all Globals' in row and not is_checked(row, 'Show all Globals'))
+send(b'h'); pump(0.9)
+send(b'\x1bm'); pump(0.9)
+row = menu_row('Show all Globals')
+check('Show all Globals checks after toggle', is_checked(row, 'Show all Globals'))
+send(b'h'); pump(0.9)   # restore default
+
+# --- Options > Preprocessed Code: swaps the code window to the .ppo view ---
+m = re.search(r'(__hbide_dbg__\S+)\.prg', scr.text())
+check('session prg name parsed for PPO', m is not None)
+if m:
+    ppo = os.path.join(work, m.group(1) + '.ppo')
+    open(ppo, 'w').write('PPOMARKERLINE\n')
+    send(b'\x1bo'); pump(0.9); send(b'p'); pump(1.2)
+    check('PPO shows preprocessed view', 'PPOMARKERLINE' in scr.text() and '.ppo' in scr.text())
+    send(b'\x1bo'); pump(0.9); send(b'p'); pump(1.2)
+    check('PPO toggles back to source', 'procedure __Main' in scr.text() and '.ppo' not in scr.text())
+
 # Alt+X back to the IDE
 send(b'\x1bx'); pump(1.5)
 check('Alt+X returns to the IDE', 'fn.prg' in scr.text() and 'Edit' in scr.text())
