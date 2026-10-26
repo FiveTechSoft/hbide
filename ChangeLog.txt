@@ -45,6 +45,17 @@ HbIde ChangeLog
     atomic 37/37, calculator, debug_layout 324, project, project_ui, help,
     help_browser y foxpro_demo PASS
 
+  Rendimiento del editor (rama designer-robustness)
+  -------------------------------------------------
+  - Corregido: cada tecla no-nav hacia snapshot+diff del fichero COMPLETO
+    para undo (coste O(tamano) por caracter: medido 0,28 -> 4,87 ms/caracter
+    de 100 a 20.000 lineas en Linux PTY 25x80, tests/bench_editor). La
+    insercion de un caracter sin seleccion ni wordwrap ahora registra
+    directamente el op undo de una linea (mismo op, misma fusion de rafaga):
+    coste plano 0,25 ms/caracter a cualquier tamano (19x a 20k lineas).
+    Wordwrap y reemplazo de seleccion conservan el camino general
+  - Harness reproducible: tests/bench_editor.prg (type/nav x tamano)
+
   Disenador (rama designer-robustness)
   ------------------------------------
   - Nuevo: el lienzo del disenador pinta la letra aceleradora de los
