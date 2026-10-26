@@ -29,6 +29,19 @@ ya integrado en hbide: esa extraccion requiere revisar su contrato despues.
 - Command: historial y tres comandos permitidos (browse, screen, modify command).
   Nunca evalua texto arbitrario ni ejecuta comandos del sistema.
 - Ayuda/About/limites son notas reales, no resultados de una funcion ausente.
+- Mover y redimensionar ventanas: Ctrl+F7 o Window > Move coloca la ventana
+  activa con flechas (Enter/Esc termina); Ctrl+F8 o Window > Size estira la
+  esquina inferior derecha. Limites: la ventana no sale del escritorio ni
+  queda menor que su minimo usable. Los datos, la seleccion, el scroll y el
+  foco se conservan; en Screen, los botones colocados y el cursor siguen a la
+  ventana. Si al encoger la ventana Screen un boton queda fuera del lienzo
+  visible, sus coordenadas NO se reescriben: se deja de pintar y reaparece
+  en su posicion original al agrandar (comprobado con capturas). Con raton:
+  arrastrar la barra de titulo mueve y arrastrar la esquina inferior derecha
+  redimensiona; ambos arrastres verificados con eventos X11 reales (XTEST)
+  sobre VTE. La rueda del raton sigue sin prueba fisica. Cada tecla repinta
+  la pantalla completa via DispBegin/DispEnd, sin restos; no hay medicion
+  comparativa de fluidez contra FoxPro DOS.
 
 ## Contraste y limites
 
@@ -55,6 +68,12 @@ que no podamos hacer funcionar en esta demo.
 
 ```
 hbmk2 tests/test_foxpro_demo.prg demos/foxpro.prg -dFOXPRO_TEST -gtstd -otest_foxpro
+```
+La suite de modelo cubre ademas mover/redimensionar: entrada por Ctrl+F7/F8 y
+por menu Window, conservacion de contenido, limites de escritorio, tamano
+minimo, filas visibles tras redimensionar, cursor retenido dentro del lienzo,
+coordenadas de controles intactas al encoger y desplazadas con la ventana al
+mover.
 ./test_foxpro
 ```
 
