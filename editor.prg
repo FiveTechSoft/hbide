@@ -3,6 +3,7 @@
 #include "setcurs.ch"
 #include "directry.ch"
 
+#define _REFRESH_NONE   0
 #define _REFRESH_LINE   1
 #define _REFRESH_ALL    2
 
@@ -394,7 +395,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
    local nKeyExt := hb_keyExt( nKey )   // HB_KX_* when an extended special key, else 0
    local nKeyMod := hb_keyMod( nKey )   // HB_KF_* flags of the extended code
    local nOldScrRow := ::Row()
-   local cKey, oLine, nPos
+   local cKey, oLine, nPos, lHotPath, lBlkBefore, lSkipTail := .F.
 
    do case
       // Distinct only under HB_INKEY_EXT: the classic set delivers Ctrl+Left
@@ -538,6 +539,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            Space( TabCount( ::nTabWidth, ::nCol ) ), ;
            hb_keyChar( nKey ) ) )
 
+           lHotPath := ( ::SelRange() == NIL )
            if ::SelRange() != NIL
               ::SelDelete( ::SelRange() )
            else
@@ -548,11 +550,31 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0
               oLine:cText += Space( nPos )
            ENDIF
+           if lHotPath
+              // state entering the next line before this char: a char that
+              // toggles /* or */ recolors everything below
+              lBlkBefore := ::BlkCmtState( ::nRow + 1 )
+           endif
            oLine:cText := hb_UStuff( oLine:cText, ::nCol - 4, ;
                                      iif( Set( _SET_INSERT ), 0, 1 ), cKey )
            ::nCol += hb_ULen( cKey )
            IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol
               ::ReformParagraph()
+           ELSEIF lHotPath
+              ::nBlkDirty := Min( ::nBlkDirty, ::nRow )
+              IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore
+                 ::GoTo( ::nRow, ::nCol, _REFRESH_ALL )
+              ELSE
+                 // hot path: single-line edit, no coloring context change.
+                 // One colored repaint of the current line replaces the old
+                 // uncolored RefreshLine + 3 colored DisplayLine (prev/cur/
+                 // next) per character (4 full-line paints -> 1, 3
+                 // tokenizations -> 1). GoTo still scrolls horizontally and
+                 // does a full Display() itself when the view shifts.
+                 ::GoTo( ::nRow, ::nCol, _REFRESH_NONE )
+                 ::DisplayLine( ::Row() )
+                 lSkipTail := .T.
+              ENDIF
            ELSE
               ::GoTo( ::nRow, ::nCol, _REFRESH_LINE )
            ENDIF
@@ -561,14 +583,16 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            ::Super:Edit( nKey )
    endcase
 
-   if ::Row() > ::nTop
-      ::DisplayLine( ::Row() - 1 )
-   endif
+   if ! lSkipTail
+      if ::Row() > ::nTop
+         ::DisplayLine( ::Row() - 1 )
+      endif
 
-   ::DisplayLine( ::Row() )
+      ::DisplayLine( ::Row() )
 
-   if ::Row() < ::nBottom
-      ::DisplayLine( ::Row() + 1 )
+      if ::Row() < ::nBottom
+         ::DisplayLine( ::Row() + 1 )
+      endif
    endif
 
    // Jumps longer than one line (Ctrl+Home/End and friends reach HBEditor's
