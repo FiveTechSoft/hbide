@@ -25,7 +25,7 @@ return
 proc Main()
 
    local cDir := "/tmp/hbide-atomic-" + StrZero( hb_randomInt( 999999 ), 6 )
-   local cFile, cOld, cTmp, cTarget
+   local cFile, cOld, cTmp, cTarget, aDir
 
    MakeDir( cDir )
 
@@ -67,6 +67,38 @@ proc Main()
    // 6. promote with missing temp fails and target untouched
    Check( "promote missing temp fails", ! HBIDE_ReplaceFile( cDir + "/absent", cTarget ) )
    Check( "target untouched", MemoRead( cTarget ) == "NEW-BIN" )
+
+   // 7. permissions preserved across the atomic replace (hb_vfAttrGet/Set)
+   cFile := cDir + "/mode.prg"
+   hb_MemoWrit( cFile, "v1" )
+   hb_Run( "chmod 750 " + cFile )
+   Check( "atomic write over 750 file ok", HBIDE_AtomicWriteFile( cFile, "v2" ) )
+   hb_Run( "stat -c %a " + cFile + " > " + cDir + "/m.txt" )
+   Check( "mode 750 preserved", StrTran( MemoRead( cDir + "/m.txt" ), Chr(10) ) == "750" )
+   Check( "content replaced", MemoRead( cFile ) == "v2" )
+
+   // 8. read-only (444) file: replace succeeds via rename, mode stays 444
+   hb_Run( "chmod 444 " + cFile )
+   Check( "atomic write over 444 file ok", HBIDE_AtomicWriteFile( cFile, "v3" ) )
+   hb_Run( "stat -c %a " + cFile + " > " + cDir + "/m.txt" )
+   Check( "mode 444 preserved", StrTran( MemoRead( cDir + "/m.txt" ), Chr(10) ) == "444" )
+   Check( "content replaced again", MemoRead( cFile ) == "v3" )
+
+   // 9. symlink policy: writing through the LINK keeps it a symlink and
+   //    updates the TARGET in place (documented non-atomic fallback)
+   cOld := cDir + "/real.txt"
+   hb_MemoWrit( cOld, "target-v1" )
+   hb_Run( "ln -s real.txt " + cDir + "/link.txt" )
+   Check( "write through symlink ok", HBIDE_AtomicWriteFile( cDir + "/link.txt", "target-v2" ) )
+   Check( "target updated in place", MemoRead( cOld ) == "target-v2" )
+   hb_Run( "test -L " + cDir + "/link.txt" )
+   aDir := Directory( cDir + "/link.txt" )
+   Check( "path is still a symlink", Len( aDir ) > 0 .and. "L" $ aDir[ 1 ][ 5 ] )
+
+   // 10. unique sibling: never returns an existing name, two calls differ
+   cTmp := HBIDE_UniqueSibling( cDir + "/u.prg" )
+   Check( "unique name free", ! Empty( cTmp ) .and. ! File( cTmp ) )
+   Check( "two picks differ", HBIDE_UniqueSibling( cDir + "/u.prg" ) != cTmp )
 
    hb_Run( "rm -rf " + cDir )
 

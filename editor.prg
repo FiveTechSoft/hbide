@@ -1,6 +1,7 @@
 #include "hbclass.ch"
 #include "inkey.ch"
 #include "setcurs.ch"
+#include "directry.ch"
 
 #define _REFRESH_LINE   1
 #define _REFRESH_ALL    2
@@ -921,57 +922,104 @@ return ! Empty( ::cLoadStamp ) .and. Empty( ::DiskStamp( ::cFile ) )
 
 //-----------------------------------------------------------------------------------------//
 
+// A fresh sibling temp name that is guaranteed not to exist, so nothing
+// preexisting is ever treated as ours. Returns "" if no free name is found.
+function HBIDE_UniqueSibling( cBase, cExt )
+
+   local cTmp, nTry := 0
+
+   hb_default( @cExt, "" )
+   do while nTry++ < 20
+      cTmp := cBase + ".tmp-" + StrZero( hb_randomInt( 999999 ), 6 ) + cExt
+      if ! File( cTmp )
+         return cTmp
+      endif
+   enddo
+
+return ""
+
+//-----------------------------------------------------------------------------------------//
+
 // Write cContent to cFile without truncating the user's original in place:
-// write a sibling temp file, verify its size, then move it over the
-// destination. On POSIX the rename replaces atomically, so a crash can
-// leave either the old or the new file, never a half-written one; the .bak
-// copy DoSave makes first still covers the rest. On Windows a rename cannot
-// replace an existing file, so the destination is erased first (a brief
-// non-atomic window, also covered by that .bak).
-// NOTE: this Harbour build has no portable stat/chmod API, so the replaced
-// file gets default (umask) permissions; a Unix exec bit on the old file is
-// NOT preserved (it was, when writing in place). Documented trade-off.
+// write a sibling temp file, verify its size, stamp the original's
+// permissions on it (hb_vfAttrGet/Set, real native API), then move it over
+// the destination. On POSIX the rename replaces atomically, so a crash can
+// leave either the old or the new file, never a half-written one. If the
+// original's attributes cannot be read or applied, the save ABORTS without
+// modifying the destination (fail-closed).
+// Symlink policy (documented): when the destination is a symlink the old
+// behaviour is kept - write through the link, in place, into the target.
+// Renaming would silently replace the LINK with a regular file; the in-place
+// write keeps the link and the target's inode and mode, at the price of
+// atomicity for that path only.
 function HBIDE_AtomicWriteFile( cFile, cContent )
 
-   local cTmp, lOk := .F.
+   local cTmp, lOk := .F., nAttr := 0, aDir
 
-   // unique temp name: never clobber preexisting content assuming it is ours
-   cTmp := cFile + ".tmp-" + StrZero( hb_randomInt( 999999 ), 6 )
-   if File( cTmp )
+   aDir := Directory( cFile )
+   if Len( aDir ) > 0 .and. "L" $ aDir[ 1 ][ F_ATTR ]
+      return hb_MemoWrit( cFile, cContent )
+   endif
+
+   cTmp := HBIDE_UniqueSibling( cFile )
+   if Empty( cTmp )
       return .F.
    endif
 
-   if hb_MemoWrit( cTmp, cContent ) .and. hb_FSize( cTmp ) == Len( cContent )
+   do while .T.   // single-exit block; every exit cleans the temp below
+      // read the original's permissions BEFORE touching anything
+      if File( cFile ) .and. ! hb_vfAttrGet( cFile, @nAttr )
+         exit
+      endif
+      if ! hb_MemoWrit( cTmp, cContent ) .or. hb_FSize( cTmp ) != Len( cContent )
+         exit
+      endif
+      // stamp the original's permissions on the replacement (aborts above
+      // when impossible, so the destination is never silently demoted)
+      if File( cFile ) .and. ! hb_vfAttrSet( cTmp, nAttr )
+         exit
+      endif
       lOk := HBIDE_ReplaceFile( cTmp, cFile )
-   endif
+      exit
+   enddo
 
    if ! lOk
-      FErase( cTmp )   // drop the partial/unused temp we just made
+      FErase( cTmp )   // our own temp: the unique name above guarantees it
    endif
 
 return lOk
 
 //-----------------------------------------------------------------------------------------//
 
-// Move cTmp over cTarget. POSIX rename(2) replaces an existing target
-// atomically; on Windows FRename fails while the target exists, so erase it
-// and retry once (caller's .bak covers that window).
+// Move cTmp over cTarget, fail-closed: the original destination is never
+// destroyed before the replacement stands in place. POSIX rename(2)
+// replaces an existing target atomically. On Windows FRename cannot replace
+// an existing file, so the destination is PARKED under a temp name first
+// (never erased), the new file moved in, and the original rolled back if
+// the move fails; only a fully successful replacement erases the park copy.
 function HBIDE_ReplaceFile( cTmp, cTarget )
 
 #ifdef __PLATFORM__WINDOWS
-   if FRename( cTmp, cTarget ) != 0
-      FErase( cTarget )
-      if FRename( cTmp, cTarget ) != 0
+   local cHold
+
+   if File( cTarget )
+      cHold := HBIDE_UniqueSibling( cTarget )
+      if Empty( cHold )
          return .F.
       endif
-   endif
-#else
-   if FRename( cTmp, cTarget ) != 0
-      return .F.
+      if FRename( cTarget, cHold ) != 0
+         return .F.                        // destination untouched
+      endif
+      if FRename( cTmp, cTarget ) != 0
+         FRename( cHold, cTarget )         // rollback: destination restored
+         return .F.
+      endif
+      FErase( cHold )                      // replacement complete: drop park copy
+      return .T.
    endif
 #endif
 
-return .T.
+return FRename( cTmp, cTarget ) == 0
 
 //-----------------------------------------------------------------------------------------//
 
