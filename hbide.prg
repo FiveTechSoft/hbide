@@ -722,23 +722,26 @@ return oMenu
 
 METHOD Start() CLASS HbIde
 
-   local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, cBase
+   local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, cBase, cExeTmp, cInfo, nRc
 
    if ! ::ConfirmOverwrite()
       return nil
    endif
-
-   ::oEditor:SaveFile()
 
    if Empty( cFile ) .or. cFile == "noname.prg" .and. ! File( cFile )
       HBIDE_MsgAlert( "Nothing to run: save the file first" )
       return nil
    endif
 
+   // A blocked/failed save must not silently build the stale disk content
+   if ! ::oEditor:SaveFile()
+      HBIDE_MsgAlert( "Could not save " + cFile + " (original left untouched); build cancelled" )
+      return nil
+   endif
+
    // Build next to the SOURCE: hbmk2's default output is the bare name in
    // CWD, which silently collides when two sources share a basename in
-   // different dirs. Erase any previous binary first so a failed build can
-   // never run or report a STALE executable as success.
+   // different dirs.
    cBase = hb_FNameDir( cFile ) + hb_FNameName( cFile )   // dir part may be empty
 
    // hbmk2 must be on PATH (Windows build not verified here)
@@ -749,23 +752,38 @@ METHOD Start() CLASS HbIde
          cExe = iif( Empty( hb_FNameDir( cFile ) ), "./", "" ) + cBase
    endcase
 
-   FErase( cExe )
-   hb_Run( "hbmk2" + ::BuildFlags() + " -o" + cExe + " " + cFile + " > info.txt 2>&1" )
-   cOut = MemoRead( "info.txt" )
+   // Build to a sibling temp target and promote it over the real executable
+   // only after a VERIFIED success (exit code 0 and the binary exists).
+   // The user's previous binary is never erased up front and never launched
+   // when the build failed. The build log also goes to a sibling temp file
+   // instead of clobbering a CWD "info.txt" that may be the user's own file.
+   cExeTmp := cExe + ".buildtmp"
+   cInfo   := cExe + ".buildinfo.txt"
+   FErase( cExeTmp )   // our own leftovers from a previous crashed run
+   FErase( cInfo )
+
+   nRc := hb_Run( "hbmk2" + ::BuildFlags() + " -o" + cExeTmp + " " + cFile + " > " + cInfo + " 2>&1" )
+   cOut = MemoRead( cInfo )
+   FErase( cInfo )
    // hbmk2 progress uses raw CR as a separator; show it as line breaks
    // instead of CP437 glyphs (chr(13) renders as a music note)
    cOut := StrTran( cOut, Chr( 13 ) + Chr( 10 ), Chr( 10 ) )
    cOut := StrTran( cOut, Chr( 13 ), Chr( 10 ) )
    HBIDE_MsgAlert( iif( Empty( cOut ), "Build OK: " + cExe, cOut ) )
 
-   if File( cExe )
-      if ::lAutoRun
+   if nRc == 0 .and. File( cExeTmp )
+      if ! HBIDE_ReplaceFile( cExeTmp, cExe )
+         HBIDE_MsgAlert( "Build succeeded but could not replace " + cExe + "; new binary kept as " + cExeTmp )
+      elseif ::lAutoRun
          hb_Run( cExe )
       else
          HBIDE_MsgAlert( "Built (auto-run off): " + cExe )
       endif
    else
-      HBIDE_MsgAlert( "Build failed or hbmk2 not on PATH; executable not found: " + cExe )
+      FErase( cExeTmp )
+      // hb_Run() returns the raw wait status (exit code << 8 on unix)
+      HBIDE_MsgAlert( "Build failed (status " + hb_ntos( nRc ) + ") or hbmk2 not on PATH; " + ;
+                      "previous executable left untouched: " + cExe )
    endif
 
    ::Repaint()
