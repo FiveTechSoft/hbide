@@ -253,6 +253,7 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
 
    local nKeyStd := hb_keyStd( nKey )
    local cKey, oLine, nPos
+   local lLineOnly := .F.
 
    do case
       case nKey == K_LDBLCLK
@@ -274,7 +275,8 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
            IF ::nCol > 5
               ::lDirty := .T.
               ::aText[ ::nRow ]:cText := hb_UStuff( ::aText[ ::nRow ]:cText, --::nCol - 4, 1, "" )
-              ::GoTo( ::nRow, ::nCol, _REFRESH_LINE )
+              ::GoTo( ::nRow, ::nCol )
+              lLineOnly := .T.
            ELSEIF ::nRow > 1
               // Join with previous line
               ::lDirty := .T.
@@ -344,22 +346,27 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
            IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol
               ::ReformParagraph()
            ELSE
-              ::GoTo( ::nRow, ::nCol, _REFRESH_LINE )
+              ::GoTo( ::nRow, ::nCol )
+              lLineOnly := .T.
            ENDIF
 
       otherwise
            ::Super:Edit( nKey )
    endcase
 
-   if ::Row() > ::nTop
+   DispBegin()
+
+   if ! lLineOnly .and. ::Row() > ::nTop
       ::DisplayLine( ::Row() - 1 )
    endif
 
    ::DisplayLine( ::Row() )
 
-   if ::Row() < ::nBottom
+   if ! lLineOnly .and. ::Row() < ::nBottom
       ::DisplayLine( ::Row() + 1 )
    endif
+
+   DispEnd()
 
 return nil
 
