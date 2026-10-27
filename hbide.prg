@@ -520,7 +520,7 @@ METHOD ShowStatus() CLASS HBIde
       // effective locale (LC_ALL > LC_CTYPE > LANG) is not UTF-8: CP437 UI glyphs
       // (button shadows, borders) reach a Linux terminal as raw bytes and show as "?".
       // Drawn on the right of the menu bar so it never covers build/compiler messages.
-      hb_DispOutAt( 0, 52, "No UTF-8 locale: borders may show ?", "R/W" )
+      hb_DispOutAt( 0, 50, "Locale not UTF-8: ? glyphs", "R/W" )
    endif
    DispEnd()
 
