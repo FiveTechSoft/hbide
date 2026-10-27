@@ -27,6 +27,10 @@ function BuildEditor()
    oEditor:SetColor( "W/B,N/BG" )
    oEditor:cFile = "noname.prg"
    oEditor:cDocId = hb_ntos( ++nDocSeq )
+   // a fresh HBEditor leaves nCol at the window edge (gutter cell); the first
+   // document is normalised by its first repaint, later File>New documents
+   // were not, so typing before any cursor key landed in the wrong place
+   oEditor:GoTo( 1, 5, _REFRESH_NONE )
 
 return oEditor
 
