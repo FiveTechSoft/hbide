@@ -71,6 +71,7 @@ check('GET prompt visible on app screen rows', any('Name:' in ''.join(scr.g[r]) 
 send(b'OLIN');pump(1.0)
 rows=[i for i,row in enumerate(scr.g) if 'OLIN' in ''.join(row)]
 check('letters echo in GET field row, not Command', rows and all(r in (5,6) for r in rows), 'rows=%s'%rows)
+check('no residual editor char before GET value', any(re.search(r'Name:\s+OLIN\s*$',''.join(scr.g[r]).rstrip()) and 'dOLIN' not in ''.join(scr.g[r]) for r in (5,6)), ''.join(scr.g[5]))
 send(b'\r');pump(2.0)
 check('debugger re-entered after Enter', 'Command' in scr.text(), scr.text()[:200])
 check('stopped at line after read', cursor_line()==5, 'cursor=%s'%cursor_line())

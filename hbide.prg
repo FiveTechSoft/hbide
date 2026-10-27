@@ -1952,6 +1952,7 @@ METHOD Debug() CLASS HbIde
       // run from a uniquely named .hrb file: symbol table recycling is
       // keyed by the load filename ("pcode.hrb" for in-memory bodies)
       hb_MemoWrit( cTmpHrb, oHrb )
+      SetColor( "W/N" ); CLS   // debuggee starts on a blank screen, not the IDE image
       // editor breakpoints (F9 marks) become the session's initial BPs
       __hbide_dbgPresetBPs( ::oEditor:aBPs )
       BEGIN SEQUENCE
