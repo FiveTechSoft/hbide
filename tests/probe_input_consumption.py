@@ -15,7 +15,7 @@ tc = importlib.util.module_from_spec(spec); sys.modules['tc']=tc
 try: spec.loader.exec_module(tc)
 except SystemExit: pass
 Scr=tc.Scr; ROWS=tc.ROWS; COLS=tc.COLS
-BIN='/home/sandbox/hbide/hbide'
+BIN=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','hbide')
 work=tempfile.mkdtemp(prefix='hbide-input-')
 open(os.path.join(work,'fn.prg'),'w').write(
 'procedure Main()\n'
@@ -27,7 +27,8 @@ open(os.path.join(work,'fn.prg'),'w').write(
 'return\n')
 pid, fd = pty.fork()
 if pid==0:
-    os.chdir(work); os.execv(BIN,[BIN])
+    _h=tempfile.mkdtemp(prefix='hbide-probe-home-'); _r=tempfile.mkdtemp(prefix='hbide-probe-rec-')
+    os.chdir(work); os.execve(BIN,[BIN],dict(os.environ,HOME=_h,HBIDE_RECOVERY_DIR=_r,TERM='xterm'))
 fcntl.ioctl(fd, termios.TIOCSWINSZ, struct.pack("HHHH",ROWS,COLS,0,0))
 scr=Scr(); raw=bytearray()
 def pump(secs):
