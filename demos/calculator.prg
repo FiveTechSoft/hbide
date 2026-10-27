@@ -177,21 +177,22 @@ FUNCTION CalcPaint( h )
    hb_DispOutAt( 4, 10, PadL( Left( h["display"], 30 ), 30 ), "N/W" )
    FOR n = 1 TO CALC_NBUTTONS
       aRC := CalcBtnRect( n )
-      cCap := "< " + aB[ n ] + " >"
+      cCap := "  " + aB[ n ] + "  "
       CalcBtnShadow( aRC[ 1 ], aRC[ 2 ], Len( cCap ), "N/RB" )
       hb_DispOutAt( aRC[ 1 ], aRC[ 2 ], cCap, iif( n == h["focus"], "W+/G", "W/G" ) )
    NEXT
    hb_DispOutAt( 21, 8, "Arrows move  Enter presses  Esc exits", "W+/RB" )
 RETURN NIL
 
-// Dithered shadow bar: one row below, inset two cells left and one right,
-// so it reads as a shade under the face, not a second block. CP437 shade
-// byte: gttrm maps it through ACS on real terminals; half-block glyphs
-// are NOT mapped by this GT, so a solid thin strip is not representable.
+// TurboVision-style button shadow: half-block glyph on the right of the face
+// (lower half) and a half-block strip under it (upper half), shifted one cell.
+// Only used in the button rows/cols the face leaves free (buttons are 5 wide
+// on a 7-column pitch, 1 row on a 3-row pitch).
 FUNCTION CalcBtnShadow( nRow, nCol, nLen, cClr )
    LOCAL i
-   FOR i = 2 TO nLen - 1
-      hb_DispOutAt( nRow + 1, nCol + i, Chr( 176 ), cClr )
+   hb_DispOutAt( nRow, nCol + nLen, hb_UTF8ToStr( "▄" ), cClr )
+   FOR i = 1 TO nLen
+      hb_DispOutAt( nRow + 1, nCol + i, hb_UTF8ToStr( "▀" ), cClr )
    NEXT
 RETURN NIL
 
