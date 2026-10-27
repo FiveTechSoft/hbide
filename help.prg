@@ -286,12 +286,13 @@ FUNCTION HBHelpBtnCols( g )
    NEXT
 RETURN aCols
 
-// Dithered shadow bar under the face, inset; half-block glyphs are not
-// mapped by this GT, so a solid thin strip is not representable.
+// TurboVision-style shadow: lower half block to the right of the face and
+// upper half block strip below it (same glyphs as the dialog buttons).
 FUNCTION HBHelpBtnShadow( nRow, nCol, nLen )
-   LOCAL i
-   FOR i = 2 TO nLen - 1
-      hb_DispOutAt( nRow + 1, nCol + i, Chr( 176 ), "N/BG" )
+   LOCAL i, aCh := HbBtnShadowChars()
+   hb_DispOutAt( nRow, nCol + nLen, aCh[ 1 ], "N/BG" )
+   FOR i = 1 TO nLen
+      hb_DispOutAt( nRow + 1, nCol + i, aCh[ 2 ], "N/BG" )
    NEXT
 RETURN NIL
 
@@ -427,7 +428,7 @@ FUNCTION HBHelpPaint( h, aTopics, g )
    // green shadowed buttons
    aCols := HBHelpBtnCols( g )
    FOR n := 1 TO Len( g[ "btnCaps" ] )
-      cCap := "< " + g[ "btnCaps" ][ n ] + " >"
+      cCap := "  " + g[ "btnCaps" ][ n ] + "  "
       HBHelpBtnShadow( g[ "btnRow" ], aCols[ n ][ 1 ], Len( cCap ) )
       hb_DispOutAt( g[ "btnRow" ], aCols[ n ][ 1 ], cCap, ;
                     iif( h[ "pane" ] == "buttons" .AND. h[ "btn" ] == n, "W+/G", "W/G" ) )
