@@ -847,10 +847,16 @@ METHOD PROCEDURE CommandWindowProcessKey( nKey ) CLASS HBDebugger
          ::CommandWindowDisplay( cCommand, .T. )
          ::DoCommand( cCommand )
       ENDIF
-      hb_DispOutAt( ::oWndCommand:nBottom - 1, ::oWndCommand:nLeft + 1, ;
-                    PadR( "> ", ::oWndCommand:nRight - ::oWndCommand:nLeft - 1 ), ;
-                    __dbgColors()[ 2 ] )
-      ::oGetCommand:setValue( "" ):display()
+      // A run command (step/go/...) already switched to the application
+      // window; painting the prompt now would land on the user's screen.
+      IF ::lDebuggerWindowIsOpen
+         hb_DispOutAt( ::oWndCommand:nBottom - 1, ::oWndCommand:nLeft + 1, ;
+                       PadR( "> ", ::oWndCommand:nRight - ::oWndCommand:nLeft - 1 ), ;
+                       __dbgColors()[ 2 ] )
+         ::oGetCommand:setValue( "" ):display()
+      ELSE
+         ::oGetCommand:setValue( "" )
+      ENDIF
       EXIT
    OTHERWISE
       ::oGetCommand:applyKey( nKey )
@@ -1275,7 +1281,9 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
 
    ENDCASE
 
-   IF ::lActive
+   // lDebuggerWindowIsOpen is .F. after a run command (step/go): the
+   // application window is current and must not receive debugger cells
+   IF ::lActive .AND. ::lDebuggerWindowIsOpen
 
       hb_DispOutAt( ::oWndCommand:nBottom - 1, ::oWndCommand:nLeft + 1, ;
                     Space( ::oWndCommand:nRight - ::oWndCommand:nLeft - 1 ), ;
