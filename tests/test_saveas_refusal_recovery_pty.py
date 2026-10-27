@@ -1,7 +1,7 @@
 import os, pty, sys, struct, fcntl, termios, select, time, signal, shutil, tempfile, re
 
 ROWS, COLS = 25, 80
-BIN = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.expanduser('~/hbide/hbide')
+BIN = os.path.abspath(sys.argv[1]) if len(sys.argv) > 1 else os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'hbide')
 
 class Scr:
     def __init__(self):
