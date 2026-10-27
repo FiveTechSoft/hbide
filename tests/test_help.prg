@@ -1,6 +1,6 @@
 #include "inkey.ch"
 PROCEDURE Main()
-   LOCAL aTopics := HBIDEHelpTopics(), a, n, cBefore
+   LOCAL aTopics := HBIDEHelpTopics(), a, n, cBefore, nW, aL
    Assert( HBIDEHelpContext( ' ~Options ', '~Compiler Flags...' ) == 'Compiler flags', 'compiler context' )
    Assert( HBIDEHelpContext( ' ~File ', '~Save F2' ) == 'File menu', 'file context' )
    Assert( HBIDEHelpContext( ' ~Run ', '~Debug' ) == 'Debugger', 'debug context' )
@@ -18,6 +18,23 @@ PROCEDURE Main()
       NEXT
    NEXT
    Assert( Len( aTopics ) == 15, 'topic count' )
+   // every topic at the real panel widths (80 and 120 columns): nothing wider
+   // than the panel (table rows included) and no word cut in the middle
+   FOR EACH nW IN { 44, 84 }
+      FOR EACH a IN aTopics
+         aL := HBIDEHelpLines( a[ 3 ], nW )
+         FOR EACH n IN aL
+            Assert( Len( n ) <= nW, 'topic line fits panel: ' + a[ 2 ] )
+         NEXT
+         Assert( HBWordsOf( a[ 3 ] ) == HBWordsOfLines( aL ), 'no word cut/lost: ' + a[ 2 ] )
+      NEXT
+   NEXT
+   aL := HBIDEHelpLines( "Key      Does something fairly long that has to wrap under its own column", 40 )
+   Assert( Len( aL ) >= 2 .AND. Left( aL[ 2 ], 9 ) == Space( 9 ) .AND. ! Left( aL[ 2 ], 10 ) == Space( 10 ), 'table row hangs under description column' )
+   aL := HBIDEHelpLines( "x https://github.com/FiveTechSoft/hbide y", 40 )
+   Assert( AScan( aL, {| c | "https://github.com/FiveTechSoft/hbide" $ c } ) > 0, 'url kept whole' )
+   aL := HBIDEHelpLines( "it's one line" + Chr( 10 ) + "second 'quoted' line" + Chr( 10 ) + "third", 80 )
+   Assert( Len( aL ) == 3, 'apostrophes do not swallow line breaks' )
    SetMode( 25, 80 )
    hb_DispOutAt( 0, 0, 'EDITOR MUST SURVIVE', 'W/B' )
    cBefore := __dbgSaveScreen( 0, 0, MaxRow(), MaxCol() )
@@ -33,3 +50,17 @@ PROCEDURE Assert( lOk, cName )
       QUIT
    ENDIF
    RETURN
+STATIC FUNCTION HBWordsOf( c )
+   LOCAL w, s := ""
+   FOR EACH w IN hb_ATokens( StrTran( StrTran( c, Chr( 13 ), "" ), Chr( 10 ), " " ), " " )
+      IF ! Empty( w )
+         s += w + "|"
+      ENDIF
+   NEXT
+   RETURN s
+STATIC FUNCTION HBWordsOfLines( a )
+   LOCAL c, s := ""
+   FOR EACH c IN a
+      s += HBWordsOf( c )
+   NEXT
+   RETURN s

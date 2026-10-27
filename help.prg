@@ -214,7 +214,7 @@ FUNCTION HBIDEHelpSectionText( nSection, aTopics )
    FOR EACH cTitle IN aSec[ 2 ]
       nTopic := AScan( aTopics, { | t | t[ 2 ] == cTitle } )
       IF nTopic > 0
-         c += "- " + cTitle + ": " + HBHelpOneLine( hb_ATokens( StrTran( aTopics[ nTopic, 3 ], Chr(13), "" ), Chr(10), .T. )[ 1 ] ) + hb_eol()
+         c += "- " + cTitle + ": " + HBHelpOneLine( hb_ATokens( StrTran( aTopics[ nTopic, 3 ], Chr(13), "" ), Chr(10) )[ 1 ] ) + hb_eol()
       ENDIF
    NEXT
    c += hb_eol() + "Enter opens the highlighted entry; Down moves to its topics."
@@ -561,31 +561,85 @@ FUNCTION HBIDEHelpBrowser( aTopics, nStartTopic )
 RETURN .T.
 
 FUNCTION HBIDEHelpLines( cText, nWidth )
-   LOCAL a := {}, cLine, aSource := hb_ATokens( StrTran( cText, Chr(13), "" ), Chr(10), .T. )
-   LOCAL n, nCut
+   LOCAL a := {}, cLine, aSource := hb_ATokens( StrTran( cText, Chr(13), "" ), Chr(10) )
    FOR EACH cLine IN aSource
-      IF "   " $ cLine
-         // preformatted table row: keep columns intact, never re-wrap
-         AAdd( a, RTrim( cLine ) )
-         LOOP
-      ENDIF
-      DO WHILE Len( cLine ) > nWidth
-         nCut := nWidth
-         FOR n := nWidth TO Max( 1, Int( nWidth / 2 ) ) STEP -1
-            IF SubStr( cLine, n, 1 ) == " "
-               nCut := n
-               EXIT
-            ENDIF
-         NEXT
-         AAdd( a, RTrim( Left( cLine, nCut ) ) )
-         cLine := LTrim( SubStr( cLine, nCut + 1 ) )
-      ENDDO
-      AAdd( a, cLine )
+      HBHelpWrapLine( a, cLine, nWidth )
    NEXT
    IF Empty( a )
       AAdd( a, "" )
    ENDIF
    RETURN a
+
+// Wraps one source line at word boundaries. A line that is a table row (key
+// column, 3+ spaces, description) wraps its description under the description
+// column; any other line keeps its own indent. A word is cut only when it is
+// longer than the room that is left.
+STATIC PROCEDURE HBHelpWrapLine( a, cLine, nWidth )
+   LOCAL nIndent, nHang, nGap, nRoom, cHead, cRest, nCut, n
+   cLine := RTrim( cLine )
+   IF Len( cLine ) <= nWidth
+      AAdd( a, cLine )
+      RETURN
+   ENDIF
+   nIndent := Len( cLine ) - Len( LTrim( cLine ) )
+   nHang := nIndent
+   // table row: first run of 3+ spaces after the key text
+   nGap := hb_At( "   ", cLine, nIndent + 1 )
+   IF nGap > 0
+      nHang := nGap - 1
+      DO WHILE nHang < Len( cLine ) .AND. SubStr( cLine, nHang + 1, 1 ) == " "
+         nHang++
+      ENDDO
+      IF nHang > nWidth - 14
+         nHang := nIndent
+      ELSE
+         cHead := Left( cLine, nHang )
+         cRest := SubStr( cLine, nHang + 1 )
+         nRoom := nWidth - nHang
+         DO WHILE .T.
+            HBHelpCut( cRest, nRoom, @nCut )
+            AAdd( a, RTrim( cHead + Left( cRest, nCut ) ) )
+            cRest := LTrim( SubStr( cRest, nCut + 1 ) )
+            IF Empty( cRest )
+               EXIT
+            ENDIF
+            cHead := Space( nHang )
+         ENDDO
+         RETURN
+      ENDIF
+   ENDIF
+   cHead := Left( cLine, nIndent )
+   cRest := SubStr( cLine, nIndent + 1 )
+   nRoom := nWidth - nIndent
+   DO WHILE .T.
+      HBHelpCut( cRest, nRoom, @nCut )
+      AAdd( a, RTrim( cHead + Left( cRest, nCut ) ) )
+      cRest := LTrim( SubStr( cRest, nCut + 1 ) )
+      IF Empty( cRest )
+         EXIT
+      ENDIF
+   ENDDO
+   RETURN
+
+// nCut: length of the piece of cText that fits nRoom, ending at a space when
+// there is one, else a hard cut for a single over-long word.
+STATIC PROCEDURE HBHelpCut( cText, nRoom, nCut )
+   LOCAL n
+   IF Len( cText ) <= nRoom
+      nCut := Len( cText )
+      RETURN
+   ENDIF
+   nCut := nRoom
+   IF SubStr( cText, nRoom + 1, 1 ) == " "
+      RETURN
+   ENDIF
+   FOR n := nRoom TO 1 STEP -1
+      IF SubStr( cText, n, 1 ) == " "
+         nCut := n
+         EXIT
+      ENDIF
+   NEXT
+   RETURN
 
 FUNCTION HBIDEHelpContext( cMenu, cItem )
    LOCAL c := Upper( StrTran( AllTrim( cMenu ), "~" ) )

@@ -25,15 +25,18 @@ PROCEDURE Main()
    Assert( aTopics[ a[ 1 ][ 1 ], 2 ] == 'Dialog designer' .OR. aTopics[ a[ 1 ][ 1 ], 2 ] == 'Options menu', 'json match in designer/options' )
    Assert( Empty( HBIDEHelpMatches( aTopics, 44, 'ZZZNOPE' ) ), 'no false matches' )
    Assert( Empty( HBIDEHelpMatches( aTopics, 44, '' ) ), 'empty query matches nothing' )
-   // reflow: prose wraps, preformatted table rows keep their columns
-   a := HBIDEHelpLines( aTopics[ AScan( aTopics, { | t | t[ 2 ] == 'Debugger' } ), 3 ], 30 )
+   // reflow: a table row that fits stays on one line with its columns; a narrow panel wraps it, never overflows
+   a := HBIDEHelpLines( aTopics[ AScan( aTopics, { | t | t[ 2 ] == 'Debugger' } ), 3 ], 84 )
    n := 0
    FOR EACH c IN a
       IF 'F5 Go / stop at breakpoint' $ c .AND. 'F7 Run to cursor' $ c
          n := 1
       ENDIF
    NEXT
-   Assert( n == 1, 'preformatted table row not rewrapped' )
+   Assert( n == 1, 'table row that fits keeps its columns on one line' )
+   FOR EACH c IN HBIDEHelpLines( aTopics[ AScan( aTopics, { | t | t[ 2 ] == 'Debugger' } ), 3 ], 30 )
+      Assert( Len( c ) <= 30, 'narrow panel: no overflowing row' )
+   NEXT
    Assert( HBHelpOneLine( 'New            Starts an empty buffer' ) == 'New Starts an empty buffer', 'one-line summary collapses columns' )
    // export writes real markdown with every topic
    hb_cwd( '/tmp' )
