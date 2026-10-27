@@ -453,7 +453,9 @@ function HBIDE_MsgAlert( cMessage, aOptions, cTitle )
       nCol += Len( cCap ) + 6
    next
 
+   HBIDE_Modal( 1 )
    oDlg:Activate( GetList )
+   HBIDE_Modal( -1 )
 
    for each cCap in aOldKeys
       SetKey( cCap[ 1 ], cCap[ 2 ] )
@@ -516,11 +518,9 @@ METHOD ShowStatus() CLASS HBIde
                  "row: " + AllTrim( Str( ::oEditor:RowPos() ) ) + ", " + ;
                  "col: " + AllTrim( Str( Max( ::oEditor:ColPos() - 4, 1 ) ) ) + " ",;
                  aColors[ 8 ] )
-   // only over the plain menu bar: a tall dialog can cover row 0 (80x25), and the
-   // idle painter must not write on top of it (cell attr 3rd byte of SaveScreen)
-   if ! HBIDE_LocaleIsUtf8() .and. ;
-      ( Asc( SubStr( SaveScreen( 0, 50, 0, 50 ), 3, 1 ) ) == hb_ColorToN( "N/W" ) .or. ;
-        Asc( SubStr( SaveScreen( 0, 50, 0, 50 ), 3, 1 ) ) == hb_ColorToN( "R/W" ) )
+   // not while a HBIDE_MsgAlert() modal is open: that dialog does not suspend the
+   // idle painter and can cover row 0 (80x25), so ownership is tracked explicitly
+   if ! HBIDE_LocaleIsUtf8() .and. HBIDE_Modal() == 0
       // effective locale (LC_ALL > LC_CTYPE > LANG) is not UTF-8: CP437 UI glyphs
       // (button shadows, borders) reach a Linux terminal as raw bytes and show as "?".
       // Drawn on the right of the menu bar so it never covers build/compiler messages.
@@ -529,6 +529,17 @@ METHOD ShowStatus() CLASS HBIde
    DispEnd()
 
 return nil
+
+// Open-modal depth for dialogs that run without the IDE object (MsgAlert).
+function HBIDE_Modal( nDelta )
+
+   static s_nModal := 0
+
+   if HB_ISNUMERIC( nDelta )
+      s_nModal := Max( 0, s_nModal + nDelta )
+   endif
+
+return s_nModal
 
 // .T. when the effective locale is UTF-8, or when the check does not apply (Windows).
 function HBIDE_LocaleIsUtf8()
