@@ -116,7 +116,18 @@ METHOD Activate( GetList ) CLASS HbWindow
       ::nIdleRead = hb_IdleAdd( { || ::ReadMouse() } )
    endif
    HBPageTrapInstall()
-   READ
+   // host IDE (when linked) counts open modals so its idle painter and the
+   // locale notice stay off the dialog; ALWAYS keeps the count right on a Break
+   if hb_IsFunction( "HBIDE_MODAL" )
+      Do( "HBIDE_MODAL", 1 )
+   endif
+   BEGIN SEQUENCE
+      READ
+   ALWAYS
+      if hb_IsFunction( "HBIDE_MODAL" )
+         Do( "HBIDE_MODAL", -1 )
+      endif
+   END SEQUENCE
    HBPageTrapRemove()
    if lRoute
       SetGetUMouseRoute( bPrevRoute )

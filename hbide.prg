@@ -453,9 +453,7 @@ function HBIDE_MsgAlert( cMessage, aOptions, cTitle )
       nCol += Len( cCap ) + 6
    next
 
-   HBIDE_Modal( 1 )
    oDlg:Activate( GetList )
-   HBIDE_Modal( -1 )
 
    for each cCap in aOldKeys
       SetKey( cCap[ 1 ], cCap[ 2 ] )
