@@ -243,3 +243,22 @@ Verificacion del ciclo debugger->salir->Help->Contents->Debugger:
   Screens depends on resolving the execution repaint/tearing path, swap on
   Input needs a reliable debuggee-input signal, and Menu Bar needs a reviewed
   interaction design while hidden.
+
+## 2026-10-27: swap on Input - feasibility (source read, no implementation)
+
+- Upstream (and the vendored copy) has the menu item " swap on ~Input" and the
+  command SWAPONINPUT wired to `NotSupported()` ("Not implemented yet!",
+  dbgmenu.prg:174, debugger.prg:1094-1097). There is no state to toggle.
+- Current behaviour is the Harbour one: the application window is shown while
+  the program runs and the debugger window only at a stop (F4 and
+  RestoreAppScreen/ShowAppScreen switch between the two GT windows).
+- A selective mode would need a signal "the program is waiting for input".
+  The VM has no such debugger hook. The only candidate seen in this code base
+  is the idle handler (hb_IdleAdd), which the IDE already uses from inside
+  INKEY waits; it fires while the program sits in Inkey()/READ. Viability is
+  therefore plausible but UNPROVEN: it was not prototyped, and Windows was not
+  tested. Doing it means defining what is shown while the program runs
+  (debugger vs application) - a new interaction that has not been requested,
+  so it was not started.
+- Separate fix this session: a6e677e (debugger no longer paints its prompt
+  into the application window after step/go; the teal bar on F4 is gone).
