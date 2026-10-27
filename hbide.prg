@@ -1898,7 +1898,7 @@ return nil
 
 METHOD Debug() CLASS HbIde
 
-   local oHrb, bOldError, cTmpPrg, cTmpHrb
+   local oHrb, bOldError, cTmpPrg, cTmpHrb, cOldClr := SetColor()
    static nDbgSeq := 0
 
    // compile the buffer with debug info (-b). The VM debug-request flag
@@ -1952,7 +1952,7 @@ METHOD Debug() CLASS HbIde
       // run from a uniquely named .hrb file: symbol table recycling is
       // keyed by the load filename ("pcode.hrb" for in-memory bodies)
       hb_MemoWrit( cTmpHrb, oHrb )
-      SetColor( "W/N" ); CLS   // debuggee starts on a blank screen, not the IDE image
+      cOldClr := SetColor( "W/N" ); CLS   // debuggee starts on a blank screen, not the IDE image
       // editor breakpoints (F9 marks) become the session's initial BPs
       __hbide_dbgPresetBPs( ::oEditor:aBPs )
       BEGIN SEQUENCE
@@ -1968,6 +1968,7 @@ METHOD Debug() CLASS HbIde
       ErrorBlock( bOldError )
       FErase( cTmpPrg )
       FErase( cTmpHrb )
+      SetColor( cOldClr )
       ::Repaint()
       SetCursor( SC_NORMAL )
    else
