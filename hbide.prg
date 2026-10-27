@@ -516,9 +516,34 @@ METHOD ShowStatus() CLASS HBIde
                  "row: " + AllTrim( Str( ::oEditor:RowPos() ) ) + ", " + ;
                  "col: " + AllTrim( Str( Max( ::oEditor:ColPos() - 4, 1 ) ) ) + " ",;
                  aColors[ 8 ] )
+   if ! HBIDE_LocaleIsUtf8()
+      // effective locale (LC_ALL > LC_CTYPE > LANG) is not UTF-8: CP437 UI glyphs
+      // (button shadows, borders) reach a Linux terminal as raw bytes and show as "?".
+      // Drawn on the right of the menu bar so it never covers build/compiler messages.
+      hb_DispOutAt( 0, 52, "No UTF-8 locale: borders may show ?", "R/W" )
+   endif
    DispEnd()
 
 return nil
+
+// .T. when the effective locale is UTF-8, or when the check does not apply (Windows).
+function HBIDE_LocaleIsUtf8()
+
+   local cLoc, cName
+
+   if "WINDOWS" $ Upper( OS() )
+      return .T.
+   endif
+   cLoc := ""
+   for each cName in { "LC_ALL", "LC_CTYPE", "LANG" }
+      cLoc := GetEnv( cName )
+      if ! Empty( cLoc )
+         exit
+      endif
+   next
+   cLoc := Upper( cLoc )
+
+return "UTF-8" $ cLoc .or. "UTF8" $ cLoc
 
 //-----------------------------------------------------------------------------------------//
 
