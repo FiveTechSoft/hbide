@@ -52,7 +52,7 @@ the current line otherwise.
 | Ins | Insert / overwrite mode |
 | Ctrl+Z / Ctrl+U | Undo / redo (typing coalesces per line) |
 | Ctrl+Y | Delete line |
-| Ctrl+Left / Ctrl+Right | Move by word |
+| Ctrl+Right / Alt+Left | Move by word forward / back (Ctrl+Left also jumps back on terminals that deliver extended key codes; otherwise it arrives as Undo) |
 | Ctrl+F6 / Ctrl+Shift+F6 | Next / previous document |
 | Alt+letter | Open menus and activate dialog hotkeys |
 | Esc | Close menus and dialogs, cancel |
@@ -124,7 +124,7 @@ What to expect:
 - Run > Script compiles the current buffer in memory and runs it inside
   the IDE process, without saving.
 - Options > Compiler Flags... sets Warnings, Debug info, Strict types,
-  Incremental, Optimize and Auto-run. The flags persist and apply to
+  Incremental, Optimize code and Run after build. The flags persist and apply to
   Run > Start.
 
 ## Debugger
