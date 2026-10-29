@@ -87,10 +87,13 @@ eol = '\r\n' if (os.environ.get('HBIDE_TEST_CRLF') == '1' or '--crlf' in sys.arg
 utf8 = '--utf8-bom' in sys.argv[2:]
 raw_utf8 = '--utf8-raw' in sys.argv[2:]
 switch_cp = '--switch-cp' in sys.argv[2:]
-orig = ('\ufeff' if utf8 else '') + 'line one' + eol + 'line two with tail' + (' é' if utf8 else (' €' if raw_utf8 else '')) + eol
+refuse_cp = '--refuse-cp' in sys.argv[2:]
+orig = ('\ufeff' if utf8 else '') + 'line one' + eol + 'line two with tail' + (' €' if refuse_cp else (' é' if utf8 else (' €' if raw_utf8 else ''))) + eol
 pathlib.Path(deep).write_bytes(orig.encode())
 assert len(deep) > 200, deep
 env = dict(os.environ, HOME=home, HBIDE_RECOVERY_DIR=rec, TERM='xterm')
+if refuse_cp:
+    env['HBIDE_UTF8'] = '1'
 
 def boot():
     pid, fd = pty.fork()
@@ -142,7 +145,7 @@ try:
     os.write(fd, b'\x1bf'); pump(0.8, fd); os.write(fd, b'o')
     wait_has('Open dialog', ['Openafile'], fd)
     os.write(fd, deep.encode() + b'\r'); pump(1.5, fd)
-    if raw_utf8:
+    if raw_utf8 and not refuse_cp:
         check('raw UTF8 warning visible', 'openedraw' in scr.text().replace(' ', ''))
         os.write(fd, b'\r'); pump(.4, fd)
     wait_has('deep file open', ['lineone', 'linetwowithtail'], fd)
@@ -153,17 +156,29 @@ try:
     check('journal written for >200-char path', len(journals()) == 1)
     jbytes = journals()[0].read_bytes() if journals() else b''
     check('journal holds the edit', b'ZZ' in jbytes)
-    check('journal encoding generation stored', jbytes.startswith(b'\x00HBIDE-J1\n')) if utf8 or raw_utf8 else check('journal retains original EOL', jbytes == b'ZZ' + orig.encode())
+    check('journal encoding generation stored', jbytes.startswith(b'\x00HBIDE-J1\n')) if utf8 or raw_utf8 or refuse_cp else check('journal retains original EOL', jbytes == b'ZZ' + orig.encode())
 finally:
     os.kill(pid, signal.SIGKILL); os.waitpid(pid, 0); os.close(fd)
 
 scr = Scr()
 if switch_cp:
     env['HBIDE_UTF8'] = '1'
+if refuse_cp:
+    env['HBIDE_UTF8'] = '0'
 pid, fd = boot()
 try:
     wait_has('recovery prompt after kill', ['interruptedsession'], fd)
     os.write(fd, b'\r')
+    if refuse_cp:
+        wait_has('unrepresentable codepage refused visibly', ['originaleditorcodepage'], fd)
+        check('refusal retains journal generation exact', bool(journals()) and journals()[0].read_bytes() == jbytes)
+        check('refusal retains original disk bytes', pathlib.Path(deep).read_bytes() == orig.encode())
+        os.write(fd, b'\r'); pump(.5, fd)
+        check('refusal leaves IDE usable without recovered buffer', 'File' in scr.text() and 'ZZlineone' not in scr.text().replace(' ', ''))
+        if not all(ok for _,ok in results):
+            raise AssertionError(results)
+        print('PASS lossy codepage recovery refused; journal and original retained')
+        sys.exit(0)
     wait_has('recovered doc shows edit', ['ZZlineone'], fd)
     os.write(fd, b'\x1bOQ')  # F2 save
     t0 = time.time()

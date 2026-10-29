@@ -18,6 +18,7 @@ CASES = {
     'recovery-retention': ('test_recovery_retention.py', ['hbide'], 180),
     'recovery-deep-path': ('test_recovery_deep_path.py', ['hbide'], 180),
     'recovery-utf8-raw': ('test_recovery_deep_path.py', ['hbide', '--utf8-raw'], 180),
+    'recovery-codepage-refusal': ('test_recovery_deep_path.py', ['hbide', '--refuse-cp'], 180),
     'recovery-codepage': ('test_recovery_deep_path.py', ['hbide', '--utf8-bom', '--switch-cp'], 180),
     'recovery-utf8-bom': ('test_recovery_deep_path.py', ['hbide', '--utf8-bom'], 180),
     'recovery-crlf': ('test_recovery_deep_path.py', ['hbide', '--crlf'], 180),

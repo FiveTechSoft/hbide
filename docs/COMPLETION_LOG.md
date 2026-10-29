@@ -283,3 +283,10 @@ se edita sin cortar la secuencia, kill/recovery/save retiene bytes exactos.
 Otro caso parte deUTF8+BOM editado enCP437 y recupera conHBIDE_UTF8=1:
 conversion lossless y fichero final exactosPASS. Test/runner ampliados;
 no se confunde esta direccion lossless con probar rechazo inverso.
+
+## Encoding: rechazo lossless inverso probado
+
+UTF8editor con€→kill→reiniciarCP437: recuperar avisa que requiere codepage
+original, no reemplaza buffer con conversionlossy. Diario de la misma
+version y fichero original siguen byte exactos, IDE usable. PTY PASS sobre
+producto12cd4d3. Esto cubre tambien la salida segura, no solo conversionOK.
