@@ -1,0 +1,6 @@
+# TOTAL ON multi-window desktop demo (hbide GUI pieces)
+# Build from the repo root:  hbmk2 demos/totalon.hbp
+-I..
+totalon.prg
+../hbmenu.prg
+-ototalon
