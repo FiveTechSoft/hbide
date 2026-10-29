@@ -1742,6 +1742,15 @@ function HBIDE_Utf8Valid( cText )
          if nI + nNeed > nLen
             return .F.
          endif
+         // UTF-8 encodes scalar values in their shortest form only.
+         // Restrict the second byte for overlongs, surrogates and >U+10FFFF.
+         nJ := Asc( SubStr( cText, nI + 1, 1 ) )
+         if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ;
+            ( nB == 0xED .and. nJ > 0x9F ) .or. ;
+            ( nB == 0xF0 .and. nJ < 0x90 ) .or. ;
+            ( nB == 0xF4 .and. nJ > 0x8F )
+            return .F.
+         endif
          for nJ := 1 to nNeed
             nB := Asc( SubStr( cText, nI + nJ, 1 ) )
             if nB < 0x80 .or. nB > 0xBF

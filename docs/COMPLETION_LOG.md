@@ -204,3 +204,17 @@ incluidas:316rutas de dispatch en total, no funciones independientes.
 Enlace a prueba no equivale a ejecucion: resultado sigue exigiendo ledger
 con revision/hash exactos. Las98acciones restantes no reciben cobertura
 por proximidad; dos siguen como stub. No se afirma inventario exhaustivo.
+
+## Noveno checkpoint: UTF-8 valida valores escalares
+
+Nueva prueba reprodujo6fallos reales del helper: aceptaba overlongs de3/4
+bytes, surrogates y valores por encima deU+10FFFF. No se afirma perdida de
+datos observada: se demuestra clasificacion erronea en el guard de guardado
+raw. Se restringe segundo byte de E0/ED/F0/F4 conforme a Unicode17 tabla3-7:
+https://www.unicode.org/versions/Unicode17.0.0/core-spec/chapter-3/
+
+Antes:16/22PASS. Despues:22/22clasificacionesPASS, con limites validos a
+ambos lados y no-caracterU+FFFF permitido. Otras12pruebas de SaveFile raw
+rechazan cada entrada invalida, conservan original exacto y dirty:34/34PASS.
+Runner modelos incorpora la suite: seis modelos recompiladosPASS sobre
+parche local de1fcfe87. Sin cambio visual ni certificacionWindows.
