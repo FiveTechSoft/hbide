@@ -141,16 +141,35 @@ Compiler Flags and Display size presets; no editor preferences dialog
 (tab width, autoindent) and no layout persistence. The debugger does
 have Tab Width, Colors and Save/Restore Settings.
 
-## What hbide has that Turbo C++ 3.0 never had
+## Where hbide goes beyond Turbo C++ 3.0, per capability
 
-- Crash recovery of unsaved changes (journals).
-- Verified atomic builds: the old binary is never lost on a failed build.
+Each line is one capability, verified in the current source; the "TC3
+never had it" side is an absence in that IDE, not a valuation.
+
+- Crash recovery of unsaved changes (journals). Turbo C/C++ compiled
+  from in-memory buffers and relied on the F2 save habit; a crash or
+  reboot lost unsaved work (toughdev.com, edition notes).
+- Verified atomic builds: the previous binary is never erased on a
+  failed build (temp output promoted only after exit code 0, hbide.prg
+  Start()). TC3 compiled and linked directly, with no equivalent.
+- External-change watch on open files (editor.prg). Not present in TC3.
 - Dialog designer with live read-only code view (F5) and events routed
-  to user code (WHEN/VALID/FOCUS/STATE); design -> code direction of
-  the two-way tools.
-- The complete project documentation embedded offline in Help >
-  Contents, with search and Markdown export.
-- UTF-8 and safe paste/duplicate; protection against external edits.
+  to user code (WHEN/VALID/FOCUS/STATE): the design -> code direction
+  of the two-way tools. The TC3 IDE had no interactive dialog designer;
+  Turbo Vision 1.0 was a separate add-on library (wikipedia).
+- UTF-8 editing. TC3 was a CP437-era product.
+
+## Parity, not advantage
+
+- Help: TC3 shipped a full offline C/C++ language reference with
+  copyable code examples; hbide embeds its repository documentation
+  offline but lacks word-under-cursor lookup, previous topic and
+  copy-example-to-editor. Help is therefore not counted above.
+- Window management: Move/Size/Zoom/Tile/Cascade exist only inside the
+  debugger's own windows (docs/borland-window-layout-2026-10-26.md);
+  the editor's document windows have next/previous only. The project
+  desktop and multi-document tests cover build/messages and buffer
+  switching, not editor window layout or session persistence.
 
 ## What we should not copy
 
