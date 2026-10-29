@@ -15,6 +15,21 @@
 #define SCR_ROWS 34
 #define SCR_COLS 110
 
+// Glyph literals as UTF-8 byte escapes: keeps this source pure ASCII so
+// CP437-based editors (hbide included) open and save it without loss.
+#define U_BULLET  e"\xE2\x80\xA2"   // bullet
+#define U_LEFT    e"\xE2\x97\x84"   // left-pointing triangle
+#define U_RIGHT   e"\xE2\x96\xBA"   // right-pointing triangle
+#define U_UP      e"\xE2\x96\xB2"   // up-pointing triangle
+#define U_DOWN    e"\xE2\x96\xBC"   // down-pointing triangle
+#define U_LOWER   e"\xE2\x96\x84"   // lower half block
+#define U_UPPER   e"\xE2\x96\x80"   // upper half block
+#define U_FULL    e"\xE2\x96\xA0"   // full block
+#define U_HLINE   e"\xE2\x94\x80"   // single horizontal line
+#define U_TL      e"\xE2\x94\x8C"   // single top-left corner
+#define U_TR      e"\xE2\x94\x90"   // single top-right corner
+#define U_ARROWU  e"\xE2\x86\x91"   // up arrow
+
 // book window geometry (screen coords, 0-based)
 #define BK_TOP     2
 #define BK_LEFT    2
@@ -95,16 +110,16 @@ return h
 static function AgendaSeed( h )
 
    AAdd( h[ "cards" ], CardNew( "Mustermann", "Erika", "", "", "Dr.", ;
-      "Mustermann GmbH & Co. KG", "Bahnhofstraße 123", "Coburg", "Bayern", ;
-      "96450", "(09561) 123456789", "(09561) 987654321", "", "Nervensäge" ) )
+      "Mustermann GmbH & Co. KG", e"Bahnhofstra\xC3\x9F" + "e 123", "Coburg", "Bayern", ;
+      "96450", "(09561) 123456789", "(09561) 987654321", "", e"Nervens\xC3\xA4ge" ) )
    AAdd( h[ "cards" ], CardNew( "Adams", "Martha", "J.", "A-100", "", ;
       "Acme Corp", "5 Cherry Lane", "Springfield", "IL", "62701", ;
       "(217) 555-0100", "(217) 555-0101", "", "First customer" ) )
    AAdd( h[ "cards" ], CardNew( "Bauer", "Klaus", "", "B-200", "Ing.", ;
-      "Bauer AG", "Hauptstr. 8", "München", "Bayern", "80331", ;
+      "Bauer AG", "Hauptstr. 8", e"M\xC3\xBCnchen", "Bayern", "80331", ;
       "(089) 555100", "(089) 555101", "", "" ) )
    AAdd( h[ "cards" ], CardNew( "Keller", "Sabine", "M.", "K-300", "", ;
-      "Keller & Partner", "Marktplatz 3", "Köln", "NRW", "50667", ;
+      "Keller & Partner", "Marktplatz 3", e"K\xC3\xB6ln", "NRW", "50667", ;
       "(0221) 555200", "", "", "" ) )
    AAdd( h[ "cards" ], CardNew( "Zimmermann", "Hans", "", "Z-400", "", ;
       "", "Waldweg 12", "Freiburg", "BW", "79098", "(0761) 555300", "", ;
@@ -150,8 +165,8 @@ static function BookButtons()
 return { ;
    { "New",     4, 8,  "new" }, ;
    { "Delete",  4, 24, "del" }, ;
-   { "▲",       4, 42, "prev" }, ;
-   { "▼",       4, 56, "next" }, ;
+   { U_UP,       4, 42, "prev" }, ;
+   { U_DOWN,       4, 56, "next" }, ;
    { "Dial",    4, 70, "dial" }, ;
    { "+ Speed", 4, 88, "speed" } }
 
@@ -203,13 +218,13 @@ static procedure BookPaint()
 
    // dark title band, like the reference
    hb_DispOutAt( BK_TOP, BK_LEFT, ;
-      hb_UTF8ToStr( "┌" ) + Replicate( hb_UTF8ToStr( "─" ), BK_RIGHT - BK_LEFT - 1 ) + hb_UTF8ToStr( "┐" ), "W/N" )
+      hb_UTF8ToStr( U_TL ) + Replicate( hb_UTF8ToStr( U_HLINE ), BK_RIGHT - BK_LEFT - 1 ) + hb_UTF8ToStr( U_TR ), "W/N" )
    hb_DispOutAt( BK_TOP, BK_LEFT + 2, "[", "W/N" )
-   hb_DispOutAt( BK_TOP, BK_LEFT + 3, hb_UTF8ToStr( "■" ), "G/N" )
+   hb_DispOutAt( BK_TOP, BK_LEFT + 3, hb_UTF8ToStr( U_FULL ), "G/N" )
    hb_DispOutAt( BK_TOP, BK_LEFT + 4, "]", "W/N" )
    hb_DispOutAt( BK_TOP, BK_LEFT + Int( ( BK_RIGHT - BK_LEFT - 22 ) / 2 ), " Address Book - ADDRESS ", "W+/N" )
    hb_DispOutAt( BK_TOP, BK_RIGHT - 7, "2-[", "W/N" )
-   hb_DispOutAt( BK_TOP, BK_RIGHT - 4, hb_UTF8ToStr( "↑" ), "W/N" )
+   hb_DispOutAt( BK_TOP, BK_RIGHT - 4, hb_UTF8ToStr( U_ARROWU ), "W/N" )
    hb_DispOutAt( BK_TOP, BK_RIGHT - 3, "]", "W/N" )
 
    // buttons, hbide 3D half-cell shadow look (hbbutton.prg BtnDisplay)
@@ -236,7 +251,7 @@ static procedure BookPaint()
 
    // footer inside the window, below the hooks, on the grey background
    hb_DispOutAt( BK_BOTTOM + 3, 8, "Card " + hb_ntos( h[ "card" ] ) + "/" + hb_ntos( nCards ) + ;
-      " " + Replicate( hb_UTF8ToStr( "─" ), 76 ), "N/W" )
+      " " + Replicate( hb_UTF8ToStr( U_HLINE ), 76 ), "N/W" )
 
    // binder rings: three separate hooks - dark head on the card, white
    // strap hanging through the card's bottom edge, ending above the footer
@@ -254,14 +269,14 @@ return
 //------------------------------------------------------------
 // paints one green 3D button with the hbide half-cell shadow:
 // face one cell right of nCol (left inset keeps the body color),
-// ▄ cell flush right of the face, ▀ stripe below shifted one right.
+// lower-half cell flush right of the face, upper-half stripe below shifted one right.
 static procedure PaintBtn( nRow, nCol, cCaption, lFocus )
 
    local nLen := hb_ULen( cCaption )
 
    hb_DispOutAt( nRow, nCol + 1, " " + cCaption + " ", iif( lFocus, "W+/G", "N/G" ) )
-   hb_DispOutAt( nRow, nCol + nLen + 3, hb_UTF8ToStr( "▄" ), HBBtnShadowColor() )
-   hb_DispOutAt( nRow + 1, nCol + 2, Replicate( hb_UTF8ToStr( "▀" ), nLen + 2 ), HBBtnShadowColor() )
+   hb_DispOutAt( nRow, nCol + nLen + 3, hb_UTF8ToStr( U_LOWER ), HBBtnShadowColor() )
+   hb_DispOutAt( nRow + 1, nCol + 2, Replicate( hb_UTF8ToStr( U_UPPER ), nLen + 2 ), HBBtnShadowColor() )
 
 return
 
@@ -853,8 +868,8 @@ static procedure PlanPaint()
    hb_DispOutAt( 1, SCR_COLS - 3, "1-", "W/N" )
 
    // day navigation
-   PaintBtn( 3, 4, hb_UTF8ToStr( "◄" ), .F. )
-   PaintBtn( 3, 99, hb_UTF8ToStr( "►" ), .F. )
+   PaintBtn( 3, 4, hb_UTF8ToStr( U_LEFT ), .F. )
+   PaintBtn( 3, 99, hb_UTF8ToStr( U_RIGHT ), .F. )
    hb_DispOutAt( 3, Int( ( SCR_COLS - 26 ) / 2 ), ;
       CDow( d ) + "  " + hb_ntos( Day( d ) ) + " " + Left( CMonth( d ), 3 ) + ;
       " " + hb_ntos( Year( d ) ), "B/W" )
@@ -863,8 +878,8 @@ static procedure PlanPaint()
    hb_Scroll( 5, 4, 24, 31,,, "N/BG" )
    CalMonth( 5, 5, d, d )
    cPrevSh := HBBtnShadowColor( "N/BG" )
-   PaintBtn( 12, 26, hb_UTF8ToStr( "▲" ), .F. )
-   PaintBtn( 14, 26, hb_UTF8ToStr( "▼" ), .F. )
+   PaintBtn( 12, 26, hb_UTF8ToStr( U_UP ), .F. )
+   PaintBtn( 14, 26, hb_UTF8ToStr( U_DOWN ), .F. )
    HBBtnShadowColor( cPrevSh )
    CalMonth( 16, 5, NextMonth( d ), NIL )
 
@@ -889,7 +904,7 @@ static procedure PlanPaint()
    next
 
    // divider + ToDo panel
-   hb_DispOutAt( 17, 34, Replicate( hb_UTF8ToStr( "─" ), 76 ), "GR/B" )
+   hb_DispOutAt( 17, 34, Replicate( hb_UTF8ToStr( U_HLINE ), 76 ), "GR/B" )
    hb_Scroll( 18, 34, 24, 109,,, "W/B" )
    hb_DispOutAt( 18, 34 + Int( ( 74 - 9 ) / 2 ), "ToDo list", "W/B" )
    h[ "todoSel" ] := Max( 1, Min( h[ "todoSel" ], Max( 1, Len( h[ "todos" ] ) ) ) )
@@ -899,7 +914,7 @@ static procedure PlanPaint()
       if lSel
          hb_DispOutAt( nR, 36, Space( 70 ), "N/G" )
       endif
-      hb_DispOutAt( nR, 38, hb_UTF8ToStr( "•" ), iif( lSel, "N/G", "GR+/B" ) )
+      hb_DispOutAt( nR, 38, hb_UTF8ToStr( U_BULLET ), iif( lSel, "N/G", "GR+/B" ) )
       hb_DispOutAt( nR, 40, h[ "todos" ][ i ], iif( lSel, "N/G", "W/B" ) )
    next
 
