@@ -1,3 +1,4 @@
+REQUEST HB_CODEPAGE_UTF8
 #include "hbclass.ch"
 #include "inkey.ch"
 PROCEDURE Main()
@@ -197,6 +198,30 @@ PROCEDURE Main()
    cScreen := SaveScreen( 2, 71, 2, 71 )
    o:Display()
    Check( SaveScreen( 2, 71, 2, 71 ) == cScreen, 'token paint cannot cross right editor boundary', @nPass, @nFail )
+   cText := Chr( 9 ) + 'alpha beta gamma' + cCRLF + 'tail'
+   o := HBSrcEdit():New( cText, 2, 1, 20, 79, .T., 10 )
+   Check( o:GetText() == cText, 'wordwrap TAB original bytes', @nPass, @nFail )
+   o:GoTo( 1, 6 )
+   for n := 1 to 12
+      o:Edit( Asc( 'Z' ) )
+   next
+   cJournal := Chr( 9 ) + Replicate( 'Z', 12 ) + 'alpha beta gamma' + cCRLF + 'tail'
+   Check( o:GetText() == cJournal, 'wordwrap TAB reflow keeps bytes and logical cursor', @nPass, @nFail )
+   o:Undo()
+   o:Redo()
+   Check( o:GetText() == cJournal, 'wordwrap TAB redo exact', @nPass, @nFail )
+   o:LoadText( Chr( 9 ) + Chr( 9 ) + 'abc' + cLF )
+   Check( o:GetText() == Chr( 9 ) + Chr( 9 ) + 'abc' + cLF, 'wordwrap consecutive TAB byteexact', @nPass, @nFail )
+   hb_cdpSelect( 'UTF8' )
+   cText := Chr( 9 ) + 'é € alpha beta gamma' + cCRLF + 'tail'
+   o:LoadText( cText )
+   Check( o:GetText() == cText, 'UTF8 wrap TAB roundtrip', @nPass, @nFail )
+   o:GoTo( 1, 6 )
+   for n := 1 to 12
+      o:Edit( Asc( 'Z' ) )
+   next
+   Check( o:GetText() == Chr( 9 ) + Replicate( 'Z', 12 ) + SubStr( cText, 2 ), 'UTF8 wrap logical cursor after TAB', @nPass, @nFail )
+   hb_cdpSelect( 'EN' )
    FErase( cFile )
    ? 'TOTAL', nPass, 'PASS', nFail, 'FAIL'
    ErrorLevel( iif( nFail == 0, 0, 1 ) )

@@ -935,8 +935,8 @@ return lIn
 
 METHOD LoadText( cText ) CLASS HBSrcEdit
 
-   local xRet, aEnds := {}, n := 1, nStart := 1, c, cNormalized := ""
-   local oLine, oNew, nEnd := 1, aPhysical := {}
+   local aEnds := {}, aPhysical := {}, n := 1, nStart := 1, c
+   local oNew, aLines, i
 
    ::cEol := hb_eol()
    while n <= Len( cText )
@@ -948,37 +948,26 @@ METHOD LoadText( cText ) CLASS HBSrcEdit
          endif
          AAdd( aPhysical, SubStr( cText, nStart, n - nStart + 1 - Len( c ) ) )
          AAdd( aEnds, c )
-         cNormalized += SubStr( cText, nStart, n - nStart + 1 - Len( c ) ) + Chr( 10 )
          nStart := n + 1
       endif
       n++
    end
-   cNormalized += SubStr( cText, nStart )
    AAdd( aPhysical, SubStr( cText, nStart ) )
    if Len( aEnds ) > 0
-      ::cEol := aEnds[ 1 ]   // first actual boundary, not a majority conversion
+      ::cEol := aEnds[ 1 ]
    endif
-   xRet := ::Super:LoadText( cNormalized )
-   if ! ::lWordWrap
-      // The inherited memo splitter repeats tab bytes and hard-wraps at
-      // 65535 columns. A source buffer needs real physical lines instead.
-      ::aText := {}
-      for n := 1 to Len( aPhysical )
-         oNew := HBIDETextLine():New( aPhysical[ n ], .F. )
-         if n <= Len( aEnds )
+   ::aText := {}
+   for n := 1 to Len( aPhysical )
+      aLines := HBIDE_WrapLines( aPhysical[ n ], iif( ::lWordWrap, ::nWordWrapCol + 1, 0 ), ::nTabWidth )
+      for i := 1 to Len( aLines )
+         oNew := aLines[ i ]
+         if i == Len( aLines ) .and. n <= Len( aEnds )
             oNew:cEol := aEnds[ n ]
          endif
          AAdd( ::aText, oNew )
       next
-   endif
-   for n := 1 to iif( ::lWordWrap, Len( ::aText ), 0 )
-      oLine := ::aText[ n ]
-      oNew := HBIDETextLine():New( oLine:cText, oLine:lSoftCR )
-      if ! oLine:lSoftCR .and. nEnd <= Len( aEnds )
-         oNew:cEol := aEnds[ nEnd++ ]
-      endif
-      ::aText[ n ] := oNew
    next
+   ::lDirty := .F.
 
    if ::nNumCols > 0
       ::GoTo( 1, 1 )
@@ -989,7 +978,7 @@ METHOD LoadText( cText ) CLASS HBSrcEdit
    ::lInUndo := .F.
    ::nBlkDirty := 1
 
-return xRet
+return Self
 
 //-----------------------------------------------------------------------------------------//
 
@@ -1012,24 +1001,52 @@ return cText
 // so reflow must translate both the input and returned cursor position.
 METHOD ReformParagraph() CLASS HBSrcEdit
    local cText := "", cEnd := "", lNext := .T.
-   local nStart := ::nRow, nLine, nRow := 0, nCol
+   local nStart := ::nRow, nLine, nOffset := Max( 0, ::nCol - 5 ), aLines
 
-   nCol := Min( hb_ULen( ::aText[ ::nRow ]:cText ) + 1, Max( 1, ::nCol - 4 ) )
    while lNext .and. ::nRow <= Len( ::aText )
       cText += ::aText[ ::nRow ]:cText
       cEnd := ::aText[ ::nRow ]:cEol
       lNext := ::aText[ ::nRow ]:lSoftCR
       ::RemoveLine( ::nRow )
    end
-   nLine := nStart
-   hb_MLEval( cText, {| cLine, lSoftCR | ::InsertLine( cLine, lSoftCR, nLine++ ) }, ;
-              ::nWordWrapCol + 1, ::nTabWidth,, nCol, @nRow, @nCol )
-   ::aText[ nLine - 1 ]:cEol := cEnd
-   if nRow > 0
-      ::nRow := nStart + nRow - 1
-      ::nCol := nCol + 5
+   aLines := HBIDE_WrapLines( cText, ::nWordWrapCol + 1, ::nTabWidth )
+   for nLine := Len( aLines ) to 1 step -1
+      hb_AIns( ::aText, nStart, aLines[ nLine ], .T. )
+   next
+   ::aText[ nStart + Len( aLines ) - 1 ]:cEol := cEnd
+   nLine := 1
+   while nLine < Len( aLines ) .and. nOffset >= hb_ULen( aLines[ nLine ]:cText )
+      nOffset -= hb_ULen( aLines[ nLine++ ]:cText )
+   end
+return ::GoTo( nStart + nLine - 1, nOffset + 5, _REFRESH_ALL )
+
+// Wrap by display columns without expanding or repeating any source byte.
+STATIC FUNCTION HBIDE_WrapLines( cText, nWidth, nTabWidth )
+   local aLines := {}, nStart := 1, n := 1, nCols := 0, nBlank := 0
+   local nLen := hb_ULen( cText ), c, oLine
+   if nWidth <= 0
+      return { HBIDETextLine():New( cText, .F. ) }
    endif
-return ::GoTo( ::nRow, ::nCol, _REFRESH_ALL )
+   while n <= nLen
+      c := hb_USubStr( cText, n, 1 )
+      nCols += iif( c == Chr( 9 ), nTabWidth - ( nCols % nTabWidth ), 1 )
+      if c == " " .or. c == Chr( 9 )
+         nBlank := n
+      endif
+      if nCols >= nWidth .and. n < nLen
+         if nBlank >= nStart
+            n := nBlank
+         endif
+         oLine := HBIDETextLine():New( hb_USubStr( cText, nStart, n - nStart + 1 ), .T. )
+         AAdd( aLines, oLine )
+         nStart := n + 1
+         nCols := 0
+         nBlank := 0
+      endif
+      n++
+   end
+   AAdd( aLines, HBIDETextLine():New( hb_USubStr( cText, nStart ), .F. ) )
+return aLines
 
 METHOD AddLine( cLine, lSoftCR ) CLASS HBSrcEdit
 return ::InsertLine( cLine, lSoftCR, Len( ::aText ) + 1 )

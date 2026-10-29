@@ -410,3 +410,13 @@ El pintor limitaba largo por anchura del editor, sin restar inicio del
 token. Se limita a nRight-nCol+1. Probe SaveScreen con celda centinela
 fuera del editor: antes falla, despues114/114checksPASS. Captura corregida
 inspeccionada completa, borde limpio. Nueve modelosPASS.
+
+
+## Word-wrap con TAB sin repetir bytes
+
+Se reproduce perdida tambien con word-wrap activado. Splitter Harbour por
+columnas conserva cada byte y distingue fragmentos suaves de fronteras
+fisicas. Reflow conserva cursor por offset de caracter, no por expansion
+destructiva.120checks editorPASS: TABsimple/consecutivos,12inserciones,
+undo/redo, UTF8+TAB. Nueve modelosPASS; probe visual wrap inspeccionado.
+No equivale a todas las acciones heredadas del editor ni a Windows.
