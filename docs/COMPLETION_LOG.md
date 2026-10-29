@@ -335,3 +335,13 @@ Captura completa tras recuperacion y guardado inspeccionada, sin bordes
 cortados. No demuestra terminadores por pixeles: el oraculo son los bytes.
 No certifica Windows, todos los caminos word-wrap heredados ni el IDE entero.
 RunnerPTY suma recovery-mixed-eol con revision/hash del candidato por caso.
+
+
+## Undo de lineas soft-wrap
+
+Prueba adicional encontro que redo reconstruia fragmentos soft-wrap como
+lineas fisicas. La operacion undo incluye ahora su estado soft/hard, ademas
+de texto y terminador. Antes40checks con1fallo; despues41/41, incluidos
+load/edit/undo/redo soft-wrap y reflow conservando fronteras fisicas.
+No se afirma cierre del cursor durante reflow ni de todos los caminos wrap.
+Nueve modelos recompiladosPASS antes de publicar.

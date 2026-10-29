@@ -111,6 +111,22 @@ PROCEDURE Main()
       o:LoadText( aCase[ 2 ] )
       Check( o:GetText() == aCase[ 2 ], aCase[ 1 ] + ' roundtrip', @nPass, @nFail )
    NEXT
+   cText := 'alpha beta gamma delta' + cCRLF + 'second words here' + cLF + 'tail'
+   o := HBSrcEdit():New( cText, 2, 1, 20, 79, .T., 10 )
+   Check( o:GetText() == cText, 'wordwrap mixed load', @nPass, @nFail )
+   o:GoTo( 1, 5 )
+   o:Edit( Asc( 'Z' ) )
+   Check( o:GetText() == 'Z' + cText, 'wordwrap edit keeps boundaries', @nPass, @nFail )
+   o:Undo()
+   Check( o:GetText() == cText, 'wordwrap undo soft boundaries', @nPass, @nFail )
+   o:Redo()
+   Check( o:GetText() == 'Z' + cText, 'wordwrap redo soft boundaries', @nPass, @nFail )
+   o:LoadText( cText )
+   o:GoTo( 1, 5 )
+   FOR EACH aCase IN { 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z' }
+      o:Edit( Asc( aCase ) )
+   NEXT
+   Check( StrTran( o:GetText(), 'Z', '' ) == cText, 'wordwrap reflow keeps physical boundaries', @nPass, @nFail )
    FErase( cFile )
    ? 'TOTAL', nPass, 'PASS', nFail, 'FAIL'
    ErrorLevel( iif( nFail == 0, 0, 1 ) )
