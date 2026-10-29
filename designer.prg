@@ -2694,7 +2694,6 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
    local aDlgPair := DsnDlgPair( oWnd:cColor )
    local lDarkDlg := aDlgPair[ 2 ] != "W"
    local cDlgText := aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ]
-   local cShadow  := DsnCanvasShadowFor( oWnd:cColor )   // half-block on the dialog bg, same height as the runtime shadow
    local cColor, cText, nWidth, n, aSize, aItems, aClip, nPos
    local cHotKey := If( aDlgPair[ 2 ] != "W", "Y+/" + aDlgPair[ 2 ], DSN_CLR_AREAKEY )
 
@@ -2745,12 +2744,12 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
                SubStr( cText, 1, Max( 0, nMaxCol - nACol + 1 ) ), cColor )
             // shadow: right cell + bottom row, same look as the runtime PushButton
             if nACol + nWidth <= nMaxCol
-               hb_DispOutAt( nARow, nACol + nWidth, hb_UTF8ToStr( "▄" ), cShadow )
+               hb_DispOutAt( nARow, nACol + nWidth, " ", "N/N" )
             endif
             if nARow + 1 < oWnd:nBottom .and. nARow + 1 <= MaxRow()
                n = Min( nWidth, Max( 0, nMaxCol - nACol ) )
                if n > 0
-                  hb_DispOutAt( nARow + 1, nACol + 1, Replicate( hb_UTF8ToStr( "▀" ), n ), cShadow )
+                  hb_DispOutAt( nARow + 1, nACol + 1, Replicate( " ", n ), "N/N" )
                endif
             endif
          endif
@@ -3987,9 +3986,9 @@ static function DsnBtnDisplayCode( cBg )
    cCode += "   endif" + hb_eol()
    cCode += hb_eol()
    cCode += '   hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
-   cCode += '                 If( ::lBuffer, " ", DsnBtnShades()[ 1 ] ), "' + cShadow + '" )' + hb_eol()
+   cCode += '                 " ", If( ::lBuffer, "' + cShadow + '", "N/N" ) )' + hb_eol()
    cCode += '   hb_DispOutAt( ::nRow + 1, ::nCol + 1,;' + hb_eol()
-   cCode += '                 Replicate( If( ::lBuffer, " ", DsnBtnShades()[ 2 ] ), hb_ULen( cCaption ) + 2 ), "' + cShadow + '" )' + hb_eol()
+   cCode += '                 Replicate( " ", hb_ULen( cCaption ) + 2 ), If( ::lBuffer, "' + cShadow + '", "N/N" ) )' + hb_eol()
    cCode += hb_eol()
    cCode += "   DispEnd()" + hb_eol()
    cCode += hb_eol()
@@ -3997,11 +3996,7 @@ static function DsnBtnDisplayCode( cBg )
    cCode += hb_eol()
    cCode += "function DsnBtnPads()" + hb_eol()
    cCode += hb_eol()
-   cCode += 'return { hb_UTF8ToStr( " " ), hb_UTF8ToStr( " " ) }' + hb_eol()
-   cCode += hb_eol()
-   cCode += "function DsnBtnShades()" + hb_eol()
-   cCode += hb_eol()
-   cCode += 'return { hb_UTF8ToStr( "▄" ), hb_UTF8ToStr( "▀" ) }' + hb_eol()
+   cCode += 'return { " ", " " }' + hb_eol()
    cCode += hb_eol()
    cCode += "// pushbutton hit test override: same extent as hbbutton's BtnHitTest," + hb_eol()
    cCode += "// covering the full painted width of the bracket look" + hb_eol()

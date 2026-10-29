@@ -8,6 +8,16 @@ HbIde ChangeLog
     celeste y cuerpo gris claro; ahora arrojan sombra como el resto de
     dialogos
   - Run > Arguments: campo de entrada en celeste
+  - Titulo de TODOS los dialogos HBWindow sobre parche de fondo blanco
+    brillante (N/W*), como las listas nav.prg: nuevo VAR cCaptionColor en
+    HBDbWindow (vendored debugger); las ventanas del editor no cambian
+  - Sombra de botones como celdas oscuras solidas (espacios N/N): los
+    semibloques U+2584/U+2580 no tienen equivalente ACSC en gttrm y se
+    veian como '?' en terminales no-UTF8; aspecto identico en GTWVT y
+    terminales, estilo Turbo Vision clasico. Aplica a hbbutton, ayuda,
+    preview del designer y codigo generado por el designer
+  - Pads de boton como espacios ASCII (U+00A0/byte 255 tampoco tenia
+    mapeo y se veia como '?')
   - Correccion: REQUEST HB_HRBRUN para que Run > Script y Run > Debug
     enlacen tambien en builds estaticos (antes fallaban con
     "Undefined function" fuera de builds con libharbour dinamica)

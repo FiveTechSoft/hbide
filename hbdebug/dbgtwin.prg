@@ -67,6 +67,9 @@ CREATE CLASS HBDbWindow // Debugger windows and dialogs
    VAR nBottom
    VAR nRight
    VAR cCaption
+   // optional caption color override (e.g. dialogs use a bright-white title
+   // patch); NIL keeps painting the caption with ::cColor as before
+   VAR cCaptionColor
    VAR cBackImage
    VAR cColor
    VAR lFocused     INIT .F.
@@ -161,7 +164,7 @@ METHOD PROCEDURE ShowCaption() CLASS HBDbWindow
       ENDIF
       hb_DispOutAt( ::nTop, ::nLeft + ( ( ::nRight - ::nLeft ) / 2 ) - ;
          ( ( Len( cCaption ) + 2 ) / 2 ), ;
-         " " + cCaption + " ", ::cColor )
+         " " + cCaption + " ", hb_defaultValue( ::cCaptionColor, ::cColor ) )
    ENDIF
 
    RETURN

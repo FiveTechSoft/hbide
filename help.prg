@@ -366,13 +366,13 @@ FUNCTION HBHelpBtnCols( g )
    NEXT
 RETURN aCols
 
-// TurboVision-style shadow: lower half block to the right of the face and
-// upper half block strip below it (same glyphs as the dialog buttons).
+// TurboVision-style shadow: solid dark cell to the right of the face and a
+// dark strip below it (same codepage-safe look as the dialog buttons).
 FUNCTION HBHelpBtnShadow( nRow, nCol, nLen )
-   LOCAL i, aCh := HbBtnShadowChars()
-   hb_DispOutAt( nRow, nCol + nLen, aCh[ 1 ], "N/BG" )
+   LOCAL i
+   hb_DispOutAt( nRow, nCol + nLen, " ", "N/N" )
    FOR i = 1 TO nLen
-      hb_DispOutAt( nRow + 1, nCol + i, aCh[ 2 ], "N/BG" )
+      hb_DispOutAt( nRow + 1, nCol + i, " ", "N/N" )
    NEXT
 RETURN NIL
 

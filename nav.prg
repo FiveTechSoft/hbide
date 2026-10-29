@@ -157,7 +157,7 @@ FUNCTION HBIDE_ListPick( cTitle, aLabels, nInit, cHint )
       DispBegin()
       hb_Scroll( nT, nL, nT + nH - 1, nL + nW - 1,,, "N/W" )
       hb_DispBox( nT, nL, nT + nH - 1, nL + nW - 1, hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "N/W" )
-      hb_DispOutAt( nT, nL + 2, " " + Left( cTitle, nW - 6 ) + " ", "N/W" )
+      hb_DispOutAt( nT, nL + 2, " " + Left( cTitle, nW - 6 ) + " ", "N/W*" )
       hb_DispOutAt( nT + 1, nL + 2, PadR( "Find: " + cFilter + "_", nW - 4 ), "N/BG" )
       FOR i := 0 TO nVis - 1
          n := nTop + i

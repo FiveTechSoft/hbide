@@ -64,27 +64,27 @@ function BtnDisplay()
    ENDIF
 
    hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;
-                 If( ::lBuffer, " ", HbBtnShadowChars()[ 1 ] ), "N/W" )
+                 " ", If( ::lBuffer, "N/W", "N/N" ) )
    hb_DispOutAt( ::nRow + 1, ::nCol + 1,;
-                 Replicate( If( ::lBuffer, " ", HbBtnShadowChars()[ 2 ] ), hb_ULen( cCaption ) + 2 ), "N/W" )
+                 Replicate( " ", hb_ULen( cCaption ) + 2 ), If( ::lBuffer, "N/W", "N/N" ) )
 
    DispEnd()
 
    RETURN Self
 
-// Shadow glyphs follow the application's active codepage (same pattern as
-// HBWindow's DrawBorder): under CP437 they are the raw half blocks 220/223,
-// byte-identical to before; under the UTF-8 opt-in they become the proper
-// multi-byte encoding instead of rendering as '?'.
-function HbBtnShadowChars()
+// Button shadow: solid dark cells (plain spaces with a black-on-black color).
+// Half-block glyphs (U+2584/U+2580) have no ACSC fallback in Harbour's gttrm
+// charmap, so on non-UTF8 terminals they rendered as literal '?'. Solid cells
+// are codepage-independent, match the classic Turbo Vision button shadow and
+// look identical on GTWVT and on UTF-8 and non-UTF8 terminals alike.
 
-return { hb_UTF8ToStr( "▄" ), hb_UTF8ToStr( "▀" ) }
-
-// the two pads flanking the caption: U+00A0 (CP437 255) converted for the active
-// codepage, so under the UTF-8 opt-in they stay valid instead of rendering as ?
+// the two pads flanking the caption: plain ASCII spaces. They used to be
+// U+00A0 (CP437 255), but gttrm's charmap has no mapping for byte 255 on
+// non-UTF8 terminals, so the pads rendered as '?'. A space painted with the
+// button face color is visually identical everywhere.
 function HbBtnPadChars()
 
-return { hb_UTF8ToStr( " " ), hb_UTF8ToStr( " " ) }
+return { " ", " " }
 
 // The stock hitTest covers caption + 2 cells for a two-char style, but the
 // bracket look paints "[ Caption ]" (caption + 4 cells): the trailing

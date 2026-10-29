@@ -799,6 +799,9 @@ METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit ) CLASS HbWindow
    ::New( nTop, nLeft, nBottom, nRight, cCaption, cColor )
    ::bInit   = bInit
    ::lShadow = .T.
+   // Turbo Vision look: the dialog title rides on a bright-white patch so it
+   // stands out from the gray body, same as the ListPick dialogs (nav.prg)
+   ::cCaptionColor := "N/W*"
    ::Show()
 
 return Self
