@@ -2028,7 +2028,7 @@ METHOD Script() CLASS HbIde
    bOldError := ErrorBlock( { | e | Break( e ) } )
    BEGIN SEQUENCE
       oHrb = hb_CompileFromBuf( ::oEditor:GetText(), ;
-         .T., "-n", "-q2", "-Ic:/harbour/include" )
+         .T., "-n", "-q2", "-I" + If( Empty( hb_FNameDir( ::oEditor:cFile ) ), ".", hb_FNameDir( ::oEditor:cFile ) ), "-Ic:/harbour/include" )
    RECOVER USING oCompileError
    END SEQUENCE
    ErrorBlock( bOldError )
@@ -2104,7 +2104,7 @@ METHOD Debug() CLASS HbIde
    // is consumed as the program name; without -q2 the compiler prints its
    // banner to stdout raw, outside the gttrm screen buffer (this was the
    // "menubar garbage" after Script/Debug runs)
-   oHrb = hb_compilebuf( "hbide", cTmpPrg, "-n", "-b", "-q2" )
+   oHrb = hb_compilebuf( "hbide", cTmpPrg, "-n", "-b", "-q2", "-I" + If( Empty( hb_FNameDir( ::oEditor:cFile ) ), ".", hb_FNameDir( ::oEditor:cFile ) ) )
    ::Show()
 
    if ! Empty( oHrb )

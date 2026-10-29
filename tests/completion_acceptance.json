@@ -355,18 +355,20 @@
       "expected_label": "Script",
       "tests": [
         "test_run_source_pty.py",
-        "test_script_errors_pty.py"
+        "test_script_errors_pty.py",
+        "test_source_includes_pty.py"
       ],
-      "contract": "Real Run Script preserves original source literals; lowercase main() and two consecutive sessions produce exact output and usable editor. HRB local binding, no global text substitution. Runtime error dismissal and compile error preserve usable editor; valid script executes again after each error. Compiler errors caught locally with source-line operation, not generic host stack dialog."
+      "contract": "Real Run Script preserves original source literals; lowercase main() and two consecutive sessions produce exact output and usable editor. HRB local binding, no global text substitution. Runtime error dismissal and compile error preserve usable editor; valid script executes again after each error. Compiler errors caught locally with source-line operation, not generic host stack dialog. Header lookup includes current source directory even when source is under a different folder with spaces; two runs use expected macro literal."
     },
     "IDE-032": {
       "expected_label": "Debug",
       "tests": [
         "test_run_source_pty.py",
         "test_debug_session_pty.py",
-        "test_debug_functions_pty.py"
+        "test_debug_functions_pty.py",
+        "test_source_includes_pty.py"
       ],
-      "contract": "Real Debug preserves original source literals and lowercase main() across two runs; breakpoint and debugger function suites inspect original source with isolated HRB local symbols."
+      "contract": "Real Debug preserves original source literals and lowercase main() across two runs; breakpoint and debugger function suites inspect original source with isolated HRB local symbols. Header lookup includes current source directory even when source is under a different folder with spaces; two runs use expected macro literal."
     },
     "IDE-030": {
       "expected_label": "Start",

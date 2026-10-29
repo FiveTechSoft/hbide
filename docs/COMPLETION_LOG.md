@@ -538,3 +538,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - CompilerAPI .T. reporta errores medianteErrorBlock: antes escapaban alhandlergeneral y diálogoStack, dejando menú/editor corruptos trascerrar.
 - Captura localCOMPILER enScript, restaura ErrorBlock antesdemensaje breve conDescription/Operation(linea), repinta después. Runtime behavior sin cambio.
 -9checks candidato: dosruns literales, errorruntime/dismiss, runválido trasruntime, compileerror/dismiss/editorusable, runválido trascompile. Nueve modelosPASS; runner35casos. Windows pendiente.
+
+## 30Oct00:41 Script/Debug source include directory
+- Fuenteenotra carpeta incluia local.chqueexistejuntoalfichero: Script/DebugcompilabanenCWDysinrutaorigen,4FAILPTY.
+- Ambos compiladores añaden -Ideldirectoriodelsource, o.pardefecto. Sin cambiarCWDniidentificadores.
+-8checksLinuxPTY candidatoPASS conheaderlocal/macro,literaloriginal y dosrunsScript/Debug enpathconespacios. Windowspendiente. Runner36casos.
