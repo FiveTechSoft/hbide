@@ -24,7 +24,7 @@ PROCEDURE Main()
       { 'invalid lead', Bytes( { 0xF5, 0x80, 0x80, 0x80 } ), .F. }, ;
       { 'truncated', Bytes( { 0xF0, 0x90, 0x80 } ), .F. }, ;
       { 'noncontinuation tail', Bytes( { 0xE2, 0x82, 0x41 } ), .F. } }
-   LOCAL aCase, nFail := 0, oEdit, cFile, lOk, nChecks := Len( aCases )
+   LOCAL aCase, nFail := 0, oEdit, cFile, lOk, cCP, nChecks := Len( aCases )
    FOR EACH aCase IN aCases
       IF HBIDE_Utf8Valid( aCase[ 2 ] ) == aCase[ 3 ]
          ? 'PASS:', aCase[ 1 ]
@@ -33,6 +33,17 @@ PROCEDURE Main()
          nFail++
       ENDIF
    NEXT
+   FOR EACH cCP IN { "EN", "UTF8" }
+      hb_cdpSelect( cCP )
+      FOR EACH aCase IN aCases
+         lOk := HBIDE_IsUtf8( aCase[ 2 ] ) == ( aCase[ 3 ] .and. ;
+            aCase[ 1 ] != 'ASCII' .and. aCase[ 1 ] != 'empty' )
+         nChecks++
+         nFail += iif( lOk, 0, 1 )
+         ? iif( lOk, 'PASS:', 'FAIL:' ), 'detection under', cCP, aCase[ 1 ]
+      NEXT
+   NEXT
+   hb_cdpSelect( "EN" )
    cFile := hb_DirTemp() + 'hbide-utf8-' + hb_ntos( hb_RandomInt( 999999999 ) ) + '.prg'
    oEdit := HBSrcEdit():New( '', 2, 1, 20, 79, .T. )
    oEdit:cFile := cFile

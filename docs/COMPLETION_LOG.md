@@ -290,3 +290,15 @@ UTF8editor con€→kill→reiniciarCP437: recuperar avisa que requiere codepage
 original, no reemplaza buffer con conversionlossy. Diario de la misma
 version y fichero original siguen byte exactos, IDE usable. PTY PASS sobre
 producto12cd4d3. Esto cubre tambien la salida segura, no solo conversionOK.
+
+## UTF8host: detectar encoding sin depender del codepage
+
+Otro casoPTY descubrioUTF8sinBOM abierto bajoHBIDE_UTF8=1, kill y recuperado
+bajoCP437: flags originales quedabanfalse y guardabaCP437. Deteccion anterior
+comparaba hb_StrToUTF8 con original, siempre iguales bajoUTF8host. Se valida
+secuencia y presencia de bytesmultibyte, independiente del codepage.
+
+Antes dos checks de bytes finales fallaban. Despues flujo realUTF8host→CP437
+PASS, juntoBOM/conversionlossless/rechazolossy. SuiteUTF8 ahora78/78:22validacion,
+44deteccionEN/UTF8 y12guardadosraw. Ocho modelos recompiladosPASS. Producto
+basado en1a8f2f8; no se afirma encoding arbitrario niWindows.

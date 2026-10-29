@@ -1792,7 +1792,19 @@ return .T.
 // .T. when cText is valid UTF-8 with at least one multibyte sequence
 function HBIDE_IsUtf8( cText )
 
-return HBIDE_Utf8Valid( cText ) .and. hb_StrToUTF8( cText ) != cText
+   local n
+
+   if HBIDE_Utf8Valid( cText )
+      // Detection must not depend on the current editor codepage: under
+      // UTF8, hb_StrToUTF8() is identity even for real multibyte text.
+      for n := 1 to Len( cText )
+         if Asc( SubStr( cText, n, 1 ) ) >= 0x80
+            return .T.
+         endif
+      next
+   endif
+
+return .F.
 //-----------------------------------------------------------------------------------------//
 
 function HBIDE_Utf8Bom()

@@ -88,11 +88,12 @@ utf8 = '--utf8-bom' in sys.argv[2:]
 raw_utf8 = '--utf8-raw' in sys.argv[2:]
 switch_cp = '--switch-cp' in sys.argv[2:]
 refuse_cp = '--refuse-cp' in sys.argv[2:]
-orig = ('\ufeff' if utf8 else '') + 'line one' + eol + 'line two with tail' + (' €' if refuse_cp else (' é' if utf8 else (' €' if raw_utf8 else ''))) + eol
+utf8_host = '--utf8-host' in sys.argv[2:]
+orig = ('\ufeff' if utf8 else '') + 'line one' + eol + 'line two with tail' + (' €' if refuse_cp else (' é' if utf8 or utf8_host else (' €' if raw_utf8 else ''))) + eol
 pathlib.Path(deep).write_bytes(orig.encode())
 assert len(deep) > 200, deep
 env = dict(os.environ, HOME=home, HBIDE_RECOVERY_DIR=rec, TERM='xterm')
-if refuse_cp:
+if refuse_cp or utf8_host:
     env['HBIDE_UTF8'] = '1'
 
 def boot():
@@ -156,14 +157,14 @@ try:
     check('journal written for >200-char path', len(journals()) == 1)
     jbytes = journals()[0].read_bytes() if journals() else b''
     check('journal holds the edit', b'ZZ' in jbytes)
-    check('journal encoding generation stored', jbytes.startswith(b'\x00HBIDE-J1\n')) if utf8 or raw_utf8 or refuse_cp else check('journal retains original EOL', jbytes == b'ZZ' + orig.encode())
+    check('journal encoding generation stored', jbytes.startswith(b'\x00HBIDE-J1\n')) if utf8 or raw_utf8 or refuse_cp or utf8_host else check('journal retains original EOL', jbytes == b'ZZ' + orig.encode())
 finally:
     os.kill(pid, signal.SIGKILL); os.waitpid(pid, 0); os.close(fd)
 
 scr = Scr()
 if switch_cp:
     env['HBIDE_UTF8'] = '1'
-if refuse_cp:
+if refuse_cp or utf8_host:
     env['HBIDE_UTF8'] = '0'
 pid, fd = boot()
 try:
