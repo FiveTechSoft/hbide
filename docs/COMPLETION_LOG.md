@@ -356,3 +356,16 @@ y conserva frontera fisica del parrafo. Pruebas inicio/interior/fragmento
 siguiente y undo/redo: antes42/46, despues46/46. Nueve modelosPASS.
 Captura del probe visual reflow inspeccionada completa; no es una nueva
 opcion de word-wrap ni certificacion de todas sus acciones heredadas.
+
+
+## Baseline candidato completo del runner Linux
+
+Sobrec313ae8 limpio se ejecutaron los28casos registrados del runnerPTY,
+sin fallos impresos, exits nozero ni cambios de fuente/binario. SHA256
+b223675c3f4495a30ee39d17d6d3a58e67c70d149c79f65e1cf3857be6418e27.
+Hashes porcaso en docs/evidence/linux-pty-c313ae8.json. Nueve modelos
+recompiladosPASS sobre esa revision. No hereda exitos de otras revisiones.
+
+Este baseline completa el runner existente, no el inventario entero:
+Exchange/swapInput, revision visual exhaustiva, oraculo tearing y Windows
+nativo siguen pendientes. AnimatePTY solo acredita avance funcional.

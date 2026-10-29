@@ -68,7 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
-| Q01 | Baseline automatizada disponible; ampliar cobertura. | Runner de modelos y runnerPTY con revision/hash por caso. Ocho modelos pasan limpios3443a46; la suitePTY completa del candidato sigue pendiente. |
+| Q01 | Baseline automatizada disponible; ampliar cobertura. | Runner de modelos y runnerPTY con revision/hash por caso. Nueve modelos y28casos registradosPTY pasan limpiosc313ae8, mismoSHA binario. Evidencia docs/evidence/linux-pty-c313ae8.json. No cubre todas las funciones niWindows. |
 | Q02 | Discrepancia Iconize corregida. | Ayuda corregida en7254317; layout y PTY comandos18/18 confirman iconize/restore/viewport. Ayuda GTTRM120x40 inspeccionada. |
 | Q03 | Dos opciones visibles llaman `NotSupported()`. | `hbdebug/dbgmenu.prg`: Exchange Screens y swap on Input. Investigar mecanismo antes de parchear; Menu Bar ya tiene implementacion aprobada y pruebas Linux. |
 | Q04 | Animate: prueba funcional no prueba acabado. | `test_debug_animate_pty.py` acredita avance, no ausencia de tearing. Capturar secuencia real con salida de app, diferentes velocidades y F4 ida/vuelta. |

@@ -1,0 +1,206 @@
+{
+  "source": "c313ae84a2745407038ea9629c072a8bc849d520",
+  "binary_sha256": "b223675c3f4495a30ee39d17d6d3a58e67c70d149c79f65e1cf3857be6418e27",
+  "runner_sha256": "88676a6e8af2d22189174b91bc84991cb5414a29c056b9ac96bc90c88fa218bc",
+  "platform": "Linux",
+  "scope": "All 28 registered Linux PTY cases, not complete feature, visual, Windows or tearing certification",
+  "source_dirty": false,
+  "cases": [
+    {
+      "case": "recovery-mixed-eol",
+      "test_sha256": "d87861af44f036ae618769e0dab25df9a426107b348735271ab1f309e48165ea",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "designer",
+      "test_sha256": "f81758bfc8ea0f62bb84910a95b4bb09ba5cb522cdd2495a4bcea5ee5c6a4e97",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "debug-functions",
+      "test_sha256": "5267606c420863b32c972c5e397d1b155334c67dfbd1e78b87275f3ef70cdfd3",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "debug-commands",
+      "test_sha256": "fcd882c20c75d4f330a8a4219a4dd23cf78c4b90a9f9e6b1cc21cad1d3cf2cf3",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "debug-session",
+      "test_sha256": "3c85f55247eb2020d6b48675a3510774d44c9349ecefd46f846d4164485b70bd",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "debug-startup",
+      "test_sha256": "8cb2433919c705abbbf7dc29ae41276a50c60733ab4dcddfa287ae8c5ce3e1c6",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "debug-monitor",
+      "test_sha256": "3cc1d52bf9314c9e0e00da6199f7cb40dcf71368adf442fdaecd6f75f0f93812",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "debug-callstack",
+      "test_sha256": "e0f5a5da210c39a466ba4238f2fb1e8743f346df30d15eef4bdaa3708bf1688c",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "debug-codeblock",
+      "test_sha256": "8060507fa16d49725f711cdb79236c1eab2bbc52fd7ec6dca51d1dccf7b72bc2",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "debug-animate",
+      "test_sha256": "20b56116fb9ff1e6f749fed80b202fb7e95e01873c9dfdb3bb62b99cac2822b7",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "debug-exits",
+      "test_sha256": "68e3eec2eb09c13173e3bfec4c118b11c46b9006d9e84d902a510726f47f31e7",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "recovery-route-guard",
+      "test_sha256": "97f17c514f6bd7ce30d65c2d9234423275e39923e43d70175e18d010d817ca43",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "recovery-deep-path",
+      "test_sha256": "d87861af44f036ae618769e0dab25df9a426107b348735271ab1f309e48165ea",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "recovery-crlf",
+      "test_sha256": "d87861af44f036ae618769e0dab25df9a426107b348735271ab1f309e48165ea",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "recovery-utf8-bom",
+      "test_sha256": "d87861af44f036ae618769e0dab25df9a426107b348735271ab1f309e48165ea",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "recovery-utf8-raw",
+      "test_sha256": "d87861af44f036ae618769e0dab25df9a426107b348735271ab1f309e48165ea",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "recovery-utf8-host",
+      "test_sha256": "d87861af44f036ae618769e0dab25df9a426107b348735271ab1f309e48165ea",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "recovery-codepage",
+      "test_sha256": "d87861af44f036ae618769e0dab25df9a426107b348735271ab1f309e48165ea",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "recovery-codepage-refusal",
+      "test_sha256": "d87861af44f036ae618769e0dab25df9a426107b348735271ab1f309e48165ea",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "recovery-multi",
+      "test_sha256": "75fcda145e583d6b5345bca2f4a06e2f1f6cd2084f255b6bea28a0a318ade722",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "recovery-retention",
+      "test_sha256": "0cb803de7652d2157452b006d9643c8132e4fdc817915630573b72c451d0bf2b",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "navigation",
+      "test_sha256": "1a4bc70d1b37cd6915c6e39d48ad819421db5e759926bd00d834c57e4c11a04b",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "saveall-failure",
+      "test_sha256": "867f41dfed5f1947f30ef5b090265a1cc87ec7ee1177947074e59acb548b729f",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "breakpoint-delete",
+      "test_sha256": "c6ea1d1004d2a70d381d089bbb0badca3967dce444e76ef5a2a35b27ff70ce95",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "multidoc",
+      "test_sha256": "4441eda434c5d55b3a2736b32759589977f38ef4460f568f45cedfdb2d59764d",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "project-desktop",
+      "test_sha256": "444b3256ef360aa67837cd5a3f327d28c22692fb5c32c3efc2ec87a9e5e260e0",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "project-messages",
+      "test_sha256": "ea8f77141ca16c86768d9700243db222898a919e8c1f1308c2c5fcbe48dbebb7",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    },
+    {
+      "case": "saveas-recovery",
+      "test_sha256": "ec10d6e7bb4251cdd2e7ae6ca891f520b314bbe2ed99b38f57cd96229eddbc59",
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false
+    }
+  ]
+}
