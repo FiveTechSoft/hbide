@@ -21,8 +21,9 @@
 #include "box.ch"
 #include "setcurs.ch"
 #include "hbmenu.ch"
+#include "hbclass.ch"
 
-#define SCR_ROWS 25
+#define SCR_ROWS 27
 #define SCR_COLS 80
 
 // glyph literals as UTF-8 byte escapes
@@ -66,6 +67,58 @@ static s_aFldTypes := { { "ITEM", "C" }, { "QUANTITY", "N" }, ;
    { "DESCRIPT", "C" }, { "COST", "N" }, { "PRICE", "N" }, { "TAXABLE", "L" } }
 
 //------------------------------------------------------------
+// TotalWindow: a real hbide HbWindow restyled to the photo's look
+// (solid grey band frame for desktop windows, line box for dialogs)
+class TotalWindow FROM HbWindow
+
+   DATA cFrameColor INIT "N/W"
+   DATA cBodyColor  INIT "N/BG"
+   DATA lBoxFrame   INIT .F.
+   DATA bContent
+
+   METHOD Show( lFocused )
+   METHOD PaintContent()
+
+endclass
+
+METHOD Show( lFocused ) CLASS TotalWindow
+
+   ::lFocused := hb_defaultValue( lFocused, .T. )
+
+   DispBegin()
+   if ::lShadow
+      WinShadow( ::nTop, ::nLeft, ::nBottom, ::nRight )
+   endif
+   hb_Scroll( ::nTop, ::nLeft, ::nBottom, ::nRight,,, ::cBodyColor )
+   if ::lBoxFrame
+      hb_DispBox( ::nTop, ::nLeft, ::nBottom, ::nRight, HB_B_SINGLE_UNI, ::cFrameColor )
+   else
+      hb_Scroll( ::nTop, ::nLeft, ::nTop, ::nRight,,, ::cFrameColor )
+      hb_Scroll( ::nBottom, ::nLeft, ::nBottom, ::nRight,,, ::cFrameColor )
+      hb_Scroll( ::nTop, ::nLeft, ::nBottom, ::nLeft,,, ::cFrameColor )
+      hb_Scroll( ::nTop, ::nRight, ::nBottom, ::nRight,,, ::cFrameColor )
+   endif
+   if ! Empty( ::cCaption )
+      hb_DispOutAt( ::nTop, ;
+         Max( ::nLeft + 1, ::nLeft + Int( ( ::nRight - ::nLeft - hb_ULen( ::cCaption ) ) / 2 ) ), ;
+         " " + ::cCaption + " ", iif( ::lFocused, "W+/W", ::cFrameColor ) )
+   endif
+   ::PaintContent()
+   DispEnd()
+
+   ::lVisible := .T.
+
+return nil
+
+METHOD PaintContent() CLASS TotalWindow
+
+   if HB_ISEVALITEM( ::bContent )
+      Eval( ::bContent, Self )
+   endif
+
+return nil
+
+//------------------------------------------------------------
 procedure Main()
 
    local nOldCursor := SetCursor( SC_NONE )
@@ -80,7 +133,8 @@ procedure Main()
 
    s_h := DeskState()
    s_h[ "menu" ] := DeskMenu()
-   DlgOpen()   // the reference photo shows the TOTAL ON dialog up
+   DeskRepaint()
+   DlgRun()   // the reference photo shows the TOTAL ON dialog up
 
    do while ! s_h[ "quit" ]
       DeskRepaint()
@@ -89,17 +143,13 @@ procedure Main()
          s_h[ "menu" ]:ProcessKey( nKey )
          loop
       endif
-      if s_h[ "dlg" ] != nil
-         DlgKey( nKey )
-         loop
-      endif
       do case
       case nKey == K_ESC
          s_h[ "quit" ] := .T.
       case nKey == K_F10
          s_h[ "menu" ]:ShowPopup( 1 )
       case nKey == K_F9
-         DlgOpen()
+         DlgRun()
       case nKey == K_F4
          WinCycle()
       case nKey == K_LBUTTONDOWN .and. MRow() == 0
@@ -148,7 +198,9 @@ static function DeskState()
       "puz"   => {}, ;
       "ascii" => 6, ;
       "out"   => {}, ;
-      "dlg"   => nil }
+      "winobj" => { => } }
+
+   local oW
 
    // seed records; first one matches the reference photo
    AAdd( h[ "recs" ], RecNew( "10001D", 0, "Wood table", 1, 4, .T. ) )
@@ -162,6 +214,21 @@ static function DeskState()
 
    OutLine( h, "Debug (Output) ready." )
    OutLine( h, "Database > Total On... (F9) totals ITEMS here." )
+
+   h[ "winobj" ][ "items" ]  := TotalWindow():New( IT_TOP, IT_LEFT, IT_BOTTOM, IT_RIGHT, "ITEMS", "W+/BG" )
+   h[ "winobj" ][ "calc" ]   := TotalWindow():New( CAL_TOP, CAL_LEFT, CAL_BOTTOM, CAL_RIGHT, "Calculator", "N/BG" )
+   h[ "winobj" ][ "puzzle" ] := TotalWindow():New( PZ_TOP, PZ_LEFT, PZ_BOTTOM, PZ_RIGHT, "Puzzle", "N/BG" )
+   h[ "winobj" ][ "ascii" ]  := TotalWindow():New( AS_TOP, AS_LEFT, AS_BOTTOM, AS_RIGHT, "", "N/BG" )
+   h[ "winobj" ][ "debug" ]  := TotalWindow():New( DBG_TOP, DBG_LEFT, DBG_BOTTOM, DBG_RIGHT, "Debug (Output)", "W/N" )
+   for each oW in h[ "winobj" ]
+      oW:lShadow := .T.
+      oW:cColor := oW:cBodyColor
+   next
+   h[ "winobj" ][ "items"  ]:bContent := {|| ItemsPaint() }
+   h[ "winobj" ][ "calc"   ]:bContent := {|| CalcPaint() }
+   h[ "winobj" ][ "puzzle" ]:bContent := {|| PuzzlePaint() }
+   h[ "winobj" ][ "ascii"  ]:bContent := {|| AsciiPaint() }
+   h[ "winobj" ][ "debug"  ]:bContent := {|| DebugPaint() }
 
 return h
 
@@ -213,17 +280,8 @@ static procedure DeskRepaint()
    DispBegin()
    hb_Scroll( 0, 0, SCR_ROWS - 1, SCR_COLS - 1,,, "N/B" )
    for each cId in s_h[ "wins" ]
-      do case
-      case cId == "debug"   ; DebugPaint()
-      case cId == "items"   ; ItemsPaint()
-      case cId == "calc"    ; CalcPaint()
-      case cId == "puzzle"  ; PuzzlePaint()
-      case cId == "ascii"   ; AsciiPaint()
-      endcase
+      s_h[ "winobj" ][ cId ]:Show( cId == ATail( s_h[ "wins" ] ) )
    next
-   if s_h[ "dlg" ] != nil
-      DlgPaint()
-   endif
    if s_h[ "menu" ] != nil
       s_h[ "menu" ]:Display()
    endif
@@ -236,10 +294,6 @@ return
 static procedure ItemsPaint()
 
    local h := s_h, r := h[ "recs" ][ h[ "rec" ] ]
-   local lF := ( ATail( h[ "wins" ] ) == "items" ) .and. h[ "dlg" ] == nil
-
-   WinShadow( IT_TOP, IT_LEFT, IT_BOTTOM, IT_RIGHT )
-   WinFrame( IT_TOP, IT_LEFT, IT_BOTTOM, IT_RIGHT, "ITEMS", "N/BG", lF )
 
    hb_DispOutAt( IT_TOP + 2, 6,  "Item", "W+/BG" )
    hb_DispOutAt( IT_TOP + 2, 13, r[ "ITEM" ], "W+/BG" )
@@ -288,11 +342,7 @@ return
 static procedure DebugPaint()
 
    local h := s_h, i, n
-   local lF := ( ATail( h[ "wins" ] ) == "debug" ) .and. h[ "dlg" ] == nil
    local aVis := {}
-
-   WinShadow( DBG_TOP, DBG_LEFT, DBG_BOTTOM, DBG_RIGHT )
-   WinFrame( DBG_TOP, DBG_LEFT, DBG_BOTTOM, DBG_RIGHT, "Debug (Output)", "N/N", lF )
    n := DBG_BOTTOM - DBG_TOP - 1
    for i := Max( 1, Len( h[ "out" ] ) - n + 1 ) to Len( h[ "out" ] )
       AAdd( aVis, h[ "out" ][ i ] )
@@ -323,10 +373,7 @@ return { ;
 static procedure CalcPaint()
 
    local h := s_h, aK, nFoc := h[ "ckey" ]
-   local lF := ( ATail( h[ "wins" ] ) == "calc" ) .and. h[ "dlg" ] == nil
-
-   WinShadow( CAL_TOP, CAL_LEFT, CAL_BOTTOM, CAL_RIGHT )
-   WinFrame( CAL_TOP, CAL_LEFT, CAL_BOTTOM, CAL_RIGHT, "Calculator", "N/BG", lF )
+   local lF := ATail( h[ "wins" ] ) == "calc"
 
    // display: inset white box
    hb_Scroll( CAL_TOP + 2, CAL_LEFT + 3, CAL_TOP + 4, CAL_RIGHT - 4,,, "N/W" )
@@ -500,10 +547,7 @@ return
 static procedure PuzzlePaint()
 
    local h := s_h, n, nR, nC, v
-   local lF := ( ATail( h[ "wins" ] ) == "puzzle" ) .and. h[ "dlg" ] == nil
-
-   WinShadow( PZ_TOP, PZ_LEFT, PZ_BOTTOM, PZ_RIGHT )
-   WinFrame( PZ_TOP, PZ_LEFT, PZ_BOTTOM, PZ_RIGHT, "Puzzle", "N/BG", lF )
+   local lF := ATail( h[ "wins" ] ) == "puzzle"
 
    for n := 0 to 15
       v := h[ "puz" ][ n + 1 ]
@@ -652,10 +696,6 @@ return PadL( c, 2, "0" )
 static procedure AsciiPaint()
 
    local h := s_h, i, n
-   local lF := ( ATail( h[ "wins" ] ) == "ascii" ) .and. h[ "dlg" ] == nil
-
-   WinShadow( AS_TOP, AS_LEFT, AS_BOTTOM, AS_RIGHT )
-   WinFrame( AS_TOP, AS_LEFT, AS_BOTTOM, AS_RIGHT, nil, "N/BG", lF )
 
    for i := 0 to 1
       n := h[ "ascii" ] + i
@@ -786,289 +826,170 @@ static procedure DeskClick( nKey )
 return
 
 //------------------------------------------------------------
-// simple centred message box in the desktop's grey style
+// centred message box as a real HbWindow dialog with an OK pushbutton
 static procedure MsgBox( cTitle, aLines )
 
-   local nW := 12, i, nT, nL, nB, nR
-   local cSave
+   local nW := 12, i, nT, nL, nB, nR, nMask, cOldSh
+   local lDummy := .F., GetList := {}, oDlg
 
    for each i in aLines
       nW := Max( nW, hb_ULen( i ) + 6 )
    next
    nW := Max( nW, hb_ULen( cTitle ) + 8 )
-   nB := Len( aLines ) + 3
+   nB := Len( aLines ) + 4
    nT := Int( ( SCR_ROWS - nB ) / 2 )
    nL := Int( ( SCR_COLS - nW ) / 2 )
    nR := nL + nW - 1
    nB += nT - 1
 
-   cSave := SaveScreen( nT, nL, nB + 1, nR + 2 )
-   WinShadow( nT, nL, nB, nR )
-   WinFrame( nT, nL, nB, nR, cTitle, "N/W", .F. )
+   oDlg := TotalWindow():New( nT, nL, nB, nR, cTitle, "N/W" )
+   oDlg:cColor := "N/W"
+   oDlg:lShadow := .T.
+   oDlg:bRepaint := {|| DeskRepaint() }
+   oDlg:bContent := {|| MsgLines( aLines, nT, nL ) }
+   oDlg:Show()
+
+   cOldSh := HBBtnShadowColor( "N/W" )
+   @ nB - 1, nL + Max( 1, Int( ( nW - 8 ) / 2 ) ) GET lDummy PUSHBUTTON ;
+      CAPTION "  OK  " COLOR "N/W,W+/W,N/W,R/W" STATE {|| oDlg:End() }
+
+   // core READ uses classic Inkey(0): drop HB_INKEY_EXT from the event mask
+   // during the READ (otherwise Escape arrives as EXKEY_ESC and does not exit)
+   nMask := Set( _SET_EVENTMASK, hb_bitAnd( Set( _SET_EVENTMASK ), hb_bitNot( HB_INKEY_EXT ) ) )
+   oDlg:Activate( GetList )
+   Set( _SET_EVENTMASK, nMask )
+   HBBtnShadowColor( cOldSh )
+   DeskRepaint()
+
+return
+
+static procedure MsgLines( aLines, nT, nL )
+
+   local i
+
    for i := 1 to Len( aLines )
       hb_DispOutAt( nT + i, nL + 3, aLines[ i ], "N/W" )
    next
-   hb_DispOutAt( nB - 1, nL + Max( 1, Int( ( nW - 16 ) / 2 ) ), " Press any key ", "N/W*" )
-   Inkey( 0 )
-   RestScreen( nT, nL, nB + 1, nR + 2, cSave )
 
 return
 
 //------------------------------------------------------------
-// TOTAL ON dialog (modal)
-static procedure DlgOpen()
+// TOTAL ON dialog: decorative labels + white panels (photo layout)
+static procedure DlgDeco()
 
-   s_h[ "dlg" ] := { ;
-      "focus"  => 0, ;       // 0 list, 1..4 checks, 5 expr, 6 saveas, 7 ok, 8 cancel
-      "field"  => 1, ;       // selected field (ITEM, highlighted in the photo)
-      "scope"  => .F., ;
-      "for"    => .F., ;
-      "while"  => .F., ;
-      "fields" => .F., ;
-      "expr"   => "", ;
-      "saveas" => "", ;
-      "ecur"   => 1, ;       // expr cursor
-      "scur"   => 1 }        // saveas cursor
-
-return
-
-// { id, kind, row, col, caption } - rows/cols are absolute screen coords
-static function DlgControls()
-
-return { ;
-   { 0, "list",  DL_TOP + 4,  DL_LEFT + 4,  "" }, ;
-   { 1, "check", DL_TOP + 4,  DL_LEFT + 25, "Scope..." }, ;
-   { 2, "check", DL_TOP + 6,  DL_LEFT + 25, "For..." }, ;
-   { 3, "check", DL_TOP + 8,  DL_LEFT + 25, "While..." }, ;
-   { 4, "check", DL_TOP + 10, DL_LEFT + 25, "Fields..." }, ;
-   { 5, "get",   DL_TOP + 11, DL_LEFT + 3,  "<Expr... >" }, ;
-   { 6, "get",   DL_TOP + 13, DL_LEFT + 3,  "<Save As...>" }, ;
-   { 7, "btn",   DL_TOP + 12, DL_LEFT + 31, "<<  OK  >>" }, ;
-   { 8, "btn",   DL_TOP + 14, DL_LEFT + 31, "< Cancel >" } }
-
-static procedure DlgPaint()
-
-   local d := s_h[ "dlg" ], i, aF
-   local aC := DlgControls()
-
-   // shadow + magenta body + frame + title
-   WinShadow( DL_TOP, DL_LEFT, DL_BOTTOM, DL_RIGHT )
-   hb_Scroll( DL_TOP, DL_LEFT, DL_BOTTOM, DL_RIGHT,,, "W/RB" )
-   hb_DispBox( DL_TOP, DL_LEFT, DL_BOTTOM, DL_RIGHT, HB_B_SINGLE_UNI, "W/RB" )
    hb_DispOutAt( DL_TOP + 1, DL_LEFT + 3, "TOTAL ON:", "W+/RB" )
+   // white panel around the checkbox group
+   hb_DispBox( DL_TOP + 2, DL_LEFT + 25, DL_TOP + 10, DL_LEFT + 33, HB_B_SINGLE_UNI, "W/RB" )
+   hb_DispOutAt( DL_TOP + 11, DL_LEFT + 3, "<Expr... >", "W/RB" )
+   // white panel around Save As (button + entry)
+   hb_DispBox( DL_TOP + 12, DL_LEFT + 2, DL_TOP + 15, DL_LEFT + 30, HB_B_SINGLE_UNI, "W/RB" )
+   hb_DispOutAt( DL_TOP + 13, DL_LEFT + 3, "<Save As...>", "W/RB" )
 
-   // field list box (blue) with type column
-   hb_Scroll( DL_TOP + 3, DL_LEFT + 3, DL_TOP + 10, DL_LEFT + 19,,, "W+/BG" )
-   hb_DispBox( DL_TOP + 3, DL_LEFT + 3, DL_TOP + 10, DL_LEFT + 19, HB_B_SINGLE_UNI, "W+/BG" )
-   for i := 1 to Len( s_aFldTypes )
-      aF := s_aFldTypes[ i ]
-      hb_DispOutAt( DL_TOP + 3 + i, DL_LEFT + 5,  PadR( aF[ 1 ], 9 ), ;
-         iif( i == d[ "field" ], "W+/B", "W+/BG" ) )
-      hb_DispOutAt( DL_TOP + 3 + i, DL_LEFT + 15, aF[ 2 ], ;
-         iif( i == d[ "field" ], "W+/B", "W+/BG" ) )
+return
+
+// modal TOTAL ON dialog: real HbWindow + hbide GET controls
+// (LISTBOX, CHECKBOX, plain GETs, PUSHBUTTONs), like hbide's own dialogs
+static procedure DlgRun()
+
+   local oDlg, GetList := {}, nMask, cOldSh, aF
+   local nField := 1, lScope := .F., lFor := .F., lWhile := .F., lFields := .F.
+   local cExpr := Space( 17 ), cSaveAs := Space( 27 )
+   // button GET vars are written back on deactivation: keep them separate
+   // from the lOk flag or varPut() clobbers the STATE assignment
+   local lOk := .F., lBtnOk := .F., lBtnCancel := .F.
+   local aIt := {}
+
+   for each aF in s_aFldTypes
+      AAdd( aIt, PadR( aF[ 1 ], 10 ) + aF[ 2 ] )
    next
 
-   // checkboxes
-   for i := 2 to 5
-      hb_DispOutAt( aC[ i ][ 3 ], aC[ i ][ 4 ], ;
-         iif( d[ { "scope", "for", "while", "fields" }[ i - 1 ] ], "[x] ", "[ ] " ) + ;
-         aC[ i ][ 5 ], iif( d[ "focus" ] == aC[ i ][ 1 ], "W+/RB", "W/RB" ) )
-   next
+   oDlg := TotalWindow():New( DL_TOP, DL_LEFT, DL_BOTTOM, DL_RIGHT, "", "W/RB" )
+   oDlg:cFrameColor := "W/RB"
+   oDlg:cBodyColor  := "W/RB"
+   oDlg:cColor      := "W/RB"
+   oDlg:lBoxFrame   := .T.
+   oDlg:lShadow     := .T.
+   oDlg:bRepaint    := {|| DeskRepaint() }
+   oDlg:bContent    := {|| DlgDeco() }
+   oDlg:Show()
 
-   // Expr + Save As buttons with their entry boxes
-   hb_DispOutAt( aC[ 6 ][ 3 ], aC[ 6 ][ 4 ], aC[ 6 ][ 5 ], ;
-      iif( d[ "focus" ] == 5, "W+/RB", "W/RB" ) )
-   hb_DispOutAt( aC[ 6 ][ 3 ], DL_LEFT + 13, PadR( d[ "expr" ], 18 ), ;
-      iif( d[ "focus" ] == 5, "N/BG*", "N/BG" ) )
-   hb_DispOutAt( aC[ 7 ][ 3 ], aC[ 7 ][ 4 ], aC[ 7 ][ 5 ], ;
-      iif( d[ "focus" ] == 6, "W+/RB", "W/RB" ) )
-   hb_DispOutAt( aC[ 7 ][ 3 ] + 1, DL_LEFT + 3, PadR( d[ "saveas" ], 28 ), ;
-      iif( d[ "focus" ] == 6, "N/BG*", "N/BG" ) )
+   cOldSh := HBBtnShadowColor( "N/RB" )   // flat buttons over the magenta body
 
-   // OK / Cancel
-   hb_DispOutAt( aC[ 8 ][ 3 ], aC[ 8 ][ 4 ], aC[ 8 ][ 5 ], ;
-      iif( d[ "focus" ] == 7, "W+/RB", "W/RB" ) )
-   hb_DispOutAt( aC[ 9 ][ 3 ], aC[ 9 ][ 4 ], aC[ 9 ][ 5 ], ;
-      iif( d[ "focus" ] == 8, "W+/RB", "W/RB" ) )
+   @ DL_TOP + 3, DL_LEFT + 3, DL_TOP + 10, DL_LEFT + 19 GET nField ;
+      LISTBOX aIt COLOR "W+/BG,W+/B,W+/BG,W+/B,W+/BG,W+/BG,W+/BG"
+   @ DL_TOP + 3, DL_LEFT + 26 GET lScope  CHECKBOX CAPTION "Scope..."  COLOR "W/RB,W+/RB,W/RB,W+/RB"
+   @ DL_TOP + 5, DL_LEFT + 26 GET lFor    CHECKBOX CAPTION "For..."    COLOR "W/RB,W+/RB,W/RB,W+/RB"
+   @ DL_TOP + 7, DL_LEFT + 26 GET lWhile  CHECKBOX CAPTION "While..."  COLOR "W/RB,W+/RB,W/RB,W+/RB"
+   @ DL_TOP + 9, DL_LEFT + 26 GET lFields CHECKBOX CAPTION "Fields..." COLOR "W/RB,W+/RB,W/RB,W+/RB"
+   @ DL_TOP + 11, DL_LEFT + 13 GET cExpr   PICTURE "@S17" COLOR "N/BG,N/BG,W/BG,W/BG"
+   @ DL_TOP + 14, DL_LEFT + 3  GET cSaveAs PICTURE "@S27" COLOR "N/BG,N/BG,W/BG,W/BG"
+   @ DL_TOP + 12, DL_LEFT + 31 GET lBtnOk     PUSHBUTTON CAPTION "<<  OK  >>" ;
+      COLOR "W/RB,W+/RB,N/RB,GR+/RB" STYLE "  " STATE {|| lOk := .T., oDlg:End() }
+   @ DL_TOP + 14, DL_LEFT + 31 GET lBtnCancel PUSHBUTTON CAPTION "< Cancel >" ;
+      COLOR "W/RB,W+/RB,N/RB,GR+/RB" STYLE "  " STATE {|| oDlg:End() }
 
-   // list focus marker
-   if d[ "focus" ] == 0
-      hb_DispOutAt( DL_TOP + 3 + d[ "field" ], DL_LEFT + 5, PadR( s_aFldTypes[ d[ "field" ] ][ 1 ], 9 ), "W+/B" )
-      hb_DispOutAt( DL_TOP + 3 + d[ "field" ], DL_LEFT + 15, s_aFldTypes[ d[ "field" ] ][ 2 ], "W+/B" )
+   // core READ uses classic Inkey(0): drop HB_INKEY_EXT from the event mask
+   // during the READ (otherwise Escape arrives as EXKEY_ESC and does not exit)
+   nMask := Set( _SET_EVENTMASK, hb_bitAnd( Set( _SET_EVENTMASK ), hb_bitNot( HB_INKEY_EXT ) ) )
+   oDlg:Activate( GetList )
+   Set( _SET_EVENTMASK, nMask )
+   HBBtnShadowColor( cOldSh )
+
+   if lOk
+      DlgOk( nField, lScope, lFor, lWhile, lFields, ;
+         AllTrim( cExpr ), AllTrim( cSaveAs ) )
    endif
-
-return
-
-//------------------------------------------------------------
-// line editing inside the two dialog entry boxes
-static procedure DlgEditKey( nKey, cFld, cCur )
-
-   local d := s_h[ "dlg" ]
-   local c := d[ cFld ], p := d[ cCur ]
-
-   do case
-   case nKey == K_LEFT
-      d[ cCur ] := Max( 1, p - 1 )
-   case nKey == K_RIGHT
-      d[ cCur ] := Min( Len( c ) + 1, p + 1 )
-   case nKey == K_HOME
-      d[ cCur ] := 1
-   case nKey == K_END
-      d[ cCur ] := Len( c ) + 1
-   case nKey == K_BS
-      if p > 1
-         c := Left( c, p - 2 ) + SubStr( c, p )
-         d[ cFld ] := c
-         d[ cCur ] := p - 1
-      endif
-   case nKey == K_DEL
-      if p <= Len( c )
-         d[ cFld ] := Left( c, p - 1 ) + SubStr( c, p + 1 )
-      endif
-   case nKey >= 32 .and. nKey <= 126 .and. Len( c ) < 16
-      d[ cFld ] := Left( c, p - 1 ) + Chr( nKey ) + SubStr( c, p )
-      d[ cCur ] := p + 1
-   endcase
-
-return
-
-static procedure DlgKey( nKey )
-
-   local d := s_h[ "dlg" ]
-
-   do case
-   case nKey == K_ESC
-      s_h[ "dlg" ] := nil
-   case nKey == K_TAB
-      d[ "focus" ] := ( d[ "focus" ] + 1 ) % 9
-   case nKey == K_SH_TAB
-      d[ "focus" ] := Mod( d[ "focus" ] + 8, 9 )
-   case nKey == K_LBUTTONDOWN .or. nKey == K_LDBLCLK
-      DlgClick( nKey )
-   case d[ "focus" ] == 0
-      do case
-      case nKey == K_UP   ; d[ "field" ] := Max( 1, d[ "field" ] - 1 )
-      case nKey == K_DOWN ; d[ "field" ] := Min( Len( s_aFldTypes ), d[ "field" ] + 1 )
-      case nKey == K_ENTER ; d[ "focus" ] := 7
-      endcase
-   case d[ "focus" ] >= 1 .and. d[ "focus" ] <= 4
-      if nKey == K_SPACE
-         DlgToggle( d )
-      elseif nKey == K_ENTER
-         d[ "focus" ] := 7
-      endif
-   case d[ "focus" ] == 5
-      if nKey == K_ENTER
-         d[ "focus" ] := 7
-      else
-         DlgEditKey( nKey, "expr", "ecur" )
-      endif
-   case d[ "focus" ] == 6
-      if nKey == K_ENTER
-         d[ "focus" ] := 7
-      else
-         DlgEditKey( nKey, "saveas", "scur" )
-      endif
-   case d[ "focus" ] == 7
-      do case
-      case nKey == K_ENTER .or. nKey == K_SPACE
-         DlgOk()
-      case nKey == K_LEFT .or. nKey == K_RIGHT .or. nKey == K_UP .or. nKey == K_DOWN
-         d[ "focus" ] := 8
-      endcase
-   case d[ "focus" ] == 8
-      do case
-      case nKey == K_ENTER .or. nKey == K_SPACE
-         s_h[ "dlg" ] := nil
-      case nKey == K_LEFT .or. nKey == K_RIGHT .or. nKey == K_UP .or. nKey == K_DOWN
-         d[ "focus" ] := 7
-      endcase
-   endcase
-
-return
-
-static procedure DlgToggle( d )
-
-   // Space or Enter toggles the focused checkbox
-   do case
-   case d[ "focus" ] == 1 ; d[ "scope" ]  := ! d[ "scope" ]
-   case d[ "focus" ] == 2 ; d[ "for" ]    := ! d[ "for" ]
-   case d[ "focus" ] == 3 ; d[ "while" ]  := ! d[ "while" ]
-   case d[ "focus" ] == 4 ; d[ "fields" ] := ! d[ "fields" ]
-   endcase
-
-return
-
-static procedure DlgClick( nKey )
-
-   local d := s_h[ "dlg" ], aC, nR := MRow(), nC := MCol(), i
-
-   for each aC in DlgControls()
-      if nR == aC[ 3 ] .and. nC >= aC[ 4 ] .and. nC <= aC[ 4 ] + 16
-         d[ "focus" ] := aC[ 1 ]
-         if aC[ 2 ] == "check"
-            DlgToggle( d )
-         elseif aC[ 2 ] == "btn" .and. nKey == K_LDBLCLK
-            if aC[ 1 ] == 7
-               DlgOk()
-            else
-               s_h[ "dlg" ] := nil
-            endif
-         endif
-         return
-      endif
-   next
-   // click in the list box selects a field
-   if nR >= DL_TOP + 4 .and. nR <= DL_TOP + 9 .and. ;
-      nC >= DL_LEFT + 4 .and. nC <= DL_LEFT + 18
-      d[ "focus" ] := 0
-      d[ "field" ] := nR - DL_TOP - 3
-   endif
+   DeskRepaint()
 
 return
 
 //------------------------------------------------------------
 // evaluate a FOR expression against one record (fields as memvars)
-static function RecEval( r, cExpr )
+// returns .T./.F.; NIL on expression error (cDesc gets the description)
+static function RecEval( r, cExpr, cDesc )
 
-   local u
+   local u, oErr
    private ITEM := r[ "ITEM" ], QUANTITY := r[ "QUANTITY" ], ;
       DESCRIPT := r[ "DESCRIPT" ], COST := r[ "COST" ], ;
       PRICE := r[ "PRICE" ], TAXABLE := r[ "TAXABLE" ]
 
-   BEGIN SEQUENCE WITH {| o | Break( o ) }
+   cDesc := ""
+   BEGIN SEQUENCE WITH {| o | oErr := o, Break( o ) }
       u := &( cExpr )
    RECOVER
-      return .F.
+      if oErr != NIL
+         cDesc := oErr:description
+      endif
+      return NIL
    END SEQUENCE
 
 return HB_ISLOGICAL( u ) .and. u
 
 //------------------------------------------------------------
-static procedure DlgOk()
+static procedure DlgOk( nField, lScope, lFor, lWhile, lFields, cExpr, cSaveAs )
 
-   local h := s_h, d := h[ "dlg" ]
+   local h := s_h
    local aNums := {}, aLines := {}, cFld, i, nCnt := 0, nFrom := 1
-   local aTotals := { => }, r, lUse, cTxt := ""
+   local aTotals := { => }, r, lUse, cTxt := "", uEv
+   local lForErr := .F., cForDesc := ""
 
-   if d[ "scope" ]
+   if lScope
       nFrom := h[ "rec" ]      // REST from the current record
    endif
-   if d[ "fields" ]
+   if lFields
       for i := 1 to Len( s_aFldTypes )
          if s_aFldTypes[ i ][ 2 ] == "N"
             AAdd( aNums, s_aFldTypes[ i ][ 1 ] )
          endif
       next
    else
-      if s_aFldTypes[ d[ "field" ] ][ 2 ] != "N"
-         OutLine( h, "TOTAL ON " + s_aFldTypes[ d[ "field" ] ][ 1 ] + ;
+      if s_aFldTypes[ nField ][ 2 ] != "N"
+         OutLine( h, "TOTAL ON " + s_aFldTypes[ nField ][ 1 ] + ;
             ": not a numeric field, nothing to total." )
-         s_h[ "dlg" ] := nil
          WinFront( "debug" )
          return
       endif
-      AAdd( aNums, s_aFldTypes[ d[ "field" ] ][ 1 ] )
+      AAdd( aNums, s_aFldTypes[ nField ][ 1 ] )
    endif
    for each cFld in aNums
       aTotals[ cFld ] := 0
@@ -1076,8 +997,13 @@ static procedure DlgOk()
    for i := nFrom to Len( h[ "recs" ] )
       r := h[ "recs" ][ i ]
       lUse := .T.
-      if d[ "for" ] .and. ! Empty( AllTrim( d[ "expr" ] ) )
-         lUse := RecEval( r, AllTrim( d[ "expr" ] ) )
+      if lFor .and. ! Empty( cExpr )
+         uEv := RecEval( r, cExpr, @cForDesc )
+         if uEv == NIL
+            lForErr := .T.
+            exit
+         endif
+         lUse := uEv
       endif
       if lUse
          nCnt++
@@ -1087,10 +1013,17 @@ static procedure DlgOk()
       endif
    next
 
-   AAdd( aLines, "TOTAL ON " + iif( d[ "scope" ], "REST", "ALL" ) + ;
-      iif( d[ "for" ] .and. ! Empty( AllTrim( d[ "expr" ] ) ), ;
-      " FOR " + AllTrim( d[ "expr" ] ), "" ) + ;
-      iif( d[ "while" ], " WHILE (demo: same as FOR)", "" ) + ":" )
+   if lForErr
+      // never write silent partial totals: report the error and cancel
+      OutLine( h, "FOR expression error on record " + hb_ntos( i ) + ": " + cForDesc )
+      OutLine( h, "Total cancelled; no partial totals written." )
+      WinFront( "debug" )
+      return
+   endif
+
+   AAdd( aLines, "TOTAL ON " + iif( lScope, "REST", "ALL" ) + ;
+      iif( lFor .and. ! Empty( cExpr ), " FOR " + cExpr, "" ) + ;
+      iif( lWhile, " WHILE (demo: same as FOR)", "" ) + ":" )
    for each cFld in aNums
       AAdd( aLines, "  " + PadR( cFld, 9 ) + " = " + CalcFmt( aTotals[ cFld ] ) )
    next
@@ -1100,15 +1033,16 @@ static procedure DlgOk()
       OutLine( h, aLines[ i ] )
       cTxt += aLines[ i ] + hb_eol()
    next
-   if ! Empty( AllTrim( d[ "saveas" ] ) )
-      if hb_MemoWrit( AllTrim( d[ "saveas" ] ), cTxt )
-         OutLine( h, "Saved to " + AllTrim( d[ "saveas" ] ) )
+   if ! Empty( cSaveAs )
+      if hb_FileExists( cSaveAs )
+         OutLine( h, "Save As: '" + cSaveAs + "' already exists; NOT overwritten." )
+      elseif hb_MemoWrit( cSaveAs, cTxt )
+         OutLine( h, "Saved to " + cSaveAs )
       else
-         OutLine( h, "Could not save to " + AllTrim( d[ "saveas" ] ) )
+         OutLine( h, "Could not save to " + cSaveAs )
       endif
    endif
 
-   s_h[ "dlg" ] := nil
    WinFront( "debug" )
 
 return
@@ -1146,7 +1080,7 @@ static function DeskMenu()
       ENDMENU
       MENUITEM " ~Database "
       MENU
-         MENUITEM "~Total On...  F9"  ACTION DlgOpen()
+         MENUITEM "~Total On...  F9"  ACTION DlgRun()
          MENUITEM "~Items window"     ACTION WinFront( "items" )
       ENDMENU
       MENUITEM " ~Record "

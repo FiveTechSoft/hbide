@@ -1,6 +1,11 @@
-# TOTAL ON multi-window desktop demo (hbide GUI pieces)
+# TOTAL ON multi-window desktop demo built with hbide's GUI classes
+# (HbWindow frames/dialogs, hbgetu GET controls, hbbutton buttons, HbMenu).
 # Build from the repo root:  hbmk2 demos/totalon.hbp
 -I..
 totalon.prg
 ../hbmenu.prg
+../hbwindow.prg
+../hbgetu.prg
+../hbbutton.prg
+../hbdebug/dbgtwin.prg
 -ototalon
