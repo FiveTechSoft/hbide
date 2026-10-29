@@ -125,6 +125,94 @@
         "test_editor_find.prg"
       ],
       "contract": "Repeat visits adjacent and overlapping matches without double increment, then wraps."
+    },
+    "IDE-001": {
+      "tests": [
+        "test_multidoc_pty.py"
+      ],
+      "contract": "File New creates an independent live buffer; text, cursor, selection, undo, breakpoints and journals stay with their document."
+    },
+    "IDE-002": {
+      "tests": [
+        "test_multidoc_pty.py",
+        "test_recovery_deep_path.py"
+      ],
+      "contract": "Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered."
+    },
+    "IDE-003": {
+      "tests": [
+        "test_editor_eol.prg",
+        "test_utf8_valid.prg",
+        "test_atomic.prg",
+        "test_recovery_deep_path.py"
+      ],
+      "contract": "F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified."
+    },
+    "IDE-004": {
+      "tests": [
+        "test_multidoc_pty.py",
+        "test_saveas_refusal_recovery_pty.py"
+      ],
+      "contract": "Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery."
+    },
+    "IDE-008": {
+      "tests": [
+        "test_editor_repaint.prg",
+        "test_editor_eol.prg",
+        "test_multidoc_pty.py"
+      ],
+      "contract": "Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified."
+    },
+    "IDE-009": {
+      "tests": [
+        "test_editor_repaint.prg",
+        "test_editor_eol.prg",
+        "test_multidoc_pty.py"
+      ],
+      "contract": "Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document."
+    },
+    "IDE-011": {
+      "tests": [
+        "test_editor_eol.prg"
+      ],
+      "contract": "Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. UI menu dispatch not independently tested here."
+    },
+    "IDE-012": {
+      "tests": [
+        "test_editor_eol.prg"
+      ],
+      "contract": "Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. UI menu dispatch not independently tested here."
+    },
+    "IDE-013": {
+      "tests": [
+        "test_editor_eol.prg",
+        "test_bp_delete_policy.py"
+      ],
+      "contract": "Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Coverage is partial."
+    },
+    "IDE-014": {
+      "tests": [
+        "test_editor_eol.prg"
+      ],
+      "contract": "Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. UI menu dispatch not independently tested here."
+    },
+    "IDE-017": {
+      "tests": [
+        "test_editor_eol.prg"
+      ],
+      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; modal replace input/dispatch remains separate and unverified."
+    },
+    "IDE-023": {
+      "tests": [
+        "test_multidoc_pty.py"
+      ],
+      "contract": "Ctrl+F6 switches live documents, preserving editor state and isolation."
+    },
+    "IDE-024": {
+      "tests": [
+        "test_multidoc_pty.py"
+      ],
+      "contract": "Ctrl+Shift+F6 returns to the prior live document with cursor, undo and breakpoint state preserved."
     }
   }
 }

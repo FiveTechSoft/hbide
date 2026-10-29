@@ -6,30 +6,30 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 
 | ID | Menu | Accion | Fuente:linea | Conexion | Linux | Windows |
 | --- | --- | --- | --- | --- | --- | --- |
-| IDE-001 | File | New | hbide.prg:775 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-002 | File | Open... | hbide.prg:776 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-003 | File | Save           F2 | hbide.prg:777 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-004 | File | Save As... | hbide.prg:778 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-001 | File | New | hbide.prg:775 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-002 | File | Open... | hbide.prg:776 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-003 | File | Save           F2 | hbide.prg:777 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-004 | File | Save As... | hbide.prg:778 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-005 | File | Save All   Ctrl+F2 | hbide.prg:779 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-006 | File | Close | hbide.prg:780 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-007 | File | Exit | hbide.prg:782 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-008 | Edit | Undo           Ctrl+Z | hbide.prg:787 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-009 | Edit | Redo           Ctrl+U | hbide.prg:788 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-008 | Edit | Undo           Ctrl+Z | hbide.prg:787 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-009 | Edit | Redo           Ctrl+U | hbide.prg:788 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-010 | Edit | Copy | hbide.prg:790 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-011 | Edit | Cut | hbide.prg:791 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-012 | Edit | Paste | hbide.prg:792 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-013 | Edit | Delete Line  Ctrl+Y | hbide.prg:794 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-014 | Edit | Duplicate Line | hbide.prg:795 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-011 | Edit | Cut | hbide.prg:791 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-012 | Edit | Paste | hbide.prg:792 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-013 | Edit | Delete Line  Ctrl+Y | hbide.prg:794 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-014 | Edit | Duplicate Line | hbide.prg:795 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-015 | Edit | Find...         F5 | hbide.prg:797 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-016 | Edit | Repeat Last Find F3 | hbide.prg:798 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-017 | Edit | Replace... | hbide.prg:799 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-017 | Edit | Replace... | hbide.prg:799 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-018 | Edit | Goto Line... | hbide.prg:801 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-019 | Edit | Go to Function... Ctrl+G | hbide.prg:802 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-020 | Project | Open .hbp... | hbide.prg:807 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-021 | Project | Sources / Build... | hbide.prg:808 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-022 | Project | Close project | hbide.prg:809 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-023 | Window | Next          Ctrl+F6 | hbide.prg:814 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-024 | Window | Previous  Ctrl+Shift+F6 | hbide.prg:815 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-023 | Window | Next          Ctrl+F6 | hbide.prg:814 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-024 | Window | Previous  Ctrl+Shift+F6 | hbide.prg:815 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-025 | Window | Close | hbide.prg:816 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-026 | Window | List...           Alt+0 | hbide.prg:818 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-027 | Window | Messages... | hbide.prg:819 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -145,6 +145,19 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-043: ON/OFF affect real startup stopping in fresh sessions, not only check mark. Pruebas: [test_debug_startup_pty.py](../tests/test_debug_startup_pty.py)
 - IDE-015: Search next position case-insensitively; wrap within current and other lines; missing match retains cursor. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg)
 - IDE-016: Repeat visits adjacent and overlapping matches without double increment, then wraps. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg)
+- IDE-001: File New creates an independent live buffer; text, cursor, selection, undo, breakpoints and journals stay with their document. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
+- IDE-002: Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py)
+- IDE-003: F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_utf8_valid.prg](../tests/test_utf8_valid.prg), [test_atomic.prg](../tests/test_atomic.prg), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py)
+- IDE-004: Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py)
+- IDE-008: Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
+- IDE-009: Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
+- IDE-011: Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. UI menu dispatch not independently tested here. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg)
+- IDE-012: Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. UI menu dispatch not independently tested here. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg)
+- IDE-013: Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Coverage is partial. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py)
+- IDE-014: Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. UI menu dispatch not independently tested here. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg)
+- IDE-017: Model Replace All changes text while preserving mixed boundaries and undo; modal replace input/dispatch remains separate and unverified. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg)
+- IDE-023: Ctrl+F6 switches live documents, preserving editor state and isolation. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
+- IDE-024: Ctrl+Shift+F6 returns to the prior live document with cursor, undo and breakpoint state preserved. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 
 ## Campos de inspector
 
@@ -407,44 +420,44 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:875 | `CASE nKey == K_PGDN` |
 | help.prg:877 | `CASE nKey == K_HOME` |
 | help.prg:879 | `CASE nKey == K_END` |
-| editor.prg:430 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` |
-| editor.prg:436 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` |
-| editor.prg:442 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` |
-| editor.prg:443 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` |
-| editor.prg:444 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` |
-| editor.prg:445 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` |
-| editor.prg:446 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` |
-| editor.prg:447 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` |
-| editor.prg:450 | `case nKeyStd == K_CTRL_Z` |
-| editor.prg:454 | `case nKeyStd == K_CTRL_U` |
-| editor.prg:458 | `case nKeyStd == K_LDBLCLK` |
-| editor.prg:462 | `case nKeyStd == K_LBUTTONDOWN` |
-| editor.prg:466 | `case nKeyStd == K_MWBACKWARD` |
-| editor.prg:469 | `case nKeyStd == K_MWFORWARD` |
-| editor.prg:472 | `case nKeyStd == K_BS` |
-| editor.prg:492 | `case nKeyStd == K_DEL` |
-| editor.prg:503 | `case nKeyStd == K_ENTER` |
-| editor.prg:513 | `case nKeyStd == K_RIGHT` |
-| editor.prg:522 | `case nKeyStd == K_LEFT` |
-| editor.prg:531 | `case nKeyStd == K_HOME` |
-| editor.prg:534 | `case nKeyStd == K_END` |
-| editor.prg:537 | `case nKeyStd == K_CTRL_RIGHT` |
-| editor.prg:541 | `case nKeyStd == K_ALT_LEFT` |
-| editor.prg:549 | `case nKeyStd == K_CTRL_Y` |
-| editor.prg:552 | `case nKeyStd == K_F2` |
-| editor.prg:558 | `case nKeyStd == K_F8` |
-| editor.prg:562 | `case nKeyStd == K_F9` |
-| editor.prg:565 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
-| editor.prg:1808 | `case K_UP` |
-| editor.prg:1809 | `case K_DOWN` |
-| editor.prg:1810 | `case K_LEFT` |
-| editor.prg:1811 | `case K_RIGHT` |
-| editor.prg:1812 | `case K_HOME` |
-| editor.prg:1813 | `case K_END` |
-| editor.prg:1814 | `case K_PGUP` |
-| editor.prg:1815 | `case K_PGDN` |
-| editor.prg:1816 | `case K_MWFORWARD` |
-| editor.prg:1817 | `case K_MWBACKWARD` |
+| editor.prg:451 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` |
+| editor.prg:457 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` |
+| editor.prg:463 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` |
+| editor.prg:464 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` |
+| editor.prg:465 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` |
+| editor.prg:466 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` |
+| editor.prg:467 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` |
+| editor.prg:468 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` |
+| editor.prg:471 | `case nKeyStd == K_CTRL_Z` |
+| editor.prg:475 | `case nKeyStd == K_CTRL_U` |
+| editor.prg:479 | `case nKeyStd == K_LDBLCLK` |
+| editor.prg:484 | `case nKeyStd == K_LBUTTONDOWN` |
+| editor.prg:489 | `case nKeyStd == K_MWBACKWARD` |
+| editor.prg:492 | `case nKeyStd == K_MWFORWARD` |
+| editor.prg:495 | `case nKeyStd == K_BS` |
+| editor.prg:516 | `case nKeyStd == K_DEL` |
+| editor.prg:530 | `case nKeyStd == K_ENTER` |
+| editor.prg:540 | `case nKeyStd == K_RIGHT` |
+| editor.prg:549 | `case nKeyStd == K_LEFT` |
+| editor.prg:558 | `case nKeyStd == K_HOME` |
+| editor.prg:561 | `case nKeyStd == K_END` |
+| editor.prg:564 | `case nKeyStd == K_CTRL_RIGHT` |
+| editor.prg:568 | `case nKeyStd == K_ALT_LEFT` |
+| editor.prg:576 | `case nKeyStd == K_CTRL_Y` |
+| editor.prg:579 | `case nKeyStd == K_F2` |
+| editor.prg:585 | `case nKeyStd == K_F8` |
+| editor.prg:589 | `case nKeyStd == K_F9` |
+| editor.prg:592 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
+| editor.prg:2017 | `case K_UP` |
+| editor.prg:2018 | `case K_DOWN` |
+| editor.prg:2019 | `case K_LEFT` |
+| editor.prg:2020 | `case K_RIGHT` |
+| editor.prg:2021 | `case K_HOME` |
+| editor.prg:2022 | `case K_END` |
+| editor.prg:2023 | `case K_PGUP` |
+| editor.prg:2024 | `case K_PGDN` |
+| editor.prg:2025 | `case K_MWFORWARD` |
+| editor.prg:2026 | `case K_MWBACKWARD` |
 | hbdebug/debugger.prg:1513 | `CASE K_LDBLCLK` |
 | hbdebug/debugger.prg:1533 | `CASE K_LBUTTONDOWN` |
 | hbdebug/debugger.prg:1562 | `CASE K_RBUTTONDOWN` |

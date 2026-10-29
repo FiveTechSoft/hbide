@@ -436,3 +436,12 @@ Runner modelos guarda hash de cada fuente/test/binario y del runner,
 cambios tracked, revision y segundos porcaso. Detecta cambios de fuente o
 test mientras ejecuta y falla en vez de atribuir resultado ambiguo a HEAD.
 Nueve modelos recompiladosPASS con campos nuevos. Sin cambio de producto.
+
+## Contratos de editor y documentos vinculados
+
+Se vinculan13entradas mas a pruebas ya existentes e inspeccionadas:
+New/Open/Save/SaveAs, undo/redo, cut/paste/delete/duplicate/replace y
+cambio de documento. Se distingue prueba de modelo frente a despacho
+real del menu/modal; no se presenta una como la otra.32de115acciones con
+contrato vinculado, no porcentaje ni cobertura total. Inventario regenerado
+con lineas de fuente actuales. Gate de stubs sigue fallando como debe:2.
