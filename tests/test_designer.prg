@@ -886,6 +886,11 @@ procedure Main()
    cCode := DsnGenCode( hModel )
    Check( "combo empty safely skipped", "skipped combobox" $ cCode .and. ! "GET nVar1" $ cCode )
 
+   Check( "combo scrollbar warning h6", DsnListSBarHidden( { "type" => "combobox", ;
+      "items" => "A,B,C,D,E", "height" => 6 } ) )
+   Check( "combo scrollbar warning not h7", ! DsnListSBarHidden( { "type" => "combobox", ;
+      "items" => "A,B,C,D,E", "height" => 7 } ) )
+
    // HbMenu: a standalone popup must Build() without touching its items and
    // must leave the shared construction stack clean; menubar nested-submenu
    // layout must still run (regression: F2 "Generate and open" BASE/1004,

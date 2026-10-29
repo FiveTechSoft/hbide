@@ -500,3 +500,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Mouse usa hitTest nativo para desplegable cerrado/abierto; seleccion se sincroniza con GET, sin heuristica de bordes de listbox normal.
 - Candidato: nueve suites modelosPASS; diseñador426checks, diseñadorPTY18 yComboBoxPTY25. ComboBoxPTY generaPRG, compila/ejecuta, prueba Espacio/flecha/Tab y clic abrir/seleccionar, guarda variable3. Repetir limpio antes de atribuir a commit.
 - Capturas UIreal: paleta/properties completas, runtime desplegado conItem2 seleccionado inspeccionado. No certificaWindows ni variantes de input editable. Tree/Tabs/Grid siguen propuestas sin aprobar implementacion.
+
+### ComboBox seguimiento: limites coherentes
+- Inspector respeta minimoHeight4 como propiedades/JSON/resize; PTY27 comprueba reduccion repetida y restauracion7.
+- Aviso de barra oculta tiene en cuenta fila superior adicional delComboBox: altura7 minima para scrollbar visible,6paraListBox. Modelo añade2checks.
+- Correccion contable: ec13c5b tuvo427checks diseñador, no426 anotados durante preparacion. Este ajuste tiene429.

@@ -172,6 +172,12 @@ send(b'\x1b[B'); pump(0.2)   # Down to Height
 send(b'\x1b[C'); pump(0.2)   # Right x1 -> height 7
 check('resize via inspector: height 6 -> 7', insp_num('Height') == 7)
 
+# The inspector must share the same minimum popup height as JSON/properties.
+for _ in range(6): send(b'\x1b[D'); pump(.12)
+check('inspector combo minimum height is four', insp_num('Height') == 4)
+for _ in range(3): send(b'\x1b[C'); pump(.12)
+check('inspector combo restores height seven', insp_num('Height') == 7)
+
 # F10 save JSON (default mydialog.json in the app CWD = work dir)
 send(b'\x1b[21~'); pump(0.8)  # F10
 wait_for(['Save dialog as JSON'], secs=4.0)

@@ -1993,7 +1993,7 @@ METHOD InspAdjust( nDelta ) CLASS HbDesigner
          case cKey == "width"
             oCtrl[ "width" ] = Max( 4, Min( 40, hb_HGetDef( oCtrl, "width", 10 ) + nDelta ) )
          case cKey == "height"
-            oCtrl[ "height" ] = Max( 3, Min( 15, hb_HGetDef( oCtrl, "height", 6 ) + nDelta ) )
+            oCtrl[ "height" ] = Max( If( oCtrl[ "type" ] == DSN_COMBOBOX, 4, 3 ), Min( 15, hb_HGetDef( oCtrl, "height", 6 ) + nDelta ) )
       endcase
    else
       aMin = ::DlgMinSize()
@@ -2340,7 +2340,7 @@ METHOD GeneratePrg() CLASS HbDesigner
          If( nSkipped > 0, " (" + hb_ntos( nSkipped ) + " without items skipped)", "" ) + ;
          If( nConflicts > 0, " (" + hb_ntos( nConflicts ) + " name conflicts resolved)", "" ) + ;
          If( nSBarHidden > 0, " (" + hb_ntos( nSBarHidden ) + ;
-            " listbox height<6: scrollbar won't be drawn)", "" ) )
+            " list/dropdown too short: scrollbar won't be drawn)", "" ) )
       return cFile
    else
       ::ShowHint( "Could not write " + cFile + ": check the path" )
@@ -2650,10 +2650,10 @@ function DsnListSBarHidden( oCtrl )
 
    local nHeight
 
-   if oCtrl[ "type" ] != DSN_LISTBOX
+   if oCtrl[ "type" ] != DSN_LISTBOX .and. oCtrl[ "type" ] != DSN_COMBOBOX
       return .F.
    endif
-   nHeight = hb_HGetDef( oCtrl, "height", 6 )
+   nHeight = hb_HGetDef( oCtrl, "height", 6 ) - If( oCtrl[ "type" ] == DSN_COMBOBOX, 1, 0 )
 
 return nHeight < 6 .and. Len( DsnItems( oCtrl ) ) > nHeight - 2
 
@@ -3049,8 +3049,8 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                   hb_HGetDef( hModel, "height", 12 ) - 2 - oCtrl[ "row" ] ) )
             endif
             if DsnListSBarHidden( oCtrl )
-               cCode += "   // warning: listbox " + hGenVars[ n ] + ;
-                        " height < 6: the scrollbar will not be drawn" + hb_eol()
+               cCode += "   // warning: " + oCtrl[ "type" ] + " " + hGenVars[ n ] + ;
+                        " popup too short: the scrollbar will not be drawn" + hb_eol()
             endif
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
