@@ -820,7 +820,7 @@ static procedure DlgOpen()
 
    s_h[ "dlg" ] := { ;
       "focus"  => 0, ;       // 0 list, 1..4 checks, 5 expr, 6 saveas, 7 ok, 8 cancel
-      "field"  => 2, ;       // selected field (COST, a useful numeric default)
+      "field"  => 1, ;       // selected field (ITEM, highlighted in the photo)
       "scope"  => .F., ;
       "for"    => .F., ;
       "while"  => .F., ;
@@ -843,8 +843,8 @@ return { ;
    { 4, "check", DL_TOP + 10, DL_LEFT + 25, "Fields..." }, ;
    { 5, "get",   DL_TOP + 11, DL_LEFT + 3,  "<Expr... >" }, ;
    { 6, "get",   DL_TOP + 13, DL_LEFT + 3,  "<Save As...>" }, ;
-   { 7, "btn",   DL_TOP + 12, DL_LEFT + 33, "<<  OK  >>" }, ;
-   { 8, "btn",   DL_TOP + 14, DL_LEFT + 33, "< Cancel >" } }
+   { 7, "btn",   DL_TOP + 12, DL_LEFT + 31, "<<  OK  >>" }, ;
+   { 8, "btn",   DL_TOP + 14, DL_LEFT + 31, "< Cancel >" } }
 
 static procedure DlgPaint()
 
@@ -858,14 +858,14 @@ static procedure DlgPaint()
    hb_DispOutAt( DL_TOP + 1, DL_LEFT + 3, "TOTAL ON:", "W+/RB" )
 
    // field list box (blue) with type column
-   hb_Scroll( DL_TOP + 3, DL_LEFT + 3, DL_TOP + 10, DL_LEFT + 19,,, "W/B" )
-   hb_DispBox( DL_TOP + 3, DL_LEFT + 3, DL_TOP + 10, DL_LEFT + 19, HB_B_SINGLE_UNI, "W/B" )
+   hb_Scroll( DL_TOP + 3, DL_LEFT + 3, DL_TOP + 10, DL_LEFT + 19,,, "W+/BG" )
+   hb_DispBox( DL_TOP + 3, DL_LEFT + 3, DL_TOP + 10, DL_LEFT + 19, HB_B_SINGLE_UNI, "W+/BG" )
    for i := 1 to Len( s_aFldTypes )
       aF := s_aFldTypes[ i ]
       hb_DispOutAt( DL_TOP + 3 + i, DL_LEFT + 5,  PadR( aF[ 1 ], 9 ), ;
-         iif( i == d[ "field" ], "N/W", "W+/B" ) )
+         iif( i == d[ "field" ], "W+/B", "W+/BG" ) )
       hb_DispOutAt( DL_TOP + 3 + i, DL_LEFT + 15, aF[ 2 ], ;
-         iif( i == d[ "field" ], "N/W", "W+/B" ) )
+         iif( i == d[ "field" ], "W+/B", "W+/BG" ) )
    next
 
    // checkboxes
@@ -878,12 +878,12 @@ static procedure DlgPaint()
    // Expr + Save As buttons with their entry boxes
    hb_DispOutAt( aC[ 6 ][ 3 ], aC[ 6 ][ 4 ], aC[ 6 ][ 5 ], ;
       iif( d[ "focus" ] == 5, "W+/RB", "W/RB" ) )
-   hb_DispOutAt( aC[ 6 ][ 3 ], DL_LEFT + 14, PadR( d[ "expr" ], 17 ), ;
-      iif( d[ "focus" ] == 5, "N/W*", "N/W" ) )
+   hb_DispOutAt( aC[ 6 ][ 3 ], DL_LEFT + 13, PadR( d[ "expr" ], 18 ), ;
+      iif( d[ "focus" ] == 5, "N/BG*", "N/BG" ) )
    hb_DispOutAt( aC[ 7 ][ 3 ], aC[ 7 ][ 4 ], aC[ 7 ][ 5 ], ;
       iif( d[ "focus" ] == 6, "W+/RB", "W/RB" ) )
-   hb_DispOutAt( aC[ 7 ][ 3 ], DL_LEFT + 14, PadR( d[ "saveas" ], 17 ), ;
-      iif( d[ "focus" ] == 6, "N/W*", "N/W" ) )
+   hb_DispOutAt( aC[ 7 ][ 3 ] + 1, DL_LEFT + 3, PadR( d[ "saveas" ], 28 ), ;
+      iif( d[ "focus" ] == 6, "N/BG*", "N/BG" ) )
 
    // OK / Cancel
    hb_DispOutAt( aC[ 8 ][ 3 ], aC[ 8 ][ 4 ], aC[ 8 ][ 5 ], ;
@@ -893,8 +893,8 @@ static procedure DlgPaint()
 
    // list focus marker
    if d[ "focus" ] == 0
-      hb_DispOutAt( DL_TOP + 3 + d[ "field" ], DL_LEFT + 5, PadR( s_aFldTypes[ d[ "field" ] ][ 1 ], 9 ), "N/BG" )
-      hb_DispOutAt( DL_TOP + 3 + d[ "field" ], DL_LEFT + 15, s_aFldTypes[ d[ "field" ] ][ 2 ], "N/BG" )
+      hb_DispOutAt( DL_TOP + 3 + d[ "field" ], DL_LEFT + 5, PadR( s_aFldTypes[ d[ "field" ] ][ 1 ], 9 ), "W+/B" )
+      hb_DispOutAt( DL_TOP + 3 + d[ "field" ], DL_LEFT + 15, s_aFldTypes[ d[ "field" ] ][ 2 ], "W+/B" )
    endif
 
 return
