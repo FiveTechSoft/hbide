@@ -67,8 +67,8 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
-| Q01 | Automatizar baseline y guardar resultados por fuente/build. | Crear runner acotado; resultados nuevos, no reusar binarios de `tests/`. |
-| Q02 | Ayuda dice que Iconize no existe, pero fuente/menu y prueba ya lo implementan. | Corregir ayuda y nota de ventanas; ejecutar prueba layout con iconize/restore. |
+| Q01 | Baseline automatizada disponible; ampliar cobertura. | Runner de cinco probes, pasado en commit limpio7254317. Falta suite completa. |
+| Q02 | Discrepancia Iconize corregida. | Ayuda corregida en7254317; layout y PTY comandos18/18 confirman iconize/restore/viewport. Ayuda GTTRM120x40 inspeccionada. |
 | Q03 | Tres opciones visibles llaman `NotSupported()`. | `hbdebug/dbgmenu.prg`: Exchange Screens, swap on Input, Menu Bar. Investigar mecanismo antes de parchear; Menu Bar requiere decision pendiente. |
 | Q04 | Animate: prueba funcional no prueba acabado. | `test_debug_animate_pty.py` acredita avance, no ausencia de tearing. Capturar secuencia real con salida de app, diferentes velocidades y F4 ida/vuelta. |
 | Q05 | Windows actual sin entorno heredado. | Reconstruir toolchain si viable; no repetir indefinidamente el diagnostico Wine agotado. Si no hay Windows nativo, informar esa carencia y continuar Linux. |
@@ -93,6 +93,10 @@ pasan a alcance de la version, se les asigna requisito y aceptacion antes.
 Las demos TOTAL ON, agenda y FoxPro no certifican el conjunto del IDE.
 
 ## Seguimiento
+
+- [COMPLETION_INVENTORY.md](COMPLETION_INVENTORY.md): primer inventario generado,
+  115 acciones de menu y148 rutas; son conexiones de fuente, no115 funciones
+  terminadas. Incluye tres stubs. Aun faltan inspector/modales/atajos globales.
 
 - Registro de cada lote en [COMPLETION_LOG.md](COMPLETION_LOG.md): fuente,
   plataforma, build/hash, comando, resultado y limites.

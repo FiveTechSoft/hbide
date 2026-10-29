@@ -45,6 +45,8 @@
 
 - [COMPLETION_ROADMAP.md](COMPLETION_ROADMAP.md) - active completion roadmap,
   acceptance gates and per-platform status.
+- [COMPLETION_INVENTORY.md](COMPLETION_INVENTORY.md) - generated menu/dispatch
+  inventory, not a runtime certificate.
 - [COMPLETION_LOG.md](COMPLETION_LOG.md) - source/build-specific progress evidence.
 
 - [ROADMAP.md](ROADMAP.md) - direction, priorities with exit criteria,

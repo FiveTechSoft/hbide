@@ -45,3 +45,28 @@ prueba visual de la ayuda integrada.
   heredado; el bloqueo historico no se atribuye al usuario.
 - Decisiones paleta F2 y Menu Bar preservadas, sin comportamiento inventado.
 - No cambio en master ni reemplazo del EXE Windows con build no comprobada.
+
+## Segundo checkpoint: inventario y comprobacion de Iconize
+
+Sobre `725431774041179d5aa5f7daf4e32c6ec31f52d9`, rebuild IDE exit 0.
+`test_debug_commands_pty.py`: 18 PASS / 0 FAIL, incluidos Iconize desde menu,
+restauracion del contenido y preservacion del viewport lejos de la primera
+linea. No se ha inferido esto solo por ver la implementacion.
+
+La ayuda corregida se abrio en GTTRM120x40 con harness directo a
+`HBIDEHelpBrowser`. Captura real inspeccionada: texto completo de Iconize,
+marcos, botones y borde inferior visibles. No es prueba del ciclo completo
+IDE->menu->ayuda ni una validacion Windows.
+
+`scripts/audit_completion_surface.py` genera el inventario de menu principal,
+debugger y paleta del diseñador, mas condiciones de dispatch de comandos,
+teclas del diseñador y escritorio de proyecto. Resultado inicial:115acciones
+de menu,148rutas de dispatch,3stubs. `--check-stubs` devuelve exit1 esperado:
+la puerta de cierre falla mientras haya opciones visibles sin implementar.
+`wired` NO equivale a probado, ni cada ruta a una funcion distinta. Aun faltan
+inspector, modales, barra de ayuda y atajos globales; M0 sigue abierto.
+
+Intento visual Animate con salida de app: cuatro capturas separadas y parada
+Alt+D no mostraron mezcla persistente en esos instantes. NO descarta flashes
+entre frames, no resuelve tearing y no cierra Q04. Hace falta grabacion continua
+y oraculo que distinga pantalla de app de pantalla del debugger.
