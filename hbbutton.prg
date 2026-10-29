@@ -1,3 +1,17 @@
+static s_cBtnShadowColor := "N/W"
+
+// Shadow/clear color for the 3D look. Default "N/W" suits grey bodies;
+// dialogs with another body color set theirs around Activate and restore.
+function HBBtnShadowColor( cNew )
+
+   local cPrev := s_cBtnShadowColor
+
+   if PCount() > 0 .and. HB_ISSTRING( cNew )
+      s_cBtnShadowColor := cNew
+   endif
+
+return cPrev
+
 function BtnDisplay()
 
    local Self := QSelf()
@@ -67,7 +81,7 @@ function BtnDisplay()
    // lower-left cells keep the dialog color (the invisible half of the
    // classic Turbo Vision shadow). Clear the stripe row first so switching
    // between the normal and pressed (lBuffer) states leaves no stray cells.
-   hb_DispOutAt( ::nRow + 1, ::nCol + 1, Replicate( " ", hb_ULen( cCaption ) + 4 ), "N/W" )
+   hb_DispOutAt( ::nRow + 1, ::nCol + 1, Replicate( " ", hb_ULen( cCaption ) + 4 ), s_cBtnShadowColor )
    IF HBBtnShadowUtf8()
       // Turbo Vision half-cell shadow: the cell right of the face keeps the
       // dialog color on its upper half and shows the shadow on its lower
@@ -75,9 +89,9 @@ function BtnDisplay()
       // one cell right. Half the thickness of a solid-cell shadow: the
       // classic TV button look (same as demos/calculator.prg CalcBtnShadow).
       hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 3 + If( ::lBuffer, 1, 0 ),;
-                    hb_UTF8ToStr( "▄" ), "N/W" )
+                    hb_UTF8ToStr( "▄" ), s_cBtnShadowColor )
       hb_DispOutAt( ::nRow + 1, ::nCol + 2 + If( ::lBuffer, 1, 0 ),;
-                    Replicate( hb_UTF8ToStr( "▀" ), hb_ULen( cCaption ) + 2 ), "N/W" )
+                    Replicate( hb_UTF8ToStr( "▀" ), hb_ULen( cCaption ) + 2 ), s_cBtnShadowColor )
    ELSE
       // codepage-safe fallback: solid dark cells (gttrm's ACSC charmap has
       // no mapping for the half blocks on non-UTF8 terminals: they print '?')
