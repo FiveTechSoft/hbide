@@ -304,6 +304,9 @@ function HBIDE_RecoveryScan( lIncludeLive )
    recover
       aList := {}
    end sequence
+   // Directory() order is filesystem dependent: offer journals by name so
+   // the prompts (and batch recovery) are deterministic across platforms
+   ASort( aList,,, {| x, y | x[ F_NAME ] < y[ F_NAME ] } )
 
    hb_default( @lIncludeLive, .F. )
 

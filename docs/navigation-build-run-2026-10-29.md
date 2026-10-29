@@ -43,7 +43,10 @@ Arguments are kept for the session (not saved to disk).
   buffers are never saved silently: they are counted and left modified.
   A failed save leaves that buffer modified and is reported by the normal save
   path; Save All then ends with a summary (saved / failed / untitled skipped).
-  Failure injection (unwritable directory) was not verified in the PTY test.
+  Verified with `tests/test_saveall_fail_pty.py`: with one document in a
+  read-only directory, the other is saved, the failed one stays modified with
+  its disk content untouched, and the summary reads "1 saved, 1 could not be
+  saved (still modified)".
 - Alt+0 or Window > List shows all open documents (`*` = modified, `>` =
   current). Type to filter, Enter switches.
 
@@ -51,3 +54,9 @@ Arguments are kept for the session (not saved to disk).
 
 No change to F2 palette letters, Menu Bar hide/show, PRG-to-designer import
 or any P1/P2 item.
+
+## Related fix
+
+Recovery journals are now offered in name order (`Directory()` order is
+filesystem dependent), which made `tests/test_recovery_multi.py` fail on some
+filesystems.
