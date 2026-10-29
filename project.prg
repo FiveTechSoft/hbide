@@ -214,3 +214,30 @@ FUNCTION HBIDEProjectDigits( c )
       ENDIF
    NEXT
    RETURN .T.
+
+// Standard headers for the embedded compiler: honor explicit installation,
+// then locate the Harbour installation of hbmk2 already selected by PATH.
+FUNCTION HBIDECompilerInclude()
+   LOCAL aRoots := {}, cRoot, cBin, n, cPath
+   FOR EACH cRoot IN { GetEnv( "HB_INC_INSTALL" ), GetEnv( "HB_INCLUDE" ) }
+      IF ! Empty( cRoot )
+         AAdd( aRoots, cRoot )
+      ENDIF
+   NEXT
+   FOR EACH cPath IN hb_ATokens( GetEnv( "PATH" ), hb_osPathListSeparator() )
+      IF File( hb_DirSepAdd( cPath ) + "hbmk2" ) .OR. File( hb_DirSepAdd( cPath ) + "hbmk2.exe" )
+         cBin := hb_DirSepAdd( cPath )
+         FOR n := 1 TO 4
+            AAdd( aRoots, hb_DirSepAdd( cBin ) + "include" )
+            cBin := hb_PathNormalize( hb_DirSepAdd( cBin ) + ".." + hb_ps() )
+         NEXT
+         EXIT
+      ENDIF
+   NEXT
+   FOR EACH cRoot IN aRoots
+      cRoot := hb_DirSepAdd( cRoot )
+      IF File( cRoot + "inkey.ch" ) .AND. File( cRoot + "hbclass.ch" ) .AND. File( cRoot + "std.ch" )
+         RETURN cRoot
+      ENDIF
+   NEXT
+RETURN ""

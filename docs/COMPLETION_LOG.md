@@ -543,3 +543,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Fuenteenotra carpeta incluia local.chqueexistejuntoalfichero: Script/DebugcompilabanenCWDysinrutaorigen,4FAILPTY.
 - Ambos compiladores añaden -Ideldirectoriodelsource, o.pardefecto. Sin cambiarCWDniidentificadores.
 -8checksLinuxPTY candidatoPASS conheaderlocal/macro,literaloriginal y dosrunsScript/Debug enpathconespacios. Windowspendiente. Runner36casos.
+
+## 30Oct00:44 Standard header discovery
+- Alañadirinkey.chalfixturelocal,Script/Debugfallaban4checks:ScriptusabarutafijaWindows,Debugnoañadiastandardheaders.
+- HBIDECompilerIncludehonraHB_INC_INSTALL/HB_INCLUDEvalidos,despuesencuentrainstalacionhbmk2delPATHcomprobandoinkey/hbclass/std, sinrutasprivadascodificadas.
+-8checksIncludePTYcandidatoPASS conheaderlocal+estandar ymacro. ModeloProjectpruebaPATH,overrideexplicito yfallbackoverrideinvalido. NoactualizaPATHniinstalacion;Windowspendiente.

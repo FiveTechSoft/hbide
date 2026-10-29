@@ -34,7 +34,9 @@ buttons. It is written in Harbour itself.
 
 ## Quick start
 
-You need a Harbour build with `hbmk2` on your PATH.
+You need a Harbour build with `hbmk2` on your PATH. Script/Debug locate standard
+headers from that installation, or from `HB_INC_INSTALL` / `HB_INCLUDE` when
+set to a valid include folder. They also search the current source folder.
 
 ```sh
 git clone https://github.com/FiveTechSoft/hbide.git

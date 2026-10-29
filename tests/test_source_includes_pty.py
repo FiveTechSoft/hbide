@@ -8,7 +8,7 @@ for kind in ['script','debug']:
  (work/'source folder').mkdir(exist_ok=True)
  (work/'source folder'/'local.ch').write_text('#define SOURCE_MESSAGE \"Main Maintenance\"\n')
  target=work/'source folder'/(kind+'.prg');value=work/(kind+'.value')
- target.write_text('#include \"local.ch\"\nprocedure main()\n   hb_MemoWrit( "'+str(value)+'", SOURCE_MESSAGE )\nreturn\n')
+ target.write_text('#include \"local.ch\"\n#include \"inkey.ch\"\nprocedure main()\n   hb_MemoWrit( "'+str(value)+'", SOURCE_MESSAGE )\nreturn\n')
  pid,fd=pty.fork()
  if pid==0:
   os.chdir(work);os.execve(exe,[exe],dict(os.environ,TERM='xterm',HOME=str(work/'home'),HBIDE_RECOVERY_DIR=str(work/'rec')))
