@@ -69,7 +69,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
 | Q11 | ComboBox faltante (correccion usuario 29Oct23:44). | Implementado Linux: F2, propiedades/items/eventos, JSON, resize, LISTBOX DROPDOWN nativo. PTY25checks incluye generar/compilar, abrir/cerrar, seleccionar con teclado/raton y variable enlazada; capturas reales inspeccionadas. Height reserva area desplegable, minimo4. No editable libre; Windows pendiente. |
-| Q01 | Baseline automatizada disponible; ampliar cobertura. | Runner de modelos y runnerPTY con revision/hash por caso. Nueve modelos y28casos registradosPTY pasan limpiosc313ae8, mismoSHA binario. Evidencia docs/evidence/linux-pty-c313ae8.json. No cubre todas las funciones niWindows. |
+| Q01 | Baseline automatizada disponible; ampliar cobertura. | Runner de modelos y runnerPTY con revision/hash por caso. Nueve modelos y32casos registradosPTY pasan limpiosdfd8d27, mismoSHA binario6c2829fe. Evidencia docs/evidence/linux-pty-dfd8d27.json. No cubre todas las funciones niWindows. |
 | Q02 | Discrepancia Iconize corregida. | Ayuda corregida en7254317; layout y PTY comandos18/18 confirman iconize/restore/viewport. Ayuda GTTRM120x40 inspeccionada. |
 | Q03 | Dos opciones visibles llaman `NotSupported()`. | `hbdebug/dbgmenu.prg`: Exchange Screens y swap on Input. Investigar mecanismo antes de parchear; Menu Bar ya tiene implementacion aprobada y pruebas Linux. |
 | Q04 | Animate: prueba funcional no prueba acabado. | `test_debug_animate_pty.py` acredita avance, no ausencia de tearing. Capturar secuencia real con salida de app, diferentes velocidades y F4 ida/vuelta. |
@@ -77,7 +77,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 | Q06 | Decisiones aprobadas 29Oct21:24. | F2 duplicadas ciclan+Enter; Menu Bar ocultable con recuperacion Alt+O,M. Implementacion y pruebas Linux; Windows pendiente. |
 | Q07 | Inventario fuente vs comparacion Borland. | La comparacion es historica: Iconize existe; evaluar/modificar expresiones tiene caminos upstream. Auditar antes de declarar funciones ausentes. |
 | Q08 | Datos/editor: fallos corregidos con reproduccion. | Delete/Ctrl+G; UTF8valido/host; CRLFuniforme; F3adyacentes/wrap; encoding+BOMtrascrash. Ver log para revision/pruebas; no herencia automatica. |
-| Q10 | TAB: bytes preservados sin word-wrap. | Antes hb_MLEval repetiaTAB; modelo fisico crudo y pintura tabstops4 con cursor/seleccion/raton/scroll.120checks editor y recuperacionTABPASS. Splitter/reflow wrapconTAB probado con UTF8+undo/redo, no todas las acciones heredadas. No heredar baseline28PTYc313ae8. |
+| Q10 | TAB: bytes preservados sin word-wrap. | Antes hb_MLEval repetiaTAB; modelo fisico crudo y pintura tabstops4 con cursor/seleccion/raton/scroll.120checks editor y recuperacionTABPASS. Splitter/reflow wrapconTAB probado con UTF8+undo/redo, no todas las acciones heredadas. Regresion32PTYdfd8d27 posteriorPASS; no cubre todas lasaccioneswrap. |
 | Q09 | Terminadores mixtos: preservacion por linea implementada. | CRLF/LF/CR y EOF sin terminador, split/join/cut/paste/replace con undo/redo y cursor reflow:46checks Linux. Kill/recuperar/guardar mixto byteexacto PTYPASS. No certifica Windows ni todos los caminos word-wrap heredados. |
 
 ## Ampliaciones que no se confunden con cierre probado

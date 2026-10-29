@@ -516,3 +516,9 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Nuevofixture generaPRGs reales RadioGroup/ListBox/ComboBox/CheckBox/Input masOK; se compilan y ejecutan enPTY, se comprueban valores finales enarchivo.
 -21checksPASS candidato: teclado/raton, ListBox/ComboBox8items con scroll y seleccionSixth tras llegarEighth; ComboBox toma foco desdeotroGET y abre. No simula resultados ni sustituye revisionpixel/Windows.
 - Runner32casos,44contratos enlazados de116acciones, no porcentaje. ManualRoundtrip aclara que ya existe automatizacion, conserva procedimiento visual.
+
+## 30Oct00:19 Baseline Linux actual coherente
+-32/32suitesPTY,32unicas, sin fuente/binario cambiados durante ejecucion, todos arbol limpio dfd8d27dcba70157a47966dd89f1e28029c8720b. BinarioSHA2566c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d.
+- Fuenteproducto siguefa94083; dfd8d27 añadeaceptacion/documentacion. Nueve modelos limpiosPASS.
+- Ledgercommitted docs/evidence/linux-pty-dfd8d27.json conserva fechas, hashesrunner/test/binario, tiempos y tailslogs. Registro original /tmp/hbide-pty-dfd8d27/results.jsonl.
+- Sustituye baseline28c313ae8 para la suite registrada. No equivale inventarioexhaustivo,100%IDE,revisionpixel completa niWindows. AnimatePASS es funcional,2stubs siguenpendientes.

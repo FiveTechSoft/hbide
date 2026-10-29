@@ -1,0 +1,911 @@
+{
+  "scope": "32 registered Linux PTY suites only. Not complete IDE or pixel/Windows certification. Animate functional only.",
+  "revision": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+  "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+  "cases": [
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "designer",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_pty.py"
+      ],
+      "started": 1793315157.0624018,
+      "seconds": 24.71,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f81758bfc8ea0f62bb84910a95b4bb09ba5cb522cdd2495a4bcea5ee5c6a4e97",
+      "log_sha256": "2d0ad2385e85164a96ebadf56733545f31cd7f63e3f00798892d43eb2bb59cf0",
+      "log_tail": [
+        "PASS designer exits and IDE opens generated PRG",
+        "PASS editor left the designer (IDE menu back)",
+        "PASS IDE exits clean",
+        "TOTAL 18 PASS 0 FAIL"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "combobox",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_combobox_pty.py"
+      ],
+      "started": 1793315181.7764523,
+      "seconds": 33.03,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "314281579fd028478bd32fa03f57884d219ec81b85a860fed0ae95d7cd26247b",
+      "log_sha256": "5f5659a7a9daae2c0f6f8aa7dcb07d08d0655d4d106f23a13501892a04461832",
+      "log_tail": [
+        "PASS runtime mouse opens dropdown",
+        "PASS runtime mouse selects and closes",
+        "PASS runtime selection reaches bound variable",
+        "TOTAL 27 PASS 0 FAIL"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "gui-roundtrip",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gui_roundtrip_pty.py"
+      ],
+      "started": 1793315214.8046248,
+      "seconds": 28.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "dc587381f7efd78ee0c6dac439d066dcfce8fa0b2737aa76fde4f0bba16d7767",
+      "log_sha256": "9e6f418b4d549847ef5c6471ef8301dec5bf982d96f5ea949d71fdfeefbca0af",
+      "log_tail": [
+        "PASS get artifact compiles",
+        "PASS get keyboard commits final value",
+        "PASS get mouse commits final value",
+        "TOTAL 21 PASS 0 FAIL; evidence /tmp/hbide-gui-roundtrip-3reuq39w"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "edit-menu",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_edit_menu_pty.py"
+      ],
+      "started": 1793315247.6638558,
+      "seconds": 43.59,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "5c557e0f3dadd097040c15ea7a5c743d4e910f37f84f10dd772e6cb11ad98c4a",
+      "log_sha256": "12f0a2e43ddf67f011bb8fdf8de180a7d8ef9f358e2d0f819143cbd58fe31f11",
+      "log_tail": [
+        "PASS Replace missing text reports zero",
+        "PASS Replace missing text preserves bytes",
+        "TOTAL 29 PASS 0 FAIL",
+        "Artifacts /tmp/hbide-edit-menu-3gekca2d"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "navigation",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_nav_pty.py"
+      ],
+      "started": 1793315291.2564876,
+      "seconds": 66.83,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1a4bc70d1b37cd6915c6e39d48ad819421db5e759926bd00d834c57e4c11a04b",
+      "log_sha256": "4e6354d77b60cf205689940ecf67610c209cc0bc0974d6e1a267158140ead3f3",
+      "log_tail": [
+        "PASS no misleading global success message",
+        "PASS named file saved, untitled not written anywhere",
+        "PASS untitled buffer stays marked modified",
+        "35/35 passed"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "multidoc",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_multidoc_pty.py"
+      ],
+      "started": 1793315361.7774901,
+      "seconds": 59.92,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "4441eda434c5d55b3a2736b32759589977f38ef4460f568f45cedfdb2d59764d",
+      "log_sha256": "317eeb3ac14c1d17271df3d8459e1ffc7a7f496d5fe338b5a6b250c7bba4d0f6",
+      "log_tail": [
+        "PASS cancel keeps IDE alive",
+        "PASS IDE exits after reviewing all docs",
+        "TOTAL 37 PASS 0 FAIL",
+        "REC DIR /tmp/hbide-md-rec-gv002gc8"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "project-desktop",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_project_desktop_pty.py"
+      ],
+      "started": 1793315425.5744486,
+      "seconds": 28.12,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "444b3256ef360aa67837cd5a3f327d28c22692fb5c32c3efc2ec87a9e5e260e0",
+      "log_sha256": "46b1e8d86ed3554866ca524c4213a44a3e301fd71acccce4bc08fdf2a4d1e9f7",
+      "log_tail": [
+        "PASS build really runs with dirty noname in memory",
+        "PASS noname buffer intact after desktop+build",
+        "PASS IDE exits clean",
+        "TOTAL 21 PASS 0 FAIL"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "project-messages",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_project_messages_pty.py"
+      ],
+      "started": 1793315457.1145573,
+      "seconds": 23.06,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ea8f77141ca16c86768d9700243db222898a919e8c1f1308c2c5fcbe48dbebb7",
+      "log_sha256": "13d0ea71fb61b1a7063e843ac490c8f1a44527b2fbdcad1198b985bbab419242",
+      "log_tail": [
+        "PASS second source opens as its own doc",
+        "PASS exactly two docs cycle (no duplicate)",
+        "PASS IDE exits clean",
+        "TOTAL 18 PASS 0 FAIL"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "saveall-failure",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_saveall_fail_pty.py"
+      ],
+      "started": 1793315484.2964597,
+      "seconds": 17.85,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "867f41dfed5f1947f30ef5b090265a1cc87ec7ee1177947074e59acb548b729f",
+      "log_sha256": "26575802536c9f7b7474da4ce29f0ed2e40720dcb847ae73007897db3361cf42",
+      "log_tail": [
+        "PASS failed file content on disk untouched",
+        "PASS ok file saved with its edit",
+        "PASS failed doc still marked modified, ok doc clean",
+        "5/5 passed"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "saveas-recovery",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_saveas_refusal_recovery_pty.py",
+        "hbide"
+      ],
+      "started": 1793315502.1481557,
+      "seconds": 31.22,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ec10d6e7bb4251cdd2e7ae6ca891f520b314bbe2ed99b38f57cd96229eddbc59",
+      "log_sha256": "b6489b86163ad0b7c3ac8ec6e6133e15dddaca9deefa1e51b794e527688df30f",
+      "log_tail": [
+        "PASS disk dup.prg still the pre-crash save",
+        "PASS F2 saved recovered dup.prg with q7k",
+        "PASS saved file is old bytes plus the lost edit only",
+        "TOTAL 21 PASS 0 FAIL"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "breakpoint-delete",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_bp_delete_policy.py",
+        "hbide"
+      ],
+      "started": 1793315533.369793,
+      "seconds": 18.55,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c6ea1d1004d2a70d381d089bbb0badca3967dce444e76ef5a2a35b27ff70ce95",
+      "log_sha256": "763eb4845c562359185e05fbb5bab9a0d68e79265ef385bae6416a2d5780b57e",
+      "log_tail": [
+        "PASS selection delete drops BP (no red gutter)",
+        "PASS found marked dup line",
+        "PASS mark shifted onto its own dup copy",
+        "PASS BP deletion policy: drop on delete, no undo restore, split first fragment, follow own copy"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-multi",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_multi.py",
+        "hbide"
+      ],
+      "started": 1793315559.4981816,
+      "seconds": 2.58,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "75fcda145e583d6b5345bca2f4a06e2f1f6cd2084f255b6bea28a0a318ade722",
+      "log_sha256": "6829115fc8cf30b9cc400112e65d1a867b772c3e29e9fd0bc7a3047ad2a22428",
+      "log_tail": [
+        "PASS A saved file",
+        "PASS A bytes exact",
+        "PASS all journals gone",
+        "PASS multidoc recovery: A and B open side by side, each save exact and isolated"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-retention",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_retention.py",
+        "hbide"
+      ],
+      "started": 1793315562.0741265,
+      "seconds": 5.13,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "0cb803de7652d2157452b006d9643c8132e4fdc817915630573b72c451d0bf2b",
+      "log_sha256": "7387187f76c2731a3712ef24c699807c8df338d592646ee93076769e0e44185d",
+      "log_tail": [
+        "PASS prompt before Later",
+        "PASS Later keeps base journal",
+        "PASS prompt returns after Later",
+        "PASS retention: Discard deletes, Later keeps and re-prompts"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-deep-path",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide"
+      ],
+      "started": 1793315570.2825532,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log_sha256": "c21266212bee02c6120befe16926263ea07f71bf7961737763ad44afc0ab41c7",
+      "log_tail": [
+        "PASS journal cleaned after save",
+        "PASS saved bytes retain original encoding and EOL",
+        "PASS saved is original plus edit",
+        "PASS deep-path recovery: journal written, kill, byte-exact recover and save"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-utf8-host",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-host"
+      ],
+      "started": 1793315575.762785,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log_sha256": "d4c67423fbbc7a7af9178a69c3a912b7bb6118019ba27e64aaa92466c27964ff",
+      "log_tail": [
+        "PASS journal cleaned after save",
+        "PASS saved bytes retain original encoding and EOL",
+        "PASS saved is original plus edit",
+        "PASS deep-path recovery: journal written, kill, byte-exact recover and save"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-utf8-raw",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-raw"
+      ],
+      "started": 1793315581.2415655,
+      "seconds": 7.08,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log_sha256": "289ee552fd07d7fb46deaea0e4a7ddcb6a39e4d8454697b0ec9d0b15bf4bf0b7",
+      "log_tail": [
+        "PASS journal cleaned after save",
+        "PASS saved bytes retain original encoding and EOL",
+        "PASS saved is original plus edit",
+        "PASS deep-path recovery: journal written, kill, byte-exact recover and save"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-codepage-refusal",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--refuse-cp"
+      ],
+      "started": 1793315588.3234072,
+      "seconds": 5.98,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log_sha256": "5176c01f5fce9ab4df1d3f51cb41a51b74a3f7eeb649bc4c556c7407340411bc",
+      "log_tail": [
+        "PASS lossy codepage recovery refused; journal and original retained"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-codepage",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-bom",
+        "--switch-cp"
+      ],
+      "started": 1793315598.2488909,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log_sha256": "d4c67423fbbc7a7af9178a69c3a912b7bb6118019ba27e64aaa92466c27964ff",
+      "log_tail": [
+        "PASS journal cleaned after save",
+        "PASS saved bytes retain original encoding and EOL",
+        "PASS saved is original plus edit",
+        "PASS deep-path recovery: journal written, kill, byte-exact recover and save"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-utf8-bom",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-bom"
+      ],
+      "started": 1793315603.7288322,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log_sha256": "d4c67423fbbc7a7af9178a69c3a912b7bb6118019ba27e64aaa92466c27964ff",
+      "log_tail": [
+        "PASS journal cleaned after save",
+        "PASS saved bytes retain original encoding and EOL",
+        "PASS saved is original plus edit",
+        "PASS deep-path recovery: journal written, kill, byte-exact recover and save"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-tabs",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--tabs"
+      ],
+      "started": 1793315609.2089086,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log_sha256": "c21266212bee02c6120befe16926263ea07f71bf7961737763ad44afc0ab41c7",
+      "log_tail": [
+        "PASS journal cleaned after save",
+        "PASS saved bytes retain original encoding and EOL",
+        "PASS saved is original plus edit",
+        "PASS deep-path recovery: journal written, kill, byte-exact recover and save"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-mixed-eol",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--mixed-eol"
+      ],
+      "started": 1793315614.6889253,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log_sha256": "c21266212bee02c6120befe16926263ea07f71bf7961737763ad44afc0ab41c7",
+      "log_tail": [
+        "PASS journal cleaned after save",
+        "PASS saved bytes retain original encoding and EOL",
+        "PASS saved is original plus edit",
+        "PASS deep-path recovery: journal written, kill, byte-exact recover and save"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-crlf",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--crlf"
+      ],
+      "started": 1793315620.1686478,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log_sha256": "c21266212bee02c6120befe16926263ea07f71bf7961737763ad44afc0ab41c7",
+      "log_tail": [
+        "PASS journal cleaned after save",
+        "PASS saved bytes retain original encoding and EOL",
+        "PASS saved is original plus edit",
+        "PASS deep-path recovery: journal written, kill, byte-exact recover and save"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "recovery-route-guard",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_route_guard.py"
+      ],
+      "started": 1793315625.6484194,
+      "seconds": 0.02,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "97f17c514f6bd7ce30d65c2d9234423275e39923e43d70175e18d010d817ca43",
+      "log_sha256": "ab7dbd48e0cae9652da27d6b95333a827bb2daa4f43406141bb872d3cbaf3d2b",
+      "log_tail": [
+        "PASS RecoverJournal: FindDoc>0 -> SwitchDoc -> CheckUnsaved before LoadText",
+        "PASS RecoveryCheck: no pre-CheckUnsaved before RecoverJournal (batch recovery)"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "debug-commands",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_commands_pty.py"
+      ],
+      "started": 1793315628.7813082,
+      "seconds": 32.98,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "fcd882c20c75d4f330a8a4219a4dd23cf78c4b90a9f9e6b1cc21cad1d3cf2cf3",
+      "log_sha256": "717a15724468a779669d0b29053ac744e797f013fff96f03cfc8117d81b761a6",
+      "log_tail": [
+        "PASS Numeric Window Size rejects malformed extent",
+        "PASS Numeric window commands leave debugger usable",
+        "PASS Debugger exits back to IDE",
+        "TOTAL 28 PASS 0 FAIL"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "debug-startup",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_startup_pty.py"
+      ],
+      "started": 1793315661.7588134,
+      "seconds": 14.29,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8cb2433919c705abbbf7dc29ae41276a50c60733ab4dcddfa287ae8c5ce3e1c6",
+      "log_sha256": "da2814a99bc6877e546e98d70772f1cd0d937fff8dfedffe5af35aa73b41412c",
+      "log_tail": [
+        "PASS RunAtStartup=on: execution stops on return",
+        "PASS RunAtStartup=off: execution stops on __dbgInvokeDebug"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "debug-functions",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_functions_pty.py"
+      ],
+      "started": 1793315679.128989,
+      "seconds": 115.01,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "5267606c420863b32c972c5e397d1b155334c67dfbd1e78b87275f3ef70cdfd3",
+      "log_sha256": "e8c9dcd8219daf2edf7545f81d9dad971d2212aeb8e3a7ebcaab1b6710609841",
+      "log_tail": [
+        "PASS Colors dialog opens",
+        "PASS Colors dialog closes with ESC",
+        "PASS Alt+X returns to the IDE",
+        "TOTAL 58 PASS 0 FAIL"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "debug-session",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_session_pty.py"
+      ],
+      "started": 1793315797.2756116,
+      "seconds": 25.56,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "3c85f55247eb2020d6b48675a3510774d44c9349ecefd46f846d4164485b70bd",
+      "log_sha256": "49e2a8a558199db1ab91e1891c2de76b04038637a4e660d882f6071f74cb2a91",
+      "log_tail": [
+        "PASS no temp files leaked on the error path",
+        "PASS sentinel untouched after error path",
+        "PASS IDE exits clean",
+        "TOTAL 23 PASS 0 FAIL"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "debug-monitor",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_monitor_pty.py"
+      ],
+      "started": 1793315822.8391798,
+      "seconds": 12.19,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "3cc1d52bf9314c9e0e00da6199f7cb40dcf71368adf442fdaecd6f75f0f93812",
+      "log_sha256": "65b0e81c6ae3fa80c5f14e6b19e1c8e405607fbcc240749cc2a5afb870d4aee8",
+      "log_tail": [
+        "PASS All includes all declared kinds",
+        "PASS All off hides variable contents",
+        "PASS Debugger returns to IDE",
+        "TOTAL 10 PASS 0 FAIL"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "debug-callstack",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_callstack_pty.py"
+      ],
+      "started": 1793315835.029663,
+      "seconds": 10.59,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "e0f5a5da210c39a466ba4238f2fb1e8743f346df30d15eef4bdaa3708bf1688c",
+      "log_sha256": "e17541819220bb53e03a45a842ad8a51c5658764251b2a248e936886417e1207",
+      "log_tail": [
+        "PASS CallStack on: routine listed; next routine adds bump; off hides"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "debug-codeblock",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_codeblock_pty.py"
+      ],
+      "started": 1793315849.187704,
+      "seconds": 19.95,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8060507fa16d49725f711cdb79236c1eab2bbc52fd7ec6dca51d1dccf7b72bc2",
+      "log_sha256": "fd0e9f658d2b6a1719b483ac31bb4565863b371e6fcedbfc9f99316aa4721f2d",
+      "log_tail": [
+        "PASS CodeBlockTrace=on: F8 enters extended block at line 4",
+        "PASS CodeBlockTrace=off: F8 enters extended block at line 5"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "debug-animate",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_animate_pty.py"
+      ],
+      "started": 1793315869.1426005,
+      "seconds": 7.58,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "20b56116fb9ff1e6f749fed80b202fb7e95e01873c9dfdb3bb62b99cac2822b7",
+      "log_sha256": "93040a8970dc0baab54cc4bfc83a0acfda437837b6c415340f7edff3d3cfe1d4",
+      "log_tail": [
+        "PASS nested application display count=2 then balanced=0",
+        "PASS Animate completes sum=6 without manual steps and returns to IDE"
+      ]
+    },
+    {
+      "source": "dfd8d27dcba70157a47966dd89f1e28029c8720b",
+      "tracked_changes": "",
+      "binary_sha256": "6c2829febc3a2aea230b475e375ddc72484bbc1f185dc13ec21b9c08f49b8f3d",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "98601f7c69c3ce1822d24f1a3f9a1506f03cd6decd9b40c8990404207c74c22b",
+      "case": "debug-exits",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_exit_paths_pty.py"
+      ],
+      "started": 1793315876.7269733,
+      "seconds": 65.23,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "68e3eec2eb09c13173e3bfec4c118b11c46b9006d9e84d902a510726f47f31e7",
+      "log_sha256": "26d75a9c366c5cbea93d97b53d8fecc1f7c6dedae1139203fd25a8fb96fb19d6",
+      "log_tail": [
+        "PASS error: editor body colour restored ",
+        "PASS error: menu still works after session ",
+        "---",
+        "TOTAL 16 PASS 0 FAIL"
+      ]
+    }
+  ]
+}
