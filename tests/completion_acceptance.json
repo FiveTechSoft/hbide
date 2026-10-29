@@ -7,138 +7,159 @@
         "test_saveall_fail_pty.py",
         "test_saveas_refusal_recovery_pty.py"
       ],
-      "contract": "Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive."
+      "contract": "Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive.",
+      "expected_label": "Save All   Ctrl+F2"
     },
     "IDE-006": {
       "tests": [
         "test_multidoc_pty.py"
       ],
-      "contract": "Save/Discard/Cancel reviews the correct document; Cancel keeps it open and unchanged."
+      "contract": "Save/Discard/Cancel reviews the correct document; Cancel keeps it open and unchanged.",
+      "expected_label": "Close"
     },
     "IDE-007": {
       "tests": [
         "test_multidoc_pty.py"
       ],
-      "contract": "All dirty documents reviewed; Cancel keeps IDE alive; clean exit after decisions."
+      "contract": "All dirty documents reviewed; Cancel keeps IDE alive; clean exit after decisions.",
+      "expected_label": "Exit"
     },
     "IDE-019": {
       "tests": [
         "test_nav_pty.py",
         "test_bp_delete_policy.py"
       ],
-      "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G."
+      "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G.",
+      "expected_label": "Go to Function... Ctrl+G"
     },
     "IDE-020": {
       "tests": [
         "test_project_desktop_pty.py",
         "test_project.prg"
       ],
-      "contract": "HBP parsed and preserved; opening never executes build hooks."
+      "contract": "HBP parsed and preserved; opening never executes build hooks.",
+      "expected_label": "Open .hbp..."
     },
     "IDE-021": {
       "tests": [
         "test_project_desktop_pty.py",
         "test_project_messages_pty.py"
       ],
-      "contract": "Source desktop and build act on selected project; diagnostics target correct file."
+      "contract": "Source desktop and build act on selected project; diagnostics target correct file.",
+      "expected_label": "Sources / Build..."
     },
     "IDE-026": {
       "tests": [
         "test_nav_pty.py",
         "test_multidoc_pty.py"
       ],
-      "contract": "List marks dirty and switches selected buffer without crossing state."
+      "contract": "List marks dirty and switches selected buffer without crossing state.",
+      "expected_label": "List...           Alt+0"
     },
     "IDE-027": {
       "tests": [
         "test_nav_pty.py",
         "test_project_messages_pty.py"
       ],
-      "contract": "Real compiler messages list and navigate to correct source."
+      "contract": "Real compiler messages list and navigate to correct source.",
+      "expected_label": "Messages..."
     },
     "IDE-028": {
       "tests": [
         "test_nav_pty.py",
         "test_project_messages_pty.py"
       ],
-      "contract": "Next diagnostic wraps with correct line and status."
+      "contract": "Next diagnostic wraps with correct line and status.",
+      "expected_label": "Next Message     Alt+F8"
     },
     "IDE-029": {
       "tests": [
         "test_nav_pty.py",
         "test_project_messages_pty.py"
       ],
-      "contract": "Previous diagnostic wraps with correct line and status."
+      "contract": "Previous diagnostic wraps with correct line and status.",
+      "expected_label": "Previous Message Alt+F7"
     },
     "IDE-033": {
       "tests": [
         "test_nav_pty.py"
       ],
-      "contract": "Literal arguments reach Start/Script/Debug; shell metacharacters cannot execute commands."
+      "contract": "Literal arguments reach Start/Script/Debug; shell metacharacters cannot execute commands.",
+      "expected_label": "Arguments..."
     },
     "DBG-004": {
       "tests": [
         "test_debug_exit_paths_pty.py",
         "test_debug_session_pty.py"
       ],
-      "contract": "Alt+X aborts debuggee, not IDE; colors/menu restored; next session clean."
+      "contract": "Alt+X aborts debuggee, not IDE; colors/menu restored; next session clean.",
+      "expected_label": "eXit    Alt-X"
     },
     "DBG-012": {
       "tests": [
         "test_debug_exit_paths_pty.py"
       ],
-      "contract": "Application screen round trip restores debugger; visual buffer correctness still requires pixels."
+      "contract": "Application screen round trip restores debugger; visual buffer correctness still requires pixels.",
+      "expected_label": "App Screen  F4"
     },
     "DBG-014": {
       "tests": [
         "test_debug_animate_pty.py"
       ],
-      "contract": "All statements execute and return to IDE; application nested display count preserved; visual tearing separate."
+      "contract": "All statements execute and return to IDE; application nested display count preserved; visual tearing separate.",
+      "expected_label": "Animate"
     },
     "DBG-037": {
       "tests": [
         "test_debug_codeblock_pty.py"
       ],
-      "contract": "ON enters extended block; OFF steps past; fresh sessions tested."
+      "contract": "ON enters extended block; OFF steps past; fresh sessions tested.",
+      "expected_label": "codeBlock Trace"
     },
     "DBG-038": {
       "tests": [
         "test_debug_commands_pty.py",
         "test_debug_layout.prg"
       ],
-      "contract": "Hide, temporary Alt menu, Esc rehide, Alt+O,M restore; explicit ON/OFF and settings round trip."
+      "contract": "Hide, temporary Alt menu, Esc rehide, Alt+O,M restore; explicit ON/OFF and settings round trip.",
+      "expected_label": "Menu Bar"
     },
     "DBG-043": {
       "tests": [
         "test_debug_startup_pty.py"
       ],
-      "contract": "ON/OFF affect real startup stopping in fresh sessions, not only check mark."
+      "contract": "ON/OFF affect real startup stopping in fresh sessions, not only check mark.",
+      "expected_label": "Run at startup"
     },
     "IDE-015": {
       "tests": [
         "test_editor_find.prg",
         "test_edit_menu_pty.py"
       ],
-      "contract": "Search next position case-insensitively; wrap within current and other lines; missing match retains cursor. Real Find modal navigates requested text; Esc leaves source bytes untouched."
+      "contract": "Search next position case-insensitively; wrap within current and other lines; missing match retains cursor. Real Find modal navigates requested text; Esc leaves source bytes untouched.",
+      "expected_label": "Find...         F5"
     },
     "IDE-016": {
       "tests": [
         "test_editor_find.prg"
       ],
-      "contract": "Repeat visits adjacent and overlapping matches without double increment, then wraps."
+      "contract": "Repeat visits adjacent and overlapping matches without double increment, then wraps.",
+      "expected_label": "Repeat Last Find F3"
     },
     "IDE-001": {
       "tests": [
         "test_multidoc_pty.py"
       ],
-      "contract": "File New creates an independent live buffer; text, cursor, selection, undo, breakpoints and journals stay with their document."
+      "contract": "File New creates an independent live buffer; text, cursor, selection, undo, breakpoints and journals stay with their document.",
+      "expected_label": "New"
     },
     "IDE-002": {
       "tests": [
         "test_multidoc_pty.py",
         "test_recovery_deep_path.py"
       ],
-      "contract": "Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered."
+      "contract": "Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered.",
+      "expected_label": "Open..."
     },
     "IDE-003": {
       "tests": [
@@ -147,14 +168,16 @@
         "test_atomic.prg",
         "test_recovery_deep_path.py"
       ],
-      "contract": "F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified."
+      "contract": "F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified.",
+      "expected_label": "Save           F2"
     },
     "IDE-004": {
       "tests": [
         "test_multidoc_pty.py",
         "test_saveas_refusal_recovery_pty.py"
       ],
-      "contract": "Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery."
+      "contract": "Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery.",
+      "expected_label": "Save As..."
     },
     "IDE-008": {
       "tests": [
@@ -163,7 +186,8 @@
         "test_multidoc_pty.py",
         "test_edit_menu_pty.py"
       ],
-      "contract": "Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified."
+      "contract": "Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified.",
+      "expected_label": "Undo           Ctrl+Z"
     },
     "IDE-009": {
       "tests": [
@@ -172,21 +196,24 @@
         "test_multidoc_pty.py",
         "test_edit_menu_pty.py"
       ],
-      "contract": "Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document."
+      "contract": "Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document.",
+      "expected_label": "Redo           Ctrl+U"
     },
     "IDE-011": {
       "tests": [
         "test_editor_eol.prg",
         "test_edit_menu_pty.py"
       ],
-      "contract": "Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes."
+      "contract": "Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes.",
+      "expected_label": "Cut"
     },
     "IDE-012": {
       "tests": [
         "test_editor_eol.prg",
         "test_edit_menu_pty.py"
       ],
-      "contract": "Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes."
+      "contract": "Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes.",
+      "expected_label": "Paste"
     },
     "IDE-013": {
       "tests": [
@@ -194,45 +221,99 @@
         "test_bp_delete_policy.py",
         "test_edit_menu_pty.py"
       ],
-      "contract": "Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial."
+      "contract": "Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial.",
+      "expected_label": "Delete Line  Ctrl+Y"
     },
     "IDE-014": {
       "tests": [
         "test_editor_eol.prg",
         "test_edit_menu_pty.py"
       ],
-      "contract": "Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. Real Edit-menu dispatch now checks exact saved bytes."
+      "contract": "Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. Real Edit-menu dispatch now checks exact saved bytes.",
+      "expected_label": "Duplicate Line"
     },
     "IDE-017": {
       "tests": [
         "test_editor_eol.prg",
         "test_edit_menu_pty.py"
       ],
-      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes. Empty replacement deletes only matches; missing text reports zero and preserves bytes."
+      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes. Empty replacement deletes only matches; missing text reports zero and preserves bytes.",
+      "expected_label": "Replace..."
     },
     "IDE-023": {
       "tests": [
         "test_multidoc_pty.py"
       ],
-      "contract": "Ctrl+F6 switches live documents, preserving editor state and isolation."
+      "contract": "Ctrl+F6 switches live documents, preserving editor state and isolation.",
+      "expected_label": "Next          Ctrl+F6"
     },
     "IDE-024": {
       "tests": [
         "test_multidoc_pty.py"
       ],
-      "contract": "Ctrl+Shift+F6 returns to the prior live document with cursor, undo and breakpoint state preserved."
+      "contract": "Ctrl+Shift+F6 returns to the prior live document with cursor, undo and breakpoint state preserved.",
+      "expected_label": "Previous  Ctrl+Shift+F6"
     },
     "IDE-010": {
       "tests": [
         "test_edit_menu_pty.py"
       ],
-      "contract": "Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths."
+      "contract": "Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths.",
+      "expected_label": "Copy"
     },
     "IDE-018": {
       "tests": [
         "test_edit_menu_pty.py"
       ],
-      "contract": "Real Goto Line modal navigates source line; Esc preserves row. Zero/negative clamp first line and oversized input clamps final line."
+      "contract": "Real Goto Line modal navigates source line; Esc preserves row. Zero/negative clamp first line and oversized input clamps final line.",
+      "expected_label": "Goto Line..."
+    },
+    "DSN-006": {
+      "expected_label": "ListBox",
+      "tests": [
+        "test_designer_pty.py"
+      ],
+      "contract": "Real F2 ListBox placement, inspector width/height edits, JSON save/load, generated PRG open. Runtime selection has separate GUI coverage, not certified by this test."
+    },
+    "DSN-007": {
+      "expected_label": "ComboBox",
+      "tests": [
+        "test_combobox_pty.py",
+        "test_designer.prg"
+      ],
+      "contract": "Real F2 ComboBox placement; inspector resize with minimum popup height; JSON save/load; PRG generate/open/compile/execute. Space/arrow/Tab and mouse open/select/close update numeric bound variable. Selection only, not editable text."
+    },
+    "DSN-015": {
+      "expected_label": "Save JSON    F10",
+      "tests": [
+        "test_designer_pty.py",
+        "test_combobox_pty.py"
+      ],
+      "contract": "F10 Save JSON modal writes selected ListBox/ComboBox with edited dimensions; this is default-path coverage, not all path failures."
+    },
+    "DSN-017": {
+      "expected_label": "Open JSON    F12",
+      "tests": [
+        "test_designer_pty.py",
+        "test_combobox_pty.py"
+      ],
+      "contract": "F12 reload restores saved control dimensions and type after later edits. Malformed JSON has separate model checks, not all modal error paths."
+    },
+    "DSN-018": {
+      "expected_label": "Generate PRG  F9",
+      "tests": [
+        "test_designer_pty.py",
+        "test_combobox_pty.py"
+      ],
+      "contract": "F9 generates PRG from edited/reloaded model; ComboBox artifact compiles and executes keyboard/mouse selection. Other controls need own runtime contracts."
+    },
+    "DSN-019": {
+      "expected_label": "Generate and open",
+      "tests": [
+        "test_designer_pty.py",
+        "test_combobox_pty.py"
+      ],
+      "contract": "Real F2 Generate and open follows overwrite confirmation, leaves designer, and opens generated source in IDE."
     }
   }
 }

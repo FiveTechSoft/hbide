@@ -103,24 +103,25 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-056 | Help | Windows | hbdebug/dbgmenu.prg:213 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-057 | Help | Menus | hbdebug/dbgmenu.prg:214 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-058 | Help | Commands | hbdebug/dbgmenu.prg:215 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-001 | Palette | Label (SAY) | designer.prg:516 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-002 | Palette | Input (GET) | designer.prg:517 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-003 | Palette | CheckBox | designer.prg:518 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-004 | Palette | PushButton | designer.prg:519 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-005 | Palette | RadioGroup | designer.prg:520 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-006 | Palette | ListBox | designer.prg:521 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-007 | Palette | Dialog properties... | designer.prg:523 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-008 | Palette | Undo        Ctrl+Z | designer.prg:524 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-009 | Palette | Redo        Ctrl+Y | designer.prg:525 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-010 | Palette | Copy        Ctrl+C | designer.prg:527 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-011 | Palette | Cut         Ctrl+X | designer.prg:528 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-012 | Palette | Paste       Ctrl+V | designer.prg:529 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-013 | Palette | Snap to grid  F7 | designer.prg:530 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-014 | Palette | Save JSON    F10 | designer.prg:532 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-015 | Palette | Save JSON as...  F11 | designer.prg:533 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-016 | Palette | Open JSON    F12 | designer.prg:534 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-017 | Palette | Generate PRG  F9 | designer.prg:535 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-018 | Palette | Generate and open | designer.prg:536 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-001 | Palette | Label (SAY) | designer.prg:517 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-002 | Palette | Input (GET) | designer.prg:518 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-003 | Palette | CheckBox | designer.prg:519 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-004 | Palette | PushButton | designer.prg:520 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-005 | Palette | RadioGroup | designer.prg:521 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-006 | Palette | ListBox | designer.prg:522 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-007 | Palette | ComboBox | designer.prg:523 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-008 | Palette | Dialog properties... | designer.prg:525 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-009 | Palette | Undo        Ctrl+Z | designer.prg:526 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-010 | Palette | Redo        Ctrl+Y | designer.prg:527 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-011 | Palette | Copy        Ctrl+C | designer.prg:529 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-012 | Palette | Cut         Ctrl+X | designer.prg:530 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-013 | Palette | Paste       Ctrl+V | designer.prg:531 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-014 | Palette | Snap to grid  F7 | designer.prg:532 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-015 | Palette | Save JSON    F10 | designer.prg:534 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-016 | Palette | Save JSON as...  F11 | designer.prg:535 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-017 | Palette | Open JSON    F12 | designer.prg:536 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-018 | Palette | Generate PRG  F9 | designer.prg:537 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-019 | Palette | Generate and open | designer.prg:538 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 
 ## Contratos y pruebas vinculadas
 
@@ -160,34 +161,40 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-024: Ctrl+Shift+F6 returns to the prior live document with cursor, undo and breakpoint state preserved. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-010: Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-018: Real Goto Line modal navigates source line; Esc preserves row. Zero/negative clamp first line and oversized input clamps final line. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- DSN-006: Real F2 ListBox placement, inspector width/height edits, JSON save/load, generated PRG open. Runtime selection has separate GUI coverage, not certified by this test. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py)
+- DSN-007: Real F2 ComboBox placement; inspector resize with minimum popup height; JSON save/load; PRG generate/open/compile/execute. Space/arrow/Tab and mouse open/select/close update numeric bound variable. Selection only, not editable text. Pruebas: [test_combobox_pty.py](../tests/test_combobox_pty.py), [test_designer.prg](../tests/test_designer.prg)
+- DSN-015: F10 Save JSON modal writes selected ListBox/ComboBox with edited dimensions; this is default-path coverage, not all path failures. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py), [test_combobox_pty.py](../tests/test_combobox_pty.py)
+- DSN-017: F12 reload restores saved control dimensions and type after later edits. Malformed JSON has separate model checks, not all modal error paths. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py), [test_combobox_pty.py](../tests/test_combobox_pty.py)
+- DSN-018: F9 generates PRG from edited/reloaded model; ComboBox artifact compiles and executes keyboard/mouse selection. Other controls need own runtime contracts. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py), [test_combobox_pty.py](../tests/test_combobox_pty.py)
+- DSN-019: Real F2 Generate and open follows overwrite confirmation, leaves designer, and opens generated source in IDE. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py), [test_combobox_pty.py](../tests/test_combobox_pty.py)
 
 ## Campos de inspector
 
 | Campo | Clave | Tipo | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- |
-| Row | row | num | designer.prg:1776 | Pendiente vincular prueba especifica |
-| Col | col | num | designer.prg:1777 | Pendiente vincular prueba especifica |
-| Caption | caption | text | designer.prg:1779 | Pendiente vincular prueba especifica |
-| Variable | variable | text | designer.prg:1782 | Pendiente vincular prueba especifica |
-| Width | width | num | designer.prg:1785 | Pendiente vincular prueba especifica |
-| Accel | accelerator | text | designer.prg:1788 | Pendiente vincular prueba especifica |
-| Action | action | text | designer.prg:1789 | Pendiente vincular prueba especifica |
-| Style | style | choice | designer.prg:1790 | Pendiente vincular prueba especifica |
-| Variable | variable | text | designer.prg:1793 | Pendiente vincular prueba especifica |
-| Items | items | text | designer.prg:1794 | Pendiente vincular prueba especifica |
-| Width | width | num | designer.prg:1797 | Pendiente vincular prueba especifica |
-| Height | height | num | designer.prg:1798 | Pendiente vincular prueba especifica |
-| When | when | text | designer.prg:1801 | Pendiente vincular prueba especifica |
-| Valid | valid | text | designer.prg:1802 | Pendiente vincular prueba especifica |
-| Focus | focus | text | designer.prg:1804 | Pendiente vincular prueba especifica |
-| State | state | text | designer.prg:1807 | Pendiente vincular prueba especifica |
-| Name | dlgname | text | designer.prg:1811 | Pendiente vincular prueba especifica |
-| Caption | dlgcaption | text | designer.prg:1812 | Pendiente vincular prueba especifica |
-| Width | dlgwidth | num | designer.prg:1813 | Pendiente vincular prueba especifica |
-| Height | dlgheight | num | designer.prg:1814 | Pendiente vincular prueba especifica |
-| Back | dlgback | color | designer.prg:1815 | Pendiente vincular prueba especifica |
-| Text | dlgtext | color | designer.prg:1816 | Pendiente vincular prueba especifica |
-| Focus | dlgfocus | color | designer.prg:1817 | Pendiente vincular prueba especifica |
+| Row | row | num | designer.prg:1778 | Pendiente vincular prueba especifica |
+| Col | col | num | designer.prg:1779 | Pendiente vincular prueba especifica |
+| Caption | caption | text | designer.prg:1781 | Pendiente vincular prueba especifica |
+| Variable | variable | text | designer.prg:1784 | Pendiente vincular prueba especifica |
+| Width | width | num | designer.prg:1787 | Pendiente vincular prueba especifica |
+| Accel | accelerator | text | designer.prg:1790 | Pendiente vincular prueba especifica |
+| Action | action | text | designer.prg:1791 | Pendiente vincular prueba especifica |
+| Style | style | choice | designer.prg:1792 | Pendiente vincular prueba especifica |
+| Variable | variable | text | designer.prg:1795 | Pendiente vincular prueba especifica |
+| Items | items | text | designer.prg:1796 | Pendiente vincular prueba especifica |
+| Width | width | num | designer.prg:1799 | Pendiente vincular prueba especifica |
+| Height | height | num | designer.prg:1800 | Pendiente vincular prueba especifica |
+| When | when | text | designer.prg:1803 | Pendiente vincular prueba especifica |
+| Valid | valid | text | designer.prg:1804 | Pendiente vincular prueba especifica |
+| Focus | focus | text | designer.prg:1806 | Pendiente vincular prueba especifica |
+| State | state | text | designer.prg:1809 | Pendiente vincular prueba especifica |
+| Name | dlgname | text | designer.prg:1813 | Pendiente vincular prueba especifica |
+| Caption | dlgcaption | text | designer.prg:1814 | Pendiente vincular prueba especifica |
+| Width | dlgwidth | num | designer.prg:1815 | Pendiente vincular prueba especifica |
+| Height | dlgheight | num | designer.prg:1816 | Pendiente vincular prueba especifica |
+| Back | dlgback | color | designer.prg:1817 | Pendiente vincular prueba especifica |
+| Text | dlgtext | color | designer.prg:1818 | Pendiente vincular prueba especifica |
+| Focus | dlgfocus | color | designer.prg:1819 | Pendiente vincular prueba especifica |
 
 ## Rutas de teclado y comandos
 
@@ -302,40 +309,40 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1278 | `CASE hb_LeftEq( "CASCADE", cParam1 )` |
 | hbdebug/debugger.prg:1280 | `CASE hb_LeftEq( "ICONIZE", cParam1 )` |
 | hbdebug/debugger.prg:1286 | `CASE cCommand == "WP"` |
-| designer.prg:234 | `case nKey == K_F4` |
-| designer.prg:237 | `case nKey == K_F6` |
-| designer.prg:248 | `case nKey == K_ESC` |
-| designer.prg:271 | `case nKey == K_F2` |
-| designer.prg:274 | `case nKey == K_F3` |
-| designer.prg:277 | `case nKey == K_F9` |
-| designer.prg:280 | `case nKey == K_F10` |
-| designer.prg:283 | `case nKey == K_F11` |
-| designer.prg:286 | `case nKey == K_F12` |
-| designer.prg:289 | `case nKey == K_ENTER` |
-| designer.prg:296 | `case nKey == K_DEL` |
-| designer.prg:301 | `case nKey == DSNK_CTRL_Z .or. nKey == K_CTRL_Z` |
-| designer.prg:306 | `case nKey == DSNK_CTRL_Y .or. nKey == K_CTRL_Y` |
-| designer.prg:311 | `case nKey == DSNK_CTRL_C .or. nKey == K_CTRL_C` |
-| designer.prg:316 | `case nKey == DSNK_CTRL_X   // EXT only: classic 24 aliases K_DOWN; the arrow case below claims it (move wins over cut without EXT)` |
-| designer.prg:321 | `case nKey == DSNK_CTRL_V .or. nKey == K_CTRL_V` |
-| designer.prg:326 | `case nKey == K_F7` |
-| designer.prg:329 | `case nKey == K_F5` |
-| designer.prg:341 | `case nKey == K_PGUP .or. ( ::lCodeView .and. nKey == Asc( "-" ) )` |
-| designer.prg:347 | `case ::lCodeView .and. nKey == Asc( "," )` |
-| designer.prg:350 | `case ::lCodeView .and. nKey == Asc( "." )` |
-| designer.prg:353 | `case nKey == K_PGDN .or. ( ::lCodeView .and. nKey == Asc( "+" ) )` |
-| designer.prg:360 | `case nKey == K_UP` |
-| designer.prg:369 | `case nKey == K_DOWN` |
-| designer.prg:378 | `case nKey == K_LEFT` |
-| designer.prg:387 | `case nKey == K_RIGHT` |
-| designer.prg:396 | `case nKey == K_CTRL_UP` |
-| designer.prg:401 | `case nKey == K_CTRL_DOWN` |
-| designer.prg:406 | `case nKey == DSNK_CTRLLEFT   // classic 26 aliases K_CTRL_Z; the undo case above claims it (non-destructive)` |
-| designer.prg:411 | `case nKey == DSNK_CTRLRIGHT   // classic 2 aliases K_CTRL_B; unreachable without EXT (safe no-op)` |
-| designer.prg:416 | `case nKey == K_TAB` |
-| designer.prg:425 | `case nKey == K_SH_TAB` |
-| designer.prg:434 | `case nKey == K_LBUTTONUP` |
-| designer.prg:437 | `case nKey == K_LBUTTONDOWN` |
+| designer.prg:235 | `case nKey == K_F4` |
+| designer.prg:238 | `case nKey == K_F6` |
+| designer.prg:249 | `case nKey == K_ESC` |
+| designer.prg:272 | `case nKey == K_F2` |
+| designer.prg:275 | `case nKey == K_F3` |
+| designer.prg:278 | `case nKey == K_F9` |
+| designer.prg:281 | `case nKey == K_F10` |
+| designer.prg:284 | `case nKey == K_F11` |
+| designer.prg:287 | `case nKey == K_F12` |
+| designer.prg:290 | `case nKey == K_ENTER` |
+| designer.prg:297 | `case nKey == K_DEL` |
+| designer.prg:302 | `case nKey == DSNK_CTRL_Z .or. nKey == K_CTRL_Z` |
+| designer.prg:307 | `case nKey == DSNK_CTRL_Y .or. nKey == K_CTRL_Y` |
+| designer.prg:312 | `case nKey == DSNK_CTRL_C .or. nKey == K_CTRL_C` |
+| designer.prg:317 | `case nKey == DSNK_CTRL_X   // EXT only: classic 24 aliases K_DOWN; the arrow case below claims it (move wins over cut without EXT)` |
+| designer.prg:322 | `case nKey == DSNK_CTRL_V .or. nKey == K_CTRL_V` |
+| designer.prg:327 | `case nKey == K_F7` |
+| designer.prg:330 | `case nKey == K_F5` |
+| designer.prg:342 | `case nKey == K_PGUP .or. ( ::lCodeView .and. nKey == Asc( "-" ) )` |
+| designer.prg:348 | `case ::lCodeView .and. nKey == Asc( "," )` |
+| designer.prg:351 | `case ::lCodeView .and. nKey == Asc( "." )` |
+| designer.prg:354 | `case nKey == K_PGDN .or. ( ::lCodeView .and. nKey == Asc( "+" ) )` |
+| designer.prg:361 | `case nKey == K_UP` |
+| designer.prg:370 | `case nKey == K_DOWN` |
+| designer.prg:379 | `case nKey == K_LEFT` |
+| designer.prg:388 | `case nKey == K_RIGHT` |
+| designer.prg:397 | `case nKey == K_CTRL_UP` |
+| designer.prg:402 | `case nKey == K_CTRL_DOWN` |
+| designer.prg:407 | `case nKey == DSNK_CTRLLEFT   // classic 26 aliases K_CTRL_Z; the undo case above claims it (non-destructive)` |
+| designer.prg:412 | `case nKey == DSNK_CTRLRIGHT   // classic 2 aliases K_CTRL_B; unreachable without EXT (safe no-op)` |
+| designer.prg:417 | `case nKey == K_TAB` |
+| designer.prg:426 | `case nKey == K_SH_TAB` |
+| designer.prg:435 | `case nKey == K_LBUTTONUP` |
+| designer.prg:438 | `case nKey == K_LBUTTONDOWN` |
 | projectui.prg:20 | `CASE nKey == K_ESC` |
 | projectui.prg:22 | `CASE nKey == K_UP` |
 | projectui.prg:24 | `CASE nKey == K_DOWN` |
@@ -347,27 +354,27 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | projectui.prg:36 | `CASE nKey == K_F6 .AND. ! Empty( oProject:hBuild )` |
 | projectui.prg:38 | `CASE nKey == K_F9 .OR. nKey == K_CTRL_F9` |
 | projectui.prg:42 | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` |
-| designer.prg:2263 | `case nKey == K_ESC .or. nKey == K_F6` |
-| designer.prg:2268 | `case nKey == K_F4` |
-| designer.prg:2271 | `case nKey == K_UP` |
-| designer.prg:2275 | `case nKey == K_DOWN` |
-| designer.prg:2279 | `case nKey == K_LEFT` |
-| designer.prg:2282 | `case nKey == K_RIGHT` |
-| designer.prg:2285 | `case nKey == K_ENTER` |
-| designer.prg:2288 | `case nKey == K_CTRL_UP` |
-| designer.prg:2292 | `case nKey == K_CTRL_DOWN` |
-| designer.prg:2296 | `case nKey == K_CTRL_LEFT` |
-| designer.prg:2300 | `case nKey == K_CTRL_RIGHT` |
-| designer.prg:2119 | `case nKey == K_ENTER` |
-| designer.prg:2122 | `case nKey == K_ESC` |
-| designer.prg:2124 | `case nKey == K_LEFT` |
-| designer.prg:2126 | `case nKey == K_RIGHT` |
-| designer.prg:2128 | `case nKey == K_HOME` |
-| designer.prg:2130 | `case nKey == K_END` |
-| designer.prg:2132 | `case nKey == K_BS` |
-| designer.prg:2137 | `case nKey == K_DEL` |
-| designer.prg:2141 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` |
-| designer.prg:2145 | `case nKey >= 32 .and. nKey <= 255` |
+| designer.prg:2265 | `case nKey == K_ESC .or. nKey == K_F6` |
+| designer.prg:2270 | `case nKey == K_F4` |
+| designer.prg:2273 | `case nKey == K_UP` |
+| designer.prg:2277 | `case nKey == K_DOWN` |
+| designer.prg:2281 | `case nKey == K_LEFT` |
+| designer.prg:2284 | `case nKey == K_RIGHT` |
+| designer.prg:2287 | `case nKey == K_ENTER` |
+| designer.prg:2290 | `case nKey == K_CTRL_UP` |
+| designer.prg:2294 | `case nKey == K_CTRL_DOWN` |
+| designer.prg:2298 | `case nKey == K_CTRL_LEFT` |
+| designer.prg:2302 | `case nKey == K_CTRL_RIGHT` |
+| designer.prg:2121 | `case nKey == K_ENTER` |
+| designer.prg:2124 | `case nKey == K_ESC` |
+| designer.prg:2126 | `case nKey == K_LEFT` |
+| designer.prg:2128 | `case nKey == K_RIGHT` |
+| designer.prg:2130 | `case nKey == K_HOME` |
+| designer.prg:2132 | `case nKey == K_END` |
+| designer.prg:2134 | `case nKey == K_BS` |
+| designer.prg:2139 | `case nKey == K_DEL` |
+| designer.prg:2143 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` |
+| designer.prg:2147 | `case nKey >= 32 .and. nKey <= 255` |
 | hbide.prg:644 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F8, HB_KF_ALT, K_ALT_F8 )` |
 | hbide.prg:647 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )` |
 | hbide.prg:650 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )` |
@@ -514,5 +521,5 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 
 ## Gate de cierre
 
-115 acciones de menu; 2 stubs. Incluye rutas de inspector, ayuda y bucle IDE; faltan campos de modales y gestos; rutas del editor incluidas, sin aceptacion completa. No es aun el inventario exhaustivo.
+116 acciones de menu; 2 stubs. Incluye rutas de inspector, ayuda y bucle IDE; faltan campos de modales y gestos; rutas del editor incluidas, sin aceptacion completa. No es aun el inventario exhaustivo.
 `python scripts/audit_completion_surface.py --check-stubs` falla mientras haya stubs visibles.

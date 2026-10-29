@@ -72,9 +72,12 @@ def main():
     stubs=[m for m in menus if m['wiring']=='stub']
     acceptance=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['menus']
     known={m['id'] for m in menus}
+    labels={m['id']:m['label'] for m in menus}
     for ident, spec in acceptance.items():
         if ident not in known:
             raise SystemExit('Unknown acceptance ID: '+ident)
+        if spec.get('expected_label') != labels[ident]:
+            raise SystemExit('Acceptance label mismatch: '+ident+' expected '+str(spec.get('expected_label'))+' actual '+labels[ident])
         for test in spec['tests']:
             if not (ROOT/'tests'/test).is_file():
                 raise SystemExit('Missing acceptance test: '+test)

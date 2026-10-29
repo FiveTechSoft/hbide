@@ -505,3 +505,9 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Inspector respeta minimoHeight4 como propiedades/JSON/resize; PTY27 comprueba reduccion repetida y restauracion7.
 - Aviso de barra oculta tiene en cuenta fila superior adicional delComboBox: altura7 minima para scrollbar visible,6paraListBox. Modelo añade2checks.
 - Correccion contable: ec13c5b tuvo427checks diseñador, no426 anotados durante preparacion. Este ajuste tiene429.
+
+## 30Oct00:02 Inventario tras ComboBox
+- Enlazados contratos específicos de ListBox/ComboBox y persistencia/generación a las pruebas reales existentes, sin atribuir cobertura a otros controles.
+- Añadido expected_label obligatorio por contrato. Insertar un menu antes de otro cambiaIDs ordinales: ahora auditoría falla si ID y etiqueta dejan de corresponder, evita aceptación silenciosamente aplicada a otra acción.
+- Inventario regenerado116acciones,40contratos enlazados. No porcentaje de terminado. Gate sigue fallando por2stubs.
+- Regresión producto fa94083: menús/modalesEdit29PASS y navegación35PASS, mismoSHA binario en ledger /tmp/hbide-regression-fa94083/results.jsonl. No pasada global.
