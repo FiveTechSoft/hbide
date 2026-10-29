@@ -18,6 +18,15 @@ HbIde ChangeLog
     preview del designer y codigo generado por el designer
   - Pads de boton como espacios ASCII (U+00A0/byte 255 tampoco tenia
     mapeo y se veia como '?')
+  - Titulo blanco solo donde el terminal soporta fondo brillante
+    (HBDlgTitleColor: TERM 256color/truecolor, consola linux o COLORTERM):
+    en terminales planas de 8 colores el fondo brillante degrada a texto
+    parpadeante, asi que alli se mantiene el caption clasico en texto
+    blanco brillante (sin parpadeo, sin regresion). Verificado a nivel de
+    bytes SGR en PTY con TERM=xterm y TERM=xterm-256color
+  - Robustez: cCaptionColor se asigna/lee solo si la clase lo tiene
+    (__objHasData), para no romper builds que enlacen un HBDbWindow de
+    libhbdebug sin el nuevo VAR (test binaries, terceros)
   - Correccion: REQUEST HB_HRBRUN para que Run > Script y Run > Debug
     enlacen tambien en builds estaticos (antes fallaban con
     "Undefined function" fuera de builds con libharbour dinamica)

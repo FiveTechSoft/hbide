@@ -660,11 +660,16 @@ procedure Main()
    Check( "button pads are plain spaces", ;
       HbBtnPadChars()[ 1 ] == " " .and. HbBtnPadChars()[ 2 ] == " " )
 
-   // generated dialogs emit the same codepage-aware button display: pads
-   // and shadow half blocks convert for the active codepage, no raw CP437
-   // bytes that render as '?' under the UTF-8 opt-in
-   Check( "gen button pads cp-aware", "DsnBtnPads()" $ cCode )
-   Check( "gen button shades cp-aware", "DsnBtnShades()" $ cCode )
+   // generated dialogs emit the same codepage-safe button display: pads and
+   // shadow are plain spaces painted with attribute colors; no half-block
+   // glyphs and no raw CP437 bytes that render as '?' on non-UTF8 terminals
+   Check( "gen button pads emitted", "DsnBtnPads()" $ cCode )
+   Check( "gen button pads are plain spaces", 'return { " ", " " }' $ cCode )
+   Check( "gen button shadow is solid cells", ;
+      ! ( "DsnBtnShades" $ cCode ) .and. '"N/N"' $ cCode )
+   Check( "gen no half-block glyphs", ;
+      ! ( hb_UTF8ToStr( "▄" ) $ cCode ) .and. ! ( hb_UTF8ToStr( "▀" ) $ cCode ) )
+   Check( "gen no NBSP pad bytes", ! ( Chr( 194 ) + Chr( 160 ) $ cCode ) )
    Check( "gen no raw cp437 pad bytes", ! "Chr( 255 )" $ cCode )
    Check( "gen no raw cp437 shadow bytes", ! ( "Chr( 220 )" $ cCode ) )
 

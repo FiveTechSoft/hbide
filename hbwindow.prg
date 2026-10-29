@@ -800,8 +800,12 @@ METHOD Dialog( cCaption, nWidth, nHeight, cColor, bInit ) CLASS HbWindow
    ::bInit   = bInit
    ::lShadow = .T.
    // Turbo Vision look: the dialog title rides on a bright-white patch so it
-   // stands out from the gray body, same as the ListPick dialogs (nav.prg)
-   ::cCaptionColor := "N/W*"
+   // stands out from the gray body, same as the ListPick dialogs (nav.prg).
+   // Defensive: builds linking a stock HBDbWindow (no cCaptionColor var, e.g.
+   // test binaries against libhbdebug) keep the classic caption color.
+   if __objHasData( Self, "cCaptionColor" )
+      ::cCaptionColor := HBDlgTitleColor()
+   endif
    ::Show()
 
 return Self
@@ -825,6 +829,32 @@ static function GetColors()
 return { "W+/BG", "N/BG", "R/BG", "N+/BG", "W+/B", "GR+/B", "W/B", "N/W", "R/W", "N/BG", "R/BG" }
 
 //-----------------------------------------------------------------------------------------//
+
+
+//-----------------------------------------------------------------------------------------//
+
+// Dialog title patch color. A bright-white background ("W*") only works where
+// the terminal supports bright backgrounds; on a plain 8-color terminal the
+// bright bg bit degrades to BLINKING text, so there we keep the classic
+// Turbo Vision caption (bright-white text on the frame), which is what these
+// dialogs always showed. Non-Unix builds (GTWVT/GTWIN) handle bright
+// backgrounds natively.
+
+function HBDlgTitleColor()
+
+#ifdef __PLATFORM__UNIX
+   local cTerm := Lower( GetEnv( "TERM" ) )
+
+   if "256color" $ cTerm .or. "truecolor" $ cTerm .or. "24bit" $ cTerm .or. ;
+      cTerm == "linux" .or. ! Empty( GetEnv( "COLORTERM" ) )
+      return "N/W*"
+   endif
+
+return "W+/W"
+#else
+
+return "N/W*"
+#endif
 
 static function DrawBorder( nTop, nLeft, nBottom, nRight, cColor )
 

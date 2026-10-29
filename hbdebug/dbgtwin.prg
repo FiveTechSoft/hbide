@@ -155,6 +155,14 @@ METHOD PROCEDURE ShowCaption() CLASS HBDbWindow
 
    LOCAL cCaption := ::cCaption
    LOCAL nWidth := ::nRight - ::nLeft - 2
+   LOCAL cCapColor := ::cColor
+
+   // a subclass may declare cCaptionColor to restyle the caption (hbide's
+   // dialogs use a bright-white title patch); read it only when present so
+   // stock HBDbWindow objects never touch a missing var
+   IF __objHasData( Self, "cCaptionColor" ) .AND. ! Empty( ::cCaptionColor )
+      cCapColor := ::cCaptionColor
+   ENDIF
 
    // clip overlong captions: centered at full length the start column
    // goes negative and nothing is drawn at all
@@ -164,7 +172,7 @@ METHOD PROCEDURE ShowCaption() CLASS HBDbWindow
       ENDIF
       hb_DispOutAt( ::nTop, ::nLeft + ( ( ::nRight - ::nLeft ) / 2 ) - ;
          ( ( Len( cCaption ) + 2 ) / 2 ), ;
-         " " + cCaption + " ", hb_defaultValue( ::cCaptionColor, ::cColor ) )
+         " " + cCaption + " ", cCapColor )
    ENDIF
 
    RETURN
