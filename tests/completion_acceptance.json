@@ -116,9 +116,10 @@
     },
     "IDE-015": {
       "tests": [
-        "test_editor_find.prg"
+        "test_editor_find.prg",
+        "test_edit_menu_pty.py"
       ],
-      "contract": "Search next position case-insensitively; wrap within current and other lines; missing match retains cursor."
+      "contract": "Search next position case-insensitively; wrap within current and other lines; missing match retains cursor. Real Find modal navigates requested text; Esc leaves source bytes untouched."
     },
     "IDE-016": {
       "tests": [
@@ -207,7 +208,7 @@
         "test_editor_eol.prg",
         "test_edit_menu_pty.py"
       ],
-      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes."
+      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes."
     },
     "IDE-023": {
       "tests": [
@@ -226,6 +227,12 @@
         "test_edit_menu_pty.py"
       ],
       "contract": "Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths."
+    },
+    "IDE-018": {
+      "tests": [
+        "test_edit_menu_pty.py"
+      ],
+      "contract": "Real Goto Line modal navigates third source line; Esc preserves current row. Invalid, negative and oversized inputs remain outside this test."
     }
   }
 }

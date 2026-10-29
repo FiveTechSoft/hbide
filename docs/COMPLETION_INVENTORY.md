@@ -23,7 +23,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-015 | Edit | Find...         F5 | hbide.prg:797 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-016 | Edit | Repeat Last Find F3 | hbide.prg:798 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-017 | Edit | Replace... | hbide.prg:799 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-018 | Edit | Goto Line... | hbide.prg:801 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-018 | Edit | Goto Line... | hbide.prg:801 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-019 | Edit | Go to Function... Ctrl+G | hbide.prg:802 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-020 | Project | Open .hbp... | hbide.prg:807 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-021 | Project | Sources / Build... | hbide.prg:808 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -143,7 +143,7 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-037: ON enters extended block; OFF steps past; fresh sessions tested. Pruebas: [test_debug_codeblock_pty.py](../tests/test_debug_codeblock_pty.py)
 - DBG-038: Hide, temporary Alt menu, Esc rehide, Alt+O,M restore; explicit ON/OFF and settings round trip. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_layout.prg](../tests/test_debug_layout.prg)
 - DBG-043: ON/OFF affect real startup stopping in fresh sessions, not only check mark. Pruebas: [test_debug_startup_pty.py](../tests/test_debug_startup_pty.py)
-- IDE-015: Search next position case-insensitively; wrap within current and other lines; missing match retains cursor. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg)
+- IDE-015: Search next position case-insensitively; wrap within current and other lines; missing match retains cursor. Real Find modal navigates requested text; Esc leaves source bytes untouched. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-016: Repeat visits adjacent and overlapping matches without double increment, then wraps. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg)
 - IDE-001: File New creates an independent live buffer; text, cursor, selection, undo, breakpoints and journals stay with their document. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-002: Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py)
@@ -155,10 +155,11 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-012: Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-013: Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-014: Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. Real Edit-menu dispatch now checks exact saved bytes. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
-- IDE-017: Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-017: Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-023: Ctrl+F6 switches live documents, preserving editor state and isolation. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-024: Ctrl+Shift+F6 returns to the prior live document with cursor, undo and breakpoint state preserved. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-010: Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-018: Real Goto Line modal navigates third source line; Esc preserves current row. Invalid, negative and oversized inputs remain outside this test. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 
 ## Campos de inspector
 

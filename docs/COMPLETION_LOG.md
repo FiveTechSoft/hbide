@@ -477,3 +477,11 @@ modifico producto para satisfacer una expectativa errada.
 
 Runner suma edit-menu (30casos); contratos33/115, con limites porcontrato.
 Este commit no cambia producto. Gate2stubs y Windows siguen abiertos.
+
+## Find/Goto/Replace: modales reales y cancelacion
+
+EditmenuPTY ampliado22checks: Find real navega beta en linea2 conTAB,
+Goto real llega linea3, Esc conserva fila/datos en Find/Goto/Replace.
+Replace conserva espacios finales y undo restaura bytes exactos. No se
+ha cambiado producto. Contratos34de115, sin convertir conteo en avance
+porcentual. Inputs invalidos Goto todavia no cubiertos por este contrato.
