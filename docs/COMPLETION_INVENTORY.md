@@ -10,9 +10,9 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-002 | File | Open... | hbide.prg:776 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-003 | File | Save           F2 | hbide.prg:777 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-004 | File | Save As... | hbide.prg:778 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-005 | File | Save All   Ctrl+F2 | hbide.prg:779 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-006 | File | Close | hbide.prg:780 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-007 | File | Exit | hbide.prg:782 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-005 | File | Save All   Ctrl+F2 | hbide.prg:779 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-006 | File | Close | hbide.prg:780 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-007 | File | Exit | hbide.prg:782 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-008 | Edit | Undo           Ctrl+Z | hbide.prg:787 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-009 | Edit | Redo           Ctrl+U | hbide.prg:788 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-010 | Edit | Copy | hbide.prg:790 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -24,21 +24,21 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-016 | Edit | Repeat Last Find F3 | hbide.prg:798 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-017 | Edit | Replace... | hbide.prg:799 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-018 | Edit | Goto Line... | hbide.prg:801 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-019 | Edit | Go to Function... Ctrl+G | hbide.prg:802 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-020 | Project | Open .hbp... | hbide.prg:807 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-021 | Project | Sources / Build... | hbide.prg:808 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-019 | Edit | Go to Function... Ctrl+G | hbide.prg:802 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-020 | Project | Open .hbp... | hbide.prg:807 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-021 | Project | Sources / Build... | hbide.prg:808 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-022 | Project | Close project | hbide.prg:809 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-023 | Window | Next          Ctrl+F6 | hbide.prg:814 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-024 | Window | Previous  Ctrl+Shift+F6 | hbide.prg:815 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-025 | Window | Close | hbide.prg:816 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-026 | Window | List...           Alt+0 | hbide.prg:818 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-027 | Window | Messages... | hbide.prg:819 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-028 | Window | Next Message     Alt+F8 | hbide.prg:820 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-029 | Window | Previous Message Alt+F7 | hbide.prg:821 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-026 | Window | List...           Alt+0 | hbide.prg:818 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-027 | Window | Messages... | hbide.prg:819 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-028 | Window | Next Message     Alt+F8 | hbide.prg:820 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-029 | Window | Previous Message Alt+F7 | hbide.prg:821 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-030 | Run | Start | hbide.prg:825 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-031 | Run | Script | hbide.prg:826 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-032 | Run | Debug | hbide.prg:827 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-033 | Run | Arguments... | hbide.prg:829 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-033 | Run | Arguments... | hbide.prg:829 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-034 | Options | Compiler Flags... | hbide.prg:834 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-035 | Options | Display... | hbide.prg:835 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-036 | Options | Designer... | hbide.prg:837 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -48,7 +48,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-001 | File | Open... | hbdebug/dbgmenu.prg:78 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-002 | File | Resume | hbdebug/dbgmenu.prg:79 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-003 | File | OS Shell | hbdebug/dbgmenu.prg:80 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-004 | File | eXit    Alt-X | hbdebug/dbgmenu.prg:82 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-004 | File | eXit    Alt-X | hbdebug/dbgmenu.prg:82 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-005 | Locate | Find | hbdebug/dbgmenu.prg:87 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-006 | Locate | Next | hbdebug/dbgmenu.prg:88 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-007 | Locate | Previous | hbdebug/dbgmenu.prg:89 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -56,9 +56,9 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-009 | Locate | Case sensitive | hbdebug/dbgmenu.prg:92 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-010 | View | Sets | hbdebug/dbgmenu.prg:99 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-011 | View | WorkAreas   F6 | hbdebug/dbgmenu.prg:100 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-012 | View | App Screen  F4 | hbdebug/dbgmenu.prg:101 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-012 | View | App Screen  F4 | hbdebug/dbgmenu.prg:101 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-013 | View | CallStack | hbdebug/dbgmenu.prg:103 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-014 | Run | Animate | hbdebug/dbgmenu.prg:110 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-014 | Run | Animate | hbdebug/dbgmenu.prg:110 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-015 | Run | Step              F8 | hbdebug/dbgmenu.prg:113 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-016 | Run | Trace            F10 | hbdebug/dbgmenu.prg:114 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-017 | Run | Go                F5 | hbdebug/dbgmenu.prg:115 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -81,13 +81,13 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-034 | Options | Line Numbers | hbdebug/dbgmenu.prg:170 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-035 | Options | Exchange Screens | hbdebug/dbgmenu.prg:173 | stub | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-036 | Options | swap on Input | hbdebug/dbgmenu.prg:174 | stub | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-037 | Options | codeBlock Trace | hbdebug/dbgmenu.prg:175 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-038 | Options | Menu Bar | hbdebug/dbgmenu.prg:178 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-037 | Options | codeBlock Trace | hbdebug/dbgmenu.prg:175 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-038 | Options | Menu Bar | hbdebug/dbgmenu.prg:178 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-039 | Options | mono Display | hbdebug/dbgmenu.prg:181 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-040 | Options | Colors... | hbdebug/dbgmenu.prg:184 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-041 | Options | Tab Width... | hbdebug/dbgmenu.prg:185 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-042 | Options | path for Files... | hbdebug/dbgmenu.prg:186 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-043 | Options | Run at startup | hbdebug/dbgmenu.prg:187 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-043 | Options | Run at startup | hbdebug/dbgmenu.prg:187 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-044 | Options | Save Settings... | hbdebug/dbgmenu.prg:191 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-045 | Options | Restore Settings... | hbdebug/dbgmenu.prg:192 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-046 | Window | Next      Tab | hbdebug/dbgmenu.prg:197 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -121,6 +121,56 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DSN-016 | Palette | Open JSON    F12 | designer.prg:534 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DSN-017 | Palette | Generate PRG  F9 | designer.prg:535 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DSN-018 | Palette | Generate and open | designer.prg:536 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+
+## Contratos y pruebas vinculadas
+
+Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/hash exactos.
+
+- IDE-005: Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_saveall_fail_pty.py](../tests/test_saveall_fail_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py)
+- IDE-006: Save/Discard/Cancel reviews the correct document; Cancel keeps it open and unchanged. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
+- IDE-007: All dirty documents reviewed; Cancel keeps IDE alive; clean exit after decisions. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
+- IDE-019: Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py)
+- IDE-020: HBP parsed and preserved; opening never executes build hooks. Pruebas: [test_project_desktop_pty.py](../tests/test_project_desktop_pty.py), [test_project.prg](../tests/test_project.prg)
+- IDE-021: Source desktop and build act on selected project; diagnostics target correct file. Pruebas: [test_project_desktop_pty.py](../tests/test_project_desktop_pty.py), [test_project_messages_pty.py](../tests/test_project_messages_pty.py)
+- IDE-026: List marks dirty and switches selected buffer without crossing state. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
+- IDE-027: Real compiler messages list and navigate to correct source. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_project_messages_pty.py](../tests/test_project_messages_pty.py)
+- IDE-028: Next diagnostic wraps with correct line and status. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_project_messages_pty.py](../tests/test_project_messages_pty.py)
+- IDE-029: Previous diagnostic wraps with correct line and status. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_project_messages_pty.py](../tests/test_project_messages_pty.py)
+- IDE-033: Literal arguments reach Start/Script/Debug; shell metacharacters cannot execute commands. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py)
+- DBG-004: Alt+X aborts debuggee, not IDE; colors/menu restored; next session clean. Pruebas: [test_debug_exit_paths_pty.py](../tests/test_debug_exit_paths_pty.py), [test_debug_session_pty.py](../tests/test_debug_session_pty.py)
+- DBG-012: Application screen round trip restores debugger; visual buffer correctness still requires pixels. Pruebas: [test_debug_exit_paths_pty.py](../tests/test_debug_exit_paths_pty.py)
+- DBG-014: All statements execute and return to IDE; application nested display count preserved; visual tearing separate. Pruebas: [test_debug_animate_pty.py](../tests/test_debug_animate_pty.py)
+- DBG-037: ON enters extended block; OFF steps past; fresh sessions tested. Pruebas: [test_debug_codeblock_pty.py](../tests/test_debug_codeblock_pty.py)
+- DBG-038: Hide, temporary Alt menu, Esc rehide, Alt+O,M restore; explicit ON/OFF and settings round trip. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_layout.prg](../tests/test_debug_layout.prg)
+- DBG-043: ON/OFF affect real startup stopping in fresh sessions, not only check mark. Pruebas: [test_debug_startup_pty.py](../tests/test_debug_startup_pty.py)
+
+## Campos de inspector
+
+| Campo | Clave | Tipo | Fuente:linea | Aceptacion |
+| --- | --- | --- | --- | --- |
+| Row | row | num | designer.prg:1776 | Pendiente vincular prueba especifica |
+| Col | col | num | designer.prg:1777 | Pendiente vincular prueba especifica |
+| Caption | caption | text | designer.prg:1779 | Pendiente vincular prueba especifica |
+| Variable | variable | text | designer.prg:1782 | Pendiente vincular prueba especifica |
+| Width | width | num | designer.prg:1785 | Pendiente vincular prueba especifica |
+| Accel | accelerator | text | designer.prg:1788 | Pendiente vincular prueba especifica |
+| Action | action | text | designer.prg:1789 | Pendiente vincular prueba especifica |
+| Style | style | choice | designer.prg:1790 | Pendiente vincular prueba especifica |
+| Variable | variable | text | designer.prg:1793 | Pendiente vincular prueba especifica |
+| Items | items | text | designer.prg:1794 | Pendiente vincular prueba especifica |
+| Width | width | num | designer.prg:1797 | Pendiente vincular prueba especifica |
+| Height | height | num | designer.prg:1798 | Pendiente vincular prueba especifica |
+| When | when | text | designer.prg:1801 | Pendiente vincular prueba especifica |
+| Valid | valid | text | designer.prg:1802 | Pendiente vincular prueba especifica |
+| Focus | focus | text | designer.prg:1804 | Pendiente vincular prueba especifica |
+| State | state | text | designer.prg:1807 | Pendiente vincular prueba especifica |
+| Name | dlgname | text | designer.prg:1811 | Pendiente vincular prueba especifica |
+| Caption | dlgcaption | text | designer.prg:1812 | Pendiente vincular prueba especifica |
+| Width | dlgwidth | num | designer.prg:1813 | Pendiente vincular prueba especifica |
+| Height | dlgheight | num | designer.prg:1814 | Pendiente vincular prueba especifica |
+| Back | dlgback | color | designer.prg:1815 | Pendiente vincular prueba especifica |
+| Text | dlgtext | color | designer.prg:1816 | Pendiente vincular prueba especifica |
+| Focus | dlgfocus | color | designer.prg:1817 | Pendiente vincular prueba especifica |
 
 ## Rutas de teclado y comandos
 
@@ -447,5 +497,5 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 
 ## Gate de cierre
 
-115 acciones de menu; 2 stubs. Incluye rutas de inspector, ayuda y bucle IDE; faltan campos de modales, rutas del editor y gestos. No es aun el inventario exhaustivo.
+115 acciones de menu; 2 stubs. Incluye rutas de inspector, ayuda y bucle IDE; faltan campos de modales y gestos; rutas del editor incluidas, sin aceptacion completa. No es aun el inventario exhaustivo.
 `python scripts/audit_completion_surface.py --check-stubs` falla mientras haya stubs visibles.

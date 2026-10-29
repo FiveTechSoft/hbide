@@ -70,6 +70,16 @@ def main():
     args=p.parse_args()
     menus,routes=inventory()
     stubs=[m for m in menus if m['wiring']=='stub']
+    acceptance=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['menus']
+    known={m['id'] for m in menus}
+    for ident, spec in acceptance.items():
+        if ident not in known:
+            raise SystemExit('Unknown acceptance ID: '+ident)
+        for test in spec['tests']:
+            if not (ROOT/'tests'/test).is_file():
+                raise SystemExit('Missing acceptance test: '+test)
+    for m in menus:
+        m['acceptance']=acceptance.get(m['id'])
     report={'scope':'Source inventory only. No runtime or platform certification.',
             'menus':menus,'dispatch_routes':routes,
             'inspector_fields': [dict(line=i+1, label=m.group(1), key=m.group(2), kind=m.group(3))
@@ -85,7 +95,18 @@ def main():
         print('| ID | Menu | Accion | Fuente:linea | Conexion | Linux | Windows |')
         print('| --- | --- | --- | --- | --- | --- | --- |')
         for m in menus:
-            print(f"| {m['id']} | {m['menu']} | {m['label']} | {m['source']}:{m['line']} | {m['wiring']} | Pendiente vincular aceptacion | Fuente actual sin validar |")
+            linux='Pruebas vinculadas; ver ledger' if m['acceptance'] else 'Pendiente vincular aceptacion'
+            print(f"| {m['id']} | {m['menu']} | {m['label']} | {m['source']}:{m['line']} | {m['wiring']} | {linux} | Fuente actual sin validar |")
+        print('\n## Contratos y pruebas vinculadas\n')
+        print('Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/hash exactos.\n')
+        for ident, spec in acceptance.items():
+            links=', '.join('['+t+'](../tests/'+t+')' for t in spec['tests'])
+            print(f"- {ident}: {spec['contract']} Pruebas: {links}")
+        print('\n## Campos de inspector\n')
+        print('| Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
+        print('| --- | --- | --- | --- | --- |')
+        for field in report['inspector_fields']:
+            print(f"| {field['label']} | {field['key']} | {field['kind']} | designer.prg:{field['line']} | Pendiente vincular prueba especifica |")
         print('\n## Rutas de teclado y comandos\n')
         print('Estas condiciones amplian el inventario fuera del menu. No se suman como funciones independientes.\n')
         print('| Fuente:linea | Condicion |')
@@ -94,7 +115,7 @@ def main():
             condition=r['condition'].replace('|','&#124;')
             print(f"| {r['source']}:{r['line']} | `{condition}` |")
         print('\n## Gate de cierre\n')
-        print(f"{len(menus)} acciones de menu; {len(stubs)} stubs. Incluye rutas de inspector, ayuda y bucle IDE; faltan campos de modales, rutas del editor y gestos. No es aun el inventario exhaustivo.")
+        print(f"{len(menus)} acciones de menu; {len(stubs)} stubs. Incluye rutas de inspector, ayuda y bucle IDE; faltan campos de modales y gestos; rutas del editor incluidas, sin aceptacion completa. No es aun el inventario exhaustivo.")
         print('`python scripts/audit_completion_surface.py --check-stubs` falla mientras haya stubs visibles.')
     return int(args.check_stubs and bool(stubs))
 

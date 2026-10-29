@@ -1,0 +1,118 @@
+{
+  "scope": "Acceptance links, not execution results. Exact build outcomes live in run ledgers. Partial inventory; not all UI paths covered.",
+  "menus": {
+    "IDE-005": {
+      "tests": [
+        "test_nav_pty.py",
+        "test_saveall_fail_pty.py",
+        "test_saveas_refusal_recovery_pty.py"
+      ],
+      "contract": "Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive."
+    },
+    "IDE-006": {
+      "tests": [
+        "test_multidoc_pty.py"
+      ],
+      "contract": "Save/Discard/Cancel reviews the correct document; Cancel keeps it open and unchanged."
+    },
+    "IDE-007": {
+      "tests": [
+        "test_multidoc_pty.py"
+      ],
+      "contract": "All dirty documents reviewed; Cancel keeps IDE alive; clean exit after decisions."
+    },
+    "IDE-019": {
+      "tests": [
+        "test_nav_pty.py",
+        "test_bp_delete_policy.py"
+      ],
+      "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G."
+    },
+    "IDE-020": {
+      "tests": [
+        "test_project_desktop_pty.py",
+        "test_project.prg"
+      ],
+      "contract": "HBP parsed and preserved; opening never executes build hooks."
+    },
+    "IDE-021": {
+      "tests": [
+        "test_project_desktop_pty.py",
+        "test_project_messages_pty.py"
+      ],
+      "contract": "Source desktop and build act on selected project; diagnostics target correct file."
+    },
+    "IDE-026": {
+      "tests": [
+        "test_nav_pty.py",
+        "test_multidoc_pty.py"
+      ],
+      "contract": "List marks dirty and switches selected buffer without crossing state."
+    },
+    "IDE-027": {
+      "tests": [
+        "test_nav_pty.py",
+        "test_project_messages_pty.py"
+      ],
+      "contract": "Real compiler messages list and navigate to correct source."
+    },
+    "IDE-028": {
+      "tests": [
+        "test_nav_pty.py",
+        "test_project_messages_pty.py"
+      ],
+      "contract": "Next diagnostic wraps with correct line and status."
+    },
+    "IDE-029": {
+      "tests": [
+        "test_nav_pty.py",
+        "test_project_messages_pty.py"
+      ],
+      "contract": "Previous diagnostic wraps with correct line and status."
+    },
+    "IDE-033": {
+      "tests": [
+        "test_nav_pty.py"
+      ],
+      "contract": "Literal arguments reach Start/Script/Debug; shell metacharacters cannot execute commands."
+    },
+    "DBG-004": {
+      "tests": [
+        "test_debug_exit_paths_pty.py",
+        "test_debug_session_pty.py"
+      ],
+      "contract": "Alt+X aborts debuggee, not IDE; colors/menu restored; next session clean."
+    },
+    "DBG-012": {
+      "tests": [
+        "test_debug_exit_paths_pty.py"
+      ],
+      "contract": "Application screen round trip restores debugger; visual buffer correctness still requires pixels."
+    },
+    "DBG-014": {
+      "tests": [
+        "test_debug_animate_pty.py"
+      ],
+      "contract": "All statements execute and return to IDE; application nested display count preserved; visual tearing separate."
+    },
+    "DBG-037": {
+      "tests": [
+        "test_debug_codeblock_pty.py"
+      ],
+      "contract": "ON enters extended block; OFF steps past; fresh sessions tested."
+    },
+    "DBG-038": {
+      "tests": [
+        "test_debug_commands_pty.py",
+        "test_debug_layout.prg"
+      ],
+      "contract": "Hide, temporary Alt menu, Esc rehide, Alt+O,M restore; explicit ON/OFF and settings round trip."
+    },
+    "DBG-043": {
+      "tests": [
+        "test_debug_startup_pty.py"
+      ],
+      "contract": "ON/OFF affect real startup stopping in fresh sessions, not only check mark."
+    }
+  }
+}

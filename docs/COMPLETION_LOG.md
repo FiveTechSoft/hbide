@@ -194,3 +194,13 @@ Ampliacion sobre31e0d75: multidoc37/37, project-messages18/18,
 project-desktop21/21, exitpaths16/16PASS; recovery-multi, retention,
 deep-path y route-guard PASS. Project-desktop y exitpaths ejecutados con
 cambios de rutas de arnes locales, sin cambiar codigo del producto.
+
+## Octavo checkpoint: inventario con contratos, sin falsosPASS
+
+`tests/completion_acceptance.json` vincula17acciones a contratos y pruebas
+concretas. El generador valida IDs/ficheros y muestra las23propiedades de
+inspector detectadas, aun pendientes de prueba individual. Rutas editor ya
+incluidas:316rutas de dispatch en total, no funciones independientes.
+Enlace a prueba no equivale a ejecucion: resultado sigue exigiendo ledger
+con revision/hash exactos. Las98acciones restantes no reciben cobertura
+por proximidad; dos siguen como stub. No se afirma inventario exhaustivo.
