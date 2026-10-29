@@ -149,6 +149,7 @@ try:
     send(KDOWN + KDOWN); pump(0.3)
     send(KDEL); pump(0.8)
     t = scr.text().replace(' ', '')
+    check('Delete does not open Go to Function', 'Go to function' not in scr.text())
     check('selection removed marked lines', 'l1' not in t and 'l2' not in t)
     check('selection delete drops BP (no red gutter)', no_red())
     # 5. duplicates: mark on the second copy, delete the first: the mark

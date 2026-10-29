@@ -6,45 +6,45 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 
 | ID | Menu | Accion | Fuente:linea | Conexion | Linux | Windows |
 | --- | --- | --- | --- | --- | --- | --- |
-| IDE-001 | File | New | hbide.prg:774 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-002 | File | Open... | hbide.prg:775 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-003 | File | Save           F2 | hbide.prg:776 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-004 | File | Save As... | hbide.prg:777 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-005 | File | Save All   Ctrl+F2 | hbide.prg:778 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-006 | File | Close | hbide.prg:779 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-007 | File | Exit | hbide.prg:781 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-008 | Edit | Undo           Ctrl+Z | hbide.prg:786 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-009 | Edit | Redo           Ctrl+U | hbide.prg:787 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-010 | Edit | Copy | hbide.prg:789 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-011 | Edit | Cut | hbide.prg:790 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-012 | Edit | Paste | hbide.prg:791 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-013 | Edit | Delete Line  Ctrl+Y | hbide.prg:793 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-014 | Edit | Duplicate Line | hbide.prg:794 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-015 | Edit | Find...         F5 | hbide.prg:796 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-016 | Edit | Repeat Last Find F3 | hbide.prg:797 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-017 | Edit | Replace... | hbide.prg:798 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-018 | Edit | Goto Line... | hbide.prg:800 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-019 | Edit | Go to Function... Ctrl+G | hbide.prg:801 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-020 | Project | Open .hbp... | hbide.prg:806 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-021 | Project | Sources / Build... | hbide.prg:807 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-022 | Project | Close project | hbide.prg:808 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-023 | Window | Next          Ctrl+F6 | hbide.prg:813 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-024 | Window | Previous  Ctrl+Shift+F6 | hbide.prg:814 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-025 | Window | Close | hbide.prg:815 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-026 | Window | List...           Alt+0 | hbide.prg:817 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-027 | Window | Messages... | hbide.prg:818 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-028 | Window | Next Message     Alt+F8 | hbide.prg:819 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-029 | Window | Previous Message Alt+F7 | hbide.prg:820 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-030 | Run | Start | hbide.prg:824 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-031 | Run | Script | hbide.prg:825 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-032 | Run | Debug | hbide.prg:826 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-033 | Run | Arguments... | hbide.prg:828 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-034 | Options | Compiler Flags... | hbide.prg:833 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-035 | Options | Display... | hbide.prg:834 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-036 | Options | Designer... | hbide.prg:836 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-037 | Help | Index | hbide.prg:841 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-038 | Help | Contents | hbide.prg:842 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-039 | Help | About... | hbide.prg:844 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-001 | File | New | hbide.prg:775 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-002 | File | Open... | hbide.prg:776 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-003 | File | Save           F2 | hbide.prg:777 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-004 | File | Save As... | hbide.prg:778 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-005 | File | Save All   Ctrl+F2 | hbide.prg:779 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-006 | File | Close | hbide.prg:780 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-007 | File | Exit | hbide.prg:782 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-008 | Edit | Undo           Ctrl+Z | hbide.prg:787 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-009 | Edit | Redo           Ctrl+U | hbide.prg:788 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-010 | Edit | Copy | hbide.prg:790 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-011 | Edit | Cut | hbide.prg:791 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-012 | Edit | Paste | hbide.prg:792 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-013 | Edit | Delete Line  Ctrl+Y | hbide.prg:794 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-014 | Edit | Duplicate Line | hbide.prg:795 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-015 | Edit | Find...         F5 | hbide.prg:797 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-016 | Edit | Repeat Last Find F3 | hbide.prg:798 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-017 | Edit | Replace... | hbide.prg:799 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-018 | Edit | Goto Line... | hbide.prg:801 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-019 | Edit | Go to Function... Ctrl+G | hbide.prg:802 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-020 | Project | Open .hbp... | hbide.prg:807 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-021 | Project | Sources / Build... | hbide.prg:808 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-022 | Project | Close project | hbide.prg:809 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-023 | Window | Next          Ctrl+F6 | hbide.prg:814 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-024 | Window | Previous  Ctrl+Shift+F6 | hbide.prg:815 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-025 | Window | Close | hbide.prg:816 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-026 | Window | List...           Alt+0 | hbide.prg:818 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-027 | Window | Messages... | hbide.prg:819 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-028 | Window | Next Message     Alt+F8 | hbide.prg:820 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-029 | Window | Previous Message Alt+F7 | hbide.prg:821 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-030 | Run | Start | hbide.prg:825 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-031 | Run | Script | hbide.prg:826 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-032 | Run | Debug | hbide.prg:827 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-033 | Run | Arguments... | hbide.prg:829 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-034 | Options | Compiler Flags... | hbide.prg:834 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-035 | Options | Display... | hbide.prg:835 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-036 | Options | Designer... | hbide.prg:837 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-037 | Help | Index | hbide.prg:842 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-038 | Help | Contents | hbide.prg:843 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-039 | Help | About... | hbide.prg:845 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-001 | File | Open... | hbdebug/dbgmenu.prg:78 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-002 | File | Resume | hbdebug/dbgmenu.prg:79 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-003 | File | OS Shell | hbdebug/dbgmenu.prg:80 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -305,7 +305,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbide.prg:647 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )` |
 | hbide.prg:650 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )` |
 | hbide.prg:653 | `case nKeyStd == K_ALT_0` |
-| hbide.prg:656 | `case nKeyStd == K_CTRL_G` |
+| hbide.prg:657 | `case nKeyStd == K_CTRL_G .and. hb_keyExt( nKey ) != HB_KX_DEL` |
 | help.prg:533 | `CASE nKey == K_ESC` |
 | help.prg:536 | `CASE nKey == K_ENTER` |
 | help.prg:538 | `CASE nKey == K_BS` |

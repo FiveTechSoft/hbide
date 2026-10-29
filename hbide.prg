@@ -653,7 +653,8 @@ METHOD Activate() CLASS HBIde
          case nKeyStd == K_ALT_0
             ::WindowList()
             loop
-         case nKeyStd == K_CTRL_G
+         // GT normalizes Delete to Ctrl+G (7); retain the extended identity.
+         case nKeyStd == K_CTRL_G .and. hb_keyExt( nKey ) != HB_KX_DEL
             ::GotoFunction()
             loop
          endcase

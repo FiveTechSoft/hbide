@@ -141,3 +141,21 @@ bloqueo de decision; Windows y tearingAnimate siguen pendientes.
 Tras488d754 y antes de este parche: Monitor10/10, callstack y codeblockPASS.
 Grabacion Animate30fps/10s sobre salida de app, muestras visuales sin mezcla
 persistente; no es prueba de todas las velocidades ni cierre de tearing.
+
+## Quinto checkpoint: Delete no es Ctrl+G
+
+Una regresion ampliada encontro un fallo real anterior: Delete con seleccion
+abria Go to Function en lugar de borrar. Harbour normaliza ambas teclas al
+codigo clasico7. El bucle principal ahora conserva HB_KX_DEL para no consumir
+Delete como atajo de navegacion. No se cambian las reglas de breakpoints.
+
+Antes del parche:2fallos en seleccion/breakpoint, dialogo inesperado visible.
+Despues: politica de borrado13/13PASS (incluida nueva comprobacion de ausencia
+del dialogo), navegacion35/35PASS con Ctrl+G real, filtro, Enter/Esc, mensajes,
+argumentos y SaveAll. Linux, build local basado en98d38bb.
+
+Ampliacion sobre98d38bb sin este parche: SaveAll fallo5/5 y SaveAs negativa
+con cierre forzado/recuperacion21/21PASS. Functions58/58PASS tambien repetida
+sobre98d38bb: su espera minima fija supera108s, no confundir timeout100s del
+runner anterior con fallo del producto. No se han repetido todas las suites
+sobre el cambio de Delete ni se declara cerradoM1 o certificadoWindows.
