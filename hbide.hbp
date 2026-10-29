@@ -9,6 +9,7 @@ hbgetu.prg
 help.prg
 project.prg
 projectui.prg
+nav.prg
 recovery.prg
 
 # Vendored Harbour source debugger (from harbour/src/debug, GPL like Harbour).

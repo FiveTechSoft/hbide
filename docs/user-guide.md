@@ -28,11 +28,11 @@ behaviour is not yet validated, the text says so.
 
 | Menu | Options |
 | --- | --- |
-| File | New, Open..., Save (F2), Save As..., Close, Exit |
-| Edit | Undo (Ctrl+Z), Redo (Ctrl+U), Copy, Cut, Paste, Delete Line (Ctrl+Y), Duplicate Line, Find... (F5), Repeat Last Find (F3), Replace..., Goto Line... |
+| File | New, Open..., Save (F2), Save As..., Save All (Ctrl+F2), Close, Exit |
+| Edit | Undo (Ctrl+Z), Redo (Ctrl+U), Copy, Cut, Paste, Delete Line (Ctrl+Y), Duplicate Line, Find... (F5), Repeat Last Find (F3), Replace..., Goto Line..., Go to Function... (Ctrl+G) |
 | Project | Open .hbp..., Sources / Build..., Close project |
-| Window | Next (Ctrl+F6), Previous (Ctrl+Shift+F6), Close |
-| Run | Start, Script, Debug |
+| Window | Next (Ctrl+F6), Previous (Ctrl+Shift+F6), Close, List... (Alt+0), Messages..., Next Message (Alt+F8), Previous Message (Alt+F7) |
+| Run | Start, Script, Debug, Arguments... |
 | Options | Compiler Flags..., Display..., Designer... |
 | Help | Index, Contents, About... |
 
@@ -54,6 +54,9 @@ the current line otherwise.
 | Ctrl+Y | Delete line |
 | Ctrl+Right / Alt+Left | Move by word forward / back (Ctrl+Left also jumps back on terminals that deliver extended key codes; otherwise it arrives as Undo) |
 | Ctrl+F6 / Ctrl+Shift+F6 | Next / previous document |
+| Alt+0 / Ctrl+F2 | Window list / Save All |
+| Ctrl+G | Go to function, procedure or method |
+| Alt+F8 / Alt+F7 | Next / previous compiler message (details: [navigation-build-run](navigation-build-run-2026-10-29.md)) |
 | Alt+letter | Open menus and activate dialog hotkeys |
 | Esc | Close menus and dialogs, cancel |
 

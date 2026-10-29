@@ -1,6 +1,18 @@
 HbIde ChangeLog
 ================
 
+2026-10-29
+----------
+
+  Primer bloque P0 de la comparacion con Turbo C++ (rama designer-robustness)
+  ---------------------------------------------------------------------------
+  - Errores de compilacion -> linea: Alt+F8/Alt+F7, Window > Messages;
+    un build fallido salta al primer error
+  - Go to Function (Ctrl+G, Edit > Go to Function)
+  - Run > Arguments para Start, Script y Debug (por sesion)
+  - Save All (Ctrl+F2) y lista de ventanas (Alt+0)
+  - Prueba: tests/test_nav_pty.py. Solo Linux; Windows sin validar
+
 2026-10-26
 ----------
 

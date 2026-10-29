@@ -52,6 +52,10 @@ CLASS HbIde
    DATA   oProject
    DATA   cProjectHbmk2 INIT "hbmk2"
    DATA   cPendingOpen INIT ""   // file the designer asks hbide to open on exit
+   DATA   aMessages    INIT {}   // parsed compiler diagnostics of the last build
+   DATA   nMsg         INIT 0    // index of the message last jumped to (0 = none)
+   DATA   cRunArgs     INIT ""   // Run > Arguments: used by Start, Script and Debug
+   DATA   cMsgBar      INIT ""   // one-line message shown in the status row
 
    ACCESS oEditor   INLINE ::aEditors[ ::nCurrent ]
    METHOD New()
@@ -108,6 +112,14 @@ CLASS HbIde
    METHOD HelpView( cTitle, cText, lNested )
    METHOD HelpTopic( cTitle )
    METHOD HelpPick( aTopics, cCaption )
+   METHOD SaveAll()
+   METHOD WindowList()
+   METHOD GotoFunction()
+   METHOD RunArguments()
+   METHOD SetMessages( aDiag )
+   METHOD MessageList()
+   METHOD NextMessage( nDir )
+   METHOD JumpMessage( n, cWrap )
 
 ENDCLASS
 
@@ -512,6 +524,9 @@ METHOD ShowStatus() CLASS HBIde
    if ::oEditor:HasMark()
       hb_DispOutAt( MaxRow(), 7, "MARK", aColors[ 9 ] )
    endif
+   if ! Empty( ::cMsgBar )
+      hb_DispOutAt( MaxRow(), 13, PadR( Left( ::cMsgBar, MaxCol() - 33 ), MaxCol() - 33 ), "R/W" )
+   endif
    hb_DispOutAt( MaxRow(), MaxCol() - 17,;
                  "row: " + AllTrim( Str( ::oEditor:RowPos() ) ) + ", " + ;
                  "col: " + AllTrim( Str( Max( ::oEditor:ColPos() - 4, 1 ) ) ) + " ",;
@@ -620,6 +635,31 @@ METHOD Activate() CLASS HBIde
       if nKeyStd == K_F1
          ::HelpContext()
          loop
+      endif
+
+      // Borland-style navigation keys (not while a menu owns the keyboard)
+      if ! ::oMenu:IsOpen()
+         do case
+         case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F8, HB_KF_ALT, K_ALT_F8 )
+            ::NextMessage( 1 )
+            loop
+         case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )
+            ::NextMessage( -1 )
+            loop
+         case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )
+            ::SaveAll()
+            loop
+         case nKeyStd == K_ALT_0
+            ::WindowList()
+            loop
+         case nKeyStd == K_CTRL_G
+            ::GotoFunction()
+            loop
+         endcase
+         if nKey != 0 .and. ! Empty( ::cMsgBar )
+            ::cMsgBar := ""   // the message line lives until the next key
+            ::ShowStatus()
+         endif
       endif
 
       // Handle F5 for Find
@@ -734,6 +774,7 @@ METHOD BuildMenu() CLASS HBIde
          MENUITEM "~Open..."          ACTION ::OpenFile()
          MENUITEM "~Save           F2 " ACTION ::SaveFile()
          MENUITEM "Save ~As... "      ACTION ::SaveAs()
+         MENUITEM "Save A~ll   Ctrl+F2 " ACTION ::SaveAll()
          MENUITEM "~Close "           ACTION ::CloseFile()
          SEPARATOR
          MENUITEM "E~xit"             ACTION ::End()
@@ -756,6 +797,7 @@ METHOD BuildMenu() CLASS HBIde
          MENUITEM "Repl~ace... "              ACTION ::ReplaceDialog()
          SEPARATOR
          MENUITEM "~Goto Line..."           ACTION ::GotoLine()
+         MENUITEM "Go to F~unction... Ctrl+G" ACTION ::GotoFunction()
       ENDMENU
 
       MENUITEM " ~Project "
@@ -770,12 +812,19 @@ METHOD BuildMenu() CLASS HBIde
          MENUITEM "~Next          Ctrl+F6 "   ACTION ::NextDoc()
          MENUITEM "~Previous  Ctrl+Shift+F6 " ACTION ::PrevDoc()
          MENUITEM "~Close "                  ACTION ::CloseFile()
+         SEPARATOR
+         MENUITEM "~List...           Alt+0 "  ACTION ::WindowList()
+         MENUITEM "~Messages... "             ACTION ::MessageList()
+         MENUITEM "Next Mess~age     Alt+F8 " ACTION ::NextMessage( 1 )
+         MENUITEM "Previous Messa~ge Alt+F7 " ACTION ::NextMessage( -1 )
       ENDMENU
       MENUITEM " ~Run "
       MENU
          MENUITEM "~Start "            ACTION ::Start()
          MENUITEM "S~cript "           ACTION ::Script()
          MENUITEM "~Debug "          ACTION ::Debug()
+         SEPARATOR
+         MENUITEM "~Arguments... "     ACTION ::RunArguments()
       ENDMENU
 
       MENUITEM " ~Options "
@@ -802,6 +851,7 @@ return oMenu
 METHOD Start() CLASS HbIde
 
    local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, cBase, cExeTmp, cInfo, nRc, cRecovery := ""
+   local aDiag, nFirstErr
 
    if ! ::ConfirmOverwrite()
       return nil
@@ -857,13 +907,18 @@ METHOD Start() CLASS HbIde
    // instead of CP437 glyphs (chr(13) renders as a music note)
    cOut := StrTran( cOut, Chr( 13 ) + Chr( 10 ), Chr( 10 ) )
    cOut := StrTran( cOut, Chr( 13 ), Chr( 10 ) )
+   // keep the parsed diagnostics for Window > Messages / Alt+F7 / Alt+F8
+   // (paths stay as hbmk2 printed them: relative to the current directory)
+   aDiag := HBIDEProjectDiagnostics( cOut, hb_cwd() + hb_ps() )
+   ::SetMessages( aDiag )
    HBIDE_MsgAlert( iif( Empty( cOut ), "Build OK: " + cExe, cOut ) )
 
    if nRc == 0 .and. File( cExeTmp )
       if ! HBIDE_ReplaceFile( cExeTmp, cExe, @cRecovery )
          HBIDE_MsgAlert( "Build succeeded but could not replace " + cExe + ": " + cRecovery )
       elseif ::lAutoRun
-         hb_Run( cExe )
+         // Run > Arguments: appended verbatim, the shell splits them
+         hb_Run( cExe + iif( Empty( ::cRunArgs ), "", " " + ::cRunArgs ) )
       else
          HBIDE_MsgAlert( "Built (auto-run off): " + cExe )
       endif
@@ -876,6 +931,16 @@ METHOD Start() CLASS HbIde
 
    ::Repaint()
    SetCursor( SC_NORMAL )
+
+   // like the Borland IDE: a failed build lands on its first error
+   if ! ( nRc == 0 .and. File( cExe ) )
+      nFirstErr := AScan( ::aMessages, {| h | h[ "level" ] == "error" } )
+      if nFirstErr > 0
+         ::JumpMessage( nFirstErr )
+      endif
+   elseif Len( ::aMessages ) > 0
+      ::cMsgBar := hb_ntos( Len( ::aMessages ) ) + " compiler message(s): Alt+F8 next, Window > Messages"
+   endif
 
 return nil
 
@@ -1021,10 +1086,16 @@ METHOD ProjectDesktop() CLASS HbIde
    hNavigate := HBIDEProjectDesktop( ::oProject, ::cProjectHbmk2 )
    ::ResumeStatus()
    ::Repaint()
+   // a project build feeds the same message list as Run > Start
+   if ! Empty( ::oProject:hBuild ) .and. hb_HHasKey( ::oProject:hBuild, "diagnostics" )
+      ::SetMessages( ::oProject:hBuild[ "diagnostics" ] )
+   endif
    if hNavigate != nil
       if ::OpenInEditor( hNavigate[ "path" ] )
          ::oEditor:Goto( hNavigate[ "line" ], hNavigate[ "column" ] + 4 )
          ::oEditor:Display()
+         ::nMsg := AScan( ::aMessages, {| h | h[ "path" ] == hNavigate[ "path" ] .and. ;
+                          h[ "line" ] == hNavigate[ "line" ] } )
       endif
    endif
    ::oEditor:ShowCursor()
@@ -1913,7 +1984,13 @@ return nil
 
 METHOD Script() CLASS HbIde
    
-   local oHrb, bOldError
+   local oHrb, bOldError, aArgs
+
+   aArgs := HBIDEProjectTokens( ::cRunArgs )
+   if aArgs == nil
+      HBIDE_MsgAlert( "Run > Arguments has an unbalanced quote; fix it first" )
+      return nil
+   endif
 
    oHrb = hb_CompileFromBuf( StrTran( ::oEditor:GetText(), "Main", "__Main" ),;
                               .T., "-n", "-q2", "-Ic:/harbour/include" ) 
@@ -1922,7 +1999,8 @@ METHOD Script() CLASS HbIde
    if ! Empty( oHrb )
       BEGIN SEQUENCE
          bOldError = ErrorBlock( { | o | DoBreak( o ) } )
-         hb_HrbRun( oHrb )
+         // the arguments arrive as the parameters of Main()
+         hb_ExecFromArray( "hb_HrbRun", AMerge( { oHrb }, aArgs ) )
       END SEQUENCE
       ErrorBlock( bOldError )
    endif
@@ -1936,8 +2014,14 @@ return nil
 
 METHOD Debug() CLASS HbIde
 
-   local oHrb, bOldError, cTmpPrg, cTmpHrb, cOldClr := SetColor()
+   local oHrb, bOldError, cTmpPrg, cTmpHrb, cOldClr := SetColor(), aArgs
    static nDbgSeq := 0
+
+   aArgs := HBIDEProjectTokens( ::cRunArgs )
+   if aArgs == nil
+      HBIDE_MsgAlert( "Run > Arguments has an unbalanced quote; fix it first" )
+      return nil
+   endif
 
    // compile the buffer with debug info (-b). The VM debug-request flag
    // is per stack and hb_HrbRun() runs on the HRB stack, so an init
@@ -1996,7 +2080,8 @@ METHOD Debug() CLASS HbIde
       __hbide_dbgPresetBPs( ::oEditor:aBPs )
       BEGIN SEQUENCE
          bOldError = ErrorBlock( { | o | DoBreak( o ) } )
-         hb_HrbRun( HB_HRB_BIND_FORCELOCAL, cTmpHrb )
+         // the arguments arrive as the parameters of Main()
+         hb_ExecFromArray( "hb_HrbRun", AMerge( { HB_HRB_BIND_FORCELOCAL, cTmpHrb }, aArgs ) )
       RECOVER
          // Every exit lands here or after END: normal end, Alt+X abort
          // (Quit() Break()s expecting this RECOVER) and debuggee runtime
@@ -2021,7 +2106,241 @@ METHOD Debug() CLASS HbIde
 
 return nil
 
+// True when nKey is the extended key nExt with modifier nMod, or the classic
+// code nStd (terminals that only deliver the collapsed code).
+static function HBIDE_KeyIs( nKey, nKeyStd, nExt, nMod, nStd )
+
+return nKeyStd == nStd .or. ;
+   ( hb_keyExt( nKey ) == nExt .and. hb_bitAnd( hb_keyMod( nKey ), nMod ) != 0 .and. ;
+     hb_bitAnd( hb_keyMod( nKey ), hb_bitNot( nMod ) ) == 0 )
+
+static function AMerge( a, b )
+
+   local x
+
+   for each x in b
+      AAdd( a, x )
+   next
+
+return a
+
+//-----------------------------------------------------------------------------------------//
+
+// Save every modified document that has a file name. Untitled buffers are
+// never saved silently (they need a name): they are counted and left dirty.
+METHOD SaveAll() CLASS HbIde
+
+   local nOrig := ::nCurrent, nSaved := 0, nFailed := 0, nUntitled := 0, i, cMsg, oEd
+
+   for i := 1 to Len( ::aEditors )
+      oEd := ::aEditors[ i ]
+      if ! oEd:Changed()
+         loop
+      endif
+      if Empty( oEd:cFile ) .or. oEd:cFile == "noname.prg"
+         nUntitled++
+         loop
+      endif
+      ::SwitchDoc( i )
+      ::DoSave()
+      if ::aEditors[ i ]:Changed()
+         nFailed++
+      else
+         nSaved++
+      endif
+   next
+   if ::nCurrent != nOrig .and. nOrig <= Len( ::aEditors )
+      ::SwitchDoc( nOrig )
+   endif
+
+   if nFailed > 0 .or. nUntitled > 0
+      cMsg := hb_ntos( nSaved ) + " saved"
+      if nFailed > 0
+         cMsg += ", " + hb_ntos( nFailed ) + " could not be saved (still modified)"
+      endif
+      if nUntitled > 0
+         cMsg += ", " + hb_ntos( nUntitled ) + " untitled skipped (use Save As)"
+      endif
+      HBIDE_MsgAlert( cMsg, nil, "Save All" )
+   elseif nSaved == 0
+      ::cMsgBar := "Save All: nothing modified"
+   else
+      ::cMsgBar := "Save All: " + hb_ntos( nSaved ) + " file(s) saved"
+   endif
+   ::ShowStatus()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Alt+0: list of open documents with their modified state
+METHOD WindowList() CLASS HbIde
+
+   local aLabels := {}, oEd, n
+
+   for each oEd in ::aEditors
+      AAdd( aLabels, hb_ntos( oEd:__enumIndex() ) + iif( oEd:__enumIndex() == ::nCurrent, ">", " " ) + ;
+            iif( oEd:Changed(), " * ", "   " ) + oEd:cFile )
+   next
+   ::SuspendStatus()
+   n := HBIDE_ListPick( "Window list (" + hb_ntos( Len( aLabels ) ) + ")  * = modified", aLabels, ::nCurrent, ;
+                        "Enter switch   Esc cancel" )
+   ::ResumeStatus()
+   ::Repaint()
+   if n > 0
+      ::SwitchDoc( n )
+   endif
+   ::oEditor:ShowCursor()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Ctrl+G: pick a function/procedure/method of the current document
+METHOD GotoFunction() CLASS HbIde
+
+   local aProcs := HBIDE_ScanProcs( ::oEditor:GetText() ), aLabels := {}, a, n, nInit := 1, nRow := ::oEditor:RowPos()
+
+   if Empty( aProcs )
+      HBIDE_MsgAlert( "No function, procedure or method found in this document" )
+      return nil
+   endif
+   for each a in aProcs
+      AAdd( aLabels, PadR( a[ 2 ], 17 ) + PadR( a[ 1 ], 36 ) + " line " + hb_ntos( a[ 3 ] ) )
+      if a[ 3 ] <= nRow
+         nInit := a:__enumIndex()   // the one that contains the cursor
+      endif
+   next
+   ::SuspendStatus()
+   n := HBIDE_ListPick( "Go to function - " + hb_FNameNameExt( ::oEditor:cFile ), aLabels, nInit )
+   ::ResumeStatus()
+   ::Repaint()
+   if n > 0
+      ::oEditor:GotoLine( aProcs[ n ][ 3 ] )
+      ::oEditor:Display()
+   endif
+   ::oEditor:ShowCursor()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD RunArguments() CLASS HbIde
+
+   local oDlg, GetList := {}, lDummy, lOk := .F., aIn, cText := ::cRunArgs
+
+   oDlg = HBWindow():Dialog( "Run arguments", 56, 9, "W+/W" )
+   oDlg:bRepaint = { || ::Repaint() }
+   ::SuspendStatus()
+
+   @ oDlg:nTop + 2, oDlg:nLeft + 3 SAY "Command line arguments for Start, Script and Debug:" COLOR "N/W"
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 17 GET lDummy PUSHBUTTON CAPTION " &OK " COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || lOk := .T., oDlg:End() }
+
+   @ oDlg:nBottom - 2, oDlg:nLeft + 28 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
+      STATE { || oDlg:End() }
+
+   aIn := HBIDE_DlgInput( oDlg:nTop + 4, oDlg:nLeft + 3, 48, cText )
+   if aIn[ 2 ]
+      cText := aIn[ 1 ]
+      lOk := .T.
+      oDlg:Hide()
+   elseif aIn[ 3 ]
+      cText := aIn[ 1 ]
+      oDlg:Activate( GetList )
+   else
+      oDlg:Hide()
+   endif
+   ::ResumeStatus()
+   ::Repaint()
+
+   if lOk
+      if HBIDEProjectTokens( cText ) == nil
+         HBIDE_MsgAlert( "Unbalanced quote in the arguments; they were not changed" )
+      else
+         ::cRunArgs := AllTrim( cText )
+         ::cMsgBar := iif( Empty( ::cRunArgs ), "Run arguments cleared", "Run arguments: " + ::cRunArgs )
+      endif
+   endif
+   ::oEditor:ShowCursor()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD SetMessages( aDiag ) CLASS HbIde
+
+   ::aMessages := iif( HB_ISARRAY( aDiag ), aDiag, {} )
+   ::nMsg := 0
+
+return nil
+
+METHOD MessageList() CLASS HbIde
+
+   local aLabels := {}, h, n
+
+   if Empty( ::aMessages )
+      HBIDE_MsgAlert( "No compiler messages. Build with Run > Start (or the project desktop) first" )
+      return nil
+   endif
+   for each h in ::aMessages
+      AAdd( aLabels, PadR( Upper( h[ "level" ] ), 8 ) + hb_FNameNameExt( h[ "path" ] ) + ":" + ;
+            hb_ntos( h[ "line" ] ) + "  " + h[ "text" ] )
+   next
+   ::SuspendStatus()
+   n := HBIDE_ListPick( "Compiler messages", aLabels, Max( 1, ::nMsg ), "Enter jump to source   Esc cancel" )
+   ::ResumeStatus()
+   ::Repaint()
+   if n > 0
+      ::JumpMessage( n )
+   else
+      ::oEditor:ShowCursor()
+   endif
+
+return nil
+
+// Alt+F8 / Alt+F7 (and the Window menu): next/previous message, wrapping
+METHOD NextMessage( nDir ) CLASS HbIde
+
+   local n, cWrap := ""
+
+   if Empty( ::aMessages )
+      ::cMsgBar := "No compiler messages (build with Run > Start first)"
+      ::ShowStatus()
+      return nil
+   endif
+   n := ::nMsg + nDir
+   if n > Len( ::aMessages )
+      n := 1; cWrap := " (wrapped)"
+   elseif n < 1
+      n := Len( ::aMessages ); cWrap := " (wrapped)"
+   endif
+   ::JumpMessage( n, cWrap )
+
+return nil
+
+METHOD JumpMessage( n, cWrap ) CLASS HbIde
+
+   local h := ::aMessages[ n ]
+
+   hb_default( @cWrap, "" )
+   if ! ::OpenInEditor( h[ "path" ] )
+      return nil
+   endif
+   ::nMsg := n
+   ::oEditor:Goto( h[ "line" ], h[ "column" ] + 4 )
+   ::oEditor:Display()
+   ::oEditor:ShowCursor()
+   ::cMsgBar := hb_ntos( n ) + "/" + hb_ntos( Len( ::aMessages ) ) + cWrap + " " + Upper( h[ "level" ] ) + ": " + h[ "text" ]
+   ::ShowStatus()
+
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
 function DoBreak( oError )
+
 
    HBIDE_MsgAlert( oError:Description )
 

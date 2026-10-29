@@ -185,7 +185,9 @@ never had it" side is an absence in that IDE, not a valuation.
 Ordered by real utility for Harbour work. Sizes: S (hours), M (a day),
 L (several days). All in Harbour; C only where measurement proves it.
 
-P0 - daily-coding wins:
+P0 - daily-coding wins (implemented 2026-10-29, see
+[navigation-build-run-2026-10-29.md](navigation-build-run-2026-10-29.md);
+the table above describes the state before that batch):
 
 1. Next/previous build error in the editor (Alt+F7 / Alt+F8), jumping
    to file:line:col. Reuse the project diagnostics parser. Size M.
