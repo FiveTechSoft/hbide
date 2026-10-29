@@ -402,3 +402,11 @@ Prueba de50pasos izquierda desde linea con50TAB detecto32posiciones de
 cursor dentro del gutter/fuera de viewport. GoTo ajusta ahora tambien
 origen visual a la izquierda, no solo a la derecha.113checks editorPASS
 (50son pasos del mismo contrato, no50funciones), nueve modelosPASS.
+
+## Clipping derecho del texto coloreado
+
+Captura real tras scrollTABmostro token sobrescribiendo borde derecho.
+El pintor limitaba largo por anchura del editor, sin restar inicio del
+token. Se limita a nRight-nCol+1. Probe SaveScreen con celda centinela
+fuera del editor: antes falla, despues114/114checksPASS. Captura corregida
+inspeccionada completa, borde limpio. Nueve modelosPASS.

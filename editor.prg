@@ -1619,7 +1619,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
          if nCol < ::nNumCols
             hb_DispOutAt( nLine, nCol,;
-                          hb_USubStr( cToken, nStart, Min( hb_ULen( cToken ) - nStart + 1, ::nNumCols - 5 ) ),;
+                          hb_USubStr( cToken, nStart, Min( hb_ULen( cToken ) - nStart + 1, ::nRight - nCol + 1 ) ),;
                           cColor + SubStr( ::LineColor( nLine ),;
                           At( "/", ::LineColor( nLine ) ) ) )
          endif

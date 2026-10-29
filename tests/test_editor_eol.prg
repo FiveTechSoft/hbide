@@ -3,7 +3,7 @@
 PROCEDURE Main()
    LOCAL o, cFile := hb_DirTemp() + 'hbide-eol-' + hb_ntos( hb_RandomInt( 999999999 ) ) + '.prg'
    LOCAL cCRLF := Chr( 13 ) + Chr( 10 ), cLF := Chr( 10 ), cText, aCase
-   LOCAL nPass := 0, nFail := 0, oRecovered, cJournal, lOk, n
+   LOCAL nPass := 0, nFail := 0, oRecovered, cJournal, lOk, n, cScreen
    FOR EACH aCase IN { { 'CRLF', cCRLF }, { 'LF', cLF } }
       cText := 'function Main()' + aCase[ 2 ] + '   return nil' + aCase[ 2 ]
       hb_MemoWrit( cFile, cText )
@@ -191,6 +191,12 @@ PROCEDURE Main()
       o:Edit( K_LEFT )
       Check( o:Col() >= 5 .and. o:Col() <= 79, 'left through tabs viewport ' + hb_ntos( n ), @nPass, @nFail )
    next
+   o:LoadText( 'abc' + Space( 60 ) + 'TOKENLONG' )
+   o:Resize( 2, 1, 20, 70 )
+   hb_DispOutAt( 2, 71, '#', 'W/B' )
+   cScreen := SaveScreen( 2, 71, 2, 71 )
+   o:Display()
+   Check( SaveScreen( 2, 71, 2, 71 ) == cScreen, 'token paint cannot cross right editor boundary', @nPass, @nFail )
    FErase( cFile )
    ? 'TOTAL', nPass, 'PASS', nFail, 'FAIL'
    ErrorLevel( iif( nFail == 0, 0, 1 ) )
