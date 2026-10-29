@@ -157,17 +157,18 @@ FUNCTION HBIDE_ListPick( cTitle, aLabels, nInit, cHint )
       DispBegin()
       hb_Scroll( nT, nL, nT + nH - 1, nL + nW - 1,,, "N/W" )
       hb_DispBox( nT, nL, nT + nH - 1, nL + nW - 1, hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "N/W" )
-      hb_DispOutAt( nT, nL + 2, " " + Left( cTitle, nW - 6 ) + " ", "W+/B" )
-      hb_DispOutAt( nT + 1, nL + 2, PadR( "Find: " + cFilter + "_", nW - 4 ), "W+/B" )
+      hb_DispOutAt( nT, nL + 2, " " + Left( cTitle, nW - 6 ) + " ", "N/W" )
+      hb_DispOutAt( nT + 1, nL + 2, PadR( "Find: " + cFilter + "_", nW - 4 ), "N/BG" )
       FOR i := 0 TO nVis - 1
          n := nTop + i
          cLine := iif( n <= Len( aIdx ), aLabels[ aIdx[ n ] ], "" )
-         hb_DispOutAt( nT + 2 + i, nL + 2, PadR( Left( cLine, nW - 4 ), nW - 4 ), iif( n == nPick .AND. n <= Len( aIdx ), "W+/B", "N/W" ) )
+         hb_DispOutAt( nT + 2 + i, nL + 2, PadR( Left( cLine, nW - 4 ), nW - 4 ), iif( n == nPick .AND. n <= Len( aIdx ), "N/BG", "N/W" ) )
       NEXT
       IF Len( aIdx ) == 0
          hb_DispOutAt( nT + 2, nL + 2, PadR( "No match", nW - 4 ), "N/W" )
       ENDIF
-      hb_DispOutAt( nT + nH - 2, nL + 2, PadR( Left( hb_ntos( Len( aIdx ) ) + "/" + hb_ntos( Len( aLabels ) ) + "  " + cHint, nW - 4 ), nW - 4 ), "W+/B" )
+      hb_DispOutAt( nT + nH - 2, nL + 2, PadR( Left( hb_ntos( Len( aIdx ) ) + "/" + hb_ntos( Len( aLabels ) ) + "  " + cHint, nW - 4 ), nW - 4 ), "N/BG" )
+      DrawShadow( nT, nL, nT + nH - 1, nL + nW - 1 )
       DispEnd()
 
       nKey := hb_keyStd( Inkey( 0, INKEY_ALL + HB_INKEY_EXT ) )

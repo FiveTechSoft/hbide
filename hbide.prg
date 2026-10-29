@@ -1,4 +1,5 @@
 REQUEST __DBGENTRY   // link the Harbour source debugger (libhbdebug)
+REQUEST HB_HRBRUN    // Script/Debug invoke it by name; static links need the request
 REQUEST __MVPRIVATE  // HRB debuggee PRIVATE declarations need this VM helper
 
 #include "hbclass.ch"
@@ -1814,11 +1815,12 @@ return cFlags
 // trailing blanks are real data, not field padding. Enter confirms the
 // dialog, Tab/Down advances to the next control, Esc cancels. Returns
 // { cText, lConfirm, lNext }.
-static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit )
+static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor )
 
    local cText := hb_defaultValue( cInit, "" )
    local nPos := Len( cText ) + 1, nOfs := 1, nKey, cKey, cVis, nPrev
    local lInsert := .T., nOldCursor := SetCursor( SC_NORMAL )
+   hb_default( @cColor, "W/B" )
 
    // positions are byte offsets, always kept on character boundaries
    do while .T.
@@ -1831,7 +1833,7 @@ static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit )
       enddo
       cVis := GetUCellSlice( cText, nOfs, nWidth )
       cVis += Space( Max( 0, nWidth - hb_ULen( cVis ) ) )
-      hb_DispOutAt( nRow, nCol, cVis, "W/B" )
+      hb_DispOutAt( nRow, nCol, cVis, cColor )
       SetPos( nRow, nCol + hb_ULen( SubStr( cText, nOfs, nPos - nOfs ) ) )
 
       nKey := Inkey( 0, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
@@ -2259,7 +2261,7 @@ METHOD RunArguments() CLASS HbIde
    @ oDlg:nBottom - 2, oDlg:nLeft + 28 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
-   aIn := HBIDE_DlgInput( oDlg:nTop + 4, oDlg:nLeft + 3, 48, cText )
+   aIn := HBIDE_DlgInput( oDlg:nTop + 4, oDlg:nLeft + 3, 48, cText, "N/BG" )
    if aIn[ 2 ]
       cText := aIn[ 1 ]
       lOk := .T.

@@ -1,6 +1,18 @@
 HbIde ChangeLog
 ================
 
+  Dialogos P0 con colores Turbo Vision y sombra (rama designer-robustness)
+  ------------------------------------------------------------------------
+  - Listas modales (Go to Function, Compiler messages, Window list) sin
+    azul: titulo con fondo blanco, destacados (filtro, seleccion, pie) en
+    celeste y cuerpo gris claro; ahora arrojan sombra como el resto de
+    dialogos
+  - Run > Arguments: campo de entrada en celeste
+  - Correccion: REQUEST HB_HRBRUN para que Run > Script y Run > Debug
+    enlacen tambien en builds estaticos (antes fallaban con
+    "Undefined function" fuera de builds con libharbour dinamica)
+  - Verificado en PTY real con capturas; solo Linux, Windows sin validar
+
 2026-10-29
 ----------
 
