@@ -445,3 +445,12 @@ cambio de documento. Se distingue prueba de modelo frente a despacho
 real del menu/modal; no se presenta una como la otra.32de115acciones con
 contrato vinculado, no porcentaje ni cobertura total. Inventario regenerado
 con lineas de fuente actuales. Gate de stubs sigue fallando como debe:2.
+
+## Seleccion sobre soft-wrap sin saltos inventados
+
+SelectionText insertaba newline entre fragmentos visuales de una misma
+linea fisica. Ahora solo separa fronteras fisicas; el clipboard sigue
+usando hb_eol para lineas reales. SelDelete hereda estado soft/hard del
+fragmento final, igual que su terminador.126checks editorPASS, incluidos
+seleccion/cut/undo/redo sobre wrap; nueve modelosPASS. No certifica todas
+las operaciones de clipboard ni sus modales.

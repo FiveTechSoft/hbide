@@ -1785,9 +1785,10 @@ METHOD SelectionText() CLASS HBSrcEdit
    endif
    cOut = hb_USubStr( ::aText[ aSel[ 1 ] ]:cText, aSel[ 2 ] - 4 )
    for n = aSel[ 1 ] + 1 to aSel[ 3 ] - 1
-      cOut += hb_eol() + ::aText[ n ]:cText
+      cOut += iif( ::aText[ n - 1 ]:lSoftCR .and. ::lWordWrap, "", hb_eol() ) + ::aText[ n ]:cText
    next
-   cOut += hb_eol() + hb_USubStr( ::aText[ aSel[ 3 ] ]:cText, 1, aSel[ 4 ] - 5 )
+   cOut += iif( ::aText[ aSel[ 3 ] - 1 ]:lSoftCR .and. ::lWordWrap, "", hb_eol() ) + ;
+           hb_USubStr( ::aText[ aSel[ 3 ] ]:cText, 1, aSel[ 4 ] - 5 )
 
 return cOut
 
@@ -1840,6 +1841,7 @@ METHOD SelDelete( aSel ) CLASS HBSrcEdit
    next
    cMerged = hb_USubStr( HBIDE_LineText( aOld[ 1 ] ), 1, aSel[ 2 ] - 5 ) + ;
              hb_USubStr( HBIDE_LineText( aOld[ Len( aOld ) ] ), aSel[ 4 ] - 4 )
+   ::aText[ aSel[ 1 ] ]:lSoftCR := ::aText[ aSel[ 3 ] ]:lSoftCR
    ::aText[ aSel[ 1 ] ]:cEol := ::aText[ aSel[ 3 ] ]:cEol
    ::aText[ aSel[ 1 ] ]:cText := cMerged
    for n = aSel[ 1 ] + 1 to aSel[ 3 ]
