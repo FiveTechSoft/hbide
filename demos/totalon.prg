@@ -128,6 +128,8 @@ procedure Main()
    hb_cdpSelect( "UTF8" )
    SetMode( SCR_ROWS, SCR_COLS )
    Set( _SET_EVENTMASK, INKEY_ALL + HB_INKEY_EXT )
+   Set( _SET_SCOREBOARD, .F. )
+   Set( _SET_MESSAGE, SCR_ROWS - 1 )   // READ messages land on the empty margin row, never over the menu bar
    SetColor( "N/B" )
    CLEAR SCREEN
 
@@ -283,6 +285,7 @@ static procedure DeskRepaint()
       s_h[ "winobj" ][ cId ]:Show( cId == ATail( s_h[ "wins" ] ) )
    next
    if s_h[ "menu" ] != nil
+      hb_Scroll( 0, 0, 0, SCR_COLS - 1,,, "N/W" )   // solid bar: no desktop gaps between items
       s_h[ "menu" ]:Display()
    endif
    DispEnd()
@@ -879,7 +882,7 @@ static procedure DlgDeco()
 
    hb_DispOutAt( DL_TOP + 1, DL_LEFT + 3, "TOTAL ON:", "W+/RB" )
    // white panel around the checkbox group
-   hb_DispBox( DL_TOP + 2, DL_LEFT + 25, DL_TOP + 10, DL_LEFT + 33, HB_B_SINGLE_UNI, "W/RB" )
+   hb_DispBox( DL_TOP + 2, DL_LEFT + 25, DL_TOP + 10, DL_LEFT + 39, HB_B_SINGLE_UNI, "W/RB" )
    hb_DispOutAt( DL_TOP + 11, DL_LEFT + 3, "<Expr... >", "W/RB" )
    // white panel around Save As (button + entry)
    hb_DispBox( DL_TOP + 12, DL_LEFT + 2, DL_TOP + 15, DL_LEFT + 30, HB_B_SINGLE_UNI, "W/RB" )
@@ -917,10 +920,10 @@ static procedure DlgRun()
 
    @ DL_TOP + 3, DL_LEFT + 3, DL_TOP + 10, DL_LEFT + 19 GET nField ;
       LISTBOX aIt COLOR "W+/BG,W+/B,W+/BG,W+/B,W+/BG,W+/BG,W+/BG"
-   @ DL_TOP + 3, DL_LEFT + 26 GET lScope  CHECKBOX CAPTION "Scope..."  COLOR "W/RB,W+/RB,W/RB,W+/RB"
-   @ DL_TOP + 5, DL_LEFT + 26 GET lFor    CHECKBOX CAPTION "For..."    COLOR "W/RB,W+/RB,W/RB,W+/RB"
-   @ DL_TOP + 7, DL_LEFT + 26 GET lWhile  CHECKBOX CAPTION "While..."  COLOR "W/RB,W+/RB,W/RB,W+/RB"
-   @ DL_TOP + 9, DL_LEFT + 26 GET lFields CHECKBOX CAPTION "Fields..." COLOR "W/RB,W+/RB,W/RB,W+/RB"
+   @ DL_TOP + 3, DL_LEFT + 26 GET lScope  CHECKBOX CAPTION "Scope..."  STYLE "[x ]" COLOR "W/RB,W+/RB,W/RB,W+/RB"
+   @ DL_TOP + 5, DL_LEFT + 26 GET lFor    CHECKBOX CAPTION "For..."    STYLE "[x ]" COLOR "W/RB,W+/RB,W/RB,W+/RB"
+   @ DL_TOP + 7, DL_LEFT + 26 GET lWhile  CHECKBOX CAPTION "While..."  STYLE "[x ]" COLOR "W/RB,W+/RB,W/RB,W+/RB"
+   @ DL_TOP + 9, DL_LEFT + 26 GET lFields CHECKBOX CAPTION "Fields..." STYLE "[x ]" COLOR "W/RB,W+/RB,W/RB,W+/RB"
    @ DL_TOP + 11, DL_LEFT + 13 GET cExpr   PICTURE "@S17" COLOR "N/BG,N/BG,W/BG,W/BG"
    @ DL_TOP + 14, DL_LEFT + 3  GET cSaveAs PICTURE "@S27" COLOR "N/BG,N/BG,W/BG,W/BG"
    @ DL_TOP + 12, DL_LEFT + 31 GET lBtnOk     PUSHBUTTON CAPTION "<<  OK  >>" ;
