@@ -1476,18 +1476,36 @@ return ::nLeft + 4 + ::VisualCol( ::nRow, ::nCol - 4 ) - ;
        ::VisualCol( ::nRow, ::nFirstCol )
 
 METHOD GoTo( nRow, nCol, nRefreshMode ) CLASS HBSrcEdit
-   local xRet := ::Super:GoTo( nRow, nCol, nRefreshMode ), nFirst := ::nFirstCol
+   local nFirstRow := ::nFirstRow, nFirstCol := ::nFirstCol
+   nRefreshMode := hb_defaultValue( nRefreshMode, _REFRESH_NONE )
+   nRow := Max( 1, Min( nRow, ::LineCount() ) )
+   if nCol == -1
+      nCol := hb_ULen( ::GetLine( nRow ) ) + 5
+   endif
+   nCol := Max( 5, nCol )
+   if ::lWordWrap
+      nCol := Min( nCol, hb_ULen( ::GetLine( nRow ) ) + 5 )
+   endif
+   ::nRow := nRow
+   ::nCol := nCol
+   ::nFirstRow := Max( 1, Min( ::nFirstRow, nRow ) )
+   if nRow > ::nFirstRow + ::nNumRows - 1
+      ::nFirstRow := nRow - ::nNumRows + 1
+   endif
+   ::nFirstCol := Max( 1, ::nFirstCol )
    do while ::Col() < ::nLeft + 4 .and. ::nFirstCol > 1
       ::nFirstCol--
    end
    do while ::Col() > ::nRight .and. ::nFirstCol < ::nCol - 4
       ::nFirstCol++
    end
-   if nFirst != ::nFirstCol
+   if nRefreshMode == _REFRESH_ALL .or. nFirstRow != ::nFirstRow .or. nFirstCol != ::nFirstCol
       ::Display()
+   elseif nRefreshMode == _REFRESH_LINE
+      ::RefreshLine()
    endif
    SetPos( ::Row(), ::Col() )
-return xRet
+return Self
 
 METHOD RefreshLine() CLASS HBSrcEdit
 return ::DisplayLine( ::Row() )

@@ -454,3 +454,14 @@ usando hb_eol para lineas reales. SelDelete hereda estado soft/hard del
 fragmento final, igual que su terminador.126checks editorPASS, incluidos
 seleccion/cut/undo/redo sobre wrap; nueve modelosPASS. No certifica todas
 las operaciones de clipboard ni sus modales.
+
+## GoTo respeta gutter y final de fragmento suave
+
+Delete al final de fragmentosoft borraba caracter en vez de unir: GoTo
+heredado limitaba columna a ancho+1 sin gutter4. El origen/cursor se
+actualiza ahora con coordenadas fuente y se limita por longitud real del
+fragmento, no por anchura visual sin gutter.132checks editor y nueve
+modelosPASS. PTY navegacion35/recuperacionTAB/multidocPASS sobre candidato.
+Primer lote multidoc interrumpido por limiteexterno120s, repetido solo yPASS;
+no se atribuye exito al intento interrumpido. Captura seleccion larga
+repetida e inspeccionada con marco intacto. Sin certificacion global.
