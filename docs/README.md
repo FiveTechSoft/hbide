@@ -46,6 +46,9 @@
 - [ROADMAP.md](ROADMAP.md) - direction, priorities with exit criteria,
   integration gate and open decisions. It proposes work; it does not turn
   pending items into implemented ones.
+- [turbo-cpp-comparison-2026-10-29.md](turbo-cpp-comparison-2026-10-29.md) -
+  hbide vs the Turbo C++ 3.0 IDE: area-by-area comparison and a prioritized
+  proposal to complete hbide. It proposes work; nothing in it is implemented.
 
 ## Examples
 
