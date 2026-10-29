@@ -35,6 +35,11 @@ def inventory():
         ('hbdebug/debugger.prg', 'METHOD DoCommand(', 'METHOD '),
         ('designer.prg', 'METHOD Activate(', 'METHOD '),
         ('projectui.prg', 'FUNCTION HBIDEProjectDesktop', 'FUNCTION '),
+        ('designer.prg', 'METHOD InspectorKey(', 'METHOD '),
+        ('designer.prg', 'METHOD InspEdit(', 'METHOD '),
+        ('hbide.prg', 'METHOD Activate(', 'METHOD '),
+        ('help.prg', 'FUNCTION HBHelpInput(', 'FUNCTION '),
+        ('help.prg', 'FUNCTION HBIDEHelpOpen(', 'FUNCTION '),
     ]:
         lines = (ROOT / source).read_text().splitlines()
         active = False
@@ -48,7 +53,7 @@ def inventory():
                 break
             if re.match(r'\s*(?:CASE|case)\s', line):
                 routes.append(dict(source=source, line=i+1, condition=line.strip(),
-                                   status='route_only_not_separate_feature'))
+                                   context=begin, status='route_only_not_separate_feature'))
     return entries, routes
 
 def main():
@@ -60,6 +65,9 @@ def main():
     stubs=[m for m in menus if m['wiring']=='stub']
     report={'scope':'Source inventory only. No runtime or platform certification.',
             'menus':menus,'dispatch_routes':routes,
+            'inspector_fields': [dict(line=i+1, label=m.group(1), key=m.group(2), kind=m.group(3))
+                for i,line in enumerate((ROOT/'designer.prg').read_text().splitlines())
+                if (m := re.search(r'AAdd\( aFields, \{ \"([^\"]+)\",\s*\"([^\"]+)\",\s*\"([^\"]+)\"',line))],
             'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes)}}
     if args.json:
         print(json.dumps(report,indent=2))
@@ -79,7 +87,7 @@ def main():
             condition=r['condition'].replace('|','&#124;')
             print(f"| {r['source']}:{r['line']} | `{condition}` |")
         print('\n## Gate de cierre\n')
-        print(f"{len(menus)} acciones de menu; {len(stubs)} stubs. Faltan acciones de inspector, modales, barra de ayuda y rutas globales. No es aun el inventario exhaustivo.")
+        print(f"{len(menus)} acciones de menu; {len(stubs)} stubs. Incluye rutas de inspector, ayuda y bucle IDE; faltan campos de modales, rutas del editor y gestos. No es aun el inventario exhaustivo.")
         print('`python scripts/audit_completion_surface.py --check-stubs` falla mientras haya stubs visibles.')
     return int(args.check_stubs and bool(stubs))
 

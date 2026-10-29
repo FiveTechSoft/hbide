@@ -353,6 +353,7 @@ CREATE CLASS HBDebugger
    METHOD WindowResizeStep( nStep )
    METHOD WindowEdit( lSize )
    METHOD WindowRepaint()
+   METHOD WindowCommandRect( cParams, lSize )
    METHOD WindowAt( nRow, nCol )
    METHOD ResizeWindows( oWindow )
    METHOD NotSupported() INLINE __dbgAlert( "Not implemented yet!" )
@@ -879,7 +880,6 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
    LOCAL cParams := ""
    LOCAL cResult
    LOCAL lValid
-   LOCAL oWindow
    LOCAL n
 
    cCommand := AllTrim( cCommand )
@@ -1237,29 +1237,15 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
          IF Empty( cParam2 )
             ::WindowEdit( .F. )
          ELSE
-            oWindow := ::aWindows[ ::nCurrentWindow ]
-            IF ( n := At( " ", cParam2 ) ) > 0
-               n := Val( SubStr( cParam2, n ) )
+            IF ! ::WindowCommandRect( cParam2, .F. )
+               cResult := "Invalid window position: use row column"
             ENDIF
-            oWindow:Resize( Val( cParam2 ), n, ;
-               oWindow:nBottom + Val( cParam2 ) - oWindow:nTop, ;
-               oWindow:nRight + n - oWindow:nLeft )
-            ::lWindowsAutoSized := .F.
-            ::WindowRepaint()
          ENDIF
       CASE hb_LeftEq( "SIZE", cParam1 )
          IF Empty( cParam2 )
             ::WindowEdit( .T. )
-         ELSE
-            IF Val( cParam2 ) >= 2 .AND. ;
-              ( n := At( " ", cParam2 ) ) > 0 .AND. Val( SubStr( cParam2, n ) ) > 0
-               oWindow := ::aWindows[ ::nCurrentWindow ]
-               oWindow:Resize( oWindow:nTop, oWindow:nLeft, ;
-                               Val( cParam2 ) - 1 + oWindow:nTop, ;
-                               Val( SubStr( cParam2, n ) ) - 1 + oWindow:nLeft )
-               ::lWindowsAutoSized := .F.
-               ::WindowRepaint()
-            ENDIF
+         ELSEIF ! ::WindowCommandRect( cParam2, .T. )
+            cResult := "Invalid window size: use height width"
          ENDIF
       CASE hb_LeftEq( "ZOOM", cParam1 )
          ::WindowLayout( "ZOOM" )
@@ -4126,6 +4112,57 @@ METHOD WindowEdit( lSize ) CLASS HBDebugger
    ENDIF
    ::WindowRepaint()
    RETURN Self
+
+// Numeric commands share the keyboard desktop contract: no menu/status
+// overlap and a usable browser viewport. Reject malformed input unchanged.
+METHOD WindowCommandRect( cParams, lSize ) CLASS HBDebugger
+   LOCAL oWnd := ::aWindows[ ::nCurrentWindow ], aParts := {}, cPart, cNumber, aRect
+   IF oWnd == NIL .OR. ! oWnd:lVisible
+      RETURN .F.
+   ENDIF
+   FOR EACH cPart IN hb_ATokens( StrTran( AllTrim( cParams ), Chr( 9 ), " " ), " " )
+      IF ! Empty( cPart )
+         AAdd( aParts, cPart )
+      ENDIF
+   NEXT
+   IF Len( aParts ) != 2
+      RETURN .F.
+   ENDIF
+   FOR EACH cPart IN aParts
+      cNumber := cPart
+      IF Left( cNumber, 1 ) $ "+-"
+         cNumber := SubStr( cNumber, 2 )
+      ENDIF
+      IF Empty( cNumber ) .OR. ! Empty( hb_StrReplace( cNumber, ;
+         { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, "" ) )
+         RETURN .F.
+      ENDIF
+   NEXT
+   IF ::nMaxRow < 5 .OR. ::nMaxCol < 11
+      RETURN .F.
+   ENDIF
+   IF lSize .AND. ( Val( aParts[ 1 ] ) < 4 .OR. Val( aParts[ 2 ] ) < 12 )
+      RETURN .F.
+   ENDIF
+   IF ::IsWindowIconized( oWnd )
+      ::WindowIconize()
+   ENDIF
+   aRect := { oWnd:nTop, oWnd:nLeft, oWnd:nBottom, oWnd:nRight }
+   IF lSize
+      aRect[ 3 ] := Min( ::nMaxRow - 1, aRect[ 1 ] + Val( aParts[ 1 ] ) - 1 )
+      aRect[ 4 ] := Min( ::nMaxCol, aRect[ 2 ] + Val( aParts[ 2 ] ) - 1 )
+   ELSE
+      aRect[ 1 ] := Max( 1, Min( ::nMaxRow - 1 - ( oWnd:nBottom - oWnd:nTop ), Val( aParts[ 1 ] ) ) )
+      aRect[ 2 ] := Max( 0, Min( ::nMaxCol - ( oWnd:nRight - oWnd:nLeft ), Val( aParts[ 2 ] ) ) )
+      aRect[ 3 ] := aRect[ 1 ] + oWnd:nBottom - oWnd:nTop
+      aRect[ 4 ] := aRect[ 2 ] + oWnd:nRight - oWnd:nLeft
+   ENDIF
+   oWnd:Resize( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ] )
+   ::aWindowZoom := {}
+   ::lWindowsAutoSized := .F.
+   ::cLayoutMode := ""
+   ::WindowRepaint()
+   RETURN .T.
 
 METHOD WindowAt( nRow, nCol ) CLASS HBDebugger
    LOCAL oWnd, i

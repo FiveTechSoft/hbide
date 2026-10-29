@@ -70,3 +70,37 @@ Intento visual Animate con salida de app: cuatro capturas separadas y parada
 Alt+D no mostraron mezcla persistente en esos instantes. NO descarta flashes
 entre frames, no resuelve tearing y no cierra Q04. Hace falta grabacion continua
 y oraculo que distinga pantalla de app de pantalla del debugger.
+
+## Tercer checkpoint: fallo real en comandos de geometria
+
+Reproduccion sobre fuente `0b48cb7` sin modificar el debugger:
+prueba layout nueva `WINDOW MOVE -99 -99` -> FAIL numeric move negative clamps,
+exit1. Las rutas numericas no usaban los limites que si aplicaban las flechas.
+
+Correccion Harbour: `WindowCommandRect` valida dos enteros, rechaza parametros
+malformados/tamanos no utilizables sin alterar geometria, limita posicion y
+tamano al escritorio sin cubrir menu/status, restaura una ventana iconizada
+antes de aplicar un tamano valido. Limpiar zoom evita restauracion obsoleta.
+
+Pruebas posteriores sobre el parche local:
+- Build IDE exit0.
+- Layout:324casos geometricos mas runtime anterior y nuevos casos numericos:
+  negativos, extremos, tamano enorme, validos, seis malformados, signo positivo
+  e invalidacion/restauracion iconizada. PASS.
+- PTY comandos ampliada:22PASS/0FAIL. Incluye comando numerico real, error
+  legible y retorno al IDE sin inutilizar Command.
+- Capturas terminal real: ventana limitada al extremo inferior/derecho con
+  menu/status intactos; error de tamano malformado visible, geometria intacta.
+  Inspeccionadas completas, no Windows.
+- PTY functions58/58 y session23/23 pasan sobre el build anterior7254317;
+  no se afirman repetidas despues del parche de geometria.
+
+El inventario amplia rutas a inspector/edicion, bucle principal y ayuda.
+Sigue siendo conexion estatica; faltan modales/campos, editor y gestos.
+
+El runner tambien detecta fallo textual del probe atomic, cuyo codigo legacy
+no cambia el exitcode al fallar. Las cinco suites reconstruidas tras el
+parche de geometria y la ampliacion de ayuda pasan de nuevo. SHA256 IDE local:
+`31fbac8769e6fd9deae597951d83349f670fe125426d6711f1542b17d30944f7`.
+No se distribuye como binario Windows. Inventario ampliado:223rutas y23campos
+de inspector detectados, sin certificar que sean independientes ni completos.

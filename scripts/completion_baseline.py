@@ -35,9 +35,12 @@ for name, sources in cases.items():
     build = run(name + '-build', [HBMK, *sources, '-gtstd', '-quiet', '-o' + str(exe)])
     rc = None if build else run(name, [str(exe)] + ([HBMK] if name == 'project' else []),
                                 ROOT if name == 'help' else OUT)
-    report['tests'][name] = {'build_exit': build, 'run_exit': rc}
+    text = (OUT / (name + '.log')).read_text(errors='replace') if rc is not None else ''
+    # Legacy atomic probe prints failures but does not set a failing exit code.
+    semantic_failure = ('FAILURES PRESENT' in text or 'FAIL:' in text or 'FAILED: 1' in text)
+    report['tests'][name] = {'build_exit': build, 'run_exit': rc, 'reported_failure': semantic_failure}
 report['finished'] = time.time()
 (OUT / 'results.json').write_text(json.dumps(report, indent=2) + '\n')
 print(json.dumps(report, indent=2))
 print('Logs:', OUT)
-raise SystemExit(int(any(v['build_exit'] or v['run_exit'] for v in report['tests'].values())))
+raise SystemExit(int(any(v['build_exit'] or v['run_exit'] or v['reported_failure'] for v in report['tests'].values())))

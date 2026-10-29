@@ -77,7 +77,35 @@ PROCEDURE Main()
    // The dangerous resize is the one into the one-row icon strip; a repaint
    // with the original geometry is a no-op for a real browser.
    Assert( AScan( oBrw:aHeights, 1 ) == 0, 'browser never resized to icon strip' )
-   hb_MemoWrit( '/tmp/hbide-layout-tests.txt' , 'PASS ' + hb_ntos( nTests ) + ' geometry cases; runtime tile/zoom/restore/move/cancel/size/cascade/iconize/grow/shrink' )
+   // Numeric command routes must obey the same desktop limits as arrows.
+   oD:oWndCode:Browser := NIL
+   oD:DoCommand( 'window move -99 -99' )
+   Assert( oD:oWndCode:nTop == 1 .AND. oD:oWndCode:nLeft == 0, 'numeric move negative clamps' )
+   oD:DoCommand( 'window move 999 999' )
+   Assert( oD:oWndCode:nBottom <= 23 .AND. oD:oWndCode:nRight <= 79, 'numeric move positive clamps' )
+   oD:DoCommand( 'window size 999 999' )
+   Assert( oD:oWndCode:nBottom <= 23 .AND. oD:oWndCode:nRight <= 79, 'numeric size clamps' )
+   oD:DoCommand( 'window size 6 20' )
+   oD:DoCommand( 'window move 2 3' )
+   Assert( oD:oWndCode:nTop == 2 .AND. oD:oWndCode:nLeft == 3, 'numeric move accepts valid position' )
+   oD:DoCommand( 'window size 6 20' )
+   Assert( oD:oWndCode:nBottom == 7 .AND. oD:oWndCode:nRight == 22, 'numeric size accepts valid extent' )
+   aR := { oD:oWndCode:nTop, oD:oWndCode:nLeft, oD:oWndCode:nBottom, oD:oWndCode:nRight }
+   FOR EACH a IN { 'window move abc 2', 'window move 1', 'window move 1 2 3', ;
+                   'window move 1.2 3', 'window size 1 1', 'window size -5 20' }
+      oD:DoCommand( a )
+      Assert( oD:oWndCode:nTop == aR[ 1 ] .AND. oD:oWndCode:nLeft == aR[ 2 ] .AND. ;
+         oD:oWndCode:nBottom == aR[ 3 ] .AND. oD:oWndCode:nRight == aR[ 4 ], 'invalid numeric command leaves geometry unchanged' )
+   NEXT
+   oD:DoCommand( 'window move +3 +4' )
+   Assert( oD:oWndCode:nTop == 3 .AND. oD:oWndCode:nLeft == 4, 'numeric signed positive accepted' )
+   oD:WindowIconize()
+   oD:DoCommand( 'window size 1 1' )
+   Assert( oD:IsWindowIconized( oD:oWndCode ), 'invalid size leaves iconized state unchanged' )
+   oD:DoCommand( 'window size 8 25' )
+   Assert( ! oD:IsWindowIconized( oD:oWndCode ) .AND. oD:oWndCode:nBottom == 10 .AND. ;
+      oD:oWndCode:nRight == 28, 'numeric size restores iconized window before resize' )
+   hb_MemoWrit( '/tmp/hbide-layout-tests.txt' , 'PASS ' + hb_ntos( nTests ) + ' geometry cases; runtime tile/zoom/restore/move/cancel/size/cascade/iconize/grow/shrink/numeric-command-bounds' )
    Inkey( 0.2 )
    RETURN
 PROCEDURE Assert( lOk, cName )

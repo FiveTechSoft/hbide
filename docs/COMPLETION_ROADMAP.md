@@ -95,8 +95,8 @@ Las demos TOTAL ON, agenda y FoxPro no certifican el conjunto del IDE.
 ## Seguimiento
 
 - [COMPLETION_INVENTORY.md](COMPLETION_INVENTORY.md): primer inventario generado,
-  115 acciones de menu y148 rutas; son conexiones de fuente, no115 funciones
-  terminadas. Incluye tres stubs. Aun faltan inspector/modales/atajos globales.
+  115 acciones de menu y rutas ampliadas de teclado/comandos; son conexiones de fuente, no115 funciones
+  terminadas. Incluye tres stubs. Aun faltan modales, editor y gestos.
 
 - Registro de cada lote en [COMPLETION_LOG.md](COMPLETION_LOG.md): fuente,
   plataforma, build/hash, comando, resultado y limites.

@@ -225,12 +225,12 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1232 | `CASE hb_LeftEq( "NEXT", cParam1 )` |
 | hbdebug/debugger.prg:1234 | `CASE hb_LeftEq( "PREV", cParam1 )` |
 | hbdebug/debugger.prg:1236 | `CASE hb_LeftEq( "MOVE", cParam1 )` |
-| hbdebug/debugger.prg:1250 | `CASE hb_LeftEq( "SIZE", cParam1 )` |
-| hbdebug/debugger.prg:1264 | `CASE hb_LeftEq( "ZOOM", cParam1 )` |
-| hbdebug/debugger.prg:1266 | `CASE hb_LeftEq( "TILE", cParam1 )` |
-| hbdebug/debugger.prg:1268 | `CASE hb_LeftEq( "CASCADE", cParam1 )` |
-| hbdebug/debugger.prg:1270 | `CASE hb_LeftEq( "ICONIZE", cParam1 )` |
-| hbdebug/debugger.prg:1276 | `CASE cCommand == "WP"` |
+| hbdebug/debugger.prg:1244 | `CASE hb_LeftEq( "SIZE", cParam1 )` |
+| hbdebug/debugger.prg:1250 | `CASE hb_LeftEq( "ZOOM", cParam1 )` |
+| hbdebug/debugger.prg:1252 | `CASE hb_LeftEq( "TILE", cParam1 )` |
+| hbdebug/debugger.prg:1254 | `CASE hb_LeftEq( "CASCADE", cParam1 )` |
+| hbdebug/debugger.prg:1256 | `CASE hb_LeftEq( "ICONIZE", cParam1 )` |
+| hbdebug/debugger.prg:1262 | `CASE cCommand == "WP"` |
 | designer.prg:234 | `case nKey == K_F4` |
 | designer.prg:237 | `case nKey == K_F6` |
 | designer.prg:248 | `case nKey == K_ESC` |
@@ -276,8 +276,83 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | projectui.prg:36 | `CASE nKey == K_F6 .AND. ! Empty( oProject:hBuild )` |
 | projectui.prg:38 | `CASE nKey == K_F9 .OR. nKey == K_CTRL_F9` |
 | projectui.prg:42 | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` |
+| designer.prg:2263 | `case nKey == K_ESC .or. nKey == K_F6` |
+| designer.prg:2268 | `case nKey == K_F4` |
+| designer.prg:2271 | `case nKey == K_UP` |
+| designer.prg:2275 | `case nKey == K_DOWN` |
+| designer.prg:2279 | `case nKey == K_LEFT` |
+| designer.prg:2282 | `case nKey == K_RIGHT` |
+| designer.prg:2285 | `case nKey == K_ENTER` |
+| designer.prg:2288 | `case nKey == K_CTRL_UP` |
+| designer.prg:2292 | `case nKey == K_CTRL_DOWN` |
+| designer.prg:2296 | `case nKey == K_CTRL_LEFT` |
+| designer.prg:2300 | `case nKey == K_CTRL_RIGHT` |
+| designer.prg:2119 | `case nKey == K_ENTER` |
+| designer.prg:2122 | `case nKey == K_ESC` |
+| designer.prg:2124 | `case nKey == K_LEFT` |
+| designer.prg:2126 | `case nKey == K_RIGHT` |
+| designer.prg:2128 | `case nKey == K_HOME` |
+| designer.prg:2130 | `case nKey == K_END` |
+| designer.prg:2132 | `case nKey == K_BS` |
+| designer.prg:2137 | `case nKey == K_DEL` |
+| designer.prg:2141 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` |
+| designer.prg:2145 | `case nKey >= 32 .and. nKey <= 255` |
+| hbide.prg:644 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F8, HB_KF_ALT, K_ALT_F8 )` |
+| hbide.prg:647 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )` |
+| hbide.prg:650 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )` |
+| hbide.prg:653 | `case nKeyStd == K_ALT_0` |
+| hbide.prg:656 | `case nKeyStd == K_CTRL_G` |
+| help.prg:533 | `CASE nKey == K_ESC` |
+| help.prg:536 | `CASE nKey == K_ENTER` |
+| help.prg:538 | `CASE nKey == K_BS` |
+| help.prg:540 | `CASE nKey >= 32 .AND. nKey <= 126 .AND. Len( h[ "query" ] ) < 30` |
+| help.prg:546 | `CASE nKey == K_ESC` |
+| help.prg:548 | `CASE nKey == K_TAB` |
+| help.prg:550 | `CASE nKey == K_SH_TAB` |
+| help.prg:552 | `CASE nKey == K_F7` |
+| help.prg:554 | `CASE nKey == K_F3` |
+| help.prg:556 | `CASE nKey == K_MWFORWARD` |
+| help.prg:558 | `CASE nKey == K_MWBACKWARD` |
+| help.prg:560 | `CASE nKey == K_LBUTTONDOWN` |
+| help.prg:578 | `CASE h[ "pane" ] == "index"` |
+| help.prg:580 | `CASE nKey == K_UP    ; h[ "row" ]--` |
+| help.prg:581 | `CASE nKey == K_DOWN  ; h[ "row" ]++` |
+| help.prg:582 | `CASE nKey == K_HOME  ; h[ "row" ] := 1` |
+| help.prg:583 | `CASE nKey == K_END   ; h[ "row" ] := Len( h[ "rows" ] )` |
+| help.prg:584 | `CASE nKey == K_PGUP  ; h[ "row" ] -= g[ "idxH" ]` |
+| help.prg:585 | `CASE nKey == K_PGDN  ; h[ "row" ] += g[ "idxH" ]` |
+| help.prg:586 | `CASE nKey == K_ENTER .OR. nKey == K_RIGHT` |
+| help.prg:594 | `CASE h[ "pane" ] == "text"` |
+| help.prg:596 | `CASE nKey == K_UP    ; h[ "top" ]--` |
+| help.prg:597 | `CASE nKey == K_DOWN  ; h[ "top" ]++` |
+| help.prg:598 | `CASE nKey == K_PGUP  ; h[ "top" ] -= g[ "txtH" ]` |
+| help.prg:599 | `CASE nKey == K_PGDN  ; h[ "top" ] += g[ "txtH" ]` |
+| help.prg:600 | `CASE nKey == K_HOME  ; h[ "top" ] := 1` |
+| help.prg:601 | `CASE nKey == K_END   ; h[ "top" ] := 99999` |
+| help.prg:602 | `CASE nKey == K_LEFT  ; h[ "row" ] := Max( 1, h[ "row" ] - 1 ) ; h[ "top" ] := 1` |
+| help.prg:603 | `CASE nKey == K_RIGHT ; h[ "row" ] := Min( Len( h[ "rows" ] ), h[ "row" ] + 1 ) ; h[ "top" ] := 1` |
+| help.prg:604 | `CASE nKey == K_ENTER ; h[ "pane" ] := "index"` |
+| help.prg:606 | `CASE h[ "pane" ] == "buttons"` |
+| help.prg:608 | `CASE nKey == K_LEFT  ; h[ "btn" ] := iif( h[ "btn" ] > 1, h[ "btn" ] - 1, Len( g[ "btnCaps" ] ) )` |
+| help.prg:609 | `CASE nKey == K_RIGHT ; h[ "btn" ] := h[ "btn" ] % Len( g[ "btnCaps" ] ) + 1` |
+| help.prg:610 | `CASE nKey == K_ENTER ; HBHelpButton( h, aTopics, g, h[ "btn" ] )` |
+| help.prg:611 | `CASE nKey == K_UP    ; h[ "pane" ] := "index"` |
+| help.prg:849 | `CASE nKey == K_ESC` |
+| help.prg:851 | `CASE nKey == K_F1` |
+| help.prg:853 | `CASE nKey == K_BS .AND. ! Empty( aHistory )` |
+| help.prg:857 | `CASE hb_keyStd( nKey ) == K_ALT_RIGHT .AND. ! Empty( aForward )` |
+| help.prg:861 | `CASE nKey == K_TAB .AND. Len( aLinks ) > 0` |
+| help.prg:863 | `CASE nKey == K_SH_TAB .AND. Len( aLinks ) > 0` |
+| help.prg:865 | `CASE nKey == K_ENTER .AND. Len( aLinks ) > 0` |
+| help.prg:867 | `CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR` |
+| help.prg:869 | `CASE nKey == K_UP .OR. nKey == K_MWFORWARD` |
+| help.prg:871 | `CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD` |
+| help.prg:873 | `CASE nKey == K_PGUP` |
+| help.prg:875 | `CASE nKey == K_PGDN` |
+| help.prg:877 | `CASE nKey == K_HOME` |
+| help.prg:879 | `CASE nKey == K_END` |
 
 ## Gate de cierre
 
-115 acciones de menu; 3 stubs. Faltan acciones de inspector, modales, barra de ayuda y rutas globales. No es aun el inventario exhaustivo.
+115 acciones de menu; 3 stubs. Incluye rutas de inspector, ayuda y bucle IDE; faltan campos de modales, rutas del editor y gestos. No es aun el inventario exhaustivo.
 `python scripts/audit_completion_surface.py --check-stubs` falla mientras haya stubs visibles.

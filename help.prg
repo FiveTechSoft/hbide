@@ -240,7 +240,7 @@ function HBIDEHelpTopics()
       "restore its previous rectangle. Window > Move and Size use arrow keys; " + ;
       "Enter accepts and Esc cancels. Menu and status rows remain outside " + ;
       "the desktop. Commands Window Tile, Cascade, Zoom, Move and Size " + ;
-      "provide the same actions." + hb_eol() + hb_eol() + ;
+      "provide the same actions. Numeric Window Move row column and Window Size height width commands stay inside the desktop; malformed parameters leave geometry unchanged." + hb_eol() + hb_eol() + ;
       "Manual layouts remain through stepping. Save/Restore Settings can " + ;
       "store panel rectangles. Window > Iconize shrinks the focused panel; " + ;
       "invoke it again to restore its geometry and browser viewport. The legacy Exchange Screens, " + ;
