@@ -35,7 +35,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-027 | Window | Messages... | hbide.prg:819 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-028 | Window | Next Message     Alt+F8 | hbide.prg:820 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-029 | Window | Previous Message Alt+F7 | hbide.prg:821 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-030 | Run | Start | hbide.prg:825 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-030 | Run | Start | hbide.prg:825 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-031 | Run | Script | hbide.prg:826 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-032 | Run | Debug | hbide.prg:827 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-033 | Run | Arguments... | hbide.prg:829 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -173,6 +173,7 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DSN-005: Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test. Pruebas: [gui_roundtrip_fixture.prg](../tests/gui_roundtrip_fixture.prg), [test_gui_roundtrip_pty.py](../tests/test_gui_roundtrip_pty.py)
 - IDE-031: Real Run Script preserves original source literals; lowercase main() and two consecutive sessions produce exact output and usable editor. HRB local binding, no global text substitution. Pruebas: [test_run_source_pty.py](../tests/test_run_source_pty.py)
 - IDE-032: Real Debug preserves original source literals and lowercase main() across two runs; breakpoint and debugger function suites inspect original source with isolated HRB local symbols. Pruebas: [test_run_source_pty.py](../tests/test_run_source_pty.py), [test_debug_session_pty.py](../tests/test_debug_session_pty.py), [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- IDE-030:  Start builds/runs twice from path with spaces/apostrophe/$HOME/semicolon; failed rebuild preserves old executable bytes and never runs stale binary. Pruebas: [test_start_paths_pty.py](../tests/test_start_paths_pty.py)
 
 ## Campos de inspector
 

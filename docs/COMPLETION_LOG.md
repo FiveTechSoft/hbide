@@ -528,3 +528,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - EliminadoStrTran enScript/Debug; HB_HRB_BIND_FORCELOCAL aislaMain y simbolosHRBsin cambiar texto fuente. Scriptadopta aislamiento queDebugyausaba.
 -8checksPTY limpio126aa30PASS: main()minuscula, dosrunsScript+dosDebug, salidaexacta y editorusable. Nueve modelosPASS. Debugsession/startup limpiosPASS; commands/functionsPASS candidato mismo producto. Tests muestranMainoriginal ahora.
 - Baseline32dfd8d27 es anterior, no heredada. Nuevo runner33casos; Windows pendiente.
+
+## 30Oct00:33 Start con paths literales
+- Reproduccion: Startfallaba con carpeta que contieneespacios,2FAIL. Buildahorausa hb_processRun argv sin shell, captura stdout/stderr enmemoria; autoruncitaejecutable. Rechazaargsmalformados antesdebuild.
+-6checksPTY candidatoPASS: dosbuild/run bajo pathconespacios/apostrofe/$HOME/puntoycoma; buildfallidoinforma,preserva binarioanteriorbyteexacto y noejecutaobsoleto. Nueve modelos y navegacion35PASS candidato.
+- Runner34casos. Windows no validado, proceso build sigue sincronico/no cancelable. Baseline32anteriornoheredada.

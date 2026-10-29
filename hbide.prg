@@ -852,8 +852,13 @@ return oMenu
 
 METHOD Start() CLASS HbIde
 
-   local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, cBase, cExeTmp, cInfo, nRc, cRecovery := ""
+   local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, cBase, cExeTmp, cErr := "", nRc, cRecovery := "", cCommand, oError
    local aDiag, nFirstErr
+
+   if HBIDEProjectTokens( ::cRunArgs ) == nil
+      HBIDE_MsgAlert( "Run > Arguments has an unbalanced quote; fix it first" )
+      return nil
+   endif
 
    if ! ::ConfirmOverwrite()
       return nil
@@ -886,9 +891,10 @@ METHOD Start() CLASS HbIde
    // Build to a sibling temp target and promote it over the real executable
    // only after a VERIFIED success (exit code 0 and the binary exists).
    // The user's previous binary is never erased up front and never launched
-   // when the build failed. Both temp names are picked guaranteed-free, so
+   // when the build failed. The output temp name is picked guaranteed-free, so
    // no preexisting user file (a leftover .buildtmp, an "info.txt" in CWD,
-   // anything) is ever erased or overwritten. On Windows the temp keeps the
+   // anything) is ever erased or overwritten. Build output is captured in memory.
+   // On Windows the temp keeps the
    // .exe extension so hbmk2 does not append another one; on unix hbmk2
    // uses the -o name verbatim (probed: dotted names are kept as given).
 #ifdef __PLATFORM__WINDOWS
@@ -896,15 +902,23 @@ METHOD Start() CLASS HbIde
 #else
    cExeTmp := HBIDE_UniqueSibling( cExe )
 #endif
-   cInfo   := HBIDE_UniqueSibling( cExe, ".log" )
-   if Empty( cExeTmp ) .or. Empty( cInfo )
-      HBIDE_MsgAlert( "Could not pick free temp names next to " + cExe + "; build cancelled" )
+   if Empty( cExeTmp )
+      HBIDE_MsgAlert( "Could not pick a free temp name next to " + cExe + "; build cancelled" )
       return nil
    endif
 
-   nRc := hb_Run( "hbmk2" + ::BuildFlags() + " -o" + cExeTmp + " " + cFile + " > " + cInfo + " 2>&1" )
-   cOut = MemoRead( cInfo )
-   FErase( cInfo )   // ours: the unique-name pick above guarantees it
+   // Process argv quoting is not shell quoting. Source/output paths remain
+   // single arguments, including spaces and shell metacharacters.
+   cOut := ""
+   nRc := -1
+   BEGIN SEQUENCE WITH { | e | Break( e ) }
+      cCommand := "hbmk2" + ::BuildFlags() + " " + HBIDEProjectQuote( "-o" + cExeTmp ) + ;
+         " " + HBIDEProjectQuote( cFile )
+      nRc := hb_processRun( cCommand,, @cOut, @cErr )
+   RECOVER USING oError
+      cErr += If( HB_IsObject( oError ), oError:Description, "Invalid build process argument" )
+   END SEQUENCE
+   cOut += If( Empty( cErr ), "", hb_eol() + cErr )
    // hbmk2 progress uses raw CR as a separator; show it as line breaks
    // instead of CP437 glyphs (chr(13) renders as a music note)
    cOut := StrTran( cOut, Chr( 13 ) + Chr( 10 ), Chr( 10 ) )
@@ -921,13 +935,13 @@ METHOD Start() CLASS HbIde
       elseif ::lAutoRun
          // Run > Arguments: split like Script/Debug, then each word is quoted for the
          // shell so ; & | $ ` > etc. stay literal argument text, never extra commands
-         hb_Run( cExe + HBIDE_ShellArgs( ::cRunArgs ) )
+         hb_Run( AllTrim( HBIDE_ShellArgs( '"' + cExe + '"' ) ) + HBIDE_ShellArgs( ::cRunArgs ) )
       else
          HBIDE_MsgAlert( "Built (auto-run off): " + cExe )
       endif
    else
       FErase( cExeTmp )
-      // hb_Run() returns the raw wait status (exit code << 8 on unix)
+      // hb_processRun returns the child exit code, not a raw shell wait status.
       HBIDE_MsgAlert( "Build failed (status " + hb_ntos( nRc ) + ") or hbmk2 not on PATH; " + ;
                       "previous executable left untouched: " + cExe )
    endif

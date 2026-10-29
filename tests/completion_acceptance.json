@@ -366,6 +366,13 @@
         "test_debug_functions_pty.py"
       ],
       "contract": "Real Debug preserves original source literals and lowercase main() across two runs; breakpoint and debugger function suites inspect original source with isolated HRB local symbols."
+    },
+    "IDE-030": {
+      "expected_label": "Start",
+      "tests": [
+        "test_start_paths_pty.py"
+      ],
+      "contract": " Start builds/runs twice from path with spaces/apostrophe/$HOME/semicolon; failed rebuild preserves old executable bytes and never runs stale binary."
     }
   }
 }
