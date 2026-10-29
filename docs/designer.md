@@ -421,3 +421,9 @@ inline editor keep the classic mask so printable text entry is unaffected.
 Verified live (xterm + Xvfb + xdotool): Tab/Shift+Tab cycle, arrows move,
 Ctrl+X/C/V cut-copy-paste, Ctrl+Z/Y undo-redo, Ctrl+arrows pan, F2-F12,
 Enter/Esc/Del, mouse click+drag, save-as JSON round trip.
+
+## Duplicate palette letters (29 October 2026)
+
+P (PushButton/Paste), R (RadioGroup/Redo) and G (grid/Generate/Generate and
+open) cycle through matches without executing. Enter runs the highlighted
+option; Esc cancels. Unique letters retain immediate execution.

@@ -251,7 +251,7 @@ return nil
 
 METHOD ProcessKey( nKey ) CLASS HbMenu
 
-   local n, oPopup, nItem, oItem
+   local n, oPopup, nItem, oItem, aMatches, i
 
    do case
       case nKey == K_LBUTTONDOWN
@@ -351,11 +351,30 @@ METHOD ProcessKey( nKey ) CLASS HbMenu
          // standalone popup: plain letters pick the item with that hotkey;
          // deferring them to the top-bar handler treats an action block as a
          // submenu and crashes (error 9001)
-         if ( nItem := ::GetHotKeyPos( Upper( hb_keyChar( nKey ) ) ) ) != 0
+         aMatches := {}
+         for i := 1 to Len( ::aItems )
+            oItem := ::aItems[ i ]
+            if "~" $ oItem:cPrompt .and. ;
+               Upper( SubStr( oItem:cPrompt, At( "~", oItem:cPrompt ) + 1, 1 ) ) == Upper( hb_keyChar( nKey ) )
+               AAdd( aMatches, i )
+            endif
+         next
+         if ! Empty( aMatches )
+            nItem := aMatches[ 1 ]
+            if Len( aMatches ) > 1
+               for each i in aMatches
+                  if i > ::nOpenPopup
+                     nItem := i
+                     exit
+                  endif
+               next
+            endif
             ::DeHilite()
             ::nOpenPopup = nItem
             ::PaintItem( ::aItems[ nItem ], ::cClrHilite, ::cClrHotFocus )
-            ::EvalAction()
+            if Len( aMatches ) == 1
+               ::EvalAction()
+            endif
          endif
 
       case nKey >= K_ALT_Q .and. nKey <= K_ALT_M

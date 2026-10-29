@@ -104,3 +104,40 @@ parche de geometria y la ampliacion de ayuda pasan de nuevo. SHA256 IDE local:
 `31fbac8769e6fd9deae597951d83349f670fe125426d6711f1542b17d30944f7`.
 No se distribuye como binario Windows. Inventario ampliado:223rutas y23campos
 de inspector detectados, sin certificar que sean independientes ni completos.
+
+## Cuarto checkpoint: decisiones aprobadas y aplicadas
+
+El 29Oct21:24 el propietario aprobo las dos propuestas presentadas:
+letras duplicadas de paletaF2 ciclan y Enter ejecuta; barra debugger ocultable
+recuperable con Alt+O,M, visible por defecto. F10 sigue siendo Trace.
+
+Cambios Harbour:
+- HbMenu: detectar todas las coincidencias del mnemonic en popup. Si hay
+  varias, avanzar/ciclar resaltado sin ejecutar. Unica sigue inmediata.
+  Flechas/Enter/Esc conservan su funcion.
+- Debugger: MenuBar con check real; ocultar no redimensiona paneles ni ocupa
+  fila0. Alt+letra abre temporalmente barra y popup; Esc la vuelve a ocultar.
+  Alt+O,M la restaura de forma persistente. `Options MenuBar ON/OFF` explicito
+  es idempotente y se guarda/restaura en CLD.
+
+Evidencia Linux sobre parche local basado en488d754:
+- Disenador:414/414 (cinco regresiones nuevas ciclo/wrap/Enter/Esc/unica).
+- PTY diseñador:18/18, incluidos duplicados sin cerrar paleta y flujo
+  JSON->F12->generar->abrir editor.
+- PTY comandos:28/28, incluidos ocultar, Alt+O temporal, Esc, Alt+O,M y
+  Save->cambiar->Restore del estado oculto. La restauracion tambien cambia
+  fichero/foco del browser; el arnes vuelve a abrir su fixture antes de
+  comprobar geometria, sin confundir ese cambio esperado con fallo producto.
+- Layout:324casos geometricos y runtime, mas MenuBar/check/row0/comandos.
+- Cinco probes recompilados pasan; build IDE exit0.
+- Capturas completas reales inspeccionadas: Paste resaltado tras dosP y
+  paleta aun abierta; barra oculta, Options temporal y barra recuperada.
+
+Quedan DOS stubs visibles: Exchange Screens y swap on Input. No se ha
+implementado un toggle sin efecto. Referencia de semantica leida:
+https://www.fivetechsoft.com/harbour/src/debug/en.txt . MenuBar deja de ser
+bloqueo de decision; Windows y tearingAnimate siguen pendientes.
+
+Tras488d754 y antes de este parche: Monitor10/10, callstack y codeblockPASS.
+Grabacion Animate30fps/10s sobre salida de app, muestras visuales sin mezcla
+persistente; no es prueba de todas las velocidades ni cierre de tearing.

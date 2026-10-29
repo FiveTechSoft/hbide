@@ -217,7 +217,7 @@ function HBIDEHelpTopics()
    AAdd( a, { "platform status limits windows linux roadmap known pending", "Platform status and limits", ;
       "Verified interactively and with automated tests on Linux." + hb_eol() + hb_eol() + ;
       "Windows: the IDE builds with GTWVT and a prebuilt hbide.exe is included, but it can lag behind the sources; validating the latest sources on Windows is still pending." + hb_eol() + hb_eol() + ;
-      "Debugger Animate has known visual defects; F4 shows the program screen to recover the view. Exchange Screens, swap on Input and Menu Bar are not implemented (see 'Debugger windows')." + hb_eol() + hb_eol() + ;
+      "Debugger Animate has known visual defects; F4 shows the program screen to recover the view. Exchange Screens and swap on Input are not implemented (see 'Debugger windows')." + hb_eol() + hb_eol() + ;
       "The full plan and per-area status live in docs/ROADMAP.md in the repository." } )
 
    AAdd( a, { "designer palette inspector controls code generation json", "Dialog designer", ;
@@ -225,7 +225,7 @@ function HBIDEHelpTopics()
       "inputs, checkboxes, radio groups, listboxes and buttons. Move and " + ;
       "resize controls with the mouse; use the inspector to edit properties." + ;
       hb_eol() + hb_eol() + ;
-      "The designer saves its model as JSON and generates Harbour PRG source. " + ;
+      "In the F2 palette, a duplicated letter cycles its matching options without executing; Enter runs the selected option and Esc cancels. A unique letter still runs immediately. The designer saves its model as JSON and generates Harbour PRG source. " + ;
       "The generated source can be opened in the editor after leaving the " + ;
       "designer. Preserve manually written source separately from generated " + ;
       "output. A live generated-code preview does not imply bidirectional " + ;
@@ -244,7 +244,7 @@ function HBIDEHelpTopics()
       "Manual layouts remain through stepping. Save/Restore Settings can " + ;
       "store panel rectangles. Window > Iconize shrinks the focused panel; " + ;
       "invoke it again to restore its geometry and browser viewport. The legacy Exchange Screens, " + ;
-      "swap on Input and Menu Bar actions are not implemented. Application " + ;
+      "swap on Input actions are not implemented. Menu Bar toggles the debugger bar; Alt+O temporarily opens Options while hidden, M makes the bar visible again, Esc hides a temporary menu. F10 remains Trace. Options MenuBar ON/OFF is saved in settings. Application " + ;
       "output during Animate can still damage the display; F4 shows the app screen." } )
    FOR EACH aDoc IN HBIDEHelpDocTopics()
       AAdd( a, aDoc )

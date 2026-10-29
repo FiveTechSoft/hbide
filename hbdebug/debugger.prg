@@ -180,6 +180,7 @@ CREATE CLASS HBDebugger
    VAR lEnd              INIT .F.
    VAR lCaseSensitive    INIT .F.
    VAR lMonoDisplay      INIT .F.
+   VAR lMenuBar          INIT .T.
    VAR lSortVars         INIT .F.
 
    VAR cSearchString     INIT ""
@@ -356,6 +357,8 @@ CREATE CLASS HBDebugger
    METHOD WindowCommandRect( cParams, lSize )
    METHOD WindowAt( nRow, nCol )
    METHOD ResizeWindows( oWindow )
+   METHOD MenuBar( lVisible )
+   METHOD PaintMenuBar()
    METHOD NotSupported() INLINE __dbgAlert( "Not implemented yet!" )
 
    METHOD OpenDebuggerWindow()
@@ -1092,9 +1095,19 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
       CASE hb_LeftEq( "LINENUMBERS", cParam1 )
          ::LineNumbers()
       CASE hb_LeftEq( "EXCHANGESCREENS", cParam1 ) .OR. ;
-           hb_LeftEq( "SWAPONINPUT", cParam1 ) .OR. ;
-           hb_LeftEq( "MENUBAR", cParam1 )
+           hb_LeftEq( "SWAPONINPUT", cParam1 )
          ::NotSupported()
+      CASE hb_LeftEq( "MENUBAR", cParam1 )
+         DO CASE
+         CASE Empty( cParam2 )
+            ::MenuBar()
+         CASE Upper( cParam2 ) == "ON"
+            ::MenuBar( .T. )
+         CASE Upper( cParam2 ) == "OFF"
+            ::MenuBar( .F. )
+         OTHERWISE
+            cResult := "Menu Bar expects ON or OFF"
+         ENDCASE
       CASE hb_LeftEq( "CODEBLOCKTRACE", cParam1 )
          ::CodeblockTrace()
       CASE hb_LeftEq( "MONODISPLAY", cParam1 )
@@ -1482,6 +1495,7 @@ METHOD PROCEDURE HandleEvent() CLASS HBDebugger
          ::oPullDown:ProcessKey( nKey )
          IF ::oPullDown:nOpenPopup == 0 // Closed
             ::aWindows[ ::nCurrentWindow ]:Show( .T. )
+            ::PaintMenuBar()
          ENDIF
       ELSE
          SWITCH nKey
@@ -1509,6 +1523,9 @@ METHOD PROCEDURE HandleEvent() CLASS HBDebugger
 
             IF MRow() == 0
 
+               IF ! ::lMenuBar
+                  EXIT
+               ENDIF
                IF ( nPopup := ::oPullDown:GetItemOrdByCoors( 0, MCol() ) ) != 0
                   ::oPullDown:ShowPopup( nPopup )
                ENDIF
@@ -1892,7 +1909,7 @@ METHOD PROCEDURE LoadColors() CLASS HBDebugger
 
    ::oPullDown:LoadColors()
    IF ::lActive
-      ::oPullDown:Refresh()
+      ::PaintMenuBar()
       ::BarDisplay()
    ENDIF
    FOR EACH oWnd IN ::aWindows
@@ -2157,6 +2174,7 @@ METHOD OpenMenu( cName ) CLASS HBDebugger
       RETURN .F.
    ENDIF
    IF ::oPullDown:nOpenPopup != nPopup
+      ::oPullDown:Display()  // hidden bar is temporarily available for navigation
       ::oPullDown:ShowPopup( nPopup )
    ENDIF
 
@@ -2479,7 +2497,7 @@ METHOD PROCEDURE SaveAppScreen() CLASS HBDebugger
          nTop := Max( nTop, ::oWndPnt:nBottom + 1 )
       ENDIF
       ::oWndCode:Resize( nTop, 0, ::nMaxRow - ::nCmdWndHight - 3, nRight )
-      ::oPullDown:Refresh()
+      ::PaintMenuBar()
       ::BarDisplay()
       DispEnd()
    ENDIF
@@ -2529,6 +2547,8 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
    IF ::lMonoDisplay
       cInfo += "Options mono " + hb_eol()
    ENDIF
+
+   cInfo += "Options MenuBar " + iif( ::lMenuBar, "ON", "OFF" ) + hb_eol()
 
    IF ! ::lRunAtStartup
       cInfo += "Options NoRunAtStartup " + hb_eol()
@@ -2683,7 +2703,7 @@ METHOD PROCEDURE SearchLine( cLine ) CLASS HBDebugger
 METHOD PROCEDURE Show() CLASS HBDebugger
 
    ::SaveAppScreen()
-   ::oPullDown:Display()
+   ::PaintMenuBar()
    ::oWndCode:Show( .T. )
    ::oWndCommand:Show()
    hb_DispOutAt( ::oWndCommand:nBottom - 1, ::oWndCommand:nLeft + 1, ">", __dbgColors()[ 2 ] )
@@ -3951,6 +3971,20 @@ METHOD WindowRepaint() CLASS HBDebugger
    ENDIF
    ::BarDisplay()
    DispEnd()
+   RETURN Self
+
+METHOD MenuBar( lVisible ) CLASS HBDebugger
+   ::lMenuBar := hb_defaultValue( lVisible, ! ::lMenuBar )
+   ::oPullDown:GetItemByIdent( "MENUBAR" ):checked := ::lMenuBar
+   ::PaintMenuBar()
+   RETURN Self
+
+METHOD PaintMenuBar() CLASS HBDebugger
+   IF ::lMenuBar .OR. ::oPullDown:IsOpen()
+      ::oPullDown:Refresh()
+   ELSE
+      hb_DispOutAt( 0, 0, Space( ::nMaxCol + 1 ), __dbgColors()[ 1 ] )
+   ENDIF
    RETURN Self
 
 METHOD IsWindowIconized( oWnd ) CLASS HBDebugger

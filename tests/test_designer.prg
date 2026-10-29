@@ -923,6 +923,28 @@ procedure MenuTests()
    Check( "popup stack clean",        Len( HBMenu():aMenus ) == 0 )
    Check( "popup rows not menubar",   oPopup:aItems[ 1 ]:nRow != 0 .and. oPopup:aItems[ 3 ]:nRow != 0 )
 
+   // Approved duplicate mnemonic behaviour: cycle only, Enter executes.
+   oPopup := HbMenu():New( .T. )
+   cCode := ''
+   HBMenu():AddItem( HBDbMenuItem():New( '~PushButton', {|| cCode := 'push' } ) )
+   HBMenu():AddItem( HBDbMenuItem():New( '~Paste', {|| cCode := 'paste' } ) )
+   HBMenu():AddItem( HBDbMenuItem():New( '~Unique', {|| cCode := 'unique' } ) )
+   ATail( HBMenu():aMenus ):Build()
+   oPopup:nTop := 2; oPopup:nLeft := 2; oPopup:nRight := 40; oPopup:nBottom := 6
+   oPopup:Display(); oPopup:nOpenPopup := 1
+   oPopup:ProcessKey( Asc('p') )
+   Check( 'duplicate key cycles forward without execution', oPopup:nOpenPopup == 2 .AND. cCode == '' )
+   oPopup:ProcessKey( Asc('P') )
+   Check( 'duplicate key wraps without execution', oPopup:nOpenPopup == 1 .AND. cCode == '' )
+   oPopup:ProcessKey( Asc('p') ); oPopup:ProcessKey( K_ENTER )
+   Check( 'duplicate Enter executes selected action', cCode == 'paste' .AND. oPopup:nOpenPopup == 0 )
+   oPopup:Display(); oPopup:nOpenPopup := 1; cCode := ''
+   oPopup:ProcessKey( Asc('p') ); oPopup:ProcessKey( K_ESC )
+   Check( 'duplicate Esc cancels', cCode == '' .AND. oPopup:nOpenPopup == 0 )
+   oPopup:Display(); oPopup:nOpenPopup := 1
+   oPopup:ProcessKey( Asc('u') )
+   Check( 'unique mnemonic still executes immediately', cCode == 'unique' )
+
    // menubar with a nested submenu still lays out and links correctly
    oBar := HbMenu():New( .F. )
    HBMenu():AddItem( HBDbMenuItem():New( " ~File " ) )

@@ -148,6 +148,12 @@ send(b'\x1bo'); pump(0.8); send(b's')
 wait_for(['My Dialog'], secs=5.0)
 check('designer opens with default dialog', 'My Dialog' in scr.text())
 
+# Duplicate P selects PushButton then Paste without closing the palette.
+send(b'\x1bOQ');pump(.5);send(b'p');pump(.4)
+check('duplicate P keeps palette open at PushButton', 'Generate and open' in scr.text())
+send(b'p');pump(.4)
+check('second P keeps palette open at Paste', 'Generate and open' in scr.text())
+send(b'\x1b');pump(.4)
 # F2 palette -> ListBo~x -> Enter places it (listbox: resizable W and H)
 send(b'\x1bOQ'); pump(1.0)   # F2
 check('palette popup opens', 'Generate and open' in scr.text())

@@ -175,7 +175,9 @@ FUNCTION __dbgBuildMenu( oDebugger )  // Builds the debugger pulldown menu
          MENUITEM " code~Block Trace" IDENT "CODEBLOCK" ;
             ACTION oDebugger:CodeblockTrace() ;
             CHECKED oDebugger:lCBTrace
-         MENUITEM " ~Menu Bar"              ACTION oDebugger:NotSupported()
+         MENUITEM " ~Menu Bar" IDENT "MENUBAR" ;
+            ACTION oDebugger:MenuBar() ;
+            CHECKED oDebugger:lMenuBar
          MENUITEM " mono ~Display" IDENT "MONO";
             ACTION oDebugger:MonoDisplay() ;
             CHECKED oDebugger:lMonoDisplay

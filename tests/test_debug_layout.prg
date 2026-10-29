@@ -105,6 +105,21 @@ PROCEDURE Main()
    oD:DoCommand( 'window size 8 25' )
    Assert( ! oD:IsWindowIconized( oD:oWndCode ) .AND. oD:oWndCode:nBottom == 10 .AND. ;
       oD:oWndCode:nRight == 28, 'numeric size restores iconized window before resize' )
+   oD:MenuBar( .F. )
+   Assert( ! oD:lMenuBar .AND. ! oD:oPullDown:GetItemByIdent( 'MENUBAR' ):checked, 'menu bar hides and unchecks' )
+   Assert( Empty( AllTrim( TestRowText() ) ), 'hidden menu row blank' )
+   oD:OpenMenu( 'O' )
+   Assert( oD:oPullDown:IsOpen() .AND. 'Options' $ TestRowText(), 'hidden bar reveals for Options' )
+   oD:oPullDown:ProcessKey( K_ESC ); oD:PaintMenuBar()
+   Assert( ! oD:lMenuBar .AND. Empty( AllTrim( TestRowText() ) ), 'Esc hides temporary menu' )
+   oD:OpenMenu( 'O' ); oD:oPullDown:ProcessKey( Asc('m') )
+   Assert( oD:lMenuBar .AND. 'Options' $ TestRowText(), 'Options M restores bar' )
+   oD:DoCommand( 'options menubar off' )
+   Assert( ! oD:lMenuBar, 'command MenuBar OFF idempotent' )
+   oD:DoCommand( 'options menubar off' )
+   Assert( ! oD:lMenuBar, 'command MenuBar OFF repeat stable' )
+   oD:DoCommand( 'options menubar on' )
+   Assert( oD:lMenuBar, 'command MenuBar ON restores' )
    hb_MemoWrit( '/tmp/hbide-layout-tests.txt' , 'PASS ' + hb_ntos( nTests ) + ' geometry cases; runtime tile/zoom/restore/move/cancel/size/cascade/iconize/grow/shrink/numeric-command-bounds' )
    Inkey( 0.2 )
    RETURN
@@ -130,3 +145,10 @@ METHOD Resize( nTop, nLeft, nBottom, nRight ) CLASS TFakeBrowser
    ::nResizes++
    AAdd( ::aHeights, nBottom - nTop + 1 )
    RETURN Self
+
+STATIC FUNCTION TestRowText()
+   LOCAL cScreen := SaveScreen( 0, 0, 0, 79 ), c := '', n
+   FOR n := 1 TO Len( cScreen ) STEP 2
+      c += SubStr( cScreen, n, 1 )
+   NEXT
+   RETURN c

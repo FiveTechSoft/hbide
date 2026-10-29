@@ -40,6 +40,13 @@ def inventory():
         ('hbide.prg', 'METHOD Activate(', 'METHOD '),
         ('help.prg', 'FUNCTION HBHelpInput(', 'FUNCTION '),
         ('help.prg', 'FUNCTION HBIDEHelpOpen(', 'FUNCTION '),
+        ('editor.prg', 'METHOD EditKey(', 'METHOD '),
+        ('editor.prg', 'METHOD MoveCursor(', 'METHOD '),
+        ('hbdebug/debugger.prg', 'METHOD PROCEDURE HandleEvent(', 'METHOD '),
+        ('hbdebug/debugger.prg', 'METHOD PROCEDURE CommandWindowProcessKey(', 'METHOD '),
+        ('hbdebug/debugger.prg', 'METHOD PROCEDURE CodeWindowProcessKey(', 'METHOD '),
+        ('designer.prg', 'METHOD EditProperties(', 'METHOD '),
+        ('designer.prg', 'METHOD DlgProperties(', 'METHOD '),
     ]:
         lines = (ROOT / source).read_text().splitlines()
         active = False

@@ -58,7 +58,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 | M0 | Inventario de menus, atajos, comandos y limites | Cada entrada de IDE, debugger, proyecto, ayuda y diseñador tiene ID, accion, prueba Linux/Windows y resultado. Diferencias entre fuente y documentacion reconciliadas. | En curso |
 | M1 | Editor, guardado y recuperacion | New/Open/Save/SaveAs/SaveAll/Close, dirty, conflictos externos, seleccion, UTF-8/LF/CRLF, undo/redo y multidocumento sin cruce de estado. Fallos de escritura y kill/restart conservan original y cambios recuperables. Comparacion antes de recuperar revisada. | Parcial Linux; Windows pendiente |
 | M2 | Proyectos, navegacion, build y run | HBP preservado; abrir no ejecuta hooks; errores saltan al fichero correcto; argumentos literales. Fallo/cancelacion nunca ejecuta binario antiguo. Rutas con espacios, compilador ausente y diagnosticos obsoletos. Medir bloqueo UI y resolver salida/cancelacion segun contrato. | Parcial Linux; Windows pendiente |
-| M3 | Debugger completo | Step/trace/go/cursor, BP tras ediciones, watches/tracepoints, variables, expresiones, pila, workareas, ventanas, comandos y settings con efecto real. Animate sin corrupcion visible. Resolver Exchange Screens/swap on Input/Menu Bar; no stubs. Reinicio y Global requieren investigar soporte VM y contrato explicito. | Parcial; faltantes conocidos |
+| M3 | Debugger completo | Step/trace/go/cursor, BP tras ediciones, watches/tracepoints, variables, expresiones, pila, workareas, ventanas, comandos y settings con efecto real. Animate sin corrupcion visible. Resolver Exchange Screens/swap on Input; no stubs. Reinicio y Global requieren investigar soporte VM y contrato explicito. | Parcial; faltantes conocidos |
 | M4 | Disenador y GUI | Todos los controles: crear, editar propiedades/eventos, mover/resize, foco, atajos, undo/redo, guardar/recargar JSON, generar/abrir PRG, compilar y ejecutar desde IDE. Preservar handlers. Disenos grandes accesibles; sombras, bordes y restauracion modal limpios en 25x80/40x120. | Parcial Linux; Windows pendiente |
 | M5 | Plataformas y paquete | Build limpio Linux y Windows de la misma fuente; hashes y version visibles; smoke del binario distribuido exacto. Windows: F12, drag/resize y generar/abrir/ejecutar, editor/debugger/ayuda. Instalacion en entorno limpio y licencias/dependencias revisadas. | Pendiente |
 | M6 | Cierre verificable | Matriz completa sin fallos criticos ni opciones decorativas; regresion completa repetida sobre el candidato final; capturas completas; docs coinciden; restantes exclusiones y decisiones explicitas, entrega comprobada. | Pendiente |
@@ -69,10 +69,10 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 | --- | --- | --- |
 | Q01 | Baseline automatizada disponible; ampliar cobertura. | Runner de cinco probes, pasado en commit limpio7254317. Falta suite completa. |
 | Q02 | Discrepancia Iconize corregida. | Ayuda corregida en7254317; layout y PTY comandos18/18 confirman iconize/restore/viewport. Ayuda GTTRM120x40 inspeccionada. |
-| Q03 | Tres opciones visibles llaman `NotSupported()`. | `hbdebug/dbgmenu.prg`: Exchange Screens, swap on Input, Menu Bar. Investigar mecanismo antes de parchear; Menu Bar requiere decision pendiente. |
+| Q03 | Dos opciones visibles llaman `NotSupported()`. | `hbdebug/dbgmenu.prg`: Exchange Screens y swap on Input. Investigar mecanismo antes de parchear; Menu Bar ya tiene implementacion aprobada y pruebas Linux. |
 | Q04 | Animate: prueba funcional no prueba acabado. | `test_debug_animate_pty.py` acredita avance, no ausencia de tearing. Capturar secuencia real con salida de app, diferentes velocidades y F4 ida/vuelta. |
 | Q05 | Windows actual sin entorno heredado. | Reconstruir toolchain si viable; no repetir indefinidamente el diagnostico Wine agotado. Si no hay Windows nativo, informar esa carencia y continuar Linux. |
-| Q06 | Decisiones pendientes de interfaz. | Letras duplicadas paleta F2 y ocultar/recuperar Menu Bar. Mantener comportamiento actual hasta decision; preguntar juntas sin detener otros hitos. |
+| Q06 | Decisiones aprobadas 29Oct21:24. | F2 duplicadas ciclan+Enter; Menu Bar ocultable con recuperacion Alt+O,M. Implementacion y pruebas Linux; Windows pendiente. |
 | Q07 | Inventario fuente vs comparacion Borland. | La comparacion es historica: Iconize existe; evaluar/modificar expresiones tiene caminos upstream. Auditar antes de declarar funciones ausentes. |
 
 ## Ampliaciones que no se confunden con cierre probado
@@ -96,7 +96,7 @@ Las demos TOTAL ON, agenda y FoxPro no certifican el conjunto del IDE.
 
 - [COMPLETION_INVENTORY.md](COMPLETION_INVENTORY.md): primer inventario generado,
   115 acciones de menu y rutas ampliadas de teclado/comandos; son conexiones de fuente, no115 funciones
-  terminadas. Incluye tres stubs. Aun faltan modales, editor y gestos.
+  terminadas. Incluye dos stubs. Aun faltan modales, editor y gestos.
 
 - Registro de cada lote en [COMPLETION_LOG.md](COMPLETION_LOG.md): fuente,
   plataforma, build/hash, comando, resultado y limites.
