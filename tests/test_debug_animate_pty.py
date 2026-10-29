@@ -73,18 +73,17 @@ rec  = tempfile.mkdtemp(prefix='hbide-df-rec-')
 work = tempfile.mkdtemp(prefix='hbide-df-work-')
 env = dict(os.environ, HOME=home, HBIDE_RECOVERY_DIR=rec, TERM="xterm")
 
-# fixture: a call (for Trace/Calls/NextRoutine) and a changing var (for TP)
+# Include nested application display transactions. Debugger repaint must not
+# leak its own transaction into the application, or consume the application's.
 open(os.path.join(work, 'fn.prg'), 'w').write(
-    'procedure Main()\n'          # 1
-    '   local n := 1\n'           # 2
-    '   n := bump( n )\n'         # 3
-    '   ? n\n'                    # 4
-    'return\n'                    # 5
-    'function bump( x )\n'        # 6
-    '\tx := x + 41\n'              # 7
-    'return x\n')                 # 8
-
-open(os.path.join(work, 'fn.prg'), 'w').write('procedure Main()\n   local n := 0\n   n += 1\n   n += 2\n   n += 3\n   hb_MemoWrit( "' + os.path.join(work,'result.txt') + '", hb_ntos(n) )\nreturn\n')
+    'procedure Main()\n'
+    '   local n := 0\n'
+    '   DispBegin()\n   DispBegin()\n'
+    '   hb_MemoWrit( "' + os.path.join(work, 'nested.txt') + '", hb_ntos(DispCount()) )\n'
+    '   n += 1\n   n += 2\n   n += 3\n'
+    '   DispEnd()\n   DispEnd()\n'
+    '   hb_MemoWrit( "' + os.path.join(work, 'balanced.txt') + '", hb_ntos(DispCount()) )\n'
+    '   hb_MemoWrit( "' + os.path.join(work, 'result.txt') + '", hb_ntos(n) )\nreturn\n')
 pid, fd = pty.fork()
 if pid == 0:
     os.chdir(work)
@@ -132,6 +131,9 @@ try:
         pump(.2)
     assert wait_for(' File  Edit',8), 'program completion returns to IDE'
     assert open(os.path.join(work,'result.txt')).read()=='6', 'all statements ran'
+    assert open(os.path.join(work,'nested.txt')).read()=='2', 'application nested DispBegin count preserved'
+    assert open(os.path.join(work,'balanced.txt')).read()=='0', 'debugger paint transaction does not leak'
+    print('PASS nested application display count=2 then balanced=0')
     print('PASS Animate completes sum=6 without manual steps and returns to IDE')
 finally:
     try: os.kill(pid,signal.SIGHUP)

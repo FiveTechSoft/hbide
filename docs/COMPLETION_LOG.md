@@ -159,3 +159,23 @@ con cierre forzado/recuperacion21/21PASS. Functions58/58PASS tambien repetida
 sobre98d38bb: su espera minima fija supera108s, no confundir timeout100s del
 runner anterior con fallo del producto. No se han repetido todas las suites
 sobre el cambio de Delete ni se declara cerradoM1 o certificadoWindows.
+
+## Sexto checkpoint: transaccion de repintado del debugger
+
+La fuenteHarbour GT base confirma que HB_GTI_SETWIN hace flush inmediato
+si DispCount es0. Activate restauraba el snapshot previo antes de actualizar
+source, watches y paneles. Se agrupan restauracion y repintado en una sola
+transaccion Harbour; ALWAYS garantiza liberar la transaccion al salir. Show
+no es ya propietario implicito de SaveAppScreen. Scripts de settings se
+cargan fuera de la transaccion: pueden pedir entrada o ejecutar comandos.
+
+Sobre parche local basado en8d8063a: functions58/58PASS, startupON/OFF PASS.
+Animate ahora comprueba tambien DispBegin anidado de app:2 durante,0 al
+terminar; suma6 y retornoIDE PASS. Exitpaths16/16 y comandos28/28 pasan
+sobre la version anterior del mismo parche (antes de ampliar ALWAYS/settings),
+no se atribuyen como repetidos al parche final.
+
+CapturaGTTRM real30fps10s con salidaapp y speed3; pantalla completa durante
+Animate y parada revisadas, bordes/status intactos. Es una correccion del orden
+de publicacion del buffer, no evidencia de ausencia de todo tearing: faltan
+oraculo de transitorios, otras velocidades y Windows. Dos stubs siguen abiertos.

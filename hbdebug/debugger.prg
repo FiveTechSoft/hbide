@@ -441,49 +441,60 @@ METHOD PROCEDURE Activate() CLASS HBDebugger
    ::LoadCallStack()
    ::SaveAppState()
 
-   IF ::lActive
-      ::SaveAppScreen()
-   ELSE
-      ::lActive := .T.
-      ::Show()
-      IF ::lShowCallStack
-         ::ShowCallStack()
-      ENDIF
-      lFirst := .T.
-   ENDIF
-   IF ::lShowCallStack
-      ::oWndStack:Show()
-   ENDIF
-
-   ::LoadVars()
-   ::ShowVars()
-
-   IF ::oWndPnt != NIL
-      ::WatchpointsShow()
-   ENDIF
-
-   // show the topmost procedure
-   ::ShowCodeLine( 1 ) // ::aCallStack[ 1 ][ HB_DBG_CS_LINE ], ::aCallStack[ 1 ][ HB_DBG_CS_MODULE ] )
-
-   // Most commands can be executed only after activation
-   IF lFirst
-      ::LoadSettings()
-   ENDIF
-
-   // host-IDE preset breakpoints: editor line numbers map 1:1 to the
-   // generated module (hbide only appends the trailing init procedure)
-   IF ! Empty( __hbide_dbgPresetBPs() )
-      FOR EACH nLine IN __hbide_dbgPresetBPs()
-         IF HB_ISNUMERIC( nLine )
-            ::BreakPointToggle( nLine, ::cPrgName )
+   ::SaveAppScreen()
+   BEGIN SEQUENCE
+      IF ! ::lActive
+         ::lActive := .T.
+         ::Show()
+         IF ::lShowCallStack
+            ::ShowCallStack()
          ENDIF
-      NEXT
-      __hbide_dbgPresetBPs( {} )
-   ENDIF
+         lFirst := .T.
+      ENDIF
+      IF ::lShowCallStack
+         ::oWndStack:Show()
+      ENDIF
 
-   IF ! ::lWindowsAutoSized
-      ::WindowRepaint()
-   ENDIF
+      ::LoadVars()
+      ::ShowVars()
+
+      IF ::oWndPnt != NIL
+         ::WatchpointsShow()
+      ENDIF
+
+      // show the topmost procedure
+      ::ShowCodeLine( 1 ) // ::aCallStack[ 1 ][ HB_DBG_CS_LINE ], ::aCallStack[ 1 ][ HB_DBG_CS_MODULE ] )
+
+      // Most commands can be executed only after activation
+      IF lFirst
+         // Settings scripts may open dialogs or execute commands. Never hold
+         // their screen updates behind our repaint transaction.
+         DispEnd()
+         BEGIN SEQUENCE
+            ::LoadSettings()
+         ALWAYS
+            DispBegin()
+         END SEQUENCE
+      ENDIF
+
+      // host-IDE preset breakpoints: editor line numbers map 1:1 to the
+      // generated module (hbide only appends the trailing init procedure)
+      IF ! Empty( __hbide_dbgPresetBPs() )
+         FOR EACH nLine IN __hbide_dbgPresetBPs()
+            IF HB_ISNUMERIC( nLine )
+               ::BreakPointToggle( nLine, ::cPrgName )
+            ENDIF
+         NEXT
+         __hbide_dbgPresetBPs( {} )
+      ENDIF
+
+      IF ! ::lWindowsAutoSized
+         ::WindowRepaint()
+      ENDIF
+   ALWAYS
+      // Publish source, watches, windows and status together, even on unwind.
+      DispEnd()
+   END SEQUENCE
    ::HandleEvent()
 
    RETURN
@@ -2470,6 +2481,9 @@ METHOD PROCEDURE SaveAppScreen() CLASS HBDebugger
       DispEnd()
    NEXT
 
+   // HB_GTI_SETWIN flushes immediately unless a display transaction is open.
+   // Keep the old debugger snapshot private until Activate finishes repainting.
+   DispBegin()
    ::OpenDebuggerWindow()
 
    IF ::nMaxRow != MaxRow() .OR. ::nMaxCol != MaxCol()
@@ -2702,7 +2716,6 @@ METHOD PROCEDURE SearchLine( cLine ) CLASS HBDebugger
 
 METHOD PROCEDURE Show() CLASS HBDebugger
 
-   ::SaveAppScreen()
    ::PaintMenuBar()
    ::oWndCode:Show( .T. )
    ::oWndCommand:Show()
