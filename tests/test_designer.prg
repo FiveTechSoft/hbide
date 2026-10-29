@@ -660,15 +660,17 @@ procedure Main()
    Check( "button pads are plain spaces", ;
       HbBtnPadChars()[ 1 ] == " " .and. HbBtnPadChars()[ 2 ] == " " )
 
-   // generated dialogs emit the same codepage-safe button display: pads and
-   // shadow are plain spaces painted with attribute colors; no half-block
-   // glyphs and no raw CP437 bytes that render as '?' on non-UTF8 terminals
+   // generated dialogs emit the same button display as hbbutton: pads are
+   // plain spaces; the shadow is the slim Turbo Vision half-block look on
+   // UTF-8 terminals with a codepage-safe solid-cell fallback for non-UTF8
+   // terminals (whose gttrm charmap cannot map the half blocks)
    Check( "gen button pads emitted", "DsnBtnPads()" $ cCode )
    Check( "gen button pads are plain spaces", 'return { " ", " " }' $ cCode )
-   Check( "gen button shadow is solid cells", ;
-      ! ( "DsnBtnShades" $ cCode ) .and. '"N/N"' $ cCode )
-   Check( "gen no half-block glyphs", ;
-      ! ( hb_UTF8ToStr( "▄" ) $ cCode ) .and. ! ( hb_UTF8ToStr( "▀" ) $ cCode ) )
+   Check( "gen button shadow utf8 check emitted", "DsnBtnShadowUtf8()" $ cCode )
+   Check( "gen button shadow half blocks", ;
+      'hb_UTF8ToStr( "▄" )' $ cCode .and. 'hb_UTF8ToStr( "▀" )' $ cCode )
+   Check( "gen button shadow solid fallback", ;
+      "codepage-safe fallback: solid dark cells" $ cCode .and. '"N/N"' $ cCode )
    Check( "gen no NBSP pad bytes", ! ( Chr( 194 ) + Chr( 160 ) $ cCode ) )
    Check( "gen no raw cp437 pad bytes", ! "Chr( 255 )" $ cCode )
    Check( "gen no raw cp437 shadow bytes", ! ( "Chr( 220 )" $ cCode ) )

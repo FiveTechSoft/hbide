@@ -366,14 +366,23 @@ FUNCTION HBHelpBtnCols( g )
    NEXT
 RETURN aCols
 
-// TurboVision-style shadow: solid dark cell to the right of the face and a
-// dark strip below it (same codepage-safe look as the dialog buttons).
+// TurboVision-style shadow: half-block cell right of the face (lower half)
+// and a half-block strip below it (upper half), shifted one cell - the slim
+// classic TV look, same as the dialog buttons. On non-UTF8 terminals (where
+// gttrm cannot map the half blocks) solid dark cells are used instead.
 FUNCTION HBHelpBtnShadow( nRow, nCol, nLen )
    LOCAL i
-   hb_DispOutAt( nRow, nCol + nLen, " ", "N/N" )
-   FOR i = 1 TO nLen
-      hb_DispOutAt( nRow + 1, nCol + i, " ", "N/N" )
-   NEXT
+   IF HBBtnShadowUtf8()
+      hb_DispOutAt( nRow, nCol + nLen, hb_UTF8ToStr( "▄" ), "N/BG" )
+      FOR i = 1 TO nLen
+         hb_DispOutAt( nRow + 1, nCol + i, hb_UTF8ToStr( "▀" ), "N/BG" )
+      NEXT
+   ELSE
+      hb_DispOutAt( nRow, nCol + nLen, " ", "N/N" )
+      FOR i = 1 TO nLen
+         hb_DispOutAt( nRow + 1, nCol + i, " ", "N/N" )
+      NEXT
+   ENDIF
 RETURN NIL
 
 // Title and wrapped lines of the selected entry (section overview or topic).

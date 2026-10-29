@@ -18,6 +18,20 @@ HbIde ChangeLog
     preview del designer y codigo generado por el designer
   - Pads de boton como espacios ASCII (U+00A0/byte 255 tampoco tenia
     mapeo y se veia como '?')
+
+  Sombra de botones al estilo Turbo Vision real (rama designer-robustness)
+  ------------------------------------------------------------------------
+  - Sombra de medio punto como en el Turbo Vision de Borland: celda a la
+    derecha de la cara con la mitad inferior oscura (U+2584) y franja
+    inferior con la mitad superior oscura (U+2580), desplazada una celda;
+    las mitades sin pintar toman el color del dialogo (N/W, N/BG o el
+    fondo del dialogo del designer), asi que la sombra queda fina
+  - En terminales POSIX no-UTF8 gttrm no mapea esos glifos (salian '?'):
+    alli se mantiene la sombra de celdas solidas como fallback
+  - Aplica a los botones de los dialogos (hbbutton), a la ayuda, al
+    canvas del designer y al codigo generado por el designer (que emite
+    su propio chequeo DsnBtnShadowUtf8); verificado contra tvdemo de
+    Turbo Vision pixel a pixel y con capturas reales en xfce4-terminal
   - Titulo blanco solo donde el terminal soporta fondo brillante
     (HBDlgTitleColor: TERM 256color/truecolor, consola linux o COLORTERM):
     en terminales planas de 8 colores el fondo brillante degrada a texto

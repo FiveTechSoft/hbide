@@ -2742,14 +2742,29 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
             nWidth = Len( cText )
             hb_DispOutAt( nARow, nACol, ;
                SubStr( cText, 1, Max( 0, nMaxCol - nACol + 1 ) ), cColor )
-            // shadow: right cell + bottom row, same look as the runtime PushButton
-            if nACol + nWidth <= nMaxCol
-               hb_DispOutAt( nARow, nACol + nWidth, " ", "N/N" )
-            endif
-            if nARow + 1 < oWnd:nBottom .and. nARow + 1 <= MaxRow()
-               n = Min( nWidth, Max( 0, nMaxCol - nACol ) )
-               if n > 0
-                  hb_DispOutAt( nARow + 1, nACol + 1, Replicate( " ", n ), "N/N" )
+            // shadow: same slim Turbo Vision look as the runtime PushButton
+            if HBBtnShadowUtf8()
+               // half blocks on the dialog background: right cell (lower
+               // half) and stripe below (upper half), shifted one cell
+               if nACol + nWidth <= nMaxCol
+                  hb_DispOutAt( nARow, nACol + nWidth, hb_UTF8ToStr( "▄" ), "N/" + aDlgPair[ 2 ] )
+               endif
+               if nARow + 1 < oWnd:nBottom .and. nARow + 1 <= MaxRow()
+                  n = Min( nWidth, Max( 0, nMaxCol - nACol ) )
+                  if n > 0
+                     hb_DispOutAt( nARow + 1, nACol + 1, Replicate( hb_UTF8ToStr( "▀" ), n ), "N/" + aDlgPair[ 2 ] )
+                  endif
+               endif
+            else
+               // codepage-safe fallback: solid dark cells
+               if nACol + nWidth <= nMaxCol
+                  hb_DispOutAt( nARow, nACol + nWidth, " ", "N/N" )
+               endif
+               if nARow + 1 < oWnd:nBottom .and. nARow + 1 <= MaxRow()
+                  n = Min( nWidth, Max( 0, nMaxCol - nACol ) )
+                  if n > 0
+                     hb_DispOutAt( nARow + 1, nACol + 1, Replicate( " ", n ), "N/N" )
+                  endif
                endif
             endif
          endif
@@ -3985,10 +4000,21 @@ static function DsnBtnDisplayCode( cBg )
    cCode += "      endif" + hb_eol()
    cCode += "   endif" + hb_eol()
    cCode += hb_eol()
-   cCode += '   hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
-   cCode += '                 " ", If( ::lBuffer, "' + cShadow + '", "N/N" ) )' + hb_eol()
-   cCode += '   hb_DispOutAt( ::nRow + 1, ::nCol + 1,;' + hb_eol()
-   cCode += '                 Replicate( " ", hb_ULen( cCaption ) + 2 ), If( ::lBuffer, "' + cShadow + '", "N/N" ) )' + hb_eol()
+   cCode += "   if DsnBtnShadowUtf8()" + hb_eol()
+   cCode += "      // Turbo Vision half-cell shadow: half blocks on the dialog" + hb_eol()
+   cCode += "      // background (right cell lower half, stripe below upper half)" + hb_eol()
+   cCode += '      hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 3 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
+   cCode += '                    hb_UTF8ToStr( "▄" ), "' + cShadow + '" )' + hb_eol()
+   cCode += '      hb_DispOutAt( ::nRow + 1, ::nCol + 2 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
+   cCode += '                    Replicate( hb_UTF8ToStr( "▀" ), hb_ULen( cCaption ) + 2 ), "' + cShadow + '" )' + hb_eol()
+   cCode += "   else" + hb_eol()
+   cCode += "      // codepage-safe fallback: solid dark cells (no ACSC mapping" + hb_eol()
+   cCode += "      // for the half blocks on non-UTF8 terminals)" + hb_eol()
+   cCode += '      hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
+   cCode += '                    " ", "N/N" )' + hb_eol()
+   cCode += '      hb_DispOutAt( ::nRow + 1, ::nCol + 1,;' + hb_eol()
+   cCode += '                    Replicate( " ", hb_ULen( cCaption ) + 2 ), "N/N" )' + hb_eol()
+   cCode += "   endif" + hb_eol()
    cCode += hb_eol()
    cCode += "   DispEnd()" + hb_eol()
    cCode += hb_eol()
@@ -3997,6 +4023,25 @@ static function DsnBtnDisplayCode( cBg )
    cCode += "function DsnBtnPads()" + hb_eol()
    cCode += hb_eol()
    cCode += 'return { " ", " " }' + hb_eol()
+   cCode += hb_eol()
+   cCode += "// .T. when the terminal renders the half-block shadow glyphs" + hb_eol()
+   cCode += "// (Windows GTs natively; POSIX only in a UTF-8 locale)" + hb_eol()
+   cCode += "function DsnBtnShadowUtf8()" + hb_eol()
+   cCode += hb_eol()
+   cCode += '   local cLoc := "", cName' + hb_eol()
+   cCode += hb_eol()
+   cCode += '   if "WINDOWS" $ Upper( OS() )' + hb_eol()
+   cCode += "      return .T." + hb_eol()
+   cCode += "   endif" + hb_eol()
+   cCode += '   for each cName in { "LC_ALL", "LC_CTYPE", "LANG" }' + hb_eol()
+   cCode += "      cLoc := GetEnv( cName )" + hb_eol()
+   cCode += "      if ! Empty( cLoc )" + hb_eol()
+   cCode += "         exit" + hb_eol()
+   cCode += "      endif" + hb_eol()
+   cCode += "   next" + hb_eol()
+   cCode += "   cLoc := Upper( cLoc )" + hb_eol()
+   cCode += hb_eol()
+   cCode += 'return "UTF-8" $ cLoc .or. "UTF8" $ cLoc' + hb_eol()
    cCode += hb_eol()
    cCode += "// pushbutton hit test override: same extent as hbbutton's BtnHitTest," + hb_eol()
    cCode += "// covering the full painted width of the bracket look" + hb_eol()

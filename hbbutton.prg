@@ -63,20 +63,56 @@ function BtnDisplay()
       ENDIF
    ENDIF
 
-   hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;
-                 " ", If( ::lBuffer, "N/W", "N/N" ) )
-   hb_DispOutAt( ::nRow + 1, ::nCol + 1,;
-                 Replicate( " ", hb_ULen( cCaption ) + 2 ), If( ::lBuffer, "N/W", "N/N" ) )
+   IF HBBtnShadowUtf8()
+      // Turbo Vision half-cell shadow: the cell right of the face keeps the
+      // dialog color on its upper half and shows the shadow on its lower
+      // half; the stripe below shows the shadow on its upper half, shifted
+      // one cell right. Half the thickness of a solid-cell shadow: the
+      // classic TV button look (same as demos/calculator.prg CalcBtnShadow).
+      hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 3 + If( ::lBuffer, 1, 0 ),;
+                    hb_UTF8ToStr( "▄" ), "N/W" )
+      hb_DispOutAt( ::nRow + 1, ::nCol + 2 + If( ::lBuffer, 1, 0 ),;
+                    Replicate( hb_UTF8ToStr( "▀" ), hb_ULen( cCaption ) + 2 ), "N/W" )
+   ELSE
+      // codepage-safe fallback: solid dark cells (gttrm's ACSC charmap has
+      // no mapping for the half blocks on non-UTF8 terminals: they print '?')
+      hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;
+                    " ", "N/N" )
+      hb_DispOutAt( ::nRow + 1, ::nCol + 1,;
+                    Replicate( " ", hb_ULen( cCaption ) + 2 ), "N/N" )
+   ENDIF
 
    DispEnd()
 
    RETURN Self
 
-// Button shadow: solid dark cells (plain spaces with a black-on-black color).
-// Half-block glyphs (U+2584/U+2580) have no ACSC fallback in Harbour's gttrm
-// charmap, so on non-UTF8 terminals they rendered as literal '?'. Solid cells
-// are codepage-independent, match the classic Turbo Vision button shadow and
-// look identical on GTWVT and on UTF-8 and non-UTF8 terminals alike.
+// Button shadow: the classic Turbo Vision look is a half-cell shadow drawn
+// with half-block glyphs (U+2584 right of the face, U+2580 stripe below) in a
+// black-on-dialog-color attribute, so the unpainted halves blend into the
+// dialog. GTWVT and UTF-8 terminals render those glyphs directly; on a
+// non-UTF8 POSIX terminal gttrm's ACSC charmap has no mapping for them (they
+// print '?'), so there BtnDisplay falls back to solid dark cells.
+
+// .T. when the terminal can render the half-block shadow glyphs: the
+// Windows GTs (GTWVT) take them natively; on POSIX they only survive a
+// UTF-8 locale. Kept local to this file because hbbutton.prg is also linked
+// standalone into designer-generated dialogs (no hbide.prg there).
+function HBBtnShadowUtf8()
+
+   local cLoc := "", cName
+
+   if "WINDOWS" $ Upper( OS() )
+      return .T.
+   endif
+   for each cName in { "LC_ALL", "LC_CTYPE", "LANG" }
+      cLoc := GetEnv( cName )
+      if ! Empty( cLoc )
+         exit
+      endif
+   next
+   cLoc := Upper( cLoc )
+
+return "UTF-8" $ cLoc .or. "UTF8" $ cLoc
 
 // the two pads flanking the caption: plain ASCII spaces. They used to be
 // U+00A0 (CP437 255), but gttrm's charmap has no mapping for byte 255 on
