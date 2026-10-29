@@ -159,7 +159,8 @@
       "tests": [
         "test_editor_repaint.prg",
         "test_editor_eol.prg",
-        "test_multidoc_pty.py"
+        "test_multidoc_pty.py",
+        "test_edit_menu_pty.py"
       ],
       "contract": "Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified."
     },
@@ -167,40 +168,46 @@
       "tests": [
         "test_editor_repaint.prg",
         "test_editor_eol.prg",
-        "test_multidoc_pty.py"
+        "test_multidoc_pty.py",
+        "test_edit_menu_pty.py"
       ],
       "contract": "Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document."
     },
     "IDE-011": {
       "tests": [
-        "test_editor_eol.prg"
+        "test_editor_eol.prg",
+        "test_edit_menu_pty.py"
       ],
-      "contract": "Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. UI menu dispatch not independently tested here."
+      "contract": "Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes."
     },
     "IDE-012": {
       "tests": [
-        "test_editor_eol.prg"
+        "test_editor_eol.prg",
+        "test_edit_menu_pty.py"
       ],
-      "contract": "Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. UI menu dispatch not independently tested here."
+      "contract": "Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes."
     },
     "IDE-013": {
       "tests": [
         "test_editor_eol.prg",
-        "test_bp_delete_policy.py"
+        "test_bp_delete_policy.py",
+        "test_edit_menu_pty.py"
       ],
-      "contract": "Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Coverage is partial."
+      "contract": "Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial."
     },
     "IDE-014": {
       "tests": [
-        "test_editor_eol.prg"
+        "test_editor_eol.prg",
+        "test_edit_menu_pty.py"
       ],
-      "contract": "Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. UI menu dispatch not independently tested here."
+      "contract": "Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. Real Edit-menu dispatch now checks exact saved bytes."
     },
     "IDE-017": {
       "tests": [
-        "test_editor_eol.prg"
+        "test_editor_eol.prg",
+        "test_edit_menu_pty.py"
       ],
-      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; modal replace input/dispatch remains separate and unverified."
+      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes."
     },
     "IDE-023": {
       "tests": [
@@ -213,6 +220,12 @@
         "test_multidoc_pty.py"
       ],
       "contract": "Ctrl+Shift+F6 returns to the prior live document with cursor, undo and breakpoint state preserved."
+    },
+    "IDE-010": {
+      "tests": [
+        "test_edit_menu_pty.py"
+      ],
+      "contract": "Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths."
     }
   }
 }

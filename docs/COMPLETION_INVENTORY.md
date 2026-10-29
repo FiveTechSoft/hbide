@@ -15,7 +15,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-007 | File | Exit | hbide.prg:782 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-008 | Edit | Undo           Ctrl+Z | hbide.prg:787 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-009 | Edit | Redo           Ctrl+U | hbide.prg:788 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-010 | Edit | Copy | hbide.prg:790 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-010 | Edit | Copy | hbide.prg:790 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-011 | Edit | Cut | hbide.prg:791 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-012 | Edit | Paste | hbide.prg:792 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-013 | Edit | Delete Line  Ctrl+Y | hbide.prg:794 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -149,15 +149,16 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-002: Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py)
 - IDE-003: F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_utf8_valid.prg](../tests/test_utf8_valid.prg), [test_atomic.prg](../tests/test_atomic.prg), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py)
 - IDE-004: Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py)
-- IDE-008: Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
-- IDE-009: Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
-- IDE-011: Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. UI menu dispatch not independently tested here. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg)
-- IDE-012: Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. UI menu dispatch not independently tested here. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg)
-- IDE-013: Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Coverage is partial. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py)
-- IDE-014: Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. UI menu dispatch not independently tested here. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg)
-- IDE-017: Model Replace All changes text while preserving mixed boundaries and undo; modal replace input/dispatch remains separate and unverified. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg)
+- IDE-008: Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-009: Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-011: Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-012: Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-013: Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-014: Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. Real Edit-menu dispatch now checks exact saved bytes. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-017: Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-023: Ctrl+F6 switches live documents, preserving editor state and isolation. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-024: Ctrl+Shift+F6 returns to the prior live document with cursor, undo and breakpoint state preserved. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
+- IDE-010: Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 
 ## Campos de inspector
 
@@ -448,16 +449,16 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:585 | `case nKeyStd == K_F8` |
 | editor.prg:589 | `case nKeyStd == K_F9` |
 | editor.prg:592 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
-| editor.prg:2017 | `case K_UP` |
-| editor.prg:2018 | `case K_DOWN` |
-| editor.prg:2019 | `case K_LEFT` |
-| editor.prg:2020 | `case K_RIGHT` |
-| editor.prg:2021 | `case K_HOME` |
-| editor.prg:2022 | `case K_END` |
-| editor.prg:2023 | `case K_PGUP` |
-| editor.prg:2024 | `case K_PGDN` |
-| editor.prg:2025 | `case K_MWFORWARD` |
-| editor.prg:2026 | `case K_MWBACKWARD` |
+| editor.prg:2037 | `case K_UP` |
+| editor.prg:2038 | `case K_DOWN` |
+| editor.prg:2039 | `case K_LEFT` |
+| editor.prg:2040 | `case K_RIGHT` |
+| editor.prg:2041 | `case K_HOME` |
+| editor.prg:2042 | `case K_END` |
+| editor.prg:2043 | `case K_PGUP` |
+| editor.prg:2044 | `case K_PGDN` |
+| editor.prg:2045 | `case K_MWFORWARD` |
+| editor.prg:2046 | `case K_MWBACKWARD` |
 | hbdebug/debugger.prg:1513 | `CASE K_LDBLCLK` |
 | hbdebug/debugger.prg:1533 | `CASE K_LBUTTONDOWN` |
 | hbdebug/debugger.prg:1562 | `CASE K_RBUTTONDOWN` |

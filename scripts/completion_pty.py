@@ -7,6 +7,7 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
     'designer': ('test_designer_pty.py', [], 120),
+    'edit-menu': ('test_edit_menu_pty.py', [], 120),
     'navigation': ('test_nav_pty.py', [], 180),
     'multidoc': ('test_multidoc_pty.py', [], 180),
     'project-desktop': ('test_project_desktop_pty.py', [], 180),

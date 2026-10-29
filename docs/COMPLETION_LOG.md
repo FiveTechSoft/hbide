@@ -465,3 +465,15 @@ modelosPASS. PTY navegacion35/recuperacionTAB/multidocPASS sobre candidato.
 Primer lote multidoc interrumpido por limiteexterno120s, repetido solo yPASS;
 no se atribuye exito al intento interrumpido. Captura seleccion larga
 repetida e inspeccionada con marco intacto. Sin certificacion global.
+
+## Menu Edit real, no solo modelo
+
+NuevoPTY ejecuta Undo/Redo/Duplicate/Delete/Copy/Paste/Cut y Replace modal
+por sus menus reales y guarda tras cada paso.13checks byteexactos sobre
+archivo CRLF/LFconTAB, incluido undo de Replace. Primer intento tenia dos
+expectativas equivocadas de cursor tras Delete: copiaba realmente beta,
+no alpha. Se corrigio fixture navegando explicitamente al objetivo; no se
+modifico producto para satisfacer una expectativa errada.
+
+Runner suma edit-menu (30casos); contratos33/115, con limites porcontrato.
+Este commit no cambia producto. Gate2stubs y Windows siguen abiertos.
