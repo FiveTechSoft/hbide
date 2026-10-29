@@ -10,8 +10,15 @@
 //
 // All controls are functional: menus, record browse, calculator with
 // memory, 15-puzzle, ASCII chart scroll, and the dialog totals real
-// records into the Debug (Output) window (optional FOR expression and
-// Save As file).
+// records into the Debug (Output) window (optional FOR/WHILE expression
+// and Save As file).
+//
+// FOR/WHILE expressions are Harbour macro expressions: they are compiled
+// and executed with full access to the language (xBase & semantics), so
+// use trusted expressions only. WHILE stops the scan at the first record
+// that fails the condition; FOR skips non-matching records.
+// Save As uses atomic exclusive creation (hb_vfOpen with FO_EXCL): an
+// existing file is never overwritten, with no check-then-write race.
 //
 // Glyph literals are UTF-8 byte escapes: pure-ASCII source, so CP437
 // editors (hbide included) open/edit/save it without loss.
@@ -22,6 +29,7 @@
 #include "setcurs.ch"
 #include "hbmenu.ch"
 #include "hbclass.ch"
+#include "fileio.ch"
 
 #define SCR_ROWS 27
 #define SCR_COLS 80
@@ -947,6 +955,7 @@ static procedure DlgRun()
 return
 
 //------------------------------------------------------------
+
 // evaluate a FOR expression against one record (fields as memvars)
 // returns .T./.F.; NIL on expression error (cDesc gets the description)
 static function RecEval( r, cExpr, cDesc )
@@ -974,7 +983,8 @@ static procedure DlgOk( nField, lScope, lFor, lWhile, lFields, cExpr, cSaveAs )
    local h := s_h
    local aNums := {}, aLines := {}, cFld, i, nCnt := 0, nFrom := 1
    local aTotals := { => }, r, lUse, cTxt := "", uEv
-   local lForErr := .F., cForDesc := ""
+   local lForErr := .F., cForDesc := "", cForWhich := "FOR"
+   local hOut, lSaved
 
    if lScope
       nFrom := h[ "rec" ]      // REST from the current record
@@ -999,11 +1009,26 @@ static procedure DlgOk( nField, lScope, lFor, lWhile, lFields, cExpr, cSaveAs )
    next
    for i := nFrom to Len( h[ "recs" ] )
       r := h[ "recs" ][ i ]
+      if lWhile .and. ! Empty( cExpr )
+         // WHILE <exp>: the scan stops at the first record that fails the
+         // condition (xBase WHILE semantics); the FOR filter below still
+         // applies to each scanned record when both are given
+         uEv := RecEval( r, cExpr, @cForDesc )
+         if uEv == NIL
+            lForErr := .T.
+            cForWhich := "WHILE"
+            exit
+         endif
+         if ! uEv
+            exit
+         endif
+      endif
       lUse := .T.
       if lFor .and. ! Empty( cExpr )
          uEv := RecEval( r, cExpr, @cForDesc )
          if uEv == NIL
             lForErr := .T.
+            cForWhich := "FOR"
             exit
          endif
          lUse := uEv
@@ -1018,7 +1043,7 @@ static procedure DlgOk( nField, lScope, lFor, lWhile, lFields, cExpr, cSaveAs )
 
    if lForErr
       // never write silent partial totals: report the error and cancel
-      OutLine( h, "FOR expression error on record " + hb_ntos( i ) + ": " + cForDesc )
+      OutLine( h, cForWhich + " expression error on record " + hb_ntos( i ) + ": " + cForDesc )
       OutLine( h, "Total cancelled; no partial totals written." )
       WinFront( "debug" )
       return
@@ -1026,7 +1051,7 @@ static procedure DlgOk( nField, lScope, lFor, lWhile, lFields, cExpr, cSaveAs )
 
    AAdd( aLines, "TOTAL ON " + iif( lScope, "REST", "ALL" ) + ;
       iif( lFor .and. ! Empty( cExpr ), " FOR " + cExpr, "" ) + ;
-      iif( lWhile, " WHILE (demo: same as FOR)", "" ) + ":" )
+      iif( lWhile .and. ! Empty( cExpr ), " WHILE " + cExpr, "" ) + ":" )
    for each cFld in aNums
       AAdd( aLines, "  " + PadR( cFld, 9 ) + " = " + CalcFmt( aTotals[ cFld ] ) )
    next
@@ -1037,12 +1062,24 @@ static procedure DlgOk( nField, lScope, lFor, lWhile, lFields, cExpr, cSaveAs )
       cTxt += aLines[ i ] + hb_eol()
    next
    if ! Empty( cSaveAs )
-      if hb_FileExists( cSaveAs )
-         OutLine( h, "Save As: '" + cSaveAs + "' already exists; NOT overwritten." )
-      elseif hb_MemoWrit( cSaveAs, cTxt )
-         OutLine( h, "Saved to " + cSaveAs )
+      // atomic exclusive creation: FO_EXCL fails the open when the file
+      // already exists, so it can never be overwritten and there is no
+      // check-then-write race; hb_FileExists only picks the message
+      hOut := hb_vfOpen( cSaveAs, FO_WRITE + FO_CREAT + FO_EXCL )
+      if hOut == NIL   // hb_vfOpen fails with NIL (FError() has the OS code)
+         if hb_FileExists( cSaveAs )
+            OutLine( h, "Save As: '" + cSaveAs + "' already exists; NOT overwritten." )
+         else
+            OutLine( h, "Save As: cannot create '" + cSaveAs + "' (FError " + hb_ntos( FError() ) + ")" )
+         endif
       else
-         OutLine( h, "Could not save to " + cSaveAs )
+         lSaved := hb_vfWrite( hOut, cTxt ) == Len( cTxt )
+         hb_vfClose( hOut )
+         if lSaved
+            OutLine( h, "Saved to " + cSaveAs )
+         else
+            OutLine( h, "Could not save to " + cSaveAs )
+         endif
       endif
    endif
 
