@@ -20,8 +20,8 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-012 | Edit | Paste | hbide.prg:792 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-013 | Edit | Delete Line  Ctrl+Y | hbide.prg:794 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-014 | Edit | Duplicate Line | hbide.prg:795 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-015 | Edit | Find...         F5 | hbide.prg:797 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-016 | Edit | Repeat Last Find F3 | hbide.prg:798 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-015 | Edit | Find...         F5 | hbide.prg:797 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-016 | Edit | Repeat Last Find F3 | hbide.prg:798 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-017 | Edit | Replace... | hbide.prg:799 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-018 | Edit | Goto Line... | hbide.prg:801 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-019 | Edit | Go to Function... Ctrl+G | hbide.prg:802 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -143,6 +143,8 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-037: ON enters extended block; OFF steps past; fresh sessions tested. Pruebas: [test_debug_codeblock_pty.py](../tests/test_debug_codeblock_pty.py)
 - DBG-038: Hide, temporary Alt menu, Esc rehide, Alt+O,M restore; explicit ON/OFF and settings round trip. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_layout.prg](../tests/test_debug_layout.prg)
 - DBG-043: ON/OFF affect real startup stopping in fresh sessions, not only check mark. Pruebas: [test_debug_startup_pty.py](../tests/test_debug_startup_pty.py)
+- IDE-015: Search next position case-insensitively; wrap within current and other lines; missing match retains cursor. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg)
+- IDE-016: Repeat visits adjacent and overlapping matches without double increment, then wraps. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg)
 
 ## Campos de inspector
 
@@ -405,44 +407,44 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:875 | `CASE nKey == K_PGDN` |
 | help.prg:877 | `CASE nKey == K_HOME` |
 | help.prg:879 | `CASE nKey == K_END` |
-| editor.prg:432 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` |
-| editor.prg:438 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` |
-| editor.prg:444 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` |
-| editor.prg:445 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` |
-| editor.prg:446 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` |
-| editor.prg:447 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` |
-| editor.prg:448 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` |
-| editor.prg:449 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` |
-| editor.prg:452 | `case nKeyStd == K_CTRL_Z` |
-| editor.prg:456 | `case nKeyStd == K_CTRL_U` |
-| editor.prg:460 | `case nKeyStd == K_LDBLCLK` |
-| editor.prg:464 | `case nKeyStd == K_LBUTTONDOWN` |
-| editor.prg:468 | `case nKeyStd == K_MWBACKWARD` |
-| editor.prg:471 | `case nKeyStd == K_MWFORWARD` |
-| editor.prg:474 | `case nKeyStd == K_BS` |
-| editor.prg:494 | `case nKeyStd == K_DEL` |
-| editor.prg:505 | `case nKeyStd == K_ENTER` |
-| editor.prg:515 | `case nKeyStd == K_RIGHT` |
-| editor.prg:524 | `case nKeyStd == K_LEFT` |
-| editor.prg:533 | `case nKeyStd == K_HOME` |
-| editor.prg:536 | `case nKeyStd == K_END` |
-| editor.prg:539 | `case nKeyStd == K_CTRL_RIGHT` |
-| editor.prg:543 | `case nKeyStd == K_ALT_LEFT` |
-| editor.prg:551 | `case nKeyStd == K_CTRL_Y` |
-| editor.prg:554 | `case nKeyStd == K_F2` |
-| editor.prg:560 | `case nKeyStd == K_F8` |
-| editor.prg:564 | `case nKeyStd == K_F9` |
-| editor.prg:567 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
-| editor.prg:1775 | `case K_UP` |
-| editor.prg:1776 | `case K_DOWN` |
-| editor.prg:1777 | `case K_LEFT` |
-| editor.prg:1778 | `case K_RIGHT` |
-| editor.prg:1779 | `case K_HOME` |
-| editor.prg:1780 | `case K_END` |
-| editor.prg:1781 | `case K_PGUP` |
-| editor.prg:1782 | `case K_PGDN` |
-| editor.prg:1783 | `case K_MWFORWARD` |
-| editor.prg:1784 | `case K_MWBACKWARD` |
+| editor.prg:430 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` |
+| editor.prg:436 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` |
+| editor.prg:442 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` |
+| editor.prg:443 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` |
+| editor.prg:444 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` |
+| editor.prg:445 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` |
+| editor.prg:446 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` |
+| editor.prg:447 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` |
+| editor.prg:450 | `case nKeyStd == K_CTRL_Z` |
+| editor.prg:454 | `case nKeyStd == K_CTRL_U` |
+| editor.prg:458 | `case nKeyStd == K_LDBLCLK` |
+| editor.prg:462 | `case nKeyStd == K_LBUTTONDOWN` |
+| editor.prg:466 | `case nKeyStd == K_MWBACKWARD` |
+| editor.prg:469 | `case nKeyStd == K_MWFORWARD` |
+| editor.prg:472 | `case nKeyStd == K_BS` |
+| editor.prg:492 | `case nKeyStd == K_DEL` |
+| editor.prg:503 | `case nKeyStd == K_ENTER` |
+| editor.prg:513 | `case nKeyStd == K_RIGHT` |
+| editor.prg:522 | `case nKeyStd == K_LEFT` |
+| editor.prg:531 | `case nKeyStd == K_HOME` |
+| editor.prg:534 | `case nKeyStd == K_END` |
+| editor.prg:537 | `case nKeyStd == K_CTRL_RIGHT` |
+| editor.prg:541 | `case nKeyStd == K_ALT_LEFT` |
+| editor.prg:549 | `case nKeyStd == K_CTRL_Y` |
+| editor.prg:552 | `case nKeyStd == K_F2` |
+| editor.prg:558 | `case nKeyStd == K_F8` |
+| editor.prg:562 | `case nKeyStd == K_F9` |
+| editor.prg:565 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
+| editor.prg:1803 | `case K_UP` |
+| editor.prg:1804 | `case K_DOWN` |
+| editor.prg:1805 | `case K_LEFT` |
+| editor.prg:1806 | `case K_RIGHT` |
+| editor.prg:1807 | `case K_HOME` |
+| editor.prg:1808 | `case K_END` |
+| editor.prg:1809 | `case K_PGUP` |
+| editor.prg:1810 | `case K_PGDN` |
+| editor.prg:1811 | `case K_MWFORWARD` |
+| editor.prg:1812 | `case K_MWBACKWARD` |
 | hbdebug/debugger.prg:1513 | `CASE K_LDBLCLK` |
 | hbdebug/debugger.prg:1533 | `CASE K_LBUTTONDOWN` |
 | hbdebug/debugger.prg:1562 | `CASE K_RBUTTONDOWN` |

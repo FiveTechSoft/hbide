@@ -113,6 +113,18 @@
         "test_debug_startup_pty.py"
       ],
       "contract": "ON/OFF affect real startup stopping in fresh sessions, not only check mark."
+    },
+    "IDE-015": {
+      "tests": [
+        "test_editor_find.prg"
+      ],
+      "contract": "Search next position case-insensitively; wrap within current and other lines; missing match retains cursor."
+    },
+    "IDE-016": {
+      "tests": [
+        "test_editor_find.prg"
+      ],
+      "contract": "Repeat visits adjacent and overlapping matches without double increment, then wraps."
     }
   }
 }

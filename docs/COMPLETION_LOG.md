@@ -242,3 +242,17 @@ CasoCRLF nuevo enrunnerPTY. Sobreproducto db61c34: LF yCRLF reales pasan
 abrir→editar→diario→SIGKILL→reiniciar→recuperar→guardar byte exacto. No es
 solo simulacionLoadText. Regresiones limpiasdb61: recoverymulti/retention/
 deeppath, BPdelete yAnimatePASS, ledgerconhash estable.
+
+## Undecimo checkpoint: F3 no salta coincidencias
+
+FindNext incrementaba columna y FindText volvia a empezar despues de ella:
+se saltaban matches adyacentes. Wrap tampoco incluia la linea actual.
+Nueva reproduccion6casos:4PASS/2FAIL. Se elimina incremento duplicado y se
+completa wrap. Suite ampliada12/12PASS: adyacentes, solapadas, multilinea,
+case-insensitive, unica coincidencia y miss sin mover cursor.
+
+Ocho modelos recompiladosPASS antes de ampliar6casos extra de busqueda;
+la suite ampliada12/12 y navegacionPTY35/35PASS sobre parche deeff5d10.
+Capturas reales completas inspeccionadas: tercera a deaaaa trasF3, luego
+primera al envolver; statuscol3/col1 y bordes inferiores intactos.
+Debuggerfunctions58/58 tambien repetida sobreeff5d10 limpio antes del parche.

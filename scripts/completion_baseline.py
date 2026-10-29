@@ -21,6 +21,7 @@ def run(name, args, cwd=ROOT, timeout=120):
 
 cases = {
     'designer': ['tests/test_designer.prg', 'designer.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
+    'find': ['tests/test_editor_find.prg', 'editor.prg', 'recovery.prg'],
     'eol': ['tests/test_editor_eol.prg', 'editor.prg', 'recovery.prg'],
     'utf8': ['tests/test_utf8_valid.prg', 'editor.prg', 'recovery.prg'],
     'atomic': ['tests/test_atomic.prg', 'editor.prg', 'recovery.prg'],

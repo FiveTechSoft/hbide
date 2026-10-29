@@ -259,7 +259,7 @@ METHOD FindText( cText ) CLASS HBSrcEdit
    next
 
    // Wrap around from beginning
-   for n = 1 to ::nRow - 1
+   for n = 1 to ::nRow
       nPos = hb_UAt( Upper( cText ), Upper( ::aText[ n ]:cText ) )
       if nPos > 0
          ::GoTo( n, nPos + 4 )
@@ -274,13 +274,9 @@ return nil
 
 METHOD FindNext() CLASS HBSrcEdit
 
-   local nOldCol := ::nCol
-
-   ::nCol++
+   // FindText already starts after the cursor. A second increment skipped
+   // adjacent/overlapping matches and moved the cursor when no match exists.
    ::FindText( ::cFindText )
-   if ::nCol == nOldCol + 1
-      ::nCol = nOldCol
-   endif
 
 return nil
 
