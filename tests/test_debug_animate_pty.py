@@ -3,7 +3,7 @@ import os, pty, sys, struct, fcntl, termios, select, time, signal, shutil, tempf
 # Linux PTY: Animate completes several statements without manual stepping.
 # Functional outcome only. Does not certify absence of visual tearing.
 ROWS, COLS = 25, 80
-BIN = '/home/sandbox/hbide/hbide'
+BIN = os.environ.get('HBIDE_BIN', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'hbide'))
 
 class Scr:
     def __init__(self):

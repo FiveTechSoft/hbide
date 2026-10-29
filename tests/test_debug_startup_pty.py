@@ -3,7 +3,7 @@ import os, pty, sys, struct, fcntl, termios, select, time, signal, shutil, tempf
 # Linux PTY: RunAtStartup effect in two fresh sessions.
 # This tests the injected init procedure entry, not a promise about user Main.
 ROWS, COLS = 25, 80
-BIN = '/home/sandbox/hbide/hbide'
+BIN = os.environ.get('HBIDE_BIN', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'hbide'))
 
 class Scr:
     def __init__(self):

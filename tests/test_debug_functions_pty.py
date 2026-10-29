@@ -7,7 +7,7 @@ import os, pty, sys, struct, fcntl, termios, select, time, signal, shutil, tempf
 # Semantics kept upstream: watchpoints are display-only, tracepoints stop
 # when the value changes (en.txt:358-363).
 ROWS, COLS = 25, 80
-BIN = '/home/sandbox/hbide/hbide'
+BIN = os.environ.get('HBIDE_BIN', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'hbide'))
 
 class Scr:
     def __init__(self):

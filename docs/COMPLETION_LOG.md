@@ -179,3 +179,18 @@ CapturaGTTRM real30fps10s con salidaapp y speed3; pantalla completa durante
 Animate y parada revisadas, bordes/status intactos. Es una correccion del orden
 de publicacion del buffer, no evidencia de ausencia de todo tearing: faltan
 oraculo de transitorios, otras velocidades y Windows. Dos stubs siguen abiertos.
+
+## Septimo checkpoint: ejecucionPTY reproducible
+
+Nuevo runner `scripts/completion_pty.py`: lista21suites, compila IDE por
+defecto, registra revision, cambios locales, hashIDE/test/runner, salida,
+tiempo y log por suite en JSONL. `--case` permite lotes; `--reuse-build` es
+explicito. Detecta FAIL impreso aunque exit sea0. Timeout no se etiqueta
+como fallo producto; mata descendientes y para para inspeccion. No hereda
+pruebas entre revisiones ni afirma cobertura visual/Windows. Doce arneses
+que fijaban /home/sandbox/hbide/hbide ahora usan ruta relativa o HBIDE_BIN.
+
+Ampliacion sobre31e0d75: multidoc37/37, project-messages18/18,
+project-desktop21/21, exitpaths16/16PASS; recovery-multi, retention,
+deep-path y route-guard PASS. Project-desktop y exitpaths ejecutados con
+cambios de rutas de arnes locales, sin cambiar codigo del producto.
