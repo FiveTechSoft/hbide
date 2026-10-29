@@ -1,7 +1,8 @@
 # hbide: roadmap de cierre
 
 Actualizado: 29 de octubre de 2026. Rama: `designer-robustness`.
-Base auditada: `f91fa20`. No es una certificacion del IDE completo.
+Base inicial auditada: `f91fa20`. Cambios posteriores y su evidencia en COMPLETION_LOG.md.
+No es una certificacion del IDE completo.
 
 ## Que significa 100%
 
@@ -67,13 +68,15 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
-| Q01 | Baseline automatizada disponible; ampliar cobertura. | Runner de cinco probes, pasado en commit limpio7254317. Falta suite completa. |
+| Q01 | Baseline automatizada disponible; ampliar cobertura. | Runner de modelos y runnerPTY con revision/hash por caso. Ocho modelos pasan limpios3443a46; la suitePTY completa del candidato sigue pendiente. |
 | Q02 | Discrepancia Iconize corregida. | Ayuda corregida en7254317; layout y PTY comandos18/18 confirman iconize/restore/viewport. Ayuda GTTRM120x40 inspeccionada. |
 | Q03 | Dos opciones visibles llaman `NotSupported()`. | `hbdebug/dbgmenu.prg`: Exchange Screens y swap on Input. Investigar mecanismo antes de parchear; Menu Bar ya tiene implementacion aprobada y pruebas Linux. |
 | Q04 | Animate: prueba funcional no prueba acabado. | `test_debug_animate_pty.py` acredita avance, no ausencia de tearing. Capturar secuencia real con salida de app, diferentes velocidades y F4 ida/vuelta. |
 | Q05 | Windows actual sin entorno heredado. | Reconstruir toolchain si viable; no repetir indefinidamente el diagnostico Wine agotado. Si no hay Windows nativo, informar esa carencia y continuar Linux. |
 | Q06 | Decisiones aprobadas 29Oct21:24. | F2 duplicadas ciclan+Enter; Menu Bar ocultable con recuperacion Alt+O,M. Implementacion y pruebas Linux; Windows pendiente. |
 | Q07 | Inventario fuente vs comparacion Borland. | La comparacion es historica: Iconize existe; evaluar/modificar expresiones tiene caminos upstream. Auditar antes de declarar funciones ausentes. |
+| Q08 | Datos/editor: fallos corregidos con reproduccion. | Delete/Ctrl+G; UTF8valido/host; CRLFuniforme; F3adyacentes/wrap; encoding+BOMtrascrash. Ver log para revision/pruebas; no herencia automatica. |
+| Q09 | Terminadores mixtos aun se normalizan. | Falta modelo porlinea que preserve bytes con edicion/undo/diario. No retirar requisito ni llamarlo cerrado por arreglarCRLFuniforme. |
 
 ## Ampliaciones que no se confunden con cierre probado
 
@@ -95,7 +98,7 @@ Las demos TOTAL ON, agenda y FoxPro no certifican el conjunto del IDE.
 ## Seguimiento
 
 - [COMPLETION_INVENTORY.md](COMPLETION_INVENTORY.md): primer inventario generado,
-  115 acciones de menu y rutas ampliadas de teclado/comandos; son conexiones de fuente, no115 funciones
+  115 acciones de menu,19contratos vinculados y rutas ampliadas de teclado/comandos; son conexiones de fuente, no115 funciones
   terminadas. Incluye dos stubs. Aun faltan modales, editor y gestos.
 
 - Registro de cada lote en [COMPLETION_LOG.md](COMPLETION_LOG.md): fuente,

@@ -302,3 +302,18 @@ Antes dos checks de bytes finales fallaban. Despues flujo realUTF8host→CP437
 PASS, juntoBOM/conversionlossless/rechazolossy. SuiteUTF8 ahora78/78:22validacion,
 44deteccionEN/UTF8 y12guardadosraw. Ocho modelos recompiladosPASS. Producto
 basado en1a8f2f8; no se afirma encoding arbitrario niWindows.
+
+## Consolidacion de regresion sin cierre global
+
+Se incorpora test_editor_repaint al runner modelos:31checks de hotpath,
+undo, UTF8, BP y resaltado. Nueve modelos localesPASS. Roadmap mantiene
+terminadores mixtos como fallo abierto y los arreglos recientes separados
+de su evidencia, sin sustituir baseline inicial por certificacion actual.
+Sobreproducto3443a46: comandos28/session23/startupON-OFFPTYPASS; cambios
+locales solo docs/runner, binario verificado estable.
+
+Animate: regiones grandes analizadas en todos180frames de cada video30fps
+speed1/8 y otros180speed0 grabado antes de activarlo. No mezcla global
+app/debugger detectada; speed0 original ya empezaba eneditor y se descarto.
+No hay oraculo de texto/celdas ni de transitoriosmenoresde33ms; no cierra
+tearing. CapturasF4 app/retorno completas siguen limpias.
