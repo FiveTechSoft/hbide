@@ -882,7 +882,7 @@ static procedure DlgDeco()
 
    hb_DispOutAt( DL_TOP + 1, DL_LEFT + 3, "TOTAL ON:", "W+/RB" )
    // white panel around the checkbox group
-   hb_DispBox( DL_TOP + 2, DL_LEFT + 25, DL_TOP + 10, DL_LEFT + 39, HB_B_SINGLE_UNI, "W/RB" )
+   hb_DispBox( DL_TOP + 2, DL_LEFT + 25, DL_TOP + 10, DL_LEFT + 41, HB_B_SINGLE_UNI, "W/RB" )
    hb_DispOutAt( DL_TOP + 11, DL_LEFT + 3, "<Expr... >", "W/RB" )
    // white panel around Save As (button + entry)
    hb_DispBox( DL_TOP + 12, DL_LEFT + 2, DL_TOP + 15, DL_LEFT + 30, HB_B_SINGLE_UNI, "W/RB" )
