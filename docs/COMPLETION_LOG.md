@@ -345,3 +345,14 @@ de texto y terminador. Antes40checks con1fallo; despues41/41, incluidos
 load/edit/undo/redo soft-wrap y reflow conservando fronteras fisicas.
 No se afirma cierre del cursor durante reflow ni de todos los caminos wrap.
 Nueve modelos recompiladosPASS antes de publicar.
+
+
+## Cursor durante reflow y gutter
+
+Insertar12Z al inicio de un parrafo ancho10 producia caracteres repartidos
+entre palabras. ReFormParagraph heredado usa columnas de texto; HBSrcEdit
+le pasaba columna con gutter+4. Adaptacion Harbour traduce ambas direcciones
+y conserva frontera fisica del parrafo. Pruebas inicio/interior/fragmento
+siguiente y undo/redo: antes42/46, despues46/46. Nueve modelosPASS.
+Captura del probe visual reflow inspeccionada completa; no es una nueva
+opcion de word-wrap ni certificacion de todas sus acciones heredadas.

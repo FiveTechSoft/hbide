@@ -3,7 +3,7 @@
 PROCEDURE Main()
    LOCAL o, cFile := hb_DirTemp() + 'hbide-eol-' + hb_ntos( hb_RandomInt( 999999999 ) ) + '.prg'
    LOCAL cCRLF := Chr( 13 ) + Chr( 10 ), cLF := Chr( 10 ), cText, aCase
-   LOCAL nPass := 0, nFail := 0, oRecovered, cJournal, lOk
+   LOCAL nPass := 0, nFail := 0, oRecovered, cJournal, lOk, n
    FOR EACH aCase IN { { 'CRLF', cCRLF }, { 'LF', cLF } }
       cText := 'function Main()' + aCase[ 2 ] + '   return nil' + aCase[ 2 ]
       hb_MemoWrit( cFile, cText )
@@ -126,7 +126,22 @@ PROCEDURE Main()
    FOR EACH aCase IN { 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z', 'Z' }
       o:Edit( Asc( aCase ) )
    NEXT
-   Check( StrTran( o:GetText(), 'Z', '' ) == cText, 'wordwrap reflow keeps physical boundaries', @nPass, @nFail )
+   Check( o:GetText() == Replicate( 'Z', 12 ) + cText, 'wordwrap reflow keeps logical cursor and boundaries', @nPass, @nFail )
+   cJournal := o:GetText()
+   o:Undo()
+   Check( o:GetText() != cJournal, 'reflow undo changes text', @nPass, @nFail )
+   o:Redo()
+   Check( o:GetText() == cJournal, 'reflow redo exact', @nPass, @nFail )
+   FOR EACH aCase IN { { 'start', 1, 5, 1 }, { 'inside', 1, 10, 6 }, { 'next soft row', 2, 5, 12 } }
+      cText := 'alpha beta gamma delta' + cCRLF + 'second words here' + cLF + 'tail'
+      o:LoadText( cText )
+      o:GoTo( aCase[ 2 ], aCase[ 3 ] )
+      cJournal := Left( cText, aCase[ 4 ] - 1 ) + Replicate( 'Z', 12 ) + SubStr( cText, aCase[ 4 ] )
+      for n := 1 to 12
+         o:Edit( Asc( 'Z' ) )
+      next
+      Check( o:GetText() == cJournal, 'reflow cursor ' + aCase[ 1 ], @nPass, @nFail )
+   NEXT
    FErase( cFile )
    ? 'TOTAL', nPass, 'PASS', nFail, 'FAIL'
    ErrorLevel( iif( nFail == 0, 0, 1 ) )

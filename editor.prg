@@ -101,6 +101,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD ScanBlkLine( cText, lIn )
    METHOD LoadText( cText )
    METHOD GetText( lSoftCR )
+   METHOD ReformParagraph()
    METHOD AddLine( cLine, lSoftCR )
    METHOD InsertLine( cLine, lSoftCR, nRow )
    METHOD LoadFile( cFileName )
@@ -981,6 +982,29 @@ METHOD GetText( lSoftCR ) CLASS HBSrcEdit
    next
 
 return cText
+
+// HBEditor uses text columns. The source editor adds a four-cell gutter,
+// so reflow must translate both the input and returned cursor position.
+METHOD ReformParagraph() CLASS HBSrcEdit
+   local cText := "", cEnd := "", lNext := .T.
+   local nStart := ::nRow, nLine, nRow := 0, nCol
+
+   nCol := Min( hb_ULen( ::aText[ ::nRow ]:cText ) + 1, Max( 1, ::nCol - 4 ) )
+   while lNext .and. ::nRow <= Len( ::aText )
+      cText += ::aText[ ::nRow ]:cText
+      cEnd := ::aText[ ::nRow ]:cEol
+      lNext := ::aText[ ::nRow ]:lSoftCR
+      ::RemoveLine( ::nRow )
+   end
+   nLine := nStart
+   hb_MLEval( cText, {| cLine, lSoftCR | ::InsertLine( cLine, lSoftCR, nLine++ ) }, ;
+              ::nWordWrapCol + 1, ::nTabWidth,, nCol, @nRow, @nCol )
+   ::aText[ nLine - 1 ]:cEol := cEnd
+   if nRow > 0
+      ::nRow := nStart + nRow - 1
+      ::nCol := nCol + 5
+   endif
+return ::GoTo( ::nRow, ::nCol, _REFRESH_ALL )
 
 METHOD AddLine( cLine, lSoftCR ) CLASS HBSrcEdit
 return ::InsertLine( cLine, lSoftCR, Len( ::aText ) + 1 )
