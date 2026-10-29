@@ -242,7 +242,7 @@ check('Save All with nothing modified says so', 'nothing modified' in status_row
 open_file('good.prg')
 send(b'\x1br'); pump(0.8); send(b'a'); pump(1.0)
 t = wait_has('arguments dialog opens', ['Runarguments'])
-send(b'one "two words" three'); send(b'\r'); pump(1.0)
+send(b'one "two words" three; touch pwned.txt $HOME `id` \'q\''); send(b'\r'); pump(1.0)
 check('arguments confirmed in status row', 'Run arguments:' in status_row())
 send(b'\x1br'); pump(0.8); send(b's'); pump(0.5)
 t0 = time.time()
@@ -250,20 +250,41 @@ argf = os.path.join(work, 'args.out')
 while not os.path.exists(argf) and time.time() - t0 < 40:
     send(b'\r'); pump(1.5)
 check('Start passes the arguments to the program', os.path.exists(argf) and
-      open(argf).read() == '{"one", "two words", "three"}')
+      open(argf).read().startswith('{"one", "two words", "three;", "touch", "pwned.txt"'))
+check('shell metacharacters stay literal (no extra command ran)', not os.path.exists(os.path.join(work, 'pwned.txt')) and
+      '$HOME' in open(argf).read() and '`id`' in open(argf).read())
 
 # Run > Script receives the same arguments as Main() parameters
 open_file('script.prg')
 send(b'\x1br'); pump(0.8); send(b'c'); pump(3.0)
 sf = os.path.join(work, 'script.out')
 check('Script passes the arguments to Main()', os.path.exists(sf) and
-      open(sf).read() == '{"one", "two words", "three"}')
+      open(sf).read().startswith('{"one", "two words", "three;"'))
 # Run > Debug: F5 (Go) lets the debuggee finish; it sees the same arguments
 os.remove(sf)
 send(b'\x1br'); pump(0.8); send(b'd'); pump(3.0)
 send(b'\x1b[15~'); pump(3.0)
 check('Debug passes the arguments to Main()', os.path.exists(sf) and
-      open(sf).read() == '{"one", "two words", "three"}')
+      open(sf).read().startswith('{"one", "two words", "three;"'))
+# ---- 5. Save All guarantees: untitled buffers are skipped, stay modified, and are reported
+send(b'\x1bf'); pump(0.8); send(b'n'); pump(1.0); send(b'UNTITLED1'); pump(0.5)   # untitled, modified
+open_file('other.prg')
+before = open(os.path.join(work, 'other.prg')).read()
+send(b'QQ'); pump(0.5)
+send(KCTRL_F2); pump(2.0)
+for _ in range(8):                          # per-file dialogs of the normal save path come first
+    if 'untitledskipped' in scr.text().replace(' ', ''):
+        break
+    send(b'\r'); pump(1.5)
+t = wait_has('Save All reports failure and untitled skipped', ['Save All', '1 saved', 'untitled skipped'])
+check('no misleading global success message', 'file(s) saved' not in status_row())
+send(b'\r'); pump(1.0)
+check('named file saved, untitled not written anywhere', 'QQ' in open(os.path.join(work, 'other.prg')).read() and not os.path.exists(os.path.join(work, 'noname.prg')))
+send(KALT_0); pump(1.0)
+t = scr.text()
+check('untitled buffer stays marked modified', 'Windowlist' in t.replace(' ', '') and re.search(r'\*\s+noname', t) is not None)
+send(b'\x1b'); pump(0.5)
+
 send(b'\x1b'); pump(0.3)
 send(b'\x1b[24~'); pump(0.2)
 send(b'\x18'); pump(0.2)

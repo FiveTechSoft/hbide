@@ -29,8 +29,10 @@ is preselected.
 
 Arguments are kept for the session (not saved to disk).
 
-- Start: appended to the command that runs the built EXE (the shell splits
-  them).
+- Start: split into words (double quotes group words), then each word is
+  single-quoted for the shell (double-quoted on Windows, untested). `;`, `&`,
+  `|`, `$`, backticks and `>` are literal argument text, never extra commands;
+  variables are not expanded.
 - Script and Debug: the same words, split with quotes honoured, arrive as the
   parameters of `Main()`. `hb_argv()` does not see them in these two modes.
 
@@ -39,7 +41,9 @@ Arguments are kept for the session (not saved to disk).
 - Ctrl+F2 or File > Save All saves every modified document that has a name,
   through the normal save path (`.bak` copy, disk-change check). Untitled
   buffers are never saved silently: they are counted and left modified.
-  A failed save leaves that buffer modified and is reported.
+  A failed save leaves that buffer modified and is reported by the normal save
+  path; Save All then ends with a summary (saved / failed / untitled skipped).
+  Failure injection (unwritable directory) was not verified in the PTY test.
 - Alt+0 or Window > List shows all open documents (`*` = modified, `>` =
   current). Type to filter, Enter switches.
 

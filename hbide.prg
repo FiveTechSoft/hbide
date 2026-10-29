@@ -917,8 +917,9 @@ METHOD Start() CLASS HbIde
       if ! HBIDE_ReplaceFile( cExeTmp, cExe, @cRecovery )
          HBIDE_MsgAlert( "Build succeeded but could not replace " + cExe + ": " + cRecovery )
       elseif ::lAutoRun
-         // Run > Arguments: appended verbatim, the shell splits them
-         hb_Run( cExe + iif( Empty( ::cRunArgs ), "", " " + ::cRunArgs ) )
+         // Run > Arguments: split like Script/Debug, then each word is quoted for the
+         // shell so ; & | $ ` > etc. stay literal argument text, never extra commands
+         hb_Run( cExe + HBIDE_ShellArgs( ::cRunArgs ) )
       else
          HBIDE_MsgAlert( "Built (auto-run off): " + cExe )
       endif
@@ -2113,6 +2114,23 @@ static function HBIDE_KeyIs( nKey, nKeyStd, nExt, nMod, nStd )
 return nKeyStd == nStd .or. ;
    ( hb_keyExt( nKey ) == nExt .and. hb_bitAnd( hb_keyMod( nKey ), nMod ) != 0 .and. ;
      hb_bitAnd( hb_keyMod( nKey ), hb_bitNot( nMod ) ) == 0 )
+
+static function HBIDE_ShellArgs( cArgs )
+
+   local aTok := HBIDEProjectTokens( cArgs ), cOut := "", c
+
+   if aTok == nil
+      return ""
+   endif
+   for each c in aTok
+#ifdef __PLATFORM__WINDOWS
+      cOut += ' "' + StrTran( c, '"', '\"' ) + '"'
+#else
+      cOut += " '" + StrTran( c, "'", "'\''" ) + "'"
+#endif
+   next
+
+return cOut
 
 static function AMerge( a, b )
 
