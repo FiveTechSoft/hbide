@@ -375,7 +375,7 @@
       "tests": [
         "test_start_paths_pty.py"
       ],
-      "contract": " Start builds/runs twice from path with spaces/apostrophe/$HOME/semicolon; failed rebuild preserves old executable bytes and never runs stale binary."
+      "contract": " Start builds/runs twice from path with spaces/apostrophe/$HOME/semicolon; failed rebuild preserves old executable bytes and never runs stale binary. Quiet nonzero compiler exit never reports Build OK; failure alert leaves editor usable."
     }
   }
 }

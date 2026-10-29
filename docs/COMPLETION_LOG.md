@@ -548,3 +548,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Alañadirinkey.chalfixturelocal,Script/Debugfallaban4checks:ScriptusabarutafijaWindows,Debugnoañadiastandardheaders.
 - HBIDECompilerIncludehonraHB_INC_INSTALL/HB_INCLUDEvalidos,despuesencuentrainstalacionhbmk2delPATHcomprobandoinkey/hbclass/std, sinrutasprivadascodificadas.
 -8checksIncludePTYcandidatoPASS conheaderlocal+estandar ymacro. ModeloProjectpruebaPATH,overrideexplicito yfallbackoverrideinvalido. NoactualizaPATHniinstalacion;Windowspendiente.
+
+## 30Oct00:48 Start quiet failure truth
+- InspeccionvisualconPATHsincompilerdescubrioalertaBuildOKconstdoutvacioantesdeallegarBuildfailed. BuildOKahorarequiereexit0ybinariotemporalexiste; silencionopruebaexito.
+-9checksStartPTY: incluyecompiladorfalsoexit7sinoutput, noBuildOK,failurevisible,editorusable. Nueve modelosPASS.
+- VisualcomplementoStartconpathespaciado: logcompilacioncompletoycerrar/autorunrestauraeditor limpio; valorStartpathOKescrito. Capturarealsinrecortarbordes.

@@ -4,12 +4,15 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=25,80
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
-for kind in ['start']:
+for kind in ['start','quiet-failure']:
  (work/"source path's $HOME; literal").mkdir(exist_ok=True)
  target=work/"source path's $HOME; literal"/(kind+'.prg');value=work/(kind+'.value')
  target.write_text('procedure main()\n   hb_MemoWrit( "'+str(value)+'", "Main Maintenance" )\nreturn\n')
+ fake=work/'fake-bin';fake.mkdir(exist_ok=True)
+ compiler=fake/'hbmk2';compiler.write_text('#!/bin/sh\nexit 7\n');compiler.chmod(0o755)
  pid,fd=pty.fork()
  if pid==0:
+  if kind=='quiet-failure':os.environ['PATH']=str(fake)+os.pathsep+os.environ['PATH']
   os.chdir(work);os.execve(exe,[exe],dict(os.environ,TERM='xterm',HOME=str(work/'home'),HBIDE_RECOVERY_DIR=str(work/'rec')))
  fcntl.ioctl(fd,termios.TIOCSWINSZ,struct.pack('HHHH',ROWS,COLS,0,0));screen=Scr()
  def pump(secs):
@@ -27,6 +30,13 @@ for kind in ['start']:
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
  try:
   pump(1.5);send(b'\x1bf');send(b'o');send(str(target).encode());send(b'\r',.6)
+  if kind=='quiet-failure':
+   send(b'\x1br');send(b's',.8)
+   check('quiet compiler failure never claims Build OK','Build OK:' not in screen.text())
+   check('quiet compiler failure is visible','Build failed (status 7)' in screen.text())
+   send(b'\r',.4)
+   check('quiet failure leaves editor usable','Edit' in screen.text())
+   continue
   for run in range(2):
    value.unlink(missing_ok=True)
    send(b'\x1br');send(b's',1)
@@ -51,7 +61,6 @@ for kind in ['start']:
   send(b'\r',.3)
   check('failed build preserves old executable bytes',stale.read_bytes()==old)
   check('failed build never runs stale binary',not value.exists())
-
  finally:
   w=os.waitpid(pid,os.WNOHANG)
   if w[0]==0:os.kill(pid,signal.SIGKILL);os.waitpid(pid,0)

@@ -927,7 +927,12 @@ METHOD Start() CLASS HbIde
    // (paths stay as hbmk2 printed them: relative to the current directory)
    aDiag := HBIDEProjectDiagnostics( cOut, hb_cwd() + hb_ps() )
    ::SetMessages( aDiag )
-   HBIDE_MsgAlert( iif( Empty( cOut ), "Build OK: " + cExe, cOut ) )
+   // No compiler output is not proof of success (missing executable can be quiet).
+   if ! Empty( cOut )
+      HBIDE_MsgAlert( cOut )
+   elseif nRc == 0 .and. File( cExeTmp )
+      HBIDE_MsgAlert( "Build OK: " + cExe )
+   endif
 
    if nRc == 0 .and. File( cExeTmp )
       if ! HBIDE_ReplaceFile( cExeTmp, cExe, @cRecovery )
