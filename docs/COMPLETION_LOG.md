@@ -522,3 +522,9 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Fuenteproducto siguefa94083; dfd8d27 añadeaceptacion/documentacion. Nueve modelos limpiosPASS.
 - Ledgercommitted docs/evidence/linux-pty-dfd8d27.json conserva fechas, hashesrunner/test/binario, tiempos y tailslogs. Registro original /tmp/hbide-pty-dfd8d27/results.jsonl.
 - Sustituye baseline28c313ae8 para la suite registrada. No equivale inventarioexhaustivo,100%IDE,revisionpixel completa niWindows. AnimatePASS es funcional,2stubs siguenpendientes.
+
+## 30Oct00:25 Run/Debug sin modificar fuente
+- ReproduccionPTY: reemplazo global Main->__Main cambiaba literal"Main Maintenance" antesdecompilar.4FAILenproducto anterior.
+- EliminadoStrTran enScript/Debug; HB_HRB_BIND_FORCELOCAL aislaMain y simbolosHRBsin cambiar texto fuente. Scriptadopta aislamiento queDebugyausaba.
+-8checksPTY limpio126aa30PASS: main()minuscula, dosrunsScript+dosDebug, salidaexacta y editorusable. Nueve modelosPASS. Debugsession/startup limpiosPASS; commands/functionsPASS candidato mismo producto. Tests muestranMainoriginal ahora.
+- Baseline32dfd8d27 es anterior, no heredada. Nuevo runner33casos; Windows pendiente.
