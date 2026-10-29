@@ -429,3 +429,10 @@ visible, incluyendo seleccion que empieza a la izquierda del viewport.
 Celda centinela: antes121PASS1FAIL; despues122PASS. Nueve modelosPASS.
 Captura IDEreal con palabra160caracteres seleccionada inspeccionada:
 highlight termina antes del borde derecho y segunda linea sigue limpia.
+
+## Trazabilidad tambien en modelos
+
+Runner modelos guarda hash de cada fuente/test/binario y del runner,
+cambios tracked, revision y segundos porcaso. Detecta cambios de fuente o
+test mientras ejecuta y falla en vez de atribuir resultado ambiguo a HEAD.
+Nueve modelos recompiladosPASS con campos nuevos. Sin cambio de producto.

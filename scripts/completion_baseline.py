@@ -30,21 +30,35 @@ cases = {
     'project': ['tests/test_project.prg', 'project.prg'],
     'help': ['tests/test_help.prg', 'help.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
 }
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def source_state():
+    return (subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
+            subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=no'], cwd=ROOT, text=True))
+
+initial_source, initial_changes = source_state()
 report = {'source': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
-          'dirty': bool(subprocess.check_output(['git', 'status', '--porcelain'], cwd=ROOT)),
+          'dirty': bool(initial_changes), 'tracked_changes': initial_changes,
+          'runner_sha256': digest(pathlib.Path(__file__)),
           'platform': os.uname().sysname, 'hbmk2': HBMK, 'started': time.time(),
           'scope': 'Linux model probes only. Not PTY, visual or Windows certification.', 'tests': {}}
 for name, sources in cases.items():
     exe = OUT / name
+    hashes = {path: digest(ROOT / path) for path in sources}
+    started = time.time()
     build = run(name + '-build', [HBMK, *sources, '-gtstd', '-quiet', '-o' + str(exe)])
     rc = None if build else run(name, [str(exe)] + ([HBMK] if name == 'project' else []),
                                 ROOT if name == 'help' else OUT)
     text = (OUT / (name + '.log')).read_text(errors='replace') if rc is not None else ''
     # Legacy atomic probe prints failures but does not set a failing exit code.
     semantic_failure = ('FAILURES PRESENT' in text or 'FAIL:' in text or 'FAILED: 1' in text)
-    report['tests'][name] = {'build_exit': build, 'run_exit': rc, 'reported_failure': semantic_failure}
+    changed = source_state() != (initial_source, initial_changes) or any(digest(ROOT / path) != value for path, value in hashes.items())
+    report['tests'][name] = {'build_exit': build, 'run_exit': rc, 'reported_failure': semantic_failure,
+        'source_or_test_changed': changed, 'source_sha256': hashes,
+        'binary_sha256': digest(exe) if exe.is_file() else None, 'started': started, 'seconds': time.time() - started}
 report['finished'] = time.time()
 (OUT / 'results.json').write_text(json.dumps(report, indent=2) + '\n')
 print(json.dumps(report, indent=2))
 print('Logs:', OUT)
-raise SystemExit(int(any(v['build_exit'] or v['run_exit'] or v['reported_failure'] for v in report['tests'].values())))
+raise SystemExit(int(any(v['build_exit'] or v['run_exit'] or v['reported_failure'] or v['source_or_test_changed'] for v in report['tests'].values())))
