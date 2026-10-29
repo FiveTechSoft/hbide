@@ -22,7 +22,7 @@ procedure Main()
    aSize = DsnControlSize( { "type" => "checkbox", "caption" => "Active" } )
    Check( "checkbox width", aSize[ 1 ] == 10 )
    aSize = DsnControlSize( { "type" => "button", "caption" => "&OK" } )
-   Check( "button height 2", aSize[ 2 ] == 2 .and. aSize[ 1 ] == 6 )
+   Check( "button height 2", aSize[ 2 ] == 2 .and. aSize[ 1 ] == 7 )
 
    // DsnValidVar
    Check( "var keeps letters", DsnValidVar( "cName", "x" ) == "cName" )
@@ -1108,7 +1108,7 @@ procedure MenuTests()
    // button STYLE property: default shadow, brackets sizes, codegen clause
    Check( "new button default style", DsnNewControl( "button", {} )[ "style" ] == "shadow" )
    Check( "button shadow size", ;
-      DsnControlSize( { "type" => "button", "caption" => "OK" } )[ 1 ] == 5 .and. ;
+      DsnControlSize( { "type" => "button", "caption" => "OK" } )[ 1 ] == 6 .and. ;
       DsnControlSize( { "type" => "button", "caption" => "OK" } )[ 2 ] == 2 )
    Check( "button brackets size", ;
       DsnControlSize( { "type" => "button", "caption" => "OK", "style" => "brackets" } )[ 1 ] == 6 .and. ;
@@ -1137,8 +1137,9 @@ procedure MenuTests()
    // hitTest covers the real painted extent (HTCLIENT == -2049, HTNOWHERE == 0)
    SetPos( 10, 10 )
    oBtn = _PushButt_( "OK", "", "W/B,W+/B,N/B,GR+/B", NIL, NIL, NIL )
-   Check( "hittest shadow caption", oBtn:hitTest( 10, 10 ) == -2049 .and. oBtn:hitTest( 10, 13 ) == -2049 )
-   Check( "hittest shadow past pads", oBtn:hitTest( 10, 14 ) == 0 )
+   Check( "hittest shadow caption", oBtn:hitTest( 10, 11 ) == -2049 .and. oBtn:hitTest( 10, 14 ) == -2049 )
+   Check( "hittest shadow left inset", oBtn:hitTest( 10, 10 ) == 0 )
+   Check( "hittest shadow past pads", oBtn:hitTest( 10, 15 ) == 0 )
    Check( "hittest shadow next row", oBtn:hitTest( 11, 11 ) == 0 )
    oBtn:style := "[]"
    Check( "hittest brackets closing cell", oBtn:hitTest( 10, 15 ) == -2049 )

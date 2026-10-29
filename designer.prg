@@ -2556,7 +2556,7 @@ function DsnControlSize( oCtrl )
             nWidth  = Len( hb_HGetDef( oCtrl, "caption", "" ) ) + 4   // "[ Caption ]"
             nHeight = 1
          else
-            nWidth  = Len( hb_HGetDef( oCtrl, "caption", "" ) ) + 3
+            nWidth  = Len( hb_HGetDef( oCtrl, "caption", "" ) ) + 4   // inset + face + shadow
             nHeight = 2   // caption row + shadow row
          endif
       case oCtrl[ "type" ] == DSN_RADIO
@@ -2740,30 +2740,33 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
          else
             cText  = " " + StrTran( cCaption, "&", "" ) + " "
             nWidth = Len( cText )
-            hb_DispOutAt( nARow, nACol, ;
-               SubStr( cText, 1, Max( 0, nMaxCol - nACol + 1 ) ), cColor )
+            // the face sits one cell right of the control column: the left
+            // inset keeps the dialog color (the invisible half of the
+            // classic TV shadow), same layout as the runtime PushButton
+            hb_DispOutAt( nARow, nACol + 1, ;
+               SubStr( cText, 1, Max( 0, nMaxCol - nACol ) ), cColor )
             // shadow: same slim Turbo Vision look as the runtime PushButton
             if HBBtnShadowUtf8()
                // half blocks on the dialog background: right cell (lower
                // half) and stripe below (upper half), shifted one cell
-               if nACol + nWidth <= nMaxCol
-                  hb_DispOutAt( nARow, nACol + nWidth, hb_UTF8ToStr( "▄" ), "N/" + aDlgPair[ 2 ] )
+               if nACol + nWidth + 1 <= nMaxCol
+                  hb_DispOutAt( nARow, nACol + nWidth + 1, hb_UTF8ToStr( "▄" ), "N/" + aDlgPair[ 2 ] )
                endif
                if nARow + 1 < oWnd:nBottom .and. nARow + 1 <= MaxRow()
-                  n = Min( nWidth, Max( 0, nMaxCol - nACol ) )
+                  n = Min( nWidth, Max( 0, nMaxCol - nACol - 1 ) )
                   if n > 0
-                     hb_DispOutAt( nARow + 1, nACol + 1, Replicate( hb_UTF8ToStr( "▀" ), n ), "N/" + aDlgPair[ 2 ] )
+                     hb_DispOutAt( nARow + 1, nACol + 2, Replicate( hb_UTF8ToStr( "▀" ), n ), "N/" + aDlgPair[ 2 ] )
                   endif
                endif
             else
                // codepage-safe fallback: solid dark cells
-               if nACol + nWidth <= nMaxCol
-                  hb_DispOutAt( nARow, nACol + nWidth, " ", "N/N" )
+               if nACol + nWidth + 1 <= nMaxCol
+                  hb_DispOutAt( nARow, nACol + nWidth + 1, " ", "N/N" )
                endif
                if nARow + 1 < oWnd:nBottom .and. nARow + 1 <= MaxRow()
-                  n = Min( nWidth, Max( 0, nMaxCol - nACol ) )
+                  n = Min( nWidth, Max( 0, nMaxCol - nACol - 1 ) )
                   if n > 0
-                     hb_DispOutAt( nARow + 1, nACol + 1, Replicate( " ", n ), "N/N" )
+                     hb_DispOutAt( nARow + 1, nACol + 2, Replicate( " ", n ), "N/N" )
                   endif
                endif
             endif
@@ -3984,22 +3987,24 @@ static function DsnBtnDisplayCode( cBg )
    cCode += "      nCol++" + hb_eol()
    cCode += hb_eol()
    cCode += "      if ::lBuffer" + hb_eol()
-   cCode += '         hb_DispOutAt( ::nRow, ::nCol, " ", "' + cShadow + '" )' + hb_eol()
+   cCode += '         hb_DispOutAt( ::nRow, ::nCol, "  ", "' + cShadow + '" )' + hb_eol()
    cCode += "      endif" + hb_eol()
-   cCode += '      hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), aPads[ 1 ], cColor )' + hb_eol()
-   cCode += '      hb_DispOutAt( ::nRow, ::nCol + hb_ULen( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), aPads[ 2 ], cColor )' + hb_eol()
+   cCode += '      hb_DispOutAt( ::nRow, ::nCol + 1 + If( ::lBuffer, 1, 0 ), aPads[ 1 ], cColor )' + hb_eol()
+   cCode += '      hb_DispOutAt( ::nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ), aPads[ 2 ], cColor )' + hb_eol()
    cCode += "   endif" + hb_eol()
    cCode += hb_eol()
    cCode += "   if ! Empty( cCaption )" + hb_eol()
    cCode += hb_eol()
-   cCode += '      hb_DispOutAt( nRow, nCol + If( ::lBuffer, 1, 0 ), cCaption, cColor )' + hb_eol()
+   cCode += '      hb_DispOutAt( nRow, nCol + 1 + If( ::lBuffer, 1, 0 ), cCaption, cColor )' + hb_eol()
    cCode += hb_eol()
    cCode += "      if nPos != 0" + hb_eol()
-   cCode += '         hb_DispOutAt( nRow, nCol + nPos - 1 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
+   cCode += '         hb_DispOutAt( nRow, nCol + nPos + If( ::lBuffer, 1, 0 ),;' + hb_eol()
    cCode += '                       hb_USubStr( cCaption, nPos, 1 ), hb_ColorIndex( ::cColorSpec, 3 ) )' + hb_eol()
    cCode += "      endif" + hb_eol()
    cCode += "   endif" + hb_eol()
    cCode += hb_eol()
+   cCode += '   // clear the stripe row so state switches leave no stray cells' + hb_eol()
+   cCode += '   hb_DispOutAt( ::nRow + 1, ::nCol + 1, Replicate( " ", hb_ULen( cCaption ) + 4 ), "' + cShadow + '" )' + hb_eol()
    cCode += "   if DsnBtnShadowUtf8()" + hb_eol()
    cCode += "      // Turbo Vision half-cell shadow: half blocks on the dialog" + hb_eol()
    cCode += "      // background (right cell lower half, stripe below upper half)" + hb_eol()
@@ -4010,9 +4015,9 @@ static function DsnBtnDisplayCode( cBg )
    cCode += "   else" + hb_eol()
    cCode += "      // codepage-safe fallback: solid dark cells (no ACSC mapping" + hb_eol()
    cCode += "      // for the half blocks on non-UTF8 terminals)" + hb_eol()
-   cCode += '      hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
+   cCode += '      hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 3 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
    cCode += '                    " ", "N/N" )' + hb_eol()
-   cCode += '      hb_DispOutAt( ::nRow + 1, ::nCol + 1,;' + hb_eol()
+   cCode += '      hb_DispOutAt( ::nRow + 1, ::nCol + 2 + If( ::lBuffer, 1, 0 ),;' + hb_eol()
    cCode += '                    Replicate( " ", hb_ULen( cCaption ) + 2 ), "N/N" )' + hb_eol()
    cCode += "   endif" + hb_eol()
    cCode += hb_eol()

@@ -47,22 +47,27 @@ function BtnDisplay()
       nCol++
 
       if ::lBuffer
-         hb_DispOutAt( ::nRow, ::nCol, " ", "N/W" )
+         hb_DispOutAt( ::nRow, ::nCol, "  ", "N/W" )
       endif
-      hb_DispOutAt( ::nRow, ::nCol + If( ::lBuffer, 1, 0 ), aPads[ 1 ], cColor )
-      hb_DispOutAt( ::nRow, ::nCol + hb_ULen( cCaption ) + 1 + If( ::lBuffer, 1, 0 ), aPads[ 2 ], cColor )
+      hb_DispOutAt( ::nRow, ::nCol + 1 + If( ::lBuffer, 1, 0 ), aPads[ 1 ], cColor )
+      hb_DispOutAt( ::nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ), aPads[ 2 ], cColor )
    ENDIF
 
    IF ! Empty( cCaption )
 
-      hb_DispOutAt( nRow, nCol + If( ::lBuffer, 1, 0 ), cCaption, cColor )
+      hb_DispOutAt( nRow, nCol + 1 + If( ::lBuffer, 1, 0 ), cCaption, cColor )
 
       IF nPos != 0
-         hb_DispOutAt( nRow, nCol + nPos - 1 + If( ::lBuffer, 1, 0 ),;
+         hb_DispOutAt( nRow, nCol + nPos + If( ::lBuffer, 1, 0 ),;
                        hb_USubStr( cCaption, nPos, 1 ), hb_ColorIndex( ::cColorSpec, 3 ) )
       ENDIF
    ENDIF
 
+   // The face sits one cell right of ::nCol: the left inset and the
+   // lower-left cells keep the dialog color (the invisible half of the
+   // classic Turbo Vision shadow). Clear the stripe row first so switching
+   // between the normal and pressed (lBuffer) states leaves no stray cells.
+   hb_DispOutAt( ::nRow + 1, ::nCol + 1, Replicate( " ", hb_ULen( cCaption ) + 4 ), "N/W" )
    IF HBBtnShadowUtf8()
       // Turbo Vision half-cell shadow: the cell right of the face keeps the
       // dialog color on its upper half and shows the shadow on its lower
@@ -76,9 +81,9 @@ function BtnDisplay()
    ELSE
       // codepage-safe fallback: solid dark cells (gttrm's ACSC charmap has
       // no mapping for the half blocks on non-UTF8 terminals: they print '?')
-      hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 2 + If( ::lBuffer, 1, 0 ),;
+      hb_DispOutAt( nRow, ::nCol + hb_ULen( cCaption ) + 3 + If( ::lBuffer, 1, 0 ),;
                     " ", "N/N" )
-      hb_DispOutAt( ::nRow + 1, ::nCol + 1,;
+      hb_DispOutAt( ::nRow + 1, ::nCol + 2 + If( ::lBuffer, 1, 0 ),;
                     Replicate( " ", hb_ULen( cCaption ) + 2 ), "N/N" )
    ENDIF
 
@@ -125,12 +130,14 @@ return { " ", " " }
 // The stock hitTest covers caption + 2 cells for a two-char style, but the
 // bracket look paints "[ Caption ]" (caption + 4 cells): the trailing
 // " ]" would be dead clicks. Cover the real painted extent here; the
-// shadow column of the 3D look stays decorative (not clickable).
+// left inset cell and the shadow column of the 3D look stay decorative
+// (not clickable).
 function BtnHitTest( nMRow, nMCol )
 
    local Self := QSelf()
    local nLen := hb_ULen( ::cCaption )
    local nAccelPos
+   local nOff := 0
 
    if ( nAccelPos := hb_UAt( "&", ::cCaption ) ) > 0 .and. nAccelPos < nLen
       nLen--
@@ -138,11 +145,12 @@ function BtnHitTest( nMRow, nMCol )
    if Len( ::cStyle ) == 2 .and. ::cStyle != "<>"
       nLen += 4   // "[ " + caption + " ]"
    else
-      nLen += 2   // stock extent: pads around the caption
+      nLen += 2   // pads around the caption
+      nOff := 1   // the 3D face starts one cell right of ::Col (left inset)
    endif
 
-   if nMRow >= ::Row .and. nMCol >= ::Col .and. ;
-      nMRow < ::Row + 1 .and. nMCol < ::Col + nLen
+   if nMRow >= ::Row .and. nMCol >= ::Col + nOff .and. ;
+      nMRow < ::Row + 1 .and. nMCol < ::Col + nLen + nOff
       return -2049   // HTCLIENT
    endif
 
