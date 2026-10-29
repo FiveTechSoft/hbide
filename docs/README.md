@@ -43,6 +43,10 @@
 
 ## Planning
 
+- [COMPLETION_ROADMAP.md](COMPLETION_ROADMAP.md) - active completion roadmap,
+  acceptance gates and per-platform status.
+- [COMPLETION_LOG.md](COMPLETION_LOG.md) - source/build-specific progress evidence.
+
 - [ROADMAP.md](ROADMAP.md) - direction, priorities with exit criteria,
   integration gate and open decisions. It proposes work; it does not turn
   pending items into implemented ones.

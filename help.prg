@@ -217,7 +217,7 @@ function HBIDEHelpTopics()
    AAdd( a, { "platform status limits windows linux roadmap known pending", "Platform status and limits", ;
       "Verified interactively and with automated tests on Linux." + hb_eol() + hb_eol() + ;
       "Windows: the IDE builds with GTWVT and a prebuilt hbide.exe is included, but it can lag behind the sources; validating the latest sources on Windows is still pending." + hb_eol() + hb_eol() + ;
-      "Debugger Animate has known visual defects; F4 shows the program screen to recover the view. Iconize, Exchange Screens, swap on Input and Menu Bar are not implemented (see 'Debugger windows')." + hb_eol() + hb_eol() + ;
+      "Debugger Animate has known visual defects; F4 shows the program screen to recover the view. Exchange Screens, swap on Input and Menu Bar are not implemented (see 'Debugger windows')." + hb_eol() + hb_eol() + ;
       "The full plan and per-area status live in docs/ROADMAP.md in the repository." } )
 
    AAdd( a, { "designer palette inspector controls code generation json", "Dialog designer", ;
@@ -242,7 +242,8 @@ function HBIDEHelpTopics()
       "the desktop. Commands Window Tile, Cascade, Zoom, Move and Size " + ;
       "provide the same actions." + hb_eol() + hb_eol() + ;
       "Manual layouts remain through stepping. Save/Restore Settings can " + ;
-      "store panel rectangles. Iconize and the legacy Exchange Screens, " + ;
+      "store panel rectangles. Window > Iconize shrinks the focused panel; " + ;
+      "invoke it again to restore its geometry and browser viewport. The legacy Exchange Screens, " + ;
       "swap on Input and Menu Bar actions are not implemented. Application " + ;
       "output during Animate can still damage the display; F4 shows the app screen." } )
    FOR EACH aDoc IN HBIDEHelpDocTopics()

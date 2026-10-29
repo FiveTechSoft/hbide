@@ -2,6 +2,10 @@
 
 Base: designer-robustness 75ffd7e. New code is Harbour, using the existing HBDbWindow and browser primitives. No Borland IDE source code was copied.
 
+> Historical checkpoint. Iconize was subsequently implemented in `533d993`.
+> Current acceptance and evidence: [COMPLETION_ROADMAP.md](COMPLETION_ROADMAP.md)
+> and [COMPLETION_LOG.md](COMPLETION_LOG.md).
+
 ## Implemented
 
 - Window > Move / Size: arrow keys, Enter accepts, Esc restores original rectangle. Kept inside the desktop, menu and status rows remain free.

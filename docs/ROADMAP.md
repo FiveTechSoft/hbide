@@ -1,5 +1,9 @@
 # hbide: rapido, sencillo y fiable
 
+> Historical design plan (26 October). Current execution and status:
+> [COMPLETION_ROADMAP.md](COMPLETION_ROADMAP.md). Do not read this older
+> snapshot as a current completion certificate.
+
 Investigacion y plan de trabajo, 26 de octubre de 2026.
 
 El objetivo no es acumular menus. Es editar, construir, depurar y volver al
