@@ -83,9 +83,9 @@ home = tempfile.mkdtemp(prefix='hbide-deep-home-')
 deepdir = '/tmp/' + 'a' * 110
 deep = deepdir + '/' + 'b' * 100 + '.prg'
 os.makedirs(deepdir, exist_ok=True)
-orig = 'line one\nline two with tail\n'
-with open(deep, 'w') as f:
-    f.write(orig)
+eol = '\r\n' if (os.environ.get('HBIDE_TEST_CRLF') == '1' or '--crlf' in sys.argv[2:]) else '\n'
+orig = 'line one' + eol + 'line two with tail' + eol
+pathlib.Path(deep).write_bytes(orig.encode())
 assert len(deep) > 200, deep
 env = dict(os.environ, HOME=home, HBIDE_RECOVERY_DIR=rec, TERM='xterm')
 
@@ -147,6 +147,7 @@ try:
     check('journal written for >200-char path', len(journals()) == 1)
     jbytes = journals()[0].read_bytes() if journals() else b''
     check('journal holds the edit', b'ZZ' in jbytes)
+    check('journal retains original EOL', jbytes == b'ZZ' + orig.encode())
 finally:
     os.kill(pid, signal.SIGKILL); os.waitpid(pid, 0); os.close(fd)
 

@@ -233,3 +233,12 @@ contenido de diario retienen terminadores. CasoEnter fija insert igual que
 IDE (sin elloOverwrite de HBEditor tiene otra semantica). Siete modelos
 recompiladosPASS; SaveAsrecuperacion21/21 y SaveAllfallo5/5PASS sobre parche
 local de c73337a. Sin cambio visual. Windows nativo pendiente.
+
+## CRLF: comprobacion de cierre forzado real
+
+El arnesdeep-path ahora verifica que el diario equivale a original+edicion,
+no solo que el guardado equivale a un diario que ya pudo perder formato.
+CasoCRLF nuevo enrunnerPTY. Sobreproducto db61c34: LF yCRLF reales pasan
+abrir→editar→diario→SIGKILL→reiniciar→recuperar→guardar byte exacto. No es
+solo simulacionLoadText. Regresiones limpiasdb61: recoverymulti/retention/
+deeppath, BPdelete yAnimatePASS, ledgerconhash estable.
