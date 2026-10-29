@@ -395,3 +395,10 @@ visual. Despues de unTABexistente insertaba3espacios en vez de4. Calculo
 por VisualCol tanto en deteccion hotpath como insercion; pruebas visual5 y
 visual7, undo y redo.63checks editor y nueve modelosPASS. No afecta al
 contrato de insertar espacios con la teclaTAB ni cierra word-wrapconTAB.
+
+## Scroll izquierdo sobre TAB
+
+Prueba de50pasos izquierda desde linea con50TAB detecto32posiciones de
+cursor dentro del gutter/fuera de viewport. GoTo ajusta ahora tambien
+origen visual a la izquierda, no solo a la derecha.113checks editorPASS
+(50son pasos del mismo contrato, no50funciones), nueve modelosPASS.

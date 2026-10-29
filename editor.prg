@@ -1460,6 +1460,9 @@ return ::nLeft + 4 + ::VisualCol( ::nRow, ::nCol - 4 ) - ;
 
 METHOD GoTo( nRow, nCol, nRefreshMode ) CLASS HBSrcEdit
    local xRet := ::Super:GoTo( nRow, nCol, nRefreshMode ), nFirst := ::nFirstCol
+   do while ::Col() < ::nLeft + 4 .and. ::nFirstCol > 1
+      ::nFirstCol--
+   end
    do while ::Col() > ::nRight .and. ::nFirstCol < ::nCol - 4
       ::nFirstCol++
    end

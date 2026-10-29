@@ -185,6 +185,12 @@ PROCEDURE Main()
    o:GoTo( 1, 8 )
    o:Edit( K_TAB )
    Check( o:GetText() == Chr( 9 ) + 'ab  ', 'TAB at visual column7 adds2spaces', @nPass, @nFail )
+   o:LoadText( Replicate( Chr( 9 ), 50 ) + 'end' )
+   o:GoTo( 1, 55 )
+   for n := 1 to 50
+      o:Edit( K_LEFT )
+      Check( o:Col() >= 5 .and. o:Col() <= 79, 'left through tabs viewport ' + hb_ntos( n ), @nPass, @nFail )
+   next
    FErase( cFile )
    ? 'TOTAL', nPass, 'PASS', nFail, 'FAIL'
    ErrorLevel( iif( nFail == 0, 0, 1 ) )
