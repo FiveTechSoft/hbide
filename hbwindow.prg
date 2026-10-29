@@ -210,6 +210,18 @@ METHOD HitGetAt( nR, nC ) CLASS HBWindow
       cCls := If( Empty( oGet:control ), "", Upper( oGet:control:className() ) )
       do case
          case cCls == "LISTBOX" .or. cCls == "RADIOGROUP"
+            // Dropdowns have a collapsed top row and an optional frame below.
+            // Their native hitTest knows both geometries, unlike border scans.
+            if cCls == "LISTBOX" .and. oGet:control:dropDown
+               if oGet:control:hitTest( nR, nC ) != HTNOWHERE .and. ;
+                  ( oGet:row > nHitRow .or. ( oGet:row == nHitRow .and. oGet:col > nHitCol ) )
+                  oHit := oGet
+                  nHitRow := oGet:row
+                  nHitCol := oGet:col
+                  nHitBot := oGet:control:bottom
+               endif
+               loop
+            endif
             // framed multi-row controls: recover the frame extents from the
             // screen border characters (control internals are protected);
             // items live one row inside the frame, so the frame rows miss
@@ -272,6 +284,33 @@ METHOD MouseClick( nR, nC ) CLASS HbWindow
    nTgt := AScan( ::GetList, { | g | g == oHit } )
    if nCur == 0 .or. nTgt == 0
       return .F.
+   endif
+
+   if ! Empty( oHit:control ) .and. oHit:control:className() == "LISTBOX" .and. oHit:control:dropDown
+      if nCur != nTgt
+         ::FocusGet( oHit )
+      endif
+      if nR == oHit:row
+         if oHit:control:isOpen
+            oHit:control:close()
+         else
+            oHit:control:open()
+         endif
+      elseif oHit:control:isOpen
+         nHit2 := oHit:control:hitTest( nR, nC )
+         if nHit2 >= HTSCROLLFIRST .and. nHit2 <= HTSCROLLLAST
+            oHit:control:scroll( nHit2 )
+            oHit:varPut( oHit:control:value )
+            return .T.
+         endif
+         nIdx := oHit:control:topItem + nR - oHit:row - 2
+         if nIdx >= 1 .and. nIdx <= oHit:control:itemCount .and. nR < oHit:control:bottom
+            oHit:control:select( nIdx )
+            oHit:varPut( oHit:control:value )
+            oHit:control:close()
+         endif
+      endif
+      return .T.
    endif
 
    // go to the first GET, then Tab forward to the target; moving past the

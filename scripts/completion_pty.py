@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'combobox': ('test_combobox_pty.py', [], 120),
     'designer': ('test_designer_pty.py', [], 120),
     'edit-menu': ('test_edit_menu_pty.py', [], 120),
     'navigation': ('test_nav_pty.py', [], 180),

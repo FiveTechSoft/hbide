@@ -856,6 +856,36 @@ procedure Main()
    Check( "ext unknown passthrough", DsnNormKey( 1090519040 + 999 ) == 1090519040 + 999 )
    Check( "down and cut differ", DsnNormKey( 1090519040 + 14 ) != DsnNormKey( 1090519040 + 2 * 65536 + 88 ) )
 
+   // ComboBox is an independent persisted type backed by Harbour DROPDOWN.
+   oCtrl := DsnNewControl( "combobox", {} )
+   Check( "combo new model", oCtrl[ "type" ] == "combobox" .and. oCtrl[ "variable" ] == "nVar1" )
+   Check( "combo default items", Len( DsnItems( oCtrl ) ) == 3 )
+   aSize := DsnControlSize( oCtrl )
+   Check( "combo reserves popup area", aSize[ 1 ] == 20 .and. aSize[ 2 ] == 6 )
+   Check( "combo resizable", DsnResizable( oCtrl ) )
+   Check( "combo resize both axes", DsnResize( oCtrl, 2, 1, 50, 20 ) .and. ;
+      oCtrl[ "width" ] == 22 .and. oCtrl[ "height" ] == 7 )
+   hModel := { "name" => "ComboProbe", "caption" => "ComboBox probe", ;
+      "width" => 50, "height" => 14, "controls" => { oCtrl } }
+   cJson := hb_jsonEncode( hModel )
+   hb_jsonDecode( cJson, @hBack )
+   DsnNormalizeControls( hBack[ "controls" ] )
+   Check( "combo json retained", Len( hBack[ "controls" ] ) == 1 .and. ;
+      hBack[ "controls" ][ 1 ][ "type" ] == "combobox" )
+   Check( "combo json properties", hBack[ "controls" ][ 1 ][ "height" ] == 7 .and. ;
+      hBack[ "controls" ][ 1 ][ "items" ] == oCtrl[ "items" ] )
+   cCode := DsnGenCode( hBack )
+   Check( "combo bound numeric variable", "local nVar1 := 1" $ cCode )
+   Check( "combo native dropdown code", "GET nVar1 LISTBOX aItems1 DROPDOWN" $ cCode )
+   Check( "combo dropdown eight-color palette", ",GR+/BG,N/W'" $ cCode )
+   Check( "combo items generated", '"Item 1"' $ cCode .and. '"Item 3"' $ cCode )
+   oCtrl[ "height" ] := 1
+   DsnNormalizeControls( hModel[ "controls" ] )
+   Check( "combo min height fits item plus frame", oCtrl[ "height" ] == 4 )
+   oCtrl[ "items" ] := ""
+   cCode := DsnGenCode( hModel )
+   Check( "combo empty safely skipped", "skipped combobox" $ cCode .and. ! "GET nVar1" $ cCode )
+
    // HbMenu: a standalone popup must Build() without touching its items and
    // must leave the shared construction stack clean; menubar nested-submenu
    // layout must still run (regression: F2 "Generate and open" BASE/1004,

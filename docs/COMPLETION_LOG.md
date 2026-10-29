@@ -492,3 +492,11 @@ EditmenuPTY29checks: Goto0/negativo limita primera linea, valor999999 a
 ultima. Replace vacio borra solo coincidencias y Undoexacto; texto ausente
 reporta0 y conserva bytes. Sin cambio de producto; contrato ampliado,
 no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
+
+## 29Oct23:54 ComboBox faltante
+
+- Tipo propio `combobox`, paletaF2 (M), propiedades/inspector, items/variable numerica, ancho/alto del desplegable, eventos, JSON, undo/resize y generacion nativa `LISTBOX ... DROPDOWN`. No es campo editable libre.
+- Reserva altura de popup en geometria para no generar fuera del dialogo, minimo4. El runtime exige8pares de color (ListBox normal7); probado el artefacto generado para impedir falso positivo de compilacion.
+- Mouse usa hitTest nativo para desplegable cerrado/abierto; seleccion se sincroniza con GET, sin heuristica de bordes de listbox normal.
+- Candidato: nueve suites modelosPASS; diseñador426checks, diseñadorPTY18 yComboBoxPTY25. ComboBoxPTY generaPRG, compila/ejecuta, prueba Espacio/flecha/Tab y clic abrir/seleccionar, guarda variable3. Repetir limpio antes de atribuir a commit.
+- Capturas UIreal: paleta/properties completas, runtime desplegado conItem2 seleccionado inspeccionado. No certificaWindows ni variantes de input editable. Tree/Tabs/Grid siguen propuestas sin aprobar implementacion.

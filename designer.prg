@@ -37,6 +37,7 @@
 #define DSN_CHECKBOX  "checkbox"
 #define DSN_RADIO     "radiogroup"
 #define DSN_LISTBOX   "listbox"
+#define DSN_COMBOBOX  "combobox"
 
 // control palettes for the generated dialog, from hbide's own dialogs
 // (white dialog background: input GET from hbide.prg, listbox exact hbide palette)
@@ -519,6 +520,7 @@ METHOD PopupMenu() CLASS HbDesigner
       MENUITEM "~PushButton"               ACTION cType := DSN_BUTTON
       MENUITEM "~RadioGroup"               ACTION cType := DSN_RADIO
       MENUITEM "ListBo~x"                  ACTION cType := DSN_LISTBOX
+      MENUITEM "Co~mboBox"                 ACTION cType := DSN_COMBOBOX
       SEPARATOR
       MENUITEM "~Dialog properties..."     ACTION cType := "dialog"
       MENUITEM "~Undo        Ctrl+Z"       ACTION cType := "undo"
@@ -1351,14 +1353,14 @@ METHOD EditProperties() CLASS HbDesigner
          COLOR "N/W,BG+/W,N/W,GR+/W"
    endif
 
-   if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX
+   if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX
       @ oDlg:nTop + 4, oDlg:nLeft + 11 GET cVariable PICTURE "@S20" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 4, 2, "Variable:" )
       @ oDlg:nTop + 5, oDlg:nLeft + 11 GET cItems PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 5, 2, "Items:" )
    endif
 
-   if oCtrl[ "type" ] == DSN_LISTBOX
+   if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
       @ oDlg:nTop + 6, oDlg:nLeft + 11 GET nWidth PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 6, 2, "Width:" )
       @ oDlg:nTop + 7, oDlg:nLeft + 11 GET nHeight PICTURE "999" COLOR "N/W,W+/B,W+/W,GR+/W"
@@ -1370,11 +1372,11 @@ METHOD EditProperties() CLASS HbDesigner
       oDlg:Say( 8, 2, "When:" )
       @ oDlg:nTop + 9, oDlg:nLeft + 11 GET cValid PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
       oDlg:Say( 9, 2, "Valid:" )
-      if oCtrl[ "type" ] $ DSN_BUTTON + "|" + DSN_CHECKBOX + "|" + DSN_RADIO + "|" + DSN_LISTBOX
+      if oCtrl[ "type" ] $ DSN_BUTTON + "|" + DSN_CHECKBOX + "|" + DSN_RADIO + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX
          @ oDlg:nTop + 10, oDlg:nLeft + 11 GET cFocus PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
          oDlg:Say( 10, 2, "Focus:" )
       endif
-      if oCtrl[ "type" ] $ DSN_CHECKBOX + "|" + DSN_LISTBOX
+      if oCtrl[ "type" ] $ DSN_CHECKBOX + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX
          @ oDlg:nTop + 11, oDlg:nLeft + 11 GET cState PICTURE "@S40" COLOR "N/W,W+/B,W+/W,GR+/W"
          oDlg:Say( 11, 2, "State:" )
       endif
@@ -1416,8 +1418,8 @@ METHOD EditProperties() CLASS HbDesigner
       if "items" $ oCtrl
          oCtrl[ "items" ] = AllTrim( cItems )
       endif
-      if oCtrl[ "type" ] == DSN_LISTBOX
-         oCtrl[ "height" ] = Max( 3, Min( 15, nHeight ) )
+      if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
+         oCtrl[ "height" ] = Max( If( oCtrl[ "type" ] == DSN_COMBOBOX, 4, 3 ), Min( 15, nHeight ) )
       endif
       if oCtrl[ "type" ] == DSN_BUTTON
          oCtrl[ "accelerator" ] = Left( StrTran( AllTrim( cAccel ), "&", "" ), 1 )
@@ -1789,21 +1791,21 @@ METHOD InspFields() CLASS HbDesigner
          AAdd( aFields, { "Action", "action",      "text" } )
          AAdd( aFields, { "Style",  "style",       "choice" } )
       endif
-      if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX
+      if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX
          AAdd( aFields, { "Variable", "variable", "text" } )
          AAdd( aFields, { "Items",    "items",    "text" } )
       endif
-      if oCtrl[ "type" ] == DSN_LISTBOX
+      if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
          AAdd( aFields, { "Width",  "width",  "num" } )
          AAdd( aFields, { "Height", "height", "num" } )
       endif
       if oCtrl[ "type" ] != DSN_SAY
          AAdd( aFields, { "When",  "when",  "text" } )
          AAdd( aFields, { "Valid", "valid", "text" } )
-         if oCtrl[ "type" ] $ DSN_BUTTON + "|" + DSN_CHECKBOX + "|" + DSN_RADIO + "|" + DSN_LISTBOX
+         if oCtrl[ "type" ] $ DSN_BUTTON + "|" + DSN_CHECKBOX + "|" + DSN_RADIO + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX
             AAdd( aFields, { "Focus", "focus", "text" } )
          endif
-         if oCtrl[ "type" ] $ DSN_CHECKBOX + "|" + DSN_LISTBOX
+         if oCtrl[ "type" ] $ DSN_CHECKBOX + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX
             AAdd( aFields, { "State", "state", "text" } )
          endif
       endif
@@ -2529,7 +2531,7 @@ function DsnNewControl( cType, aControls )
       case cType == DSN_RADIO
          oCtrl[ "variable" ] = DsnUniqueVar( aControls, "nVar" )
          oCtrl[ "items"    ] = "Option 1,Option 2,Option 3"
-      case cType == DSN_LISTBOX
+      case cType == DSN_LISTBOX .or. cType == DSN_COMBOBOX
          oCtrl[ "variable" ] = DsnUniqueVar( aControls, "nVar" )
          oCtrl[ "items"    ] = "Item 1,Item 2,Item 3"
          oCtrl[ "width"    ] = 20
@@ -2562,7 +2564,7 @@ function DsnControlSize( oCtrl )
       case oCtrl[ "type" ] == DSN_RADIO
          nWidth  = 8 + DsnMaxItemLen( oCtrl )
          nHeight = Len( DsnItems( oCtrl ) ) + 2
-      case oCtrl[ "type" ] == DSN_LISTBOX
+      case ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
          nWidth  = hb_HGetDef( oCtrl, "width", 20 )
          nHeight = hb_HGetDef( oCtrl, "height", 6 )
    endcase
@@ -2576,7 +2578,7 @@ return { nWidth, nHeight }
 
 function DsnResizable( oCtrl )
 
-return oCtrl[ "type" ] == DSN_GET .or. oCtrl[ "type" ] == DSN_LISTBOX
+return oCtrl[ "type" ] == DSN_GET .or. ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
 
 //-----------------------------------------------------------------------------------------//
 
@@ -2594,10 +2596,10 @@ function DsnResize( oCtrl, nDWidth, nDHeight, nDlgWidth, nDlgHeight )
             lChanged = .T.
          endif
 
-      case oCtrl[ "type" ] == DSN_LISTBOX
+      case ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
          nW = Max( 4, Min( nDlgWidth - 2 - oCtrl[ "col" ], ;
               hb_HGetDef( oCtrl, "width", 20 ) + nDWidth ) )
-         nH = Max( 3, Min( nDlgHeight - 2 - oCtrl[ "row" ], ;
+         nH = Max( If( oCtrl[ "type" ] == DSN_COMBOBOX, 4, 3 ), Min( nDlgHeight - 2 - oCtrl[ "row" ], ;
               hb_HGetDef( oCtrl, "height", 6 ) + nDHeight ) )
          if nW != hb_HGetDef( oCtrl, "width", 20 )
             oCtrl[ "width" ] = nW
@@ -2805,6 +2807,13 @@ procedure DsnDrawControl( oWnd, oCtrl, lSelected, cSelColor, nOffRow, nOffCol )
             endif
          next
 
+      case oCtrl[ "type" ] == DSN_COMBOBOX
+         cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", DSN_CLR_AREA ) )
+         aSize = DsnControlSize( oCtrl )
+         aItems = DsnItems( oCtrl )
+         cText = PadR( If( Empty( aItems ), "", aItems[ 1 ] ), Max( 0, aSize[ 1 ] - 1 ) ) + Chr( 31 )
+         hb_DispOutAt( nARow, nACol, Left( cText, Max( 0, nMaxCol - nACol + 1 ) ), cColor )
+
       case oCtrl[ "type" ] == DSN_LISTBOX
          cColor = If( lSelected, cSelColor, If( lDarkDlg, "N/W", DSN_CLR_AREA ) )
          aSize  = DsnControlSize( oCtrl )
@@ -2903,7 +2912,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
    // and a logical CHECKBOX with the same name get separate variables.
    for each oCtrl in hModel[ "controls" ]
       cType = DsnVarType( oCtrl )
-      if cType == "" .or. ( oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX .and. Empty( DsnItems( oCtrl ) ) )
+      if cType == "" .or. ( oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX .and. Empty( DsnItems( oCtrl ) ) )
          loop
       endif
       lNew = .F.
@@ -2923,7 +2932,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
       do case
          case oCtrl[ "type" ] == DSN_RADIO
             cCode += "   local aButt" + hb_ntos( oCtrl:__enumIndex() ) + hb_eol()
-         case oCtrl[ "type" ] == DSN_LISTBOX
+         case ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
             cCode += "   local aItems" + hb_ntos( oCtrl:__enumIndex() ) + hb_eol()
       endcase
    next
@@ -2965,7 +2974,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                   lNeedFill = .T.
                endif
             endif
-         case oCtrl[ "type" ] == DSN_LISTBOX
+         case ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
             if ! Empty( DsnItems( oCtrl ) )
                cCode += "   aItems" + hb_ntos( oCtrl:__enumIndex() ) + " := " + ;
                         DsnItemsCode( oCtrl ) + hb_eol()
@@ -3025,7 +3034,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                      If( hb_HGetDef( oCtrl, "style", "shadow" ) == "brackets", ;
                         " STYLE '[]'", "" ) + hb_eol()
 
-         case ( oCtrl[ "type" ] == DSN_RADIO .or. oCtrl[ "type" ] == DSN_LISTBOX ) .and. ;
+         case ( oCtrl[ "type" ] == DSN_RADIO .or. ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) ) .and. ;
                Empty( DsnItems( oCtrl ) )
             // an item-less radio/listbox cannot run: note it and skip it
             nSkipped++
@@ -3033,8 +3042,12 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                      hb_ntos( oCtrl[ "row" ] + 1 ) + ", col " + ;
                      hb_ntos( oCtrl[ "col" ] + 1 ) + ": no items" + hb_eol()
 
-         case oCtrl[ "type" ] == DSN_RADIO .or. oCtrl[ "type" ] == DSN_LISTBOX
+         case oCtrl[ "type" ] == DSN_RADIO .or. ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
             aSize = DsnControlSize( oCtrl )
+            if oCtrl[ "type" ] == DSN_COMBOBOX
+               aSize[ 2 ] := Max( 4, Min( hb_HGetDef( oCtrl, "height", 6 ), ;
+                  hb_HGetDef( hModel, "height", 12 ) - 2 - oCtrl[ "row" ] ) )
+            endif
             if DsnListSBarHidden( oCtrl )
                cCode += "   // warning: listbox " + hGenVars[ n ] + ;
                         " height < 6: the scrollbar will not be drawn" + hb_eol()
@@ -3046,9 +3059,9 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                      " GET " + hGenVars[ n ] + ;
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
                         " RADIOGROUP aButt", " LISTBOX aItems" ) + ;
-                     hb_ntos( n ) + DsnEvnWV( oCtrl ) + ;
-                     If( oCtrl[ "type" ] == DSN_LISTBOX .and. ;
-                        Len( DsnItems( oCtrl ) ) > aSize[ 2 ] - 2, " SCROLLBAR", "" ) + ;
+                     hb_ntos( n ) + If( oCtrl[ "type" ] == DSN_COMBOBOX, " DROPDOWN", "" ) + DsnEvnWV( oCtrl ) + ;
+                     If( ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) .and. ;
+                        Len( DsnItems( oCtrl ) ) > aSize[ 2 ] - If( oCtrl[ "type" ] == DSN_COMBOBOX, 3, 2 ), " SCROLLBAR", "" ) + ;
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
                         " COLOR '" + If( aDlgPair[ 2 ] == "W", ;
                            If( cClrFocus == DSN_CLR_FOCUS, "N/BG,N/BG,GR+/BG", ;
@@ -3057,7 +3070,8 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
                            aDlgPair[ 1 ] + "/" + aDlgPair[ 2 ] + "," + ;
                            If( cClrFocus == DSN_CLR_FOCUS, "Y+/" + aDlgPair[ 2 ], ;
                               cClrFocus ) ) + "'", ;
-                        " COLOR '" + DsnClrListBoxFor( cDlgColor, cClrFocus ) + "'" ) + ;
+                        " COLOR '" + DsnClrListBoxFor( cDlgColor, cClrFocus ) + ;
+                           If( oCtrl[ "type" ] == DSN_COMBOBOX, ",N/W", "" ) + "'" ) + ;
                      If( oCtrl[ "type" ] == DSN_RADIO, ;
                         If( Empty( hb_HGetDef( oCtrl, "focus", "" ) ), "", ;
                            " FOCUS {|| " + AllTrim( oCtrl[ "focus" ] ) + " }" ), ;
@@ -3116,7 +3130,7 @@ function DsnVarType( oCtrl )
    do case
       case oCtrl[ "type" ] == DSN_GET      ; return "C"
       case oCtrl[ "type" ] == DSN_CHECKBOX ; return "L"
-      case oCtrl[ "type" ] == DSN_RADIO .or. oCtrl[ "type" ] == DSN_LISTBOX
+      case oCtrl[ "type" ] == DSN_RADIO .or. ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
          return "N"
    endcase
 
@@ -3198,7 +3212,7 @@ procedure DsnNormalizeControls( aControls )
 
    local oCtrl, nPos, cCaption, n, cType, cPrefix
    local cTypes := "|" + DSN_SAY + "|" + DSN_GET + "|" + DSN_CHECKBOX + "|" + ;
-                   DSN_BUTTON + "|" + DSN_RADIO + "|" + DSN_LISTBOX + "|"
+                   DSN_BUTTON + "|" + DSN_RADIO + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX + "|"
 
    // drop entries that are not usable controls
    for n = Len( aControls ) to 1 step -1
@@ -3226,7 +3240,7 @@ procedure DsnNormalizeControls( aControls )
       endif
 
       // items accepts a CSV string or a JSON array of strings
-      if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX
+      if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX
          if HB_IsArray( hb_HGetDef( oCtrl, "items", "" ) )
             oCtrl[ "items" ] = DsnItemsFromArray( oCtrl[ "items" ] )
          elseif ! HB_IsString( oCtrl[ "items" ] )
@@ -3238,13 +3252,13 @@ procedure DsnNormalizeControls( aControls )
       if oCtrl[ "type" ] == DSN_GET
          oCtrl[ "width" ] = Max( 4, Min( 40, Int( DsnNum( hb_HGetDef( oCtrl, "width", 10 ), 10 ) ) ) )
       endif
-      if oCtrl[ "type" ] == DSN_LISTBOX
+      if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
          oCtrl[ "width" ]  = Max( 4, Min( 40, Int( DsnNum( hb_HGetDef( oCtrl, "width", 20 ), 20 ) ) ) )
-         oCtrl[ "height" ] = Max( 3, Min( 15, Int( DsnNum( hb_HGetDef( oCtrl, "height", 6 ), 6 ) ) ) )
+         oCtrl[ "height" ] = Max( If( oCtrl[ "type" ] == DSN_COMBOBOX, 4, 3 ), Min( 15, Int( DsnNum( hb_HGetDef( oCtrl, "height", 6 ), 6 ) ) ) )
       endif
 
       // every bound control needs a valid, non-empty variable name
-      if oCtrl[ "type" ] $ DSN_GET + "|" + DSN_CHECKBOX + "|" + DSN_RADIO + "|" + DSN_LISTBOX
+      if oCtrl[ "type" ] $ DSN_GET + "|" + DSN_CHECKBOX + "|" + DSN_RADIO + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX
          cPrefix = If( oCtrl[ "type" ] == DSN_GET, "cVar", ;
                   If( oCtrl[ "type" ] == DSN_CHECKBOX, "lVar", "nVar" ) )
          if Empty( DsnValidVar( hb_HGetDef( oCtrl, "variable", "" ), "" ) )
