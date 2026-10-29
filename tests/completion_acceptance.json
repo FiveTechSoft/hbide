@@ -354,9 +354,10 @@
     "IDE-031": {
       "expected_label": "Script",
       "tests": [
-        "test_run_source_pty.py"
+        "test_run_source_pty.py",
+        "test_script_errors_pty.py"
       ],
-      "contract": "Real Run Script preserves original source literals; lowercase main() and two consecutive sessions produce exact output and usable editor. HRB local binding, no global text substitution."
+      "contract": "Real Run Script preserves original source literals; lowercase main() and two consecutive sessions produce exact output and usable editor. HRB local binding, no global text substitution. Runtime error dismissal and compile error preserve usable editor; valid script executes again after each error. Compiler errors caught locally with source-line operation, not generic host stack dialog."
     },
     "IDE-032": {
       "expected_label": "Debug",

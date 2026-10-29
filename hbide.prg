@@ -2016,7 +2016,7 @@ return nil
 
 METHOD Script() CLASS HbIde
    
-   local oHrb, bOldError, aArgs
+   local oHrb, bOldError, aArgs, oCompileError
 
    aArgs := HBIDEProjectTokens( ::cRunArgs )
    if aArgs == nil
@@ -2025,8 +2025,19 @@ METHOD Script() CLASS HbIde
    endif
 
    // FORCELOCAL isolates HRB symbols; never rewrite identifiers or string literals.
-   oHrb = hb_CompileFromBuf( ::oEditor:GetText(),;
-                              .T., "-n", "-q2", "-Ic:/harbour/include" ) 
+   bOldError := ErrorBlock( { | e | Break( e ) } )
+   BEGIN SEQUENCE
+      oHrb = hb_CompileFromBuf( ::oEditor:GetText(), ;
+         .T., "-n", "-q2", "-Ic:/harbour/include" )
+   RECOVER USING oCompileError
+   END SEQUENCE
+   ErrorBlock( bOldError )
+   if oCompileError != nil
+      HBIDE_MsgAlert( "Script compile error: " + oCompileError:Description + ;
+         " (" + oCompileError:Operation + ")" )
+      ::Repaint()
+      return nil
+   endif
    ::Show()
 
    if ! Empty( oHrb )
@@ -2036,6 +2047,8 @@ METHOD Script() CLASS HbIde
          hb_ExecFromArray( "hb_HrbRun", AMerge( { HB_HRB_BIND_FORCELOCAL, oHrb }, aArgs ) )
       END SEQUENCE
       ErrorBlock( bOldError )
+   else
+      HBIDE_MsgAlert( "Script build produced no code: check the source" )
    endif
 
 return nil      

@@ -533,3 +533,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Reproduccion: Startfallaba con carpeta que contieneespacios,2FAIL. Buildahorausa hb_processRun argv sin shell, captura stdout/stderr enmemoria; autoruncitaejecutable. Rechazaargsmalformados antesdebuild.
 -6checksPTY candidatoPASS: dosbuild/run bajo pathconespacios/apostrofe/$HOME/puntoycoma; buildfallidoinforma,preserva binarioanteriorbyteexacto y noejecutaobsoleto. Nueve modelos y navegacion35PASS candidato.
 - Runner34casos. Windows no validado, proceso build sigue sincronico/no cancelable. Baseline32anteriornoheredada.
+
+## 30Oct00:38 Script compile error lifecycle
+- CompilerAPI .T. reporta errores medianteErrorBlock: antes escapaban alhandlergeneral y diálogoStack, dejando menú/editor corruptos trascerrar.
+- Captura localCOMPILER enScript, restaura ErrorBlock antesdemensaje breve conDescription/Operation(linea), repinta después. Runtime behavior sin cambio.
+-9checks candidato: dosruns literales, errorruntime/dismiss, runválido trasruntime, compileerror/dismiss/editorusable, runválido trascompile. Nueve modelosPASS; runner35casos. Windows pendiente.
