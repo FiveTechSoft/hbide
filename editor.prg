@@ -391,7 +391,7 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
 
    local aBefore
    local cCharKey := iif( hb_keyStd( nKey ) == K_TAB .AND. Set( _SET_INSERT ), ;
-                          Space( TabCount( ::nTabWidth, ::nCol ) ), ;
+                          Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), ;
                           hb_keyChar( nKey ) )
 
    // Pure cursor/scroll keys cannot change the text: skip the whole-file
@@ -590,7 +590,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            ::ToggleBP()
 
       case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;
-           Space( TabCount( ::nTabWidth, ::nCol ) ), ;
+           Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), ;
            hb_keyChar( nKey ) ) )
 
            lHotPath := ( ::SelRange() == NIL )

@@ -386,3 +386,12 @@ CRLF/LF/CR conserva bytes exactos, navegacion35PASS. Captura IDEcompleta
 inspeccionada tras recuperar/guardar: indentacion4columnas, bordes completos.
 Word-wrap heredado con TAB sigue fuera de este arreglo y pendiente.
 El baseline28PTYpublicado corresponde ac313ae8, no a este producto nuevo.
+
+
+## Tecla TAB sobre archivos con TAB preservados
+
+La tecla TAB seguia calculando espacios por indice de caracter, no columna
+visual. Despues de unTABexistente insertaba3espacios en vez de4. Calculo
+por VisualCol tanto en deteccion hotpath como insercion; pruebas visual5 y
+visual7, undo y redo.63checks editor y nueve modelosPASS. No afecta al
+contrato de insertar espacios con la teclaTAB ni cierra word-wrapconTAB.
