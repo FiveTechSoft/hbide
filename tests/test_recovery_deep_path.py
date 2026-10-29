@@ -85,7 +85,9 @@ deep = deepdir + '/' + 'b' * 100 + '.prg'
 os.makedirs(deepdir, exist_ok=True)
 eol = '\r\n' if (os.environ.get('HBIDE_TEST_CRLF') == '1' or '--crlf' in sys.argv[2:]) else '\n'
 utf8 = '--utf8-bom' in sys.argv[2:]
-orig = ('\ufeff' if utf8 else '') + 'line one' + eol + 'line two with tail' + (' é' if utf8 else '') + eol
+raw_utf8 = '--utf8-raw' in sys.argv[2:]
+switch_cp = '--switch-cp' in sys.argv[2:]
+orig = ('\ufeff' if utf8 else '') + 'line one' + eol + 'line two with tail' + (' é' if utf8 else (' €' if raw_utf8 else '')) + eol
 pathlib.Path(deep).write_bytes(orig.encode())
 assert len(deep) > 200, deep
 env = dict(os.environ, HOME=home, HBIDE_RECOVERY_DIR=rec, TERM='xterm')
@@ -140,6 +142,9 @@ try:
     os.write(fd, b'\x1bf'); pump(0.8, fd); os.write(fd, b'o')
     wait_has('Open dialog', ['Openafile'], fd)
     os.write(fd, deep.encode() + b'\r'); pump(1.5, fd)
+    if raw_utf8:
+        check('raw UTF8 warning visible', 'openedraw' in scr.text().replace(' ', ''))
+        os.write(fd, b'\r'); pump(.4, fd)
     wait_has('deep file open', ['lineone', 'linetwowithtail'], fd)
     os.write(fd, b'ZZ')
     t0 = time.time()
@@ -148,11 +153,13 @@ try:
     check('journal written for >200-char path', len(journals()) == 1)
     jbytes = journals()[0].read_bytes() if journals() else b''
     check('journal holds the edit', b'ZZ' in jbytes)
-    check('journal encoding generation stored', jbytes.startswith(b'\x00HBIDE-J1\n')) if utf8 else check('journal retains original EOL', jbytes == b'ZZ' + orig.encode())
+    check('journal encoding generation stored', jbytes.startswith(b'\x00HBIDE-J1\n')) if utf8 or raw_utf8 else check('journal retains original EOL', jbytes == b'ZZ' + orig.encode())
 finally:
     os.kill(pid, signal.SIGKILL); os.waitpid(pid, 0); os.close(fd)
 
 scr = Scr()
+if switch_cp:
+    env['HBIDE_UTF8'] = '1'
 pid, fd = boot()
 try:
     wait_has('recovery prompt after kill', ['interruptedsession'], fd)

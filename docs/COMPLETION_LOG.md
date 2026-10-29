@@ -275,3 +275,11 @@ PASS; LF/CRLF, multi,retention,routeguard ySaveAsrecuperacionPASS. Ocho modelos
 PASS, recovery53checks incluye envelope atomico/read legacy/rewrite legacy.
 Sin certificadoWindows. Encodingraw/cambio de codepage aun necesitanPTY
 especifica; no se afirma toda conversion cubierta.
+
+## Encoding: ampliacionPTYraw y codepage
+
+Sobreproducto ff49ba3: UTF8raw con euro fuera deCP437 abre con aviso,
+se edita sin cortar la secuencia, kill/recovery/save retiene bytes exactos.
+Otro caso parte deUTF8+BOM editado enCP437 y recupera conHBIDE_UTF8=1:
+conversion lossless y fichero final exactosPASS. Test/runner ampliados;
+no se confunde esta direccion lossless con probar rechazo inverso.
