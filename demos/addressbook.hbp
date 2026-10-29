@@ -1,0 +1,11 @@
+# Address Book + Time Planner demo (hbide GUI)
+# Build from the repo root:  hbmk2 demos/addressbook.hbp
+# or open this file as a project inside hbide and use Run.
+-I..
+addressbook.prg
+../hbwindow.prg
+../hbgetu.prg
+../hbbutton.prg
+../hbmenu.prg
+../hbdebug/dbgtwin.prg
+-oaddressbook
