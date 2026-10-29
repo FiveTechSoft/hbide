@@ -36,10 +36,16 @@ return oEditor
 
 //-----------------------------------------------------------------------------------------//
 
+// A physical boundary belongs to the line before it. Keeping it on the
+// line object lets edits move text without a parallel array drifting out of sync.
+CLASS HBIDETextLine FROM HBTextLine
+   DATA cEol INIT ""
+ENDCLASS
+
 CLASS HBSrcEdit FROM HBEditor
 
    DATA   cFile
-   DATA   cEol        INIT NIL   // uniform source line ending, also carried in journals
+   DATA   cEol        INIT NIL   // preferred terminator for new boundaries
    DATA   cClrString   INIT "GR+"
    DATA   cClrOperator INIT "R+"
    DATA   cClrKeyword1 INIT "G+"
@@ -95,6 +101,8 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD ScanBlkLine( cText, lIn )
    METHOD LoadText( cText )
    METHOD GetText( lSoftCR )
+   METHOD AddLine( cLine, lSoftCR )
+   METHOD InsertLine( cLine, lSoftCR, nRow )
    METHOD LoadFile( cFileName )
    METHOD SaveFile()
    DATA   cRecoveredBase INIT ""
@@ -169,7 +177,7 @@ return nil
 
 METHOD PasteLine() CLASS HBSrcEdit
 
-   local aLines, n
+   local aLines, n, aBefore
 
    if ! Empty( ::cClipboard )
       ::ClearSelection()   // same stale-mark guard as CopySelection
@@ -178,7 +186,7 @@ METHOD PasteLine() CLASS HBSrcEdit
       // of embedding the eol bytes inside a single model line.
       aLines := hb_ATokens( ::cClipboard, hb_eol(), .T. )
       // Insert below current line; independent of insert/overstrike mode
-      ::PushOp( ::nRow + 1, {}, aLines )
+      aBefore := ::LinesSnapshot()
       for n := 1 to Len( aLines )
          if ::nRow + n > Len( ::aText )
             ::AddLine( aLines[ n ], .F. )
@@ -186,6 +194,7 @@ METHOD PasteLine() CLASS HBSrcEdit
             ::InsertLine( aLines[ n ], .F., ::nRow + n )
          endif
       next
+      ::RecordEdit( aBefore )
       ::lDirty := .T.
       ::GoTo( ::nRow + 1, 5 )
       ::Display()
@@ -197,10 +206,13 @@ return nil
 
 METHOD DeleteLine() CLASS HBSrcEdit
 
+   local aBefore := ::LinesSnapshot()
+
    if Len( ::aText ) > 1
       ::cClipboard = ::aText[ ::nRow ]:cText
-      ::PushOp( ::nRow, { ::cClipboard }, {} )
       ::RemoveLine( ::nRow )
+      ATail( ::aText ):cEol := ""
+      ::RecordEdit( aBefore )
       ::lDirty := .T.
       ::GoTo( ::nRow, 5 )  // GoTo clamps nRow to LineCount
       ::Display()
@@ -212,9 +224,11 @@ return nil
 
 METHOD DuplicateLine() CLASS HBSrcEdit
 
+   local aBefore := ::LinesSnapshot()
+
    // Insert a copy below current line; independent of insert/overstrike mode
-   ::PushOp( ::nRow + 1, {}, { ::aText[ ::nRow ]:cText } )
    ::InsertLine( ::aText[ ::nRow ]:cText, .F., ::nRow + 1 )
+   ::RecordEdit( aBefore )
    ::lDirty := .T.
    ::GoTo( ::nRow + 1, 5 )
    ::Display()
@@ -295,7 +309,7 @@ METHOD ReplaceAll( cFind, cReplace ) CLASS HBSrcEdit
    endif
 
    for n = 1 to Len( ::aText )
-      AAdd( aOld, ::aText[ n ]:cText )
+      AAdd( aOld, ::aText[ n ]:cText + ::aText[ n ]:cEol )
       cLine := ::aText[ n ]:cText
       cNew := ""
       nFrom := 1
@@ -311,7 +325,7 @@ METHOD ReplaceAll( cFind, cReplace ) CLASS HBSrcEdit
       for n = 1 to Len( ::aText )
          ::aText[ n ]:cText := aNew[ n ]
       next
-      ::PushOp( 1, aOld, aNew )
+      ::PushOp( 1, aOld, ::LinesSnapshot() )
       ::lDirty := .T.
       ::Display()
    endif
@@ -484,6 +498,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
               nPos = hb_ULen( ::aText[ ::nRow - 1 ]:cText )
               ::GoTo( ::nRow - 1, nPos + 1 )
               ::nCol = nPos + 1
+              ::aText[ ::nRow ]:cEol := ::aText[ ::nRow + 1 ]:cEol
               ::Super:Edit( K_DEL )
               ::GoTo( ::nRow, nPos + 5, _REFRESH_ALL )
            ENDIF
@@ -496,6 +511,9 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            ::ClearSelection()
            nPos = ::nCol
            ::nCol = Max( ::nCol - 4, 1 )
+           if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )
+              ::aText[ ::nRow ]:cEol := ::aText[ ::nRow + 1 ]:cEol
+           endif
            ::Super:Edit( nKey )
            ::GoTo( ::nRow, nPos, _REFRESH_ALL )
            endif
@@ -595,7 +613,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
               if ! ::lWordWrap
                  // direct one-line undo op: Edit() skipped the whole-file
                  // snapshot+diff for this key (lockstep comment there)
-                 ::PushOp( ::nRow, { cOldLine }, { oLine:cText } )
+                 ::PushOp( ::nRow, { cOldLine + oLine:cEol }, { oLine:cText + oLine:cEol } )
               endif
               ::nBlkDirty := Min( ::nBlkDirty, ::nRow )
               IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore
@@ -662,7 +680,7 @@ METHOD LinesSnapshot() CLASS HBSrcEdit
    local aLines := Array( nLen ), n
 
    for n = 1 to nLen
-      aLines[ n ] := aText[ n ]:cText
+      aLines[ n ] := aText[ n ]:cText + aText[ n ]:cEol
    next
 
 return aLines
@@ -787,10 +805,13 @@ METHOD ApplyOp( aOp, lInverse ) CLASS HBSrcEdit
    next
    for i = 1 to Len( aIns )
       if nRow + i - 1 > Len( ::aText )
-         ::AddLine( aIns[ i ], .F. )
+         ::AddLine( HBIDE_LineText( aIns[ i ] ), .F. )
       else
-         ::InsertLine( aIns[ i ], .F., nRow + i - 1 )
+         ::InsertLine( HBIDE_LineText( aIns[ i ] ), .F., nRow + i - 1 )
       endif
+   next
+   for i = 1 to Len( aIns )
+      ::aText[ nRow + i - 1 ]:cEol := SubStr( aIns[ i ], Len( HBIDE_LineText( aIns[ i ] ) ) + 1 )
    next
 
 return Self
@@ -904,16 +925,36 @@ return lIn
 
 METHOD LoadText( cText ) CLASS HBSrcEdit
 
-   local xRet
-   local cWithoutCRLF := StrTran( cText, Chr( 13 ) + Chr( 10 ), "" )
+   local xRet, aEnds := {}, n := 1, nStart := 1, c, cNormalized := ""
+   local oLine, oNew, nEnd := 1
 
-   // Keep uniform CRLF on every host. Mixed endings need a per-line model;
-   // do not claim preservation of them by choosing a global majority.
-   ::cEol := iif( Chr( 13 ) + Chr( 10 ) $ cText .and. ;
-                 !( Chr( 10 ) $ cWithoutCRLF ) .and. !( Chr( 13 ) $ cWithoutCRLF ), ;
-                 Chr( 13 ) + Chr( 10 ), iif( Chr( 10 ) $ cText .and. ;
-                 !( Chr( 13 ) $ cText ), Chr( 10 ), hb_eol() ) )
-   xRet := ::Super:LoadText( cText )
+   ::cEol := hb_eol()
+   while n <= Len( cText )
+      c := SubStr( cText, n, 1 )
+      if c == Chr( 13 ) .or. c == Chr( 10 )
+         if SubStr( cText, n, 2 ) == Chr( 13 ) + Chr( 10 )
+            c += Chr( 10 )
+            n++
+         endif
+         AAdd( aEnds, c )
+         cNormalized += SubStr( cText, nStart, n - nStart + 1 - Len( c ) ) + Chr( 10 )
+         nStart := n + 1
+      endif
+      n++
+   end
+   cNormalized += SubStr( cText, nStart )
+   if Len( aEnds ) > 0
+      ::cEol := aEnds[ 1 ]   // first actual boundary, not a majority conversion
+   endif
+   xRet := ::Super:LoadText( cNormalized )
+   for n := 1 to Len( ::aText )
+      oLine := ::aText[ n ]
+      oNew := HBIDETextLine():New( oLine:cText, oLine:lSoftCR )
+      if ! oLine:lSoftCR .and. nEnd <= Len( aEnds )
+         oNew:cEol := aEnds[ nEnd++ ]
+      endif
+      ::aText[ n ] := oNew
+   next
 
    ::aUndo := {}
    ::aRedo := {}
@@ -927,13 +968,42 @@ return xRet
 
 METHOD GetText( lSoftCR ) CLASS HBSrcEdit
 
-   local cText := ::Super:GetText( lSoftCR )
+   local cText := "", oLine
 
-   if ::cEol != NIL .and. ::cEol != hb_eol()
-      cText := StrTran( cText, hb_eol(), ::cEol )
-   endif
+   for each oLine in ::aText
+      cText += oLine:cText
+      if ! oLine:__enumIsLast()
+         cText += iif( oLine:lSoftCR .and. ::lWordWrap, ;
+                       iif( hb_defaultValue( lSoftCR, .F. ), Chr( 141 ) + Chr( 10 ), "" ), ;
+                       oLine:cEol )
+      endif
+   next
 
 return cText
+
+METHOD AddLine( cLine, lSoftCR ) CLASS HBSrcEdit
+return ::InsertLine( cLine, lSoftCR, Len( ::aText ) + 1 )
+
+METHOD InsertLine( cLine, lSoftCR, nRow ) CLASS HBSrcEdit
+   local oNew := HBIDETextLine():New( cLine, lSoftCR )
+   if nRow > 1
+      oNew:cEol := ::aText[ nRow - 1 ]:cEol
+      if Len( ::aText[ nRow - 1 ]:cEol ) == 0
+         ::aText[ nRow - 1 ]:cEol := ::cEol
+      endif
+   else
+      oNew:cEol := ::cEol
+   endif
+   hb_AIns( ::aText, nRow, oNew, .T. )
+return Self
+
+// Undo strings include their boundary. Physical text cannot contain CR/LF.
+STATIC FUNCTION HBIDE_LineText( cLine )
+   local n := Len( cLine )
+   do while n > 0 .and. ( SubStr( cLine, n, 1 ) == Chr( 13 ) .or. SubStr( cLine, n, 1 ) == Chr( 10 ) )
+      n--
+   end
+return Left( cLine, n )
 
 //-----------------------------------------------------------------------------------------//
 
@@ -1537,10 +1607,10 @@ METHOD AdjustBPs( nRow, aOld, aNew ) CLASS HBSrcEdit
          // steal the mark
          nAt := 0
          if nBP - nRow + 1 <= Len( aNew ) .and. ;
-            HBIDE_StrEq( aNew[ nBP - nRow + 1 ], aOld[ nBP - nRow + 1 ] )
+            HBIDE_StrEq( HBIDE_LineText( aNew[ nBP - nRow + 1 ] ), HBIDE_LineText( aOld[ nBP - nRow + 1 ] ) )
             nAt := nBP - nRow + 1
          else
-            nAt := AScan( aNew, { | c | HBIDE_StrEq( c, aOld[ nBP - nRow + 1 ] ) } )
+            nAt := AScan( aNew, { | c | HBIDE_StrEq( HBIDE_LineText( c ), HBIDE_LineText( aOld[ nBP - nRow + 1 ] ) ) } )
          endif
          if nAt > 0
             AAdd( aKept, nRow + nAt - 1 )
@@ -1624,7 +1694,7 @@ METHOD CutSelection() CLASS HBSrcEdit
    endif
    ::cClipboard = ::SelectionText()
    aOld = ::SelDelete( aSel )
-   ::PushOp( aSel[ 1 ], aOld, { ::aText[ aSel[ 1 ] ]:cText } )
+   ::PushOp( aSel[ 1 ], aOld, { ::aText[ aSel[ 1 ] ]:cText + ::aText[ aSel[ 1 ] ]:cEol } )
 
 return nil
 
@@ -1640,10 +1710,11 @@ METHOD SelDelete( aSel ) CLASS HBSrcEdit
    local aOld := {}, cMerged, n
 
    for n = aSel[ 1 ] to aSel[ 3 ]
-      AAdd( aOld, ::aText[ n ]:cText )
+      AAdd( aOld, ::aText[ n ]:cText + ::aText[ n ]:cEol )
    next
-   cMerged = hb_USubStr( aOld[ 1 ], 1, aSel[ 2 ] - 5 ) + ;
-             hb_USubStr( aOld[ Len( aOld ) ], aSel[ 4 ] - 4 )
+   cMerged = hb_USubStr( HBIDE_LineText( aOld[ 1 ] ), 1, aSel[ 2 ] - 5 ) + ;
+             hb_USubStr( HBIDE_LineText( aOld[ Len( aOld ) ] ), aSel[ 4 ] - 4 )
+   ::aText[ aSel[ 1 ] ]:cEol := ::aText[ aSel[ 3 ] ]:cEol
    ::aText[ aSel[ 1 ] ]:cText := cMerged
    for n = aSel[ 1 ] + 1 to aSel[ 3 ]
       ::RemoveLine( aSel[ 1 ] + 1 )

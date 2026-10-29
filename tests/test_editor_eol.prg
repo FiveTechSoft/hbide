@@ -38,6 +38,79 @@ PROCEDURE Main()
       nFail += iif( lOk, 0, 1 )
       ? iif( lOk, 'PASS:', 'FAIL:' ), aCase[ 1 ], 'split, undo, redo and journal reload'
    NEXT
+   // Every edit is checked in both directions, including adjacent metadata.
+   cText := 'abc' + cCRLF + 'def' + cLF + 'ghi' + Chr( 13 ) + 'tail'
+   o:LoadText( cText )
+   Check( o:GetText() == cText, 'mixed CRLF/LF/CR exact load', @nPass, @nFail )
+   o:cFile := cFile
+   Check( o:SaveFile() .and. hb_MemoRead( cFile ) == cText, 'mixed exact disk save', @nPass, @nFail )
+   o:GoTo( 2, 6 )
+   o:Edit( K_ENTER )
+   cJournal := 'abc' + cCRLF + 'd' + cLF + 'ef' + cLF + 'ghi' + Chr( 13 ) + 'tail'
+   Check( o:GetText() == cJournal, 'split inherits local LF', @nPass, @nFail )
+   o:Undo()
+   Check( o:GetText() == cText, 'mixed split undo', @nPass, @nFail )
+   o:Redo()
+   Check( o:GetText() == cJournal, 'mixed split redo', @nPass, @nFail )
+   oRecovered:LoadText( cJournal )
+   Check( oRecovered:GetText() == cJournal, 'mixed journal text reload', @nPass, @nFail )
+   FOR EACH aCase IN { { 'Delete join', K_DEL, 1, 8, 'abcdef' + cLF + 'ghi' + Chr( 13 ) + 'tail' }, ;
+                      { 'Backspace join', K_BS, 2, 5, 'abcdef' + cLF + 'ghi' + Chr( 13 ) + 'tail' }, ;
+                      { 'type', Asc( 'X' ), 2, 6, 'abc' + cCRLF + 'dXef' + cLF + 'ghi' + Chr( 13 ) + 'tail' } }
+      o:LoadText( cText )
+      o:GoTo( aCase[ 3 ], aCase[ 4 ] )
+      o:Edit( aCase[ 2 ] )
+      Check( o:GetText() == aCase[ 5 ], aCase[ 1 ], @nPass, @nFail )
+      o:Undo()
+      Check( o:GetText() == cText, aCase[ 1 ] + ' undo', @nPass, @nFail )
+      o:Redo()
+      Check( o:GetText() == aCase[ 5 ], aCase[ 1 ] + ' redo', @nPass, @nFail )
+   NEXT
+   o:LoadText( cText )
+   o:GoTo( 4, 5 )
+   o:DuplicateLine()
+   cJournal := cText + cCRLF + 'tail'
+   Check( o:GetText() == cJournal, 'duplicate unterminated final line', @nPass, @nFail )
+   o:Undo()
+   Check( o:GetText() == cText, 'duplicate EOF undo boundary', @nPass, @nFail )
+   o:Redo()
+   Check( o:GetText() == cJournal, 'duplicate EOF redo boundary', @nPass, @nFail )
+   o:DeleteLine()
+   Check( o:GetText() == cText, 'delete final line', @nPass, @nFail )
+   o:Undo()
+   Check( o:GetText() == cJournal, 'delete final undo boundary', @nPass, @nFail )
+   o:LoadText( cText )
+   o:ReplaceAll( 'd', 'D' )
+   Check( o:GetText() == StrTran( cText, 'd', 'D' ), 'replace keeps boundaries', @nPass, @nFail )
+   o:Undo()
+   Check( o:GetText() == cText, 'replace undo boundaries', @nPass, @nFail )
+   o:LoadText( cText )
+   o:GoTo( 1, 6 )
+   o:Edit( K_F8 )
+   o:GoTo( 3, 6 )
+   o:CutSelection()
+   cJournal := 'ahi' + Chr( 13 ) + 'tail'
+   Check( o:GetText() == cJournal, 'cut multiline keeps final fragment CR', @nPass, @nFail )
+   o:Undo()
+   Check( o:GetText() == cText, 'cut undo all boundaries', @nPass, @nFail )
+   o:Redo()
+   Check( o:GetText() == cJournal, 'cut redo boundaries', @nPass, @nFail )
+   o:LoadText( cText )
+   o:GoTo( 4, 5 )
+   o:cClipboard := 'new one' + hb_eol() + 'new two'
+   o:PasteLine()
+   cJournal := cText + cCRLF + 'new one' + cCRLF + 'new two'
+   Check( o:GetText() == cJournal, 'paste multiline at EOF creates preferred boundaries', @nPass, @nFail )
+   o:Undo()
+   Check( o:GetText() == cText, 'paste EOF undo', @nPass, @nFail )
+   o:Redo()
+   Check( o:GetText() == cJournal, 'paste EOF redo', @nPass, @nFail )
+   FOR EACH aCase IN { { 'empty', '' }, { 'one CR', Chr( 13 ) }, ;
+                      { 'mixed blanks', cCRLF + cLF + Chr( 13 ) + 'end' }, ;
+                      { 'terminated mixed', cText + cLF } }
+      o:LoadText( aCase[ 2 ] )
+      Check( o:GetText() == aCase[ 2 ], aCase[ 1 ] + ' roundtrip', @nPass, @nFail )
+   NEXT
    FErase( cFile )
    ? 'TOTAL', nPass, 'PASS', nFail, 'FAIL'
    ErrorLevel( iif( nFail == 0, 0, 1 ) )
@@ -45,3 +118,9 @@ PROCEDURE Main()
 FUNCTION HBIDE_MsgAlert( cText )
    HB_SYMBOL_UNUSED( cText )
    RETURN 1
+
+STATIC PROCEDURE Check( lOk, cName, nPass, nFail )
+   nPass += iif( lOk, 1, 0 )
+   nFail += iif( lOk, 0, 1 )
+   ? iif( lOk, 'PASS:', 'FAIL:' ), cName
+   RETURN

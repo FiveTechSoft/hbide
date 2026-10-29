@@ -317,3 +317,21 @@ speed1/8 y otros180speed0 grabado antes de activarlo. No mezcla global
 app/debugger detectada; speed0 original ya empezaba eneditor y se descarto.
 No hay oraculo de texto/celdas ni de transitoriosmenoresde33ms; no cierra
 tearing. CapturasF4 app/retorno completas siguen limpias.
+
+
+## Terminadores mixtos por linea, no normalizacion global
+
+El editor conserva ahora el terminador de cada linea en un objeto Harbour.
+Split hereda la frontera local; join conserva la del fragmento final;
+fronteras nuevas al EOF usan el primer terminador del documento. Las ops
+undo guardan texto y frontera juntos, tambien en cut/paste/duplicate/replace.
+El diario usa GetText con esos bytes, sin una segunda tabla desincronizable.
+
+36checks: mezclas CRLF/LF/CR, EOF sin terminador, vacios, split/join,
+cut/paste/duplicate/replace y undo/redo. Nueve modelos Linux PASS.
+IDE real: editar, SIGKILL, recuperar y guardar mixtos byteexacto PASS;
+CRLF, Delete/BP13, navegacion35, SaveAllfallo5 PASS sobre candidato.
+Captura completa tras recuperacion y guardado inspeccionada, sin bordes
+cortados. No demuestra terminadores por pixeles: el oraculo son los bytes.
+No certifica Windows, todos los caminos word-wrap heredados ni el IDE entero.
+RunnerPTY suma recovery-mixed-eol con revision/hash del candidato por caso.
