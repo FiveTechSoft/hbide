@@ -162,7 +162,7 @@ t = scr.text()
 check('debugger UI appears (own menu + Command window)', 'Point' in t and 'Command' in t)
 m = re.search(r'__hbide_dbg__\d+_\d+\.\d+\.prg', t)
 check('debug module uses a unique temp name', m is not None)
-check('debugger shows the buffer source', 'procedure __Main()' in t)
+check('debugger shows the buffer source', 'procedure Main()' in t)
 
 # F5 Go: runs to the preset breakpoint on line 4 (exec bar = distinct color)
 send(b'\x1b[15~'); pump(2.0)

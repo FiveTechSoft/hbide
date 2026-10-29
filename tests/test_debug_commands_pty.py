@@ -140,7 +140,7 @@ try:
     send(b'goto 3\r');pump(.6)
     check('GOTO 3 scrolls target to first source row', 'n := n + 3 ' in ''.join(scr.g[2]))
     send(b'goto 70\r');pump(.6)
-    check('GOTO 70 scrolls distant target to first source row', 'n := n + 70' in ''.join(scr.g[2]) and 'procedure __Main' not in scr.text())
+    check('GOTO 70 scrolls distant target to first source row', 'n := n + 70' in ''.join(scr.g[2]) and 'procedure Main' not in scr.text())
     send(b'find n + 11\r');pump(.6)
     check('FIND selects matching line after distant GOTO', selected_source('n := n + 11'))
     send(b'find n + 1\r');pump(.6)

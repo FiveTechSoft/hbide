@@ -2010,7 +2010,8 @@ METHOD Script() CLASS HbIde
       return nil
    endif
 
-   oHrb = hb_CompileFromBuf( StrTran( ::oEditor:GetText(), "Main", "__Main" ),;
+   // FORCELOCAL isolates HRB symbols; never rewrite identifiers or string literals.
+   oHrb = hb_CompileFromBuf( ::oEditor:GetText(),;
                               .T., "-n", "-q2", "-Ic:/harbour/include" ) 
    ::Show()
 
@@ -2018,7 +2019,7 @@ METHOD Script() CLASS HbIde
       BEGIN SEQUENCE
          bOldError = ErrorBlock( { | o | DoBreak( o ) } )
          // the arguments arrive as the parameters of Main()
-         hb_ExecFromArray( "hb_HrbRun", AMerge( { oHrb }, aArgs ) )
+         hb_ExecFromArray( "hb_HrbRun", AMerge( { HB_HRB_BIND_FORCELOCAL, oHrb }, aArgs ) )
       END SEQUENCE
       ErrorBlock( bOldError )
    endif
@@ -2068,7 +2069,7 @@ METHOD Debug() CLASS HbIde
               StrTran( Str( hb_MilliSeconds() % 1000000, 10, 3 ), " ", "0" )
    cTmpHrb := cTmpPrg + ".hrb"
    cTmpPrg += ".prg"
-   hb_MemoWrit( cTmpPrg, StrTran( ::oEditor:GetText(), "Main", "__Main" ) + hb_eol() + ;
+   hb_MemoWrit( cTmpPrg, ::oEditor:GetText() + hb_eol() + ;
                          "init procedure __hbide_debug__()" + hb_eol() + ;
                          "   __dbgInvokeDebug( .T. )" + hb_eol() + ;
                          "return" + hb_eol() )

@@ -405,7 +405,7 @@ if m:
     send(b'\x1bo'); pump(0.9); send(b'p'); pump(1.2)
     check('PPO shows preprocessed view', 'PPOMARKERLINE' in scr.text() and '.ppo' in scr.text())
     send(b'\x1bo'); pump(0.9); send(b'p'); pump(1.2)
-    check('PPO toggles back to source', 'procedure __Main' in scr.text() and '.ppo' not in scr.text())
+    check('PPO toggles back to source', 'procedure Main' in scr.text() and '.ppo' not in scr.text())
 
 # --- Command window interpreter, effect level: bp set/list/toggle, help ---
 def cmd_row():
@@ -444,7 +444,7 @@ check('Help window closes with ESC', not help_window_up())
 # bring the code window to the front of the cascade stack (effect-driven):
 # gutter digits bleed through even when covered, so require CONTENT text
 def code_at_front():
-    return 'procedure __Main' in scr.text() and 'x := x + 41' in scr.text()
+    return 'procedure Main' in scr.text() and 'x := x + 41' in scr.text()
 t0 = time.time()
 while not code_at_front() and time.time() - t0 < 10.0:
     send(b'\t'); pump(0.7)
