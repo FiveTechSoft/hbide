@@ -208,7 +208,7 @@
         "test_editor_eol.prg",
         "test_edit_menu_pty.py"
       ],
-      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes."
+      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes. Empty replacement deletes only matches; missing text reports zero and preserves bytes."
     },
     "IDE-023": {
       "tests": [
@@ -232,7 +232,7 @@
       "tests": [
         "test_edit_menu_pty.py"
       ],
-      "contract": "Real Goto Line modal navigates third source line; Esc preserves current row. Invalid, negative and oversized inputs remain outside this test."
+      "contract": "Real Goto Line modal navigates source line; Esc preserves row. Zero/negative clamp first line and oversized input clamps final line."
     }
   }
 }

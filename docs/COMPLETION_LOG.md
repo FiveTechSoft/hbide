@@ -485,3 +485,10 @@ Goto real llega linea3, Esc conserva fila/datos en Find/Goto/Replace.
 Replace conserva espacios finales y undo restaura bytes exactos. No se
 ha cambiado producto. Contratos34de115, sin convertir conteo en avance
 porcentual. Inputs invalidos Goto todavia no cubiertos por este contrato.
+
+## Extremos reales Goto y Replace
+
+EditmenuPTY29checks: Goto0/negativo limita primera linea, valor999999 a
+ultima. Replace vacio borra solo coincidencias y Undoexacto; texto ausente
+reporta0 y conserva bytes. Sin cambio de producto; contrato ampliado,
+no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
