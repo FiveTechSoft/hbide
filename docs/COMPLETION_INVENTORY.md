@@ -435,16 +435,16 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:558 | `case nKeyStd == K_F8` |
 | editor.prg:562 | `case nKeyStd == K_F9` |
 | editor.prg:565 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
-| editor.prg:1803 | `case K_UP` |
-| editor.prg:1804 | `case K_DOWN` |
-| editor.prg:1805 | `case K_LEFT` |
-| editor.prg:1806 | `case K_RIGHT` |
-| editor.prg:1807 | `case K_HOME` |
-| editor.prg:1808 | `case K_END` |
-| editor.prg:1809 | `case K_PGUP` |
-| editor.prg:1810 | `case K_PGDN` |
-| editor.prg:1811 | `case K_MWFORWARD` |
-| editor.prg:1812 | `case K_MWBACKWARD` |
+| editor.prg:1808 | `case K_UP` |
+| editor.prg:1809 | `case K_DOWN` |
+| editor.prg:1810 | `case K_LEFT` |
+| editor.prg:1811 | `case K_RIGHT` |
+| editor.prg:1812 | `case K_HOME` |
+| editor.prg:1813 | `case K_END` |
+| editor.prg:1814 | `case K_PGUP` |
+| editor.prg:1815 | `case K_PGDN` |
+| editor.prg:1816 | `case K_MWFORWARD` |
+| editor.prg:1817 | `case K_MWBACKWARD` |
 | hbdebug/debugger.prg:1513 | `CASE K_LDBLCLK` |
 | hbdebug/debugger.prg:1533 | `CASE K_LBUTTONDOWN` |
 | hbdebug/debugger.prg:1562 | `CASE K_RBUTTONDOWN` |

@@ -17,7 +17,7 @@ return
 proc Main()
 
    local cDir := "/tmp/hbide-recovery-" + StrZero( hb_randomInt( 999999 ), 6 )
-   local cKey1, cKey2, cKey3, cKey4, aScan, cBin
+   local cKey1, cKey2, cKey3, cKey4, aScan, cBin, hEncoding, cBase, cStored
    local cLong1, cLong2, cKeyL1, cKeyL2, cLongDir
 
    hb_SetEnv( "HBIDE_RECOVERY_DIR", cDir )
@@ -45,6 +45,22 @@ proc Main()
            "end" + Chr( 13 ) + Chr( 10 )
    Check( "journal write ok", HBIDE_RecoveryWrite( cKey2, "/tmp/aa/foo.prg", cBin ) )
    Check( "journal read byte-exact", HBIDE_RecoveryRead( cKey2 ) == cBin )
+
+   // Versioned encoding generation is atomic with text, not a sidecar that
+   // could be newer than a journal after a crash between renames.
+   hEncoding := { "utf8" => .T., "bom" => .T., "raw" => .F., "cp" => "EN" }
+   Check( "encoding journal write", HBIDE_RecoveryWrite( cKey2, "/tmp/aa/foo.prg", cBin, hEncoding ) )
+   cBase := cKey2 + "--" + HBIDE_RecoverySession()
+   cStored := hb_MemoRead( hb_FNameMerge( cDir, cBase, ".journal" ) )
+   Check( "encoding and bytes share envelope", Left( cStored, 10 ) == Chr( 0 ) + "HBIDE-J1" + Chr( 10 ) )
+   hEncoding := NIL
+   Check( "encoding payload read exact", HBIDE_RecoveryReadBase( cBase, @hEncoding ) == cBin )
+   Check( "encoding metadata read exact", HB_ISHASH( hEncoding ) .and. hEncoding[ "utf8" ] .and. ;
+      hEncoding[ "bom" ] .and. ! hEncoding[ "raw" ] .and. hEncoding[ "cp" ] == "EN" )
+   Check( "legacy API strips envelope", HBIDE_RecoveryRead( cKey2 ) == cBin )
+   Check( "rewrite legacy journal", HBIDE_RecoveryWrite( cKey2, "/tmp/aa/foo.prg", cBin ) )
+   hEncoding := {=>}
+   Check( "legacy data unchanged and no invented encoding", HBIDE_RecoveryReadBase( cBase, @hEncoding ) == cBin .and. hEncoding == NIL )
 
    // 4. scan metadata
    aScan := HBIDE_RecoveryScan( .T. )

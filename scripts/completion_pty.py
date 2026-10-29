@@ -17,6 +17,7 @@ CASES = {
     'recovery-multi': ('test_recovery_multi.py', ['hbide'], 180),
     'recovery-retention': ('test_recovery_retention.py', ['hbide'], 180),
     'recovery-deep-path': ('test_recovery_deep_path.py', ['hbide'], 180),
+    'recovery-utf8-bom': ('test_recovery_deep_path.py', ['hbide', '--utf8-bom'], 180),
     'recovery-crlf': ('test_recovery_deep_path.py', ['hbide', '--crlf'], 180),
     'recovery-route-guard': ('test_recovery_route_guard.py', [], 30),
     'debug-commands': ('test_debug_commands_pty.py', [], 120),

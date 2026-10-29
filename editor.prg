@@ -1243,8 +1243,13 @@ return HBIDE_RecoveryKey( ::cFile )
 
 METHOD UpdateJournal() CLASS HBSrcEdit
 
+   local hEncoding := NIL
+
+   if ::lUtf8 .or. ::lUtf8Bom .or. ::lUtf8Raw .or. hb_cdpSelect() != "EN"
+      hEncoding := { "utf8" => ::lUtf8, "bom" => ::lUtf8Bom, "raw" => ::lUtf8Raw, "cp" => hb_cdpSelect() }
+   endif
    if ::lDirty
-      if ! HBIDE_RecoveryWrite( ::JournalKey(), ::cFile, ::GetText() )
+      if ! HBIDE_RecoveryWrite( ::JournalKey(), ::cFile, ::GetText(), hEncoding )
          // journal failing (disk full, permissions): editing must never stop,
          // but the user is warned ONCE per failing streak, so they don't
          // assume crash recovery is active when it isn't

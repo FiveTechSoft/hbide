@@ -256,3 +256,22 @@ la suite ampliada12/12 y navegacionPTY35/35PASS sobre parche deeff5d10.
 Capturas reales completas inspeccionadas: tercera a deaaaa trasF3, luego
 primera al envolver; statuscol3/col1 y bordes inferiores intactos.
 Debuggerfunctions58/58 tambien repetida sobreeff5d10 limpio antes del parche.
+
+## Duodecimo checkpoint: encoding recuperado, no solo texto
+
+FlujoPTY real UTF8+BOM yé reprodujo corrupcion de formato al recuperar:
+original convierte aCP437 para editar; diario guardaba bytes editor sin
+flags; despues deSIGKILL→Recover→Save saliaCP437 sinBOM. Dos checks fallaban.
+No se recupera encoding desde disco, que puede cambiar tras el cierre.
+
+Journal nuevo para encoding especial usa sobre versionado: flagsUTF8/BOM/raw,
+codepage y texto en UN solo fichero atomico. No sidecar separable por crash.
+Diarios legacy siguen byte exactos sin metadata inventada. Recuperar restaura
+flags y convierte codepage solo con roundtrip lossless; si no cabe conserva
+journal y explica como reabrir. Buffers legacy limpian flags previos.
+
+Sobre parche53df776: UTF8+BOM→editar→diario→kill→recuperar→guardar byteexacto
+PASS; LF/CRLF, multi,retention,routeguard ySaveAsrecuperacionPASS. Ocho modelos
+PASS, recovery53checks incluye envelope atomico/read legacy/rewrite legacy.
+Sin certificadoWindows. Encodingraw/cambio de codepage aun necesitanPTY
+especifica; no se afirma toda conversion cubierta.

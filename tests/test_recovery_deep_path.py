@@ -84,7 +84,8 @@ deepdir = '/tmp/' + 'a' * 110
 deep = deepdir + '/' + 'b' * 100 + '.prg'
 os.makedirs(deepdir, exist_ok=True)
 eol = '\r\n' if (os.environ.get('HBIDE_TEST_CRLF') == '1' or '--crlf' in sys.argv[2:]) else '\n'
-orig = 'line one' + eol + 'line two with tail' + eol
+utf8 = '--utf8-bom' in sys.argv[2:]
+orig = ('\ufeff' if utf8 else '') + 'line one' + eol + 'line two with tail' + (' é' if utf8 else '') + eol
 pathlib.Path(deep).write_bytes(orig.encode())
 assert len(deep) > 200, deep
 env = dict(os.environ, HOME=home, HBIDE_RECOVERY_DIR=rec, TERM='xterm')
@@ -147,7 +148,7 @@ try:
     check('journal written for >200-char path', len(journals()) == 1)
     jbytes = journals()[0].read_bytes() if journals() else b''
     check('journal holds the edit', b'ZZ' in jbytes)
-    check('journal retains original EOL', jbytes == b'ZZ' + orig.encode())
+    check('journal encoding generation stored', jbytes.startswith(b'\x00HBIDE-J1\n')) if utf8 else check('journal retains original EOL', jbytes == b'ZZ' + orig.encode())
 finally:
     os.kill(pid, signal.SIGKILL); os.waitpid(pid, 0); os.close(fd)
 
@@ -164,8 +165,9 @@ try:
         time.sleep(0.1)
     check('journal cleaned after save', not journals())
     saved = open(deep, 'rb').read()
-    check('saved bytes == pre-kill journal bytes', saved == jbytes)
-    check('saved is original plus edit', len(saved) == len(orig) + 2 and b'ZZ' in saved)
+    expected = b'\xef\xbb\xbfZZ' + orig.encode()[3:] if utf8 else b'ZZ' + orig.encode()
+    check('saved bytes retain original encoding and EOL', saved == expected)
+    check('saved is original plus edit', len(saved) == len(orig.encode()) + 2 and b'ZZ' in saved)
 finally:
     os.kill(pid, signal.SIGKILL); os.waitpid(pid, 0); os.close(fd)
 

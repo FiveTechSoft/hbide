@@ -14,8 +14,8 @@ static s_nRecoveryLock := -1
 // power), so on start the IDE lists every survivor and offers Recover /
 // Discard / Later for each one.
 //
-// Layout per buffer: <key>--<session>.journal (raw editor text, byte-exact round trip
-// through GetText()/LoadText()) and <key>--<session>.target (the buffer's file name,
+// Layout per buffer: <key>--<session>.journal (legacy raw editor text, or
+// versioned encoding flags/codepage + editor bytes in one atomic generation) and <key>--<session>.target (the buffer's file name,
 // or "noname.prg" for the untitled buffer). <key> is an escaped form of the
 // absolute target path, stable across sessions and unique per file.
 
@@ -180,7 +180,7 @@ return hb_NumToHex( nHash1, 8 ) + hb_NumToHex( nHash2, 8 )
 // Order matters: the .target sidecar lands first, so a crash between the two
 // renames leaves an orphan sidecar (inert) rather than a journal without a
 // known target.
-function HBIDE_RecoveryWrite( cKey, cTarget, cContent )
+function HBIDE_RecoveryWrite( cKey, cTarget, cContent, hEncoding )
 
    local cDir := HBIDE_RecoveryDir()
    local lOk := .F.
@@ -192,6 +192,14 @@ function HBIDE_RecoveryWrite( cKey, cTarget, cContent )
 
    if ! HBIDE_RecoveryOwnSession()
       return .F.
+   endif
+
+   if HB_ISHASH( hEncoding )
+      cContent := Chr( 0 ) + "HBIDE-J1" + Chr( 10 ) + ;
+         iif( hEncoding[ "utf8" ], "1", "0" ) + ;
+         iif( hEncoding[ "bom" ], "1", "0" ) + ;
+         iif( hEncoding[ "raw" ], "1", "0" ) + ;
+         hb_ntos( Len( hEncoding[ "cp" ] ) ) + ":" + hEncoding[ "cp" ] + cContent
    endif
 
    begin sequence
@@ -234,7 +242,7 @@ return lOk
 
 // Exact-name access for journals found by the scan, which may belong to a
 // previous (dead) session: no session suffix is appended here.
-function HBIDE_RecoveryReadBase( cBase )
+function HBIDE_RecoveryReadBase( cBase, hEncoding )
 
    local cOut := ""
 
@@ -244,7 +252,7 @@ function HBIDE_RecoveryReadBase( cBase )
       cOut := ""
    end sequence
 
-return cOut
+return HBIDE_RecoveryDecode( cOut, @hEncoding )
 
 //-----------------------------------------------------------------------------------------//
 
@@ -273,7 +281,7 @@ function HBIDE_RecoveryRead( cKey )
       cOut := ""
    end sequence
 
-return cOut
+return HBIDE_RecoveryDecode( cOut )
 
 //-----------------------------------------------------------------------------------------//
 
@@ -329,3 +337,27 @@ function HBIDE_RecoveryScan( lIncludeLive )
 return aOut
 
 //-----------------------------------------------------------------------------------------//
+
+// Encoding flags and editor bytes share ONE atomic journal generation. Never
+// infer them from the target file, which may have changed after the crash.
+static function HBIDE_RecoveryDecode( cBytes, hEncoding )
+   local cPrefix := Chr( 0 ) + "HBIDE-J1" + Chr( 10 )
+   local cRest, nColon, nCP, cLength
+   hEncoding := NIL
+   if Left( cBytes, Len( cPrefix ) ) == cPrefix
+      cRest := SubStr( cBytes, Len( cPrefix ) + 1 )
+      nColon := At( ":", cRest )
+      if nColon >= 5 .and. nColon <= 7 .and. ;
+         Left( cRest, 1 ) $ "01" .and. SubStr( cRest, 2, 1 ) $ "01" .and. SubStr( cRest, 3, 1 ) $ "01"
+         cLength := SubStr( cRest, 4, nColon - 4 )
+         nCP := Val( cLength )
+         if nCP >= 1 .and. nCP <= 64 .and. hb_ntos( nCP ) == cLength .and. Len( cRest ) >= nColon + nCP
+            hEncoding := { "utf8" => Left( cRest, 1 ) == "1", ;
+                           "bom" => SubStr( cRest, 2, 1 ) == "1", ;
+                           "raw" => SubStr( cRest, 3, 1 ) == "1", ;
+                           "cp" => SubStr( cRest, nColon + 1, nCP ) }
+            return SubStr( cRest, nColon + nCP + 1 )
+         endif
+      endif
+   endif
+return cBytes

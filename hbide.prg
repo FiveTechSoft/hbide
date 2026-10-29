@@ -1281,7 +1281,7 @@ return nil
 // untouched until the user explicitly saves the recovered work.
 METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
 
-   local n := ::FindDoc( cTarget )
+   local n := ::FindDoc( cTarget ), hEncoding, cText, cConverted
 
    if n > 0
       ::SwitchDoc( n )
@@ -1294,7 +1294,21 @@ METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
       ::nCurrent := Len( ::aEditors )
    endif
 
-   ::oEditor:LoadText( HBIDE_RecoveryReadBase( cKey ) )
+   cText := HBIDE_RecoveryReadBase( cKey, @hEncoding )
+   if hEncoding != NIL .and. ! hEncoding[ "raw" ] .and. ;
+      hEncoding[ "cp" ] != hb_cdpSelect()
+      cConverted := hb_Translate( cText, hEncoding[ "cp" ], hb_cdpSelect() )
+      if hb_Translate( cConverted, hb_cdpSelect(), hEncoding[ "cp" ] ) != cText
+         HBIDE_MsgAlert( "Recovery needs the original editor codepage (" + hEncoding[ "cp" ] + ;
+             "). Journal kept unchanged; reopen with that codepage to avoid data loss." )
+         return nil
+      endif
+      cText := cConverted
+   endif
+   ::oEditor:LoadText( cText )
+   ::oEditor:lUtf8 := hEncoding != NIL .and. hEncoding[ "utf8" ]
+   ::oEditor:lUtf8Bom := hEncoding != NIL .and. hEncoding[ "bom" ]
+   ::oEditor:lUtf8Raw := hEncoding != NIL .and. hEncoding[ "raw" ]
    ::oEditor:cFile := iif( Empty( cTarget ), "noname.prg", cTarget )
    ::oEditor:SetDirty( .T. )
    // the stamp of the disk version, so the external-change watch does not
