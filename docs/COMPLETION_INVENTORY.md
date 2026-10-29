@@ -104,10 +104,10 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-057 | Help | Menus | hbdebug/dbgmenu.prg:214 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-058 | Help | Commands | hbdebug/dbgmenu.prg:215 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DSN-001 | Palette | Label (SAY) | designer.prg:517 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-002 | Palette | Input (GET) | designer.prg:518 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-003 | Palette | CheckBox | designer.prg:519 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-004 | Palette | PushButton | designer.prg:520 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DSN-005 | Palette | RadioGroup | designer.prg:521 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-002 | Palette | Input (GET) | designer.prg:518 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-003 | Palette | CheckBox | designer.prg:519 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-004 | Palette | PushButton | designer.prg:520 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-005 | Palette | RadioGroup | designer.prg:521 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-006 | Palette | ListBox | designer.prg:522 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-007 | Palette | ComboBox | designer.prg:523 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-008 | Palette | Dialog properties... | designer.prg:525 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -161,12 +161,16 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-024: Ctrl+Shift+F6 returns to the prior live document with cursor, undo and breakpoint state preserved. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-010: Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-018: Real Goto Line modal navigates source line; Esc preserves row. Zero/negative clamp first line and oversized input clamps final line. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
-- DSN-006: Real F2 ListBox placement, inspector width/height edits, JSON save/load, generated PRG open. Runtime selection has separate GUI coverage, not certified by this test. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py)
-- DSN-007: Real F2 ComboBox placement; inspector resize with minimum popup height; JSON save/load; PRG generate/open/compile/execute. Space/arrow/Tab and mouse open/select/close update numeric bound variable. Selection only, not editable text. Pruebas: [test_combobox_pty.py](../tests/test_combobox_pty.py), [test_designer.prg](../tests/test_designer.prg)
+- DSN-006: Real F2 ListBox placement, inspector width/height edits, JSON save/load, generated PRG open. Runtime selection has separate GUI coverage, not certified by this test. Runtime roundtrip also covers eight items, keyboard scrolling then mouse selecting visible itemSixth; ComboBox opens when another GET has focus. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py), [gui_roundtrip_fixture.prg](../tests/gui_roundtrip_fixture.prg), [test_gui_roundtrip_pty.py](../tests/test_gui_roundtrip_pty.py)
+- DSN-007: Real F2 ComboBox placement; inspector resize with minimum popup height; JSON save/load; PRG generate/open/compile/execute. Space/arrow/Tab and mouse open/select/close update numeric bound variable. Selection only, not editable text. Runtime roundtrip also covers eight items, keyboard scrolling then mouse selecting visible itemSixth; ComboBox opens when another GET has focus. Pruebas: [test_combobox_pty.py](../tests/test_combobox_pty.py), [test_designer.prg](../tests/test_designer.prg), [gui_roundtrip_fixture.prg](../tests/gui_roundtrip_fixture.prg), [test_gui_roundtrip_pty.py](../tests/test_gui_roundtrip_pty.py)
 - DSN-015: F10 Save JSON modal writes selected ListBox/ComboBox with edited dimensions; this is default-path coverage, not all path failures. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py), [test_combobox_pty.py](../tests/test_combobox_pty.py)
 - DSN-017: F12 reload restores saved control dimensions and type after later edits. Malformed JSON has separate model checks, not all modal error paths. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py), [test_combobox_pty.py](../tests/test_combobox_pty.py)
 - DSN-018: F9 generates PRG from edited/reloaded model; ComboBox artifact compiles and executes keyboard/mouse selection. Other controls need own runtime contracts. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py), [test_combobox_pty.py](../tests/test_combobox_pty.py)
 - DSN-019: Real F2 Generate and open follows overwrite confirmation, leaves designer, and opens generated source in IDE. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py), [test_combobox_pty.py](../tests/test_combobox_pty.py)
+- DSN-002: Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test. Pruebas: [gui_roundtrip_fixture.prg](../tests/gui_roundtrip_fixture.prg), [test_gui_roundtrip_pty.py](../tests/test_gui_roundtrip_pty.py)
+- DSN-003: Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test. Pruebas: [gui_roundtrip_fixture.prg](../tests/gui_roundtrip_fixture.prg), [test_gui_roundtrip_pty.py](../tests/test_gui_roundtrip_pty.py)
+- DSN-004: Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test. Pruebas: [gui_roundtrip_fixture.prg](../tests/gui_roundtrip_fixture.prg), [test_gui_roundtrip_pty.py](../tests/test_gui_roundtrip_pty.py)
+- DSN-005: Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test. Pruebas: [gui_roundtrip_fixture.prg](../tests/gui_roundtrip_fixture.prg), [test_gui_roundtrip_pty.py](../tests/test_gui_roundtrip_pty.py)
 
 ## Campos de inspector
 

@@ -271,17 +271,21 @@
     "DSN-006": {
       "expected_label": "ListBox",
       "tests": [
-        "test_designer_pty.py"
+        "test_designer_pty.py",
+        "gui_roundtrip_fixture.prg",
+        "test_gui_roundtrip_pty.py"
       ],
-      "contract": "Real F2 ListBox placement, inspector width/height edits, JSON save/load, generated PRG open. Runtime selection has separate GUI coverage, not certified by this test."
+      "contract": "Real F2 ListBox placement, inspector width/height edits, JSON save/load, generated PRG open. Runtime selection has separate GUI coverage, not certified by this test. Runtime roundtrip also covers eight items, keyboard scrolling then mouse selecting visible itemSixth; ComboBox opens when another GET has focus."
     },
     "DSN-007": {
       "expected_label": "ComboBox",
       "tests": [
         "test_combobox_pty.py",
-        "test_designer.prg"
+        "test_designer.prg",
+        "gui_roundtrip_fixture.prg",
+        "test_gui_roundtrip_pty.py"
       ],
-      "contract": "Real F2 ComboBox placement; inspector resize with minimum popup height; JSON save/load; PRG generate/open/compile/execute. Space/arrow/Tab and mouse open/select/close update numeric bound variable. Selection only, not editable text."
+      "contract": "Real F2 ComboBox placement; inspector resize with minimum popup height; JSON save/load; PRG generate/open/compile/execute. Space/arrow/Tab and mouse open/select/close update numeric bound variable. Selection only, not editable text. Runtime roundtrip also covers eight items, keyboard scrolling then mouse selecting visible itemSixth; ComboBox opens when another GET has focus."
     },
     "DSN-015": {
       "expected_label": "Save JSON    F10",
@@ -314,6 +318,38 @@
         "test_combobox_pty.py"
       ],
       "contract": "Real F2 Generate and open follows overwrite confirmation, leaves designer, and opens generated source in IDE."
+    },
+    "DSN-002": {
+      "expected_label": "Input (GET)",
+      "tests": [
+        "gui_roundtrip_fixture.prg",
+        "test_gui_roundtrip_pty.py"
+      ],
+      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test."
+    },
+    "DSN-003": {
+      "expected_label": "CheckBox",
+      "tests": [
+        "gui_roundtrip_fixture.prg",
+        "test_gui_roundtrip_pty.py"
+      ],
+      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test."
+    },
+    "DSN-004": {
+      "expected_label": "PushButton",
+      "tests": [
+        "gui_roundtrip_fixture.prg",
+        "test_gui_roundtrip_pty.py"
+      ],
+      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test."
+    },
+    "DSN-005": {
+      "expected_label": "RadioGroup",
+      "tests": [
+        "gui_roundtrip_fixture.prg",
+        "test_gui_roundtrip_pty.py"
+      ],
+      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test."
     }
   }
 }

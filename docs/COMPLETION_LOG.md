@@ -511,3 +511,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Añadido expected_label obligatorio por contrato. Insertar un menu antes de otro cambiaIDs ordinales: ahora auditoría falla si ID y etiqueta dejan de corresponder, evita aceptación silenciosamente aplicada a otra acción.
 - Inventario regenerado116acciones,40contratos enlazados. No porcentaje de terminado. Gate sigue fallando por2stubs.
 - Regresión producto fa94083: menús/modalesEdit29PASS y navegación35PASS, mismoSHA binario en ledger /tmp/hbide-regression-fa94083/results.jsonl. No pasada global.
+
+## 30Oct00:04 Roundtrip GUI automatizado
+- Nuevofixture generaPRGs reales RadioGroup/ListBox/ComboBox/CheckBox/Input masOK; se compilan y ejecutan enPTY, se comprueban valores finales enarchivo.
+-21checksPASS candidato: teclado/raton, ListBox/ComboBox8items con scroll y seleccionSixth tras llegarEighth; ComboBox toma foco desdeotroGET y abre. No simula resultados ni sustituye revisionpixel/Windows.
+- Runner32casos,44contratos enlazados de116acciones, no porcentaje. ManualRoundtrip aclara que ya existe automatizacion, conserva procedimiento visual.
