@@ -105,7 +105,9 @@ PROCEDURE Main()
    Check( o:GetText() == cText, 'paste EOF undo', @nPass, @nFail )
    o:Redo()
    Check( o:GetText() == cJournal, 'paste EOF redo', @nPass, @nFail )
-   FOR EACH aCase IN { { 'empty', '' }, { 'one CR', Chr( 13 ) }, ;
+   FOR EACH aCase IN { { 'line70000', Replicate( 'x', 70000 ) + cCRLF + 'tail' }, ;
+                      { 'tab preserved', Chr( 9 ) + 'abc' + cCRLF + 'a' + Chr( 9 ) + 'b' }, ;
+                      { 'empty', '' }, { 'one CR', Chr( 13 ) }, ;
                       { 'mixed blanks', cCRLF + cLF + Chr( 13 ) + 'end' }, ;
                       { 'terminated mixed', cText + cLF } }
       o:LoadText( aCase[ 2 ] )
@@ -142,6 +144,35 @@ PROCEDURE Main()
       next
       Check( o:GetText() == cJournal, 'reflow cursor ' + aCase[ 1 ], @nPass, @nFail )
    NEXT
+   cText := Chr( 9 ) + 'abc' + cCRLF + 'a' + Chr( 9 ) + 'b'
+   o := HBSrcEdit():New( cText, 2, 1, 20, 79, .T. )
+   o:GoTo( 1, 6 )
+   o:Edit( Asc( 'Z' ) )
+   cJournal := Chr( 9 ) + 'Zabc' + cCRLF + 'a' + Chr( 9 ) + 'b'
+   Check( o:GetText() == cJournal, 'edit after tab keeps original tabs', @nPass, @nFail )
+   o:Undo()
+   Check( o:GetText() == cText, 'tab edit undo byteexact', @nPass, @nFail )
+   o:Redo()
+   Check( o:GetText() == cJournal, 'tab edit redo byteexact', @nPass, @nFail )
+   o:LoadText( Replicate( 'x', 70000 ) + cCRLF + 'tail' )
+   Check( o:LineCount() == 2, '70000 characters remain one physical source line', @nPass, @nFail )
+   o:LoadText( Chr( 9 ) + 'abc' + Chr( 9 ) + 'def' )
+   Check( o:VisualText( o:GetLine( 1 ) ) == '    abc def', 'tabs expand only for paint', @nPass, @nFail )
+   o:GoTo( 1, 6 )
+   Check( o:Col() == 9, 'screen cursor after first TAB', @nPass, @nFail )
+   o:Edit( K_RIGHT )
+   Check( o:Col() == 10, 'screen cursor next character', @nPass, @nFail )
+   Check( o:CharCol( 1, 5 ) == 2 .and. o:CharCol( 1, 9 ) == 6, 'mouse inverse tab mapping', @nPass, @nFail )
+   o:GoTo( 1, 5 )
+   o:Edit( K_F8 )
+   o:Edit( K_RIGHT )
+   o:CutSelection()
+   Check( o:GetText() == 'abc' + Chr( 9 ) + 'def' .and. o:cClipboard == Chr( 9 ), 'cut selected TAB is one byte', @nPass, @nFail )
+   o:Undo()
+   Check( o:GetText() == Chr( 9 ) + 'abc' + Chr( 9 ) + 'def', 'cut TAB undo exact', @nPass, @nFail )
+   o:LoadText( Replicate( Chr( 9 ), 50 ) + 'end' )
+   o:GoTo( 1, 55 )
+   Check( o:Col() <= 79 .and. o:Col() >= 5, 'tab horizontal scroll keeps cursor in viewport', @nPass, @nFail )
    FErase( cFile )
    ? 'TOTAL', nPass, 'PASS', nFail, 'FAIL'
    ErrorLevel( iif( nFail == 0, 0, 1 ) )

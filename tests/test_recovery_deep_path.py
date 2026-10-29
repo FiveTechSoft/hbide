@@ -92,6 +92,8 @@ utf8_host = '--utf8-host' in sys.argv[2:]
 orig = ('\ufeff' if utf8 else '') + 'line one' + eol + 'line two with tail' + (' €' if refuse_cp else (' é' if utf8 or utf8_host else (' €' if raw_utf8 else ''))) + eol
 if '--mixed-eol' in sys.argv[2:]:
     orig = 'line one\r\nline two with tail\nthird line\rfourth without terminator'
+if '--tabs' in sys.argv[2:]:
+    orig = 'line one\r\n\tline two with tail\nthird\tline\rfourth without terminator'
 pathlib.Path(deep).write_bytes(orig.encode())
 assert len(deep) > 200, deep
 env = dict(os.environ, HOME=home, HBIDE_RECOVERY_DIR=rec, TERM='xterm')

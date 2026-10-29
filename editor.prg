@@ -125,7 +125,13 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD LineColor( nLine ) INLINE ;
                      If( nLine == ::nRow - ::nFirstRow + ::nTop, ::cClrSelRow, ::cColorSpec )
    METHOD MoveCursor( nKey )
-   METHOD ShowCursor() INLINE ( SetCursor( SC_NORMAL ), SetPos( ::nRow - ::nFirstRow + 2, ::nCol ) )
+   METHOD Col()
+   METHOD GoTo( nRow, nCol, nRefreshMode )
+   METHOD RefreshLine()
+   METHOD VisualText( cText )
+   METHOD VisualCol( nRow, nCharCol )
+   METHOD CharCol( nRow, nVisualCol )
+   METHOD ShowCursor() INLINE ( SetCursor( SC_NORMAL ), SetPos( ::Row(), ::Col() ) )
    METHOD CopyLine()
    METHOD PasteLine()
    METHOD DeleteLine()
@@ -471,12 +477,14 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            ::Redo()
 
       case nKeyStd == K_LDBLCLK
-           ::GoTo( MRow() - ::nTop + ::nFirstRow, Max( MCol() - ::nLeft + ::nFirstCol, 5 ), _REFRESH_ALL )
+           ::GoTo( MRow() - ::nTop + ::nFirstRow, 4 + ::CharCol( MRow() - ::nTop + ::nFirstRow, ;
+                    Max( 1, MCol() - ::nLeft - 4 + ::VisualCol( MRow() - ::nTop + ::nFirstRow, ::nFirstCol ) ) ), _REFRESH_ALL )
            ::SelectWord( ::nRow, ::nCol - 4 )
 
       case nKeyStd == K_LBUTTONDOWN
            ::ClearSelection()
-           ::GoTo( MRow() - ::nTop + ::nFirstRow, Max( MCol() - ::nLeft + ::nFirstCol, 5 ), _REFRESH_ALL )
+           ::GoTo( MRow() - ::nTop + ::nFirstRow, 4 + ::CharCol( MRow() - ::nTop + ::nFirstRow, ;
+                    Max( 1, MCol() - ::nLeft - 4 + ::VisualCol( MRow() - ::nTop + ::nFirstRow, ::nFirstCol ) ) ), _REFRESH_ALL )
 
       case nKeyStd == K_MWBACKWARD
            ::Super:Edit( K_DOWN )
@@ -928,7 +936,7 @@ return lIn
 METHOD LoadText( cText ) CLASS HBSrcEdit
 
    local xRet, aEnds := {}, n := 1, nStart := 1, c, cNormalized := ""
-   local oLine, oNew, nEnd := 1
+   local oLine, oNew, nEnd := 1, aPhysical := {}
 
    ::cEol := hb_eol()
    while n <= Len( cText )
@@ -938,6 +946,7 @@ METHOD LoadText( cText ) CLASS HBSrcEdit
             c += Chr( 10 )
             n++
          endif
+         AAdd( aPhysical, SubStr( cText, nStart, n - nStart + 1 - Len( c ) ) )
          AAdd( aEnds, c )
          cNormalized += SubStr( cText, nStart, n - nStart + 1 - Len( c ) ) + Chr( 10 )
          nStart := n + 1
@@ -945,11 +954,24 @@ METHOD LoadText( cText ) CLASS HBSrcEdit
       n++
    end
    cNormalized += SubStr( cText, nStart )
+   AAdd( aPhysical, SubStr( cText, nStart ) )
    if Len( aEnds ) > 0
       ::cEol := aEnds[ 1 ]   // first actual boundary, not a majority conversion
    endif
    xRet := ::Super:LoadText( cNormalized )
-   for n := 1 to Len( ::aText )
+   if ! ::lWordWrap
+      // The inherited memo splitter repeats tab bytes and hard-wraps at
+      // 65535 columns. A source buffer needs real physical lines instead.
+      ::aText := {}
+      for n := 1 to Len( aPhysical )
+         oNew := HBIDETextLine():New( aPhysical[ n ], .F. )
+         if n <= Len( aEnds )
+            oNew:cEol := aEnds[ n ]
+         endif
+         AAdd( ::aText, oNew )
+      next
+   endif
+   for n := 1 to iif( ::lWordWrap, Len( ::aText ), 0 )
       oLine := ::aText[ n ]
       oNew := HBIDETextLine():New( oLine:cText, oLine:lSoftCR )
       if ! oLine:lSoftCR .and. nEnd <= Len( aEnds )
@@ -958,6 +980,9 @@ METHOD LoadText( cText ) CLASS HBSrcEdit
       ::aText[ n ] := oNew
    next
 
+   if ::nNumCols > 0
+      ::GoTo( 1, 1 )
+   endif
    ::aUndo := {}
    ::aRedo := {}
    ::nSavedUndoLen := 0
@@ -1391,6 +1416,62 @@ return nil
 
 //-----------------------------------------------------------------------------------------//
 
+// Model columns remain character positions. Only painting and the screen
+// cursor expand tabs, so selection, save and undo retain the original bytes.
+METHOD VisualText( cText ) CLASS HBSrcEdit
+   local cOut := "", n, c, nCol := 0, nSpaces
+   if !( Chr( 9 ) $ cText )
+      return cText
+   endif
+   for n := 1 to hb_ULen( cText )
+      c := hb_USubStr( cText, n, 1 )
+      if c == Chr( 9 )
+         nSpaces := ::nTabWidth - ( nCol % ::nTabWidth )
+         cOut += Space( nSpaces )
+         nCol += nSpaces
+      else
+         cOut += c
+         nCol++
+      endif
+   next
+return cOut
+
+METHOD VisualCol( nRow, nCharCol ) CLASS HBSrcEdit
+   if !( Chr( 9 ) $ ::GetLine( nRow ) )
+      return Max( 1, nCharCol )
+   endif
+return hb_ULen( ::VisualText( hb_ULeft( ::GetLine( nRow ), Max( 0, nCharCol - 1 ) ) ) ) + ;
+       Max( 0, nCharCol - 1 - hb_ULen( ::GetLine( nRow ) ) ) + 1
+
+METHOD CharCol( nRow, nVisualCol ) CLASS HBSrcEdit
+   local n := 1, nScreen := 1, cText := ::GetLine( nRow ), c
+   if !( Chr( 9 ) $ cText )
+      return Max( 1, nVisualCol )
+   endif
+   while n <= hb_ULen( cText ) .and. nScreen < nVisualCol
+      c := hb_USubStr( cText, n++, 1 )
+      nScreen += iif( c == Chr( 9 ), ::nTabWidth - ( ( nScreen - 1 ) % ::nTabWidth ), 1 )
+   end
+return n + Max( 0, nVisualCol - nScreen )
+
+METHOD Col() CLASS HBSrcEdit
+return ::nLeft + 4 + ::VisualCol( ::nRow, ::nCol - 4 ) - ;
+       ::VisualCol( ::nRow, ::nFirstCol )
+
+METHOD GoTo( nRow, nCol, nRefreshMode ) CLASS HBSrcEdit
+   local xRet := ::Super:GoTo( nRow, nCol, nRefreshMode ), nFirst := ::nFirstCol
+   do while ::Col() > ::nRight .and. ::nFirstCol < ::nCol - 4
+      ::nFirstCol++
+   end
+   if nFirst != ::nFirstCol
+      ::Display()
+   endif
+   SetPos( ::Row(), ::Col() )
+return xRet
+
+METHOD RefreshLine() CLASS HBSrcEdit
+return ::DisplayLine( ::Row() )
+
 METHOD Display() CLASS HBSrcEdit
 
    local nRow, nCount
@@ -1414,13 +1495,14 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
    local lInComment := .F.
    local lInBlk := ::BlkCmtState( ::nFirstRow + nLine - ::nTop )
    local nRowNum := ::nFirstRow + nLine - ::nTop
+   local nVisualFirst := ::VisualCol( nRowNum, ::nFirstCol )
 
    DispBegin()
    hb_DispOutAt( nLine, ::nLeft, PadL( nRowNum, 4 ), ;
                  iif( AScan( ::aBPs, nRowNum ) > 0, ::cClrBP, "N/W" ) )
    hb_DispOutAt( nLine, ::nLeft + 4,;
-                 SubStrPad( cLine := ::GetLine( ::nFirstRow + nLine - ::nTop ),;
-                 ::nFirstCol, ::nRight - ::nLeft - 4 + 1 ),;
+                 SubStrPad( cLine := ::VisualText( ::GetLine( ::nFirstRow + nLine - ::nTop ) ),;
+                 nVisualFirst, ::nRight - ::nLeft - 4 + 1 ),;
                  ::LineColor( nLine ) )
 
    n = 1
@@ -1528,7 +1610,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
             endcase
          endif
 
-         nCol = 5 + n - hb_ULen( cToken ) - ::nFirstCol
+         nCol = 5 + n - hb_ULen( cToken ) - nVisualFirst
          nStart = If( nCol < 5, 6 - nCol, 1 )
          nCol = Max( nCol, 5 )
 
@@ -1544,11 +1626,11 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
    // Draw selection highlight (word selection, then F8 range selection)
    if ::nSelRow > 0 .and. ::nFirstRow + nLine - ::nTop == ::nSelRow
-      nCol = 5 + ::nSelStart - ::nFirstCol
-      nStart = ::nSelEnd - ::nSelStart + 1
+      nCol = 5 + ::VisualCol( nRowNum, ::nSelStart ) - nVisualFirst
+      nStart = ::VisualCol( nRowNum, ::nSelEnd + 1 ) - ::VisualCol( nRowNum, ::nSelStart )
       if nCol >= 5 .and. nCol < ::nNumCols
          hb_DispOutAt( nLine, nCol,;
-                       hb_USubStr( ::aText[ ::nSelRow ]:cText, ::nSelStart, nStart ),;
+                       hb_USubStr( cLine, ::VisualCol( nRowNum, ::nSelStart ), nStart ),;
                        "N/W" )
       endif
    elseif ::lMark .and. ( aSel := ::SelRange() ) != NIL .and. ;
@@ -1556,11 +1638,11 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
       nCol  = iif( nPos == aSel[ 1 ], aSel[ 2 ], 5 )
       nStart = iif( nPos == aSel[ 3 ], aSel[ 4 ], hb_ULen( ::aText[ nPos ]:cText ) + 5 )
       if nStart > nCol
-         nStart -= nCol
-         nCol = 5 + ( nCol - 4 ) - ::nFirstCol
+         nStart := ::VisualCol( nPos, nStart - 4 ) - ::VisualCol( nPos, nCol - 4 )
+         nCol = 5 + ::VisualCol( nPos, nCol - 4 ) - nVisualFirst
          if nCol >= 5 .and. nCol < ::nNumCols
             hb_DispOutAt( nLine, nCol,;
-                          hb_USubStr( ::aText[ nPos ]:cText, nCol - 5 + ::nFirstCol, nStart ),;
+                          hb_USubStr( cLine, nCol - 5 + nVisualFirst, nStart ),;
                           "N/W" )
          endif
       endif

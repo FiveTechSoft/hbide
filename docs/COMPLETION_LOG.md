@@ -369,3 +369,20 @@ recompiladosPASS sobre esa revision. No hereda exitos de otras revisiones.
 Este baseline completa el runner existente, no el inventario entero:
 Exchange/swapInput, revision visual exhaustiva, oraculo tearing y Windows
 nativo siguen pendientes. AnimatePTY solo acredita avance funcional.
+
+
+## Tabs y lineas fisicas sin conversion silenciosa
+
+Reproduccion: hb_MLEval repetia el byte TAB al cargar (TABinicial se
+convertia en4TAB). El editor sin word-wrap usa ahora lineas fisicas crudas,
+conservando tambien una linea de70000caracteres como una sola linea fuente.
+Solo la pintura expande tabs a paradas de4columnas; cursor, seleccion,
+raton y scroll traducen entre posicion de caracter y pantalla. Experimento
+de marcador flecha1celda descartado, no forma parte del producto.
+
+59checks EOL/editorPASS y nueve modelosPASS. Prueba anterior de fidelidad
+TAB fallaba; ahora pasa. IDEreal editar→kill→recuperar→guardar con TAB y
+CRLF/LF/CR conserva bytes exactos, navegacion35PASS. Captura IDEcompleta
+inspeccionada tras recuperar/guardar: indentacion4columnas, bordes completos.
+Word-wrap heredado con TAB sigue fuera de este arreglo y pendiente.
+El baseline28PTYpublicado corresponde ac313ae8, no a este producto nuevo.
