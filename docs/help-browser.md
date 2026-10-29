@@ -7,10 +7,15 @@ sombra difuminada abajo.
 
 ## Organizacion
 
-Los 16 temas existentes se conservan intactos y se agrupan en cuatro
-secciones (HBIDEHelpSections): 1. Basics, 2. Build and run,
-3. Advanced, 4. Help and about. Cada tema aparece exactamente una vez;
-las cabeceras de seccion muestran un resumen de sus temas.
+Los 23 temas practicos se agrupan en cinco secciones (HBIDEHelpSections):
+1. Basics, 2. Editing and files, 3. Build and run, 4. Advanced,
+5. Help and about. Los temas originales se conservan; la documentacion
+del repo (quickstart y guia de usuario) se incorporo como temas
+nuevos: Quick start, The screen, Multiple documents, Saving and
+safety, Crash recovery, Projects, Terminal notes y Platform status
+and limits. Cada tema aparece exactamente una vez; las cabeceras de
+seccion muestran un resumen de sus temas. La ayuda contextual (F1)
+tambien cubre los menus Project y Window.
 
 ## Uso
 
@@ -33,28 +38,34 @@ las cabeceras de seccion muestran un resumen de sus temas.
 - El buscador no resalta el texto dentro del panel; posiciona el tema
   y la linea.
 - Sin colapsado de secciones: el arbol se muestra expandido.
-- La sombra de los botones es una barra difuminada inset (trama CP437
-  bajo la cara). Limite del driver gttrm (investigado a fondo, 2026-10-26): gttrm tiene un
-  modo Unicode (fUTF8) que se activa por //GTTRM:UTF8, sonda de terminal o
-  LANG; en esta build (FiveTechSoft r2608271822, UNICODE_BUF) el modo forzado
-  rompe TODA la salida de glifos (probado en VTE real), y en modo normal solo
-  la trama (176-178) y la caja simple (179-206) se mapean via ACSC; los
-  semibloques (219-223) salen "?". La escritura cruda UTF-8 tambien se
-  corrompe en la capa CP del GT. El master oficial harbour/core 694428e1c1
-  (2026-10-24) tiene gttrm.c, gtchrmap.c y hbgtcore.c byte a byte identicos:
-  no existe driver gttrm mas nuevo. gtcrs/gtxwc no estan compilados en esta
-  toolchain (requieren build con ncurses/X11: pospuesto). La sombra fina
-  estilo TVision (semibloque inferior) no es representable con gttrm;
-  hb_gtInfo(HB_GTI_ISUNICODE) permite detectarlo en runtime.
+- Los documentos completos conservan su Markdown original; las lineas
+  largas se ajustan al panel. Los checkpoints fechados son historicos,
+  no una afirmacion de pruebas nuevas.
 
 ## Pruebas
 
 tests/test_help_browser.prg (mismo patron keyPut + restauracion de
-pantalla que test_help): cobertura del arbol (16/16 temas, 4
-secciones), resumen de seccion, busqueda con y sin resultados,
+pantalla que test_help): cobertura de todos los temas practicos y documentos completos, 8
+secciones, resumen de seccion, busqueda con y sin resultados,
 exportacion real a Markdown con todos los temas, exportar via botones,
 busqueda via F7/F3, apertura directa en un tema y restauracion exacta
 de la pantalla en todos los caminos.
 
-    cd tests && hbmk2 test_help_browser.prg ../help.prg -gttrm && ./test_help_browser
+    cd tests && hbmk2 test_help_browser.prg ../help.prg ../hbbutton.prg -gttrm && ./test_help_browser
     # resultado en /tmp/hbide-help-browser-tests.txt
+
+## Documentacion completa sin conexion
+
+Las secciones 6-8 contienen todos los archivos Markdown versionados del
+repositorio: manuales, referencia tecnica, checkpoints y planes. Cada
+cuerpo conserva el texto completo y muestra su ruta fuente. No requiere
+internet ni archivos docs/ junto al ejecutable. Busqueda y exportacion
+incluyen estos documentos.
+
+Tras editar documentacion ejecutar:
+
+    python3 scripts/embed_help_docs.py
+    python3 scripts/embed_help_docs.py --check
+
+El archivo generado helpdocs.ch se versiona. Python solo se necesita para
+actualizarlo, no para compilar ni para leer la ayuda en hbide.

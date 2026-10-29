@@ -13,7 +13,7 @@ From zero to your first debug session with hbide, in a few minutes.
 ## 2. Build hbide
 
 ```sh
-git clone https://github.com/FiveTechSoft/hbide.git
+git clone -b designer-robustness https://github.com/FiveTechSoft/hbide.git
 cd hbide
 hbmk2 hbide.hbp     # or ./go.sh, which also starts the IDE
 ```

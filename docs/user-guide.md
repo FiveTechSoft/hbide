@@ -149,8 +149,8 @@ you insert or delete lines above them.
 
 Windows can be moved, resized, zoomed, tiled and cascaded from the
 debugger's own menus. Known limits: Animate can still damage the display
-(F4 shows the program screen to recover the view); the debugger starts on
-the first line of Main, so press F5 or F7 to reach your code. See
+(F4 shows the program screen to recover the view); the debugger first stops on
+the wrapper's init procedure line, so press F5 or F7 to reach your code. See
 [debugger-checkpoint-2026-10-25.md](debugger-checkpoint-2026-10-25.md) for
 the verified inventory.
 
@@ -198,11 +198,11 @@ opens the browser:
 +-- Contents ------------------------------------------------+
 | +-- Index ----------+  +-- Topic ------------------------+ |
 | | 1. Basics         |  | File menu                       | |
-| |   Welcome         |  |                                 | |
+| | 2. Editing, files |  |                                 | |
 | |   File menu  <----|--| New       creates a document    | |
-| | 2. Build and run  |  | Open...   opens a file          | |
-| | 3. Advanced       |  | Save (F2) saves the buffer      | |
-| | 4. Help and about |  |                                 | |
+| | 3. Build and run  |  | Open...   opens a file          | |
+| | 4. Advanced       |  | Save (F2) saves the buffer      | |
+| | 5. Help and about |  |                                 | |
 | +-------------------+  +---------------------------------+ |
 |  [Search]  [Next]  [Export .md]  [Close]                   |
 +-------------------------------------------------------------+
@@ -213,9 +213,16 @@ opens the browser:
 - Text: arrows scroll, Left/Right go to the previous/next topic.
 - F7 or Search finds in titles and bodies; F3 or Next jumps to the next
   match; the status line shows "Match i/n".
+- The manual covers this whole guide from inside the IDE: quick start,
+  screen map, menus, documents, saving, crash recovery, build, debugger,
+  projects, options, designer, terminal notes and platform status.
 - Export .md writes the whole manual as `hbide-help.md` in the current
   directory.
-- Backspace returns to the previous topic; Alt+Right goes forward again.
+- In contextual F1 help, Backspace returns to the previous topic and
+  Alt+Right goes forward again. The two-pane browser uses Left/Right.
+- Sections 6-8 contain every complete Markdown document from the repository,
+  available offline, searchable and included in Export .md. Dated
+  checkpoints describe historical verification, not new tests.
 
 Limits: the search positions topic and line but does not highlight inside
 the text, and the section tree is always expanded. Details in

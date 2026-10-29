@@ -28,7 +28,8 @@ buttons. It is written in Harbour itself.
   from each diagnostic to the failing line.
 - Dialog designer: draw dialogs visually, save them as JSON and generate
   Harbour code. See [docs/designer.md](docs/designer.md).
-- Context help: F1 on any menu option or in the editor; browsable manual
+- Context help: F1 on any menu option or in the editor; the full manual
+  (quick start, every menu, debugger, projects, recovery) is browsable
   with search under Help > Contents.
 
 ## Quick start

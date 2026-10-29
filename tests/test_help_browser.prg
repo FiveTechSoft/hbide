@@ -1,11 +1,11 @@
 #include "inkey.ch"
 // Model + screen test for the tree help browser in help.prg. Build:
-//   hbmk2 tests/test_help_browser.prg help.prg -gttrm
+//   hbmk2 tests/test_help_browser.prg help.prg hbbutton.prg -gttrm
 // Result file: /tmp/hbide-help-browser-tests.txt
 PROCEDURE Main()
    LOCAL c
    LOCAL aTopics := HBIDEHelpTopics(), aRows := HBIDEHelpTree( aTopics )
-   LOCAL a, n, nTopics := 0, cBefore, cOldCwd := hb_cwd()
+   LOCAL a, n, aSection, cTitle, nTopics := 0, cBefore, cOldCwd := hb_cwd()
    // every topic exactly once, sections in order
    FOR EACH a IN aRows
       IF a[ 1 ] == "T"
@@ -14,10 +14,18 @@ PROCEDURE Main()
       ENDIF
    NEXT
    Assert( nTopics == Len( aTopics ), 'tree covers every topic' )
+   FOR EACH a IN aTopics
+      Assert( TopicOccurrences( aRows, a[ 2 ] ) == 1, 'topic exactly once: ' + a[ 2 ] )
+   NEXT
+   FOR EACH aSection IN HBIDEHelpSections()
+      FOR EACH cTitle IN aSection[ 2 ]
+         Assert( AScan( aTopics, {| t | t[ 2 ] == cTitle } ) > 0, 'no dangling section entry: ' + cTitle )
+      NEXT
+   NEXT
    Assert( aRows[ 1 ][ 1 ] == 'S' .AND. aRows[ 1 ][ 3 ] == '1. Basics', 'first row is section 1' )
-   Assert( Len( HBIDEHelpSections() ) == 4, 'four sections' )
+   Assert( Len( HBIDEHelpSections() ) == 8, 'eight sections' )
    // section overview lists its topics
-   a := HBIDEHelpSectionText( 3, aTopics )
+   a := HBIDEHelpSectionText( 4, aTopics )
    Assert( 'Debugger' $ a .AND. 'Dialog designer' $ a, 'section overview lists topics' )
    // search matches across titles and bodies
    a := HBIDEHelpMatches( aTopics, 44, 'JSON' )
@@ -44,9 +52,10 @@ PROCEDURE Main()
    Assert( HBIDEHelpExport( aTopics, 'hbide-help.md' ), 'export writes file' )
    a := hb_MemoRead( '/tmp/hbide-help.md' )
    Assert( '# hbide - Help' $ a, 'markdown title' )
-   Assert( '## 1. Basics' $ a .AND. '## 4. Help and about' $ a, 'markdown sections' )
+   Assert( '## 1. Basics' $ a .AND. '## 5. Help and about' $ a, 'markdown sections' )
    FOR EACH n IN aTopics
       Assert( n[ 2 ] $ a, 'markdown has topic: ' + n[ 2 ] )
+      Assert( n[ 3 ] $ a, 'export keeps complete body: ' + n[ 2 ] )
    NEXT
    // interactive: export via buttons, then Esc; screen must be restored
    SetMode( 25, 80 )
@@ -84,3 +93,12 @@ PROCEDURE Assert( lOk, cName )
       QUIT
    ENDIF
    RETURN
+
+STATIC FUNCTION TopicOccurrences( aRows, cTitle )
+   LOCAL aRow, n := 0
+   FOR EACH aRow IN aRows
+      IF aRow[ 1 ] == "T" .AND. aRow[ 3 ] == cTitle
+         n++
+      ENDIF
+   NEXT
+RETURN n

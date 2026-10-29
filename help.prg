@@ -5,7 +5,7 @@
 
 function HBIDEHelpTopics()
 
-   local a := {}
+   local a := {}, aDoc
 
    AAdd( a, { "welcome hbide ide introduction", "Welcome to hbide", ;
       "hbide is a text-mode IDE for the Harbour language." + hb_eol() + hb_eol() + ;
@@ -13,7 +13,34 @@ function HBIDEHelpTopics()
       "runs snippets in memory as scripts, and includes a visual dialog designer " + ;
       "(Options > Designer)." + hb_eol() + hb_eol() + ;
       "Menus open with the mouse or with Alt plus the highlighted letter " + ;
-      "(for example Alt+F for File). The full list is in 'Keyboard shortcuts'." } )
+      "(for example Alt+F for File). The full list is in 'Keyboard shortcuts'." + hb_eol() + hb_eol() + ;
+      "New here? Start with 'Quick start'. This manual covers every menu, projects, crash recovery, terminal setup and platform status." } )
+
+   AAdd( a, { "quick start install build requirements first session hello clone", "Quick start", ;
+      "What you need: a terminal on Linux, Windows, macOS or Android, and the hbmk2 build tool on PATH (or build harbour/core next to hbide; go.sh looks for ../harbour/bin/<platform>/<compiler>/hbmk2)." + hb_eol() + hb_eol() + ;
+      "Build and start:" + hb_eol() + ;
+      "git clone -b designer-robustness https://github.com/FiveTechSoft/hbide.git" + hb_eol() + ;
+      "cd hbide" + hb_eol() + ;
+      "hbmk2 hbide.hbp     (or ./go.sh, which also starts the IDE)" + hb_eol() + hb_eol() + ;
+      "This produces ./hbide (hbide.exe on Windows)." + hb_eol() + hb_eol() + ;
+      "First session:" + hb_eol() + ;
+      "1. Type a few lines of code." + hb_eol() + ;
+      "2. F2 saves; name the file (for example hello.prg). Every save keeps the previous disk version as .bak." + hb_eol() + ;
+      "3. Run > Start builds with hbmk2 and runs the program only when the build succeeds; a failed build never runs a stale executable." + hb_eol() + ;
+      "4. To debug: F9 on a line sets a breakpoint and Run > Debug stops there. F8 steps in, F10 steps over, F5 continues, Alt+X returns to the IDE." + hb_eol() + hb_eol() + ;
+      "See 'The screen' for a map of the IDE and 'Using help' for this browser." } )
+
+   AAdd( a, { "screen layout menu bar status bar ins ovr mark gutter diagram", "The screen", ;
+      "Menu bar: Alt+letter opens a menu, arrows move, Enter runs the selected option, Esc closes." + hb_eol() + hb_eol() + ;
+      " File Edit Project Window Run Options Help" + hb_eol() + ;
+      "+----------- noname.prg -----------+" + hb_eol() + ;
+      "| 1  function Main()               |" + hb_eol() + ;
+      "| 2     ? 'Hello'   <- your code   |" + hb_eol() + ;
+      "|                                  |" + hb_eol() + ;
+      "+----------------------------------+" + hb_eol() + ;
+      " INS  MARK          row: 2, col: 5" + hb_eol() + hb_eol() + ;
+      "Status bar: INS or OVR (Ins toggles), MARK when a selection is anchored (F8), and the cursor position. A red mark in the gutter is a breakpoint (F9)." + hb_eol() + hb_eol() + ;
+      "If the locale is not UTF-8 a 'Locale not UTF-8' notice appears on the right of the menu bar; see 'Terminal notes'." } )
 
    AAdd( a, { "file new open save as exit bak backup", "File menu", ;
       "New            Starts an empty buffer ('noname.prg'). If the current buffer has" + hb_eol() + ;
@@ -43,15 +70,16 @@ function HBIDEHelpTopics()
       "Note: blanks at the END of the search text cannot be told apart from input" + hb_eol() + ;
       "field padding and are ignored; leading blanks are kept." } )
 
-   AAdd( a, { "keyboard shortcuts keys f2 f3 f5 ctrl esc ins ovr", "Keyboard shortcuts", ;
-      "F2       Save            Ctrl+Z  Undo" + hb_eol() + ;
-      "F3       Find next       Ctrl+U  Redo" + hb_eol() + ;
-      "F5       Find...         Ctrl+Y  Delete line" + hb_eol() + hb_eol() + ;
-      "Esc      Closes dialogs; with a clean buffer it exits the IDE (with unsaved" + hb_eol() + ;
-      "         changes it asks first)." + hb_eol() + ;
-      "Ins      Toggles insert/overwrite; the status bar shows INS or OVR." + hb_eol() + hb_eol() + ;
-      "In dialogs: Tab/Shift+Tab moves between fields, Enter confirms, arrows move" + hb_eol() + ;
-      "inside lists and radio groups, Space toggles check boxes." } )
+   AAdd( a, { "keyboard shortcuts keys f1 f2 f3 f5 f8 f9 ctrl esc ins ovr word", "Keyboard shortcuts", ;
+      "F1       Help            Ctrl+Z  Undo" + hb_eol() + ;
+      "F2       Save            Ctrl+U  Redo" + hb_eol() + ;
+      "F3       Find next       Ctrl+Y  Delete line" + hb_eol() + ;
+      "F5       Find..." + hb_eol() + ;
+      "F8       Mark selection  F9  Breakpoint" + hb_eol() + hb_eol() + ;
+      "Esc closes dialogs; with a clean buffer it exits the IDE (with unsaved changes it asks first). Ins toggles insert/overwrite; the status bar shows INS or OVR." + hb_eol() + hb_eol() + ;
+      "Ctrl+F6 / Ctrl+Shift+F6 switch to the next / previous document." + hb_eol() + hb_eol() + ;
+      "Ctrl+Right / Alt+Left move by word. Ctrl+Left also jumps back on terminals that deliver extended key codes; otherwise it arrives as Undo." + hb_eol() + hb_eol() + ;
+      "In dialogs: Tab/Shift+Tab moves between fields, Enter confirms, arrows move inside lists and radio groups, Space toggles check boxes." } )
 
    AAdd( a, { "run start script debug build hbmk2 compiler", "Run menu", ;
       "Start    Saves, then builds the current file with hbmk2 (must be on PATH)" + hb_eol() + ;
@@ -114,6 +142,31 @@ function HBIDEHelpTopics()
       "larger files compare date+time+size only and you are told when opening" + hb_eol() + ;
       "them. A reload keeps your cursor where it was." } )
 
+   AAdd( a, { "window documents buffers ctrl+f6 switch multiple close next previous", "Multiple documents", ;
+      "File > New and File > Open... add documents; Window > Next (Ctrl+F6) and Previous (Ctrl+Shift+F6) switch between them." + hb_eol() + hb_eol() + ;
+      "Each document keeps its own text, name, dirty flag, undo/redo history, cursor, scroll, selection and breakpoints." + hb_eol() + hb_eol() + ;
+      "Window > Close and File > Close ask only about the current document; Exit reviews all of them. Save As refuses to overwrite a path that is open in another document." } )
+
+   AAdd( a, { "save atomic bak backup safety overwrite verified write", "Saving and safety", ;
+      "Saves are atomic: a temporary file on the same volume replaces the original only after a verified write, and the previous version is kept as .bak." + hb_eol() + hb_eol() + ;
+      "hbide watches the file on disk: if it changes externally you choose Reload or Keep mine; saving over external changes asks first; if the file was deleted you can recreate it or cancel. See 'External file changes'." + hb_eol() + hb_eol() + ;
+      "Run > Start saves before building; a blocked save cancels the build instead of compiling stale disk content." } )
+
+   AAdd( a, { "crash recovery journal unsaved restore killed autosave", "Crash recovery", ;
+      "While a buffer has unsaved changes, hbide keeps a journal of its full text in ~/.hbide/recovery (override with HBIDE_RECOVERY_DIR), refreshed on the 2-second tick of the main loop and written atomically." + hb_eol() + hb_eol() + ;
+      " editing (unsaved changes)" + hb_eol() + ;
+      "         |  every 2 s while dirty" + hb_eol() + ;
+      "         v" + hb_eol() + ;
+      " journal in ~/.hbide/recovery" + hb_eol() + ;
+      "         |  hbide killed or crashes" + hb_eol() + ;
+      "         v" + hb_eol() + ;
+      " next start: journal found" + hb_eol() + ;
+      "+---------+---------+-------+" + hb_eol() + ;
+      "| Recover | Discard | Later |" + hb_eol() + ;
+      "+---------+---------+-------+" + hb_eol() + hb_eol() + ;
+      "Recover: the text returns as an unsaved buffer. Discard: the journal is deleted. Later: the journal stays for the next start." + hb_eol() + hb_eol() + ;
+      "What to expect: you get the content of the last 2-second tick, not of every keystroke. Unnamed buffers are recovered too. Each running instance keeps its own journal, so saving or discarding in one never deletes another instance's unsaved work. If the journal cannot be written, editing continues and hbide warns once per failure streak; recovery is never silently assumed. One journal per absolute path: aliases or symlinks to the same file produce separate journals." } )
+
    AAdd( a, { "about version harbour fivetech", "About hbide", ;
       "hbide - Harbour IDE" + hb_eol() + ;
       "FiveTechSoft - https://github.com/FiveTechSoft/hbide" + hb_eol() + hb_eol() + ;
@@ -143,6 +196,11 @@ function HBIDEHelpTopics()
       "OK applies the choices. Cancel or Esc leaves the previous choices " + ;
       "unchanged. The Help button opens this topic and returns to the dialog." } )
 
+   AAdd( a, { "project hbp sources build messages diagnostics desktop open close", "Projects", ;
+      "Project > Open .hbp... reads a project file: members (sources, subprojects, configuration) are listed, and entries it cannot resolve (macros, wildcards, filters) are shown as such, never guessed." + hb_eol() + hb_eol() + ;
+      "Project > Sources / Build... opens the project desktop: source list, build with hbmk2 and a Messages view with the parsed diagnostics (file(line) Error/Warning for Harbour, file:line:col: for GCC). Selecting a diagnostic opens the file at that line and column." + hb_eol() + hb_eol() + ;
+      "A build reports success only from this build's exit code, never from an executable left by an earlier one. Project > Close project closes the project." } )
+
    AAdd( a, { "display settings rows columns console font", "Display settings", ;
       "Options > Display changes the console size used by the IDE. The " + ;
       "available presets are 25x80, 30x100 and 40x120." + ;
@@ -150,6 +208,17 @@ function HBIDEHelpTopics()
       "Choose a size that leaves source text and dialog controls readable. " + ;
       "Apply changes with OK; Cancel keeps the existing size. This changes " + ;
       "the console grid, not the size of your generated dialog model." } )
+
+   AAdd( a, { "terminal utf-8 locale xterm alt meta size linux glyphs", "Terminal notes", ;
+      "Use a UTF-8 locale (LANG=...UTF-8): borders, buttons and shadows are CP437 glyphs that only render correctly in UTF-8 mode. hbide shows a 'Locale not UTF-8' notice otherwise." + hb_eol() + hb_eol() + ;
+      "Alt+letter needs the terminal to send a meta ESC prefix. In xterm, start it with -xrm 'XTerm*metaSendsEscape: true'." + hb_eol() + hb_eol() + ;
+      "The IDE is tested at 25x80 and 40x120 (see 'Display settings')." } )
+
+   AAdd( a, { "platform status limits windows linux roadmap known pending", "Platform status and limits", ;
+      "Verified interactively and with automated tests on Linux." + hb_eol() + hb_eol() + ;
+      "Windows: the IDE builds with GTWVT and a prebuilt hbide.exe is included, but it can lag behind the sources; validating the latest sources on Windows is still pending." + hb_eol() + hb_eol() + ;
+      "Debugger Animate has known visual defects; F4 shows the program screen to recover the view. Iconize, Exchange Screens, swap on Input and Menu Bar are not implemented (see 'Debugger windows')." + hb_eol() + hb_eol() + ;
+      "The full plan and per-area status live in docs/ROADMAP.md in the repository." } )
 
    AAdd( a, { "designer palette inspector controls code generation json", "Dialog designer", ;
       "Options > Designer opens the visual dialog designer. Place labels, " + ;
@@ -176,6 +245,9 @@ function HBIDEHelpTopics()
       "store panel rectangles. Iconize and the legacy Exchange Screens, " + ;
       "swap on Input and Menu Bar actions are not implemented. Application " + ;
       "output during Animate can still damage the display; F4 shows the app screen." } )
+   FOR EACH aDoc IN HBIDEHelpDocTopics()
+      AAdd( a, aDoc )
+   NEXT
 return a
 
 //-----------------------------------------------------------------------------------------//
@@ -185,12 +257,20 @@ return a
 
 // Section spec: every topic exactly once, in reading order.
 FUNCTION HBIDEHelpSections()
-RETURN { { "1. Basics", { "Welcome to hbide", "File menu", "Edit menu", ;
-         "Find, Replace, Goto Line", "Keyboard shortcuts", "External file changes" } }, ;
-       { "2. Build and run", { "Run menu", "Compiler flags", "Harbour example" } }, ;
-       { "3. Advanced", { "Debugger", "Debugger windows", "Dialog designer", ;
+   LOCAL aDoc, aSections := { { "1. Basics", { "Welcome to hbide", "Quick start", "The screen", ;
+         "Keyboard shortcuts" } }, ;
+       { "2. Editing and files", { "File menu", "Edit menu", ;
+         "Find, Replace, Goto Line", "Multiple documents", "Saving and safety", ;
+         "External file changes", "Crash recovery" } }, ;
+       { "3. Build and run", { "Run menu", "Compiler flags", "Projects" } }, ;
+       { "4. Advanced", { "Debugger", "Debugger windows", "Dialog designer", ;
          "Options menu", "Display settings" } }, ;
-       { "4. Help and about", { "Using help", "About hbide" } } }
+       { "5. Help and about", { "Using help", "Terminal notes", ;
+         "Platform status and limits", "About hbide" } } }
+   FOR EACH aDoc IN HBIDEHelpDocSections()
+      AAdd( aSections, aDoc )
+   NEXT
+RETURN aSections
 
 // Flat row list for the index pane: { "S", nSection, cTitle } or { "T", nTopic, cTitle }
 FUNCTION HBIDEHelpTree( aTopics )
@@ -581,7 +661,7 @@ STATIC PROCEDURE HBHelpWrapLine( a, cLine, nWidth )
       AAdd( a, cLine )
       RETURN
    ENDIF
-   nIndent := Len( cLine ) - Len( LTrim( cLine ) )
+   nIndent := Min( Len( cLine ) - Len( LTrim( cLine ) ), Max( 0, nWidth - 14 ) )
    nHang := nIndent
    // table row: first run of 3+ spaces after the key text
    nGap := hb_At( "   ", cLine, nIndent + 1 )
@@ -663,6 +743,10 @@ FUNCTION HBIDEHelpContext( cMenu, cItem )
       RETURN "Run menu"
    CASE "OPTIONS" $ c
       RETURN "Options menu"
+   CASE "PROJECT" $ c
+      RETURN "Projects"
+   CASE "WINDOW" $ c
+      RETURN "Multiple documents"
    CASE "HELP" $ c
       RETURN "Using help"
    ENDCASE
@@ -686,6 +770,22 @@ FUNCTION HBIDEHelpLinks( cTitle, aTopics )
       aWanted := { "Find, Replace, Goto Line", "Keyboard shortcuts", "File menu" }
    CASE cTitle == "File menu"
       aWanted := { "External file changes", "Edit menu", "Run menu" }
+   CASE cTitle == "Quick start"
+      aWanted := { "The screen", "File menu", "Run menu", "Debugger" }
+   CASE cTitle == "The screen"
+      aWanted := { "Quick start", "Keyboard shortcuts", "Terminal notes" }
+   CASE cTitle == "Multiple documents"
+      aWanted := { "File menu", "Saving and safety", "Keyboard shortcuts" }
+   CASE cTitle == "Saving and safety"
+      aWanted := { "Crash recovery", "External file changes", "File menu" }
+   CASE cTitle == "Crash recovery"
+      aWanted := { "Saving and safety", "File menu" }
+   CASE cTitle == "Projects"
+      aWanted := { "Run menu", "Compiler flags" }
+   CASE cTitle == "Terminal notes"
+      aWanted := { "Display settings", "Platform status and limits" }
+   CASE cTitle == "Platform status and limits"
+      aWanted := { "Terminal notes", "About hbide", "Using help" }
    OTHERWISE
       aWanted := { "Welcome to hbide", "Keyboard shortcuts", "Using help" }
    ENDCASE
@@ -779,3 +879,5 @@ FUNCTION HBIDEHelpOpen( cTitle, aTopics )
    ENDDO
    __dbgRestScreen( 0, 0, MaxRow(), MaxCol(), cSaved )
    RETURN .T.
+
+#include "helpdocs.ch"

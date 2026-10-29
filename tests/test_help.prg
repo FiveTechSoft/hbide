@@ -5,6 +5,8 @@ PROCEDURE Main()
    Assert( HBIDEHelpContext( ' ~File ', '~Save F2' ) == 'File menu', 'file context' )
    Assert( HBIDEHelpContext( ' ~Run ', '~Debug' ) == 'Debugger', 'debug context' )
    Assert( HBIDEHelpContext( ' ~Edit ', 'Repl~ace...' ) == 'Find, Replace, Goto Line', 'replace context' )
+   Assert( HBIDEHelpContext( 'Project', 'Open .hbp' ) == 'Projects', 'project context' )
+   Assert( HBIDEHelpContext( 'Window', 'Next' ) == 'Multiple documents', 'window context' )
    Assert( HBIDEHelpContext( '', '' ) == 'Welcome to hbide', 'default context' )
    a := HBIDEHelpLines( 'alpha beta gamma delta epsilon', 10 )
    FOR EACH n IN a
@@ -17,7 +19,7 @@ PROCEDURE Main()
          Assert( aTopics[ n, 2 ] != a[ 2 ], 'no self links' )
       NEXT
    NEXT
-   Assert( Len( aTopics ) == 15, 'topic count' )
+   Assert( Len( aTopics ) == 23 + Len( HBIDEHelpDocTopics() ), 'topic count' )
    // every topic at the real panel widths (80 and 120 columns): nothing wider
    // than the panel (table rows included) and no word cut in the middle
    FOR EACH nW IN { 44, 84 }
@@ -26,7 +28,10 @@ PROCEDURE Main()
          FOR EACH n IN aL
             Assert( Len( n ) <= nW, 'topic line fits panel: ' + a[ 2 ] )
          NEXT
-         Assert( HBWordsOf( a[ 3 ] ) == HBWordsOfLines( aL ), 'no word cut/lost: ' + a[ 2 ] )
+         Assert( HBCompact( a[ 3 ] ) == HBCompact( JoinLines( aL ) ), 'all characters preserved: ' + a[ 2 ] )
+         IF ! Left( a[ 2 ], 5 ) == 'Doc: '
+            Assert( HBWordsOf( a[ 3 ] ) == HBWordsOfLines( aL ), 'no word cut/lost: ' + a[ 2 ] )
+         ENDIF
       NEXT
    NEXT
    aL := HBIDEHelpLines( "Key      Does something fairly long that has to wrap under its own column", 40 )
@@ -64,3 +69,15 @@ STATIC FUNCTION HBWordsOfLines( a )
       s += HBWordsOf( c )
    NEXT
    RETURN s
+
+STATIC FUNCTION HBCompact( c )
+   c := StrTran( c, Chr( 13 ), "" )
+   c := StrTran( c, Chr( 10 ), "" )
+RETURN StrTran( c, " ", "" )
+
+STATIC FUNCTION JoinLines( aLines )
+   LOCAL c, s := ""
+   FOR EACH c IN aLines
+      s += c
+   NEXT
+RETURN s
