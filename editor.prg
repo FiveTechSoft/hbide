@@ -39,6 +39,7 @@ return oEditor
 CLASS HBSrcEdit FROM HBEditor
 
    DATA   cFile
+   DATA   cEol        INIT NIL   // uniform source line ending, also carried in journals
    DATA   cClrString   INIT "GR+"
    DATA   cClrOperator INIT "R+"
    DATA   cClrKeyword1 INIT "G+"
@@ -93,6 +94,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD BlkCmtState( nLine )
    METHOD ScanBlkLine( cText, lIn )
    METHOD LoadText( cText )
+   METHOD GetText( lSoftCR )
    METHOD LoadFile( cFileName )
    METHOD SaveFile()
    DATA   cRecoveredBase INIT ""
@@ -906,7 +908,16 @@ return lIn
 
 METHOD LoadText( cText ) CLASS HBSrcEdit
 
-   local xRet := ::Super:LoadText( cText )
+   local xRet
+   local cWithoutCRLF := StrTran( cText, Chr( 13 ) + Chr( 10 ), "" )
+
+   // Keep uniform CRLF on every host. Mixed endings need a per-line model;
+   // do not claim preservation of them by choosing a global majority.
+   ::cEol := iif( Chr( 13 ) + Chr( 10 ) $ cText .and. ;
+                 !( Chr( 10 ) $ cWithoutCRLF ) .and. !( Chr( 13 ) $ cWithoutCRLF ), ;
+                 Chr( 13 ) + Chr( 10 ), iif( Chr( 10 ) $ cText .and. ;
+                 !( Chr( 13 ) $ cText ), Chr( 10 ), hb_eol() ) )
+   xRet := ::Super:LoadText( cText )
 
    ::aUndo := {}
    ::aRedo := {}
@@ -915,6 +926,18 @@ METHOD LoadText( cText ) CLASS HBSrcEdit
    ::nBlkDirty := 1
 
 return xRet
+
+//-----------------------------------------------------------------------------------------//
+
+METHOD GetText( lSoftCR ) CLASS HBSrcEdit
+
+   local cText := ::Super:GetText( lSoftCR )
+
+   if ::cEol != NIL .and. ::cEol != hb_eol()
+      cText := StrTran( cText, hb_eol(), ::cEol )
+   endif
+
+return cText
 
 //-----------------------------------------------------------------------------------------//
 

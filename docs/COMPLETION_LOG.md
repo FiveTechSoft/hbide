@@ -218,3 +218,18 @@ ambos lados y no-caracterU+FFFF permitido. Otras12pruebas de SaveFile raw
 rechazan cada entrada invalida, conservan original exacto y dirty:34/34PASS.
 Runner modelos incorpora la suite: seis modelos recompiladosPASS sobre
 parche local de1fcfe87. Sin cambio visual ni certificacionWindows.
+
+## Decimo checkpoint: CRLF uniforme no se convierte a LF
+
+Reproducido enLinux: abrir/guardar sin editarCRLF cambiaba todos los saltos
+porLF por heredar HBEditor:GetText(hb_eol). CRLF/LF antes1PASS/1FAIL.
+HBSrcEdit detecta terminador uniforme al cargar texto/fichero y lo conserva
+al serializar. Diario usaGetText y recuperacionLoadText, asi conserva tambien
+el formato sin metadata paralela. Nueva linea usa ese terminador uniforme.
+No se cambia la politica de ficheros mixtos ni se afirma preservarlos.
+
+Prueba4/4PASS: CRLF/LF load-save byte exacto; Enter, undo, redo y recarga de
+contenido de diario retienen terminadores. CasoEnter fija insert igual que
+IDE (sin elloOverwrite de HBEditor tiene otra semantica). Siete modelos
+recompiladosPASS; SaveAsrecuperacion21/21 y SaveAllfallo5/5PASS sobre parche
+local de c73337a. Sin cambio visual. Windows nativo pendiente.
