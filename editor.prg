@@ -1644,28 +1644,24 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
       endif
    end
 
-   // Draw selection highlight (word selection, then F8 range selection)
-   if ::nSelRow > 0 .and. ::nFirstRow + nLine - ::nTop == ::nSelRow
-      nCol = 5 + ::VisualCol( nRowNum, ::nSelStart ) - nVisualFirst
-      nStart = ::VisualCol( nRowNum, ::nSelEnd + 1 ) - ::VisualCol( nRowNum, ::nSelStart )
-      if nCol >= 5 .and. nCol < ::nNumCols
-         hb_DispOutAt( nLine, nCol,;
-                       hb_USubStr( cLine, ::VisualCol( nRowNum, ::nSelStart ), nStart ),;
-                       "N/W" )
-      endif
+   // Highlight only the visible intersection; selection may begin left of
+   // the viewport or continue past the right border.
+   if ::nSelRow > 0 .and. nRowNum == ::nSelRow
+      nCol := ::VisualCol( nRowNum, ::nSelStart )
+      nStart := ::VisualCol( nRowNum, ::nSelEnd + 1 )
    elseif ::lMark .and. ( aSel := ::SelRange() ) != NIL .and. ;
-          ( nPos := ::nFirstRow + nLine - ::nTop ) >= aSel[ 1 ] .and. nPos <= aSel[ 3 ]
-      nCol  = iif( nPos == aSel[ 1 ], aSel[ 2 ], 5 )
-      nStart = iif( nPos == aSel[ 3 ], aSel[ 4 ], hb_ULen( ::aText[ nPos ]:cText ) + 5 )
-      if nStart > nCol
-         nStart := ::VisualCol( nPos, nStart - 4 ) - ::VisualCol( nPos, nCol - 4 )
-         nCol = 5 + ::VisualCol( nPos, nCol - 4 ) - nVisualFirst
-         if nCol >= 5 .and. nCol < ::nNumCols
-            hb_DispOutAt( nLine, nCol,;
-                          hb_USubStr( cLine, nCol - 5 + nVisualFirst, nStart ),;
-                          "N/W" )
-         endif
-      endif
+          nRowNum >= aSel[ 1 ] .and. nRowNum <= aSel[ 3 ]
+      nCol := ::VisualCol( nRowNum, iif( nRowNum == aSel[ 1 ], aSel[ 2 ] - 4, 1 ) )
+      nStart := ::VisualCol( nRowNum, iif( nRowNum == aSel[ 3 ], aSel[ 4 ] - 4, ;
+                                        hb_ULen( ::GetLine( nRowNum ) ) + 1 ) )
+   else
+      nCol := nStart := 0
+   endif
+   nCol := Max( nCol, nVisualFirst )
+   nStart := Min( nStart, nVisualFirst + ::nRight - ( ::nLeft + 4 ) + 1 )
+   if nStart > nCol
+      hb_DispOutAt( nLine, ::nLeft + 4 + nCol - nVisualFirst, ;
+                    hb_USubStr( cLine, nCol, nStart - nCol ), "N/W" )
    endif
 
    DispEnd()

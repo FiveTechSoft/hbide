@@ -420,3 +420,12 @@ fisicas. Reflow conserva cursor por offset de caracter, no por expansion
 destructiva.120checks editorPASS: TABsimple/consecutivos,12inserciones,
 undo/redo, UTF8+TAB. Nueve modelosPASS; probe visual wrap inspeccionado.
 No equivale a todas las acciones heredadas del editor ni a Windows.
+
+## Highlight de seleccion recortado al viewport
+
+Dobleclick sobre palabra larga podia sobrescribir fuera del editor aunque
+el pintor de tokens ya estaba corregido. Palabra/rango usan interseccion
+visible, incluyendo seleccion que empieza a la izquierda del viewport.
+Celda centinela: antes121PASS1FAIL; despues122PASS. Nueve modelosPASS.
+Captura IDEreal con palabra160caracteres seleccionada inspeccionada:
+highlight termina antes del borde derecho y segunda linea sigue limpia.
