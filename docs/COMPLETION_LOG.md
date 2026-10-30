@@ -911,3 +911,4 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Nueva suite PTY external-changes, sin parche de producto: recarga limpia; modificación externa de igual tamaño con mtime restaurado detectada; Keep mine conserva buffer, Save vuelve a pedir overwrite; Cancel conserva disco y buffer.
 - Overwrite explícito guarda buffer y .bak idéntico a versión externa; borrado externo mantiene buffer, Cancel no recrea, Recreate explícito recupera archivo y conserva .bak anterior. Candidato PASS.
 - Primeros intentos de recorrido eligieron foco incorrecto o esperaron aviso sin salto de línea; corregidos antes de validación. Runner45 suites, no45 verificadas en esta fuente. No prueba exhaustiva de carreras concurrentes, archivos mayores8MB ni Windows.
+- Repetición limpia3fb16c8: ExternalChanges PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-external-3fb16c8.json. Binario2940d7edb707c115889686082f9c5461e1e210a107ffbafbd85c8d1f50d09261.
