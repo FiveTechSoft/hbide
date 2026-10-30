@@ -1,0 +1,304 @@
+{
+  "scope": "Clean Linux six focused recovery PTY suites plus ten models. Unknown codepage fails visibly before translation/editor mutation; raw remains supported. Not full IDE or Windows certification. Warning screenshot visually inspected.",
+  "source": "c875aec666e1fb6ed9777f8af3f24d7871c5b80f",
+  "pty_results": [
+    {
+      "source": "c875aec666e1fb6ed9777f8af3f24d7871c5b80f",
+      "tracked_changes": "",
+      "binary_sha256": "3f6a6bf241549ded9e09e18aa19a6ab0887e1cea7686aca819c584241e7598ed",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "f3d4ea9c915c4191597badb3c74812efb737a2355d91bdcde87717817abb887b",
+      "case": "recovery-unknown-codepage",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_unreadable_pty.py",
+        "--unknown-codepage"
+      ],
+      "started": 1793354502.0203848,
+      "seconds": 4.28,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8fbc3ebe5a409d8fb553efcb76c3170414f7d0240373a04747a6793dac88c759",
+      "log": "recovery-unknown-codepage-1793354502020379205.log"
+    },
+    {
+      "source": "c875aec666e1fb6ed9777f8af3f24d7871c5b80f",
+      "tracked_changes": "",
+      "binary_sha256": "3f6a6bf241549ded9e09e18aa19a6ab0887e1cea7686aca819c584241e7598ed",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "f3d4ea9c915c4191597badb3c74812efb737a2355d91bdcde87717817abb887b",
+      "case": "recovery-malformed",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_unreadable_pty.py",
+        "--malformed-envelope"
+      ],
+      "started": 1793354506.301719,
+      "seconds": 4.28,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8fbc3ebe5a409d8fb553efcb76c3170414f7d0240373a04747a6793dac88c759",
+      "log": "recovery-malformed-1793354506301715046.log"
+    },
+    {
+      "source": "c875aec666e1fb6ed9777f8af3f24d7871c5b80f",
+      "tracked_changes": "",
+      "binary_sha256": "3f6a6bf241549ded9e09e18aa19a6ab0887e1cea7686aca819c584241e7598ed",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "f3d4ea9c915c4191597badb3c74812efb737a2355d91bdcde87717817abb887b",
+      "case": "recovery-unreadable",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_unreadable_pty.py"
+      ],
+      "started": 1793354510.581033,
+      "seconds": 4.29,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8fbc3ebe5a409d8fb553efcb76c3170414f7d0240373a04747a6793dac88c759",
+      "log": "recovery-unreadable-1793354510581028891.log"
+    },
+    {
+      "source": "c875aec666e1fb6ed9777f8af3f24d7871c5b80f",
+      "tracked_changes": "",
+      "binary_sha256": "3f6a6bf241549ded9e09e18aa19a6ab0887e1cea7686aca819c584241e7598ed",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "f3d4ea9c915c4191597badb3c74812efb737a2355d91bdcde87717817abb887b",
+      "case": "recovery-codepage",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-bom",
+        "--switch-cp"
+      ],
+      "started": 1793354514.8663237,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-codepage-1793354514866319952.log"
+    },
+    {
+      "source": "c875aec666e1fb6ed9777f8af3f24d7871c5b80f",
+      "tracked_changes": "",
+      "binary_sha256": "3f6a6bf241549ded9e09e18aa19a6ab0887e1cea7686aca819c584241e7598ed",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "f3d4ea9c915c4191597badb3c74812efb737a2355d91bdcde87717817abb887b",
+      "case": "recovery-codepage-refusal",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--refuse-cp"
+      ],
+      "started": 1793354520.3508716,
+      "seconds": 5.98,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-codepage-refusal-1793354520350867803.log"
+    },
+    {
+      "source": "c875aec666e1fb6ed9777f8af3f24d7871c5b80f",
+      "tracked_changes": "",
+      "binary_sha256": "3f6a6bf241549ded9e09e18aa19a6ab0887e1cea7686aca819c584241e7598ed",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "f3d4ea9c915c4191597badb3c74812efb737a2355d91bdcde87717817abb887b",
+      "case": "recovery-utf8-raw",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-raw"
+      ],
+      "started": 1793354526.334895,
+      "seconds": 7.08,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-utf8-raw-1793354526334890913.log"
+    }
+  ],
+  "models": {
+    "source": "c875aec666e1fb6ed9777f8af3f24d7871c5b80f",
+    "dirty": false,
+    "tracked_changes": "",
+    "runner_sha256": "3f53dcc2faebe5b0d186fd508dde67ecc6d3879d9c931f86a611f422dca0a9f1",
+    "platform": "Linux",
+    "hbmk2": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "started": 1793354494.1340408,
+    "scope": "Linux model probes only. Not PTY, visual or Windows certification.",
+    "tests": {
+      "debug-search": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_search.prg": "289c51d0bc96331c5febf82ffb3e5e028e5511fe24d55017915302262f38f614",
+          "hbdebug/tbrwtext.prg": "a44b43f31a2ea0571108e25247e815b7c9372e7812f1f0e9fab7810de7b1cae1",
+          "hbdebug/dbgbrwsr.prg": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e"
+        },
+        "binary_sha256": "082f14ff03a02d89b8e7209acbcfdfc5fc56988440da3ff1a49bb14dbd668a1f",
+        "started": 1793354494.1341102,
+        "seconds": 0.17315220832824707
+      },
+      "designer": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer.prg": "60fc44216cfe4f0f7ab8b031d9c171b4b01369aaa1ceb4e0ccfab870515a12e1",
+          "designer.prg": "cf42d6d7b6af641aa2f894157791929c51d6fbd3e1e45d6058ae6287f0bab4fb",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "08d420bb18c561540f15a280d5b9b82069c45ba94920c63b21f490ab6e06cc01",
+        "started": 1793354494.307678,
+        "seconds": 0.5362966060638428
+      },
+      "editor-repaint": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_repaint.prg": "2c170c7452f2d6371213c6d0dc6ad071a5fad7c896e75d27a04362737934e5c8",
+          "editor.prg": "4fd0c9f3ec48da95bdef371626ae9eed2d8f7cc7a52899f07a7527c4cc8df48f",
+          "recovery.prg": "914c76315043329fcf57ef4577b47a3c16d6cacb5f49283d404c3671a7ffb265"
+        },
+        "binary_sha256": "ae36c771c91c3ac9c1b0c933a7e22feff0b547d6a11a9919d3d918dbf9c54ee8",
+        "started": 1793354494.8441486,
+        "seconds": 3.240877866744995
+      },
+      "find": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_find.prg": "9af32468423371d620d8e6587ab4f56d56485ec332d528709a80338e5926a9e5",
+          "editor.prg": "4fd0c9f3ec48da95bdef371626ae9eed2d8f7cc7a52899f07a7527c4cc8df48f",
+          "recovery.prg": "914c76315043329fcf57ef4577b47a3c16d6cacb5f49283d404c3671a7ffb265"
+        },
+        "binary_sha256": "9ae2ed7002aae99e0cc1a149e771f1b90f6082159d35a8fd848cde732bd36916",
+        "started": 1793354498.0851848,
+        "seconds": 0.22272372245788574
+      },
+      "eol": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_eol.prg": "2a24f8b2c76cfc4e0e75c1bb25d99209250ee2ead6257324c15f305a77df11b1",
+          "editor.prg": "4fd0c9f3ec48da95bdef371626ae9eed2d8f7cc7a52899f07a7527c4cc8df48f",
+          "recovery.prg": "914c76315043329fcf57ef4577b47a3c16d6cacb5f49283d404c3671a7ffb265"
+        },
+        "binary_sha256": "a7097f2f0c15619b4825ecf720d74f8fb89c6cde63c629c2a6fd1b993e917a08",
+        "started": 1793354498.308066,
+        "seconds": 0.33377909660339355
+      },
+      "utf8": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_utf8_valid.prg": "13cb1239a5934db50f44530289afea8216db9b720ba5e1e7b30eabc98df336f0",
+          "editor.prg": "4fd0c9f3ec48da95bdef371626ae9eed2d8f7cc7a52899f07a7527c4cc8df48f",
+          "recovery.prg": "914c76315043329fcf57ef4577b47a3c16d6cacb5f49283d404c3671a7ffb265"
+        },
+        "binary_sha256": "41eed3fdd293b62ab92e2283aa1ce8706062052918a767e5d7c43484df95ed49",
+        "started": 1793354498.6419797,
+        "seconds": 0.22263526916503906
+      },
+      "atomic": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_atomic.prg": "5ec94a4d0fb9ee081aaf93779bbbd096f1d24c907b17305d02871d3d7b56979e",
+          "editor.prg": "4fd0c9f3ec48da95bdef371626ae9eed2d8f7cc7a52899f07a7527c4cc8df48f",
+          "recovery.prg": "914c76315043329fcf57ef4577b47a3c16d6cacb5f49283d404c3671a7ffb265"
+        },
+        "binary_sha256": "311981169516983e1925875281a963fdcec807cd4124125fbe1c0977811175c8",
+        "started": 1793354498.8647847,
+        "seconds": 0.25092220306396484
+      },
+      "recovery": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_recovery.prg": "89fdcece59c11c6cba33ba325ad558ba04f01706b09753cdf80d5dc4b639ea29",
+          "recovery.prg": "914c76315043329fcf57ef4577b47a3c16d6cacb5f49283d404c3671a7ffb265"
+        },
+        "binary_sha256": "6ad3c4a8fe27b2a767741416ead0d8375ed22976cc19258d77787974801bf8a6",
+        "started": 1793354499.1158087,
+        "seconds": 0.12589740753173828
+      },
+      "project": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project.prg": "0899a4569ecfca1fa998608570b1d71a638ab63e1cf00684214aeb93f674a863",
+          "project.prg": "1a47eb78d2370a1ac2ec8e4ffb79733ca9b49e2ed3760e87e0d5ffba2c9a3bc4"
+        },
+        "binary_sha256": "e2babe9b1928e66628567b03141dd9bd23f1fbded4729b3f27039acec283e52a",
+        "started": 1793354499.2417715,
+        "seconds": 0.3833184242248535
+      },
+      "help": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_help.prg": "698ec711bfcd7f6169efbad3388011098343e699092cf9302ba47a63a0caea90",
+          "help.prg": "09c9bb99e7cead8b9d88e31ade44365a1bb378947af6d5c624d17e8c2d6bb5d0",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "0cdb8dd76abd2b3ae7155ad6a34a744d62ba008f82a3b1a7260e1fb00f35d539",
+        "started": 1793354499.625295,
+        "seconds": 0.5040132999420166
+      }
+    },
+    "finished": 1793354500.1293147
+  }
+}
