@@ -227,6 +227,27 @@ PROCEDURE Main()
       o:Redo()
       Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),cType+" modal position redo")
    NEXT
+   FOR EACH cType IN {"say","get","checkbox","button","radiogroup","listbox","combobox"}
+      o:aControls:={DsnNewControl(cType,{})};o:nSelected:=1
+      o:aUndo:={};o:aRedo:={};o:lDirty:=.F.
+      h:=DsnSnapshot(o)
+      hb_keyPut(K_CTRL_Y);hb_keyPut("9")
+      DO CASE
+      CASE cType=="say"; nRemain:=4
+      CASE cType=="get"; nRemain:=7
+      CASE cType=="checkbox"; nRemain:=9
+      CASE cType=="button"; nRemain:=10
+      CASE cType=="radiogroup"; nRemain:=8
+      OTHERWISE; nRemain:=11
+      ENDCASE
+      FOR n:=1 TO nRemain
+         hb_keyPut(K_TAB)
+      NEXT
+      hb_keyPut(K_SPACE)
+      o:EditProperties()
+      Check(DsnSnapEqual(h,DsnSnapshot(o)),cType+" modal Cancel exact model")
+      Check(!o:lDirty.and.Empty(o:aUndo).and.Empty(o:aRedo),cType+" modal Cancel clean/history")
+   NEXT
    ? "PASS final property footprints GET/list/combo/button and undo"
 
    RETURN

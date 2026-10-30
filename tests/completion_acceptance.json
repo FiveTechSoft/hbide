@@ -1005,6 +1005,102 @@
         "test_designer_property_geometry.prg"
       ],
       "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-1-DSN_SAY": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit OK accepts chosen Row1/Col2 with dirty/oneUndo and exact Undo/Redo. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-2-DSN_SAY": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit Cancel after row edit preserves exact model/clean/emptyhistory for this control. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-1-DSN_GET": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit OK accepts chosen Row1/Col2 with dirty/oneUndo and exact Undo/Redo. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-2-DSN_GET": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit Cancel after row edit preserves exact model/clean/emptyhistory for this control. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-1-DSN_CHECKBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit OK accepts chosen Row1/Col2 with dirty/oneUndo and exact Undo/Redo. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-2-DSN_CHECKBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit Cancel after row edit preserves exact model/clean/emptyhistory for this control. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-1-DSN_BUTTON": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit OK accepts chosen Row1/Col2 with dirty/oneUndo and exact Undo/Redo. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-2-DSN_BUTTON": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit Cancel after row edit preserves exact model/clean/emptyhistory for this control. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-1-DSN_RADIO": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit OK accepts chosen Row1/Col2 with dirty/oneUndo and exact Undo/Redo. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-2-DSN_RADIO": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit Cancel after row edit preserves exact model/clean/emptyhistory for this control. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-1-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit OK accepts chosen Row1/Col2 with dirty/oneUndo and exact Undo/Redo. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-2-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit Cancel after row edit preserves exact model/clean/emptyhistory for this control. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-1-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit OK accepts chosen Row1/Col2 with dirty/oneUndo and exact Undo/Redo. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-lDummy-2-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued explicit Cancel after row edit preserves exact model/clean/emptyhistory for this control. Not all dirty histories, inputs, pixels or platforms."
+    },
+    "DSN-FIELD-DlgProperties-lDummy-1-dialog": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual explicit OK accepts seven dialog fields with exact undo/redo. Focal queued path, not every combination/pixel/platform."
+    },
+    "DSN-FIELD-DlgProperties-lDummy-2-dialog": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual explicit Cancel after edits preserves exact model/dirty/history. Focal queued path, not every combination/pixel/platform."
     }
   }
 }

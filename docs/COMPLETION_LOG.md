@@ -1390,3 +1390,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - No product change or oversized/negative/all-boundary/drag/pixels/platform
   acceptance. Remaining sixteen unlinked source pairs are modal OK/Cancel
   declarations across controls/dialog, not sixteen missing product functions.
+
+### 2026-10-30 Explicit modal button matrix and inventory links
+
+- Explicit Cancel after Row edit for seven control types retains exact model,
+  clean state and empty history. Existing explicit OK Row1/Col2 matrix is
+  linked independently; Dialog OK/Cancel links point to existing actual test.
+- All79source pairs now have focal test links, not79complete acceptances.
+  Boundary combinations, dirty histories, visual/platform coverage remain
+  open; M0/M4 are not closed by filling link cells. No product change.
