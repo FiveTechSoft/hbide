@@ -1,0 +1,40 @@
+{
+  "scope": "Linux hidden GT output buffers only; not visible UI/ExchangeOFF/input/Windows acceptance",
+  "probe_sha256": "031ef218be9215880598a09feada1776fd68e1de8ec83c3a280e48c3ab4d0636",
+  "negative_different_effective_geometry": {
+    "hidden_created": true,
+    "visible_buffer_preserved": true,
+    "hidden_output_can_be_restored": false,
+    "hidden_size": [
+      24,
+      79,
+      8000
+    ],
+    "visible_size": [
+      23,
+      79,
+      7680
+    ],
+    "hidden_first_bytes": "2000070020000700200007002000070020000700200007002000070020000700",
+    "restored_first_bytes": "2000070020000700200007002000070020000700200007002000070020000700",
+    "no_input_forwarding_proved": true
+  },
+  "matched_effective_geometry": {
+    "hidden_created": true,
+    "visible_buffer_preserved": true,
+    "hidden_output_can_be_restored": true,
+    "hidden_size": [
+      23,
+      79,
+      7680
+    ],
+    "visible_size": [
+      23,
+      79,
+      7680
+    ],
+    "hidden_first_bytes": "2000070020000700200007002000070020000700200007002000070020000700",
+    "restored_first_bytes": "2000070020000700200007002000070020000700200007002000070020000700",
+    "no_input_forwarding_proved": true
+  }
+}

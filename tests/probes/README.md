@@ -111,3 +111,16 @@ no Windows or all-input guarantee is implied by these source observations.
 hbmk2 tests/probes/debug_screen_snapshot.prg -gttrm -o/tmp/debug-screen-snapshot
 /tmp/debug-screen-snapshot /tmp/debug-screen-snapshot.json
 ```
+
+### Separate hidden NUL GT buffer
+
+`debug_hidden_gt.prg` creates a NUL GT context and switches to it only for
+application output. On Linux GTTRM the original visible buffer stays byte-exact;
+the hidden output can be copied back through SETWIN when effective dimensions
+match. The first25x80-request fixture failed full equality because GTTRM actually
+had24rows while NUL had25; the corrected fixture uses the visible buffer's actual
+row/column count. This is not a completed Exchange OFF design. NUL input,
+keyboard forwarding, resize, colors/codepages, application GT calls, exceptions,
+external writes and switching back safely during VM/debugger stops remain open.
+The demo in Harbour tests/gtwin.prg documents independent real console windows
+only for drivers that support them (WVT/XWC), not generic GTTRM windows.
