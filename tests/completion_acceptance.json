@@ -186,9 +186,10 @@
     "IDE-004": {
       "tests": [
         "test_multidoc_pty.py",
-        "test_saveas_refusal_recovery_pty.py"
+        "test_saveas_refusal_recovery_pty.py",
+        "test_saveas_failure_identity_pty.py"
       ],
-      "contract": "Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery.",
+      "contract": "Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Failed Save As retains old name/stamps/journal for initially clean and dirty buffers; later F2 still writes original.",
       "expected_label": "Save As..."
     },
     "IDE-008": {

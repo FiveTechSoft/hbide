@@ -1703,7 +1703,8 @@ METHOD SaveAs() CLASS HbIde
    local cName
    local cOldFile := ::oEditor:cFile
    local cOldKey  := ::oEditor:JournalKey()
-   local nOther
+   local nOther, lSaved
+   local cOldSeen := ::oEditor:cSeenStamp, cOldLoad := ::oEditor:cLoadStamp
 
    oDlg:bRepaint = { || ::Repaint() }
    ::SuspendStatus()
@@ -1754,10 +1755,19 @@ METHOD SaveAs() CLASS HbIde
       ::oEditor:cSeenStamp := ::oEditor:cLoadStamp := ::oEditor:DiskStamp( cName )
    endif
 
-   ::DoSave()
-   // rename-save succeeded: the old name's journal is stale now
-   if ! ::oEditor:Changed() .and. !( cOldFile == ::oEditor:cFile )
-      HBIDE_RecoveryDelete( cOldKey )
+   lSaved := ::DoSave()
+   if lSaved
+      // Only an actual successful write retires the old identity/journal.
+      if !( cOldFile == ::oEditor:cFile )
+         HBIDE_RecoveryDelete( cOldKey )
+      endif
+   else
+      ::oEditor:cFile := cOldFile
+      ::oEditor:cSeenStamp := cOldSeen
+      ::oEditor:cLoadStamp := cOldLoad
+      ::oWndCode:cCaption := cOldFile
+      ::Repaint()
+      ::oEditor:ShowCursor()
    endif
 
 return nil
@@ -1766,10 +1776,10 @@ return nil
 
 METHOD DoSave() CLASS HbIde
 
-   local cFailInfo := ""
+   local cFailInfo := "", lSaved := .F.
 
    if ! ::ConfirmOverwrite()
-      return nil
+      return .F.
    endif
 
    // A backup failure is visible but does not block saving the live buffer.
@@ -1779,13 +1789,13 @@ METHOD DoSave() CLASS HbIde
       endif
    endif
 
-   ::oEditor:SaveFile()
+   lSaved := ::oEditor:SaveFile()
    ::oWndCode:cCaption = ::oEditor:cFile
    ::oWndCode:Refresh()
    ::oEditor:Display()
    ::oEditor:ShowCursor()
 
-return nil
+return lSaved
 
 //-----------------------------------------------------------------------------------------//
 
