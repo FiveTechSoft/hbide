@@ -819,6 +819,8 @@ procedure Main()
    FErase( "gqotest2.prg" )
    oD2 = HbDesigner():New( TStubIdeQueue() )
    oD2:cDlgName = "gqono/such"
+   oD2:oWnd := HBWindow():Dialog( "Test", 50, 16, "W+/W" )
+   hb_keyPut( K_ENTER )
    oD2:GenerateAndOpen()
    Check( "failed write enqueues nothing", Empty( oD2:oIde:aQueued ) )
    Check( "failed write does not exit", ! oD2:lEnd )

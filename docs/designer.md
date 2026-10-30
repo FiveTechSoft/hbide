@@ -427,3 +427,14 @@ Enter/Esc/Del, mouse click+drag, save-as JSON round trip.
 P (PushButton/Paste), R (RadioGroup/Redo) and G (grid/Generate/Generate and
 open) cycle through matches without executing. Enter runs the highlighted
 option; Esc cancels. Unique letters retain immediate execution.
+
+### Save and Generate write failures
+
+JSON Save and PRG Generate use the shared `safeio.prg` writer, not an
+in-place truncating write. A partial write refuses without changing the
+original. A complete temporary file whose promotion fails is retained and
+its name is shown in a scrollable error dialog (Up/Down, Enter/Esc close).
+The design stays open and dirty state is not cleared on failure. Symlinked
+destinations are refused under the same policy as editor saves. This is
+Linux-tested behavior, not native Windows acceptance or a power-loss fsync
+guarantee. Standalone designer builds must include `safeio.prg`.

@@ -15,7 +15,7 @@ after `oDlg:Activate()`, not the screen.
 From the repo root:
 
     hbmk2 -quiet -o/tmp/gen_roundtrips tests/manual/roundtrip/gen_roundtrips.prg \
-        designer.prg hbwindow.prg hbmenu.prg hbbutton.prg
+        designer.prg safeio.prg hbwindow.prg hbmenu.prg hbbutton.prg
     /tmp/gen_roundtrips
 
 This writes six files into /tmp: `radiotest_run.prg` + `runradio.prg`,

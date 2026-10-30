@@ -1,5 +1,6 @@
 hbide.prg
 editor.prg
+safeio.prg
 hbmenu.prg
 hbwindow.prg
 designer.prg

@@ -20,7 +20,7 @@ def build(inputs, output):
 lib = [ROOT/p for p in ['hbwindow.prg','hbmenu.prg','hbbutton.prg','hbgetu.prg']]
 try:
     gen = work/'generate'
-    if not build([ROOT/'tests/gui_roundtrip_fixture.prg',ROOT/'designer.prg',*lib],gen):raise RuntimeError('fixture build')
+    if not build([ROOT/'tests/gui_roundtrip_fixture.prg',ROOT/'designer.prg',ROOT/'safeio.prg',*lib],gen):raise RuntimeError('fixture build')
     subprocess.run([str(gen),str(work)],check=True,stdout=subprocess.PIPE)
     for kind in ['radiogroup','listbox','combobox','checkbox','get']:
         exe=work/kind

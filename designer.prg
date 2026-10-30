@@ -1628,7 +1628,7 @@ return cFile
 
 METHOD SaveJson( lAskName ) CLASS HbDesigner
 
-   local hModel, cFile
+   local hModel, cFile, cFailInfo := ""
 
    hb_default( @lAskName, .F. )
 
@@ -1643,11 +1643,14 @@ METHOD SaveJson( lAskName ) CLASS HbDesigner
 
    hModel = DsnBuildModel( Self )
 
-   if DsnSafeMemoWrit( ::cFileName, hb_jsonEncode( hModel, .T. ) )
+   if DsnSafeMemoWrit( ::cFileName, hb_jsonEncode( hModel, .T. ), @cFailInfo )
       ::lDirty = .F.
       ::ShowHint( "Saved " + ::cFileName )
    else
-      ::ShowHint( "Could not write " + ::cFileName + ": check the path" )
+      ::SuspendUI()
+      DsnWriteError( "Could not write " + ::cFileName + ": " + cFailInfo )
+      ::ResumeUI()
+      ::ShowHint( "Save failed; design kept open. Choose another path and save again" )
    endif
 
 return nil
@@ -2327,6 +2330,7 @@ METHOD GeneratePrg() CLASS HbDesigner
    local hModel := DsnBuildModel( Self )
    local nSkipped := 0, nConflicts := 0, nSBarHidden := 0
    local cCode  := DsnGenCode( hModel, @nSkipped, @nConflicts )
+   local cFailInfo := ""
    local oCtrl
    local cFile  := Lower( ::cDlgName ) + ".prg"
 
@@ -2346,7 +2350,7 @@ METHOD GeneratePrg() CLASS HbDesigner
       endif
    next
 
-   if DsnSafeMemoWrit( cFile, cCode )
+   if DsnSafeMemoWrit( cFile, cCode, @cFailInfo )
       ::ShowHint( "Generated " + cFile + ;
          If( nSkipped > 0, " (" + hb_ntos( nSkipped ) + " without items skipped)", "" ) + ;
          If( nConflicts > 0, " (" + hb_ntos( nConflicts ) + " name conflicts resolved)", "" ) + ;
@@ -2354,7 +2358,10 @@ METHOD GeneratePrg() CLASS HbDesigner
             " list/dropdown too short: scrollbar won't be drawn)", "" ) )
       return cFile
    else
-      ::ShowHint( "Could not write " + cFile + ": check the path" )
+      ::SuspendUI()
+      DsnWriteError( "Could not write " + cFile + ": " + cFailInfo )
+      ::ResumeUI()
+      ::ShowHint( "Generate failed; design kept open. Choose another path and try again" )
    endif
 
 return nil
@@ -3802,12 +3809,12 @@ function DsnViewSize( nDlgWidth, nDlgHeight, nMaxCol, nMaxRow )
 return { Min( nDlgWidth, nMaxCol - 4 ), Min( nDlgHeight, nMaxRow - 3 ) }
 
 //-----------------------------------------------------------------------------------------//
-// hb_MemoWrit wrapper with an explicit success result, so callers can
-// tell the user when a write fails instead of claiming a save
+// Shared verified sibling write; never truncate the existing JSON/PRG in place.
+// Full error detail is returned, including retained complete content if any.
 
-function DsnSafeMemoWrit( cFile, cText )
+function DsnSafeMemoWrit( cFile, cText, cFailInfo )
 
-return hb_MemoWrit( cFile, cText )
+return HBIDE_AtomicWriteFile( cFile, cText, @cFailInfo )
 
 //-----------------------------------------------------------------------------------------//
 // clamp a pan origin so the window never scrolls past the dialog edges
@@ -4263,6 +4270,40 @@ return Max( 1, Min( If( nAnchor > 0, nAnchor - 3, 1 ), Max( 1, nLines - nViewH +
 // pushbuttons, so the prompt answers to keyboard (Tab/arrows, Enter, Space,
 // Esc) and to the mouse through the window click path. Focus starts on the
 // first option, like Alert().
+
+// Bounded scrollable error: recovery paths must never disappear off a status line.
+function DsnWriteError( cText )
+
+   local nWidth := Min( 76, MaxCol() - 4 )
+   local nHeight := Min( 12, MaxRow() - 4 )
+   local nCols := nWidth - 6, nRows := nHeight - 5
+   local aLines := {}, nTop := 1, nKey, i
+   local oDlg := HBWindow():Dialog( "Write failed", nWidth, nHeight, "W+/B" )
+
+   do while ! Empty( cText )
+      AAdd( aLines, Left( cText, nCols ) )
+      cText := SubStr( cText, nCols + 1 )
+   enddo
+   oDlg:Show( .F. )
+   do while .T.
+      for i := 1 to nRows
+         oDlg:Say( i + 1, 3, PadR( If( nTop + i - 1 <= Len( aLines ), ;
+            aLines[ Min( Len( aLines ), nTop + i - 1 ) ], "" ), nCols ) )
+      next
+      oDlg:Say( nHeight - 2, 3, "Up/Down scroll   Enter/Esc close" )
+      nKey := DsnNormKey( Inkey( 0, INKEY_ALL + HB_INKEY_EXT ) )
+      do case
+      case nKey == K_ENTER .or. nKey == K_ESC
+         exit
+      case nKey == K_DOWN .or. nKey == K_PGDN
+         nTop := Min( Max( 1, Len( aLines ) - nRows + 1 ), nTop + 1 )
+      case nKey == K_UP .or. nKey == K_PGUP
+         nTop := Max( 1, nTop - 1 )
+      endcase
+   enddo
+   oDlg:Hide()
+
+return nil
 
 function DsnConfirm( cText, aOptions )
 

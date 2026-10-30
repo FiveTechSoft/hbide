@@ -1043,3 +1043,14 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Final property footprint coverage extended through actual queued dialogs: Listbox/ComboBox width4->20,height4->8 from row6/col34 reclamps to row2/col18, one undo exact and redo. Button caption20 grows footprint and reclamps inside, undo exact. No product patch beyondb1ab5b6. Initial button fixture tabbed onto Cancel; corrected tab count, not product. No separate visual/platform certification inferred from queued-key model.
 
 - M4 inspector footprint: inline button caption grows outside canvas from right-edge origin; reproduced through InspEdit+Enter. InspSetText now clamps final footprint to model interior, including radio items growth; model verifies button and radiogroup height+undo exact. Fixture initially used unsupported type string radio instead of radiogroup, corrected to actual palette type. Native focal direct redraw inspected: longer button and shadow fit right interior; inspector Col19 matches; full canvas/inspector/status visible. Explicit CLS/redraw is not modal restoration or full IDE/Windows acceptance. Oversized controls larger than model interior remain separate unresolved case, not claimed fixed.
+
+### 2026-10-30 Designer safe writes
+
+- Reproduced refused partial write that had truncated the destination.
+- Moved existing editor atomic replacement helpers unchanged to safeio.prg;
+  designer JSON/PRG writes now share them. Updated standalone build inputs.
+- Error path preserves design and reports recoverable complete temp names in
+  a bounded scrollable dialog. Actual 25x80 pixels inspected at top and after
+  scrolling to the path suffix, with all dialog borders and status visible.
+- Added exact-byte/refusal model and Linux RLIMIT actual SaveJson/GeneratePrg
+  probe. No Windows/global milestone acceptance; oversized editing unchanged.
