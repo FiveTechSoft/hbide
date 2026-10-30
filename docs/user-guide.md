@@ -118,7 +118,9 @@ What to expect:
 - One journal per absolute path: aliases or symlinks to the same file
   produce separate journals.
 
-Compare gives a read-only summary before deciding. View bytes opens journal editor
+Compare gives a read-only summary before deciding. For UTF-8 journals it
+reconstructs save bytes with the recorded codepage and BOM only after a
+lossless roundtrip. Unknown codepages do not produce a reconstructed comparison. View bytes opens journal editor
 payload and raw disk snapshots (J/D), with scrolling, Home/End and Esc back.
 The hex is exact; control and non-ASCII bytes appear as dots in the ASCII column.
 This is not a line diff or a decoded Unicode text preview. Viewing does not

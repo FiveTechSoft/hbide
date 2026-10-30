@@ -951,3 +951,5 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Snapshot del visor: prueba cambia disco mientras está abierto; D sigue mostrando el snapshot original, cerrar/reabrir muestra bytes nuevos y no los sobrescribe. Teclas texto/F2 ignoradas, Later mantiene journal/buffer y versión externa. Título aclara snapshots, no vista live. Candidato Compare/CompareLargePASS; no nueva certificación geométrica.
 
 - Geometría real del visor: entrypoint de pruebas separado RecoveryViewProbe, sin modificar producto, crea IDE y llama ApplyDisplay con25x80/40x120, verifica MaxRow/MaxCol antes del visor. Capturas ahora sí distintas, inspeccionadas completas: datos/controles/status caben. Guardadas docs/evidence/recovery-byte-geometry/. Esto prueba visor directo, no flujo startup25x80 (startup fija40x120).
+
+- Compare UTF8/BOM: reconstrucción byte-exact de guardado con codepage registrado y roundtrip lossless, BOM incluido, sin cambiar codepage global ni buffers. Codepage desconocido/inconsistencia no produce igualdad reconstruida. Modelo77checks candidatoPASS; no diff de líneas ni texto normalizado. Ayuda/guía sincronizadas.

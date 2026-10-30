@@ -396,7 +396,7 @@ return cBytes
 // Read-only comparison summary. Journal bytes are editor bytes; without a
 // proven conversion they must not be compared to encoded disk bytes as text.
 function HBIDE_RecoveryCompare( cBase, cTarget )
-   local hEncoding, lJournalOk, lDiskOk, cJournal, cDisk, cSummary
+   local hEncoding, lJournalOk, lDiskOk, cJournal, cDisk, cSummary, cSave
    cJournal := HBIDE_RecoveryReadBase( cBase, @hEncoding, @lJournalOk )
    cSummary := "Read-only comparison. No document or file changed." + Chr( 10 )
    if ! lJournalOk
@@ -412,7 +412,23 @@ function HBIDE_RecoveryCompare( cBase, cTarget )
    endif
    cSummary += "Disk: " + hb_ntos( Len( cDisk ) ) + " bytes." + Chr( 10 )
    if hEncoding != NIL .and. ( hEncoding[ "utf8" ] .or. hEncoding[ "bom" ] )
-      return cSummary + "Encoded journal: editor and disk bytes are not directly comparable. No text equality claimed."
+      if hEncoding[ "raw" ] .or. ! hEncoding[ "utf8" ]
+         return cSummary + "Inconsistent encoding flags. No reconstructed equality claimed."
+      endif
+      if ! hb_cdpExists( hEncoding[ "cp" ] )
+         return cSummary + "Cannot reconstruct save bytes: unknown codepage."
+      endif
+      cSave := hb_StrToUTF8( cJournal, hEncoding[ "cp" ] )
+      if hb_UTF8ToStr( cSave, hEncoding[ "cp" ] ) != cJournal
+         return cSummary + "Cannot reconstruct save bytes losslessly."
+      endif
+      if hEncoding[ "bom" ]
+         cSave := Chr( 239 ) + Chr( 187 ) + Chr( 191 ) + cSave
+      endif
+      if cSave == cDisk
+         return cSummary + "Reconstructed save bytes are identical to disk. Not a line diff."
+      endif
+      return cSummary + "Reconstructed save bytes differ from disk. Not a line diff."
    endif
    if cJournal == cDisk
       return cSummary + "Payload and disk bytes are identical."
