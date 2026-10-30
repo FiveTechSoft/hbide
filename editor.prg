@@ -1185,8 +1185,8 @@ return ! Empty( ::cLoadStamp ) .and. Empty( ::DiskStamp( ::cFile ) )
 
 //-----------------------------------------------------------------------------------------//
 
-// A fresh sibling temp name that is guaranteed not to exist, so nothing
-// preexisting is ever treated as ours. Returns "" if no free name is found.
+// Reject existing files, links and directories at selection time. This does
+// not reserve the path against a concurrent creator. Returns "" on exhaustion.
 function HBIDE_UniqueSibling( cBase, cExt )
 
    local cTmp, nTry := 0
@@ -1194,7 +1194,7 @@ function HBIDE_UniqueSibling( cBase, cExt )
    hb_default( @cExt, "" )
    do while nTry++ < 20
       cTmp := cBase + ".tmp-" + StrZero( hb_randomInt( 999999 ), 6 ) + cExt
-      if ! File( cTmp )
+      if ! File( cTmp ) .and. ! hb_DirExists( cTmp ) .and. Empty( hb_vfLinkRead( cTmp ) )
          return cTmp
       endif
    enddo

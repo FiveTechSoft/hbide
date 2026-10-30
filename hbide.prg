@@ -916,9 +916,9 @@ METHOD Start() CLASS HbIde
    // Build to a sibling temp target and promote it over the real executable
    // only after a VERIFIED success (exit code 0 and the binary exists).
    // The user's previous binary is never erased up front and never launched
-   // when the build failed. The output temp name is picked guaranteed-free, so
-   // no preexisting user file (a leftover .buildtmp, an "info.txt" in CWD,
-   // anything) is ever erased or overwritten. Build output is captured in memory.
+   // when the build failed. The output temp name is checked for existing files,
+   // links and directories, but not reserved against concurrent creation.
+   // Build output is captured in memory.
    // On Windows the temp keeps the
    // .exe extension so hbmk2 does not append another one; on unix hbmk2
    // uses the -o name verbatim (probed: dotted names are kept as given).

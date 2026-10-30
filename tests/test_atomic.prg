@@ -144,6 +144,20 @@ proc Main()
    Check( "unique name free", ! Empty( cTmp ) .and. ! File( cTmp ) )
    Check( "two picks differ", HBIDE_UniqueSibling( cDir + "/u.prg" ) != cTmp )
 
+   // Predict first random candidate without changing the production helper.
+   hb_randomSeed( 4291 )
+   cTmp := HBIDE_UniqueSibling( cDir + "/dangling-temp" )
+   hb_Run( 'ln -s absent-target "' + cTmp + '"' )
+   hb_randomSeed( 4291 )
+   cTarget := HBIDE_UniqueSibling( cDir + "/dangling-temp" )
+   Check( "unique sibling skips dangling symlink", cTarget != cTmp )
+   Check( "dangling sibling preserved", hb_vfLinkRead( cTmp ) == "absent-target" )
+   hb_randomSeed( 5291 )
+   cTmp := HBIDE_UniqueSibling( cDir + "/directory-temp" )
+   MakeDir( cTmp )
+   hb_randomSeed( 5291 )
+   Check( "unique sibling skips directory", HBIDE_UniqueSibling( cDir + "/directory-temp" ) != cTmp )
+
    hb_Run( "rm -rf " + cDir )
 
    ?
