@@ -47,3 +47,25 @@ Never apply this probe to an existing or shared process group.
 No Windows/macOS result is implied. No timeout, output flood, interactive
 compiler, detached descendant, UI cancellation or artifact-commit acceptance
 has been added to the IDE by either probe.
+
+## Ownership-checked Linux probe
+
+`build_cancel_owned.prg` adds a bounded startup check: `/proc/<pid>/stat`
+PID, process group and session must all equal the newly returned process
+handle, and stdout must contain STARTED. Immediately before signalling it
+checks process starttime/group/session again and confirms the child is still
+running. Both stdout and stderr are drained with short reads. Cancellation
+has its own flag, independent of the observed exit0 after a signal.
+
+```
+hbmk2 tests/probes/build_cancel_owned.prg hbunix.hbc -gtstd -o/tmp/build-cancel-owned
+/tmp/build-cancel-owned "$PWD/tests/probes/build_cancel_child.py"
+```
+
+Observed Linux run: OWNED true, CANCELLED true, group kill0, exit0; direct
+process and spawned child absent afterward. This closes only the missing
+identity-check experiment. `/proc` check-to-signal still has a race; escaped
+sessions, process-group leader exit before cancellation, output floods,
+startup failures, timeouts, interactive compilers and UI integration are not
+accepted by this probe. No production build path or Windows support changed.
+Do not call this production-safe ownership or finished cancellation.

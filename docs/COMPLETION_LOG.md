@@ -959,3 +959,5 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Target sidecar con NUL: PTY reproduce buffer asociado a ruta que contiene byteNUL (no nombre válido para APIs de ficheros). RecoverJournal ahora rechaza antes de cargar/mutar, conservando journal y documento. No se rechazan espacios/CR/LF legales POSIX ni se impide rescate sin sidecar.
 
 - Consolidación M1: Q08 enlaza lectura fuente/recarga y validación journal/flags/destino; Q15 identifica revisión de reconstrucciónUTF8 y Q01 runner55 (54PTY+1guard), sin heredar todos a HEAD. Se refresca catálogo offline después de los últimos registros. Próxima pasada conjunta conserva misma revisión para todos los casos M1 seleccionados.
+
+- M2 probe Linux: nuevo experimento valida PID/pgrp/session=startprocess y starttime antes de señalizar grupo aislado, drena stdout/stderr, flagcancel independiente deexit0. Fixture parent+child: OWNED/CANCELLEDtrue,kill0,ambosgone. No integración producto; quedan check-to-signalrace,detached/leaderexit/flood/startup/UI/Windows. No se declara cancelación terminada.
