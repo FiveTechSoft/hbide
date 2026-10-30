@@ -895,3 +895,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - PPO existente abre; desaparece PRG, intento de volver conserva PPO; reaparece PRG y toggle vuelve directamente a fuente. Verificado tras corrección5182343, sin nuevo fallo observado en esas rutas.
 - RestoredPoints ampliado PASS candidato; no certifica todos los formatos de ruta ni Windows.
 - Repetición limpia3883111: RestoredPoints ampliado PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-source-path-3883111.json. Binario23ed3bb3f67c2f63b68a041270880ab1e7cd396f983069e29d5de980fce7827c.
+
+## 30Oct10:23 Settings dialog Cancel verified
+- Save y Restore: editar nombre y Escape conserva el nombre anterior en la siguiente apertura del diálogo. Bytes de archivo anterior intactos y no aparece archivo con nombre abandonado.
+- Caso PASS, sin parche de producto. No se cambia el nombre por defecto tras errores porque eso requiere separar destino intentado de última ruta válida y no se ha establecido contrato nuevo.

@@ -342,6 +342,19 @@ try:
     print('PASS malformed WP indexes preserve points and integer zero deletes')
 
 
+    command('options savesettings cancel.cld')
+    savedcancel=open(os.path.join(work,'cancel.cld'),'rb').read()
+    for action in ('savesettings','restoresettings'):
+        command('options '+action)
+        assert 'File name' in scr.text(),scr.text()
+        send(b'\x19abandoned.cld\x1b');pump(.3)
+        command('options '+action)
+        assert 'cancel.cld' in scr.text() and 'abandoned.cld' not in scr.text(),('Cancel must preserve settings filename',action,scr.text())
+        send(b'\x1b');pump(.3)
+    assert open(os.path.join(work,'cancel.cld'),'rb').read()==savedcancel
+    assert not os.path.exists(os.path.join(work,'abandoned.cld'))
+    print('PASS Save/Restore dialog Cancel preserves default filename and file bytes')
+
     send(b'\x1bx');pump(.7);assert ' File  Edit' in scr.text()
 finally:
     try:os.kill(pid,signal.SIGHUP)
