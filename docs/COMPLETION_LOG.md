@@ -873,3 +873,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Eliminado el paso de abrir otro archivo antes de recuperar el fuente del fixture. Reabrir directamente el fuente que reaparece funciona y BP4 sigue deteniendo VM; no se reprodujo la hipótesis de bloqueo por mismo nombre y no hay parche de producto.
 - El test queda más exigente al no depender del archivo intermedio. No certifica detección automática de reaparición ni todos los caminos de búsqueda.
 - Repetición limpia8172063: MissingSource PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-direct-reopen-8172063.json. Binario 99760dcc0284e0dfc24c680c29629d313fe9206d04fe61a5bf2a2361bfe8b4d1.
+
+## 30Oct09:48 Joint debugger regression after missing-source and repaint fixes
+- Once suites PTY distintas PASS sobre3f13bcd limpio, mismo binario0b2f292715c0f6e0a2fc8591383f991cc9972bcf0fcb19de7f59514ca9c03a25: Commands68/68, Functions58/58, RestoredPoints, MissingSource, CallStack, Session, Startup, Animate, Monitor, Codeblock y Exits. Diez modelos PASS en la misma revisión.
+- Sin fallos, reintentos, interrupciones ni mutaciones durante esta pasada. Ledger docs/evidence/linux-debug-3f13bcd.json. No es la regresión IDE completa44, acabado visual exhaustivo ni Windows. Sin cambio de producto en este lote.
