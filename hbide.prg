@@ -1377,6 +1377,10 @@ METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
 
    local n := ::FindDoc( cTarget ), hEncoding, cText, cConverted, lReadOk
 
+   if Chr( 0 ) $ cTarget
+      HBIDE_MsgAlert( "Invalid recovery target (NUL byte). Journal kept unchanged; current document untouched." )
+      return nil
+   endif
    cText := HBIDE_RecoveryReadBase( cKey, @hEncoding, @lReadOk )
    if ! lReadOk
       HBIDE_MsgAlert( "Cannot read recovery journal. Journal kept unchanged; current document untouched." )

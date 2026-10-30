@@ -2,6 +2,7 @@ import glob, os, pty, sys, struct, fcntl, termios, select, time, signal, shutil,
 
 # Linux PTY: unreadable or malformed journals never replace the current document.
 MALFORMED = "--malformed-envelope" in sys.argv
+INVALID_TARGET = "--invalid-target" in sys.argv
 INVALID_FLAGS = "--invalid-flags" in sys.argv
 TARGET_SPACE = "--target-space" in sys.argv
 UNKNOWN_CP = "--unknown-codepage" in sys.argv
@@ -98,8 +99,8 @@ target=neighbor+' ' if TARGET_SPACE else neighbor
 if TARGET_SPACE: open(neighbor,'wb').write(b'NEIGHBOR MUST STAY')
 open(target,'wb').write(b'ORIGINAL DISK BYTES')
 open(journal,'wb').write(JOURNAL_BYTES)
-open(os.path.join(rec,'unreadable--dead.target'),'w').write(target)
-if not (MALFORMED or UNKNOWN_CP or TARGET_SPACE or INVALID_FLAGS): os.chmod(journal,0)
+open(os.path.join(rec,'unreadable--dead.target'),'w').write(target+'\x00other.prg' if INVALID_TARGET else target)
+if not (MALFORMED or UNKNOWN_CP or TARGET_SPACE or INVALID_FLAGS or INVALID_TARGET): os.chmod(journal,0)
 pid, fd = pty.fork()
 if pid == 0:
     os.chdir(work)
@@ -150,7 +151,7 @@ try:
         assert open(neighbor,'rb').read()==b'NEIGHBOR MUST STAY', 'neighbor changed'
         print('PASS recovery/save preserves trailing-space target and neighboring file')
     else:
-        assert ('unknown editor codepage' if UNKNOWN_CP else 'Cannot read recovery journal') in scr.text(),('unreadable journal must not recover as empty buffer',scr.text())
+        assert ('Invalid recovery target' if INVALID_TARGET else ('unknown editor codepage' if UNKNOWN_CP else 'Cannot read recovery journal')) in scr.text(),('unreadable journal must not recover as empty buffer',scr.text())
         send(b'\r');pump(.4)
         assert open(target,'rb').read()==b'ORIGINAL DISK BYTES'
         os.chmod(journal,0o600)

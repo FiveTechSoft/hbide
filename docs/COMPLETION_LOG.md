@@ -955,3 +955,5 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Compare UTF8/BOM: reconstrucción byte-exact de guardado con codepage registrado y roundtrip lossless, BOM incluido, sin cambiar codepage global ni buffers. Codepage desconocido/inconsistencia no produce igualdad reconstruida. Modelo77checks candidatoPASS; no diff de líneas ni texto normalizado. Ayuda/guía sincronizadas.
 
 - Flags recuperación: modelo yPTY reproducen aceptación de BOMsinUTF8; cuatro combinaciones incompatibles010/011/101/111 se rechazan por Decode antes de mutar. Invariantes del escritor: BOMrequiereUTF8, rawexclusivoUTF8/BOM. Journal conservado. Candidato diez modelos+InvalidFlags/Utf8RawPASS; no es detección exhaustiva de corrupción.
+
+- Target sidecar con NUL: PTY reproduce buffer asociado a ruta que contiene byteNUL (no nombre válido para APIs de ficheros). RecoverJournal ahora rechaza antes de cargar/mutar, conservando journal y documento. No se rechazan espacios/CR/LF legales POSIX ni se impide rescate sin sidecar.
