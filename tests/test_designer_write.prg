@@ -2,7 +2,7 @@
 #include "inkey.ch"
 #include "set.ch"
 PROCEDURE Main(cMode)
-   LOCAL cInfo:="",cFile:="dsn-write.json",cBytes:='{"controls":[]}',o,cResult,i,aFiles,hLoaded,cLong,hBefore
+   LOCAL cInfo:="",cFile:="dsn-write.json",cBytes:='{"controls":[]}',o,cResult,i,aFiles,hLoaded,cLong,hBefore,nHistory,nChoice
    o:=WriteDesigner():New(WriteHost():New())
    SetMode(25,80)
    Set(_SET_TYPEAHEAD,512)
@@ -44,6 +44,32 @@ PROCEDURE Main(cMode)
    o:cNext:="renamed.json"
    o:SaveJson(.T.)
    Check(o:cFileName=="renamed.json".and.File("renamed.json"),"successful Save As commits identity")
+   // SaveAs/Load cancellation must not mutate resource identity or design.
+   o:cNext:=NIL
+   hBefore:=DsnSnapshot(o);nHistory:=Len(o:aUndo)
+   cBytes:=hb_MemoRead("renamed.json")
+   FOR nChoice:=1 TO 2
+      hb_keyPut(K_CTRL_Y);hb_keyPut("discard.json")
+      IF nChoice==1
+         hb_keyPut(K_ESC)
+      ELSE
+         hb_keyPut(K_TAB);hb_keyPut(K_TAB);hb_keyPut(K_SPACE)
+      ENDIF
+      o:SaveJson(.T.)
+      Check(o:cFileName=="renamed.json".and.!o:lDirty,"cancel native SaveAs retains clean identity")
+      Check(DsnSnapEqual(hBefore,DsnSnapshot(o)).and.Len(o:aUndo)==nHistory,"cancel native SaveAs retains model/history")
+      Check(!File("discard.json").and.hb_MemoRead("renamed.json")==cBytes,"cancel native SaveAs writes nothing")
+      hb_keyPut(K_CTRL_Y);hb_keyPut("discard.json")
+      IF nChoice==1
+         hb_keyPut(K_ESC)
+      ELSE
+         hb_keyPut(K_TAB);hb_keyPut(K_TAB);hb_keyPut(K_SPACE)
+      ENDIF
+      o:LoadJson()
+      Check(o:cFileName=="renamed.json".and.!o:lDirty,"cancel native Load retains clean identity")
+      Check(DsnSnapEqual(hBefore,DsnSnapshot(o)).and.Len(o:aUndo)==nHistory,"cancel native Load retains model/history")
+   NEXT
+   cBytes:='{"controls":[]}'
    // Exercise native picker plus actual write/load, not cNext shortcut.
    cLong:="folder with spaces/"+Replicate("segment",8)+".json"
    hb_DirCreate("folder with spaces")

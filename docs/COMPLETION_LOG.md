@@ -1324,3 +1324,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   unchanged long default and restores exact saved model/identity.
 - Temporary isolated directory only. Extends picker-only evidence into real
   I/O; no arbitrary-length/filesystem/Windows or filenameUndoLoad acceptance.
+
+### 2026-10-30 File picker caller cancellation
+
+- Source audit finds only SaveJson/LoadJson call SelectFileName; GeneratePrg
+  writes Lower(cDlgName)+.prg directly and is not affected by picker buffer.
+- Actual native Esc/Cancel through SaveAs and Load preserve identity, clean
+  state, exact model/history; cancelled SaveAs creates no requested file and
+  existing JSON bytes remain unchanged. Temporary directory only.
+- No product change or filenameUndoLoad policy inference. This covers clean
+  caller cancellation, not all dirty/load-discard combinations or platforms.
