@@ -140,7 +140,9 @@ try:
     assert open(journal,'rb').read()==JOURNAL_BYTES
     send(b'v');pump(.4)
     assert 'JOURNAL editor payload' in scr.text() and 'UNSAVED JOURNAL' in scr.text(),scr.text()
-    send(b'x');pump(.2)  # ignored, never edit
+    send(b'x');send(b'\x1bOQ');pump(.2)  # edit and F2 ignored, never save
+    NEW_DISK=b'NEW_DISK_SNAPSHOT'
+    open(target,'wb').write(NEW_DISK)
     send(b'\x1b[F');pump(.4)
     assert '_END_MARKER' in scr.text(),scr.text()
     send(b'd');pump(.3)
@@ -149,13 +151,17 @@ try:
     assert 'DISK_END_' in scr.text() and 'MARKER' in scr.text(),scr.text()
     send(b'\x1b');pump(.3)
     assert 'Read-only comparison' in scr.text(),scr.text()
+    send(b'v');pump(.3);send(b'd');pump(.3)
+    assert 'NEW_DISK_SNAPSH' in scr.text(),scr.text()
+    assert 'ORIGINAL DISK' not in scr.text(),scr.text()
+    send(b'\x1b');pump(.3)
     send(b'\r');pump(.4)
     assert 'interrupted session' in scr.text(),scr.text()
     send(b'l');pump(.4)
     assert 'noname.prg' in scr.text() and 'UNSAVED JOURNAL BYTES' not in scr.text(),scr.text()
-    assert open(target,'rb').read()==DISK_BYTES
+    assert open(target,'rb').read()==NEW_DISK
     assert open(journal,'rb').read()==JOURNAL_BYTES
-    print('PASS Compare is read-only; returns to choice; Later keeps bytes and current document')
+    print('PASS Compare is read-only; open snapshots stay stable; reopening refreshes disk; Later keeps bytes and current document')
 finally:
     try:os.kill(pid,signal.SIGHUP)
     except ProcessLookupError:pass

@@ -1332,7 +1332,7 @@ METHOD RecoveryCompareView( cKey, cTarget ) CLASS HbIde
       aTop[ nPane ] := Min( Max( 1, nRows - nHeight + 1 ), Max( 1, aTop[ nPane ] ) )
       DispBegin()
       hb_Scroll( 1, 0, MaxRow() - 1, MaxCol(),,, "W/B" )
-      hb_DispOutAt( 1, 1, "Recovery byte view - read only", "W+/B" )
+      hb_DispOutAt( 1, 1, "Recovery byte snapshots - read only", "W+/B" )
       hb_DispOutAt( 2, 1, iif( nPane == 1, "JOURNAL editor payload", "DISK raw file bytes" ) + ;
          " | " + iif( aOk[ nPane ], hb_ntos( Len( aBytes[ nPane ] ) ) + " bytes", "unavailable" ), "W+/B" )
       for n := 0 to nHeight - 1
