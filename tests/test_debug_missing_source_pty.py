@@ -159,14 +159,13 @@ try:
 
     for source in glob.glob(work+'/__hbide_dbg__*.prg.bak'):
         os.rename(source,source[:-4])
-    send(('view '+other+'\r').encode());pump(.4)
     source=glob.glob(work+'/__hbide_dbg__*.prg')[0]
     send(('view '+source+'\r').encode());pump(.4)
     assert 'local n := 1' in scr.text(),scr.text()
     send(b'bp 4\r');pump(.3)
     send(b'\x1b[15~');pump(.8)
     assert execution_line()==4,('valid breakpoint still stops after source returns',execution_line(),scr.text())
-    print('PASS source reopens and valid breakpoint still stops VM')
+    print('PASS source reopens directly without intermediate file and valid breakpoint stops VM')
     send(b'\x1bx');pump(.6)
     assert ' File  Edit' in scr.text(),scr.text()
     print('PASS debugger exits to IDE')

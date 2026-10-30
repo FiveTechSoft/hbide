@@ -868,3 +868,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Repinta el conjunto visible después de ocultar; HideVars solo reserva Points visible. Inspección de capturas nuevas confirma sin restos duplicados y fuente vuelve a fila1 sin hueco superior. MissingSource añade comprobación de título único y fila1 tras cierres.
 - La prueba textual anterior pasaba pese a los restos visibles: no se usa como sustituto de la inspección de píxeles. Sin cierre exhaustivo de todos los layouts ni Windows.
 - Repetición limpiaafc616a: MissingSource, CallStack y Monitor PASS, diez modelos PASS, mismo binarioe3f1e1a76af10a33e97396d21d59d6d14d9aa78222779f136367b6db736d992b, sin mutaciones; docs/evidence/linux-pane-repaint-afc616a.json.
+
+## 30Oct09:32 Direct source reopening verified
+- Eliminado el paso de abrir otro archivo antes de recuperar el fuente del fixture. Reabrir directamente el fuente que reaparece funciona y BP4 sigue deteniendo VM; no se reprodujo la hipótesis de bloqueo por mismo nombre y no hay parche de producto.
+- El test queda más exigente al no depender del archivo intermedio. No certifica detección automática de reaparición ni todos los caminos de búsqueda.
