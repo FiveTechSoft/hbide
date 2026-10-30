@@ -1,0 +1,14 @@
+{
+  "scope": "Linux isolated NUL input-read hook only, GTSTD host; no product/UI/Windows acceptance",
+  "result": {
+    "calls_after_sleep": 0,
+    "poll_result": 0,
+    "calls_after_poll": 1,
+    "wait_result": 0,
+    "calls_after_wait": 2,
+    "injected_result": 65,
+    "lastkey_after_hook": 0
+  },
+  "probe_sha256": "77eeb0b88545f31cdb3bce54a470ba2c11d92beeb7b1653e548439c977f47ea0",
+  "source": "Harbour src/rtl/hbgtcore.c InkeyGet:2978-2986; no hook parameters, nonzero early return before inkeyLast assignment"
+}

@@ -159,3 +159,14 @@ the Harbour wrapper allocates a fresh GC holder on every call, so holder equalit
 is not underlying GT identity. Corrected fixture checks distinct per-GT color
 state instead. Both original raw observations are retained in the evidence.
 No debugger UI or application execution path has been changed by these probes.
+
+### Input-read hook is narrower than idle, but not a wait/return hook
+
+`debug_input_hook.prg` tests HB_GTI_INKEYREAD on hidden NUL (Linux/GTSTD host).
+It is not called by hb_idleSleep; both nonblocking Inkey() and timed Inkey(.05)
+call it once. Source hbgtcore.c:2978-2986 passes no wait/timeout/event-mask
+arguments and has no matching after-input callback. A nonzero hook result65
+returns65 but LastKey remains0 in the probe, because the early return bypasses
+the normal inkeyLast assignment. Using a hook return for forwarding would alter
+application-visible LastKey semantics unless handled separately. These are
+constraints on a possible design, not an integrated Swap on Input feature.
