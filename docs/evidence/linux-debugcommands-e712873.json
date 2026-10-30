@@ -1,0 +1,33 @@
+{
+  "scope": "Linux debugger command regression only; not DebugFunctions long suite or global/Windows",
+  "pty": [
+    {
+      "source": "e71287391b29ac4eca359791cd842fe239a9002d",
+      "tracked_changes": "",
+      "binary_sha256": "8f28effeac910c276afd5687064bd8c220309cc044e6c8f586802b4a704fdba7",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "975ad2b2722c214e33a86ed0c706b9d8fa427993ea45a6a8d8d9c86071341419",
+      "case": "debug-commands",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_commands_pty.py"
+      ],
+      "started": 1793365643.2528958,
+      "seconds": 79.99,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a773230ce8d1b867f7581ae8de0928d40828baacb3ebc7ec846fb1b6713bc753",
+      "log": "/tmp/hbide-debugcommands-e712873/debug-commands-1793365643252890519.log"
+    }
+  ],
+  "checks": {
+    "debug-commands": {
+      "pass": 69,
+      "fail": 0
+    }
+  }
+}
