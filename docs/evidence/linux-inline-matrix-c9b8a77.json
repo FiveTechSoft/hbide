@@ -1,5 +1,5 @@
 {
-  "scope": "Clean Linux20models plus Designer/ComboBox2PTY on c9b8a77. Twenty inline control/event combinations in queued model/UI-path probe; not twenty functions, pixels, handler runtime or Windows/global acceptance.",
+  "scope": "Clean Linux20models plus Designer/ComboBox2PTY on c9b8a77. Twenty inline control/event combinations in queued model/UI-path probe; not twenty functions, pixels, handler runtime or Windows/global acceptance. Superseded for radio: fixture used unsupported short type radio rather than radiogroup. Corrected and rerun in linux-inline-matrix-4c91d9b.json.",
   "models": {
     "source": "c9b8a7765b4c67d0cfa0b0891d68343d9c2dcbc0",
     "dirty": false,
