@@ -1240,3 +1240,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Initial fixture expected XY after Y alone, but observed Y because input
   replaced X after veto. Fixed the test sequence with End, no product fix.
   Scope is generated GET keyboard path, not all controls/events or Windows.
+
+### 2026-10-30 Integrated ComboBox physical resize
+
+- Actual IDE physical mouse handle drag20x6->25x8; JSON Save, Undo/Save20x6
+  and Redo/Save25x8 preserve exact control arrays/handler. Full pixels show
+  wider face, shifted handle and retained lower borders/status.
+- No product fix. Terminal shortcut interception and early mis-targeted
+  coordinates excluded as setup mistakes. Reproduction/results/pixels in
+  docs/evidence/combobox-drag/. One geometry/control, not global acceptance.
