@@ -47,9 +47,11 @@
       "tests": [
         "test_project_desktop_pty.py",
         "test_project_messages_pty.py",
-        "test_project_leading_pty.py"
+        "test_project_leading_pty.py",
+        "test_project_output.prg",
+        "test_project_output_pty.py"
       ],
-      "contract": "Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently.",
+      "contract": "Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently. F6 output Left/Right reveals long diagnostic tails; Esc returns to the same project failure state.",
       "expected_label": "Sources / Build..."
     },
     "IDE-026": {
