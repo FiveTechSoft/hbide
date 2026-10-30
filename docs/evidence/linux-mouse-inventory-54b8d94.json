@@ -1,0 +1,50 @@
+{
+  "scope": "Bounded source mouseevent inventory27branches, no runtime gesture acceptance inferred. Clean54b8d94 Linux15Python inventory tests+33docs exact+Help/Designer2PTY samefreshbinary pass;20models belong prior3768bd8, not rerun for inventory-only change. No visual/Windows/milestone acceptance.",
+  "inventory_tests": 15,
+  "pty": [
+    {
+      "source": "54b8d944cc1f03c46ff0b105e78121457a37517d",
+      "tracked_changes": "",
+      "binary_sha256": "aef0f4268b3241f6d242ee36518d9dc333c5ded458367b015f41b9511b0e4b6f",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "c4263557125a9b1779486b2c04b4d4f061665e99dc2db32ff01ef897e3d8b911",
+      "case": "help",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_help_pty.py"
+      ],
+      "started": 1793402067.450844,
+      "seconds": 24.87,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "5b306d5ffca9ec95f421ef84af21f93919ba5442dd320227a06e5c8be9326822",
+      "log": "/tmp/hbide-mouse-inventory-pty/help-1793402067450837976.log"
+    },
+    {
+      "source": "54b8d944cc1f03c46ff0b105e78121457a37517d",
+      "tracked_changes": "",
+      "binary_sha256": "aef0f4268b3241f6d242ee36518d9dc333c5ded458367b015f41b9511b0e4b6f",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "c4263557125a9b1779486b2c04b4d4f061665e99dc2db32ff01ef897e3d8b911",
+      "case": "designer",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_pty.py"
+      ],
+      "started": 1793402092.3161845,
+      "seconds": 24.71,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f81758bfc8ea0f62bb84910a95b4bb09ba5cb522cdd2495a4bcea5ee5c6a4e97",
+      "log": "/tmp/hbide-mouse-inventory-pty/designer-1793402092316180577.log"
+    }
+  ]
+}
