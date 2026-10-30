@@ -244,7 +244,7 @@ return lOk
 // previous (dead) session: no session suffix is appended here.
 function HBIDE_RecoveryReadBase( cBase, hEncoding, lReadOk )
 
-   local cOut := "", nHandle := -1, nSize, nRead
+   local cOut := "", nHandle := -1, nSize, nRead, cDecoded
 
    lReadOk := .F.
    hEncoding := NIL
@@ -268,7 +268,8 @@ function HBIDE_RecoveryReadBase( cBase, hEncoding, lReadOk )
       return ""
    endif
 
-return HBIDE_RecoveryDecode( cOut, @hEncoding )
+   cDecoded := HBIDE_RecoveryDecode( cOut, @hEncoding, @lReadOk )
+return iif( lReadOk, cDecoded, "" )
 
 //-----------------------------------------------------------------------------------------//
 
@@ -356,11 +357,15 @@ return aOut
 
 // Encoding flags and editor bytes share ONE atomic journal generation. Never
 // infer them from the target file, which may have changed after the crash.
-static function HBIDE_RecoveryDecode( cBytes, hEncoding )
+static function HBIDE_RecoveryDecode( cBytes, hEncoding, lDecodeOk )
    local cPrefix := Chr( 0 ) + "HBIDE-J1" + Chr( 10 )
    local cRest, nColon, nCP, cLength
    hEncoding := NIL
+   lDecodeOk := .T.
    if Left( cBytes, Len( cPrefix ) ) == cPrefix
+      // An exact version marker reserves this format. A broken header must
+      // not enter an editor as if its metadata were legacy source bytes.
+      lDecodeOk := .F.
       cRest := SubStr( cBytes, Len( cPrefix ) + 1 )
       nColon := At( ":", cRest )
       if nColon >= 5 .and. nColon <= 7 .and. ;
@@ -368,6 +373,7 @@ static function HBIDE_RecoveryDecode( cBytes, hEncoding )
          cLength := SubStr( cRest, 4, nColon - 4 )
          nCP := Val( cLength )
          if nCP >= 1 .and. nCP <= 64 .and. hb_ntos( nCP ) == cLength .and. Len( cRest ) >= nColon + nCP
+            lDecodeOk := .T.
             hEncoding := { "utf8" => Left( cRest, 1 ) == "1", ;
                            "bom" => SubStr( cRest, 2, 1 ) == "1", ;
                            "raw" => SubStr( cRest, 3, 1 ) == "1", ;
