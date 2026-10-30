@@ -1643,3 +1643,15 @@ rueda acotada, Export genera catalogo, Close y Undo preservan bytes de fuente.
 Las coordenadas de Search se buscan en la fila de botones, no en mensajes
 que tambien contienen la palabra Search. Linux40x120 focal, no Windows ni
 todos los bordes/gestos de ayuda. Producto corregido solo en el hit-test.
+
+## 31 octubre: raton de Monitor modifica la variable correcta
+
+Nuevo DebugMouse: tres locales A/B/C. Clic sobre B y Enter edita solo B;
+doble clic sobre C edita solo C, doble clic A mas Esc conserva A. Resume
+produce el array exacto `{12,42,53}`, con incremento real de A. Fuente sin
+cambios byte-exactos. Se borra el valor existente con Home/Delete antes de
+escribir: el primer harness insertaba53 delante de33 y una expresion regular
+sin limite aceptaba erróneamente el prefijo53 de5333. La comprobacion final
+del debuggee detecto ese fallo; ahora las aserciones exigen fin de valor y
+se comprueba el resultado completo. No se cambia el contrato del campo ni
+el producto. LinuxPTY40x120 focal, no todas las variables/scroll/Windows.
