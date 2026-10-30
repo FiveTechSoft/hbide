@@ -110,7 +110,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DSN-005 | Palette | RadioGroup | designer.prg:521 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-006 | Palette | ListBox | designer.prg:522 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-007 | Palette | ComboBox | designer.prg:523 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-008 | Palette | Dialog properties... | designer.prg:525 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-008 | Palette | Dialog properties... | designer.prg:525 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-009 | Palette | Undo        Ctrl+Z | designer.prg:526 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DSN-010 | Palette | Redo        Ctrl+Y | designer.prg:527 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DSN-011 | Palette | Copy        Ctrl+C | designer.prg:529 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -195,6 +195,16 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-001: File Open reads source successfully before changing code identity/view. Unreadable source reports failure and retains prior view. Source search path resolves readable file. Pruebas: [test_debug_source_read_pty.py](../tests/test_debug_source_read_pty.py), [test_debug_path_cancel_pty.py](../tests/test_debug_path_cancel_pty.py)
 - DBG-033: Unreadable PPO refuses switching and retains code identity/view; readable PPO switches. Missing-file and platform limits remain separate. Pruebas: [test_debug_source_read_pty.py](../tests/test_debug_source_read_pty.py)
 - DSN-016: JSON Save uses verified sibling writes; partial writes preserve original, failed Save As preserves identity/dirty and subsequent Save target, successful Save As commits name. Actual picker queued keys tested. Promotion refusal retains valid complete JSON and names recovery file; separate pixels inspect scrollable failure dialog. No Windows/global acceptance. Pruebas: [test_designer_write.prg](../tests/test_designer_write.prg), [probes/check_designer_partial.py](../tests/probes/check_designer_partial.py), [test_designer_pty.py](../tests/test_designer_pty.py)
+- DSN-008: Actual F3 dialog Esc and explicit Cancel preserve model/dirty/history. Existing model geometry/color tests are separate. No exhaustive modal field accept/pixel/platform coverage. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg), [test_designer.prg](../tests/test_designer.prg)
+
+## Contratos modales y edicion inline vinculados
+
+Cobertura focal de rutas reales. Vinculo no significa PASS ni aceptacion de todos los campos; revisar ledger.
+
+- DSN-MODAL-CONTROL (EditProperties): Actual control modal Esc/Cancel retain state. GET/List/Combo growth clamps final footprint with exact undo/redo. Button caption growth and long action/when/valid/focus/state accept/undo/cancel preserve strings. This is selected paths, not every field/control combination or pixels. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg), [test_designer_property_geometry.prg](../tests/test_designer_property_geometry.prg)
+- DSN-MODAL-FILENAME (SelectFileName): Actual Save As picker queued CtrlY/text/Tab/Enter reaches write refusal; original filename/dirty remain and subsequent Save uses original. Separate state tests cover success. Not arbitrary long paths or every input method. Pruebas: [test_designer_write.prg](../tests/test_designer_write.prg)
+- DSN-MODAL-DIALOG (DlgProperties): Actual Esc and explicit Cancel after edits preserve model/dirty/undo. Successful edits of every field not accepted by this test. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg)
+- DSN-INLINE-CONTROL (InspEdit): Actual inline Esc preserves model/history; button-caption and radiogroup-items growth fit final footprint with exact undo. Not all inspector fields or oversized edits. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg), [test_designer_inline_geometry.prg](../tests/test_designer_inline_geometry.prg)
 
 ## Campos de inspector
 

@@ -576,6 +576,50 @@
         "test_designer_pty.py"
       ],
       "contract": "JSON Save uses verified sibling writes; partial writes preserve original, failed Save As preserves identity/dirty and subsequent Save target, successful Save As commits name. Actual picker queued keys tested. Promotion refusal retains valid complete JSON and names recovery file; separate pixels inspect scrollable failure dialog. No Windows/global acceptance."
+    },
+    "DSN-008": {
+      "expected_label": "Dialog properties...",
+      "tests": [
+        "test_designer_property_cancel.prg",
+        "test_designer.prg"
+      ],
+      "contract": "Actual F3 dialog Esc and explicit Cancel preserve model/dirty/history. Existing model geometry/color tests are separate. No exhaustive modal field accept/pixel/platform coverage."
     }
-  }
+  },
+  "modal_contracts": [
+    {
+      "id": "DSN-MODAL-CONTROL",
+      "surface": "EditProperties",
+      "tests": [
+        "test_designer_property_cancel.prg",
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual control modal Esc/Cancel retain state. GET/List/Combo growth clamps final footprint with exact undo/redo. Button caption growth and long action/when/valid/focus/state accept/undo/cancel preserve strings. This is selected paths, not every field/control combination or pixels."
+    },
+    {
+      "id": "DSN-MODAL-FILENAME",
+      "surface": "SelectFileName",
+      "tests": [
+        "test_designer_write.prg"
+      ],
+      "contract": "Actual Save As picker queued CtrlY/text/Tab/Enter reaches write refusal; original filename/dirty remain and subsequent Save uses original. Separate state tests cover success. Not arbitrary long paths or every input method."
+    },
+    {
+      "id": "DSN-MODAL-DIALOG",
+      "surface": "DlgProperties",
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual Esc and explicit Cancel after edits preserve model/dirty/undo. Successful edits of every field not accepted by this test."
+    },
+    {
+      "id": "DSN-INLINE-CONTROL",
+      "surface": "InspEdit",
+      "tests": [
+        "test_designer_property_cancel.prg",
+        "test_designer_inline_geometry.prg"
+      ],
+      "contract": "Actual inline Esc preserves model/history; button-caption and radiogroup-items growth fit final footprint with exact undo. Not all inspector fields or oversized edits."
+    }
+  ]
 }

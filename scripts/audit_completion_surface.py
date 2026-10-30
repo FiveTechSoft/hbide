@@ -70,7 +70,13 @@ def main():
     args=p.parse_args()
     menus,routes=inventory()
     stubs=[m for m in menus if m['wiring']=='stub']
-    acceptance=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['menus']
+    specs=json.loads((ROOT/'tests/completion_acceptance.json').read_text())
+    acceptance=specs['menus']
+    modal_contracts=specs.get('modal_contracts',[])
+    for spec in modal_contracts:
+        for test in spec['tests']:
+            if not (ROOT/'tests'/test).is_file():
+                raise SystemExit('Missing modal acceptance test: '+test)
     known={m['id'] for m in menus}
     labels={m['id']:m['label'] for m in menus}
     for ident, spec in acceptance.items():
@@ -84,7 +90,7 @@ def main():
     for m in menus:
         m['acceptance']=acceptance.get(m['id'])
     report={'scope':'Source inventory only. No runtime or platform certification.',
-            'menus':menus,'dispatch_routes':routes,
+            'menus':menus,'dispatch_routes':routes,'modal_contracts':modal_contracts,
             'inspector_fields': [dict(line=i+1, label=m.group(1), key=m.group(2), kind=m.group(3))
                 for i,line in enumerate((ROOT/'designer.prg').read_text().splitlines())
                 if (m := re.search(r'AAdd\( aFields, \{ \"([^\"]+)\",\s*\"([^\"]+)\",\s*\"([^\"]+)\"',line))],
@@ -105,6 +111,11 @@ def main():
         for ident, spec in acceptance.items():
             links=', '.join('['+t+'](../tests/'+t+')' for t in spec['tests'])
             print(f"- {ident}: {spec['contract']} Pruebas: {links}")
+        print('\n## Contratos modales y edicion inline vinculados\n')
+        print('Cobertura focal de rutas reales. Vinculo no significa PASS ni aceptacion de todos los campos; revisar ledger.\n')
+        for spec in modal_contracts:
+            links=', '.join('['+t+'](../tests/'+t+')' for t in spec['tests'])
+            print(f"- {spec['id']} ({spec['surface']}): {spec['contract']} Pruebas: {links}")
         print('\n## Campos de inspector\n')
         print('| Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
         print('| --- | --- | --- | --- | --- |')
