@@ -2626,9 +2626,15 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
    cInfo += "Num " + iif( ::lLineNumbers, "ON", "OFF" ) + hb_eol()
    cInfo += "Locate CaseSensitive " + iif( ::lCaseSensitive, "ON", "OFF" ) + hb_eol()
 
+   cInfo += "Delete ALL" + hb_eol()
+
    FOR EACH aBreak IN __dbgGetBreakPoints( ::pInfo )
-      cInfo += "BP " + hb_ntos( aBreak[ HB_DBG_BP_LINE ] ) + " " + ;
-               aBreak[ HB_DBG_BP_MODULE ] + hb_eol()
+      IF aBreak[ HB_DBG_BP_FUNC ] != NIL
+         cInfo += "BP " + aBreak[ HB_DBG_BP_FUNC ] + hb_eol()
+      ELSE
+         cInfo += "BP " + hb_ntos( aBreak[ HB_DBG_BP_LINE ] ) + " " + ;
+                  aBreak[ HB_DBG_BP_MODULE ] + hb_eol()
+      ENDIF
    NEXT
 
    FOR EACH aWatch IN ::aWatch

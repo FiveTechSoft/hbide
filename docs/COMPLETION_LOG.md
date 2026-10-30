@@ -689,3 +689,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Saveomitiapathvacio: guardarvacio,cambiarlo yrestoreconservabadirectorioajeno. Commands60PASS/1FAILantes.
 - SaveemiteOptionsPathinclusovacio; parserexistenteyatrataemptycomoborradoexplicito. Commands64PASS y10modelosPASS candidato: archivoemitido, vaciorepuesto, sourceexternonoresuelvetrasclear ypathnovaciorestauraresolucionreal.
 - Sin cambio visualnuevo; no cierraRestoreglobal(points/hidden/windowsetdifferentpendientes). Runner42suites60contratos, baselineglobal0768ac2historico;Windowspendiente.
+
+## 30Oct04:49 Restore exact point sets
+- BPscriptsejecutabantoggle: restoresobremismobreakpointloeliminaba. ReproduccionfinalfallaprimercomparadorBP; masadelantefixtureviejoaborta(no produceTOTAL), noregistrarPASSglobalantes. Unprimerintentobpnoentrabaporfuenteajena; añadidoResumeparaoperarsobremoduloVMreal.
+- SavesnapshotemiteDeleteALLantesdeBP/WP/TP, luegoreconstruyesetexacto; funcionBPserializapornombre envezdeintentarlineaNIL. Scriptlegacy sigueconsemanticaanterior. Commands68PASS candidato: BPigualtrasrestore,repetido,WP/TPsin duplicados,BPMAIN, setvaciolimpiarposteriores. DiezmodelosPASScandidato.
+- CapturacompletaWatch1+2=3trasdosrestoresinspeccionada, sinfilasduplicadas; captura noacredita por si sola breakpointfuncional. NoafirmaSnapshotRestoreexhaustivo/Windows; baselineglobal0768ac2historico,runner42suites60contratos.
