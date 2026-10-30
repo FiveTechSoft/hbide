@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'help': ('test_help_pty.py', [], 120),
     'display-multidoc': ('test_display_multidoc_pty.py', [], 120),
     'compiler-flags': ('test_compiler_flags_pty.py', [], 120),
     'run-empty-args': ('test_run_empty_args_pty.py', [], 120),

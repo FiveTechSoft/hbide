@@ -598,3 +598,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 -40x120->25x80redimensionabasoloeditoractivo; alvolverotrodocpintabasobreborde/statusycursorfuerapantalla. Capturareal+2FAILPTYantes.
 - ApplyDisplayactualizatodoslosbuffersantesderepintar.7checksPTYcandidatoPASS: reducir/ampliar, cursor/ultimalineavisiblesenotrodoc, uso nuevasfilas, undo/savebyteexactoenambosdocs. Capturascompletasantes/despuesinspeccionadas.
 - Runner40suites/49contratos116acciones; baseline38de4616d24anteriornoheredada. Windows pendiente.
+
+## 30Oct02:14 Real Help acceptance
+- Sin cambio de producto. Nueva suitePTY25x80: Indexmatching,keywordinexistente,Contents,F1contextualFile sin ejecutaraccion, cierrealsourcedirtyyundo/savebyteexacto.
+-9checksPASS candidato; enlaces/history/wrappingconmodeloprevio. Runner41suites,51contratos116acciones2stubs. Noafirma41PASScompleta niWindows.

@@ -42,8 +42,8 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-034 | Options | Compiler Flags... | hbide.prg:834 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-035 | Options | Display... | hbide.prg:835 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-036 | Options | Designer... | hbide.prg:837 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-037 | Help | Index | hbide.prg:842 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| IDE-038 | Help | Contents | hbide.prg:843 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-037 | Help | Index | hbide.prg:842 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-038 | Help | Contents | hbide.prg:843 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-039 | Help | About... | hbide.prg:845 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-001 | File | Open... | hbdebug/dbgmenu.prg:78 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-002 | File | Resume | hbdebug/dbgmenu.prg:79 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -176,6 +176,8 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-030:  Start builds/runs twice from path with spaces/apostrophe/$HOME/semicolon; failed rebuild preserves old executable bytes and never runs stale binary. Quiet nonzero compiler exit never reports Build OK; failure alert leaves editor usable. Empty quoted words retain first/intermediate/last parameter positions in Start, Script and Debug. Pruebas: [test_start_paths_pty.py](../tests/test_start_paths_pty.py), [test_run_empty_args_pty.py](../tests/test_run_empty_args_pty.py)
 - IDE-034: Real options dialog with keyboard Tab/Space/Enter/Esc. Default GCC warnings strict flags, Cancel leaves old flags, OK applies warnings/debug/strict/incremental/optimize and compiler selection to actual hbmk2 process argv. A fake hbmk2 captures argv and returns failure, not proof MSVC/other toolchains build successfully. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-035: Real Options Display applies 40x120->25x80->40x120. Inactive documents share current geometry; switched cursor and last line stay visible, expansion uses new rows. Independent edits/undo/save remain byte exact. Linux terminal resize negotiation, not Windows certification. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
+- IDE-037: Real Help Index opens matching topic, unknown keyword reports without changing document; Contents opens navigation; File-menu F1 opens context without executing action; close returns to same edited source and undo/save restores exact bytes. Linux 25x80; model also tests links/history/wrapping. Pruebas: [test_help_pty.py](../tests/test_help_pty.py), [test_help.prg](../tests/test_help.prg)
+- IDE-038: Real Help Index opens matching topic, unknown keyword reports without changing document; Contents opens navigation; File-menu F1 opens context without executing action; close returns to same edited source and undo/save restores exact bytes. Linux 25x80; model also tests links/history/wrapping. Pruebas: [test_help_pty.py](../tests/test_help_pty.py), [test_help.prg](../tests/test_help.prg)
 
 ## Campos de inspector
 

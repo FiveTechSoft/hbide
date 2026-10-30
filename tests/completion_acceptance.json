@@ -395,6 +395,22 @@
         "test_display_multidoc_pty.py"
       ],
       "contract": "Real Options Display applies 40x120->25x80->40x120. Inactive documents share current geometry; switched cursor and last line stay visible, expansion uses new rows. Independent edits/undo/save remain byte exact. Linux terminal resize negotiation, not Windows certification."
+    },
+    "IDE-037": {
+      "expected_label": "Index",
+      "tests": [
+        "test_help_pty.py",
+        "test_help.prg"
+      ],
+      "contract": "Real Help Index opens matching topic, unknown keyword reports without changing document; Contents opens navigation; File-menu F1 opens context without executing action; close returns to same edited source and undo/save restores exact bytes. Linux 25x80; model also tests links/history/wrapping."
+    },
+    "IDE-038": {
+      "expected_label": "Contents",
+      "tests": [
+        "test_help_pty.py",
+        "test_help.prg"
+      ],
+      "contract": "Real Help Index opens matching topic, unknown keyword reports without changing document; Contents opens navigation; File-menu F1 opens context without executing action; close returns to same edited source and undo/save restores exact bytes. Linux 25x80; model also tests links/history/wrapping."
     }
   }
 }
