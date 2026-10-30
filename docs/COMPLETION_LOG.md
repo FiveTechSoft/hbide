@@ -1498,3 +1498,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 -13Python inventory tests protect counts/source lines, constructors vs
   declarations, readonly branches and expression validators. Generic
   alerts and remaining gestures still outside this bounded inventory.
+
+### 2026-10-30 Debugger caller-specific focal links
+
+- Seven27input call sites linked to source-reviewed tests: TracepointAdd,
+  WatchpointDel, Save/RestoreSettings, TabWidth, Locate and SearchLine.
+  Each link states actual input/result and exclusions. Opening a popup
+  is not accepted as proving its settings effect. Remaining20unlinked.
+- Input constructors, readonly inspectors and inline object/array/hash
+  editors remain separate and unaccepted by these links.

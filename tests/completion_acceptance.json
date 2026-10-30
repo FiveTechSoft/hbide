@@ -1362,5 +1362,49 @@
       ],
       "contract": "Actual multiple-match HelpIndex picker Home/Down selects Debugger windows; explicit OK opens exact topic with Window > Tile body, not merely any Debugger topic. Source Undo/save remains byte-exact. Focal Linux only."
     }
+  },
+  "debugger_input_acceptance": {
+    "DBG-INPUT-debugger-TracepointAdd-inputbox-1": {
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Actual Point Tracepoint input n then Go stops at changed value line3; not arbitrary expressions or Esc."
+    },
+    "DBG-INPUT-debugger-WatchpointDel-inputbox-1": {
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Actual Point Delete input default0 deletes tracepoint and hides Points; next Delete no-op. Not all indices or Esc."
+    },
+    "DBG-INPUT-debugger-SaveSettings-inputbox-1": {
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Actual SaveSettings filename input default init.cld writes NUM OFF; RestoreSettings reapplies line state. No all settings/files/platforms."
+    },
+    "DBG-INPUT-debugger-RestoreSettings-inputbox-1": {
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Actual RestoreSettings filename input default init.cld reapplies saved NUM OFF, not merely command invocation."
+    },
+    "DBG-INPUT-debugger-TabWidth-inputbox-1": {
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Actual Tab width input12 moves source tabbed line, input4 restores exact column. No invalid/Cancel/boundary acceptance."
+    },
+    "DBG-INPUT-debugger-Locate-inputbox-1": {
+      "tests": [
+        "test_debug_commands_pty.py"
+      ],
+      "contract": "Actual Locate Find input selects source match; typed Esc preserves selected line and prior search string used by Next."
+    },
+    "DBG-INPUT-debugger-SearchLine-inputbox-1": {
+      "tests": [
+        "test_debug_commands_pty.py"
+      ],
+      "contract": "Actual Locate Goto input60 selects exact source line; Esc retains selected line. Not all numeric validation/bounds."
+    }
   }
 }

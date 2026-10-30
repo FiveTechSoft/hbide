@@ -237,6 +237,14 @@ def main():
             if not (ROOT/'tests'/test).is_file():raise ValueError('Missing IDE modal field test: '+test)
     for field in report['ide_modal_fields']:
         if field['id'] in ide_specs:field['acceptance']=ide_specs[field['id']]
+    dbg_specs=specs.get('debugger_input_acceptance',{})
+    ids={r['id'] for r in report['debugger_inputs']}
+    for ident,spec in dbg_specs.items():
+        if ident not in ids:raise ValueError('Unknown debugger input ID: '+ident)
+        for test in spec['tests']:
+            if not (ROOT/'tests'/test).is_file():raise ValueError('Missing debugger input test: '+test)
+    for field in report['debugger_inputs']:
+        if field['id'] in dbg_specs:field['acceptance']=dbg_specs[field['id']]
     if args.json:
         print(json.dumps(report,indent=2))
     else:
@@ -294,7 +302,11 @@ def main():
         print('| --- | --- | --- | --- | --- | --- |')
         for field in report['debugger_inputs']:
             call=field['call'].replace('|','&#124;')
-            print(f"| {field['id']} | {field['kind']} / {field['mode']} | {field['context']} | `{call}` | {field['source']}:{field['line']} | Pendiente caller |")
+            print(f"| {field['id']} | {field['kind']} / {field['mode']} | {field['context']} | `{call}` | {field['source']}:{field['line']} | {'Vinculo focal; ver alcance' if isinstance(field['acceptance'],dict) else 'Pendiente caller'} |")
+        for field in report['debugger_inputs']:
+            if isinstance(field['acceptance'],dict):
+                links=', '.join('['+t+'](../tests/'+t+')' for t in field['acceptance']['tests'])
+                print(f"- {field['id']}: {field['acceptance']['contract']} Pruebas: {links}")
         print('\n## Campos de inspector\n')
         print('| Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
         print('| --- | --- | --- | --- | --- |')
