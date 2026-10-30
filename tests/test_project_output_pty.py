@@ -143,8 +143,9 @@ try:
     send(b'\x1b[20~');assert wait_for('BUILD FAILED',12),scr.text()
     send(b'\x1b[17~');assert wait_for('BEGIN'),scr.text()
     assert 'DIAGNOSTIC TAIL' not in scr.text(),scr.text()
-    for i in range(240):
-        send(b'\x1b[C');pump(.005)
+    # Batches stay below typeahead capacity; do not wait200ms per idle key.
+    for i in range(30):
+        send(b'\x1b[C'*8);pump(.05)
     assert wait_for('DIAGNOSTIC TAIL'),scr.text()
     print('PASS F6 opens full output and horizontal scrolling reveals diagnostic tail')
     send(b'\x1b');pump(.5)
