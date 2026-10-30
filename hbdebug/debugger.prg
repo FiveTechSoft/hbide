@@ -950,7 +950,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
    CASE cCommand == "BP"
       IF Empty( cParam1 )
          ::BreakPointToggle()
-      ELSEIF IsDigit( cParam1 )
+      ELSEIF HBIDE_DbgIndex( cParam1 )
          ::BreakPointToggle( Val( cParam1 ), ;
                              iif( Empty( cParam2 ), ::cPrgName, cParam2 ) )
       ELSEIF hb_asciiIsAlpha( cParam1 ) .OR. hb_LeftEq( cParam1, "_" )

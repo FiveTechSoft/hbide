@@ -820,3 +820,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - RestoredPoints ampliado preserva puntos ante sufijo no numérico, decimal y negativo; el índice entero0 sigue borrando. Primer candidato TP/BP PASS y diez modelos PASS. Repetición limpia del test ampliado TP/BP/WP registrada aparte tras commit.
 - No cambio visual nuevo, no certificación del conjunto ni Windows. DELETE ALL conserva su ruta anterior.
 - Repetición limpia e5d5c0c: RestoredPoints TP/BP/WP PASS y diez modelos PASS, sin mutaciones; evidencia docs/evidence/linux-delete-index-e5d5c0c.json. Binario 7cec83af7ff634aff6f4c6b1d4791fa8467ada0ecadadbb989df72d8bf36e167.
+
+## 30Oct08:10 Malformed BP lines cannot toggle existing points
+- Reproducción nueva: con BP4 existente, `bp 4oops` lo desactivaba. La creación/conmutación de BP también usaba IsDigit y Val, fuera de las rutas DELETE ya corregidas.
+- Usa el validador de entero completo. RestoredPoints ampliado comprueba que 4oops y4.5 conservan BP4; siguen pasando TP/BP/WP DELETE. Candidato PASS y diez modelos PASS. Las formas de función BP MAIN y línea entera conservan sus caminos.
+- Sin cambio visual nuevo, sin certificación global ni Windows.

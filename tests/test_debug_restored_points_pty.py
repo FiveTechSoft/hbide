@@ -282,6 +282,11 @@ try:
     bpindex=os.path.join(work,'bp-index.cld')
     command('options savesettings '+bpindex)
     assert any(x.startswith('BP ') for x in open(bpindex).read().splitlines()),open(bpindex).read()
+    for invalid in ('4oops','4.5'):
+        command('bp '+invalid)
+        command('options savesettings '+bpindex)
+        assert any(x.startswith('BP ') for x in open(bpindex).read().splitlines()),('malformed BP line toggled existing point',invalid,open(bpindex).read())
+    print('PASS malformed BP line leaves existing breakpoint unchanged')
     for invalid in ('0oops','0.5','-1'):
         command('delete bp '+invalid)
         command('options savesettings '+bpindex)
