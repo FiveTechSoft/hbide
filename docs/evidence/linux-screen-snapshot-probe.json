@@ -1,0 +1,12 @@
+{
+  "scope": "Linux GTTRM mechanism model, not visual/UI/ExchangeScreens implementation or Windows acceptance",
+  "source_before_commit": "3d57263164f971394a8897aa949eb1085ad1eabb",
+  "probe_sha256": "2401aae450b08966725c0b211a5a9551f386bb8b43859100694394167c77ecd2",
+  "result": {
+    "app_restored": true,
+    "debug_restored": true,
+    "output_modifies_active_buffer": true,
+    "app_snapshot_unmodified": true
+  },
+  "limits": "GETWIN/SETWIN snapshots not independent hidden output; idle also fires during idleSleep so not universal input signal"
+}

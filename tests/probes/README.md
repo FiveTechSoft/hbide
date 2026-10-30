@@ -88,3 +88,26 @@ signal, despite observed leader exit0. The child was still running when the
 probe returned, then was confirmed gone after its bounded lifetime. This is
 an expected negative, not cancellation acceptance. A supervisor that stays
 alive while descendants exist needs separate investigation before integration.
+
+## Debugger screen snapshot feasibility (Linux GTTRM)
+
+`debug_screen_snapshot.prg` checks the mechanism used by the vendored debugger:
+HB_GTI_GETWIN returns a seven-element screen/cursor snapshot and SETWIN restores
+it into the active GT buffer. It is not an independent hidden rendering context
+on the default GT implementation (`harbour/src/rtl/hbgtcore.c`, cases GETWIN and
+SETWIN). The fixture restores two different snapshots exactly, then proves
+application output while the debugger snapshot is active modifies that active
+buffer. No product behavior changes and no visual/UI acceptance is claimed.
+
+The manual `hbdebug/en.txt:427-438` says Exchange Screens defaults ON and Swap
+on Input matters only with Exchange OFF. Keeping a debugger picture visible
+while application output is captured privately therefore needs a separate
+rendering mechanism, not skipping RestoreAppScreen alone. Input-idle callbacks
+are not a universal signal: `harbour/src/rtl/idle.c` invokes them for idle sleep
+as well as the GT INKEY loop. Selective input swapping remains unimplemented;
+no Windows or all-input guarantee is implied by these source observations.
+
+```
+hbmk2 tests/probes/debug_screen_snapshot.prg -gttrm -o/tmp/debug-screen-snapshot
+/tmp/debug-screen-snapshot /tmp/debug-screen-snapshot.json
+```
