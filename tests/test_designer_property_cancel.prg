@@ -1,7 +1,7 @@
 #include "hbclass.ch"
 #include "inkey.ch"
 PROCEDURE Main()
-   LOCAL o:=HbDesigner():New(PropHost():New()),h,i,cKey,cLong
+   LOCAL o:=HbDesigner():New(PropHost():New()),h,i,cKey,cLong,aFields,nField,cValue,hAfter
    SetMode(40,120)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
    o:FitWindow()
@@ -60,6 +60,32 @@ PROCEDURE Main()
    hb_keyPut(K_CTRL_Y);hb_keyPut(Asc("X"));hb_keyPut(K_ESC)
    o:EditProperties()
    Check(DsnSnapEqual(h,DsnSnapshot(o)),"cancel after handler edit preserves full handler")
+   o:aControls:={DsnNewControl("combobox",{})}
+   o:nSelected:=1
+   o:lInspector:=.T.
+   FOR EACH cKey IN {"when","valid","focus","state"}
+      o:aUndo:={};o:aRedo:={};o:lDirty:=.F.
+      aFields:=o:InspFields()
+      nField:=AScan(aFields,{|f|f[2]==cKey})
+      Check(nField>0,"event field present")
+      o:nInspField:=nField
+      h:=DsnSnapshot(o)
+      cValue:="Keep_"+cKey+"( 'quoted' )"
+      hb_keyPut(K_CTRL_Y);hb_keyPut(cValue);hb_keyPut(K_ENTER)
+      o:InspEdit()
+      Check(o:aControls[1,cKey]==cValue,"inline event accept exact string")
+      Check(o:lDirty.and.Len(o:aUndo)==1,"inline event one undo and dirty")
+      hAfter:=DsnSnapshot(o)
+      o:Undo()
+      Check(DsnSnapEqual(h,DsnSnapshot(o)),"inline event undo exact")
+      o:Redo()
+      Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),"inline event redo exact")
+      o:nInspField:=nField
+      hb_keyPut(K_CTRL_Y);hb_keyPut("DROP");hb_keyPut(K_ESC)
+      o:InspEdit()
+      Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),"inline event Esc keeps accepted string")
+      Check(Len(o:aUndo)==1.and.Empty(o:aRedo),"inline event Esc preserves history")
+   NEXT
    ? "PASS property cancellation and long handler invariants"
    RETURN
 STATIC PROCEDURE Check(lOk,cText)

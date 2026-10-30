@@ -619,7 +619,7 @@
         "test_designer_property_cancel.prg",
         "test_designer_inline_geometry.prg"
       ],
-      "contract": "Actual inline Esc preserves model/history; button-caption and radiogroup-items growth fit final footprint with exact undo. Not all inspector fields or oversized edits."
+      "contract": "Actual inline Esc preserves model/history; button-caption and radiogroup-items growth fit final footprint with exact undo. Not all inspector fields or oversized edits. ComboBox when/valid/focus/state actual inline edits preserve exact string, dirty/one undo, exact undo/redo and Esc history. Other control/field combinations remain unaccepted."
     }
   ]
 }

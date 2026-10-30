@@ -1182,3 +1182,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   restores the exact pre-dialog model; editing action then Esc keeps it whole.
 - Existing behavior passes; no product fix or handler execution. This checks
   model integrity, not pixel readability of the horizontally scrolling field.
+
+### 2026-10-30 Inline event field acceptance
+
+- Actual ComboBox inspector when/valid/focus/state edits preserve exact
+  expression text, set dirty and add one undo. Undo/redo restores model
+  exactly; replacing text then Esc keeps accepted text and history unchanged.
+- Fields resolved by current InspFields keys, not hardcoded row numbers.
+  Coverage is ComboBox, not every control that shares inline editing code.
