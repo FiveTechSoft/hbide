@@ -255,39 +255,37 @@ METHOD Resize( nTop, nLeft, nBottom, nRight ) CLASS HBBrwText
 
 METHOD Search( cString, lCaseSensitive, nMode ) CLASS HBBrwText
 
-   LOCAL bMove
-   LOCAL lFound := .F.
-   LOCAL n
+   LOCAL n, nStart := 1, nStep := 1, nOld := ::nRow
 
    IF ! lCaseSensitive
       cString := Upper( cString )
    ENDIF
+   DO CASE
+   CASE hb_defaultValue( nMode, 0 ) == 1
+      nStart := ::nRow + 1
+   CASE nMode == 2
+      nStart := ::nRow - 1
+      nStep := -1
+   ENDCASE
 
-   SWITCH hb_defaultValue( nMode, 0 )
-   CASE 0  // From Top
-      ::GoTop()
-      bMove := {|| ::Skip( 1 ) }
-      EXIT
-   CASE 1  // Forward
-      bMove := {|| ::Skip( 1 ) }
-      EXIT
-   CASE 2  // Backward
-      bMove := {|| ::Skip( -1 ) }
-      EXIT
-   ENDSWITCH
-
-   n := ::nRow
-
-   DO WHILE Eval( bMove ) != 0
-      IF cString $ iif( lCaseSensitive, ::aRows[ ::nRow ], Upper( ::aRows[ ::nRow ] ) )
-         lFound := .T.
-         ::oBrw:MoveCursor( ::nRow - n )
+   // Scan without mutating the browse's backing row. Failed searches must
+   // not desynchronize it from the visible cursor; from-top includes row 1.
+   n := nStart
+   DO WHILE n >= 1 .AND. n <= ::nRows
+      IF cString $ iif( lCaseSensitive, ::aRows[ n ], Upper( ::aRows[ n ] ) )
+         IF hb_defaultValue( nMode, 0 ) == 0
+            ::GoTop()
+            nOld := ::nRow
+         ENDIF
+         ::nRow := n
+         ::oBrw:MoveCursor( n - nOld )
          ::RefreshAll()
-         EXIT
+         RETURN .T.
       ENDIF
+      n += nStep
    ENDDO
 
-   RETURN lFound
+   RETURN .F.
 
 METHOD GoFirst() CLASS HBBrwText
 

@@ -211,6 +211,13 @@ try:
     send(b'window move 2 3\r');pump(.5)
     send(b'window size 10 40\r');pump(.5)
     check('Numeric window commands leave debugger usable', 'n := n +' in scr.text() and 'Command' in scr.text())
+    send(b'window size 16 78\r');pump(.4)
+    send(b'window move 1 0\r');pump(.4)
+    send(b'find procedure Main\r');pump(.6)
+    check('FIND includes first source line', 'procedure Main()' in ''.join(scr.g[2]) and scr.at[2][25] != scr.at[3][25])
+    before_find=[row[:] for row in scr.at[2:17]]
+    send(b'find NOT_PRESENT_xyz\r');pump(.4)
+    check('failed FIND preserves source cursor and view',before_find==scr.at[2:17])
     send(b'\x1bx');pump(.8)
     check('Debugger exits back to IDE', 'Edit' in scr.text() and 'fn.prg' in scr.text())
 finally:

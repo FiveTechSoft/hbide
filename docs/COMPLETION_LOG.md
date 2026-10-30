@@ -614,3 +614,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct02:35 Nested Compiler Help
 - Sin cambio de producto. CompilerFlagsPTYahorapruebaHelpencimadeopcioneseditadas,aunnoaplicadas. Escvuelvecontroles/valores; OKposteriortransmiteesosflagsalproceso.
 -12checksPASS candidato, amplia10previos,no22checks. Mismorunner42;51->54contratospreviossincrementonuevo. NoafirmaMSVCbuildporcapturarargv.
+
+## 30Oct02:49 Debugger search first row and misses
+- ModeloaisladoreproduceSearchfromTopnoencontrabaprimera fila y missmovianRowhastafinaldesincronizandocursor. Dosfallosantes; modelonuevo6contratosPASSdespues.
+- Scanlocalnindependiente,modificabrowsersoloconmatch; conservaGoTopparamatchfromTopparaevitarcambiodeviewportencontratoprevio. Case/next/previouspreservados.
+- DiezmodelosPASS candidato. DebugCommands30checksPASS candidato, peroPTYporsisolosaltoprimerafilanodistinguiabugantes: nuevaaceptacionsemanticasebasaenmodelo,límiteregistrado. NoafirmafixGOTOgeneralnitodasrutasLocate. Baseline38anteriornoheredada.

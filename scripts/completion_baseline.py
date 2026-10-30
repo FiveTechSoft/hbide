@@ -20,6 +20,7 @@ def run(name, args, cwd=ROOT, timeout=120):
             return 124
 
 cases = {
+    'debug-search': ['tests/test_debug_search.prg', 'hbdebug/tbrwtext.prg', 'hbdebug/dbgbrwsr.prg'],
     'designer': ['tests/test_designer.prg', 'designer.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'editor-repaint': ['tests/test_editor_repaint.prg', 'editor.prg', 'recovery.prg'],
     'find': ['tests/test_editor_find.prg', 'editor.prg', 'recovery.prg'],
