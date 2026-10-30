@@ -1396,6 +1396,8 @@ METHOD PROCEDURE DoScript( cFileName ) CLASS HBDebugger
             ::DoCommand( cLine )
          ENDIF
       NEXT
+   ELSE
+      ::CommandWindowDisplay( "Script file not found: " + cFileName, .F. )
    ENDIF
 
    RETURN

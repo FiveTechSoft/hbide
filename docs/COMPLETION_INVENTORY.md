@@ -505,41 +505,41 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:2056 | `case K_PGDN` |
 | editor.prg:2057 | `case K_MWFORWARD` |
 | editor.prg:2058 | `case K_MWBACKWARD` |
-| hbdebug/debugger.prg:1591 | `CASE K_LDBLCLK` |
-| hbdebug/debugger.prg:1611 | `CASE K_LBUTTONDOWN` |
-| hbdebug/debugger.prg:1640 | `CASE K_RBUTTONDOWN` |
-| hbdebug/debugger.prg:1643 | `CASE K_ESC` |
-| hbdebug/debugger.prg:1652 | `CASE K_ENTER` |
-| hbdebug/debugger.prg:1657 | `CASE K_UP` |
-| hbdebug/debugger.prg:1658 | `CASE K_DOWN` |
-| hbdebug/debugger.prg:1659 | `CASE K_LEFT` |
-| hbdebug/debugger.prg:1660 | `CASE K_RIGHT` |
-| hbdebug/debugger.prg:1661 | `CASE K_PGUP` |
-| hbdebug/debugger.prg:1662 | `CASE K_PGDN` |
-| hbdebug/debugger.prg:1663 | `CASE K_HOME` |
-| hbdebug/debugger.prg:1664 | `CASE K_END` |
-| hbdebug/debugger.prg:1665 | `CASE K_DEL` |
-| hbdebug/debugger.prg:1666 | `CASE K_CTRL_PGUP` |
-| hbdebug/debugger.prg:1667 | `CASE K_CTRL_PGDN` |
-| hbdebug/debugger.prg:1668 | `CASE K_CTRL_HOME` |
-| hbdebug/debugger.prg:1669 | `CASE K_CTRL_END` |
-| hbdebug/debugger.prg:1670 | `CASE K_CTRL_ENTER` |
-| hbdebug/debugger.prg:1674 | `CASE K_ALT_U /* Move the border between Command and Code windows Up */` |
-| hbdebug/debugger.prg:1678 | `CASE K_ALT_D /* Move the border between Command and Code windows Down */` |
-| hbdebug/debugger.prg:1682 | `CASE K_ALT_G /* Grow active window */` |
-| hbdebug/debugger.prg:1686 | `CASE K_ALT_S /* Shrink active window */` |
-| hbdebug/debugger.prg:1690 | `CASE K_F1` |
-| hbdebug/debugger.prg:1694 | `CASE K_F2` |
-| hbdebug/debugger.prg:1698 | `CASE K_F4` |
-| hbdebug/debugger.prg:1702 | `CASE K_F5` |
-| hbdebug/debugger.prg:1706 | `CASE K_CTRL_F5` |
-| hbdebug/debugger.prg:1710 | `CASE K_F6` |
-| hbdebug/debugger.prg:1714 | `CASE K_F7` |
-| hbdebug/debugger.prg:1718 | `CASE K_F8` |
-| hbdebug/debugger.prg:1722 | `CASE K_F9` |
-| hbdebug/debugger.prg:1726 | `CASE K_F10` |
-| hbdebug/debugger.prg:1730 | `CASE K_TAB` |
-| hbdebug/debugger.prg:1734 | `CASE K_SH_TAB` |
+| hbdebug/debugger.prg:1593 | `CASE K_LDBLCLK` |
+| hbdebug/debugger.prg:1613 | `CASE K_LBUTTONDOWN` |
+| hbdebug/debugger.prg:1642 | `CASE K_RBUTTONDOWN` |
+| hbdebug/debugger.prg:1645 | `CASE K_ESC` |
+| hbdebug/debugger.prg:1654 | `CASE K_ENTER` |
+| hbdebug/debugger.prg:1659 | `CASE K_UP` |
+| hbdebug/debugger.prg:1660 | `CASE K_DOWN` |
+| hbdebug/debugger.prg:1661 | `CASE K_LEFT` |
+| hbdebug/debugger.prg:1662 | `CASE K_RIGHT` |
+| hbdebug/debugger.prg:1663 | `CASE K_PGUP` |
+| hbdebug/debugger.prg:1664 | `CASE K_PGDN` |
+| hbdebug/debugger.prg:1665 | `CASE K_HOME` |
+| hbdebug/debugger.prg:1666 | `CASE K_END` |
+| hbdebug/debugger.prg:1667 | `CASE K_DEL` |
+| hbdebug/debugger.prg:1668 | `CASE K_CTRL_PGUP` |
+| hbdebug/debugger.prg:1669 | `CASE K_CTRL_PGDN` |
+| hbdebug/debugger.prg:1670 | `CASE K_CTRL_HOME` |
+| hbdebug/debugger.prg:1671 | `CASE K_CTRL_END` |
+| hbdebug/debugger.prg:1672 | `CASE K_CTRL_ENTER` |
+| hbdebug/debugger.prg:1676 | `CASE K_ALT_U /* Move the border between Command and Code windows Up */` |
+| hbdebug/debugger.prg:1680 | `CASE K_ALT_D /* Move the border between Command and Code windows Down */` |
+| hbdebug/debugger.prg:1684 | `CASE K_ALT_G /* Grow active window */` |
+| hbdebug/debugger.prg:1688 | `CASE K_ALT_S /* Shrink active window */` |
+| hbdebug/debugger.prg:1692 | `CASE K_F1` |
+| hbdebug/debugger.prg:1696 | `CASE K_F2` |
+| hbdebug/debugger.prg:1700 | `CASE K_F4` |
+| hbdebug/debugger.prg:1704 | `CASE K_F5` |
+| hbdebug/debugger.prg:1708 | `CASE K_CTRL_F5` |
+| hbdebug/debugger.prg:1712 | `CASE K_F6` |
+| hbdebug/debugger.prg:1716 | `CASE K_F7` |
+| hbdebug/debugger.prg:1720 | `CASE K_F8` |
+| hbdebug/debugger.prg:1724 | `CASE K_F9` |
+| hbdebug/debugger.prg:1728 | `CASE K_F10` |
+| hbdebug/debugger.prg:1732 | `CASE K_TAB` |
+| hbdebug/debugger.prg:1736 | `CASE K_SH_TAB` |
 | hbdebug/debugger.prg:836 | `CASE K_UP` |
 | hbdebug/debugger.prg:837 | `CASE K_F3` |
 | hbdebug/debugger.prg:843 | `CASE K_DOWN` |

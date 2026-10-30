@@ -136,6 +136,11 @@ try:
     send(b'\x1bf');pump(.3);send(b'o');assert wait_for('Open a file')
     send(work.encode()+b'/fn.prg\r');pump(.5)
     send(b'\x1br');pump(.3);send(b'd');assert wait_for('Command',12),scr.text()
+    send(b'input no-such-script-9287\r');pump(.4)
+    assert 'Script file not found: no-such-script-9287' in scr.text(),scr.text()
+    if os.environ.get('HBIDE_CAPTURE_GRID'):
+        import json
+        open(os.environ['HBIDE_CAPTURE_GRID'],'w').write(json.dumps({'grid':scr.g,'attributes':scr.at}))
     denied=os.path.join(work,'denied.cld')
     open(denied,'w').write('Num Off\nOptions TabWidth 12\n')
     os.chmod(denied,0)
