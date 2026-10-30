@@ -825,3 +825,4 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Reproducción nueva: con BP4 existente, `bp 4oops` lo desactivaba. La creación/conmutación de BP también usaba IsDigit y Val, fuera de las rutas DELETE ya corregidas.
 - Usa el validador de entero completo. RestoredPoints ampliado comprueba que 4oops y4.5 conservan BP4; siguen pasando TP/BP/WP DELETE. Candidato PASS y diez modelos PASS. Las formas de función BP MAIN y línea entera conservan sus caminos.
 - Sin cambio visual nuevo, sin certificación global ni Windows.
+- Repetición limpia b51db35: RestoredPoints PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-bp-line-b51db35.json. Binario 16c373a62e2eba4eb9bd45dd6f5f9eb49d72da0a3d8cfed03c4975ca131c4c79.
