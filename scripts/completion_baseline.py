@@ -20,6 +20,7 @@ def run(name, args, cwd=ROOT, timeout=120):
             return 124
 
 cases = {
+    'designer-inline-geometry': ['tests/test_designer_inline_geometry.prg', 'designer.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'designer-property-geometry': ['tests/test_designer_property_geometry.prg', 'designer.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'designer-property-cancel': ['tests/test_designer_property_cancel.prg', 'designer.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'project-output': ['tests/test_project_output.prg', 'projectui.prg', 'project.prg', 'recovery.prg'],

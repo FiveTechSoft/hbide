@@ -1931,7 +1931,7 @@ return nil
 
 METHOD InspSetText( cKey, cVal ) CLASS HbDesigner
 
-   local oCtrl
+   local oCtrl, aSize
 
    cVal = AllTrim( cVal )
 
@@ -1953,6 +1953,10 @@ METHOD InspSetText( cKey, cVal ) CLASS HbDesigner
          case cKey == "when" .or. cKey == "valid" .or. cKey == "focus" .or. cKey == "state"
             oCtrl[ cKey ] = cVal
       endcase
+      // Caption/items can grow without the classic properties dialog.
+      aSize := DsnControlSize( oCtrl )
+      oCtrl[ "row" ] := Max( 0, Min( ::nDlgHeight - 2 - aSize[ 2 ], oCtrl[ "row" ] ) )
+      oCtrl[ "col" ] := Max( 0, Min( ::nDlgWidth - 2 - aSize[ 1 ], oCtrl[ "col" ] ) )
    else
       do case
          case cKey == "dlgname"
