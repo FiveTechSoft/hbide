@@ -309,9 +309,7 @@ CREATE CLASS HBDebugger
 
    METHOD Step()
 
-   METHOD TabWidth() INLINE ;
-      ::nTabWidth := ::InputBox( "Tab width", ::nTabWidth ), ;
-      ::oBrwText:SetTabWidth( ::nTabWidth )
+   METHOD TabWidth()
 
    METHOD BreakPointToggle( nLine, cFileName )
    METHOD BreakPointDelete( cPos )
@@ -1174,7 +1172,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
          ENDIF
       CASE hb_LeftEq( "TABWIDTH", cParam1 )
          IF IsDigit( cParam2 )
-            ::nTabWidth := Min( Val( cParam2 ), 16 )
+            ::nTabWidth := Max( 1, Min( Val( cParam2 ), 16 ) )
             IF ::oBrwText != NIL
                ::oBrwText:SetTabWidth( ::nTabWidth )
             ENDIF
@@ -3103,6 +3101,19 @@ METHOD PROCEDURE ShowVars() CLASS HBDebugger
 
    RETURN
 
+
+METHOD PROCEDURE TabWidth() CLASS HBDebugger
+
+   LOCAL nWidth := ::InputBox( "Tab width", ::nTabWidth )
+
+   IF LastKey() != K_ESC
+      ::nTabWidth := Max( 1, Min( nWidth, 16 ) )
+      IF ::oBrwText != NIL
+         ::oBrwText:SetTabWidth( ::nTabWidth )
+      ENDIF
+   ENDIF
+
+   RETURN
 
 METHOD PROCEDURE Speed() CLASS HBDebugger
 

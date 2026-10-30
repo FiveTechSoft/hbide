@@ -731,3 +731,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - RunSpeed dialogaceptaba-5 ySaveguardabadelaynegativo; reproduccionantesfallaarchivo. RiesgodeInkeynegativono secertificacomononblock/hang,sereportasoloinputinvalidoobservado.
 - Dialogaplicacota0..65534igualsuperioralcomandoexistente, Escnopublica. PTYrestoredpointsexpandidoPASS: -5->0,65535->65534,Escconedit99preservavalor7. DiezmodelosPASScandidato.
 - Sin cambio visualnuevo, nopruebaacabadoAnimate. Baseline43sobre63239d2historico,Windows pendiente.
+
+## 30Oct06:06 Consistent tab-width bounds
+- DialogoguardabaTab-3mientrasbrowserclamp1; comando0guardaba0mientrasbrowser1. Reproduccionantesfallavalorserializado,noatribuyebugdepinturanoreproducido.
+- Dialog/comandoclamp1..16,Escpreserva ybrowserNILseguro. PTYrestoredpointsexpandidoPASS: -3->1,99->16,comando0->1,Esc12preserva4. DiezmodelosPASScandidato; noacabadoAnimate/Windows. Baseline43sobre63239d2historico.
