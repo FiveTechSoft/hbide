@@ -633,3 +633,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Esc en Search string seguia ejecutando la busqueda previa y movia la navegacion a su coincidencia, en vez de cancelar. Prueba final de menu real: 37PASS/1FAIL antes. El termino anterior ya se preservaba; la nueva comprobacion separada lo verifica, no se atribuye como arreglo.
 - Locate comprueba K_ESC antes de guardar o buscar. DebugCommands38PASS y diez modelosPASS candidato. Captura completa tras cancelar inspeccionada: navegacion permanece en linea60 y modal cerrado.
 - No cierra Locate global ni Windows. El baseline42 sobre0768ac2 sigue historico tras este cambio de producto; no se hereda como nueva pasada completa.
+
+## 30Oct03:28 Locate Previous and Case acceptance
+- Sin cambio de producto. DebugCommands amplia38->42checks: menus Next/Previous sobre dos coincidencias reales; Case sensitive rechaza mismatch uppercase y al desactivarse encuentra el mismo texto.
+- 42checksPTY PASS candidato, enlaza dos contratos nuevos (59/116). Mismo runner42suites, no confundir42checksdeDebugger con42suitesglobales. No acredita Locate exhaustivo ni Windows; baselineglobal0768ac2 sigue historico.

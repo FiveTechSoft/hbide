@@ -51,9 +51,9 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-004 | File | eXit    Alt-X | hbdebug/dbgmenu.prg:82 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-005 | Locate | Find | hbdebug/dbgmenu.prg:87 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-006 | Locate | Next | hbdebug/dbgmenu.prg:88 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-007 | Locate | Previous | hbdebug/dbgmenu.prg:89 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-007 | Locate | Previous | hbdebug/dbgmenu.prg:89 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-008 | Locate | Goto line... | hbdebug/dbgmenu.prg:90 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-009 | Locate | Case sensitive | hbdebug/dbgmenu.prg:92 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-009 | Locate | Case sensitive | hbdebug/dbgmenu.prg:92 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-010 | View | Sets | hbdebug/dbgmenu.prg:99 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-011 | View | WorkAreas   F6 | hbdebug/dbgmenu.prg:100 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-012 | View | App Screen  F4 | hbdebug/dbgmenu.prg:101 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -184,6 +184,8 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-005: Actual Locate Find/Next/Goto menu dispatch: matching source line, later miss retains selection, Goto accepts 60 and Esc preserves prior selection. Model covers first/next/previous/missing/case independently; not full Locate certification. Cancelar con Esc no mueve el cursor; conserva la busqueda anterior. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_search.prg](../tests/test_debug_search.prg)
 - DBG-006: Actual Locate Find/Next/Goto menu dispatch: matching source line, later miss retains selection, Goto accepts 60 and Esc preserves prior selection. Model covers first/next/previous/missing/case independently; not full Locate certification. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_search.prg](../tests/test_debug_search.prg)
 - DBG-008: Actual Locate Find/Next/Goto menu dispatch: matching source line, later miss retains selection, Goto accepts 60 and Esc preserves prior selection. Model covers first/next/previous/missing/case independently; not full Locate certification. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_search.prg](../tests/test_debug_search.prg)
+- DBG-007: Locate Previous menu returns from a later match to the earlier source line. Search model also checks first row and miss stability. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_search.prg](../tests/test_debug_search.prg)
+- DBG-009: Case sensitive menu toggle changes search matching: uppercase mismatch leaves cursor unchanged when enabled, selects source match when disabled. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_search.prg](../tests/test_debug_search.prg)
 
 ## Campos de inspector
 
