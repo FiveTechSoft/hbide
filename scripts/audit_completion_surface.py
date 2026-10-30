@@ -128,6 +128,36 @@ def modal_control_pairs(fields):
                     acceptance='Pending field-specific acceptance; source condition expansion only'))
     return pairs
 
+def ide_modal_fields():
+    """Bounded IDE modal declarations, including free-form non-GET inputs."""
+    lines=(ROOT/'hbide.prg').read_text().splitlines();rows=[]
+    for surface in ['GotoLine','CompilerFlags','ReplaceDialog','FindDialog','RunArguments','DisplayOpts']:
+        start=next(i for i,line in enumerate(lines) if line.startswith('METHOD '+surface+'('))
+        end=next((i for i in range(start+1,len(lines)) if lines[i].startswith('METHOD ')),len(lines))
+        seen={}
+        for i in range(start+1,end):
+            line=lines[i];match=re.search(r'^\s*@ .*?\bGET\s+(\w+)',line)
+            free=re.search(r'aIn := HBIDE_DlgInput\( (.*) \)',line)
+            if not match and not free:continue
+            if match:
+                variable=match.group(1)
+                # Continuation belongs to this declaration, never the next GET.
+                parts=[line];j=i
+                while parts[-1].rstrip().endswith(';') and j+1<end:
+                    j+=1;parts.append(lines[j])
+                block=' '.join(parts)
+                kind=next((k.lower() for k in ['PUSHBUTTON','CHECKBOX','RADIOGROUP','LISTBOX'] if k in block),'value')
+                caption=re.search(r'CAPTION "([^"]+)"',block)
+                label=caption.group(1).strip() if caption else variable
+            else:
+                args=[part.strip() for part in free.group(1).split(',')]
+                variable=args[3];kind='freeform_input';label=variable
+            seen[variable]=seen.get(variable,0)+1
+            rows.append(dict(id='IDE-FIELD-'+surface+'-'+variable+'-'+str(seen[variable]),
+                surface=surface,variable=variable,kind=kind,label=label,source='hbide.prg',line=i+1,
+                acceptance='Pending field-specific link; existing menu tests do not certify every field'))
+    return rows
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--json', action='store_true')
@@ -155,11 +185,11 @@ def main():
     for m in menus:
         m['acceptance']=acceptance.get(m['id'])
     report={'scope':'Source inventory only. No runtime or platform certification.',
-            'menus':menus,'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),'modal_control_pairs':modal_control_pairs(modal_fields()),
+            'menus':menus,'ide_modal_fields':ide_modal_fields(),'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),'modal_control_pairs':modal_control_pairs(modal_fields()),
             'inspector_fields': [dict(line=i+1, label=m.group(1), key=m.group(2), kind=m.group(3))
                 for i,line in enumerate((ROOT/'designer.prg').read_text().splitlines())
                 if (m := re.search(r'AAdd\( aFields, \{ \"([^\"]+)\",\s*\"([^\"]+)\",\s*\"([^\"]+)\"',line))],
-            'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields()),'modal_control_pairs':len(modal_control_pairs(modal_fields()))}}
+            'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields()),'modal_control_pairs':len(modal_control_pairs(modal_fields())),'ide_modal_declarations':len(ide_modal_fields())}}
     field_specs=specs.get('modal_field_acceptance',{})
     pair_ids={r['id'] for r in report['modal_control_pairs']}
     for ident,spec in field_specs.items():
@@ -208,6 +238,12 @@ def main():
             if isinstance(pair['acceptance'],dict):
                 links=', '.join('['+t+'](../tests/'+t+')' for t in pair['acceptance']['tests'])
                 print(f"- {pair['id']}: {pair['acceptance']['contract']} Pruebas: {links}")
+        print('\n## Campos de modales IDE acotados\n')
+        print('GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput libre; no limita inventario a GET. Otros modales y gestos pendientes, sin aceptacion implicita.\n')
+        print('| ID | Etiqueta / variable | Tipo | Fuente:linea | Aceptacion |')
+        print('| --- | --- | --- | --- | --- |')
+        for field in report['ide_modal_fields']:
+            print(f"| {field['id']} | {field['label']} | {field['kind']} | {field['source']}:{field['line']} | Pendiente vinculo por campo |")
         print('\n## Campos de inspector\n')
         print('| Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
         print('| --- | --- | --- | --- | --- |')

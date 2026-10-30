@@ -61,4 +61,20 @@ class ModalInventory(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Unresolved modal condition'):
             audit.modal_control_pairs([broken])
 
+    def test_ide_modal_non_get_inputs_and_multiline_kinds(self):
+        rows=audit.ide_modal_fields()
+        self.assertEqual(len(rows),26)
+        self.assertEqual(len({r['id'] for r in rows}),26)
+        fields={(r['surface'],r['variable']):r for r in rows}
+        self.assertEqual(fields['CompilerFlags','lWarnings']['kind'],'checkbox')
+        self.assertEqual(fields['CompilerFlags','cCompiler']['kind'],'radiogroup')
+        self.assertEqual(fields['DisplayOpts','cSize']['kind'],'radiogroup')
+        self.assertEqual(fields['ReplaceDialog','cFind']['kind'],'freeform_input')
+        self.assertEqual(fields['ReplaceDialog','cReplace']['kind'],'freeform_input')
+        self.assertEqual(sum(r['kind']=='freeform_input' for r in rows),4)
+    def test_ide_modal_source_lines(self):
+        lines=(ROOT/'hbide.prg').read_text().splitlines()
+        for row in audit.ide_modal_fields():
+            self.assertIn('HBIDE_DlgInput' if row['kind']=='freeform_input' else 'GET '+row['variable'],lines[row['line']-1])
+
 if __name__=='__main__':unittest.main()

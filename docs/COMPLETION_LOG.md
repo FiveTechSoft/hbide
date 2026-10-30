@@ -1399,3 +1399,14 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - All79source pairs now have focal test links, not79complete acceptances.
   Boundary combinations, dirty histories, visual/platform coverage remain
   open; M0/M4 are not closed by filling link cells. No product change.
+
+### 2026-10-30 Bounded IDE modal field inventory
+
+- Added26source declarations across GotoLine/CompilerFlags/Replace/Find/
+  RunArguments/Display, including four free-form HBIDE_DlgInput fields that
+  GET-only inventory would miss. Multiline GET kind continuation parsed.
+- Ten inventory tests check source identities and native kinds/non-GET
+  inclusions. Field links remain pending; existing menu tests not inherited
+  as whole-field acceptance. Other modals and gestures still pending.
+- No product change, no M0 closure. M2 synchronous limit stays unchanged;
+  no process-group-only cancellation contract or helper C introduced.

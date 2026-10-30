@@ -338,6 +338,39 @@ Expansion estricta de condiciones tipo-fuente; falla con sintaxis desconocida. I
 - DSN-FIELD-SelectFileName-lDummy-1-filename: Actual queued SelectFileName Esc/Cancel empty; default and typed80-character internal-space path accepted byte-exact after truncation fix. Picker keeps designer model/filename/history. Focal Linux40x120 pixels separate; not arbitrary lengths, filesystem or all inputs. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg)
 - DSN-FIELD-SelectFileName-lDummy-2-filename: Actual queued SelectFileName Esc/Cancel empty; default and typed80-character internal-space path accepted byte-exact after truncation fix. Picker keeps designer model/filename/history. Focal Linux40x120 pixels separate; not arbitrary lengths, filesystem or all inputs. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg)
 
+## Campos de modales IDE acotados
+
+GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput libre; no limita inventario a GET. Otros modales y gestos pendientes, sin aceptacion implicita.
+
+| ID | Etiqueta / variable | Tipo | Fuente:linea | Aceptacion |
+| --- | --- | --- | --- | --- |
+| IDE-FIELD-GotoLine-nLine-1 | number: | value | hbide.prg:336 | Pendiente vinculo por campo |
+| IDE-FIELD-GotoLine-lDummy-1 | &OK | pushbutton | hbide.prg:339 | Pendiente vinculo por campo |
+| IDE-FIELD-GotoLine-lDummy-2 | &Cancel | pushbutton | hbide.prg:342 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-cCompiler-1 | cCompiler | radiogroup | hbide.prg:1857 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-lWarnings-1 | &Warnings | checkbox | hbide.prg:1866 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-lDebug-1 | &Debug info | checkbox | hbide.prg:1872 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-lStrict-1 | S&trict types | checkbox | hbide.prg:1878 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-lIncremental-1 | &Incremental | checkbox | hbide.prg:1884 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-lOptimize-1 | O&ptimize code | checkbox | hbide.prg:1891 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1897 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1904 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1908 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1912 | Pendiente vinculo por campo |
+| IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2052 | Pendiente vinculo por campo |
+| IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2055 | Pendiente vinculo por campo |
+| IDE-FIELD-ReplaceDialog-cFind-1 | cFind | freeform_input | hbide.prg:2058 | Pendiente vinculo por campo |
+| IDE-FIELD-ReplaceDialog-cReplace-1 | cReplace | freeform_input | hbide.prg:2065 | Pendiente vinculo por campo |
+| IDE-FIELD-FindDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2109 | Pendiente vinculo por campo |
+| IDE-FIELD-FindDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2112 | Pendiente vinculo por campo |
+| IDE-FIELD-FindDialog-cText-1 | cText | freeform_input | hbide.prg:2115 | Pendiente vinculo por campo |
+| IDE-FIELD-RunArguments-lDummy-1 | &OK | pushbutton | hbide.prg:2447 | Pendiente vinculo por campo |
+| IDE-FIELD-RunArguments-lDummy-2 | &Cancel | pushbutton | hbide.prg:2450 | Pendiente vinculo por campo |
+| IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2453 | Pendiente vinculo por campo |
+| IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:2967 | Pendiente vinculo por campo |
+| IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:2975 | Pendiente vinculo por campo |
+| IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:2979 | Pendiente vinculo por campo |
+
 ## Campos de inspector
 
 | Campo | Clave | Tipo | Fuente:linea | Aceptacion |
