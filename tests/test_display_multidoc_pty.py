@@ -35,6 +35,9 @@ for kind in ['display']:
   # Cancel a different preset before committing a resize.
   send(b'\x1bo');send(b'd');send(b'\x1b[B');send(b'\x1b',.4)
   check('Display Cancel leaves grid unchanged',struct.unpack('HHHH',fcntl.ioctl(fd,termios.TIOCGWINSZ,b'\0'*8))[:2]==(40,120))
+  send(b'\x1bo');send(b'd');send(b'\x1b[B');send(b'\x1b[B')
+  send(b'\t');send(b'\t');send(b'\r',.5)
+  check('Display explicit Cancel leaves grid unchanged',struct.unpack('HHHH',fcntl.ioctl(fd,termios.TIOCGWINSZ,b'\0'*8))[:2]==(40,120))
   # Both inactive and active buffers have a distant cursor before shrinking.
   for _ in range(8):send(b'\x1b[6~',.05)
   send(b'\x1b[17;5~')

@@ -1144,7 +1144,7 @@
       "tests": [
         "test_compiler_flags_pty.py"
       ],
-      "contract": "Actual explicit OK persists selected compiler/flags into process argv. Cancel button not exercised by this Esc test."
+      "contract": "Actual explicit OK persists selected compiler/flags into process argv. Explicit Cancel has its own field test."
     },
     "IDE-FIELD-CompilerFlags-lDummy-3": {
       "tests": [
@@ -1156,13 +1156,13 @@
       "tests": [
         "test_display_multidoc_pty.py"
       ],
-      "contract": "Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel not covered."
+      "contract": "Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered."
     },
     "IDE-FIELD-DisplayOpts-lDummy-1": {
       "tests": [
         "test_display_multidoc_pty.py"
       ],
-      "contract": "Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel not covered."
+      "contract": "Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered."
     },
     "IDE-FIELD-ReplaceDialog-cFind-1": {
       "tests": [
@@ -1187,6 +1187,18 @@
         "test_edit_menu_pty.py"
       ],
       "contract": "Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows."
+    },
+    "IDE-FIELD-CompilerFlags-lDummy-2": {
+      "tests": [
+        "test_compiler_flags_pty.py"
+      ],
+      "contract": "Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform."
+    },
+    "IDE-FIELD-DisplayOpts-lDummy-2": {
+      "tests": [
+        "test_display_multidoc_pty.py"
+      ],
+      "contract": "Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform."
     }
   }
 }

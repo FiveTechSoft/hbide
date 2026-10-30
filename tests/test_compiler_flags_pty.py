@@ -46,6 +46,13 @@ for kind in ['flags']:
   args=build()
   check('Cancel preserves old flags',all(x in args for x in ['-comp=gcc','-w3','-es2']) and '-b' not in args and '-inc' not in args and '-O2' not in args)
   send(b'\x1bo');send(b'c',.5)
+  for _ in range(5):send(b'\t');send(b' ')
+  # Optimize -> AutoRun -> OK -> Cancel, explicitly activate button.
+  for _ in range(3):send(b'\t')
+  send(b'\r',.5)
+  args=build()
+  check('explicit Cancel preserves old flags',all(x in args for x in ['-comp=gcc','-w3','-es2']) and '-b' not in args and '-inc' not in args and '-O2' not in args)
+  send(b'\x1bo');send(b'c',.5)
   
   for _ in range(5):send(b'\t');send(b' ')
   # Help is nested over the unsaved options, then returns to the same controls.

@@ -1420,3 +1420,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   post-success launch behavior. Compiler/Display explicit Cancel untested by
   those Esc suites. Source links do not inherit past PASS to current HEAD.
 - No product change or global percentage; pending links identify real gaps.
+
+### 2026-10-30 Explicit Compiler/Display Cancel
+
+- Real PTY changes five compiler switches then activates Cancel button;
+  next fake compiler argv retains previous flags. Display switches preset
+  then explicit Cancel leaves40x120 grid unchanged. Esc paths retained.
+- Two new IDE field links (16of26), not equivalent behavior inferred from
+  Esc. No product change; AutoRun post-success behavior still unaccepted.

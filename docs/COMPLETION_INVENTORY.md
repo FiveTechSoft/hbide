@@ -355,7 +355,7 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput
 | IDE-FIELD-CompilerFlags-lOptimize-1 | O&ptimize code | checkbox | hbide.prg:1891 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1897 | Pendiente vinculo por campo |
 | IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1904 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1908 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1908 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1912 | Vinculo focal; ver alcance |
 | IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2052 | Pendiente vinculo por campo |
 | IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2055 | Pendiente vinculo por campo |
@@ -369,7 +369,7 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput
 | IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2453 | Pendiente vinculo por campo |
 | IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:2967 | Vinculo focal; ver alcance |
 | IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:2975 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:2979 | Pendiente vinculo por campo |
+| IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:2979 | Vinculo focal; ver alcance |
 - IDE-FIELD-GotoLine-nLine-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-CompilerFlags-cCompiler-1: Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lWarnings-1: Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
@@ -377,13 +377,15 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput
 - IDE-FIELD-CompilerFlags-lStrict-1: Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lIncremental-1: Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lOptimize-1: Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
-- IDE-FIELD-CompilerFlags-lDummy-1: Actual explicit OK persists selected compiler/flags into process argv. Cancel button not exercised by this Esc test. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
+- IDE-FIELD-CompilerFlags-lDummy-1: Actual explicit OK persists selected compiler/flags into process argv. Explicit Cancel has its own field test. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
+- IDE-FIELD-CompilerFlags-lDummy-2: Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lDummy-3: Actual nested Help opens compiler topic and Esc restores option controls/current checked state; later OK applies flags. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-ReplaceDialog-cFind-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-ReplaceDialog-cReplace-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-FindDialog-cText-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
-- IDE-FIELD-DisplayOpts-cSize-1: Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel not covered. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
-- IDE-FIELD-DisplayOpts-lDummy-1: Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel not covered. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
+- IDE-FIELD-DisplayOpts-cSize-1: Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
+- IDE-FIELD-DisplayOpts-lDummy-1: Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
+- IDE-FIELD-DisplayOpts-lDummy-2: Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
 
 ## Campos de inspector
 
