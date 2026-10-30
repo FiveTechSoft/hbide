@@ -1204,9 +1204,15 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ### 2026-10-30 Inline event control matrix
 
 - Expanded queued native inspector acceptance/dirty/one-undo/undo/redo/Esc
-  checks from ComboBox to GET, checkbox, button, radio, listbox and ComboBox.
+  checks from ComboBox to GET, checkbox, button, radiogroup, listbox and ComboBox.
   Twenty actual control/event pairs: GET When/Valid, other controls Focus,
   checkbox/listbox/ComboBox State. Keys resolved via InspFields; absent
   fields are not silently skipped. No product change or handler execution.
 - This is a model/UI-path matrix, not twenty independent features or visual
   acceptance for every field. Integrated pixels above remain When/ComboBox.
+
+- Fixture correction: first matrix used the unsupported short type "radio".
+  xBase substring membership still exposed three fields, so that pass did not
+  certify a native radio control. Replaced it with actual DSN_RADIO value
+  "radiogroup" and reran from a clean revision. Earlier evidence is retained
+  but superseded for the radio portion, not described as native radio proof.

@@ -60,7 +60,7 @@ PROCEDURE Main()
    hb_keyPut(K_CTRL_Y);hb_keyPut(Asc("X"));hb_keyPut(K_ESC)
    o:EditProperties()
    Check(DsnSnapEqual(h,DsnSnapshot(o)),"cancel after handler edit preserves full handler")
-   FOR EACH cType IN {"get","checkbox","button","radio","listbox","combobox"}
+   FOR EACH cType IN {"get","checkbox","button","radiogroup","listbox","combobox"}
    o:aControls:={DsnNewControl(cType,{})}
    o:nSelected:=1
    o:lInspector:=.T.
