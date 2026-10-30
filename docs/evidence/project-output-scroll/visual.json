@@ -1,0 +1,9 @@
+{
+  "scope": "Direct native Linux GTTRM viewer at25x80, not full IDE integration or Windows",
+  "source_parent": "8b6e668",
+  "patch_files": [
+    "projectui.prg"
+  ],
+  "inspected": "Left shows BEGIN/second line, right shows complete DIAGNOSTIC TAIL; caption and all borders visible",
+  "entrypoint": "HBIDEProjectOutput with long synthetic compiler path"
+}

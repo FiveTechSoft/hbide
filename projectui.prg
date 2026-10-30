@@ -120,27 +120,34 @@ FUNCTION HBIDEProjectPaint( oProject, lMessages, aRows, nPick, nTop, nVisible )
 
 FUNCTION HBIDEProjectOutput( cOutput )
    LOCAL a := hb_ATokens( cOutput, Chr(10) ), nTop := 1, nKey, nR := MaxRow(), nC := MaxCol(), i, n, cLine
+   LOCAL nLeft := 1, nMaxWidth := 0, nWidth := Max( 1, nC - 7 )
+   FOR EACH cLine IN a
+      nMaxWidth := Max( nMaxWidth, Len( cLine ) )
+   NEXT
    DO WHILE .T.
       hb_Scroll( 2, 2, nR - 2, nC - 2,,, "N/W" )
       hb_DispBox( 2, 2, nR - 2, nC - 2, hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "N/W" )
-      hb_DispOutAt( 2, 4, " Build output - Up/Down/PgUp/PgDn/Home/End - Esc Back ", "W+/B" )
+      hb_DispOutAt( 2, 4, " Output - arrows scroll; PgUp/PgDn/Home/End; Esc Back ", "W+/B" )
       FOR i := 0 TO nR - 7
          n := nTop + i; cLine := ""
          IF n <= Len( a )
             cLine := a[ n ]
          ENDIF
-         hb_DispOutAt( 3 + i, 4, PadR( Left( cLine, nC - 7 ), nC - 7 ), "N/W" )
+         hb_DispOutAt( 3 + i, 4, PadR( SubStr( cLine, nLeft, nWidth ), nWidth ), "N/W" )
       NEXT
       nKey := hb_keyStd( Inkey( 0, INKEY_ALL + HB_INKEY_EXT ) )
       DO CASE
       CASE nKey == K_ESC; EXIT
       CASE nKey == K_UP; nTop--
       CASE nKey == K_DOWN; nTop++
+      CASE nKey == K_LEFT; nLeft--
+      CASE nKey == K_RIGHT; nLeft++
       CASE nKey == K_PGUP; nTop -= nR - 6
       CASE nKey == K_PGDN; nTop += nR - 6
       CASE nKey == K_HOME; nTop := 1
       CASE nKey == K_END; nTop := Len( a ) - nR + 7
       ENDCASE
+      nLeft := Max( 1, Min( nLeft, Max( 1, nMaxWidth - nWidth + 1 ) ) )
       nTop := Max( 1, Min( nTop, Max( 1, Len( a ) - nR + 7 ) ) )
    ENDDO
    RETURN NIL
