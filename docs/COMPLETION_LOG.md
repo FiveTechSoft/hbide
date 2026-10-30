@@ -1538,3 +1538,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - No product change. Explicit lEditable false, deeper nesting, pointers/
   blocks and getter/setter faults not accepted.86runner entries85cases/
   modes+guard.
+
+### 2026-10-30 Watchpoint input and readonly inspection
+
+- Actual Point Watch add n=>1 and Points Enter edit n+2=>3; add/edit
+  typedEsc and invalid expression/Esc preserve exact saved WP list.
+  Points CtrlEnter (nativeK_CTRL_ENTER10) inspector shows3 and refuses
+  typing. Resume debuggee writes2, unchanged by watch operations.
+-14focal checks,17of27caller links.87runner entries86case/modes+guard.
+  Structured inspection and side-effect expressions remain unaccepted.
+  No product change or milestone closure.

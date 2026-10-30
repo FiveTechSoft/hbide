@@ -1448,6 +1448,24 @@
         "test_debug_structured_modal_pty.py"
       ],
       "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Focal default editable branch only, not lEditable false, nested depths, getter/setter faults or all expressions/platforms."
+    },
+    "DBG-INPUT-debugger-WatchpointAdd-inputbox-1": {
+      "tests": [
+        "test_debug_watch_modal_pty.py"
+      ],
+      "contract": "Actual Point Watch add n evaluates1; Points Enter edit n+2 evaluates3. Add/edit typedEsc or invalid expression then Esc preserve exact saved WP expressions. Points CtrlEnter scalar inspector shows3 and refuses typing; resumed debuggee writes2 unchanged. No structured inspect/depth/side-effect expression or all platform acceptance."
+    },
+    "DBG-INPUT-debugger-WatchpointEdit-inputbox-1": {
+      "tests": [
+        "test_debug_watch_modal_pty.py"
+      ],
+      "contract": "Actual Point Watch add n evaluates1; Points Enter edit n+2 evaluates3. Add/edit typedEsc or invalid expression then Esc preserve exact saved WP expressions. Points CtrlEnter scalar inspector shows3 and refuses typing; resumed debuggee writes2 unchanged. No structured inspect/depth/side-effect expression or all platform acceptance."
+    },
+    "DBG-INPUT-debugger-WatchpointInspect-inputbox-1": {
+      "tests": [
+        "test_debug_watch_modal_pty.py"
+      ],
+      "contract": "Actual Point Watch add n evaluates1; Points Enter edit n+2 evaluates3. Add/edit typedEsc or invalid expression then Esc preserve exact saved WP expressions. Points CtrlEnter scalar inspector shows3 and refuses typing; resumed debuggee writes2 unchanged. No structured inspect/depth/side-effect expression or all platform acceptance."
     }
   }
 }
