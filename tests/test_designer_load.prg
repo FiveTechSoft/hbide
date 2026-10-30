@@ -1,6 +1,6 @@
 #include "hbclass.ch"
 PROCEDURE Main()
-   LOCAL o:=LoadDesigner():New(LoadHost():New()),h,cJson,cBad,cType,cEvent,cExpr
+   LOCAL o:=LoadDesigner():New(LoadHost():New()),h,cJson,cBad,cType,cEvent,cExpr,nWidth,hModel
    SetMode(25,80)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
    o:FitWindow()
@@ -85,6 +85,20 @@ PROCEDURE Main()
       Check(o:aControls[1,cEvent]==cExpr,"string handler preserved after Save/Load")
    NEXT
    Check(cExpr$DsnGenCode(DsnBuildModel(o)),"handler text retained in generation")
+   FOR nWidth:=1 TO 3
+      hModel:={"controls"=>{DsnNewControl("get",{})}}
+      hModel["controls"][1,"width"]:=nWidth
+      hb_MemoWrit("bad.json",hb_jsonEncode(hModel))
+      o:cNext:="bad.json"
+      o:LoadJson()
+      Check(o:aControls[1,"width"]==nWidth,"Load keeps documented narrow GET")
+      o:cFileName:="narrow.json"
+      o:SaveJson(.F.)
+      o:cNext:="narrow.json"
+      o:LoadJson()
+      Check(o:aControls[1,"width"]==nWidth,"Save/Load keeps narrow GET width")
+      Check("Space( "+hb_ntos(nWidth)+" )"$DsnGenCode(DsnBuildModel(o)),"generated narrow GET width kept")
+   NEXT
    ? "PASS designer load refusals and undo/redo"
    RETURN
 STATIC PROCEDURE Check(lOk,cText)

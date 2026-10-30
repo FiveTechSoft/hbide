@@ -3303,7 +3303,7 @@ procedure DsnNormalizeControls( aControls )
 
       // sizes with the same clamps as the properties dialog
       if oCtrl[ "type" ] == DSN_GET
-         oCtrl[ "width" ] = Max( 4, Min( 40, Int( DsnNum( hb_HGetDef( oCtrl, "width", 10 ), 10 ) ) ) )
+         oCtrl[ "width" ] = Max( 1, Min( 40, Int( DsnNum( hb_HGetDef( oCtrl, "width", 10 ), 10 ) ) ) )
       endif
       if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )
          oCtrl[ "width" ]  = Max( 4, Min( 40, Int( DsnNum( hb_HGetDef( oCtrl, "width", 20 ), 20 ) ) ) )

@@ -31,6 +31,11 @@ PROCEDURE Main()
          cCode:=DsnGenCode({"controls"=>a})
          Check(!("{|| 123"$cCode),"nontext event ignored")
       NEXT
+      a:={DsnNewControl("get",{})}
+      DsnResize(a[1],-99,0,40,12)
+      Check(a[1,"width"]==1,"drag allows one-cell GET")
+      DsnNormalizeControls(a)
+      Check(a[1,"width"]==1,"JSON roundtrip preserves one-cell GET")
       a:={{"type"=>"combo"},{"type"=>""}}
       DsnNormalizeControls(a)
       Check(Empty(a),"partial type names rejected")

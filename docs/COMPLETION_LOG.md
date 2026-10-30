@@ -1152,3 +1152,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   expressions byte-exact, including quoted arguments. Generated source retains
   handler text. No event expression is executed by this model check.
 - Existing behavior passes; no product fix or arbitrary PRG two-way import.
+
+### 2026-10-30 Narrow GET JSON preservation
+
+- Reproduced documented drag minimum1 expanding to4 when JSON reloaded.
+- Normalization now retains widths1..3 already valid through drag. Inspector
+  and property minimums remain4; no inferred UI policy change.
+- Actual Load/Save/Load and generated Space(width) preserve1/2/3. This follows
+  existing documented drag contract; oversized and filename-undo unaffected.
