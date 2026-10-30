@@ -14,9 +14,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "run-empty-args",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_run_empty_args_pty.py"
+        "tests/test_run_empty_args_pty.py"
       ],
       "started": 1793320142.3520262,
       "seconds": 20.21,
@@ -24,7 +24,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "38110f01457b6b707a630e32a0c4a44189e5a676c637209a9e3960f44a33c520",
-      "log": "/tmp/hbide-pty-4616d24/run-empty-args-1793320142352021507.log"
+      "log": "run-empty-args-1793320142352021507.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -36,9 +36,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "script-screen",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_script_screen_pty.py"
+        "tests/test_script_screen_pty.py"
       ],
       "started": 1793320162.5579681,
       "seconds": 6.98,
@@ -46,7 +46,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "f2a410361f5490a93d8b9980cb600d2ab2c6de20ba8ba7f52ca1fc73eee96614",
-      "log": "/tmp/hbide-pty-4616d24/script-screen-1793320162557963773.log"
+      "log": "script-screen-1793320162557963773.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -58,9 +58,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "source-includes",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_source_includes_pty.py"
+        "tests/test_source_includes_pty.py"
       ],
       "started": 1793320169.5400376,
       "seconds": 13.89,
@@ -68,7 +68,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "117954e588fb44629ce8a521e003d39570913841af16b5a2168f35018821be57",
-      "log": "/tmp/hbide-pty-4616d24/source-includes-1793320169540033139.log"
+      "log": "source-includes-1793320169540033139.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -80,9 +80,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "script-errors",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_script_errors_pty.py"
+        "tests/test_script_errors_pty.py"
       ],
       "started": 1793320183.4335744,
       "seconds": 18.2,
@@ -90,7 +90,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "5fa2c6ad9066943a72eda04e3a43b84dde2393ec9cc9a37a3ffa2e48c1a9d90f",
-      "log": "/tmp/hbide-pty-4616d24/script-errors-1793320183433570636.log"
+      "log": "script-errors-1793320183433570636.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -102,9 +102,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "start-paths",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_start_paths_pty.py"
+        "tests/test_start_paths_pty.py"
       ],
       "started": 1793320201.635102,
       "seconds": 15.75,
@@ -112,7 +112,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "5d6480733df1778be1a3303b97c4d02b4915eeb8c8247b158a14445f6c45075d",
-      "log": "/tmp/hbide-pty-4616d24/start-paths-1793320201635098446.log"
+      "log": "start-paths-1793320201635098446.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -124,9 +124,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "run-source",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_run_source_pty.py"
+        "tests/test_run_source_pty.py"
       ],
       "started": 1793320217.3823843,
       "seconds": 13.94,
@@ -134,7 +134,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
-      "log": "/tmp/hbide-pty-4616d24/run-source-1793320217382381007.log"
+      "log": "run-source-1793320217382381007.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -146,9 +146,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "gui-roundtrip",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_gui_roundtrip_pty.py"
+        "tests/test_gui_roundtrip_pty.py"
       ],
       "started": 1793320234.4384522,
       "seconds": 28.67,
@@ -156,7 +156,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "dc587381f7efd78ee0c6dac439d066dcfce8fa0b2737aa76fde4f0bba16d7767",
-      "log": "/tmp/hbide-pty-4616d24/gui-roundtrip-1793320234438447695.log"
+      "log": "gui-roundtrip-1793320234438447695.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -168,9 +168,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "combobox",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_combobox_pty.py"
+        "tests/test_combobox_pty.py"
       ],
       "started": 1793320263.1094038,
       "seconds": 33.03,
@@ -178,7 +178,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "314281579fd028478bd32fa03f57884d219ec81b85a860fed0ae95d7cd26247b",
-      "log": "/tmp/hbide-pty-4616d24/combobox-1793320263109400032.log"
+      "log": "combobox-1793320263109400032.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -190,9 +190,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "designer",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_designer_pty.py"
+        "tests/test_designer_pty.py"
       ],
       "started": 1793320296.136342,
       "seconds": 24.71,
@@ -200,7 +200,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "f81758bfc8ea0f62bb84910a95b4bb09ba5cb522cdd2495a4bcea5ee5c6a4e97",
-      "log": "/tmp/hbide-pty-4616d24/designer-1793320296136338117.log"
+      "log": "designer-1793320296136338117.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -212,9 +212,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "edit-menu",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_edit_menu_pty.py"
+        "tests/test_edit_menu_pty.py"
       ],
       "started": 1793320359.0342157,
       "seconds": 43.59,
@@ -222,7 +222,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "5c557e0f3dadd097040c15ea7a5c743d4e910f37f84f10dd772e6cb11ad98c4a",
-      "log": "/tmp/hbide-pty-4616d24/edit-menu-1793320359034211717.log"
+      "log": "edit-menu-1793320359034211717.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -234,9 +234,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "multidoc",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_multidoc_pty.py"
+        "tests/test_multidoc_pty.py"
       ],
       "started": 1793320402.6268642,
       "seconds": 59.92,
@@ -244,7 +244,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "4441eda434c5d55b3a2736b32759589977f38ef4460f568f45cedfdb2d59764d",
-      "log": "/tmp/hbide-pty-4616d24/multidoc-1793320402626860171.log"
+      "log": "multidoc-1793320402626860171.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -256,9 +256,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "navigation",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_nav_pty.py"
+        "tests/test_nav_pty.py"
       ],
       "started": 1793320465.1486025,
       "seconds": 66.83,
@@ -266,7 +266,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "1a4bc70d1b37cd6915c6e39d48ad819421db5e759926bd00d834c57e4c11a04b",
-      "log": "/tmp/hbide-pty-4616d24/navigation-1793320465148598805.log"
+      "log": "navigation-1793320465148598805.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -278,9 +278,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "project-desktop",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_project_desktop_pty.py"
+        "tests/test_project_desktop_pty.py"
       ],
       "started": 1793320535.0192964,
       "seconds": 29.72,
@@ -288,7 +288,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "fb625386e5645a45fa30f022965c7c0f14689140be527b751e2469086644e65f",
-      "log": "/tmp/hbide-pty-4616d24/project-desktop-1793320535019292967.log"
+      "log": "project-desktop-1793320535019292967.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -300,9 +300,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "project-messages",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_project_messages_pty.py"
+        "tests/test_project_messages_pty.py"
       ],
       "started": 1793320564.7396326,
       "seconds": 23.06,
@@ -310,7 +310,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "fb54d7fe3bb7b29ebab71979954ec63c7b57f4308a472576a7b5b8363dae0b98",
-      "log": "/tmp/hbide-pty-4616d24/project-messages-1793320564739628706.log"
+      "log": "project-messages-1793320564739628706.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -322,9 +322,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "saveall-failure",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_saveall_fail_pty.py"
+        "tests/test_saveall_fail_pty.py"
       ],
       "started": 1793320587.7979035,
       "seconds": 17.8,
@@ -332,7 +332,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "867f41dfed5f1947f30ef5b090265a1cc87ec7ee1177947074e59acb548b729f",
-      "log": "/tmp/hbide-pty-4616d24/saveall-failure-1793320587797899887.log"
+      "log": "saveall-failure-1793320587797899887.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -344,9 +344,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "saveas-recovery",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_saveas_refusal_recovery_pty.py",
+        "tests/test_saveas_refusal_recovery_pty.py",
         "hbide"
       ],
       "started": 1793320608.5054088,
@@ -355,7 +355,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "ec10d6e7bb4251cdd2e7ae6ca891f520b314bbe2ed99b38f57cd96229eddbc59",
-      "log": "/tmp/hbide-pty-4616d24/saveas-recovery-1793320608505405062.log"
+      "log": "saveas-recovery-1793320608505405062.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -367,9 +367,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "breakpoint-delete",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_bp_delete_policy.py",
+        "tests/test_bp_delete_policy.py",
         "hbide"
       ],
       "started": 1793320639.7285938,
@@ -378,7 +378,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "c6ea1d1004d2a70d381d089bbb0badca3967dce444e76ef5a2a35b27ff70ce95",
-      "log": "/tmp/hbide-pty-4616d24/breakpoint-delete-1793320639728591040.log"
+      "log": "breakpoint-delete-1793320639728591040.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -390,9 +390,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-multi",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_multi.py",
+        "tests/test_recovery_multi.py",
         "hbide"
       ],
       "started": 1793320658.280423,
@@ -401,7 +401,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "75fcda145e583d6b5345bca2f4a06e2f1f6cd2084f255b6bea28a0a318ade722",
-      "log": "/tmp/hbide-pty-4616d24/recovery-multi-1793320658280419861.log"
+      "log": "recovery-multi-1793320658280419861.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -413,9 +413,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-retention",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_retention.py",
+        "tests/test_recovery_retention.py",
         "hbide"
       ],
       "started": 1793320667.1990855,
@@ -424,7 +424,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "0cb803de7652d2157452b006d9643c8132e4fdc817915630573b72c451d0bf2b",
-      "log": "/tmp/hbide-pty-4616d24/recovery-retention-1793320667199081593.log"
+      "log": "recovery-retention-1793320667199081593.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -436,9 +436,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-deep-path",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "tests/test_recovery_deep_path.py",
         "hbide"
       ],
       "started": 1793320672.3287647,
@@ -447,7 +447,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
-      "log": "/tmp/hbide-pty-4616d24/recovery-deep-path-1793320672328761254.log"
+      "log": "recovery-deep-path-1793320672328761254.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -459,9 +459,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-utf8-host",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "tests/test_recovery_deep_path.py",
         "hbide",
         "--utf8-host"
       ],
@@ -471,7 +471,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
-      "log": "/tmp/hbide-pty-4616d24/recovery-utf8-host-1793320677808915525.log"
+      "log": "recovery-utf8-host-1793320677808915525.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -483,9 +483,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-utf8-raw",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "tests/test_recovery_deep_path.py",
         "hbide",
         "--utf8-raw"
       ],
@@ -495,7 +495,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
-      "log": "/tmp/hbide-pty-4616d24/recovery-utf8-raw-1793320686465432715.log"
+      "log": "recovery-utf8-raw-1793320686465432715.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -507,9 +507,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-codepage-refusal",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "tests/test_recovery_deep_path.py",
         "hbide",
         "--refuse-cp"
       ],
@@ -519,7 +519,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
-      "log": "/tmp/hbide-pty-4616d24/recovery-codepage-refusal-1793320693548098771.log"
+      "log": "recovery-codepage-refusal-1793320693548098771.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -531,9 +531,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-codepage",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "tests/test_recovery_deep_path.py",
         "hbide",
         "--utf8-bom",
         "--switch-cp"
@@ -544,7 +544,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
-      "log": "/tmp/hbide-pty-4616d24/recovery-codepage-1793320699527830047.log"
+      "log": "recovery-codepage-1793320699527830047.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -556,9 +556,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-utf8-bom",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "tests/test_recovery_deep_path.py",
         "hbide",
         "--utf8-bom"
       ],
@@ -568,7 +568,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
-      "log": "/tmp/hbide-pty-4616d24/recovery-utf8-bom-1793320705007629548.log"
+      "log": "recovery-utf8-bom-1793320705007629548.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -580,9 +580,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-tabs",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "tests/test_recovery_deep_path.py",
         "hbide",
         "--tabs"
       ],
@@ -592,7 +592,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
-      "log": "/tmp/hbide-pty-4616d24/recovery-tabs-1793320710487442822.log"
+      "log": "recovery-tabs-1793320710487442822.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -604,9 +604,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-mixed-eol",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "tests/test_recovery_deep_path.py",
         "hbide",
         "--mixed-eol"
       ],
@@ -616,7 +616,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
-      "log": "/tmp/hbide-pty-4616d24/recovery-mixed-eol-1793320715966920363.log"
+      "log": "recovery-mixed-eol-1793320715966920363.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -628,9 +628,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-crlf",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "tests/test_recovery_deep_path.py",
         "hbide",
         "--crlf"
       ],
@@ -640,7 +640,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
-      "log": "/tmp/hbide-pty-4616d24/recovery-crlf-1793320721446857401.log"
+      "log": "recovery-crlf-1793320721446857401.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -652,9 +652,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "recovery-route-guard",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_recovery_route_guard.py"
+        "tests/test_recovery_route_guard.py"
       ],
       "started": 1793320726.9267604,
       "seconds": 0.02,
@@ -662,7 +662,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "97f17c514f6bd7ce30d65c2d9234423275e39923e43d70175e18d010d817ca43",
-      "log": "/tmp/hbide-pty-4616d24/recovery-route-guard-1793320726926756465.log"
+      "log": "recovery-route-guard-1793320726926756465.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -674,9 +674,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "debug-commands",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_debug_commands_pty.py"
+        "tests/test_debug_commands_pty.py"
       ],
       "started": 1793320729.679254,
       "seconds": 32.98,
@@ -684,7 +684,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "baba6072fd183412b7d65081f1b84e21cfef7f4447447999104501f0734f2f7b",
-      "log": "/tmp/hbide-pty-4616d24/debug-commands-1793320729679250514.log"
+      "log": "debug-commands-1793320729679250514.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -696,9 +696,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "debug-session",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_debug_session_pty.py"
+        "tests/test_debug_session_pty.py"
       ],
       "started": 1793320762.6567128,
       "seconds": 25.56,
@@ -706,7 +706,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "20f0276c19f993c911ff4cee2d824de8f3ebf0ce897a4bdbaaa0194dd52616a7",
-      "log": "/tmp/hbide-pty-4616d24/debug-session-1793320762656708901.log"
+      "log": "debug-session-1793320762656708901.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -718,9 +718,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "debug-startup",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_debug_startup_pty.py"
+        "tests/test_debug_startup_pty.py"
       ],
       "started": 1793320788.2191124,
       "seconds": 14.34,
@@ -728,7 +728,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "8cb2433919c705abbbf7dc29ae41276a50c60733ab4dcddfa287ae8c5ce3e1c6",
-      "log": "/tmp/hbide-pty-4616d24/debug-startup-1793320788219108719.log"
+      "log": "debug-startup-1793320788219108719.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -740,9 +740,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "debug-functions",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_debug_functions_pty.py"
+        "tests/test_debug_functions_pty.py"
       ],
       "started": 1793320805.0396023,
       "seconds": 115.02,
@@ -750,7 +750,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "0c3b9fb1e56133dc2d492393e449bad1767d609c477fca445784b798c3ab82d2",
-      "log": "/tmp/hbide-pty-4616d24/debug-functions-1793320805039598886.log"
+      "log": "debug-functions-1793320805039598886.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -762,9 +762,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "debug-monitor",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_debug_monitor_pty.py"
+        "tests/test_debug_monitor_pty.py"
       ],
       "started": 1793320922.927724,
       "seconds": 12.19,
@@ -772,7 +772,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "3cc1d52bf9314c9e0e00da6199f7cb40dcf71368adf442fdaecd6f75f0f93812",
-      "log": "/tmp/hbide-pty-4616d24/debug-monitor-1793320922927719754.log"
+      "log": "debug-monitor-1793320922927719754.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -784,9 +784,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "debug-callstack",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_debug_callstack_pty.py"
+        "tests/test_debug_callstack_pty.py"
       ],
       "started": 1793320935.1195686,
       "seconds": 10.59,
@@ -794,7 +794,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "9001d4ee8556702a2e501584729de521c3bc3b8aff81bb3f316221a8837ee414",
-      "log": "/tmp/hbide-pty-4616d24/debug-callstack-1793320935119565436.log"
+      "log": "debug-callstack-1793320935119565436.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -806,9 +806,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "debug-codeblock",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_debug_codeblock_pty.py"
+        "tests/test_debug_codeblock_pty.py"
       ],
       "started": 1793320945.7084155,
       "seconds": 19.95,
@@ -816,7 +816,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "8060507fa16d49725f711cdb79236c1eab2bbc52fd7ec6dca51d1dccf7b72bc2",
-      "log": "/tmp/hbide-pty-4616d24/debug-codeblock-1793320945708411516.log"
+      "log": "debug-codeblock-1793320945708411516.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -828,9 +828,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "debug-animate",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_debug_animate_pty.py"
+        "tests/test_debug_animate_pty.py"
       ],
       "started": 1793320965.6633136,
       "seconds": 7.58,
@@ -838,7 +838,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "20b56116fb9ff1e6f749fed80b202fb7e95e01873c9dfdb3bb62b99cac2822b7",
-      "log": "/tmp/hbide-pty-4616d24/debug-animate-1793320965663309794.log"
+      "log": "debug-animate-1793320965663309794.log"
     },
     {
       "source": "4616d245cc0d22a5f4a1ec90130a6eac87d5c217",
@@ -850,9 +850,9 @@
       "runner_sha256": "530f6cee08cfac1f8e693443d333fb1e09df29cf3de65db89a1df00a168f7b70",
       "case": "debug-exits",
       "command": [
-        "/opt/instinct/compat-bin/python",
+        "python",
         "-u",
-        "/home/sandbox/hbide/tests/test_debug_exit_paths_pty.py"
+        "tests/test_debug_exit_paths_pty.py"
       ],
       "started": 1793320977.7009368,
       "seconds": 65.28,
@@ -860,7 +860,7 @@
       "printed_failure": false,
       "source_or_binary_changed": false,
       "test_sha256": "68e3eec2eb09c13173e3bfec4c118b11c46b9006d9e84d902a510726f47f31e7",
-      "log": "/tmp/hbide-pty-4616d24/debug-exits-1793320977700932984.log"
+      "log": "debug-exits-1793320977700932984.log"
     }
   ],
   "models": {
@@ -869,7 +869,7 @@
     "tracked_changes": "",
     "runner_sha256": "d2f2a8490400b0dd85fa1de83d18f625800c41e7544f327431ae2df7a65ff4a7",
     "platform": "Linux",
-    "hbmk2": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "hbmk2": "hbmk2 from selected Harbour installation on PATH",
     "started": 1793321043.016051,
     "scope": "Linux model probes only. Not PTY, visual or Windows certification.",
     "tests": {
