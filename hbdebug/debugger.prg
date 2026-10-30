@@ -2591,9 +2591,7 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
       ::cSettingsFileName := cFileName
    ENDIF
 
-   IF ! Empty( ::cPathForFiles )
-      cInfo += "Options Path " + ::cPathForFiles + hb_eol()
-   ENDIF
+   cInfo += "Options Path " + hb_defaultValue( ::cPathForFiles, "" ) + hb_eol()
 
    cInfo += "Options Colors {"
    FOR EACH n IN ::aColors

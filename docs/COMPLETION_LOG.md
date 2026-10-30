@@ -684,3 +684,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - SaveomitiaCaseSensitive, restaurar no reponia valor guardado:56PASS/1FAILantes, uppercasefallabamatchdespuesdeguardarsinCase yactivarlo.
 - LocateCaseSensitiveadmiteON/OFFexplicitos, sinvalor/menu conservatoggle. Saveescribeambosestados. Commands60PASS y10modelosPASS candidato: OFFrestauradomatch, ONrepetidorechazomismatch, archivoexplicito e invalidorechazado.
 - Sin nuevo cambio visual; nuevocheckdeestadosemanticousanavegacionyaexistente. No cierraRestoreglobal: path/points/hidden/windowsetdifferentpendientes. Runner42suites60contratos, baselineglobal0768ac2historico;Windows pendiente.
+
+## 30Oct04:37 Restore empty source path
+- Saveomitiapathvacio: guardarvacio,cambiarlo yrestoreconservabadirectorioajeno. Commands60PASS/1FAILantes.
+- SaveemiteOptionsPathinclusovacio; parserexistenteyatrataemptycomoborradoexplicito. Commands64PASS y10modelosPASS candidato: archivoemitido, vaciorepuesto, sourceexternonoresuelvetrasclear ypathnovaciorestauraresolucionreal.
+- Sin cambio visualnuevo; no cierraRestoreglobal(points/hidden/windowsetdifferentpendientes). Runner42suites60contratos, baselineglobal0768ac2historico;Windowspendiente.
