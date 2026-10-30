@@ -826,3 +826,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Usa el validador de entero completo. RestoredPoints ampliado comprueba que 4oops y4.5 conservan BP4; siguen pasando TP/BP/WP DELETE. Candidato PASS y diez modelos PASS. Las formas de función BP MAIN y línea entera conservan sus caminos.
 - Sin cambio visual nuevo, sin certificación global ni Windows.
 - Repetición limpia b51db35: RestoredPoints PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-bp-line-b51db35.json. Binario 16c373a62e2eba4eb9bd45dd6f5f9eb49d72da0a3d8cfed03c4975ca131c4c79.
+
+## 30Oct08:27 Debugger regression after point fixes
+- Diez suites PTY distintas con resultado final PASS sobre415fe07 limpio y un binario3a3c9250: Commands68/68, Functions58/58, RestoredPoints, CallStack, Session, Startup, Monitor, Codeblock, Exits y Animate. Diez modelos PASS en la misma revisión. Sin mutaciones durante las pruebas.
+- Una llamada agrupada Points+CallStack agotó el límite externo120s después de cerrar Points; CallStack quedó sin resultado cerrado, se repitió separadamente y pasó. No es una pasada sin reintentos ni se atribuye fallo al producto.
+- Evidencia docs/evidence/linux-debug-415fe07.json conserva la interrupción. No es la regresión IDE completa43, aceptación visual exhaustiva ni Windows. Sin cambio de producto en este lote.
