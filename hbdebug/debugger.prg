@@ -1378,10 +1378,15 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
 METHOD PROCEDURE DoScript( cFileName ) CLASS HBDebugger
 
    LOCAL nPos
-   LOCAL cLine
+   LOCAL cLine, cScript, lReadOk := .F.
 
    IF hb_FileExists( cFileName )
-      FOR EACH cLine IN __dbgTextToArray( MemoRead( cFileName ) )
+      cScript := HBIDE_ReadFileChecked( cFileName, @lReadOk )
+      IF ! lReadOk
+         ::CommandWindowDisplay( "Cannot read script: " + cFileName, .F. )
+         RETURN
+      ENDIF
+      FOR EACH cLine IN __dbgTextToArray( cScript )
          cLine := AllTrim( cLine )
          IF ::lActive .OR. ( ( nPos := At( " ", cLine ) ) > 0 .AND. ;
             hb_LeftEqI( "OPTIONS", Left( cLine, nPos - 1 ) ) )
