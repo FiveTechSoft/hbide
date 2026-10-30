@@ -1,0 +1,10 @@
+{
+  "elapsed": 0.0221,
+  "exit": 1,
+  "stdout": "\nOWNED .F. CANCELLED .F. KILL         -1 EXIT          0\nSTDOUT_BYTES          0 STDERR_BYTES          0\nCancellation is separate from exit status; no artifact is promoted.",
+  "child_after_probe": "R",
+  "child_after_expiry": "gone",
+  "source_fixture_commit": "a62421b92dff468cd05d6463d8825b2e9ed7c2bb",
+  "probe_binary_sha256": "79a523c47232a797e9b7a8f981f0ed1d420ffa0f0ff4cae1ea65886fcf61501a",
+  "scope": "Expected negative: leader exit0 with live finite child, not cancellation acceptance. No production changes."
+}
