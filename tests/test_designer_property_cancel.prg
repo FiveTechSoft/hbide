@@ -1,7 +1,7 @@
 #include "hbclass.ch"
 #include "inkey.ch"
 PROCEDURE Main()
-   LOCAL o:=HbDesigner():New(PropHost():New()),h,i
+   LOCAL o:=HbDesigner():New(PropHost():New()),h,i,cKey,cLong
    SetMode(40,120)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
    o:FitWindow()
@@ -39,7 +39,28 @@ PROCEDURE Main()
    o:InspEdit()
    Check(DsnSnapEqual(h,DsnSnapshot(o)),"inspector Esc retains model")
    Check(!o:lDirty .AND. Empty(o:aUndo),"inspector Esc no dirty or undo")
-   ? "PASS property Esc model/history invariants"
+   cLong:="Handler( '"+Replicate("quoted argument ",12)+"', .T. )"
+   FOR EACH cKey IN {"action","when","valid","focus","state"}
+      o:aControls[1,cKey]:=cLong
+   NEXT
+   h:=DsnSnapshot(o)
+   FOR i:=1 TO 9
+      hb_keyPut(K_TAB)
+   NEXT
+   hb_keyPut(K_ENTER)
+   o:EditProperties()
+   FOR EACH cKey IN {"action","when","valid","focus","state"}
+      Check(o:aControls[1,cKey]==cLong,"accept preserves long string handler")
+   NEXT
+   o:Undo()
+   Check(DsnSnapEqual(h,DsnSnapshot(o)),"undo restores long-handler model exactly")
+   FOR i:=1 TO 4
+      hb_keyPut(K_TAB)
+   NEXT
+   hb_keyPut(K_CTRL_Y);hb_keyPut(Asc("X"));hb_keyPut(K_ESC)
+   o:EditProperties()
+   Check(DsnSnapEqual(h,DsnSnapshot(o)),"cancel after handler edit preserves full handler")
+   ? "PASS property cancellation and long handler invariants"
    RETURN
 STATIC PROCEDURE Check(lOk,cText)
    IF !lOk

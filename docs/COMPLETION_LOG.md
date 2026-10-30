@@ -1174,3 +1174,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   exact-width value and click OK; final bound strings match keyboard results.
 - Nine checks: three compiles, three keyboard values and three mouse values.
   No product change, pixel certification or six independent feature claims.
+
+### 2026-10-30 Long handler property acceptance
+
+- Actual control property dialog preserves >180-character action/when/valid/
+  focus/state expressions when accepted, including quoted arguments. Undo
+  restores the exact pre-dialog model; editing action then Esc keeps it whole.
+- Existing behavior passes; no product fix or handler execution. This checks
+  model integrity, not pixel readability of the horizontally scrolling field.
