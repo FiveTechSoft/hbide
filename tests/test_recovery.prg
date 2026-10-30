@@ -18,7 +18,7 @@ proc Main()
 
    local cDir := "/tmp/hbide-recovery-" + StrZero( hb_randomInt( 999999 ), 6 )
    local cKey1, cKey2, cKey3, cKey4, aScan, cBin, hEncoding, cBase, cStored
-   local cLong1, cLong2, cKeyL1, cKeyL2, cLongDir
+   local cLong1, cLong2, cKeyL1, cKeyL2, cLongDir, lReadOk
 
    hb_SetEnv( "HBIDE_RECOVERY_DIR", cDir )
 
@@ -61,6 +61,11 @@ proc Main()
    Check( "rewrite legacy journal", HBIDE_RecoveryWrite( cKey2, "/tmp/aa/foo.prg", cBin ) )
    hEncoding := {=>}
    Check( "legacy data unchanged and no invented encoding", HBIDE_RecoveryReadBase( cBase, @hEncoding ) == cBin .and. hEncoding == NIL )
+
+   hb_MemoWrit( hb_FNameMerge( cDir, "empty-probe.journal" ), "" )
+   Check( "empty journal reads as valid empty content", HBIDE_RecoveryReadBase( "empty-probe", @hEncoding, @lReadOk ) == "" .and. lReadOk )
+   FErase( hb_FNameMerge( cDir, "empty-probe.journal" ) )
+   Check( "missing journal read reports failure", HBIDE_RecoveryReadBase( "missing-probe", @hEncoding, @lReadOk ) == "" .and. ! lReadOk )
 
    // 4. scan metadata
    aScan := HBIDE_RecoveryScan( .T. )

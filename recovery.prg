@@ -242,15 +242,22 @@ return lOk
 
 // Exact-name access for journals found by the scan, which may belong to a
 // previous (dead) session: no session suffix is appended here.
-function HBIDE_RecoveryReadBase( cBase, hEncoding )
+function HBIDE_RecoveryReadBase( cBase, hEncoding, lReadOk )
 
-   local cOut := ""
+   local cOut := NIL
 
+   lReadOk := .F.
+   hEncoding := NIL
    begin sequence
-      cOut := hb_MemoRead( hb_FNameMerge( HBIDE_RecoveryDir(), cBase, ".journal" ) )
+      // vfLoad returns NIL on failure, unlike MemoRead's empty-string fallback.
+      cOut := hb_vfLoad( hb_FNameMerge( HBIDE_RecoveryDir(), cBase, ".journal" ) )
    recover
-      cOut := ""
+      cOut := NIL
    end sequence
+   if ! HB_ISSTRING( cOut )
+      return ""
+   endif
+   lReadOk := .T.
 
 return HBIDE_RecoveryDecode( cOut, @hEncoding )
 

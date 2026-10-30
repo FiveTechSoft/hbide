@@ -1300,8 +1300,23 @@ return nil
 // untouched until the user explicitly saves the recovered work.
 METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
 
-   local n := ::FindDoc( cTarget ), hEncoding, cText, cConverted
+   local n := ::FindDoc( cTarget ), hEncoding, cText, cConverted, lReadOk
 
+   cText := HBIDE_RecoveryReadBase( cKey, @hEncoding, @lReadOk )
+   if ! lReadOk
+      HBIDE_MsgAlert( "Cannot read recovery journal. Journal kept unchanged; current document untouched." )
+      return nil
+   endif
+   if hEncoding != NIL .and. ! hEncoding[ "raw" ] .and. ;
+      hEncoding[ "cp" ] != hb_cdpSelect()
+      cConverted := hb_Translate( cText, hEncoding[ "cp" ], hb_cdpSelect() )
+      if hb_Translate( cConverted, hb_cdpSelect(), hEncoding[ "cp" ] ) != cText
+         HBIDE_MsgAlert( "Recovery needs the original editor codepage (" + hEncoding[ "cp" ] + ;
+             "). Journal kept unchanged; reopen with that codepage to avoid data loss." )
+         return nil
+      endif
+      cText := cConverted
+   endif
    if n > 0
       ::SwitchDoc( n )
       if ! ::CheckUnsaved()
@@ -1313,17 +1328,7 @@ METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
       ::nCurrent := Len( ::aEditors )
    endif
 
-   cText := HBIDE_RecoveryReadBase( cKey, @hEncoding )
-   if hEncoding != NIL .and. ! hEncoding[ "raw" ] .and. ;
-      hEncoding[ "cp" ] != hb_cdpSelect()
-      cConverted := hb_Translate( cText, hEncoding[ "cp" ], hb_cdpSelect() )
-      if hb_Translate( cConverted, hb_cdpSelect(), hEncoding[ "cp" ] ) != cText
-         HBIDE_MsgAlert( "Recovery needs the original editor codepage (" + hEncoding[ "cp" ] + ;
-             "). Journal kept unchanged; reopen with that codepage to avoid data loss." )
-         return nil
-      endif
-      cText := cConverted
-   endif
+
    ::oEditor:LoadText( cText )
    ::oEditor:lUtf8 := hEncoding != NIL .and. hEncoding[ "utf8" ]
    ::oEditor:lUtf8Bom := hEncoding != NIL .and. hEncoding[ "bom" ]

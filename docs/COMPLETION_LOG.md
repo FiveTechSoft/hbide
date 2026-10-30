@@ -912,3 +912,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Overwrite explícito guarda buffer y .bak idéntico a versión externa; borrado externo mantiene buffer, Cancel no recrea, Recreate explícito recupera archivo y conserva .bak anterior. Candidato PASS.
 - Primeros intentos de recorrido eligieron foco incorrecto o esperaron aviso sin salto de línea; corregidos antes de validación. Runner45 suites, no45 verificadas en esta fuente. No prueba exhaustiva de carreras concurrentes, archivos mayores8MB ni Windows.
 - Repetición limpia3fb16c8: ExternalChanges PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-external-3fb16c8.json. Binario2940d7edb707c115889686082f9c5461e1e210a107ffbafbd85c8d1f50d09261.
+
+## 30Oct10:48 Failed recovery read cannot become empty buffer
+- Reproducción PTY: journal no legible se recuperaba como buffer vacío asociado al archivo original, sin aviso. MemoRead devolvía vacío tanto por error como para contenido válido.
+- ReadBase usa vfLoad para distinguir NIL de cadena vacía y devuelve estado de lectura. RecoverJournal comprueba lectura y conversión antes de cambiar documento o preguntar por descartar buffer abierto; ante fallo avisa y conserva estado/journal/disco.
+- Nueva RecoveryUnreadable PTY PASS candidato y diez modelos PASS. Modelo distingue journal vacío válido de archivo ausente. Runner46 suites, no46 verificadas juntas. No certifica toda corrupción ni carreras concurrentes/Windows.
