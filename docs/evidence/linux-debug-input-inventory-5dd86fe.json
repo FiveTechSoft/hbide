@@ -1,0 +1,29 @@
+{
+  "scope": "Bounded source inventory27debugger input call sites,3explicitreadonly.13Python tests and32embedded docs exact. Clean5dd86fe fresh DebugFunctions --idle-settle58checksPTY passes, not original fixed-wait mode/visual/Windows/allcaller acceptance.20model suites last runa755b1f, not rerun for this inventory-only change.",
+  "inventory_tests": 13,
+  "pty": [
+    {
+      "source": "5dd86fea46e558b13b4059a62276f77d92a33599",
+      "tracked_changes": "",
+      "binary_sha256": "e398eba44c06cf8a8cb0ea3fa3cf649851078f621a70299df53dcbe05a658c3b",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "2ba325b34282ad0715fe25b6c3a601ad84220da24db8cefa1d8279e701938e0f",
+      "case": "debug-functions-idle",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_functions_pty.py",
+        "--idle-settle"
+      ],
+      "started": 1793400135.1477802,
+      "seconds": 53.37,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "efe4c25a8904447ffc3da7cca79fab6eb3aa1d55bca2acaa24dcb7d8c8001dfa",
+      "log": "/tmp/hbide-debug-input-inventory-pty/debug-functions-idle-1793400135147774267.log"
+    }
+  ]
+}
