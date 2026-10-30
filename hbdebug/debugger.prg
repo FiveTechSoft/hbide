@@ -2230,8 +2230,11 @@ METHOD PROCEDURE Open( cFileName ) CLASS HBDebugger
    IF ! Empty( cFileName ) .AND. ;
       ( ! HB_ISSTRING( ::cPrgName ) .OR. ! hb_FileMatch( cFileName, ::cPrgName ) )
 
-      IF ! hb_FileExists( cFileName ) .AND. ! Empty( ::cPathForFiles )
-         cRealName := ::LocatePrgPath( cFileName )
+      IF ! hb_FileExists( cFileName )
+         cRealName := NIL
+         IF ! Empty( ::cPathForFiles )
+            cRealName := ::LocatePrgPath( cFileName )
+         ENDIF
          IF Empty( cRealName )
             __dbgAlert( "File '" + cFileName + "' not found!" )
             RETURN

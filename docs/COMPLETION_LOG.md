@@ -883,3 +883,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Calcula destino y solo cambia nombre/modo al existir. RestoredPoints ampliado comprueba BP4 guardado como PRG y parada VM4 después del intento PPO fallido. Candidato PASS.
 - Primer reemplazo local alcanzó una declaración incorrecta y falló build; descartado antes de la prueba válida, no publicado. No cambio visual de interfaz en este fallo de estado.
 - Repetición limpia5182343: Functions58/58 (incluye PPO existente ida/vuelta) y RestoredPoints PASS, diez modelos PASS, mismo binariob2339cc843180ab66ba237bdf617a0c2ba4be8dc9538c65ae18e86c8e0e2b7e7, sin mutaciones; docs/evidence/linux-ppo-5182343.json. Regresión11PTY3f13bcd histórica tras el cambio.
+
+## 30Oct10:06 Missing open with empty search path preserves source
+- Reproducción: Path For Files vacío y View archivo-inexistente sustituía la vista por browser vacío, sin aviso. La existencia se comprobaba solo si había ruta configurada.
+- Comprueba siempre existencia; búsqueda adicional solo si hay ruta. Si no encuentra, muestra aviso anterior y conserva fuente/nombre/modo. RestoredPoints ampliado comprueba fuente preservado y parada VM4 posterior. Candidato PASS y diez modelos PASS.
+- Primer assert del aviso esperaba texto sin salto de línea; ajustado a la presentación real antes de validación. No aceptación global ni Windows.
