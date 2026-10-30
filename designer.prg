@@ -1659,7 +1659,7 @@ return nil
 
 METHOD LoadJson() CLASS HbDesigner
 
-   local cFile, cJson, hModel := nil, aMin, nSkipped, hBefore
+   local cFile, cJson, hModel := nil, aMin, nSkipped, hBefore, nDecoded, cRest
 
    hBefore = DsnSnapshot( Self )
 
@@ -1674,9 +1674,13 @@ METHOD LoadJson() CLASS HbDesigner
    endif
 
    cJson = MemoRead( cFile )
-   hb_jsonDecode( cJson, @hModel )
+   nDecoded := hb_jsonDecode( cJson, @hModel )
+   cRest := SubStr( cJson, nDecoded + 1 )
+   cRest := StrTran( StrTran( StrTran( StrTran( cRest, " ", "" ), Chr( 9 ), "" ), Chr( 10 ), "" ), Chr( 13 ), "" )
 
-   if ! DsnValidModel( hModel )
+   // Decoder may leave a partially built hash after syntax failure. Never
+   // accept it, nor a valid JSON prefix followed by non-whitespace bytes.
+   if nDecoded == 0 .or. ! Empty( cRest ) .or. ! DsnValidModel( hModel )
       ::ShowHint( "Invalid dialog JSON: " + cFile )
       return nil
    endif

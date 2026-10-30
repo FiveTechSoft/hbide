@@ -1076,3 +1076,14 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   files decode as a valid model / match generated PRG bytes exactly.
 - This extends helper-level checks to the actual methods. It is not a new
   product fix or global/Windows acceptance.
+
+### 2026-10-30 Designer JSON decode refusal
+
+- Reproduced truncated JSON containing controls:[] replacing the current
+  design: decoder returned0 but left a partial hash that passed model shape.
+- LoadJson now requires nonzero decode status and permits only JSON whitespace
+  after the parsed value. Truncated objects, trailing junk and trailing NUL
+  are rejected without changing model/name/dirty/history.
+- Added19th model suite. Valid trailing whitespace loads, undo restores the
+  previous model and redo restores loaded model. Filename after undo keeps
+  existing semantics; no decision to change it is implied.
