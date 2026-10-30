@@ -16,7 +16,7 @@ PROCEDURE Main()
    FOR EACH a IN aTopics
       FOR EACH n IN HBIDEHelpLinks( a[ 2 ], aTopics )
          Assert( n > 0 .AND. n <= Len( aTopics ), 'link resolves' )
-         Assert( aTopics[ n, 2 ] != a[ 2 ], 'no self links' )
+         Assert( ! ( aTopics[ n, 2 ] == a[ 2 ] ), 'no self links' )
       NEXT
    NEXT
    n := AScan( aTopics, {| t | t[ 2 ] == 'File menu' } )

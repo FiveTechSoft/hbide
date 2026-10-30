@@ -1665,3 +1665,9 @@ Se usa `!(c == cTitle)` para excluir solo el mismo titulo. Modelo exige el
 enlace; HelpMouse18 comprueba primer/ultimo enlace, historial Back/Forward,
 enlace anidado con titulo y cuerpo, retorno y Undo byte-exactos. No se ha
 cambiado SET EXACT global ni la busqueda del usuario.
+
+El modelo de ayuda de8366119 tambien usaba desigualdad no exacta para
+prohibir self-links. Detecto como fallo el enlace de prefijo ahora permitido.
+Se corrige ese assert a identidad exacta, igual que el producto; se conserva
+el primer resultado fallido y se repite sobre fuente nueva. Las dosPTY de
+8366119 pasaron; no se presenta esa revision como20modelos verdes.
