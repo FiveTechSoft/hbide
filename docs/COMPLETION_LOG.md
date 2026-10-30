@@ -1216,3 +1216,15 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   certify a native radio control. Replaced it with actual DSN_RADIO value
   "radiogroup" and reran from a clean revision. Earlier evidence is retained
   but superseded for the radio portion, not described as native radio proof.
+
+### 2026-10-30 Generated synthetic event runtime
+
+- Six real designer artifacts compile and run in GTTRM: GET, checkbox,
+  button, radiogroup, listbox, ComboBox. Each records actual When/Valid;
+  controls exposing Focus/State record those, and Button records Action.
+- Each dialog exits normally through OK and returns true. Twenty event
+  pairs plus Button Action, six compiles, six OK returns and one unchanged
+  source guard are34checks, not34features. The event trace is retained.
+- Synthetic handlers return true; no private expressions executed. This
+  does not establish When/Valid rejection semantics, exact call counts,
+  every interaction path, visual appearance, Windows or milestone closure.
