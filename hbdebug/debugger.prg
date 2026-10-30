@@ -2017,7 +2017,10 @@ METHOD PROCEDURE LoadColors() CLASS HBDebugger
 
 METHOD PROCEDURE LoadSettings() CLASS HBDebugger
 
-   ::DoScript( ::cSettingsFileName )
+   // Automatic/first activation load is optional; explicit INPUT reports misses.
+   IF ! Empty( HBIDE_DbgScriptPath( ::cSettingsFileName ) )
+      ::DoScript( ::cSettingsFileName )
+   ENDIF
 
    RETURN
 
