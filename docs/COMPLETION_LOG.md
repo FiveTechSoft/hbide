@@ -1257,3 +1257,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Full pixels inspected: width1 GET is covered by selection resize handle,
   noted rather than claimed ideal. No product change or property minima
   change. Reproduction/state/pixels added to combobox-drag evidence folder.
+
+### 2026-10-30 Physical resize under viewport offset
+
+- Actual IDE160x70 load, ComboBoxrow40,col130 revealed byTab; physical
+  handle shrink20x6->15x4, Undo20x6/Redo15x4 exact JSON controls/handler.
+  Full pixels retain borders/status. Uses existing5d4cb20 binary.
+- Initial click hit border one row too low, no resize; excluded rather than
+  treating ensuing UndoLoad as acceptance. No product/policy change.
+  Reproduction and state added to docs/evidence/combobox-drag/.

@@ -1,0 +1,68 @@
+{
+  "after": {
+    "name": "MyDialog",
+    "caption": "My Dialog",
+    "width": 160,
+    "height": 70,
+    "color": "W+/W",
+    "colortext": "W+",
+    "colorback": "W",
+    "colorfocus": "W+/B",
+    "controls": [
+      {
+        "type": "combobox",
+        "row": 40,
+        "col": 130,
+        "variable": "nVar1",
+        "items": "One,Two",
+        "width": 15,
+        "height": 4,
+        "when": "Start_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression__TAIL"
+      }
+    ]
+  },
+  "undo": {
+    "name": "MyDialog",
+    "caption": "My Dialog",
+    "width": 160,
+    "height": 70,
+    "color": "W+/W",
+    "colortext": "W+",
+    "colorback": "W",
+    "colorfocus": "W+/B",
+    "controls": [
+      {
+        "type": "combobox",
+        "row": 40,
+        "col": 130,
+        "variable": "nVar1",
+        "items": "One,Two",
+        "width": 20,
+        "height": 6,
+        "when": "Start_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression__TAIL"
+      }
+    ]
+  },
+  "redo": {
+    "name": "MyDialog",
+    "caption": "My Dialog",
+    "width": 160,
+    "height": 70,
+    "color": "W+/W",
+    "colortext": "W+",
+    "colorback": "W",
+    "colorfocus": "W+/B",
+    "controls": [
+      {
+        "type": "combobox",
+        "row": 40,
+        "col": 130,
+        "variable": "nVar1",
+        "items": "One,Two",
+        "width": 15,
+        "height": 4,
+        "when": "Start_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression__TAIL"
+      }
+    ]
+  }
+}

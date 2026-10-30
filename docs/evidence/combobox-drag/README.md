@@ -38,3 +38,17 @@ are results-min.json/results-get-min.json; reloaded GET equality is asserted
 by the script but not a separate row in the result JSON. Initial scripts
 inherit synthetic extra items on GET; it has no runtime effect in this test.
 No pan, other controls, Windows or global acceptance is implied.
+
+## Clamped viewport offset, separate run
+
+On5d4cb20 built binary: load160x70 model with ComboBoxrow40,col130. Tab
+reveals selection (trace view12,37). Physical handle cell35,115 to33,110
+shrinks20x6->15x4. JSON Save/Undo20x6/Redo15x4 retain row40,col130,
+model160x70 and exact control arrays/handler. Full redo pixels inspected:
+face/handle narrower/higher, dialog/editor bottom borders and status visible.
+This tests selection-driven panning, not explicit Ctrl+Arrow navigation.
+
+First coordinate used row36, the border rather than handle, so no resize
+occurred and Undo reverted Load. That attempt was excluded; no inference
+about filename-undo policy or product fix. Reproduction capture-pan.py
+asserts resize and coordinates; results-pan.json preserves saved state.
