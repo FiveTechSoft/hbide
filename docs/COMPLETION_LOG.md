@@ -1709,3 +1709,14 @@ strippeado tambien pasa18+8checks. Se añade opcion explicita --strip-debug:
 conserva original y hashes, registra herramienta y prueba el candidato final.
 No se elimina esa evidencia ni se afirma reproducibilidad entre toolchains,
 maquinas, plataformas o fuentes distintas.
+
+## 31 octubre: avisos de distribucion sin licencia inventada
+
+Inventario local HBP:14fuentes del debugger llevan GPL2o posterior con
+excepcion Harbour y remiten a LICENSE.txt, ausente en el repo. Otras14 no
+incluyen esa cabecera en lo inspeccionado; esto NO demuestra ausencia de
+licencia ni titularidad. No se asigna licencia por inferencia ni se copian
+terminos para todo el proyecto. `audit_distribution_notices.py` registra
+rutas/hashes y `--check-release` falla mientras requiere revision. Es una
+puerta de distribucion, no bloqueo de desarrollo. M5 sigue pendiente de
+licencia/avisos aplicables, instalacion limpia y Windows.
