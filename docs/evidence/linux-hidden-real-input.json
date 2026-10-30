@@ -1,0 +1,13 @@
+{
+  "scope": "Linux actual PTY key routing only, no safe forwarding/UI/Windows acceptance",
+  "result": {
+    "hidden_key": 0,
+    "visible_key": 122,
+    "sent_key": 122,
+    "process_exit": 0
+  },
+  "sources": {
+    "tests/probes/debug_hidden_real_input.prg": "0f629aed8558d2cd43ee00a41f0f98107a6c36c0e4011007298b65f72a000d29",
+    "tests/probes/check_hidden_real_input.py": "86809d99e65ca830dbb9fdc095371aa8dac275f02ba381397496afa5c33a7e44"
+  }
+}

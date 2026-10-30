@@ -133,3 +133,11 @@ there, and both contexts retain distinct SetColor values. Real keyboard input
 forwarding is NOT tested. A hidden application context cannot simply assume it
 will receive keys queued on the visible context. This is another integration
 requirement, not an implemented Swap on Input feature.
+
+### Real terminal key while NUL is selected
+
+`check_hidden_real_input.py` sends `z` through a real PTY after a ready marker
+written while NUL is selected. Hidden Inkey(.6) returns0; after GTTRM is selected,
+Inkey(.6) returns122. Both waits are bounded. This confirms automatic forwarding
+is absent in this fixture, beyond the synthetic-queue observation. It does not
+prove an idle bridge safe for READ, extended keys, mouse, resize or nested input.
