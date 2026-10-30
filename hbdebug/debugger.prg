@@ -3229,6 +3229,10 @@ METHOD PROCEDURE Step() CLASS HBDebugger
 
 METHOD ToCursor() CLASS HBDebugger
 
+   IF ::oBrwText == NIL
+      RETURN Self
+   ENDIF
+
    IF ::IsValidStopLine( ::cPrgName, ::oBrwText:RowPos )
       __dbgSetToCursor( ::pInfo, ::cPrgName, ::oBrwText:RowPos )
       ::RestoreAppScreen()
@@ -3252,6 +3256,9 @@ METHOD PROCEDURE BreakPointToggle( nLine, cFileName ) CLASS HBDebugger
    ENDIF
 
    IF nLine == NIL
+      IF ::oBrwText == NIL
+         RETURN
+      ENDIF
       cFileName := ::cPrgName
       nLine := ::oBrwText:RowPos
    ENDIF

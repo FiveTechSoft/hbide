@@ -843,3 +843,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - BreakPointToggle rechaza línea no entera, no positiva o mayor que2147483647 antes de consultar/modificar VM. Prueba conserva BP4 ante4294967300 y un entero mucho mayor; mantiene los casos válidos existentes. Candidato RestoredPoints PASS y diez modelos PASS.
 - Sin nuevo cambio visual ni certificación Windows. El límite sigue la API VM firmada32bits del runtime comprobado.
 - Repetición limpiade1029f: RestoredPoints PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-bp-line-range-de1029f.json. Binario 2d6a756705c4c26dac6454f09dba14c07e8f74e18a71879f0e541bc091d94fc6.
+
+## 30Oct08:54 Safe cursor actions without source
+- Reproducción: al desaparecer el fuente temporal, volver desde otro fuente muestra File not found y elimina el browser. F9 intentaba leer RowPos de NIL y abría No exported method. F7 compartía la lectura no protegida.
+- F9 sin línea explícita y F7 no actúan si no hay browser. Nueva suite debug-missing-source: elimina temporal del fixture tras abrir otro fuente, Step descubre ausencia, F9/F7 conservan evaluador usable; restaura fuente, lo reabre y BP4 detiene VM; salida al IDE comprobada. Candidato PASS. Runner ahora44 suites, no44 suites verificadas en este candidato.
+- Capturas completas inspeccionadas: fuente ausente con resultado64 y sin modal; fuente recuperado y parada VM en línea4, bordes/status completos. No certifica todas las acciones sin fuente, toda recuperación ni Windows.

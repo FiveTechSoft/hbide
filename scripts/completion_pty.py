@@ -39,6 +39,7 @@ CASES = {
     'recovery-mixed-eol': ('test_recovery_deep_path.py', ['hbide', '--mixed-eol'], 180),
     'recovery-crlf': ('test_recovery_deep_path.py', ['hbide', '--crlf'], 180),
     'recovery-route-guard': ('test_recovery_route_guard.py', [], 30),
+    'debug-missing-source': ('test_debug_missing_source_pty.py', [], 60),
     'debug-restored-points': ('test_debug_restored_points_pty.py', [], 120),
     'debug-commands': ('test_debug_commands_pty.py', [], 120),
     'debug-functions': ('test_debug_functions_pty.py', [], 180),
