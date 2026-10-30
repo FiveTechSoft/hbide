@@ -1,0 +1,6 @@
+{
+  "source": "b4ca8e1298d1a8b5b0250a1c6df27fd530b2a949",
+  "binary_sha256": "68bdf7263e8d0e2e7002594121b9ab34dc74180f0e0638083ff95ea8b5f551b2",
+  "settings": "Options Path /home/sandbox/harbour/bin/linux/gcc:/opt/instinct/workspace-bin:/usr/local/go/bin:/root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/instinct/compat-bin\nOptions Colors {\"W+/BG\",\"N/BG\",\"R/BG\",\"N+/BG\",\"W+/B\",\"GR+/B\",\"W/B\",\"N/W\",\"R/W\",\"N/BG\",\"R/BG\"}\nOptions MonoDisplay OFF\nOptions MenuBar ON\nOptions CodeblockTrace ON\nOptions RunAtStartup\nRun Speed 0\nOptions Tab 11\nMonitor Static OFF\nMonitor Public OFF\nMonitor Local OFF\nMonitor Private OFF\nMonitor Global OFF\nMonitor Sort OFF\nCallStack OFF\nNum ON\nLocate CaseSensitive OFF\nDelete ALL\n",
+  "scope": "Focal native pixel inspection only,120x40 Linux."
+}
