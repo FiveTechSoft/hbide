@@ -860,3 +860,5 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Reproducción: sin fuente/browser, WP n y Delete WP ALL abrían No exported method en WatchpointsHide al redimensionar NIL.
 - Guarda el redimensionado. MissingSource ampliado verifica Monitor on/off, WP/TP add/delete y CallStack on/off con evaluación81 tras cada acción; recupera fuente y parada VM4. Candidato PASS y diez modelos PASS. No fallo observado en Monitor/CallStack para esa secuencia, sin parche allí.
 - Sin aceptación exhaustiva de combinaciones/layouts ni Windows.
+- Repetición limpiae9ea238: MissingSource y RestoredPoints con resultado final PASS, diez modelos PASS, mismo binario1d550b333bbc9301844e330d059e4523f697c57e2f367f494c3c88c478f47d3c, sin mutaciones. Primera ejecución RestoredPoints interrumpida por límite externo120s, repetida aparte PASS; no pasada sin reintentos. Evidencia docs/evidence/linux-missing-panes-e9ea238.json.
+- Inspección visual encuentra restos duplicados del título/borde de fuente arriba tras toggles sin fuente. Sin modal y evaluación81 correctos, pero acabado visual NO cerrado; investigar repintado por separado.
