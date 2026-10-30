@@ -679,3 +679,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - SaveomitiaSortOFF: guardardeclarationorder, activarSort yrestoredejabavariablesalfabeticas. PTY18PASS/1FAILantes.
 - SortON/OFFexplicito, OFFrecargaordenoriginal; sinvalorconservaaccionSortONlegacy. Saveescribeestadoambos. PruebaMonitor22PASS,10modelosPASS candidato: declarationordertrasrestore, ONrepetido, OFFexplicito yvalorinvalido. CapturacompletaZZZantesAAAtrasrestoreinspeccionada.
 - No cierraRestorecompleto: Case/path/points/hidden/windowsetdifferentpendientes. Runner42suites60contratos, baselineglobal0768ac2historico, Windows pendiente.
+
+## 30Oct04:31 Restore search case setting
+- SaveomitiaCaseSensitive, restaurar no reponia valor guardado:56PASS/1FAILantes, uppercasefallabamatchdespuesdeguardarsinCase yactivarlo.
+- LocateCaseSensitiveadmiteON/OFFexplicitos, sinvalor/menu conservatoggle. Saveescribeambosestados. Commands60PASS y10modelosPASS candidato: OFFrestauradomatch, ONrepetidorechazomismatch, archivoexplicito e invalidorechazado.
+- Sin nuevo cambio visual; nuevocheckdeestadosemanticousanavegacionyaexistente. No cierraRestoreglobal: path/points/hidden/windowsetdifferentpendientes. Runner42suites60contratos, baselineglobal0768ac2historico;Windows pendiente.

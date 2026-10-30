@@ -328,7 +328,8 @@ CREATE CLASS HBDebugger
    METHOD RemoveWindow( oWnd )
    METHOD SearchLine( cLine )
    METHOD ToggleAnimate() INLINE ::oPullDown:GetItemByIdent( "ANIMATE" ):checked := ::lAnimate := ! ::lAnimate
-   METHOD ToggleCaseSensitive() INLINE ::oPullDown:GetItemByIdent( "CASE" ):checked := ::lCaseSensitive := ! ::lCaseSensitive
+   METHOD ToggleCaseSensitive( lSensitive ) INLINE ::oPullDown:GetItemByIdent( "CASE" ):checked := ;
+      ::lCaseSensitive := hb_defaultValue( lSensitive, ! ::lCaseSensitive )
    METHOD ShowWorkAreas() INLINE __dbgShowWorkAreas( Self )
 
    METHOD TracepointAdd( cExpr )
@@ -1053,7 +1054,16 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
       CASE hb_LeftEq( "GOTOLINE", cParam1 )
          ::SearchLine( cParam2 )
       CASE hb_LeftEq( "CASESENSITIVE", cParam1 )
-         ::ToggleCaseSensitive()
+         DO CASE
+         CASE Empty( cParam2 )
+            ::ToggleCaseSensitive()
+         CASE Upper( cParam2 ) == "ON"
+            ::ToggleCaseSensitive( .T. )
+         CASE Upper( cParam2 ) == "OFF"
+            ::ToggleCaseSensitive( .F. )
+         OTHERWISE
+            cResult := "Case sensitive expects ON or OFF"
+         ENDCASE
       OTHERWISE
          cResult := "Command error"
       ENDCASE
@@ -2616,6 +2626,7 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
 
    cInfo += "CallStack " + iif( ::lShowCallStack, "ON", "OFF" ) + hb_eol()
    cInfo += "Num " + iif( ::lLineNumbers, "ON", "OFF" ) + hb_eol()
+   cInfo += "Locate CaseSensitive " + iif( ::lCaseSensitive, "ON", "OFF" ) + hb_eol()
 
    FOR EACH aBreak IN __dbgGetBreakPoints( ::pInfo )
       cInfo += "BP " + hb_ntos( aBreak[ HB_DBG_BP_LINE ] ) + " " + ;
