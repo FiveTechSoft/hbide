@@ -35,17 +35,21 @@
     "IDE-020": {
       "tests": [
         "test_project_desktop_pty.py",
-        "test_project.prg"
+        "test_project.prg",
+        "test_project_read.py",
+        "test_project_read.prg",
+        "test_open_unreadable_pty.py"
       ],
-      "contract": "HBP parsed and preserved; opening never executes build hooks. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker.",
+      "contract": "HBP parsed and preserved; opening never executes build hooks. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Unreadable HBP rejected distinctly from valid empty HBP; host retains active editor and does not select rejected project.",
       "expected_label": "Open .hbp..."
     },
     "IDE-021": {
       "tests": [
         "test_project_desktop_pty.py",
-        "test_project_messages_pty.py"
+        "test_project_messages_pty.py",
+        "test_project_leading_pty.py"
       ],
-      "contract": "Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker.",
+      "contract": "Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently.",
       "expected_label": "Sources / Build..."
     },
     "IDE-026": {
@@ -59,25 +63,28 @@
     "IDE-027": {
       "tests": [
         "test_nav_pty.py",
-        "test_project_messages_pty.py"
+        "test_project_messages_pty.py",
+        "test_project_leading_pty.py"
       ],
-      "contract": "Real compiler messages list and navigate to correct source. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line.",
+      "contract": "Real compiler messages list and navigate to correct source. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently.",
       "expected_label": "Messages..."
     },
     "IDE-028": {
       "tests": [
         "test_nav_pty.py",
-        "test_project_messages_pty.py"
+        "test_project_messages_pty.py",
+        "test_project_leading_pty.py"
       ],
-      "contract": "Next diagnostic wraps with correct line and status. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line.",
+      "contract": "Next diagnostic wraps with correct line and status. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently.",
       "expected_label": "Next Message     Alt+F8"
     },
     "IDE-029": {
       "tests": [
         "test_nav_pty.py",
-        "test_project_messages_pty.py"
+        "test_project_messages_pty.py",
+        "test_project_leading_pty.py"
       ],
-      "contract": "Previous diagnostic wraps with correct line and status. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line.",
+      "contract": "Previous diagnostic wraps with correct line and status. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently.",
       "expected_label": "Previous Message Alt+F7"
     },
     "IDE-033": {
@@ -169,7 +176,7 @@
         "test_atomic.prg",
         "test_recovery_deep_path.py"
       ],
-      "contract": "F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified.",
+      "contract": "F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified. Symlink refusal only promises a recovery temp after verified complete write; failed copy preserves buffer/link/destination and reports no complete recovery copy.",
       "expected_label": "Save           F2"
     },
     "IDE-004": {
@@ -378,9 +385,11 @@
       "expected_label": "Start",
       "tests": [
         "test_start_paths_pty.py",
-        "test_run_empty_args_pty.py"
+        "test_run_empty_args_pty.py",
+        "test_start_collision_pty.py",
+        "test_recovery_unreadable_pty.py"
       ],
-      "contract": " Start builds/runs twice from path with spaces/apostrophe/$HOME/semicolon; failed rebuild preserves old executable bytes and never runs stale binary. Quiet nonzero compiler exit never reports Build OK; failure alert leaves editor usable. Empty quoted words retain first/intermediate/last parameter positions in Start, Script and Debug."
+      "contract": " Start builds/runs twice from path with spaces/apostrophe/$HOME/semicolon; failed rebuild preserves old executable bytes and never runs stale binary. Quiet nonzero compiler exit never reports Build OK; failure alert leaves editor usable. Empty quoted words retain first/intermediate/last parameter positions in Start, Script and Debug. Exact resolved source name reaches compiler unchanged. Normalized output matching current source or any named open editor is refused before compiler launch; absolute/relative paths covered. General inode/link aliases and unopened source inventory are not certified."
     },
     "IDE-034": {
       "expected_label": "Compiler Flags...",
