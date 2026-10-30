@@ -5,9 +5,11 @@
       "tests": [
         "test_nav_pty.py",
         "test_saveall_fail_pty.py",
-        "test_saveas_refusal_recovery_pty.py"
+        "test_saveas_refusal_recovery_pty.py",
+        "test_saveall_conflict_cancel_pty.py",
+        "test_saveall_conflict_reload_pty.py"
       ],
-      "contract": "Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive.",
+      "contract": "Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive. Conflict Cancel keeps dirty buffer; Reload skips writing/backup and reports reload separately from save.",
       "expected_label": "Save All   Ctrl+F2"
     },
     "IDE-006": {

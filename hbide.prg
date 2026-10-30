@@ -2330,7 +2330,7 @@ return a
 // never saved silently (they need a name): they are counted and left dirty.
 METHOD SaveAll() CLASS HbIde
 
-   local nOrig := ::nCurrent, nSaved := 0, nFailed := 0, nUntitled := 0, i, cMsg, oEd
+   local nOrig := ::nCurrent, nSaved := 0, nFailed := 0, nUntitled := 0, nReloaded := 0, i, cMsg, oEd
 
    for i := 1 to Len( ::aEditors )
       oEd := ::aEditors[ i ]
@@ -2342,6 +2342,12 @@ METHOD SaveAll() CLASS HbIde
          loop
       endif
       ::SwitchDoc( i )
+      // Switching can offer an external-change Reload. That explicit choice
+      // leaves a clean disk-backed buffer, not a save request or a new backup.
+      if ! oEd:Changed()
+         nReloaded++
+         loop
+      endif
       ::DoSave()
       if ::aEditors[ i ]:Changed()
          nFailed++
@@ -2353,13 +2359,16 @@ METHOD SaveAll() CLASS HbIde
       ::SwitchDoc( nOrig )
    endif
 
-   if nFailed > 0 .or. nUntitled > 0
+   if nFailed > 0 .or. nUntitled > 0 .or. nReloaded > 0
       cMsg := hb_ntos( nSaved ) + " saved"
       if nFailed > 0
          cMsg += ", " + hb_ntos( nFailed ) + " could not be saved (still modified)"
       endif
       if nUntitled > 0
          cMsg += ", " + hb_ntos( nUntitled ) + " untitled skipped (use Save As)"
+      endif
+      if nReloaded > 0
+         cMsg += ", " + hb_ntos( nReloaded ) + " reloaded (not saved)"
       endif
       HBIDE_MsgAlert( cMsg, nil, "Save All" )
    elseif nSaved == 0

@@ -127,7 +127,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 
 Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/hash exactos.
 
-- IDE-005: Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_saveall_fail_pty.py](../tests/test_saveall_fail_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py)
+- IDE-005: Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive. Conflict Cancel keeps dirty buffer; Reload skips writing/backup and reports reload separately from save. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_saveall_fail_pty.py](../tests/test_saveall_fail_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py), [test_saveall_conflict_cancel_pty.py](../tests/test_saveall_conflict_cancel_pty.py), [test_saveall_conflict_reload_pty.py](../tests/test_saveall_conflict_reload_pty.py)
 - IDE-006: Save/Discard/Cancel reviews the correct document; Cancel keeps it open and unchanged. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-007: All dirty documents reviewed; Cancel keeps IDE alive; clean exit after decisions. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-019: Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py)
