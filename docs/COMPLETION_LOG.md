@@ -698,3 +698,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct04:53 Restored points stop execution
 - Sin cambio de producto. Nueva suitePTYindependientecompruebaefectoVM, no soloreserializacion: BPline4guardado yrestauradodosveces haceGo detenerseexactamenteline4; TPn guardadorestavradodosveces, cambio realn:=99 yGo detieneenline5convalor99.
 - DoscontratosdeefectoPASS candidato. Runner43suites (antes42), sin nuevobaselineglobal. NocertificaBPfuncionalporfuncion ni todasexpresionesTP; sesemanticaseconservaWPdisplayonly. Baselineglobal0768ac2historico,Windows pendiente.
+
+## 30Oct05:14 Full regression attempt and stale Num assertion
+-43suitesPTYdistintas sobre fafdf0c limpio,mismoSHAfab935d870e9609b02bbb018809ad1ef1a4f0894b6c3bbe95066832a78380b2b,sinmutaciones:42PASS yDebugFunctions57checksPASS/1FAIL. DiezmodelosPASS. Ledger docs/evidence/linux-pty-fafdf0c.json conserva fallo,no43PASS.
+- FalloesexpectativaexactaNumOffvsNumOFF; mismo fixtureRestoreefectivoPASS, parsercaseinsensitive. Testcorrigecomparadorlineacompletacaseinsensitive,sincambioproducto. Sevalidaraparte,enrevisionnueva; no reetiquetarcorridaoriginal.

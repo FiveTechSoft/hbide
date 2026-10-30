@@ -458,7 +458,7 @@ while 'File name' not in scr.text() and time.time() - t0 < 4.0:
 send(b'\r'); pump(1.0)                              # accept default init.cld
 cld = os.path.join(work, 'init.cld')
 check('Save Settings writes init.cld with Num Off',
-      os.path.exists(cld) and 'Num Off' in open(cld).read())
+      os.path.exists(cld) and 'NUM OFF' in [line.strip().upper() for line in open(cld)])
 send(b'\x1bo'); pump(0.6); send(b'l'); pump(1.0)   # numbers back on
 check('Settings: line numbers on before restore', re.search(r'x?\d+:', scr.text()) is not None)
 send(b'\x1bo'); pump(0.6); send(b'r')               # Restore Settings...
