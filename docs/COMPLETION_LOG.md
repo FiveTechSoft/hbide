@@ -1632,3 +1632,14 @@ fila3. Todos los bytes de las fuentes se comparan sin cambios. La prueba
 quita su miembro missing del HBP tras probarlo para poder alcanzar el error
 del compilador; no modifica fuentes ni producto. Linux PTY40x120 focal,
 no certificacion visual, Windows ni todos los limites horizontales.
+
+## 31 octubre: clic de Contents no salta a la fila siguiente
+
+Reproducido con el IDE: clic en Quick start mostraba The screen. El indice
+pinta `itop + fila - lbT - 1`, mientras el hit-test omitia el -1. Se igualan
+ambos offsets y el limite de filas. Harness HelpMouse11checks: Quick start,
+primera fila Basics, fila visible tras End del indice, Search/Next reales,
+rueda acotada, Export genera catalogo, Close y Undo preservan bytes de fuente.
+Las coordenadas de Search se buscan en la fila de botones, no en mensajes
+que tambien contienen la palabra Search. Linux40x120 focal, no Windows ni
+todos los bordes/gestos de ayuda. Producto corregido solo en el hit-test.

@@ -561,8 +561,8 @@ FUNCTION HBHelpInput( h, aTopics, g, nKey )
       h[ "top" ]++
    CASE nKey == K_LBUTTONDOWN
       IF MRow() > g[ "lbT" ] .AND. MRow() <= g[ "lbT" ] + g[ "idxH" ] .AND. MCol() >= g[ "lbL" ] .AND. MCol() <= g[ "lbR" ]
-         IF h[ "itop" ] + MRow() - g[ "lbT" ] - 1 + 1 <= Len( h[ "rows" ] )
-            h[ "row" ] := Min( Len( h[ "rows" ] ), h[ "itop" ] + MRow() - g[ "lbT" ] )
+         IF h[ "itop" ] + MRow() - g[ "lbT" ] - 1 <= Len( h[ "rows" ] )
+            h[ "row" ] := Min( Len( h[ "rows" ] ), h[ "itop" ] + MRow() - g[ "lbT" ] - 1 )
             h[ "top" ] := 1
          ENDIF
          h[ "pane" ] := "index"
