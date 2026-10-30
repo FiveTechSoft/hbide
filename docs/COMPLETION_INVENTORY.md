@@ -345,8 +345,8 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput
 | ID | Etiqueta / variable | Tipo | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- |
 | IDE-FIELD-GotoLine-nLine-1 | number: | value | hbide.prg:336 | Vinculo focal; ver alcance |
-| IDE-FIELD-GotoLine-lDummy-1 | &OK | pushbutton | hbide.prg:339 | Pendiente vinculo por campo |
-| IDE-FIELD-GotoLine-lDummy-2 | &Cancel | pushbutton | hbide.prg:342 | Pendiente vinculo por campo |
+| IDE-FIELD-GotoLine-lDummy-1 | &OK | pushbutton | hbide.prg:339 | Vinculo focal; ver alcance |
+| IDE-FIELD-GotoLine-lDummy-2 | &Cancel | pushbutton | hbide.prg:342 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-cCompiler-1 | cCompiler | radiogroup | hbide.prg:1857 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-lWarnings-1 | &Warnings | checkbox | hbide.prg:1866 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-lDebug-1 | &Debug info | checkbox | hbide.prg:1872 | Vinculo focal; ver alcance |
@@ -357,20 +357,22 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput
 | IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1904 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1908 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1912 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2052 | Pendiente vinculo por campo |
-| IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2055 | Pendiente vinculo por campo |
+| IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2052 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2055 | Vinculo focal; ver alcance |
 | IDE-FIELD-ReplaceDialog-cFind-1 | cFind | freeform_input | hbide.prg:2058 | Vinculo focal; ver alcance |
 | IDE-FIELD-ReplaceDialog-cReplace-1 | cReplace | freeform_input | hbide.prg:2065 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2109 | Pendiente vinculo por campo |
-| IDE-FIELD-FindDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2112 | Pendiente vinculo por campo |
+| IDE-FIELD-FindDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2109 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2112 | Vinculo focal; ver alcance |
 | IDE-FIELD-FindDialog-cText-1 | cText | freeform_input | hbide.prg:2115 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-lDummy-1 | &OK | pushbutton | hbide.prg:2447 | Pendiente vinculo por campo |
-| IDE-FIELD-RunArguments-lDummy-2 | &Cancel | pushbutton | hbide.prg:2450 | Pendiente vinculo por campo |
-| IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2453 | Pendiente vinculo por campo |
+| IDE-FIELD-RunArguments-lDummy-1 | &OK | pushbutton | hbide.prg:2447 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-lDummy-2 | &Cancel | pushbutton | hbide.prg:2450 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2453 | Vinculo focal; ver alcance |
 | IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:2967 | Vinculo focal; ver alcance |
 | IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:2975 | Vinculo focal; ver alcance |
 | IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:2979 | Vinculo focal; ver alcance |
 - IDE-FIELD-GotoLine-nLine-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-FIELD-GotoLine-lDummy-1: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-FIELD-GotoLine-lDummy-2: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-CompilerFlags-cCompiler-1: Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lWarnings-1: Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lDebug-1: Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
@@ -381,9 +383,16 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput
 - IDE-FIELD-CompilerFlags-lDummy-1: Actual explicit OK persists selected compiler/flags into process argv. Explicit Cancel has its own field test. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lDummy-2: Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lDummy-3: Actual nested Help opens compiler topic and Esc restores option controls/current checked state; later OK applies flags. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
+- IDE-FIELD-ReplaceDialog-lDummy-1: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-FIELD-ReplaceDialog-lDummy-2: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-ReplaceDialog-cFind-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-ReplaceDialog-cReplace-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-FIELD-FindDialog-lDummy-1: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-FIELD-FindDialog-lDummy-2: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-FindDialog-cText-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-FIELD-RunArguments-lDummy-1: Actual explicit OK sets Script argv including quoted/empty arguments; explicit Cancel and Esc preserve prior argv; invalid quote rejected with prior argv preserved; explicit clear and Enter checked. Linux focal test, not all inputs/platforms. Pruebas: [test_run_arguments_modal_pty.py](../tests/test_run_arguments_modal_pty.py)
+- IDE-FIELD-RunArguments-lDummy-2: Actual explicit OK sets Script argv including quoted/empty arguments; explicit Cancel and Esc preserve prior argv; invalid quote rejected with prior argv preserved; explicit clear and Enter checked. Linux focal test, not all inputs/platforms. Pruebas: [test_run_arguments_modal_pty.py](../tests/test_run_arguments_modal_pty.py)
+- IDE-FIELD-RunArguments-cText-1: Actual explicit OK sets Script argv including quoted/empty arguments; explicit Cancel and Esc preserve prior argv; invalid quote rejected with prior argv preserved; explicit clear and Enter checked. Linux focal test, not all inputs/platforms. Pruebas: [test_run_arguments_modal_pty.py](../tests/test_run_arguments_modal_pty.py)
 - IDE-FIELD-DisplayOpts-cSize-1: Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
 - IDE-FIELD-DisplayOpts-lDummy-1: Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
 - IDE-FIELD-DisplayOpts-lDummy-2: Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)

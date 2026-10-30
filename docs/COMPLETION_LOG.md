@@ -1438,3 +1438,15 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   No product change or M2 acceptance. Initial harness wrongly expected
   quiet-compiler Build OK text; real compiler output uses Done instead.
   Corrected harness condition, not product behavior.
+
+### 2026-10-30 RunArguments and edit modal buttons
+
+- RunArguments actual OK/Cancel and Esc preserve or change actual Script
+  argv, quoted/empty tokens included. Invalid quote leaves prior argv;
+  explicit empty clears.14 focal checks. Harness initially used CtrlY,
+  unsupported by the free-form input; corrected to Home+Delete.
+- Goto/Find/Replace actual OK/Cancel, cursor/byte-exact mutation checks
+  and Replace Undo. Existing EditMenu suite now37checks.
+- All26inventoried IDE modal declarations now have focal links. This
+  does not close M0, any other milestone, or full field/visual/platform
+  acceptance. New runner entry, no product change.

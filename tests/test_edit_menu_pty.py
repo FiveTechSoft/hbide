@@ -154,6 +154,22 @@ try:
     menu(b'a');send(b'absent\tnew\r',.7)
     check('Replace missing text reports zero','0 replacement(s)' in scr.text())
     send(b'\r');saved('Replace missing text preserves bytes',b'X'+original)
+    # Enter within a field is a different path from activating actual buttons.
+    menu(b'g');send(b'\x1b[H1\t\r',.5)
+    check('Goto explicit OK navigates first row',bool(re.search(r'row:\s*1\s*,',scr.text())))
+    menu(b'g');send(b'\x1b[H3\t\t\r',.5)
+    check('Goto explicit Cancel preserves first row',bool(re.search(r'row:\s*1\s*,',scr.text())))
+    menu(b'f');send(b'beta\t\r',.5)
+    check('Find explicit OK navigates second row',bool(re.search(r'row:\s*2\s*,\s*col:\s*2',scr.text())))
+    menu(b'f');send(b'gamma\t\t\r',.5)
+    check('Find explicit Cancel preserves second row',bool(re.search(r'row:\s*2\s*,\s*col:\s*2',scr.text())))
+    menu(b'a');send(b'alpha\tEXPLICIT\t\r',.5)
+    check('Replace explicit OK reports count','1 replacement(s)' in scr.text())
+    send(b'\r');saved('Replace explicit OK applies exact bytes',b'XEXPLICIT\r\n\tbeta\ngamma')
+    menu(b'n');saved('Undo explicit replace exact',b'X'+original)
+    menu(b'a');send(b'alpha\tCANCELLED\t\t\r',.5)
+    saved('Replace explicit Cancel leaves exact bytes',b'X'+original)
+
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
 for name,ok in results: print('PASS' if ok else 'FAIL',name)
