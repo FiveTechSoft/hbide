@@ -1450,3 +1450,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - All26inventoried IDE modal declarations now have focal links. This
   does not close M0, any other milestone, or full field/visual/platform
   acceptance. New runner entry, no product change.
+
+### 2026-10-30 File/help modal inventory expansion
+
+- Added17source declarations: ProjectOpen4/OpenFile4/SaveAs3/HelpPick3/
+  HelpIndex3, with actual native kinds and source identity tests. Total
+  IDE declarations43; prior26focal links retained, new17not implicitly
+  accepted from existing menu tests.11Python inventory tests.
+- Excludes generic dynamic alerts, debugger inputs and remaining gestures;
+  no exhaustive claim. Runner now82entries (81case/modes+static guard).

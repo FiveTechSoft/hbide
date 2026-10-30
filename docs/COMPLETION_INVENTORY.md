@@ -340,7 +340,7 @@ Expansion estricta de condiciones tipo-fuente; falla con sintaxis desconocida. I
 
 ## Campos de modales IDE acotados
 
-GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput libre; no limita inventario a GET. Otros modales y gestos pendientes, sin aceptacion implicita.
+GotoLine/CompilerFlags/Replace/Find/RunArguments/Display/ProjectOpen/OpenFile/SaveAs/HelpPick/HelpIndex. Incluye HBIDE_DlgInput libre; no limita inventario a GET. Otros modales y gestos pendientes, sin aceptacion implicita.
 
 | ID | Etiqueta / variable | Tipo | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- |
@@ -370,6 +370,23 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput
 | IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:2967 | Vinculo focal; ver alcance |
 | IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:2975 | Vinculo focal; ver alcance |
 | IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:2979 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-cFileName-1 | cFileName | value | hbide.prg:1023 | Pendiente vinculo por campo |
+| IDE-FIELD-ProjectOpen-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1037 | Pendiente vinculo por campo |
+| IDE-FIELD-ProjectOpen-lDummy-1 | &OK | pushbutton | hbide.prg:1061 | Pendiente vinculo por campo |
+| IDE-FIELD-ProjectOpen-lDummy-2 | &Cancel | pushbutton | hbide.prg:1068 | Pendiente vinculo por campo |
+| IDE-FIELD-OpenFile-cFileName-1 | cFileName | value | hbide.prg:1216 | Pendiente vinculo por campo |
+| IDE-FIELD-OpenFile-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1230 | Pendiente vinculo por campo |
+| IDE-FIELD-OpenFile-lDummy-1 | &OK | pushbutton | hbide.prg:1254 | Pendiente vinculo por campo |
+| IDE-FIELD-OpenFile-lDummy-2 | &Cancel | pushbutton | hbide.prg:1261 | Pendiente vinculo por campo |
+| IDE-FIELD-SaveAs-cFileName-1 | cFileName | value | hbide.prg:1712 | Pendiente vinculo por campo |
+| IDE-FIELD-SaveAs-lDummy-1 | &OK | pushbutton | hbide.prg:1722 | Pendiente vinculo por campo |
+| IDE-FIELD-SaveAs-lDummy-2 | &Cancel | pushbutton | hbide.prg:1726 | Pendiente vinculo por campo |
+| IDE-FIELD-HelpPick-cPick-1 | cPick | listbox | hbide.prg:2740 | Pendiente vinculo por campo |
+| IDE-FIELD-HelpPick-lDummy-1 | &OK | pushbutton | hbide.prg:2746 | Pendiente vinculo por campo |
+| IDE-FIELD-HelpPick-lDummy-2 | &Cancel | pushbutton | hbide.prg:2750 | Pendiente vinculo por campo |
+| IDE-FIELD-HelpIndex-cFilter-1 | cFilter | value | hbide.prg:2782 | Pendiente vinculo por campo |
+| IDE-FIELD-HelpIndex-lDummy-1 | &OK | pushbutton | hbide.prg:2792 | Pendiente vinculo por campo |
+| IDE-FIELD-HelpIndex-lDummy-2 | &Cancel | pushbutton | hbide.prg:2796 | Pendiente vinculo por campo |
 - IDE-FIELD-GotoLine-nLine-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-GotoLine-lDummy-1: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-GotoLine-lDummy-2: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)

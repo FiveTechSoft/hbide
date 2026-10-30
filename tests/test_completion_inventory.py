@@ -63,8 +63,8 @@ class ModalInventory(unittest.TestCase):
 
     def test_ide_modal_non_get_inputs_and_multiline_kinds(self):
         rows=audit.ide_modal_fields()
-        self.assertEqual(len(rows),26)
-        self.assertEqual(len({r['id'] for r in rows}),26)
+        self.assertEqual(len(rows),43)
+        self.assertEqual(len({r['id'] for r in rows}),43)
         fields={(r['surface'],r['variable']):r for r in rows}
         self.assertEqual(fields['CompilerFlags','lWarnings']['kind'],'checkbox')
         self.assertEqual(fields['CompilerFlags','cCompiler']['kind'],'radiogroup')
@@ -72,6 +72,16 @@ class ModalInventory(unittest.TestCase):
         self.assertEqual(fields['ReplaceDialog','cFind']['kind'],'freeform_input')
         self.assertEqual(fields['ReplaceDialog','cReplace']['kind'],'freeform_input')
         self.assertEqual(sum(r['kind']=='freeform_input' for r in rows),4)
+    def test_file_and_help_modal_declarations(self):
+        rows=audit.ide_modal_fields()
+        for name,count in [('ProjectOpen',4),('OpenFile',4),('SaveAs',3),('HelpPick',3),('HelpIndex',3)]:
+            with self.subTest(surface=name):
+                fields=[r for r in rows if r['surface']==name]
+                self.assertEqual(len(fields),count)
+                self.assertEqual(sum(r['kind']=='pushbutton' for r in fields),2)
+        for name in ['ProjectOpen','OpenFile','HelpPick']:
+            self.assertEqual(sum(r['kind']=='listbox' for r in rows if r['surface']==name),1)
+
     def test_ide_modal_source_lines(self):
         lines=(ROOT/'hbide.prg').read_text().splitlines()
         for row in audit.ide_modal_fields():

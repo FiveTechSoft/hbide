@@ -131,7 +131,7 @@ def modal_control_pairs(fields):
 def ide_modal_fields():
     """Bounded IDE modal declarations, including free-form non-GET inputs."""
     lines=(ROOT/'hbide.prg').read_text().splitlines();rows=[]
-    for surface in ['GotoLine','CompilerFlags','ReplaceDialog','FindDialog','RunArguments','DisplayOpts']:
+    for surface in ['GotoLine','CompilerFlags','ReplaceDialog','FindDialog','RunArguments','DisplayOpts','ProjectOpen','OpenFile','SaveAs','HelpPick','HelpIndex']:
         start=next(i for i,line in enumerate(lines) if line.startswith('METHOD '+surface+'('))
         end=next((i for i in range(start+1,len(lines)) if lines[i].startswith('METHOD ')),len(lines))
         seen={}
@@ -247,7 +247,7 @@ def main():
                 links=', '.join('['+t+'](../tests/'+t+')' for t in pair['acceptance']['tests'])
                 print(f"- {pair['id']}: {pair['acceptance']['contract']} Pruebas: {links}")
         print('\n## Campos de modales IDE acotados\n')
-        print('GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput libre; no limita inventario a GET. Otros modales y gestos pendientes, sin aceptacion implicita.\n')
+        print('GotoLine/CompilerFlags/Replace/Find/RunArguments/Display/ProjectOpen/OpenFile/SaveAs/HelpPick/HelpIndex. Incluye HBIDE_DlgInput libre; no limita inventario a GET. Otros modales y gestos pendientes, sin aceptacion implicita.\n')
         print('| ID | Etiqueta / variable | Tipo | Fuente:linea | Aceptacion |')
         print('| --- | --- | --- | --- | --- |')
         for field in report['ide_modal_fields']:
