@@ -1,6 +1,6 @@
 #include "hbclass.ch"
 PROCEDURE Main()
-   LOCAL o:=LoadDesigner():New(LoadHost():New()),h,cJson,cBad,cType
+   LOCAL o:=LoadDesigner():New(LoadHost():New()),h,cJson,cBad,cType,cEvent
    SetMode(25,80)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
    o:FitWindow()
@@ -63,6 +63,12 @@ PROCEDURE Main()
       o:LoadJson()
       Check(Len(o:aControls)==1.and.HB_IsString(o:aControls[1,"items"]),"actual Load tolerates missing items")
       Check(HB_IsString(o:aControls[1,"variable"]),"actual Load repairs invalid variable type")
+   NEXT
+   FOR EACH cEvent IN {"when","valid","focus","state"}
+      hb_MemoWrit("bad.json",hb_jsonEncode({"controls"=>{{"type"=>"button",cEvent=>123}}}))
+      o:LoadJson()
+      Check(o:aControls[1,cEvent]=="","actual Load clears nontext event")
+      Check(HB_IsString(DsnGenCode(DsnBuildModel(o))),"actual loaded event-safe model generates")
    NEXT
    ? "PASS designer load refusals and undo/redo"
    RETURN

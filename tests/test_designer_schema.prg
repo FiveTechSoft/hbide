@@ -1,6 +1,6 @@
 #include "error.ch"
 PROCEDURE Main()
-   LOCAL a:={{"type"=>"listbox"}},oError,cType,cName,cCode,nConflicts,bOld:=ErrorBlock({|e|Break(e)})
+   LOCAL a:={{"type"=>"listbox"}},oError,cType,cName,cEvent,cCode,nConflicts,bOld:=ErrorBlock({|e|Break(e)})
    BEGIN SEQUENCE
       DsnNormalizeControls(a)
       Check(Len(a)==1.and.HB_IsString(a[1,"items"]),"missing list items default")
@@ -24,6 +24,13 @@ PROCEDURE Main()
       a[2,"variable"]:="sHaReD"
       cCode:=DsnGenCode({"controls"=>a},NIL,@nConflicts)
       Check(nConflicts==1,"case-insensitive cross-type collision resolved")
+      FOR EACH cEvent IN {"when","valid","focus","state"}
+         a:={DsnNewControl("combobox",{})}
+         a[1,cEvent]:=123
+         DsnNormalizeControls(a)
+         cCode:=DsnGenCode({"controls"=>a})
+         Check(!("{|| 123"$cCode),"nontext event ignored")
+      NEXT
       a:={{"type"=>"combo"},{"type"=>""}}
       DsnNormalizeControls(a)
       Check(Empty(a),"partial type names rejected")

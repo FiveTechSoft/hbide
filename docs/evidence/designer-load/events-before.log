@@ -1,0 +1,3 @@
+
+FAIL: normalization raised Argument error ALLTRIM
+PASS schema probe

@@ -1121,3 +1121,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Model conflict checks plus eight generated HRB compiles cover local names,
   mixed case, item-array collisions and cross-type case collisions. Original
   model bindings are not renamed in place. Compile evidence is not execution.
+
+### 2026-10-30 Designer non-text event fields
+
+- Reproduced numeric JSON when/valid/focus/state reaching AllTrim during
+  generation and raising an argument error. Normalization clears non-string
+  optional event expressions, matching existing action-field handling.
+- Model generation and actual LoadJson paths cover all four fields. String
+  expressions remain untouched; no arbitrary event code is executed in tests.

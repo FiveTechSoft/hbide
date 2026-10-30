@@ -3248,7 +3248,7 @@ return If( Empty( cAction ), "lOk := .T., oDlg:End()", cAction )
 
 procedure DsnNormalizeControls( aControls )
 
-   local oCtrl, nPos, cCaption, n, cType, cPrefix
+   local oCtrl, nPos, cCaption, n, cType, cPrefix, cEvent
    local cTypes := "|" + DSN_SAY + "|" + DSN_GET + "|" + DSN_CHECKBOX + "|" + ;
                    DSN_BUTTON + "|" + DSN_RADIO + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX + "|"
 
@@ -3276,6 +3276,13 @@ procedure DsnNormalizeControls( aControls )
       if "action" $ oCtrl .and. ! HB_IsString( oCtrl[ "action" ] )
          oCtrl[ "action" ] = ""
       endif
+
+      // Event expressions are optional strings, never numeric/logical JSON.
+      for each cEvent in { "when", "valid", "focus", "state" }
+         if cEvent $ oCtrl .and. ! HB_IsString( oCtrl[ cEvent ] )
+            oCtrl[ cEvent ] := ""
+         endif
+      next
 
       // Optional JSON fields must exist before direct indexed access.
       if "variable" $ oCtrl .and. ! HB_IsString( oCtrl[ "variable" ] )
