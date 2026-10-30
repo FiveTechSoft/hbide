@@ -1527,3 +1527,14 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Ten27inputcallerslinked.85runner entries84cases/modes+guard. No
   product change; initial inspector spacing assertion corrected from
   raw screen evidence.
+
+### 2026-10-30 Structured debugger inspectors and nested editing
+
+- Array/hash/object actual Monitor inspector rejects direct typed replacement.
+  Enter opens nested browser: editing enabled by default, not recursively
+  readonly. Nested scalar/property accepts41; typed99/Esc and invalid
+  expression/Esc preserve41. Resume writes exact {41,2},hash values or
+  object property41.21checks,14of27callers linked.
+- No product change. Explicit lEditable false, deeper nesting, pointers/
+  blocks and getter/setter faults not accepted.86runner entries85cases/
+  modes+guard.
