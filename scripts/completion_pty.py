@@ -61,13 +61,14 @@ CASES = {
     'debug-restored-points': ('test_debug_restored_points_pty.py', [], 120),
     'debug-commands': ('test_debug_commands_pty.py', [], 120),
     'debug-functions': ('test_debug_functions_pty.py', [], 180),
+    'debug-functions-idle': ('test_debug_functions_pty.py', ['--idle-settle'], 120),
     'debug-session': ('test_debug_session_pty.py', [], 120),
     'debug-startup': ('test_debug_startup_pty.py', [], 120),
     'debug-monitor': ('test_debug_monitor_pty.py', [], 120),
     'debug-callstack': ('test_debug_callstack_pty.py', [], 120),
     'debug-codeblock': ('test_debug_codeblock_pty.py', [], 120),
     'debug-animate': ('test_debug_animate_pty.py', [], 120),
-    # This harness imports/runs debug-commands before its own exit cases.
+    # Pure parser import: Commands is a separate explicit case.
     'debug-exits': ('test_debug_exit_paths_pty.py', [], 180),
 }
 def main():

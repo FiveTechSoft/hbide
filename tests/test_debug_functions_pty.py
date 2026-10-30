@@ -96,14 +96,21 @@ fcntl.ioctl(fd, termios.TIOCSWINSZ, struct.pack('HHHH', ROWS, COLS, 0, 0))
 
 scr = Scr()
 def pump(secs):
-    t0 = time.time(); buf = b''
+    # Optional bounded idle settle: retain the caller's maximum deadline,
+    # but stop after output has been idle250ms. All checks remain unchanged.
+    fast = '--idle-settle' in sys.argv
+    t0 = time.time(); last_output = None; buf = b'' 
     while time.time() - t0 < secs:
         r,_,_ = select.select([fd],[],[],0.2)
-        if not r: continue
+        if not r:
+            if fast and last_output is not None and time.time()-last_output >= .25:
+                break
+            continue
         try: d = os.read(fd, 65536)
         except OSError: break
         if not d: break
         buf += d
+        last_output = time.time()
         while b'\x1b[6n' in buf:
             i = buf.index(b'\x1b[6n'); buf = buf[:i] + buf[i+4:]
             os.write(fd, b'\x1b[%d;1R' % ROWS)
