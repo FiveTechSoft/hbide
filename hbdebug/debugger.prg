@@ -2904,6 +2904,9 @@ METHOD PROCEDURE ShowCallStack() CLASS HBDebugger
          ::oBrwStack:RefreshAll(), ::oBrwStack:ForceStable() }
 
       ::oWndStack:Show( .F. )
+      IF ! ::lWindowsAutoSized .AND. ! Empty( ::cLayoutMode )
+         ::WindowLayout( ::cLayoutMode )
+      ENDIF
    ENDIF
 
    RETURN

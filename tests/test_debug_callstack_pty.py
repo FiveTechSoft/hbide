@@ -286,6 +286,23 @@ try:
     print('PASS hidden zoomed Points restores twice and unzooms to original layout')
 
 
+    command('callstack off')
+    command('window tile')
+    command('callstack on')
+    tiled=os.path.join(work,'reopened-calls-tile.cld')
+    command('options savesettings '+tiled)
+    rects={};name=None;size=None
+    for line in geometry(tiled):
+        if line.startswith('Window Select '):name=line.split()[-1]
+        elif line.startswith('Window Size '):size=tuple(map(int,line.split()[2:]))
+        elif line.startswith('Window Move ') and size:
+            top,left=map(int,line.split()[2:]);rects[name]=(top,left,top+size[0]-1,left+size[1]-1);size=None
+    stackrect=rects['CALLSTACK']
+    for name,rect in rects.items():
+        if name!='CALLSTACK':
+            assert stackrect[2]<rect[0] or rect[2]<stackrect[0] or stackrect[3]<rect[1] or rect[3]<stackrect[1],('new Calls must be tiled without overlap',rects)
+    print('PASS reopening Calls in TILE keeps all panels disjoint')
+
     print('PASS CallStack on: routine listed; next routine adds bump; off hides')
     send(b'\x1bx');pump(.7);assert ' File  Edit' in scr.text()
 finally:

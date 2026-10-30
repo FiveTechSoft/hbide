@@ -775,3 +775,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Sin evaluar expresiones. Conserva tokens Harbour N/B/G/R/W/I/X/U, números, brillo/parpadeo y espacios; fuente local hbgtcore.c verificada para no rechazar tokens válidos. Prueba aplica paleta completa con GR+/N,7/0,U/N,I y restaura original.
 - RestoredPoints ampliado PASS y diez modelos PASS candidato. Captura completa inspeccionada del diagnóstico y colores previos conservados. Un intento del test usó JSON sin convertir llaves Harbour; corregido antes de publicar. No es validación transaccional del script Restore entero ni de todos los modales de color.
 - Path For Files Cancel probado: ya conserva ruta anterior, se añade test sin parche de producto.
+
+## 30Oct07:10 Calls opening in TILE
+- Calls se crea por otro camino que Monitor/Points. Abrirlo tras TILE solapaba Watch y Command; prueba real de rectángulos falla antes (Calls1,64..18,79; Watch1,40..11,79).
+- ShowCallStack incorpora el nuevo pane al layout nombrado, sin cambiar los rectángulos manuales. CallStack ampliado compara no solapamiento; candidato PASS y diez modelos PASS. Captura completa inspeccionada: Source/Watch/Calls/Command disjuntos, datos y bordes completos.
+- No cierra todas las combinaciones de quitar/reabrir ni Windows. Baseline completo53be664 histórico.
