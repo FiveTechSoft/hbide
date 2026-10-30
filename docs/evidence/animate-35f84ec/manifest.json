@@ -1,0 +1,33 @@
+{
+  "source": "35f84ec2fde7887982cdc202c496dda23ab8629f",
+  "binary_sha256": "b26cc2f0241c3b2a15e5d54ac78307119fc9b93523c62fb9ad9f34ee68c710b3",
+  "scope": "Sampled visual evidence only, not absence-of-tearing certification. 20fps video, inspected 2fps contact sheets and full screenshots. Speeds1 and5. Alt+D stops animation; F4 shows application screen; space returns. Speed5 app FRAME4 and return line11; Speed1 app FRAME23 and return line49. Videos may miss transitions shorter than50ms. No Windows or other screen-size claim.",
+  "artifacts": [
+    {
+      "file": "hbide-animate-fast-app.png",
+      "sha256": "17ceab5f356f6ae840419fb3b16d3f3ff1096fba2a8c8ed5a5d62a4087521aaf"
+    },
+    {
+      "file": "hbide-animate-fast-return.png",
+      "sha256": "146352558cbefc6e3f36ca80915c7523c79024016aa6d64ad6a9d9ced249e0d7"
+    },
+    {
+      "file": "hbide-animate-return.png",
+      "sha256": "676ca7c08783dc0fcb8e7c36bf403da05935f637b368a2ad8b72e81a37b6caa9"
+    },
+    {
+      "file": "hbide-animate-app.png",
+      "sha256": "b42c7850d40fe35b29bda2ed1b2f019e09a653225a4897adcc1380ca4ff568b1"
+    },
+    {
+      "file": "hbide-animate-speed5.mp4",
+      "sha256": "fe08f522292f9d0960be8d933444a9cd82a86ab5dd7b2064a3f9257ba41a0c55",
+      "storage": "Transferred to parent, video bytes not included in this repository."
+    },
+    {
+      "file": "hbide-animate-speed1.mp4",
+      "sha256": "42016609ecab82c03de0de4f4898ad769312bc3c565704f5f081dd8914cf7069",
+      "storage": "Transferred to parent, video bytes not included in this repository."
+    }
+  ]
+}

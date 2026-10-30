@@ -785,3 +785,9 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - At07:11 the temporary development environment was lost, including checkout, toolchain and unversioned test logs. Published code remained safe at d47c3af; cloned branch and remote/master verified again.
 - Rebuilt Harbour694428e1c12f726675b19324d62167fa77d68185, built hbide, and executed new checks on clean d47c3af: CallStack expanded suite PASS plus ten model suites PASS. New binary b26cc2f0241c3b2a15e5d54ac78307119fc9b93523c62fb9ad9f34ee68c710b3.
 - Evidence docs/evidence/linux-recovered-d47c3af.json records NEW executions, not recovered prior logs. Prior unversioned bytes remain unavailable. Published historical ledgers remain unchanged. No product change and no full-regression or Windows claim.
+
+## 30Oct07:25 Animate visual samples at two speeds
+- No product change. On35f84ec, binaryb26cc2f0, recorded16s at20fps for Speed5 (0.5s/step) and Speed1 (0.1s/step) with real application output. Inspected2fps contact sheets and full screenshots.
+- Alt+D interrupts; F4 shows clean sampled app output (FRAME4 / FRAME23); space returns to debugger at line11 /49 with full source/command/borders/status. Source scroll at Speed1 observed in samples.
+- Evidence screenshots and manifest in docs/evidence/animate-35f84ec/. Videos transferred separately, not included as repository bytes. This does not prove no tearing: sampling may miss transitions shorter than50ms and other platforms/sizes remain untested. Q04 stays partial.
+- Initial attempt failed terminal focus and was discarded; later Escape was not the interrupt shortcut, so final runs use Alt+D. No product failure inferred from those setup attempts.
