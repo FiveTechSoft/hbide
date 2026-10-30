@@ -1160,3 +1160,10 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   and property minimums remain4; no inferred UI policy change.
 - Actual Load/Save/Load and generated Space(width) preserve1/2/3. This follows
   existing documented drag contract; oversized and filename-undo unaffected.
+
+### 2026-10-30 Narrow GET generated runtime
+
+- Generated GET width1/2/3 artifacts compile and run through actual GTTRM
+  READ; keyboard enters X/XY/XYZ then Tab/OK, and exported bound values match.
+- Six checks (three compiles and three final bound values), not six features.
+  This is runtime state evidence, not pixel appearance or mouse acceptance.
