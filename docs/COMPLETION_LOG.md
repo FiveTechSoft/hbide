@@ -769,3 +769,9 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Window Select enfocaba Points pero no lo movía al slot frontal como Next/Prev: prueba registraba Points2,2 frente a Command4,6. Antes falla, después PASS.
 - WindowSelect aplica Cascade cuando ese modo sigue activo; manual/TILE mantienen geometría. CallStack ampliado y diez modelos PASS candidato; captura completa inspeccionada de selección directa Points al frente, sin reaplicar Cascade manualmente.
 - No certifica todos los caminos de foco/ratón ni Windows. Baseline completo53be664 histórico.
+
+## 30Oct07:05 Colors complete-list validation
+- Reproducción: Options Colors con una sola entrada copiaba ese color a las11 posiciones. Ahora parsea/valida una lista completa antes de sustituir la paleta; error visible y estado intacto si faltan/sobran valores, llaves/comillas o hay caracteres no admitidos.
+- Sin evaluar expresiones. Conserva tokens Harbour N/B/G/R/W/I/X/U, números, brillo/parpadeo y espacios; fuente local hbgtcore.c verificada para no rechazar tokens válidos. Prueba aplica paleta completa con GR+/N,7/0,U/N,I y restaura original.
+- RestoredPoints ampliado PASS y diez modelos PASS candidato. Captura completa inspeccionada del diagnóstico y colores previos conservados. Un intento del test usó JSON sin convertir llaves Harbour; corregido antes de publicar. No es validación transaccional del script Restore entero ni de todos los modales de color.
+- Path For Files Cancel probado: ya conserva ruta anterior, se añade test sin parche de producto.

@@ -892,6 +892,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
    LOCAL cResult
    LOCAL lValid
    LOCAL lMonitorState
+   LOCAL aNewColors, cColor
    LOCAL n
 
    cCommand := AllTrim( cCommand )
@@ -1166,18 +1167,34 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
          IF Empty( cParam2 )
             ::Colors()
          ELSE
-            cParam2 := SubStr( cParam2, At( "{", cParam2 ) + 1 )
-            FOR n := 1 TO 11
-               IF "," $ cParam2
-                  ::aColors[ n ] := ;
-                     StrTran( Left( cParam2, At( ",", cParam2 ) - 1 ), '"' )
-                  cParam2 := SubStr( cParam2, At( ",", cParam2 ) + 1 )
-               ELSE
-                  ::aColors[ n ] := ;
-                     StrTran( Left( cParam2, At( "}", cParam2 ) - 1 ), '"' )
-               ENDIF
-            NEXT
-            ::LoadColors()
+            // Parse a complete palette before replacing any live color.
+            // This is data, not an expression to evaluate.
+            aNewColors := {}
+            lValid := Left( cParam2, 1 ) == "{" .AND. Right( cParam2, 1 ) == "}"
+            IF lValid
+               FOR EACH cColor IN hb_ATokens( SubStr( cParam2, 2, Len( cParam2 ) - 2 ), "," )
+                  cColor := AllTrim( cColor )
+                  IF Len( cColor ) < 3 .OR. Left( cColor, 1 ) != '"' .OR. Right( cColor, 1 ) != '"'
+                     lValid := .F.
+                     EXIT
+                  ENDIF
+                  cColor := SubStr( cColor, 2, Len( cColor ) - 2 )
+                  IF Empty( cColor ) .OR. ! Empty( hb_StrReplace( Upper( cColor ), ;
+                     { "N", "B", "G", "R", "W", "I", "X", "U", "+", "*", "/", ;
+                       "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", " " }, "" ) ) .OR. ;
+                     hb_ColorToN( cColor ) < 0
+                     lValid := .F.
+                     EXIT
+                  ENDIF
+                  AAdd( aNewColors, cColor )
+               NEXT
+            ENDIF
+            IF lValid .AND. Len( aNewColors ) == Len( ::aColors )
+               ::aColors := aNewColors
+               ::LoadColors()
+            ELSE
+               cResult := "Colors expects 11 quoted color values"
+            ENDIF
          ENDIF
       CASE hb_LeftEq( "TABWIDTH", cParam1 )
          IF IsDigit( cParam2 )
