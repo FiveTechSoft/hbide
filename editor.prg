@@ -1232,9 +1232,13 @@ function HBIDE_AtomicWriteFile( cFile, cContent, cFailInfo )
 
    aDir := Directory( cFile )
    if Len( aDir ) > 0 .and. "L" $ aDir[ 1 ][ F_ATTR ]
-      hb_MemoWrit( cTmp, cContent )
-      cFailInfo := cFile + " is a symlink: saving there is not safe yet. " + ;
-                   "Destination untouched; your content is recoverable at " + cTmp
+      if hb_MemoWrit( cTmp, cContent ) .and. hb_FSize( cTmp ) == Len( cContent )
+         cFailInfo := cFile + " is a symlink: saving there is not safe yet. " + ;
+                      "Destination untouched; your content is recoverable at " + cTmp
+      else
+         cFailInfo := cFile + " is a symlink: destination untouched; could not write a complete recovery temp. " + ;
+                      "Keep this buffer open and save to another path"
+      endif
       return .F.
    endif
 

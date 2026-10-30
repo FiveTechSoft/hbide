@@ -99,6 +99,22 @@ proc Main()
    Check( "refusal explains + names recovery temp", "symlink" $ cInfo .and. "recoverable" $ cInfo )
    Check( "recovery temp exists with new content", Len( Directory( cDir + "/link.txt.tmp-*" ) ) == 1 )
 
+   // Dangling symlinks must also be refused, never replaced by a plain file.
+   hb_Run( "ln -s absent-target " + cDir + "/dangling.txt" )
+   cInfo := ""
+   Check( "save to dangling symlink refused", ! HBIDE_AtomicWriteFile( cDir + "/dangling.txt", "NEW", @cInfo ) )
+   Check( "dangling link preserved", hb_vfLinkRead( cDir + "/dangling.txt" ) == "absent-target" )
+
+   // Symlink refusal must not promise a recovery file that could not be written.
+   hb_Run( "ln -s ../real.txt " + cDir + "/ro/link.txt" )
+   hb_Run( "chmod 0555 " + cDir + "/ro" )
+   cInfo := ""
+   Check( "read-only symlink save refused", ! HBIDE_AtomicWriteFile( cDir + "/ro/link.txt", "NEW", @cInfo ) )
+   Check( "failed recovery write not claimed recoverable", !( "recoverable at" $ cInfo ) )
+   Check( "failed recovery write explained", "could not write" $ cInfo )
+   Check( "read-only link and target untouched", hb_vfLinkRead( cDir + "/ro/link.txt" ) == "../real.txt" .and. MemoRead( cOld ) == "target-v1" )
+   hb_Run( "chmod 0755 " + cDir + "/ro" )
+
    // 10. fault injection: HBIDE_ParkReplace over a target in a READ-ONLY
    //     dir cannot even park -> .F., original intact, temp KEPT, info names it
    cTarget := cDir + "/ro/protected.prg"
