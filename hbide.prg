@@ -1277,10 +1277,16 @@ METHOD RecoveryCheck() CLASS HbIde
    local aItem, nPick
 
    for each aItem in HBIDE_RecoveryScan()
-      nPick := HBIDE_MsgAlert( "Unsaved changes from an interrupted session:" + Chr( 10 ) + ;
-              iif( Empty( aItem[ 2 ] ), "noname.prg", aItem[ 2 ] ) + ;
-              " (" + aItem[ 4 ] + ", " + hb_ntos( aItem[ 3 ] ) + " bytes)", ;
-              { "Recover", "Discard", "Later" }, "Recovery" )
+      do while .T.
+         nPick := HBIDE_MsgAlert( "Unsaved changes from an interrupted session:" + Chr( 10 ) + ;
+                 iif( Empty( aItem[ 2 ] ), "noname.prg", aItem[ 2 ] ) + ;
+                 " (" + aItem[ 4 ] + ", " + hb_ntos( aItem[ 3 ] ) + " bytes)", ;
+                 { "Recover", "Discard", "Later", "Compare" }, "Recovery" )
+         if nPick != 4
+            exit
+         endif
+         HBIDE_MsgAlert( HBIDE_RecoveryCompare( aItem[ 1 ], aItem[ 2 ] ), { "OK" }, "Recovery comparison" )
+      enddo
       do case
          case nPick == 1
             // no pre-CheckUnsaved here: RecoverJournal never clobbers - it

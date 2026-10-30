@@ -392,3 +392,29 @@ static function HBIDE_RecoveryDecode( cBytes, hEncoding, lDecodeOk )
       endif
    endif
 return cBytes
+
+// Read-only comparison summary. Journal bytes are editor bytes; without a
+// proven conversion they must not be compared to encoded disk bytes as text.
+function HBIDE_RecoveryCompare( cBase, cTarget )
+   local hEncoding, lJournalOk, lDiskOk, cJournal, cDisk, cSummary
+   cJournal := HBIDE_RecoveryReadBase( cBase, @hEncoding, @lJournalOk )
+   cSummary := "Read-only comparison. No document or file changed." + Chr( 10 )
+   if ! lJournalOk
+      return cSummary + "Journal cannot be read or decoded. Kept unchanged."
+   endif
+   cSummary += "Journal editor payload: " + hb_ntos( Len( cJournal ) ) + " bytes." + Chr( 10 )
+   if Empty( cTarget ) .or. cTarget == "noname.prg"
+      return cSummary + "No named disk target to compare."
+   endif
+   cDisk := HBIDE_ReadFileChecked( cTarget, @lDiskOk )
+   if ! lDiskOk
+      return cSummary + "Disk target missing or unreadable."
+   endif
+   cSummary += "Disk: " + hb_ntos( Len( cDisk ) ) + " bytes." + Chr( 10 )
+   if hEncoding != NIL .and. ( hEncoding[ "utf8" ] .or. hEncoding[ "bom" ] )
+      return cSummary + "Encoded journal: editor and disk bytes are not directly comparable. No text equality claimed."
+   endif
+   if cJournal == cDisk
+      return cSummary + "Payload and disk bytes are identical."
+   endif
+return cSummary + "Payload and disk bytes differ. This is not a line diff."
