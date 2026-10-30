@@ -1259,6 +1259,36 @@
         "test_edit_menu_pty.py"
       ],
       "contract": "Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only."
+    },
+    "IDE-FIELD-HelpIndex-cFilter-1": {
+      "tests": [
+        "test_help_pty.py"
+      ],
+      "contract": "Actual HelpIndex explicit OK filters topic and Cancel restores source; multiple-match picker actual OK opens selected topic and Cancel returns source. Undo after help preserves source bytes. Does not test every picker selection, input, geometry or platform."
+    },
+    "IDE-FIELD-HelpIndex-lDummy-1": {
+      "tests": [
+        "test_help_pty.py"
+      ],
+      "contract": "Actual HelpIndex explicit OK filters topic and Cancel restores source; multiple-match picker actual OK opens selected topic and Cancel returns source. Undo after help preserves source bytes. Does not test every picker selection, input, geometry or platform."
+    },
+    "IDE-FIELD-HelpIndex-lDummy-2": {
+      "tests": [
+        "test_help_pty.py"
+      ],
+      "contract": "Actual HelpIndex explicit OK filters topic and Cancel restores source; multiple-match picker actual OK opens selected topic and Cancel returns source. Undo after help preserves source bytes. Does not test every picker selection, input, geometry or platform."
+    },
+    "IDE-FIELD-HelpPick-lDummy-1": {
+      "tests": [
+        "test_help_pty.py"
+      ],
+      "contract": "Actual HelpIndex explicit OK filters topic and Cancel restores source; multiple-match picker actual OK opens selected topic and Cancel returns source. Undo after help preserves source bytes. Does not test every picker selection, input, geometry or platform."
+    },
+    "IDE-FIELD-HelpPick-lDummy-2": {
+      "tests": [
+        "test_help_pty.py"
+      ],
+      "contract": "Actual HelpIndex explicit OK filters topic and Cancel restores source; multiple-match picker actual OK opens selected topic and Cancel returns source. Undo after help preserves source bytes. Does not test every picker selection, input, geometry or platform."
     }
   }
 }

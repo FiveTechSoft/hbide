@@ -382,11 +382,11 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display/ProjectOpen/OpenFile/Sa
 | IDE-FIELD-SaveAs-lDummy-1 | &OK | pushbutton | hbide.prg:1722 | Pendiente vinculo por campo |
 | IDE-FIELD-SaveAs-lDummy-2 | &Cancel | pushbutton | hbide.prg:1726 | Pendiente vinculo por campo |
 | IDE-FIELD-HelpPick-cPick-1 | cPick | listbox | hbide.prg:2740 | Pendiente vinculo por campo |
-| IDE-FIELD-HelpPick-lDummy-1 | &OK | pushbutton | hbide.prg:2746 | Pendiente vinculo por campo |
-| IDE-FIELD-HelpPick-lDummy-2 | &Cancel | pushbutton | hbide.prg:2750 | Pendiente vinculo por campo |
-| IDE-FIELD-HelpIndex-cFilter-1 | cFilter | value | hbide.prg:2782 | Pendiente vinculo por campo |
-| IDE-FIELD-HelpIndex-lDummy-1 | &OK | pushbutton | hbide.prg:2792 | Pendiente vinculo por campo |
-| IDE-FIELD-HelpIndex-lDummy-2 | &Cancel | pushbutton | hbide.prg:2796 | Pendiente vinculo por campo |
+| IDE-FIELD-HelpPick-lDummy-1 | &OK | pushbutton | hbide.prg:2746 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-lDummy-2 | &Cancel | pushbutton | hbide.prg:2750 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-cFilter-1 | cFilter | value | hbide.prg:2782 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-lDummy-1 | &OK | pushbutton | hbide.prg:2792 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-lDummy-2 | &Cancel | pushbutton | hbide.prg:2796 | Vinculo focal; ver alcance |
 - IDE-FIELD-GotoLine-nLine-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-GotoLine-lDummy-1: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-GotoLine-lDummy-2: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
@@ -413,6 +413,11 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display/ProjectOpen/OpenFile/Sa
 - IDE-FIELD-DisplayOpts-cSize-1: Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
 - IDE-FIELD-DisplayOpts-lDummy-1: Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
 - IDE-FIELD-DisplayOpts-lDummy-2: Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
+- IDE-FIELD-HelpPick-lDummy-1: Actual HelpIndex explicit OK filters topic and Cancel restores source; multiple-match picker actual OK opens selected topic and Cancel returns source. Undo after help preserves source bytes. Does not test every picker selection, input, geometry or platform. Pruebas: [test_help_pty.py](../tests/test_help_pty.py)
+- IDE-FIELD-HelpPick-lDummy-2: Actual HelpIndex explicit OK filters topic and Cancel restores source; multiple-match picker actual OK opens selected topic and Cancel returns source. Undo after help preserves source bytes. Does not test every picker selection, input, geometry or platform. Pruebas: [test_help_pty.py](../tests/test_help_pty.py)
+- IDE-FIELD-HelpIndex-cFilter-1: Actual HelpIndex explicit OK filters topic and Cancel restores source; multiple-match picker actual OK opens selected topic and Cancel returns source. Undo after help preserves source bytes. Does not test every picker selection, input, geometry or platform. Pruebas: [test_help_pty.py](../tests/test_help_pty.py)
+- IDE-FIELD-HelpIndex-lDummy-1: Actual HelpIndex explicit OK filters topic and Cancel restores source; multiple-match picker actual OK opens selected topic and Cancel returns source. Undo after help preserves source bytes. Does not test every picker selection, input, geometry or platform. Pruebas: [test_help_pty.py](../tests/test_help_pty.py)
+- IDE-FIELD-HelpIndex-lDummy-2: Actual HelpIndex explicit OK filters topic and Cancel restores source; multiple-match picker actual OK opens selected topic and Cancel returns source. Undo after help preserves source bytes. Does not test every picker selection, input, geometry or platform. Pruebas: [test_help_pty.py](../tests/test_help_pty.py)
 
 ## Campos de inspector
 

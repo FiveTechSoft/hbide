@@ -1459,3 +1459,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   accepted from existing menu tests.11Python inventory tests.
 - Excludes generic dynamic alerts, debugger inputs and remaining gestures;
   no exhaustive claim. Runner now82entries (81case/modes+static guard).
+
+### 2026-10-30 Help modal explicit buttons
+
+- HelpIndex filter+actualOK/Cancel, multiple-match HelpPick actualOK/
+  Cancel, return to source and Undo/save byte identity. Help16checks.
+- Five new focal links:31of43IDE declarations. Picker selection changes
+  unaccepted. Initial harness forgot view returns to picker, not source;
+  corrected extra Esc between independent scenarios, no product change.
