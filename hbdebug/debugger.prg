@@ -3603,7 +3603,9 @@ METHOD PROCEDURE WatchpointsHide() CLASS HBDebugger
       RETURN
    ENDIF
    ::oWndCode:nTop := iif( ::oWndVars != NIL .AND. ::oWndVars:lVisible, ::oWndVars:nBottom + 1, 1 )
-   ::oBrwText:Resize( ::oWndCode:nTop + 1 )
+   IF ::oBrwText != NIL
+      ::oBrwText:Resize( ::oWndCode:nTop + 1 )
+   ENDIF
    IF ::aWindows[ ::nCurrentWindow ] == ::oWndPnt
       ::NextWindow()
    ENDIF

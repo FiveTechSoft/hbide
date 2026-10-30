@@ -855,3 +855,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Goto/Locate no leen browser inexistente; BP no consulta VM sin módulo conocido y refrescos de BP comprueban browser. MissingSource ampliado recorre Goto/Find/Locate/Num/BP/Delete, evalúa81 después de cada acción, recupera fuente y verifica parada VM4. Candidato PASS y diez modelos PASS.
 - Sin afirmar que todas las acciones sin fuente estén cubiertas. Num ya tenía guarda, se prueba sin cambio. No aceptación global ni Windows.
 - Repetición limpiad0164b8: MissingSource ampliado y RestoredPoints PASS, diez modelos PASS, mismo binario07420b60504849c36fb04ccad69ce3ed66a901da1d7e3d0a3730ef52f9214411, sin mutaciones; docs/evidence/linux-missing-navigation-d0164b8.json. Captura completa inspeccionada: fuente ausente, resultado81 tras secuencia de comandos, sin modal y bordes completos.
+
+## 30Oct09:11 Closing last point without source
+- Reproducción: sin fuente/browser, WP n y Delete WP ALL abrían No exported method en WatchpointsHide al redimensionar NIL.
+- Guarda el redimensionado. MissingSource ampliado verifica Monitor on/off, WP/TP add/delete y CallStack on/off con evaluación81 tras cada acción; recupera fuente y parada VM4. Candidato PASS y diez modelos PASS. No fallo observado en Monitor/CallStack para esa secuencia, sin parche allí.
+- Sin aceptación exhaustiva de combinaciones/layouts ni Windows.
