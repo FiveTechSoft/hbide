@@ -900,3 +900,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Save y Restore: editar nombre y Escape conserva el nombre anterior en la siguiente apertura del diálogo. Bytes de archivo anterior intactos y no aparece archivo con nombre abandonado.
 - Caso PASS, sin parche de producto. No se cambia el nombre por defecto tras errores porque eso requiere separar destino intentado de última ruta válida y no se ha establecido contrato nuevo.
 - Repetición limpia4728d46: RestoredPoints ampliado PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-settings-cancel-4728d46.json. Binario31b50660913f1071ded1b614d79fa3d5724c47752645357b723b6292845e0965.
+
+## 30Oct10:32 Debugger help summary reconciled
+- El tema general Debugger aún decía Iconize y Menu Bar no implementados; Debugger windows ya los describía correctamente. Resumen corregido: Iconize funcional, recuperación Menu Bar Alt+O,M y solo Exchange Screens/swap on Input pendientes.
+- Modelo añade contrato de consistencia y PTY verifica lectura real del resumen. Candidato Help11/11 y diez modelos PASS. Primeros intentos del test no confirmaban la selección intermedia de Index o no la cerraban; corregido el recorrido, sin atribuir fallo al producto.
+- No nueva función ni certificación global/Windows.

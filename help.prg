@@ -114,9 +114,9 @@ function HBIDEHelpTopics()
       "Harbour does not implement GLOBAL variables (xHarbour-only legacy)." + hb_eol() + hb_eol() + ;
       "Options > Save/Restore Settings persists colors, tab width, monitor" + hb_eol() + ;
       "flags and breakpoints to init.cld and applies them back." + hb_eol() + hb_eol() + ;
-      "Window > Move/Size/Zoom/Tile/Cascade manages debugger panels." + hb_eol() + ;
-      "Not implemented: Iconize, Options Exchange Screens," + hb_eol() + ;
-      "swap on Input, Menu Bar." } )
+      "Window > Move/Size/Zoom/Tile/Cascade/Iconize manages debugger panels." + hb_eol() + ;
+      "Options > Menu Bar hides or shows the bar; Alt+O then M restores it." + hb_eol() + ;
+      "Not implemented: Options Exchange Screens and swap on Input." } )
 
    AAdd( a, { "options compiler flags display designer strict warnings incremental optimize", "Options menu", ;
       "Compiler Flags...   Build options used by Run > Start:" + hb_eol() + ;
