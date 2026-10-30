@@ -1,0 +1,49 @@
+{
+  "scope": "Clean65346e8 Linux project-mouse11checks and project-messages23checks samefreshbinary;15inventorytests and33docs exact. No productchange, visual/Windows certification or milestone closure.20models remain6b17647,not rerun.",
+  "runs": [
+    {
+      "source": "65346e8d42b9e60e7d986f506c95f80d7f61354f",
+      "tracked_changes": "",
+      "binary_sha256": "3449825538918834e96724490d3843dc262b07943650a7717f23e0b328d420dd",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3cbb3092e20086c6cfe2390aaa14faaeb9b27b07081e5c61c877baac52fc5768",
+      "case": "project-mouse",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_project_mouse_pty.py"
+      ],
+      "started": 1793402980.4868817,
+      "seconds": 11.79,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a58401a72f385a263687341e336abc4fd7a87969ff7e8d98e52400234fd43f9d",
+      "log": "/tmp/hbide-project-mouse-pty/project-mouse-1793402980486876858.log"
+    },
+    {
+      "source": "65346e8d42b9e60e7d986f506c95f80d7f61354f",
+      "tracked_changes": "",
+      "binary_sha256": "3449825538918834e96724490d3843dc262b07943650a7717f23e0b328d420dd",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3cbb3092e20086c6cfe2390aaa14faaeb9b27b07081e5c61c877baac52fc5768",
+      "case": "project-messages",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_project_messages_pty.py"
+      ],
+      "started": 1793402992.2800212,
+      "seconds": 23.11,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "fb54d7fe3bb7b29ebab71979954ec63c7b57f4308a472576a7b5b8363dae0b98",
+      "log": "/tmp/hbide-project-mouse-pty/project-messages-1793402992280017040.log"
+    }
+  ]
+}
