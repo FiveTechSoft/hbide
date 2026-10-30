@@ -1496,6 +1496,12 @@
         "test_debug_color_set_modal_pty.py"
       ],
       "contract": "Actual Colors first inline entry W/R persists exact palette; typedEsc and wrong-type validation/Esc preserve it. Actual Sets Decimals5 changes SET3; typedEsc and wrong-type/Esc preserve5, debugger query confirms. RestoresSET2/full palette. Focal first color/numeric SET only, not all settings/colors/platforms."
+    },
+    "DBG-INPUT-debugger-BreakPointDelete-inputbox-1": {
+      "tests": [
+        "test_debug_bp_modal_pty.py"
+      ],
+      "contract": "Actual DELETE BP noargs input typedEsc preserves exact two-function VM breakpoint list; -1/huge/0x/1.5 leave list unchanged;0deletesfirst;ALLclears. Saved settings read actual VM list. No all indices/source breakpoints/platform acceptance."
     }
   }
 }

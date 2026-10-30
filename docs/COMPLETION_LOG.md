@@ -1571,3 +1571,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   color and numeric SET, not all settings/platforms. Initial fixture
   tried numeric value on logical Exact; corrected fixture to Decimals,
   no product change.
+
+### 2026-10-31 Debugger breakpoint index modal
+
+- Actual DELETE BP with no arguments opens index input. TypedEsc
+  preserves exact two-function VM breakpoint list; negative/huge/
+  malformed/fractional indices preserve;0deletesfirst;ALLclears.
+  Saved settings reads VM list,16checks.23of27caller links.
+-90runner entries89case/modes+guard. No product change, not all
+  indices/sourcebreakpoints/visual/platform acceptance.
