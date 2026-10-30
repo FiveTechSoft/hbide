@@ -231,6 +231,12 @@ try:
     check('Locate Goto selects actual source line',selected_source('n := n + 60'))
     send(b'\x1bl');pump(.3);send(b'g');pump(.3);send(b'\x1b');pump(.5)
     check('Locate Goto Cancel preserves selected line',selected_source('n := n + 60'))
+    send(b'\x1bl');pump(.3);send(b'f');pump(.3)
+    send(b'\x19');send(b'n + 7');send(b'\x1b');pump(.5)
+    check('Locate Find Cancel preserves selected line',selected_source('n := n + 60'))
+    send(b'goto 3\r');pump(.4)
+    send(b'next\r');pump(.5)
+    check('Locate Find Cancel preserves previous search string',selected_source('n := n + 11'))
     send(b'\x1bx');pump(.8)
     check('Debugger exits back to IDE', 'Edit' in scr.text() and 'fn.prg' in scr.text())
 finally:

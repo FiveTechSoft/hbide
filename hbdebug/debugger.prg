@@ -2049,7 +2049,7 @@ METHOD Locate( nMode, cValue ) CLASS HBDebugger
 
    IF Empty( cValue )
       cValue := ::InputBox( "Search string", ::cSearchString )
-      IF Empty( cValue )
+      IF LastKey() == K_ESC .OR. Empty( cValue )
          RETURN NIL
       ENDIF
    ENDIF

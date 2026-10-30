@@ -628,3 +628,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - 42 suites PTY distintas PASS sobre 0768ac2182930d7ddfaa55c7a77a12ea5bf538d5 limpio, binario SHA64a7f206183ed782ac61d09495bb1328075ddcfc0ca650e8e928aa68b8867db6. Build fresco inicial y reutilizacion explicita del mismo binario, sin mutaciones durante los casos.
 - Diez suites de modelo PASS en la misma revision limpia. Ledger completo en docs/evidence/linux-pty-0768ac2.json; logs originales /tmp/hbide-pty-0768ac2 y /tmp/hbide-completion-fjg413mg. Sin reintentos ni fallos en esta pasada.
 - Sustituye baseline38 como candidato actual, conservando los historicos sin reetiquetarlos. Incluye ampliaciones de CompilerFlags, Help, Display, Close y Locate. No equivale a 100%, acabado Animate, revision visual exhaustiva ni Windows nativo; dos stubs visibles pendientes. No cambia codigo de producto.
+
+## 30Oct03:23 Locate Find cancellation
+- Esc en Search string seguia ejecutando la busqueda previa y movia la navegacion a su coincidencia, en vez de cancelar. Prueba final de menu real: 37PASS/1FAIL antes. El termino anterior ya se preservaba; la nueva comprobacion separada lo verifica, no se atribuye como arreglo.
+- Locate comprueba K_ESC antes de guardar o buscar. DebugCommands38PASS y diez modelosPASS candidato. Captura completa tras cancelar inspeccionada: navegacion permanece en linea60 y modal cerrado.
+- No cierra Locate global ni Windows. El baseline42 sobre0768ac2 sigue historico tras este cambio de producto; no se hereda como nueva pasada completa.
