@@ -25,3 +25,25 @@ A finished implementation must own the entire build tree, drain output
 without deadlock, record cancellation separately from exit code, restore the
 working directory, and never launch a stale executable. Windows needs its
 own verified process-tree behavior.
+
+## Isolated Linux process-group probe
+
+```
+hbmk2 tests/probes/build_cancel_group.prg hbunix.hbc -gtstd -o/tmp/build-cancel-group
+/tmp/build-cancel-group "$PWD/tests/probes/build_cancel_child.py"
+```
+
+This second exploratory probe starts the child under `/usr/bin/setsid` and
+uses `posix_kill(-processHandle,"KILL")`. In this Linux test both direct
+process and its child were gone immediately afterward. Kill returned0
+(success), while processValue again returned0. This is evidence that group
+isolation can address this specific descendant case, not a production-safe
+implementation. It depends on an external utility, assumes the utility does
+not fork, and has no group-identity check before signalling. Production must
+verify that the group is newly owned by this build, handle startup failure,
+check cancellation completion, and account for descendants that detach.
+Never apply this probe to an existing or shared process group.
+
+No Windows/macOS result is implied. No timeout, output flood, interactive
+compiler, detached descendant, UI cancellation or artifact-commit acceptance
+has been added to the IDE by either probe.

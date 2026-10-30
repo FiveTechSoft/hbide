@@ -796,3 +796,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Investigated Harbour processOpen/nonblocking PRead/processValue/processClose in local runtime source and a real parent+child probe. processClose killed only the direct process; spawned child remained. processValue returned0 for the signal-terminated direct process in this environment. Remaining child explicitly killed after observing it.
 - Runnable Linux-only probe in tests/probes/, outside acceptance runner. This is evidence against an unsafe replacement of processRun, not implemented cancellation. A real build cancellation needs tree ownership, output draining, explicit cancelled state, cwd restoration and stale-binary refusal.
 - Existing synchronous build and visible Esc-cannot-cancel contract unchanged. Windows process-tree cancellation unverified.
+
+## 30Oct07:31 Isolated Linux process-group feasibility
+- Second probe launches disposable parent/child under setsid then signals the owned group through posix_kill from hbunix. Both were gone after KILL; group result0 means success, processValue0 still does not distinguish cancellation.
+- Preserved exploratory source in tests/probes/build_cancel_group.prg. No product integration: external setsid dependency, no group-identity guard, detached descendants and other platforms remain unresolved. Never signal a shared/existing group.
+- No claim of implemented Cancel. Current UI contract unchanged. No remaining probe processes or PID files.
