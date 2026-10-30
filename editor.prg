@@ -104,7 +104,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD ReformParagraph()
    METHOD AddLine( cLine, lSoftCR )
    METHOD InsertLine( cLine, lSoftCR, nRow )
-   METHOD LoadFile( cFileName )
+   METHOD LoadFile( cFileName, cRaw )
    METHOD SaveFile()
    DATA   cRecoveredBase INIT ""
    DATA   lJournalWarned INIT .F.   // one-shot: recovery write failing
@@ -1077,10 +1077,18 @@ return SubStr( cLine, 2, n - 1 )
 
 //-----------------------------------------------------------------------------------------//
 
-METHOD LoadFile( cFileName ) CLASS HBSrcEdit
+METHOD LoadFile( cFileName, cRaw ) CLASS HBSrcEdit
 
-   local xRet, cRaw := hb_MemoRead( cFileName )
+   local xRet, lReadOk
    local cConv, cBody
+
+   if cRaw == NIL
+      cRaw := HBIDE_ReadFileChecked( cFileName, @lReadOk )
+      if ! lReadOk
+         HBIDE_MsgAlert( "Cannot read file; current document untouched: " + cFileName )
+         return NIL
+      endif
+   endif
 
    // UTF-8: convert to the editor codepage on load, convert back on save,
    // but only when the conversion is provably lossless: a file with chars

@@ -294,9 +294,7 @@ METHOD OpenInEditor( cFileName ) CLASS HBIde
       HBIDE_MsgAlert( "File not found: " + cFileName )
       return .F.
    endif
-   ::OpenInDoc( cFileName )
-
-return .T.
+return ::OpenInDoc( cFileName )
 
 //-----------------------------------------------------------------------------------------//
 
@@ -1129,11 +1127,17 @@ return nil
 // anything else gets a new document. Never prompts: nothing is dropped.
 METHOD OpenInDoc( cFileName ) CLASS HbIde
 
-   local n := ::FindDoc( cFileName )
+   local n := ::FindDoc( cFileName ), cRaw, lReadOk
 
    if n > 0
       ::SwitchDoc( n )
-      return nil
+      return .T.
+   endif
+
+   cRaw := HBIDE_ReadFileChecked( cFileName, @lReadOk )
+   if ! lReadOk
+      HBIDE_MsgAlert( "Cannot read file; current document untouched: " + cFileName )
+      return .F.
    endif
 
    if !( ::oEditor:cFile == "noname.prg" .and. ! ::oEditor:Changed() )
@@ -1144,14 +1148,14 @@ METHOD OpenInDoc( cFileName ) CLASS HbIde
    if ! ::oWndCode:lVisible
       ::oWndCode:Show( .F. )
    endif
-   ::oEditor:LoadFile( cFileName )
+   ::oEditor:LoadFile( cFileName, cRaw )
    ::oEditor:Display()
    ::oEditor:Goto( 1, 5 )
    ::oWndCode:cCaption := cFileName
    ::oWndCode:Refresh()
    ::oEditor:ShowCursor()
 
-return nil
+return .T.
 
 //-----------------------------------------------------------------------------------------//
 

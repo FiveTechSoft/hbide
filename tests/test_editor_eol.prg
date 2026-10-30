@@ -18,6 +18,14 @@ PROCEDURE Main()
          ? 'FAIL:', aCase[ 1 ], 'load-save changed bytes'
       ENDIF
    NEXT
+   o:cFile := "previous.prg"
+   o:LoadText( "PRECIOUS BUFFER" )
+   o:SetDirty( .T. )
+   hb_Run( "chmod 000 " + cFile )
+   o:LoadFile( cFile )
+   Check( o:GetText() == "PRECIOUS BUFFER" .and. o:cFile == "previous.prg" .and. o:Changed(), ;
+      "unreadable load preserves prior text name and dirty state", @nPass, @nFail )
+   hb_Run( "chmod 600 " + cFile )
    Set( _SET_INSERT, .T. )
    // Fresh edits, undo/redo and journal reload use the same terminator.
    FOR EACH aCase IN { { 'CRLF', cCRLF }, { 'LF', cLF } }

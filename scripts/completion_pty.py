@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'open-unreadable': ('test_open_unreadable_pty.py', [], 30),
     'recovery-target-space': ('test_recovery_unreadable_pty.py', ['--target-space'], 30),
     'recovery-unknown-codepage': ('test_recovery_unreadable_pty.py', ['--unknown-codepage'], 30),
     'recovery-malformed': ('test_recovery_unreadable_pty.py', ['--malformed-envelope'], 30),

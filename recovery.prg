@@ -244,12 +244,23 @@ return lOk
 // previous (dead) session: no session suffix is appended here.
 function HBIDE_RecoveryReadBase( cBase, hEncoding, lReadOk )
 
-   local cOut := "", nHandle := -1, nSize, nRead, cDecoded
+   local cOut := HBIDE_ReadFileChecked( hb_FNameMerge( HBIDE_RecoveryDir(), cBase, ".journal" ), @lReadOk )
+   local cDecoded
 
-   lReadOk := .F.
    hEncoding := NIL
+   if ! lReadOk
+      return ""
+   endif
+   cDecoded := HBIDE_RecoveryDecode( cOut, @hEncoding, @lReadOk )
+return iif( lReadOk, cDecoded, "" )
+
+// Checked whole-file read shared by editor loads and recovery. Empty is valid;
+// a failed open/read returns an explicit false status before callers mutate.
+function HBIDE_ReadFileChecked( cFile, lReadOk )
+   local cOut := "", nHandle := -1, nSize, nRead
+   lReadOk := .F.
    begin sequence
-      nHandle := FOpen( hb_FNameMerge( HBIDE_RecoveryDir(), cBase, ".journal" ), FO_READ + FO_SHARED )
+      nHandle := FOpen( cFile, FO_READ + FO_SHARED )
       if nHandle >= 0
          nSize := FSeek( nHandle, 0, FS_END )
          if nSize >= 0 .and. FSeek( nHandle, 0, FS_SET ) == 0
@@ -268,8 +279,7 @@ function HBIDE_RecoveryReadBase( cBase, hEncoding, lReadOk )
       return ""
    endif
 
-   cDecoded := HBIDE_RecoveryDecode( cOut, @hEncoding, @lReadOk )
-return iif( lReadOk, cDecoded, "" )
+return cOut
 
 //-----------------------------------------------------------------------------------------//
 
