@@ -146,6 +146,13 @@ try:
         send(b'? 8*8\r');pump(.4)
         assert '64' in scr.text(),scr.text()
     print('PASS F9 and F7 without source preserve debugger and evaluator')
+    for text in ('goto 3','find n','locate next','num off','num on','bp 4','delete bp all'):
+        send((text+'\r').encode());pump(.3)
+        assert 'No exported method' not in scr.text() and 'Message' not in scr.text(),(text,scr.text())
+        send(b'? 9*9\r');pump(.3)
+        assert '81' in scr.text(),(text,scr.text())
+    print('PASS navigation display and explicit BP commands without source remain usable')
+
     for source in glob.glob(work+'/__hbide_dbg__*.prg.bak'):
         os.rename(source,source[:-4])
     send(('view '+other+'\r').encode());pump(.4)

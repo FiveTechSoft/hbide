@@ -849,3 +849,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - F9 sin línea explícita y F7 no actúan si no hay browser. Nueva suite debug-missing-source: elimina temporal del fixture tras abrir otro fuente, Step descubre ausencia, F9/F7 conservan evaluador usable; restaura fuente, lo reabre y BP4 detiene VM; salida al IDE comprobada. Candidato PASS. Runner ahora44 suites, no44 suites verificadas en este candidato.
 - Capturas completas inspeccionadas: fuente ausente con resultado64 y sin modal; fuente recuperado y parada VM en línea4, bordes/status completos. No certifica todas las acciones sin fuente, toda recuperación ni Windows.
 - Repetición limpiabacdb88: MissingSource y RestoredPoints PASS, diez modelos PASS, sin mutaciones, mismo binario6ecf4b95722cddaafff8302e1a6b197dcecbb5480b32ed12ad9f94c3193cc9a5. Evidencia docs/evidence/linux-missing-source-bacdb88.json.
+
+## 30Oct09:02 Navigation and breakpoint commands without source
+- Reproducción: en el estado File not found, `goto 3` abría No exported method. Locate/Find y refrescos de BP también usaban browser sin guarda. BP4 recibió módulo NIL tras fallar búsqueda y abrió Argument error.
+- Goto/Locate no leen browser inexistente; BP no consulta VM sin módulo conocido y refrescos de BP comprueban browser. MissingSource ampliado recorre Goto/Find/Locate/Num/BP/Delete, evalúa81 después de cada acción, recupera fuente y verifica parada VM4. Candidato PASS y diez modelos PASS.
+- Sin afirmar que todas las acciones sin fuente estén cubiertas. Num ya tenía guarda, se prueba sin cambio. No aceptación global ni Windows.

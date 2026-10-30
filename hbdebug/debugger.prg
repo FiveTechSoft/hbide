@@ -1529,7 +1529,9 @@ METHOD PROCEDURE Go() CLASS HBDebugger
 
 METHOD PROCEDURE GotoLine( nLine ) CLASS HBDebugger
 
-   ::oBrwText:GotoLine( nLine )
+   IF ::oBrwText != NIL
+      ::oBrwText:GotoLine( nLine )
+   ENDIF
 
    RETURN
 
@@ -2115,6 +2117,10 @@ METHOD PROCEDURE Local( lShow ) CLASS HBDebugger
 METHOD Locate( nMode, cValue ) CLASS HBDebugger
 
    LOCAL lFound
+
+   IF ::oBrwText == NIL
+      RETURN .F.
+   ENDIF
 
    IF Empty( cValue )
       cValue := ::InputBox( "Search string", ::cSearchString )
@@ -3263,6 +3269,10 @@ METHOD PROCEDURE BreakPointToggle( nLine, cFileName ) CLASS HBDebugger
       nLine := ::oBrwText:RowPos
    ENDIF
 
+   IF ! HB_ISSTRING( cFileName ) .OR. Empty( cFileName )
+      RETURN
+   ENDIF
+
    // VM line APIs take signed C integers. Reject before narrowing can wrap
    // an oversized command line onto an existing breakpoint.
    IF ! HB_ISNUMERIC( nLine ) .OR. nLine < 1 .OR. nLine > 2147483647 .OR. nLine != Int( nLine )
@@ -3275,7 +3285,9 @@ METHOD PROCEDURE BreakPointToggle( nLine, cFileName ) CLASS HBDebugger
       __dbgAddBreak( ::pInfo, cFileName, nLine )
    ENDIF
 
-   ::oBrwText:RefreshAll():ForceStable()
+   IF ::oBrwText != NIL
+      ::oBrwText:RefreshAll():ForceStable()
+   ENDIF
 
    RETURN
 
@@ -3303,7 +3315,9 @@ METHOD BreakPointDelete( cPos ) CLASS HBDebugger
       NEXT
    ENDIF
 
-   ::oBrwText:RefreshAll():ForceStable()
+   IF ::oBrwText != NIL
+      ::oBrwText:RefreshAll():ForceStable()
+   ENDIF
 
    RETURN Self
 
