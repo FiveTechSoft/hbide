@@ -1334,3 +1334,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   existing JSON bytes remain unchanged. Temporary directory only.
 - No product change or filenameUndoLoad policy inference. This covers clean
   caller cancellation, not all dirty/load-discard combinations or platforms.
+
+### 2026-10-30 Dirty picker caller cancellation
+
+- Extended actual SaveAs/Load Esc/Cancel matrix to clean and dirty states;
+  exact model/identity/dirty/history and existing file bytes retained,
+  requested new filename not created. No product change.
+- Source check: LoadJson has no discard confirmation; it validates and then
+  pushes old model to Undo. No new prompt or filenameUndoLoad policy added.
