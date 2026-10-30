@@ -197,6 +197,13 @@ try:
     send(b'options restoresettings '+stackoff.encode()+b'\r');pump(.7)
     assert 'Calls' not in scr.text(),('saved OFF restore',scr.text())
     print('PASS saved CallStack OFF hides changed visible stack')
+    # Restore a saved window set after Calls was actually destroyed.
+    send(b'options restoresettings '+layoutfile.encode()+b'\r');pump(.7)
+    assert 'Calls' in scr.text() and 'BUMP' in scr.text(),('recreate Calls from saved layout',scr.text())
+    send(b'options savesettings '+layoutcopy.encode()+b'\r');pump(.5)
+    assert geometry(layoutfile)==geometry(layoutcopy),('recreated Calls layout drift',geometry(layoutfile),geometry(layoutcopy))
+    print('PASS restore recreates missing Calls window with saved geometry')
+
     print('PASS CallStack on: routine listed; next routine adds bump; off hides')
     send(b'\x1bx');pump(.7);assert ' File  Edit' in scr.text()
 finally:

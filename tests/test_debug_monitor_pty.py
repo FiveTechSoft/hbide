@@ -186,6 +186,17 @@ try:
     check('Restore all enabled scopes retains real Local Public Private Static values',all(typed(*v) for v in [('ZZZ','Local',9),('AAA','Local',1),('UUU','Public',3),('PPP','Private',5),('SSS','Static',7)]))
     command('options restoresettings '+settings)
     check('Restore disabled scopes leaves only saved locals',typed('ZZZ','Local',9) and not any(typed(*v) for v in [('UUU','Public',3),('PPP','Private',5),('SSS','Static',7)]))
+    command('window tile')
+    monitorlayout=os.path.join(work,'monitor-layout.cld')
+    monitorcopy=os.path.join(work,'monitor-copy.cld')
+    command('options savesettings '+monitorlayout)
+    command('monitor local off')
+    check('Local OFF hides monitor before layout restore',not typed('ZZZ','Local',9))
+    command('options restoresettings '+monitorlayout)
+    command('options savesettings '+monitorcopy)
+    def geometry(path):
+        return [line for line in open(path).read().splitlines() if line.startswith('Window ')]
+    check('Restore hidden Monitor reopens values and saved geometry',typed('ZZZ','Local',9) and geometry(monitorlayout)==geometry(monitorcopy))
     send(b'\x1bx');pump(.8)
     check('Debugger returns to IDE', ' File  Edit' in scr.text())
 finally:

@@ -702,3 +702,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct05:14 Full regression attempt and stale Num assertion
 -43suitesPTYdistintas sobre fafdf0c limpio,mismoSHAfab935d870e9609b02bbb018809ad1ef1a4f0894b6c3bbe95066832a78380b2b,sinmutaciones:42PASS yDebugFunctions57checksPASS/1FAIL. DiezmodelosPASS. Ledger docs/evidence/linux-pty-fafdf0c.json conserva fallo,no43PASS.
 - FalloesexpectativaexactaNumOffvsNumOFF; mismo fixtureRestoreefectivoPASS, parsercaseinsensitive. Testcorrigecomparadorlineacompletacaseinsensitive,sincambioproducto. Sevalidaraparte,enrevisionnueva; no reetiquetarcorridaoriginal.
+
+## 30Oct05:22 Restore changed window set acceptance
+- Sincambiodeproducto: CallStackfixtureampliadodestruyeCallsconOFF,luegorestaura layoutONyverificaCalls/BUMP ygeometriaguardadaexacta. MonitorfixtureocultaLocalyrestauralayoutverificavaloresygeometriaexacta.
+- CallStackampliadoPASS yMonitor24PASS candidato. Q13ampliado doscasosconcretosdeconjuntocambiado, no cierra todascombinacioneshidden/points/icon/zoom. Runner43suites60contratos; intento globalfafdf0cconserva42PASS+expectativaobsoleta, nolohereda.
