@@ -3,6 +3,7 @@ REQUEST HB_HRBRUN    // Script/Debug invoke it by name; static links need the re
 REQUEST __MVPRIVATE  // HRB debuggee PRIVATE declarations need this VM helper
 
 #include "hbclass.ch"
+#include "buildinfo.ch"
 #include "hbhrb.ch"
 #include "hbmenu.ch"
 #include "inkey.ch"
@@ -309,6 +310,7 @@ METHOD About() CLASS HBIde
 
    oDlg:SayCenter( "Harbour IDE", -4 )
    oDlg:SayCenter( "Version 1.0", -2 )
+   oDlg:SayCenter( "Source: " + Left( HBIDE_BUILD_REV, 12 ), -1 )
    oDlg:SayCenter( "Copyright (c) 1999-2023 by" )
    oDlg:SayCenter( "The Harbour Project", 2 )
 

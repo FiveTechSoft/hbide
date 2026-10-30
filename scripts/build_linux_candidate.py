@@ -26,12 +26,14 @@ def main():
  for rel in ['hbide.exe','tests/hbide','tests/test_designer']:
   f=src/rel
   if f.is_file():inherited.append({'path':rel,'sha256':sha(f)});f.unlink()
- env=dict(os.environ);env['HBIDE_BIN']=str(binpath/'hbide')
+ (src/'buildinfo.ch').write_text('#define HBIDE_BUILD_REV '+json.dumps(revision)+'\n')
+ env=dict(os.environ);env['HBIDE_BIN']=str(binpath/'hbide');env['HBIDE_EXPECT_REV']=revision[:12]
  manifest={'scope':'Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.',
   'source':revision,'archive_sha256':sha(archive),'dirty':False,'started':time.time(),
   'compiler_path':compiler,'compiler_sha256':sha(pathlib.Path(compiler)),
   'compiler_version':command([compiler,'-version'],src).stdout.decode(errors='replace'),
-  'removed_inherited_binaries':inherited,'tests':{},'build_exit':None}
+  'removed_inherited_binaries':inherited,'tests':{},'build_exit':None,
+  'generated_buildinfo_sha256':sha(src/'buildinfo.ch'),'release_status':'not cleared; source notice review required'}
  try:
   r=command([compiler,'hbide.hbp','-quiet','-o'+str(binpath/'hbide')],src,env)
   (out/'build.log').write_bytes(r.stdout);manifest['build_exit']=r.returncode
@@ -50,7 +52,7 @@ def main():
   manifest['dependency_check_exit']=deps.returncode
   if deps.returncode or b'not found' in deps.stdout:raise RuntimeError('unresolved runtime dependency')
   # Runs from extracted sources, with HOME/recovery isolated by each harness.
-  for name in ['test_help_mouse_pty.py','test_run_source_pty.py']:
+  for name in ['test_about_build_pty.py','test_help_mouse_pty.py','test_run_source_pty.py']:
    r=command([sys.executable,'-u',str(src/'tests'/name)],src,env)
    (out/(name+'.log')).write_bytes(r.stdout)
    failed=any(t in r.stdout for t in [b'FAIL ',b'FAIL:',b'Traceback',b'FAILED:'])

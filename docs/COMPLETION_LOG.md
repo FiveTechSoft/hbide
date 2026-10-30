@@ -1720,3 +1720,12 @@ terminos para todo el proyecto. `audit_distribution_notices.py` registra
 rutas/hashes y `--check-release` falla mientras requiere revision. Es una
 puerta de distribucion, no bloqueo de desarrollo. M5 sigue pendiente de
 licencia/avisos aplicables, instalacion limpia y Windows.
+
+## 31 octubre: identidad visible sin inventar version
+
+About conserva Version1.0 y muestra Source con12caracteres de revision.
+Build normal declara unrecorded, no adivina HEAD al arrancar. El candidato
+Linux genera buildinfo.ch solo dentro del export e incluye hash de ese
+header en manifest. Smoke About confirma revision esperada, OK, documento
+dirty y Undo byte-exacto. Manifest distingue candidato de release no
+habilitado por avisos pendientes; no se habilita publicacion de paquetes.
