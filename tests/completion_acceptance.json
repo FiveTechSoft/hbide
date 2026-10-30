@@ -387,7 +387,7 @@
       "tests": [
         "test_compiler_flags_pty.py"
       ],
-      "contract": "Real options dialog with keyboard Tab/Space/Enter/Esc. Default GCC warnings strict flags, Cancel leaves old flags, OK applies warnings/debug/strict/incremental/optimize and compiler selection to actual hbmk2 process argv. A fake hbmk2 captures argv and returns failure, not proof MSVC/other toolchains build successfully."
+      "contract": "Real options dialog with keyboard Tab/Space/Enter/Esc. Default GCC warnings strict flags, Cancel leaves old flags, OK applies warnings/debug/strict/incremental/optimize and compiler selection to actual hbmk2 process argv. A fake hbmk2 captures argv and returns failure, not proof MSVC/other toolchains build successfully. Nested Help returns to unsaved option controls and OK still applies those edits to build argv."
     },
     "IDE-035": {
       "expected_label": "Display...",

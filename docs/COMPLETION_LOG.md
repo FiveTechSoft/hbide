@@ -610,3 +610,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct02:28 Close Project/Window/About acceptance
 - Sin cambio de producto.11checksPTYreales: Aboutabre/cierraalsourcedirty; WindowCloseCancelconserva/Discarddelultimodocrecreastarterysindisksave; ProjectCloseconservasourcedirty, Sourcesdaavisonoprojectysourcedisk/HBPintactos.
 - IntentoinicialAboutusabaAlt+AenvezdemnemónicoB; corregidoharness,no producto. Runner42,54contratos116acciones2stubs. Baseline38historicanoheredada.
+
+## 30Oct02:35 Nested Compiler Help
+- Sin cambio de producto. CompilerFlagsPTYahorapruebaHelpencimadeopcioneseditadas,aunnoaplicadas. Escvuelvecontroles/valores; OKposteriortransmiteesosflagsalproceso.
+-12checksPASS candidato, amplia10previos,no22checks. Mismorunner42;51->54contratospreviossincrementonuevo. NoafirmaMSVCbuildporcapturarargv.

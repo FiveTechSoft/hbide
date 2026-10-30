@@ -48,7 +48,13 @@ for kind in ['flags']:
   send(b'\x1bo');send(b'c',.5)
   
   for _ in range(5):send(b'\t');send(b' ')
-  send(b'\t');send(b'\t');send(b'\r',.5)  # Skip AutoRun, confirm OK
+  # Help is nested over the unsaved options, then returns to the same controls.
+  for _ in range(4):send(b'\t')
+  send(b'\r',.5)
+  check('nested Help opens compiler topic','Compiler flags' in screen.text() and 'Warnings:' in screen.text())
+  send(b'\x1b',.5)
+  check('nested Help restores options controls','Compiler Options' in screen.text() and 'Run after build' in screen.text() and '[X] Debug info' in screen.text())
+  send(b'\x1b[Z');send(b'\x1b[Z');send(b'\r',.5)  # Help -> Cancel -> OK
   (work/'after-ok.screen').write_text(screen.text())
   args=build()
   check('OK applies flags to actual process argv',all(x in args for x in ['-comp=gcc','-w0','-b','-inc','-O2']) and '-es2' not in args)
