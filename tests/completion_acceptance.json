@@ -432,6 +432,30 @@
         "test_close_routes_pty.py"
       ],
       "contract": "About opens actual version/title dialog and closes back to same dirty document. Linux real menu dispatch, not Windows certification."
+    },
+    "DBG-005": {
+      "expected_label": "Find",
+      "tests": [
+        "test_debug_commands_pty.py",
+        "test_debug_search.prg"
+      ],
+      "contract": "Actual Locate Find/Next/Goto menu dispatch: matching source line, later miss retains selection, Goto accepts 60 and Esc preserves prior selection. Model covers first/next/previous/missing/case independently; not full Locate certification."
+    },
+    "DBG-006": {
+      "expected_label": "Next",
+      "tests": [
+        "test_debug_commands_pty.py",
+        "test_debug_search.prg"
+      ],
+      "contract": "Actual Locate Find/Next/Goto menu dispatch: matching source line, later miss retains selection, Goto accepts 60 and Esc preserves prior selection. Model covers first/next/previous/missing/case independently; not full Locate certification."
+    },
+    "DBG-008": {
+      "expected_label": "Goto line...",
+      "tests": [
+        "test_debug_commands_pty.py",
+        "test_debug_search.prg"
+      ],
+      "contract": "Actual Locate Find/Next/Goto menu dispatch: matching source line, later miss retains selection, Goto accepts 60 and Esc preserves prior selection. Model covers first/next/previous/missing/case independently; not full Locate certification."
     }
   }
 }

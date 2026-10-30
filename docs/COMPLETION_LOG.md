@@ -619,3 +619,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - ModeloaisladoreproduceSearchfromTopnoencontrabaprimera fila y missmovianRowhastafinaldesincronizandocursor. Dosfallosantes; modelonuevo6contratosPASSdespues.
 - Scanlocalnindependiente,modificabrowsersoloconmatch; conservaGoTopparamatchfromTopparaevitarcambiodeviewportencontratoprevio. Case/next/previouspreservados.
 - DiezmodelosPASS candidato. DebugCommands30checksPASS candidato, peroPTYporsisolosaltoprimerafilanodistinguiabugantes: nuevaaceptacionsemanticasebasaenmodelo,límiteregistrado. NoafirmafixGOTOgeneralnitodasrutasLocate. Baseline38anteriornoheredada.
+
+## 30Oct02:57 Locate Goto cancellation
+- NuevaaceptacionmenurealFind/Next/GotoexponeEscenGotomoviafila1envezdecancelar.35PASS/1FAILantes; SearchLineahorachequeaLastKeyESCantesdeGoto.
+-36checksDebugCommandsPASS candidato y diezmodelosPASS. Find/Next/Gotolinkedcontratos57/116, runner42sincrementodesuites. NoafirmaLocateglobalniWindows; baseline38anteriornoheredada.

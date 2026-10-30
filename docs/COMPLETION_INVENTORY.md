@@ -49,10 +49,10 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-002 | File | Resume | hbdebug/dbgmenu.prg:79 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-003 | File | OS Shell | hbdebug/dbgmenu.prg:80 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-004 | File | eXit    Alt-X | hbdebug/dbgmenu.prg:82 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-005 | Locate | Find | hbdebug/dbgmenu.prg:87 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-006 | Locate | Next | hbdebug/dbgmenu.prg:88 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-005 | Locate | Find | hbdebug/dbgmenu.prg:87 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-006 | Locate | Next | hbdebug/dbgmenu.prg:88 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-007 | Locate | Previous | hbdebug/dbgmenu.prg:89 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-008 | Locate | Goto line... | hbdebug/dbgmenu.prg:90 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-008 | Locate | Goto line... | hbdebug/dbgmenu.prg:90 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-009 | Locate | Case sensitive | hbdebug/dbgmenu.prg:92 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-010 | View | Sets | hbdebug/dbgmenu.prg:99 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-011 | View | WorkAreas   F6 | hbdebug/dbgmenu.prg:100 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -181,6 +181,9 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-022: Close Project drops project state only, keeps dirty source open; subsequent Sources reports no project; disk source and HBP untouched. Linux real menu dispatch, not Windows certification. Pruebas: [test_close_routes_pty.py](../tests/test_close_routes_pty.py)
 - IDE-025: Window Close asks only active dirty source; Cancel retains edit, Discard closes last document to a starter without writing disk. Linux real menu dispatch, not Windows certification. Pruebas: [test_close_routes_pty.py](../tests/test_close_routes_pty.py)
 - IDE-039: About opens actual version/title dialog and closes back to same dirty document. Linux real menu dispatch, not Windows certification. Pruebas: [test_close_routes_pty.py](../tests/test_close_routes_pty.py)
+- DBG-005: Actual Locate Find/Next/Goto menu dispatch: matching source line, later miss retains selection, Goto accepts 60 and Esc preserves prior selection. Model covers first/next/previous/missing/case independently; not full Locate certification. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_search.prg](../tests/test_debug_search.prg)
+- DBG-006: Actual Locate Find/Next/Goto menu dispatch: matching source line, later miss retains selection, Goto accepts 60 and Esc preserves prior selection. Model covers first/next/previous/missing/case independently; not full Locate certification. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_search.prg](../tests/test_debug_search.prg)
+- DBG-008: Actual Locate Find/Next/Goto menu dispatch: matching source line, later miss retains selection, Goto accepts 60 and Esc preserves prior selection. Model covers first/next/previous/missing/case independently; not full Locate certification. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_search.prg](../tests/test_debug_search.prg)
 
 ## Campos de inspector
 

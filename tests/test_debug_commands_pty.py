@@ -218,6 +218,19 @@ try:
     before_find=[row[:] for row in scr.at[2:17]]
     send(b'find NOT_PRESENT_xyz\r');pump(.4)
     check('failed FIND preserves source cursor and view',before_find==scr.at[2:17])
+    # Locate menu dispatch shares the browser with commands.
+    send(b'\x1bl');pump(.3);send(b'f');pump(.4)
+    check('Locate Find opens search input','Search string' in scr.text())
+    send(b'\x19');send(b'n + 11\r');pump(.5)
+    check('Locate Find selects match',selected_source('n := n + 11'))
+    send(b'\x1bl');pump(.3);send(b'n');pump(.5)
+    check('Locate Next preserves match when no later match',selected_source('n := n + 11'))
+    send(b'\x1bl');pump(.3);send(b'g');pump(.4)
+    check('Locate Goto opens line input','Line number' in scr.text())
+    send(b'\x19');send(b'60\r');pump(.5)
+    check('Locate Goto selects actual source line',selected_source('n := n + 60'))
+    send(b'\x1bl');pump(.3);send(b'g');pump(.3);send(b'\x1b');pump(.5)
+    check('Locate Goto Cancel preserves selected line',selected_source('n := n + 60'))
     send(b'\x1bx');pump(.8)
     check('Debugger exits back to IDE', 'Edit' in scr.text() and 'fn.prg' in scr.text())
 finally:

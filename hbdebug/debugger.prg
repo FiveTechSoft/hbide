@@ -2709,8 +2709,17 @@ METHOD ResizeCmdWnd( nLines ) CLASS HBDebugger
 
 METHOD PROCEDURE SearchLine( cLine ) CLASS HBDebugger
 
-   ::GotoLine( Max( 1, iif( HB_ISSTRING( cLine ) .AND. IsDigit( cLine ), ;
-                            Val( cLine ), ::InputBox( "Line number", 1 ) ) ) )
+   LOCAL nLine
+
+   IF HB_ISSTRING( cLine ) .AND. IsDigit( cLine )
+      nLine := Val( cLine )
+   ELSE
+      nLine := ::InputBox( "Line number", 1 )
+      IF LastKey() == K_ESC
+         RETURN
+      ENDIF
+   ENDIF
+   ::GotoLine( Max( 1, nLine ) )
    RETURN
 
 
