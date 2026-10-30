@@ -659,3 +659,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Save escribe CallStackON/OFF yNumON/OFF, usando parserexistentedeCallStack. PruebaCallStackoriginalampliadaverificaONrepetido, OFFdesdeON yNextRoutine original. DebugCommands56PASS, CallStackampliadoPASS y diezmodelosPASS candidato.
 - Noafirmalayoutmanualresuelto: pruebascombinadasdetectaronpanelessuperpuestostrasrestaurarlayoutmanual, inclusoestadoCallStackcorrecto. Casoconservadoen /tmp/hbide-stack-tiled-after y /tmp/hbide-stack-restore-after2; investigarorden/geometria porventana. No seeliminaelrequisito alaislarpruebadeflag.
 - Runner42suites/60contratos sinincremento; baselineglobal0768ac2historico. Windows pendiente.
+
+## 30Oct04:06 Named manual layout restoration
+- Q13 reproducido con Tile, dosWindowNext ysave/restore: geometria antes/despuescambiabaentreCode/Calls/Command porasignarrectangulos desdefocoactual, no ventanaoriginal. Testaisladocomparaarchivoantes/re-guardadoyvisibilidadCalls/BUMP.
+- SaveusaWindowSelectCODE/COMMAND/CALLSTACK/MONITOR/POINTS envezdecicloNext, conservafocofinal; posicionorigenantesdesizeevitaclampingporelrectanguloanterior. Nuevocomando seleccionaventanaexistentevisible,rechazaotras. Archivoslegacy siguenleyendosecomoscripts, no seatribuyecorreccionretroactiva.
+- Commands56,Monitor18,CallStackconlayoutampliado y10modelosPASS candidato. CapturacompletaCode/Calls/Commandtrasrestoreinspeccionada, sinpaneltapado. Pruebarestore repetido ygeometriabyteigual. Noafirmaiconized/zoom/hidden/windowsetdiferente resueltosniWindows; Q13parcialhastaampliarcasos.

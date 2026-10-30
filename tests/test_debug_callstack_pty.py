@@ -146,6 +146,24 @@ try:
     send(b'\x1b[15;5~');pump(.8)
     assert execution_line()==7,execution_line()
     t=scr.text();assert 'BUMP' in t and re.search(r'x\s+MAIN\s+x', t) is not None, t
+    # Manual non-overlapping layout, saved with a non-default focus.
+    send(b'window tile\r');pump(.5)
+    send(b'window next\r');pump(.4)
+    send(b'window next\r');pump(.4)
+    layoutfile=os.path.join(work,'layout.cld')
+    layoutcopy=os.path.join(work,'layout-copy.cld')
+    send(b'options savesettings '+layoutfile.encode()+b'\r');pump(.5)
+    send(b'options restoresettings '+layoutfile.encode()+b'\r');pump(.7)
+    assert 'Calls' in scr.text() and 'BUMP' in scr.text(),('manual restore stack visible',scr.text())
+    send(b'options savesettings '+layoutcopy.encode()+b'\r');pump(.5)
+    def geometry(path):
+        return [line for line in open(path).read().splitlines() if line.startswith('Window ')]
+    assert geometry(layoutfile)==geometry(layoutcopy),('manual layout drift',geometry(layoutfile),geometry(layoutcopy))
+    send(b'options restoresettings '+layoutfile.encode()+b'\r');pump(.7)
+    send(b'options savesettings '+layoutcopy.encode()+b'\r');pump(.5)
+    assert geometry(layoutfile)==geometry(layoutcopy),('repeat manual layout drift',geometry(layoutfile),geometry(layoutcopy))
+    assert 'Calls' in scr.text() and 'BUMP' in scr.text(),scr.text()
+    print('PASS manual layout restores same named window geometry from non-default focus')
     send(b'callstack off\r');pump(.7)
     assert 'Calls' not in scr.text(), scr.text()
     stackoff=os.path.join(work,'stackoff.cld')

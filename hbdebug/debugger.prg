@@ -354,6 +354,7 @@ CREATE CLASS HBDebugger
    METHOD WindowResizeStep( nStep )
    METHOD WindowEdit( lSize )
    METHOD WindowRepaint()
+   METHOD WindowSelect( cName )
    METHOD WindowCommandRect( cParams, lSize )
    METHOD WindowAt( nRow, nCol )
    METHOD ResizeWindows( oWindow )
@@ -1277,6 +1278,10 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
       DO CASE
       CASE Empty( cParam1 )
          ::OpenMenu( cCommand )
+      CASE hb_LeftEq( "SELECT", cParam1 )
+         IF ! ::WindowSelect( cParam2 )
+            cResult := "Unknown or hidden window"
+         ENDIF
       CASE hb_LeftEq( "NEXT", cParam1 )
          ::NextWindow()
       CASE hb_LeftEq( "PREV", cParam1 )
@@ -2559,6 +2564,7 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
    LOCAL n
    LOCAL oWnd
    LOCAL aBreak, aWatch
+   LOCAL cWindowName
 
    IF Empty( cFileName )
       ::cSettingsFileName := ::InputBox( "File name", ::cSettingsFileName )
@@ -2619,13 +2625,26 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
    IF ! ::lWindowsAutoSized
       /* This part of the script must be executed after all windows are created */
       FOR EACH oWnd IN ::aWindows
-         cInfo += ;
+         IF ! oWnd:lVisible
+            LOOP
+         ENDIF
+         cWindowName := iif( oWnd == ::oWndCode, "CODE", ;
+            iif( oWnd == ::oWndCommand, "COMMAND", ;
+            iif( oWnd == ::oWndStack, "CALLSTACK", ;
+            iif( oWnd == ::oWndVars, "MONITOR", "POINTS" ) ) ) )
+         cInfo += "Window Select " + cWindowName + hb_eol() + ;
+            "Window Move 1 0" + hb_eol() + ;
             "Window Size " + hb_ntos( oWnd:nBottom - oWnd:nTop + 1 ) + " " + ;
             hb_ntos( oWnd:nRight - oWnd:nLeft + 1 ) + hb_eol() + ;
             "Window Move " + hb_ntos( oWnd:nTop ) + " " + ;
-            hb_ntos( oWnd:nLeft ) + hb_eol() + ;
-            "Window Next" + hb_eol()
+            hb_ntos( oWnd:nLeft ) + hb_eol()
       NEXT
+      oWnd := ::aWindows[ ::nCurrentWindow ]
+      cWindowName := iif( oWnd == ::oWndCode, "CODE", ;
+         iif( oWnd == ::oWndCommand, "COMMAND", ;
+         iif( oWnd == ::oWndStack, "CALLSTACK", ;
+         iif( oWnd == ::oWndVars, "MONITOR", "POINTS" ) ) ) )
+      cInfo += "Window Select " + cWindowName + hb_eol()
    ENDIF
 
    hb_MemoWrit( ::cSettingsFileName, cInfo )
@@ -4170,6 +4189,26 @@ METHOD WindowEdit( lSize ) CLASS HBDebugger
 
 // Numeric commands share the keyboard desktop contract: no menu/status
 // overlap and a usable browser viewport. Reject malformed input unchanged.
+METHOD WindowSelect( cName ) CLASS HBDebugger
+   LOCAL oWnd, n
+   SWITCH Upper( AllTrim( cName ) )
+   CASE "CODE"      ; oWnd := ::oWndCode    ; EXIT
+   CASE "COMMAND"   ; oWnd := ::oWndCommand ; EXIT
+   CASE "CALLSTACK" ; oWnd := ::oWndStack   ; EXIT
+   CASE "MONITOR"   ; oWnd := ::oWndVars    ; EXIT
+   CASE "POINTS"    ; oWnd := ::oWndPnt     ; EXIT
+   ENDSWITCH
+   IF oWnd == NIL .OR. ! oWnd:lVisible
+      RETURN .F.
+   ENDIF
+   n := AScan( ::aWindows, {| o | o == oWnd } )
+   IF n == 0
+      RETURN .F.
+   ENDIF
+   ::nCurrentWindow := n
+   ::WindowRepaint()
+   RETURN .T.
+
 METHOD WindowCommandRect( cParams, lSize ) CLASS HBDebugger
    LOCAL oWnd := ::aWindows[ ::nCurrentWindow ], aParts := {}, cPart, cNumber, aRect
    IF oWnd == NIL .OR. ! oWnd:lVisible
