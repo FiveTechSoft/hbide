@@ -1766,28 +1766,16 @@ return nil
 
 METHOD DoSave() CLASS HbIde
 
-   local cTmp
+   local cFailInfo := ""
 
    if ! ::ConfirmOverwrite()
       return nil
    endif
 
-   // tvedit-style safety net: keep the previous disk version as .bak.
-   // The copy runs BEFORE writing, so a failed write leaves both intact.
+   // A backup failure is visible but does not block saving the live buffer.
    if ! Empty( ::oEditor:cFile ) .and. File( ::oEditor:cFile )
-      // unique temp name: never delete preexisting content assuming it is ours
-      cTmp := ::oEditor:cFile + ".bak." + StrZero( hb_randomInt( 999999 ), 6 ) + ".tmp"
-      if File( cTmp )
-         HBIDE_MsgAlert( "Could not create the .bak copy (temp name in use); the previous .bak is preserved. Saving anyway" )
-      elseif hb_FCopy( ::oEditor:cFile, cTmp ) != 0
-         FErase( cTmp )   // drop the partial copy we just made
-         HBIDE_MsgAlert( "Could not create the .bak copy; the previous .bak is preserved. Saving anyway" )
-      elseif FRename( cTmp, ::oEditor:cFile + ".bak" ) != 0
-         // rename over an existing file fails on some platforms; erase and retry once
-         FErase( ::oEditor:cFile + ".bak" )
-         if FRename( cTmp, ::oEditor:cFile + ".bak" ) != 0
-            HBIDE_MsgAlert( "Could not update the .bak copy; the new backup is kept as " + cTmp + ". Saving anyway" )
-         endif
+      if ! HBIDE_BackupFile( ::oEditor:cFile, @cFailInfo )
+         HBIDE_MsgAlert( "Could not update .bak: " + cFailInfo + ". Saving anyway" )
       endif
    endif
 

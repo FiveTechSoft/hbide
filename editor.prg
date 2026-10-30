@@ -1279,6 +1279,15 @@ function HBIDE_AtomicWriteFile( cFile, cContent, cFailInfo )
 
 return lOk
 
+// Preserve the old backup if read, write or promotion cannot complete.
+function HBIDE_BackupFile( cSource, cFailInfo )
+   local lReadOk := .F., cBytes := HBIDE_ReadFileChecked( cSource, @lReadOk )
+   if ! lReadOk
+      cFailInfo := "could not read " + cSource + "; previous backup untouched"
+      return .F.
+   endif
+return HBIDE_AtomicWriteFile( cSource + ".bak", cBytes, @cFailInfo )
+
 //-----------------------------------------------------------------------------------------//
 
 // Move cTmp over cTarget, fail-closed: the original destination is never
