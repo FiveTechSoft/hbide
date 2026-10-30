@@ -3279,7 +3279,11 @@ METHOD BreakPointDelete( cPos ) CLASS HBDebugger
    ENDIF
 
    IF HBIDE_DbgIndex( cPos )
-      __dbgDelBreak( ::pInfo, Val( cPos ) )
+      nAt := Val( cPos )
+      // Validate before the VM API narrows the index to a C integer.
+      IF nAt < Len( __dbgGetBreakPoints( ::pInfo ) )
+         __dbgDelBreak( ::pInfo, nAt )
+      ENDIF
    ELSEIF Upper( cPos ) == "ALL"
       FOR nAt := Len( __dbgGetBreakPoints( ::pInfo ) ) - 1 TO 0 STEP -1
          __dbgDelBreak( ::pInfo, nAt )

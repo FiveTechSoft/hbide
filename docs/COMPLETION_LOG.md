@@ -831,3 +831,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Diez suites PTY distintas con resultado final PASS sobre415fe07 limpio y un binario3a3c9250: Commands68/68, Functions58/58, RestoredPoints, CallStack, Session, Startup, Monitor, Codeblock, Exits y Animate. Diez modelos PASS en la misma revisión. Sin mutaciones durante las pruebas.
 - Una llamada agrupada Points+CallStack agotó el límite externo120s después de cerrar Points; CallStack quedó sin resultado cerrado, se repitió separadamente y pasó. No es una pasada sin reintentos ni se atribuye fallo al producto.
 - Evidencia docs/evidence/linux-debug-415fe07.json conserva la interrupción. No es la regresión IDE completa43, aceptación visual exhaustiva ni Windows. Sin cambio de producto en este lote.
+
+## 30Oct08:36 Breakpoint deletion range before VM narrowing
+- Reproducción: `delete bp 4294967296` borraba BP0 porque la API VM convierte el índice a entero C. Ser una cadena completa de dígitos no bastaba.
+- BreakPointDelete comprueba el rango del array VM antes de llamar al borrado. RestoredPoints conserva BP ante4294967296,4294967297 y un entero mucho mayor;0 sigue borrando. Candidato PASS y diez modelos PASS.
+- WP/TP ya comprobaba rango antes de la API; no se atribuye este fallo a esa ruta. Sin cambio visual, sin aceptación completa ni Windows heredada.
