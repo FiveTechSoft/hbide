@@ -1416,8 +1416,9 @@ METHOD CheckDiskChange() CLASS HbIde
    ::oEditor:cSeenStamp := cStamp
 
    if ! ::oEditor:Changed()
-      HBIDE_MsgAlert( "File changed on disk; reloaded: " + ::oEditor:cFile )
-      ::ReloadFromDisk()
+      if ::ReloadFromDisk()
+         HBIDE_MsgAlert( "File changed on disk; reloaded: " + ::oEditor:cFile )
+      endif
    else
       if HBIDE_MsgAlert( "File changed on disk and you have unsaved changes", ;
                 { "Reload", "Keep mine" } ) == 1
@@ -1436,14 +1437,16 @@ METHOD ReloadFromDisk() CLASS HbIde
    local nRow := ::oEditor:RowPos()
    local nCol := ::oEditor:ColPos()
 
-   ::oEditor:LoadFile( ::oEditor:cFile )
+   if ::oEditor:LoadFile( ::oEditor:cFile ) == NIL
+      return .F.
+   endif
    nRow := Min( nRow, ::oEditor:LineCount() )
    nCol := Min( nCol, ::oEditor:LineLen( nRow ) + 5 )   // gutter-based coords (K_END lands on len+5)
    ::oEditor:Goto( nRow, nCol )
    ::Repaint()
    ::oEditor:ShowCursor()
 
-return nil
+return .T.
 
 //-----------------------------------------------------------------------------------------//
 
