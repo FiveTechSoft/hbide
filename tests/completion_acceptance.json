@@ -533,6 +533,13 @@
       ],
       "contract": "Restore Settings menu applies source numbers; commands restore explicit scalar/monitor/case/codeblock states and exact point snapshots. Repeated restored BP/TP stop the real VM. Named layouts/icon/zoom and recreated Calls/hidden Monitor have focused tests. Missing explicit file reports path. CLD extension defaults and cwd-before-PATH lookup also apply to INPUT and init.cld; exact explicit-directory requests do not fall back by basename. Not transactional malformed-script or exhaustive layout acceptance.",
       "expected_label": "Restore Settings..."
+    },
+    "DBG-042": {
+      "tests": [
+        "test_debug_path_cancel_pty.py"
+      ],
+      "contract": "Source path dialog Esc retains original setting; Enter persists accepted path; File Open resolves source from a directory with spaces. Linux PTY only, no full path alias/platform certification.",
+      "expected_label": "path for Files..."
     }
   }
 }
