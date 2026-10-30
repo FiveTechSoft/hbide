@@ -156,6 +156,14 @@ proc Main()
       Check( "failure names retained complete temp", cRecover $ cInfo )
    ENDIF
 
+   // Missing replacement after parking: successful rollback must explain state.
+   cTarget := cDir + "/rollback-target"
+   hb_MemoWrit( cTarget, "ROLLBACK ORIGINAL" )
+   cInfo := ""
+   Check( "park replace missing source refused", ! HBIDE_ParkReplace( cDir + "/missing-replacement", cTarget, @cInfo ) )
+   Check( "successful rollback restores original", hb_MemoRead( cTarget ) == "ROLLBACK ORIGINAL" )
+   Check( "successful rollback explains failure", "original restored" $ cInfo )
+
    // 12. unique sibling: never returns an existing name, two calls differ
    cTmp := HBIDE_UniqueSibling( cDir + "/u.prg" )
    Check( "unique name free", ! Empty( cTmp ) .and. ! File( cTmp ) )

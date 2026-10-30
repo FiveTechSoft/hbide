@@ -25,7 +25,7 @@ function HBIDEHelpTopics()
       "This produces ./hbide (hbide.exe on Windows)." + hb_eol() + hb_eol() + ;
       "First session:" + hb_eol() + ;
       "1. Type a few lines of code." + hb_eol() + ;
-      "2. F2 saves; name the file (for example hello.prg). Every save keeps the previous disk version as .bak." + hb_eol() + ;
+      "2. F2 saves; name the file (for example hello.prg). F2 attempts a .bak copy of the previous disk version; a backup failure is reported." + hb_eol() + ;
       "3. Run > Start builds with hbmk2 and runs the program only when the build succeeds; a failed build never runs a stale executable." + hb_eol() + ;
       "4. To debug: F9 on a line sets a breakpoint and Run > Debug stops there. F8 steps in, F10 steps over, F5 continues, Alt+X returns to the IDE." + hb_eol() + hb_eol() + ;
       "See 'The screen' for a map of the IDE and 'Using help' for this browser." } )
@@ -48,10 +48,10 @@ function HBIDEHelpTopics()
       "Open...        Opens a .prg from the current directory or a typed file name." + hb_eol() + hb_eol() + ;
       "Save (F2)      Saves the buffer. On an unnamed buffer it asks for a name" + hb_eol() + ;
       "               (behaves as Save As). Before writing, the previous disk version" + hb_eol() + ;
-      "               is kept as <file>.bak." + hb_eol() + hb_eol() + ;
+      "               is copied to <file>.bak when the backup succeeds; failures are reported." + hb_eol() + hb_eol() + ;
       "Save As...     Saves the buffer under a new name and retitles the window." + hb_eol() + ;
       "               Asks before overwriting an existing file; its previous content" + hb_eol() + ;
-      "               is still preserved as .bak." + hb_eol() + hb_eol() + ;
+      "               is backed up as .bak when possible; backup failures do not block saving." + hb_eol() + hb_eol() + ;
       "Exit           Leaves the IDE, asking about unsaved changes first." } )
 
    AAdd( a, { "edit undo redo copy paste delete duplicate line clipboard", "Edit menu", ;

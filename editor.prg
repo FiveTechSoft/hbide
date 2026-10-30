@@ -1343,6 +1343,8 @@ function HBIDE_ParkReplace( cTmp, cTarget, cRecovery )
    if FRename( cTmp, cTarget ) != 0
       if FRename( cHold, cTarget ) != 0
          cRecovery := "replace and rollback BOTH failed: original preserved as " + cHold + ", new content kept at " + cTmp
+      else
+         cRecovery := "replacement failed; original restored at " + cTarget + "; replacement source: " + cTmp
       endif
       return .F.
    endif
