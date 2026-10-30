@@ -97,6 +97,7 @@ CLASS HbIde
    METHOD CheckUnsaved()
    METHOD RecoveryCheck()
    METHOD RecoverJournal( cKey, cTarget )
+   METHOD RecoveryCompareView( cKey, cTarget )
    METHOD CheckDiskChange()
    METHOD ReloadFromDisk()
    METHOD ConfirmOverwrite()
@@ -1274,7 +1275,7 @@ return nil
 // journal and asks again next start; it is the safe default for doubts.
 METHOD RecoveryCheck() CLASS HbIde
 
-   local aItem, nPick
+   local aItem, nPick, nCompare
 
    for each aItem in HBIDE_RecoveryScan()
       do while .T.
@@ -1285,7 +1286,14 @@ METHOD RecoveryCheck() CLASS HbIde
          if nPick != 4
             exit
          endif
-         HBIDE_MsgAlert( HBIDE_RecoveryCompare( aItem[ 1 ], aItem[ 2 ] ), { "OK" }, "Recovery comparison" )
+         do while .T.
+            nCompare := HBIDE_MsgAlert( HBIDE_RecoveryCompare( aItem[ 1 ], aItem[ 2 ] ), ;
+               { "OK", "View bytes" }, "Recovery comparison" )
+            if nCompare != 2
+               exit
+            endif
+            ::RecoveryCompareView( aItem[ 1 ], aItem[ 2 ] )
+         enddo
       enddo
       do case
          case nPick == 1
@@ -1302,6 +1310,63 @@ METHOD RecoveryCheck() CLASS HbIde
       endcase
    next
 
+return nil
+
+//-----------------------------------------------------------------------------------------//
+
+// Read-only byte snapshots. No editor object is created and no save/edit
+// command is routed while the viewer owns input. J/D switch representations.
+METHOD RecoveryCompareView( cKey, cTarget ) CLASS HbIde
+   local lJournalOk, lDiskOk := .F., hEncoding, cJournal, cDisk := ""
+   local cSaved := SaveScreen( 0, 0, MaxRow(), MaxCol() ), nOldCursor := SetCursor( SC_NONE )
+   local aBytes, aOk, nPane := 1, aTop := { 1, 1 }, nKey, n, nHeight := MaxRow() - 5, nRows
+   cJournal := HBIDE_RecoveryReadBase( cKey, @hEncoding, @lJournalOk )
+   if ! Empty( cTarget ) .and. cTarget != "noname.prg"
+      cDisk := HBIDE_ReadFileChecked( cTarget, @lDiskOk )
+   endif
+   aBytes := { cJournal, cDisk }
+   aOk := { lJournalOk, lDiskOk }
+   ::SuspendStatus()
+   do while .T.
+      nRows := Max( 1, Int( ( Len( aBytes[ nPane ] ) + 15 ) / 16 ) )
+      aTop[ nPane ] := Min( Max( 1, nRows - nHeight + 1 ), Max( 1, aTop[ nPane ] ) )
+      DispBegin()
+      hb_Scroll( 1, 0, MaxRow() - 1, MaxCol(),,, "W/B" )
+      hb_DispOutAt( 1, 1, "Recovery byte view - read only", "W+/B" )
+      hb_DispOutAt( 2, 1, iif( nPane == 1, "JOURNAL editor payload", "DISK raw file bytes" ) + ;
+         " | " + iif( aOk[ nPane ], hb_ntos( Len( aBytes[ nPane ] ) ) + " bytes", "unavailable" ), "W+/B" )
+      for n := 0 to nHeight - 1
+         if aTop[ nPane ] + n <= nRows .and. aOk[ nPane ]
+            hb_DispOutAt( 3 + n, 1, Left( HBIDE_RecoveryByteLine( aBytes[ nPane ], aTop[ nPane ] + n ), MaxCol() - 1 ), "W/B" )
+         endif
+      next
+      hb_DispOutAt( MaxRow() - 2, 1, "J journal | D disk | Up/Down PgUp/PgDn Home/End | Esc close", "N/BG" )
+      DispEnd()
+      nKey := hb_keyStd( Inkey( 0, INKEY_ALL + HB_INKEY_EXT ) )
+      do case
+      case nKey == K_ESC
+         exit
+      case nKey == Asc( "j" ) .or. nKey == Asc( "J" )
+         nPane := 1
+      case nKey == Asc( "d" ) .or. nKey == Asc( "D" )
+         nPane := 2
+      case nKey == K_DOWN
+         aTop[ nPane ]++
+      case nKey == K_UP
+         aTop[ nPane ]--
+      case nKey == K_PGDN
+         aTop[ nPane ] += nHeight
+      case nKey == K_PGUP
+         aTop[ nPane ] -= nHeight
+      case nKey == K_HOME
+         aTop[ nPane ] := 1
+      case nKey == K_END
+         aTop[ nPane ] := nRows
+      endcase
+   enddo
+   RestScreen( 0, 0, MaxRow(), MaxCol(), cSaved )
+   SetCursor( nOldCursor )
+   ::ResumeStatus()
 return nil
 
 //-----------------------------------------------------------------------------------------//

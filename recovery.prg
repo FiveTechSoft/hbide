@@ -418,3 +418,14 @@ function HBIDE_RecoveryCompare( cBase, cTarget )
       return cSummary + "Payload and disk bytes are identical."
    endif
 return cSummary + "Payload and disk bytes differ. This is not a line diff."
+
+// A fixed-width byte view avoids interpreting control bytes as terminal
+// commands or pretending that editor-codepage bytes are decoded disk text.
+function HBIDE_RecoveryByteLine( cBytes, nRow )
+   local nStart := ( nRow - 1 ) * 16 + 1, cHex := "", cChars := "", n, nByte
+   for n := nStart to Min( Len( cBytes ), nStart + 15 )
+      nByte := Asc( SubStr( cBytes, n, 1 ) )
+      cHex += hb_NumToHex( nByte, 2 ) + " "
+      cChars += iif( nByte >= 32 .and. nByte <= 126, Chr( nByte ), "." )
+   next
+return hb_NumToHex( nStart - 1, 8 ) + "  " + PadR( cHex, 48 ) + " " + cChars

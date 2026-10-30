@@ -96,6 +96,10 @@ proc Main()
    FErase( hb_FNameMerge( cDir, "compare-probe.journal" ) )
    FErase( hb_FNameMerge( cDir, "compare-disk.prg" ) )
 
+   Check( "byte viewer controls escaped as dots", HBIDE_RecoveryByteLine( Chr( 0 ) + Chr( 27 ) + "A", 1 ) == ;
+      "00000000  " + PadR( "00 1B 41 ", 48 ) + " ..A" )
+   Check( "byte viewer second row offset", Left( HBIDE_RecoveryByteLine( Replicate( "a", 17 ), 2 ), 8 ) == "00000010" )
+
    // 4. scan metadata
    aScan := HBIDE_RecoveryScan( .T. )
    Check( "scan finds one entry", Len( aScan ) == 1 )

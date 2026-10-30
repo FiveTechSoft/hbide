@@ -1,7 +1,7 @@
 import glob, os, pty, sys, struct, fcntl, termios, select, time, signal, shutil, tempfile, re
 
 # Read-only comparison returns to the recovery choice without accepting.
-ROWS, COLS = 25, 80
+ROWS, COLS = (40,120) if '--large' in sys.argv else (25,80)
 BIN = os.environ.get('HBIDE_BIN', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'hbide'))
 
 class Scr:
@@ -86,8 +86,10 @@ open(os.path.join(work, 'fn.prg'), 'w').write(
 open(os.path.join(work, 'fn.prg'), 'w').write('procedure Main()\n   local n := 1\n   n := bump( n )\n   ? n\nreturn\nfunction bump( x )\n   x := x + 41\n   return x\n')
 journal=os.path.join(rec,'compare--dead.journal')
 target=os.path.join(work,'precious.prg')
-open(target,'wb').write(b'ORIGINAL DISK BYTES')
-open(journal,'wb').write(b'UNSAVED JOURNAL BYTES')
+DISK_BYTES=b'ORIGINAL DISK BYTES' + b'D'*900 + b'DISK_END_MARKER'
+JOURNAL_BYTES=b'UNSAVED JOURNAL BYTES' + b'J'*900 + b'JOURNAL_END_MARKER'
+open(target,'wb').write(DISK_BYTES)
+open(journal,'wb').write(JOURNAL_BYTES)
 open(os.path.join(rec,'compare--dead.target'),'w').write(target)
 pid, fd = pty.fork()
 if pid == 0:
@@ -134,14 +136,25 @@ try:
     assert wait_for('interrupted session'),scr.text()
     send(b'c');pump(.4)
     assert 'Read-only comparison' in scr.text() and 'bytes differ' in scr.text(),scr.text()
-    assert open(target,'rb').read()==b'ORIGINAL DISK BYTES'
-    assert open(journal,'rb').read()==b'UNSAVED JOURNAL BYTES'
+    assert open(target,'rb').read()==DISK_BYTES
+    assert open(journal,'rb').read()==JOURNAL_BYTES
+    send(b'v');pump(.4)
+    assert 'JOURNAL editor payload' in scr.text() and 'UNSAVED JOURNAL' in scr.text(),scr.text()
+    send(b'x');pump(.2)  # ignored, never edit
+    send(b'\x1b[F');pump(.4)
+    assert '_END_MARKER' in scr.text(),scr.text()
+    send(b'd');pump(.3)
+    assert 'DISK raw file bytes' in scr.text() and 'ORIGINAL DISK' in scr.text(),scr.text()
+    send(b'\x1b[F');pump(.3)
+    assert 'DISK_END_' in scr.text() and 'MARKER' in scr.text(),scr.text()
+    send(b'\x1b');pump(.3)
+    assert 'Read-only comparison' in scr.text(),scr.text()
     send(b'\r');pump(.4)
     assert 'interrupted session' in scr.text(),scr.text()
     send(b'l');pump(.4)
     assert 'noname.prg' in scr.text() and 'UNSAVED JOURNAL BYTES' not in scr.text(),scr.text()
-    assert open(target,'rb').read()==b'ORIGINAL DISK BYTES'
-    assert open(journal,'rb').read()==b'UNSAVED JOURNAL BYTES'
+    assert open(target,'rb').read()==DISK_BYTES
+    assert open(journal,'rb').read()==JOURNAL_BYTES
     print('PASS Compare is read-only; returns to choice; Later keeps bytes and current document')
 finally:
     try:os.kill(pid,signal.SIGHUP)

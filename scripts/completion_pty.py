@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'recovery-compare-large': ('test_recovery_compare_pty.py', ['--large'], 30),
     'recovery-compare': ('test_recovery_compare_pty.py', [], 30),
     'reload-unreadable': ('test_reload_unreadable_pty.py', [], 30),
     'open-unreadable': ('test_open_unreadable_pty.py', [], 30),
