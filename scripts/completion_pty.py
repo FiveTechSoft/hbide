@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'backup-f2': ('test_backup_pty.py', [], 30),
     'debug-source-partial': ('test_debug_module_failure_pty.py', ['source'], 30),
     'debug-compile-cleanup': ('test_debug_module_failure_pty.py', ['compile'], 30),
     'debug-module-failure': ('test_debug_module_failure_pty.py', [], 30),
