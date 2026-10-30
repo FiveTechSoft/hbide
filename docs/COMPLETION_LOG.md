@@ -1480,3 +1480,10 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Early harness assumed Directory alphabetical order, then used End
   (not a supported native list selection) and off-by-one screen row;
   corrected fixtures/observation, retained checks on actual opened item.
+
+### 2026-10-30 Help picker selection identity
+
+- Home/Down changes multiple-match selection from Debugger to Debugger
+  windows; actual OK asserts exact topic title/body, not any Debugger text.
+  Help17checks. All43inventoried IDE declarations now focal-linked, not
+  complete modal/visual/platform acceptance. No product change.

@@ -1355,6 +1355,12 @@
         "test_file_modal_buttons_pty.py"
       ],
       "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
+    },
+    "IDE-FIELD-HelpPick-cPick-1": {
+      "tests": [
+        "test_help_pty.py"
+      ],
+      "contract": "Actual multiple-match HelpIndex picker Home/Down selects Debugger windows; explicit OK opens exact topic with Window > Tile body, not merely any Debugger topic. Source Undo/save remains byte-exact. Focal Linux only."
     }
   }
 }
