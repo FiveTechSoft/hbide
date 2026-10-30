@@ -637,3 +637,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct03:28 Locate Previous and Case acceptance
 - Sin cambio de producto. DebugCommands amplia38->42checks: menus Next/Previous sobre dos coincidencias reales; Case sensitive rechaza mismatch uppercase y al desactivarse encuentra el mismo texto.
 - 42checksPTY PASS candidato, enlaza dos contratos nuevos (59/116). Mismo runner42suites, no confundir42checksdeDebugger con42suitesglobales. No acredita Locate exhaustivo ni Windows; baselineglobal0768ac2 sigue historico.
+
+## 30Oct03:34 Monochrome restore is state, not toggle
+- Restaurar settings guardados en monocromo alternaba a color si ya estaba mono; segunda restauracion alternaba de nuevo. PTY43PASS/1FAIL antes, no estado idempotente.
+- MonoDisplay acepta parametroopcional; comando sin valor conserva togglehistorico, ON/OFF fija estado y rechaza valorinvalido. Save escribe explicitamente ON/OFF para ambosestados, sin cambiar lectura de archivoslegados.
+-49checksDebugCommandsPASS y diezmodelosPASS candidato. Verifica repetirrestoremono, restorecolor desde mono, formatoON/OFF y comandoinvalido. Captura completamonocromo trasrestore inspeccionada. Contratos60/116, runner42suites; no baselineglobalheredado niWindows. Otrossettingsconsemanticaslegacy siguenpenderauditarlos.

@@ -271,7 +271,7 @@ CREATE CLASS HBDebugger
 
    METHOD Locate( nMode, cValue )
 
-   METHOD MonoDisplay()
+   METHOD MonoDisplay( lMonoDisplay )
    METHOD NextWindow()
    METHOD Open( cFileName )
    METHOD OpenMenu( cName )
@@ -1122,7 +1122,16 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
       CASE hb_LeftEq( "CODEBLOCKTRACE", cParam1 )
          ::CodeblockTrace()
       CASE hb_LeftEq( "MONODISPLAY", cParam1 )
-         ::MonoDisplay()
+         DO CASE
+         CASE Empty( cParam2 )
+            ::MonoDisplay()
+         CASE Upper( cParam2 ) == "ON"
+            ::MonoDisplay( .T. )
+         CASE Upper( cParam2 ) == "OFF"
+            ::MonoDisplay( .F. )
+         OTHERWISE
+            cResult := "Mono Display expects ON or OFF"
+         ENDCASE
       CASE hb_LeftEq( "COLORS", cParam1 )
          IF Empty( cParam2 )
             ::Colors()
@@ -2076,9 +2085,9 @@ METHOD LocatePrgPath( cPrgName ) CLASS HBDebugger
    RETURN NIL
 
 
-METHOD PROCEDURE MonoDisplay() CLASS HBDebugger
+METHOD PROCEDURE MonoDisplay( lMonoDisplay ) CLASS HBDebugger
 
-   ::lMonoDisplay := ! ::lMonoDisplay
+   ::lMonoDisplay := hb_defaultValue( lMonoDisplay, ! ::lMonoDisplay )
    ::oPullDown:GetItemByIdent( "MONO" ):checked := ::lMonoDisplay
    ::LoadColors()
 
@@ -2558,9 +2567,7 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
    NEXT
    cInfo += "}" + hb_eol()
 
-   IF ::lMonoDisplay
-      cInfo += "Options mono " + hb_eol()
-   ENDIF
+   cInfo += "Options MonoDisplay " + iif( ::lMonoDisplay, "ON", "OFF" ) + hb_eol()
 
    cInfo += "Options MenuBar " + iif( ::lMenuBar, "ON", "OFF" ) + hb_eol()
 

@@ -249,6 +249,27 @@ try:
     send(b'\x1bl');pump(.3);send(b'c');pump(.4)
     send(b'find N + 11\r');pump(.5)
     check('Locate Case insensitive finds uppercase mismatch',selected_source('n := n + 11'))
+    # Restoring a saved palette is state restoration, not a toggle.
+    send(b'options monodisplay\r');pump(.4)
+    mono_saved=scr.at[3][25]
+    monochrome=os.path.join(work,'mono.cld')
+    send(b'options savesettings '+monochrome.encode()+b'\r');pump(.4)
+    send(b'options restoresettings '+monochrome.encode()+b'\r');pump(.6)
+    check('Restore saved mono settings preserves current monochrome palette',scr.at[3][25]==mono_saved)
+    send(b'options restoresettings '+monochrome.encode()+b'\r');pump(.6)
+    check('Restore saved mono settings is repeatable',scr.at[3][25]==mono_saved)
+    check('Saved mono settings use explicit ON','Options MonoDisplay ON' in open(monochrome).read())
+    send(b'options monodisplay off\r');pump(.4)
+    color_saved=scr.at[3][25]
+    colorfile=os.path.join(work,'color.cld')
+    send(b'options savesettings '+colorfile.encode()+b'\r');pump(.4)
+    check('Saved color settings use explicit OFF','Options MonoDisplay OFF' in open(colorfile).read())
+    send(b'options monodisplay on\r');pump(.4)
+    check('Explicit Mono ON changes color palette',scr.at[3][25]!=color_saved)
+    send(b'options restoresettings '+colorfile.encode()+b'\r');pump(.6)
+    check('Restore saved color switches monochrome OFF',scr.at[3][25]==color_saved)
+    send(b'options monodisplay invalid\r');pump(.4)
+    check('Mono rejects invalid state without changing palette','Mono Display expects ON or OFF' in scr.text() and scr.at[3][25]==color_saved)
     send(b'\x1bx');pump(.8)
     check('Debugger exits back to IDE', 'Edit' in scr.text() and 'fn.prg' in scr.text())
 finally:

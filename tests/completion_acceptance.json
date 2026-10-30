@@ -472,6 +472,13 @@
       ],
       "contract": "Case sensitive menu toggle changes search matching: uppercase mismatch leaves cursor unchanged when enabled, selects source match when disabled.",
       "expected_label": "Case sensitive"
+    },
+    "DBG-039": {
+      "tests": [
+        "test_debug_commands_pty.py"
+      ],
+      "contract": "Mono Display toggles from menu/legacy command; explicit ON/OFF sets state and rejects invalid words. Saved settings use explicit ON/OFF so restore preserves mono or color and repeated mono restores do not toggle.",
+      "expected_label": "mono Display"
     }
   }
 }

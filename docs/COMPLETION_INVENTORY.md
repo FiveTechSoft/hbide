@@ -83,7 +83,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-036 | Options | swap on Input | hbdebug/dbgmenu.prg:174 | stub | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-037 | Options | codeBlock Trace | hbdebug/dbgmenu.prg:175 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-038 | Options | Menu Bar | hbdebug/dbgmenu.prg:178 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-039 | Options | mono Display | hbdebug/dbgmenu.prg:181 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-039 | Options | mono Display | hbdebug/dbgmenu.prg:181 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-040 | Options | Colors... | hbdebug/dbgmenu.prg:184 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-041 | Options | Tab Width... | hbdebug/dbgmenu.prg:185 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-042 | Options | path for Files... | hbdebug/dbgmenu.prg:186 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -186,6 +186,7 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-008: Actual Locate Find/Next/Goto menu dispatch: matching source line, later miss retains selection, Goto accepts 60 and Esc preserves prior selection. Model covers first/next/previous/missing/case independently; not full Locate certification. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_search.prg](../tests/test_debug_search.prg)
 - DBG-007: Locate Previous menu returns from a later match to the earlier source line. Search model also checks first row and miss stability. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_search.prg](../tests/test_debug_search.prg)
 - DBG-009: Case sensitive menu toggle changes search matching: uppercase mismatch leaves cursor unchanged when enabled, selects source match when disabled. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_search.prg](../tests/test_debug_search.prg)
+- DBG-039: Mono Display toggles from menu/legacy command; explicit ON/OFF sets state and rejects invalid words. Saved settings use explicit ON/OFF so restore preserves mono or color and repeated mono restores do not toggle. Pruebas: [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py)
 
 ## Campos de inspector
 
@@ -282,52 +283,55 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1117 | `CASE Upper( cParam2 ) == "OFF"` |
 | hbdebug/debugger.prg:1122 | `CASE hb_LeftEq( "CODEBLOCKTRACE", cParam1 )` |
 | hbdebug/debugger.prg:1124 | `CASE hb_LeftEq( "MONODISPLAY", cParam1 )` |
-| hbdebug/debugger.prg:1126 | `CASE hb_LeftEq( "COLORS", cParam1 )` |
-| hbdebug/debugger.prg:1143 | `CASE hb_LeftEq( "TABWIDTH", cParam1 )` |
-| hbdebug/debugger.prg:1152 | `CASE hb_LeftEq( "PATHFORFILES", cParam1 )` |
-| hbdebug/debugger.prg:1154 | `CASE hb_LeftEq( "RUNATSTARTUP", cParam1 )` |
-| hbdebug/debugger.prg:1156 | `CASE hb_LeftEq( "NORUNATSTARTUP", cParam1 )` |
-| hbdebug/debugger.prg:1158 | `CASE hb_LeftEq( "SAVESETTINGS", cParam1 )` |
-| hbdebug/debugger.prg:1160 | `CASE hb_LeftEq( "RESTORESETTINGS", cParam1 )` |
-| hbdebug/debugger.prg:1166 | `CASE hb_LeftEqN( "OUTPUT", cCommand, 4 )` |
-| hbdebug/debugger.prg:1169 | `CASE hb_LeftEq( "POINT", cCommand )` |
-| hbdebug/debugger.prg:1171 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1173 | `CASE hb_LeftEq( "WATCHPOINT", cParam1 )` |
-| hbdebug/debugger.prg:1175 | `CASE hb_LeftEq( "TRACEPOINT", cParam1 )` |
-| hbdebug/debugger.prg:1177 | `CASE hb_LeftEq( "BREAKPOINT", cParam1 )` |
-| hbdebug/debugger.prg:1179 | `CASE hb_LeftEq( "DELETE", cParam1 )` |
-| hbdebug/debugger.prg:1185 | `CASE cCommand == "PREV"` |
-| hbdebug/debugger.prg:1188 | `CASE hb_LeftEq( "QUIT", cCommand )` |
-| hbdebug/debugger.prg:1193 | `CASE hb_LeftEqN( "RESUME", cCommand, 4 )` |
-| hbdebug/debugger.prg:1196 | `CASE hb_LeftEq( "RUN", cCommand )` |
-| hbdebug/debugger.prg:1198 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1200 | `CASE hb_LeftEq( "ANIMATE", cParam1 )` |
-| hbdebug/debugger.prg:1203 | `CASE hb_LeftEq( "STEP", cParam1 )` |
-| hbdebug/debugger.prg:1205 | `CASE hb_LeftEq( "TRACE", cParam1 )` |
-| hbdebug/debugger.prg:1207 | `CASE hb_LeftEq( "GO", cParam1 )` |
-| hbdebug/debugger.prg:1209 | `CASE hb_LeftEq( "TOCURSOR", cParam1 )` |
-| hbdebug/debugger.prg:1211 | `CASE hb_LeftEq( "NEXTROUTINE", cParam1 )` |
-| hbdebug/debugger.prg:1213 | `CASE hb_LeftEq( "SPEED", cParam1 )` |
-| hbdebug/debugger.prg:1223 | `CASE hb_LeftEqN( "SPEED", cCommand, 4 )` |
-| hbdebug/debugger.prg:1230 | `CASE cCommand == "STEP"` |
-| hbdebug/debugger.prg:1233 | `CASE cCommand == "TP"` |
-| hbdebug/debugger.prg:1236 | `CASE hb_LeftEq( "VIEW", cCommand )` |
-| hbdebug/debugger.prg:1238 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1240 | `CASE hb_LeftEq( "SETS", cParam1 )` |
-| hbdebug/debugger.prg:1242 | `CASE hb_LeftEq( "WORKAREAS", cParam1 )` |
-| hbdebug/debugger.prg:1244 | `CASE hb_LeftEq( "APPSCREEN", cParam1 )` |
-| hbdebug/debugger.prg:1246 | `CASE hb_LeftEq( "CALLSTACK", cParam1 )` |
-| hbdebug/debugger.prg:1252 | `CASE hb_LeftEq( "WINDOW", cCommand )` |
-| hbdebug/debugger.prg:1254 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1256 | `CASE hb_LeftEq( "NEXT", cParam1 )` |
-| hbdebug/debugger.prg:1258 | `CASE hb_LeftEq( "PREV", cParam1 )` |
-| hbdebug/debugger.prg:1260 | `CASE hb_LeftEq( "MOVE", cParam1 )` |
-| hbdebug/debugger.prg:1268 | `CASE hb_LeftEq( "SIZE", cParam1 )` |
-| hbdebug/debugger.prg:1274 | `CASE hb_LeftEq( "ZOOM", cParam1 )` |
-| hbdebug/debugger.prg:1276 | `CASE hb_LeftEq( "TILE", cParam1 )` |
-| hbdebug/debugger.prg:1278 | `CASE hb_LeftEq( "CASCADE", cParam1 )` |
-| hbdebug/debugger.prg:1280 | `CASE hb_LeftEq( "ICONIZE", cParam1 )` |
-| hbdebug/debugger.prg:1286 | `CASE cCommand == "WP"` |
+| hbdebug/debugger.prg:1126 | `CASE Empty( cParam2 )` |
+| hbdebug/debugger.prg:1128 | `CASE Upper( cParam2 ) == "ON"` |
+| hbdebug/debugger.prg:1130 | `CASE Upper( cParam2 ) == "OFF"` |
+| hbdebug/debugger.prg:1135 | `CASE hb_LeftEq( "COLORS", cParam1 )` |
+| hbdebug/debugger.prg:1152 | `CASE hb_LeftEq( "TABWIDTH", cParam1 )` |
+| hbdebug/debugger.prg:1161 | `CASE hb_LeftEq( "PATHFORFILES", cParam1 )` |
+| hbdebug/debugger.prg:1163 | `CASE hb_LeftEq( "RUNATSTARTUP", cParam1 )` |
+| hbdebug/debugger.prg:1165 | `CASE hb_LeftEq( "NORUNATSTARTUP", cParam1 )` |
+| hbdebug/debugger.prg:1167 | `CASE hb_LeftEq( "SAVESETTINGS", cParam1 )` |
+| hbdebug/debugger.prg:1169 | `CASE hb_LeftEq( "RESTORESETTINGS", cParam1 )` |
+| hbdebug/debugger.prg:1175 | `CASE hb_LeftEqN( "OUTPUT", cCommand, 4 )` |
+| hbdebug/debugger.prg:1178 | `CASE hb_LeftEq( "POINT", cCommand )` |
+| hbdebug/debugger.prg:1180 | `CASE Empty( cParam1 )` |
+| hbdebug/debugger.prg:1182 | `CASE hb_LeftEq( "WATCHPOINT", cParam1 )` |
+| hbdebug/debugger.prg:1184 | `CASE hb_LeftEq( "TRACEPOINT", cParam1 )` |
+| hbdebug/debugger.prg:1186 | `CASE hb_LeftEq( "BREAKPOINT", cParam1 )` |
+| hbdebug/debugger.prg:1188 | `CASE hb_LeftEq( "DELETE", cParam1 )` |
+| hbdebug/debugger.prg:1194 | `CASE cCommand == "PREV"` |
+| hbdebug/debugger.prg:1197 | `CASE hb_LeftEq( "QUIT", cCommand )` |
+| hbdebug/debugger.prg:1202 | `CASE hb_LeftEqN( "RESUME", cCommand, 4 )` |
+| hbdebug/debugger.prg:1205 | `CASE hb_LeftEq( "RUN", cCommand )` |
+| hbdebug/debugger.prg:1207 | `CASE Empty( cParam1 )` |
+| hbdebug/debugger.prg:1209 | `CASE hb_LeftEq( "ANIMATE", cParam1 )` |
+| hbdebug/debugger.prg:1212 | `CASE hb_LeftEq( "STEP", cParam1 )` |
+| hbdebug/debugger.prg:1214 | `CASE hb_LeftEq( "TRACE", cParam1 )` |
+| hbdebug/debugger.prg:1216 | `CASE hb_LeftEq( "GO", cParam1 )` |
+| hbdebug/debugger.prg:1218 | `CASE hb_LeftEq( "TOCURSOR", cParam1 )` |
+| hbdebug/debugger.prg:1220 | `CASE hb_LeftEq( "NEXTROUTINE", cParam1 )` |
+| hbdebug/debugger.prg:1222 | `CASE hb_LeftEq( "SPEED", cParam1 )` |
+| hbdebug/debugger.prg:1232 | `CASE hb_LeftEqN( "SPEED", cCommand, 4 )` |
+| hbdebug/debugger.prg:1239 | `CASE cCommand == "STEP"` |
+| hbdebug/debugger.prg:1242 | `CASE cCommand == "TP"` |
+| hbdebug/debugger.prg:1245 | `CASE hb_LeftEq( "VIEW", cCommand )` |
+| hbdebug/debugger.prg:1247 | `CASE Empty( cParam1 )` |
+| hbdebug/debugger.prg:1249 | `CASE hb_LeftEq( "SETS", cParam1 )` |
+| hbdebug/debugger.prg:1251 | `CASE hb_LeftEq( "WORKAREAS", cParam1 )` |
+| hbdebug/debugger.prg:1253 | `CASE hb_LeftEq( "APPSCREEN", cParam1 )` |
+| hbdebug/debugger.prg:1255 | `CASE hb_LeftEq( "CALLSTACK", cParam1 )` |
+| hbdebug/debugger.prg:1261 | `CASE hb_LeftEq( "WINDOW", cCommand )` |
+| hbdebug/debugger.prg:1263 | `CASE Empty( cParam1 )` |
+| hbdebug/debugger.prg:1265 | `CASE hb_LeftEq( "NEXT", cParam1 )` |
+| hbdebug/debugger.prg:1267 | `CASE hb_LeftEq( "PREV", cParam1 )` |
+| hbdebug/debugger.prg:1269 | `CASE hb_LeftEq( "MOVE", cParam1 )` |
+| hbdebug/debugger.prg:1277 | `CASE hb_LeftEq( "SIZE", cParam1 )` |
+| hbdebug/debugger.prg:1283 | `CASE hb_LeftEq( "ZOOM", cParam1 )` |
+| hbdebug/debugger.prg:1285 | `CASE hb_LeftEq( "TILE", cParam1 )` |
+| hbdebug/debugger.prg:1287 | `CASE hb_LeftEq( "CASCADE", cParam1 )` |
+| hbdebug/debugger.prg:1289 | `CASE hb_LeftEq( "ICONIZE", cParam1 )` |
+| hbdebug/debugger.prg:1295 | `CASE cCommand == "WP"` |
 | designer.prg:235 | `case nKey == K_F4` |
 | designer.prg:238 | `case nKey == K_F6` |
 | designer.prg:249 | `case nKey == K_ESC` |
@@ -486,41 +490,41 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:2044 | `case K_PGDN` |
 | editor.prg:2045 | `case K_MWFORWARD` |
 | editor.prg:2046 | `case K_MWBACKWARD` |
-| hbdebug/debugger.prg:1513 | `CASE K_LDBLCLK` |
-| hbdebug/debugger.prg:1533 | `CASE K_LBUTTONDOWN` |
-| hbdebug/debugger.prg:1562 | `CASE K_RBUTTONDOWN` |
-| hbdebug/debugger.prg:1565 | `CASE K_ESC` |
-| hbdebug/debugger.prg:1574 | `CASE K_ENTER` |
-| hbdebug/debugger.prg:1579 | `CASE K_UP` |
-| hbdebug/debugger.prg:1580 | `CASE K_DOWN` |
-| hbdebug/debugger.prg:1581 | `CASE K_LEFT` |
-| hbdebug/debugger.prg:1582 | `CASE K_RIGHT` |
-| hbdebug/debugger.prg:1583 | `CASE K_PGUP` |
-| hbdebug/debugger.prg:1584 | `CASE K_PGDN` |
-| hbdebug/debugger.prg:1585 | `CASE K_HOME` |
-| hbdebug/debugger.prg:1586 | `CASE K_END` |
-| hbdebug/debugger.prg:1587 | `CASE K_DEL` |
-| hbdebug/debugger.prg:1588 | `CASE K_CTRL_PGUP` |
-| hbdebug/debugger.prg:1589 | `CASE K_CTRL_PGDN` |
-| hbdebug/debugger.prg:1590 | `CASE K_CTRL_HOME` |
-| hbdebug/debugger.prg:1591 | `CASE K_CTRL_END` |
-| hbdebug/debugger.prg:1592 | `CASE K_CTRL_ENTER` |
-| hbdebug/debugger.prg:1596 | `CASE K_ALT_U /* Move the border between Command and Code windows Up */` |
-| hbdebug/debugger.prg:1600 | `CASE K_ALT_D /* Move the border between Command and Code windows Down */` |
-| hbdebug/debugger.prg:1604 | `CASE K_ALT_G /* Grow active window */` |
-| hbdebug/debugger.prg:1608 | `CASE K_ALT_S /* Shrink active window */` |
-| hbdebug/debugger.prg:1612 | `CASE K_F1` |
-| hbdebug/debugger.prg:1616 | `CASE K_F2` |
-| hbdebug/debugger.prg:1620 | `CASE K_F4` |
-| hbdebug/debugger.prg:1624 | `CASE K_F5` |
-| hbdebug/debugger.prg:1628 | `CASE K_CTRL_F5` |
-| hbdebug/debugger.prg:1632 | `CASE K_F6` |
-| hbdebug/debugger.prg:1636 | `CASE K_F7` |
-| hbdebug/debugger.prg:1640 | `CASE K_F8` |
-| hbdebug/debugger.prg:1644 | `CASE K_F9` |
-| hbdebug/debugger.prg:1648 | `CASE K_F10` |
-| hbdebug/debugger.prg:1652 | `CASE K_TAB` |
-| hbdebug/debugger.prg:1656 | `CASE K_SH_TAB` |
+| hbdebug/debugger.prg:1522 | `CASE K_LDBLCLK` |
+| hbdebug/debugger.prg:1542 | `CASE K_LBUTTONDOWN` |
+| hbdebug/debugger.prg:1571 | `CASE K_RBUTTONDOWN` |
+| hbdebug/debugger.prg:1574 | `CASE K_ESC` |
+| hbdebug/debugger.prg:1583 | `CASE K_ENTER` |
+| hbdebug/debugger.prg:1588 | `CASE K_UP` |
+| hbdebug/debugger.prg:1589 | `CASE K_DOWN` |
+| hbdebug/debugger.prg:1590 | `CASE K_LEFT` |
+| hbdebug/debugger.prg:1591 | `CASE K_RIGHT` |
+| hbdebug/debugger.prg:1592 | `CASE K_PGUP` |
+| hbdebug/debugger.prg:1593 | `CASE K_PGDN` |
+| hbdebug/debugger.prg:1594 | `CASE K_HOME` |
+| hbdebug/debugger.prg:1595 | `CASE K_END` |
+| hbdebug/debugger.prg:1596 | `CASE K_DEL` |
+| hbdebug/debugger.prg:1597 | `CASE K_CTRL_PGUP` |
+| hbdebug/debugger.prg:1598 | `CASE K_CTRL_PGDN` |
+| hbdebug/debugger.prg:1599 | `CASE K_CTRL_HOME` |
+| hbdebug/debugger.prg:1600 | `CASE K_CTRL_END` |
+| hbdebug/debugger.prg:1601 | `CASE K_CTRL_ENTER` |
+| hbdebug/debugger.prg:1605 | `CASE K_ALT_U /* Move the border between Command and Code windows Up */` |
+| hbdebug/debugger.prg:1609 | `CASE K_ALT_D /* Move the border between Command and Code windows Down */` |
+| hbdebug/debugger.prg:1613 | `CASE K_ALT_G /* Grow active window */` |
+| hbdebug/debugger.prg:1617 | `CASE K_ALT_S /* Shrink active window */` |
+| hbdebug/debugger.prg:1621 | `CASE K_F1` |
+| hbdebug/debugger.prg:1625 | `CASE K_F2` |
+| hbdebug/debugger.prg:1629 | `CASE K_F4` |
+| hbdebug/debugger.prg:1633 | `CASE K_F5` |
+| hbdebug/debugger.prg:1637 | `CASE K_CTRL_F5` |
+| hbdebug/debugger.prg:1641 | `CASE K_F6` |
+| hbdebug/debugger.prg:1645 | `CASE K_F7` |
+| hbdebug/debugger.prg:1649 | `CASE K_F8` |
+| hbdebug/debugger.prg:1653 | `CASE K_F9` |
+| hbdebug/debugger.prg:1657 | `CASE K_F10` |
+| hbdebug/debugger.prg:1661 | `CASE K_TAB` |
+| hbdebug/debugger.prg:1665 | `CASE K_SH_TAB` |
 | hbdebug/debugger.prg:839 | `CASE K_UP` |
 | hbdebug/debugger.prg:840 | `CASE K_F3` |
 | hbdebug/debugger.prg:846 | `CASE K_DOWN` |
