@@ -16,12 +16,17 @@ CREATE CLASS HBIDEProject
 ENDCLASS
 
 METHOD Open( cFile ) CLASS HBIDEProject
-   LOCAL cLine, cToken, aTokens, nLine := 0, cExt, cMember
+   LOCAL cLine, cToken, aTokens, nLine := 0, cExt, cMember, cOriginal, lReadOk := .F.
    ::cError := ""
    ::cFile := ""; ::cRoot := ""; ::cOriginal := ""
    ::aMembers := {}; ::aUnresolved := {}; ::hInfo := {=>}; ::hBuild := {=>}
    IF Lower( hb_FNameExt( cFile ) ) != ".hbp" .OR. ! hb_FileExists( cFile )
       ::cError := "Select an existing .hbp project"
+      RETURN .F.
+   ENDIF
+   cOriginal := HBIDE_ReadFileChecked( cFile, @lReadOk )
+   IF ! lReadOk
+      ::cError := "Cannot read project: " + cFile
       RETURN .F.
    ENDIF
    ::cFile := hb_PathNormalize( hb_FNameMerge( hb_cwd(), cFile ) )
@@ -30,7 +35,7 @@ METHOD Open( cFile ) CLASS HBIDEProject
       ::cFile := hb_PathNormalize( cFile )
    ENDIF
    ::cRoot := hb_FNameDir( ::cFile )
-   ::cOriginal := hb_MemoRead( ::cFile )
+   ::cOriginal := cOriginal
    ::aMembers := {}; ::aUnresolved := {}; ::hInfo := {=>}; ::hBuild := {=>}
    FOR EACH cLine IN hb_ATokens( StrTran( ::cOriginal, Chr(13), "" ), Chr(10) )
       nLine++

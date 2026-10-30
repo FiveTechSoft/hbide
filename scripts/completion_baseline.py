@@ -28,7 +28,7 @@ cases = {
     'utf8': ['tests/test_utf8_valid.prg', 'editor.prg', 'recovery.prg'],
     'atomic': ['tests/test_atomic.prg', 'editor.prg', 'recovery.prg'],
     'recovery': ['tests/test_recovery.prg', 'recovery.prg'],
-    'project': ['tests/test_project.prg', 'project.prg'],
+    'project': ['tests/test_project.prg', 'project.prg', 'recovery.prg'],
     'help': ['tests/test_help.prg', 'help.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
 }
 def digest(path):

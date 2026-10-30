@@ -1,6 +1,7 @@
 import glob, os, pty, sys, struct, fcntl, termios, select, time, signal, shutil, tempfile, re
 
 # Linux PTY: unreadable source open preserves the active document.
+PROJECT = '--project' in sys.argv
 ROWS, COLS = 25, 80
 BIN = os.environ.get('HBIDE_BIN', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'hbide'))
 
@@ -84,7 +85,7 @@ open(os.path.join(work, 'fn.prg'), 'w').write(
     'return x\n')                 # 8
 
 open(os.path.join(work, 'fn.prg'), 'w').write('procedure Main()\n   local n := 1\n   n := bump( n )\n   ? n\nreturn\nfunction bump( x )\n   x := x + 41\n   return x\n')
-target=os.path.join(work,'unreadable.prg')
+target=os.path.join(work,'unreadable.hbp' if PROJECT else 'unreadable.prg')
 open(target,'wb').write(b'PRECIOUS DISK BYTES')
 os.chmod(target,0)
 pid, fd = pty.fork()
@@ -131,16 +132,20 @@ def execution_line():
 try:
     assert wait_for('noname.prg'),scr.text()
     send(b'ACTIVE BUFFER');pump(.4)
-    send(b'\x1bf');pump(.3);send(b'o');assert wait_for('Open a file')
+    send(b'\x1bp' if PROJECT else b'\x1bf');pump(.3);send(b'o');assert wait_for('Open a project' if PROJECT else 'Open a file')
     send(target.encode()+b'\r');pump(.5)
-    assert 'Cannot read file' in scr.text(),scr.text()
+    assert ('Cannot read project' if PROJECT else 'Cannot read file') in scr.text(),scr.text()
     send(b'\r');pump(.4)
     assert 'ACTIVE BUFFER' in scr.text() and 'noname.prg' in scr.text(),scr.text()
+    if PROJECT:
+        send(b'\x1bp');pump(.3);send(b's');pump(.5)
+        assert 'Open a .hbp' in scr.text() and 'SOURCES' not in scr.text(),scr.text()
+        send(b'\r');pump(.3)
     os.chmod(target,0o600)
     assert open(target,'rb').read()==b'PRECIOUS DISK BYTES'
     send(b'\x1bOQ');pump(.4)
     assert 'Save file as' in scr.text() or 'Save as' in scr.text(),scr.text()
-    print('PASS unreadable open preserves active text untitled identity and disk bytes')
+    print('PASS unreadable', 'project' if PROJECT else 'source', 'open preserves active text untitled identity and disk bytes')
 finally:
     try:os.kill(pid,signal.SIGHUP)
     except ProcessLookupError:pass
