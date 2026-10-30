@@ -867,3 +867,4 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Capturas por paso reproducen fondos antiguos restaurados tras ocultar Watch/Monitor/Calls: títulos/bordes duplicados. HideVars además reservaba filas para Points aunque estuviera oculto.
 - Repinta el conjunto visible después de ocultar; HideVars solo reserva Points visible. Inspección de capturas nuevas confirma sin restos duplicados y fuente vuelve a fila1 sin hueco superior. MissingSource añade comprobación de título único y fila1 tras cierres.
 - La prueba textual anterior pasaba pese a los restos visibles: no se usa como sustituto de la inspección de píxeles. Sin cierre exhaustivo de todos los layouts ni Windows.
+- Repetición limpiaafc616a: MissingSource, CallStack y Monitor PASS, diez modelos PASS, mismo binarioe3f1e1a76af10a33e97396d21d59d6d14d9aa78222779f136367b6db736d992b, sin mutaciones; docs/evidence/linux-pane-repaint-afc616a.json.
