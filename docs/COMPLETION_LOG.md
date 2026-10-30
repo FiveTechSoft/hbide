@@ -1095,3 +1095,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Loading invalid control entries skips them, reports the count, clears the
   file association and stays dirty so saving cannot overwrite the raw source.
 - Focused Linux model coverage only; not a new UI/Windows acceptance.
+
+### 2026-10-30 Legacy designer focus load
+
+- Reproduced JSON without colorfocus inheriting the previously open design's
+  focused-control color. Reset focus to the model default before applying an
+  explicit nonempty key, so legacy/empty-key loads are state-independent.
+- Regression covers missing/empty/explicit focus and undo/redo across load.
+  No filename-history semantic change or oversized-edit policy is included.

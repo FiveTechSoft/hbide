@@ -1740,6 +1740,7 @@ METHOD ApplyModel( hModel ) CLASS HbDesigner
    if ! Empty( AllTrim( cTmp ) )
       ::cDlgClrBack = AllTrim( cTmp )
    endif
+   ::cDlgClrFocus = DSN_CLR_FOCUS
    cTmp = DsnStr( hb_HGetDef( hModel, "colorfocus", "" ), "" )
    if ! Empty( AllTrim( cTmp ) )
       ::cDlgClrFocus = AllTrim( cTmp )

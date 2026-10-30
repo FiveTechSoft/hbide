@@ -1,0 +1,107 @@
+
+
+
+
+              ษ[þ]ออออออออออออออออออ Test ออออออออออออออออออออออป
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              บ                                                 บ
+              ศอออออออออออออออออออออออออออออออออออออออออออออออออผ
+
+
+
+Invalid dialog JSON: bad.json
+File not found: missing.json
+Invalid dialog JSON: unreadable.json
+Invalid dialog JSON: bad.json
+              บ    ษ[þ]ออออออออออ  LOADED  อออออออออออออออป     บ
+              บ    บ                                      บ     บ
+              บ    บ                                      บ     บ
+              บ    บ                                      บ     บ
+              บ    บ                                      บ     บ
+              บ    บ                                      บ     บ
+              บ    บ                                      บ     บ
+              บ    บ                                      บ     บ
+              บ    บ                                      บ     บ
+              บ    บ                                      บ     บ
+              บ    บ                                      บ     บ
+              บ    ศออออออออออออออออออออออออออออออออออออออผ     บ
+              บ                                                 บ
+
+
+
+
+
+Loaded bad.json
+              บ    ษ[þ]ออออออ  Current unsaved  ออออออออออป     บ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Undo (1 more, ^Y redo)
+              บ    ษ[þ]ออออออออออ  LOADED  อออออออออออออออป     บ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Redo (0 more, ^Z undo)
+Loaded bad.json (2 invalid entries skipped)
+              บ    ษ[þ]อออออออออ  SANITIZED  อออออออออออออป     บ
+              บ    ษ[þ]ออออออออออ  LEGACY  อออออออออออออออป     บ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Loaded bad.json
+FAIL: legacy load uses default focus not prior design
