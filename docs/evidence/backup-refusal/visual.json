@@ -1,0 +1,6 @@
+{
+  "source": "2b28a3d661242f0e988a358cf57c09614408f982",
+  "method": "Actual xfce4-terminal under Xvfb, root screenshot, not parser reconstruction",
+  "inspected": "Backup refusal message, retained complete-temp path and Saving anyway readable; modal borders, shadow, OK, editor lower border and status complete",
+  "caveat": "Long path wraps across lines but all characters visible. IDE resizes terminal on startup; not 25x80/native Windows certification. Filesystem behavior separately covered by backup-f2 PTY."
+}
