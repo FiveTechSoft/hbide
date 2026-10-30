@@ -1,0 +1,12 @@
+{
+  "scope": "Isolated Linux owned HRB handles after Break; NOT debugger Restart/state retention/Windows acceptance",
+  "result": {
+    "compiled": true,
+    "caught1": true,
+    "caught2": true,
+    "events": "run1;exit;run1;exit;",
+    "expected_fresh_runs_and_exit_cleanup": true
+  },
+  "probe_sha256": "ce3c9cbc213821d9004aa991bcea7674a7b42f9a906ec4bb948be5d4a6b61296",
+  "draft_issue": "Missing REQUEST GETENV for dynamic code caused unregistered-symbol dialog; bounded8second timeout. Explicit request corrected fixture, no product change."
+}

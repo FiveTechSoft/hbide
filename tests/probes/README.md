@@ -170,3 +170,23 @@ returns65 but LastKey remains0 in the probe, because the early return bypasses
 the normal inkeyLast assignment. Using a hook return for forwarding would alter
 application-visible LastKey semantics unless handled separately. These are
 constraints on a possible design, not an integrated Swap on Input feature.
+
+## Restart lifecycle experiment, not debugger Restart
+
+Manual en.txt:329-331 says Restart terminates and re-executes while preserving
+debugger settings. The command parser still has TODO RESTART; there is no menu
+item or accepted restart implementation. hbvm.h exposes debug/break/cancel/quit/
+endproc requests, not a restart request in the inspected API. The IDE uses
+hb_HrbRun; Quit Break unwinds past its internal unload.
+
+`debug_restart_lifecycle.prg` instead owns hb_hrbLoad/hb_hrbDo/hb_hrbUnload handles
+for two uniquely named FORCELOCAL HRBs. Each synthetic app increments a static,
+logs run1, then Breaks. The host catches the marker, explicitly unloads and logs
+the EXIT procedure. Result run1;exit;run1;exit; proves this isolated cleanup/reset
+path, not VM restart, debugger state preservation or general process reset.
+Initial draft lacked REQUEST GETENV for dynamically compiled code and hit a
+bounded8second error dialog; adding the explicit dynamic dependency fixed it.
+No product execution path changed. Settings/points mapping across new temporary
+module names, host resources, public memvars, database/workareas, external side
+effects, app EXIT failures and Windows remain unverified. Restart cannot undo
+files, network calls or other side effects already performed by the app.
