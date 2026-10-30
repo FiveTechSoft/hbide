@@ -1,0 +1,233 @@
+{
+  "scope": "Linux verified copy claim under symlink refusal, not crash durability/fsync/temp-allocation race/Windows",
+  "negative_before": "\nPASS: atomic write new file ok\nPASS: new file content exact\nPASS: atomic overwrite ok\nPASS: overwritten content exact\nPASS: no temp litter after success\nPASS: write into read-only dir fails\nPASS: original intact after failure\nPASS: failure info explains\nPASS: failed write left no temp (write itself failed)\nPASS: empty content write ok\nPASS: empty file is 0 bytes\nPASS: promote over existing ok\nPASS: promoted content exact\nPASS: temp consumed by promote\nPASS: promote missing temp fails\nPASS: target untouched\nPASS: atomic write over 750 file ok\nPASS: mode 750 preserved\nPASS: content replaced\nPASS: atomic write over 444 file ok\nPASS: mode 444 preserved\nPASS: content replaced again\nPASS: save to symlink refused\nPASS: target untouched\nPASS: path is still a symlink\nPASS: refusal explains + names recovery temp\nPASS: recovery temp exists with new content\nPASS: save to dangling symlink refused\nPASS: dangling link preserved\nPASS: read-only symlink save refused\nFAIL: failed recovery write not claimed recoverable\nFAIL: failed recovery write explained\nPASS: read-only link and target untouched\nPASS: park-replace fails closed\nPASS: park failure keeps original\nPASS: park failure keeps temp\nPASS: park failure names both\nPASS: park-replace over existing ok\nPASS: park-replace content\nPASS: park-replace consumed temp\nPASS: park copy dropped\nPASS: unique name free\nPASS: two picks differ\n\nFAILURES PRESENT 41/43",
+  "pty": [
+    {
+      "source": "201e8d47af277df2591c6f98854e2b20b5ce201d",
+      "tracked_changes": "",
+      "binary_sha256": "fd0c026c48b447fe7a487baa54d14891ad176354ddd6762246e97efd5047f92a",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "975ad2b2722c214e33a86ed0c706b9d8fa427993ea45a6a8d8d9c86071341419",
+      "case": "saveall-failure",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_saveall_fail_pty.py"
+      ],
+      "started": 1793365446.3094704,
+      "seconds": 17.86,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "867f41dfed5f1947f30ef5b090265a1cc87ec7ee1177947074e59acb548b729f",
+      "log": "/tmp/hbide-symlink-pty/saveall-failure-1793365446309465128.log"
+    },
+    {
+      "source": "201e8d47af277df2591c6f98854e2b20b5ce201d",
+      "tracked_changes": "",
+      "binary_sha256": "fd0c026c48b447fe7a487baa54d14891ad176354ddd6762246e97efd5047f92a",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "975ad2b2722c214e33a86ed0c706b9d8fa427993ea45a6a8d8d9c86071341419",
+      "case": "saveas-recovery",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_saveas_refusal_recovery_pty.py",
+        "hbide"
+      ],
+      "started": 1793365464.1683052,
+      "seconds": 31.28,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ec10d6e7bb4251cdd2e7ae6ca891f520b314bbe2ed99b38f57cd96229eddbc59",
+      "log": "/tmp/hbide-symlink-pty/saveas-recovery-1793365464168300711.log"
+    },
+    {
+      "source": "201e8d47af277df2591c6f98854e2b20b5ce201d",
+      "tracked_changes": "",
+      "binary_sha256": "fd0c026c48b447fe7a487baa54d14891ad176354ddd6762246e97efd5047f92a",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "975ad2b2722c214e33a86ed0c706b9d8fa427993ea45a6a8d8d9c86071341419",
+      "case": "recovery-retention",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_retention.py",
+        "hbide"
+      ],
+      "started": 1793365495.4527059,
+      "seconds": 5.13,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "0cb803de7652d2157452b006d9643c8132e4fdc817915630573b72c451d0bf2b",
+      "log": "/tmp/hbide-symlink-pty/recovery-retention-1793365495452701613.log"
+    }
+  ],
+  "models": {
+    "source": "201e8d47af277df2591c6f98854e2b20b5ce201d",
+    "dirty": false,
+    "tracked_changes": "",
+    "runner_sha256": "a74f35254766fa560f9827452f8c5572afb4a47220ac69f0e1092eb6b5c2aabd",
+    "platform": "Linux",
+    "hbmk2": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "started": 1793365437.9468908,
+    "scope": "Linux model probes only. Not PTY, visual or Windows certification.",
+    "tests": {
+      "debug-search": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_search.prg": "289c51d0bc96331c5febf82ffb3e5e028e5511fe24d55017915302262f38f614",
+          "hbdebug/tbrwtext.prg": "a44b43f31a2ea0571108e25247e815b7c9372e7812f1f0e9fab7810de7b1cae1",
+          "hbdebug/dbgbrwsr.prg": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e"
+        },
+        "binary_sha256": "17ffbd2c629b4c17850d4f7f1c4e50f6b381ad0ad11d7ff37f9ebe2c1f4f2b7e",
+        "started": 1793365437.9469476,
+        "seconds": 0.17415356636047363
+      },
+      "designer": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer.prg": "60fc44216cfe4f0f7ab8b031d9c171b4b01369aaa1ceb4e0ccfab870515a12e1",
+          "designer.prg": "cf42d6d7b6af641aa2f894157791929c51d6fbd3e1e45d6058ae6287f0bab4fb",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "4ae542f3407f6352ceda19fde406e7efedaaf2a8f1ef99f725907732ed2c3b89",
+        "started": 1793365438.1214712,
+        "seconds": 0.5353302955627441
+      },
+      "editor-repaint": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_repaint.prg": "2c170c7452f2d6371213c6d0dc6ad071a5fad7c896e75d27a04362737934e5c8",
+          "editor.prg": "2f1a3dc1ba843fe441a78dc2a1898c871eecca59d8a1f4b4fc7c3d0addcda419",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "7ecd555c03cbc36d2d6c6fe1a3fc351b8b692bfbeca3d466c0b86646e0cda9ff",
+        "started": 1793365438.6569595,
+        "seconds": 3.2405381202697754
+      },
+      "find": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_find.prg": "9af32468423371d620d8e6587ab4f56d56485ec332d528709a80338e5926a9e5",
+          "editor.prg": "2f1a3dc1ba843fe441a78dc2a1898c871eecca59d8a1f4b4fc7c3d0addcda419",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "e6c74bfe3be608c03716b11ee874f984730a3e86883c56a6ead95eeeaa49aef1",
+        "started": 1793365441.897633,
+        "seconds": 0.22237205505371094
+      },
+      "eol": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_eol.prg": "cd1c9df2f23763ed2bc1fbc13baa7ed40fe1e36fd4b106e5f77ac9094b29ac2c",
+          "editor.prg": "2f1a3dc1ba843fe441a78dc2a1898c871eecca59d8a1f4b4fc7c3d0addcda419",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "23431a88ce12e2c10bc6bfae1e92c749b8b8ee829f0a41e8f581ce63b1b38ecd",
+        "started": 1793365442.1201622,
+        "seconds": 0.2829744815826416
+      },
+      "utf8": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_utf8_valid.prg": "13cb1239a5934db50f44530289afea8216db9b720ba5e1e7b30eabc98df336f0",
+          "editor.prg": "2f1a3dc1ba843fe441a78dc2a1898c871eecca59d8a1f4b4fc7c3d0addcda419",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "19429139d152134cc039b4117a9faaf7d2e2fb2f84d3cb1543cd2368a9820915",
+        "started": 1793365442.4032795,
+        "seconds": 0.22231459617614746
+      },
+      "atomic": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_atomic.prg": "f92a46f4ca6f56cf69b02cc28a9c94ce003c04e2bd26594e1a9ee0f2cf172ede",
+          "editor.prg": "2f1a3dc1ba843fe441a78dc2a1898c871eecca59d8a1f4b4fc7c3d0addcda419",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "9957074f5ebbb00df1a40cfa8413126bf89d90959047d45f35660626a14bd64e",
+        "started": 1793365442.6257257,
+        "seconds": 0.250683069229126
+      },
+      "recovery": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_recovery.prg": "714585c485dcb7bce32aa5b94310773019bb57e0814b1ed3bbe0e53e4e32a2d1",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "7d2917196d44ef5d49f7d4afd627c1d88496c656b419465ec47a9f254f4a7ec5",
+        "started": 1793365442.8764944,
+        "seconds": 0.17608857154846191
+      },
+      "project": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project.prg": "a8ed87c334140ab46e859eee0c88351e4a75ce15dffed2662281de0030d223a7",
+          "project.prg": "08bb8a48d0ca320009b12a5433a17693bd85e61535d2dec87eee66cf7e87f407",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "5b8f5a3f96485807e3ca31662c788699dbb2f7b84c7126791f4f2c4ac2a877a2",
+        "started": 1793365443.0526788,
+        "seconds": 0.3829507827758789
+      },
+      "help": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_help.prg": "bdd4617c01cd2ec8aa1a6b697dce01c1fb24f37c6fc941ad329f793b572a7b22",
+          "help.prg": "497883c2a795538dc5438af8321a81f4074e74dc2b38357db05b02b3d2faa7cb",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "d2010f3ede7adb1a00bcfe43f03632365c04df3a295c63971eb82e066eb0d3dc",
+        "started": 1793365443.4358475,
+        "seconds": 0.7858638763427734
+      }
+    },
+    "finished": 1793365444.221716
+  },
+  "visual": "symlink-recovery/read-only.png inspected real terminal: complete Save failed message with instruction keep buffer open/save elsewhere, complete modal and editor borders"
+}
