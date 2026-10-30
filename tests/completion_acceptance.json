@@ -329,9 +329,12 @@
         "test_designer_pty.py",
         "test_combobox_pty.py",
         "test_designer_write.prg",
-        "probes/check_designer_reserved.py"
+        "probes/check_designer_reserved.py",
+        "probes/check_designer_events_pty.py",
+        "probes/check_designer_veto_pty.py",
+        "probes/check_designer_narrow_pty.py"
       ],
-      "contract": "F9 generates PRG from edited/reloaded model; ComboBox artifact compiles and executes keyboard/mouse selection. Other controls need own runtime contracts. Partial/promotion failures preserve destination, complete retained PRG byte exact. Eight reserved-name artifacts compile and smoke-run initialization/Esc false; not interaction coverage for those artifacts."
+      "contract": "F9 generates PRG from edited/reloaded model; ComboBox artifact compiles and executes keyboard/mouse selection. Partial/promotion failures preserve destination, complete retained PRG byte exact. Eight reserved-name artifacts compile and smoke-run initialization/Esc false; not interaction coverage for those artifacts. Synthetic generated GET/checkbox/button/radiogroup/listbox/ComboBox execute their exposed When/Valid/Focus/State plus Button Action and return OK true. Generated GET When/Valid false veto then accept after enabling; GET widths1..3 keyboard/mouse retain exact bound values. Not all controls have veto/all-input coverage; no pixels/Windows acceptance."
     },
     "DSN-019": {
       "expected_label": "Generate and open",
@@ -619,7 +622,7 @@
         "test_designer_property_cancel.prg",
         "test_designer_inline_geometry.prg"
       ],
-      "contract": "Actual inline Esc preserves model/history; button-caption and radiogroup-items growth fit final footprint with exact undo. Not all inspector fields or oversized edits. ComboBox when/valid/focus/state actual inline edits preserve exact string, dirty/one undo, exact undo/redo and Esc history. Other control/field combinations remain unaccepted."
+      "contract": "Actual inline Esc preserves model/history; button-caption and radiogroup-items growth fit final footprint with exact undo. Not all inspector fields or oversized edits. Twenty exposed event/control pairs across GET/checkbox/button/radiogroup/listbox/ComboBox preserve exact string, dirty/one undo, exact undo/redo and Esc history. Separate integrated ComboBox When Tail/Home/Esc pixels identify caret versus resize handle. Not all inspector fields or event pixels are accepted."
     }
   ]
 }

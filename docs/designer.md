@@ -153,6 +153,19 @@ function, so a standalone build of the generated PRG fails to link with
 `undefined reference to HB_FUN_MSGINFO`. When empty, the action defaults to
 `lOk := .T., oDlg:End()`.
 
+Event evidence (Linux, scoped): queued inspector tests cover the twenty exposed
+When/Valid/Focus/State control pairs with exact text, one undo, undo/redo and
+Esc invariants. Separate synthetic generated artifacts execute those events
+and Button Action for GET/checkbox/button/radiogroup/listbox/ComboBox and
+return normally through OK. GET When/Valid false vetoes and later acceptance
+are exercised with exact final values. These tests never execute private
+handlers, do not certify every input path or Windows, and do not prove all
+inspector pixels. Integrated ComboBox When Tail/Home/Esc screenshots and the
+caret-versus-resize-handle diagnosis are in
+`docs/evidence/inline-integrated/README.md`. Runtime ledgers:
+`docs/evidence/linux-designer-events-runtime-858cf2b.json` and
+`docs/evidence/linux-designer-veto-c23d13c.json`.
+
 Dialogs larger than the terminal: the generated dialog is clamped to the
 visible screen (`HBWindow:Dialog()` centers the window and reports the
 adjustment through `lClamped`, and the originally requested size stays
