@@ -852,7 +852,7 @@ return oMenu
 METHOD Start() CLASS HbIde
 
    local cFile := ::oEditor:cFile, cExe, cOut, cBase, cExeTmp, cErr := "", nRc, cRecovery := "", cCommand, oError
-   local aDiag, nFirstErr
+   local aDiag, nFirstErr, oOpenEd
 
    if HBIDEProjectTokens( ::cRunArgs ) == nil
       HBIDE_MsgAlert( "Run > Arguments has an unbalanced quote; fix it first" )
@@ -897,6 +897,21 @@ METHOD Start() CLASS HbIde
       HBIDE_MsgAlert( "Build cancelled: output path is the source file; use a .prg source name" )
       return nil
    endif
+
+   // Do not overwrite another source document already open in this IDE.
+   for each oOpenEd in ::aEditors
+      if Empty( oOpenEd:cFile ) .or. oOpenEd:cFile == "noname.prg"
+         loop
+      endif
+#ifdef __PLATFORM__WINDOWS
+      if Upper( HBIDE_RecoveryAbs( cExe ) ) == Upper( HBIDE_RecoveryAbs( oOpenEd:cFile ) )
+#else
+      if HBIDE_RecoveryAbs( cExe ) == HBIDE_RecoveryAbs( oOpenEd:cFile )
+#endif
+         HBIDE_MsgAlert( "Build cancelled: output path is an open document; choose a different source name" )
+         return nil
+      endif
+   next
 
    // Build to a sibling temp target and promote it over the real executable
    // only after a VERIFIED success (exit code 0 and the binary exists).

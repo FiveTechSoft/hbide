@@ -156,9 +156,14 @@ try:
     send(b'r');pump(.5)
     send(b'\x1bOQ');pump(.5)
     assert open(target,'rb').read()==JOURNAL_BYTES
+    if '--other-document' in sys.argv:
+        send(b'\x1bf');pump(.3);send(b'o');pump(.4)
+        send(neighbor.encode()+b'\r');pump(.6)
     send(b'\x1br');pump(.3);send(b's');pump(.7)
+    if '--other-document' in sys.argv and 'Build OK:' in scr.text():
+        send(b'\r');pump(.5)
     assert open(target,'rb').read()==JOURNAL_BYTES,('Start must not replace source with executable',open(target,'rb').read(),scr.text())
-    assert 'Build cancelled: output path is the source file' in scr.text(),scr.text()
+    assert ('Build cancelled: output path is an open document' if '--other-document' in sys.argv else 'Build cancelled: output path is the source file') in scr.text(),scr.text()
     assert not os.path.exists(marker),'compiler must not be invoked'
     assert open(neighbor,'rb').read()==b'NEIGHBOR MUST STAY'
     print('PASS extensionless source/output collision refused, source untouched')
