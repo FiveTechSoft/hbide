@@ -6,7 +6,7 @@ def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def command(args,cwd,env=None,timeout=120):
  return subprocess.run(args,cwd=cwd,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=timeout)
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True,type=pathlib.Path);a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True,type=pathlib.Path);p.add_argument('--strip-debug',action='store_true',help='retain unstripped binary, remove debug symbols in tested candidate');a=p.parse_args()
  if sys.platform!='linux':p.error('Linux only; this does not build or certify Windows')
  out=a.output.resolve()
  if out==ROOT or ROOT in out.parents:p.error('output must be outside checkout')
@@ -36,6 +36,15 @@ def main():
   r=command([compiler,'hbide.hbp','-quiet','-o'+str(binpath/'hbide')],src,env)
   (out/'build.log').write_bytes(r.stdout);manifest['build_exit']=r.returncode
   if r.returncode:raise RuntimeError('build failed, see build.log')
+  if a.strip_debug:
+   strip=shutil.which('strip')
+   if not strip:raise RuntimeError('strip required for --strip-debug')
+   raw=out/'hbide.unstripped';shutil.copy2(binpath/'hbide',raw)
+   manifest['unstripped_sha256']=sha(raw)
+   manifest['strip_tool']={'path':strip,'sha256':sha(pathlib.Path(strip))}
+   r=command([strip,'--strip-debug',str(binpath/'hbide')],src)
+   (out/'strip.log').write_bytes(r.stdout)
+   if r.returncode:raise RuntimeError('strip failed')
   manifest['binary_sha256']=sha(binpath/'hbide')
   deps=command(['ldd',str(binpath/'hbide')],src);(out/'dependencies.txt').write_bytes(deps.stdout)
   manifest['dependency_check_exit']=deps.returncode

@@ -1699,3 +1699,13 @@ de fuente, hbmk2, binario y tests, ldd y logs. Smoke del binario exacto con
 HelpMouse y RunSource desde el export; HOME/recovery aislados por harness.
 No es instalador ni paquete portable, no revisa licencias ni acreditaWindows.
 No cambia Version1.0 ni publica archivos a terceros. M5 permanece pendiente.
+
+### Determinismo Linux acotado
+
+Dos exports/builds limpios de d1b3c82 pasan HelpMouse18/RunSource8 pero sus
+ELF difieren en6bytes: nombre temporal hbmk_*.c de la tabla de simbolos.
+Copias con `strip --strip-debug` resultan byte-identicas y el binario
+strippeado tambien pasa18+8checks. Se añade opcion explicita --strip-debug:
+conserva original y hashes, registra herramienta y prueba el candidato final.
+No se elimina esa evidencia ni se afirma reproducibilidad entre toolchains,
+maquinas, plataformas o fuentes distintas.
