@@ -344,9 +344,8 @@ function HBIDE_RecoveryScan( lIncludeLive )
          loop
       endif
       cTarget := hb_MemoRead( hb_FNameMerge( cDir, cKey, ".target" ) )
-      do while ! Empty( cTarget ) .and. Right( cTarget, 1 ) $ " " + Chr( 13 ) + Chr( 10 )
-         cTarget := Left( cTarget, Len( cTarget ) - 1 )
-      enddo
+      // The sidecar is written as exact bytes, not a newline-delimited
+      // record. Trimming a legal POSIX filename can select another file.
       AAdd( aOut, { cKey, cTarget, aFile[ F_SIZE ], ;
                     DToC( aFile[ F_DATE ] ) + " " + aFile[ F_TIME ] } )
    next

@@ -75,6 +75,11 @@ proc Main()
    next
    FErase( hb_FNameMerge( cDir, "bad-probe.journal" ) )
 
+   Check( "trailing-space target write", HBIDE_RecoveryWrite( "space-probe", "/tmp/source.prg ", "space work" ) )
+   aScan := HBIDE_RecoveryScan( .T. )
+   Check( "scan preserves exact trailing-space target", AScan( aScan, {| a | a[ 2 ] == "/tmp/source.prg " } ) > 0 )
+   HBIDE_RecoveryDelete( "space-probe" )
+
    // 4. scan metadata
    aScan := HBIDE_RecoveryScan( .T. )
    Check( "scan finds one entry", Len( aScan ) == 1 )
