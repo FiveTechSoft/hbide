@@ -1,0 +1,99 @@
+{
+  "scope": "Linux help and lookup regression f397869, not clean uninterrupted joint pass; no UI/Windows acceptance",
+  "completed_before_interrupt": [
+    {
+      "source": "f39786906e8c190dd4170eff8cc30c2eb3b33e4d",
+      "tracked_changes": "",
+      "binary_sha256": "0f6737f28b09f61b83cb250924aa0f3552f6ebe178fc13c9708a3ba724a34c1c",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "415638797fa0d13f4b30f793c065a77dc80e816f7a8f4e3a4671ddb1bf36037b",
+      "case": "help",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_help_pty.py"
+      ],
+      "started": 1793369823.4910095,
+      "seconds": 15.1,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "307dd33519b062ef1f0ccb8ac45555609f75c701b2a13830a299d4e63a8ba183",
+      "log": "/tmp/hbide-lookup-doc-joint/help-1793369823491004434.log"
+    },
+    {
+      "source": "f39786906e8c190dd4170eff8cc30c2eb3b33e4d",
+      "tracked_changes": "",
+      "binary_sha256": "0f6737f28b09f61b83cb250924aa0f3552f6ebe178fc13c9708a3ba724a34c1c",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "415638797fa0d13f4b30f793c065a77dc80e816f7a8f4e3a4671ddb1bf36037b",
+      "case": "debug-script-lookup",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_script_lookup_pty.py"
+      ],
+      "started": 1793369838.5923736,
+      "seconds": 9.19,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "0d592a81f13d56593378107301d59c8d36e885eff16309d9b2c7579f455dd79a",
+      "log": "/tmp/hbide-lookup-doc-joint/debug-script-lookup-1793369838592369233.log"
+    },
+    {
+      "source": "f39786906e8c190dd4170eff8cc30c2eb3b33e4d",
+      "tracked_changes": "",
+      "binary_sha256": "0f6737f28b09f61b83cb250924aa0f3552f6ebe178fc13c9708a3ba724a34c1c",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "415638797fa0d13f4b30f793c065a77dc80e816f7a8f4e3a4671ddb1bf36037b",
+      "case": "debug-script-read",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_script_read_pty.py"
+      ],
+      "started": 1793369847.7791326,
+      "seconds": 8.39,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a004eb3ffe9ecb6aaf17f1708409198217f9bb6654b83bc4616c226dffac5ff7",
+      "log": "/tmp/hbide-lookup-doc-joint/debug-script-read-1793369847779128410.log"
+    }
+  ],
+  "interruption": {
+    "case": "debug-startup",
+    "reason": "outer 45second execution budget killed process before ledger result; no product failure inferred"
+  },
+  "separate_repeat": [
+    {
+      "source": "f39786906e8c190dd4170eff8cc30c2eb3b33e4d",
+      "tracked_changes": "",
+      "binary_sha256": "0f6737f28b09f61b83cb250924aa0f3552f6ebe178fc13c9708a3ba724a34c1c",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "415638797fa0d13f4b30f793c065a77dc80e816f7a8f4e3a4671ddb1bf36037b",
+      "case": "debug-startup",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_startup_pty.py"
+      ],
+      "started": 1793369876.3706172,
+      "seconds": 14.3,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8cb2433919c705abbbf7dc29ae41276a50c60733ab4dcddfa287ae8c5ce3e1c6",
+      "log": "/tmp/hbide-lookup-startup-repeat/debug-startup-1793369876370612968.log"
+    }
+  ]
+}
