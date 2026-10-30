@@ -1316,3 +1316,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   filename-scroll/. Fixture typeahead512 avoids overflow timeout; initial
   visual forgot clearing default, corrected before evidence. No arbitrary
   length/platform/filenameUndoLoad policy promise.
+
+### 2026-10-30 Native long-path SaveAs/Load
+
+- Actual picker SaveAs to80-char internal-space path commits full filename,
+  valid JSON, clean state; no35-char destination created. Native Load accepts
+  unchanged long default and restores exact saved model/identity.
+- Temporary isolated directory only. Extends picker-only evidence into real
+  I/O; no arbitrary-length/filesystem/Windows or filenameUndoLoad acceptance.

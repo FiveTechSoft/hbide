@@ -321,7 +321,7 @@
         "test_designer_load.prg",
         "test_designer_schema.prg"
       ],
-      "contract": "F12 reload restores saved control dimensions and type after later edits. Malformed JSON has separate model checks, not all modal error paths. Decoder failure and trailing junk/NUL reject before model/identity/dirty/history mutation; unreadable/missing keep state; legacy focus default, optional schema normalized; no filename-after-undo policy acceptance."
+      "contract": "F12 reload restores saved control dimensions and type after later edits. Malformed JSON has separate model checks, not all modal error paths. Decoder failure and trailing junk/NUL reject before model/identity/dirty/history mutation; unreadable/missing keep state; legacy focus default, optional schema normalized; no filename-after-undo policy acceptance. Native picker reload from80-character default path roundtrips exact saved model/identity."
     },
     "DSN-018": {
       "expected_label": "Generate PRG  F9",
@@ -578,7 +578,7 @@
         "probes/check_designer_partial.py",
         "test_designer_pty.py"
       ],
-      "contract": "JSON Save uses verified sibling writes; partial writes preserve original, failed Save As preserves identity/dirty and subsequent Save target, successful Save As commits name. Actual picker queued keys tested. Promotion refusal retains valid complete JSON and names recovery file; separate pixels inspect scrollable failure dialog. No Windows/global acceptance."
+      "contract": "JSON Save uses verified sibling writes; partial writes preserve original, failed Save As preserves identity/dirty and subsequent Save target, successful Save As commits name. Actual picker queued keys tested. Promotion refusal retains valid complete JSON and names recovery file; separate pixels inspect scrollable failure dialog. No Windows/global acceptance. Actual native picker SaveAs to80-character path with internal spaces writes valid exact model, no35-character destination; native Load from unchanged long default retains full identity/model."
     },
     "DSN-008": {
       "expected_label": "Dialog properties...",

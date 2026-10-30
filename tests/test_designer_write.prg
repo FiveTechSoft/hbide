@@ -1,9 +1,11 @@
 #include "hbclass.ch"
 #include "inkey.ch"
+#include "set.ch"
 PROCEDURE Main(cMode)
-   LOCAL cInfo:="",cFile:="dsn-write.json",cBytes:='{"controls":[]}',o,cResult,i,aFiles,hLoaded
+   LOCAL cInfo:="",cFile:="dsn-write.json",cBytes:='{"controls":[]}',o,cResult,i,aFiles,hLoaded,cLong,hBefore
    o:=WriteDesigner():New(WriteHost():New())
    SetMode(25,80)
+   Set(_SET_TYPEAHEAD,512)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
    o:FitWindow()
    o:lDirty:=.T.
@@ -42,6 +44,26 @@ PROCEDURE Main(cMode)
    o:cNext:="renamed.json"
    o:SaveJson(.T.)
    Check(o:cFileName=="renamed.json".and.File("renamed.json"),"successful Save As commits identity")
+   // Exercise native picker plus actual write/load, not cNext shortcut.
+   cLong:="folder with spaces/"+Replicate("segment",8)+".json"
+   hb_DirCreate("folder with spaces")
+   o:cNext:=NIL
+   o:aControls:={DsnNewControl("get",{})}
+   o:aControls[1,"caption"]:="retained synthetic payload"
+   o:lDirty:=.T.
+   hb_keyPut(K_CTRL_Y);hb_keyPut(cLong);hb_keyPut(K_TAB);hb_keyPut(K_SPACE)
+   o:SaveJson(.T.)
+   Check(o:cFileName==cLong.and.File(cLong).and.!o:lDirty,"long native SaveAs commits full path and clears dirty")
+   Check(!File(Left(cLong,35)),"no truncated path destination created")
+   hb_jsonDecode(hb_MemoRead(cLong),@hLoaded)
+   Check(DsnValidModel(hLoaded),"long native SaveAs writes valid model")
+   hBefore:=DsnBuildModel(o)
+   o:aControls:={};o:lDirty:=.F.
+   // Native picker starts with full long current path; accept without edits.
+   hb_keyPut(K_TAB);hb_keyPut(K_SPACE)
+   o:LoadJson()
+   Check(o:cFileName==cLong.and.!o:lDirty,"long native Load commits full identity")
+   Check(hb_jsonEncode(DsnBuildModel(o))==hb_jsonEncode(hBefore),"long native SaveLoad exact model")
    hb_MemoWrit(cFile,"ORIGINAL")
    Check(DsnSafeMemoWrit(cFile,cBytes,@cInfo),"JSON replaces successfully")
    Check(hb_MemoRead(cFile)==cBytes,"bytes exact")
