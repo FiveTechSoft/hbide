@@ -71,6 +71,8 @@ home = tempfile.mkdtemp(prefix='hbide-df-home-')
 rec  = tempfile.mkdtemp(prefix='hbide-df-rec-')
 work = tempfile.mkdtemp(prefix='hbide-df-work-')
 env = dict(os.environ, HOME=home, HBIDE_RECOVERY_DIR=rec, TERM="xterm")
+mode=sys.argv[1] if len(sys.argv)>1 else 'module'
+source='procedure Main()\n ? 1\nreturn\n' if mode!='compile' else '? 1\n'
 
 # fixture: a call (for Trace/Calls/NextRoutine) and a changing var (for TP)
 open(os.path.join(work, 'fn.prg'), 'w').write(
@@ -84,12 +86,14 @@ open(os.path.join(work, 'fn.prg'), 'w').write(
     'return x\n')                 # 8
 
 open(os.path.join(work, 'fn.prg'), 'w').write('procedure Main()\n   local n := 1\n' + ''.join('   n := n + %d\n' % i for i in range(3,83)) + 'return\n')
-open(os.path.join(work,'fn.prg'),'w').write('procedure Main()\n ? 1\nreturn\n')
+open(os.path.join(work,'fn.prg'),'w').write(source)
 pid, fd = pty.fork()
 if pid == 0:
     os.chdir(work)
-    signal.signal(signal.SIGXFSZ,signal.SIG_IGN)
-    resource.setrlimit(resource.RLIMIT_FSIZE,(256,256))
+    if mode!='compile':
+        signal.signal(signal.SIGXFSZ,signal.SIG_IGN)
+        limit=32 if mode=='source' else 256
+        resource.setrlimit(resource.RLIMIT_FSIZE,(limit,limit))
     os.execve(BIN, [BIN], env)
 fcntl.ioctl(fd, termios.TIOCSWINSZ, struct.pack('HHHH', ROWS, COLS, 0, 0))
 
@@ -139,13 +143,14 @@ try:
     send(b'\x1bf');pump(.3);send(b'o');assert wait_for('Open a file')
     send(work.encode()+b'/fn.prg\r');pump(.5)
     send(b'\x1br');pump(.3);send(b'd');pump(1)
-    assert 'Cannot create debug module' in scr.text(),scr.text()
+    expected={'module':'Cannot create debug module','source':'Cannot create debug source','compile':'Debug build produced no code'}[mode]
+    assert expected in scr.text(),scr.text()
     assert 'Command' not in scr.text(),scr.text()
-    assert open(os.path.join(work,'fn.prg')).read()=='procedure Main()\n ? 1\nreturn\n'
+    assert open(os.path.join(work,'fn.prg')).read()==source
     assert not __import__('glob').glob(os.path.join(work,'__hbide_dbg__*')),os.listdir(work)
     send(b'\r');pump(.4)
     assert 'row:' in scr.text(),scr.text()
-    print('PASS file-size limit permits source but refuses partial HRB; temps cleaned and editor usable')
+    print('PASS debug failure mode '+mode+': notice, no debugger, source intact, temp cleanup, usable editor')
 
 finally:
     try: os.kill(pid,signal.SIGHUP)
