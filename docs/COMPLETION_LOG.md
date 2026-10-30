@@ -888,3 +888,4 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Reproducción: Path For Files vacío y View archivo-inexistente sustituía la vista por browser vacío, sin aviso. La existencia se comprobaba solo si había ruta configurada.
 - Comprueba siempre existencia; búsqueda adicional solo si hay ruta. Si no encuentra, muestra aviso anterior y conserva fuente/nombre/modo. RestoredPoints ampliado comprueba fuente preservado y parada VM4 posterior. Candidato PASS y diez modelos PASS.
 - Primer assert del aviso esperaba texto sin salto de línea; ajustado a la presentación real antes de validación. No aceptación global ni Windows.
+- Repetición limpiadfdb76c: RestoredPoints PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-open-missing-dfdb76c.json. Binario954d54bc0d8235438544bc5f88ce74cb8b99ce72402348003e576b9711918933. Capturas completas inspeccionadas: aviso legible, fuente anterior conservado y parada VM4 posterior, sin bordes perdidos.
