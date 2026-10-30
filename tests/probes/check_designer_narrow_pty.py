@@ -25,7 +25,7 @@ try:
     for kind in ['get1','get2','get3']:
         exe=work/kind
         check(kind+' artifact compiles',build([work/(kind+'.prg'),*lib],exe))
-        for mode in ['keyboard']:
+        for mode in ['keyboard','mouse']:
             value=work/(kind+'.value');value.unlink(missing_ok=True)
             screen=Scr();pid,fd=pty.fork()
             if pid==0:
@@ -54,29 +54,14 @@ try:
                 return False
             try:
                 pump(1.4)
+                expect='XYZ'[:int(kind[-1])]
                 if mode=='keyboard':
-                    if kind=='combobox':send(b'\t');send(b' ')
-                    if kind in ['radiogroup','listbox','combobox']:send(b'\x1b[B')
-                    elif kind=='checkbox':send(b' ')
-                    else:send(b'XYZ'[:int(kind[-1])])
-                    send(b'\t');send(b'\r',.6)
-                    expect='2' if kind in ['radiogroup','listbox','combobox'] else ('T' if kind=='checkbox' else 'XYZ'[:int(kind[-1])])
+                    send(expect.encode());send(b'\t');send(b'\r',.6)
                 else:
-                    if kind=='combobox':
-                        click('First');check('combo mouse opens from another GET','Second' in screen.text())
-                    if mode=='scrolled-mouse':
-                        for _ in range(7):send(b'\x1b[B',.08)
-                        check(kind+' scroll reaches eighth','Eighth' in screen.text())
-                        click('Sixth')
-                    elif kind in ['radiogroup','listbox','combobox']:click('Third')
-                    elif kind=='checkbox':click('Enabled')
-                    else:
-                        # Blank text field at model row2,col4 inside centered50x20 dialog.
-                        send(b'\x1b[M'+bytes([32,52,38]),.1)
-                        send(b'\x1b[M'+bytes([35,52,38]),.2)
-                        send(b'Antonio')
-                    click('OK',1);pump(.5)
-                    expect='6' if mode=='scrolled-mouse' else '3' if kind in ['radiogroup','listbox','combobox'] else ('T' if kind=='checkbox' else 'XYZ'[:int(kind[-1])])
+                    # Field model row2,col4 inside centered50x20 dialog.
+                    send(b'\x1b[M'+bytes([32,52,38]),.1)
+                    send(b'\x1b[M'+bytes([35,52,38]),.2)
+                    send(expect.encode());click('OK',1);pump(.5)
                 check(kind+' '+mode+' commits final value',value.exists() and value.read_text().strip()==expect)
                 if not value.exists():
                     (work/(kind+'-'+mode+'.screen')).write_text(screen.text())

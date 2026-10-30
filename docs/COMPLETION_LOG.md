@@ -1167,3 +1167,10 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   READ; keyboard enters X/XY/XYZ then Tab/OK, and exported bound values match.
 - Six checks (three compiles and three final bound values), not six features.
   This is runtime state evidence, not pixel appearance or mouse acceptance.
+
+### 2026-10-30 Narrow GET mouse roundtrip
+
+- Extended runtime probe to click each generated width1/2/3 field, type the
+  exact-width value and click OK; final bound strings match keyboard results.
+- Nine checks: three compiles, three keyboard values and three mouse values.
+  No product change, pixel certification or six independent feature claims.
