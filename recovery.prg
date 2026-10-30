@@ -412,6 +412,9 @@ function HBIDE_RecoveryCompare( cBase, cTarget )
    if Empty( cTarget ) .or. cTarget == "noname.prg"
       return cSummary + "No named disk target to compare."
    endif
+   if Chr( 0 ) $ cTarget
+      return cSummary + "Invalid recovery target (NUL byte). No disk read attempted."
+   endif
    cDisk := HBIDE_ReadFileChecked( cTarget, @lDiskOk )
    if ! lDiskOk
       return cSummary + "Disk target missing or unreadable."

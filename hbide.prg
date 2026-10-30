@@ -1321,7 +1321,7 @@ METHOD RecoveryCompareView( cKey, cTarget ) CLASS HbIde
    local cSaved := SaveScreen( 0, 0, MaxRow(), MaxCol() ), nOldCursor := SetCursor( SC_NONE )
    local aBytes, aOk, nPane := 1, aTop := { 1, 1 }, nKey, n, nHeight := MaxRow() - 5, nRows
    cJournal := HBIDE_RecoveryReadBase( cKey, @hEncoding, @lJournalOk )
-   if ! Empty( cTarget ) .and. cTarget != "noname.prg"
+   if ! Empty( cTarget ) .and. cTarget != "noname.prg" .and. !( Chr( 0 ) $ cTarget )
       cDisk := HBIDE_ReadFileChecked( cTarget, @lDiskOk )
    endif
    aBytes := { cJournal, cDisk }
