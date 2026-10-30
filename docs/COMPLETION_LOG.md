@@ -882,3 +882,4 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Reproducción: Options PreprocessedCode sin archivo PPO dejaba visible el PRG pero cambiaba cPrgName; BP4 ya no se añadía. Guardado sin BP confirmó la divergencia.
 - Calcula destino y solo cambia nombre/modo al existir. RestoredPoints ampliado comprueba BP4 guardado como PRG y parada VM4 después del intento PPO fallido. Candidato PASS.
 - Primer reemplazo local alcanzó una declaración incorrecta y falló build; descartado antes de la prueba válida, no publicado. No cambio visual de interfaz en este fallo de estado.
+- Repetición limpia5182343: Functions58/58 (incluye PPO existente ida/vuelta) y RestoredPoints PASS, diez modelos PASS, mismo binariob2339cc843180ab66ba237bdf617a0c2ba4be8dc9538c65ae18e86c8e0e2b7e7, sin mutaciones; docs/evidence/linux-ppo-5182343.json. Regresión11PTY3f13bcd histórica tras el cambio.
