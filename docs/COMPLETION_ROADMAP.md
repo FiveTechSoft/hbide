@@ -1,6 +1,6 @@
 # hbide: roadmap de cierre
 
-Actualizado: 29 de octubre de 2026. Rama: `designer-robustness`.
+Actualizado: 30 de octubre de 2026. Rama: `designer-robustness`.
 Base inicial auditada: `f91fa20`. Cambios posteriores y su evidencia en COMPLETION_LOG.md.
 No es una certificacion del IDE completo.
 
@@ -69,7 +69,8 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
 | Q11 | ComboBox faltante (correccion usuario 29Oct23:44). | Implementado Linux: F2, propiedades/items/eventos, JSON, resize, LISTBOX DROPDOWN nativo. PTY25checks incluye generar/compilar, abrir/cerrar, seleccionar con teclado/raton y variable enlazada; capturas reales inspeccionadas. Height reserva area desplegable, minimo4. No editable libre; Windows pendiente. |
-| Q01 | Baseline automatizada disponible; ampliar cobertura. | Runner de modelos y runnerPTY con revision/hash por caso. Nueve modelos y32casos registradosPTY pasan limpiosdfd8d27, mismoSHA binario6c2829fe. Evidencia docs/evidence/linux-pty-dfd8d27.json. No cubre todas las funciones niWindows. |
+| Q12 | Ejecucion: fuente, rutas, errores y argumentos. | Correcciones publicadas hasta e3a00a6: sin reescritura Main; includes locales/SDK; Start rutas literales/no falso Build OK; Script conserva fila de app y restaura editor; argumentos vacios no desaparecen. Pruebas por revision en COMPLETION_LOG.md. Build sigue sincronico/no cancelable. |
+| Q01 | Baseline automatizada disponible; ampliar cobertura. | Runner de modelos y runnerPTY con revision/hash por caso. Nueve modelos y32casos registradosPTY pasan limpiosdfd8d27, mismoSHA binario6c2829fe. Evidencia docs/evidence/linux-pty-dfd8d27.json. Es baseline historica, no heredada tras cambios de Run. Intento3351441:35PASS y1expectativa obsoleta Calls, corregida/probada en3e6fb2a. Runner actual38suites; no pasada completa actual niWindows. |
 | Q02 | Discrepancia Iconize corregida. | Ayuda corregida en7254317; layout y PTY comandos18/18 confirman iconize/restore/viewport. Ayuda GTTRM120x40 inspeccionada. |
 | Q03 | Dos opciones visibles llaman `NotSupported()`. | `hbdebug/dbgmenu.prg`: Exchange Screens y swap on Input. Investigar mecanismo antes de parchear; Menu Bar ya tiene implementacion aprobada y pruebas Linux. |
 | Q04 | Animate: prueba funcional no prueba acabado. | `test_debug_animate_pty.py` acredita avance, no ausencia de tearing. Capturar secuencia real con salida de app, diferentes velocidades y F4 ida/vuelta. |
@@ -100,7 +101,7 @@ Las demos TOTAL ON, agenda y FoxPro no certifican el conjunto del IDE.
 ## Seguimiento
 
 - [COMPLETION_INVENTORY.md](COMPLETION_INVENTORY.md): primer inventario generado,
-  115 acciones de menu,19contratos vinculados y rutas ampliadas de teclado/comandos; son conexiones de fuente, no115 funciones
+  47 contratos vinculados a116acciones de menu y rutas ampliadas de teclado/comandos; son conexiones de fuente, no116 funciones
   terminadas. Incluye dos stubs. Aun faltan modales, editor y gestos.
 
 - Registro de cada lote en [COMPLETION_LOG.md](COMPLETION_LOG.md): fuente,

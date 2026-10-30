@@ -82,9 +82,10 @@
     },
     "IDE-033": {
       "tests": [
-        "test_nav_pty.py"
+        "test_nav_pty.py",
+        "test_run_empty_args_pty.py"
       ],
-      "contract": "Literal arguments reach Start/Script/Debug; shell metacharacters cannot execute commands.",
+      "contract": "Literal arguments reach Start/Script/Debug; shell metacharacters cannot execute commands. Empty quoted words retain first/intermediate/last parameter positions in Start, Script and Debug.",
       "expected_label": "Arguments..."
     },
     "DBG-004": {
@@ -356,9 +357,11 @@
       "tests": [
         "test_run_source_pty.py",
         "test_script_errors_pty.py",
-        "test_source_includes_pty.py"
+        "test_source_includes_pty.py",
+        "test_run_empty_args_pty.py",
+        "test_script_screen_pty.py"
       ],
-      "contract": "Real Run Script preserves original source literals; lowercase main() and two consecutive sessions produce exact output and usable editor. HRB local binding, no global text substitution. Runtime error dismissal and compile error preserve usable editor; valid script executes again after each error. Compiler errors caught locally with source-line operation, not generic host stack dialog. Header lookup includes current source directory even when source is under a different folder with spaces; two runs use expected macro literal."
+      "contract": "Real Run Script preserves original source literals; lowercase main() and two consecutive sessions produce exact output and usable editor. HRB local binding, no global text substitution. Runtime error dismissal and compile error preserve usable editor; valid script executes again after each error. Compiler errors caught locally with source-line operation, not generic host stack dialog. Header lookup includes current source directory even when source is under a different folder with spaces; two runs use expected macro literal. Empty quoted words retain first/intermediate/last parameter positions in Start, Script and Debug. Script owns the last row during Inkey; return repaints editor/status and runtime/compile errors allow a subsequent run."
     },
     "IDE-032": {
       "expected_label": "Debug",
@@ -366,16 +369,18 @@
         "test_run_source_pty.py",
         "test_debug_session_pty.py",
         "test_debug_functions_pty.py",
-        "test_source_includes_pty.py"
+        "test_source_includes_pty.py",
+        "test_run_empty_args_pty.py"
       ],
-      "contract": "Real Debug preserves original source literals and lowercase main() across two runs; breakpoint and debugger function suites inspect original source with isolated HRB local symbols. Header lookup includes current source directory even when source is under a different folder with spaces; two runs use expected macro literal."
+      "contract": "Real Debug preserves original source literals and lowercase main() across two runs; breakpoint and debugger function suites inspect original source with isolated HRB local symbols. Header lookup includes current source directory even when source is under a different folder with spaces; two runs use expected macro literal. Empty quoted words retain first/intermediate/last parameter positions in Start, Script and Debug."
     },
     "IDE-030": {
       "expected_label": "Start",
       "tests": [
-        "test_start_paths_pty.py"
+        "test_start_paths_pty.py",
+        "test_run_empty_args_pty.py"
       ],
-      "contract": " Start builds/runs twice from path with spaces/apostrophe/$HOME/semicolon; failed rebuild preserves old executable bytes and never runs stale binary. Quiet nonzero compiler exit never reports Build OK; failure alert leaves editor usable."
+      "contract": " Start builds/runs twice from path with spaces/apostrophe/$HOME/semicolon; failed rebuild preserves old executable bytes and never runs stale binary. Quiet nonzero compiler exit never reports Build OK; failure alert leaves editor usable. Empty quoted words retain first/intermediate/last parameter positions in Start, Script and Debug."
     }
   }
 }
