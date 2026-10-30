@@ -3241,7 +3241,7 @@ procedure DsnNormalizeControls( aControls )
    for n = Len( aControls ) to 1 step -1
       oCtrl = aControls[ n ]
       cType = If( HB_IsHash( oCtrl ), hb_HGetDef( oCtrl, "type", "" ), "" )
-      if ! HB_IsString( cType ) .or. ! ( "|" + cType + "|" $ cTypes )
+      if ! HB_IsString( cType ) .or. Empty( cType ) .or. ! ( "|" + cType + "|" $ cTypes )
          hb_ADel( aControls, n, .T. )
       endif
    next
@@ -3262,8 +3262,16 @@ procedure DsnNormalizeControls( aControls )
          oCtrl[ "action" ] = ""
       endif
 
+      // Optional JSON fields must exist before direct indexed access.
+      if "variable" $ oCtrl .and. ! HB_IsString( oCtrl[ "variable" ] )
+         oCtrl[ "variable" ] := ""
+      endif
+
       // items accepts a CSV string or a JSON array of strings
       if oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX
+         if ! "items" $ oCtrl
+            oCtrl[ "items" ] := ""
+         endif
          if HB_IsArray( hb_HGetDef( oCtrl, "items", "" ) )
             oCtrl[ "items" ] = DsnItemsFromArray( oCtrl[ "items" ] )
          elseif ! HB_IsString( oCtrl[ "items" ] )

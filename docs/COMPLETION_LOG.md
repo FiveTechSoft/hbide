@@ -1103,3 +1103,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   explicit nonempty key, so legacy/empty-key loads are state-independent.
 - Regression covers missing/empty/explicit focus and undo/redo across load.
   No filename-history semantic change or oversized-edit policy is included.
+
+### 2026-10-30 Designer optional control schema
+
+- Reproduced listbox JSON without items raising a bound/index exception.
+  Missing optional item lists now become empty strings before direct access.
+  Non-string variable fields are repaired before identifier normalization.
+- Added20th model suite, with numeric/logical fields, missing items for radio,
+  list and combo, code generation, plus actual LoadJson paths for each type.
+  No new controls or oversized-edit behavior added.

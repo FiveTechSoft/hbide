@@ -1,6 +1,6 @@
 #include "hbclass.ch"
 PROCEDURE Main()
-   LOCAL o:=LoadDesigner():New(LoadHost():New()),h,cJson,cBad
+   LOCAL o:=LoadDesigner():New(LoadHost():New()),h,cJson,cBad,cType
    SetMode(25,80)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
    o:FitWindow()
@@ -58,6 +58,12 @@ PROCEDURE Main()
    hb_MemoWrit("bad.json",hb_jsonEncode({"controls"=>{},"colorfocus"=>""}))
    o:LoadJson()
    Check(o:cDlgClrFocus==HbDesigner():New(NIL):cDlgClrFocus,"empty focus defaults independently")
+   FOR EACH cType IN {"radiogroup","listbox","combobox"}
+      hb_MemoWrit("bad.json",hb_jsonEncode({"controls"=>{{"type"=>cType,"variable"=>123}}}))
+      o:LoadJson()
+      Check(Len(o:aControls)==1.and.HB_IsString(o:aControls[1,"items"]),"actual Load tolerates missing items")
+      Check(HB_IsString(o:aControls[1,"variable"]),"actual Load repairs invalid variable type")
+   NEXT
    ? "PASS designer load refusals and undo/redo"
    RETURN
 STATIC PROCEDURE Check(lOk,cText)
