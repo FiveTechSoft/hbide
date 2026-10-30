@@ -1,7 +1,7 @@
 #include "hbclass.ch"
 #include "inkey.ch"
 PROCEDURE Main()
-   LOCAL o:=HbDesigner():New(PropHost():New()),h,i,cKey,cLong,aFields,nField,cValue,hAfter,cType,nEvents:=0,aExpected
+   LOCAL o:=HbDesigner():New(PropHost():New()),h,i,cKey,cLong,aFields,nField,cValue,hAfter,cType,nEvents:=0,aExpected,aValue,nFieldIndex,nTabs
    SetMode(40,120)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
    o:FitWindow()
@@ -97,6 +97,35 @@ PROCEDURE Main()
    NEXT
    NEXT
    Check(nEvents==20,"all twenty exposed inline control/event pairs exercised")
+   // Actual Dialog properties, all seven fields through native queued input.
+   o:aControls:={};o:nSelected:=0
+   o:aUndo:={};o:aRedo:={};o:lDirty:=.F.
+   h:=DsnSnapshot(o)
+   FOR EACH aValue IN {"Modal caption","ModalName","60","18","B","W+","Y+/B"}
+      hb_keyPut(K_CTRL_Y);hb_keyPut(aValue);hb_keyPut(K_TAB)
+   NEXT
+   hb_keyPut(K_SPACE)
+   o:DlgProperties()
+   Check(o:cDlgCaption=="Modal caption","modal dialog caption accepted")
+   Check(o:cDlgName=="ModalName","modal dialog name accepted")
+   Check(o:nDlgWidth==60.and.o:nDlgHeight==18,"modal dialog dimensions accepted")
+   Check(o:cDlgClrBack=="B".and.o:cDlgClrText=="W+".and.o:cDlgClrFocus=="Y+/B","modal dialog colors accepted")
+   Check(o:lDirty.and.Len(o:aUndo)==1,"modal dialog one undo and dirty")
+   hAfter:=DsnSnapshot(o)
+   o:Undo()
+   Check(DsnSnapEqual(h,DsnSnapshot(o)),"modal dialog seven-field undo exact")
+   o:Redo()
+   Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),"modal dialog seven-field redo exact")
+   // Change each field separately, then Esc. Other accepted fields/history stay.
+   FOR nFieldIndex:=1 TO 7
+      FOR nTabs:=1 TO nFieldIndex-1
+         hb_keyPut(K_TAB)
+      NEXT
+      hb_keyPut(K_CTRL_Y);hb_keyPut("9");hb_keyPut(K_ESC)
+      o:DlgProperties()
+      Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),"modal dialog each-field Esc exact")
+      Check(Len(o:aUndo)==1.and.Empty(o:aRedo),"modal dialog each-field Esc history")
+   NEXT
    ? "PASS property cancellation and long handler invariants"
    RETURN
 STATIC PROCEDURE Check(lOk,cText)

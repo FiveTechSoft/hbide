@@ -624,5 +624,49 @@
       ],
       "contract": "Actual inline Esc preserves model/history; button-caption and radiogroup-items growth fit final footprint with exact undo. Not all inspector fields or oversized edits. Twenty exposed event/control pairs across GET/checkbox/button/radiogroup/listbox/ComboBox preserve exact string, dirty/one undo, exact undo/redo and Esc history. Separate integrated ComboBox When Tail/Home/Esc pixels identify caret versus resize handle. Not all inspector fields or event pixels are accepted."
     }
-  ]
+  ],
+  "modal_field_acceptance": {
+    "DSN-FIELD-DlgProperties-cCaption-1-dialog": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries."
+    },
+    "DSN-FIELD-DlgProperties-cName-1-dialog": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries."
+    },
+    "DSN-FIELD-DlgProperties-nWidth-1-dialog": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries."
+    },
+    "DSN-FIELD-DlgProperties-nHeight-1-dialog": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries."
+    },
+    "DSN-FIELD-DlgProperties-cClrBack-1-dialog": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries."
+    },
+    "DSN-FIELD-DlgProperties-cClrText-1-dialog": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries."
+    },
+    "DSN-FIELD-DlgProperties-cClrFocus-1-dialog": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries."
+    }
+  }
 }

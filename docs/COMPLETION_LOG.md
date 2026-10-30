@@ -1286,3 +1286,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   nested guards, repeated fields, pictures/buttons, determinism, control
   exclusions and fail-closed unknown conditions. These are extractor tests,
   not79native modal acceptance tests or a global function denominator.
+
+### 2026-10-30 Dialog modal seven-field acceptance
+
+- Actual queued DlgProperties accepts caption/name/width/height/back/text/
+  focus together, one undo and dirty, exact undo/redo; editing each field
+  then Esc preserves accepted model and history. Seven pair IDs link the
+  precise test without claiming every boundary/pixel/platform accepted.
+- First fixture emptied controls but left selected1; Undo normalizes it0,
+  causing snapshot mismatch. Corrected fixture to selected0 before capture;
+  not a product defect or filename-undo decision. No product change.

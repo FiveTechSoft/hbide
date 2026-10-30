@@ -160,6 +160,14 @@ def main():
                 for i,line in enumerate((ROOT/'designer.prg').read_text().splitlines())
                 if (m := re.search(r'AAdd\( aFields, \{ \"([^\"]+)\",\s*\"([^\"]+)\",\s*\"([^\"]+)\"',line))],
             'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields()),'modal_control_pairs':len(modal_control_pairs(modal_fields()))}}
+    field_specs=specs.get('modal_field_acceptance',{})
+    pair_ids={r['id'] for r in report['modal_control_pairs']}
+    for ident,spec in field_specs.items():
+        if ident not in pair_ids:raise ValueError('Unknown modal pair acceptance ID: '+ident)
+        for test in spec['tests']:
+            if not (ROOT/'tests'/test).is_file():raise ValueError('Missing modal pair test: '+test)
+    for pair in report['modal_control_pairs']:
+        if pair['id'] in field_specs:pair['acceptance']=field_specs[pair['id']]
     if args.json:
         print(json.dumps(report,indent=2))
     else:
@@ -194,7 +202,12 @@ def main():
         print('| --- | --- | --- |')
         for control in dict.fromkeys(r['control'] for r in report['modal_control_pairs']):
             fields=[r['variable'] for r in report['modal_control_pairs'] if r['control']==control]
-            print(f"| {control} | {', '.join(fields)} | Pendiente por par; contratos de superficie separados |")
+            linked=sum(isinstance(r['acceptance'],dict) for r in report['modal_control_pairs'] if r['control']==control)
+            print(f"| {control} | {', '.join(fields)} | {linked} pares con prueba focal vinculada; restantes pendientes |")
+        for pair in report['modal_control_pairs']:
+            if isinstance(pair['acceptance'],dict):
+                links=', '.join('['+t+'](../tests/'+t+')' for t in pair['acceptance']['tests'])
+                print(f"- {pair['id']}: {pair['acceptance']['contract']} Pruebas: {links}")
         print('\n## Campos de inspector\n')
         print('| Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
         print('| --- | --- | --- | --- | --- |')

@@ -249,15 +249,22 @@ Expansion estricta de condiciones tipo-fuente; falla con sintaxis desconocida. I
 
 | Control / superficie | Campos declarados | Aceptacion |
 | --- | --- | --- |
-| say | nRow, nCol, cCaption, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
-| get | nRow, nCol, cVariable, nWidth, cWhen, cValid, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
-| checkbox | nRow, nCol, cCaption, cVariable, cWhen, cValid, cFocus, cState, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
-| button | nRow, nCol, cCaption, cAccel, cAction, lBrackets, cWhen, cValid, cFocus, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
-| radiogroup | nRow, nCol, cVariable, cItems, cWhen, cValid, cFocus, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
-| listbox | nRow, nCol, cVariable, cItems, nWidth, nHeight, cWhen, cValid, cFocus, cState, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
-| combobox | nRow, nCol, cVariable, cItems, nWidth, nHeight, cWhen, cValid, cFocus, cState, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
-| dialog | cCaption, cName, nWidth, nHeight, cClrBack, cClrText, cClrFocus, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
-| filename | cFile, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
+| say | nRow, nCol, cCaption, lDummy, lDummy | 0 pares con prueba focal vinculada; restantes pendientes |
+| get | nRow, nCol, cVariable, nWidth, cWhen, cValid, lDummy, lDummy | 0 pares con prueba focal vinculada; restantes pendientes |
+| checkbox | nRow, nCol, cCaption, cVariable, cWhen, cValid, cFocus, cState, lDummy, lDummy | 0 pares con prueba focal vinculada; restantes pendientes |
+| button | nRow, nCol, cCaption, cAccel, cAction, lBrackets, cWhen, cValid, cFocus, lDummy, lDummy | 0 pares con prueba focal vinculada; restantes pendientes |
+| radiogroup | nRow, nCol, cVariable, cItems, cWhen, cValid, cFocus, lDummy, lDummy | 0 pares con prueba focal vinculada; restantes pendientes |
+| listbox | nRow, nCol, cVariable, cItems, nWidth, nHeight, cWhen, cValid, cFocus, cState, lDummy, lDummy | 0 pares con prueba focal vinculada; restantes pendientes |
+| combobox | nRow, nCol, cVariable, cItems, nWidth, nHeight, cWhen, cValid, cFocus, cState, lDummy, lDummy | 0 pares con prueba focal vinculada; restantes pendientes |
+| dialog | cCaption, cName, nWidth, nHeight, cClrBack, cClrText, cClrFocus, lDummy, lDummy | 7 pares con prueba focal vinculada; restantes pendientes |
+| filename | cFile, lDummy, lDummy | 0 pares con prueba focal vinculada; restantes pendientes |
+- DSN-FIELD-DlgProperties-cCaption-1-dialog: Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg)
+- DSN-FIELD-DlgProperties-cName-1-dialog: Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg)
+- DSN-FIELD-DlgProperties-nWidth-1-dialog: Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg)
+- DSN-FIELD-DlgProperties-nHeight-1-dialog: Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg)
+- DSN-FIELD-DlgProperties-cClrBack-1-dialog: Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg)
+- DSN-FIELD-DlgProperties-cClrText-1-dialog: Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg)
+- DSN-FIELD-DlgProperties-cClrFocus-1-dialog: Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg)
 
 ## Campos de inspector
 
