@@ -2509,6 +2509,11 @@ METHOD PROCEDURE RestoreSettings( cFileName ) CLASS HBDebugger
       ::cSettingsFileName := cFileName
    ENDIF
 
+   IF ! hb_FileExists( ::cSettingsFileName )
+      ::CommandWindowDisplay( "Settings file not found: " + ::cSettingsFileName, .F. )
+      RETURN
+   ENDIF
+
    ::LoadSettings()
    ::ShowVars()
 

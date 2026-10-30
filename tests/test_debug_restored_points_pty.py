@@ -178,6 +178,11 @@ try:
     assert os.stat(regular).st_mode & 0o777==0o640,oct(os.stat(regular).st_mode)
     assert open(regular).read().startswith('Options Path ') and glob.glob(regular+'.tmp-*')==[],regular
     print('PASS settings replacement preserves mode and leaves no success temp')
+    command('options restoresettings '+os.path.join(work,'absent.cld'))
+    assert 'Settings file not found' in scr.text(),('missing restore must be visible',scr.text())
+    command('? 8*8')
+    assert '64' in scr.text(),('debugger usable after missing restore',scr.text())
+    print('PASS missing settings restore is visible and debugger stays usable')
     send(b'\x1bx');pump(.7);assert ' File  Edit' in scr.text()
 finally:
     try:os.kill(pid,signal.SIGHUP)
