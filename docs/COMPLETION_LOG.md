@@ -1087,3 +1087,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Added19th model suite. Valid trailing whitespace loads, undo restores the
   previous model and redo restores loaded model. Filename after undo keeps
   existing semantics; no decision to change it is implied.
+
+### 2026-10-30 Designer load refusal coverage
+
+- Missing and chmod000 JSON paths preserve model, filename, dirty flag and
+  undo count. Existing behavior passes; no product change was required.
+- Loading invalid control entries skips them, reports the count, clears the
+  file association and stays dirty so saving cannot overwrite the raw source.
+- Focused Linux model coverage only; not a new UI/Windows acceptance.
