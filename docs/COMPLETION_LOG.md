@@ -819,3 +819,4 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Reproducción: `delete tp 0oops` eliminaba el punto0 porque IsDigit solo comprobaba el prefijo y Val truncaba el resto. Las rutas de BP y WP/TP ahora exigen un índice completo de dígitos.
 - RestoredPoints ampliado preserva puntos ante sufijo no numérico, decimal y negativo; el índice entero0 sigue borrando. Primer candidato TP/BP PASS y diez modelos PASS. Repetición limpia del test ampliado TP/BP/WP registrada aparte tras commit.
 - No cambio visual nuevo, no certificación del conjunto ni Windows. DELETE ALL conserva su ruta anterior.
+- Repetición limpia e5d5c0c: RestoredPoints TP/BP/WP PASS y diez modelos PASS, sin mutaciones; evidencia docs/evidence/linux-delete-index-e5d5c0c.json. Binario 7cec83af7ff634aff6f4c6b1d4791fa8467ada0ecadadbb989df72d8bf36e167.
