@@ -233,7 +233,7 @@ CREATE CLASS HBDebugger
       "W+/N", "W+/N", "N/W", "N/W", ;
       "N/W", "N/W", "W+/N", "N/W", ;
       "W+/W", "W/N", "W+/N" } )
-   METHOD CodeblockTrace()
+   METHOD CodeblockTrace( lTrace )
    METHOD CodeWindowProcessKey( nKey )
    METHOD Colors()
    METHOD CommandWindowProcessKey( nKey )
@@ -684,9 +684,9 @@ METHOD PROCEDURE CallStackProcessKey( nKey ) CLASS HBDebugger
    RETURN
 
 
-METHOD PROCEDURE CodeblockTrace() CLASS HBDebugger
+METHOD PROCEDURE CodeblockTrace( lTrace ) CLASS HBDebugger
 
-   ::oPullDown:GetItemByIdent( "CODEBLOCK" ):checked := ::lCBTrace := ! ::lCBTrace
+   ::oPullDown:GetItemByIdent( "CODEBLOCK" ):checked := ::lCBTrace := hb_defaultValue( lTrace, ! ::lCBTrace )
    __dbgSetCBTrace( ::pInfo, ::lCBTrace )
 
    RETURN
@@ -1141,7 +1141,16 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
             cResult := "Menu Bar expects ON or OFF"
          ENDCASE
       CASE hb_LeftEq( "CODEBLOCKTRACE", cParam1 )
-         ::CodeblockTrace()
+         DO CASE
+         CASE Empty( cParam2 )
+            ::CodeblockTrace()
+         CASE Upper( cParam2 ) == "ON"
+            ::CodeblockTrace( .T. )
+         CASE Upper( cParam2 ) == "OFF"
+            ::CodeblockTrace( .F. )
+         OTHERWISE
+            cResult := "Codeblock Trace expects ON or OFF"
+         ENDCASE
       CASE hb_LeftEq( "MONODISPLAY", cParam1 )
          DO CASE
          CASE Empty( cParam2 )
@@ -2609,6 +2618,7 @@ METHOD SaveSettings( cFileName ) CLASS HBDebugger
    cInfo += "Options MonoDisplay " + iif( ::lMonoDisplay, "ON", "OFF" ) + hb_eol()
 
    cInfo += "Options MenuBar " + iif( ::lMenuBar, "ON", "OFF" ) + hb_eol()
+   cInfo += "Options CodeblockTrace " + iif( ::lCBTrace, "ON", "OFF" ) + hb_eol()
 
    cInfo += "Options " + iif( ::lRunAtStartup, "RunAtStartup", "NoRunAtStartup" ) + hb_eol()
    cInfo += "Run Speed " + hb_ntos( ::nSpeed ) + hb_eol()

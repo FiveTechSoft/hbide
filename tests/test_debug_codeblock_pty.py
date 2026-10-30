@@ -136,8 +136,13 @@ try:
     pump(.5)
     if sys.argv[1]=='off':
         send(b'\x1bo');pump(.5);send(b'b');pump(.5)
+    settings=os.path.join(work,'codeblock.cld')
+    send(b'options savesettings '+settings.encode()+b'\r');pump(.4)
+    send(b'options codeblocktrace\r');pump(.3)
+    send(b'options restoresettings '+settings.encode()+b'\r');pump(.5)
+    send(b'options restoresettings '+settings.encode()+b'\r');pump(.5)
     send(b'bp 7\r');pump(.5);send(b'\x1b[15~');pump(.8)
-    assert execution_line()==7, ('Eval breakpoint',execution_line())
+    assert execution_line()==7, ('Eval breakpoint',execution_line(),scr.text())
     send(b'\x1b[19~');pump(.8)
     expected=4 if sys.argv[1]=='on' else 5
     assert execution_line()==expected, ('block step',expected,execution_line())

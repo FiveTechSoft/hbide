@@ -735,3 +735,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct06:06 Consistent tab-width bounds
 - DialogoguardabaTab-3mientrasbrowserclamp1; comando0guardaba0mientrasbrowser1. Reproduccionantesfallavalorserializado,noatribuyebugdepinturanoreproducido.
 - Dialog/comandoclamp1..16,Escpreserva ybrowserNILseguro. PTYrestoredpointsexpandidoPASS: -3->1,99->16,comando0->1,Esc12preserva4. DiezmodelosPASScandidato; noacabadoAnimate/Windows. Baseline43sobre63239d2historico.
+
+## 30Oct06:11 Restore CodeblockTrace policy
+- SaveomitiaCodeblockTrace: guardarON,alternarOFF,restaurardosvecesdejabaOFF; F8entrabalinea5envezde4. ReproduccionVMrealantesfallaexacta.
+- ComandoCodeblockTraceON/OFFexplicito ySaveescribeestado; sinvalor/menu conservatoggle. Fixtureexistenteampliadoambosmodosguardados/restauradosdosvecesPASS: F8line4ON,line5OFF. DiezmodelosPASScandidato. Unerrorintermediodelparche(nombreparametroomitido)se corrigioantesdecommit, no productopublicado.
+- Sin cambio visualnuevo,nocertificaAnimate. Baseline43sobre63239d2historico,Windows pendiente.
