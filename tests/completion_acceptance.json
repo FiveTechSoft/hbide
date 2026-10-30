@@ -1466,6 +1466,24 @@
         "test_debug_watch_modal_pty.py"
       ],
       "contract": "Actual Point Watch add n evaluates1; Points Enter edit n+2 evaluates3. Add/edit typedEsc or invalid expression then Esc preserve exact saved WP expressions. Points CtrlEnter scalar inspector shows3 and refuses typing; resumed debuggee writes2 unchanged. No structured inspect/depth/side-effect expression or all platform acceptance."
+    },
+    "DBG-INPUT-debugger-DoCommand-inputbox-1": {
+      "tests": [
+        "test_debug_input_paths_modal_pty.py"
+      ],
+      "contract": "Actual INPUT filename executes CLD setting Tab11; missing file validation then Esc and typedCancel preserve state. Actual Path modal saves directory with spaces and typedCancel preserves it; Open Another file resolves extra.prg through accepted path, typedCancel preserves loaded source. Focal Linux only; not all path/error/platform variants."
+    },
+    "DBG-INPUT-debugger-PathForFiles-inputbox-1": {
+      "tests": [
+        "test_debug_input_paths_modal_pty.py"
+      ],
+      "contract": "Actual INPUT filename executes CLD setting Tab11; missing file validation then Esc and typedCancel preserve state. Actual Path modal saves directory with spaces and typedCancel preserves it; Open Another file resolves extra.prg through accepted path, typedCancel preserves loaded source. Focal Linux only; not all path/error/platform variants."
+    },
+    "DBG-INPUT-debugger-Open-inputbox-1": {
+      "tests": [
+        "test_debug_input_paths_modal_pty.py"
+      ],
+      "contract": "Actual INPUT filename executes CLD setting Tab11; missing file validation then Esc and typedCancel preserve state. Actual Path modal saves directory with spaces and typedCancel preserves it; Open Another file resolves extra.prg through accepted path, typedCancel preserves loaded source. Focal Linux only; not all path/error/platform variants."
     }
   }
 }

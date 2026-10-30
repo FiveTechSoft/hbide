@@ -1017,7 +1017,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
    CASE hb_LeftEqN( "INPUT", cCommand, 4 )
       IF Empty( cParams )
          cParams := AllTrim( ::InputBox( "File name",, ;
-                                         {| cFile | hb_FileExists( cFile ) .OR. ;
+                                         {| cFile | hb_FileExists( AllTrim( cFile ) ) .OR. ;
                                                     ( __dbgAlert( "File unavailable" ), .F. ) } ) )
          IF LastKey() == K_ESC
             cParams := ""

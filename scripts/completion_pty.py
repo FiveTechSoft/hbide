@@ -79,6 +79,7 @@ CASES = {
     'recovery-route-guard': ('test_recovery_route_guard.py', [], 30),
     'debug-missing-source': ('test_debug_missing_source_pty.py', [], 60),
     'debug-restored-points': ('test_debug_restored_points_pty.py', [], 120),
+    'debug-input-paths-modal': ('test_debug_input_paths_modal_pty.py', [], 120),
     'debug-watch-modal': ('test_debug_watch_modal_pty.py', [], 120),
     'debug-structured-modal': ('test_debug_structured_modal_pty.py', [], 120),
     'debug-value-modal': ('test_debug_value_modal_pty.py', [], 120),

@@ -1548,3 +1548,15 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 -14focal checks,17of27caller links.87runner entries86case/modes+guard.
   Structured inspection and side-effect expressions remain unaccepted.
   No product change or milestone closure.
+
+### 2026-10-30 Debugger INPUT existing-file validation fix
+
+- Reproduced actual INPUT filename popup rejecting an existing CLD: validator
+  checked padded256byte HBDbInput buffer before external AllTrim. Fixed
+  hb_FileExists(AllTrim(cFile)), same path normalization already used by
+  execution. No process/cancel policy change.
+-10PTYchecks actualINPUT script appliesTab11; missing file rejects then
+  Esc preserves state; typedCancel unchanged. Path with spaces accepted/
+  Cancel preserves; Open Another file resolves filename through path.
+-20of27callerslinked;88runner entries87case/modes+guard. Not all paths/
+  platforms, not milestone closure.
