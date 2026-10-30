@@ -1129,3 +1129,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   optional event expressions, matching existing action-field handling.
 - Model generation and actual LoadJson paths cover all four fields. String
   expressions remain untouched; no arbitrary event code is executed in tests.
+
+### 2026-10-30 Generated reserved-name runtime smoke
+
+- Extended the eight reserved/case-collision artifacts beyond HRB compilation:
+  each builds as an executable, enters the actual generated dialog and returns
+  false after queued Esc. Wrapper catches runtime errors and verifies return.
+- This tests initialization and exit only, not editing/binding interactions,
+  visual appearance or all event paths. No new product fix in this step.

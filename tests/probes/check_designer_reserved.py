@@ -1,4 +1,4 @@
-"""Build generated HRBs for generator-owned/case-insensitive local collisions."""
+"""Compile and smoke-run generated dialogs for local-name collisions."""
 import pathlib,subprocess,tempfile,json,os
 root=pathlib.Path(__file__).resolve().parents[2]
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-reserved-'))
@@ -12,5 +12,8 @@ rows=[]
 for name in ['oDlg','ODLG','GetList','lOk','lDummy','aItems2','AITEMS2','Shared']:
  path=work/(name+'.prg');run([str(work/'generator'),str(path),name])
  run(['hbmk2',str(path),*lib,'-gh','-quiet','-o'+str(work/(name+'.hrb'))])
- rows.append({'name':name,'compile_exit':0})
-print(json.dumps({'scope':'Linux generated HRB compilation, not execution or visual acceptance','cases':rows},indent=2))
+ run(['hbmk2','tests/probes/designer_reserved_run.prg',str(path),*lib,'-gtstd','-quiet','-o'+str(work/(name+'-run'))])
+ result=run([str(work/(name+'-run'))])
+ assert b'PASS reserved dialog Esc returned false' in result.stdout
+ rows.append({'name':name,'compile_exit':0,'run_exit':0,'esc_result':False})
+print(json.dumps({'scope':'Linux generated HRB compilation and executable Esc smoke; not user interaction or visual acceptance','cases':rows},indent=2))
