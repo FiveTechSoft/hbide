@@ -1249,3 +1249,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - No product fix. Terminal shortcut interception and early mis-targeted
   coordinates excluded as setup mistakes. Reproduction/results/pixels in
   docs/evidence/combobox-drag/. One geometry/control, not global acceptance.
+
+### 2026-10-30 Physical drag minimum roundtrip
+
+- Integrated ComboBox shrink clamps4x4, Undo20x6/Redo4x4; GET10->1,
+  Undo10/Redo1, actual F12 reload/Save keeps1 with exact controls/handler.
+- Full pixels inspected: width1 GET is covered by selection resize handle,
+  noted rather than claimed ideal. No product change or property minima
+  change. Reproduction/state/pixels added to combobox-drag evidence folder.

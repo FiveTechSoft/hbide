@@ -20,3 +20,21 @@ adjust it on another machine. Needs Xvfb, xfce4-terminal, xdotool, ImageMagick.
 
 This is one ComboBox resize with undo/redo, not all drag directions, minimums,
 panning, cancellation, controls, terminal geometries or Windows acceptance.
+
+## Documented minimums, separate run
+
+On the5d4cb20 built binary, physical ComboBox handle shrink past the origin
+clamps to4x4; Undo/Save20x6 then Redo/Save4x4 preserve exact controls.
+Physical GET shrink10->1, Undo/Save10 and Redo/Save1 also match; actual
+F12 reload and Save retain width1 and exact control array. These runs
+exercise the documented minima without changing inspector/property minima.
+Full screenshots inspected: ComboBox face One/drop arrow fits width4 and
+its handle is at bottom-right of reserved4-row area; GET atwidth1 is entirely
+covered by selected resize handle. That overlap is observed, not certified
+as ideal visual affordance. Borders/status stay intact. No product fix.
+
+Scripts capture-min.py/capture-get-min.py contain exact assertions. Results
+are results-min.json/results-get-min.json; reloaded GET equality is asserted
+by the script but not a separate row in the result JSON. Initial scripts
+inherit synthetic extra items on GET; it has no runtime effect in this test.
+No pan, other controls, Windows or global acceptance is implied.

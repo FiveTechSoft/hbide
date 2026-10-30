@@ -1,0 +1,65 @@
+{
+  "after": {
+    "name": "MyDialog",
+    "caption": "My Dialog",
+    "width": 40,
+    "height": 12,
+    "color": "W+/W",
+    "colortext": "W+",
+    "colorback": "W",
+    "colorfocus": "W+/B",
+    "controls": [
+      {
+        "type": "get",
+        "row": 0,
+        "col": 0,
+        "variable": "cVar1",
+        "items": "One,Two",
+        "width": 1,
+        "when": "Start_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression__TAIL"
+      }
+    ]
+  },
+  "undo": {
+    "name": "MyDialog",
+    "caption": "My Dialog",
+    "width": 40,
+    "height": 12,
+    "color": "W+/W",
+    "colortext": "W+",
+    "colorback": "W",
+    "colorfocus": "W+/B",
+    "controls": [
+      {
+        "type": "get",
+        "row": 0,
+        "col": 0,
+        "variable": "cVar1",
+        "items": "One,Two",
+        "width": 10,
+        "when": "Start_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression__TAIL"
+      }
+    ]
+  },
+  "redo": {
+    "name": "MyDialog",
+    "caption": "My Dialog",
+    "width": 40,
+    "height": 12,
+    "color": "W+/W",
+    "colortext": "W+",
+    "colorback": "W",
+    "colorfocus": "W+/B",
+    "controls": [
+      {
+        "type": "get",
+        "row": 0,
+        "col": 0,
+        "variable": "cVar1",
+        "items": "One,Two",
+        "width": 1,
+        "when": "Start_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression_long_expression__TAIL"
+      }
+    ]
+  }
+}
