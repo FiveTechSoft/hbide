@@ -91,7 +91,7 @@ for kind in ['autorun']:
   row,col=locate('alpha');click(row,col+20);send(b'P')
   saved('click beyond EOL preserves exact padding',original.replace(b'alpha beta',b'alpha beta'+b' '*10+b'P',1))
   send(b'\x1be');send(b'n');saved('Undo beyond EOL exact',original)
-  send(b'\x1b[1;5F')
+  send(b'\x1b[6;5~') # Ctrl+PageDown is Harbour end-of-file; Ctrl+End is window bottom
   for _ in range(5):mouse(65,10,10,.1)
   check('wheel bottom clamps final empty row',bool(re.search(r'row:\s*65\s*,',screen.text())))
   saved('bottom wheel preserves every byte',original)

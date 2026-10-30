@@ -1616,3 +1616,8 @@ La rueda en EOF conserva bytes y queda en la fila vacia final. Se declara
 PTY40x120 para coincidir con el tamano usado por defecto por el IDE, sin
 presentar la antigua configuracion25x80 del harness como prueba a ese tamano.
 No se infiere contrato de clic en marco, gutter ni fuera del editor.
+
+El primer intento del limite EOF en38537e6 fallo: el harness envio Ctrl+End,
+que en HBEditor significa fin de ventana, no fin del archivo. Se corrige a
+Ctrl+PageDown segun el contrato de Harbour; no se cambia el producto. Se
+retienen ambas ejecuciones por revision y no se oculta ese fallo del probe.
