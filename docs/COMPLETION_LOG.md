@@ -780,3 +780,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Calls se crea por otro camino que Monitor/Points. Abrirlo tras TILE solapaba Watch y Command; prueba real de rectángulos falla antes (Calls1,64..18,79; Watch1,40..11,79).
 - ShowCallStack incorpora el nuevo pane al layout nombrado, sin cambiar los rectángulos manuales. CallStack ampliado compara no solapamiento; candidato PASS y diez modelos PASS. Captura completa inspeccionada: Source/Watch/Calls/Command disjuntos, datos y bordes completos.
 - No cierra todas las combinaciones de quitar/reabrir ni Windows. Baseline completo53be664 histórico.
+
+## 30Oct07:19 Development environment recovery
+- At07:11 the temporary development environment was lost, including checkout, toolchain and unversioned test logs. Published code remained safe at d47c3af; cloned branch and remote/master verified again.
+- Rebuilt Harbour694428e1c12f726675b19324d62167fa77d68185, built hbide, and executed new checks on clean d47c3af: CallStack expanded suite PASS plus ten model suites PASS. New binary b26cc2f0241c3b2a15e5d54ac78307119fc9b93523c62fb9ad9f34ee68c710b3.
+- Evidence docs/evidence/linux-recovered-d47c3af.json records NEW executions, not recovered prior logs. Prior unversioned bytes remain unavailable. Published historical ledgers remain unchanged. No product change and no full-regression or Windows claim.
