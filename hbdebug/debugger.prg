@@ -2581,6 +2581,7 @@ METHOD SaveSettings( cFileName ) CLASS HBDebugger
    LOCAL oWnd
    LOCAL aBreak, aWatch
    LOCAL cWindowName, nIcon, nZoom, aRect
+   LOCAL cFailInfo := ""
 
    IF Empty( cFileName )
       ::cSettingsFileName := ::InputBox( "File name", ::cSettingsFileName )
@@ -2687,8 +2688,11 @@ METHOD SaveSettings( cFileName ) CLASS HBDebugger
       cInfo += "Window Select " + cWindowName + hb_eol()
    ENDIF
 
-   IF ! hb_MemoWrit( ::cSettingsFileName, cInfo )
+   IF ! HBIDE_AtomicWriteFile( ::cSettingsFileName, cInfo, @cFailInfo )
       ::CommandWindowDisplay( "Cannot save settings: " + ::cSettingsFileName, .F. )
+      IF ! Empty( cFailInfo )
+         ::CommandWindowDisplay( cFailInfo, .F. )
+      ENDIF
       RETURN ""
    ENDIF
 

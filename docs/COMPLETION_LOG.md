@@ -716,3 +716,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - SaveSettingsignorabahb_MemoWritfallido. PTYconparentinexistenteantesfallabaexigiravisovisible,mientrasguardadoinexistente.
 - Chequearetorno ypublicaCannotSaveSettingsconrutaenCommand, tantopormenúcomocomando. PTYrestoredpointsexpandidoPASS: avisovisible,archivonoexiste yexpresion6*7devuelve42despues. DiezmodelosPASScandidato,capturacompletaavisoleibleinspeccionada.
 - Noafirmaescrituraatomicanirollbackenfalloparcial; esosriesgosrestan. Baseline43sobre63239d2pasahistoricotrascambioproducto,nohereda43PASS. Windows pendiente.
+
+## 30Oct05:53 Safe settings replacement
+- Escritura directa de settings por symlink sobrescribia el destino enlazado. ReproduccionPTYantes falla preservarbytesoriginales, sin atribuir crash/fallo parcial no reproducido.
+- SaveSettings usa helper existente HBIDE_AtomicWriteFile: temporal verificado, permisos conservados y replace POSIX; rechazo symlink deja enlace/destino intactos y contenido nuevo recuperable en temp. Aviso incluye fallo/recovery del helper.
+- RestoredPoints ampliadoPASS: symlink/original intactos, temp recuperable, overwrite regular modo0640 conservado, sin temp tras exito. DiezmodelosPASS incluyen fault-injection helper existente. No certifica atomicidad Windows ni durabilidad fsync ni todos los fallos parciales. Baseline43sobre63239d2historico.
