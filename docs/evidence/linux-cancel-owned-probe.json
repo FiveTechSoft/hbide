@@ -1,0 +1,10 @@
+{
+  "source": "93bdfb88338da01af7b8e8026f117ee49e690263",
+  "binary_sha256": "c81de147d08d03a654123ff44973f9007da35d7ebc4b7b0ddf48b6151f793755",
+  "result": "\nOWNED .T. CANCELLED .T. KILL          0 EXIT          0\nSTDOUT_BYTES          8 STDERR_BYTES          0\nCancellation is separate from exit status; no artifact is promoted.",
+  "processes": {
+    "parent": "gone",
+    "grandchild": "gone"
+  },
+  "scope": "Exploratory Linux fixture only, not production cancellation. Race/detached/leader-exit/flood/startup/UI/Windows unverified."
+}
