@@ -302,7 +302,7 @@ CREATE CLASS HBDebugger
    METHOD LocatePrgPath( cPrgName )
    METHOD Sort( lSorted )
 
-   METHOD Speed() INLINE ::nSpeed := ::InputBox( "Step delay (in tenths of a second)", ::nSpeed )
+   METHOD Speed()
 
    METHOD Stack( cParam )
    METHOD Static( lShow )
@@ -3103,6 +3103,16 @@ METHOD PROCEDURE ShowVars() CLASS HBDebugger
 
    RETURN
 
+
+METHOD PROCEDURE Speed() CLASS HBDebugger
+
+   LOCAL nSpeed := ::InputBox( "Step delay (in tenths of a second)", ::nSpeed )
+
+   IF LastKey() != K_ESC
+      ::nSpeed := Max( 0, Min( nSpeed, 65534 ) )
+   ENDIF
+
+   RETURN
 
 METHOD PROCEDURE Sort( lSorted ) CLASS HBDebugger
 

@@ -726,3 +726,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - RestoreSettingsarchivoinexistenteacababasesilenciosamentesincambios. PTYantesfallaavisovisible.
 - RestoreexplicitoavisaSettingsFileNotFoundconruta yretornasinaplicarscript. StartupLoadSettingssilencioso cuandoinitcldausente conservado, nosetocaflujoauto.
 - RestoredPointsexpandidoPASS y10modelosPASScandidato: aviso yexpresion8*8=64muestranusabilidadposterior. Capturacompletaavisorutainspeccionada. NoacreditavalidaciondescriptmalformadoniRestoretransaccional. Baseline43sobre63239d2historico,Windows pendiente.
+
+## 30Oct06:02 Speed dialog bounds
+- RunSpeed dialogaceptaba-5 ySaveguardabadelaynegativo; reproduccionantesfallaarchivo. RiesgodeInkeynegativono secertificacomononblock/hang,sereportasoloinputinvalidoobservado.
+- Dialogaplicacota0..65534igualsuperioralcomandoexistente, Escnopublica. PTYrestoredpointsexpandidoPASS: -5->0,65535->65534,Escconedit99preservavalor7. DiezmodelosPASScandidato.
+- Sin cambio visualnuevo, nopruebaacabadoAnimate. Baseline43sobre63239d2historico,Windows pendiente.
