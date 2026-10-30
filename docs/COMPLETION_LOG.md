@@ -1681,3 +1681,11 @@ done y las fuentes byte-identicas. No se atribuye salto de linea de codigo:
 el upstream tiene esa parte desactivada y aqui se verifica el contexto de
 Monitor. LinuxPTY40x120 focal, no recursividad/pila larga/Windows. No cambio
 de producto ni conteo de ramas como funciones nuevas.
+
+## 31 octubre: Monitor desplazado conserva la identidad de variable
+
+Doce locales, ventana de Monitor corta: PageDown expone las ultimas, doble
+clic edita una fila visible a99; PageUp vuelve al principio y clic+Enter
+edita V02 a77. Resume compara el array completo de doce valores, no un
+prefijo ni solo el texto pintado; fuente byte-exacta. Sin cambio de producto.
+LinuxPTY40x120 focal, no todos los tipos de variable ni Windows.
