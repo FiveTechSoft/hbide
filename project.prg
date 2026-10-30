@@ -136,24 +136,26 @@ FUNCTION HBIDEProjectQuote( cArg )
    RETURN '"' + cArg + '"'
 
 FUNCTION HBIDEProjectTokens( cLine )
-   LOCAL a := {}, c := "", lQuote := .F., i, ch
+   LOCAL a := {}, c := "", lQuote := .F., lStarted := .F., i, ch
    FOR i := 1 TO Len( cLine )
       ch := SubStr( cLine, i, 1 )
       DO CASE
       CASE ch == '"'
          lQuote := ! lQuote
+         lStarted := .T.
       CASE ( ch == " " .OR. ch == Chr(9) ) .AND. ! lQuote
-         IF ! Empty( c )
-            AAdd( a, c ); c := ""
+         IF lStarted
+            AAdd( a, c ); c := ""; lStarted := .F.
          ENDIF
       OTHERWISE
          c += ch
+         lStarted := .T.
       ENDCASE
    NEXT
    IF lQuote
       RETURN NIL
    ENDIF
-   IF ! Empty( c )
+   IF lStarted
       AAdd( a, c )
    ENDIF
    RETURN a

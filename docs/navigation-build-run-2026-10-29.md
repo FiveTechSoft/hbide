@@ -27,7 +27,8 @@ is preselected.
 
 ## Run > Arguments
 
-Arguments are kept for the session (not saved to disk).
+Arguments are kept for the session (not saved to disk). Empty quoted words
+(`""`) retain their positions, including the first and last argument.
 
 - Start: split into words (double quotes group words), then each word is
   single-quoted for the shell (double-quoted on Windows, untested). `;`, `&`,

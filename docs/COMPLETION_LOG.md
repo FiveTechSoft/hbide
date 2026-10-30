@@ -562,3 +562,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - ReproduccionPTY: elidle delIDE sobrescribia la ultima fila deun Script esperandoInkey(0). DosFAILantesdelcambio.
 - Script suspende status durante ejecucion, recupera ownership y repintaeditor/status despuesdesalida normaloaborto. Compilacion conserva sugestiondeerroreslocal.
 -7checksScriptScreenPASS: dosrunsconmarkerultimafila, valoresoriginales yrestauracionINS, editorusable. ScriptErrors9PASS y nueve modelosPASS candidato. Capturas completas input/retorno inspeccionadas. Runner37suites; Windows pendiente.
+
+## 30Oct01:10 Empty Run arguments
+- Argumentosentrecomillasvacios desaparecian delparsercompartido: tresmodos devolvianfirst/twowords/last envezdecincoargumentos. ReproduccionconvaloresrealesStart/Script/Debug, noejecucionsimulada.
+- Tokenizer diferencia palabramarcadadecontenidovacio; preserva vacios yposiciones sin cambiarliterales/metacaracteres. Pruebafinalincluyevacioinicial,intermedio,final ypalabraconespacio:7checksPASS. ModeloProjectañade vacios/quotesadyacentes, nuevemodelosPASS candidato.
+- Runner38suites, no baselinecompletaheredada. Windows pendiente.
