@@ -1560,3 +1560,14 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   Cancel preserves; Open Another file resolves filename through path.
 -20of27callerslinked;88runner entries87case/modes+guard. Not all paths/
   platforms, not milestone closure.
+
+### 2026-10-31 Debugger Colors and SET inline inputs
+
+- Actual Colors first entry W/R verified in saved palette; typedEsc
+  and wrong-type validation/Esc preserve it. Actual Sets Decimals5
+  verified both browser and Set(3) expression query; typedEsc and wrong
+  type/Esc preserve5. Restores SET2/full original palette.12checks.
+-22of27callerslinked;89runner entries88case/modes+guard. Only first
+  color and numeric SET, not all settings/platforms. Initial fixture
+  tried numeric value on logical Exact; corrected fixture to Decimals,
+  no product change.

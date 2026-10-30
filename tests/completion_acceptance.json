@@ -1484,6 +1484,18 @@
         "test_debug_input_paths_modal_pty.py"
       ],
       "contract": "Actual INPUT filename executes CLD setting Tab11; missing file validation then Esc and typedCancel preserve state. Actual Path modal saves directory with spaces and typedCancel preserves it; Open Another file resolves extra.prg through accepted path, typedCancel preserves loaded source. Focal Linux only; not all path/error/platform variants."
+    },
+    "DBG-INPUT-debugger-EditColor-inline_input-1": {
+      "tests": [
+        "test_debug_color_set_modal_pty.py"
+      ],
+      "contract": "Actual Colors first inline entry W/R persists exact palette; typedEsc and wrong-type validation/Esc preserve it. Actual Sets Decimals5 changes SET3; typedEsc and wrong-type/Esc preserve5, debugger query confirms. RestoresSET2/full palette. Focal first color/numeric SET only, not all settings/colors/platforms."
+    },
+    "DBG-INPUT-debugger-EditSet-inline_input-1": {
+      "tests": [
+        "test_debug_color_set_modal_pty.py"
+      ],
+      "contract": "Actual Colors first inline entry W/R persists exact palette; typedEsc and wrong-type validation/Esc preserve it. Actual Sets Decimals5 changes SET3; typedEsc and wrong-type/Esc preserve5, debugger query confirms. RestoresSET2/full palette. Focal first color/numeric SET only, not all settings/colors/platforms."
     }
   }
 }
