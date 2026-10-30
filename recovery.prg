@@ -382,6 +382,12 @@ static function HBIDE_RecoveryDecode( cBytes, hEncoding, lDecodeOk )
          cLength := SubStr( cRest, 4, nColon - 4 )
          nCP := Val( cLength )
          if nCP >= 1 .and. nCP <= 64 .and. hb_ntos( nCP ) == cLength .and. Len( cRest ) >= nColon + nCP
+            // Only combinations emitted by the editor are valid: BOM
+            // requires UTF-8, and raw is exclusive of UTF-8/BOM flags.
+            if ( SubStr( cRest, 2, 1 ) == "1" .and. Left( cRest, 1 ) != "1" ) .or. ;
+               ( SubStr( cRest, 3, 1 ) == "1" .and. Left( cRest, 2 ) != "00" )
+               return cBytes
+            endif
             lDecodeOk := .T.
             hEncoding := { "utf8" => Left( cRest, 1 ) == "1", ;
                            "bom" => SubStr( cRest, 2, 1 ) == "1", ;

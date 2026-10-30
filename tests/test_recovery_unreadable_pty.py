@@ -2,6 +2,7 @@ import glob, os, pty, sys, struct, fcntl, termios, select, time, signal, shutil,
 
 # Linux PTY: unreadable or malformed journals never replace the current document.
 MALFORMED = "--malformed-envelope" in sys.argv
+INVALID_FLAGS = "--invalid-flags" in sys.argv
 TARGET_SPACE = "--target-space" in sys.argv
 UNKNOWN_CP = "--unknown-codepage" in sys.argv
 JOURNAL_BYTES = b"\x00HBIDE-J1\n1012:E" if MALFORMED else b"UNSAVED JOURNAL BYTES"
@@ -71,6 +72,7 @@ class Scr:
     def text(self):
         return '\n'.join(''.join(row).rstrip() for row in self.g)
 
+if INVALID_FLAGS: JOURNAL_BYTES = b'\x00HBIDE-J1\n0102:ENUNSAVED JOURNAL BYTES'
 if UNKNOWN_CP: JOURNAL_BYTES = b'\x00HBIDE-J1\n1007:NO_SUCH' + b'UNSAVED \xe9 BYTES'
 
 home = tempfile.mkdtemp(prefix='hbide-df-home-')
@@ -97,7 +99,7 @@ if TARGET_SPACE: open(neighbor,'wb').write(b'NEIGHBOR MUST STAY')
 open(target,'wb').write(b'ORIGINAL DISK BYTES')
 open(journal,'wb').write(JOURNAL_BYTES)
 open(os.path.join(rec,'unreadable--dead.target'),'w').write(target)
-if not (MALFORMED or UNKNOWN_CP or TARGET_SPACE): os.chmod(journal,0)
+if not (MALFORMED or UNKNOWN_CP or TARGET_SPACE or INVALID_FLAGS): os.chmod(journal,0)
 pid, fd = pty.fork()
 if pid == 0:
     os.chdir(work)

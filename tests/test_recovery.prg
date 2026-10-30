@@ -68,7 +68,7 @@ proc Main()
    Check( "missing journal read reports failure", HBIDE_RecoveryReadBase( "missing-probe", @hEncoding, @lReadOk ) == "" .and. ! lReadOk )
 
    // A recognized but damaged encoding envelope is not legacy source text.
-   for each cBad in { "", "1012:E", "X012:ENtext", "10102:ENtext", "1010:text", "10165:ENtext", "1012x:ENtext" }
+   for each cBad in { "", "1012:E", "X012:ENtext", "10102:ENtext", "1010:text", "10165:ENtext", "1012x:ENtext", "0102:ENtext", "0112:ENtext", "1012:ENtext", "1112:ENtext" }
       hb_MemoWrit( hb_FNameMerge( cDir, "bad-probe.journal" ), Chr( 0 ) + "HBIDE-J1" + Chr( 10 ) + cBad )
       HBIDE_RecoveryReadBase( "bad-probe", @hEncoding, @lReadOk )
       Check( "malformed envelope rejected: " + cBad, ! lReadOk .and. hEncoding == NIL )

@@ -953,3 +953,5 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Geometría real del visor: entrypoint de pruebas separado RecoveryViewProbe, sin modificar producto, crea IDE y llama ApplyDisplay con25x80/40x120, verifica MaxRow/MaxCol antes del visor. Capturas ahora sí distintas, inspeccionadas completas: datos/controles/status caben. Guardadas docs/evidence/recovery-byte-geometry/. Esto prueba visor directo, no flujo startup25x80 (startup fija40x120).
 
 - Compare UTF8/BOM: reconstrucción byte-exact de guardado con codepage registrado y roundtrip lossless, BOM incluido, sin cambiar codepage global ni buffers. Codepage desconocido/inconsistencia no produce igualdad reconstruida. Modelo77checks candidatoPASS; no diff de líneas ni texto normalizado. Ayuda/guía sincronizadas.
+
+- Flags recuperación: modelo yPTY reproducen aceptación de BOMsinUTF8; cuatro combinaciones incompatibles010/011/101/111 se rechazan por Decode antes de mutar. Invariantes del escritor: BOMrequiereUTF8, rawexclusivoUTF8/BOM. Journal conservado. Candidato diez modelos+InvalidFlags/Utf8RawPASS; no es detección exhaustiva de corrupción.
