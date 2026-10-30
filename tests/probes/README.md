@@ -124,3 +124,12 @@ keyboard forwarding, resize, colors/codepages, application GT calls, exceptions,
 external writes and switching back safely during VM/debugger stops remain open.
 The demo in Harbour tests/gtwin.prg documents independent real console windows
 only for drivers that support them (WVT/XWC), not generic GTTRM windows.
+
+### Hidden GT input and color isolation
+
+`debug_hidden_input.prg` proves only synthetic-key behavior: a key queued in
+visible GTTRM is not consumed by hidden NUL, its own synthetic key is consumed
+there, and both contexts retain distinct SetColor values. Real keyboard input
+forwarding is NOT tested. A hidden application context cannot simply assume it
+will receive keys queued on the visible context. This is another integration
+requirement, not an implemented Swap on Input feature.

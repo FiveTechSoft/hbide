@@ -1,0 +1,12 @@
+{
+  "scope": "Linux synthetic keys and color isolation only, not real input forwarding or UI/Windows",
+  "probe_sha256": "a061d26ed9e652b7c1800903083c7a8c11f0d7b595ba2fc3defd7374ae43ae90",
+  "result": {
+    "hidden_does_not_see_visible_queue": true,
+    "hidden_synthetic_key": 66,
+    "visible_synthetic_key_preserved": 65,
+    "visible_color_preserved": true,
+    "hidden_color_preserved": true,
+    "real_keyboard_forwarding_tested": false
+  }
+}
