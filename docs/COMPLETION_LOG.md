@@ -1067,3 +1067,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   queued Ctrl+Y/text/Tab/Enter before the same failed-write identity check.
   Both real picker and isolated state path pass; no pixel claim is made for
   this backing-state-only change.
+
+### 2026-10-30 Designer promotion refusal integration
+
+- Extended real SaveJson/GeneratePrg fixture with directory destinations
+  containing a sentinel. Both refuse without changing the sentinel; JSON
+  remains dirty with the same identity, and retained complete temporary
+  files decode as a valid model / match generated PRG bytes exactly.
+- This extends helper-level checks to the actual methods. It is not a new
+  product fix or global/Windows acceptance.

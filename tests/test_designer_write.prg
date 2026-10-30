@@ -1,7 +1,7 @@
 #include "hbclass.ch"
 #include "inkey.ch"
 PROCEDURE Main(cMode)
-   LOCAL cInfo:="",cFile:="dsn-write.json",cBytes:='{"controls":[]}',o,cResult,i
+   LOCAL cInfo:="",cFile:="dsn-write.json",cBytes:='{"controls":[]}',o,cResult,i,aFiles,hLoaded
    o:=WriteDesigner():New(WriteHost():New())
    SetMode(25,80)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
@@ -52,6 +52,26 @@ PROCEDURE Main(cMode)
    Check("new content kept at"$cInfo,"complete recovery named")
    Check(!DsnSafeMemoWrit("absent-parent/x.json",cBytes,@cInfo),"missing parent refuses")
    Check(!Empty(cInfo),"failure explains")
+   o:cFileName:="blocked.json"
+   o:lDirty:=.T.
+   hb_keyPut(K_ENTER)
+   o:SaveJson(.F.)
+   Check(o:lDirty.and.o:cFileName=="blocked.json","blocked actual Save keeps design identity/dirty")
+   Check(hb_MemoRead("blocked.json/sentinel")=="PRECIOUS","actual Save preserves directory child")
+   aFiles:=Directory("blocked.json.tmp-*")
+   Check(Len(aFiles)>0,"actual Save retains complete temporary JSON")
+   hb_jsonDecode(hb_MemoRead(aFiles[Len(aFiles),1]),@hLoaded)
+   Check(DsnValidModel(hLoaded),"retained actual JSON is valid model")
+   hb_DirCreate("blocked.prg")
+   hb_MemoWrit("blocked.prg/sentinel","PRECIOUS")
+   o:cDlgName:="blocked"
+   hb_keyPut(K_ENTER)
+   cResult:=o:GeneratePrg()
+   Check(cResult==NIL,"blocked actual Generate refuses")
+   Check(hb_MemoRead("blocked.prg/sentinel")=="PRECIOUS","actual Generate preserves directory child")
+   aFiles:=Directory("blocked.prg.tmp-*")
+   Check(Len(aFiles)==1,"actual Generate retains complete temporary PRG")
+   Check(hb_MemoRead(aFiles[1,1])==DsnGenCode(DsnBuildModel(o)),"retained PRG byte exact")
    ? "PASS designer safe writes bytes and refusal"
    RETURN
 STATIC PROCEDURE Check(lOk,cText)
