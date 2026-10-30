@@ -1,0 +1,50 @@
+{
+  "scope": "Clean Linux DebugCommands69 checks and DebugExits16 own checks plus imported Commands69 all PASS after acknowledging missing-file modal. No product source changed from48c7c37; different rebuilt binary identity. This is not all49 repeated on5faadfe. Original global failures and interruptions remain recorded separately.",
+  "source": "5faadfe17a4b5686a4b0a6fef7d50d4600a91900",
+  "results": [
+    {
+      "source": "5faadfe17a4b5686a4b0a6fef7d50d4600a91900",
+      "tracked_changes": "",
+      "binary_sha256": "baec39bc1c4478936691fbfe77117fba9df111a7434d4f4a5b8d19007535bb30",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "abb307187bebe1ab198cee92e16d52e2be6440e986e24d1c903b83c78fec01dc",
+      "case": "debug-commands",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_commands_pty.py"
+      ],
+      "started": 1793356880.419009,
+      "seconds": 79.97,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a773230ce8d1b867f7581ae8de0928d40828baacb3ebc7ec846fb1b6713bc753",
+      "log": "debug-commands-1793356880419003933.log"
+    },
+    {
+      "source": "5faadfe17a4b5686a4b0a6fef7d50d4600a91900",
+      "tracked_changes": "",
+      "binary_sha256": "baec39bc1c4478936691fbfe77117fba9df111a7434d4f4a5b8d19007535bb30",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "abb307187bebe1ab198cee92e16d52e2be6440e986e24d1c903b83c78fec01dc",
+      "case": "debug-exits",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_exit_paths_pty.py"
+      ],
+      "started": 1793356964.5519369,
+      "seconds": 112.22,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "68e3eec2eb09c13173e3bfec4c118b11c46b9006d9e84d902a510726f47f31e7",
+      "log": "debug-exits-1793356964551932317.log"
+    }
+  ]
+}
