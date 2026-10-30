@@ -764,3 +764,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Reproducción: Cascade con Calls visible, luego WP x creaba Points de3x2. ResizeWindows no aplicaba el layout nombrado al nuevo pane y reutilizaba el ancho antiguo de Calls.
 - ResizeWindows vuelve a aplicar TILE/CASCADE al incorporar un pane; sin modo nombrado conserva rectángulos manuales. CallStack ampliado prueba viewport útil tras WP en Cascade, Monitor y diez modelos PASS candidato.
 - Captura completa inspeccionada de Watch nuevo con n=1 tras seleccionar Points y reaplicar Cascade. Selección por comando no certificada como equivalente a Next en Cascade. No cierra todas las combinaciones ni Windows.
+
+## 30Oct06:56 Window Select in Cascade
+- Window Select enfocaba Points pero no lo movía al slot frontal como Next/Prev: prueba registraba Points2,2 frente a Command4,6. Antes falla, después PASS.
+- WindowSelect aplica Cascade cuando ese modo sigue activo; manual/TILE mantienen geometría. CallStack ampliado y diez modelos PASS candidato; captura completa inspeccionada de selección directa Points al frente, sin reaplicar Cascade manualmente.
+- No certifica todos los caminos de foco/ratón ni Windows. Baseline completo53be664 histórico.

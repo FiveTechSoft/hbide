@@ -4316,7 +4316,11 @@ METHOD WindowSelect( cName ) CLASS HBDebugger
       RETURN .F.
    ENDIF
    ::nCurrentWindow := n
-   ::WindowRepaint()
+   IF ::cLayoutMode == "CASCADE"
+      ::WindowLayout( "CASCADE" )
+   ELSE
+      ::WindowRepaint()
+   ENDIF
    RETURN .T.
 
 METHOD WindowCommandRect( cParams, lSize ) CLASS HBDebugger

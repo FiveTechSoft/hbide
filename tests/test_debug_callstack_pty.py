@@ -227,6 +227,18 @@ try:
     dimensions=[int(v) for v in lines[pointstart+3].split()[2:]]
     assert dimensions[0]>=4 and dimensions[1]>=12,('new Points must have usable viewport',lines)
     print('PASS new Points in Cascade has usable viewport')
+    command('window select points')
+    command('options savesettings '+newpoints)
+    lines=geometry(newpoints)
+    slots={}
+    name=None
+    for line in lines:
+        if line.startswith('Window Select '):name=line.split()[-1]
+        if line.startswith('Window Move ') and line!='Window Move 1 0':
+            slots[name]=tuple(map(int,line.split()[2:]))
+    assert slots.get('POINTS')==max(slots.values()),('selected Cascade pane must take front slot',slots,lines)
+    print('PASS Window Select puts Points in front Cascade slot')
+
     command('window tile')
     command('window select points')
     pointsfile=os.path.join(work,'points-layout.cld')
