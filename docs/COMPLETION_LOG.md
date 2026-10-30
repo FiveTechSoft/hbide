@@ -889,3 +889,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Comprueba siempre existencia; búsqueda adicional solo si hay ruta. Si no encuentra, muestra aviso anterior y conserva fuente/nombre/modo. RestoredPoints ampliado comprueba fuente preservado y parada VM4 posterior. Candidato PASS y diez modelos PASS.
 - Primer assert del aviso esperaba texto sin salto de línea; ajustado a la presentación real antes de validación. No aceptación global ni Windows.
 - Repetición limpiadfdb76c: RestoredPoints PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-open-missing-dfdb76c.json. Binario954d54bc0d8235438544bc5f88ce74cb8b99ce72402348003e576b9711918933. Capturas completas inspeccionadas: aviso legible, fuente anterior conservado y parada VM4 posterior, sin bordes perdidos.
+
+## 30Oct10:14 Source paths and failed PPO return verified
+- Pruebas añadidas, sin parche de producto: Path For Files con carpeta y nombre de fuente con espacios resuelve y abre contenido correcto.
+- PPO existente abre; desaparece PRG, intento de volver conserva PPO; reaparece PRG y toggle vuelve directamente a fuente. Verificado tras corrección5182343, sin nuevo fallo observado en esas rutas.
+- RestoredPoints ampliado PASS candidato; no certifica todos los formatos de ruta ni Windows.
