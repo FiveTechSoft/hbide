@@ -1589,14 +1589,14 @@ return nil
 METHOD SelectFileName( cTitle, cDefault ) CLASS HbDesigner
 
    local oDlg, GetList := {}, lOk := .F., lCancel := .F., lDummy
-   local cFile := PadR( cDefault, 35 )
+   local cFile := PadR( cDefault, Max( 255, Len( cDefault ) + 20 ) )
 
    ::SuspendUI()
 
    oDlg = HBWindow():Dialog( cTitle, 45, 7, CLR_DIALOG )
    oDlg:bRepaint = { || ::Redraw() }
 
-   @ oDlg:nTop + 2, oDlg:nLeft + 8 GET cFile COLOR "N/W,W+/B,W+/W,GR+/W"
+   @ oDlg:nTop + 2, oDlg:nLeft + 8 GET cFile PICTURE "@S35" COLOR "N/W,W+/B,W+/W,GR+/W"
    oDlg:Say( 2, 2, "File:" )
 
    @ oDlg:nBottom - 2, oDlg:nLeft + 14 GET lDummy PUSHBUTTON ;

@@ -1306,3 +1306,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   new policy. Linked only to corresponding five dialog pairs.
 - These are chosen boundaries, not full color grammar, all numeric sizes,
   pixels, Windows or global acceptance. No product change required.
+
+### 2026-10-30 File picker long-path truncation
+
+- Reproduced actual SelectFileName truncating80-char default to35 before
+  GET. Buffer nowMax255/Len(default)+20 with visible@S35. Default and typed
+  path preserve exact bytes; Esc/Cancel empty, model/identity/history intact.
+- Integrated F11 Tail/Home/Esc full pixels inspected, no file saved. Evidence
+  filename-scroll/. Fixture typeahead512 avoids overflow timeout; initial
+  visual forgot clearing default, corrected before evidence. No arbitrary
+  length/platform/filenameUndoLoad policy promise.

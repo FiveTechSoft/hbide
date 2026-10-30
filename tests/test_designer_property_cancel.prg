@@ -1,8 +1,10 @@
 #include "hbclass.ch"
 #include "inkey.ch"
+#include "set.ch"
 PROCEDURE Main()
-   LOCAL o:=HbDesigner():New(PropHost():New()),h,i,cKey,cLong,aFields,nField,cValue,hAfter,cType,nEvents:=0,aExpected,aValue,nFieldIndex,nTabs,aColors
+   LOCAL o:=HbDesigner():New(PropHost():New()),h,i,cKey,cLong,aFields,nField,cValue,hAfter,cType,nEvents:=0,aExpected,aValue,nFieldIndex,nTabs,aColors,cPath,cPicked
    SetMode(40,120)
+   Set(_SET_TYPEAHEAD,512)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
    o:FitWindow()
    o:aControls:={DsnNewControl("button",{})}
@@ -165,6 +167,24 @@ PROCEDURE Main()
       Check(DsnSnapEqual(h,DsnSnapshot(o)),"invalid colors undo retains exact model")
       o:aUndo:={};o:aRedo:={}
    NEXT
+   // File picker itself must not mutate designer identity/model/history.
+   h:=DsnSnapshot(o)
+   o:cFileName:="original.json"
+   cPath:="folder with spaces/"+Replicate("segment",8)+".json"
+   hb_keyPut(K_CTRL_Y);hb_keyPut(cPath);hb_keyPut(K_ESC)
+   cPicked:=o:SelectFileName("Probe","default.json")
+   Check(cPicked=="","picker Esc returns empty")
+   hb_keyPut(K_CTRL_Y);hb_keyPut(cPath);hb_keyPut(K_TAB);hb_keyPut(K_TAB);hb_keyPut(K_SPACE)
+   cPicked:=o:SelectFileName("Probe","default.json")
+   Check(cPicked=="","picker Cancel returns empty")
+   hb_keyPut(K_TAB);hb_keyPut(K_SPACE)
+   cPicked:=o:SelectFileName("Probe",cPath)
+   Check(cPicked==cPath,"picker preserves exact long default path with internal spaces")
+   hb_keyPut(K_CTRL_Y);hb_keyPut(cPath);hb_keyPut(K_TAB);hb_keyPut(K_SPACE)
+   cPicked:=o:SelectFileName("Probe","default.json")
+   Check(cPicked==cPath,"picker accepts exact typed long path with internal spaces")
+   Check(DsnSnapEqual(h,DsnSnapshot(o)),"picker preserves exact designer model")
+   Check(o:cFileName=="original.json".and.Empty(o:aUndo).and.Empty(o:aRedo),"picker preserves identity and history")
    ? "PASS property cancellation and long handler invariants"
    RETURN
 STATIC PROCEDURE Check(lOk,cText)

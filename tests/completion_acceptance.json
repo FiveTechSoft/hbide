@@ -603,9 +603,10 @@
       "id": "DSN-MODAL-FILENAME",
       "surface": "SelectFileName",
       "tests": [
-        "test_designer_write.prg"
+        "test_designer_write.prg",
+        "test_designer_property_cancel.prg"
       ],
-      "contract": "Actual Save As picker queued CtrlY/text/Tab/Enter reaches write refusal; original filename/dirty remain and subsequent Save uses original. Separate state tests cover success. Not arbitrary long paths or every input method."
+      "contract": "Actual Save As picker queued CtrlY/text/Tab/Enter reaches write refusal; original filename/dirty remain and subsequent Save uses original. Separate state tests cover success. Not arbitrary long paths or every input method. Picker default/typed80-character paths with internal spaces retained; native Esc/Cancel preserve identity/model/history. No arbitrary-length guarantee."
     },
     {
       "id": "DSN-MODAL-DIALOG",
@@ -667,6 +668,24 @@
         "test_designer_property_cancel.prg"
       ],
       "contract": "Actual queued Dialog properties accepts all seven fields together; exact undo/redo and each-field edit/Esc preserves accepted state/history. Linux model/UI path only, not pixels or all validation boundaries. Actual modal invalid ? and empty color strings retain prior exact model and existing one-undo acceptance behavior."
+    },
+    "DSN-FIELD-SelectFileName-cFile-1-filename": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual queued SelectFileName Esc/Cancel empty; default and typed80-character internal-space path accepted byte-exact after truncation fix. Picker keeps designer model/filename/history. Focal Linux40x120 pixels separate; not arbitrary lengths, filesystem or all inputs."
+    },
+    "DSN-FIELD-SelectFileName-lDummy-1-filename": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual queued SelectFileName Esc/Cancel empty; default and typed80-character internal-space path accepted byte-exact after truncation fix. Picker keeps designer model/filename/history. Focal Linux40x120 pixels separate; not arbitrary lengths, filesystem or all inputs."
+    },
+    "DSN-FIELD-SelectFileName-lDummy-2-filename": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual queued SelectFileName Esc/Cancel empty; default and typed80-character internal-space path accepted byte-exact after truncation fix. Picker keeps designer model/filename/history. Focal Linux40x120 pixels separate; not arbitrary lengths, filesystem or all inputs."
     }
   }
 }
