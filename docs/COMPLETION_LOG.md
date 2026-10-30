@@ -754,3 +754,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Solo tests y documentación, sin parche de producto. CallStack PTY amplía comprobaciones: Points oculto por Delete ALL reabre con geometría exacta y contenido; iconizado restaura dos veces y expande el browser; iconizado oculto restaura geometría; zoom oculto restaura dos veces y unzoom devuelve layout original.
 - El primer intento falló por expectativa textual incorrecta WP x en vez del formato real x <wp, N>:. Corregida la expectativa; caso ampliado PASS sin cambio de producto. No se etiqueta como fallo de producto.
 - Capturas completas de Watch restaurado con zoom y unzoom inspeccionadas, valor n=1 visible, borde inferior y barra de estado completos. No cierra Q13 global ni Windows. Baseline completo43+10 corresponde a53be664, anterior a esta ampliación del test.
+
+## 30Oct06:46 Q13 Cascade settings coordinates
+- Reproducción real: Save de Cascade emitía Window Move 2.00 2.00 y3.00 4.00; el parser numérico solo admite enteros. Restore dejaba Calls/Command en1,0. Igualdad de geometría guardada/re-guardada fallaba antes.
+- Save serializa coordenadas/tamaños con Int, porque son celdas. CallStack PTY ampliado compara Cascade y Restore repetido; candidato PASS y diez modelos PASS. Captura completa de Cascade restaurado dos veces inspeccionada: títulos escalonados, fuente frontal, bordes inferiores y estado completos.
+- No cambia el parser para scripts antiguos con decimales, ni arregla todo Q13/Windows. Baseline43+10 sobre53be664 queda histórico tras este cambio de producto.

@@ -208,6 +208,16 @@ try:
     # must re-open it, including when its browser is detached in icon state.
     def command(text):
         send(text.encode()+b'\r');pump(.5)
+    command('window cascade')
+    cascadefile=os.path.join(work,'cascade.cld')
+    command('options savesettings '+cascadefile)
+    command('options restoresettings '+cascadefile)
+    command('options savesettings '+layoutcopy)
+    assert geometry(cascadefile)==geometry(layoutcopy),('cascade restore drift',geometry(cascadefile),geometry(layoutcopy))
+    command('options restoresettings '+cascadefile)
+    command('options savesettings '+layoutcopy)
+    assert geometry(cascadefile)==geometry(layoutcopy),('repeat cascade restore drift',geometry(cascadefile),geometry(layoutcopy))
+    print('PASS cascade restores exact window geometry repeatedly')
     command('wp x')
     command('window tile')
     command('window select points')

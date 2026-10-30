@@ -2676,13 +2676,14 @@ METHOD SaveSettings( cFileName ) CLASS HBDebugger
             aRect := { ::aWindowZoom[ nZoom, 2 ], ::aWindowZoom[ nZoom, 3 ], ;
                        ::aWindowZoom[ nZoom, 4 ], ::aWindowZoom[ nZoom, 5 ] }
          ENDIF
+         // Layout arithmetic can carry decimal metadata; commands use integer cells.
          cInfo += "Window Select " + cWindowName + hb_eol() + ;
             "Window Iconize OFF" + hb_eol() + ;
             "Window Move 1 0" + hb_eol() + ;
-            "Window Size " + hb_ntos( aRect[ 3 ] - aRect[ 1 ] + 1 ) + " " + ;
-            hb_ntos( aRect[ 4 ] - aRect[ 2 ] + 1 ) + hb_eol() + ;
-            "Window Move " + hb_ntos( aRect[ 1 ] ) + " " + ;
-            hb_ntos( aRect[ 2 ] ) + hb_eol() + ;
+            "Window Size " + hb_ntos( Int( aRect[ 3 ] - aRect[ 1 ] + 1 ) ) + " " + ;
+            hb_ntos( Int( aRect[ 4 ] - aRect[ 2 ] + 1 ) ) + hb_eol() + ;
+            "Window Move " + hb_ntos( Int( aRect[ 1 ] ) ) + " " + ;
+            hb_ntos( Int( aRect[ 2 ] ) ) + hb_eol() + ;
             "Window Iconize " + iif( nIcon > 0, "ON", "OFF" ) + hb_eol()
       NEXT
       IF ! Empty( ::aWindowZoom )
