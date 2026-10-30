@@ -198,6 +198,14 @@ def main():
             if not (ROOT/'tests'/test).is_file():raise ValueError('Missing modal pair test: '+test)
     for pair in report['modal_control_pairs']:
         if pair['id'] in field_specs:pair['acceptance']=field_specs[pair['id']]
+    ide_specs=specs.get('ide_modal_field_acceptance',{})
+    ids={r['id'] for r in report['ide_modal_fields']}
+    for ident,spec in ide_specs.items():
+        if ident not in ids:raise ValueError('Unknown IDE modal field ID: '+ident)
+        for test in spec['tests']:
+            if not (ROOT/'tests'/test).is_file():raise ValueError('Missing IDE modal field test: '+test)
+    for field in report['ide_modal_fields']:
+        if field['id'] in ide_specs:field['acceptance']=ide_specs[field['id']]
     if args.json:
         print(json.dumps(report,indent=2))
     else:
@@ -243,7 +251,12 @@ def main():
         print('| ID | Etiqueta / variable | Tipo | Fuente:linea | Aceptacion |')
         print('| --- | --- | --- | --- | --- |')
         for field in report['ide_modal_fields']:
-            print(f"| {field['id']} | {field['label']} | {field['kind']} | {field['source']}:{field['line']} | Pendiente vinculo por campo |")
+            linked=isinstance(field['acceptance'],dict)
+            print(f"| {field['id']} | {field['label']} | {field['kind']} | {field['source']}:{field['line']} | {'Vinculo focal; ver alcance' if linked else 'Pendiente vinculo por campo'} |")
+        for field in report['ide_modal_fields']:
+            if isinstance(field['acceptance'],dict):
+                links=', '.join('['+t+'](../tests/'+t+')' for t in field['acceptance']['tests'])
+                print(f"- {field['id']}: {field['acceptance']['contract']} Pruebas: {links}")
         print('\n## Campos de inspector\n')
         print('| Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
         print('| --- | --- | --- | --- | --- |')

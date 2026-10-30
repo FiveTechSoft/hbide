@@ -1410,3 +1410,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   as whole-field acceptance. Other modals and gestures still pending.
 - No product change, no M0 closure. M2 synchronous limit stays unchanged;
   no process-group-only cancellation contract or helper C introduced.
+
+### 2026-10-30 IDE modal focal test links
+
+- Fourteen of26 bounded IDE declarations link existing exact field tests:
+  compiler radio/five flags/OK/Help, Display preset/OK, Replace two free-form
+  inputs, Find input and Goto number. Enter/Esc is not explicit Cancel/OK.
+- AutoRun remains unlinked: fake compiler fails, so it does not establish
+  post-success launch behavior. Compiler/Display explicit Cancel untested by
+  those Esc suites. Source links do not inherit past PASS to current HEAD.
+- No product change or global percentage; pending links identify real gaps.

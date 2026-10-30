@@ -1102,5 +1102,91 @@
       ],
       "contract": "Actual explicit Cancel after edits preserves exact model/dirty/history. Focal queued path, not every combination/pixel/platform."
     }
+  },
+  "ide_modal_field_acceptance": {
+    "IDE-FIELD-CompilerFlags-cCompiler-1": {
+      "tests": [
+        "test_compiler_flags_pty.py"
+      ],
+      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows."
+    },
+    "IDE-FIELD-CompilerFlags-lWarnings-1": {
+      "tests": [
+        "test_compiler_flags_pty.py"
+      ],
+      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows."
+    },
+    "IDE-FIELD-CompilerFlags-lDebug-1": {
+      "tests": [
+        "test_compiler_flags_pty.py"
+      ],
+      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows."
+    },
+    "IDE-FIELD-CompilerFlags-lStrict-1": {
+      "tests": [
+        "test_compiler_flags_pty.py"
+      ],
+      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows."
+    },
+    "IDE-FIELD-CompilerFlags-lIncremental-1": {
+      "tests": [
+        "test_compiler_flags_pty.py"
+      ],
+      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows."
+    },
+    "IDE-FIELD-CompilerFlags-lOptimize-1": {
+      "tests": [
+        "test_compiler_flags_pty.py"
+      ],
+      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows."
+    },
+    "IDE-FIELD-CompilerFlags-lDummy-1": {
+      "tests": [
+        "test_compiler_flags_pty.py"
+      ],
+      "contract": "Actual explicit OK persists selected compiler/flags into process argv. Cancel button not exercised by this Esc test."
+    },
+    "IDE-FIELD-CompilerFlags-lDummy-3": {
+      "tests": [
+        "test_compiler_flags_pty.py"
+      ],
+      "contract": "Actual nested Help opens compiler topic and Esc restores option controls/current checked state; later OK applies flags."
+    },
+    "IDE-FIELD-DisplayOpts-cSize-1": {
+      "tests": [
+        "test_display_multidoc_pty.py"
+      ],
+      "contract": "Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel not covered."
+    },
+    "IDE-FIELD-DisplayOpts-lDummy-1": {
+      "tests": [
+        "test_display_multidoc_pty.py"
+      ],
+      "contract": "Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel not covered."
+    },
+    "IDE-FIELD-ReplaceDialog-cFind-1": {
+      "tests": [
+        "test_edit_menu_pty.py"
+      ],
+      "contract": "Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows."
+    },
+    "IDE-FIELD-ReplaceDialog-cReplace-1": {
+      "tests": [
+        "test_edit_menu_pty.py"
+      ],
+      "contract": "Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows."
+    },
+    "IDE-FIELD-FindDialog-cText-1": {
+      "tests": [
+        "test_edit_menu_pty.py"
+      ],
+      "contract": "Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows."
+    },
+    "IDE-FIELD-GotoLine-nLine-1": {
+      "tests": [
+        "test_edit_menu_pty.py"
+      ],
+      "contract": "Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows."
+    }
   }
 }
