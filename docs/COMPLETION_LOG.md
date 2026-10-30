@@ -837,3 +837,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - BreakPointDelete comprueba el rango del array VM antes de llamar al borrado. RestoredPoints conserva BP ante4294967296,4294967297 y un entero mucho mayor;0 sigue borrando. Candidato PASS y diez modelos PASS.
 - WP/TP ya comprobaba rango antes de la API; no se atribuye este fallo a esa ruta. Sin cambio visual, sin aceptación completa ni Windows heredada.
 - Repetición limpia4dd4ae3: RestoredPoints PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-bp-range-4dd4ae3.json. Binario c8b4cf1a22c4fc0b06359abc912e892cb1a7488cc409b9177b9b8895c867e353.
+
+## 30Oct08:45 Breakpoint line range before VM narrowing
+- Reproducción adicional: `bp 4294967300` desactivaba BP4 por estrechamiento a entero C en __dbgIsBreak. La guarda de borrado por índice no cubría esta API de línea.
+- BreakPointToggle rechaza línea no entera, no positiva o mayor que2147483647 antes de consultar/modificar VM. Prueba conserva BP4 ante4294967300 y un entero mucho mayor; mantiene los casos válidos existentes. Candidato RestoredPoints PASS y diez modelos PASS.
+- Sin nuevo cambio visual ni certificación Windows. El límite sigue la API VM firmada32bits del runtime comprobado.

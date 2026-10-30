@@ -3256,6 +3256,12 @@ METHOD PROCEDURE BreakPointToggle( nLine, cFileName ) CLASS HBDebugger
       nLine := ::oBrwText:RowPos
    ENDIF
 
+   // VM line APIs take signed C integers. Reject before narrowing can wrap
+   // an oversized command line onto an existing breakpoint.
+   IF ! HB_ISNUMERIC( nLine ) .OR. nLine < 1 .OR. nLine > 2147483647 .OR. nLine != Int( nLine )
+      RETURN
+   ENDIF
+
    IF ( nAt := __dbgIsBreak( ::pInfo, cFileName, nLine ) ) >= 0
       __dbgDelBreak( ::pInfo, nAt )
    ELSEIF ::IsValidStopLine( cFileName, nLine )

@@ -282,7 +282,7 @@ try:
     bpindex=os.path.join(work,'bp-index.cld')
     command('options savesettings '+bpindex)
     assert any(x.startswith('BP ') for x in open(bpindex).read().splitlines()),open(bpindex).read()
-    for invalid in ('4oops','4.5'):
+    for invalid in ('4oops','4.5','4294967300','999999999999999999999999'):
         command('bp '+invalid)
         command('options savesettings '+bpindex)
         assert any(x.startswith('BP ') for x in open(bpindex).read().splitlines()),('malformed BP line toggled existing point',invalid,open(bpindex).read())
