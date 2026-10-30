@@ -44,6 +44,7 @@ CASES = {
     'close-routes': ('test_close_routes_pty.py', [], 120),
     'help': ('test_help_pty.py', [], 120),
     'display-multidoc': ('test_display_multidoc_pty.py', [], 120),
+    'compiler-autorun': ('test_compiler_autorun_pty.py', [], 120),
     'compiler-flags': ('test_compiler_flags_pty.py', [], 120),
     'run-empty-args': ('test_run_empty_args_pty.py', [], 120),
     'script-screen': ('test_script_screen_pty.py', [], 120),

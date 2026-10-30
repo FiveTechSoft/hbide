@@ -1199,6 +1199,12 @@
         "test_display_multidoc_pty.py"
       ],
       "contract": "Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform."
+    },
+    "IDE-FIELD-CompilerFlags-lAutoRun-1": {
+      "tests": [
+        "test_compiler_autorun_pty.py"
+      ],
+      "contract": "Actual hbmk2 builds with executable removed before each run. Default-on launches exact arguments; accepted-off does not launch; Cancel after toggle-on leaves off; accepted-on launches again. Linux PTY only, not Windows or full build acceptance."
     }
   }
 }

@@ -353,7 +353,7 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput
 | IDE-FIELD-CompilerFlags-lStrict-1 | S&trict types | checkbox | hbide.prg:1878 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-lIncremental-1 | &Incremental | checkbox | hbide.prg:1884 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-lOptimize-1 | O&ptimize code | checkbox | hbide.prg:1891 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1897 | Pendiente vinculo por campo |
+| IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1897 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1904 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1908 | Vinculo focal; ver alcance |
 | IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1912 | Vinculo focal; ver alcance |
@@ -377,6 +377,7 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display. Incluye HBIDE_DlgInput
 - IDE-FIELD-CompilerFlags-lStrict-1: Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lIncremental-1: Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lOptimize-1: Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
+- IDE-FIELD-CompilerFlags-lAutoRun-1: Actual hbmk2 builds with executable removed before each run. Default-on launches exact arguments; accepted-off does not launch; Cancel after toggle-on leaves off; accepted-on launches again. Linux PTY only, not Windows or full build acceptance. Pruebas: [test_compiler_autorun_pty.py](../tests/test_compiler_autorun_pty.py)
 - IDE-FIELD-CompilerFlags-lDummy-1: Actual explicit OK persists selected compiler/flags into process argv. Explicit Cancel has its own field test. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lDummy-2: Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
 - IDE-FIELD-CompilerFlags-lDummy-3: Actual nested Help opens compiler topic and Esc restores option controls/current checked state; later OK applies flags. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)

@@ -1428,3 +1428,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   then explicit Cancel leaves40x120 grid unchanged. Esc paths retained.
 - Two new IDE field links (16of26), not equivalent behavior inferred from
   Esc. No product change; AutoRun post-success behavior still unaccepted.
+
+### 2026-10-30 Compiler AutoRun success path
+
+- New real-hbmk2 PTY regression: default-on, accepted-off, Cancel after
+  toggle-on retaining off, then accepted-on. Each build removes the prior
+  executable first; launch writes exact arguments including an empty one.
+- 20 focal checks, new runner entry;17of26 IDE modal declarations linked.
+  No product change or M2 acceptance. Initial harness wrongly expected
+  quiet-compiler Build OK text; real compiler output uses Done instead.
+  Corrected harness condition, not product behavior.
