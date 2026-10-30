@@ -1,0 +1,372 @@
+{
+  "scope": "Clean Linux18models+GUIroundtrip/BackupF2/Designer3PTY+actual SaveJson/GeneratePrg RLIMIT64. No Windows/global acceptance. Prior ac2d35a ledger honestly records dirty README; this is the clean rerun.",
+  "models": {
+    "source": "efd09a888572ffd65120bdf5632c5cd753383a75",
+    "dirty": false,
+    "tracked_changes": "",
+    "runner_sha256": "166ff7fd03763e189cd296890cecefe7b8a41b06f7821c893efe8a188e526c84",
+    "platform": "Linux",
+    "hbmk2": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "started": 1793383283.0846372,
+    "scope": "Linux model probes only. Not PTY, visual or Windows certification.",
+    "tests": {
+      "designer-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_write.prg": "a61c1c54ffe37cc54072c20ca890150ab9f0cc72e0bcd32d8e63a8c6d345af90",
+          "designer.prg": "703cd025a6d44975064ac2c9db97cd510deb4ac8bfb8f101c2d19493787937b0",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "62450bfd29daa55078cc4f0ae7fe3bee1b80661157c613a5e5d4c117d6e9e85f",
+        "started": 1793383283.0849628,
+        "seconds": 0.4251387119293213
+      },
+      "designer-inline-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_inline_geometry.prg": "c9de281ea69447a12c364072d2cfa6b1bdf8a5fa3fea04f0f453cccce8bd91bc",
+          "designer.prg": "703cd025a6d44975064ac2c9db97cd510deb4ac8bfb8f101c2d19493787937b0",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "f5ebcd1291c6337b160f88ae5052753dbdd4384a1c3ce00fd6237a46accea9fd",
+        "started": 1793383283.5104024,
+        "seconds": 0.42812347412109375
+      },
+      "designer-property-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_geometry.prg": "8a4b3c276d23726d579a5f46311b7e82934cc59221443324c7735bbae52e3ab1",
+          "designer.prg": "703cd025a6d44975064ac2c9db97cd510deb4ac8bfb8f101c2d19493787937b0",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "b4be5b3e6ff03a373447806d15e1e71121054ff29a3450a208dd4eeb0e7d1242",
+        "started": 1793383283.938808,
+        "seconds": 2.4890189170837402
+      },
+      "designer-property-cancel": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_cancel.prg": "5425798cc19da813b267cacf515ed829b03325a1effb1c93c08500fc0a499281",
+          "designer.prg": "703cd025a6d44975064ac2c9db97cd510deb4ac8bfb8f101c2d19493787937b0",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "3571ebeca29a674bac92db7c2b126ae08fb275a6884aba186bcd086fd1a0ef34",
+        "started": 1793383286.4281359,
+        "seconds": 0.47819972038269043
+      },
+      "project-output": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project_output.prg": "69e3067d0d088c411840a3bb81d1f30149e0bbbf35671a46b98ca677c8e9a8cb",
+          "projectui.prg": "9deb02dbb32facf57e7e3cadc01e5e225e57bc5ca770333ad0635e5a0b08fe11",
+          "project.prg": "08bb8a48d0ca320009b12a5433a17693bd85e61535d2dec87eee66cf7e87f407",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "6886ea0a9e7afdb96d161f3258897072934db861696c8feef650bd0678987aa9",
+        "started": 1793383286.906465,
+        "seconds": 0.23506855964660645
+      },
+      "backup": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_backup.prg": "b3543b008b2d06ec45aa7836daa09c5f8e3f75287e266b6f06c9f7344e006d61",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "90277e443174ac660bc491da1e28ac2fda12115bc6477322996255b8e6b7caac",
+        "started": 1793383287.1416996,
+        "seconds": 0.27826929092407227
+      },
+      "debug-temp-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_temp_write.prg": "210526b082b0d8d07e92f438e394de575a7ee2c47ce39fc0c6818f86df22b449",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "95237d77878026002e0d19fede7da3b557bf8465d005b7757a168a2e7a4fa844",
+        "started": 1793383287.4200385,
+        "seconds": 0.1220095157623291
+      },
+      "debug-script-path": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_script_path.prg": "a856a0583716db4e22a24e0be04b6b344406f3eed7c261201d72268519efb71a",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "955cbdf4e8b665b2932ca301c1c742290d6127695aec0811819f518d2268f939",
+        "started": 1793383287.5420992,
+        "seconds": 0.12177157402038574
+      },
+      "debug-search": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_search.prg": "84ec5023c2bf1d2069b1cfbfdb7223cc8933b04bb49231c96f3f1a3e8f486f5b",
+          "hbdebug/tbrwtext.prg": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+          "hbdebug/dbgbrwsr.prg": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "b26cc5810d1bddb77f8597770d367bf124196c9f56d8a396a98a7d42d58be5b9",
+        "started": 1793383287.6639743,
+        "seconds": 0.22643494606018066
+      },
+      "designer": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer.prg": "8299e1c007b92463626f38d9cf423f062a6928248b9c455d7e09f2bf266286f6",
+          "designer.prg": "703cd025a6d44975064ac2c9db97cd510deb4ac8bfb8f101c2d19493787937b0",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "5d847c8c4041f97d15a454ab921487d5dedcb4dc110e4c63febfd1700e659fb4",
+        "started": 1793383287.890732,
+        "seconds": 0.5353047847747803
+      },
+      "editor-repaint": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_repaint.prg": "2c170c7452f2d6371213c6d0dc6ad071a5fad7c896e75d27a04362737934e5c8",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "29c835d1be4b94b338613316363d532c367cc545529e84db159f37a6192db1e3",
+        "started": 1793383288.426218,
+        "seconds": 3.29023814201355
+      },
+      "find": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_find.prg": "9af32468423371d620d8e6587ab4f56d56485ec332d528709a80338e5926a9e5",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "ad6bb064cc63fe96c901c347451faf7b8532b10d227f12373c97136f21c22632",
+        "started": 1793383291.7166166,
+        "seconds": 0.2729177474975586
+      },
+      "eol": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_eol.prg": "cd1c9df2f23763ed2bc1fbc13baa7ed40fe1e36fd4b106e5f77ac9094b29ac2c",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "c92bb491474e5b743f36d45d57a6363c737ee2fc03e746878d38c9b5550cbc7f",
+        "started": 1793383291.9897072,
+        "seconds": 0.3331289291381836
+      },
+      "utf8": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_utf8_valid.prg": "13cb1239a5934db50f44530289afea8216db9b720ba5e1e7b30eabc98df336f0",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "cdae73334a8fefd990c646c8f7745012ef27ff11363dccde50f25b54a3917c99",
+        "started": 1793383292.322995,
+        "seconds": 0.27260732650756836
+      },
+      "atomic": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_atomic.prg": "87f714d53e7324aad60d22f9fb9d02b5899689fdaa7a54d51ef60948f0717e01",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "b76d5fb9f57bdd613d9c8ff541385a860ad3b66c4a6adccf257e9327933fbd5a",
+        "started": 1793383292.595742,
+        "seconds": 0.3009192943572998
+      },
+      "recovery": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_recovery.prg": "714585c485dcb7bce32aa5b94310773019bb57e0814b1ed3bbe0e53e4e32a2d1",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "045bed6de0b42f4920d3872d59faf0d0427effadc247ff24513b25d1c614bbad",
+        "started": 1793383292.8968022,
+        "seconds": 0.1761467456817627
+      },
+      "project": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project.prg": "a8ed87c334140ab46e859eee0c88351e4a75ce15dffed2662281de0030d223a7",
+          "project.prg": "08bb8a48d0ca320009b12a5433a17693bd85e61535d2dec87eee66cf7e87f407",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "42dd6316f871f8dfc9ff0f6d36fcc75dce56ff63fa8214a7218a91ae5c074873",
+        "started": 1793383293.0730457,
+        "seconds": 0.38301706314086914
+      },
+      "help": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_help.prg": "bdd4617c01cd2ec8aa1a6b697dce01c1fb24f37c6fc941ad329f793b572a7b22",
+          "help.prg": "640b5ea3976f0f7714e57d66d560c92cae1705a1b7c490ffcad36d2e4c11129b",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "12e376b2023a26bb0893f396d7bbed67317511fe0ceb661a60a30f77ea184879",
+        "started": 1793383293.4562619,
+        "seconds": 0.8359625339508057
+      }
+    },
+    "finished": 1793383294.2922301
+  },
+  "pty": [
+    {
+      "source": "efd09a888572ffd65120bdf5632c5cd753383a75",
+      "tracked_changes": "",
+      "binary_sha256": "a882e7eaf6710f69f579ba4e450ce9b16ab74870ec086bcc9aec94c85ca391a9",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "182ad8655c2318a4f0d1126709ec4beb6cd0ff14c02c0327bc8b53418a09d348",
+      "case": "gui-roundtrip",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gui_roundtrip_pty.py"
+      ],
+      "started": 1793383296.4906397,
+      "seconds": 28.73,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "15d680d6144442f356fd96777fd5ad8e87d27e394ab8b7c5e0450841b8df5bba",
+      "log": "/tmp/hbide-safeio-final-pty/gui-roundtrip-1793383296490633248.log"
+    },
+    {
+      "source": "efd09a888572ffd65120bdf5632c5cd753383a75",
+      "tracked_changes": "",
+      "binary_sha256": "a882e7eaf6710f69f579ba4e450ce9b16ab74870ec086bcc9aec94c85ca391a9",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "182ad8655c2318a4f0d1126709ec4beb6cd0ff14c02c0327bc8b53418a09d348",
+      "case": "backup-f2",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_backup_pty.py"
+      ],
+      "started": 1793383325.2182443,
+      "seconds": 7.13,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1124cc08ac894a736bb078a171e85cf62d7a099fa1ec51133fcd4b639ebbc599",
+      "log": "/tmp/hbide-safeio-final-pty/backup-f2-1793383325218239139.log"
+    },
+    {
+      "source": "efd09a888572ffd65120bdf5632c5cd753383a75",
+      "tracked_changes": "",
+      "binary_sha256": "a882e7eaf6710f69f579ba4e450ce9b16ab74870ec086bcc9aec94c85ca391a9",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "182ad8655c2318a4f0d1126709ec4beb6cd0ff14c02c0327bc8b53418a09d348",
+      "case": "designer",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_pty.py"
+      ],
+      "started": 1793383332.3533597,
+      "seconds": 24.77,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f81758bfc8ea0f62bb84910a95b4bb09ba5cb522cdd2495a4bcea5ee5c6a4e97",
+      "log": "/tmp/hbide-safeio-final-pty/designer-1793383332353355176.log"
+    }
+  ],
+  "partial_write": {
+    "exit": 0,
+    "stdout": "\n\n\n\n              \ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd Test \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037b\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd                                                 \ufffd\n              \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c\n              \ufffd                                                 \ufffd\n  \ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd Write failed \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037b\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c\n  \ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd Write failed \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u013f\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\n  \ufffd  Could not write partial.json: could not write a complete temp; destin   \ufffd\n  \ufffd  ation untouched. Keep this buffer open and save elsewhere               \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n\n  \ufffd  Up/Down scroll   Enter/Esc close                                        \ufffd\n  \ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd Write failed \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037b\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c\n  \ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd Test \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037b\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c                  \ufffd\n  \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c\n\n\n\n\n\nF2 add Enter edit F4 insp F5 prg Del Arrows move ^Z/^Y F9 gen F10 save Esc\nSave failed; design kept open. Choose another path and save again\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c                  \ufffd\n  \ufffd                \ufffd    \ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037b   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd                             \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd                             \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd                             \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd                             \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd                             \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd                             \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd                             \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd  Overwrite partial.prg?     \ufffd   \ufffd                  \ufffd\n\n  \ufffd                \ufffd    \ufffd     Yes \ufffd                   \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd     \ufffd\ufffd\ufffd\ufffd\ufffd                   \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd     Yes \ufffd       No \ufffd        \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd     \ufffd\ufffd\ufffd\ufffd\ufffd       \ufffd\ufffd\ufffd\ufffd        \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd     Yes \ufffd       No \ufffd        \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd      Yes \ufffd      No \ufffd        \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd      \ufffd\ufffd\ufffd\ufffd\ufffd      \ufffd\ufffd\ufffd\ufffd        \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd     Yes \ufffd\ufffd      No \ufffd        \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd     \ufffd\ufffd\ufffd\ufffd\ufffd       \ufffd\ufffd\ufffd\ufffd        \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd    \ufffd     Yes \ufffd\ufffd      No \ufffd        \ufffd   \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c                  \ufffd\n  \ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd Write failed \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037b\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c\n  \ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd Write failed \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u013f\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\n  \ufffd  Could not write partial.prg: could not write a complete temp; destina   \ufffd\n  \ufffd  tion untouched. Keep this buffer open and save elsewhere                \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n\n  \ufffd  Up/Down scroll   Enter/Esc close                                        \ufffd\n  \ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd Write failed \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037b\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd                                                                          \ufffd\n  \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c\n  \ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd[\ufffd]\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd Test \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037b\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037b\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd                                      \ufffd                  \ufffd\n  \ufffd                \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c                  \ufffd\n  \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\u037c\n\n\n\n\n\nGenerate failed; design kept open. Choose another path and try again\nPASS actual SaveJson/GeneratePrg partial writeser path and try again",
+    "files": {
+      "partial.prg": "ORIGINAL",
+      "partial.json": "ORIGINAL"
+    }
+  }
+}
