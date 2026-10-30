@@ -139,10 +139,11 @@ try:
     original=os.path.join(work,'fn.prg'); original_bytes=open(original,'rb').read()
     send(b'\x1bf');pump(.3);send(b'o');assert wait_for('Open a file')
     send(original.encode()+b'\r');pump(.5)
-    dirty='--dirty' in sys.argv
+    dirty='--dirty' in sys.argv or '--crash' in sys.argv
     if dirty:
         send(b'DIRTY');pump(2.5)
     journals_before=sorted(os.listdir(rec))
+    journal_bytes={n:open(os.path.join(rec,n),'rb').read() for n in journals_before if n.endswith(('.journal','.target'))}
     target=os.path.join(work,'missing-parent','failed.prg')
     send(b'\x1bf');pump(.3);send(b'a');assert wait_for('Save as')
     send(target.encode()+b'\r');assert wait_for('Save failed'),scr.text()
@@ -151,8 +152,28 @@ try:
     assert open(original,'rb').read()==original_bytes and not os.path.exists(target)
     pump(2.5)
     assert sorted(os.listdir(rec))==journals_before,(journals_before,os.listdir(rec))
-    send(b'EDIT');pump(.3);send(b'\x1bOQ');pump(.6)
-    assert open(original,'rb').read().startswith((b'DIRTY' if dirty else b'')+b'EDITprocedure Main()'),scr.text()
+    if '--crash' in sys.argv:
+        # The journal generation and target must remain byte-exact on refusal.
+        for name,data in journal_bytes.items():
+            assert open(os.path.join(rec,name),'rb').read()==data,name
+        os.kill(pid,signal.SIGKILL);os.waitpid(pid,0)
+        pid,fd=pty.fork()
+        if pid==0:
+            os.chdir(work);os.execve(BIN,[BIN],env)
+        fcntl.ioctl(fd,termios.TIOCSWINSZ,struct.pack('HHHH',ROWS,COLS,0,0))
+        scr=Scr()
+        assert wait_for('interrupted session'),scr.text()
+        assert 'fn.prg' in scr.text() and 'failed.prg' not in scr.text(),scr.text()
+        send(b'\r');pump(.8)
+        assert 'DIRTYprocedure Main()' in scr.text(),scr.text()
+        assert open(original,'rb').read()==original_bytes
+        send(b'\x1bOQ');pump(.6)
+        assert open(original,'rb').read()==b'DIRTY'+original_bytes
+        assert not [n for n in os.listdir(rec) if n.endswith('.journal')],os.listdir(rec)
+        print('PASS failed SaveAs journal bytes/target survive kill, recovery and exact save')
+    else:
+        send(b'EDIT');pump(.3);send(b'\x1bOQ');pump(.6)
+        assert open(original,'rb').read().startswith((b'DIRTY' if dirty else b'')+b'EDITprocedure Main()'),scr.text()
     print('PASS failed Save As retains old name and subsequent F2 writes original document')
 
 finally:

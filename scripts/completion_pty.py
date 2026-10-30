@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'saveas-failure-crash': ('test_saveas_failure_identity_pty.py', ['--crash'], 40),
     'saveas-failure-clean': ('test_saveas_failure_identity_pty.py', [], 30),
     'saveas-failure-dirty': ('test_saveas_failure_identity_pty.py', ['--dirty'], 30),
     'debug-auto-source-read': ('test_debug_auto_source_read_pty.py', [], 60),
