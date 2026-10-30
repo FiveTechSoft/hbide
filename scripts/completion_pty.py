@@ -62,6 +62,7 @@ CASES = {
     'navigation': ('test_nav_pty.py', [], 180),
     'multidoc': ('test_multidoc_pty.py', [], 180),
     'project-desktop': ('test_project_desktop_pty.py', [], 180),
+    'project-mouse': ('test_project_mouse_pty.py', [], 120),
     'project-messages': ('test_project_messages_pty.py', [], 180),
     'saveall-failure': ('test_saveall_fail_pty.py', [], 120),
     'saveas-recovery': ('test_saveas_refusal_recovery_pty.py', ['hbide'], 120),

@@ -1621,3 +1621,14 @@ El primer intento del limite EOF en38537e6 fallo: el harness envio Ctrl+End,
 que en HBEditor significa fin de ventana, no fin del archivo. Se corrige a
 Ctrl+PageDown segun el contrato de Harbour; no se cambia el producto. Se
 retienen ambas ejecuciones por revision y no se oculta ese fallo del probe.
+
+## 31 octubre: raton en Sources y Messages de proyecto
+
+Harness nuevo `project-mouse`: clic selecciona sin abrir, Enter abre el
+fichero seleccionado, doble clic sobre lista desplazada abre la fuente
+exacta; cabecera, fuente ausente y Messages vacio no abren fichero. Build
+real fallido produce diagnostico bad.prg:3 y doble clic abre la fuente en
+fila3. Todos los bytes de las fuentes se comparan sin cambios. La prueba
+quita su miembro missing del HBP tras probarlo para poder alcanzar el error
+del compilador; no modifica fuentes ni producto. Linux PTY40x120 focal,
+no certificacion visual, Windows ni todos los limites horizontales.
