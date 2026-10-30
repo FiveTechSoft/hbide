@@ -158,6 +158,37 @@ def ide_modal_fields():
                 acceptance='Pending field-specific link; existing menu tests do not certify every field'))
     return rows
 
+def debugger_inputs():
+    """Call sites, not unique fields or proof of editability/runtime acceptance.
+    Keep raw argument/guard context: dynamic titles and read-only inspectors
+    cannot safely be converted into a static GET denominator.
+    """
+    rows=[]
+    for path in sorted((ROOT/'hbdebug').glob('*.prg')):
+        lines=path.read_text().splitlines();context='';seen={}
+        for i,line in enumerate(lines):
+            if re.match(r'^(?:METHOD|FUNCTION|STATIC FUNCTION) ',line):
+                context=line.strip();continue
+            if line.lstrip().startswith('//'):continue
+            match=re.search(r'(::InputBox|__dbgInput|H[Bb]DbInput\(\):new|HbDbInput\(\):new)\(',line)
+            if not match:continue
+            api=match.group(1)
+            parts=[line];j=i
+            while parts[-1].rstrip().endswith(';') and j+1<len(lines):
+                j+=1;parts.append(lines[j])
+            block=' '.join(part.strip() for part in parts)
+            kind='inputbox' if api=='::InputBox' else ('inline_input' if api=='__dbgInput' else 'input_constructor')
+            readonly=kind=='inputbox' and bool(re.search(r',, \.F\. \)',block))
+            key=(context,kind);seen[key]=seen.get(key,0)+1
+            method=re.search(r'(?:METHOD(?: PROCEDURE)?|FUNCTION) (\w+)',context)
+            surface=method.group(1) if method else 'unknown'
+            rows.append(dict(id=f'DBG-INPUT-{path.stem}-{surface}-{kind}-{seen[key]}',
+                source=str(path.relative_to(ROOT)),line=i+1,context=context,kind=kind,
+                api=api,call=block,mode='explicit_readonly' if readonly else 'editable_or_dynamic',
+                preceding_source=' '.join(l.strip() for l in lines[max(0,i-4):i]),
+                acceptance='Pending call-specific acceptance; shared implementation is not caller coverage'))
+    return rows
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--json', action='store_true')
@@ -185,11 +216,11 @@ def main():
     for m in menus:
         m['acceptance']=acceptance.get(m['id'])
     report={'scope':'Source inventory only. No runtime or platform certification.',
-            'menus':menus,'ide_modal_fields':ide_modal_fields(),'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),'modal_control_pairs':modal_control_pairs(modal_fields()),
+            'debugger_inputs':debugger_inputs(),'menus':menus,'ide_modal_fields':ide_modal_fields(),'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),'modal_control_pairs':modal_control_pairs(modal_fields()),
             'inspector_fields': [dict(line=i+1, label=m.group(1), key=m.group(2), kind=m.group(3))
                 for i,line in enumerate((ROOT/'designer.prg').read_text().splitlines())
                 if (m := re.search(r'AAdd\( aFields, \{ \"([^\"]+)\",\s*\"([^\"]+)\",\s*\"([^\"]+)\"',line))],
-            'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields()),'modal_control_pairs':len(modal_control_pairs(modal_fields())),'ide_modal_declarations':len(ide_modal_fields())}}
+            'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields()),'modal_control_pairs':len(modal_control_pairs(modal_fields())),'ide_modal_declarations':len(ide_modal_fields()),'debugger_input_calls':len(debugger_inputs())}}
     field_specs=specs.get('modal_field_acceptance',{})
     pair_ids={r['id'] for r in report['modal_control_pairs']}
     for ident,spec in field_specs.items():
@@ -257,6 +288,13 @@ def main():
             if isinstance(field['acceptance'],dict):
                 links=', '.join('['+t+'](../tests/'+t+')' for t in field['acceptance']['tests'])
                 print(f"- {field['id']}: {field['acceptance']['contract']} Pruebas: {links}")
+        print('\n## Entradas debugger no GET\n')
+        print('Sitios de llamada InputBox/__dbgInput y constructores HBDbInput. No son campos unicos ni aceptacion de cada caller. Modo readonly solo si explicito .F.; resto dinamico. Contexto/argumentos conservados, no evaluados.\n')
+        print('| ID | Tipo / modo | Contexto | Llamada fuente | Fuente:linea | Aceptacion |')
+        print('| --- | --- | --- | --- | --- | --- |')
+        for field in report['debugger_inputs']:
+            call=field['call'].replace('|','&#124;')
+            print(f"| {field['id']} | {field['kind']} / {field['mode']} | {field['context']} | `{call}` | {field['source']}:{field['line']} | Pendiente caller |")
         print('\n## Campos de inspector\n')
         print('| Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
         print('| --- | --- | --- | --- | --- |')

@@ -87,4 +87,28 @@ class ModalInventory(unittest.TestCase):
         for row in audit.ide_modal_fields():
             self.assertIn('HBIDE_DlgInput' if row['kind']=='freeform_input' else 'GET '+row['variable'],lines[row['line']-1])
 
+class DebuggerInputInventory(unittest.TestCase):
+    def test_calls_not_declarations(self):
+        rows=audit.debugger_inputs()
+        self.assertEqual(len(rows),27)
+        self.assertEqual(len({r['id'] for r in rows}),27)
+        self.assertEqual(sum(r['kind']=='inputbox' for r in rows),18)
+        self.assertEqual(sum(r['kind']=='inline_input' for r in rows),6)
+        self.assertEqual(sum(r['kind']=='input_constructor' for r in rows),3)
+        for row in rows:
+            line=(ROOT/row['source']).read_text().splitlines()[row['line']-1]
+            self.assertFalse(line.startswith('FUNCTION '))
+            self.assertIn(row['api']+'(',line)
+    def test_readonly_and_expression_context_not_lost(self):
+        rows=audit.debugger_inputs()
+        readonly=[r for r in rows if r['mode']=='explicit_readonly']
+        self.assertEqual(len(readonly),3)
+        self.assertEqual({r['context'].split('(')[0].split()[-1] for r in readonly},
+                         {'EditVar','Inspect','WatchpointInspect'})
+        edit=next(r for r in rows if 'EditVar-inputbox-2' in r['id'])
+        self.assertIn('__dbgExprValidBlock()',edit['call'])
+        self.assertIn('ELSE',edit['preceding_source'])
+        numeric=next(r for r in rows if 'SearchLine-inputbox' in r['id'])
+        self.assertIn('"Line number", 1',numeric['call'])
+
 if __name__=='__main__':unittest.main()

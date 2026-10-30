@@ -1487,3 +1487,14 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   windows; actual OK asserts exact topic title/body, not any Debugger text.
   Help17checks. All43inventoried IDE declarations now focal-linked, not
   complete modal/visual/platform acceptance. No product change.
+
+### 2026-10-30 Debugger non-GET input inventory
+
+- Inventoried27call sites, not27fields/functions:18InputBox,6inline
+  __dbgInput and3HBDbInput constructors. Raw arguments, containing
+  method/function and preceding source preserved;3explicit readonly
+  inspectors distinguished. Shared InputBox implementation is not
+  acceptance of each caller; no runtime links inferred.
+-13Python inventory tests protect counts/source lines, constructors vs
+  declarations, readonly branches and expression validators. Generic
+  alerts and remaining gestures still outside this bounded inventory.

@@ -106,7 +106,7 @@ Las demos TOTAL ON, agenda y FoxPro no certifican el conjunto del IDE.
 
 - [COMPLETION_INVENTORY.md](COMPLETION_INVENTORY.md): primer inventario generado,
   67 contratos vinculados a116acciones de menu y rutas ampliadas de teclado/comandos; son conexiones de fuente, no116 funciones
-  terminadas. Incluye dos stubs. Modales IDE:43declaraciones inventariadas y43enlaces focales; diseñador30declaraciones/79pares enlazados. No aceptación completa. Faltan alertas dinámicas, entradas debugger y gestos.
+  terminadas. Incluye dos stubs. Modales IDE:43declaraciones inventariadas y43enlaces focales; diseñador30declaraciones/79pares enlazados. No aceptación completa. Debugger:27sitios de entrada no GET inventariados, sin aceptación implícita de callers. Faltan alertas dinámicas y gestos.
 
 - Registro de cada lote en [COMPLETION_LOG.md](COMPLETION_LOG.md): fuente,
   plataforma, build/hash, comando, resultado y limites.
