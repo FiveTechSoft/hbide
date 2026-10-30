@@ -1137,3 +1137,11 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   false after queued Esc. Wrapper catches runtime errors and verifies return.
 - This tests initialization and exit only, not editing/binding interactions,
   visual appearance or all event paths. No new product fix in this step.
+
+### 2026-10-30 Property Cancel button coverage
+
+- Extended property cancellation fixture beyond Esc: edit a field then Tab
+  to the explicit Cancel button and Enter, for both control and dialog.
+  Model, dirty and undo remain unchanged; no product fix required.
+- Initial queued Alt+C did not trigger under GTSTD and timed out; replaced
+  with actual field traversal, not counted as product failure or a pass.
