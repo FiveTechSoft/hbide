@@ -1,0 +1,22 @@
+{
+  "flood": {
+    "exit": 0,
+    "seconds": 0.0793,
+    "stdout": "\nOWNED .T. CANCELLED .T. KILL          0 EXIT          0\nSTDOUT_BYTES     262152 STDERR_BYTES     262144\nCancellation is separate from exit status; no artifact is promoted.",
+    "stderr": ""
+  },
+  "process_states": {
+    "parent.pid": "gone",
+    "child.pid": "gone"
+  },
+  "missing_script": {
+    "exit": 1,
+    "seconds": 0.0105,
+    "stdout": "\nOWNED .F. CANCELLED .F. KILL         -1 EXIT          2\nSTDOUT_BYTES          0 STDERR_BYTES        101\nCancellation is separate from exit status; no artifact is promoted.",
+    "stderr": ""
+  },
+  "scope": "Linux finite256KiB per pipe and missing script only; not production cancellation or missing launcher, detached, leader-exit, infinite flood, UI, Windows acceptance.",
+  "source": "54757c74fab4c94d77e1202490e27df36bde934f",
+  "binary_sha256": "8cc09ed81b6a6d21a6ef1f16803890b5ccfdadaea45f712a84fb578a352cc607",
+  "tracked_changes": ""
+}
