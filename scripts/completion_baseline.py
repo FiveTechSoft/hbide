@@ -20,6 +20,7 @@ def run(name, args, cwd=ROOT, timeout=120):
             return 124
 
 cases = {
+    'debug-temp-write': ['tests/test_debug_temp_write.prg', 'hbdebug/dbgscript.prg'],
     'debug-script-path': ['tests/test_debug_script_path.prg', 'hbdebug/dbgscript.prg'],
     'debug-search': ['tests/test_debug_search.prg', 'hbdebug/tbrwtext.prg', 'hbdebug/dbgbrwsr.prg'],
     'designer': ['tests/test_designer.prg', 'designer.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],

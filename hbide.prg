@@ -2227,10 +2227,13 @@ METHOD Debug() CLASS HbIde
               StrTran( Str( hb_MilliSeconds() % 1000000, 10, 3 ), " ", "0" )
    cTmpHrb := cTmpPrg + ".hrb"
    cTmpPrg += ".prg"
-   hb_MemoWrit( cTmpPrg, ::oEditor:GetText() + hb_eol() + ;
+   if ! HBIDE_DbgWriteNew( cTmpPrg, ::oEditor:GetText() + hb_eol() + ;
                          "init procedure __hbide_debug__()" + hb_eol() + ;
                          "   __dbgInvokeDebug( .T. )" + hb_eol() + ;
                          "return" + hb_eol() )
+      HBIDE_MsgAlert( "Cannot create debug source: " + cTmpPrg )
+      return nil
+   endif
    // hb_compilebuf() collects every parameter into argv, so the first one
    // is consumed as the program name; without -q2 the compiler prints its
    // banner to stdout raw, outside the gttrm screen buffer (this was the
@@ -2251,7 +2254,11 @@ METHOD Debug() CLASS HbIde
       // static to itself, so every session binds cleanly.
       // run from a uniquely named .hrb file: symbol table recycling is
       // keyed by the load filename ("pcode.hrb" for in-memory bodies)
-      hb_MemoWrit( cTmpHrb, oHrb )
+      if ! HBIDE_DbgWriteNew( cTmpHrb, oHrb )
+         FErase( cTmpPrg )
+         HBIDE_MsgAlert( "Cannot create debug module: " + cTmpHrb )
+         return nil
+      endif
       ::SuspendStatus()   // IDE idle status painter must not draw over the debuggee screen
       cOldClr := SetColor( "W/N" ); CLS   // debuggee starts on a blank screen, not the IDE image
       // editor breakpoints (F9 marks) become the session's initial BPs

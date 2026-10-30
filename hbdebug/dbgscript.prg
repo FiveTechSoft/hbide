@@ -1,3 +1,4 @@
+#include "fileio.ch"
 // Script lookup follows the bundled debugger manual. Resolving never runs code.
 FUNCTION HBIDE_DbgScriptPath( cFileName )
    LOCAL cName, cDir, cCandidate, cDrive
@@ -23,3 +24,16 @@ FUNCTION HBIDE_DbgScriptPath( cFileName )
       ENDIF
    NEXT
    RETURN ""
+
+// A debug temporary must be new, complete, and owned before callers erase it.
+FUNCTION HBIDE_DbgWriteNew( cFile, cBytes )
+   LOCAL nHandle := hb_FCreate( cFile, FC_NORMAL, FO_EXCL ), lOk
+   IF nHandle == F_ERROR
+      RETURN .F.
+   ENDIF
+   lOk := FWrite( nHandle, cBytes ) == Len( cBytes )
+   lOk := FClose( nHandle ) .AND. lOk
+   IF ! lOk
+      FErase( cFile )
+   ENDIF
+   RETURN lOk
