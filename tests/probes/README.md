@@ -203,3 +203,23 @@ close-all/reset-all would risk host IDE state and is not a safe inferred fix.
 Resource ownership/isolation and preserving debugger settings remain design
 constraints; do not promise that starting another HRB is a clean application
 restart. No user files, production debugger execution or Windows were tested.
+
+## Finite leader-exit supervisor experiment (Linux only)
+
+`build_supervisor.prg` is a separate executable run under setsid. It starts the
+existing finite leader-exit fixture, records the direct exit0, and remains alive
+while `/proc` contains live non-zombie members of its own process group. The
+checked run lasts about3seconds, not immediate leader completion. Harness
+`check_build_supervisor.py` confirms both recorded fixture processes gone or
+zombie after GROUP_EMPTY. This is one feasibility experiment, not reliable
+process-tree ownership or production cancellation. `/proc` scanning is racy;
+unreadable/disappearing entries, new forks, escaped sessions, PID reuse, zombies,
+output drainage/floods, interactive tools, timeout cleanup and Windows are not
+accepted. The bounded6second timeout does not kill remaining descendants, so
+only use the finite3second fixture. Do not integrate this scan as proof that
+arbitrary compiler descendants have finished. No IDE build path changed.
+
+Build: `hbmk2 tests/probes/build_supervisor.prg hbunix.hbc -gtstd -o/tmp/build-supervisor`
+Then: `python tests/probes/check_build_supervisor.py /tmp/build-supervisor`.
+Initial draft referenced nonexistent hb_ProcessId; corrected to hbunix
+posix_getpid before running. This was a probe build error, not an IDE defect.

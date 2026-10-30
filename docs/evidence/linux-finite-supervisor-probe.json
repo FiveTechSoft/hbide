@@ -1,0 +1,18 @@
+{
+  "scope": "Linux finite leader-exit lifetime only, NOT production cancellation or reliable process-tree supervisor",
+  "result": {
+    "exit": 0,
+    "seconds": 3.039,
+    "stdout": "\nSTARTED      56427\nLEADER_EXIT          0\nGROUP_EMPTY",
+    "stderr": "",
+    "process_states": {
+      "parent.pid": "gone",
+      "child.pid": "gone"
+    }
+  },
+  "source_sha256": {
+    "tests/probes/build_supervisor.prg": "ec654044c9616bb269379df7bc6b6006d95545605a8fc860054e0a60f760dc48",
+    "tests/probes/check_build_supervisor.py": "6dfb9cccf13b50a0a18f855cf37d5aca4ce68a419833189687359c8d9ac02ba4"
+  },
+  "limits": "Racy proc scan; escaped sessions/forks/PID reuse/unreadable entries/output/timeout cleanup/Windows not accepted"
+}
