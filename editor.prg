@@ -2,6 +2,7 @@
 #include "inkey.ch"
 #include "setcurs.ch"
 #include "directry.ch"
+#include "fileio.ch"
 
 #define _REFRESH_NONE   0
 #define _REFRESH_LINE   1
@@ -1220,25 +1221,39 @@ return ""
 // recoverable temp.
 function HBIDE_AtomicWriteFile( cFile, cContent, cFailInfo )
 
-   local cTmp, lOk := .F., nAttr := 0, aDir
+   local cTmp, lOk := .F., nAttr := 0, aDir, nHandle, nTry := 0, lWritten
 
    cFailInfo := ""
 
-   cTmp := HBIDE_UniqueSibling( cFile )
-   if Empty( cTmp )
-      cFailInfo := "no free temp name next to " + cFile
+   // Reserve with exclusive creation. A name-only check cannot own the path.
+   nHandle := F_ERROR
+   do while nTry++ < 20
+      cTmp := HBIDE_UniqueSibling( cFile )
+      if Empty( cTmp )
+         exit
+      endif
+      nHandle := hb_FCreate( cTmp, FC_NORMAL, FO_EXCL )
+      if nHandle != F_ERROR
+         exit
+      endif
+   enddo
+   if nHandle == F_ERROR
+      cFailInfo := "could not write: cannot create an exclusive temp next to " + cFile + "; destination untouched"
+      return .F.
+   endif
+   lWritten := FWrite( nHandle, cContent ) == Len( cContent )
+   lWritten := FClose( nHandle ) .and. lWritten
+   if ! lWritten
+      cFailInfo := "could not write a complete temp; destination untouched. Keep this buffer open and save elsewhere"
+      // Do not describe a partial write as recoverable complete content.
+      FErase( cTmp )
       return .F.
    endif
 
    aDir := Directory( cFile )
    if Len( aDir ) > 0 .and. "L" $ aDir[ 1 ][ F_ATTR ]
-      if hb_MemoWrit( cTmp, cContent ) .and. hb_FSize( cTmp ) == Len( cContent )
-         cFailInfo := cFile + " is a symlink: saving there is not safe yet. " + ;
-                      "Destination untouched; your content is recoverable at " + cTmp
-      else
-         cFailInfo := cFile + " is a symlink: destination untouched; could not write a complete recovery temp. " + ;
-                      "Keep this buffer open and save to another path"
-      endif
+      cFailInfo := cFile + " is a symlink: saving there is not safe yet. " + ;
+                   "Destination untouched; your content is recoverable at " + cTmp
       return .F.
    endif
 
@@ -1246,10 +1261,6 @@ function HBIDE_AtomicWriteFile( cFile, cContent, cFailInfo )
       // read the original's permissions BEFORE touching anything
       if File( cFile ) .and. ! hb_vfAttrGet( cFile, @nAttr )
          cFailInfo := "could not read attributes of " + cFile + "; destination untouched"
-         exit
-      endif
-      if ! hb_MemoWrit( cTmp, cContent ) .or. hb_FSize( cTmp ) != Len( cContent )
-         cFailInfo := "could not write the temp file; destination untouched"
          exit
       endif
       // stamp the original's permissions on the replacement (aborts above

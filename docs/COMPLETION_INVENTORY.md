@@ -467,44 +467,44 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:877 | `CASE nKey == K_PGDN` |
 | help.prg:879 | `CASE nKey == K_HOME` |
 | help.prg:881 | `CASE nKey == K_END` |
-| editor.prg:451 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` |
-| editor.prg:457 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` |
-| editor.prg:463 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` |
-| editor.prg:464 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` |
-| editor.prg:465 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` |
-| editor.prg:466 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` |
-| editor.prg:467 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` |
-| editor.prg:468 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` |
-| editor.prg:471 | `case nKeyStd == K_CTRL_Z` |
-| editor.prg:475 | `case nKeyStd == K_CTRL_U` |
-| editor.prg:479 | `case nKeyStd == K_LDBLCLK` |
-| editor.prg:484 | `case nKeyStd == K_LBUTTONDOWN` |
-| editor.prg:489 | `case nKeyStd == K_MWBACKWARD` |
-| editor.prg:492 | `case nKeyStd == K_MWFORWARD` |
-| editor.prg:495 | `case nKeyStd == K_BS` |
-| editor.prg:516 | `case nKeyStd == K_DEL` |
-| editor.prg:530 | `case nKeyStd == K_ENTER` |
-| editor.prg:540 | `case nKeyStd == K_RIGHT` |
-| editor.prg:549 | `case nKeyStd == K_LEFT` |
-| editor.prg:558 | `case nKeyStd == K_HOME` |
-| editor.prg:561 | `case nKeyStd == K_END` |
-| editor.prg:564 | `case nKeyStd == K_CTRL_RIGHT` |
-| editor.prg:568 | `case nKeyStd == K_ALT_LEFT` |
-| editor.prg:576 | `case nKeyStd == K_CTRL_Y` |
-| editor.prg:579 | `case nKeyStd == K_F2` |
-| editor.prg:585 | `case nKeyStd == K_F8` |
-| editor.prg:589 | `case nKeyStd == K_F9` |
-| editor.prg:592 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
-| editor.prg:2049 | `case K_UP` |
-| editor.prg:2050 | `case K_DOWN` |
-| editor.prg:2051 | `case K_LEFT` |
-| editor.prg:2052 | `case K_RIGHT` |
-| editor.prg:2053 | `case K_HOME` |
-| editor.prg:2054 | `case K_END` |
-| editor.prg:2055 | `case K_PGUP` |
-| editor.prg:2056 | `case K_PGDN` |
-| editor.prg:2057 | `case K_MWFORWARD` |
-| editor.prg:2058 | `case K_MWBACKWARD` |
+| editor.prg:452 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` |
+| editor.prg:458 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` |
+| editor.prg:464 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` |
+| editor.prg:465 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` |
+| editor.prg:466 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` |
+| editor.prg:467 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` |
+| editor.prg:468 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` |
+| editor.prg:469 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` |
+| editor.prg:472 | `case nKeyStd == K_CTRL_Z` |
+| editor.prg:476 | `case nKeyStd == K_CTRL_U` |
+| editor.prg:480 | `case nKeyStd == K_LDBLCLK` |
+| editor.prg:485 | `case nKeyStd == K_LBUTTONDOWN` |
+| editor.prg:490 | `case nKeyStd == K_MWBACKWARD` |
+| editor.prg:493 | `case nKeyStd == K_MWFORWARD` |
+| editor.prg:496 | `case nKeyStd == K_BS` |
+| editor.prg:517 | `case nKeyStd == K_DEL` |
+| editor.prg:531 | `case nKeyStd == K_ENTER` |
+| editor.prg:541 | `case nKeyStd == K_RIGHT` |
+| editor.prg:550 | `case nKeyStd == K_LEFT` |
+| editor.prg:559 | `case nKeyStd == K_HOME` |
+| editor.prg:562 | `case nKeyStd == K_END` |
+| editor.prg:565 | `case nKeyStd == K_CTRL_RIGHT` |
+| editor.prg:569 | `case nKeyStd == K_ALT_LEFT` |
+| editor.prg:577 | `case nKeyStd == K_CTRL_Y` |
+| editor.prg:580 | `case nKeyStd == K_F2` |
+| editor.prg:586 | `case nKeyStd == K_F8` |
+| editor.prg:590 | `case nKeyStd == K_F9` |
+| editor.prg:593 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
+| editor.prg:2060 | `case K_UP` |
+| editor.prg:2061 | `case K_DOWN` |
+| editor.prg:2062 | `case K_LEFT` |
+| editor.prg:2063 | `case K_RIGHT` |
+| editor.prg:2064 | `case K_HOME` |
+| editor.prg:2065 | `case K_END` |
+| editor.prg:2066 | `case K_PGUP` |
+| editor.prg:2067 | `case K_PGDN` |
+| editor.prg:2068 | `case K_MWFORWARD` |
+| editor.prg:2069 | `case K_MWBACKWARD` |
 | hbdebug/debugger.prg:1593 | `CASE K_LDBLCLK` |
 | hbdebug/debugger.prg:1613 | `CASE K_LBUTTONDOWN` |
 | hbdebug/debugger.prg:1642 | `CASE K_RBUTTONDOWN` |

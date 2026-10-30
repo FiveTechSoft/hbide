@@ -236,3 +236,18 @@ also cannot prove completion when a child closes those handles. No production
 process runner or cancellation behavior changed. A stronger owner/supervisor
 mechanism needs separate grounding before integration; broad kill-by-name or
 scanning unrelated processes would not be an acceptable substitute.
+
+## Atomic-save temp creation boundary
+
+`atomic_temp_collision.prg` places a competing file between selecting an absent
+name and writing. Unchecked hb_MemoWrit overwrites it; exclusive hb_FCreate
+refuses and preserves it. This deterministic boundary fixture is not an actual
+threaded race in the IDE. AtomicWriteFile now writes through the exclusively
+created handle, not by reopening a selected name. It checks full write/close
+before promotion. Unlink/replacement by a third party after close, path aliases,
+fsync/crash durability and Windows are not accepted by this change.
+
+`atomic_partial_write.prg` under Linux RLIMIT_FSIZE64/ignoredSIGXFSZ attempts512
+bytes, refuses, preserves ORIGINAL and makes no complete-recovery promise. Its
+owned partial temp is removed. Complete temps still remain when later permission
+or promotion steps fail. This is not a guarantee against every filesystem fault.
