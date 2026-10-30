@@ -1,7 +1,7 @@
 #include "hbclass.ch"
 #include "inkey.ch"
 PROCEDURE Main()
-   LOCAL o:=HbDesigner():New(PropHost():New()),h,i,cKey,cLong,aFields,nField,cValue,hAfter,cType,nEvents:=0,aExpected,aValue,nFieldIndex,nTabs
+   LOCAL o:=HbDesigner():New(PropHost():New()),h,i,cKey,cLong,aFields,nField,cValue,hAfter,cType,nEvents:=0,aExpected,aValue,nFieldIndex,nTabs,aColors
    SetMode(40,120)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
    o:FitWindow()
@@ -125,6 +125,45 @@ PROCEDURE Main()
       o:DlgProperties()
       Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),"modal dialog each-field Esc exact")
       Check(Len(o:aUndo)==1.and.Empty(o:aRedo),"modal dialog each-field Esc history")
+   NEXT
+   // Existing dialog minimum-size contract, with controls at a known bbox.
+   o:aControls:={DsnNewControl("get",{})};o:aControls[1,"row"]:=20;o:aControls[1,"col"]:=50
+   o:aControls[1,"width"]:=10;o:nSelected:=0
+   o:aUndo:={};o:aRedo:={}
+   o:nDlgWidth:=70;o:nDlgHeight:=30;o:FitWindow()
+   h:=DsnSnapshot(o)
+   hb_keyPut(K_TAB);hb_keyPut(K_TAB)
+   hb_keyPut(K_CTRL_Y);hb_keyPut("1");hb_keyPut(K_TAB)
+   hb_keyPut(K_CTRL_Y);hb_keyPut("1")
+   FOR nTabs:=1 TO 4
+      hb_keyPut(K_TAB)
+   NEXT
+   hb_keyPut(K_SPACE)
+   o:DlgProperties()
+   Check(o:nDlgWidth==62.and.o:nDlgHeight==23,"modal clamps to controls bbox minimum")
+   o:Undo()
+   Check(DsnSnapEqual(h,DsnSnapshot(o)),"modal bbox clamp undo exact")
+   // Invalid and empty colors keep existing values on acceptance.
+   o:aUndo:={};o:aRedo:={}
+   FOR EACH aColors IN {{"?","?","?"},{"","",""}}
+      h:=DsnSnapshot(o)
+      FOR nTabs:=1 TO 4
+         hb_keyPut(K_TAB)
+      NEXT
+      FOR EACH aValue IN aColors
+         hb_keyPut(K_CTRL_Y)
+         IF !Empty(aValue)
+            hb_keyPut(aValue)
+         ENDIF
+         hb_keyPut(K_TAB)
+      NEXT
+      hb_keyPut(K_SPACE)
+      o:DlgProperties()
+      Check(DsnSnapEqual(h,DsnSnapshot(o)),"invalid or empty modal colors retain exact model")
+      Check(Len(o:aUndo)==1,"accepted invalid colors still follow existing undo contract")
+      o:Undo()
+      Check(DsnSnapEqual(h,DsnSnapshot(o)),"invalid colors undo retains exact model")
+      o:aUndo:={};o:aRedo:={}
    NEXT
    ? "PASS property cancellation and long handler invariants"
    RETURN

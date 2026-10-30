@@ -1296,3 +1296,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - First fixture emptied controls but left selected1; Undo normalizes it0,
   causing snapshot mismatch. Corrected fixture to selected0 before capture;
   not a product defect or filename-undo decision. No product change.
+
+### 2026-10-30 Dialog modal boundary paths
+
+- Actual queued DlgProperties width/height1 clamps to existing GET bbox
+  minimum62x23; Undo restores exact pre-dialog snapshot.
+- Invalid? and empty Back/Text/Focus strings keep exact prior model;
+  acceptance retains existing one-undo behavior. No no-op optimization or
+  new policy. Linked only to corresponding five dialog pairs.
+- These are chosen boundaries, not full color grammar, all numeric sizes,
+  pixels, Windows or global acceptance. No product change required.
