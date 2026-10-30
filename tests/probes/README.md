@@ -69,3 +69,13 @@ sessions, process-group leader exit before cancellation, output floods,
 startup failures, timeouts, interactive compilers and UI integration are not
 accepted by this probe. No production build path or Windows support changed.
 Do not call this production-safe ownership or finished cancellation.
+
+### Finite pipe flood and missing-script check
+
+`python tests/probes/check_cancel_owned.py /tmp/build-cancel-owned` drives
+`build_cancel_flood.py`, which writes256KiB to each pipe before STARTED.
+The probe drains both completely, cancels its owned group, and the harness
+checks both recorded processes are gone. A missing Python script exits2;
+the probe returns failure without signalling any group. These tests do not
+cover a missing setsid/Python executable, an infinite flood, detached child,
+leader exit, UI cancellation or Windows. PID files use a unique test directory.
