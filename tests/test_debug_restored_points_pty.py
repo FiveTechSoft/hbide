@@ -152,6 +152,14 @@ try:
     assert 'Command' in scr.text() and execution_line()==5,('restored tracepoint must stop on change',execution_line(),scr.text())
     assert '99' in scr.text(),('tracepoint changed value',scr.text())
     print('PASS twice-restored tracepoint stops on real value change')
+    badpath=os.path.join(work,'missing-parent','settings.cld')
+    command('options savesettings '+badpath)
+    assert 'Cannot save settings' in scr.text(),('write failure must be visible',scr.text())
+    send(b'\r');pump(.4)
+    assert not os.path.exists(badpath),badpath
+    command('? 6*7')
+    assert '42' in scr.text(),('debugger remains usable after failed save',scr.text())
+    print('PASS failed settings write is visible and debugger remains usable')
     send(b'\x1bx');pump(.7);assert ' File  Edit' in scr.text()
 finally:
     try:os.kill(pid,signal.SIGHUP)

@@ -1188,7 +1188,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
       CASE hb_LeftEq( "NORUNATSTARTUP", cParam1 )
          ::RunAtStartup( .F. )
       CASE hb_LeftEq( "SAVESETTINGS", cParam1 )
-         ::SaveSettings( AllTrim( cParam2 ) )
+         cResult := ::SaveSettings( AllTrim( cParam2 ) )
       CASE hb_LeftEq( "RESTORESETTINGS", cParam1 )
          ::RestoreSettings( AllTrim( cParam2 ) )
       OTHERWISE
@@ -2574,7 +2574,7 @@ METHOD PROCEDURE SaveAppState() CLASS HBDebugger
    RETURN
 
 
-METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
+METHOD SaveSettings( cFileName ) CLASS HBDebugger
 
    LOCAL cInfo := ""
    LOCAL n
@@ -2687,9 +2687,12 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
       cInfo += "Window Select " + cWindowName + hb_eol()
    ENDIF
 
-   hb_MemoWrit( ::cSettingsFileName, cInfo )
+   IF ! hb_MemoWrit( ::cSettingsFileName, cInfo )
+      ::CommandWindowDisplay( "Cannot save settings: " + ::cSettingsFileName, .F. )
+      RETURN ""
+   ENDIF
 
-   RETURN
+   RETURN ""
 
 
 METHOD ResizeCmdWnd( nLines ) CLASS HBDebugger
