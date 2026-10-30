@@ -190,7 +190,7 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-020: Speed dialog bounds 0..65534, Cancel preserves previous state; emitted settings reflect the bounded value. Does not certify Animate frame quality. Pruebas: [test_debug_restored_points_pty.py](../tests/test_debug_restored_points_pty.py), [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
 - DBG-041: Tab Width dialog/command agree on bounds1..16, Cancel preserves prior value, real tabbed source reindents live. Browser absent is guarded, not separately certified. Pruebas: [test_debug_restored_points_pty.py](../tests/test_debug_restored_points_pty.py), [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
 - DBG-044: Save Settings menu writes a readable settings file. Commands exercise explicit states and exact point snapshots. Failed writes are visible; symlink saves refuse without changing link/target, new settings retained in recovery temp. Linux mode0640 preserved. Not a full settings/Windows acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py), [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_restored_points_pty.py](../tests/test_debug_restored_points_pty.py)
-- DBG-045: Restore Settings menu applies source numbers; commands restore explicit scalar/monitor/case/codeblock states and exact point snapshots. Repeated restored BP/TP stop the real VM. Named layouts/icon/zoom and recreated Calls/hidden Monitor have focused tests. Missing explicit file reports path. Not transactional malformed-script or exhaustive layout acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py), [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_callstack_pty.py](../tests/test_debug_callstack_pty.py), [test_debug_monitor_pty.py](../tests/test_debug_monitor_pty.py), [test_debug_codeblock_pty.py](../tests/test_debug_codeblock_pty.py), [test_debug_restored_points_pty.py](../tests/test_debug_restored_points_pty.py)
+- DBG-045: Restore Settings menu applies source numbers; commands restore explicit scalar/monitor/case/codeblock states and exact point snapshots. Repeated restored BP/TP stop the real VM. Named layouts/icon/zoom and recreated Calls/hidden Monitor have focused tests. Missing explicit file reports path. CLD extension defaults and cwd-before-PATH lookup also apply to INPUT and init.cld; exact explicit-directory requests do not fall back by basename. Not transactional malformed-script or exhaustive layout acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py), [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_callstack_pty.py](../tests/test_debug_callstack_pty.py), [test_debug_monitor_pty.py](../tests/test_debug_monitor_pty.py), [test_debug_codeblock_pty.py](../tests/test_debug_codeblock_pty.py), [test_debug_restored_points_pty.py](../tests/test_debug_restored_points_pty.py), [test_debug_script_lookup_pty.py](../tests/test_debug_script_lookup_pty.py)
 
 ## Campos de inspector
 
@@ -505,41 +505,41 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:2056 | `case K_PGDN` |
 | editor.prg:2057 | `case K_MWFORWARD` |
 | editor.prg:2058 | `case K_MWBACKWARD` |
-| hbdebug/debugger.prg:1589 | `CASE K_LDBLCLK` |
-| hbdebug/debugger.prg:1609 | `CASE K_LBUTTONDOWN` |
-| hbdebug/debugger.prg:1638 | `CASE K_RBUTTONDOWN` |
-| hbdebug/debugger.prg:1641 | `CASE K_ESC` |
-| hbdebug/debugger.prg:1650 | `CASE K_ENTER` |
-| hbdebug/debugger.prg:1655 | `CASE K_UP` |
-| hbdebug/debugger.prg:1656 | `CASE K_DOWN` |
-| hbdebug/debugger.prg:1657 | `CASE K_LEFT` |
-| hbdebug/debugger.prg:1658 | `CASE K_RIGHT` |
-| hbdebug/debugger.prg:1659 | `CASE K_PGUP` |
-| hbdebug/debugger.prg:1660 | `CASE K_PGDN` |
-| hbdebug/debugger.prg:1661 | `CASE K_HOME` |
-| hbdebug/debugger.prg:1662 | `CASE K_END` |
-| hbdebug/debugger.prg:1663 | `CASE K_DEL` |
-| hbdebug/debugger.prg:1664 | `CASE K_CTRL_PGUP` |
-| hbdebug/debugger.prg:1665 | `CASE K_CTRL_PGDN` |
-| hbdebug/debugger.prg:1666 | `CASE K_CTRL_HOME` |
-| hbdebug/debugger.prg:1667 | `CASE K_CTRL_END` |
-| hbdebug/debugger.prg:1668 | `CASE K_CTRL_ENTER` |
-| hbdebug/debugger.prg:1672 | `CASE K_ALT_U /* Move the border between Command and Code windows Up */` |
-| hbdebug/debugger.prg:1676 | `CASE K_ALT_D /* Move the border between Command and Code windows Down */` |
-| hbdebug/debugger.prg:1680 | `CASE K_ALT_G /* Grow active window */` |
-| hbdebug/debugger.prg:1684 | `CASE K_ALT_S /* Shrink active window */` |
-| hbdebug/debugger.prg:1688 | `CASE K_F1` |
-| hbdebug/debugger.prg:1692 | `CASE K_F2` |
-| hbdebug/debugger.prg:1696 | `CASE K_F4` |
-| hbdebug/debugger.prg:1700 | `CASE K_F5` |
-| hbdebug/debugger.prg:1704 | `CASE K_CTRL_F5` |
-| hbdebug/debugger.prg:1708 | `CASE K_F6` |
-| hbdebug/debugger.prg:1712 | `CASE K_F7` |
-| hbdebug/debugger.prg:1716 | `CASE K_F8` |
-| hbdebug/debugger.prg:1720 | `CASE K_F9` |
-| hbdebug/debugger.prg:1724 | `CASE K_F10` |
-| hbdebug/debugger.prg:1728 | `CASE K_TAB` |
-| hbdebug/debugger.prg:1732 | `CASE K_SH_TAB` |
+| hbdebug/debugger.prg:1591 | `CASE K_LDBLCLK` |
+| hbdebug/debugger.prg:1611 | `CASE K_LBUTTONDOWN` |
+| hbdebug/debugger.prg:1640 | `CASE K_RBUTTONDOWN` |
+| hbdebug/debugger.prg:1643 | `CASE K_ESC` |
+| hbdebug/debugger.prg:1652 | `CASE K_ENTER` |
+| hbdebug/debugger.prg:1657 | `CASE K_UP` |
+| hbdebug/debugger.prg:1658 | `CASE K_DOWN` |
+| hbdebug/debugger.prg:1659 | `CASE K_LEFT` |
+| hbdebug/debugger.prg:1660 | `CASE K_RIGHT` |
+| hbdebug/debugger.prg:1661 | `CASE K_PGUP` |
+| hbdebug/debugger.prg:1662 | `CASE K_PGDN` |
+| hbdebug/debugger.prg:1663 | `CASE K_HOME` |
+| hbdebug/debugger.prg:1664 | `CASE K_END` |
+| hbdebug/debugger.prg:1665 | `CASE K_DEL` |
+| hbdebug/debugger.prg:1666 | `CASE K_CTRL_PGUP` |
+| hbdebug/debugger.prg:1667 | `CASE K_CTRL_PGDN` |
+| hbdebug/debugger.prg:1668 | `CASE K_CTRL_HOME` |
+| hbdebug/debugger.prg:1669 | `CASE K_CTRL_END` |
+| hbdebug/debugger.prg:1670 | `CASE K_CTRL_ENTER` |
+| hbdebug/debugger.prg:1674 | `CASE K_ALT_U /* Move the border between Command and Code windows Up */` |
+| hbdebug/debugger.prg:1678 | `CASE K_ALT_D /* Move the border between Command and Code windows Down */` |
+| hbdebug/debugger.prg:1682 | `CASE K_ALT_G /* Grow active window */` |
+| hbdebug/debugger.prg:1686 | `CASE K_ALT_S /* Shrink active window */` |
+| hbdebug/debugger.prg:1690 | `CASE K_F1` |
+| hbdebug/debugger.prg:1694 | `CASE K_F2` |
+| hbdebug/debugger.prg:1698 | `CASE K_F4` |
+| hbdebug/debugger.prg:1702 | `CASE K_F5` |
+| hbdebug/debugger.prg:1706 | `CASE K_CTRL_F5` |
+| hbdebug/debugger.prg:1710 | `CASE K_F6` |
+| hbdebug/debugger.prg:1714 | `CASE K_F7` |
+| hbdebug/debugger.prg:1718 | `CASE K_F8` |
+| hbdebug/debugger.prg:1722 | `CASE K_F9` |
+| hbdebug/debugger.prg:1726 | `CASE K_F10` |
+| hbdebug/debugger.prg:1730 | `CASE K_TAB` |
+| hbdebug/debugger.prg:1734 | `CASE K_SH_TAB` |
 | hbdebug/debugger.prg:836 | `CASE K_UP` |
 | hbdebug/debugger.prg:837 | `CASE K_F3` |
 | hbdebug/debugger.prg:843 | `CASE K_DOWN` |

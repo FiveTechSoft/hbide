@@ -395,7 +395,7 @@ METHOD New() CLASS HBDebugger
    ::BuildCommandWindow()
    ::BuildBrowseStack()
 
-   IF hb_FileExists( ::cSettingsFileName )
+   IF ! Empty( HBIDE_DbgScriptPath( ::cSettingsFileName ) )
       ::LoadSettings()
       ::lGo := ::lRunAtStartup // Once again after settings file is loaded
    ENDIF
@@ -1379,8 +1379,10 @@ METHOD PROCEDURE DoScript( cFileName ) CLASS HBDebugger
 
    LOCAL nPos
    LOCAL cLine, cScript, lReadOk := .F.
+   LOCAL cResolved := HBIDE_DbgScriptPath( cFileName )
 
-   IF hb_FileExists( cFileName )
+   IF ! Empty( cResolved )
+      cFileName := cResolved
       cScript := HBIDE_ReadFileChecked( cFileName, @lReadOk )
       IF ! lReadOk
          ::CommandWindowDisplay( "Cannot read script: " + cFileName, .F. )
@@ -2551,7 +2553,7 @@ METHOD PROCEDURE RestoreSettings( cFileName ) CLASS HBDebugger
       ::cSettingsFileName := cFileName
    ENDIF
 
-   IF ! hb_FileExists( ::cSettingsFileName )
+   IF Empty( HBIDE_DbgScriptPath( ::cSettingsFileName ) )
       ::CommandWindowDisplay( "Settings file not found: " + ::cSettingsFileName, .F. )
       RETURN
    ENDIF

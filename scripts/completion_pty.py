@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'debug-script-lookup': ('test_debug_script_lookup_pty.py', [], 30),
     'start-open-document-collision': ('test_start_collision_pty.py', ['--other-document'], 30),
     'start-source-collision-relative': ('test_start_collision_pty.py', ['--relative'], 30),
     'start-source-collision': ('test_start_collision_pty.py', [], 30),

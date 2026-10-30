@@ -30,5 +30,6 @@ hbdebug/dbgtobj.prg
 hbdebug/dbgtwin.prg
 hbdebug/dbgwa.prg
 hbdebug/tbrwtext.prg
+hbdebug/dbgscript.prg
 hbdebug/debugger.prg
 hbdebug/dbgentry.c
