@@ -1,6 +1,6 @@
 #include "error.ch"
 PROCEDURE Main()
-   LOCAL a:={{"type"=>"listbox"}},oError,cType,bOld:=ErrorBlock({|e|Break(e)})
+   LOCAL a:={{"type"=>"listbox"}},oError,cType,cName,cCode,nConflicts,bOld:=ErrorBlock({|e|Break(e)})
    BEGIN SEQUENCE
       DsnNormalizeControls(a)
       Check(Len(a)==1.and.HB_IsString(a[1,"items"]),"missing list items default")
@@ -13,6 +13,17 @@ PROCEDURE Main()
       a:={{"type"=>"get","variable"=>123}}
       DsnNormalizeControls(a)
       Check(HB_IsString(a[1,"variable"]).and.!Empty(a[1,"variable"]),"nontext variable repaired")
+      FOR EACH cName IN {"oDlg","ODLG","GetList","lOk","lDummy"}
+         a:={DsnNewControl("get",{})}
+         a[1,"variable"]:=cName
+         cCode:=DsnGenCode({"controls"=>a},NIL,@nConflicts)
+         Check(nConflicts==1,"generator-owned local collision resolved")
+      NEXT
+      a:={DsnNewControl("get",{}),DsnNewControl("checkbox",{})}
+      a[1,"variable"]:="Shared"
+      a[2,"variable"]:="sHaReD"
+      cCode:=DsnGenCode({"controls"=>a},NIL,@nConflicts)
+      Check(nConflicts==1,"case-insensitive cross-type collision resolved")
       a:={{"type"=>"combo"},{"type"=>""}}
       DsnNormalizeControls(a)
       Check(Empty(a),"partial type names rejected")

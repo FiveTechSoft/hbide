@@ -1112,3 +1112,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Added20th model suite, with numeric/logical fields, missing items for radio,
   list and combo, code generation, plus actual LoadJson paths for each type.
   No new controls or oversized-edit behavior added.
+
+### 2026-10-30 Generated local name collisions
+
+- Reproduced generated GET variable oDlg causing duplicate local declaration.
+- Generator now reserves its own locals and later array names before binding
+  controls; conflict hash matches Harbour's case-insensitive identifiers.
+- Model conflict checks plus eight generated HRB compiles cover local names,
+  mixed case, item-array collisions and cross-type case collisions. Original
+  model bindings are not renamed in place. Compile evidence is not execution.

@@ -1,0 +1,8 @@
+Harbour 3.2.1dev (r2610242111)
+Copyright (c) 1999-2025, https://harbour.github.io/
+Compiling '/tmp/hbide-reserved-before.prg'...
+100100200300400500100200300/tmp/hbide-reserved-before.prg(12) Error E0003  Duplicate variable declaration 'ODLG'
+1 error
+
+No code generated.
+hbmk2: Error: Running Harbour compiler (built-in). 1
