@@ -328,6 +328,8 @@ try:
     send(b'file open '+work.encode()+b'/fn.prg\r');pump(.4)
     send(b'file open pathprobe.prg\r');pump(.5)
     check('Empty restored path does not resolve removed directory','PATH_RESOLVED_MARKER' not in scr.text())
+    check('Missing source with empty path warns visibly',"File 'pathprobe.prg' not found!" in scr.text())
+    send(b'\r');pump(.4)  # acknowledge FileNotFound before more debugger commands
     send(b'options pathforfiles '+nested.encode()+b'\r');pump(.4)
     pathset=os.path.join(work,'nonempty-path.cld')
     send(b'options savesettings '+pathset.encode()+b'\r');pump(.4)
