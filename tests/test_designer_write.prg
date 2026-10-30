@@ -1,7 +1,7 @@
 #include "hbclass.ch"
 #include "inkey.ch"
 PROCEDURE Main(cMode)
-   LOCAL cInfo:="",cFile:="dsn-write.json",cBytes:='{"controls":[]}',o,cResult
+   LOCAL cInfo:="",cFile:="dsn-write.json",cBytes:='{"controls":[]}',o,cResult,i
    o:=WriteDesigner():New(WriteHost():New())
    SetMode(25,80)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
@@ -21,6 +21,15 @@ PROCEDURE Main(cMode)
       ? "PASS actual SaveJson/GeneratePrg partial writes"
       RETURN
    ENDIF
+   o:cFileName:="original.json"
+   o:cNext:=NIL
+   hb_keyPut(K_CTRL_Y)
+   FOR i:=1 TO Len("absent/actual.json")
+      hb_keyPut(Asc(SubStr("absent/actual.json",i,1)))
+   NEXT
+   hb_keyPut(K_TAB);hb_keyPut(K_ENTER);hb_keyPut(K_ENTER)
+   o:SaveJson(.T.)
+   Check(o:cFileName=="original.json".and.o:lDirty,"actual picker failed Save As retains identity/dirty")
    o:cFileName:="original.json"
    o:cNext:="no-parent/new.json"
    hb_keyPut(K_ENTER)
@@ -62,5 +71,5 @@ ENDCLASS
 
 CLASS WriteDesigner FROM HbDesigner
    DATA cNext
-   METHOD SelectFileName(cTitle,cDefault) INLINE ::cNext
+   METHOD SelectFileName(cTitle,cDefault) INLINE If(::cNext==NIL,::Super:SelectFileName(cTitle,cDefault),::cNext)
 ENDCLASS

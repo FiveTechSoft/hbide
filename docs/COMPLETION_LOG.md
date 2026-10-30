@@ -1063,3 +1063,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   Save writing original, and successful Save As committing the new name.
 - SelectFileName is overridden only in the model fixture to avoid coupling
   this state invariant to keyboard layout. Actual file-picker UI is separate.
+- Follow-up extends fixture to use the actual SelectFileName dialog with
+  queued Ctrl+Y/text/Tab/Enter before the same failed-write identity check.
+  Both real picker and isolated state path pass; no pixel claim is made for
+  this backing-state-only change.
