@@ -1517,3 +1517,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Speed configuration is not Animate timing acceptance. Eight27caller
   links now focal-linked;84runner entries=83cases/modes+guard. No product
   change.20models rerun separately from PTY to avoid combined shell ceiling.
+
+### 2026-10-30 Debug scalar edit and readonly inspector
+
+- Actual Monitor n changes1to41; typed99/Esc and invalid expression/Esc
+  preserve41. Command ?? n refuses typed edits before/after change.
+  Resume increments and writes42, proving debuggee effect rather than
+  only painted value.9focal checks; readonly nested values untested.
+- Ten27inputcallerslinked.85runner entries84cases/modes+guard. No
+  product change; initial inspector spacing assertion corrected from
+  raw screen evidence.

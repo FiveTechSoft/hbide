@@ -1412,6 +1412,18 @@
         "test_debug_numeric_modal_pty.py"
       ],
       "contract": "Actual Speed input5 persisted; typedEsc retains5; -2 clamps0;999999 clamps65534; nonnumeric rejected then Esc preserves prior value. Restores0. Proves configuration, not wall-clock Animate pacing or all expressions/platforms."
+    },
+    "DBG-INPUT-debugger-EditVar-inputbox-2": {
+      "tests": [
+        "test_debug_value_modal_pty.py"
+      ],
+      "contract": "Actual Monitor scalar n input41 applies; typed99/Esc and invalid expression/Esc preserve41; debuggee resumes increments then writes42. Not non-scalar values, arbitrary expressions, all focus/geometry/platforms."
+    },
+    "DBG-INPUT-debugger-Inspect-inputbox-1": {
+      "tests": [
+        "test_debug_value_modal_pty.py"
+      ],
+      "contract": "Actual command ?? n readonly inspector displays1, typing shows Value cannot be edited. Repeated after scalar edit41, refuses mutation; resumed debuggee writes42. Not nested arrays/hash/object or all read-only branches."
     }
   }
 }
