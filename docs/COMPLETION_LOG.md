@@ -809,3 +809,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct07:46 Delete TP index
 - Reproducción: Delete TP0 no eliminaba el tracepoint; Save todavía emitía TP n. DoCommand comparaba cParam2 con TP en vez de cParam1.
 - Corregido selector compartido WP/TP. RestoredPoints ampliado PASS después y diez modelos PASS candidato. No cambio visual nuevo. Baseline debugger10+10 de e0d3f59 queda histórico tras este cambio de producto; no herencia de aceptación completa.
+
+## 30Oct07:55 Editing tracepoints preserves their type
+- Reproducción: Enter sobre TP n y editar n+1 guardaba WP n+1 y cambiaba el modo VM a watchpoint. WatchpointEdit forzaba wp y false.
+- Conserva WP_TYPE y pasa el indicador TP correspondiente a __dbgSetWatch. RestoredPoints ampliado comprueba TP n+1 guardado y que el tracepoint editado sigue deteniendo la VM en línea5 al cambiar n. Candidato PASS y diez modelos PASS.
+- Captura completa inspeccionada: n+1 <tp,N> tras editar, sin bordes perdidos. Un intento del test dejó foco en Points al enviar otro Enter; corregido seleccionando Command. No se atribuye ese fallo de preparación al producto. No aceptación global/Windows heredada.

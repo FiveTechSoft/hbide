@@ -3540,9 +3540,9 @@ METHOD WatchpointEdit( nPos ) CLASS HBDebugger
       RETURN Self
    ENDIF
 
-   aWatch := { "wp", cExpr }
+   aWatch := { ::aWatch[ nPos ][ WP_TYPE ], cExpr }
 
-   __dbgSetWatch( ::pInfo, nPos - 1, cExpr, .F. )
+   __dbgSetWatch( ::pInfo, nPos - 1, cExpr, Lower( aWatch[ WP_TYPE ] ) == "tp" )
    ::aWatch[ nPos ] := aWatch
    ::WatchpointsShow()
 
