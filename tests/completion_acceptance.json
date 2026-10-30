@@ -721,7 +721,7 @@
       "tests": [
         "test_designer_property_geometry.prg"
       ],
-      "contract": "Actual queued modal field accept with exact undo; GET/List/Combo final footprint clamp and List/Combo redo, Button caption growth or accelerator/style accepted. Selected values only, not every boundary/pixel/platform."
+      "contract": "Actual modal newly typed caption with internal quotes/ampersand accepts exact value, exact undo/redo. Selected values only, not accelerator runtime, every footprint boundary or pixels/platform."
     },
     "DSN-FIELD-EditProperties-cAccel-1-DSN_BUTTON": {
       "tests": [
@@ -737,9 +737,10 @@
     },
     "DSN-FIELD-EditProperties-cAction-1-DSN_BUTTON": {
       "tests": [
+        "test_designer_property_geometry.prg",
         "test_designer_property_cancel.prg"
       ],
-      "contract": "Actual Button modal acceptance preserves prefilled long quoted handler string and exact undo; Action edited then Esc preserves it. Not handler execution, newly typed acceptance or all event fields/controls."
+      "contract": "Actual modal newly typed quoted synthetic Action accepts exact value, dirty/oneUndo and exact undo/redo; separate prefilled long-handler and editedAction Esc preserves. No private action execution or pixels/platform."
     },
     "DSN-FIELD-EditProperties-cWhen-1-DSN_BUTTON": {
       "tests": [
@@ -908,6 +909,18 @@
         "test_designer_property_geometry.prg"
       ],
       "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cCaption-1-DSN_SAY": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal newly typed caption with internal quotes/ampersand accepts exact value, exact undo/redo. Selected values only, not accelerator runtime, every footprint boundary or pixels/platform."
+    },
+    "DSN-FIELD-EditProperties-cCaption-1-DSN_CHECKBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal newly typed caption with internal quotes/ampersand accepts exact value, exact undo/redo. Selected values only, not accelerator runtime, every footprint boundary or pixels/platform."
     }
   }
 }

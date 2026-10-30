@@ -1372,3 +1372,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
  47of79 source pairs now focal linked, not a completion fraction. Button
   State is not exposed. No handler execution, product fix or pixels/platform
   acceptance. Button Action remains separately prefill-only acceptance.
+
+### 2026-10-30 Native modal captions and new Action
+
+- Say/checkbox/Button newly typed quoted/ampersand captions accepted exactly
+  with Undo/Redo; Button newly typed synthetic Action exact, dirty/oneUndo
+  and exact Undo/Redo. No handler executed or product change.
+- Two new links, upgraded Button caption/Action links:49of79 source pairs
+  focal linked, not completion fraction. All geometry/pixels/platform limits
+  remain explicit; no accelerator runtime claim from preserving ampersand.

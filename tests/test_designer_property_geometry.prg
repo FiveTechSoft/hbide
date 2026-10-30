@@ -2,7 +2,7 @@
 #include "inkey.ch"
 #include "set.ch"
 PROCEDURE Main()
-   LOCAL o:=HbDesigner():New(PropHost():New()),h,cType,n,aSize,hAfter,nRemain,cVariable,cItems,aKeys,cKey,cValue,nInitial
+   LOCAL o:=HbDesigner():New(PropHost():New()),h,cType,n,aSize,hAfter,nRemain,cVariable,cItems,aKeys,cKey,cValue,nInitial,nAfterCaption
    SetMode(40,120)
    Set(_SET_TYPEAHEAD,512)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
@@ -160,6 +160,46 @@ PROCEDURE Main()
          Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),cType+" modal event redo exact")
       NEXT
    NEXT
+   FOR EACH cType IN {"say","checkbox","button"}
+      o:aControls:={DsnNewControl(cType,{})};o:nSelected:=1
+      o:aUndo:={};o:aRedo:={};o:lDirty:=.F.
+      h:=DsnSnapshot(o)
+      hb_keyPut(K_TAB);hb_keyPut(K_TAB)
+      cValue:="Caption 'quoted' & text"
+      hb_keyPut(K_CTRL_Y);hb_keyPut(cValue)
+      nAfterCaption:=If(cType=="say",1,If(cType=="checkbox",6,7))
+      FOR n:=1 TO nAfterCaption
+         hb_keyPut(K_TAB)
+      NEXT
+      hb_keyPut(K_SPACE)
+      o:EditProperties()
+      Check(o:aControls[1,"caption"]==cValue,cType+" modal caption exact")
+      hAfter:=DsnSnapshot(o)
+      o:Undo()
+      Check(DsnSnapEqual(h,DsnSnapshot(o)),cType+" modal caption undo")
+      o:Redo()
+      Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),cType+" modal caption redo")
+   NEXT
+   o:aControls:={DsnNewControl("button",{})};o:nSelected:=1
+   o:aUndo:={};o:aRedo:={};o:lDirty:=.F.
+   h:=DsnSnapshot(o)
+   FOR n:=1 TO 4
+      hb_keyPut(K_TAB)
+   NEXT
+   cValue:="SyntheticAction( 'quoted argument' )"
+   hb_keyPut(K_CTRL_Y);hb_keyPut(cValue)
+   FOR n:=1 TO 5
+      hb_keyPut(K_TAB)
+   NEXT
+   hb_keyPut(K_SPACE)
+   o:EditProperties()
+   Check(o:aControls[1,"action"]==cValue,"modal newly typed action exact")
+   Check(o:lDirty.and.Len(o:aUndo)==1,"modal new action one undo")
+   hAfter:=DsnSnapshot(o)
+   o:Undo()
+   Check(DsnSnapEqual(h,DsnSnapshot(o)),"modal new action undo")
+   o:Redo()
+   Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),"modal new action redo")
    ? "PASS final property footprints GET/list/combo/button and undo"
 
    RETURN
