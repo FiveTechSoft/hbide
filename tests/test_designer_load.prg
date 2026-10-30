@@ -1,6 +1,6 @@
 #include "hbclass.ch"
 PROCEDURE Main()
-   LOCAL o:=LoadDesigner():New(LoadHost():New()),h,cJson,cBad,cType,cEvent
+   LOCAL o:=LoadDesigner():New(LoadHost():New()),h,cJson,cBad,cType,cEvent,cExpr
    SetMode(25,80)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
    o:FitWindow()
@@ -70,6 +70,21 @@ PROCEDURE Main()
       Check(o:aControls[1,cEvent]=="","actual Load clears nontext event")
       Check(HB_IsString(DsnGenCode(DsnBuildModel(o))),"actual loaded event-safe model generates")
    NEXT
+   cExpr:="KeepHandler( 'quoted', .T. )"
+   hb_MemoWrit("bad.json",hb_jsonEncode({"controls"=>{{"type"=>"button","caption"=>"Run",;
+      "action"=>cExpr,"when"=>cExpr,"valid"=>cExpr,"focus"=>cExpr,"state"=>cExpr}}}))
+   o:LoadJson()
+   FOR EACH cEvent IN {"action","when","valid","focus","state"}
+      Check(o:aControls[1,cEvent]==cExpr,"string handler preserved on load")
+   NEXT
+   o:cFileName:="handler-roundtrip.json"
+   o:SaveJson(.F.)
+   o:cNext:="handler-roundtrip.json"
+   o:LoadJson()
+   FOR EACH cEvent IN {"action","when","valid","focus","state"}
+      Check(o:aControls[1,cEvent]==cExpr,"string handler preserved after Save/Load")
+   NEXT
+   Check(cExpr$DsnGenCode(DsnBuildModel(o)),"handler text retained in generation")
    ? "PASS designer load refusals and undo/redo"
    RETURN
 STATIC PROCEDURE Check(lOk,cText)

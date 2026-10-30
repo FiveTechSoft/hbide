@@ -1145,3 +1145,10 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   Model, dirty and undo remain unchanged; no product fix required.
 - Initial queued Alt+C did not trigger under GTSTD and timed out; replaced
   with actual field traversal, not counted as product failure or a pass.
+
+### 2026-10-30 Handler text roundtrip
+
+- Actual JSON Load/Save/Load preserves string action/when/valid/focus/state
+  expressions byte-exact, including quoted arguments. Generated source retains
+  handler text. No event expression is executed by this model check.
+- Existing behavior passes; no product fix or arbitrary PRG two-way import.
