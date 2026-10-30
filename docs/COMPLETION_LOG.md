@@ -606,3 +606,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct02:22 Display distant cursor coverage
 - Sin cambio de producto. DisplayPTYañadeCancel(sinresize) y ambosdocsconscroll/cursorlejanoantesdereducir.8checksPASS candidato.
 - Expansionmantienescrollanteriorlegal: testajustadoacomprobargeometriaexpandida,noforzarfiladecursorofirstrowquenoformanpartedelcontrato. Intenciónde41suitesrunnerseconserva; baseline38noheredada.
+
+## 30Oct02:28 Close Project/Window/About acceptance
+- Sin cambio de producto.11checksPTYreales: Aboutabre/cierraalsourcedirty; WindowCloseCancelconserva/Discarddelultimodocrecreastarterysindisksave; ProjectCloseconservasourcedirty, Sourcesdaavisonoprojectysourcedisk/HBPintactos.
+- IntentoinicialAboutusabaAlt+AenvezdemnemónicoB; corregidoharness,no producto. Runner42,54contratos116acciones2stubs. Baseline38historicanoheredada.

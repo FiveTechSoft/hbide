@@ -27,10 +27,10 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-019 | Edit | Go to Function... Ctrl+G | hbide.prg:802 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-020 | Project | Open .hbp... | hbide.prg:807 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-021 | Project | Sources / Build... | hbide.prg:808 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-022 | Project | Close project | hbide.prg:809 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-022 | Project | Close project | hbide.prg:809 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-023 | Window | Next          Ctrl+F6 | hbide.prg:814 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-024 | Window | Previous  Ctrl+Shift+F6 | hbide.prg:815 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-025 | Window | Close | hbide.prg:816 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-025 | Window | Close | hbide.prg:816 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-026 | Window | List...           Alt+0 | hbide.prg:818 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-027 | Window | Messages... | hbide.prg:819 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-028 | Window | Next Message     Alt+F8 | hbide.prg:820 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -44,7 +44,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-036 | Options | Designer... | hbide.prg:837 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-037 | Help | Index | hbide.prg:842 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-038 | Help | Contents | hbide.prg:843 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-039 | Help | About... | hbide.prg:845 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-039 | Help | About... | hbide.prg:845 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-001 | File | Open... | hbdebug/dbgmenu.prg:78 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-002 | File | Resume | hbdebug/dbgmenu.prg:79 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-003 | File | OS Shell | hbdebug/dbgmenu.prg:80 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -178,6 +178,9 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-035: Real Options Display applies 40x120->25x80->40x120. Inactive documents share current geometry; switched cursor and last line stay visible, expansion uses new rows. Independent edits/undo/save remain byte exact. Linux terminal resize negotiation, not Windows certification. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
 - IDE-037: Real Help Index opens matching topic, unknown keyword reports without changing document; Contents opens navigation; File-menu F1 opens context without executing action; close returns to same edited source and undo/save restores exact bytes. Linux 25x80; model also tests links/history/wrapping. Pruebas: [test_help_pty.py](../tests/test_help_pty.py), [test_help.prg](../tests/test_help.prg)
 - IDE-038: Real Help Index opens matching topic, unknown keyword reports without changing document; Contents opens navigation; File-menu F1 opens context without executing action; close returns to same edited source and undo/save restores exact bytes. Linux 25x80; model also tests links/history/wrapping. Pruebas: [test_help_pty.py](../tests/test_help_pty.py), [test_help.prg](../tests/test_help.prg)
+- IDE-022: Close Project drops project state only, keeps dirty source open; subsequent Sources reports no project; disk source and HBP untouched. Linux real menu dispatch, not Windows certification. Pruebas: [test_close_routes_pty.py](../tests/test_close_routes_pty.py)
+- IDE-025: Window Close asks only active dirty source; Cancel retains edit, Discard closes last document to a starter without writing disk. Linux real menu dispatch, not Windows certification. Pruebas: [test_close_routes_pty.py](../tests/test_close_routes_pty.py)
+- IDE-039: About opens actual version/title dialog and closes back to same dirty document. Linux real menu dispatch, not Windows certification. Pruebas: [test_close_routes_pty.py](../tests/test_close_routes_pty.py)
 
 ## Campos de inspector
 

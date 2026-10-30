@@ -411,6 +411,27 @@
         "test_help.prg"
       ],
       "contract": "Real Help Index opens matching topic, unknown keyword reports without changing document; Contents opens navigation; File-menu F1 opens context without executing action; close returns to same edited source and undo/save restores exact bytes. Linux 25x80; model also tests links/history/wrapping."
+    },
+    "IDE-022": {
+      "expected_label": "Close project",
+      "tests": [
+        "test_close_routes_pty.py"
+      ],
+      "contract": "Close Project drops project state only, keeps dirty source open; subsequent Sources reports no project; disk source and HBP untouched. Linux real menu dispatch, not Windows certification."
+    },
+    "IDE-025": {
+      "expected_label": "Close",
+      "tests": [
+        "test_close_routes_pty.py"
+      ],
+      "contract": "Window Close asks only active dirty source; Cancel retains edit, Discard closes last document to a starter without writing disk. Linux real menu dispatch, not Windows certification."
+    },
+    "IDE-039": {
+      "expected_label": "About...",
+      "tests": [
+        "test_close_routes_pty.py"
+      ],
+      "contract": "About opens actual version/title dialog and closes back to same dirty document. Linux real menu dispatch, not Windows certification."
     }
   }
 }
