@@ -906,3 +906,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Modelo añade contrato de consistencia y PTY verifica lectura real del resumen. Candidato Help11/11 y diez modelos PASS. Primeros intentos del test no confirmaban la selección intermedia de Index o no la cerraban; corregido el recorrido, sin atribuir fallo al producto.
 - No nueva función ni certificación global/Windows.
 - Repetición limpia468c936: Help11/11 y diez modelos PASS, sin mutaciones; docs/evidence/linux-help-summary-468c936.json. Binariocc930ebe01c471bdb9bfc049c4d780b1560a7a1b55c02340dedc5045902d25b2. Captura completa inspeccionada: Iconize, Menu Bar Alt+O,M y dos stubs legibles, bordes completos.
+
+## 30Oct10:40 External-change safety acceptance
+- Nueva suite PTY external-changes, sin parche de producto: recarga limpia; modificación externa de igual tamaño con mtime restaurado detectada; Keep mine conserva buffer, Save vuelve a pedir overwrite; Cancel conserva disco y buffer.
+- Overwrite explícito guarda buffer y .bak idéntico a versión externa; borrado externo mantiene buffer, Cancel no recrea, Recreate explícito recupera archivo y conserva .bak anterior. Candidato PASS.
+- Primeros intentos de recorrido eligieron foco incorrecto o esperaron aviso sin salto de línea; corregidos antes de validación. Runner45 suites, no45 verificadas en esta fuente. No prueba exhaustiva de carreras concurrentes, archivos mayores8MB ni Windows.
