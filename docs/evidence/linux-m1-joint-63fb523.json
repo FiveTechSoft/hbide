@@ -1,0 +1,695 @@
+{
+  "scope": "Clean Linux22PTY+1static guard plus ten models. Recovery flags/NUL/read failures/external changes/snapshots/encoding/EOL. Same source/binary in two sequential batches, no failures/retries/interruptions. Help embedded28docs checkPASS. Not full IDE55/all M1/Windows certification.",
+  "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+  "results": [
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-invalid-target",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_unreadable_pty.py",
+        "--invalid-target"
+      ],
+      "started": 1793362278.6083083,
+      "seconds": 4.28,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f1f86bac4ebcc12c7383bd1f4da37f18367128a7efba7e202a424ef598540ffe",
+      "log": "recovery-invalid-target-1793362278608303070.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-invalid-flags",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_unreadable_pty.py",
+        "--invalid-flags"
+      ],
+      "started": 1793362282.8905678,
+      "seconds": 4.28,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f1f86bac4ebcc12c7383bd1f4da37f18367128a7efba7e202a424ef598540ffe",
+      "log": "recovery-invalid-flags-1793362282890564208.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-target-space",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_unreadable_pty.py",
+        "--target-space"
+      ],
+      "started": 1793362287.1716316,
+      "seconds": 4.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f1f86bac4ebcc12c7383bd1f4da37f18367128a7efba7e202a424ef598540ffe",
+      "log": "recovery-target-space-1793362287171627828.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-unknown-codepage",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_unreadable_pty.py",
+        "--unknown-codepage"
+      ],
+      "started": 1793362291.6527355,
+      "seconds": 4.28,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f1f86bac4ebcc12c7383bd1f4da37f18367128a7efba7e202a424ef598540ffe",
+      "log": "recovery-unknown-codepage-1793362291652731777.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-malformed",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_unreadable_pty.py",
+        "--malformed-envelope"
+      ],
+      "started": 1793362295.9352834,
+      "seconds": 4.28,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f1f86bac4ebcc12c7383bd1f4da37f18367128a7efba7e202a424ef598540ffe",
+      "log": "recovery-malformed-1793362295935278403.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-unreadable",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_unreadable_pty.py"
+      ],
+      "started": 1793362300.2162244,
+      "seconds": 4.28,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f1f86bac4ebcc12c7383bd1f4da37f18367128a7efba7e202a424ef598540ffe",
+      "log": "recovery-unreadable-1793362300216219999.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-compare",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_compare_pty.py"
+      ],
+      "started": 1793362304.4978154,
+      "seconds": 7.94,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c5163ac5b4a8807c4bf258cd75b2ea48237cd1457d67249093cc5fc9023ed01d",
+      "log": "recovery-compare-1793362304497809773.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-compare-large",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_compare_pty.py",
+        "--large"
+      ],
+      "started": 1793362312.4369822,
+      "seconds": 5.03,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c5163ac5b4a8807c4bf258cd75b2ea48237cd1457d67249093cc5fc9023ed01d",
+      "log": "recovery-compare-large-1793362312436978369.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "open-unreadable",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_open_unreadable_pty.py"
+      ],
+      "started": 1793362317.468127,
+      "seconds": 5.73,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1dcb651b554a4f83b01eeb635317baab227278dd2a5b4adc46f48f7041dc8f31",
+      "log": "open-unreadable-1793362317468122628.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "reload-unreadable",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_reload_unreadable_pty.py"
+      ],
+      "started": 1793362323.2020638,
+      "seconds": 8.74,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a9f421134abb38618b301595634e33cfcb7838c8ee98fbca7b46ec42003f86a1",
+      "log": "reload-unreadable-1793362323202059833.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "external-changes",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_external_changes_pty.py"
+      ],
+      "started": 1793362331.9436316,
+      "seconds": 15.66,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "5f06fa0a71c120af481cfab71bc08fb2ad1b9471d5d516f0328425493b541575",
+      "log": "external-changes-1793362331943627043.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-retention",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_retention.py",
+        "hbide"
+      ],
+      "started": 1793362352.2226446,
+      "seconds": 5.14,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "0cb803de7652d2157452b006d9643c8132e4fdc817915630573b72c451d0bf2b",
+      "log": "recovery-retention-1793362352222640583.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-multi",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_multi.py",
+        "hbide"
+      ],
+      "started": 1793362357.3589253,
+      "seconds": 2.63,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "75fcda145e583d6b5345bca2f4a06e2f1f6cd2084f255b6bea28a0a318ade722",
+      "log": "recovery-multi-1793362357358919872.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-deep-path",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide"
+      ],
+      "started": 1793362359.98613,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-deep-path-1793362359986125355.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-utf8-host",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-host"
+      ],
+      "started": 1793362365.4701207,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-utf8-host-1793362365470117307.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-utf8-raw",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-raw"
+      ],
+      "started": 1793362370.9535792,
+      "seconds": 7.09,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-utf8-raw-1793362370953574771.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-codepage-refusal",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--refuse-cp"
+      ],
+      "started": 1793362378.0404432,
+      "seconds": 5.94,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-codepage-refusal-1793362378040438974.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-codepage",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-bom",
+        "--switch-cp"
+      ],
+      "started": 1793362383.9757848,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-codepage-1793362383975780440.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-utf8-bom",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-bom"
+      ],
+      "started": 1793362389.4593241,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-utf8-bom-1793362389459320255.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-tabs",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--tabs"
+      ],
+      "started": 1793362394.941622,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-tabs-1793362394941618080.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-mixed-eol",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--mixed-eol"
+      ],
+      "started": 1793362400.4241626,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-mixed-eol-1793362400424158200.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-crlf",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_deep_path.py",
+        "hbide",
+        "--crlf"
+      ],
+      "started": 1793362405.9061346,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "log": "recovery-crlf-1793362405906130983.log"
+    },
+    {
+      "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+      "tracked_changes": "",
+      "binary_sha256": "d1fb63c3e1dfbc4bc4b72b835c9f33d100b776552c26b58abefbd0c026db3449",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5f7f099736497ee4bccd2d5e2cfd54e7a4da2a887d9b84e4ee1ddb18b5abbc1e",
+      "case": "recovery-route-guard",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_recovery_route_guard.py"
+      ],
+      "started": 1793362411.3888564,
+      "seconds": 0.02,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "97f17c514f6bd7ce30d65c2d9234423275e39923e43d70175e18d010d817ca43",
+      "log": "recovery-route-guard-1793362411388852311.log"
+    }
+  ],
+  "models": {
+    "source": "63fb523f84c8f486232ff2982e4361deae1b2c51",
+    "dirty": false,
+    "tracked_changes": "",
+    "runner_sha256": "3f53dcc2faebe5b0d186fd508dde67ecc6d3879d9c931f86a611f422dca0a9f1",
+    "platform": "Linux",
+    "hbmk2": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "started": 1793362270.1889307,
+    "scope": "Linux model probes only. Not PTY, visual or Windows certification.",
+    "tests": {
+      "debug-search": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_search.prg": "289c51d0bc96331c5febf82ffb3e5e028e5511fe24d55017915302262f38f614",
+          "hbdebug/tbrwtext.prg": "a44b43f31a2ea0571108e25247e815b7c9372e7812f1f0e9fab7810de7b1cae1",
+          "hbdebug/dbgbrwsr.prg": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e"
+        },
+        "binary_sha256": "0170690a24098305bdc0a685c9056549f50fbfd99398eef1e59c051e833b2004",
+        "started": 1793362270.1889873,
+        "seconds": 0.17498064041137695
+      },
+      "designer": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer.prg": "60fc44216cfe4f0f7ab8b031d9c171b4b01369aaa1ceb4e0ccfab870515a12e1",
+          "designer.prg": "cf42d6d7b6af641aa2f894157791929c51d6fbd3e1e45d6058ae6287f0bab4fb",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "be912008c8f64b184f7a5c843667102037c2b5a41e4a93e5996aba9787bfbfce",
+        "started": 1793362270.3643255,
+        "seconds": 0.5370292663574219
+      },
+      "editor-repaint": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_repaint.prg": "2c170c7452f2d6371213c6d0dc6ad071a5fad7c896e75d27a04362737934e5c8",
+          "editor.prg": "c27cf3967fa27dc6c47a1d5a2e87cddcb55f93f38a5030d5a9c9337b23a3d517",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "0d534c3631ec7df49f695cde4a76572b54462fca339bf27f9b40fb599cb6ad13",
+        "started": 1793362270.901662,
+        "seconds": 3.2418391704559326
+      },
+      "find": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_find.prg": "9af32468423371d620d8e6587ab4f56d56485ec332d528709a80338e5926a9e5",
+          "editor.prg": "c27cf3967fa27dc6c47a1d5a2e87cddcb55f93f38a5030d5a9c9337b23a3d517",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "fb443a2f83fa95677698182ed48b41eaa52bbe45399332f99e0f44af0b271dff",
+        "started": 1793362274.1436617,
+        "seconds": 0.22255158424377441
+      },
+      "eol": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_eol.prg": "cd1c9df2f23763ed2bc1fbc13baa7ed40fe1e36fd4b106e5f77ac9094b29ac2c",
+          "editor.prg": "c27cf3967fa27dc6c47a1d5a2e87cddcb55f93f38a5030d5a9c9337b23a3d517",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "ce67f488b7276010bc55e4b726cebfa7d53bb61f8995edf4ba6337e8a044a5ee",
+        "started": 1793362274.366363,
+        "seconds": 0.283099889755249
+      },
+      "utf8": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_utf8_valid.prg": "13cb1239a5934db50f44530289afea8216db9b720ba5e1e7b30eabc98df336f0",
+          "editor.prg": "c27cf3967fa27dc6c47a1d5a2e87cddcb55f93f38a5030d5a9c9337b23a3d517",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "879e277031dc15d6f5095cfb4ce8867d68777300c558f96175012fc9471bb77c",
+        "started": 1793362274.6496134,
+        "seconds": 0.22232270240783691
+      },
+      "atomic": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_atomic.prg": "5ec94a4d0fb9ee081aaf93779bbbd096f1d24c907b17305d02871d3d7b56979e",
+          "editor.prg": "c27cf3967fa27dc6c47a1d5a2e87cddcb55f93f38a5030d5a9c9337b23a3d517",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "1937fe7bb0fe1dbe7568f0efb78a3ca81af44f8432c917ad80462043f5e6d5a4",
+        "started": 1793362274.8720772,
+        "seconds": 0.2511107921600342
+      },
+      "recovery": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_recovery.prg": "714585c485dcb7bce32aa5b94310773019bb57e0814b1ed3bbe0e53e4e32a2d1",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "d6013e27db1c0ad0a6ed27416f2afe2a9d077bf9894049e004a42fd02896614b",
+        "started": 1793362275.1232827,
+        "seconds": 0.1762542724609375
+      },
+      "project": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project.prg": "0899a4569ecfca1fa998608570b1d71a638ab63e1cf00684214aeb93f674a863",
+          "project.prg": "1a47eb78d2370a1ac2ec8e4ffb79733ca9b49e2ed3760e87e0d5ffba2c9a3bc4"
+        },
+        "binary_sha256": "ba6df90ded306fe718df59a5d1c8b98ea7984dbd4c1bf244dc26e5b54575dad6",
+        "started": 1793362275.299603,
+        "seconds": 0.3832559585571289
+      },
+      "help": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_help.prg": "bdd4617c01cd2ec8aa1a6b697dce01c1fb24f37c6fc941ad329f793b572a7b22",
+          "help.prg": "497883c2a795538dc5438af8321a81f4074e74dc2b38357db05b02b3d2faa7cb",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "b79d09ed9415b6856785dc31aa83703793e589b01193260f0d410ea1b0cbfb1d",
+        "started": 1793362275.6830604,
+        "seconds": 0.7865924835205078
+      }
+    },
+    "finished": 1793362276.4696598
+  }
+}
