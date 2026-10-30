@@ -388,6 +388,13 @@
         "test_compiler_flags_pty.py"
       ],
       "contract": "Real options dialog with keyboard Tab/Space/Enter/Esc. Default GCC warnings strict flags, Cancel leaves old flags, OK applies warnings/debug/strict/incremental/optimize and compiler selection to actual hbmk2 process argv. A fake hbmk2 captures argv and returns failure, not proof MSVC/other toolchains build successfully."
+    },
+    "IDE-035": {
+      "expected_label": "Display...",
+      "tests": [
+        "test_display_multidoc_pty.py"
+      ],
+      "contract": "Real Options Display applies 40x120->25x80->40x120. Inactive documents share current geometry; switched cursor and last line stay visible, expansion uses new rows. Independent edits/undo/save remain byte exact. Linux terminal resize negotiation, not Windows certification."
     }
   }
 }

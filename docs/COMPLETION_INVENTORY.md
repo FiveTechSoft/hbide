@@ -40,7 +40,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-032 | Run | Debug | hbide.prg:827 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-033 | Run | Arguments... | hbide.prg:829 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-034 | Options | Compiler Flags... | hbide.prg:834 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-035 | Options | Display... | hbide.prg:835 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-035 | Options | Display... | hbide.prg:835 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-036 | Options | Designer... | hbide.prg:837 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-037 | Help | Index | hbide.prg:842 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | IDE-038 | Help | Contents | hbide.prg:843 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -175,6 +175,7 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-032: Real Debug preserves original source literals and lowercase main() across two runs; breakpoint and debugger function suites inspect original source with isolated HRB local symbols. Header lookup includes current source directory even when source is under a different folder with spaces; two runs use expected macro literal. Empty quoted words retain first/intermediate/last parameter positions in Start, Script and Debug. Pruebas: [test_run_source_pty.py](../tests/test_run_source_pty.py), [test_debug_session_pty.py](../tests/test_debug_session_pty.py), [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py), [test_source_includes_pty.py](../tests/test_source_includes_pty.py), [test_run_empty_args_pty.py](../tests/test_run_empty_args_pty.py)
 - IDE-030:  Start builds/runs twice from path with spaces/apostrophe/$HOME/semicolon; failed rebuild preserves old executable bytes and never runs stale binary. Quiet nonzero compiler exit never reports Build OK; failure alert leaves editor usable. Empty quoted words retain first/intermediate/last parameter positions in Start, Script and Debug. Pruebas: [test_start_paths_pty.py](../tests/test_start_paths_pty.py), [test_run_empty_args_pty.py](../tests/test_run_empty_args_pty.py)
 - IDE-034: Real options dialog with keyboard Tab/Space/Enter/Esc. Default GCC warnings strict flags, Cancel leaves old flags, OK applies warnings/debug/strict/incremental/optimize and compiler selection to actual hbmk2 process argv. A fake hbmk2 captures argv and returns failure, not proof MSVC/other toolchains build successfully. Pruebas: [test_compiler_flags_pty.py](../tests/test_compiler_flags_pty.py)
+- IDE-035: Real Options Display applies 40x120->25x80->40x120. Inactive documents share current geometry; switched cursor and last line stay visible, expansion uses new rows. Independent edits/undo/save remain byte exact. Linux terminal resize negotiation, not Windows certification. Pruebas: [test_display_multidoc_pty.py](../tests/test_display_multidoc_pty.py)
 
 ## Campos de inspector
 

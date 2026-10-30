@@ -2861,7 +2861,7 @@ return nil
 
 METHOD ApplyDisplay( nRows, nCols ) CLASS HbIde
 
-   local nOldRows := MaxRow() + 1, nOldCols := MaxCol() + 1
+   local nOldRows := MaxRow() + 1, nOldCols := MaxCol() + 1, oEd
 
    if nRows == nOldRows .and. nCols == nOldCols
       return nil
@@ -2881,7 +2881,10 @@ METHOD ApplyDisplay( nRows, nCols ) CLASS HbIde
    ::oWndCode := HBWindow():New( 1, 0, MaxRow() - 1, MaxCol(), ;
                                  ::oWndCode:cCaption, "W/B" )
    ::oWndCode:Show( .F. )
-   ::oEditor:Resize( 2, 1, MaxRow() - 2, MaxCol() - 1 )
+   // Every document shares the resized desktop, including inactive buffers.
+   for each oEd in ::aEditors
+      oEd:Resize( 2, 1, MaxRow() - 2, MaxCol() - 1 )
+   next
    ::Repaint()
    ::oEditor:ShowCursor()
 

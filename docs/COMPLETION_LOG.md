@@ -593,3 +593,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Auditoria encontro textoobsoleto: Newprometiabuffervacio+preguntadesave, Finddeciaignorartailblanks, paletasinComboBox, roadmapviejo. ModeloHelpfallabaantes.
 - Ayudacorregida: Newindependientecontemplateypreservaciondocs; blanksliterales+replacementvacio; ComboBoxselection-only; COMPLETION_ROADMAPactual.
 - Cuatrocontratosdecontenidonuevos, nueve modelosPASS candidato. CapturasrealesFile/Findcompletasinspeccionadas. Cambiosoloayuda/tests/docs,noimplementacioneditor. Baseline38anteriornoesnuevacertificaciondelbinariodeayudaactual.
+
+## 30Oct02:07 Display resizes every document
+-40x120->25x80redimensionabasoloeditoractivo; alvolverotrodocpintabasobreborde/statusycursorfuerapantalla. Capturareal+2FAILPTYantes.
+- ApplyDisplayactualizatodoslosbuffersantesderepintar.7checksPTYcandidatoPASS: reducir/ampliar, cursor/ultimalineavisiblesenotrodoc, uso nuevasfilas, undo/savebyteexactoenambosdocs. Capturascompletasantes/despuesinspeccionadas.
+- Runner40suites/49contratos116acciones; baseline38de4616d24anteriornoheredada. Windows pendiente.
