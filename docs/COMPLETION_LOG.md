@@ -842,3 +842,4 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Reproducción adicional: `bp 4294967300` desactivaba BP4 por estrechamiento a entero C en __dbgIsBreak. La guarda de borrado por índice no cubría esta API de línea.
 - BreakPointToggle rechaza línea no entera, no positiva o mayor que2147483647 antes de consultar/modificar VM. Prueba conserva BP4 ante4294967300 y un entero mucho mayor; mantiene los casos válidos existentes. Candidato RestoredPoints PASS y diez modelos PASS.
 - Sin nuevo cambio visual ni certificación Windows. El límite sigue la API VM firmada32bits del runtime comprobado.
+- Repetición limpiade1029f: RestoredPoints PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-bp-line-range-de1029f.json. Binario 2d6a756705c4c26dac6454f09dba14c07e8f74e18a71879f0e541bc091d94fc6.
