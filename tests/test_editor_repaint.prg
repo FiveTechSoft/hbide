@@ -78,6 +78,18 @@ procedure Main()
    // replaces exactly those. (The old 'Xdef' expectation only passed in
    // overtype mode, where the typed char ate one more.)
    Check( 'selection replaced not appended', o:GetText() == 'Xcdef' )
+   o:LoadText( 'alpha beta' )
+   o:SelectWord( 1, 8 )
+   Check( 'word selection shares marked range', o:HasMark() .and. o:SelectionText() == 'beta' )
+   o:Edit( Asc( 'Z' ) )
+   Check( 'word typing replaces selection', o:GetText() == 'alpha Z' )
+   o:Undo()
+   Check( 'Undo word typing exact', o:GetText() == 'alpha beta' )
+   o:SelectWord( 1, 8 )
+   o:Edit( K_BS )
+   Check( 'word Backspace removes exact word', o:GetText() == 'alpha ' )
+   o:Undo()
+   Check( 'Undo word Backspace exact', o:GetText() == 'alpha beta' )
    // Nav fast path: pure cursor keys repaint only the rows whose
    // current-line highlight changed; the old row is restored by the
    // nOldScrRow block, so K_DOWN paints exactly 2 lines, no full repaint.

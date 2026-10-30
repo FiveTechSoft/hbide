@@ -57,6 +57,7 @@ CASES = {
     'gui-roundtrip': ('test_gui_roundtrip_pty.py', [], 120),
     'combobox': ('test_combobox_pty.py', [], 120),
     'designer': ('test_designer_pty.py', [], 120),
+    'editor-mouse': ('test_editor_mouse_pty.py', [], 120),
     'edit-menu': ('test_edit_menu_pty.py', [], 120),
     'navigation': ('test_nav_pty.py', [], 180),
     'multidoc': ('test_multidoc_pty.py', [], 180),

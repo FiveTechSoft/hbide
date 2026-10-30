@@ -1590,3 +1590,18 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   loops/hit-tests/other controls remain outside this bounded inventory.
 -15Python inventory tests; static function context correctly handles
   lower-case declarations. No product change or milestone closure.
+
+## 31 octubre: doble clic del editor con seleccion operativa
+
+La prueba PTY envio dos pulsaciones y verifico el evento K_LDBLCLK en una
+instrumentacion temporal retirada. Antes: la palabra se resaltaba, pero
+escribir Z producia `alpha Zbeta`. `SelectWord` usaba el resaltado antiguo,
+no el rango consultado por las operaciones de edicion. Ahora establece el
+mismo rango semiabierto que la seleccion de teclado. No cambia Paste:
+continua insertando debajo de la linea, como ya hacia el IDE.
+
+Nueva prueba `editor-mouse`: clic en byte correcto, TAB expandido, doble clic
+mas escribir/Delete/Copy/Cut, Undo exacto, rueda y limite superior sin cambiar
+los bytes. Comparaciones con fixture de EOL mixtos. Son efectos focales Linux
+PTY, no todos los gestos ni aceptacion visual/Windows. El probe de repintado
+incluye seleccion de palabra compartida, sustitucion, Backspace y Undo.

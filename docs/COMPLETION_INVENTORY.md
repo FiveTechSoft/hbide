@@ -496,12 +496,12 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | --- | --- | --- | --- | --- |
 | MOUSE-hbide-Activate-1 | METHOD Activate() CLASS HBIde | `if nKeyStd == K_LBUTTONDOWN` | hbide.prg:702 | Pendiente gesto |
 | MOUSE-hbide-Activate-2 | METHOD Activate() CLASS HBIde | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | hbide.prg:723 | Pendiente gesto |
-| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:480 | Pendiente gesto |
-| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:485 | Pendiente gesto |
-| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:490 | Pendiente gesto |
-| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:493 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:1922 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:1923 | Pendiente gesto |
+| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:485 | Pendiente gesto |
+| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:490 | Pendiente gesto |
+| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:495 | Pendiente gesto |
+| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:498 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:1927 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:1928 | Pendiente gesto |
 | MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:435 | Pendiente gesto |
 | MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:438 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
@@ -797,44 +797,44 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:877 | `CASE nKey == K_PGDN` |
 | help.prg:879 | `CASE nKey == K_HOME` |
 | help.prg:881 | `CASE nKey == K_END` |
-| editor.prg:452 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` |
-| editor.prg:458 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` |
-| editor.prg:464 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` |
-| editor.prg:465 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` |
-| editor.prg:466 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` |
-| editor.prg:467 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` |
-| editor.prg:468 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` |
-| editor.prg:469 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` |
-| editor.prg:472 | `case nKeyStd == K_CTRL_Z` |
-| editor.prg:476 | `case nKeyStd == K_CTRL_U` |
-| editor.prg:480 | `case nKeyStd == K_LDBLCLK` |
-| editor.prg:485 | `case nKeyStd == K_LBUTTONDOWN` |
-| editor.prg:490 | `case nKeyStd == K_MWBACKWARD` |
-| editor.prg:493 | `case nKeyStd == K_MWFORWARD` |
-| editor.prg:496 | `case nKeyStd == K_BS` |
-| editor.prg:517 | `case nKeyStd == K_DEL` |
-| editor.prg:531 | `case nKeyStd == K_ENTER` |
-| editor.prg:541 | `case nKeyStd == K_RIGHT` |
-| editor.prg:550 | `case nKeyStd == K_LEFT` |
-| editor.prg:559 | `case nKeyStd == K_HOME` |
-| editor.prg:562 | `case nKeyStd == K_END` |
-| editor.prg:565 | `case nKeyStd == K_CTRL_RIGHT` |
-| editor.prg:569 | `case nKeyStd == K_ALT_LEFT` |
-| editor.prg:577 | `case nKeyStd == K_CTRL_Y` |
-| editor.prg:580 | `case nKeyStd == K_F2` |
-| editor.prg:586 | `case nKeyStd == K_F8` |
-| editor.prg:590 | `case nKeyStd == K_F9` |
-| editor.prg:593 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
-| editor.prg:1914 | `case K_UP` |
-| editor.prg:1915 | `case K_DOWN` |
-| editor.prg:1916 | `case K_LEFT` |
-| editor.prg:1917 | `case K_RIGHT` |
-| editor.prg:1918 | `case K_HOME` |
-| editor.prg:1919 | `case K_END` |
-| editor.prg:1920 | `case K_PGUP` |
-| editor.prg:1921 | `case K_PGDN` |
-| editor.prg:1922 | `case K_MWFORWARD` |
-| editor.prg:1923 | `case K_MWBACKWARD` |
+| editor.prg:457 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` |
+| editor.prg:463 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` |
+| editor.prg:469 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` |
+| editor.prg:470 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` |
+| editor.prg:471 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` |
+| editor.prg:472 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` |
+| editor.prg:473 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` |
+| editor.prg:474 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` |
+| editor.prg:477 | `case nKeyStd == K_CTRL_Z` |
+| editor.prg:481 | `case nKeyStd == K_CTRL_U` |
+| editor.prg:485 | `case nKeyStd == K_LDBLCLK` |
+| editor.prg:490 | `case nKeyStd == K_LBUTTONDOWN` |
+| editor.prg:495 | `case nKeyStd == K_MWBACKWARD` |
+| editor.prg:498 | `case nKeyStd == K_MWFORWARD` |
+| editor.prg:501 | `case nKeyStd == K_BS` |
+| editor.prg:522 | `case nKeyStd == K_DEL` |
+| editor.prg:536 | `case nKeyStd == K_ENTER` |
+| editor.prg:546 | `case nKeyStd == K_RIGHT` |
+| editor.prg:555 | `case nKeyStd == K_LEFT` |
+| editor.prg:564 | `case nKeyStd == K_HOME` |
+| editor.prg:567 | `case nKeyStd == K_END` |
+| editor.prg:570 | `case nKeyStd == K_CTRL_RIGHT` |
+| editor.prg:574 | `case nKeyStd == K_ALT_LEFT` |
+| editor.prg:582 | `case nKeyStd == K_CTRL_Y` |
+| editor.prg:585 | `case nKeyStd == K_F2` |
+| editor.prg:591 | `case nKeyStd == K_F8` |
+| editor.prg:595 | `case nKeyStd == K_F9` |
+| editor.prg:598 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
+| editor.prg:1919 | `case K_UP` |
+| editor.prg:1920 | `case K_DOWN` |
+| editor.prg:1921 | `case K_LEFT` |
+| editor.prg:1922 | `case K_RIGHT` |
+| editor.prg:1923 | `case K_HOME` |
+| editor.prg:1924 | `case K_END` |
+| editor.prg:1925 | `case K_PGUP` |
+| editor.prg:1926 | `case K_PGDN` |
+| editor.prg:1927 | `case K_MWFORWARD` |
+| editor.prg:1928 | `case K_MWBACKWARD` |
 | hbdebug/debugger.prg:1593 | `CASE K_LDBLCLK` |
 | hbdebug/debugger.prg:1613 | `CASE K_LBUTTONDOWN` |
 | hbdebug/debugger.prg:1642 | `CASE K_RBUTTONDOWN` |

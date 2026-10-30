@@ -377,10 +377,15 @@ METHOD SelectWord( nRow, nTextCol ) CLASS HBSrcEdit
       nEnd++
    end
 
-   ::nSelRow   = nRow
-   ::nSelStart = nStart
-   ::nSelEnd   = nEnd
-   ::cClipboard = hb_USubStr( cLine, nStart, nEnd - nStart + 1 )
+   // Use the same half-open range as keyboard selection. The old
+   // nSelRow-only highlight was invisible to SelRange(), so typing,
+   // Delete and Copy did not act on the double-clicked word.
+   ::ClearSelection()
+   ::nMarkRow := nRow
+   ::nMarkCol := nStart + 4
+   ::lMark := .T.
+   ::GoTo( nRow, nEnd + 5, _REFRESH_ALL )
+   ::cClipboard := ::SelectionText()
 
    ::Display()
 
