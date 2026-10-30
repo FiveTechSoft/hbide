@@ -1390,9 +1390,10 @@
     },
     "DBG-INPUT-debugger-TabWidth-inputbox-1": {
       "tests": [
-        "test_debug_functions_pty.py"
+        "test_debug_functions_pty.py",
+        "test_debug_numeric_modal_pty.py"
       ],
-      "contract": "Actual Tab width input12 moves source tabbed line, input4 restores exact column. No invalid/Cancel/boundary acceptance."
+      "contract": "Actual Tab input12 changes live tabbed source;4 restores. Additional numeric-modal suite persists12, typedEsc retains12,0 clamps1,99 clamps16; nonnumeric rejected then Esc preserves16. Not every expression/geometry/platform."
     },
     "DBG-INPUT-debugger-Locate-inputbox-1": {
       "tests": [
@@ -1405,6 +1406,12 @@
         "test_debug_commands_pty.py"
       ],
       "contract": "Actual Locate Goto input60 selects exact source line; Esc retains selected line. Not all numeric validation/bounds."
+    },
+    "DBG-INPUT-debugger-Speed-inputbox-1": {
+      "tests": [
+        "test_debug_numeric_modal_pty.py"
+      ],
+      "contract": "Actual Speed input5 persisted; typedEsc retains5; -2 clamps0;999999 clamps65534; nonnumeric rejected then Esc preserves prior value. Restores0. Proves configuration, not wall-clock Animate pacing or all expressions/platforms."
     }
   }
 }

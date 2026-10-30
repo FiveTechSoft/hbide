@@ -1507,3 +1507,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   is not accepted as proving its settings effect. Remaining20unlinked.
 - Input constructors, readonly inspectors and inline object/array/hash
   editors remain separate and unaccepted by these links.
+
+### 2026-10-30 Debug numeric modal behavior
+
+- New27check real debugger PTY: Tab12/typedEsc/low1/high16; Speed5/
+  typedEsc/low0/high65534. Nonnumeric input shows validation error, then
+  Esc preserves prior setting. Each stage saves settings and asserts
+  exact values, not just popup text. Restores4/0.
+- Speed configuration is not Animate timing acceptance. Eight27caller
+  links now focal-linked;84runner entries=83cases/modes+guard. No product
+  change.20models rerun separately from PTY to avoid combined shell ceiling.
