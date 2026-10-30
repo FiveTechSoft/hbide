@@ -921,6 +921,90 @@
         "test_designer_property_geometry.prg"
       ],
       "contract": "Actual modal newly typed caption with internal quotes/ampersand accepts exact value, exact undo/redo. Selected values only, not accelerator runtime, every footprint boundary or pixels/platform."
+    },
+    "DSN-FIELD-EditProperties-nRow-1-DSN_SAY": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nCol-1-DSN_SAY": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nRow-1-DSN_GET": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nCol-1-DSN_GET": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nRow-1-DSN_CHECKBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nCol-1-DSN_CHECKBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nRow-1-DSN_BUTTON": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nCol-1-DSN_BUTTON": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nRow-1-DSN_RADIO": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nCol-1-DSN_RADIO": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nRow-1-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nCol-1-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nRow-1-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
+    },
+    "DSN-FIELD-EditProperties-nCol-1-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual modal Row1/Col2 accepted for this control, dirty/oneUndo and exact Undo/Redo. Valid interior position only, not oversized/negative/all boundaries, drag, pixels or platforms."
     }
   }
 }

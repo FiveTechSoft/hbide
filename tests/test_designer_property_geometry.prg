@@ -200,6 +200,33 @@ PROCEDURE Main()
    Check(DsnSnapEqual(h,DsnSnapshot(o)),"modal new action undo")
    o:Redo()
    Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),"modal new action redo")
+   FOR EACH cType IN {"say","get","checkbox","button","radiogroup","listbox","combobox"}
+      o:aControls:={DsnNewControl(cType,{})};o:nSelected:=1
+      o:aUndo:={};o:aRedo:={};o:lDirty:=.F.
+      h:=DsnSnapshot(o)
+      hb_keyPut(K_CTRL_Y);hb_keyPut("1");hb_keyPut(K_TAB)
+      hb_keyPut(K_CTRL_Y);hb_keyPut("2")
+      DO CASE
+      CASE cType=="say"; nRemain:=2
+      CASE cType=="get"; nRemain:=5
+      CASE cType=="checkbox"; nRemain:=7
+      CASE cType=="button"; nRemain:=8
+      CASE cType=="radiogroup"; nRemain:=6
+      OTHERWISE; nRemain:=9
+      ENDCASE
+      FOR n:=1 TO nRemain
+         hb_keyPut(K_TAB)
+      NEXT
+      hb_keyPut(K_SPACE)
+      o:EditProperties()
+      Check(o:aControls[1,"row"]==1.and.o:aControls[1,"col"]==2,cType+" modal row/col exact")
+      Check(o:lDirty.and.Len(o:aUndo)==1,cType+" modal row/col one undo")
+      hAfter:=DsnSnapshot(o)
+      o:Undo()
+      Check(DsnSnapEqual(h,DsnSnapshot(o)),cType+" modal position undo")
+      o:Redo()
+      Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),cType+" modal position redo")
+   NEXT
    ? "PASS final property footprints GET/list/combo/button and undo"
 
    RETURN

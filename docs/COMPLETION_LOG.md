@@ -1381,3 +1381,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Two new links, upgraded Button caption/Action links:49of79 source pairs
   focal linked, not completion fraction. All geometry/pixels/platform limits
   remain explicit; no accelerator runtime claim from preserving ampersand.
+
+### 2026-10-30 Native modal position matrix
+
+- Row1/Col2 through actual EditProperties for all seven controls accepts
+  exact interior position, dirty/oneUndo, exact Undo/Redo. Fourteen new focal
+  links make63of79 source pairs linked, not a completion fraction.
+- No product change or oversized/negative/all-boundary/drag/pixels/platform
+  acceptance. Remaining sixteen unlinked source pairs are modal OK/Cancel
+  declarations across controls/dialog, not sixteen missing product functions.
