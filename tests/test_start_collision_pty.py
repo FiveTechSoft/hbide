@@ -101,12 +101,14 @@ target=os.path.join(work,'precious')
 if TARGET_SPACE: open(neighbor,'wb').write(b'NEIGHBOR MUST STAY')
 open(target,'wb').write(b'ORIGINAL DISK BYTES')
 open(journal,'wb').write(JOURNAL_BYTES)
-open(os.path.join(rec,'unreadable--dead.target'),'w').write(target+'\x00other.prg' if INVALID_TARGET else target)
+recovered_target='precious' if '--relative' in sys.argv else target
+open(os.path.join(rec,'unreadable--dead.target'),'w').write(recovered_target)
 if not (MALFORMED or UNKNOWN_CP or TARGET_SPACE or INVALID_FLAGS or INVALID_TARGET): os.chmod(journal,0)
 argsfile=os.path.join(work,'compiler-args.json')
 fake=os.path.join(work,'bin');os.mkdir(fake)
 compiler=os.path.join(fake,'hbmk2')
-open(compiler,'w').write('#!/usr/bin/python3\nimport sys,os\nout=next(a[2:] for a in sys.argv[1:] if a.startswith("-o"))\nopen(out,"w").write("#!/bin/sh\\nexit 0\\n")\nos.chmod(out,0o755)\n')
+marker=os.path.join(work,'compiler-invoked')
+open(compiler,'w').write('#!/usr/bin/python3\nimport sys,os\nopen('+repr(marker)+',"w").write("invoked")\nout=next(a[2:] for a in sys.argv[1:] if a.startswith("-o"))\nopen(out,"w").write("#!/bin/sh\\nexit 0\\n")\nos.chmod(out,0o755)\n')
 os.chmod(compiler,0o755);env['PATH']=fake+os.pathsep+env['PATH']
 pid, fd = pty.fork()
 if pid == 0:
@@ -157,6 +159,8 @@ try:
     send(b'\x1br');pump(.3);send(b's');pump(.7)
     assert open(target,'rb').read()==JOURNAL_BYTES,('Start must not replace source with executable',open(target,'rb').read(),scr.text())
     assert 'Build cancelled: output path is the source file' in scr.text(),scr.text()
+    assert not os.path.exists(marker),'compiler must not be invoked'
+    assert open(neighbor,'rb').read()==b'NEIGHBOR MUST STAY'
     print('PASS extensionless source/output collision refused, source untouched')
 finally:
     try:os.kill(pid,signal.SIGHUP)
