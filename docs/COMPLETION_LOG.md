@@ -759,3 +759,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Reproducción real: Save de Cascade emitía Window Move 2.00 2.00 y3.00 4.00; el parser numérico solo admite enteros. Restore dejaba Calls/Command en1,0. Igualdad de geometría guardada/re-guardada fallaba antes.
 - Save serializa coordenadas/tamaños con Int, porque son celdas. CallStack PTY ampliado compara Cascade y Restore repetido; candidato PASS y diez modelos PASS. Captura completa de Cascade restaurado dos veces inspeccionada: títulos escalonados, fuente frontal, bordes inferiores y estado completos.
 - No cambia el parser para scripts antiguos con decimales, ni arregla todo Q13/Windows. Baseline43+10 sobre53be664 queda histórico tras este cambio de producto.
+
+## 30Oct06:51 Newly opened panes in named layouts
+- Reproducción: Cascade con Calls visible, luego WP x creaba Points de3x2. ResizeWindows no aplicaba el layout nombrado al nuevo pane y reutilizaba el ancho antiguo de Calls.
+- ResizeWindows vuelve a aplicar TILE/CASCADE al incorporar un pane; sin modo nombrado conserva rectángulos manuales. CallStack ampliado prueba viewport útil tras WP en Cascade, Monitor y diez modelos PASS candidato.
+- Captura completa inspeccionada de Watch nuevo con n=1 tras seleccionar Points y reaplicar Cascade. Selección por comando no certificada como equivalente a Next en Cascade. No cierra todas las combinaciones ni Windows.

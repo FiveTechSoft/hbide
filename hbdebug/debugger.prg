@@ -2439,7 +2439,13 @@ METHOD ResizeWindows( oWindow ) CLASS HBDebugger
 
    IF ! ::lWindowsAutoSized
       oWindow:Show()
-      ::WindowRepaint()
+      // A named layout owns all visible panes, including newly opened ones.
+      // Manual rectangles keep their positions instead of being re-tiled.
+      IF ! Empty( ::cLayoutMode )
+         ::WindowLayout( ::cLayoutMode )
+      ELSE
+         ::WindowRepaint()
+      ENDIF
       RETURN Self
    ENDIF
 
