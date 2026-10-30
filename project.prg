@@ -162,19 +162,27 @@ FUNCTION HBIDEProjectTokens( cLine )
 
 FUNCTION HBIDEProjectDiagnostics( cOutput, cRoot )
    LOCAL a := {}, cLine, nOpen, nClose, cFile, cRow, cCol, cText, nColon, aPart, n
-   LOCAL cLevel, h
+   LOCAL cLevel, h, nSearch
    cOutput := StrTran( StrTran( cOutput, Chr(13) + Chr(10), Chr(10) ), Chr(13), Chr(10) )
    FOR EACH cLine IN hb_ATokens( cOutput, Chr(10) )
       cFile := ""; cRow := ""; cCol := ""; cText := ""
       // Harbour: path/name.prg(123) Error E0020 ...
-      nClose := At( ")", cLine ); nOpen := RAt( "(", Left( cLine, nClose ) )
-      IF nOpen > 1 .AND. nClose > nOpen
-         cRow := SubStr( cLine, nOpen + 1, nClose - nOpen - 1 )
-         IF HBIDEProjectDigits( cRow )
-            cFile := AllTrim( Left( cLine, nOpen - 1 ) )
+      // Parentheses can be part of a directory or filename. Only (digits)
+      // followed by an error/warning is a compiler location, not the first ')'.
+      nSearch := 1
+      DO WHILE ( nClose := hb_At( ")", cLine, nSearch ) ) > 0
+         nOpen := RAt( "(", Left( cLine, nClose ) )
+         IF nOpen > 1 .AND. nClose > nOpen
+            cRow := SubStr( cLine, nOpen + 1, nClose - nOpen - 1 )
             cText := AllTrim( SubStr( cLine, nClose + 1 ) )
+            IF HBIDEProjectDigits( cRow ) .AND. ;
+               ( Left( Upper( cText ), 5 ) == "ERROR" .OR. Left( Upper( cText ), 7 ) == "WARNING" )
+               cFile := AllTrim( Left( cLine, nOpen - 1 ) )
+               EXIT
+            ENDIF
          ENDIF
-      ENDIF
+         nSearch := nClose + 1
+      ENDDO
       IF Empty( cFile )
          // GCC/Clang: filename:line:column: error/warning. Drive colon is not a separator.
          aPart := hb_ATokens( cLine, ":" )

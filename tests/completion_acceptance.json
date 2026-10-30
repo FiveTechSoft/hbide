@@ -45,7 +45,7 @@
         "test_project_desktop_pty.py",
         "test_project_messages_pty.py"
       ],
-      "contract": "Source desktop and build act on selected project; diagnostics target correct file.",
+      "contract": "Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line.",
       "expected_label": "Sources / Build..."
     },
     "IDE-026": {
@@ -61,7 +61,7 @@
         "test_nav_pty.py",
         "test_project_messages_pty.py"
       ],
-      "contract": "Real compiler messages list and navigate to correct source.",
+      "contract": "Real compiler messages list and navigate to correct source. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line.",
       "expected_label": "Messages..."
     },
     "IDE-028": {
@@ -69,7 +69,7 @@
         "test_nav_pty.py",
         "test_project_messages_pty.py"
       ],
-      "contract": "Next diagnostic wraps with correct line and status.",
+      "contract": "Next diagnostic wraps with correct line and status. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line.",
       "expected_label": "Next Message     Alt+F8"
     },
     "IDE-029": {
@@ -77,7 +77,7 @@
         "test_nav_pty.py",
         "test_project_messages_pty.py"
       ],
-      "contract": "Previous diagnostic wraps with correct line and status.",
+      "contract": "Previous diagnostic wraps with correct line and status. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line.",
       "expected_label": "Previous Message Alt+F7"
     },
     "IDE-033": {

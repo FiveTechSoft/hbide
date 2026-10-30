@@ -135,10 +135,11 @@ KF6_CTRL = b'\x1b[17;5~'
 KF9 = b'\x1b[20~'
 
 
+os.makedirs(os.path.join(work, 'folder (12)'), exist_ok=True)
 # fixture: one clean source, one source with a real Harbour error at line 3
 open(os.path.join(work, 'ok1.prg'), 'w').write('? "ok"\nreturn\n')
-open(os.path.join(work, 'bad1.prg'), 'w').write('? "l1"\n? "l2"\n? x ++ y\nreturn\n')
-open(os.path.join(work, 'test.hbp'), 'w').write('ok1.prg\nbad1.prg\n')
+open(os.path.join(work, 'folder (12)', 'bad1.prg'), 'w').write('? "l1"\n? "l2"\n? x ++ y\nreturn\n')
+open(os.path.join(work, 'test.hbp'), 'w').write('ok1.prg\n"folder (12)/bad1.prg"\n')
 
 def wait_for(needles, secs=8.0):
     t0 = time.time()
@@ -208,7 +209,7 @@ check('jump returns to the already-open bad1.prg', 'bad1.prg' in t)
 check('dirty buffer preserved (z edit survives)', 'z? "l1"' in t)
 r, c = row_col()
 check('cursor back on line 3', r == 3)
-disk = open(os.path.join(work, 'bad1.prg')).read()
+disk = open(os.path.join(work, 'folder (12)', 'bad1.prg')).read()
 check('disk file untouched (no silent save)', disk.startswith('? "l1"'))
 
 # no duplicate doc: cycle must be exactly bad1 <-> ok1 (open ok1 first)

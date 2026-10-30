@@ -567,3 +567,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Argumentosentrecomillasvacios desaparecian delparsercompartido: tresmodos devolvianfirst/twowords/last envezdecincoargumentos. ReproduccionconvaloresrealesStart/Script/Debug, noejecucionsimulada.
 - Tokenizer diferencia palabramarcadadecontenidovacio; preserva vacios yposiciones sin cambiarliterales/metacaracteres. Pruebafinalincluyevacioinicial,intermedio,final ypalabraconespacio:7checksPASS. ModeloProjectañade vacios/quotesadyacentes, nuevemodelosPASS candidato.
 - Runner38suites, no baselinecompletaheredada. Windows pendiente.
+
+## 30Oct01:14 Parentheses in diagnostic paths
+- ParserHarbourusabaprimer')': carpetascomo folder(old)/test.prg perdianeldiagnostico. Modelofallabaantes. Ahora busca(digitos)seguidodeError/Warning,sinconfundirparentesisdelpath otexto.
+- ModeloProjectpruebaold/(12)/test(3) yruta/lineaexacta. Nueve modelosPASS candidato. FixtureProjectMessagesrealahoracompila folder(12)/bad1.prg:18checksPASS,incluidos Enterlinea3,rebuild ybufferdirtysinrecarga/duplicado.
+- Capturascompletas Messagesconpath ysaltoexacto inspeccionadas. NoherenciadebaselinegeneralniWindows.
