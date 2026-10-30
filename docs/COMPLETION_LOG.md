@@ -583,3 +583,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Ledgerguardadodocs/evidence/linux-pty-4616d24.json. Runnerrebuildinicial, reutilizacionexplicita delmismoSHAposterior. Lote2interrumpidoporlímiteexternodespuesde3casoscompletos; comprobadosprocesosterminados, EditMenurepetidosoloestePASS.38resultadoscompletosunaRevision.
 - Baseline3351441 seconserva35PASS+expectativaCallsfallida, no se cambiaretroactivamente. Esta nuevabaselineposteriorlasustituyecomocandidatoactual.
 - Noescoberturaexhaustiva100%,noWindowsnative,noacabadoAnimatecertificado; dosstubsvisiblessiguenbloqueandogate. Fuenteproducto sin cambiosenestelotedocumental.
+
+## 30Oct01:52 Compiler Flags acceptance
+- Sin cambio de producto. Nueva pruebaPTYrealTab/Space/Enter/Esc: opciones por defecto; Cancel descarta; OK transmite warnings/debug/strict/incremental/optimize; GCC->MSVC cambiaargv.
+-10checksPASS candidato. hbmk2falsocapturaargv ydevuelveexit7: pruebarealprocesoargumentos/noexito, noafirmaMSVCinstaladonibuildWindows.
+- Runner39suites; baseline38de4616d24 permanecevalida paraesos38casos, nuevocontratosevalidaaparte.48contratosvinculados116acciones,2stubs.

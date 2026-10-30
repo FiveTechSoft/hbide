@@ -381,6 +381,13 @@
         "test_run_empty_args_pty.py"
       ],
       "contract": " Start builds/runs twice from path with spaces/apostrophe/$HOME/semicolon; failed rebuild preserves old executable bytes and never runs stale binary. Quiet nonzero compiler exit never reports Build OK; failure alert leaves editor usable. Empty quoted words retain first/intermediate/last parameter positions in Start, Script and Debug."
+    },
+    "IDE-034": {
+      "expected_label": "Compiler Flags...",
+      "tests": [
+        "test_compiler_flags_pty.py"
+      ],
+      "contract": "Real options dialog with keyboard Tab/Space/Enter/Esc. Default GCC warnings strict flags, Cancel leaves old flags, OK applies warnings/debug/strict/incremental/optimize and compiler selection to actual hbmk2 process argv. A fake hbmk2 captures argv and returns failure, not proof MSVC/other toolchains build successfully."
     }
   }
 }
