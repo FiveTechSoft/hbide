@@ -647,3 +647,9 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Save omitiaspeed0, tab4 ystartupON. Guardar esosdefaults, cambiarlos y restaurar no losreponia:49PASS/3FAILantes enPTYreal.
 - Save escribe siempre RunSpeed, OptionsTab yRunAtStartup/NoRunAtStartup. Sin cambiarelparser de archivosantiguos ni afirmarrestorecompletodelresto. Nuevostestsinspeccionanarchivoemitido yre-guardadotrasrestore.
 -55checksDebugCommandsPASS y diezmodelosPASS candidato. Sin cambio visual: correcciondeestadosserializados yrestaurados. Runner42suites/60contratos, baselineglobal0768ac2historico. Monitorflags/otrossettings aunrequierenauditoria.
+
+## 30Oct03:47 Restore monitor scopes without toggling
+- Guardar LocalON y restaurar estandoactivo loapagaba; siguiente restoreloencendia. PTY11PASS/1FAILantes, efecto realenvariablesZZZ9/AAA1.
+- Public/Private/Static/Local/Global aceptanON/OFFexplicitos y Save siempreescribeestado; comando/menu sinvalor conservatogglelegacy. Estadoinvalido rechazadosincambios.
+-18checksMonitorPASS y55CommandsPASS candidato, diezmodelosPASS. Pruebasrestauracionrepetida, scopesreales Local/Public/Private/Static yOFFdesdeON. Global soloverificaserializacionflag, noimplementavariablesGLOBAL ausentesenVM. CapturacompletaLocaltrasrestoreinspeccionada.
+- No cierraRestorecompleto: Sort/Stack/Case/path yotrosestadosaunpendientesauditoria; baselineglobal0768ac2historico. Runner42suites/60contratos sinincrementos.

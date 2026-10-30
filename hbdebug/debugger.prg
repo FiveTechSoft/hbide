@@ -250,7 +250,7 @@ CREATE CLASS HBDebugger
    METHOD GetSourceFiles()
    METHOD ModuleMatch( cModuleName1, cModuleName2 )
 
-   METHOD Global()
+   METHOD Global( lShow )
 
    METHOD Go()
    METHOD GoToLine( nLine )
@@ -267,7 +267,7 @@ CREATE CLASS HBDebugger
    METHOD LoadVars()
    METHOD LoadCallStack()
 
-   METHOD Local()
+   METHOD Local( lShow )
 
    METHOD Locate( nMode, cValue )
 
@@ -281,8 +281,8 @@ CREATE CLASS HBDebugger
    METHOD PathForFiles( cPathForFiles )
 
    METHOD PrevWindow()
-   METHOD Private()
-   METHOD Public()
+   METHOD Private( lShow )
+   METHOD Public( lShow )
    METHOD Quit()
    METHOD RefreshVars()
    METHOD RestoreAppScreen()
@@ -308,7 +308,7 @@ CREATE CLASS HBDebugger
    METHOD Speed() INLINE ::nSpeed := ::InputBox( "Step delay (in tenths of a second)", ::nSpeed )
 
    METHOD Stack( cParam )
-   METHOD Static()
+   METHOD Static( lShow )
 
    METHOD Step()
 
@@ -894,6 +894,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
    LOCAL cParams := ""
    LOCAL cResult
    LOCAL lValid
+   LOCAL lMonitorState
    LOCAL n
 
    cCommand := AllTrim( cCommand )
@@ -1061,19 +1062,33 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
 
    CASE hb_LeftEq( "MONITOR", cCommand )
 
+      IF hb_LeftEq( "PUBLIC", cParam1 ) .OR. hb_LeftEq( "PRIVATE", cParam1 ) .OR. ;
+         hb_LeftEq( "STATIC", cParam1 ) .OR. hb_LeftEq( "LOCAL", cParam1 ) .OR. ;
+         hb_LeftEq( "GLOBAL", cParam1 )
+         IF ! Empty( cParam2 )
+            IF Upper( cParam2 ) == "ON" .OR. Upper( cParam2 ) == "OFF"
+               lMonitorState := Upper( cParam2 ) == "ON"
+            ELSE
+               cResult := "Monitor expects ON or OFF"
+            ENDIF
+         ENDIF
+      ENDIF
+
       /* Here the order of CASEs makes sense: M P is Public, while M Pr is
        * Private, etc. */
       DO CASE
+      CASE ! Empty( cResult )
+         // Invalid explicit state: report below without changing scopes.
       CASE hb_LeftEq( "PUBLIC", cParam1 )
-         ::Public()
+         ::Public( lMonitorState )
       CASE hb_LeftEq( "PRIVATE", cParam1 )
-         ::Private()
+         ::Private( lMonitorState )
       CASE hb_LeftEq( "STATIC", cParam1 )
-         ::Static()
+         ::Static( lMonitorState )
       CASE hb_LeftEq( "LOCAL", cParam1 )
-         ::Local()
+         ::Local( lMonitorState )
       CASE hb_LeftEq( "GLOBAL", cParam1 )
-         ::Global()
+         ::Global( lMonitorState )
       CASE hb_LeftEq( "ALL", cParam1 )
          ::All()
       CASE hb_LeftEq( "SORT", cParam1 )
@@ -1444,9 +1459,9 @@ METHOD ModuleMatch( cModuleName1, cModuleName2 ) CLASS HBDebugger
    RETURN __dbgModuleMatch( ::pInfo, cModuleName1, cModuleName2 )
 
 
-METHOD PROCEDURE Global() CLASS HBDebugger
+METHOD PROCEDURE Global( lShow ) CLASS HBDebugger
 
-   ::lShowGlobals := ! ::lShowGlobals
+   ::lShowGlobals := hb_defaultValue( lShow, ! ::lShowGlobals )
    ::RefreshVars()
 
    RETURN
@@ -2044,9 +2059,9 @@ METHOD PROCEDURE LoadVars() CLASS HBDebugger  // updates monitored variables
    RETURN
 
 
-METHOD PROCEDURE Local() CLASS HBDebugger
+METHOD PROCEDURE Local( lShow ) CLASS HBDebugger
 
-   ::lShowLocals := ! ::lShowLocals
+   ::lShowLocals := hb_defaultValue( lShow, ! ::lShowLocals )
    ::RefreshVars()
 
    RETURN
@@ -2330,17 +2345,17 @@ METHOD PROCEDURE PrevWindow() CLASS HBDebugger
    RETURN
 
 
-METHOD PROCEDURE Private() CLASS HBDebugger
+METHOD PROCEDURE Private( lShow ) CLASS HBDebugger
 
-   ::lShowPrivates := ! ::lShowPrivates
+   ::lShowPrivates := hb_defaultValue( lShow, ! ::lShowPrivates )
    ::RefreshVars()
 
    RETURN
 
 
-METHOD PROCEDURE Public() CLASS HBDebugger
+METHOD PROCEDURE Public( lShow ) CLASS HBDebugger
 
-   ::lShowPublics := ! ::lShowPublics
+   ::lShowPublics := hb_defaultValue( lShow, ! ::lShowPublics )
    ::RefreshVars()
 
    RETURN
@@ -2575,25 +2590,15 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
    cInfo += "Run Speed " + hb_ntos( ::nSpeed ) + hb_eol()
    cInfo += "Options Tab " + hb_ntos( ::nTabWidth ) + hb_eol()
 
-   IF ::lShowStatics
-      cInfo += "Monitor Static" + hb_eol()
-   ENDIF
+   cInfo += "Monitor Static " + iif( ::lShowStatics, "ON", "OFF" ) + hb_eol()
 
-   IF ::lShowPublics
-      cInfo += "Monitor Public" + hb_eol()
-   ENDIF
+   cInfo += "Monitor Public " + iif( ::lShowPublics, "ON", "OFF" ) + hb_eol()
 
-   IF ::lShowLocals
-      cInfo += "Monitor Local" + hb_eol()
-   ENDIF
+   cInfo += "Monitor Local " + iif( ::lShowLocals, "ON", "OFF" ) + hb_eol()
 
-   IF ::lShowPrivates
-      cInfo += "Monitor Private" + hb_eol()
-   ENDIF
+   cInfo += "Monitor Private " + iif( ::lShowPrivates, "ON", "OFF" ) + hb_eol()
 
-   IF ::lShowGlobals
-      cInfo += "Monitor Global" + hb_eol()
-   ENDIF
+   cInfo += "Monitor Global " + iif( ::lShowGlobals, "ON", "OFF" ) + hb_eol()
 
    IF ::lSortVars
       cInfo += "Monitor Sort" + hb_eol()
@@ -3059,9 +3064,9 @@ METHOD PROCEDURE Stack( cParam ) CLASS HBDebugger
    RETURN
 
 
-METHOD PROCEDURE Static() CLASS HBDebugger
+METHOD PROCEDURE Static( lShow ) CLASS HBDebugger
 
-   ::lShowStatics := ! ::lShowStatics
+   ::lShowStatics := hb_defaultValue( lShow, ! ::lShowStatics )
    ::RefreshVars()
 
    RETURN
