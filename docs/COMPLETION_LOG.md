@@ -694,3 +694,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - BPscriptsejecutabantoggle: restoresobremismobreakpointloeliminaba. ReproduccionfinalfallaprimercomparadorBP; masadelantefixtureviejoaborta(no produceTOTAL), noregistrarPASSglobalantes. Unprimerintentobpnoentrabaporfuenteajena; añadidoResumeparaoperarsobremoduloVMreal.
 - SavesnapshotemiteDeleteALLantesdeBP/WP/TP, luegoreconstruyesetexacto; funcionBPserializapornombre envezdeintentarlineaNIL. Scriptlegacy sigueconsemanticaanterior. Commands68PASS candidato: BPigualtrasrestore,repetido,WP/TPsin duplicados,BPMAIN, setvaciolimpiarposteriores. DiezmodelosPASScandidato.
 - CapturacompletaWatch1+2=3trasdosrestoresinspeccionada, sinfilasduplicadas; captura noacredita por si sola breakpointfuncional. NoafirmaSnapshotRestoreexhaustivo/Windows; baselineglobal0768ac2historico,runner42suites60contratos.
+
+## 30Oct04:53 Restored points stop execution
+- Sin cambio de producto. Nueva suitePTYindependientecompruebaefectoVM, no soloreserializacion: BPline4guardado yrestauradodosveces haceGo detenerseexactamenteline4; TPn guardadorestavradodosveces, cambio realn:=99 yGo detieneenline5convalor99.
+- DoscontratosdeefectoPASS candidato. Runner43suites (antes42), sin nuevobaselineglobal. NocertificaBPfuncionalporfuncion ni todasexpresionesTP; sesemanticaseconservaWPdisplayonly. Baselineglobal0768ac2historico,Windows pendiente.
