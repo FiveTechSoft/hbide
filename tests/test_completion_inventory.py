@@ -111,4 +111,22 @@ class DebuggerInputInventory(unittest.TestCase):
         numeric=next(r for r in rows if 'SearchLine-inputbox' in r['id'])
         self.assertIn('"Line number", 1',numeric['call'])
 
+class MouseRouteInventory(unittest.TestCase):
+    def test_bounded_event_branch_counts_and_identity(self):
+        rows=audit.mouse_routes()
+        self.assertEqual(len(rows),27)
+        self.assertEqual(len({r['id'] for r in rows}),27)
+        for row in rows:
+            line=(ROOT/row['source']).read_text().splitlines()[row['line']-1]
+            self.assertEqual(row['condition'].split(';')[0].strip(),line.rstrip(';').strip())
+            self.assertIn('Pending',row['acceptance'])
+    def test_context_and_non_get_mouse_route(self):
+        rows=audit.mouse_routes()
+        nav=[r for r in rows if 'HBIDE_IsNavKey' in r['context']]
+        self.assertEqual(len(nav),2)
+        self.assertTrue(any('K_LDBLCLK' in r['condition'] and r['source']=='editor.prg' for r in rows))
+        sync=[r for r in rows if 'DsnMouseRoute' in r['context']]
+        self.assertEqual(len(sync),3)
+        self.assertTrue(any('DSNK_MLUP' in r['condition'] for r in sync))
+
 if __name__=='__main__':unittest.main()

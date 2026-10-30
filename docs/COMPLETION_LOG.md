@@ -1580,3 +1580,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   Saved settings reads VM list,16checks.23of27caller links.
 -90runner entries89case/modes+guard. No product change, not all
   indices/sourcebreakpoints/visual/platform acceptance.
+
+### 2026-10-31 Bounded mouse event source inventory
+
+-27event-condition branches across IDE/editor/designer/help/project/
+  HBWindow/debugger/DBWindow, preserving source/context/raw condition.
+  Includes wheel, click/doubleclick and synchronous DOWN/UP/DBL reader
+  routes. Not27gestures/functions or runtime acceptance. Internal drag
+  loops/hit-tests/other controls remain outside this bounded inventory.
+-15Python inventory tests; static function context correctly handles
+  lower-case declarations. No product change or milestone closure.

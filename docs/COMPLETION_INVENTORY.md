@@ -488,6 +488,40 @@ Sitios de llamada InputBox/__dbgInput y constructores HBDbInput. No son campos u
 - DBG-INPUT-debugger-WatchpointEdit-inputbox-1: Actual Point Watch add n evaluates1; Points Enter edit n+2 evaluates3. Add/edit typedEsc or invalid expression then Esc preserve exact saved WP expressions. Points CtrlEnter scalar inspector shows3 and refuses typing; resumed debuggee writes2 unchanged. No structured inspect/depth/side-effect expression or all platform acceptance. Pruebas: [test_debug_watch_modal_pty.py](../tests/test_debug_watch_modal_pty.py)
 - DBG-INPUT-debugger-WatchpointInspect-inputbox-1: Actual Point Watch add n evaluates1; Points Enter edit n+2 evaluates3. Add/edit typedEsc or invalid expression then Esc preserve exact saved WP expressions. Points CtrlEnter scalar inspector shows3 and refuses typing; resumed debuggee writes2 unchanged. No structured inspect/depth/side-effect expression or all platform acceptance. Pruebas: [test_debug_watch_modal_pty.py](../tests/test_debug_watch_modal_pty.py)
 
+## Ramas de eventos de raton acotadas
+
+Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, pulsar/soltar y dobleclick donde declarados; hit-tests, drag internos y otros controles aun pueden faltar.
+
+| ID | Contexto | Condicion | Fuente:linea | Aceptacion |
+| --- | --- | --- | --- | --- |
+| MOUSE-hbide-Activate-1 | METHOD Activate() CLASS HBIde | `if nKeyStd == K_LBUTTONDOWN` | hbide.prg:702 | Pendiente gesto |
+| MOUSE-hbide-Activate-2 | METHOD Activate() CLASS HBIde | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | hbide.prg:723 | Pendiente gesto |
+| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:480 | Pendiente gesto |
+| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:485 | Pendiente gesto |
+| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:490 | Pendiente gesto |
+| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:493 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:1922 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:1923 | Pendiente gesto |
+| MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:435 | Pendiente gesto |
+| MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:438 | Pendiente gesto |
+| MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
+| MOUSE-help-HBHelpInput-2 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWBACKWARD` | help.prg:560 | Pendiente gesto |
+| MOUSE-help-HBHelpInput-3 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_LBUTTONDOWN` | help.prg:562 | Pendiente gesto |
+| MOUSE-help-HBIDEHelpOpen-1 | FUNCTION HBIDEHelpOpen( cTitle, aTopics ) | `CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR` | help.prg:869 | Pendiente gesto |
+| MOUSE-help-HBIDEHelpOpen-2 | FUNCTION HBIDEHelpOpen( cTitle, aTopics ) | `CASE nKey == K_UP .OR. nKey == K_MWFORWARD` | help.prg:871 | Pendiente gesto |
+| MOUSE-help-HBIDEHelpOpen-3 | FUNCTION HBIDEHelpOpen( cTitle, aTopics ) | `CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD` | help.prg:873 | Pendiente gesto |
+| MOUSE-projectui-HBIDEProjectDesktop-1 | FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 ) | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` | projectui.prg:42 | Pendiente gesto |
+| MOUSE-projectui-HBIDEProjectDesktop-2 | FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 ) | `IF nKey == K_LDBLCLK` | projectui.prg:46 | Pendiente gesto |
+| MOUSE-hbwindow-DsnMouseRoute-1 | METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow | `case nCode == DSNK_MLDOWN` | hbwindow.prg:424 | Pendiente gesto |
+| MOUSE-hbwindow-DsnMouseRoute-2 | METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow | `case nCode == DSNK_MLDBL` | hbwindow.prg:433 | Pendiente gesto |
+| MOUSE-hbwindow-DsnMouseRoute-3 | METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow | `case nCode == DSNK_MLUP` | hbwindow.prg:436 | Pendiente gesto |
+| MOUSE-debugger-CallStackProcessKey-1 | METHOD PROCEDURE CallStackProcessKey( nKey ) CLASS HBDebugger | `CASE K_LBUTTONDOWN` | hbdebug/debugger.prg:644 | Pendiente gesto |
+| MOUSE-debugger-HandleEvent-1 | METHOD PROCEDURE HandleEvent() CLASS HBDebugger | `CASE K_LDBLCLK` | hbdebug/debugger.prg:1593 | Pendiente gesto |
+| MOUSE-debugger-HandleEvent-2 | METHOD PROCEDURE HandleEvent() CLASS HBDebugger | `CASE K_LBUTTONDOWN` | hbdebug/debugger.prg:1613 | Pendiente gesto |
+| MOUSE-debugger-HandleEvent-3 | METHOD PROCEDURE HandleEvent() CLASS HBDebugger | `CASE K_RBUTTONDOWN` | hbdebug/debugger.prg:1642 | Pendiente gesto |
+| MOUSE-debugger-ShowAppScreen-1 | METHOD PROCEDURE ShowAppScreen() CLASS HBDebugger | `IF LastKey() == K_LBUTTONDOWN` | hbdebug/debugger.prg:2883 | Pendiente gesto |
+| MOUSE-dbgtwin-ShowModal-1 | METHOD PROCEDURE ShowModal() CLASS HBDbWindow | `CASE K_LBUTTONDOWN` | hbdebug/dbgtwin.prg:248 | Pendiente gesto |
+
 ## Campos de inspector
 
 | Campo | Clave | Tipo | Fuente:linea | Aceptacion |

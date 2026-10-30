@@ -189,6 +189,29 @@ def debugger_inputs():
                 acceptance='Pending call-specific acceptance; shared implementation is not caller coverage'))
     return rows
 
+def mouse_routes():
+    """Bounded mouse-event branches; raw conditions, not gesture acceptance."""
+    sources=['hbide.prg','editor.prg','designer.prg','help.prg','projectui.prg',
+             'hbwindow.prg','hbdebug/debugger.prg','hbdebug/dbgtwin.prg']
+    rows=[]
+    for source in sources:
+        lines=(ROOT/source).read_text().splitlines();context='';seen={}
+        for i,line in enumerate(lines):
+            if re.match(r'(?i)^(?:METHOD|FUNCTION|STATIC FUNCTION|PROCEDURE|STATIC PROCEDURE) ',line):context=line.strip()
+            text=line.strip()
+            if not re.match(r'(?i)^(?:case|if|elseif) ',text):continue
+            if not re.search(r'\b(?:K_(?:L|R|M)BUTTON\w*|K_[LRM]DBLCLK|K_MW(?:FORWARD|BACKWARD)|DSNK_ML\w*)\b',text):continue
+            parts=[line];j=i
+            while parts[-1].rstrip().endswith(';') and j+1<len(lines):
+                j+=1;parts.append(lines[j])
+            method=re.search(r'(?i)(?:METHOD(?: PROCEDURE)?|FUNCTION) (\w+)',context)
+            surface=method.group(1) if method else 'unknown'
+            seen[surface]=seen.get(surface,0)+1
+            rows.append(dict(id=f'MOUSE-{pathlib.Path(source).stem}-{surface}-{seen[surface]}',
+                source=source,line=i+1,context=context,condition=' '.join(p.strip() for p in parts),
+                acceptance='Pending gesture-specific acceptance; event branch is not a unique feature'))
+    return rows
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--json', action='store_true')
@@ -216,11 +239,11 @@ def main():
     for m in menus:
         m['acceptance']=acceptance.get(m['id'])
     report={'scope':'Source inventory only. No runtime or platform certification.',
-            'debugger_inputs':debugger_inputs(),'menus':menus,'ide_modal_fields':ide_modal_fields(),'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),'modal_control_pairs':modal_control_pairs(modal_fields()),
+            'mouse_routes':mouse_routes(),'debugger_inputs':debugger_inputs(),'menus':menus,'ide_modal_fields':ide_modal_fields(),'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),'modal_control_pairs':modal_control_pairs(modal_fields()),
             'inspector_fields': [dict(line=i+1, label=m.group(1), key=m.group(2), kind=m.group(3))
                 for i,line in enumerate((ROOT/'designer.prg').read_text().splitlines())
                 if (m := re.search(r'AAdd\( aFields, \{ \"([^\"]+)\",\s*\"([^\"]+)\",\s*\"([^\"]+)\"',line))],
-            'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields()),'modal_control_pairs':len(modal_control_pairs(modal_fields())),'ide_modal_declarations':len(ide_modal_fields()),'debugger_input_calls':len(debugger_inputs())}}
+            'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields()),'modal_control_pairs':len(modal_control_pairs(modal_fields())),'ide_modal_declarations':len(ide_modal_fields()),'debugger_input_calls':len(debugger_inputs()),'mouse_event_branches':len(mouse_routes())}}
     field_specs=specs.get('modal_field_acceptance',{})
     pair_ids={r['id'] for r in report['modal_control_pairs']}
     for ident,spec in field_specs.items():
@@ -307,6 +330,13 @@ def main():
             if isinstance(field['acceptance'],dict):
                 links=', '.join('['+t+'](../tests/'+t+')' for t in field['acceptance']['tests'])
                 print(f"- {field['id']}: {field['acceptance']['contract']} Pruebas: {links}")
+        print('\n## Ramas de eventos de raton acotadas\n')
+        print('Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, pulsar/soltar y dobleclick donde declarados; hit-tests, drag internos y otros controles aun pueden faltar.\n')
+        print('| ID | Contexto | Condicion | Fuente:linea | Aceptacion |')
+        print('| --- | --- | --- | --- | --- |')
+        for route in report['mouse_routes']:
+            condition=route['condition'].replace('|','&#124;')
+            print(f"| {route['id']} | {route['context']} | `{condition}` | {route['source']}:{route['line']} | Pendiente gesto |")
         print('\n## Campos de inspector\n')
         print('| Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
         print('| --- | --- | --- | --- | --- |')
