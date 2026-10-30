@@ -100,6 +100,34 @@ def modal_fields():
                 conditions=list(stack),acceptance='Pending field-specific acceptance; surface contracts separate'))
     return rows
 
+def modal_control_pairs(fields):
+    """Strict evaluator for the observed type-only guards. Unknown syntax fails."""
+    source=(ROOT/'designer.prg').read_text()
+    constants=dict(re.findall(r'^#define (DSN_\w+)\s+"([^"]+)"',source,re.M))
+    controls=['DSN_SAY','DSN_GET','DSN_CHECKBOX','DSN_BUTTON','DSN_RADIO','DSN_LISTBOX','DSN_COMBOBOX']
+    def allows(condition,control):
+        condition=condition.strip()
+        if condition.startswith('(') and condition.endswith(')'):condition=condition[1:-1].strip()
+        if ' .or. ' in condition:return any(allows(part,control) for part in condition.split(' .or. '))
+        match=re.fullmatch(r'oCtrl\[ "type" \] (==|!=|\$) (.+)',condition)
+        if not match:raise ValueError('Unresolved modal condition: '+condition)
+        op,rhs=match.groups()
+        if op=='$':
+            terms=rhs.split(' + "|" + ')
+            if any(term not in controls for term in terms):raise ValueError('Unknown modal type set: '+rhs)
+            return constants[control] in '|'.join(constants[t] for t in terms)
+        if rhs not in controls:raise ValueError('Unknown modal type: '+rhs)
+        return (control==rhs) if op=='==' else (control!=rhs)
+    pairs=[]
+    for field in fields:
+        targets=controls if field['surface']=='EditProperties' else ['dialog' if field['surface']=='DlgProperties' else 'filename']
+        for control in targets:
+            if all(allows(c,control) for c in field['conditions']):
+                pairs.append(dict(id=field['id']+'-'+control,declaration_id=field['id'],
+                    control=constants.get(control,control),surface=field['surface'],variable=field['variable'],
+                    acceptance='Pending field-specific acceptance; source condition expansion only'))
+    return pairs
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--json', action='store_true')
@@ -127,11 +155,11 @@ def main():
     for m in menus:
         m['acceptance']=acceptance.get(m['id'])
     report={'scope':'Source inventory only. No runtime or platform certification.',
-            'menus':menus,'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),
+            'menus':menus,'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),'modal_control_pairs':modal_control_pairs(modal_fields()),
             'inspector_fields': [dict(line=i+1, label=m.group(1), key=m.group(2), kind=m.group(3))
                 for i,line in enumerate((ROOT/'designer.prg').read_text().splitlines())
                 if (m := re.search(r'AAdd\( aFields, \{ \"([^\"]+)\",\s*\"([^\"]+)\",\s*\"([^\"]+)\"',line))],
-            'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields())}}
+            'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields()),'modal_control_pairs':len(modal_control_pairs(modal_fields()))}}
     if args.json:
         print(json.dumps(report,indent=2))
     else:
@@ -160,6 +188,13 @@ def main():
         for field in report['modal_fields']:
             conditions=' AND '.join(field['conditions']).replace('|','&#124;') or 'Siempre'
             print(f"| {field['id']} | {field['label']} | {field['kind']} {field['picture']} | {conditions} | {field['source']}:{field['line']} | Pendiente por campo; contratos de superficie separados |")
+        print('\n## Pares control/campo modal\n')
+        print('Expansion estricta de condiciones tipo-fuente; falla con sintaxis desconocida. Incluye botones. No es aceptacion runtime ni denominador de funciones.\n')
+        print('| Control / superficie | Campos declarados | Aceptacion |')
+        print('| --- | --- | --- |')
+        for control in dict.fromkeys(r['control'] for r in report['modal_control_pairs']):
+            fields=[r['variable'] for r in report['modal_control_pairs'] if r['control']==control]
+            print(f"| {control} | {', '.join(fields)} | Pendiente por par; contratos de superficie separados |")
         print('\n## Campos de inspector\n')
         print('| Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
         print('| --- | --- | --- | --- | --- |')

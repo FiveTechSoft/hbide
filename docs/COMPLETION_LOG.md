@@ -1276,3 +1276,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Field acceptance stays pending; four existing surface contracts remain
   linked separately. Extraction is source wiring, not native modal behavior.
   Unrelated dialogs, gestures and full per-control expansion still pending.
+
+### 2026-10-30 Modal control/field expansion
+
+- Strict type-only condition parser expands30declarations to79control/field
+  pairs (buttons included), with stable IDs and acceptance still pending.
+  Unknown guard syntax fails instead of guessing; no arbitrary eval.
+- Eight Python inventory tests check exact surface counts, source/labels,
+  nested guards, repeated fields, pictures/buttons, determinism, control
+  exclusions and fail-closed unknown conditions. These are extractor tests,
+  not79native modal acceptance tests or a global function denominator.

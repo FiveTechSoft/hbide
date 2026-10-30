@@ -243,6 +243,22 @@ Extraidas de EditProperties/DlgProperties/SelectFileName. Condiciones literales,
 | DSN-FIELD-SelectFileName-lDummy-1 | &OK | button  | Siempre | designer.prg:1602 | Pendiente por campo; contratos de superficie separados |
 | DSN-FIELD-SelectFileName-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1606 | Pendiente por campo; contratos de superficie separados |
 
+## Pares control/campo modal
+
+Expansion estricta de condiciones tipo-fuente; falla con sintaxis desconocida. Incluye botones. No es aceptacion runtime ni denominador de funciones.
+
+| Control / superficie | Campos declarados | Aceptacion |
+| --- | --- | --- |
+| say | nRow, nCol, cCaption, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
+| get | nRow, nCol, cVariable, nWidth, cWhen, cValid, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
+| checkbox | nRow, nCol, cCaption, cVariable, cWhen, cValid, cFocus, cState, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
+| button | nRow, nCol, cCaption, cAccel, cAction, lBrackets, cWhen, cValid, cFocus, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
+| radiogroup | nRow, nCol, cVariable, cItems, cWhen, cValid, cFocus, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
+| listbox | nRow, nCol, cVariable, cItems, nWidth, nHeight, cWhen, cValid, cFocus, cState, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
+| combobox | nRow, nCol, cVariable, cItems, nWidth, nHeight, cWhen, cValid, cFocus, cState, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
+| dialog | cCaption, cName, nWidth, nHeight, cClrBack, cClrText, cClrFocus, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
+| filename | cFile, lDummy, lDummy | Pendiente por par; contratos de superficie separados |
+
 ## Campos de inspector
 
 | Campo | Clave | Tipo | Fuente:linea | Aceptacion |
