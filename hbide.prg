@@ -1307,6 +1307,11 @@ METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
       HBIDE_MsgAlert( "Cannot read recovery journal. Journal kept unchanged; current document untouched." )
       return nil
    endif
+   if hEncoding != NIL .and. ! hEncoding[ "raw" ] .and. ! hb_cdpExists( hEncoding[ "cp" ] )
+      HBIDE_MsgAlert( "Recovery has unknown editor codepage (" + hEncoding[ "cp" ] + ;
+         "). Journal kept unchanged; current document untouched." )
+      return nil
+   endif
    if hEncoding != NIL .and. ! hEncoding[ "raw" ] .and. ;
       hEncoding[ "cp" ] != hb_cdpSelect()
       cConverted := hb_Translate( cText, hEncoding[ "cp" ], hb_cdpSelect() )

@@ -2,6 +2,7 @@ import glob, os, pty, sys, struct, fcntl, termios, select, time, signal, shutil,
 
 # Linux PTY: unreadable or malformed journals never replace the current document.
 MALFORMED = "--malformed-envelope" in sys.argv
+UNKNOWN_CP = "--unknown-codepage" in sys.argv
 JOURNAL_BYTES = b"\x00HBIDE-J1\n1012:E" if MALFORMED else b"UNSAVED JOURNAL BYTES"
 ROWS, COLS = 25, 80
 BIN = os.environ.get('HBIDE_BIN', os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'hbide'))
@@ -69,6 +70,8 @@ class Scr:
     def text(self):
         return '\n'.join(''.join(row).rstrip() for row in self.g)
 
+if UNKNOWN_CP: JOURNAL_BYTES = b'\x00HBIDE-J1\n1007:NO_SUCH' + b'UNSAVED \xe9 BYTES'
+
 home = tempfile.mkdtemp(prefix='hbide-df-home-')
 rec  = tempfile.mkdtemp(prefix='hbide-df-rec-')
 work = tempfile.mkdtemp(prefix='hbide-df-work-')
@@ -91,7 +94,7 @@ target=os.path.join(work,'precious.prg')
 open(target,'wb').write(b'ORIGINAL DISK BYTES')
 open(journal,'wb').write(JOURNAL_BYTES)
 open(os.path.join(rec,'unreadable--dead.target'),'w').write(target)
-if not MALFORMED: os.chmod(journal,0)
+if not (MALFORMED or UNKNOWN_CP): os.chmod(journal,0)
 pid, fd = pty.fork()
 if pid == 0:
     os.chdir(work)
@@ -136,13 +139,13 @@ def execution_line():
 try:
     assert wait_for('interrupted session'),scr.text()
     send(b'r');pump(.5)
-    assert 'Cannot read recovery journal' in scr.text(),('unreadable journal must not recover as empty buffer',scr.text())
+    assert ('unknown editor codepage' if UNKNOWN_CP else 'Cannot read recovery journal') in scr.text(),('unreadable journal must not recover as empty buffer',scr.text())
     send(b'\r');pump(.4)
     assert open(target,'rb').read()==b'ORIGINAL DISK BYTES'
     os.chmod(journal,0o600)
     assert open(journal,'rb').read()==JOURNAL_BYTES
     assert 'noname.prg' in scr.text(),('failed recovery must preserve current document',scr.text())
-    print('PASS', 'malformed envelope' if MALFORMED else 'unreadable journal', 'reports error and preserves disk journal and current document')
+    print('PASS', 'unknown codepage' if UNKNOWN_CP else ('malformed envelope' if MALFORMED else 'unreadable journal'), 'reports error and preserves disk journal and current document')
 finally:
     try:os.kill(pid,signal.SIGHUP)
     except ProcessLookupError:pass
