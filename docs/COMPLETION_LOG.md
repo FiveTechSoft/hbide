@@ -664,3 +664,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Q13 reproducido con Tile, dosWindowNext ysave/restore: geometria antes/despuescambiabaentreCode/Calls/Command porasignarrectangulos desdefocoactual, no ventanaoriginal. Testaisladocomparaarchivoantes/re-guardadoyvisibilidadCalls/BUMP.
 - SaveusaWindowSelectCODE/COMMAND/CALLSTACK/MONITOR/POINTS envezdecicloNext, conservafocofinal; posicionorigenantesdesizeevitaclampingporelrectanguloanterior. Nuevocomando seleccionaventanaexistentevisible,rechazaotras. Archivoslegacy siguenleyendosecomoscripts, no seatribuyecorreccionretroactiva.
 - Commands56,Monitor18,CallStackconlayoutampliado y10modelosPASS candidato. CapturacompletaCode/Calls/Commandtrasrestoreinspeccionada, sinpaneltapado. Pruebarestore repetido ygeometriabyteigual. Noafirmaiconized/zoom/hidden/windowsetdiferente resueltosniWindows; Q13parcialhastaampliarcasos.
+
+## 30Oct04:13 Restore iconized window state
+- Q13nuevofallo: guardarCallsiconizedemitiaWindowSize3x15, restoreloexpandia yrechazabatamañomenor4; mostrabaBUMP envezdeicono. PTYaisladofallabaantes.
+- Save guarda rectangulooriginaldesdeelregistroicon yestadoON/OFF. WindowIconize admiteestadoexplicito idempotente, sinvalorconservatoggle. Restoreexpandeantesderectangulo yreaplicaestado, sinperderbrowser ni sugeometriaoriginal.
+- CallStackampliadoPASS (restoreiconrepetido, ocultacontenido, expanderecuperaCalls/BUMP), Commands56PASS y diezmodelosPASS candidato. Dos capturascompletasicon/restauradoinspeccionadas. Q13parcial: zoom/hidden/windowsetdiferenteaunpendiente; noWindows. Runner42suites/60contratos, baselineglobal0768ac2historico.

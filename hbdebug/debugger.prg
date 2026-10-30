@@ -349,7 +349,7 @@ CREATE CLASS HBDebugger
    METHOD VarSetValue( aVar, uValue )
 
    METHOD IsWindowIconized( oWnd )
-   METHOD WindowIconize()
+   METHOD WindowIconize( lIconized )
    METHOD WindowLayout( cMode )
    METHOD WindowResizeStep( nStep )
    METHOD WindowEdit( lSize )
@@ -1307,7 +1307,16 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
       CASE hb_LeftEq( "CASCADE", cParam1 )
          ::WindowLayout( "CASCADE" )
       CASE hb_LeftEq( "ICONIZE", cParam1 )
-         ::WindowIconize()
+         DO CASE
+         CASE Empty( cParam2 )
+            ::WindowIconize()
+         CASE Upper( cParam2 ) == "ON"
+            ::WindowIconize( .T. )
+         CASE Upper( cParam2 ) == "OFF"
+            ::WindowIconize( .F. )
+         OTHERWISE
+            cResult := "Iconize expects ON or OFF"
+         ENDCASE
       OTHERWISE
          cResult := "Command error"
       ENDCASE
@@ -2564,7 +2573,7 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
    LOCAL n
    LOCAL oWnd
    LOCAL aBreak, aWatch
-   LOCAL cWindowName
+   LOCAL cWindowName, nIcon, aRect
 
    IF Empty( cFileName )
       ::cSettingsFileName := ::InputBox( "File name", ::cSettingsFileName )
@@ -2632,12 +2641,20 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
             iif( oWnd == ::oWndCommand, "COMMAND", ;
             iif( oWnd == ::oWndStack, "CALLSTACK", ;
             iif( oWnd == ::oWndVars, "MONITOR", "POINTS" ) ) ) )
+         nIcon := AScan( ::aWindowIcon, {| a | a[ 1 ] == oWnd } )
+         aRect := { oWnd:nTop, oWnd:nLeft, oWnd:nBottom, oWnd:nRight }
+         IF nIcon > 0
+            aRect := { ::aWindowIcon[ nIcon, 2 ], ::aWindowIcon[ nIcon, 3 ], ;
+                       ::aWindowIcon[ nIcon, 4 ], ::aWindowIcon[ nIcon, 5 ] }
+         ENDIF
          cInfo += "Window Select " + cWindowName + hb_eol() + ;
+            "Window Iconize OFF" + hb_eol() + ;
             "Window Move 1 0" + hb_eol() + ;
-            "Window Size " + hb_ntos( oWnd:nBottom - oWnd:nTop + 1 ) + " " + ;
-            hb_ntos( oWnd:nRight - oWnd:nLeft + 1 ) + hb_eol() + ;
-            "Window Move " + hb_ntos( oWnd:nTop ) + " " + ;
-            hb_ntos( oWnd:nLeft ) + hb_eol()
+            "Window Size " + hb_ntos( aRect[ 3 ] - aRect[ 1 ] + 1 ) + " " + ;
+            hb_ntos( aRect[ 4 ] - aRect[ 2 ] + 1 ) + hb_eol() + ;
+            "Window Move " + hb_ntos( aRect[ 1 ] ) + " " + ;
+            hb_ntos( aRect[ 2 ] ) + hb_eol() + ;
+            "Window Iconize " + iif( nIcon > 0, "ON", "OFF" ) + hb_eol()
       NEXT
       oWnd := ::aWindows[ ::nCurrentWindow ]
       cWindowName := iif( oWnd == ::oWndCode, "CODE", ;
@@ -4030,13 +4047,16 @@ METHOD PaintMenuBar() CLASS HBDebugger
 METHOD IsWindowIconized( oWnd ) CLASS HBDebugger
    RETURN AScan( ::aWindowIcon, {| a | a[ 1 ] == oWnd } ) > 0
 
-METHOD WindowIconize() CLASS HBDebugger
+METHOD WindowIconize( lIconized ) CLASS HBDebugger
    LOCAL oWnd := ::aWindows[ ::nCurrentWindow ]
    LOCAL nAt, nTop, nLeft
    IF oWnd == NIL .OR. ! oWnd:lVisible
       RETURN Self
    ENDIF
    nAt := AScan( ::aWindowIcon, {| a | a[ 1 ] == oWnd } )
+   IF HB_ISLOGICAL( lIconized ) .AND. lIconized == ( nAt > 0 )
+      RETURN Self
+   ENDIF
    IF nAt > 0
       /* Restore: resize while the browser is still detached so its
          viewport (scroll and cursor row) survives the round trip. */
