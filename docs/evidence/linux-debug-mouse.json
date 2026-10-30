@@ -1,0 +1,49 @@
+{
+  "scope": "CleanLinux DebugMouse7checks+DebugValue9checks samefreshbinary;15inventory33docs. No product change.20models belong56d9b93,not rerun. Prefix check falsepositive in initial harness caught by exactdebuggee output and corrected before commit. Not visual/Windows/global acceptance.",
+  "runs": [
+    {
+      "source": "fdad9be324e8790cb62fa855e8ad1ba33d7ae215",
+      "tracked_changes": "",
+      "binary_sha256": "db865eb88f2b0372bb4ec8a2e54345d4bdfdc0efa8998a407e377776542b40a1",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "0c31112f3aad8baca7a028c9310efad38c3fe9fa96969884bcdc113c97cf4949",
+      "case": "debug-mouse",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_mouse_pty.py"
+      ],
+      "started": 1793403427.7728744,
+      "seconds": 10.14,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "dfa6f54b1e8767372ad9f806288b3a4d4dd62d12436fcdd2979ab9bac5430c75",
+      "log": "/tmp/hbide-debug-mouse-pty/debug-mouse-1793403427772869787.log"
+    },
+    {
+      "source": "fdad9be324e8790cb62fa855e8ad1ba33d7ae215",
+      "tracked_changes": "",
+      "binary_sha256": "db865eb88f2b0372bb4ec8a2e54345d4bdfdc0efa8998a407e377776542b40a1",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "0c31112f3aad8baca7a028c9310efad38c3fe9fa96969884bcdc113c97cf4949",
+      "case": "debug-value-modal",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_value_modal_pty.py"
+      ],
+      "started": 1793403437.9125507,
+      "seconds": 14.45,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "11a5a8d194be3a41a5ff4a2bc2166808926c0a423522cd8ea2664e8655827c10",
+      "log": "/tmp/hbide-debug-mouse-pty/debug-value-modal-1793403437912546096.log"
+    }
+  ]
+}
