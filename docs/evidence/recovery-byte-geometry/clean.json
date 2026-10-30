@@ -1,0 +1,11 @@
+{
+  "source": "2a3d363ca6afcad83b44e6b9daf667a1f68b9397",
+  "tracked_changes": "",
+  "scope": "Separate test entrypoint compiled with unchanged production source. ApplyDisplay and actual MaxRow/MaxCol verified before direct RecoveryCompareView. Not startup25x80, scroll exhaustive or Windows certification.",
+  "test_binary_sha256": "47cd8c3bbad07552fb8d33a2d55d2cf1c25423fbef1caf605741cab03052906e",
+  "dimensions": [
+    "25x80",
+    "40x120"
+  ],
+  "screenshots_inspected": true
+}
