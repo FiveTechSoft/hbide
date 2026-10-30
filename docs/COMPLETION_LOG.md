@@ -740,3 +740,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - SaveomitiaCodeblockTrace: guardarON,alternarOFF,restaurardosvecesdejabaOFF; F8entrabalinea5envezde4. ReproduccionVMrealantesfallaexacta.
 - ComandoCodeblockTraceON/OFFexplicito ySaveescribeestado; sinvalor/menu conservatoggle. Fixtureexistenteampliadoambosmodosguardados/restauradosdosvecesPASS: F8line4ON,line5OFF. DiezmodelosPASScandidato. Unerrorintermediodelparche(nombreparametroomitido)se corrigioantesdecommit, no productopublicado.
 - Sin cambio visualnuevo,nocertificaAnimate. Baseline43sobre63239d2historico,Windows pendiente.
+
+## 30Oct06:15 Link expanded settings acceptance
+- Sin cambio de producto. Inventario enlaza Speed,TabWidth,SaveSettings yRestoreSettings con suspruebasreales acumuladas;64contratos/116acciones. No conviertecontarcontratos en completitud niaseguracoberturaexhaustiva.
+- Contratosnombranlimites: Animateacabado/Windows, scriptsmalformadostransaccionales ylayoutsexhaustivospendientes. Runner43suites; baseline43historico63239d2noheredado.

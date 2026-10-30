@@ -479,6 +479,43 @@
       ],
       "contract": "Mono Display toggles from menu/legacy command; explicit ON/OFF sets state and rejects invalid words. Saved settings use explicit ON/OFF so restore preserves mono or color and repeated mono restores do not toggle.",
       "expected_label": "mono Display"
+    },
+    "DBG-020": {
+      "tests": [
+        "test_debug_restored_points_pty.py",
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Speed dialog bounds 0..65534, Cancel preserves previous state; emitted settings reflect the bounded value. Does not certify Animate frame quality.",
+      "expected_label": "sPeed..."
+    },
+    "DBG-041": {
+      "tests": [
+        "test_debug_restored_points_pty.py",
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Tab Width dialog/command agree on bounds1..16, Cancel preserves prior value, real tabbed source reindents live. Browser absent is guarded, not separately certified.",
+      "expected_label": "Tab Width..."
+    },
+    "DBG-044": {
+      "tests": [
+        "test_debug_functions_pty.py",
+        "test_debug_commands_pty.py",
+        "test_debug_restored_points_pty.py"
+      ],
+      "contract": "Save Settings menu writes a readable settings file. Commands exercise explicit states and exact point snapshots. Failed writes are visible; symlink saves refuse without changing link/target, new settings retained in recovery temp. Linux mode0640 preserved. Not a full settings/Windows acceptance.",
+      "expected_label": "Save Settings..."
+    },
+    "DBG-045": {
+      "tests": [
+        "test_debug_functions_pty.py",
+        "test_debug_commands_pty.py",
+        "test_debug_callstack_pty.py",
+        "test_debug_monitor_pty.py",
+        "test_debug_codeblock_pty.py",
+        "test_debug_restored_points_pty.py"
+      ],
+      "contract": "Restore Settings menu applies source numbers; commands restore explicit scalar/monitor/case/codeblock states and exact point snapshots. Repeated restored BP/TP stop the real VM. Named layouts/icon/zoom and recreated Calls/hidden Monitor have focused tests. Missing explicit file reports path. Not transactional malformed-script or exhaustive layout acceptance.",
+      "expected_label": "Restore Settings..."
     }
   }
 }
