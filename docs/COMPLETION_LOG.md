@@ -836,3 +836,4 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Reproducción: `delete bp 4294967296` borraba BP0 porque la API VM convierte el índice a entero C. Ser una cadena completa de dígitos no bastaba.
 - BreakPointDelete comprueba el rango del array VM antes de llamar al borrado. RestoredPoints conserva BP ante4294967296,4294967297 y un entero mucho mayor;0 sigue borrando. Candidato PASS y diez modelos PASS.
 - WP/TP ya comprobaba rango antes de la API; no se atribuye este fallo a esa ruta. Sin cambio visual, sin aceptación completa ni Windows heredada.
+- Repetición limpia4dd4ae3: RestoredPoints PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-bp-range-4dd4ae3.json. Binario c8b4cf1a22c4fc0b06359abc912e892cb1a7488cc409b9177b9b8895c867e353.
