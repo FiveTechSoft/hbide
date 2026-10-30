@@ -851,7 +851,7 @@ return oMenu
 
 METHOD Start() CLASS HbIde
 
-   local cFile := AllTrim( ::oEditor:cFile ), cExe, cOut, cBase, cExeTmp, cErr := "", nRc, cRecovery := "", cCommand, oError
+   local cFile := ::oEditor:cFile, cExe, cOut, cBase, cExeTmp, cErr := "", nRc, cRecovery := "", cCommand, oError
    local aDiag, nFirstErr
 
    if HBIDEProjectTokens( ::cRunArgs ) == nil

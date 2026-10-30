@@ -965,3 +965,5 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - M2 probe: finite256KiB/stdout+256KiB/stderr antesSTARTED sin deadlock; groupownercancel y parent/childgone. Scriptausente sale2, probeavisa fallo sinseñalizargrupo. Noequivale a launcher ausente ni floodinfinito, no integraciónproducto. Harness reproducible tests/probes/check_cancel_owned.py.
 
 - M2 negativo: líder sale0 antesreadiness, probeOWNEDfalse/CANCELLEDfalse/no señal, hijo siguevivo alretornar. Fixturefinito3s confirmado gonealexpirar. Exit0noequivale árbolterminado. Preservar como limitación, no integrar hasta resolver supervisiondescendientes.
+
+- M2 Start: PTY de recuperación con nombre terminado en espacio reproduce argv de compilador apuntando al vecino sin espacio, por AllTrim del nombre de documento ya resuelto. Start conserva ahora ruta exacta al generar comando; GET de selección sigue quitando padding donde corresponde. Prueba usa compilador falso que registra argv y falla7, sin ejecutar binario/vecino. No promete compilar todos los nombresPOSIX ni resuelve cancelación.

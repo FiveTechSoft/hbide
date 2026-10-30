@@ -1,10 +1,12 @@
+import json
 import glob, os, pty, sys, struct, fcntl, termios, select, time, signal, shutil, tempfile, re
 
 # Linux PTY: unreadable or malformed journals never replace the current document.
 MALFORMED = "--malformed-envelope" in sys.argv
 INVALID_TARGET = "--invalid-target" in sys.argv
 INVALID_FLAGS = "--invalid-flags" in sys.argv
-TARGET_SPACE = "--target-space" in sys.argv
+START_TARGET_SPACE = "--start-target-space" in sys.argv
+TARGET_SPACE = "--target-space" in sys.argv or START_TARGET_SPACE
 UNKNOWN_CP = "--unknown-codepage" in sys.argv
 JOURNAL_BYTES = b"\x00HBIDE-J1\n1012:E" if MALFORMED else b"UNSAVED JOURNAL BYTES"
 ROWS, COLS = 25, 80
@@ -101,6 +103,12 @@ open(target,'wb').write(b'ORIGINAL DISK BYTES')
 open(journal,'wb').write(JOURNAL_BYTES)
 open(os.path.join(rec,'unreadable--dead.target'),'w').write(target+'\x00other.prg' if INVALID_TARGET else target)
 if not (MALFORMED or UNKNOWN_CP or TARGET_SPACE or INVALID_FLAGS or INVALID_TARGET): os.chmod(journal,0)
+argsfile=os.path.join(work,'compiler-args.json')
+if START_TARGET_SPACE:
+    fake=os.path.join(work,'bin');os.mkdir(fake)
+    compiler=os.path.join(fake,'hbmk2')
+    open(compiler,'w').write('#!/usr/bin/python3\nimport json,sys\nopen('+repr(argsfile)+',"w").write(json.dumps(sys.argv[1:]))\nsys.exit(7)\n')
+    os.chmod(compiler,0o755);env['PATH']=fake+os.pathsep+env['PATH']
 pid, fd = pty.fork()
 if pid == 0:
     os.chdir(work)
@@ -150,6 +158,13 @@ try:
         assert open(target,'rb').read()==JOURNAL_BYTES, ('exact recovered target must receive save',scr.text())
         assert open(neighbor,'rb').read()==b'NEIGHBOR MUST STAY', 'neighbor changed'
         print('PASS recovery/save preserves trailing-space target and neighboring file')
+        if START_TARGET_SPACE:
+            send(b'\x1br');pump(.3);send(b's');pump(.6)
+            assert os.path.exists(argsfile),scr.text()
+            args=json.load(open(argsfile))
+            assert args[-1]==target,('compiler source must retain exact target',args,target)
+            assert open(neighbor,'rb').read()==b'NEIGHBOR MUST STAY'
+            print('PASS Start passes exact trailing-space source to compiler; failure never runs neighbor')
     else:
         assert ('Invalid recovery target' if INVALID_TARGET else ('unknown editor codepage' if UNKNOWN_CP else 'Cannot read recovery journal')) in scr.text(),('unreadable journal must not recover as empty buffer',scr.text())
         send(b'\r');pump(.4)
