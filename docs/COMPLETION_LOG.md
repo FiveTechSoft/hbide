@@ -1362,3 +1362,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   First queued sequence tabbed once too far on GET/checkbox and hit Cancel;
   corrected native field counts, no product defect. No runtime execution,
   invalid identifiers, exhaustive item grammar, pixels or Windows claimed.
+
+### 2026-10-30 Native modal newly typed event matrix
+
+- Twenty exposed When/Valid/Focus/State pairs across six controls accept
+  newly typed quoted synthetic expressions through actual EditProperties,
+  dirty/oneUndo and exact Undo/Redo. Field order is modal, not inspector.
+- Seventeen new pair links and three upgraded Button prefill-only links:
+ 47of79 source pairs now focal linked, not a completion fraction. Button
+  State is not exposed. No handler execution, product fix or pixels/platform
+  acceptance. Button Action remains separately prefill-only acceptance.

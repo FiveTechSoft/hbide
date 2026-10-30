@@ -743,21 +743,21 @@
     },
     "DSN-FIELD-EditProperties-cWhen-1-DSN_BUTTON": {
       "tests": [
-        "test_designer_property_cancel.prg"
+        "test_designer_property_geometry.prg"
       ],
-      "contract": "Actual Button modal acceptance preserves prefilled long quoted handler string and exact undo; Action edited then Esc preserves it. Not handler execution, newly typed acceptance or all event fields/controls."
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
     },
     "DSN-FIELD-EditProperties-cValid-1-DSN_BUTTON": {
       "tests": [
-        "test_designer_property_cancel.prg"
+        "test_designer_property_geometry.prg"
       ],
-      "contract": "Actual Button modal acceptance preserves prefilled long quoted handler string and exact undo; Action edited then Esc preserves it. Not handler execution, newly typed acceptance or all event fields/controls."
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
     },
     "DSN-FIELD-EditProperties-cFocus-1-DSN_BUTTON": {
       "tests": [
-        "test_designer_property_cancel.prg"
+        "test_designer_property_geometry.prg"
       ],
-      "contract": "Actual Button modal acceptance preserves prefilled long quoted handler string and exact undo; Action edited then Esc preserves it. Not handler execution, newly typed acceptance or all event fields/controls."
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
     },
     "DSN-FIELD-EditProperties-cVariable-1-DSN_GET": {
       "tests": [
@@ -806,6 +806,108 @@
         "test_designer_property_geometry.prg"
       ],
       "contract": "Actual queued modal variable/items edits accepted byte-exact, one undo/dirty and exact undo/redo. Items include internal spaces and quotes. Chosen valid values only; not invalid identifiers, all item grammar, runtime bindings or pixels/platform."
+    },
+    "DSN-FIELD-EditProperties-cWhen-1-DSN_GET": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cValid-1-DSN_GET": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cWhen-1-DSN_CHECKBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cValid-1-DSN_CHECKBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cFocus-1-DSN_CHECKBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cState-1-DSN_CHECKBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cWhen-1-DSN_RADIO": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cValid-1-DSN_RADIO": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cFocus-1-DSN_RADIO": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cWhen-1-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cValid-1-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cFocus-1-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cState-1-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cWhen-1-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cValid-1-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cFocus-1-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
+    },
+    "DSN-FIELD-EditProperties-cState-1-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual EditProperties newly typed synthetic event string accepted byte-exact, dirty/oneUndo and exact Undo/Redo. Twenty exposed control/event pairs; no private handler execution, event runtime or pixel/platform acceptance."
     }
   }
 }

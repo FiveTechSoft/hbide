@@ -2,7 +2,7 @@
 #include "inkey.ch"
 #include "set.ch"
 PROCEDURE Main()
-   LOCAL o:=HbDesigner():New(PropHost():New()),h,cType,n,aSize,hAfter,nRemain,cVariable,cItems
+   LOCAL o:=HbDesigner():New(PropHost():New()),h,cType,n,aSize,hAfter,nRemain,cVariable,cItems,aKeys,cKey,cValue,nInitial
    SetMode(40,120)
    Set(_SET_TYPEAHEAD,512)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
@@ -125,6 +125,40 @@ PROCEDURE Main()
       Check(DsnSnapEqual(h,DsnSnapshot(o)),cType+" modal binding undo exact")
       o:Redo()
       Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),cType+" modal binding redo exact")
+   NEXT
+   // Native modal event typing. Field order is pinned independently of
+   // inspector order: this test exercises EditProperties, not InspEdit.
+   FOR EACH cType IN {"get","checkbox","button","radiogroup","listbox","combobox"}
+      aKeys:={"when","valid"}
+      IF cType!="get"
+         AAdd(aKeys,"focus")
+      ENDIF
+      IF cType $ "checkbox|listbox|combobox"
+         AAdd(aKeys,"state")
+      ENDIF
+      nInitial:=If(cType=="get",4,If(cType=="checkbox",4,If(cType=="button",6,If(cType=="radiogroup",4,6))))
+      FOR EACH cKey IN aKeys
+         o:aControls:={DsnNewControl(cType,{})};o:nSelected:=1
+         o:aUndo:={};o:aRedo:={};o:lDirty:=.F.
+         h:=DsnSnapshot(o)
+         FOR n:=1 TO nInitial+cKey:__enumIndex()-1
+            hb_keyPut(K_TAB)
+         NEXT
+         cValue:="Synthetic_"+cKey+"( 'quoted argument' )"
+         hb_keyPut(K_CTRL_Y);hb_keyPut(cValue)
+         FOR n:=1 TO Len(aKeys)-cKey:__enumIndex()+1
+            hb_keyPut(K_TAB)
+         NEXT
+         hb_keyPut(K_SPACE)
+         o:EditProperties()
+         Check(o:aControls[1,cKey]==cValue,cType+" modal typed "+cKey+" exact")
+         Check(o:lDirty.and.Len(o:aUndo)==1,cType+" modal event one undo")
+         hAfter:=DsnSnapshot(o)
+         o:Undo()
+         Check(DsnSnapEqual(h,DsnSnapshot(o)),cType+" modal event undo exact")
+         o:Redo()
+         Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),cType+" modal event redo exact")
+      NEXT
    NEXT
    ? "PASS final property footprints GET/list/combo/button and undo"
 
