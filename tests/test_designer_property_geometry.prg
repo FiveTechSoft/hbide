@@ -2,7 +2,7 @@
 #include "inkey.ch"
 #include "set.ch"
 PROCEDURE Main()
-   LOCAL o:=HbDesigner():New(PropHost():New()),h,cType,n,aSize
+   LOCAL o:=HbDesigner():New(PropHost():New()),h,cType,n,aSize,hAfter
    SetMode(40,120)
    Set(_SET_TYPEAHEAD,512)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
@@ -69,6 +69,26 @@ PROCEDURE Main()
    Check(o:aControls[1]["col"]+aSize[1]<=38,"button final caption footprint")
    o:Undo()
    Check(DsnSnapEqual(h,DsnSnapshot(o)),"button undo exact")
+   // Button accelerator and brackets are actual modal fields, not helper input.
+   o:aControls:={DsnNewControl("button",{})};o:nSelected:=1
+   o:aUndo:={};o:aRedo:={};o:lDirty:=.F.
+   h:=DsnSnapshot(o)
+   hb_keyPut(K_TAB);hb_keyPut(K_TAB);hb_keyPut(K_TAB)
+   hb_keyPut(K_CTRL_Y);hb_keyPut("Z");hb_keyPut(K_TAB);hb_keyPut(K_TAB)
+   hb_keyPut(K_SPACE)
+   FOR n:=1 TO 4
+      hb_keyPut(K_TAB)
+   NEXT
+   hb_keyPut(K_SPACE)
+   o:EditProperties()
+   Check(o:aControls[1,"accelerator"]=="Z","modal accelerator accepted")
+   Check(o:aControls[1,"style"]=="brackets","modal brackets accepted")
+   Check(o:lDirty.and.Len(o:aUndo)==1,"modal accelerator/style one undo")
+   hAfter:=DsnSnapshot(o)
+   o:Undo()
+   Check(DsnSnapEqual(h,DsnSnapshot(o)),"modal accelerator/style undo exact")
+   o:Redo()
+   Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),"modal accelerator/style redo exact")
    ? "PASS final property footprints GET/list/combo/button and undo"
 
    RETURN

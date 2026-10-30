@@ -686,6 +686,78 @@
         "test_designer_property_cancel.prg"
       ],
       "contract": "Actual queued SelectFileName Esc/Cancel empty; default and typed80-character internal-space path accepted byte-exact after truncation fix. Picker keeps designer model/filename/history. Focal Linux40x120 pixels separate; not arbitrary lengths, filesystem or all inputs."
+    },
+    "DSN-FIELD-EditProperties-nWidth-1-DSN_GET": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal field accept with exact undo; GET/List/Combo final footprint clamp and List/Combo redo, Button caption growth or accelerator/style accepted. Selected values only, not every boundary/pixel/platform."
+    },
+    "DSN-FIELD-EditProperties-nWidth-2-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal field accept with exact undo; GET/List/Combo final footprint clamp and List/Combo redo, Button caption growth or accelerator/style accepted. Selected values only, not every boundary/pixel/platform."
+    },
+    "DSN-FIELD-EditProperties-nHeight-1-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal field accept with exact undo; GET/List/Combo final footprint clamp and List/Combo redo, Button caption growth or accelerator/style accepted. Selected values only, not every boundary/pixel/platform."
+    },
+    "DSN-FIELD-EditProperties-nWidth-2-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal field accept with exact undo; GET/List/Combo final footprint clamp and List/Combo redo, Button caption growth or accelerator/style accepted. Selected values only, not every boundary/pixel/platform."
+    },
+    "DSN-FIELD-EditProperties-nHeight-1-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal field accept with exact undo; GET/List/Combo final footprint clamp and List/Combo redo, Button caption growth or accelerator/style accepted. Selected values only, not every boundary/pixel/platform."
+    },
+    "DSN-FIELD-EditProperties-cCaption-1-DSN_BUTTON": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal field accept with exact undo; GET/List/Combo final footprint clamp and List/Combo redo, Button caption growth or accelerator/style accepted. Selected values only, not every boundary/pixel/platform."
+    },
+    "DSN-FIELD-EditProperties-cAccel-1-DSN_BUTTON": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal field accept with exact undo; GET/List/Combo final footprint clamp and List/Combo redo, Button caption growth or accelerator/style accepted. Selected values only, not every boundary/pixel/platform."
+    },
+    "DSN-FIELD-EditProperties-lBrackets-1-DSN_BUTTON": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal field accept with exact undo; GET/List/Combo final footprint clamp and List/Combo redo, Button caption growth or accelerator/style accepted. Selected values only, not every boundary/pixel/platform."
+    },
+    "DSN-FIELD-EditProperties-cAction-1-DSN_BUTTON": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual Button modal acceptance preserves prefilled long quoted handler string and exact undo; Action edited then Esc preserves it. Not handler execution, newly typed acceptance or all event fields/controls."
+    },
+    "DSN-FIELD-EditProperties-cWhen-1-DSN_BUTTON": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual Button modal acceptance preserves prefilled long quoted handler string and exact undo; Action edited then Esc preserves it. Not handler execution, newly typed acceptance or all event fields/controls."
+    },
+    "DSN-FIELD-EditProperties-cValid-1-DSN_BUTTON": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual Button modal acceptance preserves prefilled long quoted handler string and exact undo; Action edited then Esc preserves it. Not handler execution, newly typed acceptance or all event fields/controls."
+    },
+    "DSN-FIELD-EditProperties-cFocus-1-DSN_BUTTON": {
+      "tests": [
+        "test_designer_property_cancel.prg"
+      ],
+      "contract": "Actual Button modal acceptance preserves prefilled long quoted handler string and exact undo; Action edited then Esc preserves it. Not handler execution, newly typed acceptance or all event fields/controls."
     }
   }
 }

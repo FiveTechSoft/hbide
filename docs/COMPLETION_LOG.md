@@ -1342,3 +1342,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   requested new filename not created. No product change.
 - Source check: LoadJson has no discard confirmation; it validates and then
   pushes old model to Undo. No new prompt or filenameUndoLoad policy added.
+
+### 2026-10-30 Control modal pair links and button fields
+
+- Existing GET/List/Combo width-height and Button caption modal tests now
+  link their exact field/control IDs. Button Action/When/Valid/Focus links
+  preserve-prefilled-long-handler acceptance, not newly typed execution.
+- New actual Button modal acceleratorZ and brackets checkbox acceptance
+  set dirty/oneUndo, exact Undo/Redo. No product change. Twenty-two of79
+  source pairs now have focal links; this is not22fully certified fields.
+  Button State is not exposed and was deliberately not linked.
