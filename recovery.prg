@@ -244,20 +244,29 @@ return lOk
 // previous (dead) session: no session suffix is appended here.
 function HBIDE_RecoveryReadBase( cBase, hEncoding, lReadOk )
 
-   local cOut := NIL
+   local cOut := "", nHandle := -1, nSize, nRead
 
    lReadOk := .F.
    hEncoding := NIL
    begin sequence
-      // vfLoad returns NIL on failure, unlike MemoRead's empty-string fallback.
-      cOut := hb_vfLoad( hb_FNameMerge( HBIDE_RecoveryDir(), cBase, ".journal" ) )
+      nHandle := FOpen( hb_FNameMerge( HBIDE_RecoveryDir(), cBase, ".journal" ), FO_READ + FO_SHARED )
+      if nHandle >= 0
+         nSize := FSeek( nHandle, 0, FS_END )
+         if nSize >= 0 .and. FSeek( nHandle, 0, FS_SET ) == 0
+            cOut := Space( nSize )
+            nRead := FRead( nHandle, @cOut, nSize )
+            lReadOk := nRead == nSize .and. FError() == 0
+         endif
+      endif
    recover
-      cOut := NIL
+      lReadOk := .F.
    end sequence
-   if ! HB_ISSTRING( cOut )
+   if nHandle >= 0
+      FClose( nHandle )
+   endif
+   if ! lReadOk
       return ""
    endif
-   lReadOk := .T.
 
 return HBIDE_RecoveryDecode( cOut, @hEncoding )
 
