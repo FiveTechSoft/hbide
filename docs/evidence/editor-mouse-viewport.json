@@ -1,0 +1,49 @@
+{
+  "scope": "Viewport and whitespace source-byte regression only.31PASS on corrected clean source. First38537e6 EOF probe failure was wrong harness key (CtrlEnd means window-bottom); corrected CtrlPgDn.20models remain6b17647,not rerun for harness-only extension. No new visual or Windows acceptance.",
+  "runs": [
+    {
+      "source": "38537e6ffcf45e2839800a712dea6b23584f772c",
+      "tracked_changes": "",
+      "binary_sha256": "d60c89f620d35c706cc1a69451dfc943b94561700731db6fb01f5f7dda011525",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "36f060a86ef8c65c94c3101e1b245dff2df140316df7a1cb603c5fd4b87284e0",
+      "case": "editor-mouse",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_mouse_pty.py"
+      ],
+      "started": 1793402726.2028677,
+      "seconds": 37.19,
+      "exit_code": 1,
+      "printed_failure": true,
+      "source_or_binary_changed": false,
+      "test_sha256": "4b0c4a48a289488ffa1a30384925068f2cfcc3b2867ffd0ec511063729c2d79f",
+      "log": "/tmp/hbide-editor-mouse-viewport/editor-mouse-1793402726202862972.log"
+    },
+    {
+      "source": "84e8d903529adca55fee4c6a9c9713d6f93721d2",
+      "tracked_changes": "",
+      "binary_sha256": "372137c0cc53ae8b4ad20a7f0a60926341f33898cc638d30932cae3f1f2e120a",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "36f060a86ef8c65c94c3101e1b245dff2df140316df7a1cb603c5fd4b87284e0",
+      "case": "editor-mouse",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_mouse_pty.py"
+      ],
+      "started": 1793402816.0949523,
+      "seconds": 37.09,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "441c4211117e3b40101bcec166e4697087884339482c9ad0b49eec0cb0be24f4",
+      "log": "/tmp/hbide-editor-mouse-viewport-fixed/editor-mouse-1793402816094947745.log"
+    }
+  ]
+}
