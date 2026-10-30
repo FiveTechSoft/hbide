@@ -182,7 +182,7 @@ FUNCTION HBIDEProjectDiagnostics( cOutput, cRoot )
             cText := AllTrim( SubStr( cLine, nClose + 1 ) )
             IF HBIDEProjectDigits( cRow ) .AND. ;
                ( Left( Upper( cText ), 5 ) == "ERROR" .OR. Left( Upper( cText ), 7 ) == "WARNING" )
-               cFile := AllTrim( Left( cLine, nOpen - 1 ) )
+               cFile := Left( cLine, nOpen - 1 )
                EXIT
             ENDIF
          ENDIF
