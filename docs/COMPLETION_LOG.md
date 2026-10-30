@@ -706,3 +706,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct05:22 Restore changed window set acceptance
 - Sincambiodeproducto: CallStackfixtureampliadodestruyeCallsconOFF,luegorestaura layoutONyverificaCalls/BUMP ygeometriaguardadaexacta. MonitorfixtureocultaLocalyrestauralayoutverificavaloresygeometriaexacta.
 - CallStackampliadoPASS yMonitor24PASS candidato. Q13ampliado doscasosconcretosdeconjuntocambiado, no cierra todascombinacioneshidden/points/icon/zoom. Runner43suites60contratos; intento globalfafdf0cconserva42PASS+expectativaobsoleta, nolohereda.
+
+## 30Oct05:43 Baseline43 current
+-43suitesPTYdistintasPASS sobre63239d288bae435905d406d24c607daa685cadbc limpio, mismoSHAe955ab2cfb28c8b9f6367c60c8ae66b7a4b8c155f573530bbefe28386fd7935c. Buildfrescoinicial yreuseexplicito,mismabinariorevision,sinmutacionesfallosnireintentos.
+-DiezmodelosPASSmismafuente. Ledger docs/evidence/linux-pty-63239d2.json; logsoriginales /tmp/hbide-pty-63239d2 y /tmp/hbide-completion-0u4e11sz. ConsolidaSave/Restore yQ13hastaCallsrecreado/Monitorhidden.
+-Sustituyebaselineactualsinreetiquetarhistoricos: fafdf0c42PASS+1expectativafallida,0768ac2baseline42 y4616d24baseline38 conservados. No100%,noWindows,Animatefuncionalnoacabado,2stubs ycombinacionesQ13pendientes. Sin cambiodeproductoenestelotedocumental.
