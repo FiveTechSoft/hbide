@@ -887,6 +887,17 @@ METHOD Start() CLASS HbIde
          cExe = iif( Empty( hb_FNameDir( cFile ) ), "./", "" ) + cBase
    endcase
 
+   // A source without extension (or .exe on Windows) can otherwise be
+   // promoted over itself. Refuse before starting the compiler.
+#ifdef __PLATFORM__WINDOWS
+   if Upper( HBIDE_RecoveryAbs( cExe ) ) == Upper( HBIDE_RecoveryAbs( cFile ) )
+#else
+   if HBIDE_RecoveryAbs( cExe ) == HBIDE_RecoveryAbs( cFile )
+#endif
+      HBIDE_MsgAlert( "Build cancelled: output path is the source file; use a .prg source name" )
+      return nil
+   endif
+
    // Build to a sibling temp target and promote it over the real executable
    // only after a VERIFIED success (exit code 0 and the binary exists).
    // The user's previous binary is never erased up front and never launched
