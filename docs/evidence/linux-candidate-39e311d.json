@@ -1,0 +1,45 @@
+{
+  "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+  "source": "39e311dfeb0f211f10e1653c49215f81c8be0192",
+  "archive_sha256": "aa2ee6df44ae93e784fac0e3ce586887af7d2e0bb12c392f84f00b41e264840d",
+  "dirty": false,
+  "started": 1793404320.006428,
+  "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+  "compiler_sha256": "036892183255330fe1330d5109f32d5bbe523bbfd8270ec458b913c93910adbb",
+  "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+  "removed_inherited_binaries": [
+    {
+      "path": "hbide.exe",
+      "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+    },
+    {
+      "path": "tests/hbide",
+      "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+    }
+  ],
+  "tests": {
+    "test_help_mouse_pty.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+      "binary_sha256": "91e86ffd6f0e9627d8d4d05a84c0054549bf474243d9fe717cfcf77c95afa6f0"
+    },
+    "test_run_source_pty.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+      "binary_sha256": "91e86ffd6f0e9627d8d4d05a84c0054549bf474243d9fe717cfcf77c95afa6f0"
+    }
+  },
+  "build_exit": 0,
+  "binary_sha256": "91e86ffd6f0e9627d8d4d05a84c0054549bf474243d9fe717cfcf77c95afa6f0",
+  "dependency_check_exit": 0,
+  "ok": true,
+  "finished": 1793404349.506066,
+  "guards": {
+    "existing_destination": "refused",
+    "inside_checkout": "refused",
+    "untracked_change": "refused"
+  },
+  "dependencies_observed": "\tlinux-vdso.so.1 (0x00007ffd730db000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007ff62895c000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007ff628000000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007ff628a54000)\n"
+}
