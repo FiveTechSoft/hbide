@@ -801,3 +801,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Second probe launches disposable parent/child under setsid then signals the owned group through posix_kill from hbunix. Both were gone after KILL; group result0 means success, processValue0 still does not distinguish cancellation.
 - Preserved exploratory source in tests/probes/build_cancel_group.prg. No product integration: external setsid dependency, no group-identity guard, detached descendants and other platforms remain unresolved. Never signal a shared/existing group.
 - No claim of implemented Cancel. Current UI contract unchanged. No remaining probe processes or PID files.
+
+## 30Oct07:42 Current debugger regression
+- Ten distinct debugger PTY suites PASS on clean e0d3f59 with one freshly built binary de014d4f: Commands, Functions, RestoredPoints, CallStack, Session, Startup, Monitor, Codeblock, Exits, Animate. No failures, retries or mutations in this pass. Ten model suites also PASS on the same revision.
+- Durable evidence docs/evidence/linux-debug-e0d3f59.json. This validates recent debugger fixes together; it is not the full43-suite IDE regression, exhaustive visual or Windows acceptance. Baseline43-suite53be664 remains historical.
