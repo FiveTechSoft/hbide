@@ -1266,3 +1266,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Initial click hit border one row too low, no resize; excluded rather than
   treating ensuing UndoLoad as acceptance. No product/policy change.
   Reproduction and state added to docs/evidence/combobox-drag/.
+
+### 2026-10-30 Modal field inventory denominator
+
+- Audit now extracts30 GET declarations from EditProperties/DlgProperties/
+  SelectFileName with stable surface/variable/occurrence IDs, kind, picture,
+  label, source line and literal enclosing conditions. Includes buttons;
+ 30 is not a function count or expanded control/field-pair denominator.
+- Field acceptance stays pending; four existing surface contracts remain
+  linked separately. Extraction is source wiring, not native modal behavior.
+  Unrelated dialogs, gestures and full per-control expansion still pending.

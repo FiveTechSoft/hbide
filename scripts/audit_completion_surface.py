@@ -63,6 +63,43 @@ def inventory():
                                    context=begin, status='route_only_not_separate_feature'))
     return entries, routes
 
+def modal_fields():
+    """Source field declarations with their explicit enclosing conditions.
+    Conditions are preserved, not evaluated as acceptance or control coverage.
+    """
+    lines=(ROOT/'designer.prg').read_text().splitlines()
+    rows=[]
+    for surface in ['EditProperties','DlgProperties','SelectFileName']:
+        start=next(i for i,line in enumerate(lines) if line.startswith('METHOD '+surface+'('))
+        end=next((i for i in range(start+1,len(lines)) if lines[i].startswith('METHOD ')),len(lines))
+        stack=[];seen={}
+        for i in range(start+1,end):
+            line=lines[i];text=line.strip()
+            if text.lower().startswith('if '):stack.append(text[3:])
+            elif text.lower().startswith('elseif ') and stack:stack[-1]=text[7:]
+            elif text.lower()=='else' and stack:stack[-1]='ELSE of '+stack[-1]
+            elif text.lower()=='endif' and stack:stack.pop()
+            match=re.search(r'@ .*?\bGET\s+(\w+)(.*)',line)
+            if not match:continue
+            var,tail=match.groups();seen[var]=seen.get(var,0)+1
+            kind='button' if 'PUSHBUTTON' in tail else ('checkbox' if 'CHECKBOX' in tail else 'value')
+            picture=re.search(r'PICTURE "([^"]*)"',tail)
+            following=' '.join(lines[i:min(i+4,end)])
+            label=re.search(r'(?:Say\([^\n]*?|CAPTION)\s*"([^"]+)"',following)
+            position=re.search(r'oDlg:nTop \+ (\d+), oDlg:nLeft \+ (\d+)',line)
+            if position and kind=='value':
+                row,col=map(int,position.groups())
+                labels=[(int(c),t) for r,c,t in re.findall(r'oDlg:Say\( (\d+), (\d+), "([^"]+)"',following) if int(r)==row and int(c)<=col]
+                if labels:
+                    label_text=max(labels)[1]
+                else:label_text=label.group(1).strip() if label else ''
+            else:label_text=label.group(1).strip() if label else ''
+            rows.append(dict(id='DSN-FIELD-'+surface+'-'+var+'-'+str(seen[var]),surface=surface,
+                variable=var,kind=kind,picture=picture.group(1) if picture else '',
+                label=label_text,source='designer.prg',line=i+1,
+                conditions=list(stack),acceptance='Pending field-specific acceptance; surface contracts separate'))
+    return rows
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--json', action='store_true')
@@ -90,11 +127,11 @@ def main():
     for m in menus:
         m['acceptance']=acceptance.get(m['id'])
     report={'scope':'Source inventory only. No runtime or platform certification.',
-            'menus':menus,'dispatch_routes':routes,'modal_contracts':modal_contracts,
+            'menus':menus,'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),
             'inspector_fields': [dict(line=i+1, label=m.group(1), key=m.group(2), kind=m.group(3))
                 for i,line in enumerate((ROOT/'designer.prg').read_text().splitlines())
                 if (m := re.search(r'AAdd\( aFields, \{ \"([^\"]+)\",\s*\"([^\"]+)\",\s*\"([^\"]+)\"',line))],
-            'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes)}}
+            'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields())}}
     if args.json:
         print(json.dumps(report,indent=2))
     else:
@@ -116,6 +153,13 @@ def main():
         for spec in modal_contracts:
             links=', '.join('['+t+'](../tests/'+t+')' for t in spec['tests'])
             print(f"- {spec['id']} ({spec['surface']}): {spec['contract']} Pruebas: {links}")
+        print('\n## Declaraciones de campos modales\n')
+        print('Extraidas de EditProperties/DlgProperties/SelectFileName. Condiciones literales, no evaluadas. No son funciones ni pares control/campo; botones incluidos. Contratos de superficie arriba no certifican cada campo.\n')
+        print('| ID | Etiqueta | Tipo / picture | Condiciones fuente | Fuente:linea | Aceptacion |')
+        print('| --- | --- | --- | --- | --- | --- |')
+        for field in report['modal_fields']:
+            conditions=' AND '.join(field['conditions']).replace('|','&#124;') or 'Siempre'
+            print(f"| {field['id']} | {field['label']} | {field['kind']} {field['picture']} | {conditions} | {field['source']}:{field['line']} | Pendiente por campo; contratos de superficie separados |")
         print('\n## Campos de inspector\n')
         print('| Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
         print('| --- | --- | --- | --- | --- |')

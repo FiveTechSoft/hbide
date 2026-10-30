@@ -206,6 +206,43 @@ Cobertura focal de rutas reales. Vinculo no significa PASS ni aceptacion de todo
 - DSN-MODAL-DIALOG (DlgProperties): Actual Esc and explicit Cancel after edits preserve model/dirty/undo. Successful edits of every field not accepted by this test. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg)
 - DSN-INLINE-CONTROL (InspEdit): Actual inline Esc preserves model/history; button-caption and radiogroup-items growth fit final footprint with exact undo. Not all inspector fields or oversized edits. Twenty exposed event/control pairs across GET/checkbox/button/radiogroup/listbox/ComboBox preserve exact string, dirty/one undo, exact undo/redo and Esc history. Separate integrated ComboBox When Tail/Home/Esc pixels identify caret versus resize handle. Not all inspector fields or event pixels are accepted. Pruebas: [test_designer_property_cancel.prg](../tests/test_designer_property_cancel.prg), [test_designer_inline_geometry.prg](../tests/test_designer_inline_geometry.prg)
 
+## Declaraciones de campos modales
+
+Extraidas de EditProperties/DlgProperties/SelectFileName. Condiciones literales, no evaluadas. No son funciones ni pares control/campo; botones incluidos. Contratos de superficie arriba no certifican cada campo.
+
+| ID | Etiqueta | Tipo / picture | Condiciones fuente | Fuente:linea | Aceptacion |
+| --- | --- | --- | --- | --- | --- |
+| DSN-FIELD-EditProperties-nRow-1 | Row: | value 999 | Siempre | designer.prg:1326 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nCol-1 | Col: | value 999 | Siempre | designer.prg:1327 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cCaption-1 | Caption: | value @S40 | oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX | designer.prg:1332 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cVariable-1 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX | designer.prg:1337 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nWidth-1 | Width: | value 999 | oCtrl[ "type" ] == DSN_GET | designer.prg:1342 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cAccel-1 | Accel: | value  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1347 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cAction-1 | Action: | value @S40 | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1349 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lBrackets-1 | B&rackets look (uncheck for 3D shadow) | checkbox  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1351 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cVariable-2 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1357 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cItems-1 | Items: | value @S40 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1359 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nWidth-2 | Width: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1364 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nHeight-1 | Height: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1366 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cWhen-1 | When: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1371 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cValid-1 | Valid: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1373 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cFocus-1 | Focus: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1376 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cState-1 | State: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1380 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1385 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1389 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cCaption-1 | Caption: | value @S40 | Siempre | designer.prg:1473 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cName-1 | Name: | value  | Siempre | designer.prg:1476 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-nWidth-1 | Width: | value 999 | Siempre | designer.prg:1479 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-nHeight-1 | Height: | value 999 | Siempre | designer.prg:1482 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrBack-1 | Back: | value @S20 | Siempre | designer.prg:1485 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrText-1 | Text: | value @S20 | Siempre | designer.prg:1488 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrFocus-1 | Focus: | value @S20 | Siempre | designer.prg:1491 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1494 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1498 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-cFile-1 | File: | value  | Siempre | designer.prg:1599 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-lDummy-1 | &OK | button  | Siempre | designer.prg:1602 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1606 | Pendiente por campo; contratos de superficie separados |
+
 ## Campos de inspector
 
 | Campo | Clave | Tipo | Fuente:linea | Aceptacion |
