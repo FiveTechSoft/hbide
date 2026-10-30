@@ -588,3 +588,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Sin cambio de producto. Nueva pruebaPTYrealTab/Space/Enter/Esc: opciones por defecto; Cancel descarta; OK transmite warnings/debug/strict/incremental/optimize; GCC->MSVC cambiaargv.
 -10checksPASS candidato. hbmk2falsocapturaargv ydevuelveexit7: pruebarealprocesoargumentos/noexito, noafirmaMSVCinstaladonibuildWindows.
 - Runner39suites; baseline38de4616d24 permanecevalida paraesos38casos, nuevocontratosevalidaaparte.48contratosvinculados116acciones,2stubs.
+
+## 30Oct01:59 Help matches current behavior
+- Auditoria encontro textoobsoleto: Newprometiabuffervacio+preguntadesave, Finddeciaignorartailblanks, paletasinComboBox, roadmapviejo. ModeloHelpfallabaantes.
+- Ayudacorregida: Newindependientecontemplateypreservaciondocs; blanksliterales+replacementvacio; ComboBoxselection-only; COMPLETION_ROADMAPactual.
+- Cuatrocontratosdecontenidonuevos, nueve modelosPASS candidato. CapturasrealesFile/Findcompletasinspeccionadas. Cambiosoloayuda/tests/docs,noimplementacioneditor. Baseline38anteriornoesnuevacertificaciondelbinariodeayudaactual.

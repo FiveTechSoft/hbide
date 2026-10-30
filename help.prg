@@ -43,8 +43,8 @@ function HBIDEHelpTopics()
       "If the locale is not UTF-8 a 'Locale not UTF-8' notice appears on the right of the menu bar; see 'Terminal notes'." } )
 
    AAdd( a, { "file new open save as exit bak backup", "File menu", ;
-      "New            Starts an empty buffer ('noname.prg'). If the current buffer has" + hb_eol() + ;
-      "               unsaved changes you are asked to Save, Discard or Cancel first." + hb_eol() + hb_eol() + ;
+      "New            Adds another independent document ('noname.prg') with a Harbour" + hb_eol() + ;
+      "               starter template. Existing documents and unsaved changes stay open." + hb_eol() + hb_eol() + ;
       "Open...        Opens a .prg from the current directory or a typed file name." + hb_eol() + hb_eol() + ;
       "Save (F2)      Saves the buffer. On an unnamed buffer it asks for a name" + hb_eol() + ;
       "               (behaves as Save As). Before writing, the previous disk version" + hb_eol() + ;
@@ -67,8 +67,8 @@ function HBIDEHelpTopics()
       "Replace...             Replaces every match in the buffer as ONE undoable" + hb_eol() + ;
       "                       operation (Ctrl+Z restores all of them)." + hb_eol() + ;
       "Goto Line...           Jumps to a line number." + hb_eol() + hb_eol() + ;
-      "Note: blanks at the END of the search text cannot be told apart from input" + hb_eol() + ;
-      "field padding and are ignored; leading blanks are kept." } )
+      "Search and replacement use free-form fields: leading and trailing blanks are kept." + hb_eol() + ;
+      "An empty replacement deletes the matching text; an empty search is rejected." } )
 
    AAdd( a, { "keyboard shortcuts keys f1 f2 f3 f5 f8 f9 ctrl esc ins ovr word", "Keyboard shortcuts", ;
       "F1       Help            Ctrl+Z  Undo" + hb_eol() + ;
@@ -218,11 +218,11 @@ function HBIDEHelpTopics()
       "Verified interactively and with automated tests on Linux." + hb_eol() + hb_eol() + ;
       "Windows: the IDE builds with GTWVT and a prebuilt hbide.exe is included, but it can lag behind the sources; validating the latest sources on Windows is still pending." + hb_eol() + hb_eol() + ;
       "Debugger Animate has known visual defects; F4 shows the program screen to recover the view. Exchange Screens and swap on Input are not implemented (see 'Debugger windows')." + hb_eol() + hb_eol() + ;
-      "The full plan and per-area status live in docs/ROADMAP.md in the repository." } )
+      "The full plan and per-area status live in docs/COMPLETION_ROADMAP.md in the repository." } )
 
    AAdd( a, { "designer palette inspector controls code generation json", "Dialog designer", ;
       "Options > Designer opens the visual dialog designer. Place labels, " + ;
-      "inputs, checkboxes, radio groups, listboxes and buttons. Move and " + ;
+      "inputs, checkboxes, radio groups, listboxes, selection-only ComboBox and buttons. Move and " + ;
       "resize controls with the mouse; use the inspector to edit properties." + ;
       hb_eol() + hb_eol() + ;
       "In the F2 palette, a duplicated letter cycles its matching options without executing; Enter runs the selected option and Esc cancels. A unique letter still runs immediately. The designer saves its model as JSON and generates Harbour PRG source. " + ;

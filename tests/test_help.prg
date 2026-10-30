@@ -19,6 +19,14 @@ PROCEDURE Main()
          Assert( aTopics[ n, 2 ] != a[ 2 ], 'no self links' )
       NEXT
    NEXT
+   n := AScan( aTopics, {| t | t[ 2 ] == 'File menu' } )
+   Assert( 'another independent document' $ aTopics[ n, 3 ] .AND. ! 'asked to Save' $ aTopics[ n, 3 ], 'File New help agrees with multidoc behavior' )
+   n := AScan( aTopics, {| t | t[ 2 ] == 'Find, Replace, Goto Line' } )
+   Assert( 'trailing blanks are kept' $ aTopics[ n, 3 ] .AND. ! 'are ignored' $ aTopics[ n, 3 ], 'Find help preserves trailing blanks' )
+   n := AScan( aTopics, {| t | t[ 2 ] == 'Dialog designer' } )
+   Assert( 'selection-only ComboBox' $ aTopics[ n, 3 ], 'Designer help names actual ComboBox contract' )
+   n := AScan( aTopics, {| t | t[ 2 ] == 'Platform status and limits' } )
+   Assert( 'COMPLETION_ROADMAP.md' $ aTopics[ n, 3 ], 'Help links current completion roadmap' )
    Assert( Len( aTopics ) == 23 + Len( HBIDEHelpDocTopics() ), 'topic count' )
    // every topic at the real panel widths (80 and 120 columns): nothing wider
    // than the panel (table rows included) and no word cut in the middle
