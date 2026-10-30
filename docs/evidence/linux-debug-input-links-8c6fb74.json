@@ -1,0 +1,51 @@
+{
+  "scope": "Clean8c6fb74 Linux13inventory tests+32docs exact+Commands69/Functions--idle-settle58twoPTY samebinary. Initial combined shell ceiling interrupted Functions, no ledger result claimed; repeated Functions alone with explicit reuse-build confirms sameSHA. Seven27caller links focal only. Models lasta755b1f not rerun. No full/visual/Windows acceptance.",
+  "inventory_tests": 13,
+  "pty": [
+    {
+      "source": "8c6fb74305892e0e096a0c3146d9a709a4a14d6a",
+      "tracked_changes": "",
+      "binary_sha256": "b126a0aa526b0e723023d846d190568de593580ef3d8d1d04349d4a390db079a",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "2ba325b34282ad0715fe25b6c3a601ad84220da24db8cefa1d8279e701938e0f",
+      "case": "debug-commands",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_commands_pty.py"
+      ],
+      "started": 1793400234.3428047,
+      "seconds": 80.07,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a773230ce8d1b867f7581ae8de0928d40828baacb3ebc7ec846fb1b6713bc753",
+      "log": "/tmp/hbide-debug-links-pty/debug-commands-1793400234342799680.log"
+    },
+    {
+      "source": "8c6fb74305892e0e096a0c3146d9a709a4a14d6a",
+      "tracked_changes": "",
+      "binary_sha256": "b126a0aa526b0e723023d846d190568de593580ef3d8d1d04349d4a390db079a",
+      "platform": "linux",
+      "build": "reused_explicitly",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "2ba325b34282ad0715fe25b6c3a601ad84220da24db8cefa1d8279e701938e0f",
+      "case": "debug-functions-idle",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_functions_pty.py",
+        "--idle-settle"
+      ],
+      "started": 1793400347.8792958,
+      "seconds": 53.32,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "efe4c25a8904447ffc3da7cca79fab6eb3aa1d55bca2acaa24dcb7d8c8001dfa",
+      "log": "/tmp/hbide-debug-links-functions-pty/debug-functions-idle-1793400347879291379.log"
+    }
+  ]
+}
