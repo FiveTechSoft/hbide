@@ -3278,7 +3278,7 @@ METHOD BreakPointDelete( cPos ) CLASS HBDebugger
       ENDIF
    ENDIF
 
-   IF IsDigit( cPos )
+   IF HBIDE_DbgIndex( cPos )
       __dbgDelBreak( ::pInfo, Val( cPos ) )
    ELSEIF Upper( cPos ) == "ALL"
       FOR nAt := Len( __dbgGetBreakPoints( ::pInfo ) ) - 1 TO 0 STEP -1
@@ -3491,7 +3491,7 @@ METHOD WatchpointDel( xPos ) CLASS HBDebugger
       CASE HB_ISSTRING( xPos )
          IF Upper( xPos ) == "ALL"
             lAll := .T.
-         ELSEIF IsDigit( xPos )
+         ELSEIF HBIDE_DbgIndex( xPos )
             nPos := Val( xPos )
          ENDIF
       CASE HB_ISNUMERIC( xPos )
@@ -4405,3 +4405,9 @@ METHOD WindowAt( nRow, nCol ) CLASS HBDebugger
       ENDIF
    NEXT
    RETURN NIL
+
+// Point indexes must be complete unsigned integers, not a numeric prefix.
+STATIC FUNCTION HBIDE_DbgIndex( cValue )
+   RETURN HB_ISSTRING( cValue ) .AND. ! Empty( cValue ) .AND. ;
+      Empty( hb_StrReplace( cValue, ;
+         { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }, "" ) )

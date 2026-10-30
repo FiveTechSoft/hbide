@@ -814,3 +814,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Reproducción: Enter sobre TP n y editar n+1 guardaba WP n+1 y cambiaba el modo VM a watchpoint. WatchpointEdit forzaba wp y false.
 - Conserva WP_TYPE y pasa el indicador TP correspondiente a __dbgSetWatch. RestoredPoints ampliado comprueba TP n+1 guardado y que el tracepoint editado sigue deteniendo la VM en línea5 al cambiar n. Candidato PASS y diez modelos PASS.
 - Captura completa inspeccionada: n+1 <tp,N> tras editar, sin bordes perdidos. Un intento del test dejó foco en Points al enviar otro Enter; corregido seleccionando Command. No se atribuye ese fallo de preparación al producto. No aceptación global/Windows heredada.
+
+## 30Oct08:02 Strict point-deletion indexes
+- Reproducción: `delete tp 0oops` eliminaba el punto0 porque IsDigit solo comprobaba el prefijo y Val truncaba el resto. Las rutas de BP y WP/TP ahora exigen un índice completo de dígitos.
+- RestoredPoints ampliado preserva puntos ante sufijo no numérico, decimal y negativo; el índice entero0 sigue borrando. Primer candidato TP/BP PASS y diez modelos PASS. Repetición limpia del test ampliado TP/BP/WP registrada aparte tras commit.
+- No cambio visual nuevo, no certificación del conjunto ni Windows. DELETE ALL conserva su ruta anterior.

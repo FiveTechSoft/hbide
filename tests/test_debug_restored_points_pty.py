@@ -267,11 +267,41 @@ try:
 
     command('delete all')
     command('tp n')
+    malformeddelete=os.path.join(work,'malformed-delete.cld')
+    for invalid in ('0oops','0.5','-1'):
+        command('delete tp '+invalid)
+        command('options savesettings '+malformeddelete)
+        assert any(x.startswith('TP ') for x in open(malformeddelete).read().splitlines()),('malformed index must not delete tracepoint',invalid,open(malformeddelete).read())
+    print('PASS malformed Delete TP index leaves points unchanged')
     command('delete tp 0')
     deleted=os.path.join(work,'deleted-tracepoint.cld')
     command('options savesettings '+deleted)
     assert not any(x.startswith('TP ') for x in open(deleted).read().splitlines()),('Delete TP index must remove tracepoint',open(deleted).read())
     print('PASS Delete TP zero removes the tracepoint')
+    command('bp 4')
+    bpindex=os.path.join(work,'bp-index.cld')
+    command('options savesettings '+bpindex)
+    assert any(x.startswith('BP ') for x in open(bpindex).read().splitlines()),open(bpindex).read()
+    for invalid in ('0oops','0.5','-1'):
+        command('delete bp '+invalid)
+        command('options savesettings '+bpindex)
+        assert any(x.startswith('BP ') for x in open(bpindex).read().splitlines()),('malformed BP index changed points',invalid,open(bpindex).read())
+    command('delete bp 0')
+    command('options savesettings '+bpindex)
+    assert not any(x.startswith('BP ') for x in open(bpindex).read().splitlines()),open(bpindex).read()
+    print('PASS malformed BP indexes preserve points and integer zero deletes')
+    command('wp n')
+    wpindex=os.path.join(work,'wp-index.cld')
+    for invalid in ('0oops','0.5','-1'):
+        command('delete wp '+invalid)
+        command('options savesettings '+wpindex)
+        assert any(x.startswith('WP ') for x in open(wpindex).read().splitlines()),('malformed WP index changed points',invalid,open(wpindex).read())
+    command('delete wp 0')
+    command('options savesettings '+wpindex)
+    assert not any(x.startswith('WP ') for x in open(wpindex).read().splitlines()),open(wpindex).read()
+    print('PASS malformed WP indexes preserve points and integer zero deletes')
+
+
     send(b'\x1bx');pump(.7);assert ' File  Edit' in scr.text()
 finally:
     try:os.kill(pid,signal.SIGHUP)
