@@ -791,3 +791,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Alt+D interrupts; F4 shows clean sampled app output (FRAME4 / FRAME23); space returns to debugger at line11 /49 with full source/command/borders/status. Source scroll at Speed1 observed in samples.
 - Evidence screenshots and manifest in docs/evidence/animate-35f84ec/. Videos transferred separately, not included as repository bytes. This does not prove no tearing: sampling may miss transitions shorter than50ms and other platforms/sizes remain untested. Q04 stays partial.
 - Initial attempt failed terminal focus and was discarded; later Escape was not the interrupt shortcut, so final runs use Alt+D. No product failure inferred from those setup attempts.
+
+## 30Oct07:28 Build cancellation feasibility, no product change
+- Investigated Harbour processOpen/nonblocking PRead/processValue/processClose in local runtime source and a real parent+child probe. processClose killed only the direct process; spawned child remained. processValue returned0 for the signal-terminated direct process in this environment. Remaining child explicitly killed after observing it.
+- Runnable Linux-only probe in tests/probes/, outside acceptance runner. This is evidence against an unsafe replacement of processRun, not implemented cancellation. A real build cancellation needs tree ownership, output draining, explicit cancelled state, cwd restoration and stale-binary refusal.
+- Existing synchronous build and visible Esc-cannot-cancel contract unchanged. Windows process-tree cancellation unverified.
