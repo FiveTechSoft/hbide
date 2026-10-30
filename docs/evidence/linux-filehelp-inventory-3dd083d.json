@@ -1,0 +1,28 @@
+{
+  "scope": "Source inventory expansion only:43IDE declarations,26focal links.11Python inventory tests and32embedded docs exact; clean3dd083d freshLinux HelpPTY passes. Previous20models belong3ec5e06, not rerun on3dd083d. No new file/help runtime acceptance links or milestone closure.",
+  "inventory_tests": 11,
+  "pty": [
+    {
+      "source": "3dd083d2f5594419c7963cdc986f8c5dc48c4640",
+      "tracked_changes": "",
+      "binary_sha256": "dbbd22b6b7805d419779d120227dad73a6c9d6cb06a327e1f90d21bbbb595e3f",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "1c424b97f3f469bc32b76c228405ed70e4cde1e5bc470f9b6649a95a5593a7fb",
+      "case": "help",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_help_pty.py"
+      ],
+      "started": 1793399535.874412,
+      "seconds": 15.15,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "307dd33519b062ef1f0ccb8ac45555609f75c701b2a13830a299d4e63a8ba183",
+      "log": "/tmp/hbide-filehelp-inventory-pty/help-1793399535874406835.log"
+    }
+  ]
+}
