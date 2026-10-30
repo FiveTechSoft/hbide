@@ -8,7 +8,8 @@ unchanged from daa2708. Screens were inspected at full size.
 Only terminal cursor blinking was disabled to make the caret visible in
 still images. Tail shows the black caret after TAIL; Home shows it on S of
 Start_. Inspector, canvas lower borders and status remain intact. Esc exits
-the edit highlight. The gray block in the canvas remains in all captures:
+editing; selected When retains its orange focus highlight, without the
+editing caret. The gray block in the canvas remains in all captures:
 DrawControls explicitly draws it at the selected control's bottom-right
 resize handle (ComboBox20x6 includes its dropdown height). It is not a
 misplaced caret and hiding the terminal cursor does not erase it.
