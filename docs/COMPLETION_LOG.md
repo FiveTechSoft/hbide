@@ -553,3 +553,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - InspeccionvisualconPATHsincompilerdescubrioalertaBuildOKconstdoutvacioantesdeallegarBuildfailed. BuildOKahorarequiereexit0ybinariotemporalexiste; silencionopruebaexito.
 -9checksStartPTY: incluyecompiladorfalsoexit7sinoutput, noBuildOK,failurevisible,editorusable. Nueve modelosPASS.
 - VisualcomplementoStartconpathespaciado: logcompilacioncompletoycerrar/autorunrestauraeditor limpio; valorStartpathOKescrito. Capturarealsinrecortarbordes.
+
+## 30Oct01:03 Baseline36: expectativa obsoleta Calls
+-3351441 limpio/mismoSHA2edfcd57:35suitesPASS,CallStacktestfallo por exigir__MAINtraseliminarreescrituraMain. PantallaactualmostrabaCalls MAINcorrecto; nofalloproducto.
+- Expectativaajustada a MAINenfilaCallsconmarco, manteniendoBUMP/on/off/step. Falloinicialconservadoen/tmp/hbide-pty-3351441/results.jsonl, noanunciar36PASSdeesarevision.

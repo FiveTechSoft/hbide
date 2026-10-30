@@ -135,10 +135,10 @@ try:
     send(b'\x1b[19~');pump(.8)
     assert execution_line()==3,('call step',execution_line())
     send(b'callstack on\r');pump(.7)
-    t=scr.text();assert 'Calls' in t and '__MAIN' in t, t
+    t=scr.text();assert 'Calls' in t and re.search(r'x\s+MAIN\s+x', t) is not None, t
     send(b'\x1b[15;5~');pump(.8)
     assert execution_line()==7,execution_line()
-    t=scr.text();assert 'BUMP' in t and '__MAIN' in t, t
+    t=scr.text();assert 'BUMP' in t and re.search(r'x\s+MAIN\s+x', t) is not None, t
     send(b'callstack off\r');pump(.7)
     assert 'Calls' not in scr.text(), scr.text()
     print('PASS CallStack on: routine listed; next routine adds bump; off hides')
