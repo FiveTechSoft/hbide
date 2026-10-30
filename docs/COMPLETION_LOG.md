@@ -963,3 +963,5 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - M2 probe Linux: nuevo experimento valida PID/pgrp/session=startprocess y starttime antes de señalizar grupo aislado, drena stdout/stderr, flagcancel independiente deexit0. Fixture parent+child: OWNED/CANCELLEDtrue,kill0,ambosgone. No integración producto; quedan check-to-signalrace,detached/leaderexit/flood/startup/UI/Windows. No se declara cancelación terminada.
 
 - M2 probe: finite256KiB/stdout+256KiB/stderr antesSTARTED sin deadlock; groupownercancel y parent/childgone. Scriptausente sale2, probeavisa fallo sinseñalizargrupo. Noequivale a launcher ausente ni floodinfinito, no integraciónproducto. Harness reproducible tests/probes/check_cancel_owned.py.
+
+- M2 negativo: líder sale0 antesreadiness, probeOWNEDfalse/CANCELLEDfalse/no señal, hijo siguevivo alretornar. Fixturefinito3s confirmado gonealexpirar. Exit0noequivale árbolterminado. Preservar como limitación, no integrar hasta resolver supervisiondescendientes.

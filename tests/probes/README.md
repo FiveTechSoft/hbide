@@ -79,3 +79,12 @@ checks both recorded processes are gone. A missing Python script exits2;
 the probe returns failure without signalling any group. These tests do not
 cover a missing setsid/Python executable, an infinite flood, detached child,
 leader exit, UI cancellation or Windows. PID files use a unique test directory.
+
+### Leader exit is not tree completion
+
+`build_cancel_leader_exit.py` starts a child that lives3seconds and exits
+before emitting STARTED. The ownership probe returns failure without a group
+signal, despite observed leader exit0. The child was still running when the
+probe returned, then was confirmed gone after its bounded lifetime. This is
+an expected negative, not cancellation acceptance. A supervisor that stays
+alive while descendants exist needs separate investigation before integration.
