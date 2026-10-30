@@ -1289,6 +1289,72 @@
         "test_help_pty.py"
       ],
       "contract": "Actual HelpIndex explicit OK filters topic and Cancel restores source; multiple-match picker actual OK opens selected topic and Cancel returns source. Undo after help preserves source bytes. Does not test every picker selection, input, geometry or platform."
+    },
+    "IDE-FIELD-ProjectOpen-cFileName-1": {
+      "tests": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
+    },
+    "IDE-FIELD-ProjectOpen-cPickFileName-1": {
+      "tests": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
+    },
+    "IDE-FIELD-ProjectOpen-lDummy-1": {
+      "tests": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
+    },
+    "IDE-FIELD-ProjectOpen-lDummy-2": {
+      "tests": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
+    },
+    "IDE-FIELD-OpenFile-cFileName-1": {
+      "tests": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
+    },
+    "IDE-FIELD-OpenFile-cPickFileName-1": {
+      "tests": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
+    },
+    "IDE-FIELD-OpenFile-lDummy-1": {
+      "tests": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
+    },
+    "IDE-FIELD-OpenFile-lDummy-2": {
+      "tests": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
+    },
+    "IDE-FIELD-SaveAs-cFileName-1": {
+      "tests": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
+    },
+    "IDE-FIELD-SaveAs-lDummy-1": {
+      "tests": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
+    },
+    "IDE-FIELD-SaveAs-lDummy-2": {
+      "tests": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "contract": "Actual file/project explicit OK/Cancel, manually typed path retained after list focus, real Home/Down list selection syncs GET and opens selected file/project. SaveAs explicit Cancel preserves dirty buffer/identity/no destination; OK writes exact mixed EOL bytes and retains original. Focal Linux only, not all states/platforms."
     }
   }
 }

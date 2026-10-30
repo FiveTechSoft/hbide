@@ -1467,3 +1467,16 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Five new focal links:31of43IDE declarations. Picker selection changes
   unaccepted. Initial harness forgot view returns to picker, not source;
   corrected extra Esc between independent scenarios, no product change.
+
+### 2026-10-30 File/project modal explicit buttons
+
+- Actual OpenFile/ProjectOpen OK/Cancel, type path then focus list without
+  changing selection, actual Home/Down list selection reflected into GET
+  and selected resource opened. Directory order is observed, not assumed
+  alphabetical.14checks including SaveAs actual Cancel retaining dirty
+  identity/no destination and OK exact mixed EOL bytes/original untouched.
+- Eleven focal links added,42of43IDE declarations. HelpPick selection
+  changes remain unlinked. No product change or milestone closure.
+- Early harness assumed Directory alphabetical order, then used End
+  (not a supported native list selection) and off-by-one screen row;
+  corrected fixtures/observation, retained checks on actual opened item.
