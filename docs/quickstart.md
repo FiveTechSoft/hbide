@@ -46,7 +46,7 @@ with `-xrm 'XTerm*metaSendsEscape: true'` so Alt+letter reaches the IDE.
 
 1. Type the three lines from the diagram above.
 2. Press F2 (or File > Save) and name the file `hello.prg`. Each save
-   keeps the previous version as a `.bak` copy.
+   attempts to keep the previous version as a `.bak` copy; a backup failure is reported but does not block the save.
 3. Run > Start saves the file, calls `hbmk2` and runs the program only if
    the build succeeded. A failed build never deletes your previous binary
    and never runs it.
