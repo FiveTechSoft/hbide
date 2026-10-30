@@ -20,6 +20,7 @@ def run(name, args, cwd=ROOT, timeout=120):
             return 124
 
 cases = {
+    'designer-property-cancel': ['tests/test_designer_property_cancel.prg', 'designer.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'project-output': ['tests/test_project_output.prg', 'projectui.prg', 'project.prg', 'recovery.prg'],
     'backup': ['tests/test_backup.prg', 'editor.prg', 'recovery.prg'],
     'debug-temp-write': ['tests/test_debug_temp_write.prg', 'hbdebug/dbgscript.prg'],
