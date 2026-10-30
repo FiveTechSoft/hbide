@@ -877,3 +877,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct09:48 Joint debugger regression after missing-source and repaint fixes
 - Once suites PTY distintas PASS sobre3f13bcd limpio, mismo binario0b2f292715c0f6e0a2fc8591383f991cc9972bcf0fcb19de7f59514ca9c03a25: Commands68/68, Functions58/58, RestoredPoints, MissingSource, CallStack, Session, Startup, Animate, Monitor, Codeblock y Exits. Diez modelos PASS en la misma revisión.
 - Sin fallos, reintentos, interrupciones ni mutaciones durante esta pasada. Ledger docs/evidence/linux-debug-3f13bcd.json. No es la regresión IDE completa44, acabado visual exhaustivo ni Windows. Sin cambio de producto en este lote.
+
+## 30Oct09:55 Missing PPO preserves source identity
+- Reproducción: Options PreprocessedCode sin archivo PPO dejaba visible el PRG pero cambiaba cPrgName; BP4 ya no se añadía. Guardado sin BP confirmó la divergencia.
+- Calcula destino y solo cambia nombre/modo al existir. RestoredPoints ampliado comprueba BP4 guardado como PRG y parada VM4 después del intento PPO fallido. Candidato PASS.
+- Primer reemplazo local alcanzó una declaración incorrecta y falló build; descartado antes de la prueba válida, no publicado. No cambio visual de interfaz en este fallo de estado.

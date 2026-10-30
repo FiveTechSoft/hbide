@@ -2270,36 +2270,32 @@ METHOD OpenMenu( cName ) CLASS HBDebugger
 
 METHOD OpenPPO() CLASS HBDebugger
 
-   LOCAL lSuccess
+   LOCAL cTarget
 
    IF Empty( ::cPrgName )
       RETURN .F.
    ENDIF
 
-   IF Lower( hb_FNameExt( ::cPrgName ) ) == ".ppo"
-      ::cPrgName := hb_FNameExtSet( ::cPrgName, ".prg" )
-      lSuccess := hb_FileExists( ::cPrgName )
-      ::lPPO := ! lSuccess
-   ELSE
-      ::cPrgName := hb_FNameExtSet( ::cPrgName, ".ppo" )
-      lSuccess := hb_FileExists( ::cPrgName )
-      ::lPPO := lSuccess
+   cTarget := hb_FNameExtSet( ::cPrgName, ;
+      iif( Lower( hb_FNameExt( ::cPrgName ) ) == ".ppo", ".prg", ".ppo" ) )
+   // A failed view switch must not change the module used by BP/ToCursor.
+   IF ! hb_FileExists( cTarget )
+      RETURN .F.
    ENDIF
 
-   IF lSuccess
-      ::oBrwText := HBBrwText():New( ::oWndCode:nTop + 1, ::oWndCode:nLeft + 1, ;
-         ::oWndCode:nBottom - 1, ::oWndCode:nRight - 1, ::cPrgName, ;
-         __dbgColors()[ 2 ] + "," + __dbgColors()[ 5 ] + "," + ;
-         __dbgColors()[ 3 ] + "," + __dbgColors()[ 6 ] + "," + ;
-         __dbgColors()[ 1 ], ::lLineNumbers, ::nTabWidth )
-      ::oWndCode:Browser := ::oBrwText
-      ::oWndCode:SetCaption( ::cPrgName )
-      ::oWndCode:Refresh()  // to force the window caption to update
-   ENDIF
-
+   ::cPrgName := cTarget
+   ::lPPO := Lower( hb_FNameExt( cTarget ) ) == ".ppo"
+   ::oBrwText := HBBrwText():New( ::oWndCode:nTop + 1, ::oWndCode:nLeft + 1, ;
+      ::oWndCode:nBottom - 1, ::oWndCode:nRight - 1, ::cPrgName, ;
+      __dbgColors()[ 2 ] + "," + __dbgColors()[ 5 ] + "," + ;
+      __dbgColors()[ 3 ] + "," + __dbgColors()[ 6 ] + "," + ;
+      __dbgColors()[ 1 ], ::lLineNumbers, ::nTabWidth )
+   ::oWndCode:Browser := ::oBrwText
+   ::oWndCode:SetCaption( ::cPrgName )
+   ::oWndCode:Refresh()
    ::oPullDown:GetItemByIdent( "PPO" ):checked := ::lPPO
 
-   RETURN lSuccess
+   RETURN .T.
 
 
 METHOD PROCEDURE OSShell() CLASS HBDebugger

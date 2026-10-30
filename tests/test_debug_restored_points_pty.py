@@ -132,9 +132,12 @@ try:
     send(b'\x1br');pump(.5);send(b'd');assert wait_for('Command',12)
     def command(text):
         send(text.encode()+b'\r');pump(.5)
+    command('options preprocessedcode')
     command('bp 4')
     settings=os.path.join(work,'points.cld')
     command('options savesettings '+settings)
+    assert any(x.startswith('BP 4 ') and x.endswith('.prg') for x in open(settings).read().splitlines()),('failed PPO toggle must preserve source identity',open(settings).read())
+    print('PASS missing PPO leaves source identity and breakpoint module intact')
     command('options restoresettings '+settings)
     command('options restoresettings '+settings)
     send(b'\x1b[15~');pump(.9)
