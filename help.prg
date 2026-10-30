@@ -161,10 +161,12 @@ function HBIDEHelpTopics()
       "         |  hbide killed or crashes" + hb_eol() + ;
       "         v" + hb_eol() + ;
       " next start: journal found" + hb_eol() + ;
-      "+---------+---------+-------+" + hb_eol() + ;
-      "| Recover | Discard | Later |" + hb_eol() + ;
-      "+---------+---------+-------+" + hb_eol() + hb_eol() + ;
+      "+---------+---------+-------+---------+" + hb_eol() + ;
+      "| Recover | Discard | Later | Compare |" + hb_eol() + ;
+      "+---------+---------+-------+---------+" + hb_eol() + hb_eol() + ;
       "Recover: the text returns as an unsaved buffer. Discard: the journal is deleted. Later: the journal stays for the next start." + hb_eol() + hb_eol() + ;
+      "Compare: a read-only summary of reading status, sizes and byte equality when comparable. View bytes opens scrollable hex/ASCII snapshots: J journal editor payload, D raw disk file, arrows/PageUp/PageDown/Home/End, Esc back. Control and non-ASCII bytes appear as dots in the ASCII column; hex stays exact. This is not a line diff or a Unicode text preview. Viewing never recovers, saves or discards; return to the choice to decide." + hb_eol() + hb_eol() + ;
+      "Unreadable or damaged journals and unknown translation codepages are refused without replacing the current document or deleting the journal." + hb_eol() + hb_eol() + ;
       "What to expect: you get the content of the last 2-second tick, not of every keystroke. Unnamed buffers are recovered too. Each running instance keeps its own journal, so saving or discarding in one never deletes another instance's unsaved work. If the journal cannot be written, editing continues and hbide warns once per failure streak; recovery is never silently assumed. One journal per absolute path: aliases or symlinks to the same file produce separate journals." } )
 
    AAdd( a, { "about version harbour fivetech", "About hbide", ;

@@ -118,6 +118,13 @@ What to expect:
 - One journal per absolute path: aliases or symlinks to the same file
   produce separate journals.
 
+Compare gives a read-only summary before deciding. View bytes opens journal editor
+payload and raw disk snapshots (J/D), with scrolling, Home/End and Esc back.
+The hex is exact; control and non-ASCII bytes appear as dots in the ASCII column.
+This is not a line diff or a decoded Unicode text preview. Viewing does not
+recover, save or discard. Failed journal reads/metadata and unknown codepages
+leave the current document and journal untouched.
+
 ## Build and run
 
 - Run > Start saves the current file and builds it with `hbmk2` (which
