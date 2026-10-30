@@ -674,3 +674,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Guardarventanazoomedperdiarectanguloderetorno; despuesrestoreZoomdejabapanelmaximizado. PTYantesfallabacomparaciondegeometriaoriginal/unzoom, excluyendofocofinalintencionadodiferente.
 - Saveguardarectanguloprezoom yreaplicaWindowZoomdespuesdeltodoslosrectangulos. PTYCallStackampliadoPASS,Commands56PASS y10modelosPASS candidato. Capturascompletaszoom/unzoomtrasrestoreinspeccionadas; unzoomrecuperapanelCallsdividido.
 - Q13parcial: hidden/cambiosdeconjuntodeventanas aunpendientes; noafirmaacabadozoomgeneral nicertificacionWindows. Runner42suites60contratos, baselineglobal0768ac2historico.
+
+## 30Oct04:25 Restore variable ordering
+- SaveomitiaSortOFF: guardardeclarationorder, activarSort yrestoredejabavariablesalfabeticas. PTY18PASS/1FAILantes.
+- SortON/OFFexplicito, OFFrecargaordenoriginal; sinvalorconservaaccionSortONlegacy. Saveescribeestadoambos. PruebaMonitor22PASS,10modelosPASS candidato: declarationordertrasrestore, ONrepetido, OFFexplicito yvalorinvalido. CapturacompletaZZZantesAAAtrasrestoreinspeccionada.
+- No cierraRestorecompleto: Case/path/points/hidden/windowsetdifferentpendientes. Runner42suites60contratos, baselineglobal0768ac2historico, Windows pendiente.

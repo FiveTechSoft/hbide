@@ -300,10 +300,7 @@ CREATE CLASS HBDebugger
    METHOD ShowHelp( cTopic )
    METHOD ShowVars()
    METHOD LocatePrgPath( cPrgName )
-   METHOD Sort() INLINE ASort( ::aVars,,, {| x, y | x[ HB_DBG_VAR_NAME ] < y[ HB_DBG_VAR_NAME ] } ), ;
-      ::lSortVars := .T., ;
-      iif( ::oBrwVars != NIL, ::oBrwVars:RefreshAll(), NIL ), ;
-      iif( ::oWndVars != NIL .AND. ::oWndVars:lVisible, iif( ! ::lGo .AND. ::oBrwVars != NIL, ::oBrwVars:ForceStable(), NIL ), NIL )
+   METHOD Sort( lSorted )
 
    METHOD Speed() INLINE ::nSpeed := ::InputBox( "Step delay (in tenths of a second)", ::nSpeed )
 
@@ -1065,7 +1062,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
 
       IF hb_LeftEq( "PUBLIC", cParam1 ) .OR. hb_LeftEq( "PRIVATE", cParam1 ) .OR. ;
          hb_LeftEq( "STATIC", cParam1 ) .OR. hb_LeftEq( "LOCAL", cParam1 ) .OR. ;
-         hb_LeftEq( "GLOBAL", cParam1 )
+         hb_LeftEq( "GLOBAL", cParam1 ) .OR. hb_LeftEq( "SORT", cParam1 )
          IF ! Empty( cParam2 )
             IF Upper( cParam2 ) == "ON" .OR. Upper( cParam2 ) == "OFF"
                lMonitorState := Upper( cParam2 ) == "ON"
@@ -1093,7 +1090,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
       CASE hb_LeftEq( "ALL", cParam1 )
          ::All()
       CASE hb_LeftEq( "SORT", cParam1 )
-         ::Sort()
+         ::Sort( lMonitorState )
       CASE hb_LeftEq( "SHOWALLGLOBALS", cParam1 )
          ::ShowAllGlobals()
       OTHERWISE
@@ -2615,9 +2612,7 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
 
    cInfo += "Monitor Global " + iif( ::lShowGlobals, "ON", "OFF" ) + hb_eol()
 
-   IF ::lSortVars
-      cInfo += "Monitor Sort" + hb_eol()
-   ENDIF
+   cInfo += "Monitor Sort " + iif( ::lSortVars, "ON", "OFF" ) + hb_eol()
 
    cInfo += "CallStack " + iif( ::lShowCallStack, "ON", "OFF" ) + hb_eol()
    cInfo += "Num " + iif( ::lLineNumbers, "ON", "OFF" ) + hb_eol()
@@ -3081,6 +3076,23 @@ METHOD PROCEDURE ShowVars() CLASS HBDebugger
 
    RETURN
 
+
+METHOD PROCEDURE Sort( lSorted ) CLASS HBDebugger
+
+   ::lSortVars := hb_defaultValue( lSorted, .T. )
+   IF ::lSortVars
+      ASort( ::aVars,,, {| x, y | x[ HB_DBG_VAR_NAME ] < y[ HB_DBG_VAR_NAME ] } )
+   ELSE
+      ::LoadVars()
+   ENDIF
+   IF ::oBrwVars != NIL
+      ::oBrwVars:RefreshAll()
+      IF ::oWndVars != NIL .AND. ::oWndVars:lVisible .AND. ! ::lGo
+         ::oBrwVars:ForceStable()
+      ENDIF
+   ENDIF
+
+   RETURN
 
 METHOD PROCEDURE Stack( cParam ) CLASS HBDebugger
 
