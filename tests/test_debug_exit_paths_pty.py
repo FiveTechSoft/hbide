@@ -1,13 +1,9 @@
 #!/usr/bin/env python3
 # After a debug session the IDE must be repainted with its own colours (CLS/SetColor
 # regression guard): normal end, Alt+X abort, runtime error, and F4 (app screen) round trip.
-import importlib.util, os, pty, sys, struct, fcntl, termios, select, time, signal, tempfile
-spec = importlib.util.spec_from_file_location("tc", os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_debug_commands_pty.py"))
-tc = importlib.util.module_from_spec(spec); sys.modules['tc']=tc
-try: spec.loader.exec_module(tc)
-except SystemExit: pass
-Scr=tc.Scr; ROWS=tc.ROWS; COLS=tc.COLS
-BIN=os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','hbide')
+import os, pty, sys, struct, fcntl, termios, select, time, signal, tempfile
+from pty_screen import Scr, ROWS, COLS
+BIN=os.environ.get('HBIDE_BIN',os.path.join(os.path.dirname(os.path.abspath(__file__)),'..','hbide'))
 PROGS={
  'normal': 'procedure Main()\n   ? "hello"\nreturn\n',
  'altx':   'procedure Main()\n   local a := 1\n   inkey(0)\nreturn\n',
