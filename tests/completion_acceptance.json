@@ -307,26 +307,31 @@
     "DSN-015": {
       "expected_label": "Save JSON    F10",
       "tests": [
-        "test_designer_pty.py",
-        "test_combobox_pty.py"
+        "test_designer_write.prg",
+        "probes/check_designer_partial.py",
+        "test_designer_pty.py"
       ],
-      "contract": "F10 Save JSON modal writes selected ListBox/ComboBox with edited dimensions; this is default-path coverage, not all path failures."
+      "contract": "JSON Save uses verified sibling writes; partial writes preserve original, failed Save As preserves identity/dirty and subsequent Save target, successful Save As commits name. Actual picker queued keys tested. Promotion refusal retains valid complete JSON and names recovery file; separate pixels inspect scrollable failure dialog. No Windows/global acceptance."
     },
     "DSN-017": {
       "expected_label": "Open JSON    F12",
       "tests": [
         "test_designer_pty.py",
-        "test_combobox_pty.py"
+        "test_combobox_pty.py",
+        "test_designer_load.prg",
+        "test_designer_schema.prg"
       ],
-      "contract": "F12 reload restores saved control dimensions and type after later edits. Malformed JSON has separate model checks, not all modal error paths."
+      "contract": "F12 reload restores saved control dimensions and type after later edits. Malformed JSON has separate model checks, not all modal error paths. Decoder failure and trailing junk/NUL reject before model/identity/dirty/history mutation; unreadable/missing keep state; legacy focus default, optional schema normalized; no filename-after-undo policy acceptance."
     },
     "DSN-018": {
       "expected_label": "Generate PRG  F9",
       "tests": [
         "test_designer_pty.py",
-        "test_combobox_pty.py"
+        "test_combobox_pty.py",
+        "test_designer_write.prg",
+        "probes/check_designer_reserved.py"
       ],
-      "contract": "F9 generates PRG from edited/reloaded model; ComboBox artifact compiles and executes keyboard/mouse selection. Other controls need own runtime contracts."
+      "contract": "F9 generates PRG from edited/reloaded model; ComboBox artifact compiles and executes keyboard/mouse selection. Other controls need own runtime contracts. Partial/promotion failures preserve destination, complete retained PRG byte exact. Eight reserved-name artifacts compile and smoke-run initialization/Esc false; not interaction coverage for those artifacts."
     },
     "DSN-019": {
       "expected_label": "Generate and open",
@@ -562,6 +567,15 @@
       ],
       "contract": "Unreadable PPO refuses switching and retains code identity/view; readable PPO switches. Missing-file and platform limits remain separate.",
       "expected_label": "Preprocessed Code"
+    },
+    "DSN-016": {
+      "expected_label": "Save JSON as...  F11",
+      "tests": [
+        "test_designer_write.prg",
+        "probes/check_designer_partial.py",
+        "test_designer_pty.py"
+      ],
+      "contract": "JSON Save uses verified sibling writes; partial writes preserve original, failed Save As preserves identity/dirty and subsequent Save target, successful Save As commits name. Actual picker queued keys tested. Promotion refusal retains valid complete JSON and names recovery file; separate pixels inspect scrollable failure dialog. No Windows/global acceptance."
     }
   }
 }
