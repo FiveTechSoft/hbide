@@ -749,3 +749,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Revisión limpia 53be664, diez modelos PASS y 43 suites PTY distintas con resultado final PASS. Mismo binario SHA256 16465a647b0d259eea9f616327e8d8c1014b7b39eeba22cd1eb8e087e488ea6b, sin mutaciones durante los tests.
 - No es una pasada sin reintentos: 45 resultados conservan dos fallos de infraestructura (GuiRoundtrip y ComboBox sin PATH de hbmk2), repetidos PASS con PATH correcto y sin cambios. Dos llamadas externas de 120s interrumpieron Navigation y Multidoc sin resultado; procesos ausentes confirmados antes de repetir, ambos PASS después.
 - Evidencia durable docs/evidence/linux-pty-53be664.json; conserva intentos, hashes y límites. Baseline anterior63239d2 queda histórica, sin reescribirla. Esto no cierra visual exhaustiva, Windows, dos stubs ni todas las combinaciones Q13.
+
+## 30Oct06:41 Q13 Points hidden/icon/zoom acceptance
+- Solo tests y documentación, sin parche de producto. CallStack PTY amplía comprobaciones: Points oculto por Delete ALL reabre con geometría exacta y contenido; iconizado restaura dos veces y expande el browser; iconizado oculto restaura geometría; zoom oculto restaura dos veces y unzoom devuelve layout original.
+- El primer intento falló por expectativa textual incorrecta WP x en vez del formato real x <wp, N>:. Corregida la expectativa; caso ampliado PASS sin cambio de producto. No se etiqueta como fallo de producto.
+- Capturas completas de Watch restaurado con zoom y unzoom inspeccionadas, valor n=1 visible, borde inferior y barra de estado completos. No cierra Q13 global ni Windows. Baseline completo43+10 corresponde a53be664, anterior a esta ampliación del test.
