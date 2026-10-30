@@ -1200,3 +1200,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   not a misplaced caret. Separate instrumented GT position agrees. No
   product change or global/Windows acceptance. Evidence in
   docs/evidence/inline-integrated/README.md, including excluded setup errors.
+
+### 2026-10-30 Inline event control matrix
+
+- Expanded queued native inspector acceptance/dirty/one-undo/undo/redo/Esc
+  checks from ComboBox to GET, checkbox, button, radio, listbox and ComboBox.
+  Twenty actual control/event pairs: GET When/Valid, other controls Focus,
+  checkbox/listbox/ComboBox State. Keys resolved via InspFields; absent
+  fields are not silently skipped. No product change or handler execution.
+- This is a model/UI-path matrix, not twenty independent features or visual
+  acceptance for every field. Integrated pixels above remain When/ComboBox.
