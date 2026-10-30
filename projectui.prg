@@ -73,6 +73,8 @@ FUNCTION HBIDEProjectRows( oProject, lMessages )
       ENDIF
    ELSE
       FOR EACH h IN oProject:aMembers
+         // Existence is live state, not a snapshot from Project Open.
+         h[ "exists" ] := hb_FileExists( h[ "path" ] )
          AAdd( a, { "label" => iif( h[ "exists" ], "  ", "! " ) + h[ "token" ], ;
             "detail" => h[ "path" ] + iif( h[ "exists" ], "", " [missing]" ), ;
             "path" => iif( h[ "exists" ], h[ "path" ], "" ), "line" => 1, "column" => 1 } )

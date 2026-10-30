@@ -137,7 +137,7 @@ KF9 = b'\x1b[20~'
 # project fixture: two sources + .hbp
 open(os.path.join(work, 'demo1.prg'), 'w').write('? "demo1"\nreturn\n')
 open(os.path.join(work, 'demo2.prg'), 'w').write('? "demo2"\nreturn\n')
-open(os.path.join(work, 'test.hbp'), 'w').write('demo1.prg\ndemo2.prg\n')
+open(os.path.join(work, 'test.hbp'), 'w').write('demo1.prg\ndemo2.prg\nlate.prg\n')
 
 pump(4.0)
 wait_has('boot caption noname', ['noname.prg'])
@@ -176,6 +176,15 @@ send(b's'); pump(1.5)
 wait_has('desktop opens after Save', ['SOURCES'], collapse=False)
 disk = open(os.path.join(work, 'demo1.prg')).read()
 check('Save wrote the dirty buffer to disk', 'x' in disk.split('\n')[0] or '\nx' in disk)
+
+# External creation/deletion must not leave the Open-time existence snapshot stale.
+check('missing project source marked', '! late.prg' in scr.text())
+open(os.path.join(work, 'late.prg'), 'w').write('return\n')
+send(b'\x1bOS'); pump(.4); send(b'\x1bOS'); pump(.4)  # F4 messages then sources
+check('externally created source becomes available', '  late.prg' in scr.text() and '! late.prg' not in scr.text())
+os.remove(os.path.join(work, 'late.prg'))
+send(b'\x1bOS'); pump(.4); send(b'\x1bOS'); pump(.4)
+check('externally removed source marked missing again', '! late.prg' in scr.text())
 
 # Enter on the first source row: demo1 is already open -> switch, no duplicate
 send(b'\r'); pump(1.2)

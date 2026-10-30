@@ -572,3 +572,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - ParserHarbourusabaprimer')': carpetascomo folder(old)/test.prg perdianeldiagnostico. Modelofallabaantes. Ahora busca(digitos)seguidodeError/Warning,sinconfundirparentesisdelpath otexto.
 - ModeloProjectpruebaold/(12)/test(3) yruta/lineaexacta. Nueve modelosPASS candidato. FixtureProjectMessagesrealahoracompila folder(12)/bad1.prg:18checksPASS,incluidos Enterlinea3,rebuild ybufferdirtysinrecarga/duplicado.
 - Capturascompletas Messagesconpath ysaltoexacto inspeccionadas. NoherenciadebaselinegeneralniWindows.
+
+## 30Oct01:22 Live project member existence
+- SourcesreteniaexistsdelProjectOpen: unficheroexternocreadodespuesseguia!missingynosepodiaabrir. PTY23PASS/1FAILantes.
+- RefrescaexistenciadecadamiembroalprepararSources,sinrecargarHBP,modificarbuffersniejecutarhooks. Crear/eliminarafueraactualizamarca/rutadenavegacion.
+- ProjectDesktop24checksPASS candidato y nueve modelosPASS. CapturascompletasSourcesconlate.prgcreadoyeliminadoinspeccionadas. Noafirmawatchautomaticosininteraccion,recargadeHBPnimanejoTOCTOUcompleto.

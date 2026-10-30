@@ -37,7 +37,7 @@
         "test_project_desktop_pty.py",
         "test_project.prg"
       ],
-      "contract": "HBP parsed and preserved; opening never executes build hooks.",
+      "contract": "HBP parsed and preserved; opening never executes build hooks. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker.",
       "expected_label": "Open .hbp..."
     },
     "IDE-021": {
@@ -45,7 +45,7 @@
         "test_project_desktop_pty.py",
         "test_project_messages_pty.py"
       ],
-      "contract": "Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line.",
+      "contract": "Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker.",
       "expected_label": "Sources / Build..."
     },
     "IDE-026": {
