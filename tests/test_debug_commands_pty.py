@@ -289,6 +289,12 @@ try:
     check('Restore saved default resets changed speed','Run Speed 0' in restored and 'Run Speed 7' not in restored)
     check('Restore saved default resets changed tab width','Options Tab 4' in restored and 'Options Tab 12' not in restored)
     check('Restore saved startup ON resets changed OFF','Options RunAtStartup' in restored and 'Options NoRunAtStartup' not in restored)
+    send(b'num on\r');pump(.3)
+    numfile=os.path.join(work,'num.cld')
+    send(b'options savesettings '+numfile.encode()+b'\r');pump(.4)
+    send(b'num off\r');pump(.3)
+    send(b'options restoresettings '+numfile.encode()+b'\r');pump(.6)
+    check('Restore saved Num ON restores visible source line numbers',re.search(r'x[0-9]+:',scr.text()) is not None)
     send(b'\x1bx');pump(.8)
     check('Debugger exits back to IDE', 'Edit' in scr.text() and 'fn.prg' in scr.text())
 finally:

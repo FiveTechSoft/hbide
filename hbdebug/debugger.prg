@@ -2604,13 +2604,8 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
       cInfo += "Monitor Sort" + hb_eol()
    ENDIF
 
-   IF ::lShowCallStack
-      cInfo += "View CallStack" + hb_eol()
-   ENDIF
-
-   IF ! ::lLineNumbers
-      cInfo += "Num Off" + hb_eol()
-   ENDIF
+   cInfo += "CallStack " + iif( ::lShowCallStack, "ON", "OFF" ) + hb_eol()
+   cInfo += "Num " + iif( ::lLineNumbers, "ON", "OFF" ) + hb_eol()
 
    FOR EACH aBreak IN __dbgGetBreakPoints( ::pInfo )
       cInfo += "BP " + hb_ntos( aBreak[ HB_DBG_BP_LINE ] ) + " " + ;

@@ -653,3 +653,9 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Public/Private/Static/Local/Global aceptanON/OFFexplicitos y Save siempreescribeestado; comando/menu sinvalor conservatogglelegacy. Estadoinvalido rechazadosincambios.
 -18checksMonitorPASS y55CommandsPASS candidato, diezmodelosPASS. Pruebasrestauracionrepetida, scopesreales Local/Public/Private/Static yOFFdesdeON. Global soloverificaserializacionflag, noimplementavariablesGLOBAL ausentesenVM. CapturacompletaLocaltrasrestoreinspeccionada.
 - No cierraRestorecompleto: Sort/Stack/Case/path yotrosestadosaunpendientesauditoria; baselineglobal0768ac2historico. Runner42suites/60contratos sinincrementos.
+
+## 30Oct03:58 Restore CallStack and source numbers
+- CallStackON se guardaba como ViewCallStack(toggle): fixtureaisladopierdeCalls alprimerrestoreantes. NumON seomitía: trasNumOFFrestore seguiaoculto. Reproduccionesantesguardadasporseparado.
+- Save escribe CallStackON/OFF yNumON/OFF, usando parserexistentedeCallStack. PruebaCallStackoriginalampliadaverificaONrepetido, OFFdesdeON yNextRoutine original. DebugCommands56PASS, CallStackampliadoPASS y diezmodelosPASS candidato.
+- Noafirmalayoutmanualresuelto: pruebascombinadasdetectaronpanelessuperpuestostrasrestaurarlayoutmanual, inclusoestadoCallStackcorrecto. Casoconservadoen /tmp/hbide-stack-tiled-after y /tmp/hbide-stack-restore-after2; investigarorden/geometria porventana. No seeliminaelrequisito alaislarpruebadeflag.
+- Runner42suites/60contratos sinincremento; baselineglobal0768ac2historico. Windows pendiente.
