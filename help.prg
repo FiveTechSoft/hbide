@@ -803,7 +803,7 @@ FUNCTION HBIDEHelpLinks( cTitle, aTopics )
    ENDCASE
    FOR EACH c IN aWanted
       n := AScan( aTopics, {| t | t[ 2 ] == c } )
-      IF n > 0 .AND. c != cTitle
+      IF n > 0 .AND. ! ( c == cTitle )
          AAdd( a, n )
       ENDIF
    NEXT

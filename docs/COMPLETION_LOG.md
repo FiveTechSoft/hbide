@@ -1655,3 +1655,13 @@ sin limite aceptaba erróneamente el prefijo53 de5333. La comprobacion final
 del debuggee detecto ese fallo; ahora las aserciones exigen fin de valor y
 se comprueba el resultado completo. No se cambia el contrato del campo ni
 el producto. LinuxPTY40x120 focal, no todas las variables/scroll/Windows.
+
+## 31 octubre: enlace Debugger windows no desaparece por prefijo
+
+El flujo real de enlaces Quick start -> Debugger mostraba solo Run menu y
+Keyboard shortcuts. `c != cTitle` con SET EXACT OFF considera el titulo
+Debugger windows igual al prefijo Debugger, por lo que se excluia el enlace.
+Se usa `!(c == cTitle)` para excluir solo el mismo titulo. Modelo exige el
+enlace; HelpMouse18 comprueba primer/ultimo enlace, historial Back/Forward,
+enlace anidado con titulo y cuerpo, retorno y Undo byte-exactos. No se ha
+cambiado SET EXACT global ni la busqueda del usuario.

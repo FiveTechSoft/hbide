@@ -26,6 +26,8 @@ PROCEDURE Main()
    n := AScan( aTopics, {| t | t[ 2 ] == 'Dialog designer' } )
    Assert( 'selection-only ComboBox' $ aTopics[ n, 3 ], 'Designer help names actual ComboBox contract' )
    n := AScan( aTopics, {| t | t[ 2 ] == 'Debugger' } )
+   Assert( AScan( HBIDEHelpLinks( 'Debugger', aTopics ), {| idx | aTopics[ idx, 2 ] == 'Debugger windows' } ) > 0, 'prefix-related topic is not mistaken for current topic' )
+
    Assert( 'Cascade/Iconize' $ aTopics[ n, 3 ] .AND. 'Alt+O then M' $ aTopics[ n, 3 ], 'Debugger summary names implemented iconize and menu bar recovery' )
    Assert( 'Not implemented: Options Exchange Screens and swap on Input.' $ aTopics[ n, 3 ], 'Debugger summary limits unsupported actions to actual stubs' )
    n := AScan( aTopics, {| t | t[ 2 ] == 'Crash recovery' } )
