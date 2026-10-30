@@ -1228,3 +1228,15 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Synthetic handlers return true; no private expressions executed. This
   does not establish When/Valid rejection semantics, exact call counts,
   every interaction path, visual appearance, Windows or milestone closure.
+
+### 2026-10-30 Generated GET event veto and recovery
+
+- Synthetic GET When false skips entry (X cannot enter); after enabling,
+  ShiftTab re-evaluates When, Y enters and OK returns true with exact Y.
+- Valid false on first Tab blocks departure. After End/Y and enabling,
+  Valid is re-evaluated and OK returns true with exact XY, confirming focus
+  stayed on the GET. Two generated compiles plus veto/recovery assertions
+  and unchanged-source guard are12checks, not12functions.
+- Initial fixture expected XY after Y alone, but observed Y because input
+  replaced X after veto. Fixed the test sequence with End, no product fix.
+  Scope is generated GET keyboard path, not all controls/events or Windows.
