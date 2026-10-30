@@ -1432,6 +1432,13 @@ METHOD EditProperties() CLASS HbDesigner
          oCtrl[ "focus" ] = AllTrim( cFocus )
          oCtrl[ "state" ] = AllTrim( cState )
       endif
+      // Width/height/caption can change the footprint. Clamp against the
+      // final size, not just the old size captured before the dialog.
+      aSize := DsnControlSize( oCtrl )
+      nMaxRow := ::oWnd:nBottom - ::oWnd:nTop - 1 - aSize[ 2 ]
+      nMaxCol := ::oWnd:nRight - ::oWnd:nLeft - 1 - aSize[ 1 ]
+      oCtrl[ "row" ] := Max( 0, Min( nMaxRow, oCtrl[ "row" ] ) )
+      oCtrl[ "col" ] := Max( 0, Min( nMaxCol, oCtrl[ "col" ] ) )
       ::lDirty = .T.
       ::Redraw()
    endif
