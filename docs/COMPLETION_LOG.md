@@ -557,3 +557,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct01:03 Baseline36: expectativa obsoleta Calls
 -3351441 limpio/mismoSHA2edfcd57:35suitesPASS,CallStacktestfallo por exigir__MAINtraseliminarreescrituraMain. PantallaactualmostrabaCalls MAINcorrecto; nofalloproducto.
 - Expectativaajustada a MAINenfilaCallsconmarco, manteniendoBUMP/on/off/step. Falloinicialconservadoen/tmp/hbide-pty-3351441/results.jsonl, noanunciar36PASSdeesarevision.
+
+## 30Oct01:07 Script screen ownership
+- ReproduccionPTY: elidle delIDE sobrescribia la ultima fila deun Script esperandoInkey(0). DosFAILantesdelcambio.
+- Script suspende status durante ejecucion, recupera ownership y repintaeditor/status despuesdesalida normaloaborto. Compilacion conserva sugestiondeerroreslocal.
+-7checksScriptScreenPASS: dosrunsconmarkerultimafila, valoresoriginales yrestauracionINS, editorusable. ScriptErrors9PASS y nueve modelosPASS candidato. Capturas completas input/retorno inspeccionadas. Runner37suites; Windows pendiente.

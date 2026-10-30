@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'script-screen': ('test_script_screen_pty.py', [], 120),
     'source-includes': ('test_source_includes_pty.py', [], 120),
     'script-errors': ('test_script_errors_pty.py', [], 120),
     'start-paths': ('test_start_paths_pty.py', [], 120),

@@ -2048,12 +2048,18 @@ METHOD Script() CLASS HbIde
    ::Show()
 
    if ! Empty( oHrb )
+      ::SuspendStatus()
       BEGIN SEQUENCE
          bOldError = ErrorBlock( { | o | DoBreak( o ) } )
          // the arguments arrive as the parameters of Main()
          hb_ExecFromArray( "hb_HrbRun", AMerge( { HB_HRB_BIND_FORCELOCAL, oHrb }, aArgs ) )
+      RECOVER
+         // Always return screen ownership to the host after an aborted script.
       END SEQUENCE
       ErrorBlock( bOldError )
+      ::ResumeStatus()
+      ::Repaint()
+      ::oEditor:ShowCursor()
    else
       HBIDE_MsgAlert( "Script build produced no code: check the source" )
    endif
