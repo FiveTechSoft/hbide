@@ -623,3 +623,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct02:57 Locate Goto cancellation
 - NuevaaceptacionmenurealFind/Next/GotoexponeEscenGotomoviafila1envezdecancelar.35PASS/1FAILantes; SearchLineahorachequeaLastKeyESCantesdeGoto.
 -36checksDebugCommandsPASS candidato y diezmodelosPASS. Find/Next/Gotolinkedcontratos57/116, runner42sincrementodesuites. NoafirmaLocateglobalniWindows; baseline38anteriornoheredada.
+
+## 30Oct03:16 Baseline42 actual
+- 42 suites PTY distintas PASS sobre 0768ac2182930d7ddfaa55c7a77a12ea5bf538d5 limpio, binario SHA64a7f206183ed782ac61d09495bb1328075ddcfc0ca650e8e928aa68b8867db6. Build fresco inicial y reutilizacion explicita del mismo binario, sin mutaciones durante los casos.
+- Diez suites de modelo PASS en la misma revision limpia. Ledger completo en docs/evidence/linux-pty-0768ac2.json; logs originales /tmp/hbide-pty-0768ac2 y /tmp/hbide-completion-fjg413mg. Sin reintentos ni fallos en esta pasada.
+- Sustituye baseline38 como candidato actual, conservando los historicos sin reetiquetarlos. Incluye ampliaciones de CompilerFlags, Help, Display, Close y Locate. No equivale a 100%, acabado Animate, revision visual exhaustiva ni Windows nativo; dos stubs visibles pendientes. No cambia codigo de producto.
