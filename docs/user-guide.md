@@ -74,9 +74,13 @@ document.
 
 ## Saving and safety
 
-- Saves are atomic: a temporary file on the same volume replaces the
-  original only after a verified write, and the previous version is kept
-  as `.bak`.
+- Saves create an exclusive sibling temp and check the full write and close
+  before replacement. POSIX rename replacement is atomic; Windows uses
+  park-and-replace and is not atomic or natively validated here. There is no
+  fsync/power-loss guarantee. Partial write failure keeps the original and
+  buffer, without promising a complete recovery copy. A complete temp is kept
+  and named if a later step fails. F2 attempts a `.bak` copy; a backup failure
+  is reported but does not block saving.
 - hbide watches the file on disk. If it changes externally you can Reload
   or Keep mine; saving over external changes asks first; if the file was
   deleted you can Recreate it or Cancel.

@@ -148,7 +148,7 @@ function HBIDEHelpTopics()
       "Window > Close and File > Close ask only about the current document; Exit reviews all of them. Save As refuses to overwrite a path that is open in another document." } )
 
    AAdd( a, { "save atomic bak backup safety overwrite verified write", "Saving and safety", ;
-      "Saves are atomic: a temporary file on the same volume replaces the original only after a verified write, and the previous version is kept as .bak." + hb_eol() + hb_eol() + ;
+      "A save writes a new exclusive temporary file on the same volume and checks the full write and close before replacing the original. POSIX replacement uses rename; Windows park-and-replace is not atomic and still needs native validation. This is not a power-loss/fsync guarantee. A failed partial write keeps the original and buffer, not a promised complete recovery copy. A complete temp is kept and named if later promotion fails. F2 attempts a .bak copy of the previous disk version; backup failure is reported but does not block saving." + hb_eol() + hb_eol() + ;
       "hbide watches the file on disk: if it changes externally you choose Reload or Keep mine; saving over external changes asks first; if the file was deleted you can recreate it or cancel. See 'External file changes'." + hb_eol() + hb_eol() + ;
       "Run > Start saves before building; a blocked save cancels the build instead of compiling stale disk content." } )
 

@@ -1210,9 +1210,9 @@ return ""
 // the destination. On POSIX the rename replaces atomically, so a crash can
 // leave either the old or the new file, never a half-written one. If the
 // original's attributes cannot be read or applied, the save ABORTS without
-// modifying the destination (fail-closed). On ANY failure the temp with the
-// full new content is KEPT and @cFailInfo names it, so nothing the user
-// wrote is lost even when the destination cannot be touched.
+// modifying the destination (fail-closed). After a complete write, a later
+// permission/promotion failure keeps that temp and names it in cFailInfo.
+// Creation/partial-write failure promises no complete temp; keep the buffer open.
 // Symlink policy (fail-closed, documented): renaming would silently replace
 // the LINK with a regular file, and writing through the link in place would
 // reintroduce the non-atomic truncation this helper removes. Saving to a
