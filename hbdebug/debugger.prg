@@ -2573,7 +2573,7 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
    LOCAL n
    LOCAL oWnd
    LOCAL aBreak, aWatch
-   LOCAL cWindowName, nIcon, aRect
+   LOCAL cWindowName, nIcon, nZoom, aRect
 
    IF Empty( cFileName )
       ::cSettingsFileName := ::InputBox( "File name", ::cSettingsFileName )
@@ -2647,6 +2647,11 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
             aRect := { ::aWindowIcon[ nIcon, 2 ], ::aWindowIcon[ nIcon, 3 ], ;
                        ::aWindowIcon[ nIcon, 4 ], ::aWindowIcon[ nIcon, 5 ] }
          ENDIF
+         nZoom := AScan( ::aWindowZoom, {| a | a[ 1 ] == oWnd } )
+         IF nZoom > 0
+            aRect := { ::aWindowZoom[ nZoom, 2 ], ::aWindowZoom[ nZoom, 3 ], ;
+                       ::aWindowZoom[ nZoom, 4 ], ::aWindowZoom[ nZoom, 5 ] }
+         ENDIF
          cInfo += "Window Select " + cWindowName + hb_eol() + ;
             "Window Iconize OFF" + hb_eol() + ;
             "Window Move 1 0" + hb_eol() + ;
@@ -2656,6 +2661,14 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
             hb_ntos( aRect[ 2 ] ) + hb_eol() + ;
             "Window Iconize " + iif( nIcon > 0, "ON", "OFF" ) + hb_eol()
       NEXT
+      IF ! Empty( ::aWindowZoom )
+         oWnd := ::aWindowZoom[ 1, 1 ]
+         cWindowName := iif( oWnd == ::oWndCode, "CODE", ;
+            iif( oWnd == ::oWndCommand, "COMMAND", ;
+            iif( oWnd == ::oWndStack, "CALLSTACK", ;
+            iif( oWnd == ::oWndVars, "MONITOR", "POINTS" ) ) ) )
+         cInfo += "Window Select " + cWindowName + hb_eol() + "Window Zoom" + hb_eol()
+      ENDIF
       oWnd := ::aWindows[ ::nCurrentWindow ]
       cWindowName := iif( oWnd == ::oWndCode, "CODE", ;
          iif( oWnd == ::oWndCommand, "COMMAND", ;

@@ -669,3 +669,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Q13nuevofallo: guardarCallsiconizedemitiaWindowSize3x15, restoreloexpandia yrechazabatamañomenor4; mostrabaBUMP envezdeicono. PTYaisladofallabaantes.
 - Save guarda rectangulooriginaldesdeelregistroicon yestadoON/OFF. WindowIconize admiteestadoexplicito idempotente, sinvalorconservatoggle. Restoreexpandeantesderectangulo yreaplicaestado, sinperderbrowser ni sugeometriaoriginal.
 - CallStackampliadoPASS (restoreiconrepetido, ocultacontenido, expanderecuperaCalls/BUMP), Commands56PASS y diezmodelosPASS candidato. Dos capturascompletasicon/restauradoinspeccionadas. Q13parcial: zoom/hidden/windowsetdiferenteaunpendiente; noWindows. Runner42suites/60contratos, baselineglobal0768ac2historico.
+
+## 30Oct04:20 Restore zoom return bounds
+- Guardarventanazoomedperdiarectanguloderetorno; despuesrestoreZoomdejabapanelmaximizado. PTYantesfallabacomparaciondegeometriaoriginal/unzoom, excluyendofocofinalintencionadodiferente.
+- Saveguardarectanguloprezoom yreaplicaWindowZoomdespuesdeltodoslosrectangulos. PTYCallStackampliadoPASS,Commands56PASS y10modelosPASS candidato. Capturascompletaszoom/unzoomtrasrestoreinspeccionadas; unzoomrecuperapanelCallsdividido.
+- Q13parcial: hidden/cambiosdeconjuntodeventanas aunpendientes; noafirmaacabadozoomgeneral nicertificacionWindows. Runner42suites60contratos, baselineglobal0768ac2historico.
