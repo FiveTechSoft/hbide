@@ -1671,3 +1671,13 @@ prohibir self-links. Detecto como fallo el enlace de prefijo ahora permitido.
 Se corrige ese assert a identidad exacta, igual que el producto; se conserva
 el primer resultado fallido y se repite sobre fuente nueva. Las dosPTY de
 8366119 pasaron; no se presenta esa revision como20modelos verdes.
+
+## 31 octubre: Calls por raton cambia el contexto de locales
+
+Nuevo DebugStackMouse: Main con mainVar101 llama Child con childVar202.
+Con parada anidada, clic sobre MAIN en Calls muestra solo MAINVAR101;
+clic sobre CHILD vuelve a CHILDVAR202. Resume finaliza con salida exacta
+done y las fuentes byte-identicas. No se atribuye salto de linea de codigo:
+el upstream tiene esa parte desactivada y aqui se verifica el contexto de
+Monitor. LinuxPTY40x120 focal, no recursividad/pila larga/Windows. No cambio
+de producto ni conteo de ramas como funciones nuevas.

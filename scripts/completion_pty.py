@@ -87,6 +87,7 @@ CASES = {
     'debug-input-paths-modal': ('test_debug_input_paths_modal_pty.py', [], 120),
     'debug-watch-modal': ('test_debug_watch_modal_pty.py', [], 120),
     'debug-structured-modal': ('test_debug_structured_modal_pty.py', [], 120),
+    'debug-stack-mouse': ('test_debug_stack_mouse_pty.py', [], 120),
     'debug-mouse': ('test_debug_mouse_pty.py', [], 120),
     'debug-value-modal': ('test_debug_value_modal_pty.py', [], 120),
     'debug-numeric-modal': ('test_debug_numeric_modal_pty.py', [], 120),
