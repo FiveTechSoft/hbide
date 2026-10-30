@@ -899,3 +899,4 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct10:23 Settings dialog Cancel verified
 - Save y Restore: editar nombre y Escape conserva el nombre anterior en la siguiente apertura del diálogo. Bytes de archivo anterior intactos y no aparece archivo con nombre abandonado.
 - Caso PASS, sin parche de producto. No se cambia el nombre por defecto tras errores porque eso requiere separar destino intentado de última ruta válida y no se ha establecido contrato nuevo.
+- Repetición limpia4728d46: RestoredPoints ampliado PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-settings-cancel-4728d46.json. Binario31b50660913f1071ded1b614d79fa3d5724c47752645357b723b6292845e0965.
