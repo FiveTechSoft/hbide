@@ -45,7 +45,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-037 | Help | Index | hbide.prg:841 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-038 | Help | Contents | hbide.prg:842 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-039 | Help | About... | hbide.prg:844 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-001 | File | Open... | hbdebug/dbgmenu.prg:78 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-001 | File | Open... | hbdebug/dbgmenu.prg:78 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-002 | File | Resume | hbdebug/dbgmenu.prg:79 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-003 | File | OS Shell | hbdebug/dbgmenu.prg:80 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-004 | File | eXit    Alt-X | hbdebug/dbgmenu.prg:82 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -77,7 +77,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-030 | Monitor | All | hbdebug/dbgmenu.prg:154 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-031 | Monitor | Show all Globals | hbdebug/dbgmenu.prg:158 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-032 | Monitor | sOrt | hbdebug/dbgmenu.prg:162 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-033 | Options | Preprocessed Code | hbdebug/dbgmenu.prg:167 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-033 | Options | Preprocessed Code | hbdebug/dbgmenu.prg:167 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-034 | Options | Line Numbers | hbdebug/dbgmenu.prg:170 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-035 | Options | Exchange Screens | hbdebug/dbgmenu.prg:173 | stub | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-036 | Options | swap on Input | hbdebug/dbgmenu.prg:174 | stub | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -192,6 +192,8 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-044: Save Settings menu writes a readable settings file. Commands exercise explicit states and exact point snapshots. Failed writes are visible; symlink saves refuse without changing link/target, new settings retained in recovery temp. Linux mode0640 preserved. Not a full settings/Windows acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py), [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_restored_points_pty.py](../tests/test_debug_restored_points_pty.py)
 - DBG-045: Restore Settings menu applies source numbers; commands restore explicit scalar/monitor/case/codeblock states and exact point snapshots. Repeated restored BP/TP stop the real VM. Named layouts/icon/zoom and recreated Calls/hidden Monitor have focused tests. Missing explicit file reports path. CLD extension defaults and cwd-before-PATH lookup also apply to INPUT and init.cld; exact explicit-directory requests do not fall back by basename. Not transactional malformed-script or exhaustive layout acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py), [test_debug_commands_pty.py](../tests/test_debug_commands_pty.py), [test_debug_callstack_pty.py](../tests/test_debug_callstack_pty.py), [test_debug_monitor_pty.py](../tests/test_debug_monitor_pty.py), [test_debug_codeblock_pty.py](../tests/test_debug_codeblock_pty.py), [test_debug_restored_points_pty.py](../tests/test_debug_restored_points_pty.py), [test_debug_script_lookup_pty.py](../tests/test_debug_script_lookup_pty.py), [test_debug_script_read_pty.py](../tests/test_debug_script_read_pty.py), [test_debug_script_path.prg](../tests/test_debug_script_path.prg)
 - DBG-042: Source path dialog Esc retains original setting; Enter persists accepted path; File Open resolves source from a directory with spaces. Linux PTY only, no full path alias/platform certification. Pruebas: [test_debug_path_cancel_pty.py](../tests/test_debug_path_cancel_pty.py)
+- DBG-001: File Open reads source successfully before changing code identity/view. Unreadable source reports failure and retains prior view. Source search path resolves readable file. Pruebas: [test_debug_source_read_pty.py](../tests/test_debug_source_read_pty.py), [test_debug_path_cancel_pty.py](../tests/test_debug_path_cancel_pty.py)
+- DBG-033: Unreadable PPO refuses switching and retains code identity/view; readable PPO switches. Missing-file and platform limits remain separate. Pruebas: [test_debug_source_read_pty.py](../tests/test_debug_source_read_pty.py)
 
 ## Campos de inspector
 

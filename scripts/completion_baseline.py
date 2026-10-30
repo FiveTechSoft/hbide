@@ -24,7 +24,7 @@ cases = {
     'backup': ['tests/test_backup.prg', 'editor.prg', 'recovery.prg'],
     'debug-temp-write': ['tests/test_debug_temp_write.prg', 'hbdebug/dbgscript.prg'],
     'debug-script-path': ['tests/test_debug_script_path.prg', 'hbdebug/dbgscript.prg'],
-    'debug-search': ['tests/test_debug_search.prg', 'hbdebug/tbrwtext.prg', 'hbdebug/dbgbrwsr.prg'],
+    'debug-search': ['tests/test_debug_search.prg', 'hbdebug/tbrwtext.prg', 'hbdebug/dbgbrwsr.prg', 'recovery.prg'],
     'designer': ['tests/test_designer.prg', 'designer.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'editor-repaint': ['tests/test_editor_repaint.prg', 'editor.prg', 'recovery.prg'],
     'find': ['tests/test_editor_find.prg', 'editor.prg', 'recovery.prg'],

@@ -2220,7 +2220,7 @@ METHOD PROCEDURE Open( cFileName ) CLASS HBDebugger
 
    LOCAL nFileName
    LOCAL cRealName
-   LOCAL aFiles
+   LOCAL aFiles, cBytes, lReadOk := .F.
 
    IF Empty( cFileName )
       aFiles := ::GetSourceFiles()
@@ -2253,15 +2253,21 @@ METHOD PROCEDURE Open( cFileName ) CLASS HBDebugger
          ENDIF
          cFileName := cRealName
       ENDIF
+      cBytes := HBIDE_ReadFileChecked( cFileName, @lReadOk )
+      IF ! lReadOk
+         ::CommandWindowDisplay( "Cannot read source: " + cFileName, .F. )
+         RETURN
+      ENDIF
       ::cPrgName := cFileName
       ::lPPO := ( Lower( hb_FNameExt( cFileName ) ) == ".ppo" )
       ::oPulldown:GetItemByIdent( "PPO" ):Checked := ::lPPO
       ::oBrwText := HBBrwText():New( ::oWndCode:nTop + 1, ::oWndCode:nLeft + 1, ;
-         ::oWndCode:nBottom - 1, ::oWndCode:nRight - 1, cFileName, ;
+         ::oWndCode:nBottom - 1, ::oWndCode:nRight - 1, NIL, ;
          __dbgColors()[ 2 ] + "," + __dbgColors()[ 5 ] + "," + ;
          __dbgColors()[ 3 ] + "," + __dbgColors()[ 6 ] + "," + ;
          __dbgColors()[ 1 ], ;
          ::lLineNumbers, ::nTabWidth )
+      ::oBrwText:LoadText( cFileName, cBytes )
       ::oWndCode:Browser := ::oBrwText
       ::oWndCode:SetCaption( ::cPrgName )
       ::oWndCode:Refresh()       // to force the window caption to update
@@ -2285,7 +2291,7 @@ METHOD OpenMenu( cName ) CLASS HBDebugger
 
 METHOD OpenPPO() CLASS HBDebugger
 
-   LOCAL cTarget
+   LOCAL cTarget, cBytes, lReadOk := .F.
 
    IF Empty( ::cPrgName )
       RETURN .F.
@@ -2298,13 +2304,19 @@ METHOD OpenPPO() CLASS HBDebugger
       RETURN .F.
    ENDIF
 
+   cBytes := HBIDE_ReadFileChecked( cTarget, @lReadOk )
+   IF ! lReadOk
+      ::CommandWindowDisplay( "Cannot read source: " + cTarget, .F. )
+      RETURN .F.
+   ENDIF
    ::cPrgName := cTarget
    ::lPPO := Lower( hb_FNameExt( cTarget ) ) == ".ppo"
    ::oBrwText := HBBrwText():New( ::oWndCode:nTop + 1, ::oWndCode:nLeft + 1, ;
-      ::oWndCode:nBottom - 1, ::oWndCode:nRight - 1, ::cPrgName, ;
+      ::oWndCode:nBottom - 1, ::oWndCode:nRight - 1, NIL, ;
       __dbgColors()[ 2 ] + "," + __dbgColors()[ 5 ] + "," + ;
       __dbgColors()[ 3 ] + "," + __dbgColors()[ 6 ] + "," + ;
       __dbgColors()[ 1 ], ::lLineNumbers, ::nTabWidth )
+   ::oBrwText:LoadText( cTarget, cBytes )
    ::oWndCode:Browser := ::oBrwText
    ::oWndCode:SetCaption( ::cPrgName )
    ::oWndCode:Refresh()
@@ -2935,6 +2947,7 @@ METHOD PROCEDURE ShowCodeLine( nProc ) CLASS HBDebugger
 
    LOCAL nLine
    LOCAL cPrgName
+   LOCAL cBytes, lReadOk := .F.
 
    // we only update the stack window and up a new browse
    // to view the code if we have just broken execution
@@ -2978,18 +2991,26 @@ METHOD PROCEDURE ShowCodeLine( nProc ) CLASS HBDebugger
                RETURN
             ENDIF
 
+            cBytes := HBIDE_ReadFileChecked( cPrgName, @lReadOk )
+            IF ! lReadOk
+               ::oBrwText := NIL
+               ::oWndCode:Browser := NIL
+               ::oWndCode:SetCaption( cPrgName + "  Cannot read source" )
+               ::oWndCode:Refresh()
+               RETURN
+            ENDIF
+
             IF ::oBrwText == NIL
                ::oBrwText := HBBrwText():New( ::oWndCode:nTop + 1, ::oWndCode:nLeft + 1, ;
-                  ::oWndCode:nBottom - 1, ::oWndCode:nRight - 1, cPrgName, ;
+                  ::oWndCode:nBottom - 1, ::oWndCode:nRight - 1, NIL, ;
                   __dbgColors()[ 2 ] + "," + __dbgColors()[ 5 ] + "," + ;
                   __dbgColors()[ 3 ] + "," + __dbgColors()[ 6 ] + "," + ;
                   __dbgColors()[ 1 ], ;
                   ::lLineNumbers, ::nTabWidth )
 
                ::oWndCode:Browser := ::oBrwText
-            ELSE
-               ::oBrwText:LoadFile( cPrgName )
             ENDIF
+            ::oBrwText:LoadText( cPrgName, cBytes )
 
             ::oWndCode:bPainted := {|| iif( ::oBrwText != NIL, ::oBrwText:RefreshAll():ForceStable(), ::oWndCode:Clear() ) }
             ::oWndCode:SetCaption( ::cPrgName )

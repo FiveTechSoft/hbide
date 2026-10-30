@@ -113,6 +113,7 @@ CREATE CLASS HBBrwText
    METHOD SetTabWidth( nTabWidth )
    METHOD UpdateLineWidth()
    METHOD LoadFile( cFileName )
+   METHOD LoadText( cFileName, cBytes )
 
    VAR colorSpec IS colorSpec IN oBrw
 
@@ -191,10 +192,19 @@ METHOD GetLineColor() CLASS HBBrwText
 
    RETURN aColor
 
-METHOD PROCEDURE LoadFile( cFileName ) CLASS HBBrwText
+METHOD LoadFile( cFileName ) CLASS HBBrwText
+
+   LOCAL lReadOk := .F., cBytes := HBIDE_ReadFileChecked( cFileName, @lReadOk )
+   IF ! lReadOk
+      RETURN .F.
+   ENDIF
+   ::LoadText( cFileName, cBytes )
+   RETURN .T.
+
+METHOD PROCEDURE LoadText( cFileName, cBytes ) CLASS HBBrwText
 
    ::cFileName := cFileName
-   ::aRows := __dbgTextToArray( MemoRead( cFileName ) )
+   ::aRows := __dbgTextToArray( cBytes )
    ::nRows := Len( ::aRows )
    ::nLineNoLen := Len( hb_ntos( ::nRows ) ) + 2
 
