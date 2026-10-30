@@ -256,6 +256,13 @@ try:
     assert colorline(colorsafter)==originalcolors,('valid saved palette restores',colorline(colorsafter))
     print('PASS complete Colors palette applies and saved original restores')
 
+    command('delete all')
+    command('tp n')
+    command('delete tp 0')
+    deleted=os.path.join(work,'deleted-tracepoint.cld')
+    command('options savesettings '+deleted)
+    assert not any(x.startswith('TP ') for x in open(deleted).read().splitlines()),('Delete TP index must remove tracepoint',open(deleted).read())
+    print('PASS Delete TP zero removes the tracepoint')
     send(b'\x1bx');pump(.7);assert ' File  Edit' in scr.text()
 finally:
     try:os.kill(pid,signal.SIGHUP)

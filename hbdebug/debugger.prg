@@ -964,7 +964,7 @@ METHOD DoCommand( cCommand ) CLASS HBDebugger
       DO CASE
       CASE cParam1 == "BP"
          ::BreakPointDelete( cParam2 )
-      CASE cParam1 == "WP" .OR. cParam2 == "TP"
+      CASE cParam1 == "WP" .OR. cParam1 == "TP"
          ::WatchpointDel( cParam2 )
       CASE cParam1 == "ALL"
          DO CASE

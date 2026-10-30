@@ -805,3 +805,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct07:42 Current debugger regression
 - Ten distinct debugger PTY suites PASS on clean e0d3f59 with one freshly built binary de014d4f: Commands, Functions, RestoredPoints, CallStack, Session, Startup, Monitor, Codeblock, Exits, Animate. No failures, retries or mutations in this pass. Ten model suites also PASS on the same revision.
 - Durable evidence docs/evidence/linux-debug-e0d3f59.json. This validates recent debugger fixes together; it is not the full43-suite IDE regression, exhaustive visual or Windows acceptance. Baseline43-suite53be664 remains historical.
+
+## 30Oct07:46 Delete TP index
+- Reproducción: Delete TP0 no eliminaba el tracepoint; Save todavía emitía TP n. DoCommand comparaba cParam2 con TP en vez de cParam1.
+- Corregido selector compartido WP/TP. RestoredPoints ampliado PASS después y diez modelos PASS candidato. No cambio visual nuevo. Baseline debugger10+10 de e0d3f59 queda histórico tras este cambio de producto; no herencia de aceptación completa.
