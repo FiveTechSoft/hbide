@@ -1,0 +1,754 @@
+{
+  "scope": "Source modal inventory30declarations plus clean Linux20models+Help1PTY and31embedded docs exact on c5dc097. Counts not functions, no field-specific runtime acceptance.",
+  "counts": {
+    "menu_actions": 116,
+    "stub_menu_actions": 2,
+    "dispatch_routes": 330,
+    "modal_field_declarations": 30
+  },
+  "modal_fields": [
+    {
+      "id": "DSN-FIELD-EditProperties-nRow-1",
+      "surface": "EditProperties",
+      "variable": "nRow",
+      "kind": "value",
+      "picture": "999",
+      "label": "Row:",
+      "source": "designer.prg",
+      "line": 1326,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-nCol-1",
+      "surface": "EditProperties",
+      "variable": "nCol",
+      "kind": "value",
+      "picture": "999",
+      "label": "Col:",
+      "source": "designer.prg",
+      "line": 1327,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-cCaption-1",
+      "surface": "EditProperties",
+      "variable": "cCaption",
+      "kind": "value",
+      "picture": "@S40",
+      "label": "Caption:",
+      "source": "designer.prg",
+      "line": 1332,
+      "conditions": [
+        "oCtrl[ \"type\" ] $ DSN_SAY + \"|\" + DSN_BUTTON + \"|\" + DSN_CHECKBOX"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-cVariable-1",
+      "surface": "EditProperties",
+      "variable": "cVariable",
+      "kind": "value",
+      "picture": "@S20",
+      "label": "Variable:",
+      "source": "designer.prg",
+      "line": 1337,
+      "conditions": [
+        "oCtrl[ \"type\" ] $ DSN_GET + \"|\" + DSN_CHECKBOX"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-nWidth-1",
+      "surface": "EditProperties",
+      "variable": "nWidth",
+      "kind": "value",
+      "picture": "999",
+      "label": "Width:",
+      "source": "designer.prg",
+      "line": 1342,
+      "conditions": [
+        "oCtrl[ \"type\" ] == DSN_GET"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-cAccel-1",
+      "surface": "EditProperties",
+      "variable": "cAccel",
+      "kind": "value",
+      "picture": "",
+      "label": "Accel:",
+      "source": "designer.prg",
+      "line": 1347,
+      "conditions": [
+        "oCtrl[ \"type\" ] == DSN_BUTTON"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-cAction-1",
+      "surface": "EditProperties",
+      "variable": "cAction",
+      "kind": "value",
+      "picture": "@S40",
+      "label": "Action:",
+      "source": "designer.prg",
+      "line": 1349,
+      "conditions": [
+        "oCtrl[ \"type\" ] == DSN_BUTTON"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-lBrackets-1",
+      "surface": "EditProperties",
+      "variable": "lBrackets",
+      "kind": "checkbox",
+      "picture": "",
+      "label": "B&rackets look (uncheck for 3D shadow)",
+      "source": "designer.prg",
+      "line": 1351,
+      "conditions": [
+        "oCtrl[ \"type\" ] == DSN_BUTTON"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-cVariable-2",
+      "surface": "EditProperties",
+      "variable": "cVariable",
+      "kind": "value",
+      "picture": "@S20",
+      "label": "Variable:",
+      "source": "designer.prg",
+      "line": 1357,
+      "conditions": [
+        "oCtrl[ \"type\" ] $ DSN_RADIO + \"|\" + DSN_LISTBOX + \"|\" + DSN_COMBOBOX"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-cItems-1",
+      "surface": "EditProperties",
+      "variable": "cItems",
+      "kind": "value",
+      "picture": "@S40",
+      "label": "Items:",
+      "source": "designer.prg",
+      "line": 1359,
+      "conditions": [
+        "oCtrl[ \"type\" ] $ DSN_RADIO + \"|\" + DSN_LISTBOX + \"|\" + DSN_COMBOBOX"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-nWidth-2",
+      "surface": "EditProperties",
+      "variable": "nWidth",
+      "kind": "value",
+      "picture": "999",
+      "label": "Width:",
+      "source": "designer.prg",
+      "line": 1364,
+      "conditions": [
+        "( oCtrl[ \"type\" ] == DSN_LISTBOX .or. oCtrl[ \"type\" ] == DSN_COMBOBOX )"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-nHeight-1",
+      "surface": "EditProperties",
+      "variable": "nHeight",
+      "kind": "value",
+      "picture": "999",
+      "label": "Height:",
+      "source": "designer.prg",
+      "line": 1366,
+      "conditions": [
+        "( oCtrl[ \"type\" ] == DSN_LISTBOX .or. oCtrl[ \"type\" ] == DSN_COMBOBOX )"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-cWhen-1",
+      "surface": "EditProperties",
+      "variable": "cWhen",
+      "kind": "value",
+      "picture": "@S40",
+      "label": "When:",
+      "source": "designer.prg",
+      "line": 1371,
+      "conditions": [
+        "oCtrl[ \"type\" ] != DSN_SAY"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-cValid-1",
+      "surface": "EditProperties",
+      "variable": "cValid",
+      "kind": "value",
+      "picture": "@S40",
+      "label": "Valid:",
+      "source": "designer.prg",
+      "line": 1373,
+      "conditions": [
+        "oCtrl[ \"type\" ] != DSN_SAY"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-cFocus-1",
+      "surface": "EditProperties",
+      "variable": "cFocus",
+      "kind": "value",
+      "picture": "@S40",
+      "label": "Focus:",
+      "source": "designer.prg",
+      "line": 1376,
+      "conditions": [
+        "oCtrl[ \"type\" ] != DSN_SAY",
+        "oCtrl[ \"type\" ] $ DSN_BUTTON + \"|\" + DSN_CHECKBOX + \"|\" + DSN_RADIO + \"|\" + DSN_LISTBOX + \"|\" + DSN_COMBOBOX"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-cState-1",
+      "surface": "EditProperties",
+      "variable": "cState",
+      "kind": "value",
+      "picture": "@S40",
+      "label": "State:",
+      "source": "designer.prg",
+      "line": 1380,
+      "conditions": [
+        "oCtrl[ \"type\" ] != DSN_SAY",
+        "oCtrl[ \"type\" ] $ DSN_CHECKBOX + \"|\" + DSN_LISTBOX + \"|\" + DSN_COMBOBOX"
+      ],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-lDummy-1",
+      "surface": "EditProperties",
+      "variable": "lDummy",
+      "kind": "button",
+      "picture": "",
+      "label": "&OK",
+      "source": "designer.prg",
+      "line": 1385,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-EditProperties-lDummy-2",
+      "surface": "EditProperties",
+      "variable": "lDummy",
+      "kind": "button",
+      "picture": "",
+      "label": "&Cancel",
+      "source": "designer.prg",
+      "line": 1389,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-DlgProperties-cCaption-1",
+      "surface": "DlgProperties",
+      "variable": "cCaption",
+      "kind": "value",
+      "picture": "@S40",
+      "label": "Caption:",
+      "source": "designer.prg",
+      "line": 1473,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-DlgProperties-cName-1",
+      "surface": "DlgProperties",
+      "variable": "cName",
+      "kind": "value",
+      "picture": "",
+      "label": "Name:",
+      "source": "designer.prg",
+      "line": 1476,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-DlgProperties-nWidth-1",
+      "surface": "DlgProperties",
+      "variable": "nWidth",
+      "kind": "value",
+      "picture": "999",
+      "label": "Width:",
+      "source": "designer.prg",
+      "line": 1479,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-DlgProperties-nHeight-1",
+      "surface": "DlgProperties",
+      "variable": "nHeight",
+      "kind": "value",
+      "picture": "999",
+      "label": "Height:",
+      "source": "designer.prg",
+      "line": 1482,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-DlgProperties-cClrBack-1",
+      "surface": "DlgProperties",
+      "variable": "cClrBack",
+      "kind": "value",
+      "picture": "@S20",
+      "label": "Back:",
+      "source": "designer.prg",
+      "line": 1485,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-DlgProperties-cClrText-1",
+      "surface": "DlgProperties",
+      "variable": "cClrText",
+      "kind": "value",
+      "picture": "@S20",
+      "label": "Text:",
+      "source": "designer.prg",
+      "line": 1488,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-DlgProperties-cClrFocus-1",
+      "surface": "DlgProperties",
+      "variable": "cClrFocus",
+      "kind": "value",
+      "picture": "@S20",
+      "label": "Focus:",
+      "source": "designer.prg",
+      "line": 1491,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-DlgProperties-lDummy-1",
+      "surface": "DlgProperties",
+      "variable": "lDummy",
+      "kind": "button",
+      "picture": "",
+      "label": "&OK",
+      "source": "designer.prg",
+      "line": 1494,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-DlgProperties-lDummy-2",
+      "surface": "DlgProperties",
+      "variable": "lDummy",
+      "kind": "button",
+      "picture": "",
+      "label": "&Cancel",
+      "source": "designer.prg",
+      "line": 1498,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-SelectFileName-cFile-1",
+      "surface": "SelectFileName",
+      "variable": "cFile",
+      "kind": "value",
+      "picture": "",
+      "label": "File:",
+      "source": "designer.prg",
+      "line": 1599,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-SelectFileName-lDummy-1",
+      "surface": "SelectFileName",
+      "variable": "lDummy",
+      "kind": "button",
+      "picture": "",
+      "label": "&OK",
+      "source": "designer.prg",
+      "line": 1602,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    },
+    {
+      "id": "DSN-FIELD-SelectFileName-lDummy-2",
+      "surface": "SelectFileName",
+      "variable": "lDummy",
+      "kind": "button",
+      "picture": "",
+      "label": "&Cancel",
+      "source": "designer.prg",
+      "line": 1606,
+      "conditions": [],
+      "acceptance": "Pending field-specific acceptance; surface contracts separate"
+    }
+  ],
+  "models": {
+    "source": "c5dc0977b0fa82f82d842fcd64d94bbc5988e7af",
+    "dirty": false,
+    "tracked_changes": "",
+    "runner_sha256": "be72bb000a4894d170926e87bd027d4225fb1485d711c728481e267bf403136f",
+    "platform": "Linux",
+    "hbmk2": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "started": 1793392065.15178,
+    "scope": "Linux model probes only. Not PTY, visual or Windows certification.",
+    "tests": {
+      "designer-schema": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_schema.prg": "839431d2ba2c137fc60a6eeebdfd8e79fee6a7252c50ebc45778504df89d176b",
+          "designer.prg": "9492dffe65fe06cc4b8ce331c56f41f6cf25fd48944842034e0fc12ed5062897",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "7ab2a4d15c97117c5e884c5a5d48473118f3c6e3be036f7cc8c2f7b6a31202ae",
+        "started": 1793392065.1521175,
+        "seconds": 0.47569799423217773
+      },
+      "designer-load": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_load.prg": "501e3671019f0b9536a9eb41d5436055ff01acc8d10e213c1522b72581ba6878",
+          "designer.prg": "9492dffe65fe06cc4b8ce331c56f41f6cf25fd48944842034e0fc12ed5062897",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "daa535e5a46f8ddc6a01566fe656aa23fb2d2f8df42743b16926a5ed7faa4ba1",
+        "started": 1793392065.6281245,
+        "seconds": 0.48702049255371094
+      },
+      "designer-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_write.prg": "892737326c997a7c68aaf19dd646d31739eb19cca66d170c813786b11a2f0e47",
+          "designer.prg": "9492dffe65fe06cc4b8ce331c56f41f6cf25fd48944842034e0fc12ed5062897",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "4b978e7cb1e4c8afbabf1872735942cd464673e131f04c426e35417aa4845de8",
+        "started": 1793392066.1154335,
+        "seconds": 0.47920823097229004
+      },
+      "designer-inline-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_inline_geometry.prg": "c9de281ea69447a12c364072d2cfa6b1bdf8a5fa3fea04f0f453cccce8bd91bc",
+          "designer.prg": "9492dffe65fe06cc4b8ce331c56f41f6cf25fd48944842034e0fc12ed5062897",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "e9469a134d092152084e683481f77cecfe460d81b4afa2058f0ba18e1b278b13",
+        "started": 1793392066.5949204,
+        "seconds": 0.4780714511871338
+      },
+      "designer-property-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_geometry.prg": "8a4b3c276d23726d579a5f46311b7e82934cc59221443324c7735bbae52e3ab1",
+          "designer.prg": "9492dffe65fe06cc4b8ce331c56f41f6cf25fd48944842034e0fc12ed5062897",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "4e86af00b282bbd371fb28cb62f9889c657b8f51e3edd58514e1c9604a2adaed",
+        "started": 1793392067.0733027,
+        "seconds": 2.48926043510437
+      },
+      "designer-property-cancel": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_cancel.prg": "0a0235812370f734290b264cc315869b9c5d90f54d2f94ae972ddc72c27f9c0f",
+          "designer.prg": "9492dffe65fe06cc4b8ce331c56f41f6cf25fd48944842034e0fc12ed5062897",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "262b4ca07dd97ca8bc5a6ede1b2444024704e5ea1c0a0c2a4dcc19d75541f70e",
+        "started": 1793392069.5628831,
+        "seconds": 0.503511905670166
+      },
+      "project-output": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project_output.prg": "69e3067d0d088c411840a3bb81d1f30149e0bbbf35671a46b98ca677c8e9a8cb",
+          "projectui.prg": "9deb02dbb32facf57e7e3cadc01e5e225e57bc5ca770333ad0635e5a0b08fe11",
+          "project.prg": "08bb8a48d0ca320009b12a5433a17693bd85e61535d2dec87eee66cf7e87f407",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "c1560348d8dccae147cd48db1cdab12e57e77418a686180c07918c6beb78db93",
+        "started": 1793392070.066545,
+        "seconds": 0.28569793701171875
+      },
+      "backup": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_backup.prg": "b3543b008b2d06ec45aa7836daa09c5f8e3f75287e266b6f06c9f7344e006d61",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "ce86536e903a324effe9a8d35e619674239e9cd4090996cb8080d35ba50acc1b",
+        "started": 1793392070.3524427,
+        "seconds": 0.2781648635864258
+      },
+      "debug-temp-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_temp_write.prg": "210526b082b0d8d07e92f438e394de575a7ee2c47ce39fc0c6818f86df22b449",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "a6cf3a53988c50e0c16aac49ea49cba73c4cb85b2ae59e3d7b942437357124fa",
+        "started": 1793392070.6306744,
+        "seconds": 0.12262105941772461
+      },
+      "debug-script-path": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_script_path.prg": "a856a0583716db4e22a24e0be04b6b344406f3eed7c261201d72268519efb71a",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "e477c3d20138e9e1ee695cae55d25baf312929c32d1583f60b8f735f8d4d27f4",
+        "started": 1793392070.753373,
+        "seconds": 0.12227559089660645
+      },
+      "debug-search": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_search.prg": "84ec5023c2bf1d2069b1cfbfdb7223cc8933b04bb49231c96f3f1a3e8f486f5b",
+          "hbdebug/tbrwtext.prg": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+          "hbdebug/dbgbrwsr.prg": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "6aadc1daf5012772531779b4f4358a7b5da2721bfb58cc306bf462e0771b7066",
+        "started": 1793392070.8757503,
+        "seconds": 0.22738242149353027
+      },
+      "designer": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer.prg": "8299e1c007b92463626f38d9cf423f062a6928248b9c455d7e09f2bf266286f6",
+          "designer.prg": "9492dffe65fe06cc4b8ce331c56f41f6cf25fd48944842034e0fc12ed5062897",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "3d010a573842a4798f9bbb3e64702dab4192925e5b7e9c8c71de0cd9a8ea7228",
+        "started": 1793392071.103501,
+        "seconds": 0.536846399307251
+      },
+      "editor-repaint": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_repaint.prg": "2c170c7452f2d6371213c6d0dc6ad071a5fad7c896e75d27a04362737934e5c8",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "d445442ab013f1ee9b6e4fd8588c32b68e888ba17567f1c8216929879e9d11e4",
+        "started": 1793392071.6405792,
+        "seconds": 3.2915303707122803
+      },
+      "find": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_find.prg": "9af32468423371d620d8e6587ab4f56d56485ec332d528709a80338e5926a9e5",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "410672427ba49264267fd3534e31dc4d287b5404f49af11e178fc700089dafbe",
+        "started": 1793392074.932274,
+        "seconds": 0.27341151237487793
+      },
+      "eol": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_eol.prg": "cd1c9df2f23763ed2bc1fbc13baa7ed40fe1e36fd4b106e5f77ac9094b29ac2c",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "92da10b967bf7dc470aec504daeeac1c9c7e266d3e2f19be4a21126f46b70a92",
+        "started": 1793392075.2058563,
+        "seconds": 0.33348727226257324
+      },
+      "utf8": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_utf8_valid.prg": "13cb1239a5934db50f44530289afea8216db9b720ba5e1e7b30eabc98df336f0",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "f807cbcc53b23b1b5300395f08693d9a8652462275df51b185027a7e2b071f6d",
+        "started": 1793392075.5394819,
+        "seconds": 0.2733285427093506
+      },
+      "atomic": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_atomic.prg": "87f714d53e7324aad60d22f9fb9d02b5899689fdaa7a54d51ef60948f0717e01",
+          "editor.prg": "d5cd52cdc9cfeb6e82219491a026570e99fdfca619605052c687202e9e366b01",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "69b32ada4498b2e02c51b3bd4a6684938f9774d7d46d0c35e1e602bcca59145f",
+        "started": 1793392075.812996,
+        "seconds": 0.30152297019958496
+      },
+      "recovery": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_recovery.prg": "714585c485dcb7bce32aa5b94310773019bb57e0814b1ed3bbe0e53e4e32a2d1",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "2a02bafa36c1db8df0b73b975648bf502255395e764b5e5ccbb365446df7916a",
+        "started": 1793392076.1145976,
+        "seconds": 0.1859142780303955
+      },
+      "project": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project.prg": "a8ed87c334140ab46e859eee0c88351e4a75ce15dffed2662281de0030d223a7",
+          "project.prg": "08bb8a48d0ca320009b12a5433a17693bd85e61535d2dec87eee66cf7e87f407",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "8758df526f3c3a1bc916e49cb03eb93ecaf982b7ccc6da2dfe82bbcbb2954220",
+        "started": 1793392076.3006601,
+        "seconds": 0.3840618133544922
+      },
+      "help": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_help.prg": "bdd4617c01cd2ec8aa1a6b697dce01c1fb24f37c6fc941ad329f793b572a7b22",
+          "help.prg": "640b5ea3976f0f7714e57d66d560c92cae1705a1b7c490ffcad36d2e4c11129b",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "67b09ea06a43609529da2067fbe86d946af88b8abcf835b71b0d35785d29cf5d",
+        "started": 1793392076.6849413,
+        "seconds": 0.8861851692199707
+      }
+    },
+    "finished": 1793392077.571133
+  },
+  "pty": [
+    {
+      "source": "c5dc0977b0fa82f82d842fcd64d94bbc5988e7af",
+      "tracked_changes": "",
+      "binary_sha256": "4e5911be244f0098d7cfb140fb7123714b52743e41f48b7d27fe756a904bfea8",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "182ad8655c2318a4f0d1126709ec4beb6cd0ff14c02c0327bc8b53418a09d348",
+      "case": "help",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_help_pty.py"
+      ],
+      "started": 1793392079.8531454,
+      "seconds": 15.11,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "307dd33519b062ef1f0ccb8ac45555609f75c701b2a13830a299d4e63a8ba183",
+      "log": "/tmp/hbide-modal-inventory-help/help-1793392079853139635.log"
+    }
+  ]
+}
