@@ -251,3 +251,19 @@ fsync/crash durability and Windows are not accepted by this change.
 bytes, refuses, preserves ORIGINAL and makes no complete-recovery promise. Its
 owned partial temp is removed. Complete temps still remain when later permission
 or promotion steps fail. This is not a guarantee against every filesystem fault.
+
+## Designer partial write (Linux)
+
+`DsnSafeMemoWrit` previously used a direct truncating write: with a 64-byte
+RLIMIT_FSIZE, a 512-byte attempt refused but changed the original to64bytes.
+The shared atomic writer now preserves it. To exercise actual SaveJson and
+GeneratePrg with dirty state and existing destinations, build the fixture
+from the repository root, then run the bounded harness:
+
+```
+hbmk2 tests/test_designer_write.prg designer.prg safeio.prg hbwindow.prg hbmenu.prg hbbutton.prg hbgetu.prg -gtstd -o/tmp/designer-write
+python tests/probes/check_designer_partial.py /tmp/designer-write
+```
+
+Both original files must remain exactly ORIGINAL and no owned partial temp
+may remain. This does not test native Windows, power loss or fsync durability.
