@@ -2,7 +2,7 @@
 #include "inkey.ch"
 #include "set.ch"
 PROCEDURE Main()
-   LOCAL o:=HbDesigner():New(PropHost():New()),h,cType,n,aSize,hAfter
+   LOCAL o:=HbDesigner():New(PropHost():New()),h,cType,n,aSize,hAfter,nRemain,cVariable,cItems
    SetMode(40,120)
    Set(_SET_TYPEAHEAD,512)
    o:oWnd:=HBWindow():Dialog("Test",50,16,"W+/W")
@@ -89,6 +89,43 @@ PROCEDURE Main()
    Check(DsnSnapEqual(h,DsnSnapshot(o)),"modal accelerator/style undo exact")
    o:Redo()
    Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),"modal accelerator/style redo exact")
+   FOR EACH cType IN {"get","checkbox","radiogroup","listbox","combobox"}
+      o:aControls:={DsnNewControl(cType,{})};o:nSelected:=1
+      o:aUndo:={};o:aRedo:={};o:lDirty:=.F.
+      h:=DsnSnapshot(o)
+      // Selection controls expose variable/items after row/col; checkbox
+      // variable follows caption; GET follows row/col.
+      FOR n:=1 TO If(cType=="checkbox",3,2)
+         hb_keyPut(K_TAB)
+      NEXT
+      cVariable:=If(cType=="get","cText",If(cType=="checkbox","lFlag","nChoice"))
+      hb_keyPut(K_CTRL_Y);hb_keyPut(cVariable);hb_keyPut(K_TAB)
+      DO CASE
+      CASE cType $ "radiogroup|listbox|combobox"
+         cItems:="First quoted 'item',Second item,Third"
+         hb_keyPut(K_CTRL_Y);hb_keyPut(cItems)
+         nRemain:=If(cType=="radiogroup",4,7)
+      CASE cType=="get"
+         nRemain:=3
+      OTHERWISE
+         nRemain:=4
+      ENDCASE
+      FOR n:=1 TO nRemain
+         hb_keyPut(K_TAB)
+      NEXT
+      hb_keyPut(K_SPACE)
+      o:EditProperties()
+      Check(o:aControls[1,"variable"]==cVariable,cType+" modal variable exact")
+      IF cType $ "radiogroup|listbox|combobox"
+         Check(o:aControls[1,"items"]==cItems,cType+" modal items exact")
+      ENDIF
+      Check(o:lDirty.and.Len(o:aUndo)==1,cType+" modal binding one undo")
+      hAfter:=DsnSnapshot(o)
+      o:Undo()
+      Check(DsnSnapEqual(h,DsnSnapshot(o)),cType+" modal binding undo exact")
+      o:Redo()
+      Check(DsnSnapEqual(hAfter,DsnSnapshot(o)),cType+" modal binding redo exact")
+   NEXT
    ? "PASS final property footprints GET/list/combo/button and undo"
 
    RETURN

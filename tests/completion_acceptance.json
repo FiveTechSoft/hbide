@@ -758,6 +758,54 @@
         "test_designer_property_cancel.prg"
       ],
       "contract": "Actual Button modal acceptance preserves prefilled long quoted handler string and exact undo; Action edited then Esc preserves it. Not handler execution, newly typed acceptance or all event fields/controls."
+    },
+    "DSN-FIELD-EditProperties-cVariable-1-DSN_GET": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal variable/items edits accepted byte-exact, one undo/dirty and exact undo/redo. Items include internal spaces and quotes. Chosen valid values only; not invalid identifiers, all item grammar, runtime bindings or pixels/platform."
+    },
+    "DSN-FIELD-EditProperties-cVariable-1-DSN_CHECKBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal variable/items edits accepted byte-exact, one undo/dirty and exact undo/redo. Items include internal spaces and quotes. Chosen valid values only; not invalid identifiers, all item grammar, runtime bindings or pixels/platform."
+    },
+    "DSN-FIELD-EditProperties-cVariable-2-DSN_RADIO": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal variable/items edits accepted byte-exact, one undo/dirty and exact undo/redo. Items include internal spaces and quotes. Chosen valid values only; not invalid identifiers, all item grammar, runtime bindings or pixels/platform."
+    },
+    "DSN-FIELD-EditProperties-cItems-1-DSN_RADIO": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal variable/items edits accepted byte-exact, one undo/dirty and exact undo/redo. Items include internal spaces and quotes. Chosen valid values only; not invalid identifiers, all item grammar, runtime bindings or pixels/platform."
+    },
+    "DSN-FIELD-EditProperties-cVariable-2-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal variable/items edits accepted byte-exact, one undo/dirty and exact undo/redo. Items include internal spaces and quotes. Chosen valid values only; not invalid identifiers, all item grammar, runtime bindings or pixels/platform."
+    },
+    "DSN-FIELD-EditProperties-cItems-1-DSN_LISTBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal variable/items edits accepted byte-exact, one undo/dirty and exact undo/redo. Items include internal spaces and quotes. Chosen valid values only; not invalid identifiers, all item grammar, runtime bindings or pixels/platform."
+    },
+    "DSN-FIELD-EditProperties-cVariable-2-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal variable/items edits accepted byte-exact, one undo/dirty and exact undo/redo. Items include internal spaces and quotes. Chosen valid values only; not invalid identifiers, all item grammar, runtime bindings or pixels/platform."
+    },
+    "DSN-FIELD-EditProperties-cItems-1-DSN_COMBOBOX": {
+      "tests": [
+        "test_designer_property_geometry.prg"
+      ],
+      "contract": "Actual queued modal variable/items edits accepted byte-exact, one undo/dirty and exact undo/redo. Items include internal spaces and quotes. Chosen valid values only; not invalid identifiers, all item grammar, runtime bindings or pixels/platform."
     }
   }
 }

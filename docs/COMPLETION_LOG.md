@@ -1352,3 +1352,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   set dirty/oneUndo, exact Undo/Redo. No product change. Twenty-two of79
   source pairs now have focal links; this is not22fully certified fields.
   Button State is not exposed and was deliberately not linked.
+
+### 2026-10-30 Control modal variable/items matrix
+
+- Actual GET/checkbox/radiogroup/listbox/ComboBox variable edits and the three
+  selection-control item edits accept exact valid values, one undo/dirty,
+  exact Undo/Redo. Items contain internal spaces and quoted text.
+- Eight more pair links:30of79 source pairs focal, not a certification rate.
+  First queued sequence tabbed once too far on GET/checkbox and hit Cancel;
+  corrected native field counts, no product defect. No runtime execution,
+  invalid identifiers, exhaustive item grammar, pixels or Windows claimed.
