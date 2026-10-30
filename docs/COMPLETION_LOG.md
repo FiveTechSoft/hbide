@@ -894,3 +894,4 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Pruebas añadidas, sin parche de producto: Path For Files con carpeta y nombre de fuente con espacios resuelve y abre contenido correcto.
 - PPO existente abre; desaparece PRG, intento de volver conserva PPO; reaparece PRG y toggle vuelve directamente a fuente. Verificado tras corrección5182343, sin nuevo fallo observado en esas rutas.
 - RestoredPoints ampliado PASS candidato; no certifica todos los formatos de ruta ni Windows.
+- Repetición limpia3883111: RestoredPoints ampliado PASS y diez modelos PASS, sin mutaciones; docs/evidence/linux-source-path-3883111.json. Binario23ed3bb3f67c2f63b68a041270880ab1e7cd396f983069e29d5de980fce7827c.
