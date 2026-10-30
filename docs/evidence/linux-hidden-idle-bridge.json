@@ -1,0 +1,75 @@
+{
+  "scope": "Linux bounded real PTY forwarding only; no product toggle, visual UI or Windows acceptance",
+  "results": {
+    "input": {
+      "first_idle_stack": [
+        "BRIDGE",
+        "(b)MAIN",
+        "INKEY",
+        "MAIN",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "hidden_context_after_wait": true,
+      "hidden_key": 122,
+      "visible_key_after": 0,
+      "visible_buffer_preserved": true,
+      "idle_calls": 1,
+      "keys_moved": 1,
+      "mode": "input",
+      "sent_key": 122,
+      "process_exit": 0
+    },
+    "sleep": {
+      "first_idle_stack": [
+        "BRIDGE",
+        "(b)MAIN",
+        "HB_IDLESLEEP",
+        "MAIN",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "queued_during_sleep": 122,
+      "hidden_context_after_wait": true,
+      "hidden_key": 122,
+      "visible_key_after": 0,
+      "visible_buffer_preserved": true,
+      "idle_calls": 30,
+      "keys_moved": 1,
+      "mode": "sleep",
+      "sent_key": 122,
+      "process_exit": 0
+    }
+  },
+  "source_sha256": {
+    "tests/probes/debug_hidden_idle_bridge.prg": "55ec7631f8852e62f07daa76ddb2e8a554dae57cbe487abaa6d11c3dc80fa194",
+    "tests/probes/check_hidden_idle_bridge.py": "cdc45ec01288572ffd6c729538eecb59bb0e99d016c3263bbeeecec32ea42321"
+  },
+  "fixture_correction": {
+    "initial_assertion": "hb_gtSelect()==pHidden falsely failed because wrappers are fresh holders",
+    "initial_input": {
+      "hidden_key": 122,
+      "visible_key_after": 0,
+      "visible_buffer_preserved": true,
+      "idle_calls": 1,
+      "keys_moved": 1,
+      "hidden_context_after_wait": false
+    },
+    "initial_sleep": {
+      "hidden_key": 122,
+      "queued_during_sleep": 122,
+      "visible_key_after": 0,
+      "visible_buffer_preserved": true,
+      "idle_calls": 30,
+      "keys_moved": 1,
+      "hidden_context_after_wait": false
+    }
+  },
+  "limits": "Unfiltered idle also runs during sleep; observed stack distinction INKEY/HB_IDLESLEEP requires further validation, not universal input signal"
+}

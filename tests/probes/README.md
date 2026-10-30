@@ -141,3 +141,21 @@ written while NUL is selected. Hidden Inkey(.6) returns0; after GTTRM is selecte
 Inkey(.6) returns122. Both waits are bounded. This confirms automatic forwarding
 is absent in this fixture, beyond the synthetic-queue observation. It does not
 prove an idle bridge safe for READ, extended keys, mouse, resize or nested input.
+
+### Idle forwarding is possible, but idle is not input-only
+
+`debug_hidden_idle_bridge.prg` with `check_hidden_idle_bridge.py` moves an actual
+PTY `z` from visible GTTRM into hidden NUL in an idle callback. Bounded Inkey
+returns122 and the visible saved buffer plus hidden color remain unchanged.
+A control run calls hb_idleSleep before Inkey: the callback already moves that
+key during sleep (NextKey sees122). Therefore an unfiltered idle callback cannot
+serve as the Swap on Input signal. Stack inspection in this isolated fixture
+shows INKEY versus HB_IDLESLEEP in ProcName(2), a possible discriminator to test,
+not a supported universal API or acceptance of READ, mouse, extended keys,
+nested input, resize, exceptions or debugger stop transitions.
+
+The initial context assertion compared hb_gtSelect handles and falsely failed:
+the Harbour wrapper allocates a fresh GC holder on every call, so holder equality
+is not underlying GT identity. Corrected fixture checks distinct per-GT color
+state instead. Both original raw observations are retained in the evidence.
+No debugger UI or application execution path has been changed by these probes.
