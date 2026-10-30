@@ -602,3 +602,7 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 ## 30Oct02:14 Real Help acceptance
 - Sin cambio de producto. Nueva suitePTY25x80: Indexmatching,keywordinexistente,Contents,F1contextualFile sin ejecutaraccion, cierrealsourcedirtyyundo/savebyteexacto.
 -9checksPASS candidato; enlaces/history/wrappingconmodeloprevio. Runner41suites,51contratos116acciones2stubs. Noafirma41PASScompleta niWindows.
+
+## 30Oct02:22 Display distant cursor coverage
+- Sin cambio de producto. DisplayPTYañadeCancel(sinresize) y ambosdocsconscroll/cursorlejanoantesdereducir.8checksPASS candidato.
+- Expansionmantienescrollanteriorlegal: testajustadoacomprobargeometriaexpandida,noforzarfiladecursorofirstrowquenoformanpartedelcontrato. Intenciónde41suitesrunnerseconserva; baseline38noheredada.

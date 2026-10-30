@@ -32,6 +32,14 @@ for kind in ['display']:
   for path in [first,second]:
    send(b'\x1bf');send(b'o');send(str(path).encode());send(b'\r',.6)
   send(b'X');send(b'\x1b[17;5~');send(b'Y');send(b'\x1b[17;5~')
+  # Cancel a different preset before committing a resize.
+  send(b'\x1bo');send(b'd');send(b'\x1b[B');send(b'\x1b',.4)
+  check('Display Cancel leaves grid unchanged',struct.unpack('HHHH',fcntl.ioctl(fd,termios.TIOCGWINSZ,b'\0'*8))[:2]==(40,120))
+  # Both inactive and active buffers have a distant cursor before shrinking.
+  for _ in range(8):send(b'\x1b[6~',.05)
+  send(b'\x1b[17;5~')
+  for _ in range(8):send(b'\x1b[6~',.05)
+  send(b'\x1b[17;5~')
   send(b'\x1bo');send(b'd');send(b'\x1b[B');send(b'\x1b[B');send(b'\t');send(b'\r',.8)
   check('Display applies 25x80',struct.unpack('HHHH',fcntl.ioctl(fd,termios.TIOCGWINSZ,b'\0'*8))[:2]==(25,80))
   send(b'\x1b[17;5~',.6)
@@ -43,10 +51,11 @@ for kind in ['display']:
   check('Display restores 40x120',struct.unpack('HHHH',fcntl.ioctl(fd,termios.TIOCGWINSZ,b'\0'*8))[:2]==(40,120))
   send(b'\x1b[17;5~',.6)
   for _ in range(8):send(b'\x1b[6~',.1)
-  check('other document uses expanded rows',screen.r > 22 and screen.r < 38)
+  (work/'expanded.screen').write_text(screen.text())
+  check('other document uses expanded rows',screen.r < 38 and ''.join(screen.g[37][1:5]).strip().isdigit())
   # Both documents retain their own edit history after the geometry changes.
   for path,marker in [(second,'X'),(first,'Y')]:
-   send(b'\x1b[1;5H',.2);send(b'\x1be');send(b'n',.3)  # Undo via Edit menu
+   send(b'\x1be');send(b'n',.3)  # Undo via Edit menu
    send(b'\x1bOQ',.5)  # F2 save named document
    check(path.stem+' undo/save preserves original bytes',path.read_text()=='\n'.join(path.stem+' line '+str(n) for n in range(1,101)))
    send(b'\x1b[17;5~',.4)
