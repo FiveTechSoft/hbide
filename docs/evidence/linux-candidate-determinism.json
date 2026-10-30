@@ -1,0 +1,171 @@
+{
+  "scope": "Two raw buildsd1b3 differ6bytes temp Cfilename in ELF symbols; local --strip-debug copies identical,HelpMouse18RunSource8 pass. Two clean557e51f --strip-debug builds finalbinarybyteidentical and eachsame18+8smoke. Samehost/toolchain only. Not release/license/portable/Windows/globalacceptance.",
+  "runs": [
+    {
+      "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+      "source": "d1b3c82a30317fc5e79c3c794f0da983f6305860",
+      "archive_sha256": "61e3cd2f74295dff5d0bd22e23b069ceedef0a6fe06cd6e36b4c52be1e833734",
+      "dirty": false,
+      "started": 1793404422.0814555,
+      "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+      "compiler_sha256": "036892183255330fe1330d5109f32d5bbe523bbfd8270ec458b913c93910adbb",
+      "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+      "removed_inherited_binaries": [
+        {
+          "path": "hbide.exe",
+          "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+        },
+        {
+          "path": "tests/hbide",
+          "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+        }
+      ],
+      "tests": {
+        "test_help_mouse_pty.py": {
+          "exit": 0,
+          "reported_failure": false,
+          "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+          "binary_sha256": "bb0d4652485efe689fcfbd74b6b9eddf055c24f991f6449c8258f5dcb8eda00f"
+        },
+        "test_run_source_pty.py": {
+          "exit": 0,
+          "reported_failure": false,
+          "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+          "binary_sha256": "bb0d4652485efe689fcfbd74b6b9eddf055c24f991f6449c8258f5dcb8eda00f"
+        }
+      },
+      "build_exit": 0,
+      "binary_sha256": "bb0d4652485efe689fcfbd74b6b9eddf055c24f991f6449c8258f5dcb8eda00f",
+      "dependency_check_exit": 0,
+      "ok": true,
+      "finished": 1793404451.5678115
+    },
+    {
+      "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+      "source": "d1b3c82a30317fc5e79c3c794f0da983f6305860",
+      "archive_sha256": "61e3cd2f74295dff5d0bd22e23b069ceedef0a6fe06cd6e36b4c52be1e833734",
+      "dirty": false,
+      "started": 1793404451.7812524,
+      "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+      "compiler_sha256": "036892183255330fe1330d5109f32d5bbe523bbfd8270ec458b913c93910adbb",
+      "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+      "removed_inherited_binaries": [
+        {
+          "path": "hbide.exe",
+          "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+        },
+        {
+          "path": "tests/hbide",
+          "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+        }
+      ],
+      "tests": {
+        "test_help_mouse_pty.py": {
+          "exit": 0,
+          "reported_failure": false,
+          "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+          "binary_sha256": "ec2352ce62ed7e48e6a442559c8c528be43fb28571812f1e04ffaa7345b16b3a"
+        },
+        "test_run_source_pty.py": {
+          "exit": 0,
+          "reported_failure": false,
+          "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+          "binary_sha256": "ec2352ce62ed7e48e6a442559c8c528be43fb28571812f1e04ffaa7345b16b3a"
+        }
+      },
+      "build_exit": 0,
+      "binary_sha256": "ec2352ce62ed7e48e6a442559c8c528be43fb28571812f1e04ffaa7345b16b3a",
+      "dependency_check_exit": 0,
+      "ok": true,
+      "finished": 1793404481.3184357
+    },
+    {
+      "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+      "source": "557e51fde6b4e6fe77320706dbd35d84673d081d",
+      "archive_sha256": "0ac05a0f8dc13c4292cb50c1fcf7b4ee0408584fade1c4d870db0f5a99ae4af0",
+      "dirty": false,
+      "started": 1793404523.8812165,
+      "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+      "compiler_sha256": "036892183255330fe1330d5109f32d5bbe523bbfd8270ec458b913c93910adbb",
+      "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+      "removed_inherited_binaries": [
+        {
+          "path": "hbide.exe",
+          "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+        },
+        {
+          "path": "tests/hbide",
+          "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+        }
+      ],
+      "tests": {
+        "test_help_mouse_pty.py": {
+          "exit": 0,
+          "reported_failure": false,
+          "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+          "binary_sha256": "e1589a7365285b1920b37910ce723d5ce5af7cf26b6f9d7b5417df96918921dd"
+        },
+        "test_run_source_pty.py": {
+          "exit": 0,
+          "reported_failure": false,
+          "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+          "binary_sha256": "e1589a7365285b1920b37910ce723d5ce5af7cf26b6f9d7b5417df96918921dd"
+        }
+      },
+      "build_exit": 0,
+      "unstripped_sha256": "66d0e43fb248f1be5e15a7a0ff59975e525223b119aab310dd8c873cbf62d2de",
+      "strip_tool": {
+        "path": "/usr/bin/strip",
+        "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+      },
+      "binary_sha256": "e1589a7365285b1920b37910ce723d5ce5af7cf26b6f9d7b5417df96918921dd",
+      "dependency_check_exit": 0,
+      "ok": true,
+      "finished": 1793404553.4183903
+    },
+    {
+      "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+      "source": "557e51fde6b4e6fe77320706dbd35d84673d081d",
+      "archive_sha256": "0ac05a0f8dc13c4292cb50c1fcf7b4ee0408584fade1c4d870db0f5a99ae4af0",
+      "dirty": false,
+      "started": 1793404553.630263,
+      "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+      "compiler_sha256": "036892183255330fe1330d5109f32d5bbe523bbfd8270ec458b913c93910adbb",
+      "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+      "removed_inherited_binaries": [
+        {
+          "path": "hbide.exe",
+          "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+        },
+        {
+          "path": "tests/hbide",
+          "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+        }
+      ],
+      "tests": {
+        "test_help_mouse_pty.py": {
+          "exit": 0,
+          "reported_failure": false,
+          "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+          "binary_sha256": "e1589a7365285b1920b37910ce723d5ce5af7cf26b6f9d7b5417df96918921dd"
+        },
+        "test_run_source_pty.py": {
+          "exit": 0,
+          "reported_failure": false,
+          "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+          "binary_sha256": "e1589a7365285b1920b37910ce723d5ce5af7cf26b6f9d7b5417df96918921dd"
+        }
+      },
+      "build_exit": 0,
+      "unstripped_sha256": "8be48977dc7f56552968d00cd91f10b24e7bed1ac6fc84375b83bd05b94e58c5",
+      "strip_tool": {
+        "path": "/usr/bin/strip",
+        "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+      },
+      "binary_sha256": "e1589a7365285b1920b37910ce723d5ce5af7cf26b6f9d7b5417df96918921dd",
+      "dependency_check_exit": 0,
+      "ok": true,
+      "finished": 1793404583.1759796
+    }
+  ]
+}
