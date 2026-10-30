@@ -223,3 +223,16 @@ Build: `hbmk2 tests/probes/build_supervisor.prg hbunix.hbc -gtstd -o/tmp/build-s
 Then: `python tests/probes/check_build_supervisor.py /tmp/build-supervisor`.
 Initial draft referenced nonexistent hb_ProcessId; corrected to hbunix
 posix_getpid before running. This was a probe build error, not an IDE defect.
+
+### Group-empty is not descendant-empty
+
+`build_cancel_detached_finite.py` starts a child in a new session, closes its
+inherited pipes and exits immediately. `check_supervisor_detached.py` observes
+the supervisor return0/GROUP_EMPTY in about27ms while that child is still
+sleeping in its own session. No signal is sent; the child expires after3seconds
+and is confirmed gone. This expected negative proves the group-only supervisor
+must not authorize artifact promotion or claim full-tree completion. Pipe EOF
+also cannot prove completion when a child closes those handles. No production
+process runner or cancellation behavior changed. A stronger owner/supervisor
+mechanism needs separate grounding before integration; broad kill-by-name or
+scanning unrelated processes would not be an acceptable substitute.

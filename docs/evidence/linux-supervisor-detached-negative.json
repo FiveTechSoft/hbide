@@ -1,0 +1,19 @@
+{
+  "scope": "Linux finite negative, group-only supervisor not safe for complete process tree; no production cancellation",
+  "result": {
+    "supervisor_exit": 0,
+    "seconds": 0.027,
+    "stdout": "\nSTARTED      56897\nLEADER_EXIT          0\nGROUP_EMPTY",
+    "stderr": "",
+    "child_state_on_return": "S",
+    "child_pgrp": 56899,
+    "child_session": 56899,
+    "child_after_finite_lifetime": "gone",
+    "signal_sent": false
+  },
+  "source_sha256": {
+    "tests/probes/build_cancel_detached_finite.py": "57ccc5ca913029ff8b1e4191be03ad94ca43a35c5fb1bba48500fd7456e39ce7",
+    "tests/probes/check_supervisor_detached.py": "db029dfbe72a73ab22673aa5adaf68eb1ff8b0faeb2ec08779806994d206384a"
+  },
+  "interpretation": "GROUP_EMPTY and direct exit0 observed while detached descendant remains alive; no signal sent, finite lifetime confirmed"
+}
