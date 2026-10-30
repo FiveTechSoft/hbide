@@ -1628,7 +1628,7 @@ return cFile
 
 METHOD SaveJson( lAskName ) CLASS HbDesigner
 
-   local hModel, cFile, cFailInfo := ""
+   local hModel, cFile := ::cFileName, cFailInfo := ""
 
    hb_default( @lAskName, .F. )
 
@@ -1638,17 +1638,17 @@ METHOD SaveJson( lAskName ) CLASS HbDesigner
       if Empty( cFile )
          return nil
       endif
-      ::cFileName = cFile
    endif
 
    hModel = DsnBuildModel( Self )
 
-   if DsnSafeMemoWrit( ::cFileName, hb_jsonEncode( hModel, .T. ), @cFailInfo )
+   if DsnSafeMemoWrit( cFile, hb_jsonEncode( hModel, .T. ), @cFailInfo )
+      ::cFileName = cFile
       ::lDirty = .F.
       ::ShowHint( "Saved " + ::cFileName )
    else
       ::SuspendUI()
-      DsnWriteError( "Could not write " + ::cFileName + ": " + cFailInfo )
+      DsnWriteError( "Could not write " + cFile + ": " + cFailInfo )
       ::ResumeUI()
       ::ShowHint( "Save failed; design kept open. Choose another path and save again" )
    endif

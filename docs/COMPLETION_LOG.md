@@ -1054,3 +1054,12 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   scrolling to the path suffix, with all dialog borders and status visible.
 - Added exact-byte/refusal model and Linux RLIMIT actual SaveJson/GeneratePrg
   probe. No Windows/global milestone acceptance; oversized editing unchanged.
+
+### 2026-10-30 Designer Save As identity
+
+- New focused model reproduced SaveJson(.T.) changing cFileName to a failed
+  destination. It now commits identity only after successful write.
+- Regression covers failure retaining original name/dirty, subsequent normal
+  Save writing original, and successful Save As committing the new name.
+- SelectFileName is overridden only in the model fixture to avoid coupling
+  this state invariant to keyboard layout. Actual file-picker UI is separate.
