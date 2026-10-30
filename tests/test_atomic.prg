@@ -25,7 +25,7 @@ return
 proc Main()
 
    local cDir := "/tmp/hbide-atomic-" + StrZero( hb_randomInt( 999999 ), 6 )
-   local cFile, cOld, cTmp, cTarget, aDir, cInfo := ""
+   local cFile, cOld, cTmp, cTarget, aDir, cInfo := "", cRecover
 
    MakeDir( cDir )
 
@@ -98,6 +98,8 @@ proc Main()
    Check( "path is still a symlink", Len( aDir ) > 0 .and. "L" $ aDir[ 1 ][ 5 ] )
    Check( "refusal explains + names recovery temp", "symlink" $ cInfo .and. "recoverable" $ cInfo )
    Check( "recovery temp exists with new content", Len( Directory( cDir + "/link.txt.tmp-*" ) ) == 1 )
+   cRecover := SubStr( cInfo, At( "recoverable at ", cInfo ) + Len( "recoverable at " ) )
+   Check( "named symlink recovery bytes exact", hb_MemoRead( cRecover ) == "target-v2" )
 
    // Dangling symlinks must also be refused, never replaced by a plain file.
    hb_Run( "ln -s absent-target " + cDir + "/dangling.txt" )
@@ -138,6 +140,21 @@ proc Main()
    Check( "park-replace content", MemoRead( cTarget ) == "NEW" )
    Check( "park-replace consumed temp", ! File( cTmp ) )
    Check( "park copy dropped", Len( Directory( cDir + "/pr.txt.tmp-*" ) ) == 0 )
+
+   // A complete write followed by promotion failure must retain exact new bytes.
+   cTarget := cDir + "/directory-target"
+   MakeDir( cTarget )
+   hb_MemoWrit( cTarget + "/sentinel", "ORIGINAL CHILD" )
+   cInfo := ""
+   Check( "promotion over directory refused", ! HBIDE_AtomicWriteFile( cTarget, "COMPLETE NEW BYTES", @cInfo ) )
+   Check( "directory target child untouched", hb_MemoRead( cTarget + "/sentinel" ) == "ORIGINAL CHILD" )
+   aDir := Directory( cTarget + ".tmp-*" )
+   Check( "complete temp retained after promotion failure", Len( aDir ) == 1 )
+   IF Len( aDir ) == 1
+      cRecover := cDir + "/" + aDir[1,1]
+      Check( "retained complete bytes exact", hb_MemoRead( cRecover ) == "COMPLETE NEW BYTES" )
+      Check( "failure names retained complete temp", cRecover $ cInfo )
+   ENDIF
 
    // 12. unique sibling: never returns an existing name, two calls differ
    cTmp := HBIDE_UniqueSibling( cDir + "/u.prg" )
