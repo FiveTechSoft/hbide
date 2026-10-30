@@ -742,5 +742,10 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Sin cambio visualnuevo,nocertificaAnimate. Baseline43sobre63239d2historico,Windows pendiente.
 
 ## 30Oct06:15 Link expanded settings acceptance
-- Sin cambio de producto. Inventario enlaza Speed,TabWidth,SaveSettings yRestoreSettings con suspruebasreales acumuladas;64contratos/116acciones. No conviertecontarcontratos en completitud niaseguracoberturaexhaustiva.
-- Contratosnombranlimites: Animateacabado/Windows, scriptsmalformadostransaccionales ylayoutsexhaustivospendientes. Runner43suites; baseline43historico63239d2noheredado.
+- Sin cambio de producto. Inventario enlaza Speed, Tab Width, Save Settings y Restore Settings con sus pruebas reales acumuladas: 64 contratos de 116 acciones. Contar contratos no mide completitud ni cobertura exhaustiva.
+- Los contratos conservan límites: acabado de Animate, Windows, scripts malformados y combinaciones de layout siguen pendientes.
+
+## 30Oct06:36 Baseline actualizada tras fixes de settings
+- Revisión limpia 53be664, diez modelos PASS y 43 suites PTY distintas con resultado final PASS. Mismo binario SHA256 16465a647b0d259eea9f616327e8d8c1014b7b39eeba22cd1eb8e087e488ea6b, sin mutaciones durante los tests.
+- No es una pasada sin reintentos: 45 resultados conservan dos fallos de infraestructura (GuiRoundtrip y ComboBox sin PATH de hbmk2), repetidos PASS con PATH correcto y sin cambios. Dos llamadas externas de 120s interrumpieron Navigation y Multidoc sin resultado; procesos ausentes confirmados antes de repetir, ambos PASS después.
+- Evidencia durable docs/evidence/linux-pty-53be664.json; conserva intentos, hashes y límites. Baseline anterior63239d2 queda histórica, sin reescribirla. Esto no cierra visual exhaustiva, Windows, dos stubs ni todas las combinaciones Q13.
