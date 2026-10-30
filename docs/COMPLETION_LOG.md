@@ -1190,3 +1190,13 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
   exactly; replacing text then Esc keeps accepted text and history unchanged.
 - Fields resolved by current InspFields keys, not hardcoded row numbers.
   Coverage is ComboBox, not every control that shares inline editing code.
+
+### 2026-10-30 Integrated inline caret diagnosis
+
+- Rechecked long When Tail/Home/Esc in the actual IDE, not only a direct
+  designer fixture. Disabled terminal blinking for capture; caret appears
+  after TAIL and on Start_ after Home, with borders and status intact.
+- Gray canvas block is the ComboBox resize handle drawn by DrawControls,
+  not a misplaced caret. Separate instrumented GT position agrees. No
+  product change or global/Windows acceptance. Evidence in
+  docs/evidence/inline-integrated/README.md, including excluded setup errors.
