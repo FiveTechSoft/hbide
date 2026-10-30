@@ -862,3 +862,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Sin aceptación exhaustiva de combinaciones/layouts ni Windows.
 - Repetición limpiae9ea238: MissingSource y RestoredPoints con resultado final PASS, diez modelos PASS, mismo binario1d550b333bbc9301844e330d059e4523f697c57e2f367f494c3c88c478f47d3c, sin mutaciones. Primera ejecución RestoredPoints interrumpida por límite externo120s, repetida aparte PASS; no pasada sin reintentos. Evidencia docs/evidence/linux-missing-panes-e9ea238.json.
 - Inspección visual encuentra restos duplicados del título/borde de fuente arriba tras toggles sin fuente. Sin modal y evaluación81 correctos, pero acabado visual NO cerrado; investigar repintado por separado.
+
+## 30Oct09:23 Repaint after hiding auto-layout panes
+- Capturas por paso reproducen fondos antiguos restaurados tras ocultar Watch/Monitor/Calls: títulos/bordes duplicados. HideVars además reservaba filas para Points aunque estuviera oculto.
+- Repinta el conjunto visible después de ocultar; HideVars solo reserva Points visible. Inspección de capturas nuevas confirma sin restos duplicados y fuente vuelve a fila1 sin hueco superior. MissingSource añade comprobación de título único y fila1 tras cierres.
+- La prueba textual anterior pasaba pese a los restos visibles: no se usa como sustituto de la inspección de píxeles. Sin cierre exhaustivo de todos los layouts ni Windows.

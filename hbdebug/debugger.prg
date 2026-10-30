@@ -1771,6 +1771,7 @@ METHOD PROCEDURE HideCallStack() CLASS HBDebugger
       IF ::oWndPnt != NIL
          ::oWndPnt:Resize( ,,, ::oWndPnt:nRight + 16 )
       ENDIF
+      ::WindowRepaint()
       DispEnd()
    ENDIF
 
@@ -1790,7 +1791,7 @@ METHOD PROCEDURE HideVars() CLASS HBDebugger
       ::WindowRepaint()
       RETURN
    ENDIF
-   IF ::oWndPnt == NIL
+   IF ::oWndPnt == NIL .OR. ! ::oWndPnt:lVisible
       nTop := 1
    ELSE
       ::oWndPnt:Resize( 1, , ::oWndPnt:nBottom - ( ::oWndPnt:nTop - 1 ) )
@@ -1805,6 +1806,7 @@ METHOD PROCEDURE HideVars() CLASS HBDebugger
    IF ::aWindows[ ::nCurrentWindow ] == ::oWndVars
       ::NextWindow()
    ENDIF
+   ::WindowRepaint()
 
    RETURN
 
@@ -3609,6 +3611,7 @@ METHOD PROCEDURE WatchpointsHide() CLASS HBDebugger
    IF ::aWindows[ ::nCurrentWindow ] == ::oWndPnt
       ::NextWindow()
    ENDIF
+   ::WindowRepaint()
 
    RETURN
 

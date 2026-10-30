@@ -151,6 +151,10 @@ try:
         assert 'No exported method' not in scr.text() and 'Message' not in scr.text(),(text,scr.text())
         send(b'? 9*9\r');pump(.3)
         assert '81' in scr.text(),(text,scr.text())
+        assert scr.text().count('File not found')==1,('duplicate stale source caption',text,scr.text())
+        if text in ('monitor local off','delete tp all','callstack off'):
+            assert 'File not found' in ''.join(scr.g[1]),('hidden panels must not reserve source top rows',text,scr.text())
+
     print('PASS navigation display and explicit BP commands without source remain usable')
 
     for source in glob.glob(work+'/__hbide_dbg__*.prg.bak'):
