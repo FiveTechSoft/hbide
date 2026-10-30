@@ -642,3 +642,8 @@ no se elimina requisito. LinuxPTY, no validacion visual de cada modal.
 - Restaurar settings guardados en monocromo alternaba a color si ya estaba mono; segunda restauracion alternaba de nuevo. PTY43PASS/1FAIL antes, no estado idempotente.
 - MonoDisplay acepta parametroopcional; comando sin valor conserva togglehistorico, ON/OFF fija estado y rechaza valorinvalido. Save escribe explicitamente ON/OFF para ambosestados, sin cambiar lectura de archivoslegados.
 -49checksDebugCommandsPASS y diezmodelosPASS candidato. Verifica repetirrestoremono, restorecolor desde mono, formatoON/OFF y comandoinvalido. Captura completamonocromo trasrestore inspeccionada. Contratos60/116, runner42suites; no baselineglobalheredado niWindows. Otrossettingsconsemanticaslegacy siguenpenderauditarlos.
+
+## 30Oct03:40 Restore default speed/tab/startup
+- Save omitiaspeed0, tab4 ystartupON. Guardar esosdefaults, cambiarlos y restaurar no losreponia:49PASS/3FAILantes enPTYreal.
+- Save escribe siempre RunSpeed, OptionsTab yRunAtStartup/NoRunAtStartup. Sin cambiarelparser de archivosantiguos ni afirmarrestorecompletodelresto. Nuevostestsinspeccionanarchivoemitido yre-guardadotrasrestore.
+-55checksDebugCommandsPASS y diezmodelosPASS candidato. Sin cambio visual: correcciondeestadosserializados yrestaurados. Runner42suites/60contratos, baselineglobal0768ac2historico. Monitorflags/otrossettings aunrequierenauditoria.

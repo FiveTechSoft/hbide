@@ -2571,17 +2571,9 @@ METHOD PROCEDURE SaveSettings( cFileName ) CLASS HBDebugger
 
    cInfo += "Options MenuBar " + iif( ::lMenuBar, "ON", "OFF" ) + hb_eol()
 
-   IF ! ::lRunAtStartup
-      cInfo += "Options NoRunAtStartup " + hb_eol()
-   ENDIF
-
-   IF ::nSpeed != 0
-      cInfo += "Run Speed " + hb_ntos( ::nSpeed ) + hb_eol()
-   ENDIF
-
-   IF ::nTabWidth != 4
-      cInfo += "Options Tab " + hb_ntos( ::nTabWidth ) + hb_eol()
-   ENDIF
+   cInfo += "Options " + iif( ::lRunAtStartup, "RunAtStartup", "NoRunAtStartup" ) + hb_eol()
+   cInfo += "Run Speed " + hb_ntos( ::nSpeed ) + hb_eol()
+   cInfo += "Options Tab " + hb_ntos( ::nTabWidth ) + hb_eol()
 
    IF ::lShowStatics
       cInfo += "Monitor Static" + hb_eol()
