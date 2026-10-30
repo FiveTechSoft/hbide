@@ -1,12 +1,13 @@
 """Actual editor Xterm clicks, doubleclick word and wheel byte effects."""
 import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re
-ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=25,80
+ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
 for kind in ['autorun']:
  target=work/'mouse.prg'
  original=b'alpha beta\r\n\tTABword tail\n'+b''.join(('line%02d text\n'%i).encode() for i in range(3,65))
+ original=original.replace(b'line03 text',b'line03 '+b'a'*150+b' ENDMARK tail')
  target.write_bytes(original)
  pid,fd=pty.fork()
  if pid==0:
@@ -20,8 +21,8 @@ for kind in ['autorun']:
    try:d=os.read(fd,65536)
    except OSError:break
    b+=d
-   if b'\x1b[6n' in d:os.write(fd,b'\x1b[25;1R')
-   if b'\x1b[18t' in d:os.write(fd,b'\x1b[8;25;80t')
+   if b'\x1b[6n' in d:os.write(fd,b'\x1b[40;1R')
+   if b'\x1b[18t' in d:os.write(fd,b'\x1b[8;40;120t')
   screen.feed(b)
  def send(b,wait=.35):os.write(fd,b);pump(wait)
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
@@ -70,6 +71,30 @@ for kind in ['autorun']:
   for _ in range(5):mouse(64,row,col,.1)
   check('wheel top clamps first row',bool(re.search(r'row:\s*1\s*,',screen.text())))
   saved('wheel navigation never changes source bytes',original)
+  send(b'\x1b[6~') # PageDown, then map a visible scrolled source row
+  labels=re.findall(r'line(\d+) text',screen.text())
+  check('PageDown exposes later source rows',bool(labels) and int(labels[0])>3)
+  label='line'+labels[0]+' text';click(*locate(label));send(b'V')
+  saved('click scrolled row maps exact source byte',original.replace(label.encode(),b'V'+label.encode(),1))
+  send(b'\x1be');send(b'n');saved('Undo scrolled row click exact',original)
+  send(b'\x1b[1;5H');send(b'\x1b[B');send(b'\x1b[B');send(b'\x1b[F')
+  row,col=locate('ENDMARK');click(row,col);send(b'H')
+  saved('click horizontally scrolled row exact byte',original.replace(b'ENDMARK',b'HENDMARK',1))
+  send(b'\x1be');send(b'n');saved('Undo horizontal click exact',original)
+  send(b'\x1b[F');double('ENDMARK');send(b'J')
+  saved('doubleclick horizontally scrolled word exact',original.replace(b'ENDMARK',b'J',1))
+  send(b'\x1be');send(b'n');saved('Undo horizontal word exact',original)
+  send(b'\x1b[1;5H')
+  row,col=locate('beta');click(row,col-1);send(b'S')
+  saved('whitespace click inserts at precise space',original.replace(b'alpha beta',b'alphaS beta',1))
+  send(b'\x1be');send(b'n');saved('Undo whitespace click exact',original)
+  row,col=locate('alpha');click(row,col+20);send(b'P')
+  saved('click beyond EOL preserves exact padding',original.replace(b'alpha beta',b'alpha beta'+b' '*10+b'P',1))
+  send(b'\x1be');send(b'n');saved('Undo beyond EOL exact',original)
+  send(b'\x1b[1;5F')
+  for _ in range(5):mouse(65,10,10,.1)
+  check('wheel bottom clamps final empty row',bool(re.search(r'row:\s*65\s*,',screen.text())))
+  saved('bottom wheel preserves every byte',original)
   (work/'mouse-final.screen').write_text(screen.text())
 
  finally:

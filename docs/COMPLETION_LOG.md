@@ -1605,3 +1605,14 @@ mas escribir/Delete/Copy/Cut, Undo exacto, rueda y limite superior sin cambiar
 los bytes. Comparaciones con fixture de EOL mixtos. Son efectos focales Linux
 PTY, no todos los gestos ni aceptacion visual/Windows. El probe de repintado
 incluye seleccion de palabra compartida, sustitucion, Backspace y Undo.
+
+### Raton en viewport desplazado y espacios
+
+Ampliacion focal del mismo harness: PageDown y clic sobre fila visible
+comparan el byte de la fila real; End desplaza horizontalmente una linea de
+150 caracteres y se comprueban clic y doble clic de ENDMARK, sustitucion y
+Undo. Clic sobre espacio y tras EOL comprueba posicion y relleno exactos.
+La rueda en EOF conserva bytes y queda en la fila vacia final. Se declara
+PTY40x120 para coincidir con el tamano usado por defecto por el IDE, sin
+presentar la antigua configuracion25x80 del harness como prueba a ese tamano.
+No se infiere contrato de clic en marco, gutter ni fuera del editor.
