@@ -1689,3 +1689,13 @@ clic edita una fila visible a99; PageUp vuelve al principio y clic+Enter
 edita V02 a77. Resume compara el array completo de doce valores, no un
 prefijo ni solo el texto pintado; fuente byte-exacta. Sin cambio de producto.
 LinuxPTY40x120 focal, no todos los tipos de variable ni Windows.
+
+## 31 octubre: candidato Linux desde export limpio
+
+Nuevo `scripts/build_linux_candidate.py --output /ruta/fuera-del-checkout`
+rechaza fuente sucia, destino existente y salida dentro del repo. Exporta
+HEAD, no usa binarios heredados, compila en otra carpeta y registra hashes
+de fuente, hbmk2, binario y tests, ldd y logs. Smoke del binario exacto con
+HelpMouse y RunSource desde el export; HOME/recovery aislados por harness.
+No es instalador ni paquete portable, no revisa licencias ni acreditaWindows.
+No cambia Version1.0 ni publica archivos a terceros. M5 permanece pendiente.
