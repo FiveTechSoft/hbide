@@ -1,0 +1,49 @@
+{
+  "scope": "Linux clean source CallsMouse5+MonitorMouse7 samefreshbinary.15inventory33docs.20models remain05ed32c,not rerun for tests/docs extension. Monitor context not source line navigation; no Windows/global acceptance.",
+  "runs": [
+    {
+      "source": "2e5fd62c133a863683ef3eace87ef29319794174",
+      "tracked_changes": "",
+      "binary_sha256": "a4b699826e7913d608c98331849f2d07e3c89a787f12fa69ebb2a04922f22a29",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "41aecd2517b083b66c8497de78fc709e3ecd1e4325667a3b1256178fb2a22c71",
+      "case": "debug-stack-mouse",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_stack_mouse_pty.py"
+      ],
+      "started": 1793404048.5262797,
+      "seconds": 8.94,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "45b97080de3d2c1e93906c7f7e22c4a3b4e85477de385c6622144c1d306653b2",
+      "log": "/tmp/hbide-debug-stack-mouse-pty/debug-stack-mouse-1793404048526272799.log"
+    },
+    {
+      "source": "2e5fd62c133a863683ef3eace87ef29319794174",
+      "tracked_changes": "",
+      "binary_sha256": "a4b699826e7913d608c98331849f2d07e3c89a787f12fa69ebb2a04922f22a29",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "41aecd2517b083b66c8497de78fc709e3ecd1e4325667a3b1256178fb2a22c71",
+      "case": "debug-mouse",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_mouse_pty.py"
+      ],
+      "started": 1793404057.4655035,
+      "seconds": 10.14,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "dfa6f54b1e8767372ad9f806288b3a4d4dd62d12436fcdd2979ab9bac5430c75",
+      "log": "/tmp/hbide-debug-stack-mouse-pty/debug-mouse-1793404057465499557.log"
+    }
+  ]
+}
