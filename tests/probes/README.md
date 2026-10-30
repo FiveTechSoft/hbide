@@ -190,3 +190,16 @@ No product execution path changed. Settings/points mapping across new temporary
 module names, host resources, public memvars, database/workareas, external side
 effects, app EXIT failures and Windows remain unverified. Restart cannot undo
 files, network calls or other side effects already performed by the app.
+
+### Unload does not reset application resources
+
+`debug_restart_resources.prg` creates a synthetic public memvar, changes SET
+DECIMALS to7, opens a DBFCDX workarea and writes a record before Break. After
+owned HRB unload, all those states survive: public variable exists, decimals7,
+workarea open, record present and file on disk. The fixture then closes/releases
+its own state and deletes its synthetic file. This is an expected negative for
+process-like Restart, not a product failure or reset implementation. General
+close-all/reset-all would risk host IDE state and is not a safe inferred fix.
+Resource ownership/isolation and preserving debugger settings remain design
+constraints; do not promise that starting another HRB is a clean application
+restart. No user files, production debugger execution or Windows were tested.

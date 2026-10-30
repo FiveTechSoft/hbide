@@ -1,0 +1,13 @@
+{
+  "scope": "Linux isolated HRB resource retention counterexample, not product Restart or Windows acceptance",
+  "result": {
+    "caught": true,
+    "public_survives": true,
+    "decimals_after_unload": 7,
+    "workarea_survives": true,
+    "record_survives": true,
+    "file_survives": true
+  },
+  "probe_sha256": "0a05c5bfccc3a620ffd06e6ac33e2a53f5385c89d21f1b4e5b4d4adfe0f9985f",
+  "interpretation": "Public memvar, SET DECIMALS, DB workarea, written record and DBF file survive owned unload; fixture cleans only its own test state."
+}
