@@ -1,0 +1,15 @@
+{
+  "scope": "Native Linux xfce4-terminal120x40 source7b5f7cd fresh; setter throws Zero divisor; readable alert, afterward backing1 refresh then Cancel99 and Resume1exact. Inspected complete alert and bottom borders. During alert in-progress field still41; after dismissal refresh1. Not partialeffectrollback/allsetters/Windows.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "7b5f7cdf05428dba8b41acb38e8440610ddad2ae",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "01e377b40e8c6bdc4de18f2c6decbec68f47696d4b304a21d3a86790ec70cdab",
+    "binary_sha256": "ea1915f6c80280b86240e1d82e16d62509154ccffba90fc33d80fc695b947a57",
+    "built_at": 1793408703.4028869
+  },
+  "files": {
+    "hbide-setter-native-refreshed.png": "3b79ba767aed568faa97f830e198a96a21f64bc0c861a83c96fafd6bf4fc1d8f",
+    "hbide-setter-native-error.png": "0bbdd6169eedb0512552692929ca65ad0a70da16f24f370eda89d9cc3b03bae9"
+  }
+}

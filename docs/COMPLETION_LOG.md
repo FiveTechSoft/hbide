@@ -1832,3 +1832,9 @@ inventarioPASS, no15funciones nuevas ni pasadaPTYglobal.
 falla con Zero divisor muestra error, refresca1,99Escconserva1yResumeescribe1
 exacto. No generaliza rollback de setters con efectos parciales; no cambian
 fallback de acceso/clase, politica de propiedades ni readonly recursivo.
+
+Setterfallido fuente7b5f7cd reconstruida:8PTYchecksPASS y terminal nativoLinux
+120x40. Inspeccion de pixeles: alertaZero divisor legible con campo provisional41
+aun visible mientras alerta; cerrarla refresca backing1, luego99EscyResume1exacto.
+Marcos completos en ambas capturas. No rollback de efectos parciales niWindows.
+Evidencia docs/evidence/debug-setter-failure/ con script/receipt/hash.
