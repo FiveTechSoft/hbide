@@ -1814,3 +1814,9 @@ getter/setter editable. Se conserva ese flag en OMSG_EDIT, evitando editar un
 texto de error como valor real. No cambia edicion de propiedades legibles,
 readonly recursivo ni politica general de setters. Fixture con backing1 y
 getterfallido/setter existente; debe rechazar Enter y Resume conservar1.
+
+Getterfallido verificacion nativa: fuente21eaca0 reconstruida,6checksPTYPASS;
+xfce4-terminal120x40 errorZero divisor legible, Enter muestra Value cannot be
+edited, nuncaeditor. Resume conserva backing1exacto. Dos capturas inspeccionadas
+con marcos completos de alerta y paneles, script+hashes/receipt en
+ docs/evidence/debug-getter-failure/. No todosgetters/Windows.

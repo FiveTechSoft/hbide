@@ -1,0 +1,15 @@
+{
+  "scope": "Native Linux xfce4-terminal120x40 getterBad error Zero divisor; Enter shows Value cannot be edited alert instead of editor; Resume whole backing value1exact. Inspected both screenshots: readable error and alert, complete alert and outer lower borders. No allgetters/Windows/globalacceptance.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "21eaca0b0b2cbd0f6d3900d680afef72f5e14d1a",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "0f6f8b2d231698027617d0f658b0c678b98c044567b42e7d3c09f30bf87185c0",
+    "binary_sha256": "ba740582fe4fe14e67b30a3b61651ea8e938d2ddefc514135aaf3e525556b938",
+    "built_at": 1793408260.7606244
+  },
+  "files": {
+    "hbide-getter-native-error.png": "81a75867661091950295bf1ac4dc4c6ab04eea66653eb296c7baf3ec8396bd1f",
+    "hbide-getter-native-refused.png": "ec2962f3f31ba8b9551c53a5a1608c9655ebdd355835bcfddbe53e2d15076b49"
+  }
+}
