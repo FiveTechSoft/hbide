@@ -39,6 +39,12 @@ procedure Main()
    cCode := DsnGenCode(hModel)
    Check("mixed quotes bracket backslash emitted losslessly",hb_StrToExp(hModel["controls",1,"caption"])$cCode)
 
+   hModel["controls",1,"caption"] := 'He said "yes"'
+   cCode := DsnGenCode(hModel)
+   Check("codeview finds quoted caption with generated delimiter",DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",1])>0)
+   hModel["controls",1,"caption"] := 'Both "double" and '+"'single' with ] and "+Chr(92)
+   cCode := DsnGenCode(hModel)
+   Check("codeview finds escaped mixed caption",DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",1])>0)
    // model -> JSON -> model round trip
    hModel = { "name"     => "Customer", ;
               "caption"  => "Customer data", ;

@@ -3226,3 +3226,12 @@ Twoboundedstepsnoretries/interruption,manifest/toolchain/ldd/logspreserved
 linux-candidate-designer-quotes.json. IncludesQ62/Q63/Q64/Q66andmixed
 acceptancefixture. No newfix/full181PTY/Windows/release/license/installer/
 newpixels/determinism/NEXUSrun;Q58generalpartial.
+
+## Q68 - Live code view lost quoted-caption selection anchor
+
+Q66losslessgenerationchoosesdelimitersbutDsnCodeFindLinestillsearched
+onlydoublequote+caption. Compiler/modelprobeanchor0;actualF5quotedSAY
+before4PASS1FAIL(nohighlight). Use sameDsnQuote serializerforlookup. Two
+modelguardssimple/mixedquotes. Runner183=182PTY+guard. Evidence
+linux-designer-quote-anchor.json containscleanacceptance/nativepixels;
+notallambiguousduplicatecaptions/controlbindings/Windows/global.
