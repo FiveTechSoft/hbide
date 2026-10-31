@@ -3509,3 +3509,14 @@ No new product fix or coverage beyond tests; links are not PASS.
 Evidence linux-inventory-designer-watch.json follows.
 
 Q90 acceptance cleanff81639de963cbf11c9d7401219cb179d8b77288 binary9678761a712f4883a3a5e24d617c44e4003c38e90f56002af81aa043c645cad2:32checksPTY(Designer18/Watch14),26inventory34docsPASS. No retry/fail. No model rerun/newpixels/productfix.
+
+## C19 - temporary Linux candidate after NOTE and lifecycle labels
+
+Export6a2f06dd87bd23b5472367d727ac5fa7e211425f clean, stripped
+ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7.
+8standard smoke suites plus6recent modes: Destructor/NOTE/color/INITEXIT/
+selection/typed. All exactbinaryPASS, resolvedldd, no retry/failure.
+Native120x40actualcandidate inspected Main1/initStartup3/exitCleanup5only3/3;
+EnterCleanupX/F2exact5/fullborders. SupersedesC18temporarycandidate only.
+No release/licenses/Windows/install/determinism/globalmatrix/NEXUS claim.
+Evidence linux-candidate-lifecycle-comments.json; Q87remains84e58b3.

@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| C19 | CandidatoLinux temporal incluye Q86/Q88/Q89. | Export6a2f06d binaryab4ac913,8smoke+6modosrecientesPASSmismaidentidad;nativeINITEXIT/saltoexactinspeccionado;linux-candidate-lifecycle-comments.json. No release/Windows/licencias/instalacion/globalmatrix. |
 | Q90 | M0 vincula Designer y Watchpoint a pruebas reales de menu. | Dosguardas alcanceacotadoListbox/scalarwatch;32PTY26inventory34docsPASS fuenteff81639;linux-inventory-designer-watch.json. No nuevoproducto/pixels/global. |
 | Q89 | INIT/EXIT conservan tipo en GoToFunction. | Fixturecompiladaantes2PASS1FAIL;5guardas+41PTY22models24inventory34docsPASS fuente43b6f33;native3/3tiposdistintos/saltoCleanup5exact;primerbaselineinterrumpidoexterno/repetidoPASS;linux-navigation-init-exit.json. No runtime/modificacionciclo/parsergeneral/Windows. |
 | Q88 | NOTE linecomment no abre bloque falso. | Fixturecompiladaantes1PASS2FAILnavegacion;scanner/pintadoestado,4lexical5repaintguardas;18PTY22models24inventory34docsPASS sourcea0d088e. NativeNOTE magenta/Target4Xexact/fullborders;linux-editor-note-comment.json. No parserstatementsep/Windows/global. |

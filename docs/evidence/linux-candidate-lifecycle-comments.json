@@ -1,0 +1,176 @@
+{
+  "scope": "C19 temporary Linux candidate only. No release/license clearance, native Windows, portable installation, deterministic build, complete matrix or milestone closure. Q87 remains separate frozen84e58b3.",
+  "manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "6a2f06dd87bd23b5472367d727ac5fa7e211425f",
+    "archive_sha256": "36ae3e58aba1bd677cdc97a6b2931745eedd73e5d2fbaef375af600e976c357f",
+    "dirty": false,
+    "started": 1793479500.960535,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "1f80870fad008ea485760492816c739fd873a3a4a5392afda3cb5346c9f712f3",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "ce55bfade324696156a470507af995f18c6a4d196ccea9d7d498aa37635b95fa",
+    "release_status": "not cleared; source notice review required",
+    "unstripped_sha256": "459a02c30d1c27245d9b8fa520fc4df05838c93c84f40cb7b252528a1626b0bd",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793479598.3844295
+  },
+  "dependencies": "\tlinux-vdso.so.1 (0x00007fffc7f9d000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fe62573c000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fe624e00000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007fe625834000)\n",
+  "smoke_logs": {
+    "test_about_build_pty.py": "PASS About retains version1.0\nPASS About shows actual build revision or honest fallback\nPASS About OK returns same dirty document\nPASS About cycle Undo preserves original bytes\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-u7a1fk62\n",
+    "test_help_mouse_pty.py": "PASS Contents opens tree and reading pane\nPASS mouse tree selects exact topic\nPASS mouse first tree row selects Basics not next topic\nPASS scrolled tree click retains valid reading pane\nPASS Next button with no query explains action\nPASS Search button executes actual query\nPASS Next button advances actual match\nPASS wheel scroll stays within topic bounds\nPASS Export button writes actual catalogue\nPASS Close button returns dirty document\nPASS Index exact Quickstart opens link view\nPASS first related-topic click opens exact target\nPASS Backspace returns clicked topic history\nPASS last related-topic click opens exact target\nPASS AltRight restores clicked forward topic\nPASS nested related-topic click opens exact body\nPASS link-view Close returns unchanged dirty source\nPASS Undo after mouse Help restores exact original bytes\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-jeydvxs6\n",
+    "test_run_source_pty.py": "PASS script run1 preserves source literal\nPASS script run2 preserves source literal\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 preserves source literal\nPASS debug source retains main declaration\nPASS debug run2 preserves source literal\nPASS debug editor remains usable\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-rksuvw9o\n",
+    "test_debug_getter_failure_pty.py": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS failing getter displays captured error\nPASS failing getter rejects edit before setter\nPASS failed getter leaves backing value exact\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-6l24c1p4\n",
+    "test_debug_setter_failure_pty.py": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS readable getter shows backing1\nPASS failed setter error reported\nPASS failed setter refresh preserves backing1\nPASS cancel after setter error preserves backing1\nPASS setter failure leaves debuggee backing1\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-hcmg83o0\n",
+    "test_file_modal_long_list_pty.py": "PASS Open long list name rejected not truncated\nPASS typed short path wins despite long initial item\nPASS Project long initial name rejected not truncated\nPASS long name rejection retains correct current document\nPASS long names never alter any source or project\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-rgsrv61_\n",
+    "test_file_modal_mouse_pty.py": "PASS Open mouse OK exact file\nPASS Open mouse Cancel preserves dirty source\nPASS SaveAs mouse Cancel no new file\nPASS SaveAs mouse Cancel retains source identity\nPASS SaveAs mouse OK writes exact mixed EOL\nPASS SaveAs mouse OK changes identity\nPASS SaveAs mouse keeps original\nPASS Project mouse Cancel retains exact editor\nPASS Project mouse OK opens exact project\nPASS Open mouse list selects exact second file\nPASS mouse opened exact list file saved only selected bytes\nPASS Open mouse first list item selects exact original\nPASS Project mouse list chooses exact second project\nPASS Project mouse operations preserve all file bytes\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-mnohom7o\n",
+    "test_file_modal_buttons_pty.py": "PASS Open explicit OK preserves manually typed name after list focus\nPASS Open explicit Cancel retains dirty document\nPASS SaveAs explicit Cancel creates no destination\nPASS SaveAs explicit Cancel retains name and dirty buffer\nPASS SaveAs explicit OK saves exact mixed EOL bytes\nPASS SaveAs changes identity only on OK\nPASS SaveAs retains original file\nPASS Open list sync produces a known filename\nPASS Open list selection opens exact selected file\nPASS Project explicit Cancel keeps editor\nPASS Project explicit OK opens manually typed project\nPASS Project list sync produces known filename\nPASS Project list selection opens selected project\nPASS source bytes untouched by project navigation\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-uijn2zs9\n"
+  },
+  "recent": [
+    {
+      "case": "test_nav_destructor_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7",
+      "test_sha256": "813d39fefdbd8095e35d607a30cbdc189c8b641f8fab1165fc63fbfce5992ea5",
+      "source": "6a2f06dd87bd23b5472367d727ac5fa7e211425f",
+      "seconds_finished": 1793479607.7112575,
+      "log_text": "PASS Open requested fixture\nPASS Picker qualifies DESTRUCTOR CLASS alias\nPASS Picker jumps to DESTRUCTOR CLASS implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-2jhddlhc\n"
+    },
+    {
+      "case": "test_nav_note_comment_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7",
+      "test_sha256": "def0ac21faae1dbad837c5cd1199dd61bc61e25a37b546cb196b33b200d66264",
+      "source": "6a2f06dd87bd23b5472367d727ac5fa7e211425f",
+      "seconds_finished": 1793479613.6946175,
+      "log_text": "PASS Open requested fixture\nPASS Picker includes declaration after NOTE comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-705bhg5o\n"
+    },
+    {
+      "case": "test_editor_note_comment_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7",
+      "test_sha256": "b67ed0ba907bdad8fb51a10e0af3a7bfcf8fa8d63a6d2db6ee17d6ed5d83a5cc",
+      "source": "6a2f06dd87bd23b5472367d727ac5fa7e211425f",
+      "seconds_finished": 1793479618.2174835,
+      "log_text": "PASS Open requested fixture\nPASS Return after NOTE comment keeps original keyword color\nPASS Return after adjacent NOTE comment keeps original keyword color\nPASS Whole line comment colored NOTE\nPASS Whole line comment colored note/*\nPASS F2 keeps source byte exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-3oaunkd5\n"
+    },
+    {
+      "case": "test_nav_init_exit_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7",
+      "test_sha256": "3d903da461f1dcc8482619f286052ac87c701d7577ea6e4b8771489da9421f82",
+      "source": "6a2f06dd87bd23b5472367d727ac5fa7e211425f",
+      "seconds_finished": 1793479624.2013211,
+      "log_text": "PASS Open requested fixture\nPASS Picker distinguishes init and exit modifiers\nPASS Picker jumps to actual EXIT declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-4m52tj6_\n"
+    },
+    {
+      "case": "test_nav_selection_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7",
+      "test_sha256": "793438e504bcd6500158ce880928c5b1b0450c58ae8e50dadcb4e66025c45490",
+      "source": "6a2f06dd87bd23b5472367d727ac5fa7e211425f",
+      "seconds_finished": 1793479643.6025143,
+      "log_text": "PASS Open requested fixture\nPASS Picker lists target while old range exists\nPASS Function jump consumes old range before typing\nPASS Undo restores only target insertion\nPASS Picker Cancel retains old selected range\nPASS Undo cancelled-picker replacement\nPASS Goto Line consumes old range before typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-9soa_3qv\n"
+    },
+    {
+      "case": "test_nav_typed_methods_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "ab4ac913789eb8faab455f1eca45ac8bd1d864e99de8b32adb9721905bde76d7",
+      "test_sha256": "c52ceee10a4080b3a17b052287a699c7cc40526fd4312c9b7153b6e0fe7df7e7",
+      "source": "6a2f06dd87bd23b5472367d727ac5fa7e211425f",
+      "seconds_finished": 1793479649.5887103,
+      "log_text": "PASS Open requested fixture\nPASS Picker uses real method names rather than type keyword\nPASS Picker jumps to typed method implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ips9myp1\n"
+    }
+  ],
+  "visual": [
+    {
+      "file": "hbide-c19-native-picker.png",
+      "sha256": "f85fa0438a41c5f9513a74cdbe14497b8d58646bb58c2b3d372e70327c6c9d15",
+      "inspection": "Actual C19 binary native120x40: Main1/init procedureStartup3/exit procedureCleanup5only3/3; EnterCleanup X/F2exact5/full borders. Pixels inspected."
+    },
+    {
+      "file": "hbide-c19-native-target.png",
+      "sha256": "c206ea2c82d839d17bd575ebf08b2e4e43f19cf8aa499c2184097d6dded0f5b4",
+      "inspection": "Actual C19 binary native120x40: Main1/init procedureStartup3/exit procedureCleanup5only3/3; EnterCleanup X/F2exact5/full borders. Pixels inspected."
+    }
+  ]
+}
