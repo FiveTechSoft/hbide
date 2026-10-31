@@ -1,0 +1,93 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "960f4f474a5c1ff47735f3fd1e81dff853649349",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "4dce9aa8272c14c2d0e80d7671a931ebda9dbdc20745eadf82ab28a9b8704179",
+      "binary_sha256": "b0e2bf204bf9d7384e8ebd2a5e7ed4adcba451a41db7533f6171a2cfc749f416",
+      "build_receipt": "/tmp/hbide-selection-destructive-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "12cfa5d8ab0a6b5b18b28e0e31a5060b84c7ddf54d1862d76c379eba439228fb",
+      "case": "selection-destructive-boundary",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_selection_destructive_boundary_pty.py"
+      ],
+      "started": 1793438272.1525576,
+      "seconds": 37.38,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "12379682ea24bcc6fac3fad6464b80bda4a44119975c1e41b401e48d4ea4d46c",
+      "log": "/tmp/hbide-selection-destructive-clean/selection-destructive-boundary-1793438272152553701.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "960f4f474a5c1ff47735f3fd1e81dff853649349",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "4dce9aa8272c14c2d0e80d7671a931ebda9dbdc20745eadf82ab28a9b8704179",
+      "binary_sha256": "b0e2bf204bf9d7384e8ebd2a5e7ed4adcba451a41db7533f6171a2cfc749f416",
+      "build_receipt": "/tmp/hbide-selection-destructive-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "12cfa5d8ab0a6b5b18b28e0e31a5060b84c7ddf54d1862d76c379eba439228fb",
+      "case": "selection-undo-boundary",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_selection_undo_boundary_pty.py"
+      ],
+      "started": 1793438309.5292678,
+      "seconds": 14.72,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "49d4c846fb5c901bf8025681dfa7a470021cabde305736b196f9a870db455ea8",
+      "log": "/tmp/hbide-selection-destructive-clean/selection-undo-boundary-1793438309529264349.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "960f4f474a5c1ff47735f3fd1e81dff853649349",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "4dce9aa8272c14c2d0e80d7671a931ebda9dbdc20745eadf82ab28a9b8704179",
+      "binary_sha256": "b0e2bf204bf9d7384e8ebd2a5e7ed4adcba451a41db7533f6171a2cfc749f416",
+      "build_receipt": "/tmp/hbide-selection-destructive-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "12cfa5d8ab0a6b5b18b28e0e31a5060b84c7ddf54d1862d76c379eba439228fb",
+      "case": "cut-undo-boundary",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_cut_undo_boundary_pty.py"
+      ],
+      "started": 1793438324.2501602,
+      "seconds": 15.08,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "830d07057e62128a03aef60216c819fde4baf768d5eefeac4b6ff89ac8abd733",
+      "log": "/tmp/hbide-selection-destructive-clean/cut-undo-boundary-1793438324250156480.log"
+    }
+  ],
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "960f4f474a5c1ff47735f3fd1e81dff853649349",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "4dce9aa8272c14c2d0e80d7671a931ebda9dbdc20745eadf82ab28a9b8704179",
+    "binary_sha256": "b0e2bf204bf9d7384e8ebd2a5e7ed4adcba451a41db7533f6171a2cfc749f416",
+    "built_at": 1793438272.1523004
+  },
+  "logs": {
+    "selection-destructive-boundary-1793438272152553701.log": "PASS Open requested fixture\nPASS Delete selected edit exact\nPASS Delete Undo preserves prior typing\nPASS Delete Redo selected edit exact\nPASS Delete Undo later typing preserves selected edit\nPASS Delete next Undo preserves prior typing\nPASS Delete final Undo original exact\nPASS Backspace selected edit exact\nPASS Backspace Undo preserves prior typing\nPASS Backspace Redo selected edit exact\nPASS Backspace Undo later typing preserves selected edit\nPASS Backspace next Undo preserves prior typing\nPASS Backspace final Undo original exact\nPASS Enter selected edit exact\nPASS Enter Undo preserves prior typing\nPASS Enter Redo selected edit exact\nPASS Enter Undo later typing preserves selected edit\nPASS Enter next Undo preserves prior typing\nPASS Enter final Undo original exact\nTOTAL 19 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-mbv6bfu_\n",
+    "selection-undo-boundary-1793438309529264349.log": "PASS Open requested fixture\nPASS Typing replaces selected al but preserves earlier X\nPASS Undo selected replacement alone preserves earlier typing\nPASS Redo selected replacement exact\nPASS Undo later typing keeps selection replacement\nPASS next Undo restores pre-replacement typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-r9edlgqk\n",
+    "cut-undo-boundary-1793438324250156480.log": "PASS Open requested fixture\nPASS Cut selected al keeps earlier typed X\nPASS Undo Cut alone preserves earlier typing\nPASS Redo Cut alone exact\nPASS Undo later typing keeps Cut\nPASS next Undo restores pre-Cut typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-cp9qf0ca\n"
+  },
+  "limits": "Acceptance-only extension Q44. Three suites on clean960f4f4 same b0e2bf20, no retries.19destructive+7typing+7Cut. No new product fix, models, visuals, Windows or full matrix."
+}

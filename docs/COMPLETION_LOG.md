@@ -2759,3 +2759,8 @@ Undo conservaX previo, Redo, escritura posterior deshecha por separado,
 restauracion original. Local19PASS sin cambiar producto. Runner154entradas=
 153modosPTY+guard. Roadmap reconciliaQ42-Q44, UTF8 y candidate9 histórico.
 Aceptación limpia se registra después; no nuevas capturas ni fix.
+
+ExtensionQ44clean960f4f4: Destructive19,Selection7,Cut7PASS mismo
+b0e2bf20sinreintentos,15inventory33docsPASS. Ledger
+linux-selection-destructive-boundary.json. Corrige mapa añadido por error a
+CopyIDE-010: corresponde a UndoIDE-008 y RedoIDE-009. Sin cambio producto.

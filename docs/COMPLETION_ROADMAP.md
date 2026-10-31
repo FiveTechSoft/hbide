@@ -134,6 +134,10 @@ CandidatoLinux9 export6a85950 stripped2908eae5 pasa8smokes estándar y
 Cut7/Changed5/NoChange9/UTF8Terminal10/Block9 sobre mismo binario inalterado.
 Ledger linux-candidate-cut-replace.json. PredateQ44; no release, instalador,
 licencias resueltas, Windows, matriz global o nueva prueba de determinismo.
+Extensión960f4f4: Delete/Backspace/Enter19,Selection7,Cut7PASS mismo
+b0e2bf20limpio; ledger linux-selection-destructive-boundary.json. No nuevofix
+ni capturas. Runneractual154=153modosPTY+guard;153anterior era corteQ44.
+
 Siete hitos conservan estados: cero cerrados, uno en curso, cuatro parciales,
 dos pendientes. Decisiones oversizededit/filenameUndoLoad y límiteM2 intactos.
 
