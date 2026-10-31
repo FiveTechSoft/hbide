@@ -1963,3 +1963,12 @@ MethodOnlyObject ampliado10checks: metodoAAProbeescribiriamarker si ejecutado.
 Abrirbrowser,EntersobreMethodyResumedejanmarkerausente,ClassNameexacto. Esto
 comprueba noejecucion, no solo textoMethod/alerta. Getterconefectos sigue fuera
 deesta promesa: inspeccionarpropiedades legibles usa getters por contrato.
+
+## 31 octubre: clipboard/historia del diseñador real
+
+12checks ComboBox real creadoF2,Copy/dosPaste/Cut/UndoRedo/F10persistencia:
+modeloscompletosexactos,variablesunicas,nuevavariabletrasCutUndoPaste,items/
+dimensionespreservados y offsetconclampalaltoexistente. Primer harness esperaba
+autogrowysinclampyabrioEntertrasF10yaasociado(disparabapropiedades),corregido
+sinproducto. No nueva politicaoversized/UndoLoadfilename,todoscontroles/eventos
+nonnil/runtime/Windows/pixels. No se declaranhandlersnonnilprobadosporvacios.
