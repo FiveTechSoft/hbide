@@ -2960,7 +2960,8 @@ productfix/Windows/global/retries. Candidate12predatesQ52/Q53.
 ## Q54 - Explicit navigation retained old marked range
 
 SelectfuinMain,jumpTarget,typeX deletedblockfromMain throughTarget.
-Before2PASS1FAIL; local7PASS coversFunctionjump/Undo,Cancelretainsrange,
+Before2PASS1FAIL; acceptance coversFunctionjump/Undo,Cancelretainsrange,
 GotoLinejump. ClearSelection only after confirmedpicker/numericgoto, not
 in genericGoto (arrowrangeextensionstays). InitialCancelharnessHomecollapsed
-range; fixedassertiontypesatunchangedcursor. Runner165=164PTY+guard.
+range; secondprobeusedwrongarrowencodingandassertedMainwhileatTarget,
+so clean4eaafa3 retained6PASS1FAIL. Harness correctedtoCSIarrow, notproduct. Runner165=164PTY+guard.

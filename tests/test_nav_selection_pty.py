@@ -119,7 +119,7 @@ try:
     expected=original.replace(b'function Target()',b'Xfunction Target()')
     saved('Function jump consumes old range before typing',expected)
     menu(b'n');saved('Undo restores only target insertion',original)
-    send(b'\x1bOA');send(b'\x1bOA');mark();menu(b'u');send(b'\x1b');send(b'X')
+    send(b'\x1b[A');send(b'\x1b[A');mark();menu(b'u');send(b'\x1b');send(b'X')
     saved('Picker Cancel retains old selected range',original.replace(b'function Main()',b'Xnction Main()'))
     menu(b'n');saved('Undo cancelled-picker replacement',original)
     mark();menu(b'g');send(b'\x01');send(b'3\r');send(b'\x1bOH');send(b'X')
