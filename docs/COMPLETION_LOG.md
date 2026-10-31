@@ -2744,3 +2744,10 @@ removes priorX as well. RecordEdit accepts lSeparate and Edit carries the
 pre-key selection state into that flag. Marked edits no longer coalesce
 with adjacent typing. Local after7PASS; clean acceptance follows separately.
 Runner153entries=152PTYmodes+guard. Not all command grouping or Windows.
+
+Q44 clean2fcc82b: Selection7,Cut7,NoChange9,ReplaceSelection5 allPASS on
+same128d0816binary;21modelsPASS including87repaintchecks,15inventory33docsPASS.
+Native120x40UndoXalpha/RedoXYpha actual pixels inspected with full lower
+borders. Ledger linux-selection-undo-boundary.json. One bounded build/test
+step completed before combined command timeout during capture stage; capture
+then performed separately, no acceptance tests retried. No global/Windows claim.
