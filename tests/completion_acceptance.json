@@ -33,9 +33,11 @@
         "test_nav_literal_comment_pty.py",
         "test_nav_lexical.prg",
         "test_nav_typed_methods_pty.py",
-        "test_nav_selection_pty.py"
+        "test_nav_selection_pty.py",
+        "test_nav_array_comment_pty.py",
+        "test_nav_pragma_macro_pty.py"
       ],
-      "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated.",
+      "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor.",
       "expected_label": "Go to Function... Ctrl+G"
     },
     "IDE-020": {
@@ -60,7 +62,7 @@
         "test_message_selection_pty.py",
         "test_gcc_caret_column_pty.py"
       ],
-      "contract": "Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently. F6 output Left/Right reveals long diagnostic tails; Esc returns to the same project failure state.",
+      "contract": "Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently. F6 output Left/Right reveals long diagnostic tails; Esc returns to the same project failure state. Real GCC colored output is normalized only for CSI m/K location/severity/caret parsing; raw output remains unchanged. Exact ASCII source+unique caret can map tested TAB widths; absent/ambiguous/non-ASCII/cropped evidence keeps reported column, not a semantic-correctness claim. GCC wrapper acceptance does not certify hbmk2 colon-path builds or Output viewer ANSI handling.",
       "expected_label": "Sources / Build..."
     },
     "IDE-026": {

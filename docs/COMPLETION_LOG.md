@@ -3191,3 +3191,11 @@ acceptance/nativeevidence linux-gcc-colored-diagnostics.json follows.
 Q64firstcleane1f0c13PTY27PASSbutprojectmodelFAIL:FOREACHaliasnormalizing
 cLinechangedaOutputandthusraw. Fixedindexediterationtopreserveraworiginal;
 notclaimfirstcleanallpass. Finalacceptancefollows.
+
+## Q65 - Reconcile acceptance links after Q60-Q64
+
+Sourceinventorystillpointedtopre-Q60navigationtestsanddidnotdescribe
+Q58fallback/Q64parse-onlyscope. Addedtwonavsuitelinksandexplicitbounded
+contractswithoutclaimingAltF7/AltF8colorcoverageorfullpreprocessor. Two
+sourceinventoryguardsadded. Notnewproductfixorfeaturecount. Regenerate
+inventory/catalogue;focusedjointusesonefreshbinary,nothistoricalsum.

@@ -1,6 +1,7 @@
 """Source-inventory contract only; no native modal runtime certification."""
 import importlib.util
 import pathlib
+import json
 import unittest
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
@@ -128,5 +129,18 @@ class MouseRouteInventory(unittest.TestCase):
         sync=[r for r in rows if 'DsnMouseRoute' in r['context']]
         self.assertEqual(len(sync),3)
         self.assertTrue(any('DSNK_MLUP' in r['condition'] for r in sync))
+
+class RecentAcceptanceLinks(unittest.TestCase):
+    def test_recent_navigation_suites_are_linked(self):
+        data=json.loads((ROOT/'tests/completion_acceptance.json').read_text())
+        linked=data['menus']['IDE-019']['tests']
+        for name in ['test_nav_array_comment_pty.py','test_nav_pragma_macro_pty.py','test_nav_lexical.prg']:
+            self.assertIn(name,linked)
+            self.assertTrue((ROOT/'tests'/name).is_file())
+    def test_gcc_color_and_fallback_scope_remains_explicit(self):
+        data=json.loads((ROOT/'tests/completion_acceptance.json').read_text())
+        contract=data['menus']['IDE-021']['contract']
+        for phrase in ['raw output remains unchanged','absent/ambiguous/non-ASCII/cropped','not a semantic-correctness claim','Output viewer ANSI']:
+            self.assertIn(phrase,contract)
 
 if __name__=='__main__':unittest.main()
