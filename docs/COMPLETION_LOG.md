@@ -2949,3 +2949,10 @@ realgcc-fsyntax-only, nothbmk2 pathhandlingacceptance. Parserrequires
 severityimmediatelyafterlocation,skipnotes/context;severityfromprefixnot
 wordsinside message. Fourmodelassertions addedinclfatalerror/nocolumn.
 Runner164=163PTY+guard; clean/nativeevidence follows.
+
+Q53clean5fc4ddb Colon6/Output/LineComments6/MessagesPASS samebinary,
+22modelsPASSincl112repaintand4newprojectassertions,15inventory34docsPASS.
+Native120x40Messagesbad.c:2andexactpathjump2:9inspectedfullborders.
+Ledgerlinux-project-colon-diagnostic.json. WrapperrealGCCnotnativehbmk2
+colonpath; finalnativeGCCLC_ALL=C fixesfixturemojibakeonly. No encoding
+productfix/Windows/global/retries. Candidate12predatesQ52/Q53.
