@@ -2991,3 +2991,11 @@ Q55cleanfb2feea MessageSelection9/NavSelection7/Colon6PASSsamebinary,
 22models112repaint/15inventory34docsPASS. Native120x40Xunknown_name/Undo
 actualpixelsinspectedfullbordersanddiskexact. linux-message-selection.json.
 No cleanretries/full165PTY/Windows/release. Candidate12predatesQ52-Q55.
+
+## Candidate13 - Q52-Q55 included
+
+Exportclean041df6dstrippedSHA582e15f26ed02e1dba440999298ee67e9f547d884d043425b89816138355d60a.
+8standardsmokes+MessageSelection9/NavSelection7/Colon6/LineComments6PASS
+exactsamebinarytwo boundedsteps noretries/interruption. Manifest/toolchain/
+deps/logs persistedlinux-candidate-current-navigation.json. No newfix/full165
+PTY/Windows/release/installer/license/newpixels/determinism/NEXUSexecution.

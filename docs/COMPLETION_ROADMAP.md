@@ -192,6 +192,14 @@ mismo f8988087, dos pasos sin reintentos ni interrupciones;22modelos
 112repaint/15inventory/34docs PASS. Ledger linux-navigation-project-joint.json.
 No nueva corrección/matriz164PTY/global/Windows/nuevos píxeles/cierre de hito.
 
+### Candidate13 - Q52-Q55 incluidos
+
+Export041df6d stripped582e15f2 pasa8smokes estándar+MessageSelection9/
+NavSelection7/Colon6/LineComments6, mismo binario inalterado, dos pasos
+sin reintentos ni interrupciones. Ledger linux-candidate-current-navigation.json.
+No nuevofix/matriz165PTY/Windows/release/licencias/instalador/nuevos píxeles/
+determinismo/NEXUSejecutado.
+
 ## Ampliaciones que no se confunden con cierre probado
 
 El [plan de diseno anterior](ROADMAP.md) y la
