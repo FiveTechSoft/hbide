@@ -2687,3 +2687,14 @@ No universal Unicode widget/GET/Windows/OSclipboard acceptance.
 Cleancdbf775: UTF8Terminal10, UTF8Bytes9 and Block9 pass same binary
 803e20dd without retry;15inventory33docs pass. No new model run.
 Ledger docs/evidence/linux-clipboard-utf8-terminal.json.
+
+## Q42 Clear old range after changed Replace
+
+Selecting al in alpha then Replace alpha->omega kept old selection.
+Typing X deleted om instead of inserting at col3 (before4/5PTY).
+Replace now clears old range only when output changes; no-op/cancel unchanged.
+After5/5PTY and four new model checks typing/UndoReplaceclean.
+First harness appended to prefilled search al; corrected two Backspaces
+before reproducing actual stale-range failure. Native120x40 omXega/Undoomega
+inspected with complete lower frames and exact disk bytes.
+Runner150=149PTY modes plus guard. No Windows/global/M1 closure. Clean pending.

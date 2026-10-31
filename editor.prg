@@ -341,6 +341,8 @@ METHOD ReplaceAll( cFind, cReplace ) CLASS HBSrcEdit
    next
 
    if lChanged
+      // The prefilled range belongs to the old text, not the result.
+      ::ClearSelection()
       for n = 1 to Len( ::aText )
          ::aText[ n ]:cText := aNew[ n ]
       next
