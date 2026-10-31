@@ -2135,3 +2135,14 @@ librerias necesarias funcionan y build IDE PASS. Regresion limpia1903975:
 Readonly20Depth24Type24Method10ObjectEmpty12 mismo nuevoIDE, dospasos acotados,
 20modelos15inventario33docsPASS. No nueva captura/candidato/determinismo,
 ni116global/Windows. Evidencia linux-rebuilt-guards-1903975.json.
+
+## 31 octubre: clipboard de siete tipos, pruebas de modelo
+
+Probe separado132checks usa metodos reales Copy/Paste/Cut/Undo/Redo con
+say,get,checkbox,button,radiogroup,listbox,combobox. Valores no predeterminados,
+handlers con comillas, bindings originales en mayusculas, snapshots completos,
+fuente mutada tras Copy y tercer binding unico. Copy no dirty/history; nueva
+accion limpia Redo. Todos los campos presentes salvo posicion/binding deben
+conservarse exactos. No es gesto PTY/pixels/runtime ni ejecucion de handlers;
+se incluyen campos no expuestos de esos tipos solo como datos de modelo.
+Runner de modelos ahora21, no21funciones ni cierreM4. Sin producto nuevo.

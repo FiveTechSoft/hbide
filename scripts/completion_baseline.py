@@ -20,6 +20,7 @@ def run(name, args, cwd=ROOT, timeout=120):
             return 124
 
 cases = {
+    'designer-clipboard-types': ['tests/test_designer_clipboard_types.prg', 'designer.prg', 'safeio.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'designer-schema': ['tests/test_designer_schema.prg', 'designer.prg', 'safeio.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'designer-load': ['tests/test_designer_load.prg', 'designer.prg', 'safeio.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'designer-write': ['tests/test_designer_write.prg', 'designer.prg', 'safeio.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
