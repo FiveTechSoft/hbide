@@ -2841,3 +2841,11 @@ Q47clean56e76ad VirtualBS5/EOF6/Tab7/SelectionIdentity5PASS same98a4ede3;
 21modelsPASS including99repaint,15inventory34docsPASS. Native120x40virtualcol10
 andClose->noname inspected fullborders. Ledger linux-virtual-backspace.json.
 No retries/globalvirtualspacepolicy/Windows. Candidate10predatesQ47.
+
+## Q48 - Range wholly in virtual space false dirty
+
+Backwardmark in virtualcolumns on shortline thenCut no bytes removed but
+SelDelete eagerly dirtied. Realbefore1PASS1FAILfalseCloseprompt. SelDelete
+compares packed old/new line before settingdirty, multi-line removals stay
+real. No clipboard-empty policy change, no range-clamp invention.
+Runner158=157PTY+guard. Clean/native evidence follows.

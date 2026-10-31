@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'virtual-selection': ('test_virtual_selection_pty.py', [], 120),
     'virtual-backspace': ('test_virtual_backspace_pty.py', [], 120),
     'selection-tab': ('test_selection_tab_pty.py', [], 120),
     'selection-identity': ('test_selection_identity_pty.py', [], 120),

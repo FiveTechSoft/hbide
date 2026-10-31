@@ -1787,7 +1787,11 @@ METHOD SelDelete( aSel ) CLASS HBSrcEdit
       ::RemoveLine( aSel[ 1 ] + 1 )
    next
    ::ClearSelection()
-   ::lDirty = .T.
+   // A range entirely in virtual space removes no bytes or boundaries.
+   // Keep prior dirty/history state instead of creating a false save prompt.
+   if Len( aOld ) > 1 .or. ! HBIDE_StrEq( aOld[ 1 ], HBIDE_LinePack( ::aText[ aSel[ 1 ] ] ) )
+      ::lDirty := .T.
+   endif
    ::GoTo( aSel[ 1 ], aSel[ 2 ], _REFRESH_ALL )
 
 return aOld
