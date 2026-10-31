@@ -2340,3 +2340,11 @@ NoFileResumecursorlocation acceptance ni invalidthread/multifile/Windows.
 Cleanb0b8972CursorPopup10Scopes16WorkAreas10sameIDEc45bf334PASS,
 15inventory33docs;21modelosultima23bd0af. linux-debug-cursor-popup.json
 retieneclean y exploratorioconexpectativaequivocada, sin productfix.
+
+## 31 octubre regresion conjunta reciente
+
+Clean8e15ed2 13modosPTY mismoIDE4b38b470, dospasosacotadossininterrupcion
+nireintentos:ScriptDBF,WorkAreas,CursorPopup,Scopes,SnapArrows/Drag,
+GET/Combo/CheckboxRuntime,Getter/Setter,TypeChange,WindowLayout. TodosPASS,
+21modelos15inventory33docsPASS. linux-recent-joint-8e15ed2.jsonretiene
+receipts/logs/models. No global129,Windows,pixelsnuevo,cierre dehitos.
