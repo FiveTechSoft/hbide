@@ -59,7 +59,12 @@ def inventory():
             elif line.startswith(end):
                 break
             if re.match(r'(?i)\s*(?:CASE|IF|ELSEIF)\s', line):
-                routes.append(dict(source=source, line=i+1, condition=line.strip(),
+                j, parts = i, [line.strip()]
+                while parts[-1].endswith(';') and j + 1 < len(lines):
+                    parts[-1] = parts[-1][:-1].rstrip()
+                    j += 1
+                    parts.append(lines[j].strip())
+                routes.append(dict(source=source, line=i+1, condition=' '.join(parts),
                                    context=begin, status='route_only_not_separate_feature'))
     return entries, routes
 

@@ -187,7 +187,7 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertNotIn('acceptance',self.routes[0])
     def test_ctrl_g_delete_identity_route_linked(self):
         linked=[r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance' in r]
-        self.assertEqual(len(linked),5)
+        self.assertEqual(len(linked),6)
         row=next(r for r in linked if r['acceptance_id']=='IDE-KEY-GOTOFUNCTION-CTRL-G')
         self.assertEqual(row['source'],'hbide.prg')
         self.assertIn('hb_keyExt( nKey ) != HB_KX_DEL',row['condition'])
@@ -205,13 +205,26 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertTrue(any(r['condition'].startswith('case ') for r in self.routes))
         self.assertTrue(any(r['condition'].startswith('if ') for r in self.routes))
         for row in self.routes:
-            line=(ROOT/row['source']).read_text().splitlines()[row['line']-1]
-            self.assertEqual(row['condition'],line.strip())
+            lines=(ROOT/row['source']).read_text().splitlines()
+            j=row['line']-1
+            parts=[lines[j].strip()]
+            while parts[-1].endswith(';'):
+                parts[-1]=parts[-1][:-1].rstrip()
+                j+=1
+                parts.append(lines[j].strip())
+            self.assertEqual(row['condition'],' '.join(parts))
     def test_find_f5_if_dispatch_is_bound(self):
         row=next(r for r in audit.link_dispatch_contracts(self.routes,self.specs) if r.get('acceptance_id')=='IDE-KEY-FIND-F5')
         self.assertEqual(row['condition'],'if nKeyStd == K_F5 .and. ! ::oMenu:IsOpen()')
         self.assertEqual(row['acceptance']['tests'],['test_find_f5_selection_pty.py'])
         self.assertIn('success/cancel/missing',row['acceptance']['contract'])
+    def test_multiline_ctrl_f6_route_preserved_and_bound(self):
+        row=next(r for r in audit.link_dispatch_contracts(self.routes,self.specs) if r.get('acceptance_id')=='IDE-KEY-NEXTDOC-CTRL-F6')
+        self.assertIn('hb_keyExt( nKey ) == HB_KX_F6',row['condition'])
+        self.assertTrue(row['condition'].endswith('HB_KF_CTRL ) != 0 )'))
+        self.assertNotIn(';',row['condition'])
+        self.assertEqual(row['acceptance']['tests'],['test_multidoc_pty.py'])
+        self.assertIn('No Ctrl+Shift+F6 acceptance',row['acceptance']['contract'])
     def test_missing_route_fails_closed(self):
         broken={k:dict(v,condition='case nKey == K_NONEXISTENT') for k,v in self.specs.items()}
         with self.assertRaisesRegex(ValueError,'exactly one route'):audit.link_dispatch_contracts(self.routes,broken)

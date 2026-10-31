@@ -652,7 +652,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1066 | `CASE Upper( cParam2 ) == "ON"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1068 | `CASE Upper( cParam2 ) == "OFF"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1077 | `CASE hb_LeftEq( "MONITOR", cCommand )` | Pendiente vinculo |
-| hbdebug/debugger.prg:1079 | `IF hb_LeftEq( "PUBLIC", cParam1 ) .OR. hb_LeftEq( "PRIVATE", cParam1 ) .OR. ;` | Pendiente vinculo |
+| hbdebug/debugger.prg:1079 | `IF hb_LeftEq( "PUBLIC", cParam1 ) .OR. hb_LeftEq( "PRIVATE", cParam1 ) .OR. hb_LeftEq( "STATIC", cParam1 ) .OR. hb_LeftEq( "LOCAL", cParam1 ) .OR. hb_LeftEq( "GLOBAL", cParam1 ) .OR. hb_LeftEq( "SORT", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1082 | `IF ! Empty( cParam2 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1083 | `IF Upper( cParam2 ) == "ON" .OR. Upper( cParam2 ) == "OFF"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1094 | `CASE ! Empty( cResult )` | Pendiente vinculo |
@@ -672,7 +672,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1131 | `CASE Empty( cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1133 | `CASE hb_LeftEq( "PREPROCESSEDCODE", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1135 | `CASE hb_LeftEq( "LINENUMBERS", cParam1 )` | Pendiente vinculo |
-| hbdebug/debugger.prg:1137 | `CASE hb_LeftEq( "EXCHANGESCREENS", cParam1 ) .OR. ;` | Pendiente vinculo |
+| hbdebug/debugger.prg:1137 | `CASE hb_LeftEq( "EXCHANGESCREENS", cParam1 ) .OR. hb_LeftEq( "SWAPONINPUT", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1140 | `CASE hb_LeftEq( "MENUBAR", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1142 | `CASE Empty( cParam2 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1144 | `CASE Upper( cParam2 ) == "ON"` | Pendiente vinculo |
@@ -689,7 +689,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1174 | `IF Empty( cParam2 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1181 | `IF lValid` | Pendiente vinculo |
 | hbdebug/debugger.prg:1184 | `IF Len( cColor ) < 3 .OR. Left( cColor, 1 ) != '"' .OR. Right( cColor, 1 ) != '"'` | Pendiente vinculo |
-| hbdebug/debugger.prg:1189 | `IF Empty( cColor ) .OR. ! Empty( hb_StrReplace( Upper( cColor ), ;` | Pendiente vinculo |
+| hbdebug/debugger.prg:1189 | `IF Empty( cColor ) .OR. ! Empty( hb_StrReplace( Upper( cColor ), { "N", "B", "G", "R", "W", "I", "X", "U", "+", "*", "/", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", " " }, "" ) ) .OR. hb_ColorToN( cColor ) < 0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1199 | `IF lValid .AND. Len( aNewColors ) == Len( ::aColors )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1206 | `CASE hb_LeftEq( "TABWIDTH", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1207 | `IF IsDigit( cParam2 )` | Pendiente vinculo |
@@ -887,7 +887,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbide.prg:673 | `if nKeyStd == K_F5 .and. ! ::oMenu:IsOpen()` | IDE-KEY-FIND-F5 |
 | hbide.prg:679 | `if nKeyStd == K_F2 .and. ! ::oMenu:IsOpen()` | IDE-KEY-SAVE-F2 |
 | hbide.prg:685 | `if ! ::oMenu:IsOpen() .and. Len( ::aEditors ) > 1` | Pendiente vinculo |
-| hbide.prg:686 | `if nKeyStd == K_CTRL_F6 .or. ;` | Pendiente vinculo |
+| hbide.prg:686 | `if nKeyStd == K_CTRL_F6 .or. ( hb_keyExt( nKey ) == HB_KX_F6 .and. hb_bitAnd( hb_keyMod( nKey ), HB_KF_CTRL ) != 0 )` | IDE-KEY-NEXTDOC-CTRL-F6 |
 | hbide.prg:688 | `if hb_bitAnd( hb_keyMod( nKey ), HB_KF_SHIFT ) != 0` | Pendiente vinculo |
 | hbide.prg:701 | `if nKeyStd == K_F3 .and. ! ::oMenu:IsOpen()` | IDE-KEY-REPEAT-FIND-F3 |
 | hbide.prg:708 | `if nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
@@ -931,7 +931,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:586 | `CASE nKey == K_PGUP  ; h[ "row" ] -= g[ "idxH" ]` | Pendiente vinculo |
 | help.prg:587 | `CASE nKey == K_PGDN  ; h[ "row" ] += g[ "idxH" ]` | Pendiente vinculo |
 | help.prg:588 | `CASE nKey == K_ENTER .OR. nKey == K_RIGHT` | Pendiente vinculo |
-| help.prg:592 | `IF nKey == K_UP .OR. nKey == K_DOWN .OR. nKey == K_HOME .OR. nKey == K_END .OR. ;` | Pendiente vinculo |
+| help.prg:592 | `IF nKey == K_UP .OR. nKey == K_DOWN .OR. nKey == K_HOME .OR. nKey == K_END .OR. nKey == K_PGUP .OR. nKey == K_PGDN` | Pendiente vinculo |
 | help.prg:596 | `CASE h[ "pane" ] == "text"` | Pendiente vinculo |
 | help.prg:598 | `CASE nKey == K_UP    ; h[ "top" ]--` | Pendiente vinculo |
 | help.prg:599 | `CASE nKey == K_DOWN  ; h[ "top" ]++` | Pendiente vinculo |
@@ -967,7 +967,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:884 | `IF nTarget > 0 .AND. nTarget != nTopic` | Pendiente vinculo |
 | help.prg:886 | `IF Len( aHistory ) > 100` | Pendiente vinculo |
 | editor.prg:484 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
-| editor.prg:490 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` | Pendiente vinculo |
+| editor.prg:490 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. hb_bitAnd( nKeyMod, hb_bitOr( HB_KF_SHIFT, HB_KF_CTRL, HB_KF_ALT ) ) == HB_KF_SHIFT` | Pendiente vinculo |
 | editor.prg:492 | `if ! ::lMark` | Pendiente vinculo |
 | editor.prg:496 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
 | editor.prg:497 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
@@ -1005,7 +1005,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:616 | `case nKeyStd == K_F2` | Pendiente vinculo |
 | editor.prg:622 | `case nKeyStd == K_F8` | Pendiente vinculo |
 | editor.prg:626 | `case nKeyStd == K_F9` | Pendiente vinculo |
-| editor.prg:629 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` | Pendiente vinculo |
+| editor.prg:629 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
 | editor.prg:634 | `if ::SelRange() != NIL` | Pendiente vinculo |
 | editor.prg:641 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
 | editor.prg:649 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
@@ -1030,7 +1030,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:1978 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
 | editor.prg:1980 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
 | editor.prg:1985 | `if nI + nNeed > nLen` | Pendiente vinculo |
-| editor.prg:1991 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ;` | Pendiente vinculo |
+| editor.prg:1991 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
 | editor.prg:1999 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
 | editor.prg:2016 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
 | editor.prg:2020 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
@@ -1051,7 +1051,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:2073 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
 | editor.prg:2075 | `ELSEIF c == q` | Pendiente vinculo |
 | editor.prg:2079 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
-| editor.prg:2082 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. ;` | Pendiente vinculo |
+| editor.prg:2082 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
 | hbdebug/debugger.prg:1563 | `IF ::lAnimate` | Pendiente vinculo |
 | hbdebug/debugger.prg:1564 | `IF ::nSpeed != 0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1567 | `IF __dbgInvokeDebug()  // NextKey() == K_ALT_D` | Pendiente vinculo |
@@ -1163,6 +1163,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 - IDE-KEY-GOTOFUNCTION-CTRL-G: Actual Ctrl+G opens function picker, filter/Enter jumps correct function and preserves line/kind workflow. Extended Delete normalization never opens picker; actual extended Delete removes selected marked lines; separate DeleteLine/Undo restores text but not removed breakpoint. Bounded two entry routes, not all terminal extended-key encodings, menus-open states, every navigation fixture or Windows. Links require exact source-identified PTY ledger. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py)
 - IDE-KEY-FIND-F5: Actual F5 Find: successful match clears old selected range before typing, Cancel and missing match retain selection; Undo restores exact original after F2 save. Bounded success/cancel/missing selection fixture only, not all search options/terminal encodings/menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_find_f5_selection_pty.py](../tests/test_find_f5_selection_pty.py)
 - IDE-KEY-SAVE-F2: Actual F2 saves source byte-exact and rotates prior disk version into backup. Failed backup promotion retains old backup child and complete recovery while source saves. Bounded fixture only, not all Save/SaveAs/conflict/menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_backup_pty.py](../tests/test_backup_pty.py)
+- IDE-KEY-NEXTDOC-CTRL-F6: Actual Ctrl+F6 cycles active buffers in bounded multi-document PTY: per-document text/undo/selection, SaveAs journals and close decisions remain isolated. Complete multiline dispatch condition retained; parent menu-closed/multiple-doc guard remains separate, not inferred coverage. No Ctrl+Shift+F6 acceptance, all terminal encodings, all navigation states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-KEY-REPEAT-FIND-F3: Actual F3 repeat and wrapped repeat clear old selected range before following typing, Undo restores exact original after F2 save. Initial Find in fixture uses Edit menu, not F5 key. Bounded repeated selection fixture, not all search options/menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_find_repeat_selection_pty.py](../tests/test_find_repeat_selection_pty.py)
 
 ## Gate de cierre
