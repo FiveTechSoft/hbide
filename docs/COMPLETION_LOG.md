@@ -2849,3 +2849,9 @@ SelDelete eagerly dirtied. Realbefore1PASS1FAILfalseCloseprompt. SelDelete
 compares packed old/new line before settingdirty, multi-line removals stay
 real. No clipboard-empty policy change, no range-clamp invention.
 Runner158=157PTY+guard. Clean/native evidence follows.
+
+Q48clean d9c148b VirtualSelection6,VirtualBS5,Cut7,Destructive19PASS sameae53bc5f;
+21modelsPASS including102repaint,15inventory34docsPASS. Native120x40col9shortx
+andClose->noname inspected fullborders; linux-virtual-selection.json.
+No re-runs/global/Windows/clipboardemptypolicy claim. FirstRightprobe
+clampedtoEOL so notvirtualrange; Leftprobe was realbeforefixreproduction.
