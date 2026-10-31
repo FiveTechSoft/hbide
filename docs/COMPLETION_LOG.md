@@ -3389,3 +3389,11 @@ Compiler-valid FUNCTION; without separating space still failed1PASS2FAIL.
 Detect declaration start after removing finalsemicolon, preserving
 original physical line. CompactPTYmode plus3guards function/static/method.
 Evidence linux-navigation-declaration-compact.json follows; bounded only.
+
+### Q81 extension - abbreviated static modifier
+
+Compiler-valid STAT; then FUNCTION Target() listed Target but jumped to
+line4 instead of modifierline3 (before2PASS1FAIL). Recognize four-to-six
+letter STATIC prefix in continuation-start and classifier, not arbitrary
+substring. Five model guards STAT/STATI/STATIC, singleline and TICnegative.
+Evidence linux-navigation-declaration-static.json follows.

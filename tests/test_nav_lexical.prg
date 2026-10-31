@@ -56,6 +56,14 @@ procedure Main()
  Check(Len(a)==1.and.a[1,1]=='Target'.and.a[1,3]==1,'compact modifier and function continuations',@nPass,@nFail)
  a:=HBIDE_ScanProcs('method;'+hb_eol()+'Target() CLASS Demo')
  Check(Len(a)==1.and.a[1,1]=='Demo:Target'.and.a[1,3]==1,'compact method continuation',@nPass,@nFail)
+ for each c in { 'STAT', 'STATI', 'STATIC' }
+ a:=HBIDE_ScanProcs(c+';'+hb_eol()+'function Target()')
+ Check(Len(a)==1.and.a[1,1]=='Target'.and.a[1,3]==1.and.a[1,2]=='static function','static abbreviation continuation starts at modifier: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('STAT function Target()')
+ Check(Len(a)==1.and.a[1,2]=='static function','single-line static abbreviation remains recognized',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('TIC function Hidden()'+hb_eol()+'function Target()')
+ Check(Len(a)==1.and.a[1,1]=='Target','modifier substring is not a keyword',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

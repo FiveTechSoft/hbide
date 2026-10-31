@@ -66,7 +66,7 @@ FUNCTION HBIDE_ScanProcs( cText )
       ENDIF
       cT1 := Upper( aTok[ 1 ] )
       cT2 := Upper( aTok[ 2 ] )
-      IF cT1 $ "STATIC|INIT|EXIT"
+      IF HBIDE_IsKw( cT1, "STATIC" ) .OR. cT1 == "INIT" .OR. cT1 == "EXIT"
          IF Len( aTok ) < 3
             LOOP
          ENDIF
@@ -129,7 +129,7 @@ STATIC FUNCTION HBIDE_NavDeclStart( cLine )
    ENDIF
    c := Upper( a[1] )
    RETURN HBIDE_IsKw(c,"FUNCTION") .OR. HBIDE_IsKw(c,"PROCEDURE") .OR. ;
-      c == "STATIC" .OR. c == "INIT" .OR. c == "EXIT" .OR. c == "METHOD" .OR. c == "CLASS"
+      HBIDE_IsKw(c,"STATIC") .OR. c == "INIT" .OR. c == "EXIT" .OR. c == "METHOD" .OR. c == "CLASS"
 
 // Match the raw C-dump terminator without running Harbour comment state.
 // hb_pp_hasCommand accepts trailing comments or a command separator.

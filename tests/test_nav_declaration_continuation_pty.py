@@ -79,6 +79,8 @@ target = work/'source.prg'
 original = (pathlib.Path(__file__).resolve().parent/'fixtures/nav_declaration_continuation.prg').read_bytes()
 if '--compact' in sys.argv:
     original=original.replace(b'function ;',b'function;')
+if '--static-abbrev' in sys.argv:
+    original=original.replace(b'function ;\nTarget()',b'stat;\nfunction Target()')
 target.write_bytes(original)
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
 pid, fd = pty.fork()
@@ -116,7 +118,7 @@ try:
     menu(b'u')
     check('Picker includes continued Target declaration','Target' in scr.text() and '3/3' not in scr.text() and '2/2' in scr.text())
     send(b'Target\r');send(b'X')
-    saved('Picker jumps to real Target declaration',original.replace(b'function ;',b'Xfunction ;').replace(b'function;',b'Xfunction;'))
+    saved('Picker jumps to real Target declaration',original.replace(b'function ;',b'Xfunction ;').replace(b'function;',b'Xfunction;').replace(b'stat;',b'Xstat;'))
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
