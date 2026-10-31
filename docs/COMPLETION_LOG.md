@@ -2710,4 +2710,7 @@ Cut now records separate undo op using existing boundary flag; typing before
 and after remains independently undoable. After7/7PTY, five new model checks.
 Native120x40 UndoXalpha/RedoXpha inspected, full frames, saved bytes exact.
 Runner151=150PTY modes plus guard. No other command grouping/Windows/global.
-Clean pending.
+
+Clean1c46903: Cut7, ReplaceSelection5, Boundary6 and Block9 pass same
+binaryadaf68d6 without retry;21models15inventory33docs pass.
+Ledger docs/evidence/linux-cut-undo-boundary.json.
