@@ -147,7 +147,7 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-015: Search next position case-insensitively; wrap within current and other lines; missing match retains cursor. Real Find modal navigates requested text; Esc leaves source bytes untouched. Successful Find/Repeat clears old selection, including multirow and wrapped matches, before subsequent typing; exact saved bytes and Undo checked. Cancel/missing Find keep old range. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_find_selection_pty.py](../tests/test_find_selection_pty.py), [test_find_repeat_selection_pty.py](../tests/test_find_repeat_selection_pty.py)
 - IDE-016: Repeat visits adjacent and overlapping matches without double increment, then wraps. Successful Find/Repeat clears old selection, including multirow and wrapped matches, before subsequent typing; exact saved bytes and Undo checked. Cancel/missing Find keep old range. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg), [test_find_selection_pty.py](../tests/test_find_selection_pty.py), [test_find_repeat_selection_pty.py](../tests/test_find_repeat_selection_pty.py)
 - IDE-001: File New creates an independent live buffer; text, cursor, selection, undo, breakpoints and journals stay with their document. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
-- IDE-002: Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. LoadText clears selection anchors belonging to the old buffer. External short reload with anchor on old row3 permits typing without out-of-bounds selection deletion. Parenthesized bracket literal stays string-colored without leaking /* state to following declaration; bounded := or left-parenthesis context, not every bracket-expression context. Array literal bracket strings after left brace and comma keep string color and following code state; bounded context, indices remain code. Bracket strings after binary + (not ++) and == preserve color/state; bounded operators only, not all expressions. Complete comment gap before bracket literal preserves bounded introducer context; previous string values/index names do not become introducers. No full preprocessor acceptance. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py), [test_reload_selection_pty.py](../tests/test_reload_selection_pty.py), [test_editor_paren_bracket_pty.py](../tests/test_editor_paren_bracket_pty.py), [test_editor_bracket_list_pty.py](../tests/test_editor_bracket_list_pty.py), [test_editor_bracket_operator_pty.py](../tests/test_editor_bracket_operator_pty.py), [test_editor_bracket_gap_pty.py](../tests/test_editor_bracket_gap_pty.py)
+- IDE-002: Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. LoadText clears selection anchors belonging to the old buffer. External short reload with anchor on old row3 permits typing without out-of-bounds selection deletion. Parenthesized bracket literal stays string-colored without leaking /* state to following declaration; bounded := or left-parenthesis context, not every bracket-expression context. Array literal bracket strings after left brace and comma keep string color and following code state; bounded context, indices remain code. Bracket strings after binary + (not ++) and == preserve color/state; bounded operators only, not all expressions. Complete comment gap before bracket literal preserves bounded introducer context; previous string values/index names do not become introducers. No full preprocessor acceptance. Bounded introducer/value state survives a block comment across lines before bracket literal; cached edit/DeleteLine/Undo/Redo and array index guards, not full preprocessing. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py), [test_reload_selection_pty.py](../tests/test_reload_selection_pty.py), [test_editor_paren_bracket_pty.py](../tests/test_editor_paren_bracket_pty.py), [test_editor_bracket_list_pty.py](../tests/test_editor_bracket_list_pty.py), [test_editor_bracket_operator_pty.py](../tests/test_editor_bracket_operator_pty.py), [test_editor_bracket_gap_pty.py](../tests/test_editor_bracket_gap_pty.py), [test_editor_bracket_multiline_pty.py](../tests/test_editor_bracket_multiline_pty.py)
 - IDE-003: F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified. Symlink refusal only promises a recovery temp after verified complete write; failed copy preserves buffer/link/destination and reports no complete recovery copy. Exclusive temp creation/full write/close precede replacement. Complete recovery bytes are checked after symlink/promotion refusal; partial write promises no complete temp. Not after-close third-party replacement, fsync/power-loss or native Windows certification. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_utf8_valid.prg](../tests/test_utf8_valid.prg), [test_atomic.prg](../tests/test_atomic.prg), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py)
 - IDE-004: Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Failed Save As retains old name/stamps/journal for initially clean and dirty buffers; later F2 still writes original. Accepted overwrite preserves destination as exact .bak, keeps old source unchanged, clears source journal and subsequent F2 targets new name. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py), [test_saveas_failure_identity_pty.py](../tests/test_saveas_failure_identity_pty.py), [test_saveas_overwrite_accept_pty.py](../tests/test_saveas_overwrite_accept_pty.py), [test_saveas_overwrite_cancel_pty.py](../tests/test_saveas_overwrite_cancel_pty.py)
 - IDE-008: Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py), [test_selection_identity_pty.py](../tests/test_selection_identity_pty.py)
@@ -539,12 +539,12 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | --- | --- | --- | --- | --- |
 | MOUSE-hbide-Activate-1 | METHOD Activate() CLASS HBIde | `if nKeyStd == K_LBUTTONDOWN` | hbide.prg:708 | Pendiente gesto |
 | MOUSE-hbide-Activate-2 | METHOD Activate() CLASS HBIde | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | hbide.prg:729 | Pendiente gesto |
-| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:511 | Pendiente gesto |
-| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:516 | Pendiente gesto |
-| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:521 | Pendiente gesto |
-| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:524 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2033 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2034 | Pendiente gesto |
+| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:512 | Pendiente gesto |
+| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:517 | Pendiente gesto |
+| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:522 | Pendiente gesto |
+| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:525 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2047 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2048 | Pendiente gesto |
 | MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:435 | Pendiente gesto |
 | MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:438 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
@@ -840,48 +840,48 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:877 | `CASE nKey == K_PGDN` | Pendiente vinculo |
 | help.prg:879 | `CASE nKey == K_HOME` | Pendiente vinculo |
 | help.prg:881 | `CASE nKey == K_END` | Pendiente vinculo |
-| editor.prg:483 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
-| editor.prg:489 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` | Pendiente vinculo |
-| editor.prg:495 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
-| editor.prg:496 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
-| editor.prg:497 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
-| editor.prg:498 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` | Pendiente vinculo |
-| editor.prg:499 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` | Pendiente vinculo |
-| editor.prg:500 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` | Pendiente vinculo |
-| editor.prg:503 | `case nKeyStd == K_CTRL_Z` | Pendiente vinculo |
-| editor.prg:507 | `case nKeyStd == K_CTRL_U` | Pendiente vinculo |
-| editor.prg:511 | `case nKeyStd == K_LDBLCLK` | Pendiente vinculo |
-| editor.prg:516 | `case nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
-| editor.prg:521 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:524 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:527 | `case nKeyStd == K_BS` | Pendiente vinculo |
-| editor.prg:552 | `case nKeyStd == K_DEL` | Pendiente vinculo |
-| editor.prg:566 | `case nKeyStd == K_ENTER` | Pendiente vinculo |
-| editor.prg:576 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
-| editor.prg:585 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
-| editor.prg:594 | `case nKeyStd == K_HOME` | Pendiente vinculo |
-| editor.prg:597 | `case nKeyStd == K_END` | Pendiente vinculo |
-| editor.prg:600 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
-| editor.prg:604 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
-| editor.prg:612 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
-| editor.prg:615 | `case nKeyStd == K_F2` | Pendiente vinculo |
-| editor.prg:621 | `case nKeyStd == K_F8` | Pendiente vinculo |
-| editor.prg:625 | `case nKeyStd == K_F9` | Pendiente vinculo |
-| editor.prg:628 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` | Pendiente vinculo |
-| editor.prg:2025 | `case K_UP` | Pendiente vinculo |
-| editor.prg:2026 | `case K_DOWN` | Pendiente vinculo |
-| editor.prg:2027 | `case K_LEFT` | Pendiente vinculo |
-| editor.prg:2028 | `case K_RIGHT` | Pendiente vinculo |
-| editor.prg:2029 | `case K_HOME` | Pendiente vinculo |
-| editor.prg:2030 | `case K_END` | Pendiente vinculo |
-| editor.prg:2031 | `case K_PGUP` | Pendiente vinculo |
-| editor.prg:2032 | `case K_PGDN` | Pendiente vinculo |
-| editor.prg:2033 | `case K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:2034 | `case K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:2052 | `CASE lBlock` | Pendiente vinculo |
-| editor.prg:2058 | `CASE !Empty(q)` | Pendiente vinculo |
-| editor.prg:2065 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
-| editor.prg:2068 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. ;` | Pendiente vinculo |
+| editor.prg:484 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
+| editor.prg:490 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` | Pendiente vinculo |
+| editor.prg:496 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
+| editor.prg:497 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
+| editor.prg:498 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
+| editor.prg:499 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` | Pendiente vinculo |
+| editor.prg:500 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` | Pendiente vinculo |
+| editor.prg:501 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` | Pendiente vinculo |
+| editor.prg:504 | `case nKeyStd == K_CTRL_Z` | Pendiente vinculo |
+| editor.prg:508 | `case nKeyStd == K_CTRL_U` | Pendiente vinculo |
+| editor.prg:512 | `case nKeyStd == K_LDBLCLK` | Pendiente vinculo |
+| editor.prg:517 | `case nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
+| editor.prg:522 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:525 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:528 | `case nKeyStd == K_BS` | Pendiente vinculo |
+| editor.prg:553 | `case nKeyStd == K_DEL` | Pendiente vinculo |
+| editor.prg:567 | `case nKeyStd == K_ENTER` | Pendiente vinculo |
+| editor.prg:577 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
+| editor.prg:586 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
+| editor.prg:595 | `case nKeyStd == K_HOME` | Pendiente vinculo |
+| editor.prg:598 | `case nKeyStd == K_END` | Pendiente vinculo |
+| editor.prg:601 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
+| editor.prg:605 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
+| editor.prg:613 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
+| editor.prg:616 | `case nKeyStd == K_F2` | Pendiente vinculo |
+| editor.prg:622 | `case nKeyStd == K_F8` | Pendiente vinculo |
+| editor.prg:626 | `case nKeyStd == K_F9` | Pendiente vinculo |
+| editor.prg:629 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` | Pendiente vinculo |
+| editor.prg:2039 | `case K_UP` | Pendiente vinculo |
+| editor.prg:2040 | `case K_DOWN` | Pendiente vinculo |
+| editor.prg:2041 | `case K_LEFT` | Pendiente vinculo |
+| editor.prg:2042 | `case K_RIGHT` | Pendiente vinculo |
+| editor.prg:2043 | `case K_HOME` | Pendiente vinculo |
+| editor.prg:2044 | `case K_END` | Pendiente vinculo |
+| editor.prg:2045 | `case K_PGUP` | Pendiente vinculo |
+| editor.prg:2046 | `case K_PGDN` | Pendiente vinculo |
+| editor.prg:2047 | `case K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:2048 | `case K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:2066 | `CASE lBlock` | Pendiente vinculo |
+| editor.prg:2072 | `CASE !Empty(q)` | Pendiente vinculo |
+| editor.prg:2079 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
+| editor.prg:2082 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. ;` | Pendiente vinculo |
 | hbdebug/debugger.prg:1600 | `CASE K_LDBLCLK` | Pendiente vinculo |
 | hbdebug/debugger.prg:1620 | `CASE K_LBUTTONDOWN` | Pendiente vinculo |
 | hbdebug/debugger.prg:1649 | `CASE K_RBUTTONDOWN` | Pendiente vinculo |

@@ -209,9 +209,10 @@
         "test_editor_paren_bracket_pty.py",
         "test_editor_bracket_list_pty.py",
         "test_editor_bracket_operator_pty.py",
-        "test_editor_bracket_gap_pty.py"
+        "test_editor_bracket_gap_pty.py",
+        "test_editor_bracket_multiline_pty.py"
       ],
-      "contract": "Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. LoadText clears selection anchors belonging to the old buffer. External short reload with anchor on old row3 permits typing without out-of-bounds selection deletion. Parenthesized bracket literal stays string-colored without leaking /* state to following declaration; bounded := or left-parenthesis context, not every bracket-expression context. Array literal bracket strings after left brace and comma keep string color and following code state; bounded context, indices remain code. Bracket strings after binary + (not ++) and == preserve color/state; bounded operators only, not all expressions. Complete comment gap before bracket literal preserves bounded introducer context; previous string values/index names do not become introducers. No full preprocessor acceptance.",
+      "contract": "Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. LoadText clears selection anchors belonging to the old buffer. External short reload with anchor on old row3 permits typing without out-of-bounds selection deletion. Parenthesized bracket literal stays string-colored without leaking /* state to following declaration; bounded := or left-parenthesis context, not every bracket-expression context. Array literal bracket strings after left brace and comma keep string color and following code state; bounded context, indices remain code. Bracket strings after binary + (not ++) and == preserve color/state; bounded operators only, not all expressions. Complete comment gap before bracket literal preserves bounded introducer context; previous string values/index names do not become introducers. No full preprocessor acceptance. Bounded introducer/value state survives a block comment across lines before bracket literal; cached edit/DeleteLine/Undo/Redo and array index guards, not full preprocessing.",
       "expected_label": "Open..."
     },
     "IDE-003": {

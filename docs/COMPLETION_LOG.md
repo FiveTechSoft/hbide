@@ -3605,3 +3605,14 @@ longlineguards plus recent context/colorPTY. No C helper/generalperfclaim.
 Evidence linux-editor-bracket-gap-performance.json follows.
 
 Q98 clean acceptance6acb198fdb52918367828c59029236055a43ecdd binaryee986291313c92e55d3f61798919536eeb2296ebeeeb0f2fa7e53df37eac8a41:21PTYchecks(Gap4/Operator5/List5/Variants7),22models27inventory34docsPASS;no retries/failures. Timingafter100/300/600strings3passes0/1/3ms vs28/231/921ms. Samehostonly, no universal/fullredraw claim. No newpixels;Q97visualseparate.
+
+## Q99 - bracket introducer across multiline block comment
+
+Compiler-valid := /* gap newline */ [/* literal] lost state;before2PASS2FAIL.
+Carry bounded introducer/value context with lazy blockstate cache; both
+scanner and paint use it. Six cache/delete/Undo/Redo/index modelguards.
+Development first baseline interrupted90s on boundserror: guardmissing
+contextarray row fixed. Two model expectations for deletion corrected:
+without original openingblock, stray */ does not put following line inblock.
+Final local151repaintPASS and2PTY8checksPASS; clean acceptance follows.
+No complete preprocessor/Windows claim.

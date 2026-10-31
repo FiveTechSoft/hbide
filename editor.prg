@@ -78,6 +78,7 @@ CLASS HBSrcEdit FROM HBEditor
    DATA   aUndo        INIT {}
    DATA   aRedo        INIT {}
    DATA   aBlkCmt      INIT {}   // per-line flag: the line starts inside a /* */ block
+   DATA   aBlkCtx      INIT {}   // bounded introducer/value context while a block spans lines
    DATA   nBlkDirty    INIT 1    // first line whose block-comment state is stale
    DATA   aBPs         INIT {}   // debugger breakpoints: absolute line numbers (F9)
    DATA   cClrBP       INIT "W+/R"
@@ -100,7 +101,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD Undo()
    METHOD Redo()
    METHOD BlkCmtState( nLine )
-   METHOD ScanBlkLine( cText, lIn )
+   METHOD ScanBlkLine( cText, lIn, cCarry )
    METHOD LoadText( cText )
    METHOD GetText( lSoftCR )
    METHOD ReformParagraph()
@@ -921,7 +922,7 @@ return Self
 // O(changed suffix) after an edit near the top).
 METHOD BlkCmtState( nLine ) CLASS HBSrcEdit
 
-   local i, lState
+   local i, lState, cCarry := ""
 
    if nLine > Len( ::aText )
       return .F.
@@ -929,14 +930,19 @@ METHOD BlkCmtState( nLine ) CLASS HBSrcEdit
 
    if ::nBlkDirty <= nLine
       ASize( ::aBlkCmt, Len( ::aText ) )
+      ASize( ::aBlkCtx, Len( ::aText ) )
+      if ::nBlkDirty > 1
+         cCarry := hb_defaultValue(::aBlkCtx[::nBlkDirty-1],"")
+      endif
       // aBlkCmt[i] holds the state at the START of line i; resuming needs the
       // state at the END of line nBlkDirty-1, so rescan that one line.
       lState := iif( ::nBlkDirty > 1,;
                      ::ScanBlkLine( ::aText[ ::nBlkDirty - 1 ]:cText, ;
-                                    ::aBlkCmt[ ::nBlkDirty - 1 ] ), .F. )
+                                    ::aBlkCmt[ ::nBlkDirty - 1 ], @cCarry ), .F. )
       for i := ::nBlkDirty to nLine
          ::aBlkCmt[ i ] := lState
-         lState := ::ScanBlkLine( ::aText[ i ]:cText, lState )
+         ::aBlkCtx[i] := cCarry
+         lState := ::ScanBlkLine( ::aText[ i ]:cText, lState, @cCarry )
       next
       ::nBlkDirty := nLine + 1
    endif
@@ -950,9 +956,12 @@ return ::aBlkCmt[ nLine ]
 // string does not open a comment) and // ends the scan (a later /* stays a
 // line comment). Byte-level scan: the delimiters and quotes are ASCII and
 // UTF-8 continuation bytes can never alias them.
-METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
+METHOD ScanBlkLine( cText, lIn, cCarry ) CLASS HBSrcEdit
 
-   local n := 1, nLen := Len( cText ), c, q
+   local n := 1, nLen := Len( cText ), c, q, cLead
+
+   hb_default(@cCarry, "")
+   cLead := iif(lIn,cCarry,"")
 
    if ! lIn .and. ( Left( LTrim( StrTran( cText, Chr( 9 ), " " ) ), 1 ) == "*" .or. HBIDE_EditorNoteLine(cText) )
       return .F.
@@ -964,7 +973,7 @@ METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
             lIn := .F.
             n++
          endif
-      elseif c == "[" .and. HBIDE_BracketAssignment( cText, hb_ULen(Left(cText,n-1))+1 )
+      elseif c == "[" .and. HBIDE_BracketAssignment( cLead+cText, hb_ULen(cLead+Left(cText,n-1))+1 )
          n++
          while n <= nLen .and. SubStr( cText, n, 1 ) != "]"
             n++
@@ -987,6 +996,7 @@ METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
             n++
          end
       elseif c == "/" .and. SubStr( cText, n, 2 ) == "/*"
+         cCarry := iif(HBIDE_BracketAssignment(cLead+cText,hb_ULen(cLead+Left(cText,n-1))+1),":= /*",") /*")
          lIn := .T.
          n++
       elseif SubStr( cText, n, 2 ) == "//" .or. SubStr( cText, n, 2 ) == "&&"
@@ -995,6 +1005,9 @@ METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
       n++
    end
 
+   if !lIn
+      cCarry := ""
+   endif
 return lIn
 
 //-----------------------------------------------------------------------------------------//
@@ -1480,6 +1493,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
    local nRowNum := ::nFirstRow + nLine - ::nTop
    local nVisualFirst := ::VisualCol( nRowNum, ::nFirstCol )
    local nCodeStart
+   local cLead := iif(nRowNum<=Len(::aBlkCtx),hb_defaultValue(::aBlkCtx[nRowNum],""),"")
 
    DispBegin()
    hb_DispOutAt( nLine, ::nLeft, PadL( nRowNum, 4 ), ;
@@ -1537,7 +1551,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
          lInComment = .T.
       else
          do case
-            case hb_USubStr( cLine, n, 1 ) == "[" .and. HBIDE_BracketAssignment( cLine, n )
+            case hb_USubStr( cLine, n, 1 ) == "[" .and. HBIDE_BracketAssignment( cLead+cLine, hb_ULen(cLead)+n )
                 cToken := "["; n++
                 while n <= hb_ULen( cLine )
                    cToken += hb_USubStr( cLine, n, 1 )
@@ -1583,7 +1597,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
             case hb_USubStr( cLine, n, 1 ) $ cOperators
                while hb_USubStr( cLine, n, 1 ) $ cOperators .and. n <= hb_ULen( cLine )
-                  if ( hb_USubStr(cLine,n,1) == "[" .and. HBIDE_BracketAssignment(cLine,n) ) .or. ;
+                  if ( hb_USubStr(cLine,n,1) == "[" .and. HBIDE_BracketAssignment(cLead+cLine,hb_ULen(cLead)+n) ) .or. ;
                      hb_USubStr( cLine, n, 2 ) == "/*" .or. ;
                      hb_USubStr( cLine, n, 2 ) == "//" .or. hb_USubStr( cLine, n, 2 ) == "&&"
                      exit
