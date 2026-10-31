@@ -3561,3 +3561,14 @@ source. No complete tokenization/general expression/platform claim.
 Evidence linux-editor-bracket-operator.json follows.
 
 Q94 clean acceptance0dbf0ccbf6c5c81a1d8b676213e19815bbc60623 binary60b1e58eae024831467be0707185abc720b88a79d73d8c082dd6059e896b66f9:17PTYchecks(Operator5/List5/Variants7),22models26inventory34docsPASS;no retries/failures. Nativeconcat/compareyellow/followingfunction+returnscyan/fullbordersinspected/F2exact. C19predatesfix,Q87separate84e58b3.
+
+## Q95 - current bounded editor/navigation/project joint regression
+
+Frozen26698afd472d4c91f84d993ec3e1c4b5c1a069f7, fresh binary
+578a6fa3eb5698f0f684faaf0fae22a69f1d10bba039ed12efeec92e591ebe4a.
+15distinctmodes63checksPTY: Operator5/List5/Paren4/BracketVariants7/
+Assignment4/NOTE6/Backtick4/EscapeVariants7/ArrayGap3/NavNOTE3/INITEXIT3/
+HPP3/Cxx3/BOM3/EOF3. Sameidentity, two completedbatches8+7, nofail/retry/
+interruption;22models26inventory34docsPASS.
+Evidence linux-joint-editor-project-q95.json. No newfix/pixels/candidate/
+globalmatrix/Windows/hitocerrado;Q87frozen84e58b3,C19older6a2f06d.
