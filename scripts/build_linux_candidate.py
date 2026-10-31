@@ -52,7 +52,7 @@ def main():
   manifest['dependency_check_exit']=deps.returncode
   if deps.returncode or b'not found' in deps.stdout:raise RuntimeError('unresolved runtime dependency')
   # Runs from extracted sources, with HOME/recovery isolated by each harness.
-  for name in ['test_about_build_pty.py','test_help_mouse_pty.py','test_run_source_pty.py']:
+  for name in ['test_about_build_pty.py','test_help_mouse_pty.py','test_run_source_pty.py','test_debug_getter_failure_pty.py','test_debug_setter_failure_pty.py']:
    r=command([sys.executable,'-u',str(src/'tests'/name)],src,env)
    (out/(name+'.log')).write_bytes(r.stdout)
    failed=any(t in r.stdout for t in [b'FAIL ',b'FAIL:',b'Traceback',b'FAILED:'])

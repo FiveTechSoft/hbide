@@ -1838,3 +1838,10 @@ Setterfallido fuente7b5f7cd reconstruida:8PTYchecksPASS y terminal nativoLinux
 aun visible mientras alerta; cerrarla refresca backing1, luego99EscyResume1exacto.
 Marcos completos en ambas capturas. No rollback de efectos parciales niWindows.
 Evidencia docs/evidence/debug-setter-failure/ con script/receipt/hash.
+
+## 31 octubre: candidato Linux incluye smokes de getter/setter
+
+El build exportado fuera del checkout añade getterfallido6/setterfallido8 a
+About/HelpMouse/RunSource. Ensaya el binario exportado y stripped, no el IDE
+heredado del checkout. Sigue candidato interno, no release/licencias/portabilidad
+niWindows; no hereda toda la matriz de pruebas del IDE de desarrollo.
