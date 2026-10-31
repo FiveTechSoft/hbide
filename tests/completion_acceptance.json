@@ -709,16 +709,18 @@
     "DBG-022": {
       "expected_label": "Tracepoint...",
       "tests": [
-        "test_debug_functions_pty.py"
+        "test_debug_functions_pty.py",
+        "test_debug_tracepoint_modal_pty.py"
       ],
-      "contract": "Original fixed-wait Linux session: Point Tracepoint dialog accepts n, F5 stops independently after its change. Delete removes last tracepoint; no all expression/side-effect paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+      "contract": "Original fixed-wait Linux session: Point Tracepoint dialog accepts n, F5 stops independently after its change. Delete removes last tracepoint; no all expression/side-effect paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Focal popup suite: cancel/invalid add keeps no TP, edit preserves TP type and exact expression, cancel/invalid edit and Delete cancel preserve TP; Go stops on real value change before output, default Delete then Go writes exact2, source bytes unchanged. Not all side effects or deletion indexes."
     },
     "DBG-024": {
       "expected_label": "Delete...",
       "tests": [
-        "test_debug_functions_pty.py"
+        "test_debug_functions_pty.py",
+        "test_debug_tracepoint_modal_pty.py"
       ],
-      "contract": "Original fixed-wait Linux session: Point Delete dialog accepts default0, removes last tracepoint and next Delete is no-op. Other breakpoint deletion policies separate. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+      "contract": "Original fixed-wait Linux session: Point Delete dialog accepts default0, removes last tracepoint and next Delete is no-op. Other breakpoint deletion policies separate. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Focal popup suite: cancel/invalid add keeps no TP, edit preserves TP type and exact expression, cancel/invalid edit and Delete cancel preserve TP; Go stops on real value change before output, default Delete then Go writes exact2, source bytes unchanged. Not all side effects or deletion indexes."
     },
     "DBG-028": {
       "expected_label": "Local",

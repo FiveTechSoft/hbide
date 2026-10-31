@@ -2381,3 +2381,12 @@ mismo binario verificado antes/despues. Dos pasos acotados, sin retries.
 Manifest/logs en linux-candidate-current-help-rdd.json. Carpeta temporal
 /tmp/hbide-linux-current-candidate-5. No release, licencia, Windows,
 instalador, nueva inspeccion pixels ni cierre de hitos.
+
+## 31 octubre Tracepoint validacion modal focal
+
+Nueva suite16checks:Cancel/invalidadd sinTP,add n=1,edit n+2=3
+conservaTP,Cancel/invalidedit/DeleteCancelconservanexpresionexactaCLD;
+Go paratrascambioeval4antesoutput,Delete+Go escribe2fuenteinalterada.
+Exploratorio16PASS sobrecandidate e0d4b23, no cambio producto.
+Runner131=130modosPTY+guard,no131funciones. No nuevos pixels,Windows
+ni todos indices/sideeffects. Pendiente clean separado.

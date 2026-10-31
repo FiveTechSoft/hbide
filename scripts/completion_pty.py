@@ -100,6 +100,7 @@ CASES = {
     'debug-bp-modal': ('test_debug_bp_modal_pty.py', [], 120),
     'debug-color-set-modal': ('test_debug_color_set_modal_pty.py', [], 120),
     'debug-input-paths-modal': ('test_debug_input_paths_modal_pty.py', [], 120),
+    'debug-tracepoint-modal': ('test_debug_tracepoint_modal_pty.py', [], 120),
     'debug-watch-modal': ('test_debug_watch_modal_pty.py', [], 120),
     'debug-setter-failure': ('test_debug_setter_failure_pty.py', [], 120),
     'debug-getter-failure': ('test_debug_getter_failure_pty.py', [], 120),
