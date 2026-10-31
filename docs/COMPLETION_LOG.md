@@ -2174,3 +2174,12 @@ variables y añadiendo handler de fixture. Dos ejecuciones: Space primero
 produce{.T.,.F.};TabSpace segundo produce{.F.,.T.};handler preservado ejecuta
 en ambos.9checks, no todosloscontroles/handlers runtime, no pixels/Windows.
 No producto nuevo: prueba el efecto real del fixcaseinsensitive5d74cc3.
+
+## 31 octubre: candidato limpio con toolchain reconstruido
+
+Export23ddc8b,strip-debugSHA d4b9d08fe76676981628162a1bb8986b563663c4dec99c55bd603b3a5acd2484.
+Ocho smokes estandar y seisextras Type24EmptyChild12HashNav11ArrayNav11
+ClipboardRuntime9Case18PASS binario exacto, hashes antes/despues iguales.
+Extras dospasosacotados desde export, no119matrizglobal. Manifestretiene
+nuevohashcompiler78e2990e. No release/licencias/install/Windows/determinismo.
+Evidencia linux-candidate-current-extras.json, no herencia del candidato previo.
