@@ -174,6 +174,13 @@ linux-candidate-find-virtual.json. Incluye fuenteNEXUS pero no ejecución
 NEXUSenestecandidato. No release/licencia/instalador/Windows/matriz159global/
 nuevascapturas/determinismo. Último cambiofuncional040e2eaQ49 sin cambios.
 
+### Candidate12 - navegación Q50/Q51 incluida
+
+Exportedc5f65 strippeda473bf4b pasa8smokes estándar+Typed3/Literal3/Navigation35
+mismo binario inalterado, dos pasos sin reintentos ni interrupciones. Ledger
+linux-candidate-navigation.json. No nuevofix/release/licencia/instalador/
+Windows/matriz161global/nuevascapturas/determinismo/NEXUSejecutado.
+
 ## Ampliaciones que no se confunden con cierre probado
 
 El [plan de diseno anterior](ROADMAP.md) y la

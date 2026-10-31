@@ -2918,3 +2918,11 @@ Q51clean87f7a90 Typed3/Literal3/Find7/Navigation35PASS samebinary,
 andjumpNewline9exacttyping inspectedfullborders. Ledgerlinux-navigation-typed-methods.json.
 Two boundedsteps noretries. Initialbeforeprobe wrongdefaultbinaryfrom/tmp
 failedall; explicitHBIDE_BINthenreal1PASS2FAIL. No fullgrammar/implicitCLASS/Windows.
+
+## Candidate12 - Q50/Q51 navigation
+
+Exportedcleanedc5f65strippedSHAa473bf4bca56f5eb75ac012dc8540e6921c19c2cf3e351bdd05f9865dbc28373.
+8standardsmokes+Typed3/Literal3/Navigation35PASS exactsamebinary two
+boundedsteps noretries/interruption. Manifest/toolchain/deps/logs persisted
+inlinux-candidate-navigation.json. No newfix/release/installer/licensing/
+Windows/full161PTY/newpixels/determinism/NEXUSexecution.
