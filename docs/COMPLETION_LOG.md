@@ -2390,3 +2390,7 @@ Go paratrascambioeval4antesoutput,Delete+Go escribe2fuenteinalterada.
 Exploratorio16PASS sobrecandidate e0d4b23, no cambio producto.
 Runner131=130modosPTY+guard,no131funciones. No nuevos pixels,Windows
 ni todos indices/sideeffects. Pendiente clean separado.
+
+Cleanfd3d2acTracepoint16Watch14mismoIDEe1e4e1f0PASSsinretry,
+15inventory33docsPASS. linux-debug-tracepoint-modal.json retiene
+receipt+logs. No se heredan modelos anteriores a esta fuente.

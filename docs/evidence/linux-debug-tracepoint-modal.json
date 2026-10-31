@@ -1,0 +1,71 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "fd3d2ac4d8104783827970569036ce06f201e83b",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "678fa7b1344f244383183116983061f70d52e48a568d3cb35733afe475362f79",
+      "binary_sha256": "e1e4e1f0e2ec7be6379c565ae45655e9d3a85cfe27ab053f6b578d996ed1f6f2",
+      "build_receipt": "/tmp/hbide-tracepoint-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "acc3e96d65ea1a4abc0fd0be1870355d305180b7a977e696393550a85f0c9100",
+      "case": "debug-tracepoint-modal",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_tracepoint_modal_pty.py"
+      ],
+      "started": 1793420629.8933835,
+      "seconds": 23.34,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "79906cbf71d099d5153c2e3e51b3475d936e39dc3a6ef872419ab1006251a2a4",
+      "log": "/tmp/hbide-tracepoint-clean/debug-tracepoint-modal-1793420629893379505.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "fd3d2ac4d8104783827970569036ce06f201e83b",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "678fa7b1344f244383183116983061f70d52e48a568d3cb35733afe475362f79",
+      "binary_sha256": "e1e4e1f0e2ec7be6379c565ae45655e9d3a85cfe27ab053f6b578d996ed1f6f2",
+      "build_receipt": "/tmp/hbide-tracepoint-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "acc3e96d65ea1a4abc0fd0be1870355d305180b7a977e696393550a85f0c9100",
+      "case": "debug-watch-modal",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_watch_modal_pty.py"
+      ],
+      "started": 1793420653.2310443,
+      "seconds": 21.43,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ef1782232e17a0007a43482280e2dc8bb442bdd0ff7d560e96d8683aa7f76203",
+      "log": "/tmp/hbide-tracepoint-clean/debug-watch-modal-1793420653231040595.log"
+    }
+  ],
+  "logs": {
+    "debug-tracepoint-modal-1793420629893379505.log": "PASS stopped before first increment\nPASS cancel add exact saved point expressions\nPASS invalid tracepoint add rejected\nPASS invalid add exact saved point expressions\nPASS tracepoint n evaluates initial exact value\nPASS add exact saved point expressions\nPASS editing tracepoint evaluates3\nPASS edit preserves tracepoint type exact saved point expressions\nPASS cancel edit exact saved point expressions\nPASS invalid tracepoint edit rejected\nPASS invalid edit exact saved point expressions\nPASS cancel Delete exact saved point expressions\nPASS Go stops on real tracepoint change before output\nPASS delete exact saved point expressions\nPASS after Delete Go completes exact debuggee value\nPASS point operations leave source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-ao32xj8y\n",
+    "debug-watch-modal-1793420653231040595.log": "PASS watch n evaluated\nPASS add exact saved watch expressions\nPASS cancel add exact saved watch expressions\nPASS invalid add rejected\nPASS invalid add exact saved watch expressions\nPASS edited watch evaluates3\nPASS edit exact saved watch expressions\nPASS cancel edit exact saved watch expressions\nPASS invalid edit rejected\nPASS invalid edit exact saved watch expressions\nPASS watch readonly inspector shows3\nPASS watch readonly inspector refuses edit\nPASS inspect leaves expression exact saved watch expressions\nPASS watch operations leave debuggee value unchanged\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-hs_awjl7\n"
+  },
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "fd3d2ac4d8104783827970569036ce06f201e83b",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "678fa7b1344f244383183116983061f70d52e48a568d3cb35733afe475362f79",
+    "binary_sha256": "e1e4e1f0e2ec7be6379c565ae45655e9d3a85cfe27ab053f6b578d996ed1f6f2",
+    "built_at": 1793420629.8931508
+  },
+  "checks": [
+    "15 inventory tests PASS",
+    "33 embedded documents byte-exact PASS"
+  ],
+  "limits": "Linux PTY, no new pixels, no Windows or full matrix. No product change."
+}
