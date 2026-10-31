@@ -1,0 +1,13 @@
+PASS array debugger stopped
+PASS array structured top inspector opens
+PASS array top inspector refuses replacement
+FAIL array empty inspector explains no elements
+PASS array dismissal returns Monitor
+PASS array empty value remains exact after Resume
+PASS hash debugger stopped
+PASS hash structured top inspector opens
+PASS hash top inspector refuses replacement
+FAIL hash empty inspector explains no elements
+PASS hash dismissal returns Monitor
+PASS hash empty value remains exact after Resume
+TOTAL 10 PASS 2 FAIL; evidence /tmp/hbide-source-run-d5h96ns4

@@ -238,10 +238,14 @@ METHOD PROCEDURE SetsKeyPressed( nKey, oBrwSets ) CLASS HBDbObject
       CASE HB_ISARRAY( aItemRef[ OMSG_VALUE ] )
          IF Len( aItemRef[ OMSG_VALUE ] ) > 0
             HBDbArray():New( aItemRef[ OMSG_VALUE ], aItemRef[ OMSG_NAME ], ::lEditable )
+         ELSE
+            __dbgAlert( "Array is empty" )
          ENDIF
       CASE HB_ISHASH( aItemRef[ OMSG_VALUE ] )
          IF Len( aItemRef[ OMSG_VALUE ] ) > 0
             HBDbHash():New( aItemRef[ OMSG_VALUE ], aItemRef[ OMSG_NAME ], ::lEditable )
+         ELSE
+            __dbgAlert( "Hash is empty" )
          ENDIF
       CASE HB_ISOBJECT( aItemRef[ OMSG_VALUE ] )
          HBDbObject():New( aItemRef[ OMSG_VALUE ], aItemRef[ OMSG_NAME ], ::lEditable )

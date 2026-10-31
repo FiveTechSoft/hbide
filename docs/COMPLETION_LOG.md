@@ -2075,3 +2075,12 @@ ClipboardCase18 PASS contra ese mismo binario, hashes previos/posteriores
 iguales, cuatro extras desde los tests del export. Dos pasos acotados.
 Manifest y extras en linux-candidate-containers-extra.json. No release,
 licencias/install portable/Windows/matriz112 ni nuevo determinismo.
+
+## 31 octubre: Enter sobre propiedad array/hash vacio
+
+Antes el inspector objeto no hacia nada al pulsar Enter sobre array/hash
+vacio; array/hash top y otros contenedores ya explican que estan vacios.
+Dos fixtures reales antes10/12, sin crash ni mutacion: fallo de feedback,
+no perdida de datos. Ahora alerta Array is empty/Hash is empty, conservando
+el mismo modelo y regreso al Monitor. No permite agregar elementos ni cambia
+politica readonly. Pantallas y log previos retenidos.
