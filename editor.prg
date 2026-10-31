@@ -954,6 +954,9 @@ METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
 
    local n := 1, nLen := Len( cText ), c
 
+   if ! lIn .and. Left( LTrim( StrTran( cText, Chr( 9 ), " " ) ), 1 ) == "*"
+      return .F.
+   endif
    while n <= nLen
       c := SubStr( cText, n, 1 )
       if lIn
@@ -969,7 +972,7 @@ METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
       elseif c == "/" .and. SubStr( cText, n, 2 ) == "/*"
          lIn := .T.
          n++
-      elseif c == "/" .and. SubStr( cText, n, 2 ) == "//"
+      elseif SubStr( cText, n, 2 ) == "//" .or. SubStr( cText, n, 2 ) == "&&"
          exit
       endif
       n++
@@ -1459,6 +1462,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
    local lInBlk := ::BlkCmtState( ::nFirstRow + nLine - ::nTop )
    local nRowNum := ::nFirstRow + nLine - ::nTop
    local nVisualFirst := ::VisualCol( nRowNum, ::nFirstCol )
+   local nCodeStart
 
    DispBegin()
    hb_DispOutAt( nLine, ::nLeft, PadL( nRowNum, 4 ), ;
@@ -1468,6 +1472,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
                  nVisualFirst, ::nRight - ::nLeft - 4 + 1 ),;
                  ::LineColor( nLine ) )
 
+   nCodeStart := hb_ULen( cLine ) - hb_ULen( LTrim( cLine ) ) + 1
    n = 1
    while n <= hb_ULen( cLine )
       while hb_USubStr( cLine, n, 1 ) == " " .and. n <= hb_ULen( cLine )
@@ -1493,7 +1498,9 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
          cToken = hb_USubStr( cLine, nStart, n - nStart )
          lInComment = .T.
       // Check for line comment - color rest of line as comment
-      elseif hb_USubStr( cLine, n, 2 ) == "//"
+      elseif hb_USubStr( cLine, n, 2 ) == "//" .or. ;
+             hb_USubStr( cLine, n, 2 ) == "&&" .or. ;
+             ( n == nCodeStart .and. hb_USubStr( cLine, n, 1 ) == "*" )
          cToken = hb_USubStr( cLine, n )
          n = hb_ULen( cLine ) + 1
          lInComment = .T.

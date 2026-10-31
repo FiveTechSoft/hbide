@@ -2926,3 +2926,11 @@ Exportedcleanedc5f65strippedSHAa473bf4bca56f5eb75ac012dc8540e6921c19c2cf3e351bdd
 boundedsteps noretries/interruption. Manifest/toolchain/deps/logs persisted
 inlinux-candidate-navigation.json. No newfix/release/installer/licensing/
 Windows/full161PTY/newpixels/determinism/NEXUSexecution.
+
+## Q52 - Harbour line comments leaked false block state into later paint
+
+&& /* and leading* /* made followingreturnkeywordslooklikeblockcomments.
+RealPTYbefore3PASS3FAIL,localafter6PASS; byteexactF2 unchanged. ScanBlkLine
+now honors&&/leading* comments and paintercolorswholeline. Realblockstate
+takesprecedence overstar; sixmodelassertions added. No bracket/estring/full
+lexer/viewporthorizontal/Windows claim. Runner163=162PTY+guard.
