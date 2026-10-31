@@ -3651,3 +3651,14 @@ Clean sourcea1d0892:6modos36PTYchecks22models168repaint27inventory34docsPASS,
 no failures/retries. Native120x40ninebracketstringsyellow/nextreturnsfunctioncyan/
 fullborders/F2exact inspected. linux-editor-bracket-comparisons.json.
 No generallexer/Windows/globalmatrix/hitoclosed. C20frozen6da0304 predatesQ100+.
+
+## Q102 - M0 IF dispatch inventory
+
+Conditional branch extraction CASE/IF/ELSEIF now records actual F2 Save and
+F3 RepeatFind IF routes, not only CASE. Exact source/context/condition links
+and2newfailclosedguards29inventoryPASS. Source26f69d3binaryc11e2d3:
+2PTYsuitesPASS:FindRepeat7checks;Backup1assertion-rich scenario (normalF2,
+failedbackup promotion preservesoldchild/recoverabletempwhile sourcesaves).
+No failures/retries. Links not general keyboard/menus-open coverage; initial
+Find uses Edit menu, not F5. No productfix/pixels/modelrerun/Windows/global.
+linux-inventory-if-dispatch.json;34docsbyteexact.

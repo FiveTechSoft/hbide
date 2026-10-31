@@ -1,0 +1,63 @@
+{
+  "scope": "Q102 M0 exact IF-dispatch F2/F3 acceptance links; extraction includes CASE/IF/ELSEIF branches, not unique features/runtime acceptance/general key coverage/Windows.",
+  "source": "26f69d3276e2a16dc2bc8f1ac43f206ae30ed79e",
+  "binary_sha256": "c11e2d3c8500b35c2b44699148cb7b46edcd2c9c870de0379d7a4f3390c284b4",
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "26f69d3276e2a16dc2bc8f1ac43f206ae30ed79e",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ef7f66528d1cc0bf59a8c6c3765a700882a0b79723d9e8ace0f9320591cddbd2",
+      "binary_sha256": "c11e2d3c8500b35c2b44699148cb7b46edcd2c9c870de0379d7a4f3390c284b4",
+      "build_receipt": "/tmp/hbide-dispatch-if-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5544c872f7916c32a49832e976a3c245467836f9e36046e9d43f70eb0d62449d",
+      "case": "backup-f2",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_backup_pty.py"
+      ],
+      "started": 1793483522.0324266,
+      "seconds": 7.28,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1124cc08ac894a736bb078a171e85cf62d7a099fa1ec51133fcd4b639ebbc599",
+      "log": "/tmp/hbide-dispatch-if-clean/backup-f2-1793483522032423666.log",
+      "log_text": "PASS F2 exact backup; failed backup promotion keeps old child and complete recovery while source saves\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "26f69d3276e2a16dc2bc8f1ac43f206ae30ed79e",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ef7f66528d1cc0bf59a8c6c3765a700882a0b79723d9e8ace0f9320591cddbd2",
+      "binary_sha256": "c11e2d3c8500b35c2b44699148cb7b46edcd2c9c870de0379d7a4f3390c284b4",
+      "build_receipt": "/tmp/hbide-dispatch-if-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5544c872f7916c32a49832e976a3c245467836f9e36046e9d43f70eb0d62449d",
+      "case": "find-repeat-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_find_repeat_selection_pty.py"
+      ],
+      "started": 1793483529.3092747,
+      "seconds": 18.7,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "969ec83aeb61d954572e7bb9844b3ba426963a2eb6ef3fc2f5bdce4a7ee4b17c",
+      "log": "/tmp/hbide-dispatch-if-clean/find-repeat-selection-1793483529309271492.log",
+      "log_text": "PASS Open requested fixture\nPASS Find consumes old multirow range at second match\nPASS Undo after multirow selected Find exact\nPASS Repeat Last Find clears old range\nPASS Undo after repeated Find exact\nPASS Wrapped Repeat Find clears old range on other row\nPASS Undo after wrapped Repeat Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-jef4mj48\n"
+    }
+  ],
+  "counts": "2PTY suites;FindRepeat7checks;Backup1assertion-rich scenario, do not equate scenarios with individual asserts.",
+  "inventory_log": ".............................\n----------------------------------------------------------------------\nRan 29 tests in 0.264s\n\nOK\n",
+  "visual": "No new visual product change; no screenshot or modelrerun.",
+  "development": "No failure/retry in acceptance."
+}
