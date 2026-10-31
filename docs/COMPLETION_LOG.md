@@ -1946,3 +1946,11 @@ checksporversion como cierre de producto. OriginalFunctions fixedwait pendiente.
 EntermuestraArray/Hash is empty,cerrarvuelveMonitor,Resumeescribe{}o{=>}exacto.
 Sin cambio producto, cubre guardasdeLen0antesdeabrirbrowser; no todoscontenedores,
 readonlyexplicito/objetovacio/nativoWindows ni nueva politica de inspeccion.
+
+## 31 octubre: objeto sin datos no equivale a lista vacia
+
+FixtureHBClasssinAddDataaunexpone metodosmodalfixture/realclass.7checks reales
+abreninspector,EntersobreMethodrechazaedicion,cierranavuelvenMonitor yResume
+conservaClassNameexacto. Primer probe esperaba alertaemptyantesdeabrirbrowser,
+se corrigio expectativa al observar metodos; no defecto de producto demostrado.
+Sin producto nuevo, no objeto sinmetodosarbitrario/Windows/pixels.
