@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| C17 | Candidato Linux temporal actualizado hastaQ80. | Export990b8ad,8smoke+12modosrecientes sobrebinarioexacto39c990e1,visualQ80nativoinspeccionado. Evidencia linux-candidate-recent-navigation.json; no release/licencias/Windows/instalacion/matrizglobal. |
 | Q80 | GoToFunction conserva contexto de indice tras comentario terminado. | Fixture compilada, antes2PASS1FAIL;5guardas nuevas para nombre/doblecomentario/retorno/string yRETURNliteral. Evidencia linux-navigation-array-gap-comment.json; no lexercompleto/matrizglobal. |
 | Q79 | M0 vincula pruebas recientes a acciones deproyecto/navegacion. | BOM/EOF/aliasesC++ yQ78encontratosOpen/Sources/GoToFunction;2guardasinventario19total. Evidencia linux-inventory-project-navigation.json. No producto/visual/matrizglobalnueva. |
 | Q78 | ] dentro de comentario real de indice array filtraba funcion falsa. | Fixturecompilado antes2PASS1FAIL; distincion acotada nombre/valor antes[ y RETURNliteral. Evidencia linux-navigation-array-bracket-comment.json. No lexercompleto/Windows. |

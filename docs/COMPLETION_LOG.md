@@ -3353,3 +3353,15 @@ Scanner now carries its own comment-free context, marking closed string
 values without copying their content; no backward raw-source comment guess.
 Five model guards plus focused PTY. Bounded scanner, not full preprocessor.
 Evidence linux-navigation-array-gap-comment.json, no Q77 matrix inheritance.
+
+## C17 - refresh temporary Linux candidate through Q80
+
+Isolated export990b8ad54ec58873a161dc590765bbd8985b1a49, stripped
+binary39c990e15f2df0e2c94ad38bb283675f167be2aed9ec27af1b4d8868fd2f7bca.
+8standard smoke suites plus12recent modes passed on exact candidate.
+Recent coverage: GCCcolor,projectBOM/EOF/Cxx,navEnddump/Bracket/Gap,
+designerDialog/Binding/Duplicate anchors,Backtick,MixedQuotesruntime.
+No retries/failures. Actual native Q80 picker/jump inspected on C17.
+C16 superseded as temporary Linuxcandidate, not release/distribution.
+Evidence linux-candidate-recent-navigation.json; Q77matrix stays separate.
+License/nativeWindows/install/determinism/tearing/global milestones open.
