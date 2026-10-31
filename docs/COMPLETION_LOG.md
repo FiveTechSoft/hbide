@@ -1754,3 +1754,11 @@ Snapshot incluye ahora archivos fuente/include/HBP/HBC/HBM/Python no tracked
 no ignorados, con ruta y bytes. Evita que un header local añadido cambie el
 build sin cambiar HEAD/status tracked. No promete detectar toda dependencia
 externa del compilador; el hash del binario sigue siendo el objeto probado.
+
+## 31 octubre: doble clic con Enter, Backspace y overtype
+
+EditorMouse37checks amplia31con6efectos: Enter sustituye palabra por CRLF
+sin alterar terminadores vecinos; Backspace borra solo palabra; overtype
+sustituye palabra sin comerse byte siguiente. Undo compara el fixture entero
+en los tres casos. Gestos PTY sobre IDE real, no solo SelectWord directo.
+Sin cambio de producto, no Windows/aceptacion global.

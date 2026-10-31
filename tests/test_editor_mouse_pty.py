@@ -50,6 +50,17 @@ for kind in ['autorun']:
   double('beta')
   send(b'Z');(work/'double.screen').write_text(screen.text());saved('doubleclick selects whole word not line',original.replace(b'beta',b'Z',1))
   send(b'\x1be');send(b'n');saved('Undo doubleclick replacement exact',original)
+  double('beta');send(b'\r')
+  saved('doubleclick Enter replaces word with exact CRLF',original.replace(b'beta',b'\r\n',1))
+  send(b'\x1be');send(b'n');saved('Undo word Enter exact',original)
+  double('beta');send(b'\x7f')
+  saved('doubleclick Backspace removes word only',original.replace(b'beta',b'',1))
+  send(b'\x1be');send(b'n');saved('Undo word Backspace exact',original)
+  send(b'\x1b[2~') # overtype
+  double('beta');send(b'O')
+  saved('doubleclick overtype replaces word without next byte loss',original.replace(b'beta',b'O',1))
+  send(b'\x1be');send(b'n');saved('Undo word overtype exact',original)
+  send(b'\x1b[2~') # insert
   double('beta');send(b'\x1b[3~')
   saved('doubleclick Delete removes exact word',original.replace(b'beta',b'',1))
   send(b'\x1be');send(b'n');saved('Undo word Delete exact',original)
