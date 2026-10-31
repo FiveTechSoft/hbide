@@ -1898,3 +1898,11 @@ bbb.hbpsincronizaGETyOKabreproyectoexacto; miembroquotedespaciadoexiste. Pixeles
 de seleccion/apertura inspeccionados,marcoscompletos/bytesintactos. Sin cambio
 producto; fuente49dce27/binarydelreceiptprevio sinrecompilarni mutar.
 Evidencia physical-results.json/physical-capture.py en mismo directorio.
+
+## 31 octubre: limite de nombres lista tras sync inicial
+
+5checks adicionales Linux: filename255seleccionado por raton y proyecto255por
+Home se rechazanexplicitamente max250sintruncar;nombrecorto manual conserva
+prioridadpeseaiteminiciallargo;actualeditor ytresficherosbyteexactos. No nuevo
+limite ni politica, regression del fixSTATEvacio/PadR250. Enlaces inventario
+actualizados para teclado/raton/longlist sin convertir testencierre de funcion.
