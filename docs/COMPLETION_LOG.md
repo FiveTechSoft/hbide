@@ -3549,3 +3549,5 @@ header and Enter could not open it. Before1PASS2FAIL. Add .hpp to listed
 source/header extensions with three modelguards and real menuPTY.
 No new compiler/C++bridge, no extension-prefix policy change.
 Evidence linux-project-hpp-header.json follows.
+
+Q93 clean acceptanceb45b67467524f9e6bf720b7e59a4b0b9c8fb1d7d binaryfafdf268adc1a6becac88a89345387e366f9d3ce82767ae69c164c31c37c982b:12PTYchecks(HPP3/Cxx3/BOM3/EOF3),22models26inventory34docsPASS;no retries/failures. NativeSourcesvalues.hpp/exactpath/Enterheader/bordersinspected,HBPexact. C19predatesfix.
