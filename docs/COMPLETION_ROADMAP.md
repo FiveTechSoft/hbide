@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q77 | Matriz Linux actual completa sobre fuente congelada531a6f1. | 191/191entradas(190PTY+guard)PASSmismo6c039e03;22modelos17inventory34docs. Primerloteexterno120sinterrumpido,DuplicateSelectionrepetidaPASS. Evidencia linux-full-matrix-q77.json. No nuevofix/candidato/Windows/visual/hitos. |
 | Q76 | Sources omitía .cc existente compilado porhbmk2. | Antes1PASS2FAIL. Inventariar aliases C++ .cc/.cxx/.cx como fuente literal, sin cambiarPRG/HBP. Evidencia linux-project-cxx-source.json. No puenteC++/compiler modes/Windows. |
 | Q75 | Caption duplicado resaltaba primerhijo envezdelsegundo. | Antes4PASS1FAIL. Mapa lineas declaracion porindice generado, PRG/JSONintactos. Guardas duplicadosSAY/GETcompartido/omitidos. Evidencia linux-designer-duplicate-anchor.json. No todosmodos/Windows. |
 | Q74 | F5 perdia highlight GET renombrado por nombre reservado. | Antes4PASS1FAIL; generador devuelve mapa real de bindings para ancla, sin mutar modelo/JSON. Guardas reservado/conflicto tipos. Evidencia linux-designer-binding-anchor.json. No todosbindings/duplicados/Windows. |

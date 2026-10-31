@@ -3312,3 +3312,16 @@ aliases, existing/missing state and original bytes. Runner191=190PTY+guard.
 Evidence linux-project-cxx-source.json follows. Reading existing sources
 only, no new C++ bridge or product code; no syntax/compiler modes/Windows
 certification.
+
+## Q77 - Complete current Linux runner matrix on frozen source
+
+Frozen531a6f1: all191distinct runner entries (190PTYmodes+1sourceguard)
+PASS with exactsame binary6c039e038926ff1f2f2b0e5167f93c6d5aa8cb2c133b7784935e9c8780a0c40f.
+Also22fresh model suites,17inventory checks and34embedded docsPASS.
+76bounded runner batches; first external120s execution interrupted after
+seven receipts and before DuplicateSelection completed. No orphan process;
+interrupted case repeatedPASS. This is not uninterrupted firstpass.
+Allreceipts/logs/buildidentity/incident preserved in
+linux-full-matrix-q77.json. No productfix/newpixels/candidate; no Windows,
+visualtearing, nativeinstallation, licence clearance or globalIDE closure.
+Q58general partial and all milestone gates remain open as recorded.
