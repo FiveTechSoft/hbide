@@ -1,0 +1,33 @@
+{
+  "source": "int main(void) {\n\treturn unknown_name;\n}\n",
+  "expected_character_column": 9,
+  "scope": "Compiler-unit investigation only. Existing hbide numeric column jump is wrong for GCC default display columns on tabs. No product fix or universal inference.",
+  "default": {
+    "args": [],
+    "exit": 1,
+    "output": "/tmp/hbide-gcc-column-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-column-evidence/bad.c:2:16: error: 'unknown_name' undeclared (first use in this function)\n    2 |         return unknown_name;\n      |                ^~~~~~~~~~~~\n/tmp/hbide-gcc-column-evidence/bad.c:2:16: note: each undeclared identifier is reported only once for each function it appears in\n"
+  },
+  "byte": {
+    "args": [
+      "-fdiagnostics-column-unit=byte"
+    ],
+    "exit": 1,
+    "output": "/tmp/hbide-gcc-column-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-column-evidence/bad.c:2:9: error: 'unknown_name' undeclared (first use in this function)\n    2 |         return unknown_name;\n      |                ^~~~~~~~~~~~\n/tmp/hbide-gcc-column-evidence/bad.c:2:9: note: each undeclared identifier is reported only once for each function it appears in\n"
+  },
+  "tabstop4": {
+    "args": [
+      "-ftabstop=4"
+    ],
+    "exit": 1,
+    "output": "/tmp/hbide-gcc-column-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-column-evidence/bad.c:2:12: error: 'unknown_name' undeclared (first use in this function)\n    2 |     return unknown_name;\n      |            ^~~~~~~~~~~~\n/tmp/hbide-gcc-column-evidence/bad.c:2:12: note: each undeclared identifier is reported only once for each function it appears in\n"
+  },
+  "tabstop16": {
+    "args": [
+      "-ftabstop=16"
+    ],
+    "exit": 1,
+    "output": "/tmp/hbide-gcc-column-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-column-evidence/bad.c:2:24: error: 'unknown_name' undeclared (first use in this function)\n    2 |                 return unknown_name;\n      |                        ^~~~~~~~~~~~\n/tmp/hbide-gcc-column-evidence/bad.c:2:24: note: each undeclared identifier is reported only once for each function it appears in\n"
+  },
+  "help": "  -fdiagnostics-column-origin=<number> Set the number of the first column.  The\n  -fdiagnostics-column-unit=[display|byte] Select whether column numbers are\n                              output as display columns (default) or raw bytes.\n  -ftabstop=                  -ftabstop=<number>      Distance between tab",
+  "reproduction": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nFAIL Jump lands at unknown identifier char9 after tab\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 5 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-9t9rhugm\n"
+}

@@ -3026,3 +3026,13 @@ Q57clean5f18c39 Escape4/Adjacent6/LineComments6PASSsamebinary,22models
 115repaintPASS,15inventory34docsPASS. Native120x40escapedliteral/return
 cyanactualpixels/fullbordersinspected,F2exact. linux-editor-escape-literal.json.
 No cleanretries/bracket/fulllexer/Windows; Candidate13predatesQ56-Q57.
+
+## Q58 open - diagnostic column unit is not explicit
+
+RealGCCdefaultTABreturnunknown_name prints2:16(displaytab8), byteflag2:9,
+tabstop4prints2:12, tabstop16prints2:24. IDEtreatsnumberascharacterpos
+andlandswrong(default5PASS1FAIL). Known-gapreproduceroutsidecompletionrunner
+tests/known_gaps/gcc_display_column_pty.py intentionallyfails; evidence
+linux-gcc-column-unit-gap.json. No productfix/universalvisualcolumninference.
+Needcompilerunit/flags/caretprovenancebeforeconversion; don'trewriteHBP
+orforcecompilerflagswithoutcontract. Bytesintact; rest remainsunblocked.
