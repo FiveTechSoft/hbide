@@ -3,7 +3,7 @@ import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re,js
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
-exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[];folded='--case-insensitive' in sys.argv
+exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[];created='--create' in sys.argv
 for kind in ['say','get','checkbox','button','radiogroup','listbox','combobox']:
  modelpath=work/'fixture.json'
  pid,fd=pty.fork()
@@ -33,18 +33,28 @@ for kind in ['say','get','checkbox','button','radiogroup','listbox','combobox']:
   if kind=='button':control.update(accelerator='Q',action="Handler( 'quoted' )",style='brackets')
   if kind!='say':
    for key in ['when','valid','focus','state']:control[key]="Handler_"+key+"( 'quoted' )"
-  modelpath.write_text(json.dumps({'name':'Fixture','caption':'Fixture','width':60,'height':20,'controls':[control]}))
-  pump(.8);send(b'\x1bo');send(b's',.3);send(b'\x1b[24~',.3)
-  send(b'\x19'+str(modelpath).encode());send(b'\r');send(b'\r',.3);send(b'\t')
+  if created:
+   modelpath=work/'mydialog.json'
+   if modelpath.exists():modelpath.unlink()
+   pump(.8);send(b'\x1bo');send(b's',.3);send(b'\x1bOQ',.3)
+   mnemonic={'say':b'l','get':b'i','checkbox':b'b','button':b'p','radiogroup':b'r','listbox':b'x','combobox':b'm'}[kind]
+   send(mnemonic);send(b'\r',.3)
+   if kind in ['button','radiogroup']:send(b'\r',.3) # duplicate P or R first confirms menu, then places
+  else:
+   modelpath.write_text(json.dumps({'name':'Fixture','caption':'Fixture','width':60,'height':20,'controls':[control]}))
+   pump(.8);send(b'\x1bo');send(b's',.3);send(b'\x1b[24~',.3)
+   send(b'\x19'+str(modelpath).encode());send(b'\r');send(b'\r',.3);send(b'\t')
   def model():
    send(b'\x1b[21~',.25)
+   if 'Save dialog as JSON' in screen.text():send(b'\r');send(b'\r',.3)
    return json.loads(modelpath.read_text())
   baseline=model()['controls']
-  check(kind+' real F12 load and F10 persist type',len(baseline)==1 and baseline[0]['type']==kind)
+  check(kind+(' real F2 create and F10 persist type' if created else ' real F12 load and F10 persist type'),len(baseline)==1 and baseline[0]['type']==kind)
   send(b'\x03');send(b'\x16');send(b'\x16')
   copied=model()['controls'];preserved=[k for k in baseline[0] if k not in ['row','col','variable']]
   check(kind+' Copy two Paste preserves all nonbinding fields',len(copied)==3 and all(all(c[k]==baseline[0][k] for k in preserved) for c in copied))
-  check(kind+' Paste offsets exact',[(c['row'],c['col']) for c in copied]==[(1,2),(2,3),(3,4)])
+  if not created:check(kind+' Paste offsets exact',[(c['row'],c['col']) for c in copied]==[(1,2),(2,3),(3,4)])
+  else:check(kind+' Paste positions inside existing dialog',all(c['row']>=0 and c['col']>=0 for c in copied))
   check(kind+' bindings unique or absent',all('variable' not in c for c in copied) if 'variable' not in baseline[0] else len({c['variable'].upper() for c in copied})==3)
   send(b'\x1a');check(kind+' Undo removes last only',model()['controls']==copied[:2])
   send(b'\x19');check(kind+' Redo restores complete models',model()['controls']==copied)

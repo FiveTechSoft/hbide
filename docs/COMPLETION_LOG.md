@@ -2155,3 +2155,13 @@ binding/posicion, comillas/items/handlers y binding unico sin caja. No
 creacionF2de todoslos tipos ni escritura inspector de estos fixtures: son
 modelos cargados, no se presenta el JSON inyectado como gesto de edicion.
 No pixeles/runtime/ejecucionhandlers/Windows ni117aceptacionesglobales.
+
+## 31 octubre: clipboard tras crear cada tipo con F2
+
+Modo --create del mismo harness: siete tipos creados realmente conF2,
+63checksCopyPasteCutUndoRedo/F10, tipo y campos del modelo predeterminado.
+No se inyecta JSON en este modo, ni se afirma editar todoslos handlers:
+la prueba cargada anterior conserva ese alcance distinto. P y R duplicadas
+requieren Enterparaaceptarmenu y otropara colocar; primeros probes sin el
+segundo Enter fallaron en harness de creacion, corregidos sin producto.
+118entradasrunner son117casos/modosPTY+guard, no118funciones/cierre.
