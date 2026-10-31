@@ -2558,4 +2558,8 @@ own dirty state. After3/3PTY and four new model checks: cursor advancement,
 real overwrite dirty, no-op redo preservation and redo exact.
 Native120x40 OVR alpha/col2 and Close noname inspected, full lower frames;
 disk alpha unchanged. Runner142=141PTY modes plus guard.
-No blanket no-op editing, Windows or global acceptance. Clean pending.
+No blanket no-op editing, Windows or global acceptance.
+
+Cleana4857f7: Overtype3, Identity3, DeleteSelection6 and ReloadSelection4
+pass same binary2533a40e without retry;21models,15inventory,33docs pass.
+Ledger docs/evidence/linux-overtype-identity.json.
