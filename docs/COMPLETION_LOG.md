@@ -1999,3 +1999,9 @@ ambos nombres. No cambia la opcion de compartir nombres escritos a mano,
 ni reescribe referencias dentro de handlers. Tres checks de modelo para
 mayusculas mixtas, prefijo mixto y nombre distinto; dos modos del mismo PTY
 son dos fixtures, no dos funciones ni109aceptaciones globales.
+
+5d74cc3 limpio: ambos fixtures clipboard18PASS sobre el mismo binario;
+20modelos completos PASS,15inventario y33docs. Terminal nativo120x40:
+Paste muestra nVar2, Undo muestra NVAR1, JSONRedo igual a Paste. Capturas
+completas inspeccionadas, incluidos bordes inferiores. Las dos ComboBox
+se solapan por el offset de una celda previsto, sin prometer no solapamiento.
