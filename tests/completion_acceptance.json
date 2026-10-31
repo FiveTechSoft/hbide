@@ -240,9 +240,10 @@
       "tests": [
         "test_editor_eol.prg",
         "test_bp_delete_policy.py",
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_delete_selection_pty.py"
       ],
-      "contract": "Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial.",
+      "contract": "Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial. Delete Line clears prior range selection so an old row3 anchor cannot access beyond the shorter line array when typing. Undo typing, Undo deletion and Redo preserve exact bytes.",
       "expected_label": "Delete Line  Ctrl+Y"
     },
     "IDE-014": {

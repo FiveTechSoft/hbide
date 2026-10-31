@@ -2523,3 +2523,14 @@ Cleanf758bbe: ReloadSelection4, Clipboard4, Identity3 plus external-change
 and unreadable-reload suites pass on same binaryae8c65e2 in two bounded steps,
 without retry;21models15inventory33docs pass.
 Ledger docs/evidence/linux-reload-selection.json retains identity and logs.
+
+## Q38 Clear stale range after Delete Line
+
+Selection from row3 to row1 followed by Delete Line left an out-of-range
+anchor. Next typing failed (before1/3PTY, error dialog).
+Delete Line now clears the range before removing the current line.
+After6/6PTY cover typing, exact saved bytes, separate Undo typing/deletion
+and Redo. Four new model checks cover reset, typing and clean Undo.
+Native120x40 Xbeta/gamma then Undo beta/gamma inspected, full lower frames;
+bytes exact. Does not change Cut marked-range semantics or Windows claim.
+Runner141=140PTY modes plus guard. Clean regression pending.
