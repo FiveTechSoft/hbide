@@ -1,0 +1,147 @@
+{
+  "manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "4ddf0b336a781e5fb42844d3b0b0e18f9d68f1ea",
+    "archive_sha256": "88bef2ea995d3555a20ea737aeaf0e38f884eca6f3cd758e743258ad27ff9702",
+    "dirty": false,
+    "started": 1793421873.2915032,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "1f80870fad008ea485760492816c739fd873a3a4a5392afda3cb5346c9f712f3",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "2c01e8f20ebf04074817efce356521c9bf0f277b10ac16d5cfcb8b42963751cc",
+    "release_status": "not cleared; source notice review required",
+    "unstripped_sha256": "0fd07aac7ac56fce51c1f6263c02767126d919e3ba3d2d1f8761c14b49c63004",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793421970.2878547
+  },
+  "standard_logs": {
+    "test_about_build_pty.py.log": "PASS About retains version1.0\nPASS About shows actual build revision or honest fallback\nPASS About OK returns same dirty document\nPASS About cycle Undo preserves original bytes\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-eq5_9xp8\n",
+    "test_debug_setter_failure_pty.py.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS readable getter shows backing1\nPASS failed setter error reported\nPASS failed setter refresh preserves backing1\nPASS cancel after setter error preserves backing1\nPASS setter failure leaves debuggee backing1\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-39t0i27q\n",
+    "test_help_mouse_pty.py.log": "PASS Contents opens tree and reading pane\nPASS mouse tree selects exact topic\nPASS mouse first tree row selects Basics not next topic\nPASS scrolled tree click retains valid reading pane\nPASS Next button with no query explains action\nPASS Search button executes actual query\nPASS Next button advances actual match\nPASS wheel scroll stays within topic bounds\nPASS Export button writes actual catalogue\nPASS Close button returns dirty document\nPASS Index exact Quickstart opens link view\nPASS first related-topic click opens exact target\nPASS Backspace returns clicked topic history\nPASS last related-topic click opens exact target\nPASS AltRight restores clicked forward topic\nPASS nested related-topic click opens exact body\nPASS link-view Close returns unchanged dirty source\nPASS Undo after mouse Help restores exact original bytes\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-oc8oks4y\n",
+    "test_file_modal_mouse_pty.py.log": "PASS Open mouse OK exact file\nPASS Open mouse Cancel preserves dirty source\nPASS SaveAs mouse Cancel no new file\nPASS SaveAs mouse Cancel retains source identity\nPASS SaveAs mouse OK writes exact mixed EOL\nPASS SaveAs mouse OK changes identity\nPASS SaveAs mouse keeps original\nPASS Project mouse Cancel retains exact editor\nPASS Project mouse OK opens exact project\nPASS Open mouse list selects exact second file\nPASS mouse opened exact list file saved only selected bytes\nPASS Open mouse first list item selects exact original\nPASS Project mouse list chooses exact second project\nPASS Project mouse operations preserve all file bytes\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-nz8iz0sq\n",
+    "test_debug_getter_failure_pty.py.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS failing getter displays captured error\nPASS failing getter rejects edit before setter\nPASS failed getter leaves backing value exact\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-7d6i0qz6\n",
+    "test_file_modal_buttons_pty.py.log": "PASS Open explicit OK preserves manually typed name after list focus\nPASS Open explicit Cancel retains dirty document\nPASS SaveAs explicit Cancel creates no destination\nPASS SaveAs explicit Cancel retains name and dirty buffer\nPASS SaveAs explicit OK saves exact mixed EOL bytes\nPASS SaveAs changes identity only on OK\nPASS SaveAs retains original file\nPASS Open list sync produces a known filename\nPASS Open list selection opens exact selected file\nPASS Project explicit Cancel keeps editor\nPASS Project explicit OK opens manually typed project\nPASS Project list sync produces known filename\nPASS Project list selection opens selected project\nPASS source bytes untouched by project navigation\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-5hf0h_8_\n",
+    "test_run_source_pty.py.log": "PASS script run1 preserves source literal\nPASS script run2 preserves source literal\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 preserves source literal\nPASS debug source retains main declaration\nPASS debug run2 preserves source literal\nPASS debug editor remains usable\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-pfqg1ocb\n",
+    "test_file_modal_long_list_pty.py.log": "PASS Open long list name rejected not truncated\nPASS typed short path wins despite long initial item\nPASS Project long initial name rejected not truncated\nPASS long name rejection retains correct current document\nPASS long names never alter any source or project\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-329w0lmc\n"
+  },
+  "extras": [
+    {
+      "test": "test_replace_spaces_pty.py",
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Replace one-space search reports4\nPASS Replace space changes exact fixture spaces\nPASS Undo space replacement restores exact bytes\nPASS Redo space replacement restores exact changed bytes\nPASS Undo again restores exact source\nPASS Replace two-space search reports1\nPASS Replace pair touches only adjacent spaces\nPASS Undo pair replacement restores exact bytes\nPASS Cancel all-space replace preserves exact bytes\nTOTAL 10 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-jp_prsbc\n",
+      "test_sha256": "cc9f1d772926c9e4cc4f952045f676aacb987677e36540d457b2d3c1bbc90332",
+      "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+    },
+    {
+      "test": "test_debug_stack_mouse_pty.py",
+      "exit": 0,
+      "log": "PASS child local visible at nested stop\nPASS click caller frame switches Monitor locals\nPASS right border click preserves selected MAIN frame\nPASS title border click preserves selected MAIN frame\nPASS click callee frame restores child locals\nPASS stack clicks allow debuggee completion\nPASS stack clicks leave source bytes exact\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-gd2p2e0l\n",
+      "test_sha256": "c1d3f60be21d25df55fa6aebb0c71cf4c63174480347355f409d6d798dfe1cc9",
+      "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+    },
+    {
+      "test": "test_debug_shadowed_frame_pty.py",
+      "exit": 0,
+      "log": "PASS callee shadowed local starts202\nPASS caller shadowed local starts101\nPASS caller edit displays707\nPASS caller edit does not change callee202\nPASS callee edit displays808\nPASS callee edit leaves caller707\nPASS callee edited slot retained808\nPASS Resume proves distinct caller707 and incremented callee809\nPASS frame edits leave source bytes exact\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-z2b2u_nj\n",
+      "test_sha256": "c3b68c97ddf948536c82fbccdc68cc7e437bf4e4030bbc4be02a92a6ce72602f",
+      "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+    },
+    {
+      "test": "test_debug_cursor_popup_pty.py",
+      "exit": 0,
+      "log": "PASS debugger stopped before increment\nPASS Run to Cursor stops before line6 mutation\nPASS Point Breakpoint adds cursor line8\nPASS second to Cursor stops before line7 mutation\nPASS Run Go stops at popup breakpoint before write\nPASS second Point Breakpoint removes cursor line8\nPASS File Resume does not execute debuggee\nPASS File Resume restores viewing cursor to paused execution line8\nPASS Go after removing BP writes exact final result\nPASS Resume returns to IDE editor\nPASS cursor and breakpoint leave source bytes unchanged\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-th5mdjic\n",
+      "test_sha256": "7755dd63c12dc29766c40cb35163514b6aa7d5c067d9b94f9d870cd062254307",
+      "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+    },
+    {
+      "test": "test_debug_tracepoint_modal_pty.py",
+      "exit": 0,
+      "log": "PASS stopped before first increment\nPASS cancel add exact saved point expressions\nPASS invalid tracepoint add rejected\nPASS invalid add exact saved point expressions\nPASS tracepoint n evaluates initial exact value\nPASS add exact saved point expressions\nPASS editing tracepoint evaluates3\nPASS edit preserves tracepoint type exact saved point expressions\nPASS cancel edit exact saved point expressions\nPASS invalid tracepoint edit rejected\nPASS invalid edit exact saved point expressions\nPASS cancel Delete exact saved point expressions\nPASS Go stops on real tracepoint change before output\nPASS delete exact saved point expressions\nPASS after Delete Go completes exact debuggee value\nPASS point operations leave source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-onm2q_nq\n",
+      "test_sha256": "79906cbf71d099d5153c2e3e51b3475d936e39dc3a6ef872419ab1006251a2a4",
+      "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+    },
+    {
+      "test": "test_designer_clipboard_list_runtime_pty.py",
+      "exit": 0,
+      "log": "PASS pasted ListBox binding case-insensitively distinct\nPASS pasted ListBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ListBox artifact compiles\nPASS first ListBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ListBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-2fd5y27u\n",
+      "test_sha256": "2a7fb50417b2f4e67114fac79c7537bd478d4822c943fb772e7faec8c1c44574",
+      "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+    },
+    {
+      "test": "test_designer_clipboard_radio_runtime_pty.py",
+      "exit": 0,
+      "log": "PASS pasted RadioGroup binding case-insensitively distinct\nPASS pasted RadioGroup VALID handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both VALID handlers\nPASS generated pasted-RadioGroup artifact compiles\nPASS first RadioGroup selection affects only its bound value\nPASS first preserved VALID handler executes in generated runtime\nPASS second RadioGroup selection affects only its bound value\nPASS second preserved VALID handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-cvv4tzxs\n",
+      "test_sha256": "b657f07d733fd3cfc2cdc94dc10c31cc5e70d49e1f1d307a7d79b0717294459b",
+      "binary_sha256": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18"
+    }
+  ],
+  "binary_sha256_after": "ad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049220154e18",
+  "limits": "Linux source candidate only. Not release, license clearance, installer, pixels, Windows, new determinism or full matrix."
+}
