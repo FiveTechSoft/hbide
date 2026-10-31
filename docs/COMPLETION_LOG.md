@@ -2240,3 +2240,7 @@ Iconize->Tilereattachbrowser, focuscycle y Resumeexact12locals. Exploratorio
 Se vinculan5entradas,97contratosmenu/116acciones no97funcionesaceptadas.
 Runner123entradas=122PTYmodes+guard. Modelo layout existente sigue
 independiente, no se asume ejecutado por vincular archivo.
+
+Cleana16b3eaWindowpopup16+MonitorMouseScroll7PASSsameIDE9f23f866,
+15inventory33docs. docs/evidence/linux-window-layout-popup.json conserva
+buildreceipt y logs. No se declara aceptacion pixel ni modelo layout nuevo.

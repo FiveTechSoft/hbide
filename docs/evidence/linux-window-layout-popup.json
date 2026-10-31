@@ -1,0 +1,67 @@
+{
+  "scope": "Cleana16b3eaLinux Windowpopup16checks +MonitorMouseScroll7sameIDE9f23f866. Character-grid/semantics only, no pixels/Windows/arbitrarypanels. Notglobal123runneracceptance.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "a16b3ea30f961b589b4e3dd33d6730edfc7e35db",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "d28d53781e4f732d60a0e6f131c66cd9ddd93b50be4dfa8a92719493f76e8439",
+    "binary_sha256": "9f23f866b22e3878176ac73e3d319ce0c48901021f7b13e58134fd656bc7c05a",
+    "built_at": 1793417510.5090013
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "a16b3ea30f961b589b4e3dd33d6730edfc7e35db",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "d28d53781e4f732d60a0e6f131c66cd9ddd93b50be4dfa8a92719493f76e8439",
+      "binary_sha256": "9f23f866b22e3878176ac73e3d319ce0c48901021f7b13e58134fd656bc7c05a",
+      "build_receipt": "/tmp/hbide-window-layout-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "cc192a3e855cf431bf5714ab440b79e94354b0292ee67472db75a7d9a6478577",
+      "case": "debug-window-layout",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_window_layout_pty.py"
+      ],
+      "started": 1793417510.5092597,
+      "seconds": 17.53,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "587d3dcc133ec66e11a53b46555ba306387a8b583e23e794309682c450cb83be",
+      "log": "/tmp/hbide-window-layout-clean/debug-window-layout-1793417510509255885.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "a16b3ea30f961b589b4e3dd33d6730edfc7e35db",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "d28d53781e4f732d60a0e6f131c66cd9ddd93b50be4dfa8a92719493f76e8439",
+      "binary_sha256": "9f23f866b22e3878176ac73e3d319ce0c48901021f7b13e58134fd656bc7c05a",
+      "build_receipt": "/tmp/hbide-window-layout-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "cc192a3e855cf431bf5714ab440b79e94354b0292ee67472db75a7d9a6478577",
+      "case": "debug-monitor-mouse-scroll",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_monitor_mouse_scroll_pty.py"
+      ],
+      "started": 1793417528.0397134,
+      "seconds": 10.22,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a7df21171e780a50a07f0d7e24b4220b203c1b54500a8c99b442a4752f53faa9",
+      "log": "/tmp/hbide-window-layout-clean/debug-monitor-mouse-scroll-1793417528039710345.log"
+    }
+  ],
+  "logs": {
+    "debug-window-layout-1793417510509255885.log": "PASS debugger stopped before increment\nPASS code caption begins inside requested rect\nPASS Move menu opens arrow edit\nPASS Move arrows change caption row and col\nPASS Move Esc restores caption position\nPASS Move Enter keeps changed position\nPASS Size menu opens arrow edit\nPASS Size Esc restores complete painted character grid\nPASS Size Enter changes painted grid\nPASS Zoom moves code caption to desktop top\nPASS second Zoom restores resized grid\nPASS Iconize hides selected source text\nPASS Tile restores iconized source browser\nPASS Tile retains source caption after focus cycle\nPASS layout changes preserve exact debuggee values\nPASS layout changes leave source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-wpvbse6z\n",
+    "debug-monitor-mouse-scroll-1793417528039710345.log": "PASS debugger stopped before increment\nPASS Monitor PageDown exposes later locals\nPASS doubleclick scrolled Monitor edits exact visible local\nPASS PageUp returns first Monitor locals\nPASS click after PageUp edits correct second local\nPASS scrolled Monitor edit reaches exact debuggee slot\nPASS scrolled Monitor leaves source bytes unchanged\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-d2slg9x8\n"
+  }
+}
