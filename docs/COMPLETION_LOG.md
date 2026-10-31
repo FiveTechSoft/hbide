@@ -1825,3 +1825,10 @@ Enlaces del inventario actualizados sin cambiar pruebas a funciones cerradas:
 EditVar y tres inspectores enlazan profundidad acotada; objeto enlaza getter
 fallido manteniendo limite setter/arbitrarios/readonlyfalse.15tests de
 inventarioPASS, no15funciones nuevas ni pasadaPTYglobal.
+
+## 31 octubre: setter que lanza error conserva el debuggee de la fixture
+
+8checks reales adicionales sin cambio de producto: getter legible1/setter que
+falla con Zero divisor muestra error, refresca1,99Escconserva1yResumeescribe1
+exacto. No generaliza rollback de setters con efectos parciales; no cambian
+fallback de acceso/clase, politica de propiedades ni readonly recursivo.

@@ -1449,10 +1449,11 @@
     "DBG-INPUT-dbgtobj-doGet-inline_input-1": {
       "tests": [
         "test_debug_getter_failure_pty.py",
+        "test_debug_setter_failure_pty.py",
         "test_debug_structured_modal_pty.py",
         "test_debug_structured_depth_pty.py"
       ],
-      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Failed getter with matching setter displays captured Zero divisor, rejects edit before setter, resumes backing1 unchanged; valid property editing remains separately covered."
+      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Failed getter with matching setter displays captured Zero divisor, rejects edit before setter, resumes backing1 unchanged; valid property editing remains separately covered. Throwing setter with readable getter reports Zero divisor, refresh and Cancel preserve backing1, exact resumed value unchanged; no partial side effects are promised to roll back."
     },
     "DBG-INPUT-debugger-WatchpointAdd-inputbox-1": {
       "tests": [
