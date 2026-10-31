@@ -2620,4 +2620,8 @@ beta destination, isolated Undo/Redo exact; Copy current beta replaces shared
 clipboard and Paste works in new document. Exploratory8PASS, no productfix.
 First harness expected alpha after copying current beta row; corrected
 expectation before clean acceptance. Runner146=145PTY modes plus guard.
-No OSclipboard, Windows, visual or global acceptance. Clean pending.
+No OSclipboard, Windows, visual or global acceptance.
+
+Clean9834943: ClipboardClose8, Multidoc6 and Spaces4 pass same binary
+6d08e37d without retry;15inventory33docs pass. No new model run.
+Ledger docs/evidence/linux-clipboard-lifetime.json.
