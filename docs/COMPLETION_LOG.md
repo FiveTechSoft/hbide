@@ -2061,3 +2061,7 @@ Primer runner f82ad4f conserva5/8 por comparador de nombre en minusculas:
 el browser muestra el miembro DATA en mayusculas. Pantalla anterior prueba
 987654 truncado; pantalla tras fix numero entero. Comparador se corrige
 sin distinguir caja y se repite, no se borra el intento anterior.
+
+a8c0989limpio LongObject8+Getter6+Setter8PASS mismoIDE,20modelos actuales,
+15inventario33docsPASS. Native120x40numero987654321entero,Cancel99 conserva,
+Resume exacto y capturas completas inspeccionadas. NoWindows ni cierreM3.
