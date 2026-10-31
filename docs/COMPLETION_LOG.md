@@ -2665,4 +2665,8 @@ source Cut/Undo preserve exact UTF8/TAB/spaces bytes; destination uses LF.
 No productfix. First fixture required glyphs from PTY decoder but GT emitted
 question marks while disk checks passed; open check uses ASCII final marker.
 No native glyph/render acceptance is claimed. Runner148=147PTY modes+guard.
-No OSclipboard/Windows/global. Clean pending.
+No OSclipboard/Windows/global.
+
+Cleanafe1d52: UTF8Block9, Block9 and Close8 pass same binarye8fe99bf
+without retry;15inventory33docs pass. No new model run.
+Ledger docs/evidence/linux-clipboard-utf8.json.
