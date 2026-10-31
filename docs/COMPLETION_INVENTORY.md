@@ -116,7 +116,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DSN-011 | Palette | Copy        Ctrl+C | designer.prg:529 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-012 | Palette | Cut         Ctrl+X | designer.prg:530 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-013 | Palette | Paste       Ctrl+V | designer.prg:531 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-014 | Palette | Snap to grid  F7 | designer.prg:532 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DSN-014 | Palette | Snap to grid  F7 | designer.prg:532 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-015 | Palette | Save JSON    F10 | designer.prg:534 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-016 | Palette | Save JSON as...  F11 | designer.prg:535 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-017 | Palette | Open JSON    F12 | designer.prg:536 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -224,6 +224,7 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-050: Real Window popup mnemonic dispatch in bounded Linux fixture. Zoom menu brings caption to desktop top; second Zoom restores complete prior character grid. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise. Pruebas: [test_debug_window_layout_pty.py](../tests/test_debug_window_layout_pty.py), [test_debug_layout.prg](../tests/test_debug_layout.prg)
 - DBG-051: Real Window popup mnemonic dispatch in bounded Linux fixture. Iconize hides source browser and subsequent Tile reattaches it. Separate earlier commands fixture covers iconize toggle viewport. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise. Pruebas: [test_debug_window_layout_pty.py](../tests/test_debug_window_layout_pty.py), [test_debug_layout.prg](../tests/test_debug_layout.prg)
 - DBG-052: Real Window popup mnemonic dispatch in bounded Linux fixture. Tile restores iconized source painter, focus cycling retains caption, Resume serializes all twelve locals unchanged except intended increment. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise. Pruebas: [test_debug_window_layout_pty.py](../tests/test_debug_window_layout_pty.py), [test_debug_layout.prg](../tests/test_debug_layout.prg)
+- DSN-014: Real F2 G duplicated mnemonic plus Enter enables Snap; arrows on existing width10 GET inside41x14 dialog round then clamp to odd edges11/29. F10 exact fit/dimensions/binding, UndoRedo complete models. Separate native120x40 captures inspected at edge and Undo; drag change shares clamp but not covered by this keyboard fixture. No oversized edit policy, all controls or Windows acceptance. Pruebas: [test_designer.prg](../tests/test_designer.prg), [test_designer_snap_edges_pty.py](../tests/test_designer_snap_edges_pty.py)
 
 ## Contratos modales y edicion inline vinculados
 
@@ -240,36 +241,36 @@ Extraidas de EditProperties/DlgProperties/SelectFileName. Condiciones literales,
 
 | ID | Etiqueta | Tipo / picture | Condiciones fuente | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- | --- |
-| DSN-FIELD-EditProperties-nRow-1 | Row: | value 999 | Siempre | designer.prg:1326 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nCol-1 | Col: | value 999 | Siempre | designer.prg:1327 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cCaption-1 | Caption: | value @S40 | oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX | designer.prg:1332 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cVariable-1 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX | designer.prg:1337 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nWidth-1 | Width: | value 999 | oCtrl[ "type" ] == DSN_GET | designer.prg:1342 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cAccel-1 | Accel: | value  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1347 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cAction-1 | Action: | value @S40 | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1349 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lBrackets-1 | B&rackets look (uncheck for 3D shadow) | checkbox  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1351 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cVariable-2 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1357 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cItems-1 | Items: | value @S40 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1359 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nWidth-2 | Width: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1364 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nHeight-1 | Height: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1366 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cWhen-1 | When: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1371 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cValid-1 | Valid: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1373 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cFocus-1 | Focus: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1376 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cState-1 | State: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1380 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1385 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1389 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cCaption-1 | Caption: | value @S40 | Siempre | designer.prg:1473 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cName-1 | Name: | value  | Siempre | designer.prg:1476 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-nWidth-1 | Width: | value 999 | Siempre | designer.prg:1479 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-nHeight-1 | Height: | value 999 | Siempre | designer.prg:1482 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrBack-1 | Back: | value @S20 | Siempre | designer.prg:1485 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrText-1 | Text: | value @S20 | Siempre | designer.prg:1488 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrFocus-1 | Focus: | value @S20 | Siempre | designer.prg:1491 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1494 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1498 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-cFile-1 | File: | value @S35 | Siempre | designer.prg:1599 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-lDummy-1 | &OK | button  | Siempre | designer.prg:1602 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1606 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nRow-1 | Row: | value 999 | Siempre | designer.prg:1327 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nCol-1 | Col: | value 999 | Siempre | designer.prg:1328 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cCaption-1 | Caption: | value @S40 | oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX | designer.prg:1333 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cVariable-1 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX | designer.prg:1338 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nWidth-1 | Width: | value 999 | oCtrl[ "type" ] == DSN_GET | designer.prg:1343 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cAccel-1 | Accel: | value  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1348 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cAction-1 | Action: | value @S40 | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1350 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lBrackets-1 | B&rackets look (uncheck for 3D shadow) | checkbox  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1352 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cVariable-2 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1358 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cItems-1 | Items: | value @S40 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1360 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nWidth-2 | Width: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1365 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nHeight-1 | Height: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1367 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cWhen-1 | When: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1372 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cValid-1 | Valid: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1374 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cFocus-1 | Focus: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1377 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cState-1 | State: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1381 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1386 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1390 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cCaption-1 | Caption: | value @S40 | Siempre | designer.prg:1474 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cName-1 | Name: | value  | Siempre | designer.prg:1477 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-nWidth-1 | Width: | value 999 | Siempre | designer.prg:1480 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-nHeight-1 | Height: | value 999 | Siempre | designer.prg:1483 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrBack-1 | Back: | value @S20 | Siempre | designer.prg:1486 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrText-1 | Text: | value @S20 | Siempre | designer.prg:1489 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrFocus-1 | Focus: | value @S20 | Siempre | designer.prg:1492 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1495 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1499 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-cFile-1 | File: | value @S35 | Siempre | designer.prg:1600 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-lDummy-1 | &OK | button  | Siempre | designer.prg:1603 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1607 | Pendiente por campo; contratos de superficie separados |
 
 ## Pares control/campo modal
 
@@ -554,29 +555,29 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 
 | Campo | Clave | Tipo | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- |
-| Row | row | num | designer.prg:1793 | Pendiente vincular prueba especifica |
-| Col | col | num | designer.prg:1794 | Pendiente vincular prueba especifica |
-| Caption | caption | text | designer.prg:1796 | Pendiente vincular prueba especifica |
-| Variable | variable | text | designer.prg:1799 | Pendiente vincular prueba especifica |
-| Width | width | num | designer.prg:1802 | Pendiente vincular prueba especifica |
-| Accel | accelerator | text | designer.prg:1805 | Pendiente vincular prueba especifica |
-| Action | action | text | designer.prg:1806 | Pendiente vincular prueba especifica |
-| Style | style | choice | designer.prg:1807 | Pendiente vincular prueba especifica |
-| Variable | variable | text | designer.prg:1810 | Pendiente vincular prueba especifica |
-| Items | items | text | designer.prg:1811 | Pendiente vincular prueba especifica |
-| Width | width | num | designer.prg:1814 | Pendiente vincular prueba especifica |
-| Height | height | num | designer.prg:1815 | Pendiente vincular prueba especifica |
-| When | when | text | designer.prg:1818 | Pendiente vincular prueba especifica |
-| Valid | valid | text | designer.prg:1819 | Pendiente vincular prueba especifica |
-| Focus | focus | text | designer.prg:1821 | Pendiente vincular prueba especifica |
-| State | state | text | designer.prg:1824 | Pendiente vincular prueba especifica |
-| Name | dlgname | text | designer.prg:1828 | Pendiente vincular prueba especifica |
-| Caption | dlgcaption | text | designer.prg:1829 | Pendiente vincular prueba especifica |
-| Width | dlgwidth | num | designer.prg:1830 | Pendiente vincular prueba especifica |
-| Height | dlgheight | num | designer.prg:1831 | Pendiente vincular prueba especifica |
-| Back | dlgback | color | designer.prg:1832 | Pendiente vincular prueba especifica |
-| Text | dlgtext | color | designer.prg:1833 | Pendiente vincular prueba especifica |
-| Focus | dlgfocus | color | designer.prg:1834 | Pendiente vincular prueba especifica |
+| Row | row | num | designer.prg:1794 | Pendiente vincular prueba especifica |
+| Col | col | num | designer.prg:1795 | Pendiente vincular prueba especifica |
+| Caption | caption | text | designer.prg:1797 | Pendiente vincular prueba especifica |
+| Variable | variable | text | designer.prg:1800 | Pendiente vincular prueba especifica |
+| Width | width | num | designer.prg:1803 | Pendiente vincular prueba especifica |
+| Accel | accelerator | text | designer.prg:1806 | Pendiente vincular prueba especifica |
+| Action | action | text | designer.prg:1807 | Pendiente vincular prueba especifica |
+| Style | style | choice | designer.prg:1808 | Pendiente vincular prueba especifica |
+| Variable | variable | text | designer.prg:1811 | Pendiente vincular prueba especifica |
+| Items | items | text | designer.prg:1812 | Pendiente vincular prueba especifica |
+| Width | width | num | designer.prg:1815 | Pendiente vincular prueba especifica |
+| Height | height | num | designer.prg:1816 | Pendiente vincular prueba especifica |
+| When | when | text | designer.prg:1819 | Pendiente vincular prueba especifica |
+| Valid | valid | text | designer.prg:1820 | Pendiente vincular prueba especifica |
+| Focus | focus | text | designer.prg:1822 | Pendiente vincular prueba especifica |
+| State | state | text | designer.prg:1825 | Pendiente vincular prueba especifica |
+| Name | dlgname | text | designer.prg:1829 | Pendiente vincular prueba especifica |
+| Caption | dlgcaption | text | designer.prg:1830 | Pendiente vincular prueba especifica |
+| Width | dlgwidth | num | designer.prg:1831 | Pendiente vincular prueba especifica |
+| Height | dlgheight | num | designer.prg:1832 | Pendiente vincular prueba especifica |
+| Back | dlgback | color | designer.prg:1833 | Pendiente vincular prueba especifica |
+| Text | dlgtext | color | designer.prg:1834 | Pendiente vincular prueba especifica |
+| Focus | dlgfocus | color | designer.prg:1835 | Pendiente vincular prueba especifica |
 
 ## Rutas de teclado y comandos
 
@@ -750,27 +751,27 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | projectui.prg:36 | `CASE nKey == K_F6 .AND. ! Empty( oProject:hBuild )` |
 | projectui.prg:38 | `CASE nKey == K_F9 .OR. nKey == K_CTRL_F9` |
 | projectui.prg:42 | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` |
-| designer.prg:2284 | `case nKey == K_ESC .or. nKey == K_F6` |
-| designer.prg:2289 | `case nKey == K_F4` |
-| designer.prg:2292 | `case nKey == K_UP` |
-| designer.prg:2296 | `case nKey == K_DOWN` |
-| designer.prg:2300 | `case nKey == K_LEFT` |
-| designer.prg:2303 | `case nKey == K_RIGHT` |
-| designer.prg:2306 | `case nKey == K_ENTER` |
-| designer.prg:2309 | `case nKey == K_CTRL_UP` |
-| designer.prg:2313 | `case nKey == K_CTRL_DOWN` |
-| designer.prg:2317 | `case nKey == K_CTRL_LEFT` |
-| designer.prg:2321 | `case nKey == K_CTRL_RIGHT` |
-| designer.prg:2140 | `case nKey == K_ENTER` |
-| designer.prg:2143 | `case nKey == K_ESC` |
-| designer.prg:2145 | `case nKey == K_LEFT` |
-| designer.prg:2147 | `case nKey == K_RIGHT` |
-| designer.prg:2149 | `case nKey == K_HOME` |
-| designer.prg:2151 | `case nKey == K_END` |
-| designer.prg:2153 | `case nKey == K_BS` |
-| designer.prg:2158 | `case nKey == K_DEL` |
-| designer.prg:2162 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` |
-| designer.prg:2166 | `case nKey >= 32 .and. nKey <= 255` |
+| designer.prg:2285 | `case nKey == K_ESC .or. nKey == K_F6` |
+| designer.prg:2290 | `case nKey == K_F4` |
+| designer.prg:2293 | `case nKey == K_UP` |
+| designer.prg:2297 | `case nKey == K_DOWN` |
+| designer.prg:2301 | `case nKey == K_LEFT` |
+| designer.prg:2304 | `case nKey == K_RIGHT` |
+| designer.prg:2307 | `case nKey == K_ENTER` |
+| designer.prg:2310 | `case nKey == K_CTRL_UP` |
+| designer.prg:2314 | `case nKey == K_CTRL_DOWN` |
+| designer.prg:2318 | `case nKey == K_CTRL_LEFT` |
+| designer.prg:2322 | `case nKey == K_CTRL_RIGHT` |
+| designer.prg:2141 | `case nKey == K_ENTER` |
+| designer.prg:2144 | `case nKey == K_ESC` |
+| designer.prg:2146 | `case nKey == K_LEFT` |
+| designer.prg:2148 | `case nKey == K_RIGHT` |
+| designer.prg:2150 | `case nKey == K_HOME` |
+| designer.prg:2152 | `case nKey == K_END` |
+| designer.prg:2154 | `case nKey == K_BS` |
+| designer.prg:2159 | `case nKey == K_DEL` |
+| designer.prg:2163 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` |
+| designer.prg:2167 | `case nKey >= 32 .and. nKey <= 255` |
 | hbide.prg:645 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F8, HB_KF_ALT, K_ALT_F8 )` |
 | hbide.prg:648 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )` |
 | hbide.prg:651 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )` |

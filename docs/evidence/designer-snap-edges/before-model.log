@@ -1,0 +1,937 @@
+
+  ok   say width
+  ok   get width
+  ok   checkbox width
+  ok   button height 2
+  ok   var keeps letters
+  ok   var strips spaces
+  ok   var rejects digit start
+  ok   var rejects empty
+  ok   json not empty
+  ok   json decode hash
+  ok   json name
+  ok   json controls count
+  ok   json get variable
+  ok   json get width numeric
+  ok   gen has function
+  ok   gen has dialog
+  ok   gen has say
+  ok   gen has get
+  ok   gen no event clauses without events
+  ok   gen get when/valid + SEND colorDisp
+  ok   gen checkbox focus/state
+  ok   gen button when + focus keep state action
+  ok   json event keys roundtrip
+  ok   gen after json reload keeps clauses
+  ok   gen has checkbox
+  ok   gen declares var
+  ok   gen declares lvar
+  ok   json not emp
+  ok   json decode
+  ok   json name
+  ok   json control
+  ok   json get var
+  ok   json get wid
+  ok   gen has func
+  ok   gen has dial
+  ok   gen has say
+  ok   gen has get
+  ok   gen no event
+  ok   gen get when
+  ok   gen checkbox
+  ok   json not empษ[þ]อออออออออออออ Test อออออออออออออออออป
+  ok   json decode บ                                       บ
+  ok   json name   บ                                       บ
+  ok   json controlบ                                       บ
+  ok   json get varบ                                       บ
+  ok   json get widบ                                       บ
+  ok   gen has funcบ                                       บ
+  ok   gen has dialบ                                       บ
+  ok   gen has say บ                                       บ
+  ok   gen has get บ                                       บ
+  ok   gen no eventบ                                       บ
+  ok   gen get whenบ                                       บ
+  ok   gen checkboxศอออออออออออออออออออออออออออออออออออออออผ
+
+
+
+
+
+
+  ok   insp fields dialog
+  ok   insp fields dialog colors
+  ok   insp value dlgback
+  ok   insp value dlgtext
+  ok   insp value dlgfocus
+  ok   insp fields get
+  ok   insp value variable
+  ok   insp fields button
+  ok   insp adjust row
+  ok   insp adjust clamps zero
+  ok   insp adjust clamps canvas
+  ok   insp width max 40
+  ok   insp width min 4
+  ok   move clamps row
+  ok   move clamps col
+  ok   move clamps zero
+Enter edit | Del delete | Arrows move | Mouse resizes | F9 gen | F10 save | Esc
+  ok   drop clamps listbox row
+  ok   drop clamps listbox col
+  ok   insp caption trimmed
+  ok   insp variable sanitized
+  ok   insp dlg caption live
+F6 canvas | Enter edit | Left/Right adjust | Ctrl+Arrows move panel | F4 hide
+  ok   insp dlg width live
+  ok   insp fields say
+  ok   insp fields get
+  ok   insp fields check
+  ok   insp fields btn
+  ok   gen button accel
+  ok   gen button action
+  ok   gen accel in caption
+  ok   gen accel appended
+  ok   gen accel default
+  ok   normalize legacy button
+  ok   long caption json
+  ok   long caption in prg
+  ok   json button accel
+  ok   json button action
+  ok   min size with controls
+Minimum width 31: controls inside would be hidden
+  ok   shrink keeps controls
+  ok   shrink explains
+Minimum height 9: controls inside would be hidden
+  ok   shrink keeps controls vert
+  ok   insp rect on screen
+  ok   insp hit title
+  ok   insp hit field
+  ok   insp hit outside
+  ok   insp roundtrip caption
+  ok   insp roundtrip variable
+  ok   insp roundtrip dlgwidth
+  ok   radio size
+  ok   radio items
+  ok   listbox size
+  ok   gen radio declares var
+  ok   gen radio declares butt
+  ok   gen butt after dialog
+  ok   gen radio group clause
+  ok   gen listbox declares items
+  ok   gen listbox clause
+  ok   gen get color
+  ok   gen radio item colors
+  ok   gen listbox color
+  ok   gen listbox keeps items verbatim
+  ok   gen listbox scrollbar overflow
+  ok   gen listbox no scrollbar when fits
+  ok   sbar hidden flag h5
+  ok   sbar hidden flag h7
+  ok   sbar hidden flag fits
+  ok   sbar hidden flag radio
+  ok   gen warns hidden scrollbar
+  ok   gen no warning when bar fits
+  ok   json radio items
+  ok   json listbox height
+  ok   gen radio accel per item
+  ok   radio items keep amp
+  ok   insp fields radio
+  ok   insp value items
+  ok   insp fields listbox
+  ok   insp set items
+  ok   dlgpair blue
+  ok   dlgpair black
+  ok   dlgpair default
+  ok   clrgrid 16
+  ok   clrgrid canonical
+  ok   clrgrid gt valid
+  ok   clrgrid unique
+  ok   clrtok plain
+  ok   clrtok bright
+  ok   clrtok blink
+  ok   clrtok yellow
+  ok   clrtok gr+
+  ok   clrtok brown
+  ok   clrtok alias c
+  ok   clrtok alias bg
+  ok   clrtok alias m
+  ok   clrtok alias rb
+  ok   clrtok outside
+  ok   clridx first
+  ok   clridx last
+  ok   clridx alias
+  ok   clridx blink
+  ok   clridx outside
+  ok   clrpair split
+  ok   clrpair fg only
+  ok   clrpair default
+  ok   gen dlg color picked
+  ok   gen focus in get palette
+  ok   gen empty dialog no focus leak
+  ok   clr say inherits
+  ok   clr get contrast
+  ok   clr checkbox inherits
+  ok   clr button contrast
+  ok   clr listbox contrast
+  ok   clr button display override
+  ok   clr button hittest override
+  ok   clr shadow on dialog bg
+  ok   def say keeps oDlg:Say
+  ok   def get palette
+  ok   def checkbox palette
+  ok   def button palette
+  ok   def no override
+  ok   shadow default white
+  ok   shadow blue dialog
+  ok   shadow black dialog
+  ok   fit keeps fitting window
+  ok   fit shifts big dialog
+  ok   fit clamps to zero
+  ok   fit leaves shadow room
+  ok   view keeps fitting dialog
+  ok   view clamps big dialog
+  ok   view clamps only overflow
+  ok   pan clamps to dialog edge
+  ok   pan keeps zero
+  ok   pan no room to scroll
+  ok   write ok returns true
+  ok   write bad path returns false
+  ok   unique var first
+  ok   unique var skips used
+  ok   unique var fills gaps
+  ok   unique var skips mixed case
+  ok   unique var case-insensitive prefix
+  ok   unique var different names remain distinct
+  ok   gen declares once
+  ok   gen uses twice
+  ok   gen skips empty radio
+  ok   gen skips empty listbox
+  ok   gen empty declares nothing
+  ok   model rejects scalar
+  ok   model rejects no controls
+  ok   model rejects hash controls
+  ok   model accepts empty array
+  ok   normalize drops foreign
+  ok   normalize row numeric
+  ok   normalize width default
+  ok   normalize var created
+  ok   normalize items array
+  ok   normalize var radio
+  ok   normalize caption string
+  ok   normalize var check
+  ok   conflict counted
+  ok   conflict text kept
+  ok   conflict logic renamed
+  ok   conflict get renamed
+  ok   same type still shares
+  ok   model not polluted
+  ok   checkbox size no amp
+  ok   model rejects hasty
+  ok   model accepts emp          hash
+  ok   normalize drops f
+  ok   normalize row num                              s c
+  ok   normalize width dount
+  ok   normalize var cre       iable
+  ok   normalize items a                 th numeric
+  ok   normalize var rad                           tion
+  ok   normalize caption
+  ok   normalize var che    og
+                   ษ[þ]ออออออออออ My Dialog อออออออออออออออป
+                   บ                                       บ
+                   บ                                       บ
+                   บ                                       บ
+                   บ                                       บ
+                   บ                                       บ
+                   บ                                       บ
+                   บ                                       บ
+                   บ                                       บ
+                   บ                                       บ
+                   บ                                       บ
+                   บ                                       บ
+                   ศอออออออออออออออออออออออออออออออออออออออผ
+                   ษ[þ]ออออออษอ Inspector อออออออออออออออออป
+                   บ         บ Name:    MyDialog           บ
+                   บ         บ Caption: My Dialog          บ
+                   บ         บ Width:   41                 บ
+                   บ         บ Height:  13                 บ
+                   บ         บ Back:    W                  บ
+                   บ         บ Text:    W+                 บ
+                   บ         บ Focus:   W+/B               บ
+                   บ         ศอออออออออออออออออออออออออออออผ
+                   บ                                       บ
+
+
+
+
+
+
+
+
+F2 add Enter edit F4 insp F5 prg Del Arrows move ^Z/^Y F9 gen F10 save Esc
+                   ษ[þ]ออออออออออ My Dialog อออออออออออออออป
+                   บ         บ Name:    MyDialog           บ
+                   บ         บ Caption: My Dialog          บ
+                   บ         บ Width:   41                 บ
+                   บ         บ Height:  13                 บ
+                   บ         บ Back:    W                  บ
+                   บ         บ Text:    W+                 บ
+                   บ         บ Focus:   W+/B               บ
+                   บ         ศอออออออออออออออออออออออออออออบ
+                   บ                                       บ
+  ok   idle layering test discriminates My Dialog          บ
+                   ษ[þ]ออออออษอ Inspector อออออออออออออออออป
+                   บ         บ Name:    MyDialog           บ
+  ok   idle layering test disบ Caption: My Dialog          บ
+                   บ         บ Width:   41                 บ
+                   บ         บ Height:  13                 บ
+                   บ         บ Back:    W                  บ
+                   บ         บ Text:    W+                 บ
+                   บ         บ Focus:   W+/B               บ
+                   บ         ศอออออออออออออออออออออออออออออผ
+                   บ                                       บ
+  ok   plain mouse idle keeps inspector over dialog frame  บ
+ษ[þ]อออออออออออออออออออออออออออออออออ Big อออออออออออออออออออออออออออออออออออออป
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+  ok   oversized dialog clamped on-screen                                      บ
+  ok   oversized dialog reports clamp                                          บ
+  ok   oversized dialog keeps requested size                                   บ
+  ok   oversized dialog paints its frame                                       บ
+                   ษ[þ]ออออออษอ Inspector อออออออออออออออออป
+                   บ         บ Name:    MyDialog           บ
+  ok   plain mouse idle keeps inspector over dialog frame  บ
+                   บ         บ Width:   41                 บ
+                   บ         บ Height:  13                 บ
+                   บ         บ Back:    W                  บ
+                   บ         บ Text:    W+                 บ
+                   บ         บ Focus:   W+/B               บ
+                   บ         ศอออออออออออออออออออออออออออออผ
+                   บ                                       บ
+                   บ                                       บ
+                   บ                                       บ
+                   ศอออออออออออออออออออออออออออออออออออออออผ
+
+
+
+
+
+F2 add Enter edit F4 insp F5 prg Del Arrows move ^Z/^Y F9 gen F10 save Esc
+  ok   hide restores screen after clamp W+/B               บ
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+ษ[þ]อออออออออออออออออออออออออออออออออ Big อออออออออออออออออออออออออออออออออออออป
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+บ                                                                              บ
+ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+  ok   oversized hide restores full screenBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+
+
+
+
+
+HHHHHHHHHHHHHHHHHHH                                         HHHHHHHHHHHHHHHHHHHH
+IIIIIIIIIIIIIIIIIII                                         IIIIIIIIIIIIIIIIIIII
+JJJJJJJJJJJJJJJJJJJ                                         JJJJJJJJJJJJJJJJJJJJ
+KKKKKKKKKKKKKKKKKKK                                         KKKKKKKKKKKKKKKKKKKK
+LLLLLLLLLLLLLLLLLLL                                         LLLLLLLLLLLLLLLLLLLL
+MMMMMMMMMMMMMMMMMMM                                         MMMMMMMMMMMMMMMMMMMM
+NNNNNNNNNNNNNNNNNNN                                         NNNNNNNNNNNNNNNNNNNN
+OOOOOOOOOOOOOOOOOOO                                         OOOOOOOOOOOOOOOOOOOO
+PPPPPPPPPPPPPPPPPPP                                         PPPPPPPPPPPPPPPPPPPP
+QQQQQQQQQQQQQQQQQQQ                                         QQQQQQQQQQQQQQQQQQQQ
+RRRRRRRRRRRRRRRRRRR                                         RRRRRRRRRRRRRRRRRRRR
+HHHHHHHHHHHHHHHHHHHษ[þ]ออออออออออออ Small อออออออออออออออออปHHHHHHHHHHHHHHHHHHHH
+IIIIIIIIIIIIIIIIIIIบ                                       บIIIIIIIIIIIIIIIIIIII
+JJJJJJJJJJJJJJJJJJJบ                                       บJJJJJJJJJJJJJJJJJJJJ
+KKKKKKKKKKKKKKKKKKKบ                                       บKKKKKKKKKKKKKKKKKKKK
+LLLLLLLLLLLLLLLLLLLบ                                       บLLLLLLLLLLLLLLLLLLLL
+MMMMMMMMMMMMMMMMMMMบ                                       บMMMMMMMMMMMMMMMMMMMM
+NNNNNNNNNNNNNNNNNNNบ                                       บNNNNNNNNNNNNNNNNNNNN
+OOOOOOOOOOOOOOOOOOOบ                                       บOOOOOOOOOOOOOOOOOOOO
+PPPPPPPPPPPPPPPPPPPบ                                       บPPPPPPPPPPPPPPPPPPPP
+QQQQQQQQQQQQQQQQQQQบ                                       บQQQQQQQQQQQQQQQQQQQQ
+RRRRRRRRRRRRRRRRRRRศอออออออออออออออออออออออออออออออออออออออผRRRRRRRRRRRRRRRRRRRR
+  ok   fitting dialog keeps its geometryCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+  ok   fitting dialog is not clampedDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+  ok   fitting dialog keeps requested sizeEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+
+
+HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
+RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+  ok   ghost row clamped to fit heightFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+  ok   ghost col clamped to fit widthGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG
+  ok   ghost pinned at originHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
+  ok   oversized ghost pinned at 0IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+  ok   resize get widerJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ
+  ok   resize get min widthKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
+  ok   resize get clamped to dialogLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+  ok   get is resizableMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+  ok   resize listbox tallerNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+  ok   resize listbox minimumsOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+  ok   resize listbox clamped to dialogPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP
+  ok   resize say is a no-opQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ
+  ok   say is not resizableRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
+  ok   gen uses resized get widthSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+  ok   gen uses resized listbox sizeTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT
+  ok   frame clip fully insideUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU
+  ok   frame clip right edgeVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV
+  ok   frame clip bottom edgeWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
+  ok   frame clip one column left is nilXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  ok   frame clip one row left is nilYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+  ok   button pads are plain spaces
+  ok   gen button pads emitted
+  ok   gen button pads are plain spaces
+  ok   gen button shadow utf8 check emitted
+  ok   gen button shadow half blocks
+  ok   gen button shadow solid fallback
+  ok   gen no NBSP pad bytes
+  ok   gen no raw cp437 pad bytes
+  ok   gen no raw cp437 shadow bytes
+  ok   clone detaches nested hash
+  ok   clone detaches nested array
+  ok   snapshot is a deep copy
+  ok   snap equal same state
+  ok   snap detects change
+  ok   push adds to undo
+  ok   push clears redo
+  ok   history capped at 100
+  ok   oldest snapshot dropped
+  ok   undo returns previous state
+  ok   undo pushes current to redo
+  ok   undo empties undo stack
+  ok   undo on empty is nil
+  ok   redo returns next state
+  ok   redo pushes current to undo
+  ok   redo on empty is nil
+  ok   two actions stacked
+  ok   first undo restores pre-move
+  ok   second undo restores empty model
+  ok   both states on redo stack
+  ok   new action clears redo
+  ok   no-op burst pushes nothing
+  ok   burst pushes pre-burst state
+  ok   burst stays one undo step
+Copied get (^V paste)
+  ok   copy keeps model
+  ok   copy detaches clone
+Pasted get (^Z undo)
+  ok   paste adds control
+  ok   paste offsets position
+  ok   paste fresh variable
+Pasted get (^Z undo)
+  ok   second paste offsets more
+  ok   pastes on undo stack
+  ok   undo removes last paste
+Cut get (^V paste, ^Z undo)
+  ok   cut removes control
+  ok   cut fills clipboard
+  ok   cut on undo stack
+Clipboard empty: ^C copy, ^X cut first
+  ok   paste with empty clipboard is a no-op
+  ok   snap off by default
+  ok   snap 0,0 keeps
+  ok   snap rounds to grid
+  ok   snap keeps aligned
+  ok   snap off is identity
+Snap to grid: ON (2x2)
+  ok   toggle turns on
+Snap to grid: OFF
+  ok   toggle turns off
+  ok   ghost snapped to grid
+  ok   move snapped to grid
+  ok   snap move never sticks
+  ok   toggle is not a history entry
+  FAIL snap move keeps full GET within odd bottom edge
+  FAIL snap move keeps full GET within odd right edge
+Generated gqotest1.prg
+  ok   gen+open writes the file
+  ok   gen+open enqueues on the IDE
+  ok   gen+open exits when clean
+Generated gqotest2.prg (this IDE cannot open it yet)
+  ok   gen+open without QueueOpen still writes
+  ok   gen+open without QueueOpen does not exit
+  ok   cut fil
+Clipboard empt
+  ok   paste w
+  ok   snap of
+  ok   snap 0,
+  ok   snap ro
+  ok   snap ke
+Snap to grid:
+Snap to grid:
+  ok   toggle
+  ok   ghost s
+  ok   move sn
+  ok   snap mo
+  ok   toggle
+  FAIL snap mo
+Generated gqot
+  ok   gen+ope
+Clipboard empt
+
+
+
+
+
+Snap to grid:
+Snap to grid:
+
+
+
+
+
+
+Generated gqot
+  ok   cut filษ[þ]ออออออออออออออออออ Test ออออออออออออออออออออออป
+Clipboard emptบ                                                 บ
+  ok   paste wบ                                                 บ
+  ok   snap ofบ                                                 บ
+  ok   snap 0,บ                                                 บ
+  ok   snap roบ                                                 บ
+  ok   snap keบ                                                 บ
+Snap to grid: บ                                                 บ
+Snap to grid: บ                                                 บ
+  ok   toggle บ                                                 บ
+  ok   ghost sบ                                                 บ
+  ok   move snบ                                                 บ
+  ok   snap moบ                                                 บ
+  ok   toggle บ                                                 บ
+  FAIL snap moบ                                                 บ
+Generated gqotบ                                                 บ
+  ok   gen+opeศอออออออออออออออออออออออออออออออออออออออออออออออออผ
+Sn
+Sn
+Sn
+Sn
+
+
+
+
+
+
+Generated gqotบ                                                 บ
+  ษ[þ]ออออออออออออออออออออออออออ Write failed อออออออออออออออออออออออออออออออป
+  บ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+Snบ                                                                          บ
+Snบ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+  ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+Sn
+Sn
+  ฺ[þ]ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤ Write failed ฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฟ
+  ณ                                                                          ณ
+  ณ                                                                          ณ
+  ณ                                                                          ณ
+  ณ                                                                          ณ
+Snณ                                                                          ณ
+Snณ                                                                          ณ
+  ณ                                                                          ณ
+  ณ                                                                          ณ
+  ณ                                                                          ณ
+  ณ                                                                          ณ
+  ณ                                                                          ณ
+  ภฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤู
+  ณ  Could not write gqono/such.prg: could not write: cannot create an exc   ณ
+  ณ  lusive temp next to gqono/such.prg; destination untouched               ณ
+  ณ                                                                          ณ
+Snณ                                                                          ณ
+Snณ                                                                          ณ
+  ณ                                                                          ณ
+  ณ                                                                          ณ
+
+  ณ  Up/Down scroll   Enter/Esc close                                        ณ
+  ษ[þ]ออออออออออออออออออออออออออ Write failed อออออออออออออออออออออออออออออออป
+  บ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+Snบ                                                                          บ
+Snบ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+  บ                                                                          บ
+  ศออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออผ
+  ษ[þ]ออออออออบ                                                 บออออออออออออป
+  บ           บ                                                 บ            บ
+  บ           บ                                                 บ            บ
+  บ           บ                                                 บ            บ
+  บ           บ                                                 บ            บ
+Snบ           บ                                                 บ            บ
+Snบ           บ                                                 บ            บ
+  บ           บ                                                 บ            บ
+  บ           บ                                                 บ            บ
+  บ           บ                                                 บ            บ
+  บ           บ                                                 บ            บ
+  บ           บ                                                 บ            บ
+  ศอออออออออออบ                                                 บออออออออออออผ
+Generated gqotบ                                                 บ
+
+
+
+
+F2 add Enter edit F4 insp F5 prg Del Arrows move ^Z/^Y F9 gen F10 save Esc
+Generate failed; design kept open. Choose another path and try again
+  ok   failed write enqueues nothing
+  ok   failed write does not exit
+  ok   ext down is K_DOWN
+  ok   ext up is K_UP
+  ok   ext left is K_LEFT
+  ok   ext right is K_RIGHT
+  ok   ext home
+  ok   ext end
+  ok   ext bs
+  ok   ext printable
+  ok   ext shift printable
+  ok   ext text flag
+  ok   ext bs gttrm
+  ok   ext del
+  ok   ext tab
+  ok   ext esc
+  ok   ext enter
+  ok   ext f2
+  ok   ext f12
+  ok   ext ctrl+x distinct
+  ok   ext ctrl+z
+  ok   ext ctrl+y
+  ok   ext ctrl+c
+  ok   ext ctrl+v
+  ok   ext ctrl+up
+  ok   ext ctrl+down
+  ok   ext ctrl+left priv
+  ok   ext ctrl+right priv
+  ok   ext shift+tab
+  ok   ext mouse low16
+  ok   classic passthrough
+  ok   ext unknown passthrough
+  ok   down and cut differ
+  ok   combo new model
+  ok   combo default items
+  ok   combo reserves popup area
+  ok   combo resizable
+  ok   combo resize both axes
+  ok   combo json retained
+  ok   combo json properties
+  ok   combo bound numeric variable
+  ok   combo native dropdown code
+  ok   combo dropdown eight-color palette
+  ok   combo items generated
+  ok   combo min height fits item plus frame
+  ok   combo empty safely skipped
+  ok   combo scrollbar warning h6
+  ok   combo scrollbar warning not h7
+  ok   popup keeps item count
+  ok   popup last bAction block
+  ok   popup stack clean
+  ok   popup rows not menubar
+  ฺฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฟ
+  ณk   classic passthrough              ณ
+  ณk   ext unknown passthrough          ณ
+  ณk   down and cut differ              ณ
+  ภฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤู
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ok   duplicate key cycles forward without execution
+  ok   duplicate key wraps without execution
+  ok   ext mouse low16
+  ok   classic passthrough
+  ok   ext unknown passthrough
+  ok   down and cut differ
+  ok   combo new model
+  ok   combo default items
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ok   duplicate Enter executes selected action
+  ฺฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฟ
+  ณk   ext unknown passthrough          ณ
+  ณk   down and cut differ              ณ
+  ณk   combo new model                  ณ
+  ภฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤู
+  ok   classic passthrough
+  ok   ext unknown passthrough
+  ok   down and cut differ
+  ok   combo new model
+  ok   combo default items
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ok   duplicate Esc cancels
+  ฺฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฟ
+  ณk   down and cut differ              ณ
+  ณk   combo new model                  ณ
+  ณk   combo default items              ณ
+  ภฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤฤู
+  ok   ext unknown passthrough
+  ok   down and cut differ
+  ok   combo new model
+  ok   combo default items
+  ok   combo resize both axes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ok   unique mnemonic still executes immediately
+  ok   submenu linked to parent
+  ok   submenu popped
+  ok   menubar row 0
+  ok   menubar left in stack
+  ok   pad equal visible width
+  ok   pad target width
+  ok   dlgcolor split back
+  ok   dlgcolor split text
+  ok   dlgcolor recombines
+  ok   dlgcolor focus default
+  ok   get palette default focus
+  ok   checkbox palette default focus
+  ok   button palette default focus
+  ok   radio palette default focus
+  ok   listbox palette default focus
+  ok   esc layering placing
+  ok   esc layering inspector
+  ok   esc layering dirty
+  ok   esc layering exit
+  ok   esc layering codeview
+  ok   esc layering inspector beats codeview
+  ok   esc layering placing beats codeview
+  ok   codeview find get line
+  ok   codeview find caption line
+  ok   codeview find none
+  ok   codeview find nil
+  ok   codeview top anchor
+  ok   codeview top first
+  ok   codeview top no anchor
+  ok   codeview top clamp end
+  ok   codeview top short file
+  ok   page steps full down
+  ok   page steps partial last
+  ok   page steps clamp last
+  ok   page steps clamp first
+  ok   page steps full up
+  ok   page steps partial first
+  ok   page trap armed depth 1
+  ok   page trap nested depth 2
+  ok   page trap nested keeps outer
+  ok   page trap disarmed
+  ok   page trap restores pgdn
+  ok   page trap restores pgup
+  ok   page trap consecutive restores
+  ok   page trap no idle leak
+  ok   page trap idle rearm while armed
+  ok   page trap restore after rearm
+Select a control first (Tab / click)
+  ok   copy without selection hints
+Select a control first (Tab / click)
+  ok   cut without selection hints
+  ok   get focus custom white
+  ok   get focus custom colored
+  ok   checkbox focus custom
+  ok   button focus custom white
+  ok   button focus custom colored
+  ok   radio focus custom
+  ok   listbox focus custom colored
+  ok   codegen trio dialog spec
+  ok   codegen trio get focus
+  ok   codegen legacy color
+  ok   codegen empty color falls back
+  ok   roundtrip back
+  ok   roundtrip text
+  ok   roundtrip focus
+  ok   roundtrip combined
+  ok   old json combined
+  ok   old json text derived
+  ok   old json back derived
+  ok   old json focus default
+  ok   bare json color fallback
+  ok   new button default action
+  ok   button action fallback on empty
+  ok   button action verbatim when set
+  ok   new button default style
+  ok   button shadow size
+  ok   button brackets size
+  ok   codegen brackets style clause
+  ok   codegen style clause on brackets button only
+  ok   style roundtrip shadow
+  ok   style roundtrip brackets
+  ok   style legacy default
+  ok   hittest shadow caption
+  ok   hittest shadow left inset
+  ok   hittest shadow past pads
+  ok   hittest shadow next rowon
+  ok   hittest brackets closing cellty
+  ok   hittest brackets past bracketet
+  ok   hittest custom pairstyle
+  ok   confirm layout width fits text
+  ok   confirm layout height and row
+  ok   confirm layout two buttons centered
+  ok   confirm layout single button min widthn only
+  ok   confirm layout single button centered
+  ok   confirm layout clamps to screen
+
+PASSED: 432  FAILED: 2

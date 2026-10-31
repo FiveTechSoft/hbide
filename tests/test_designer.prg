@@ -807,6 +807,15 @@ procedure Main()
    Check( "snap move never sticks", oD2:aControls[ 1 ][ "row" ] == 4 )
    Check( "toggle is not a history entry", Len( oD2:aUndo ) == 1 )
 
+   // Odd interior limits must win over snap rounding, as ClampGhost does.
+   oD2:nDlgWidth = 41
+   oD2:nDlgHeight = 14
+   oD2:aControls[ 1 ][ "row" ] = 10
+   oD2:aControls[ 1 ][ "col" ] = 28
+   oD2:MoveSelected( 1, 1 )
+   Check( "snap move keeps full GET within odd bottom edge", oD2:aControls[ 1 ][ "row" ] <= 11 )
+   Check( "snap move keeps full GET within odd right edge", oD2:aControls[ 1 ][ "col" ] <= 29 )
+
    // generate and open (QueueOpen contract)
    oD2 = HbDesigner():New( TStubIdeQueue() )
    oD2:cDlgName = "gqotest1"

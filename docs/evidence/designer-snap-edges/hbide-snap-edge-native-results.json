@@ -1,0 +1,63 @@
+{
+  "source": "9b5d9d089da59da4c663975237a4c1e4dbdfabba",
+  "models": {
+    "moved": {
+      "name": "Fixture",
+      "caption": "Fixture",
+      "width": 41,
+      "height": 14,
+      "color": "W+/W",
+      "colortext": "W+",
+      "colorback": "W",
+      "colorfocus": "W+/B",
+      "controls": [
+        {
+          "type": "get",
+          "row": 11,
+          "col": 29,
+          "width": 10,
+          "variable": "CVAR1"
+        }
+      ]
+    },
+    "undo": {
+      "name": "Fixture",
+      "caption": "Fixture",
+      "width": 41,
+      "height": 14,
+      "color": "W+/W",
+      "colortext": "W+",
+      "colorback": "W",
+      "colorfocus": "W+/B",
+      "controls": [
+        {
+          "type": "get",
+          "row": 10,
+          "col": 28,
+          "width": 10,
+          "variable": "CVAR1"
+        }
+      ]
+    },
+    "redo": {
+      "name": "Fixture",
+      "caption": "Fixture",
+      "width": 41,
+      "height": 14,
+      "color": "W+/W",
+      "colortext": "W+",
+      "colorback": "W",
+      "colorfocus": "W+/B",
+      "controls": [
+        {
+          "type": "get",
+          "row": 11,
+          "col": 29,
+          "width": 10,
+          "variable": "CVAR1"
+        }
+      ]
+    }
+  },
+  "scope": "NativeLinux120x40arrows SnapON oddedge GETfit,UndoRedo exact; not drag/pixelsuntilinspection/Windows."
+}

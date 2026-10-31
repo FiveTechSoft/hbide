@@ -2244,3 +2244,13 @@ independiente, no se asume ejecutado por vincular archivo.
 Cleana16b3eaWindowpopup16+MonitorMouseScroll7PASSsameIDE9f23f866,
 15inventory33docs. docs/evidence/linux-window-layout-popup.json conserva
 buildreceipt y logs. No se declara aceptacion pixel ni modelo layout nuevo.
+
+## 31 octubre Q29: Snap no sale del dialogo en bordes impares
+
+Antesmovimientoclamp->round permiteGETrow12col30 conmax11/29, modelo
+432PASS2FAIL. Despuesround->reclamp teclado+drag; ClampGhost ya lo hacia.
+21modelosPASSdirty186bdbd1, PTY6PASS tras corregir harness: Gduplicado
+requiereEnter y primer intento5/6 no era productofallo. Capturasnativas
+inspeccionadas120x40,GETcompletoalbordeyUndo10/28,RedoJSONexacto.
+No autogrow/politicaoversized/dragcertificado/Windows.98contratosmenu
+vinculados de116,runner124=123PTYmodes+guard,no124funcionesPASS.

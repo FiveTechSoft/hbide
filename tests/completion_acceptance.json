@@ -807,6 +807,14 @@
         "test_debug_layout.prg"
       ],
       "contract": "Real Window popup mnemonic dispatch in bounded Linux fixture. Tile restores iconized source painter, focus cycling retains caption, Resume serializes all twelve locals unchanged except intended increment. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise."
+    },
+    "DSN-014": {
+      "expected_label": "Snap to grid  F7",
+      "tests": [
+        "test_designer.prg",
+        "test_designer_snap_edges_pty.py"
+      ],
+      "contract": "Real F2 G duplicated mnemonic plus Enter enables Snap; arrows on existing width10 GET inside41x14 dialog round then clamp to odd edges11/29. F10 exact fit/dimensions/binding, UndoRedo complete models. Separate native120x40 captures inspected at edge and Undo; drag change shares clamp but not covered by this keyboard fixture. No oversized edit policy, all controls or Windows acceptance."
     }
   },
   "modal_contracts": [

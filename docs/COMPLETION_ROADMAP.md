@@ -139,3 +139,11 @@ El registro conserva las discrepancias para que el roadmap no herede estados
 obsoletos de las notas del 25-26 de octubre.
 
 Nota31Oct: EOL149era ejecuciones; bloqueUTF8word8duplicado se retira,141checks del modelo. Historial preservado, no149casos distintos.
+
+### Q29 - Snap en limites impares
+
+MoveSelected y DragControl reclampan despues de redondear, como ClampGhost.
+GET10dialog41x14 antesrow12col30 fuera delinterior; despues11/29.
+Modelo432PASS2FAILantes, PTY6 y21modelosdespues; pendiente cleanrevision
+en ledger. Nativo120x40capturas borde/Undo inspeccionadas. No politica
+oversized ni validacion drag/global/Windows.

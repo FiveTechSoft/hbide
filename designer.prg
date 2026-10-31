@@ -853,9 +853,10 @@ METHOD MoveSelected( nDRow, nDCol ) CLASS HbDesigner
       endif
       oCtrl[ "row" ] = Max( 0, Min( nMaxRow, oCtrl[ "row" ] + nDRow ) )
       oCtrl[ "col" ] = Max( 0, Min( nMaxCol, oCtrl[ "col" ] + nDCol ) )
+      // Rounding up at an odd edge must not move outside the interior.
       if ::lSnap
-         oCtrl[ "row" ] = ::SnapPos( oCtrl[ "row" ], oCtrl[ "col" ] )[ 1 ]
-         oCtrl[ "col" ] = ::SnapPos( oCtrl[ "row" ], oCtrl[ "col" ] )[ 2 ]
+         oCtrl[ "row" ] = Max( 0, Min( nMaxRow, ::SnapPos( oCtrl[ "row" ], oCtrl[ "col" ] )[ 1 ] ) )
+         oCtrl[ "col" ] = Max( 0, Min( nMaxCol, ::SnapPos( oCtrl[ "row" ], oCtrl[ "col" ] )[ 2 ] ) )
       endif
       ::CommitBurst()
       ::lDirty = .T.
@@ -929,8 +930,8 @@ METHOD DragControl( nIndex, nMRow, nMCol ) CLASS HbDesigner
       nNewRow = Max( 0, Min( nMaxRow, MRow() - ::oWnd:nTop - 1 - nOffR + ::nViewRow ) )
       nNewCol = Max( 0, Min( nMaxCol, MCol() - ::oWnd:nLeft - 1 - nOffC + ::nViewCol ) )
       if ::lSnap
-         nNewRow = DsnSnapTo( nNewRow, DSN_SNAP_ROW )
-         nNewCol = DsnSnapTo( nNewCol, DSN_SNAP_COL )
+         nNewRow = Max( 0, Min( nMaxRow, DsnSnapTo( nNewRow, DSN_SNAP_ROW ) ) )
+         nNewCol = Max( 0, Min( nMaxCol, DsnSnapTo( nNewCol, DSN_SNAP_COL ) ) )
       endif
       if nNewRow != oCtrl[ "row" ] .or. nNewCol != oCtrl[ "col" ]
          oCtrl[ "row" ] = nNewRow
