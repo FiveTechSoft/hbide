@@ -68,6 +68,9 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q44 | Escribir sobre selección absorbía escritura anterior en Undo. | 2fcc82b pasa selección previa a RecordEdit como frontera explícita. Antes5PASS2FAIL; clean Selection7/Cut7/NoChange9/Changed5 mismo128d0816+21modelos(87repaint)PASS. NativeUndoXalpha/RedoXYpha inspeccionados. docs/evidence/linux-selection-undo-boundary.json. No agrupación universal ni Windows. |
+| Q43 | Cut absorbía escritura anterior en Undo. | 1c46903 marca Cut como operación separada; clean Cut7/Changed5/Boundary6/Block9 mismoadaf68d6+21modelosPASS. NativeUndoXalpha/RedoXpha inspeccionados. docs/evidence/linux-cut-undo-boundary.json. |
+| Q42 | Replace conservaba selección de texto anterior. | 1dba6ee limpia rango sólo si cambia salida. Clean Changed5/Identity3/Boundary6/Spaces10 mismo05c99a2b+21modelosPASS; nativeomXega/Undoomega inspeccionados. Extensión6a85950NoChange9 conserva rango trasCancel/identidad/sinmatches; sin nuevo fix. docs/evidence/linux-replace-selection.json y linux-replace-nochange-selection.json. |
 | Q41 | Clipboard interno no cruzaba documentos. | 764472e comparte cClipboard entre instancias; Undo/Redo siguen porbuffer. Copy/Paste6 y4model checks, nativebeta/alpha/Undoinspeccionados. ExtensionesClose8/Block9cubren Cut,cierre/New,EOLmixto. No OSclipboard/Windows. docs/evidence/linux-clipboard-multidoc.json, linux-clipboard-lifetime.json y linux-clipboard-block.json. |
 | Q40 | Duplicate Line conservaba selección antigua. | 0fa7d14 limpia rango antes de duplicar; antes5/6PTY por borrado de bloque al escribir, después6PASS+4model checks. Native120x40 copia/Undo inspeccionados. Sin cambio Cut niWindows. docs/evidence/linux-duplicate-selection.json. |
 | Q39 | OVR idéntico ensuciaba sin cambiar bytes. | a4857f7 activa dirty sólo si cambia línea. Antes2/3PTY, después3PASS+4model checks cursor/redo. NativeOVRcol2/Close sinprompt inspeccionados. No contrato global de no-op. docs/evidence/linux-overtype-identity.json. |
@@ -117,6 +120,22 @@ Ledger `docs/evidence/linux-editor-clipboard-joint.json`. Sustituye la conjunta
 No son147modos globales ni cierreM1/Windows. Runner147=146modosPTY+guard.
 Candidate8 export513e9b9 incluyeQ39-Q41:8smokes+6extrasPASS en binarioexacto
 4b4a5ca9. No release/instalador/licencias/Windows ni matrizcompleta.
+
+### Corte posterior Q42-Q44
+
+Runner153entradas=152modosPTY+guard estático al corteQ44; esto no es
+153funciones aceptadas ni matriz completa. Evidencia conjuntaQ44 incluye
+sólo sus cuatro suites y21modelos, sin heredar las doce suites de7b7f4af.
+ClipboardUTF8 suma modo byte-exacto y modo terminalC.UTF-8 con ancho
+anunciado correcto: café/niño nativos inspeccionados, no Unicode universal.
+Ledgers linux-clipboard-utf8.json y linux-clipboard-utf8-terminal.json.
+
+CandidatoLinux9 export6a85950 stripped2908eae5 pasa8smokes estándar y
+Cut7/Changed5/NoChange9/UTF8Terminal10/Block9 sobre mismo binario inalterado.
+Ledger linux-candidate-cut-replace.json. PredateQ44; no release, instalador,
+licencias resueltas, Windows, matriz global o nueva prueba de determinismo.
+Siete hitos conservan estados: cero cerrados, uno en curso, cuatro parciales,
+dos pendientes. Decisiones oversizededit/filenameUndoLoad y límiteM2 intactos.
 
 ## Ampliaciones que no se confunden con cierre probado
 

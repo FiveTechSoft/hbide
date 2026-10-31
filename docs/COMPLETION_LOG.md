@@ -2751,3 +2751,11 @@ Native120x40UndoXalpha/RedoXYpha actual pixels inspected with full lower
 borders. Ledger linux-selection-undo-boundary.json. One bounded build/test
 step completed before combined command timeout during capture stage; capture
 then performed separately, no acceptance tests retried. No global/Windows claim.
+
+## Extension Q44 - Delete/Backspace/Enter seleccionados
+
+Nuevo harness19checks de acciones destructivas marcadas: bytes exactos,
+Undo conservaX previo, Redo, escritura posterior deshecha por separado,
+restauracion original. Local19PASS sin cambiar producto. Runner154entradas=
+153modosPTY+guard. Roadmap reconciliaQ42-Q44, UTF8 y candidate9 histórico.
+Aceptación limpia se registra después; no nuevas capturas ni fix.

@@ -214,9 +214,11 @@
         "test_editor_eol.prg",
         "test_multidoc_pty.py",
         "test_edit_menu_pty.py",
-        "test_replace_undo_boundary_pty.py"
+        "test_replace_undo_boundary_pty.py",
+        "test_selection_undo_boundary_pty.py",
+        "test_selection_destructive_boundary_pty.py"
       ],
-      "contract": "Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion.",
+      "contract": "Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu.",
       "expected_label": "Redo           Ctrl+U"
     },
     "IDE-011": {
@@ -286,9 +288,11 @@
     },
     "IDE-010": {
       "tests": [
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_selection_undo_boundary_pty.py",
+        "test_selection_destructive_boundary_pty.py"
       ],
-      "contract": "Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths.",
+      "contract": "Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu.",
       "expected_label": "Copy"
     },
     "IDE-018": {
