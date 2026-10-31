@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q82 | GoToFunction reconoce CREATE CLASS dehbclass.ch. | Fixturecompiladaantes1PASS2FAIL,aliasacotadoycontinuacion,4guardas; linux-navigation-create-class.json. No macrosgenerales/Windows/global. |
 | Q81 | GoToFunction incluye declaraciones partidas con ;. | Fixture hbmk2valida, antes1PASS2FAIL; joinacotado conserva primera linea,5guardas nuevas. Evidencia linux-navigation-declaration-continuation.json. ExtensioncompactaFUNCTION;compiladavalida,antes1PASS2FAIL;3guardasymodoPTY,linux-navigation-declaration-compact.json. ExtensionSTAT;compiladavalida,antes2PASS1FAILsalto;5guardas,linux-navigation-declaration-static.json. No preprocesadorgeneral/candidatoC17actualizado/matrizglobal. |
 | C17 | Candidato Linux temporal actualizado hastaQ80. | Export990b8ad,8smoke+12modosrecientes sobrebinarioexacto39c990e1,visualQ80nativoinspeccionado. Evidencia linux-candidate-recent-navigation.json; no release/licencias/Windows/instalacion/matrizglobal. |
 | Q80 | GoToFunction conserva contexto de indice tras comentario terminado. | Fixture compilada, antes2PASS1FAIL;5guardas nuevas para nombre/doblecomentario/retorno/string yRETURNliteral. Evidencia linux-navigation-array-gap-comment.json; no lexercompleto/matrizglobal. |

@@ -101,6 +101,8 @@ FUNCTION HBIDE_ScanProcs( cText )
             ENDIF
             cName := aTok[ 3 ]
          ENDIF
+      ELSEIF cT1 == "CREATE" .AND. cT2 == "CLASS" .AND. Len( aTok ) >= 3
+         cKind := "class"; cName := aTok[3]
       ELSEIF cT1 == "CLASS" .AND. Len( aTok ) >= 2
          // hbclass.ch aliases for members, not class declarations.
          IF cT2 == "VAR" .OR. cT2 == "METHOD"
@@ -129,7 +131,7 @@ STATIC FUNCTION HBIDE_NavDeclStart( cLine )
    ENDIF
    c := Upper( a[1] )
    RETURN HBIDE_IsKw(c,"FUNCTION") .OR. HBIDE_IsKw(c,"PROCEDURE") .OR. ;
-      HBIDE_IsKw(c,"STATIC") .OR. c == "INIT" .OR. c == "EXIT" .OR. c == "METHOD" .OR. c == "CLASS"
+      HBIDE_IsKw(c,"STATIC") .OR. c == "INIT" .OR. c == "EXIT" .OR. c == "METHOD" .OR. c == "CLASS" .OR. c == "CREATE"
 
 // Match the raw C-dump terminator without running Harbour comment state.
 // hb_pp_hasCommand accepts trailing comments or a command separator.

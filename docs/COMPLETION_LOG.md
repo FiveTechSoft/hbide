@@ -3397,3 +3397,10 @@ line4 instead of modifierline3 (before2PASS1FAIL). Recognize four-to-six
 letter STATIC prefix in continuation-start and classifier, not arbitrary
 substring. Five model guards STAT/STATI/STATIC, singleline and TICnegative.
 Evidence linux-navigation-declaration-static.json follows.
+
+## Q82 - CREATE CLASS navigation alias
+
+Compiler-valid hbclass.ch CREATE CLASS Target omitted from GoToFunction,
+before1PASS2FAIL. Recognize explicit alias and bounded CREATE; continuation.
+Four guards include other CREATEcommands and CLASS VAR/METHOD negatives.
+No arbitrary macro expansion. linux-navigation-create-class.json follows.
