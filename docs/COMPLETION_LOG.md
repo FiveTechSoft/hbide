@@ -2084,3 +2084,7 @@ Dos fixtures reales antes10/12, sin crash ni mutacion: fallo de feedback,
 no perdida de datos. Ahora alerta Array is empty/Hash is empty, conservando
 el mismo modelo y regreso al Monitor. No permite agregar elementos ni cambia
 politica readonly. Pantallas y log previos retenidos.
+
+53e20eblimpio ObjectEmpty12+TopEmpty12+LongObject8PASS mismoIDE,
+20modelos15inventario33docsPASS. Native120x40ambasalertas inspeccionadas,
+bordes completos y Resume valores{}y{=>}exactos. NoWindows/cierreM3.

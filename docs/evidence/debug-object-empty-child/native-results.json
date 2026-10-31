@@ -1,0 +1,8 @@
+{
+  "source": "53e20eb635eaef0089fdf6ea5193f026a0d28231",
+  "checks": [
+    "array empty alert,Resume{}",
+    "hash empty alert,Resume{=>}"
+  ],
+  "scope": "Native Linux terminal120x40 empty child properties; not Windows."
+}
