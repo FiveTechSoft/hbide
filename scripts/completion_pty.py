@@ -105,12 +105,32 @@ CASES = {
     # Pure parser import: Commands is a separate explicit case.
     'debug-exits': ('test_debug_exit_paths_pty.py', [], 180),
 }
+def source_snapshot():
+    paths = subprocess.check_output(['git','ls-files','-z'], cwd=ROOT).decode().split('\0')
+    h = hashlib.sha256()
+    for rel in sorted(p for p in paths if p):
+        path = ROOT / rel
+        h.update(rel.encode() + b'\0')
+        h.update(path.read_bytes() if path.is_file() else b'<missing>')
+        h.update(b'\0')
+    return dict(source=subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT, text=True).strip(),
+                tracked_changes=subprocess.check_output(['git','status','--porcelain','--untracked-files=no'], cwd=ROOT, text=True),
+                tracked_snapshot_sha256=h.hexdigest())
+
+def validate_receipt(receipt, state, binary_hash):
+    for key in ('source','tracked_changes','tracked_snapshot_sha256'):
+        if receipt.get(key) != state[key]:
+            raise ValueError('build receipt does not match current '+key+'; rebuild')
+    if receipt.get('binary_sha256') != binary_hash:
+        raise ValueError('build receipt does not match binary hash; rebuild')
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--case', action='append', choices=CASES)
     p.add_argument('--list', action='store_true')
     p.add_argument('--output', type=pathlib.Path)
     p.add_argument('--reuse-build', action='store_true', help='use an already verified current-source binary; default rebuilds')
+    p.add_argument('--build-receipt', type=pathlib.Path, help='reuse receipt from a previous fresh run; default OUTPUT/build-identity.json')
     a = p.parse_args()
     if a.list:
         for name, (script, args, ceiling) in CASES.items():
@@ -121,6 +141,8 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     # Local harnesses are now path-relative, but older ones still set their
     # own toolchain. Keep the caller's PATH authoritative.
+    before_build = source_snapshot()
+    receipt_path = a.build_receipt or out/'build-identity.json'
     if not a.reuse_build:
         compiler = shutil.which('hbmk2')
         if not compiler:
@@ -131,10 +153,22 @@ def main():
             p.error('fresh build failed: '+str(out/'build.log'))
     if not binary.is_file():
         p.error('hbide binary missing')
-    source = subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT, text=True).strip()
-    dirty = subprocess.check_output(['git','status','--porcelain','--untracked-files=no'], cwd=ROOT, text=True)
-    identity = dict(source=source, tracked_changes=dirty, binary_sha256=hashlib.sha256(binary.read_bytes()).hexdigest(),
-                    platform=sys.platform, build='reused_explicitly' if a.reuse_build else 'fresh', scope='Linux PTY only; not full visual/Windows acceptance')
+    state = source_snapshot()
+    binary_hash = hashlib.sha256(binary.read_bytes()).hexdigest()
+    if a.reuse_build:
+        try:
+            receipt = json.loads(receipt_path.read_text())
+            validate_receipt(receipt, state, binary_hash)
+        except (OSError, ValueError, KeyError) as e:
+            p.error('unverified reuse: '+str(e))
+    else:
+        if state != before_build:
+            p.error('source changed during build; no receipt issued')
+        receipt = dict(**state, binary_sha256=binary_hash, built_at=time.time())
+        receipt_path.write_text(json.dumps(receipt, indent=2)+'\n')
+    source, dirty = state['source'], state['tracked_changes']
+    identity = dict(**state, binary_sha256=binary_hash, build_receipt=str(receipt_path),
+                    platform=sys.platform, build='reused_verified' if a.reuse_build else 'fresh', scope='Linux PTY only; not full visual/Windows acceptance')
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1', HBIDE_BIN=str(binary))
     identity['runner_sha256'] = hashlib.sha256(pathlib.Path(__file__).read_bytes()).hexdigest()
     failed = False
@@ -171,7 +205,7 @@ def main():
         printed_fail = any(line.startswith(('FAIL ', 'FAIL:', 'FAILED:')) for line in text.splitlines())
         end_source = subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT, text=True).strip()
         end_dirty = subprocess.check_output(['git','status','--porcelain','--untracked-files=no'], cwd=ROOT, text=True)
-        changed = end_source != source or end_dirty != dirty or hashlib.sha256(binary.read_bytes()).hexdigest() != identity['binary_sha256']
+        changed = source_snapshot() != state or end_source != source or end_dirty != dirty or hashlib.sha256(binary.read_bytes()).hexdigest() != identity['binary_sha256']
         result = dict(**identity, case=name, command=argv, started=start, seconds=round(time.time()-start,2),
                       exit_code=code, printed_failure=printed_fail, source_or_binary_changed=changed,
                       test_sha256=hashlib.sha256((ROOT/'tests'/script).read_bytes()).hexdigest(), log=str(logpath))

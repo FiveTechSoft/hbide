@@ -1737,3 +1737,13 @@ de caracteres; escribir/Cut/Copy operan sobre la palabra exacta y conservan
 TAB/CRLF/LF, Undo/Redo restauran bytes, Copy limpia mark y clic logico sobre
 espacio quita seleccion previa. No declara gestos UTF8 nativos ni todas las
 reglas de identificador Unicode. Sin cambio de producto ni politica de fuente.
+
+## 31 octubre: reuse-build exige prueba de identidad
+
+El runner podia etiquetar HEAD aunque el binario reutilizado fuese anterior.
+Ahora un build fresco emite build-identity.json con revision, estado, hash de
+bytes tracked y binario; --reuse-build valida todos antes de ejecutar. Puede
+usar --build-receipt de otra carpeta. Cambios durante build no emiten recibo;
+cambios durante prueba invalidan resultado. Tests de validacion rechazan
+campos ausentes y fuente/dirty/bytes/binario distintos. Evidencia historica
+baeda47 conserva su procedencia comprobada, no se reescribe retroactivamente.
