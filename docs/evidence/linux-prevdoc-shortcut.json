@@ -1,0 +1,95 @@
+{
+  "scope": "Q109 xtermCtrlShiftF6 missinggttrmmap corrected withlocalHarbourADDKEYMAP;nototherterminals/nativeWindows/allkeys/globalmatrix/milestone.",
+  "source": "c1bba4f28743e900fde5ad54162d353875805826",
+  "binary_sha256": "8509ce1101a9f8c1e22d658ed8de6da8522b1be1626ae1b0d7ec934833d03f7d",
+  "before_log": "PASS Third of three opened files active\nFAIL CtrlShiftF6 goes third to second, not forward\nFAIL Typing F2 saves exact second destination\nFAIL Previous second to first\nFAIL Previous first wraps to original untitled\nPASS Previous untitled wraps to third\nFAIL Return to second retains modified text\nFAIL Undo remains second-only exact\nFAIL CtrlF6 forward returns third\nTOTAL 2 PASS 7 FAIL\nArtifacts /tmp/hbide-edit-menu-c7ir117c\n",
+  "source_grounding": "Harbourgttrm.c2736 mapsESC[17;5~only. ADDKEYMAP3988supports extendedkey; hbapigt.hHB_INKEY_NEW_KEY encoding0x41000000|(flags<<16)|value used inHarbour, noChelper/toolchainpatch.",
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c1bba4f28743e900fde5ad54162d353875805826",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "5e3e5c247713e56fd564075a35b3624031967ce8dd360c071b8baae9494d75f1",
+      "binary_sha256": "8509ce1101a9f8c1e22d658ed8de6da8522b1be1626ae1b0d7ec934833d03f7d",
+      "build_receipt": "/tmp/hbide-prevdoc-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "eee6094e3fd0fb62d2d7130c256449949c1cd4ad09a127859c7e85972c875761",
+      "case": "prevdoc-shortcut",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_prevdoc_shortcut_pty.py"
+      ],
+      "started": 1793489236.2818735,
+      "seconds": 10.53,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "d00412cafc1ed5be0a385474a50818340f015f3f6e3a5b2406bb1d2cbc6def38",
+      "log": "/tmp/hbide-prevdoc-clean/prevdoc-shortcut-1793489236281869833.log",
+      "log_text": "PASS Third of three opened files active\nPASS CtrlShiftF6 goes third to second, not forward\nPASS Typing F2 saves exact second destination\nPASS Previous second to first\nPASS Previous first wraps to third\nPASS Return to second retains modified text\nPASS Undo remains second-only exact\nPASS CtrlF6 forward returns third\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-o1opyn_u\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c1bba4f28743e900fde5ad54162d353875805826",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "5e3e5c247713e56fd564075a35b3624031967ce8dd360c071b8baae9494d75f1",
+      "binary_sha256": "8509ce1101a9f8c1e22d658ed8de6da8522b1be1626ae1b0d7ec934833d03f7d",
+      "build_receipt": "/tmp/hbide-prevdoc-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "eee6094e3fd0fb62d2d7130c256449949c1cd4ad09a127859c7e85972c875761",
+      "case": "multidoc",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_multidoc_pty.py"
+      ],
+      "started": 1793489246.8157282,
+      "seconds": 60.06,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "4441eda434c5d55b3a2736b32759589977f38ef4460f568f45cedfdb2d59764d",
+      "log": "/tmp/hbide-prevdoc-clean/multidoc-1793489246815724351.log",
+      "log_text": "PASS boot caption noname\nPASS doc1 marker visible\nPASS doc2 marker visible after New\nPASS doc1 marker hidden in doc2\nPASS Ctrl+F6 back to doc1 shows its text\nPASS doc2 text hidden in doc1\nPASS undo reverts doc1 burst\nPASS redo restores doc1 burst\nPASS doc2 burst survives doc1 undo\nPASS doc1 cursor preserved (row 1)\nPASS doc1 BP gutters red at lines 1 and 3\nPASS doc1 line 2 has no BP\nPASS doc2 shows no doc1 BPs\nPASS doc2 BP gutter red at line 5\nPASS doc2 line 1 has no BP\nPASS doc1 BPs survive doc2 editing\nPASS doc1 shows no doc2 BP\nPASS selection survives doc switch (X replaces fun)\nPASS selection-test undo restores line\nPASS Open dialog opened\nPASS fixture opened as its own doc\nPASS PgDn scrolls fixture (top gutter > 1)\nPASS doc scroll preserved across switches\nPASS two journals for two dirty noname docs\nPASS two targets\nPASS journal keys distinct per doc\nPASS recovery prompt on restart\nPASS recovery dialogs cleared\nPASS both recovered buffers live as separate docs\nPASS SaveAs dialog opened\nPASS first SaveAs done (caption dup.prg)\nPASS SaveAs collision refused\nPASS close dirty doc prompts\nPASS after close, a doc remains\nPASS ESC with dirty doc prompts\nPASS cancel keeps IDE alive\nPASS IDE exits after reviewing all docs\nTOTAL 37 PASS 0 FAIL\nREC DIR /tmp/hbide-md-rec-g5bf527d\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c1bba4f28743e900fde5ad54162d353875805826",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "5e3e5c247713e56fd564075a35b3624031967ce8dd360c071b8baae9494d75f1",
+      "binary_sha256": "8509ce1101a9f8c1e22d658ed8de6da8522b1be1626ae1b0d7ec934833d03f7d",
+      "build_receipt": "/tmp/hbide-prevdoc-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "eee6094e3fd0fb62d2d7130c256449949c1cd4ad09a127859c7e85972c875761",
+      "case": "find-f5-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_find_f5_selection_pty.py"
+      ],
+      "started": 1793489306.8799675,
+      "seconds": 18.74,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "31dc55106d51b9955c82934a9c5e8a2977fec02e4472d4c57cc3402bde20eb07",
+      "log": "/tmp/hbide-prevdoc-clean/find-f5-selection-1793489306879964406.log",
+      "log_text": "PASS Open requested fixture\nPASS Typing after Find inserts at match without old range\nPASS Undo Find-following typing exact\nPASS Cancelled Find retains old range\nPASS Undo after cancelled Find exact\nPASS Missing Find retains old range\nPASS Undo after missing Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-fnhewwod\n"
+    }
+  ],
+  "inventory_log": "................................\n----------------------------------------------------------------------\nRan 32 tests in 0.301s\n\nOK\n",
+  "development": "Firstfixture2PASS7FAILrawsequenceinserted17;6~; assumedextrauntitled correctedbecauseOpenreplacesinitialbuffer. hb_keyNewattempt linkfailedunavailable;used documentedCheaderbitencodinginHarbour. Dirty8PASS then clean52PASSno retry/failure.",
+  "visual": {
+    "file": "hbide-prevdoc-native.png",
+    "sha256": "24dcd23362717e04edb4d42172aa127de39b6e088bf1b683cdbd72841a875777",
+    "inspection": "ActualnativeCtrlShiftF6 on120x40 threefiles,second.prgcaption/XSECOND/noescapetail/fullborders;F2exactsecond/otherfilesunchangedasserted."
+  },
+  "models": "Not rerun;inputstartupmapping/PTYscope."
+}

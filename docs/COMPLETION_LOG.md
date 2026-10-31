@@ -3743,3 +3743,16 @@ Development:firstunitcondition assertion split wronglyat.or.,1unitfailure;
 reconstructed fullsourcecontinuations31PASS. CleanPTYnofailure/retry.
 linux-inventory-multiline-dispatch.json. No productfix/pixels/modelrerun/
 Windows/global/hitoclosed.
+
+## Q109 - xterm CtrlShiftF6 previous document
+
+RealESC[17;6~wasabsentfromHarbourgttrmmap,inserted17;6~intobuffer.
+Before2PASS7FAIL;Openinitialuntitledreplacementassumptioncorrectedinfixture.
+LocalHarbourADDKEYMAP preserves F6CtrlShift extendedcode usinghbapigt.h
+encoding,noChelper/toolchainpatch. Initialhb_keyNewattemptlinkfailedbecause
+functionunavailable;headerencodingused,dirty8PASS. Sourcec1bba4fclean:
+PrevDoc8+multidoc37+F5Find7=52checksPASS32inventory34docs,no cleanfailure/
+retry. Native120x40actualshortcutsecond.prg/XSECOND/noescapetail/fullborders/
+F2exactsecondotherfilesunchanged inspected. linux-prevdoc-shortcut.json.
+No modelrerun/otherterminals/nativeWindows/global/hitoclosed. Q108historical
+NoCtrlShiftF6claimretained;newdispatchShiftlinkseparate.
