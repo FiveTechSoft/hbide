@@ -2065,3 +2065,13 @@ sin distinguir caja y se repite, no se borra el intento anterior.
 a8c0989limpio LongObject8+Getter6+Setter8PASS mismoIDE,20modelos actuales,
 15inventario33docsPASS. Native120x40numero987654321entero,Cancel99 conserva,
 Resume exacto y capturas completas inspeccionadas. NoWindows ni cierreM3.
+
+## 31 octubre: candidato Linux posterior a fixes de columnas y clipboard
+
+Export limpio6317d0e, build fuera del checkout y strip-debug conservando raw.
+SHA8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56.
+Ocho smokes estandar PASS, despues LongObject8/LongHash7/LongArray7/
+ClipboardCase18 PASS contra ese mismo binario, hashes previos/posteriores
+iguales, cuatro extras desde los tests del export. Dos pasos acotados.
+Manifest y extras en linux-candidate-containers-extra.json. No release,
+licencias/install portable/Windows/matriz112 ni nuevo determinismo.

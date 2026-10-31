@@ -1,0 +1,135 @@
+{
+  "scope": "Exported source6317d0eLinux candidate,8standard smokes then4additional fixtures against exact stripped binary8029e6bf, unchanged hashes before/after. Two bounded steps, not whole112matrix or release/license/portable/Windows clearance. Not a new determinism claim.",
+  "manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "6317d0ece40f6de0b3702c798700e038a8906b9d",
+    "archive_sha256": "724434e9c0acfd93f6e1ac1199f85720709d380e7d9f95969ecc28da29482858",
+    "dirty": false,
+    "started": 1793413596.8948095,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "036892183255330fe1330d5109f32d5bbe523bbfd8270ec458b913c93910adbb",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "a5e744ef346c1e7edb3ea361246c4a997f35fceef18c5ace9f3db51cd2faf4d5",
+    "release_status": "not cleared; source notice review required",
+    "unstripped_sha256": "31b8ef816a1924480e41aff7024ad841de24267ea1c4ad5dc0c312abee5d539a",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793413694.0592391
+  },
+  "extras": {
+    "initial_binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56",
+    "final_binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56",
+    "runs": [
+      {
+        "script": "test_debug_long_object_member_pty.py",
+        "args": [],
+        "exit": 0,
+        "reported_failure": false,
+        "seconds": 12.302056550979614,
+        "test_sha256": "4d20a3f3da7d98cc596a7e45df756d6ab9ab7e3d9f2a68f6d44e98df75bfa562",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56",
+        "summary": "TOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-s4rinlj6"
+      },
+      {
+        "script": "test_debug_long_hash_key_pty.py",
+        "args": [],
+        "exit": 0,
+        "reported_failure": false,
+        "seconds": 13.129961013793945,
+        "test_sha256": "485351bd030044458d22b71b17cbb009fe6be4e0ffb4f7460256f41932a0f279",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56",
+        "summary": "TOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-4v6x1mw1"
+      },
+      {
+        "script": "test_debug_long_hash_key_pty.py",
+        "args": [
+          "--array-child"
+        ],
+        "exit": 0,
+        "reported_failure": false,
+        "seconds": 13.131226778030396,
+        "test_sha256": "485351bd030044458d22b71b17cbb009fe6be4e0ffb4f7460256f41932a0f279",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56",
+        "summary": "TOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-txcwi5a7"
+      },
+      {
+        "script": "test_designer_clipboard_pty.py",
+        "args": [
+          "--case-insensitive"
+        ],
+        "exit": 0,
+        "reported_failure": false,
+        "seconds": 24.341543912887573,
+        "test_sha256": "1a5025ecea16014cf96b6b867f578f70d2813938aa28d991f927d48cab04579a",
+        "binary_sha256": "8029e6bfc008d774914126bdc7bddd3539dc4d66cd0e9649597e5cdd05d31f56",
+        "summary": "TOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-zzaqfr4a"
+      }
+    ]
+  }
+}
