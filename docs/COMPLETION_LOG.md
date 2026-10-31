@@ -2307,3 +2307,10 @@ no102funcionesaceptadas. Cleanrevisionyregresion siguen abajo.
 Clean23bd0afWorkAreas10Scopes16mismoIDE90a92c94y21modelosPASS,
 15inventory33docs. docs/evidence/linux-debug-workareas.json. Nativo
 precommit separado de buildlimpio; no herenciaWindows/global127.
+
+## Q30 Script tambien usa registroRDD
+
+--script corre mismoDBFfixture dosveces desdeRunScript, valorALPHA/record1/
+NAMEpadded/QTY11 exacto, retornoeditor sinloadererror yfuenteinalterada.
+ExploratorioScript5WorkAreas10mismoIDE PASS; sin nuevo cambio producto.
+Runner128=127PTYmodes+guard,no128funciones. No todoRDD/HRB niWindows.

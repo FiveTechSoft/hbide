@@ -120,6 +120,7 @@ CASES = {
     'debug-mouse': ('test_debug_mouse_pty.py', [], 120),
     'debug-value-modal': ('test_debug_value_modal_pty.py', [], 120),
     'debug-numeric-modal': ('test_debug_numeric_modal_pty.py', [], 120),
+    'script-dbf': ('test_debug_workareas_pty.py', ['--script'], 120),
     'debug-workareas': ('test_debug_workareas_pty.py', [], 120),
     'debug-monitor-scopes': ('test_debug_monitor_scopes_pty.py', [], 120),
     'debug-window-layout': ('test_debug_window_layout_pty.py', [], 120),
