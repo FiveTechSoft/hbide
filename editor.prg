@@ -310,6 +310,7 @@ METHOD ReplaceAll( cFind, cReplace ) CLASS HBSrcEdit
 
    LOCAL n, nPos, nFrom, cLine, cNew, nCount := 0
    LOCAL aOld := {}, aNew := {}
+   LOCAL lChanged := .F.
    LOCAL cFindU := Upper( cFind )
 
    // An all-space search is data, just as it is in FindText.
@@ -327,10 +328,12 @@ METHOD ReplaceAll( cFind, cReplace ) CLASS HBSrcEdit
          nFrom += nPos - 1 + Len( cFind )
          nCount++
       end
-      AAdd( aNew, cNew + SubStr( cLine, nFrom ) )
+      cNew += SubStr( cLine, nFrom )
+      lChanged := lChanged .or. ! HBIDE_StrEq( cNew, cLine )
+      AAdd( aNew, cNew )
    next
 
-   if nCount > 0
+   if lChanged
       for n = 1 to Len( ::aText )
          ::aText[ n ]:cText := aNew[ n ]
       next

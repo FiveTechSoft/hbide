@@ -2476,3 +2476,11 @@ Runner137=136PTY+guard. No otroscomandosundosplit niWindows/global.
 Clean880fae2Boundary6Spaces10EditMenu37sameIDEcfd57268PASSsinretry,
 21modelos15inventory33docsPASS. linux-replace-undo-boundary.json
 retieneidentity/logs y6newrepaintchecksnormaltypingfusion/cleanRedo.
+
+## Q35 Identity Replace no dirty falso
+
+alpha->alpha contaba1peromar cabadirtysinundo(antes2/3Closeprompt).
+Secompararesultadoexactoporlineaantesmutar;matchcountsiguesiendo1,
+nohistory/dirty/redoalterados. DespuesPTY3PASS+3newmodelchecks.
+Native120x40count1/Closevuelve noname sinpromptinspeccionados.
+Runner138=137PTY+guard. NoUnicodecaseexpansion/Windows/global.
