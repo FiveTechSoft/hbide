@@ -97,6 +97,12 @@ procedure Main()
  Check(Len(a)==0,'external function destructor binding not declaration',@nPass,@nFail)
  a:=HBIDE_ScanProcs('DESTRUCTOR;'+hb_eol()+'Cleanup() CLASS Demo')
  Check(Len(a)==1.and.a[1,1]=='Demo:Cleanup'.and.a[1,3]==1,'destructor continuation retains first line',@nPass,@nFail)
+ for each c in { 'NOTE /* ignored', 'note/* ignored', Chr(9)+'NoTe /* ignored' }
+ a:=HBIDE_ScanProcs('function Main()'+hb_eol()+c+hb_eol()+'function Target()')
+ Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==3,'NOTE line does not start block: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('NOTEBOOK := 1 /* real'+hb_eol()+'function Hidden()'+hb_eol()+'*/'+hb_eol()+'function Target()')
+ Check(Len(a)==1.and.a[1,1]=='Target','NOTE identifier prefix is not comment',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

@@ -3469,3 +3469,12 @@ This is all registered runner entries, not all behaviours/Windows or
 visual no-tearing proof. No newfix/pixels/candidate/NEXUSexecution.
 C18 remains export813d95d beforeQ86, does not inherit this acceptance.
 No license/install/determinism/globalmilestone closure inferred.
+
+## Q88 - physical-line NOTE comments
+
+Compiler-valid NOTE /* comment opened false block and hid Target.
+Before navigation1PASS2FAIL. Scanner/editor blockstate and paint treat
+NOTE as linecomment with identifier boundary; NOTEBOOK remains code.
+Four lexical and five repaint guards plus nav/colorPTY. Physical-line
+only, no statement-separator preprocessor handling.
+Evidence linux-editor-note-comment.json follows; Q87predatesfix.

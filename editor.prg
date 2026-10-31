@@ -954,7 +954,7 @@ METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
 
    local n := 1, nLen := Len( cText ), c, q
 
-   if ! lIn .and. Left( LTrim( StrTran( cText, Chr( 9 ), " " ) ), 1 ) == "*"
+   if ! lIn .and. ( Left( LTrim( StrTran( cText, Chr( 9 ), " " ) ), 1 ) == "*" .or. HBIDE_EditorNoteLine(cText) )
       return .F.
    endif
    while n <= nLen
@@ -1517,7 +1517,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
       // Check for line comment - color rest of line as comment
       elseif hb_USubStr( cLine, n, 2 ) == "//" .or. ;
              hb_USubStr( cLine, n, 2 ) == "&&" .or. ;
-             ( n == nCodeStart .and. hb_USubStr( cLine, n, 1 ) == "*" )
+             ( n == nCodeStart .and. ( hb_USubStr( cLine, n, 1 ) == "*" .or. HBIDE_EditorNoteLine(cLine) ) )
          cToken = hb_USubStr( cLine, n )
          n = hb_ULen( cLine ) + 1
          lInComment = .T.
@@ -2041,3 +2041,9 @@ return .F.
 STATIC FUNCTION HBIDE_BracketAssignment( cLine, nAt )
    LOCAL cBefore := RTrim( hb_ULeft( cLine, nAt - 1 ) )
 RETURN Right( cBefore, 2 ) == ":="
+
+// NOTE is a physical-line comment. Keep identifier prefixes as code.
+static function HBIDE_EditorNoteLine( cLine )
+   local c := LTrim( StrTran(cLine,Chr(9)," ") ), next := SubStr(c,5,1)
+return Upper(Left(c,4)) == "NOTE" .and. ;
+   ( Empty(next) .or. !(next $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_") )

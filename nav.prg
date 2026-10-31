@@ -160,10 +160,16 @@ STATIC FUNCTION HBIDE_NavEndDump( cLine )
    RETURN Empty( c ) .OR. Left( c, 1 ) == ";" .OR. ;
       Left( c, 2 ) == "//" .OR. Left( c, 2 ) == "&&" .OR. Left( c, 2 ) == "/*"
 
+// Physical-line NOTE comment only, not a NOTE-prefixed identifier.
+STATIC FUNCTION HBIDE_NavNoteLine( cLine )
+   LOCAL c := LTrim( StrTran(cLine,Chr(9)," ") ), next := SubStr(c,5,1)
+   RETURN Upper(Left(c,4)) == "NOTE" .AND. ;
+      ( Empty(next) .OR. !(next $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_") )
+
 // Strip comments and mask string contents without changing line count.
 STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
    LOCAL cOut := "", cContext := "", n := 1, c, q := "", lEscape := .F.
-   IF Left( LTrim( cLine ), 1 ) == "*" .AND. ! lBlock
+   IF ( Left( LTrim( cLine ), 1 ) == "*" .OR. HBIDE_NavNoteLine(cLine) ) .AND. ! lBlock
       RETURN ""
    ENDIF
    DO WHILE n <= Len( cLine )
