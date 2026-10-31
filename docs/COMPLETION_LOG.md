@@ -2317,3 +2317,12 @@ Runner128=127PTYmodes+guard,no128funciones. No todoRDD/HRB niWindows.
 
 Clean123a73cScriptDBF5WorkAreas10ScriptScreen7sameIDE56fb2196PASS.
 linux-script-dbf.jsonretieneidentity+logs;21modelsultima23bd0af.
+
+## 31 octubre candidateLinux con registroRDD
+
+Export6cfda9d strippedSHA81daf8ccd89fc1b1854712354193ad46ceb810edab85785ecebbbed04dcbd059.
+8smokesestandarPASS+6extrasWorkAreas10ScriptDBF5Snap6Drag6GET9Combo9PASS
+mismobinariohashantes/despuesinalterado. Dospasosacotadossininterrupcion.
+Manifest+logsdocs/evidence/linux-candidate-rdd-extras.json. No release,
+licenciaaclarada,Windows,instalador,nuevodeterminismo/global128. Localcandidate
+/tmp/hbide-linux-current-candidate-4,no distribucionautorizadaimplícita.

@@ -168,3 +168,13 @@ alias/estructura/status,paneles,Esc/F6 y ResumeALPHArecord1exacto. Antes1/10,
 despuesclean23bd0afWorkAreas10Scopes16sameIDE90a92c94+21modelosPASS;
 linux-debug-workareas.json. Native120x40dosalias
 inspeccionados. No implica catalogo completo HRB/RDD o Windows.
+
+### Q19 - Candidato con Q30 incluido
+
+Export6cfda9d strippedSHA
+`81daf8ccd89fc1b1854712354193ad46ceb810edab85785ecebbbed04dcbd059`.
+Ocho smokes estandar y seis extras sobre mismo binario inalterado:
+WorkAreas10ScriptDBF5Snap6Drag6GET9Combo9. Manifest+logs extras en
+linux-candidate-rdd-extras.json. No release/licencia/Windows/instalacion/
+determinismo ni matriz128completa. Sourceexport identificado, no herencia
+al HEADposterior.
