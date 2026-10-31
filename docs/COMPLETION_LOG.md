@@ -3066,5 +3066,9 @@ notglobalQ58closed/noflagchange/Windows/dirtybufferremappingclaim.
 
 Measured30missingcaretcallsover20MiBsource79ms;30kASCIIline155ms. Moved
 syntaxguardbeforesource read, no-tabexactfastpath, comparesrenderstream
-insteadofrepeatedstringconcatenation. Sameprobeafter0ms/2ms(thishostonly).
+insteadofrepeatedstringconcatenation. Sameprobeafter0ms/4ms(thishostonly).
 Two modelassertionslongline/missingevidence. No compilerpolicychange.
+
+Q58perfclean2687627 Caret6/Colon6/Message9PASSsamebinary+22models
+115repaint/15inventory34docsPASS. linux-gcc-caret-performance.json retains
+probe+before/aftertimes. No reruns/newpixels/generalperformanceclaim.
