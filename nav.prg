@@ -90,7 +90,7 @@ FUNCTION HBIDE_ScanProcs( cText )
                EXIT
             ENDIF
          NEXT
-      ELSEIF cT1 == "METHOD" .OR. cT1 == "ACCESS" .OR. cT1 == "ASSIGN"
+      ELSEIF cT1 == "METHOD" .OR. cT1 == "ACCESS" .OR. cT1 == "ASSIGN" .OR. cT1 == "DESTRUCTOR"
          // only the implementation form names its class: "METHOD x() CLASS c"
          cCls := ""
          FOR n := 3 TO Len( aTok )
@@ -139,7 +139,7 @@ STATIC FUNCTION HBIDE_NavDeclStart( cLine )
    ENDIF
    c := Upper( a[1] )
    RETURN HBIDE_IsKw(c,"FUNCTION") .OR. HBIDE_IsKw(c,"PROCEDURE") .OR. ;
-      HBIDE_IsKw(c,"STATIC") .OR. c == "INIT" .OR. c == "EXIT" .OR. c == "METHOD" .OR. c == "ACCESS" .OR. c == "ASSIGN" .OR. c == "CLASS" .OR. c == "CREATE"
+      HBIDE_IsKw(c,"STATIC") .OR. c == "INIT" .OR. c == "EXIT" .OR. c == "METHOD" .OR. c == "ACCESS" .OR. c == "ASSIGN" .OR. c == "DESTRUCTOR" .OR. c == "CLASS" .OR. c == "CREATE"
 
 // Match the raw C-dump terminator without running Harbour comment state.
 // hb_pp_hasCommand accepts trailing comments or a command separator.

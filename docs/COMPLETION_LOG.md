@@ -3448,3 +3448,10 @@ Actual native ASSIGNpicker/jump inspected on C18. C17superseded only
 as temporarycandidate. linux-candidate-navigation-aliases.json.
 Not release/install/license/Windows/determinism/tearing/globalmatrix.
 Q77 stays separately frozen531a6f1; no milestone closure inferred.
+
+## Q86 - explicit destructor method navigation
+
+Compiler-valid DESTRUCTOR Cleanup() CLASS Demo omitted (before1PASS2FAIL).
+Recognize explicit hbclass.ch implementation alias, not member declaration
+or external DESTRUCTOR FUNCTION binding. Four guards plus focused PTY.
+Evidence linux-navigation-destructor.json follows; no arbitrarymacros.
