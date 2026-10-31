@@ -2146,3 +2146,12 @@ accion limpia Redo. Todos los campos presentes salvo posicion/binding deben
 conservarse exactos. No es gesto PTY/pixels/runtime ni ejecucion de handlers;
 se incluyen campos no expuestos de esos tipos solo como datos de modelo.
 Runner de modelos ahora21, no21funciones ni cierreM4. Sin producto nuevo.
+
+## 31 octubre: clipboard PTY de siete tipos cargados
+
+63checks reales IDE: F12carga fixture JSON con cada tipo existente, Tab
+selecciona,Copy/dosPaste/Cut/UndoRedo/F10 persistencia exacta. Campos no
+binding/posicion, comillas/items/handlers y binding unico sin caja. No
+creacionF2de todoslos tipos ni escritura inspector de estos fixtures: son
+modelos cargados, no se presenta el JSON inyectado como gesto de edicion.
+No pixeles/runtime/ejecucionhandlers/Windows ni117aceptacionesglobales.
