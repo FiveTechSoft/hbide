@@ -1,6 +1,10 @@
 """Real IDE Ctrl+Shift+F6 previous-document dispatch. Linux PTY, not visual certification."""
+import argparse
 import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
-ROWS, COLS = 40, 120
+parser=argparse.ArgumentParser()
+parser.add_argument('--compact-256',action='store_true')
+args=parser.parse_args()
+ROWS, COLS = (25,80) if args.compact_256 else (40,120)
 BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
 class Scr:
     def __init__(self):
@@ -78,7 +82,7 @@ work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 target = work/'source.prg'
 original = b'alpha'
 target.write_bytes(original)
-env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
+env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm-256color' if args.compact_256 else 'xterm')
 pid, fd = pty.fork()
 if pid == 0:
     os.execve(BIN, [BIN], env)
