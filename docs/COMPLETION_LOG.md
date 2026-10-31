@@ -2326,3 +2326,13 @@ mismobinariohashantes/despuesinalterado. Dospasosacotadossininterrupcion.
 Manifest+logsdocs/evidence/linux-candidate-rdd-extras.json. No release,
 licenciaaclarada,Windows,instalador,nuevodeterminismo/global128. Localcandidate
 /tmp/hbide-linux-current-candidate-4,no distribucionautorizadaimplícita.
+
+## 31 octubre: ToCursor/Breakpoint popup efectos
+
+DosRunCursorparanen6/7conlocal61/101antesmutacion;PointBreakpointagrega8,
+Go detienecon151anteswrite,segundopopupquitaBP yGo escribe151exacto.
+FileResume no ejecutar, esvolververfuente segun upstream; primerharness
+lo confundio y esperaba NoBreakpoints inexistente. Se corrige harness,
+no producto. AssertionslistBPseanclan0)8module, no cualquier8decaption.
+10PASSexploratorio,104menucontracts/116no104funciones;runner129=128PTY+guard.
+NoFileResumecursorlocation acceptance ni invalidthread/multifile/Windows.

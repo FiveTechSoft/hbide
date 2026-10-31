@@ -62,12 +62,12 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-015 | Run | Step              F8 | hbdebug/dbgmenu.prg:113 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-016 | Run | Trace            F10 | hbdebug/dbgmenu.prg:114 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-017 | Run | Go                F5 | hbdebug/dbgmenu.prg:115 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-018 | Run | to Cursor         F7 | hbdebug/dbgmenu.prg:116 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-018 | Run | to Cursor         F7 | hbdebug/dbgmenu.prg:116 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-019 | Run | Next routine Ctrl-F5 | hbdebug/dbgmenu.prg:117 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-020 | Run | sPeed... | hbdebug/dbgmenu.prg:119 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-021 | Point | Watchpoint... | hbdebug/dbgmenu.prg:124 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-022 | Point | Tracepoint... | hbdebug/dbgmenu.prg:125 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-023 | Point | Breakpoint   F9 | hbdebug/dbgmenu.prg:126 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-023 | Point | Breakpoint   F9 | hbdebug/dbgmenu.prg:126 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-024 | Point | Delete... | hbdebug/dbgmenu.prg:127 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-025 | Monitor | Public | hbdebug/dbgmenu.prg:132 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-026 | Monitor | priVate | hbdebug/dbgmenu.prg:136 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -229,6 +229,8 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-026: Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance. Pruebas: [test_debug_monitor_scopes_pty.py](../tests/test_debug_monitor_scopes_pty.py)
 - DBG-027: Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance. Pruebas: [test_debug_monitor_scopes_pty.py](../tests/test_debug_monitor_scopes_pty.py)
 - DBG-030: Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance. Pruebas: [test_debug_monitor_scopes_pty.py](../tests/test_debug_monitor_scopes_pty.py)
+- DBG-018: Run to Cursor popup twice stops before exact mutations: local61 atline6 then101 atline7, before output file exists. Source bytes unchanged. File Resume is intentionally not execution (it resumes viewing source); only nonexecution is asserted here, not source cursor location. Bounded singlemodule Linux fixture, no invalidtarget/multifile/pixels/Windows. Pruebas: [test_debug_cursor_popup_pty.py](../tests/test_debug_cursor_popup_pty.py)
+- DBG-023: Point Breakpoint popup adds line8 to actual list and second invocation removes it; Run Go stops before output with local151, subsequent Go writes151 exactly. Source bytes unchanged. File Resume is intentionally not execution (it resumes viewing source); only nonexecution is asserted here, not source cursor location. Bounded singlemodule Linux fixture, no invalidtarget/multifile/pixels/Windows. Pruebas: [test_debug_cursor_popup_pty.py](../tests/test_debug_cursor_popup_pty.py)
 
 ## Contratos modales y edicion inline vinculados
 

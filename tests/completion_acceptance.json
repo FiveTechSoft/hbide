@@ -844,6 +844,20 @@
         "test_debug_monitor_scopes_pty.py"
       ],
       "contract": "Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance."
+    },
+    "DBG-018": {
+      "expected_label": "to Cursor         F7",
+      "tests": [
+        "test_debug_cursor_popup_pty.py"
+      ],
+      "contract": "Run to Cursor popup twice stops before exact mutations: local61 atline6 then101 atline7, before output file exists. Source bytes unchanged. File Resume is intentionally not execution (it resumes viewing source); only nonexecution is asserted here, not source cursor location. Bounded singlemodule Linux fixture, no invalidtarget/multifile/pixels/Windows."
+    },
+    "DBG-023": {
+      "expected_label": "Breakpoint   F9",
+      "tests": [
+        "test_debug_cursor_popup_pty.py"
+      ],
+      "contract": "Point Breakpoint popup adds line8 to actual list and second invocation removes it; Run Go stops before output with local151, subsequent Go writes151 exactly. Source bytes unchanged. File Resume is intentionally not execution (it resumes viewing source); only nonexecution is asserted here, not source cursor location. Bounded singlemodule Linux fixture, no invalidtarget/multifile/pixels/Windows."
     }
   },
   "modal_contracts": [
