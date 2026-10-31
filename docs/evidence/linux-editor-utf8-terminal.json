@@ -1,0 +1,64 @@
+{
+  "scope": "Two simulated terminal modes,9checks each, same clean source and binary. ISO fallback is caused by fixed cursor-column1 response. UTF8 detection responds column2 and observes accented labels; both preserve all fixture bytes after Undo. No product change, no actual pixels/native terminal/Windows acceptance.33docs.20models remainbaeda47.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "ad523e87b861d3da3b3577757b7def9fb6a6e518",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "f88f1a44e180cc395a615c8f40593abe5433b5174f21dca9d557ee3290a01188",
+    "binary_sha256": "b93de5d664c0d54a01680e83bdefe1436c0b868f80c4bd40a78ed24689f5e666",
+    "built_at": 1793407722.4961617
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ad523e87b861d3da3b3577757b7def9fb6a6e518",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f88f1a44e180cc395a615c8f40593abe5433b5174f21dca9d557ee3290a01188",
+      "binary_sha256": "b93de5d664c0d54a01680e83bdefe1436c0b868f80c4bd40a78ed24689f5e666",
+      "build_receipt": "/tmp/hbide-utf8-terminal/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "7c515730dad8b04ad586e54cc6aa306cacb869fc5be8a772adaad6a9f81d9421",
+      "case": "editor-mouse-utf8-terminal",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_mouse_utf8_pty.py",
+        "--utf8-terminal"
+      ],
+      "started": 1793407722.4965477,
+      "seconds": 12.12,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "38a754161432d86744e96ec98a293ca41dc9cc637e7a383254e29b65fb75f272",
+      "log": "/tmp/hbide-utf8-terminal/editor-mouse-utf8-terminal-1793407722496543648.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ad523e87b861d3da3b3577757b7def9fb6a6e518",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f88f1a44e180cc395a615c8f40593abe5433b5174f21dca9d557ee3290a01188",
+      "binary_sha256": "b93de5d664c0d54a01680e83bdefe1436c0b868f80c4bd40a78ed24689f5e666",
+      "build_receipt": "/tmp/hbide-utf8-terminal/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "7c515730dad8b04ad586e54cc6aa306cacb869fc5be8a772adaad6a9f81d9421",
+      "case": "editor-mouse-utf8",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_mouse_utf8_pty.py"
+      ],
+      "started": 1793407739.5911047,
+      "seconds": 12.12,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "38a754161432d86744e96ec98a293ca41dc9cc637e7a383254e29b65fb75f272",
+      "log": "/tmp/hbide-utf8-iso/editor-mouse-utf8-1793407739591101232.log"
+    }
+  ]
+}
