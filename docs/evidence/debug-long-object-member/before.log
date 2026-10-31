@@ -1,0 +1,9 @@
+PASS object debugger stopped
+PASS object structured top inspector opens
+PASS object top inspector refuses replacement
+FAIL valid long member numeric value visible
+FAIL long member edited value visible
+FAIL long member Cancel99 keeps edited value visible
+PASS long member invalid expression rejected
+PASS long member edit persists in resumed debuggee
+TOTAL 5 PASS 3 FAIL; evidence /tmp/hbide-source-run-txwv10nl

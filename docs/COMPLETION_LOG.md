@@ -2046,3 +2046,13 @@ de las primeras ocho filas y exigen la ruta V["long_key_ en la columna
 izquierda de esa misma fila. Antes buscaban41 en toda la pantalla. No se
 cambia producto ni se cuenta cobertura funcional nueva por precisar el
 comparador. Se reagrupa regresion de clipboard y contenedores tras los fixes.
+
+## 31 octubre: miembro objeto valido largo
+
+Fixture nuevo de61caracteres, dentro del limite de simbolo63 y setter62:
+no se reutiliza el fixture invalido120bytes. Antes5/8: escalar123456789 y
+editado987654321 aparecen cortados; el programa reanuda con987654321 exacto,
+pero no puede leerse completo en el inspector80columnas. Reserva de media
+ventana para valor igual que hash/array, sin alterar miembro ni setter.
+Log y pantalla previos retenidos. El test exige nombre y numero entero en
+la misma fila del browser, no el numero en el codigo fuente.

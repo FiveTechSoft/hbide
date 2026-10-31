@@ -145,6 +145,8 @@ METHOD addWindows( nRow ) CLASS HBDbObject
    nMaxLen := 0
    AEval( ::pItems, {| x | nMaxLen := Max( nMaxLen, Len( x[ OMSG_NAME ] ) ) } )
    oBrwSets:AddColumn( oCol := HBDbColumnNew( "", {|| ::pItems[ ::arrayindex ][ OMSG_NAME ] } ) )
+   // Valid member names can still fill a narrow debugger window.
+   nMaxLen := Min( nMaxLen, Max( 1, Int( ( oWndSets:nRight - oWndSets:nLeft - 2 ) / 2 ) ) )
    oCol:width := nMaxLen
    oCol:DefColor := { 1, 2 }
    oBrwSets:Freeze := 1

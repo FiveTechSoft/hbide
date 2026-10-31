@@ -1,0 +1,25 @@
+ File  Locate  View  Run  Point  Monitor  Options  Window  Help
+l[�]ql[�]qqqqqqqqqqqqqqqq V is of class: MODALFIXTURE qqqqqqqqqqqqqqqqqqqqkqqqqk
+x0) VxLONGMEMBERLONGMEMBERLONGMEMBERLONGMEMBERLONGMEMBERLONGMEMBERX 987654x    x
+mqqqqxmodalfixture                                                  Methodxqqqqj
+l[�]qxrealclass                                                     Methodxqqqqk
+x1:  mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj    x
+x2:     local v := MakeValue()                                                 x
+x3:     hb_Meml[�]qqqqqqqqqqqqqqqqqqq V qqqqqqqqqqqqqqqqqqqqqqqqk hb_ntos( v:Lox
+x4:  return   xClass MODALFIXTURE object                        x              x
+x5:  function mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj              x
+x6:     local oClass := HBClass():New( "ModalFixture" )                        x
+x7:     oClass:AddData( "LongMemberLongMemberLongMemberLongMemberLongMemberLongx
+x8:     oClass:Create()                                                        x
+x9:  return oClass:Instance()                                                  x
+x10:                                                                           x
+x11: init procedure __hbide_debug__()                                          x
+x12:    __dbgInvokeDebug( .T. )                                                x
+x13: return                                                                    x
+mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
+l[�]qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq Command qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk
+x> monitor local on                                                            x
+x> window select monitor                                                       x
+x>                                                                             x
+mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
+F1-Help F2-Zoom F3-Repeat F4-User F5-Go F6-WA F7-Here F8-Step F9-BkPt F10-Trace
