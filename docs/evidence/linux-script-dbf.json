@@ -1,0 +1,94 @@
+{
+  "scope": "Clean123a73c ScriptDBF5WorkAreas10ScriptScreen7sameIDE56fb2196. TwiceScript exactrecord, actualDBFdebuggerinspect and statusrow ownership separate. NotallHRB/RDD/global128/Windows.21models last23bd0af.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "123a73c37e732f9662bcb5167d4cccbdd8a4cde7",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "f762a52f96ebf058104f7236c6b89144513629d0f44cb236dae151f060476f0a",
+    "binary_sha256": "56fb2196a72479bd1400b6e5429c3cc35321e0ddfd516d2c76698896d2fc4f89",
+    "built_at": 1793418718.581531
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "123a73c37e732f9662bcb5167d4cccbdd8a4cde7",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f762a52f96ebf058104f7236c6b89144513629d0f44cb236dae151f060476f0a",
+      "binary_sha256": "56fb2196a72479bd1400b6e5429c3cc35321e0ddfd516d2c76698896d2fc4f89",
+      "build_receipt": "/tmp/hbide-script-dbf-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "abb2b00291d91dd50186f1f638e34b59b7fd9fe619db327fec6363d81ab5d969",
+      "case": "script-dbf",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_workareas_pty.py",
+        "--script"
+      ],
+      "started": 1793418718.581787,
+      "seconds": 5.71,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "60dc3e118fb3cb83889113fe8d2f52cecee2bd896138e0a00400502ba7622713",
+      "log": "/tmp/hbide-script-dbf-clean/script-dbf-1793418718581783507.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "123a73c37e732f9662bcb5167d4cccbdd8a4cde7",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f762a52f96ebf058104f7236c6b89144513629d0f44cb236dae151f060476f0a",
+      "binary_sha256": "56fb2196a72479bd1400b6e5429c3cc35321e0ddfd516d2c76698896d2fc4f89",
+      "build_receipt": "/tmp/hbide-script-dbf-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "abb2b00291d91dd50186f1f638e34b59b7fd9fe619db327fec6363d81ab5d969",
+      "case": "debug-workareas",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_workareas_pty.py"
+      ],
+      "started": 1793418724.2935426,
+      "seconds": 11.87,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "60dc3e118fb3cb83889113fe8d2f52cecee2bd896138e0a00400502ba7622713",
+      "log": "/tmp/hbide-script-dbf-clean/debug-workareas-1793418724293538989.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "123a73c37e732f9662bcb5167d4cccbdd8a4cde7",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f762a52f96ebf058104f7236c6b89144513629d0f44cb236dae151f060476f0a",
+      "binary_sha256": "56fb2196a72479bd1400b6e5429c3cc35321e0ddfd516d2c76698896d2fc4f89",
+      "build_receipt": "/tmp/hbide-script-dbf-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "abb2b00291d91dd50186f1f638e34b59b7fd9fe619db327fec6363d81ab5d969",
+      "case": "script-screen",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_script_screen_pty.py"
+      ],
+      "started": 1793418736.1620984,
+      "seconds": 7.01,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f2a410361f5490a93d8b9980cb600d2ab2c6de20ba8ba7f52ca1fc73eee96614",
+      "log": "/tmp/hbide-script-dbf-clean/script-screen-1793418736162094256.log"
+    }
+  ],
+  "logs": {
+    "script-dbf-1793418718581783507.log": "PASS Script DBF run1 exact record vector\nPASS Script DBF run1 returns editor without loader error\nPASS Script DBF run2 exact record vector\nPASS Script DBF run2 returns editor without loader error\nPASS Script DBF leaves source bytes unchanged\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-u6hve41l\n",
+    "debug-workareas-1793418724293538989.log": "PASS debugger stopped before increment\nPASS View WorkAreas opens actual three browser dialog\nPASS ALPHA actual field structure shown\nPASS switching alias updates exact BETA structure\nPASS switching alias updates Alias status\nPASS cycling panes and returning alias restores ALPHA fields\nPASS Esc closes WorkAreas to debugger\nPASS F6 reopens WorkAreas with original alias\nPASS Resume retains original workarea record and exact fields\nPASS WorkAreas inspection leaves source bytes unchanged\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-ilmn70n5\n",
+    "script-screen-1793418736162094256.log": "PASS script owns status row while awaiting input\nPASS script run1 preserves source literal\nPASS script return repaints app output\nPASS script owns status row while awaiting input\nPASS script run2 preserves source literal\nPASS script return repaints app output\nPASS script editor remains usable\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-y5xse7l2\n"
+  }
+}

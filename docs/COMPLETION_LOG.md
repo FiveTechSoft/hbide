@@ -2314,3 +2314,6 @@ precommit separado de buildlimpio; no herenciaWindows/global127.
 NAMEpadded/QTY11 exacto, retornoeditor sinloadererror yfuenteinalterada.
 ExploratorioScript5WorkAreas10mismoIDE PASS; sin nuevo cambio producto.
 Runner128=127PTYmodes+guard,no128funciones. No todoRDD/HRB niWindows.
+
+Clean123a73cScriptDBF5WorkAreas10ScriptScreen7sameIDE56fb2196PASS.
+linux-script-dbf.jsonretieneidentity+logs;21modelsultima23bd0af.
