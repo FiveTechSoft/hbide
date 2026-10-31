@@ -2254,3 +2254,7 @@ requiereEnter y primer intento5/6 no era productofallo. Capturasnativas
 inspeccionadas120x40,GETcompletoalbordeyUndo10/28,RedoJSONexacto.
 No autogrow/politicaoversized/dragcertificado/Windows.98contratosmenu
 vinculados de116,runner124=123PTYmodes+guard,no124funcionesPASS.
+
+Cleanfa78719Snap6+ClipboardCase18sameIDE84fd72ea y21modelosPASS,
+15inventory33docs. Ledgerdocs/evidence/linux-designer-snap-edges.json.
+Capturasnativas de snapshotprecommit, no herencia de pixels al build limpio.
