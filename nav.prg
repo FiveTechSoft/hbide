@@ -81,7 +81,17 @@ FUNCTION HBIDE_ScanProcs( cText )
             LOOP
          ENDIF
          cKind := "method"; cName := aTok[ 2 ]
+         IF Upper( cName ) == "FUNCTION" .OR. Upper( cName ) == "PROCEDURE"
+            IF Len( aTok ) < 3
+               LOOP
+            ENDIF
+            cName := aTok[ 3 ]
+         ENDIF
       ELSEIF cT1 == "CLASS" .AND. Len( aTok ) >= 2
+         // hbclass.ch aliases for members, not class declarations.
+         IF cT2 == "VAR" .OR. cT2 == "METHOD"
+            LOOP
+         ENDIF
          cKind := "class"; cName := aTok[ 2 ]
       ELSE
          LOOP

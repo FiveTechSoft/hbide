@@ -2904,3 +2904,11 @@ Native120x40pickerMain/Targetline4and exacttypingjump inspected fullborders.
 Ledgerlinux-navigation-lexical.json. Final command timeout before Navigation
 finished, noresultrecorded; boundedseparate Navigation step sameverifiedbinary.
 No failedcheckrerun/fullgrammar/Windows/milestoneclosure.
+
+## Q51 - Typed method names and class member aliases in picker
+
+Compiler-backed hbclass.ch fixture compiles with CLASS VAR, METHOD FUNCTION
+and METHOD PROCEDURE. BeforepickerlistedVARclassandDemo:FUNCTION/PROCEDURE
+insteadofnames;1PASS2FAIL. Now skipCLASSVAR/METHODaliases and readexplicit
+methodtypebeforename. Local3PASS and15lexicalmodelPASS. No arbitrary
+preprocessor/implicitCLASSmethod support claimed. Runner162=161PTY+guard.
