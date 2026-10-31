@@ -1,0 +1,88 @@
+{
+  "scope": "ThreeLinuxPTYsamecleanrevisionbinary Longlist5 Mouse14 Keyboard14PASS15inventory33docs. Names255rejectexplicitmax250no truncation, typedpathwins, initialselectionGETsync/shorterGETtailclear exactfiles. No nativepixelsforthisfixture/Windows/global104acceptance.20modelslastb8d4852.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "bb40110b86593b9873f12ef987383db4c8d15392",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "146ee2520c9d8bfb1833e3252b00a2d4330e626c2b944ca4a44fd94a76536b9b",
+    "binary_sha256": "ec181f8afc7510c898f3d6111acf11de73b3284739516429052364180c984af6",
+    "built_at": 1793410010.7357597
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "bb40110b86593b9873f12ef987383db4c8d15392",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "146ee2520c9d8bfb1833e3252b00a2d4330e626c2b944ca4a44fd94a76536b9b",
+      "binary_sha256": "ec181f8afc7510c898f3d6111acf11de73b3284739516429052364180c984af6",
+      "build_receipt": "/tmp/hbide-file-long-joint/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3d25536d6432bd167a8ce799715450c9cea19ea265eeeffe184aa0f469530ff1",
+      "case": "file-modal-long-list",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_file_modal_long_list_pty.py"
+      ],
+      "started": 1793410010.73615,
+      "seconds": 7.11,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+      "log": "/tmp/hbide-file-long-joint/file-modal-long-list-1793410010736145552.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "bb40110b86593b9873f12ef987383db4c8d15392",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "146ee2520c9d8bfb1833e3252b00a2d4330e626c2b944ca4a44fd94a76536b9b",
+      "binary_sha256": "ec181f8afc7510c898f3d6111acf11de73b3284739516429052364180c984af6",
+      "build_receipt": "/tmp/hbide-file-long-joint/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3d25536d6432bd167a8ce799715450c9cea19ea265eeeffe184aa0f469530ff1",
+      "case": "file-modal-mouse",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_file_modal_mouse_pty.py"
+      ],
+      "started": 1793410017.8466997,
+      "seconds": 17.08,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+      "log": "/tmp/hbide-file-long-joint/file-modal-mouse-1793410017846696123.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "bb40110b86593b9873f12ef987383db4c8d15392",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "146ee2520c9d8bfb1833e3252b00a2d4330e626c2b944ca4a44fd94a76536b9b",
+      "binary_sha256": "ec181f8afc7510c898f3d6111acf11de73b3284739516429052364180c984af6",
+      "build_receipt": "/tmp/hbide-file-long-joint/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3d25536d6432bd167a8ce799715450c9cea19ea265eeeffe184aa0f469530ff1",
+      "case": "file-modal-buttons",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_file_modal_buttons_pty.py"
+      ],
+      "started": 1793410034.924712,
+      "seconds": 15.78,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+      "log": "/tmp/hbide-file-long-joint/file-modal-buttons-1793410034924708440.log"
+    }
+  ]
+}
