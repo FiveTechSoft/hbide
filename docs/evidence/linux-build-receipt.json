@@ -1,0 +1,60 @@
+{
+  "scope": "Clean7b1b510:About4fresh+HelpMouse18verifiedreuse;3unitvalidationtests15inventory33docs. Integration guards missing receipt/wrongbinaryhash/trackedchange all refused beforetests. No productchange;20models remainbaeda47.",
+  "receipt": {
+    "source": "7b1b510205b58a15ae6074893a2617f7b6649302",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "cfce887d10511f427cb8093cd0b516cd1da1c064996dc31242b5d8ef75a9c344",
+    "binary_sha256": "105993fe9e116787c85baff298f9c3381fb7829dd9593475ecede6cada08e6fb",
+    "built_at": 1793407236.831307
+  },
+  "results": [
+    {
+      "source": "7b1b510205b58a15ae6074893a2617f7b6649302",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "cfce887d10511f427cb8093cd0b516cd1da1c064996dc31242b5d8ef75a9c344",
+      "binary_sha256": "105993fe9e116787c85baff298f9c3381fb7829dd9593475ecede6cada08e6fb",
+      "build_receipt": "/tmp/hbide-receipt-valid/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "4c728a15b1e46c75b95929b51ea10b6819b67512e4943f0d618594dd8a662b60",
+      "case": "about-build",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_about_build_pty.py"
+      ],
+      "started": 1793407236.831579,
+      "seconds": 5.96,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+      "log": "/tmp/hbide-receipt-valid/about-build-1793407236831574495.log"
+    },
+    {
+      "source": "7b1b510205b58a15ae6074893a2617f7b6649302",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "cfce887d10511f427cb8093cd0b516cd1da1c064996dc31242b5d8ef75a9c344",
+      "binary_sha256": "105993fe9e116787c85baff298f9c3381fb7829dd9593475ecede6cada08e6fb",
+      "build_receipt": "/tmp/hbide-receipt-valid/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "4c728a15b1e46c75b95929b51ea10b6819b67512e4943f0d618594dd8a662b60",
+      "case": "help-mouse",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_help_mouse_pty.py"
+      ],
+      "started": 1793407242.869271,
+      "seconds": 13.32,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+      "log": "/tmp/hbide-receipt-valid/help-mouse-1793407242869266990.log"
+    }
+  ]
+}
