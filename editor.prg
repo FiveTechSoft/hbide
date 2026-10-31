@@ -312,7 +312,8 @@ METHOD ReplaceAll( cFind, cReplace ) CLASS HBSrcEdit
    LOCAL aOld := {}, aNew := {}
    LOCAL cFindU := Upper( cFind )
 
-   if Empty( cFind )
+   // An all-space search is data, just as it is in FindText.
+   if Len( cFind ) == 0
       return 0
    endif
 

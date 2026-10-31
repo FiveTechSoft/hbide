@@ -252,9 +252,10 @@
     "IDE-017": {
       "tests": [
         "test_editor_eol.prg",
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_replace_spaces_pty.py"
       ],
-      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes. Empty replacement deletes only matches; missing text reports zero and preserves bytes.",
+      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes. Empty replacement deletes only matches; missing text reports zero and preserves bytes. One-space and two-space search strings are real data: exact counts4/1, disk bytes retain TAB/mixed EOL and trailing replacement, single Undo/Redo exact, Cancel unchanged. No Unicode expansion or multiline replacement claim.",
       "expected_label": "Replace..."
     },
     "IDE-023": {

@@ -2432,3 +2432,12 @@ Runner134=133modosPTY+guard,no134funciones. Clean pendiente.
 
 Clean869351cList9Radio9Combo9GET9Checkbox9sameIDE679499f4PASSsinretry,
 15inventory33docsPASS. linux-clipboard-five-runtime.json retieneidentidad/logs.
+
+## Q33 Replace no descarta busquedas solo espacios
+
+Find/modalaceptabablancosperoReplaceAllusabaEmpty:antes2/4porcount0
+ybytesinalterados. CambiadoLen==0, unespacio4/twoespacios1reemplazos.
+NuevaPTY10PASSinclSavebytesmixedEOL/TAB/trailing,UndoRedo/Cancel.
+Native120x40count4/resultadobordescompletosinspeccionados,Save/Undoexactos.
+Runner135=134modosPTY+guard. No Unicodeexpansion/multiline/Windows.
+Primerfixtureexploratoriosinespaciosnocertificababytes;corregidoantesfix.
