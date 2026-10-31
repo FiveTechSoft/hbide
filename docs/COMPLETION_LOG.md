@@ -3674,3 +3674,16 @@ Two completed sequential10+10batches sameidentity,no failures/retries/
 interruption.22models29inventory34docsPASS.
 linux-joint-editor-project-q103.json. Notfull212registeredmatrix, no product
 fix/pixels/newcandidate/Windows/hitoclosed. Q87full201remains84e58b3.
+
+## Q104 - full registered Linux matrix throughQ103
+
+Frozen sourcea0b7b82b0b317661366133db0e2833c359862e2f binary
+1bf96b2e795bb4e56c8a9e223b8918e9e942b4615e18ab751b51dcd618af3e88:
+212/212distinct registered entries=211PTY+1recovery sourceguardPASS,
+exactly match frozen plan/current runner. All sameidentity/no sourcechange,
+no testfailure/retry/interruption. Attempted detached orchestration before
+multidoc stopped beforeteststarted,noledgerchange;foregroundcontinued.
+22models29inventory34docsPASSsamefrozen source. Evidence
+linux-full-matrix-q104.json includes receipts/logs/plan.
+No newproductfix/pixels/candidate/release/nativeWindows/licensing/M2Cancel/
+hitoclosed/100percent. Q87full201remains historical84e58b3, not combined.
