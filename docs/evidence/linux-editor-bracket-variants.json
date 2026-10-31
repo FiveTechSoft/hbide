@@ -1,0 +1,120 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1480594c1a06cb69d0b07221522853642aa5716f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "79ead5fe0760f6434d090ea2859dcb8ae7bdc52e090f7ed9e63156fa78a06eb5",
+      "binary_sha256": "4423823b9b8113369bbae50386ac6c7121a71cf1982e5ac1d547b81e859ff024",
+      "build_receipt": "/tmp/hbide-bracket-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "a0bc7d28a6b0ed187152a1fea63907c1d0d26f258a62c7524054fd7804b8ea75",
+      "case": "editor-bracket-variants",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_variants_pty.py"
+      ],
+      "started": 1793455641.1302588,
+      "seconds": 4.62,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "20f4c1068e8f6fcdb8dbe29797f65bde49ead6fba53a4ef1a72d766cd92a6ea8",
+      "log": "/tmp/hbide-bracket-variants-clean/editor-bracket-variants-1793455641130254249.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1480594c1a06cb69d0b07221522853642aa5716f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "79ead5fe0760f6434d090ea2859dcb8ae7bdc52e090f7ed9e63156fa78a06eb5",
+      "binary_sha256": "4423823b9b8113369bbae50386ac6c7121a71cf1982e5ac1d547b81e859ff024",
+      "build_receipt": "/tmp/hbide-bracket-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "a0bc7d28a6b0ed187152a1fea63907c1d0d26f258a62c7524054fd7804b8ea75",
+      "case": "editor-bracket-assignment",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_assignment_pty.py"
+      ],
+      "started": 1793455645.751452,
+      "seconds": 4.62,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "63d029b64d124bb711b2aee012488409b8a70ca15f4eab0b61e9ab302eb87fb0",
+      "log": "/tmp/hbide-bracket-variants-clean/editor-bracket-assignment-1793455645751448511.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1480594c1a06cb69d0b07221522853642aa5716f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "79ead5fe0760f6434d090ea2859dcb8ae7bdc52e090f7ed9e63156fa78a06eb5",
+      "binary_sha256": "4423823b9b8113369bbae50386ac6c7121a71cf1982e5ac1d547b81e859ff024",
+      "build_receipt": "/tmp/hbide-bracket-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "a0bc7d28a6b0ed187152a1fea63907c1d0d26f258a62c7524054fd7804b8ea75",
+      "case": "editor-escape-variants",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_escape_variants_pty.py"
+      ],
+      "started": 1793455650.3700967,
+      "seconds": 4.62,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "de736574f509e7cfb611ca9cb31d6f62421f88e19ba501f895c25e44c9749dde",
+      "log": "/tmp/hbide-bracket-variants-clean/editor-escape-variants-1793455650370093167.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1480594c1a06cb69d0b07221522853642aa5716f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "79ead5fe0760f6434d090ea2859dcb8ae7bdc52e090f7ed9e63156fa78a06eb5",
+      "binary_sha256": "4423823b9b8113369bbae50386ac6c7121a71cf1982e5ac1d547b81e859ff024",
+      "build_receipt": "/tmp/hbide-bracket-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "a0bc7d28a6b0ed187152a1fea63907c1d0d26f258a62c7524054fd7804b8ea75",
+      "case": "gcc-caret-column",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py"
+      ],
+      "started": 1793455654.9895222,
+      "seconds": 6.97,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ae9cea7a5383290d483c10630f70be7756f1815cc1fd6b4de2f649c1e7d07c2c",
+      "log": "/tmp/hbide-bracket-variants-clean/gcc-caret-column-1793455654989518730.log"
+    }
+  ],
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "1480594c1a06cb69d0b07221522853642aa5716f",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "79ead5fe0760f6434d090ea2859dcb8ae7bdc52e090f7ed9e63156fa78a06eb5",
+    "binary_sha256": "4423823b9b8113369bbae50386ac6c7121a71cf1982e5ac1d547b81e859ff024",
+    "built_at": 1793455641.129992
+  },
+  "logs": {
+    "editor-bracket-variants": "PASS Open requested fixture\nPASS Assignment literal marker string-colored /* literal\nPASS Assignment literal marker string-colored && literal\nPASS Actual block comment still colored /* real */\nPASS Actual block comment still colored /* index comment */\nPASS Return after bracket variants normal keyword\nPASS F2 bracket variants exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-kwpxgbyc\n",
+    "editor-bracket-assignment": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-hb5w5ewm\n",
+    "editor-escape-variants": "PASS Open requested fixture\nPASS Escape literal marker stays string color /* literal\nPASS Escape literal marker stays string color // literal\nPASS Escape literal marker stays string color && literal\nPASS Real block after escaped backslash closes string\nPASS Return after escape matrix stays keyword color\nPASS F2 escape variants byte exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-lh3iy8vp\n",
+    "gcc-caret-column": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column default\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-3mviftsy\n"
+  },
+  "compiler_fixture": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-bracket/variants.prg'...\n\nLines 6, Functions/Procedures 1\nGenerating C source output to '/tmp/hbmk_rfwqhu.dir/variants.c'... Done.\n",
+  "limits": "Acceptance-only extension7checks no productfix/newmodels/newpixels/full175PTY/Windows/fullbracketgrammarclaim."
+}

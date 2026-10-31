@@ -3130,3 +3130,7 @@ No retries/allbracketcontext/Windows/global. Candidate14predatesQ59.
 Compiler-validfixturec:=[/*literal],bracket&&literal,realblockafterliteral,
 realcommentinsidearrayindex; local7PASS. No productfix. Newmode
 176=175PTY+guard. Cleanacceptancefollows; no fullbracketgrammarclaim.
+
+Q59extensionclean1480594 BracketVariants7/Bracket4/EscapeVariants7/Caret6
+PASSsamebinary,15inventory34docsPASS; linux-editor-bracket-variants.json.
+No retries/newfix/newmodels/newpixels/full175PTY/Windows.
