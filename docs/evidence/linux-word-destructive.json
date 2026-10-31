@@ -1,0 +1,38 @@
+{
+  "scope": "Clean source EditorMouse37checks6newEnterBackspaceovertypeUndo effects exactmixedEOL;33docsexact. No productchange,20modelsstillbaeda47,noWindowsglobalacceptance.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "6dcf3b8e93be3cac549b16311671bb1ea9810342",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "04344d6dc7de1b6074edc099cc26c180d9dec4557dde4d31e73e22bc5702bb22",
+    "binary_sha256": "572a63a08be45493827775ed07052be08ebba266eb5791169633e872ddf321e0",
+    "built_at": 1793407478.8459458
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "6dcf3b8e93be3cac549b16311671bb1ea9810342",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "04344d6dc7de1b6074edc099cc26c180d9dec4557dde4d31e73e22bc5702bb22",
+      "binary_sha256": "572a63a08be45493827775ed07052be08ebba266eb5791169633e872ddf321e0",
+      "build_receipt": "/tmp/hbide-word-destructive/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "9242ecbdb55fcc8d3193e34485d47071c57793d01172b0622b2a6fb7156b80a1",
+      "case": "editor-mouse",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_mouse_pty.py"
+      ],
+      "started": 1793407478.8461792,
+      "seconds": 44.37,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "882067d19b14c14ae930893b9467f1d01df6d31ad1a55bd731436401784b7b51",
+      "log": "/tmp/hbide-word-destructive/editor-mouse-1793407478846175615.log"
+    }
+  ]
+}
