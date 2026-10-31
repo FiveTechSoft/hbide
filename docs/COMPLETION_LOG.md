@@ -2818,3 +2818,13 @@ no brackets; white-on-teal sidebar contrast. RealScript requires demoUTF8
 SetDispCP plus escapedchartglyphs, restoredhostCP onexit. No coremutation,
 no methodoverride. Retested Enter/mouse/modal/export/reset/return and
 standalonebuild; final fullpixels inspected. Supersedes[]previewevidence.
+
+## Candidate10 - selected editing fixes Q44-Q46
+
+Export3ac96d2 strippedSHA8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741.
+Eightstandard smokes and Tab7/Identity5/Destructive19/Selection7/Cut7PASS,
+samebinary unchanged; two boundedsteps no retries. Ledger
+linux-candidate-selection.json includesmanifest/toolchain/dependencies/logs.
+PredatesNEXUSdemo only. No newproduct/newpixels/determinism, release,
+installer/licenseclearance/Windows/full155PTYmatrix. Evidence publication
+paused for user-requestedNEXUSdemo, delivered11:22; results not repeated.

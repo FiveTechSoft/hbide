@@ -1,0 +1,140 @@
+{
+  "manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "3ac96d2c7ca5bc34aee27ca375511645d2cb3584",
+    "archive_sha256": "9834756e6111aa1f96e71f7c74289c185f80f6adfdf20d86254bda8879bad70b",
+    "dirty": false,
+    "started": 1793441559.1930285,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "1f80870fad008ea485760492816c739fd873a3a4a5392afda3cb5346c9f712f3",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "4280cf70fb158c57a1eeeec01fe2764b53393f063ed4d6b3c7550cbe64aff4cd",
+    "release_status": "not cleared; source notice review required",
+    "unstripped_sha256": "63df33608ec33005b6aefd2ab303561356437857765446df1fc8c5885f0859b8",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793441656.5636508
+  },
+  "extra": {
+    "source": "3ac96d2c7ca5bc34aee27ca375511645d2cb3584",
+    "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741",
+    "tests": {
+      "test_selection_tab_pty.py": {
+        "exit": 0,
+        "printed_failure": false,
+        "test_sha256": "05969c31e08a955f584548a5ee20a551689fa7b608e2d5524cdf4aea2110aaa0",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      },
+      "test_selection_identity_pty.py": {
+        "exit": 0,
+        "printed_failure": false,
+        "test_sha256": "9ef6f84dd3d1a915dc2e6840f703964f906a665d1a67833051a3fc0b07c35f82",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      },
+      "test_selection_destructive_boundary_pty.py": {
+        "exit": 0,
+        "printed_failure": false,
+        "test_sha256": "12379682ea24bcc6fac3fad6464b80bda4a44119975c1e41b401e48d4ea4d46c",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      },
+      "test_selection_undo_boundary_pty.py": {
+        "exit": 0,
+        "printed_failure": false,
+        "test_sha256": "49d4c846fb5c901bf8025681dfa7a470021cabde305736b196f9a870db455ea8",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      },
+      "test_cut_undo_boundary_pty.py": {
+        "exit": 0,
+        "printed_failure": false,
+        "test_sha256": "830d07057e62128a03aef60216c819fde4baf768d5eefeac4b6ff89ac8abd733",
+        "binary_sha256": "8e63f56f35ae7efba94a4413318e9aa485e126f0e17ddc6e2614da4a8ab8e741"
+      }
+    },
+    "limits": "Five focused suites, same stripped candidate; no release/Windows/full matrix or new visual/determinism claim."
+  },
+  "logs": {
+    "test_about_build_pty.py.log": "PASS About retains version1.0\nPASS About shows actual build revision or honest fallback\nPASS About OK returns same dirty document\nPASS About cycle Undo preserves original bytes\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-62lbgov8\n",
+    "test_debug_setter_failure_pty.py.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS readable getter shows backing1\nPASS failed setter error reported\nPASS failed setter refresh preserves backing1\nPASS cancel after setter error preserves backing1\nPASS setter failure leaves debuggee backing1\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-0mv0e8uk\n",
+    "test_help_mouse_pty.py.log": "PASS Contents opens tree and reading pane\nPASS mouse tree selects exact topic\nPASS mouse first tree row selects Basics not next topic\nPASS scrolled tree click retains valid reading pane\nPASS Next button with no query explains action\nPASS Search button executes actual query\nPASS Next button advances actual match\nPASS wheel scroll stays within topic bounds\nPASS Export button writes actual catalogue\nPASS Close button returns dirty document\nPASS Index exact Quickstart opens link view\nPASS first related-topic click opens exact target\nPASS Backspace returns clicked topic history\nPASS last related-topic click opens exact target\nPASS AltRight restores clicked forward topic\nPASS nested related-topic click opens exact body\nPASS link-view Close returns unchanged dirty source\nPASS Undo after mouse Help restores exact original bytes\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-5c6q91j_\n",
+    "test_selection_destructive_boundary_pty.py.log": "PASS Open requested fixture\nPASS Delete selected edit exact\nPASS Delete Undo preserves prior typing\nPASS Delete Redo selected edit exact\nPASS Delete Undo later typing preserves selected edit\nPASS Delete next Undo preserves prior typing\nPASS Delete final Undo original exact\nPASS Backspace selected edit exact\nPASS Backspace Undo preserves prior typing\nPASS Backspace Redo selected edit exact\nPASS Backspace Undo later typing preserves selected edit\nPASS Backspace next Undo preserves prior typing\nPASS Backspace final Undo original exact\nPASS Enter selected edit exact\nPASS Enter Undo preserves prior typing\nPASS Enter Redo selected edit exact\nPASS Enter Undo later typing preserves selected edit\nPASS Enter next Undo preserves prior typing\nPASS Enter final Undo original exact\nTOTAL 19 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-923_ulqs\n",
+    "test_file_modal_mouse_pty.py.log": "PASS Open mouse OK exact file\nPASS Open mouse Cancel preserves dirty source\nPASS SaveAs mouse Cancel no new file\nPASS SaveAs mouse Cancel retains source identity\nPASS SaveAs mouse OK writes exact mixed EOL\nPASS SaveAs mouse OK changes identity\nPASS SaveAs mouse keeps original\nPASS Project mouse Cancel retains exact editor\nPASS Project mouse OK opens exact project\nPASS Open mouse list selects exact second file\nPASS mouse opened exact list file saved only selected bytes\nPASS Open mouse first list item selects exact original\nPASS Project mouse list chooses exact second project\nPASS Project mouse operations preserve all file bytes\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-6e39aqpf\n",
+    "test_debug_getter_failure_pty.py.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS failing getter displays captured error\nPASS failing getter rejects edit before setter\nPASS failed getter leaves backing value exact\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-c6mgw5wp\n",
+    "test_selection_identity_pty.py.log": "PASS Open requested fixture\nPASS Identical selected typing keeps rendered text\nPASS Identical selected typing closes without false dirty prompt\nPASS Identical selected typing preserves earlier redo\nPASS Undo after redo restores original exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-9t6jdhsr\n",
+    "test_selection_tab_pty.py.log": "PASS Open requested fixture\nPASS forward selected Tab expands from replacement start\nPASS Undo selected Tab restores exact\nPASS Redo selected Tab exact\nPASS reverse selected Tab expands from replacement start\nPASS Undo selected Tab restores exact\nPASS Redo selected Tab exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-7mryu9bf\n",
+    "test_selection_undo_boundary_pty.py.log": "PASS Open requested fixture\nPASS Typing replaces selected al but preserves earlier X\nPASS Undo selected replacement alone preserves earlier typing\nPASS Redo selected replacement exact\nPASS Undo later typing keeps selection replacement\nPASS next Undo restores pre-replacement typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-5f_ojhms\n",
+    "test_file_modal_buttons_pty.py.log": "PASS Open explicit OK preserves manually typed name after list focus\nPASS Open explicit Cancel retains dirty document\nPASS SaveAs explicit Cancel creates no destination\nPASS SaveAs explicit Cancel retains name and dirty buffer\nPASS SaveAs explicit OK saves exact mixed EOL bytes\nPASS SaveAs changes identity only on OK\nPASS SaveAs retains original file\nPASS Open list sync produces a known filename\nPASS Open list selection opens exact selected file\nPASS Project explicit Cancel keeps editor\nPASS Project explicit OK opens manually typed project\nPASS Project list sync produces known filename\nPASS Project list selection opens selected project\nPASS source bytes untouched by project navigation\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-_4hb3m3q\n",
+    "build.log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling 'hbide.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n100\n\n200\n\n100\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\nLines 4709, Functions/Procedures 80\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/hbide.c'... Done.\nCompiling 'editor.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\nLines 3329, Functions/Procedures 67\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/editor.c'... Done.\nCompiling 'safeio.prg'...\n\n100\n\n100\n\nLines 379, Functions/Procedures 4\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/safeio.c'... Done.\nCompiling 'hbmenu.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\nLines 1561, Functions/Procedures 12\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/hbmenu.c'... Done.\nCompiling 'hbwindow.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\nLines 2485, Functions/Procedures 33\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/hbwindow.c'... Done.\nCompiling 'designer.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\n3100\n\n3200\n\n3300\n\n3400\n\n3500\n\n3600\n\n3700\n\n3800\n\n3900\n\n4000\n\n4100\n\n4200\n\n4300\n\n4400\n\nLines 5571, Functions/Procedures 127\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/designer.c'... Done.\nCompiling 'hbbutton.prg'...\n\n100\n\nLines 182, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/hbbutton.c'... Done.\nCompiling 'hbgetu.prg'...\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\nLines 1695, Functions/Procedures 24\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/hbgetu.c'... Done.\nCompiling 'help.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\nLines 2007, Functions/Procedures 27\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/help.c'... Done.\nCompiling 'project.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\nLines 971, Functions/Procedures 12\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/project.c'... Done.\nCompiling 'projectui.prg'...\n\n100\n\n200\n\n300\n\n100\n\nLines 583, Functions/Procedures 4\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/projectui.c'... Done.\nCompiling 'nav.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 664, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/nav.c'... Done.\nCompiling 'recovery.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\nLines 675, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/recovery.c'... Done.\nCompiling 'hbdebug/dbgbrwsr.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\nLines 1011, Functions/Procedures 13\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbgbrwsr.c'... Done.\nCompiling 'hbdebug/dbghelp.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 705, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbghelp.c'... Done.\nCompiling 'hbdebug/dbgmenu.prg'...\n\n100\n\n200\n\nLines 222, Functions/Procedures 1\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbgmenu.c'... Done.\nCompiling 'hbdebug/dbgtarr.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1399, Functions/Procedures 9\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbgtarr.c'... Done.\nCompiling 'hbdebug/dbgthsh.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1409, Functions/Procedures 10\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbgthsh.c'... Done.\nCompiling 'hbdebug/dbgtinp.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1413, Functions/Procedures 9\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbgtinp.c'... Done.\nCompiling 'hbdebug/dbgtmenu.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 1784, Functions/Procedures 21\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbgtmenu.c'... Done.\nCompiling 'hbdebug/dbgtmitm.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 810, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbgtmitm.c'... Done.\nCompiling 'hbdebug/dbgtobj.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 1458, Functions/Procedures 8\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbgtobj.c'... Done.\nCompiling 'hbdebug/dbgtwin.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\nLines 1677, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbgtwin.c'... Done.\nCompiling 'hbdebug/dbgwa.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 946, Functions/Procedures 7\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbgwa.c'... Done.\nCompiling 'hbdebug/tbrwtext.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\nLines 1063, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/tbrwtext.c'... Done.\nCompiling 'hbdebug/dbgscript.prg'...\n\n100\n\nLines 196, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/dbgscript.c'... Done.\nCompiling 'hbdebug/debugger.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n100\n\n200\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\n3100\n\n3200\n\n3300\n\n3400\n\n3500\n\n3600\n\n3700\n\n3800\n\n3900\n\n4000\n\n4100\n\n4200\n\n4300\n\n4400\n\nLines 6143, Functions/Procedures 133\nGenerating C source output to '/tmp/hbmk_3jnocc.dir/debugger.c'... Done.\n",
+    "test_cut_undo_boundary_pty.py.log": "PASS Open requested fixture\nPASS Cut selected al keeps earlier typed X\nPASS Undo Cut alone preserves earlier typing\nPASS Redo Cut alone exact\nPASS Undo later typing keeps Cut\nPASS next Undo restores pre-Cut typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-i9kbhb7n\n",
+    "test_run_source_pty.py.log": "PASS script run1 preserves source literal\nPASS script run2 preserves source literal\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 preserves source literal\nPASS debug source retains main declaration\nPASS debug run2 preserves source literal\nPASS debug editor remains usable\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-nrk2rmn4\n",
+    "test_file_modal_long_list_pty.py.log": "PASS Open long list name rejected not truncated\nPASS typed short path wins despite long initial item\nPASS Project long initial name rejected not truncated\nPASS long name rejection retains correct current document\nPASS long names never alter any source or project\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-2uryzooo\n",
+    "strip.log": ""
+  },
+  "dependencies": "\tlinux-vdso.so.1 (0x00007ffdf1788000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fa09b78f000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fa09ae00000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007fa09b887000)\n",
+  "limits": "Local temporary Linux candidate10export3ac96d2 includesQ44-Q46. PredatesNEXUSdemo.8standard+5extrasPASS two boundedsteps no retries same binary unchanged. Not release/installer/license/Windows/full155PTYmatrix/newvisual/determinism."
+}

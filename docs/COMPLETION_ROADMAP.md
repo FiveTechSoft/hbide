@@ -151,6 +151,16 @@ destructivas/boundary, Cut, cincoReplace, cincoClipboard, Delete/Duplicate/
 Reload/EOF/OVR. Ledger linux-editor-selection-joint.json. Sustituye conjunta
 12suites7b7f4af para este bloque, no historia; no155modosglobales ni cierreM1.
 
+### Candidate10 - editor Q44-Q46 incluido
+
+Export3ac96d2 stripped8e63f56f pasa8smokes y Tab7/Identity5/Destructive19/
+Selection7/Cut7 mismo binario inalterado, dos pasos sinreintentos. Ledger
+linux-candidate-selection.json. PredateNEXUSdemo, no release/instalador/
+licencia/Windows/matriz155completa ni nueva prueba de determinismo.
+NEXUS es demo adicional solicitada31Oct11:15 y entregada11:22, no cierreM1-M6.
+Fuente/instrucciones demos/nexus.prg y demos/NEXUS.md; evidencianativa
+ docs/evidence/nexus-demo/. Botonesverdes/sombra sincorchetes, datosficticios.
+
 ## Ampliaciones que no se confunden con cierre probado
 
 El [plan de diseno anterior](ROADMAP.md) y la
