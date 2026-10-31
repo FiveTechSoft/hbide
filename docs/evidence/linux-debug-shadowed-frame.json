@@ -1,0 +1,149 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "03f58d0e2ebf9db701b8ed483c7f1ca918eb99d3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "05910545f225c339dd45b32573a7443c8a44b05b1798e140564d330c786e38b9",
+      "binary_sha256": "51b06c97c885a194a6bbbf08cd7eebe4484c9aeb1ea2fc6b48428b84c495b3bc",
+      "build_receipt": "/tmp/hbide-frame-joint-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6508d7860a89abba323e9fc4f26e98434730fbb4c86008654fc4fe7884917899",
+      "case": "debug-shadowed-frame",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_shadowed_frame_pty.py"
+      ],
+      "started": 1793421142.413321,
+      "seconds": 11.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c3b68c97ddf948536c82fbccdc68cc7e437bf4e4030bbc4be02a92a6ce72602f",
+      "log": "/tmp/hbide-frame-joint-clean/debug-shadowed-frame-1793421142413317032.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "03f58d0e2ebf9db701b8ed483c7f1ca918eb99d3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "05910545f225c339dd45b32573a7443c8a44b05b1798e140564d330c786e38b9",
+      "binary_sha256": "51b06c97c885a194a6bbbf08cd7eebe4484c9aeb1ea2fc6b48428b84c495b3bc",
+      "build_receipt": "/tmp/hbide-frame-joint-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6508d7860a89abba323e9fc4f26e98434730fbb4c86008654fc4fe7884917899",
+      "case": "debug-stack-mouse",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_stack_mouse_pty.py"
+      ],
+      "started": 1793421154.0856378,
+      "seconds": 9.47,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c1d3f60be21d25df55fa6aebb0c71cf4c63174480347355f409d6d798dfe1cc9",
+      "log": "/tmp/hbide-frame-joint-clean/debug-stack-mouse-1793421154085634525.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "03f58d0e2ebf9db701b8ed483c7f1ca918eb99d3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "05910545f225c339dd45b32573a7443c8a44b05b1798e140564d330c786e38b9",
+      "binary_sha256": "51b06c97c885a194a6bbbf08cd7eebe4484c9aeb1ea2fc6b48428b84c495b3bc",
+      "build_receipt": "/tmp/hbide-frame-joint-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6508d7860a89abba323e9fc4f26e98434730fbb4c86008654fc4fe7884917899",
+      "case": "debug-tracepoint-modal",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_tracepoint_modal_pty.py"
+      ],
+      "started": 1793421163.551939,
+      "seconds": 23.34,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "79906cbf71d099d5153c2e3e51b3475d936e39dc3a6ef872419ab1006251a2a4",
+      "log": "/tmp/hbide-frame-joint-clean/debug-tracepoint-modal-1793421163551935112.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "03f58d0e2ebf9db701b8ed483c7f1ca918eb99d3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "05910545f225c339dd45b32573a7443c8a44b05b1798e140564d330c786e38b9",
+      "binary_sha256": "51b06c97c885a194a6bbbf08cd7eebe4484c9aeb1ea2fc6b48428b84c495b3bc",
+      "build_receipt": "/tmp/hbide-frame-joint-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6508d7860a89abba323e9fc4f26e98434730fbb4c86008654fc4fe7884917899",
+      "case": "debug-workareas",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_workareas_pty.py"
+      ],
+      "started": 1793421186.8906267,
+      "seconds": 11.87,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "60dc3e118fb3cb83889113fe8d2f52cecee2bd896138e0a00400502ba7622713",
+      "log": "/tmp/hbide-frame-joint-clean/debug-workareas-1793421186890622470.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "03f58d0e2ebf9db701b8ed483c7f1ca918eb99d3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "05910545f225c339dd45b32573a7443c8a44b05b1798e140564d330c786e38b9",
+      "binary_sha256": "51b06c97c885a194a6bbbf08cd7eebe4484c9aeb1ea2fc6b48428b84c495b3bc",
+      "build_receipt": "/tmp/hbide-frame-joint-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6508d7860a89abba323e9fc4f26e98434730fbb4c86008654fc4fe7884917899",
+      "case": "debug-monitor-scopes",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_monitor_scopes_pty.py"
+      ],
+      "started": 1793421198.759083,
+      "seconds": 15.98,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "875ff87539eb0ecb7e3c40311cfa08de7414eeefe76b8cfcf1a228a17d9d18ef",
+      "log": "/tmp/hbide-frame-joint-clean/debug-monitor-scopes-1793421198759078923.log"
+    }
+  ],
+  "logs": {
+    "debug-shadowed-frame-1793421142413317032.log": "PASS callee shadowed local starts202\nPASS caller shadowed local starts101\nPASS caller edit displays707\nPASS caller edit does not change callee202\nPASS callee edit displays808\nPASS callee edit leaves caller707\nPASS callee edited slot retained808\nPASS Resume proves distinct caller707 and incremented callee809\nPASS frame edits leave source bytes exact\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-yfcm_p6m\n",
+    "debug-stack-mouse-1793421154085634525.log": "PASS child local visible at nested stop\nPASS click caller frame switches Monitor locals\nPASS right border click preserves selected MAIN frame\nPASS title border click preserves selected MAIN frame\nPASS click callee frame restores child locals\nPASS stack clicks allow debuggee completion\nPASS stack clicks leave source bytes exact\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-kiwlciyi\n",
+    "debug-tracepoint-modal-1793421163551935112.log": "PASS stopped before first increment\nPASS cancel add exact saved point expressions\nPASS invalid tracepoint add rejected\nPASS invalid add exact saved point expressions\nPASS tracepoint n evaluates initial exact value\nPASS add exact saved point expressions\nPASS editing tracepoint evaluates3\nPASS edit preserves tracepoint type exact saved point expressions\nPASS cancel edit exact saved point expressions\nPASS invalid tracepoint edit rejected\nPASS invalid edit exact saved point expressions\nPASS cancel Delete exact saved point expressions\nPASS Go stops on real tracepoint change before output\nPASS delete exact saved point expressions\nPASS after Delete Go completes exact debuggee value\nPASS point operations leave source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-5544i5eo\n",
+    "debug-workareas-1793421186890622470.log": "PASS debugger stopped before increment\nPASS View WorkAreas opens actual three browser dialog\nPASS ALPHA actual field structure shown\nPASS switching alias updates exact BETA structure\nPASS switching alias updates Alias status\nPASS cycling panes and returning alias restores ALPHA fields\nPASS Esc closes WorkAreas to debugger\nPASS F6 reopens WorkAreas with original alias\nPASS Resume retains original workarea record and exact fields\nPASS WorkAreas inspection leaves source bytes unchanged\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-89m7fqli\n",
+    "debug-monitor-scopes-1793421198759078923.log": "PASS debugger stopped before increment\nPASS Local menu displays both exact scalar values\nPASS unsorted locals retain declaration order\nPASS Sort menu orders actual local names\nPASS Public menu adds actual memvar value\nPASS Private menu adds actual memvar value\nPASS Static menu adds actual static value\nPASS Sort remains active across scope additions\nPASS Public toggle removes only public fixture variable\nPASS Private toggle removes only private fixture variable\nPASS Static toggle removes only static fixture variable\nPASS All menu exposes fixture scopes with exact values\nPASS second All hides all fixture variables\nPASS editing sorted first row targets QA\nPASS scope toggles and sorted edit reach exact debuggee slots\nPASS scope test leaves source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-hh4fjjjr\n"
+  },
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "03f58d0e2ebf9db701b8ed483c7f1ca918eb99d3",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "05910545f225c339dd45b32573a7443c8a44b05b1798e140564d330c786e38b9",
+    "binary_sha256": "51b06c97c885a194a6bbbf08cd7eebe4484c9aeb1ea2fc6b48428b84c495b3bc",
+    "built_at": 1793421142.4130585
+  },
+  "checks": [
+    "15 inventory PASS",
+    "33 complete documents embedded byte-exact PASS"
+  ],
+  "limits": "Two numeric shadowed local frames, Linux PTY only. No new pixels, Windows, global matrix or inherited model pass."
+}

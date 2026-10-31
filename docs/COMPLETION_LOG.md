@@ -2403,7 +2403,11 @@ peroentregaclicfisico titulo no demostrada; no heredar comoPTYPASS.
 ## 31 octubre frame shadowing real slots
 
 Nueva suite9PASSexploratorioSHAREDcaller101/callee202:editarcaller707
-no cambiacallee;editarcallee808no cambi acaller;volver ambosretienevalores.
+no cambiacallee;editarcallee808no cambiacaller;volver ambosretienevalores.
 Resumeexact{707,809}pruebadosslotsVMdistintosconincrementoposterior.
 Sinproductfix,nopixelsnuevos,solo2framesnumericos,Windowsno.
 Runner132=131modosPTY+guard,no132funciones. Clean pendiente.
+
+Clean03f58d0Shadow9Stack7Tracepoint16WorkAreas10Scopes16sameIDE51b06c97
+PASSsinretry,15inventory33docsPASS. linux-debug-shadowed-frame.json
+retieneidentidad/logs, sin heredar modelos ni pixels anteriores.
