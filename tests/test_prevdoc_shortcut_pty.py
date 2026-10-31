@@ -3,6 +3,7 @@ import argparse
 import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
 parser=argparse.ArgumentParser()
 parser.add_argument('--compact-256',action='store_true')
+parser.add_argument('--single',action='store_true')
 args=parser.parse_args()
 ROWS, COLS = (25,80) if args.compact_256 else (40,120)
 BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
@@ -113,26 +114,37 @@ def saved(name, expected):
     check(name, target.read_bytes()==expected)
 try:
     pump(2)
-    paths=[work/(name+'.prg') for name in ['first','second','third']]
-    originals=[b'FIRST',b'SECOND',b'THIRD']
-    for p,value in zip(paths,originals):
-        p.write_bytes(value)
-        send(b'\x1bf');send(b'o');send(str(p).encode()+b'\r',.7)
-    check('Third of three opened files active','THIRD' in scr.text())
-    send(b'\x1b[17;6~')
-    check('CtrlShiftF6 goes third to second, not forward','SECOND' in scr.text() and 'THIRD' not in scr.text())
-    send(b'X');send(b'\x1bOQ',.7)
-    check('Typing F2 saves exact second destination',paths[1].read_bytes()==b'XSECOND' and paths[0].read_bytes()==originals[0] and paths[2].read_bytes()==originals[2])
-    send(b'\x1b[17;6~')
-    check('Previous second to first','FIRST' in scr.text())
-    send(b'\x1b[17;6~')
-    check('Previous first wraps to third','THIRD' in scr.text())
-    send(b'\x1b[17;6~')
-    check('Return to second retains modified text','XSECOND' in scr.text())
-    send(b'\x1a');send(b'\x1bOQ',.7)
-    check('Undo remains second-only exact',paths[1].read_bytes()==originals[1] and paths[0].read_bytes()==originals[0] and paths[2].read_bytes()==originals[2])
-    send(b'\x1b[17;5~')
-    check('CtrlF6 forward returns third','THIRD' in scr.text())
+    if args.single:
+        send(b'\x1bf');send(b'o');send(str(target).encode()+b'\r',.7)
+        check('Single file opened','alpha' in scr.text())
+        send(b'\x1b[17;6~');send(b'\x1bOQ',.7)
+        check('Previous shortcut single buffer byte inert',target.read_bytes()==original)
+        check('No dirty caption after inert shortcut',' * ' not in scr.text().splitlines()[1])
+        send(b'X');send(b'\x1bOQ',.7)
+        check('Following typing saves at unchanged cursor',target.read_bytes()==b'Xalpha')
+        send(b'\x1a');send(b'\x1bOQ',.7)
+        check('Undo following inert shortcut exact',target.read_bytes()==original)
+    else:
+        paths=[work/(name+'.prg') for name in ['first','second','third']]
+        originals=[b'FIRST',b'SECOND',b'THIRD']
+        for p,value in zip(paths,originals):
+            p.write_bytes(value)
+            send(b'\x1bf');send(b'o');send(str(p).encode()+b'\r',.7)
+        check('Third of three opened files active','THIRD' in scr.text())
+        send(b'\x1b[17;6~')
+        check('CtrlShiftF6 goes third to second, not forward','SECOND' in scr.text() and 'THIRD' not in scr.text())
+        send(b'X');send(b'\x1bOQ',.7)
+        check('Typing F2 saves exact second destination',paths[1].read_bytes()==b'XSECOND' and paths[0].read_bytes()==originals[0] and paths[2].read_bytes()==originals[2])
+        send(b'\x1b[17;6~')
+        check('Previous second to first','FIRST' in scr.text())
+        send(b'\x1b[17;6~')
+        check('Previous first wraps to third','THIRD' in scr.text())
+        send(b'\x1b[17;6~')
+        check('Return to second retains modified text','XSECOND' in scr.text())
+        send(b'\x1a');send(b'\x1bOQ',.7)
+        check('Undo remains second-only exact',paths[1].read_bytes()==originals[1] and paths[0].read_bytes()==originals[0] and paths[2].read_bytes()==originals[2])
+        send(b'\x1b[17;5~')
+        check('CtrlF6 forward returns third','THIRD' in scr.text())
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
