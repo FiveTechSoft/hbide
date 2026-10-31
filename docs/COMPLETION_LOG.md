@@ -2886,3 +2886,12 @@ two boundedsteps without retries. Ledgerlinux-candidate-find-virtual.json
 includesmanifest/toolchain/ldd/logs. IncludesNEXUSsource but no execution
 ofNEXUSonthiscandidate. No release/installer/license/Windows/full159PTY/
 newpixels/determinism. No newfix or milestoneclosure.
+
+## Q50 - Function picker interprets literal comment openers
+
+A localstring "/*" or linecomment containing /* hid later functions.
+Scanner strippedblockcomments without lexical context. Before1PASS2FAIL
+realGoToFunction couldn't list/jumpTarget; afterlocal3PASS. Newlexer masks
+single/double/bracketstrings, escape/doubledquotes, stops//&&and*comments,
+keepsrealblockstate and lineindexes. Newmodel11checks incl realblock/pragmadump.
+Runner161=160PTY+guard, modelbaseline22. No fullHarbourparser/preprocessor.

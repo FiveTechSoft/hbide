@@ -11,31 +11,15 @@
 // (//, *, &&, /* */) and #pragma begindump C blocks are skipped.
 FUNCTION HBIDE_ScanProcs( cText )
    LOCAL aOut := {}, aLines, cLine, cL, nLine := 0, lBlock := .F., lDump := .F.
-   LOCAL aTok, cT1, cT2, cName, n, p, q, cKind, cCls
+   LOCAL aTok, cT1, cT2, cName, n, cKind, cCls
 
    cText := StrTran( StrTran( cText, Chr( 13 ) + Chr( 10 ), Chr( 10 ) ), Chr( 13 ), Chr( 10 ) )
    aLines := hb_ATokens( cText, Chr( 10 ) )
    FOR EACH cLine IN aLines
       nLine++
-      cL := cLine
-      IF lBlock
-         p := At( "*/", cL )
-         IF p == 0
-            LOOP
-         ENDIF
-         cL := SubStr( cL, p + 2 )
-         lBlock := .F.
-      ENDIF
-      // drop complete /* ... */ spans, then an unterminated opener
-      DO WHILE ( p := At( "/*", cL ) ) > 0
-         q := At( "*/", SubStr( cL, p + 2 ) )
-         IF q == 0
-            cL := Left( cL, p - 1 )
-            lBlock := .T.
-            EXIT
-         ENDIF
-         cL := Left( cL, p - 1 ) + " " + SubStr( cL, p + 2 + q + 1 )
-      ENDDO
+      // Comments inside quoted strings are data, and line comments cannot
+      // start a block comment that hides declarations on following lines.
+      cL := HBIDE_NavCode( cLine, @lBlock )
       cL := AllTrim( StrTran( cL, Chr( 9 ), " " ) )
       IF Empty( cL )
          LOOP
@@ -104,6 +88,49 @@ FUNCTION HBIDE_ScanProcs( cText )
       AAdd( aOut, { cName, cKind, nLine } )
    NEXT
    RETURN aOut
+
+// Strip comments and mask string contents without changing line count.
+STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
+   LOCAL cOut := "", n := 1, c, q := "", lEscape := .F.
+   IF Left( LTrim( cLine ), 1 ) == "*" .AND. ! lBlock
+      RETURN ""
+   ENDIF
+   DO WHILE n <= Len( cLine )
+      c := SubStr( cLine, n, 1 )
+      DO CASE
+      CASE lBlock
+         IF SubStr( cLine, n, 2 ) == "*/"
+            lBlock := .F.
+            cOut += " "
+            n++
+         ENDIF
+      CASE ! Empty( q )
+         IF lEscape .AND. c == Chr( 92 )
+            n++
+         ELSEIF c == q
+            IF SubStr( cLine, n + 1, 1 ) == q .AND. q != "]"
+               n++
+            ELSE
+               q := ""
+            ENDIF
+         ENDIF
+         cOut += " "
+      CASE SubStr( cLine, n, 2 ) == "//" .OR. SubStr( cLine, n, 2 ) == "&&"
+         EXIT
+      CASE SubStr( cLine, n, 2 ) == "/*"
+         lBlock := .T.
+         cOut += " "
+         n++
+      CASE c == Chr( 34 ) .OR. c == "'" .OR. c == "["
+         q := iif( c == "[", "]", c )
+         lEscape := n > 1 .AND. Lower( SubStr( cLine, n - 1, 1 ) ) == "e" .AND. c == Chr( 34 )
+         cOut += " "
+      OTHERWISE
+         cOut += c
+      ENDCASE
+      n++
+   ENDDO
+RETURN cOut
 
 // FUNC/PROC may be abbreviated to four letters in Harbour/Clipper
 STATIC FUNCTION HBIDE_IsKw( cWord, cFull )
