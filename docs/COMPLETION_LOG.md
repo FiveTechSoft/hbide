@@ -3774,3 +3774,14 @@ productbug. Source433c773:single5+compact256threefile8+baselinethreefile8=
 21checksPASS32inventory34docs,no failure/retry/interruption.
 linux-prevdoc-single.json. No newproductfix/pixels/modelrerun/allkeys/Windows/
 global/hitoclosed. NavTABstarprobe3PASS,nochange.
+
+## Q112 - joint input IDE/debugger regression after GT mapping
+
+Frozenec9d3a0a2a65278322cbcdb98e8d3473f97a4e26 binary
+cd017acf6a2d3e30a34c9a1c65249ffb62a56b17a37aaa19e49af03884bbc028:
+11modesPASS,163numberedchecks+2codeblockon/offscenarios. PrevDoc5/8/8,
+F5Find7/EditMenu37/Multidoc37/DebugExits16/Session23/Colors12/InputPaths10
+andcodeblock2scenarios.3completedbatches5+2+4sameidentitynofailure/retry/
+interruption.22models32inventory34docsPASS. linux-input-joint-q112.json.
+No fullmatrix/newfix/pixels/candidate/Windows/hitoclosed. Q104full212a0b7b82
+andC21df2e7a5remainseparateolderidentities.
