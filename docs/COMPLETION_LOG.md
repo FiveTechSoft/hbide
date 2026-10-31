@@ -2183,3 +2183,11 @@ ClipboardRuntime9Case18PASS binario exacto, hashes antes/despues iguales.
 Extras dospasosacotados desde export, no119matrizglobal. Manifestretiene
 nuevohashcompiler78e2990e. No release/licencias/install/Windows/determinismo.
 Evidencia linux-candidate-current-extras.json, no herencia del candidato previo.
+
+## 31 octubre: GET pegado con binding de texto independiente
+
+Fixture GET CVAR1/VALIDMarkState(),cargaCopyPasteF10F9reales,compilaPRGreal
+instrumentado solo para registrar AllTrim de ambosvalores. Primeraejecucion
+AlphaTab deja{"Alpha",""};segundaTabBetaTab deja{"","Beta"};VALID preservado
+se ejecuta enambas.9checks, sin producto nuevo/pixels/Windows ni todoslos
+handlers. Complementa checkboxSTATE, no se generaliza a todoslostipos.
