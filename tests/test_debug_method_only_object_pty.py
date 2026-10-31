@@ -5,12 +5,12 @@ text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
 for kind in ['object']:
- target=work/(kind+'.prg');value=work/(kind+'.txt')
+ target=work/(kind+'.prg');value=work/(kind+'.txt');marker=work/'method-side-effect.txt'
  init={'array':'{}','hash':'{=>}','object':'MakeValue()'}[kind]
  result='v:ClassName()' if kind=='object' else 'hb_ValToExp( v )'
  code='procedure main()\n   local v := '+init+'\n   hb_MemoWrit( "'+str(value)+'", '+result+' )\nreturn\n'
  if kind=='object':
-  code+='function MakeValue()\n   local oClass := HBClass():New( "ModalFixture" )\n   oClass:Create()\nreturn oClass:Instance()\n'
+  code+='function MakeValue()\n   local oClass := HBClass():New( "ModalFixture" )\n   oClass:AddInline( "AAProbe", {|| hb_MemoWrit( "' + str(marker) + '", "CALLED" )} )\n   oClass:Create()\nreturn oClass:Instance()\n'
  target.write_text(code)
  pid,fd=pty.fork()
  if pid==0:
@@ -40,14 +40,17 @@ for kind in ['object']:
   send(b'9',.3)
   check(kind+' top inspector refuses replacement','Value cannot be edited' in screen.text())
   send(b'\r',.3);send(b'\r',.4)
-  check('object with no data exposes method rows','modalfixture Method' in screen.text() and 'realclass' in screen.text())
+  check('object with no data exposes method rows','aaprobe' in screen.text() and 'Method' in screen.text() and 'realclass' in screen.text())
+  check('opening method browser never invokes method',not marker.exists())
   send(b'\r',.4)
   check('method row Enter refuses editing','Value cannot be edited' in screen.text())
+  check('Enter on method never invokes side effect',not marker.exists())
   (work/(kind+'-empty.screen')).write_text(screen.text())
   send(b'\r',.3);send(b'\x1b',.3);send(b'\x1b',.3)
   check(kind+' dismissal returns Monitor','Command' in screen.text() and 'V <Local' in screen.text())
   send(b'window select command\r',.3);send(b'\x1b[15~',.7)
   expected='MODALFIXTURE'
+  check('Resume after method browsing never invoked method',not marker.exists())
   check(kind+' empty value remains exact after Resume',value.exists() and value.read_text()==expected)
 
  finally:

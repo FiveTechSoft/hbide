@@ -1958,3 +1958,8 @@ Sin producto nuevo, no objeto sinmetodosarbitrario/Windows/pixels.
 Inventario enlaza las pruebas readonlyexplicito/guardasarrayhashvacios/objeto
 sinAddData con limites distintosdeldefaultMonitor. No cuenta5fixturescomo
 5funcionesnuevasni sustituyeaceptacionplataformas.15inventario/33docsPASS.
+
+MethodOnlyObject ampliado10checks: metodoAAProbeescribiriamarker si ejecutado.
+Abrirbrowser,EntersobreMethodyResumedejanmarkerausente,ClassNameexacto. Esto
+comprueba noejecucion, no solo textoMethod/alerta. Getterconefectos sigue fuera
+deesta promesa: inspeccionarpropiedades legibles usa getters por contrato.
