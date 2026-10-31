@@ -201,9 +201,10 @@
         "test_editor_repaint.prg",
         "test_editor_eol.prg",
         "test_multidoc_pty.py",
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_replace_undo_boundary_pty.py"
       ],
-      "contract": "Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified.",
+      "contract": "Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion.",
       "expected_label": "Undo           Ctrl+Z"
     },
     "IDE-009": {
@@ -211,9 +212,10 @@
         "test_editor_repaint.prg",
         "test_editor_eol.prg",
         "test_multidoc_pty.py",
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_replace_undo_boundary_pty.py"
       ],
-      "contract": "Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document.",
+      "contract": "Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion.",
       "expected_label": "Redo           Ctrl+U"
     },
     "IDE-011": {
@@ -253,9 +255,10 @@
       "tests": [
         "test_editor_eol.prg",
         "test_edit_menu_pty.py",
-        "test_replace_spaces_pty.py"
+        "test_replace_spaces_pty.py",
+        "test_replace_undo_boundary_pty.py"
       ],
-      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes. Empty replacement deletes only matches; missing text reports zero and preserves bytes. One-space and two-space search strings are real data: exact counts4/1, disk bytes retain TAB/mixed EOL and trailing replacement, single Undo/Redo exact, Cancel unchanged. No Unicode expansion or multiline replacement claim.",
+      "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes. Empty replacement deletes only matches; missing text reports zero and preserves bytes. One-space and two-space search strings are real data: exact counts4/1, disk bytes retain TAB/mixed EOL and trailing replacement, single Undo/Redo exact, Cancel unchanged. No Unicode expansion or multiline replacement claim. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion.",
       "expected_label": "Replace..."
     },
     "IDE-023": {

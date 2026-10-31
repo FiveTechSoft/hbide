@@ -94,7 +94,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD EditKey( nKey )
    METHOD LinesSnapshot()
    METHOD RecordEdit( aBefore )
-   METHOD PushOp( nRow, aOld, aNew )
+   METHOD PushOp( nRow, aOld, aNew, lSeparate )
    METHOD ApplyOp( aOp, lInverse )
    METHOD Undo()
    METHOD Redo()
@@ -334,7 +334,7 @@ METHOD ReplaceAll( cFind, cReplace ) CLASS HBSrcEdit
       for n = 1 to Len( ::aText )
          ::aText[ n ]:cText := aNew[ n ]
       next
-      ::PushOp( 1, aOld, ::LinesSnapshot() )
+      ::PushOp( 1, aOld, ::LinesSnapshot(), .T. )
       ::lDirty := .T.
       ::Display()
    endif
@@ -747,9 +747,10 @@ return Self
 
 //-----------------------------------------------------------------------------------------//
 
-// Undo stack ops: { nRow, aOldLines, aNewLines } replaces aOld with aNew at nRow
+// Undo stack ops: { nRow, aOldLines, aNewLines, lSeparate } replaces lines.
+// lSeparate keeps explicit commands out of adjacent typing bursts.
 // (model adapted from tvedit's PushUndo, reworked for HBEditor's line array)
-METHOD PushOp( nRow, aOld, aNew ) CLASS HBSrcEdit
+METHOD PushOp( nRow, aOld, aNew, lSeparate ) CLASS HBSrcEdit
 
    local aLast, i, lSame
 
@@ -776,9 +777,11 @@ METHOD PushOp( nRow, aOld, aNew ) CLASS HBSrcEdit
    // fuse consecutive single-line edits on the same line (typing bursts);
    // never fuse onto the op that marks the saved state, or the buffer
    // would differ from disk while Len( aUndo ) still matches
-   if Len( ::aUndo ) > 0 .and. Len( ::aUndo ) != ::nSavedUndoLen
+   if ! hb_defaultValue( lSeparate, .F. ) .and. ;
+      Len( ::aUndo ) > 0 .and. Len( ::aUndo ) != ::nSavedUndoLen
       aLast := ATail( ::aUndo )
-      if Len( aLast[ 2 ] ) == 1 .and. Len( aLast[ 3 ] ) == 1 .and. ;
+      if ( Len( aLast ) < 4 .or. ! aLast[ 4 ] ) .and. ;
+         Len( aLast[ 2 ] ) == 1 .and. Len( aLast[ 3 ] ) == 1 .and. ;
          Len( aOld ) == 1 .and. Len( aNew ) == 1 .and. ;
          aLast[ 1 ] == nRow .and. aLast[ 3, 1 ] == aOld[ 1 ]
          aLast[ 3, 1 ] := aNew[ 1 ]
@@ -789,7 +792,7 @@ METHOD PushOp( nRow, aOld, aNew ) CLASS HBSrcEdit
    endif
 
    ::AdjustBPs( nRow, aOld, aNew )
-   AAdd( ::aUndo, { nRow, aOld, aNew } )
+   AAdd( ::aUndo, { nRow, aOld, aNew, hb_defaultValue( lSeparate, .F. ) } )
    ::aRedo := {}
    if Len( ::aUndo ) > MAX_UNDO
       ADel( ::aUndo, 1 )

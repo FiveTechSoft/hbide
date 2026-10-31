@@ -2463,3 +2463,12 @@ Runner136=135PTY+guard,no136funciones. Noallhandlers/pixels/Windows.
 
 Clean27c724eButton12List9Radio9sameIDE37a39471PASSsinretry,
 15inventory33docsPASS. linux-pasted-button-runtime.jsonretieneidentity/logs.
+
+## Q34 Replace no se fusiona con typing previo/posterior
+
+Una lineaalpha,typingX,Replaceomega:antesUndoquitabaXtambien(2/3).
+PushOpahorarecibelSeparateparamopcionalymarcaentrada;Replace.T.no
+fusionaprevianiadmitetypingposterior. Filtrolegado3slotsconservado.
+DespuesPTY6PASS/6modelchecksnew;typingnormalcontinuafusionando.
+Native120x40UndoXalpha/RedoXomegainspeccionadosSaveexactos.
+Runner137=136PTY+guard. No otroscomandosundosplit niWindows/global.
