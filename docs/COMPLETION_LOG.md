@@ -3630,3 +3630,14 @@ literalyellow/nextfunctionreturnscyan/fullborders/F2exact.
 SupersedesC19temporarycandidate only;notrelease/licenses/Windows/install/
 determinism/globalmatrix/NEXUS/hitocerrado. Evidence
 linux-candidate-bracket-context-c20.json. Q87frozen84e58b3.
+
+## Q100 - minus bracket literal context
+
+Compiler-valid "x" - [/* literal] reproduced2PASS2FAIL C20; new minus
+context excluding--,5guards including decrement index and gap/multiline.
+Freshsource3564515:5modos24PTYchecks/22models156repaint/27inventory/34docsPASS.
+Native120x40literalyellow/followingreturnfunctioncyan/fullborders/F2exact.
+Development: runner tuple corrected beforetests; firstmultilineguard reused
+WordWrap-alteredbuffer155PASS1FAIL, freshPaintProbe156PASS. Clean no failures
+or retries. linux-editor-bracket-minus.json. No lexercomplete/Windows/global.
+C20 remains frozen6da0304, Q87full201frozen84e58b3.
