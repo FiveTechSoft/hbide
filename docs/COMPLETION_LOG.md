@@ -3529,3 +3529,5 @@ context from := to also leftparenthesis, preserving array/callresult index.
 Four repaint guards and colorPTY. RETURN [..] without parentheses did not
 compile in exploratory probe; not treated as accepted syntax.
 Evidence linux-editor-paren-bracket.json follows; no complete lexer claim.
+
+Q91 clean acceptance49aa4a5d26a74a36f9aeb9ca138bb85ca701efb0 binary3727c2bfeb9547ab109ffab1724d162ad735acbb16490eed7aa7be1f2402e246:17PTYchecks(Paren4/BracketVariants7/NOTE6),22models26inventory34docsPASS;no retries/failures. Native literal yellow/following function+returncyan/fullbordersinspected,F2exact. C19predatesfix,Q87separate84e58b3.
