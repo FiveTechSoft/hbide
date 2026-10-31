@@ -2778,3 +2778,11 @@ Q45 cleana600e4c: Identity5,Destructive19,Selection7,OVR3PASS samef495a8f0;
 21modelsPASS including91repaint,15inventory33docsPASS. Native120x40alpha col2
 and Close->noname withoutprompt inspected full borders. Ledger
 linux-selection-identity.json. No re-runs or global/Windows assertion.
+
+## Q46 - Tab replacement depends on selection direction
+
+Selectab inabcd forward and pressTab insertedtwo spaces; reverse insertedfour.
+Tab was computed at old endpoint before SelDelete moved cursor to start.
+Before5PASS2FAIL realPTY. Recompute Tab only after range deletion, at actual
+insertion point. Fourmodel checks+forward/reversePTY. Runner156=155PTY+guard.
+Clean/native evidence follows, no wordwrap/Unicode/global contract inferred.

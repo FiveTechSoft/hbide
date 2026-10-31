@@ -627,6 +627,11 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            else
               ::ClearSelection()
            endif
+           // Tab expansion belongs to the insertion point after deleting
+           // the range, not its old moving endpoint (direction-dependent).
+           if nKeyStd == K_TAB .and. Set( _SET_INSERT )
+              cKey := Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) )
+           endif
            oLine := ::aText[ ::nRow ]
            // capture BEFORE the past-EOL padding below: the recorded undo op
            // must restore the line as it was, padding included in the new
