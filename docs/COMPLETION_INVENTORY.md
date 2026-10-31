@@ -47,57 +47,57 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-039 | Help | About... | hbide.prg:846 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-001 | File | Open... | hbdebug/dbgmenu.prg:78 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-002 | File | Resume | hbdebug/dbgmenu.prg:79 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-003 | File | OS Shell | hbdebug/dbgmenu.prg:80 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-003 | File | OS Shell | hbdebug/dbgmenu.prg:80 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-004 | File | eXit    Alt-X | hbdebug/dbgmenu.prg:82 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-005 | Locate | Find | hbdebug/dbgmenu.prg:87 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-006 | Locate | Next | hbdebug/dbgmenu.prg:88 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-007 | Locate | Previous | hbdebug/dbgmenu.prg:89 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-008 | Locate | Goto line... | hbdebug/dbgmenu.prg:90 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-009 | Locate | Case sensitive | hbdebug/dbgmenu.prg:92 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-010 | View | Sets | hbdebug/dbgmenu.prg:99 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-011 | View | WorkAreas   F6 | hbdebug/dbgmenu.prg:100 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-010 | View | Sets | hbdebug/dbgmenu.prg:99 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-011 | View | WorkAreas   F6 | hbdebug/dbgmenu.prg:100 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-012 | View | App Screen  F4 | hbdebug/dbgmenu.prg:101 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-013 | View | CallStack | hbdebug/dbgmenu.prg:103 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-013 | View | CallStack | hbdebug/dbgmenu.prg:103 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-014 | Run | Animate | hbdebug/dbgmenu.prg:110 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-015 | Run | Step              F8 | hbdebug/dbgmenu.prg:113 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-016 | Run | Trace            F10 | hbdebug/dbgmenu.prg:114 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-017 | Run | Go                F5 | hbdebug/dbgmenu.prg:115 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-015 | Run | Step              F8 | hbdebug/dbgmenu.prg:113 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-016 | Run | Trace            F10 | hbdebug/dbgmenu.prg:114 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-017 | Run | Go                F5 | hbdebug/dbgmenu.prg:115 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-018 | Run | to Cursor         F7 | hbdebug/dbgmenu.prg:116 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-019 | Run | Next routine Ctrl-F5 | hbdebug/dbgmenu.prg:117 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-019 | Run | Next routine Ctrl-F5 | hbdebug/dbgmenu.prg:117 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-020 | Run | sPeed... | hbdebug/dbgmenu.prg:119 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-021 | Point | Watchpoint... | hbdebug/dbgmenu.prg:124 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-022 | Point | Tracepoint... | hbdebug/dbgmenu.prg:125 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-022 | Point | Tracepoint... | hbdebug/dbgmenu.prg:125 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-023 | Point | Breakpoint   F9 | hbdebug/dbgmenu.prg:126 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-024 | Point | Delete... | hbdebug/dbgmenu.prg:127 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-024 | Point | Delete... | hbdebug/dbgmenu.prg:127 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-025 | Monitor | Public | hbdebug/dbgmenu.prg:132 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-026 | Monitor | priVate | hbdebug/dbgmenu.prg:136 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-027 | Monitor | Static | hbdebug/dbgmenu.prg:140 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-028 | Monitor | Local | hbdebug/dbgmenu.prg:144 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-028 | Monitor | Local | hbdebug/dbgmenu.prg:144 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-029 | Monitor | Global | hbdebug/dbgmenu.prg:148 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-030 | Monitor | All | hbdebug/dbgmenu.prg:154 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-031 | Monitor | Show all Globals | hbdebug/dbgmenu.prg:158 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-032 | Monitor | sOrt | hbdebug/dbgmenu.prg:162 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-032 | Monitor | sOrt | hbdebug/dbgmenu.prg:162 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-033 | Options | Preprocessed Code | hbdebug/dbgmenu.prg:167 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-034 | Options | Line Numbers | hbdebug/dbgmenu.prg:170 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-034 | Options | Line Numbers | hbdebug/dbgmenu.prg:170 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-035 | Options | Exchange Screens | hbdebug/dbgmenu.prg:173 | stub | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-036 | Options | swap on Input | hbdebug/dbgmenu.prg:174 | stub | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-037 | Options | codeBlock Trace | hbdebug/dbgmenu.prg:175 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-038 | Options | Menu Bar | hbdebug/dbgmenu.prg:178 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-039 | Options | mono Display | hbdebug/dbgmenu.prg:181 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-040 | Options | Colors... | hbdebug/dbgmenu.prg:184 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-040 | Options | Colors... | hbdebug/dbgmenu.prg:184 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-041 | Options | Tab Width... | hbdebug/dbgmenu.prg:185 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-042 | Options | path for Files... | hbdebug/dbgmenu.prg:186 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-043 | Options | Run at startup | hbdebug/dbgmenu.prg:187 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-044 | Options | Save Settings... | hbdebug/dbgmenu.prg:191 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-045 | Options | Restore Settings... | hbdebug/dbgmenu.prg:192 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-046 | Window | Next      Tab | hbdebug/dbgmenu.prg:197 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-047 | Window | Prev   Sh-Tab | hbdebug/dbgmenu.prg:198 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-046 | Window | Next      Tab | hbdebug/dbgmenu.prg:197 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-047 | Window | Prev   Sh-Tab | hbdebug/dbgmenu.prg:198 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-048 | Window | Move | hbdebug/dbgmenu.prg:199 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-049 | Window | Size | hbdebug/dbgmenu.prg:200 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-050 | Window | Zoom       F2 | hbdebug/dbgmenu.prg:201 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-051 | Window | Iconize | hbdebug/dbgmenu.prg:202 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-052 | Window | Tile | hbdebug/dbgmenu.prg:204 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-053 | Window | Cascade | hbdebug/dbgmenu.prg:205 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-053 | Window | Cascade | hbdebug/dbgmenu.prg:205 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-054 | Help | About Help | hbdebug/dbgmenu.prg:210 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-055 | Help | Keys | hbdebug/dbgmenu.prg:212 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-056 | Help | Windows | hbdebug/dbgmenu.prg:213 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -202,6 +202,23 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DSN-012: Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links. Pruebas: [test_designer_clipboard_types.prg](../tests/test_designer_clipboard_types.prg), [test_designer_clipboard_loaded_types_pty.py](../tests/test_designer_clipboard_loaded_types_pty.py), [test_designer_clipboard_pty.py](../tests/test_designer_clipboard_pty.py)
 - DSN-013: Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links. Pruebas: [test_designer_clipboard_types.prg](../tests/test_designer_clipboard_types.prg), [test_designer_clipboard_loaded_types_pty.py](../tests/test_designer_clipboard_loaded_types_pty.py), [test_designer_clipboard_pty.py](../tests/test_designer_clipboard_pty.py)
 - DSN-001:  Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing. Pruebas: [test_designer_clipboard_loaded_types_pty.py](../tests/test_designer_clipboard_loaded_types_pty.py)
+- DBG-003: Original fixed-wait Linux session: File OS Shell opens actual shell; exit returns to debugger and subsequent command evaluates42. No all-shell/environment/platform promise. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-010: Original fixed-wait Linux session: View Sets opens System Settings and Esc returns. Value editing has separate caller coverage; not all settings. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-011: Original fixed-wait Linux session: F6 with no workareas displays No workareas in use. No openDBF browse or mouse/menu dispatch acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-013: Original fixed-wait Linux session: View CallStack toggles Calls and displays bump in actual nested routine. No arbitrary stack/unwind acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-015: Original fixed-wait Linux session: F8 returns from bump to Main line4. Functionkey dispatch, not popup activation or all execution paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-016: Original fixed-wait Linux session: F10 advances bump line7 to8 without leaving routine. Functionkey dispatch, not popup activation or all execution paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-017: Original fixed-wait Linux session: F5 with tracepoint n stops after change at line3, separate run stops breakpointline3. Functionkey dispatch, not all go/stop paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-019: Original fixed-wait Linux session: CtrlF5 from Main reaches bump line7. Functionkey dispatch, not popup activation or all next-routine paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-022: Original fixed-wait Linux session: Point Tracepoint dialog accepts n, F5 stops independently after its change. Delete removes last tracepoint; no all expression/side-effect paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-024: Original fixed-wait Linux session: Point Delete dialog accepts default0, removes last tracepoint and next Delete is no-op. Other breakpoint deletion policies separate. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-028: Original fixed-wait Linux session: Monitor Local after BPline3 shows typed local. No full scope/value semantics acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-032: Original fixed-wait Linux session: Monitor Sort retains visible Local view; this is view survival only, not a complete ordering fixture. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-034: Original fixed-wait Linux session: Options Line Numbers removes and restores numbered source rows; command NUM independently toggles same effect. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-040: Original fixed-wait Linux session: Colors dialog opens and Esc closes. Actual color write/cancel has separate inline caller evidence; no all-field acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-046: Original fixed-wait Linux session: Tab changes hardware cursor between debugger windows, and cycles after Cascade. No all focus layouts/platform promise. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-047: Original fixed-wait Linux session: ShiftTab returns hardware cursor to previous debugger window. No all focus layouts/platform promise. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-053: Original fixed-wait Linux session: Window Cascade moves source caption upward and Tab continues cycling across surviving windows. No pixel geometry or all window layouts. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
 
 ## Contratos modales y edicion inline vinculados
 

@@ -2220,3 +2220,14 @@ Cleanb8f77d7: popup119PASS=63modelchecks+56popupvisible assertions, seven
 fixtures. Case18 and GETruntime9PASS sameIDEf2a5a2af;21modelsPASS plus
 15inventory33docs. Durable docs/evidence/linux-clipboard-popup-types.json.
 No sourceproduct change, no pixel/mouse/Windows acceptance.
+
+## 31 octubre: matrizDebugFunctions original completada
+
+Clean628b088freshIDEc6463596 completa originalfixedwait sin--idle-settle:
+58PASS0FAIL114.25s. Antes solo idle58current y originalpendiente; pendiente
+resuelto para esta revision. Se mantienen seis aserciones checkmark soloestado,
+no efectos de RunAtStartup/CBTrace/ShowAllGlobals. No visual/Windows/global.
+Ledger+log:docs/evidence/linux-debug-functions-original-current.json.
+Inventario enlaza17rutas acotadas: popup cuando probado, Fkeys se etiquetan
+como tales, Sort solo retencionvista, WorkAreas solo ningunDBF.
+No nuevo cierre de milestone ni cambio producto por esta reconciliacion.

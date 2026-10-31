@@ -1,0 +1,41 @@
+{
+  "scope": "Original fixed-wait DebugFunctions, no idle-settle, clean628b088 freshLinuxIDE58checks114.25s; six checkmark assertions are state only, not functional effects. No visual/Windows/globalrunner acceptance.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "628b0883b3fecf9c4fcc18976c0a09a1d261c1b6",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "b1006794d8816eeefb019573803d6303ef669c87c4baea182f2bbaf07d1d1295",
+    "binary_sha256": "c64635962bd67aa559e33081c5e67366549b66c73c6273259601c45201d4b635",
+    "built_at": 1793417249.6995664
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "628b0883b3fecf9c4fcc18976c0a09a1d261c1b6",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "b1006794d8816eeefb019573803d6303ef669c87c4baea182f2bbaf07d1d1295",
+      "binary_sha256": "c64635962bd67aa559e33081c5e67366549b66c73c6273259601c45201d4b635",
+      "build_receipt": "/tmp/hbide-functions-original-current/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5de9acc977941a8863efc42964098cae7fc7f1f38716bfcacd36a0070ba58d7b",
+      "case": "debug-functions",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_functions_pty.py"
+      ],
+      "started": 1793417249.6998372,
+      "seconds": 114.25,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "efe4c25a8904447ffc3da7cca79fab6eb3aa1d55bca2acaa24dcb7d8c8001dfa",
+      "log": "/tmp/hbide-functions-original-current/debug-functions-1793417249699833831.log"
+    }
+  ],
+  "logs": {
+    "debug-functions-1793417249699833831.log": "PASS boot caption noname\nPASS fn.prg open\nPASS debugger UI up\nPASS Tracepoint dialog opens\nPASS tracepoint stops after change (line 3)\nPASS Point Delete dialog opens\nPASS deleted point hides window (Delete now no-op)\nPASS Ctrl-F5 enters next routine (bump line 7)\nPASS Calls window opens\nPASS Calls lists bump\nPASS Trace F10 steps over to line 8\nPASS Step F8 back in Main (line 4)\nPASS WorkAreas F6 alerts when no areas\nPASS Sets view opens\nPASS Speed dialog opens\nPASS Command NUM removes line numbers\nPASS Command NUM restores line numbers\nPASS session 1 closed to IDE\nPASS session 2 debugger up\nPASS session 2 stops at BP line 3\nPASS Monitor Local shows typed var\nPASS Monitor Sort keeps the view\nPASS Window Next moves the cursor to another window\nPASS Window Prev moves it back\nPASS Cascade rearranges windows\nPASS Window Next cycles after Cascade (z-order, no loss)\nPASS Options Line Numbers off\nPASS Options Line Numbers on\nPASS Options mono Display changes colors\nPASS Options path for Files dialog\nPASS File Open dialog opens\nPASS OS Shell banner\nPASS exit returns to the debugger\nPASS Command ? evaluates\nPASS Run at startup checked by default (Clipper compatible)\nPASS Run at startup unchecks after toggle\nPASS codeBlock Trace checked by default\nPASS codeBlock Trace unchecks after toggle\nPASS Show all Globals unchecked by default\nPASS Show all Globals checks after toggle\nPASS session prg name parsed for PPO\nPASS PPO shows preprocessed view\nPASS PPO toggles back to source\nPASS Command window focused (echo)\nPASS Command bp 7 + list bp shows the breakpoint\nPASS Command bp 7 toggles off (not listed anymore)\nPASS Command help opens the Help window\nPASS Help window closes with ESC\nPASS Code window brought to front\nPASS Settings: line numbers off before save\nPASS Save Settings writes init.cld with Num Off\nPASS Settings: line numbers on before restore\nPASS Restore Settings reapplies Num Off\nPASS Tab Width 12 reindents the tabbed line live\nPASS Tab Width restored to 4\nPASS Colors dialog opens\nPASS Colors dialog closes with ESC\nPASS Alt+X returns to the IDE\nTOTAL 58 PASS 0 FAIL\n"
+  }
+}

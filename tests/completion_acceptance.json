@@ -648,6 +648,125 @@
         "test_designer_clipboard_loaded_types_pty.py"
       ],
       "contract": " Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing."
+    },
+    "DBG-003": {
+      "expected_label": "OS Shell",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: File OS Shell opens actual shell; exit returns to debugger and subsequent command evaluates42. No all-shell/environment/platform promise. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-010": {
+      "expected_label": "Sets",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: View Sets opens System Settings and Esc returns. Value editing has separate caller coverage; not all settings. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-011": {
+      "expected_label": "WorkAreas   F6",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: F6 with no workareas displays No workareas in use. No openDBF browse or mouse/menu dispatch acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-013": {
+      "expected_label": "CallStack",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: View CallStack toggles Calls and displays bump in actual nested routine. No arbitrary stack/unwind acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-015": {
+      "expected_label": "Step              F8",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: F8 returns from bump to Main line4. Functionkey dispatch, not popup activation or all execution paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-016": {
+      "expected_label": "Trace            F10",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: F10 advances bump line7 to8 without leaving routine. Functionkey dispatch, not popup activation or all execution paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-017": {
+      "expected_label": "Go                F5",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: F5 with tracepoint n stops after change at line3, separate run stops breakpointline3. Functionkey dispatch, not all go/stop paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-019": {
+      "expected_label": "Next routine Ctrl-F5",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: CtrlF5 from Main reaches bump line7. Functionkey dispatch, not popup activation or all next-routine paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-022": {
+      "expected_label": "Tracepoint...",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: Point Tracepoint dialog accepts n, F5 stops independently after its change. Delete removes last tracepoint; no all expression/side-effect paths. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-024": {
+      "expected_label": "Delete...",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: Point Delete dialog accepts default0, removes last tracepoint and next Delete is no-op. Other breakpoint deletion policies separate. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-028": {
+      "expected_label": "Local",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: Monitor Local after BPline3 shows typed local. No full scope/value semantics acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-032": {
+      "expected_label": "sOrt",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: Monitor Sort retains visible Local view; this is view survival only, not a complete ordering fixture. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-034": {
+      "expected_label": "Line Numbers",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: Options Line Numbers removes and restores numbered source rows; command NUM independently toggles same effect. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-040": {
+      "expected_label": "Colors...",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: Colors dialog opens and Esc closes. Actual color write/cancel has separate inline caller evidence; no all-field acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-046": {
+      "expected_label": "Next      Tab",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: Tab changes hardware cursor between debugger windows, and cycles after Cascade. No all focus layouts/platform promise. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-047": {
+      "expected_label": "Prev   Sh-Tab",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: ShiftTab returns hardware cursor to previous debugger window. No all focus layouts/platform promise. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-053": {
+      "expected_label": "Cascade",
+      "tests": [
+        "test_debug_functions_pty.py"
+      ],
+      "contract": "Original fixed-wait Linux session: Window Cascade moves source caption upward and Tab continues cycling across surviving windows. No pixel geometry or all window layouts. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
     }
   },
   "modal_contracts": [
