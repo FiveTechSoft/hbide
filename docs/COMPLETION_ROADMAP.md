@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q94 | Bracketstrings tras +/== no contaminan bloque/pintado. | Fixturecompiladaantes2PASS2FAIL;4repaintguardas/colorPTYambasexpresiones;linux-editor-bracket-operator.json. No lexercompleto/Windows. |
 | Q93 | Sources incluye header.hpp literal. | ProyectoC/hppcompiladoantes1PASS2FAIL;3modelguards/12PTY22models26inventory34docsPASS sourceb45b674;nativeSources/Enterinspeccionados;linux-project-hpp-header.json. No puenteC++/compiladornuevo/Windows. |
 | Q92 | Bracketstrings en arrayliteral/coma no abren bloque falso. | Fixturecompiladaantes2PASS2FAIL;4repaintguardas/16PTY22models26inventory34docsPASS fuente0ff5902;nativeambascadenasamarillas/posteriorescyaninspeccionado;linux-editor-bracket-list.json. No lexercompleto/Windows. |
 | Q91 | Bracketliteral tras ( no contamina pintado/estado. | Fixturecompiler-valid return([/*literal]);antes2PASS2FAIL;4repaintguardas/17PTY22models26inventory34docsPASS fuente49aa4a5;nativeamarillo/cyaninspeccionado;linux-editor-paren-bracket.json. No lexercompleto/Windows. |

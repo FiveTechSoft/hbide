@@ -3551,3 +3551,11 @@ No new compiler/C++bridge, no extension-prefix policy change.
 Evidence linux-project-hpp-header.json follows.
 
 Q93 clean acceptanceb45b67467524f9e6bf720b7e59a4b0b9c8fb1d7d binaryfafdf268adc1a6becac88a89345387e366f9d3ce82767ae69c164c31c37c982b:12PTYchecks(HPP3/Cxx3/BOM3/EOF3),22models26inventory34docsPASS;no retries/failures. NativeSourcesvalues.hpp/exactpath/Enterheader/bordersinspected,HBPexact. C19predatesfix.
+
+## Q94 - bracket strings after concatenation/comparison
+
+Compiler-valid "x" + [/* literal] and [x] == [/* compare] opened false
+block in editor. Before2PASS2FAIL. Add + except++ and == to bounded string
+context. Four repaint guards and realPTY both stringcolors/latercode/exact
+source. No complete tokenization/general expression/platform claim.
+Evidence linux-editor-bracket-operator.json follows.

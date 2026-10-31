@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'editor-bracket-operator': ('test_editor_bracket_operator_pty.py', [], 120),
     'project-hpp': ('test_project_hpp_pty.py', [], 120),
     'editor-bracket-list': ('test_editor_bracket_list_pty.py', [], 120),
     'editor-paren-bracket': ('test_editor_paren_bracket_pty.py', [], 120),
