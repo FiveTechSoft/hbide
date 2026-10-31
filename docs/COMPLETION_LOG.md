@@ -3095,3 +3095,7 @@ Compiler-backedfixturecoversuppercaseE,escapedbackslashbeforeclosingquote,
 escapedtabandliteral/*,//,&&,realblockafterliteral. Localinitial6PASS1FAIL
 expectedcyanforRETURNbutkeyword1isG+10; correctedharness, no productchange.
 Newmode169PTY+guard=170entries. Cleanacceptancefollows.
+
+Extensioncleanc867554 Variants7/Escape4/Adjacent6/Caret6PASSsamebinary,
+15inventory34docsPASS. linux-editor-escape-variants.json. No newfix/model
+run/newpixels/global/Windows; cleanattemptnoretries.

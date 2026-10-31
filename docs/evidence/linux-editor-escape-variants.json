@@ -1,0 +1,120 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c867554d074adadff13f1b50d66491b266abef68",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9a30c366c21e94843e7c52a88259c98981a94812d0df66712f57fbbedb7920ee",
+      "binary_sha256": "ef420b3aed9af49c2719a097e50dadf449d55f0680f33badfbdf50935cec6bba",
+      "build_receipt": "/tmp/hbide-escape-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "79b384790def5f3bc8a3606ee3bf6741d8fba68e2b0b2a53237eb438cde9d60d",
+      "case": "editor-escape-variants",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_escape_variants_pty.py"
+      ],
+      "started": 1793454607.6764894,
+      "seconds": 4.62,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "de736574f509e7cfb611ca9cb31d6f62421f88e19ba501f895c25e44c9749dde",
+      "log": "/tmp/hbide-escape-variants-clean/editor-escape-variants-1793454607676484905.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c867554d074adadff13f1b50d66491b266abef68",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9a30c366c21e94843e7c52a88259c98981a94812d0df66712f57fbbedb7920ee",
+      "binary_sha256": "ef420b3aed9af49c2719a097e50dadf449d55f0680f33badfbdf50935cec6bba",
+      "build_receipt": "/tmp/hbide-escape-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "79b384790def5f3bc8a3606ee3bf6741d8fba68e2b0b2a53237eb438cde9d60d",
+      "case": "editor-escape-literal",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_escape_literal_pty.py"
+      ],
+      "started": 1793454612.2963395,
+      "seconds": 4.62,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "d8a2fd0236403c2f937c2665d52b2437d4466b42f79c5b3a4f383e2226711e5f",
+      "log": "/tmp/hbide-escape-variants-clean/editor-escape-literal-1793454612296335982.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c867554d074adadff13f1b50d66491b266abef68",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9a30c366c21e94843e7c52a88259c98981a94812d0df66712f57fbbedb7920ee",
+      "binary_sha256": "ef420b3aed9af49c2719a097e50dadf449d55f0680f33badfbdf50935cec6bba",
+      "build_receipt": "/tmp/hbide-escape-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "79b384790def5f3bc8a3606ee3bf6741d8fba68e2b0b2a53237eb438cde9d60d",
+      "case": "editor-adjacent-comments",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_adjacent_comments_pty.py"
+      ],
+      "started": 1793454616.9153242,
+      "seconds": 4.62,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "9bb57e52a16ab0b8a480af1cf2a47b0b8ff557b0111a6354b175be23a32a1eb7",
+      "log": "/tmp/hbide-escape-variants-clean/editor-adjacent-comments-1793454616915321000.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c867554d074adadff13f1b50d66491b266abef68",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9a30c366c21e94843e7c52a88259c98981a94812d0df66712f57fbbedb7920ee",
+      "binary_sha256": "ef420b3aed9af49c2719a097e50dadf449d55f0680f33badfbdf50935cec6bba",
+      "build_receipt": "/tmp/hbide-escape-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "79b384790def5f3bc8a3606ee3bf6741d8fba68e2b0b2a53237eb438cde9d60d",
+      "case": "gcc-caret-column",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py"
+      ],
+      "started": 1793454621.5334392,
+      "seconds": 6.97,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "14ff44c3a091ffbb08946b01b4d1b4cbbe149cc6c5339ac0faa52bb7df9e1995",
+      "log": "/tmp/hbide-escape-variants-clean/gcc-caret-column-1793454621533435873.log"
+    }
+  ],
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "c867554d074adadff13f1b50d66491b266abef68",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "9a30c366c21e94843e7c52a88259c98981a94812d0df66712f57fbbedb7920ee",
+    "binary_sha256": "ef420b3aed9af49c2719a097e50dadf449d55f0680f33badfbdf50935cec6bba",
+    "built_at": 1793454607.67624
+  },
+  "logs": {
+    "editor-escape-variants": "PASS Open requested fixture\nPASS Escape literal marker stays string color /* literal\nPASS Escape literal marker stays string color // literal\nPASS Escape literal marker stays string color && literal\nPASS Real block after escaped backslash closes string\nPASS Return after escape matrix stays keyword color\nPASS F2 escape variants byte exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-9w92mdyd\n",
+    "editor-escape-literal": "PASS Open requested fixture\nPASS Return after escape literal keeps keyword color\nPASS Escape literal comment marker stays string color\nPASS F2 escape literal byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-_xs_xwq3\n",
+    "editor-adjacent-comments": "PASS Open requested fixture\nPASS Adjacent comment opener colored /* row3\nPASS Adjacent comment opener colored /* row5\nPASS Adjacent comment opener colored && row4\nPASS Adjacent comment opener colored // row6\nPASS F2 keeps source byte exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-qqbfil6y\n",
+    "gcc-caret-column": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump lands at unknown identifier char9 after tab\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-iuqu2pnk\n"
+  },
+  "compiler_fixture": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-estring/variants.prg'...\n\nLines 6, Functions/Procedures 1\nGenerating C source output to '/tmp/hbmk_bi4c4k.dir/variants.c'... Done.\n",
+  "limits": "Acceptance-only extension, no productfix/modelrun/newpixels/Windows/full169PTYclaim. InitiallocalRETURNcolorharnessexpected11insteadconfiguredG+10,correctedbeforeclean."
+}
