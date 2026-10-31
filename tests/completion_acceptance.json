@@ -35,9 +35,10 @@
         "test_nav_typed_methods_pty.py",
         "test_nav_selection_pty.py",
         "test_nav_array_comment_pty.py",
-        "test_nav_pragma_macro_pty.py"
+        "test_nav_pragma_macro_pty.py",
+        "test_nav_enddump_comment_pty.py"
       ],
-      "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor.",
+      "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated; raw ENDDUMP with trailing comments resumes Harbour declarations. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor.",
       "expected_label": "Go to Function... Ctrl+G"
     },
     "IDE-020": {

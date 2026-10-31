@@ -3263,3 +3263,12 @@ source and Enter did nothing. Before: 1 PASS / 2 FAIL. Match MemoRead by
 removing one final EOF only from parse copy. Preserve original HBP bytes
 and embedded EOF. Four model guards. Runner186=185PTY+guard. Evidence
 linux-project-eof.json follows. Not general encoding/Windows/global.
+
+## Q72 - Commented ENDDUMP hid later Harbour functions
+
+Compiler-valid fixture before1PASS2FAIL: raw C dump scanner required exact
+ENDDUMP line, unlike hb_pp_hasCommand which accepts trailing comments or
+semicolon. New raw matcher preserves C comment isolation, token boundaries
+and rejects lookalikes. Eight lexical model guards. Runner187=186PTY+guard.
+Evidence linux-navigation-enddump-comment.json follows. Not full
+preprocessor/Windows/global.

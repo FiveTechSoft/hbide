@@ -20,7 +20,7 @@ FUNCTION HBIDE_ScanProcs( cText )
       // C dump contents have their own lexical rules. Do not let an
       // embedded C comment leak into the Harbour scanner after enddump.
       IF lDump
-         IF Upper( StrTran( StrTran( AllTrim( cLine ), Chr( 9 ), "" ), " ", "" ) ) == "#PRAGMAENDDUMP"
+         IF HBIDE_NavEndDump( cLine )
             lDump := .F.
          ENDIF
          LOOP
@@ -106,6 +106,25 @@ FUNCTION HBIDE_ScanProcs( cText )
       AAdd( aOut, { cName, cKind, nLine } )
    NEXT
    RETURN aOut
+
+// Match the raw C-dump terminator without running Harbour comment state.
+// hb_pp_hasCommand accepts trailing comments or a command separator.
+STATIC FUNCTION HBIDE_NavEndDump( cLine )
+   LOCAL c := AllTrim( StrTran( cLine, Chr(9), " " ) )
+   IF Left( c, 1 ) != "#"
+      RETURN .F.
+   ENDIF
+   c := LTrim( SubStr( c, 2 ) )
+   IF Upper( Left( c, 6 ) ) != "PRAGMA" .OR. SubStr( c, 7, 1 ) != " "
+      RETURN .F.
+   ENDIF
+   c := LTrim( SubStr( c, 7 ) )
+   IF Upper( Left( c, 7 ) ) != "ENDDUMP"
+      RETURN .F.
+   ENDIF
+   c := LTrim( SubStr( c, 8 ) )
+   RETURN Empty( c ) .OR. Left( c, 1 ) == ";" .OR. ;
+      Left( c, 2 ) == "//" .OR. Left( c, 2 ) == "&&" .OR. Left( c, 2 ) == "/*"
 
 // Strip comments and mask string contents without changing line count.
 STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )

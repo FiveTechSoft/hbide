@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q72 | ENDDUMP con comentario ocultaba funciones Harbour posteriores. | Fixture compilado real, antes1PASS2FAIL. Matcher raw con limites de token y comentarios/separador, sin estado C filtrado. Evidencia linux-navigation-enddump-comment.json. No preprocesador completo/Windows. |
 | Q71 | DOS EOF final ocultaba ultima fuente HBP. | hbmk2 real compila, antes1PASS2FAIL. Quitar un EOF final solo de copia parseo, original/EOF interno intactos. Evidencia linux-project-eof.json. No encoding general/Windows. |
 | Q70 | BOMUTF8 deHBP formaba parte del primerfilename. | hbmk2realcompila,IDEantes1PASS2FAIL. QuitarBOMsólodecopiaparseo,cOriginalintacto. Evidencia linux-project-bom.json. NoUnicodegeneral/UTF16/Windows. |
 | Q69 | LivePRG no anclaba botón con accelerator en captiongenerado. | Antes4PASS1FAIL F5; aplicaDsnAccelCaptionantesDsnQuote. Evidencia linux-designer-button-anchor.json, sin captionsduplicadosambiguos/Windows. |

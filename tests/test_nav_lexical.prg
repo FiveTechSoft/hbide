@@ -20,6 +20,14 @@ procedure Main()
  Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==6,'array index multiline block excludes hidden declaration',@nPass,@nFail)
  a:=HBIDE_ScanProcs('#define TEXT #pragma begindump'+hb_eol()+'function Main()'+hb_eol()+'return nil'+hb_eol()+'function Target()')
  Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==4,'macro body is not an active dump directive',@nPass,@nFail)
+ for each c in { '#pragma enddump // done', '# pragma enddump && done', '#pragma'+Chr(9)+'enddump /* done */', '#pragma enddump;' }
+ a:=HBIDE_ScanProcs('#pragma begindump'+hb_eol()+'/* C comment'+hb_eol()+c+hb_eol()+'function Harbour()')
+ Check(Len(a)==1.and.a[1,1]=='Harbour'.and.a[1,3]==4,'commented/separated raw enddump resumes Harbour: '+c,@nPass,@nFail)
+ next
+ for each c in { '#pragma enddumpExtra', '#pragmaenddump', '// #pragma enddump', '#pragma enddump bad' }
+ a:=HBIDE_ScanProcs('#pragma begindump'+hb_eol()+c+hb_eol()+'function Hidden()'+hb_eol()+'#pragma enddump'+hb_eol()+'function Real()')
+ Check(Len(a)==1.and.a[1,1]=='Real'.and.a[1,3]==5,'nonterminator does not leak C text: '+c,@nPass,@nFail)
+ next
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return
