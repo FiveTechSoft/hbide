@@ -1794,3 +1794,13 @@ byte-exacto. Inspeccion de tres capturas confirma café/naïve/año legibles,
 seleccion solo de café, Z y Undo, marco inferior completo. Evidencia y script
 original en docs/evidence/editor-mouse-utf8/. No todas las acciones Unicode,
 Windows ni cierre de hito. Repite ademas modoPTYUTF8 de9checks en esa fuente.
+
+## 31 octubre: inspeccion estructurada a otra profundidad
+
+Prueba debugger real añade array de array, hash de hash y objeto con array:
+24checks verifican apertura, rechazo de reemplazo directo, Enter a contenedor
+interno,41aceptado,Cancel99conserva41,expresion invalida rechazada y salida
+exacta completa del debuggee tras Resume. No se confunde rechazo de reemplazo
+directo con readonly recursivo: esas rutas son editables por contrato actual.
+Sin cambios de producto, getterfallido/lEditablefalse y profundidad arbitraria
+siguen sin aceptacion.20modelos frescos38c4fdd en ledger separado.
