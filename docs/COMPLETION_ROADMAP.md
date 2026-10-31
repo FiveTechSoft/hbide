@@ -117,7 +117,7 @@ Las demos TOTAL ON, agenda y FoxPro no certifican el conjunto del IDE.
 ## Seguimiento
 
 - [COMPLETION_INVENTORY.md](COMPLETION_INVENTORY.md): primer inventario generado,
-  104 contratos vinculados a116acciones de menu y rutas ampliadas de teclado/comandos; son conexiones de fuente, no116 funciones
+  109 contratos vinculados a116acciones de menu y rutas ampliadas de teclado/comandos; son conexiones de fuente, no116 funciones
   terminadas. Incluye dos stubs. Modales IDE:43declaraciones inventariadas y43enlaces focales; diseñador30declaraciones/79pares enlazados. No aceptación completa. Debugger:27sitios de entrada no GET inventariados, sin aceptación implícita de callers. Faltan alertas dinámicas y gestos.
 
 - Registro de cada lote en [COMPLETION_LOG.md](COMPLETION_LOG.md): fuente,
@@ -178,3 +178,10 @@ WorkAreas10ScriptDBF5Snap6Drag6GET9Combo9. Manifest+logs extras en
 linux-candidate-rdd-extras.json. No release/licencia/Windows/instalacion/
 determinismo ni matriz128completa. Sourceexport identificado, no herencia
 al HEADposterior.
+
+### Q31 - Help debugger hit-test
+
+Clic en cuerpo de Help cambiaba topic segun fila aunque fuera del browser.
+Antes9/10; restringir coordenadas a columna topics conserva Keys tras
+body/outside y clicizquierdocolumna abreFunction. Native120x40ambas capturas
+inspeccionadas; no paginas/geometrias/Windows global. Ledger por revision.

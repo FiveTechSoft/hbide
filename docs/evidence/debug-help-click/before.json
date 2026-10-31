@@ -1,0 +1,30 @@
+[
+  {
+    "run": {
+      "untracked_inputs_sha256": "282d98c14e6dda25843a4763aa4a3e6705fdd39743e02dee3293dc474dc66ce1",
+      "source": "96080f024041cee7406e73c36a4ed9ae8d2a1061",
+      "tracked_changes": " M scripts/completion_pty.py\n",
+      "tracked_snapshot_sha256": "72e74b088e59cefc6740489f9c441a2513bd5b119767f773fc798b559be9772a",
+      "binary_sha256": "c2fbb98de20c950100fc431f5ca63cee3ae2048c5a9389e4acf47714b33cae00",
+      "build_receipt": "/tmp/hbide-debug-help-before/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "d1f92e08a5bd86b5651243341f04357590eed4d0c649f0e3b7efc39ba8dcf686",
+      "case": "debug-help-topics",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_help_topics_pty.py"
+      ],
+      "started": 1793419535.621334,
+      "seconds": 14.28,
+      "exit_code": 1,
+      "printed_failure": true,
+      "source_or_binary_changed": false,
+      "test_sha256": "7105cca38c7547b7ce4faa44ef199b704fc56e0c336f43518d0a7805b1e05ff4",
+      "log": "/tmp/hbide-debug-help-before/debug-help-topics-1793419535621329861.log"
+    },
+    "log": "PASS debugger stopped before increment\nPASS Help a dialog opens\nPASS Help k dialog opens\nPASS Help w dialog opens\nPASS Help m dialog opens\nPASS Help c dialog opens\nPASS Keys topic exact initial body\nFAIL body click does not change selected Keys topic\nPASS Help leaves exact debuggee values unchanged\nPASS Help leaves source bytes unchanged\nTOTAL 9 PASS 1 FAIL; evidence /tmp/hbide-source-run-w4z4np5m\n"
+  }
+]

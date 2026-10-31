@@ -98,11 +98,11 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-051 | Window | Iconize | hbdebug/dbgmenu.prg:202 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-052 | Window | Tile | hbdebug/dbgmenu.prg:204 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-053 | Window | Cascade | hbdebug/dbgmenu.prg:205 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-054 | Help | About Help | hbdebug/dbgmenu.prg:210 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-055 | Help | Keys | hbdebug/dbgmenu.prg:212 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-056 | Help | Windows | hbdebug/dbgmenu.prg:213 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-057 | Help | Menus | hbdebug/dbgmenu.prg:214 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-058 | Help | Commands | hbdebug/dbgmenu.prg:215 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-054 | Help | About Help | hbdebug/dbgmenu.prg:210 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-055 | Help | Keys | hbdebug/dbgmenu.prg:212 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-056 | Help | Windows | hbdebug/dbgmenu.prg:213 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-057 | Help | Menus | hbdebug/dbgmenu.prg:214 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-058 | Help | Commands | hbdebug/dbgmenu.prg:215 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-001 | Palette | Label (SAY) | designer.prg:517 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-002 | Palette | Input (GET) | designer.prg:518 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DSN-003 | Palette | CheckBox | designer.prg:519 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -231,6 +231,11 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-030: Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance. Pruebas: [test_debug_monitor_scopes_pty.py](../tests/test_debug_monitor_scopes_pty.py)
 - DBG-018: Run to Cursor popup twice stops before exact mutations: local61 atline6 then101 atline7, before output file exists. Source bytes unchanged. File Resume is intentionally not execution (it resumes viewing source); only nonexecution is asserted here, not source cursor location. Bounded singlemodule Linux fixture, no invalidtarget/multifile/pixels/Windows. Pruebas: [test_debug_cursor_popup_pty.py](../tests/test_debug_cursor_popup_pty.py)
 - DBG-023: Point Breakpoint popup adds line8 to actual list and second invocation removes it; Run Go stops before output with local151, subsequent Go writes151 exactly. Source bytes unchanged. File Resume is intentionally not execution (it resumes viewing source); only nonexecution is asserted here, not source cursor location. Bounded singlemodule Linux fixture, no invalidtarget/multifile/pixels/Windows. Pruebas: [test_debug_cursor_popup_pty.py](../tests/test_debug_cursor_popup_pty.py)
+- DBG-054: Actual Help popup AboutHelp/Keys/Windows/Menus/Commands opens exact topic body; body/outside clicks preserve Keys and left topic-column click opens Function body. Resume exact locals/source unchanged. Native120x40 body/column captures separately inspected. No allpages/clickrows/25x80/Windows acceptance. Pruebas: [test_debug_help_topics_pty.py](../tests/test_debug_help_topics_pty.py)
+- DBG-055: Actual Help popup AboutHelp/Keys/Windows/Menus/Commands opens exact topic body; body/outside clicks preserve Keys and left topic-column click opens Function body. Resume exact locals/source unchanged. Native120x40 body/column captures separately inspected. No allpages/clickrows/25x80/Windows acceptance. Pruebas: [test_debug_help_topics_pty.py](../tests/test_debug_help_topics_pty.py)
+- DBG-056: Actual Help popup AboutHelp/Keys/Windows/Menus/Commands opens exact topic body; body/outside clicks preserve Keys and left topic-column click opens Function body. Resume exact locals/source unchanged. Native120x40 body/column captures separately inspected. No allpages/clickrows/25x80/Windows acceptance. Pruebas: [test_debug_help_topics_pty.py](../tests/test_debug_help_topics_pty.py)
+- DBG-057: Actual Help popup AboutHelp/Keys/Windows/Menus/Commands opens exact topic body; body/outside clicks preserve Keys and left topic-column click opens Function body. Resume exact locals/source unchanged. Native120x40 body/column captures separately inspected. No allpages/clickrows/25x80/Windows acceptance. Pruebas: [test_debug_help_topics_pty.py](../tests/test_debug_help_topics_pty.py)
+- DBG-058: Actual Help popup AboutHelp/Keys/Windows/Menus/Commands opens exact topic body; body/outside clicks preserve Keys and left topic-column click opens Function body. Resume exact locals/source unchanged. Native120x40 body/column captures separately inspected. No allpages/clickrows/25x80/Windows acceptance. Pruebas: [test_debug_help_topics_pty.py](../tests/test_debug_help_topics_pty.py)
 
 ## Contratos modales y edicion inline vinculados
 

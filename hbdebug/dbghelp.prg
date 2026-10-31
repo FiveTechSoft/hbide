@@ -155,6 +155,12 @@ STATIC PROCEDURE ProcessKey( nKey, oDlg, oBrw, aTopics )
 
    CASE K_LBUTTONDOWN
 
+      // Only the topic browser selects topics; body, frame and outside
+      // clicks must not turn their screen row into a topic index.
+      IF MRow() < oBrw:nTop .OR. MRow() > oBrw:nBottom .OR. ;
+         MCol() < oBrw:nLeft .OR. MCol() > oBrw:nRight
+         EXIT
+      ENDIF
       IF ( nSkip := MRow() - oDlg:nTop - oBrw:RowPos ) != 0
          IF nSkip > 0
             FOR n := 1 TO nSkip
