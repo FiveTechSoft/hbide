@@ -1913,3 +1913,11 @@ Smokes internos añaden LongList5/Mouse14/Keyboard14 al binario exportado,
 posterior a fixesSTATEinicial/PadR250. No heredar candidato anteriorb9575d7 a
 fuente actual; conservar manifiesto por revision. Sigue candidato no release,
 licencias/instalacion/Windows pendientes, no104matrizglobal.
+
+## 31 octubre: parametro readonly explicito conserva hijo de objeto
+
+Probeexpresiondebugger invoca __dbgArrays/Hashes/Object(v,nombre,.F.),sin
+cambiar politicaeditable del Monitor. Arrayarray/hashhashrechazannestedEnter;
+objetoarrayperdia.F.enconstructorhijo(11/12checks). Sepropaga::lEditableen
+constructoreshijosarray/hash/object. No convierteInputBoxreadonlytopa readonly
+recursivo por inferencia; no cambia valorpordefecto.T., ni politica de watchers.

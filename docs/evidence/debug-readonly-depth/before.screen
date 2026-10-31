@@ -1,0 +1,25 @@
+ File  Locate  View  Run  Point  Monitor  Options  Window  Help
+l[�]ql[�]qqqqqqqqqqqqqqqqqqqqqqq AVALUE[1..2] qqqqqqqqqqqqqqqqqqqqqqqqqqqqkqqqqk
+x1:  xAVALUE[1] 1                                                         x    x
+x2:  xAVALUE[2] 2                                                         x    x
+x3:  mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjxp( x
+x4:  mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj    x
+x5:  function MakeValue()                                                      x
+x6:     local oClass := HBClass():New( "ModalFixture" )                        x
+x7:     oClass:AddData( "aValue", {1, 2} )                                     x
+x8:     oClass:Create()                                                        x
+x9:  return oClass:Instance()                                                  x
+x10:                                                                           x
+x11: init procedure __hbide_debug__()                                          x
+x12:    __dbgInvokeDebug( .T. )                                                x
+x13: return                                                                    x
+x14:                                                                           x
+x                                                                              x
+x                                                                              x
+mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
+l[�]qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq Command qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk
+x                                                                              x
+x> ? __dbgObject(v,"ReadonlyFixture",.F.)                                      x
+x>                                                                             x
+mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
+F1-Help F2-Zoom F3-Repeat F4-User F5-Go F6-WA F7-Here F8-Step F9-BkPt F10-Trace

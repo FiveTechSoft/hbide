@@ -93,6 +93,7 @@ CASES = {
     'debug-watch-modal': ('test_debug_watch_modal_pty.py', [], 120),
     'debug-setter-failure': ('test_debug_setter_failure_pty.py', [], 120),
     'debug-getter-failure': ('test_debug_getter_failure_pty.py', [], 120),
+    'debug-readonly-depth': ('test_debug_readonly_depth_pty.py', [], 120),
     'debug-structured-depth': ('test_debug_structured_depth_pty.py', [], 120),
     'debug-structured-modal': ('test_debug_structured_modal_pty.py', [], 120),
     'debug-monitor-mouse-scroll': ('test_debug_monitor_mouse_scroll_pty.py', [], 120),
