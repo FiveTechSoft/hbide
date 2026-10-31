@@ -2053,7 +2053,7 @@ return .F.
 
 // Bounded string context: :=, ==, binary + and delimiters, not array index.
 STATIC FUNCTION HBIDE_BracketAssignment( cLine, nAt )
-   LOCAL cBefore := RTrim( hb_ULeft( cLine, nAt - 1 ) )
+   LOCAL cBefore := RTrim( StrTran( hb_ULeft( cLine, nAt - 1 ), Chr(9), " " ) )
    LOCAL n := 1, c, q := "", lEscape := .F., lBlock := .F., cContext := ""
    // Only a completed comment immediately before [ can hide its prior
    // context. Every other suffix already decides this bounded contract.
