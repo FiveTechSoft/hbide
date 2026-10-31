@@ -3061,3 +3061,10 @@ Q58boundedcleanadeb10f Caret6/Colon6/Message9PASSsamebinary+22models
 Native120x40TABjumpcorrectchar9actualpixels/fullbordersinspected,sourceexact.
 linux-gcc-caret-column.json. Generalmissing/nonASCII/ambiguousunitgapremains;
 notglobalQ58closed/noflagchange/Windows/dirtybufferremappingclaim.
+
+## Q58 performance follow-up
+
+Measured30missingcaretcallsover20MiBsource79ms;30kASCIIline155ms. Moved
+syntaxguardbeforesource read, no-tabexactfastpath, comparesrenderstream
+insteadofrepeatedstringconcatenation. Sameprobeafter0ms/2ms(thishostonly).
+Two modelassertionslongline/missingevidence. No compilerpolicychange.

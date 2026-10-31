@@ -243,14 +243,18 @@ FUNCTION HBIDEProjectDiagnostics( cOutput, cRoot )
 // Missing, truncated, changed, non-ASCII or ambiguous evidence keeps the
 // original column. This does not infer a compiler or alter its flags.
 FUNCTION HBIDEProjectCaretColumn( cPath, nRow, nOriginal, cShown, cCaret )
-   LOCAL lOk := .F., cSource := HBIDE_ReadFileChecked( cPath, @lOk )
+   LOCAL lOk := .F., cSource
    LOCAL aLines, cLine, nPipe := At( "|", cShown ), nCaretPipe := At( "|", cCaret )
-   LOCAL cRender, cMark, nCaret, nWidth, n, c, cExpanded, nStart, nFound, nResult := 0
-   IF ! lOk .OR. nPipe == 0 .OR. nCaretPipe == 0 .OR. ;
+   LOCAL cRender, cMark, nCaret, nWidth, n, c, nVisual, nSpan, lMatch, nFound, nResult := 0
+   IF nPipe == 0 .OR. nCaretPipe == 0 .OR. ;
       ! HBIDEProjectDigits( AllTrim( Left( cShown, nPipe - 1 ) ) ) .OR. ;
       Val( Left( cShown, nPipe - 1 ) ) != nRow .OR. ;
       ! Empty( AllTrim( Left( cCaret, nCaretPipe - 1 ) ) ) .OR. ;
       SubStr( cShown, nPipe + 1, 1 ) != " " .OR. SubStr( cCaret, nCaretPipe + 1, 1 ) != " "
+      RETURN nOriginal
+   ENDIF
+   cSource := HBIDE_ReadFileChecked( cPath, @lOk )
+   IF ! lOk
       RETURN nOriginal
    ENDIF
    aLines := hb_ATokens( StrTran( StrTran( cSource, Chr(13)+Chr(10), Chr(10) ), Chr(13), Chr(10) ), Chr(10), .T. )
@@ -275,16 +279,25 @@ FUNCTION HBIDEProjectCaretColumn( cPath, nRow, nOriginal, cShown, cCaret )
          RETURN nOriginal
       ENDIF
    NEXT
+   IF ! Chr(9) $ cLine
+      RETURN iif( Len(cLine) == Len(cRender) .AND. cLine == cRender .AND. nCaret <= Len(cLine), nCaret, nOriginal )
+   ENDIF
    FOR nWidth := 1 TO 32
-      cExpanded := ""; nFound := 0
+      nVisual := 1; nFound := 0; lMatch := .T.
       FOR n := 1 TO Len( cLine )
-         c := SubStr( cLine, n, 1 ); nStart := Len( cExpanded ) + 1
-         cExpanded += iif( c == Chr(9), Space( nWidth - Len(cExpanded) % nWidth ), c )
-         IF nStart <= nCaret .AND. nCaret <= Len( cExpanded )
+         c := SubStr( cLine, n, 1 )
+         nSpan := iif( c == Chr(9), nWidth - (nVisual-1) % nWidth, 1 )
+         IF nVisual + nSpan - 1 > Len(cRender) .OR. ;
+            SubStr(cRender,nVisual,nSpan) != iif(c == Chr(9),Space(nSpan),c)
+            lMatch := .F.
+            EXIT
+         ENDIF
+         IF nVisual <= nCaret .AND. nCaret < nVisual + nSpan
             nFound := n
          ENDIF
+         nVisual += nSpan
       NEXT
-      IF Len(cExpanded) == Len(cRender) .AND. cExpanded == cRender .AND. nFound > 0
+      IF lMatch .AND. nVisual == Len(cRender)+1 .AND. nFound > 0
          IF nResult > 0 .AND. nResult != nFound
             RETURN nOriginal
          ENDIF
