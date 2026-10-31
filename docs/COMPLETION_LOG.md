@@ -2165,3 +2165,12 @@ la prueba cargada anterior conserva ese alcance distinto. P y R duplicadas
 requieren Enterparaaceptarmenu y otropara colocar; primeros probes sin el
 segundo Enter fallaron en harness de creacion, corregidos sin producto.
 118entradasrunner son117casos/modosPTY+guard, no118funciones/cierre.
+
+## 31 octubre: bindings pegados independientes en el artefacto generado
+
+Fixture checkbox LVAR1 con STATE MarkState(),F12carga/CopyPaste/F10/F9reales.
+El PRG F9 se compila, solo instrumentando return para registrar ambas
+variables y añadiendo handler de fixture. Dos ejecuciones: Space primero
+produce{.T.,.F.};TabSpace segundo produce{.F.,.T.};handler preservado ejecuta
+en ambos.9checks, no todosloscontroles/handlers runtime, no pixels/Windows.
+No producto nuevo: prueba el efecto real del fixcaseinsensitive5d74cc3.
