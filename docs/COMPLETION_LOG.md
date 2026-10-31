@@ -3154,3 +3154,12 @@ picker2/2onlyMain/TargetandTargetline7typing/F2exactfullbordersinspected.
 Evidence linux-navigation-array-comment.json. Finaldocumentation-refresh
 sourcewillalsogetfocusedacceptancebeforepublication;nofulllexer/Windows/
 globalclosure. Candidate14predatesQ59/Q60.
+
+## Candidate15 - Q59 bracket paint and Q60 navigation included
+
+Exportcleanf440946,strippedSHA80eca2c51589053f3009a316918fd959c7a91555798e18700df25864e8224830.
+8standardsmokes+Bracket4/BracketVariants7/NavArray3/EscapeVariants7/Caret6
+PASSsamebinary;twoboundedstepsnoretries/interruption. Manifest/toolchain/
+ldd/logspersisted linux-candidate-bracket-navigation.json. No newfix/full
+176PTY/Windows/release/license/installer/newpixels/determinism/NEXUSrun.
+Q58generalstillpartial. Sourcef440946offlinecatalogue34docsverified.
