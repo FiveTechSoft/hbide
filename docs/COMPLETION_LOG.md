@@ -3072,3 +3072,11 @@ Two modelassertionslongline/missingevidence. No compilerpolicychange.
 Q58perfclean2687627 Caret6/Colon6/Message9PASSsamebinary+22models
 115repaint/15inventory34docsPASS. linux-gcc-caret-performance.json retains
 probe+before/aftertimes. No reruns/newpixels/generalperformanceclaim.
+
+## Focused joint Q56-Q58 plus navigation/project guards
+
+Cleand2e74bc11distinctsuites Escape/Adjacent/LineComments/Caret/Colon/
+MessageSelection/NavSelection/NavLiteral/NavTyped/ProjectMessages/Find
+PASSsamebinary,twoboundedPTYbatchesand22models115repaintPASS;15inventory
+34docs. linux-paint-project-joint.json. No retries/interruption/newfix/
+newpixels/full168PTY/Windows/milestoneclosure.

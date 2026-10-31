@@ -203,6 +203,13 @@ sin reintentos ni interrupciones. Ledger linux-candidate-current-navigation.json
 No nuevofix/matriz165PTY/Windows/release/licencias/instalador/nuevos píxeles/
 determinismo/NEXUSejecutado.
 
+### Conjunta focal actual Q56-Q58 y guardas navegación/proyecto
+
+Cleand2e74bc:11suites distintas de pintado/caret/diagnósticos/navegación/Find,
+mismo binario, dos lotes PTY acotados y22modelos115repaint PASS;15inventory34docs.
+Ledger linux-paint-project-joint.json. Sin reintentos/interrupciones ni nueva
+corrección/captura/matriz168PTY/Windows/cierre de hito.
+
 ## Ampliaciones que no se confunden con cierre probado
 
 El [plan de diseno anterior](ROADMAP.md) y la
