@@ -81,7 +81,11 @@ PROCEDURE Main( cHbmk2 )
    a := HBIDEProjectTokens( '  """"  ' )
    Assert( Len( a ) == 1 .AND. a[ 1 ] == '', 'adjacent quotes remain one empty word' )
    Assert( HBIDEProjectTokens( '"unbalanced' ) == NIL, 'bad quote retained as unresolved' )
-   hb_MemoWrit( cTmp + 'complex.hbp', '# preserved comment' + hb_eol() + ;
+   hb_MemoWrit(cTmp+'bom.hbp',Chr(239)+Chr(187)+Chr(191)+'main.prg'+hb_eol()+'-gtstd')
+   Assert(oP:Open(cTmp+'bom.hbp').and.Len(oP:aMembers)==1,'BOM project opens and lists literal source')
+   Assert(oP:aMembers[1,'path']==cTmp+'main.prg'.and.oP:aMembers[1,'exists'],'BOM excluded from actual member path')
+   Assert(Left(oP:cOriginal,3)==Chr(239)+Chr(187)+Chr(191).and.oP:cOriginal==hb_MemoRead(cTmp+'bom.hbp'),'BOM HBP original preserved byteexact')
+   hb_MemoWrit( cTmp + 'complex.hbp' , '# preserved comment' + hb_eol() + ;
       '"folder with space/test.prg" {win}windows.prg ${CUSTOM}/foo.prg *.prg @opts.hbm' )
    Assert( oP:Open( cTmp + 'complex.hbp' ), 'complex hbp open' )
    Assert( Len( oP:aUnresolved ) == 4, 'no guessed filters macros wildcards includes' )

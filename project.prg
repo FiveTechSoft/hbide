@@ -16,7 +16,7 @@ CREATE CLASS HBIDEProject
 ENDCLASS
 
 METHOD Open( cFile ) CLASS HBIDEProject
-   LOCAL cLine, cToken, aTokens, nLine := 0, cExt, cMember, cOriginal, lReadOk := .F.
+   LOCAL cLine, cToken, aTokens, nLine := 0, cExt, cMember, cOriginal, cParse, lReadOk := .F.
    ::cError := ""
    ::cFile := ""; ::cRoot := ""; ::cOriginal := ""
    ::aMembers := {}; ::aUnresolved := {}; ::hInfo := {=>}; ::hBuild := {=>}
@@ -37,7 +37,13 @@ METHOD Open( cFile ) CLASS HBIDEProject
    ::cRoot := hb_FNameDir( ::cFile )
    ::cOriginal := cOriginal
    ::aMembers := {}; ::aUnresolved := {}; ::hInfo := {=>}; ::hBuild := {=>}
-   FOR EACH cLine IN hb_ATokens( StrTran( ::cOriginal, Chr(13), "" ), Chr(10) )
+   // hbmk2 strips UTF-8 BOM before parsing. Preserve original bytes for
+   // roundtrip, but do not let the BOM become part of the first filename.
+   cParse := ::cOriginal
+   IF Left( cParse, 3 ) == Chr(239) + Chr(187) + Chr(191)
+      cParse := SubStr( cParse, 4 )
+   ENDIF
+   FOR EACH cLine IN hb_ATokens( StrTran( cParse, Chr(13), "" ), Chr(10) )
       nLine++
       IF Empty( AllTrim( cLine ) ) .OR. Left( LTrim( cLine ), 1 ) == "#"
          LOOP

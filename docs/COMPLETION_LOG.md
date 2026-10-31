@@ -3247,3 +3247,11 @@ DsnCodeFindLineusesDsnAccelCaptionforbuttonbeforeliteralserialization,
 matchingDsnGenCode. Twomodelguardsinternal/appendedaccelerator. Runner
 184=183PTY+guard. Evidence linux-designer-button-anchor.json follows;
 noallcontrolbinding/duplicatecaptionambiguity/Windows/globalclaim.
+
+## Q70 - UTF-8 BOM became part of first HBP source path
+
+Realhbmk2acceptsBOMproject/compilesfirstsource,IDElistedmissingBOM+name
+andEnterdidnothing. Before1PASS2FAIL. ParsecopystripsleadingUTF8BOM,
+cOriginalkeepsallbytes. Threeprojectmodelguards. Runner185=184PTY+guard.
+Clean/nativeevidence linux-project-bom.json follows;notgeneralHBPUnicode/
+nonASCIIpaths/UTF16/Windows/globalcoverage.
