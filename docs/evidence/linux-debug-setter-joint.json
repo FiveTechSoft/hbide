@@ -1,0 +1,88 @@
+{
+  "scope": "Clean4764f1f LinuxPTY SetterFailure8 GetterFailure6 StructuredDepth24 samebinary PASS nofail/retry/interruption;15inventory33docs. Setter fixture throws before mutation; no rollback partialeffects/readonlyrecursive/nativepixels/Windows.20models lasta28051f unchanged product.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "4764f1fd46251e6a48018e274cba22061f6500e3",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "818b9ac45dbf918a674f57391e484b85e2176e9d7d6aa50bca0f57026bd32841",
+    "binary_sha256": "41a98b6144862698fd9d4daa97c5215d5cf1d56b2f17ccc22e56fc524c5c5429",
+    "built_at": 1793408586.683245
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "4764f1fd46251e6a48018e274cba22061f6500e3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "818b9ac45dbf918a674f57391e484b85e2176e9d7d6aa50bca0f57026bd32841",
+      "binary_sha256": "41a98b6144862698fd9d4daa97c5215d5cf1d56b2f17ccc22e56fc524c5c5429",
+      "build_receipt": "/tmp/hbide-setter-joint/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "cdda9f08b3bbbdfc91d5f4c0aa28a767399548c3f486c607b912c379b50a2441",
+      "case": "debug-setter-failure",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_setter_failure_pty.py"
+      ],
+      "started": 1793408586.6836057,
+      "seconds": 11.42,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+      "log": "/tmp/hbide-setter-joint/debug-setter-failure-1793408586683601612.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "4764f1fd46251e6a48018e274cba22061f6500e3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "818b9ac45dbf918a674f57391e484b85e2176e9d7d6aa50bca0f57026bd32841",
+      "binary_sha256": "41a98b6144862698fd9d4daa97c5215d5cf1d56b2f17ccc22e56fc524c5c5429",
+      "build_receipt": "/tmp/hbide-setter-joint/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "cdda9f08b3bbbdfc91d5f4c0aa28a767399548c3f486c607b912c379b50a2441",
+      "case": "debug-getter-failure",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_getter_failure_pty.py"
+      ],
+      "started": 1793408598.1899343,
+      "seconds": 10.42,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+      "log": "/tmp/hbide-setter-joint/debug-getter-failure-1793408598189930533.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "4764f1fd46251e6a48018e274cba22061f6500e3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "818b9ac45dbf918a674f57391e484b85e2176e9d7d6aa50bca0f57026bd32841",
+      "binary_sha256": "41a98b6144862698fd9d4daa97c5215d5cf1d56b2f17ccc22e56fc524c5c5429",
+      "build_receipt": "/tmp/hbide-setter-joint/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "cdda9f08b3bbbdfc91d5f4c0aa28a767399548c3f486c607b912c379b50a2441",
+      "case": "debug-structured-depth",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_structured_depth_pty.py"
+      ],
+      "started": 1793408608.691116,
+      "seconds": 39.42,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "fff969a153f355f9a0b9a311d991fca98e85d9fb749e7f9d6f2a896f6a05f4b8",
+      "log": "/tmp/hbide-setter-joint/debug-structured-depth-1793408608691112759.log"
+    }
+  ]
+}
