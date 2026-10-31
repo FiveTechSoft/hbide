@@ -1891,3 +1891,10 @@ abreproyectoexactoconmiembroespaciadoquotedexistente. Pixeles/marcoscompletos
 inspeccionados. Intento mousefisico no enfoco/activo y quedo modal; noaceptacion
 nativeMouse,14PTYratonporseparado. No fallo producto atribuido sin diagnostico.
 Evidencia docs/evidence/file-modal-first-item/native-results.json y capturas.
+
+Correccion captura fisica: imagen real1400x900seprevisualiza1337x859; coordenadas
+anterioreseranpreview y no caian en control. Con435,314y681,504reales,clickprimer
+bbb.hbpsincronizaGETyOKabreproyectoexacto; miembroquotedespaciadoexiste. Pixeles
+de seleccion/apertura inspeccionados,marcoscompletos/bytesintactos. Sin cambio
+producto; fuente49dce27/binarydelreceiptprevio sinrecompilarni mutar.
+Evidencia physical-results.json/physical-capture.py en mismo directorio.
