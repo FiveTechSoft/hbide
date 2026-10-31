@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q45 | Escribir texto idéntico sobre selección dejaba dirty falso. | a600e4c conserva dirty previo si selección no registra cambio neto. CleanIdentity5/Destructive19/Selection7/OVR3mismof495a8f0+21modelosPASS. Nativealpha col2/Close sinprompt inspeccionados. Runner155=154PTY+guard. docs/evidence/linux-selection-identity.json. No política general de no-op ni Windows. |
 | Q44 | Escribir sobre selección absorbía escritura anterior en Undo. | 2fcc82b pasa selección previa a RecordEdit como frontera explícita. Antes5PASS2FAIL; clean Selection7/Cut7/NoChange9/Changed5 mismo128d0816+21modelos(87repaint)PASS. NativeUndoXalpha/RedoXYpha inspeccionados. docs/evidence/linux-selection-undo-boundary.json. No agrupación universal ni Windows. |
 | Q43 | Cut absorbía escritura anterior en Undo. | 1c46903 marca Cut como operación separada; clean Cut7/Changed5/Boundary6/Block9 mismoadaf68d6+21modelosPASS. NativeUndoXalpha/RedoXpha inspeccionados. docs/evidence/linux-cut-undo-boundary.json. |
 | Q42 | Replace conservaba selección de texto anterior. | 1dba6ee limpia rango sólo si cambia salida. Clean Changed5/Identity3/Boundary6/Spaces10 mismo05c99a2b+21modelosPASS; nativeomXega/Undoomega inspeccionados. Extensión6a85950NoChange9 conserva rango trasCancel/identidad/sinmatches; sin nuevo fix. docs/evidence/linux-replace-selection.json y linux-replace-nochange-selection.json. |

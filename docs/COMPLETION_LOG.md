@@ -2773,3 +2773,8 @@ includes savedredo. Edit remembers incoming dirty and restores only when a
 marked path recorded no operation. Real edits retain their dirty state and
 separate history. Fourmodelchecks cover clean,redo,dirty. Runner155=154PTY+guard.
 Clean ledger and native inspection follow; no global/Windows claim.
+
+Q45 cleana600e4c: Identity5,Destructive19,Selection7,OVR3PASS samef495a8f0;
+21modelsPASS including91repaint,15inventory33docsPASS. Native120x40alpha col2
+and Close->noname withoutprompt inspected full borders. Ledger
+linux-selection-identity.json. No re-runs or global/Windows assertion.
