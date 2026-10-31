@@ -3119,3 +3119,8 @@ Compiler-validlocalc:=[/*literal] coloredlaterreturnascomment. Before
 bracketmask(whichwouldhidearrayindexcomments). PainterandScanBlkLine
 consumeuntilclosing],threemodelguardsinclarrayindexrealcomment. Full
 Harbourbracketcontextnotclaimed. Runner175=174PTY+guard.
+
+Q59clean65e9324 Bracket4/Variants7/Adjacent6PASSsamebinary+22models
+118repaintPASS,15inventory34docs. Native120x40bracketstring/arrayindex/
+returnactualpixelsfullbordersinspected,F2exact. linux-editor-bracket-assignment.json.
+No retries/allbracketcontext/Windows/global. Candidate14predatesQ59.
