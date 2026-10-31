@@ -1,0 +1,63 @@
+{
+  "scope": "CleanLinuxsamebinary MethodOnlyObject7 and EmptyArrayHash12PASS. NoDataobject stillhasmethods Enterrejectedit returnMonitor ResumeClassNameexact. Earlier uncommitted probe expectedemptyalertbeforebrowser incorrectly, correctedexpectation notproductfix. No pixels/Windows/global107acceptance.20modelslasta9ecaa6;33docs.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "e76969037a700109c06785084cd25b7e7897255b",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "f58419473260d7264e7cf983ee5552726404335516b2ebf36e17956e6a26e6a1",
+    "binary_sha256": "4d2250ac2776532953c395a2f0f2d3e7bc1ab1c15a5e2424824e1f5d0d352502",
+    "built_at": 1793411409.9073956
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "e76969037a700109c06785084cd25b7e7897255b",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f58419473260d7264e7cf983ee5552726404335516b2ebf36e17956e6a26e6a1",
+      "binary_sha256": "4d2250ac2776532953c395a2f0f2d3e7bc1ab1c15a5e2424824e1f5d0d352502",
+      "build_receipt": "/tmp/hbide-method-empty-joint/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "48e334ddf872eefe9e72fe1dc02e6f2ccd25499738f9bee83e76e23f1740c8ea",
+      "case": "debug-method-only-object",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_method_only_object_pty.py"
+      ],
+      "started": 1793411409.9077387,
+      "seconds": 10.72,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "181fb4329da1f8fd84b7cb4137bca17fa5d78e675073525efd2f8bfe8ce308db",
+      "log": "/tmp/hbide-method-empty-joint/debug-method-only-object-1793411409907734952.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "e76969037a700109c06785084cd25b7e7897255b",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f58419473260d7264e7cf983ee5552726404335516b2ebf36e17956e6a26e6a1",
+      "binary_sha256": "4d2250ac2776532953c395a2f0f2d3e7bc1ab1c15a5e2424824e1f5d0d352502",
+      "build_receipt": "/tmp/hbide-method-empty-joint/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "48e334ddf872eefe9e72fe1dc02e6f2ccd25499738f9bee83e76e23f1740c8ea",
+      "case": "debug-empty-structures",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_empty_structures_pty.py"
+      ],
+      "started": 1793411420.6245832,
+      "seconds": 19.88,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "6492c985e07b8d2efabf752312266712db98fc43315cb78870d613bcae142b26",
+      "log": "/tmp/hbide-method-empty-joint/debug-empty-structures-1793411420624579684.log"
+    }
+  ]
+}
