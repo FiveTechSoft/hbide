@@ -1,0 +1,15 @@
+{
+  "scope": "NativeLinuxxfce4-terminal120x40 clean355a765fresh. Explicit debuggerexpression __dbgObject(v,ReadonlyFixture,.F.) opens objectchildarray; Enter on scalar1 refuses with readable Value cannot be edited alert. Resume entirearray{1,2}exact. Inspected bothpixels completealertandlowerborders. Not normalMonitorpolicy/arbitrarydepth/allcombos/Windows.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "355a765ae7dbdf00970bfbead2696e74025d23a4",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "a18ce780767c71882b3ab0c8070ad51b46b3dcbf227f21acd66ce1b73d8a4307",
+    "binary_sha256": "28dc68cadbf055591c509dd48812fdc0da6857976b1ecbc24616024918646ce2",
+    "built_at": 1793410657.8518517
+  },
+  "files": {
+    "hbide-readonly-native-container.png": "64522349da211b33c3724f516612aae0ffca723596d666a55e30b590f88e9111",
+    "hbide-readonly-native-refused.png": "768afce271b13a96e6d2045e23976c6b00a1f2738c645e00aeeaf809342a1b40"
+  }
+}

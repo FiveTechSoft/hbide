@@ -1921,3 +1921,8 @@ cambiar politicaeditable del Monitor. Arrayarray/hashhashrechazannestedEnter;
 objetoarrayperdia.F.enconstructorhijo(11/12checks). Sepropaga::lEditableen
 constructoreshijosarray/hash/object. No convierteInputBoxreadonlytopa readonly
 recursivo por inferencia; no cambia valorpordefecto.T., ni politica de watchers.
+
+Readonlyexplicito nativeLinux120x40fuente355a765fresca: objetoarray abrecon.F.,
+Entersobrescalar1rechazaconalertalegible,Resumeconservaarray{1,2}exacto.
+Doscapturasinspeccionadasmarcoscompletos. No cambia politicaMonitor ni certifica
+otroscontenedores. Evidencia debug-readonly-depth/native-results.json/script.
