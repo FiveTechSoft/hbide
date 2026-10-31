@@ -3106,3 +3106,8 @@ Newrunner modesbyte/tab4/tab16/no-caretuseactualGCCflagsnotrecordedoutput.
 Expectedchar9whenexactcaretpresent,reported16whencaretabsent(notsilent
 claimofcorrectsemanticlocation). Localbyte6/no-caret6PASS, no productfix.
 Runner174=173PTYmodes+guard, not174features. Cleanfivevariantsfollows.
+
+Extensionclean16c698d default/byte/tab4/tab16/absent6eachPASSsamebinary
+(30checks),15inventory34docsPASS. linux-gcc-column-variants.json. No failed
+cleanattempts/newfix/modelrun/newpixels. Absentexplicitlyfallback16,not
+correctsemanticlocationclaim. Q58generalremainspartial.

@@ -1,0 +1,153 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "16c698d2d3201a3ad2d980c15a29bf7c20c713e6",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "494f4797f04d6fa0fef73c21649a6a929ae93232c90dcb90103fbf95e427bac8",
+      "binary_sha256": "91429a9f510352e3b463ce88aab089ac7d6850b18f5199c07a2cfb8968a87858",
+      "build_receipt": "/tmp/hbide-gcc-column-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "22f849d24e42e67b8a7d7ebba090f705ac59703066d5e0cd3614898bec5de3de",
+      "case": "gcc-caret-column",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py"
+      ],
+      "started": 1793454935.09826,
+      "seconds": 6.97,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ae9cea7a5383290d483c10630f70be7756f1815cc1fd6b4de2f649c1e7d07c2c",
+      "log": "/tmp/hbide-gcc-column-variants-clean/gcc-caret-column-1793454935098256508.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "16c698d2d3201a3ad2d980c15a29bf7c20c713e6",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "494f4797f04d6fa0fef73c21649a6a929ae93232c90dcb90103fbf95e427bac8",
+      "binary_sha256": "91429a9f510352e3b463ce88aab089ac7d6850b18f5199c07a2cfb8968a87858",
+      "build_receipt": "/tmp/hbide-gcc-column-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "22f849d24e42e67b8a7d7ebba090f705ac59703066d5e0cd3614898bec5de3de",
+      "case": "gcc-caret-byte",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "byte"
+      ],
+      "started": 1793454942.0714982,
+      "seconds": 6.97,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ae9cea7a5383290d483c10630f70be7756f1815cc1fd6b4de2f649c1e7d07c2c",
+      "log": "/tmp/hbide-gcc-column-variants-clean/gcc-caret-byte-1793454942071494235.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "16c698d2d3201a3ad2d980c15a29bf7c20c713e6",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "494f4797f04d6fa0fef73c21649a6a929ae93232c90dcb90103fbf95e427bac8",
+      "binary_sha256": "91429a9f510352e3b463ce88aab089ac7d6850b18f5199c07a2cfb8968a87858",
+      "build_receipt": "/tmp/hbide-gcc-column-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "22f849d24e42e67b8a7d7ebba090f705ac59703066d5e0cd3614898bec5de3de",
+      "case": "gcc-caret-tab4",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "tab4"
+      ],
+      "started": 1793454949.0442328,
+      "seconds": 6.97,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ae9cea7a5383290d483c10630f70be7756f1815cc1fd6b4de2f649c1e7d07c2c",
+      "log": "/tmp/hbide-gcc-column-variants-clean/gcc-caret-tab4-1793454949044229771.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "16c698d2d3201a3ad2d980c15a29bf7c20c713e6",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "494f4797f04d6fa0fef73c21649a6a929ae93232c90dcb90103fbf95e427bac8",
+      "binary_sha256": "91429a9f510352e3b463ce88aab089ac7d6850b18f5199c07a2cfb8968a87858",
+      "build_receipt": "/tmp/hbide-gcc-column-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "22f849d24e42e67b8a7d7ebba090f705ac59703066d5e0cd3614898bec5de3de",
+      "case": "gcc-caret-tab16",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "tab16"
+      ],
+      "started": 1793454956.0152433,
+      "seconds": 6.97,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ae9cea7a5383290d483c10630f70be7756f1815cc1fd6b4de2f649c1e7d07c2c",
+      "log": "/tmp/hbide-gcc-column-variants-clean/gcc-caret-tab16-1793454956015239177.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "16c698d2d3201a3ad2d980c15a29bf7c20c713e6",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "494f4797f04d6fa0fef73c21649a6a929ae93232c90dcb90103fbf95e427bac8",
+      "binary_sha256": "91429a9f510352e3b463ce88aab089ac7d6850b18f5199c07a2cfb8968a87858",
+      "build_receipt": "/tmp/hbide-gcc-column-variants-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "22f849d24e42e67b8a7d7ebba090f705ac59703066d5e0cd3614898bec5de3de",
+      "case": "gcc-caret-absent",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "no-caret"
+      ],
+      "started": 1793454962.9881713,
+      "seconds": 6.97,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ae9cea7a5383290d483c10630f70be7756f1815cc1fd6b4de2f649c1e7d07c2c",
+      "log": "/tmp/hbide-gcc-column-variants-clean/gcc-caret-absent-1793454962988167573.log"
+    }
+  ],
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "16c698d2d3201a3ad2d980c15a29bf7c20c713e6",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "494f4797f04d6fa0fef73c21649a6a929ae93232c90dcb90103fbf95e427bac8",
+    "binary_sha256": "91429a9f510352e3b463ce88aab089ac7d6850b18f5199c07a2cfb8968a87858",
+    "built_at": 1793454935.098017
+  },
+  "logs": {
+    "gcc-caret-column": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column default\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-c3ckuy8d\n",
+    "gcc-caret-byte": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column byte\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-t9qjyxhm\n",
+    "gcc-caret-tab4": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column tab4\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-9i7yzs2e\n",
+    "gcc-caret-tab16": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column tab16\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-zv9hnziv\n",
+    "gcc-caret-absent": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column no-caret\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-uo4xc_nu\n"
+  },
+  "limits": "Acceptance extension only, actualGCCfiveunit/caret modes. Absentcaret deliberately verifies originalnumeric16 fallback, not correctsemanticlocation. No productfix/modelrun/newpixels/Windows/global174featureclaim."
+}
