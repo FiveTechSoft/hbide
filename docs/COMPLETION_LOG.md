@@ -3163,3 +3163,11 @@ PASSsamebinary;twoboundedstepsnoretries/interruption. Manifest/toolchain/
 ldd/logspersisted linux-candidate-bracket-navigation.json. No newfix/full
 176PTY/Windows/release/license/installer/newpixels/determinism/NEXUSrun.
 Q58generalstillpartial. Sourcef440946offlinecatalogue34docsverified.
+
+## Q62 - Macro text wrongly enabled C dump navigation skip
+
+Compiler-valid#defineTEXT#pragma begindump is data in macrobody,notactive
+directive. Substringmatchtreateditasrealpragmaandhidallfollowingfunctions.
+Before1PASS2FAIL. Requireexactnormalizeddirective;existingdumpisolation
+unchanged. Newlexicalmodelguard. Runner178=177PTY+guard. Cleanacceptance
+andnativepickerrecordedseparately,notfullpreprocessor/Windowscoverage.

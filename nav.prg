@@ -34,7 +34,7 @@ FUNCTION HBIDE_ScanProcs( cText )
       ENDIF
       IF Left( cL, 1 ) == "#"
          cT1 := Upper( StrTran( cL, " ", "" ) )
-         IF "#PRAGMABEGINDUMP" $ cT1
+         IF cT1 == "#PRAGMABEGINDUMP"
             lDump := .T.
          ELSEIF "#PRAGMAENDDUMP" $ cT1
             lDump := .F.

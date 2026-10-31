@@ -18,6 +18,8 @@ procedure Main()
  Check(a[3,1]=='Demo:Touch'.and.a[3,3]==6,'typed procedure method name and line',@nPass,@nFail)
  a:=HBIDE_ScanProcs('function Main()'+hb_eol()+'local n := a[1 /* realblock'+hb_eol()+'function Hidden()'+hb_eol()+'*/ ]'+hb_eol()+'return n'+hb_eol()+'function Target()')
  Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==6,'array index multiline block excludes hidden declaration',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('#define TEXT #pragma begindump'+hb_eol()+'function Main()'+hb_eol()+'return nil'+hb_eol()+'function Target()')
+ Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==4,'macro body is not an active dump directive',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return
