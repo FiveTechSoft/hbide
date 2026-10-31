@@ -1972,3 +1972,17 @@ dimensionespreservados y offsetconclampalaltoexistente. Primer harness esperaba
 autogrowysinclampyabrioEntertrasF10yaasociado(disparabapropiedades),corregido
 sinproducto. No nueva politicaoversized/UndoLoadfilename,todoscontroles/eventos
 nonnil/runtime/Windows/pixels. No se declaranhandlersnonnilprobadosporvacios.
+
+## 31 octubre: clipboard ComboBox con handlers no vacios
+
+El test PTY ahora escribe items no predeterminados y when/valid/focus/state
+con argumentos entre comillas mediante el inspector real. Comprueba los
+valores exactos en JSON antes de Copy, dos Paste, Cut, Undo y Redo. Tras un
+nuevo Copy cambia Items del origen, pega y exige que el clipboard conserve
+el valor anterior; Undo del pegado y de la edicion restaura modelos completos.
+18 checks. Un primer intento de la ampliacion obtuvo 16/18: el harness
+suponia que el inspector recordaba el campo State tras los cambios de
+seleccion; se ancla ahora con Up hasta Row y Down hasta Items. No fue un
+fallo de producto. No se ejecutan esos handlers ni se renombran sus
+referencias internas al duplicar la variable enlazada. No todos los tipos,
+revision visual nueva ni Windows, y no cierra M4.
