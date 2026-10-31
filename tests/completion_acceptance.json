@@ -1427,27 +1427,32 @@
     },
     "DBG-INPUT-debugger-EditVar-inputbox-1": {
       "tests": [
-        "test_debug_structured_modal_pty.py"
+        "test_debug_structured_modal_pty.py",
+        "test_debug_structured_depth_pty.py"
       ],
-      "contract": "Actual Monitor array/hash/object top inspector refuses direct typed replacement; Enter opens nested browser with default editing enabled. Nested scalar edits accept41, typed99/Esc and invalid expression/Esc preserve41; resumed debuggee writes exact structure/property. Top readonly does not promise recursive readonly. No pointer/block/nested-depth/platform acceptance."
+      "contract": "Actual Monitor array/hash/object top inspector refuses direct typed replacement; Enter opens nested browser with default editing enabled. Nested scalar edits accept41, typed99/Esc and invalid expression/Esc preserve41; resumed debuggee writes exact structure/property. Top readonly does not promise recursive readonly. Additional depth fixture covers arrayarray/hashhash/objectarray. No pointer/block/arbitrary-depth/platform acceptance."
     },
     "DBG-INPUT-dbgtarr-doGet-inline_input-1": {
       "tests": [
-        "test_debug_structured_modal_pty.py"
+        "test_debug_structured_modal_pty.py",
+        "test_debug_structured_depth_pty.py"
       ],
-      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Focal default editable branch only, not lEditable false, nested depths, getter/setter faults or all expressions/platforms."
+      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms."
     },
     "DBG-INPUT-dbgthsh-doGet-inline_input-1": {
       "tests": [
-        "test_debug_structured_modal_pty.py"
+        "test_debug_structured_modal_pty.py",
+        "test_debug_structured_depth_pty.py"
       ],
-      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Focal default editable branch only, not lEditable false, nested depths, getter/setter faults or all expressions/platforms."
+      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms."
     },
     "DBG-INPUT-dbgtobj-doGet-inline_input-1": {
       "tests": [
-        "test_debug_structured_modal_pty.py"
+        "test_debug_getter_failure_pty.py",
+        "test_debug_structured_modal_pty.py",
+        "test_debug_structured_depth_pty.py"
       ],
-      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Focal default editable branch only, not lEditable false, nested depths, getter/setter faults or all expressions/platforms."
+      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Failed getter with matching setter displays captured Zero divisor, rejects edit before setter, resumes backing1 unchanged; valid property editing remains separately covered."
     },
     "DBG-INPUT-debugger-WatchpointAdd-inputbox-1": {
       "tests": [

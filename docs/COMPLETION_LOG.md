@@ -1820,3 +1820,8 @@ xfce4-terminal120x40 errorZero divisor legible, Enter muestra Value cannot be
 edited, nuncaeditor. Resume conserva backing1exacto. Dos capturas inspeccionadas
 con marcos completos de alerta y paneles, script+hashes/receipt en
  docs/evidence/debug-getter-failure/. No todosgetters/Windows.
+
+Enlaces del inventario actualizados sin cambiar pruebas a funciones cerradas:
+EditVar y tres inspectores enlazan profundidad acotada; objeto enlaza getter
+fallido manteniendo limite setter/arbitrarios/readonlyfalse.15tests de
+inventarioPASS, no15funciones nuevas ni pasadaPTYglobal.
