@@ -2862,3 +2862,8 @@ Selectal inalpha,Findpha,typeX deletedoldal instead of inserting at match.
 Before2PASS1FAIL realPTY. ClearSelection only when FindText finds a match
 (forward or wrap); missing/cancel preserve range. No searchscope expansion.
 Runner159=158PTY+guard. Clean/native and nochange paths follow.
+
+Q49clean040e2ea FindSelection7/NoChangeReplace9/ChangedReplace5/Virtual6PASS
+same5e401ae6;21modelsPASS including106repaint,15inventory34docsPASS.
+Native120x40alXpha/Undoalpha actualpixels inspected fullborders. Ledger
+linux-find-selection.json. No retries/searchscope/Windows/global assertion.
