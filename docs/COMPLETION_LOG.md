@@ -2117,3 +2117,10 @@ daed4cclimpio Type6Getter6Setter8PASSmismoIDE+20modelos15inventario33docs.
 Native120x40arraybrowsertrascambiodetipo inspeccionado,Resume{41,2}exacto.
 Getter se invoca explicitamente para refrescar cache tras intentar setter;
 no promesa de getter libre de efectos, rollback ni cambios externos.
+
+## 31 octubre: cambio de tipo ampliado a cuatro fixtures
+
+El mismo PTY prueba escalar a array/hash de dos elementos y a array/hash
+vacios. Cada fixture exige representacion, Enter abre browser correcto o
+alerta vacio, y Resume valor entero exacto.24checks, cuatro fixtures no
+cuatro funciones. No nuevo cambio de producto ni getter sin efectos.

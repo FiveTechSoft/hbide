@@ -1,11 +1,12 @@
-"""Structured Monitor inspectors allow nested scalar edits with Cancel."""
+"""Object inspector dispatch follows scalar edits to array/hash values, including empty ones."""
 import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=25,80
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
-for kind in ['object']:
- target=work/(kind+'.prg');value=work/(kind+'.txt')
+for shape in ['array','hash','empty-array','empty-hash']:
+ kind='object'
+ target=work/(shape+'.prg');value=work/(shape+'.txt')
  init={'array':'{1, 2}','hash':'{"one" => 1, "two" => 2}','object':'MakeValue()'}[kind]
  result='hb_ValToExp( v:nValue )'
  code='procedure main()\n   local v := '+init+'\n   hb_MemoWrit( "'+str(value)+'", '+result+' )\nreturn\n'
@@ -42,14 +43,20 @@ for kind in ['object']:
   send(b'\r',.3) # dismiss alert, still in structured inspector
   send(b'\r',.4) # Enter drills into nested browser; edits enabled by default
   (work/(kind+'-browser.screen')).write_text(screen.text())
-  send(b'\r',.3);send(b'{41, 2}\r',.4)
-  check('scalar property accepts array expression','{ ... }' in screen.text())
+  expression={'array':'{41, 2}','hash':'{"one"=>41,"two"=>2}','empty-array':'{}','empty-hash':'{=>}'}[shape]
+  send(b'\r',.3);send(expression.encode()+b'\r',.4)
+  check(shape+' scalar property displays changed type',('{ => }' if 'hash' in shape else '{ ... }') in screen.text())
   send(b'\r',.4)
-  (work/'after-type-change.screen').write_text(screen.text())
-  check('Enter after type change opens array browser','NVALUE[1..2]' in screen.text().upper())
-  send(b'\x1b',.3);send(b'\x1b',.3);send(b'\x1b',.3)
-  send(b'\x1b[15~',.7)
-  check('resumed property remains array',value.exists() and value.read_text()=='{41, 2}')
+  (work/(shape+'-after-type-change.screen')).write_text(screen.text())
+  if shape.startswith('empty'):
+   check(shape+' Enter explains empty structure',('Hash is empty' if 'hash' in shape else 'Array is empty') in screen.text())
+   send(b'\r',.3)
+  else:
+   check(shape+' Enter opens matching browser','NVALUE[1..2]' in screen.text().upper())
+   send(b'\x1b',.3)
+  send(b'\x1b',.3);send(b'\x1b',.3);send(b'\x1b[15~',.7)
+  expected={'array':'{41, 2}','hash':'{"one"=>41, "two"=>2}','empty-array':'{}','empty-hash':'{=>}'}[shape]
+  check(shape+' resumed property exact',value.exists() and value.read_text()==expected)
 
  finally:
   w=os.waitpid(pid,os.WNOHANG)
