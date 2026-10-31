@@ -722,16 +722,16 @@
     "DBG-028": {
       "expected_label": "Local",
       "tests": [
-        "test_debug_functions_pty.py"
+        "test_debug_monitor_scopes_pty.py"
       ],
-      "contract": "Original fixed-wait Linux session: Monitor Local after BPline3 shows typed local. No full scope/value semantics acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+      "contract": "Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance."
     },
     "DBG-032": {
       "expected_label": "sOrt",
       "tests": [
-        "test_debug_functions_pty.py"
+        "test_debug_monitor_scopes_pty.py"
       ],
-      "contract": "Original fixed-wait Linux session: Monitor Sort retains visible Local view; this is view survival only, not a complete ordering fixture. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+      "contract": "Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance."
     },
     "DBG-034": {
       "expected_label": "Line Numbers",
@@ -815,6 +815,34 @@
         "test_designer_snap_edges_pty.py"
       ],
       "contract": "Real F2 G duplicated mnemonic plus Enter enables Snap; arrows on existing width10 GET inside41x14 dialog round then clamp to odd edges11/29. F10 exact fit/dimensions/binding, UndoRedo complete models. Separate native120x40 captures inspected at edge and Undo; Separate --drag mode presses first GET cell, sends held-button motion32 to the odd edge and releases; checks the same exact F10/Undo/Redo model. Not native drag pixels or all gesture paths. No oversized edit policy, all controls or Windows acceptance."
+    },
+    "DBG-025": {
+      "expected_label": "Public",
+      "tests": [
+        "test_debug_monitor_scopes_pty.py"
+      ],
+      "contract": "Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance."
+    },
+    "DBG-026": {
+      "expected_label": "priVate",
+      "tests": [
+        "test_debug_monitor_scopes_pty.py"
+      ],
+      "contract": "Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance."
+    },
+    "DBG-027": {
+      "expected_label": "Static",
+      "tests": [
+        "test_debug_monitor_scopes_pty.py"
+      ],
+      "contract": "Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance."
+    },
+    "DBG-030": {
+      "expected_label": "All",
+      "tests": [
+        "test_debug_monitor_scopes_pty.py"
+      ],
+      "contract": "Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance."
     }
   },
   "modal_contracts": [

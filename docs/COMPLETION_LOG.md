@@ -2279,3 +2279,12 @@ matrizglobal125,nopixels/Windows/determinism/licenciareleaseready.
 Durable docs/evidence/linux-candidate-snap-runtime-extras.json conserva
 manifestcompilerhash/deps/strip/testidentity ylogs extras. Binarioqueda
 /tmp/hbide-linux-current-candidate-3, no publicacionrelease.
+
+## 31 octubre: Monitor efectos de scopes y Sort
+
+Fixture5variables comprueba menuLocal/Public/Private/Static/All y valores,
+Sort cambiaordenrealdeclaracion, agregarscopes mantieneorden, editarprimer
+rowordenadoQA llegaaQA77 yResumevector12,77,30,40,50exacto. NoGlobal,
+shadowingotroframe,tipos/pixels/Windows. Exploratorio11/16fallosparserincluia
+bordertrasnumero, corregido16PASS sincambioproducto. Runner126=125PTY+guard;
+102contratosmenu/116no102funcionesaceptadas. Seconservanambosintentos.
