@@ -2607,4 +2607,8 @@ destination Undo/Redo. Initial fixture wrongly expected CRLF in unterminated
 LF-default document; corrected expected LF before acceptance.
 Native120x40 destination beta/alpha and Undo beta inspected, full frames;
 source disk alpha unchanged. Not OS clipboard or other-app integration.
-Runner145=144PTY modes plus guard. No Windows/global claim. Clean pending.
+Runner145=144PTY modes plus guard. No Windows/global claim.
+
+Clean764472e: ClipboardMultidoc6, Spaces4, Duplicate6 and Delete6 pass
+same binarye3e1a478 without retry;21models15inventory33docs pass.
+Ledger docs/evidence/linux-clipboard-multidoc.json.
