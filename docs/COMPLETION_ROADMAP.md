@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q87 | Matriz Linux registrada completa tras aliasesnavegacion. | 201/201(200PTY+guard)PASS fuente84e58b3/binario2bdfbe63,22modelos24inventario34docs,sinfallos/reintentos. linux-full-matrix-q87.json. No nuevofix/visual/candidato/Windows/hitos. |
 | Q86 | GoToFunction incluye DESTRUCTOR CLASS explicito. | Fixturecompiladaantes1PASS2FAIL,4guardasmiembro/binding/continuacion;linux-navigation-destructor.json. No macrosgenerales/Windows/global. |
 | C18 | Candidato Linux temporal actualizado hastaQ85. | Export813d95d,8smoke+10modosnavegacion34checks binarioexacto0d9a1505,visualASSIGNinspeccionado;linux-candidate-navigation-aliases.json. No release/licencias/Windows/instalacion/globalmatrix. |
 | Q85 | M0 vincula F5LivePRG fuera delmenu. | Contratosdispatchancladosafuente/contexto/condicion,5guardasfailclosed24inventario;linux-inventory-f5-route.json. No producto/candidato/global. |

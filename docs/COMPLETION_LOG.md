@@ -3455,3 +3455,17 @@ Compiler-valid DESTRUCTOR Cleanup() CLASS Demo omitted (before1PASS2FAIL).
 Recognize explicit hbclass.ch implementation alias, not member declaration
 or external DESTRUCTOR FUNCTION binding. Four guards plus focused PTY.
 Evidence linux-navigation-destructor.json follows; no arbitrarymacros.
+
+## Q87 - full current Linux runner matrix after navigation aliases
+
+Frozen84e58b3dbd6163137bd5caf0a28a25ae2ce03e63, binary
+2bdfbe637eabab653b566d7eefaefea2bcc7df584ac036fbc6e7230c34f57305.
+201distinct entries (200PTYmodes+1sourceguard) PASS same identity, no
+source/binary changes, completed failures, retries or interrupted tests.
+Only pauses between completed batches.22fresh model suites,24inventory
+and34embedded docs PASS on same frozen source. Everyreceipt/log retained
+in linux-full-matrix-q87.json. No aggregate assertioncount invented.
+This is all registered runner entries, not all behaviours/Windows or
+visual no-tearing proof. No newfix/pixels/candidate/NEXUSexecution.
+C18 remains export813d95d beforeQ86, does not inherit this acceptance.
+No license/install/determinism/globalmilestone closure inferred.
