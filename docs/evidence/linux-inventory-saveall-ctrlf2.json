@@ -1,0 +1,113 @@
+{
+  "scope": "Q115 M0 exactCtrlF2SaveAlllink;boundednavigation/failure/conflictCancelReloadPTY, notnewproductfix/pixels/model/Windows/fullmatrix/milestone.",
+  "source": "4eeb0cd9172aec44bde79e6edde70076b0b5f4bc",
+  "binary_sha256": "7648aff2cb681eeaa136ab81b861fcca3b25c5ac7a03007677e19f03a1abb502",
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "4eeb0cd9172aec44bde79e6edde70076b0b5f4bc",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8a107ce8a8fadac535b798d71607fdd34fab8b5ba18ba990c07f367ffe10f15a",
+      "binary_sha256": "7648aff2cb681eeaa136ab81b861fcca3b25c5ac7a03007677e19f03a1abb502",
+      "build_receipt": "/tmp/hbide-ctrlf2-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "42abcde092f5e0703f1d0f32cc8bf6349dec2b263ef63bde49e36404dc498b91",
+      "case": "navigation",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_nav_pty.py"
+      ],
+      "started": 1793490946.3721807,
+      "seconds": 66.97,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1a4bc70d1b37cd6915c6e39d48ad819421db5e759926bd00d834c57e4c11a04b",
+      "log": "/tmp/hbide-ctrlf2-clean/navigation-1793490946372177296.log",
+      "log_text": "PASS boot\nPASS good.prg opened\nPASS function list opens with real entries\nPASS commented and block-commented names are not listed\nPASS static procedure labelled\nPASS filter narrows list (Helper kept, Main gone)\nPASS Enter jumps to Helper line 11\nPASS Esc leaves the cursor where it was\nPASS failed build shows compiler output\nPASS failed build lands on the first error line (3)\nPASS status row shows message 1/3\nPASS Alt+F8 goes to the second error (line 7)\nPASS status row shows message 2/3\nPASS Alt+F8 reaches the warning (3/3, line 9)\nPASS Alt+F8 wraps to the first error\nPASS Alt+F7 goes back (wraps to last, line 9)\nPASS message list opens\nPASS Enter in the list jumps to the picked message\nPASS window list shows documents\nPASS window list marks modified document\nPASS window list switches document\nPASS Save All reports in the status row\nPASS bad.prg saved to disk\nPASS other.prg saved to disk\nPASS Save All with nothing modified says so\nPASS arguments dialog opens\nPASS arguments confirmed in status row\nPASS Start passes the arguments to the program\nPASS shell metacharacters stay literal (no extra command ran)\nPASS Script passes the arguments to Main()\nPASS Debug passes the arguments to Main()\nPASS Save All reports failure and untitled skipped\nPASS no misleading global success message\nPASS named file saved, untitled not written anywhere\nPASS untitled buffer stays marked modified\n35/35 passed\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "4eeb0cd9172aec44bde79e6edde70076b0b5f4bc",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8a107ce8a8fadac535b798d71607fdd34fab8b5ba18ba990c07f367ffe10f15a",
+      "binary_sha256": "7648aff2cb681eeaa136ab81b861fcca3b25c5ac7a03007677e19f03a1abb502",
+      "build_receipt": "/tmp/hbide-ctrlf2-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "42abcde092f5e0703f1d0f32cc8bf6349dec2b263ef63bde49e36404dc498b91",
+      "case": "saveall-failure",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_saveall_fail_pty.py"
+      ],
+      "started": 1793491013.343755,
+      "seconds": 17.95,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "867f41dfed5f1947f30ef5b090265a1cc87ec7ee1177947074e59acb548b729f",
+      "log": "/tmp/hbide-ctrlf2-clean/saveall-failure-1793491013343752338.log",
+      "log_text": "PASS boot\nPASS summary says 1 saved and 1 could not be saved\nPASS failed file content on disk untouched\nPASS ok file saved with its edit\nPASS failed doc still marked modified, ok doc clean\n5/5 passed\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "4eeb0cd9172aec44bde79e6edde70076b0b5f4bc",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8a107ce8a8fadac535b798d71607fdd34fab8b5ba18ba990c07f367ffe10f15a",
+      "binary_sha256": "7648aff2cb681eeaa136ab81b861fcca3b25c5ac7a03007677e19f03a1abb502",
+      "build_receipt": "/tmp/hbide-ctrlf2-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "42abcde092f5e0703f1d0f32cc8bf6349dec2b263ef63bde49e36404dc498b91",
+      "case": "saveall-conflict-cancel",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_saveall_conflict_cancel_pty.py"
+      ],
+      "started": 1793491031.2900102,
+      "seconds": 8.78,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ab77a9370a252d66eee86a3ff627ab5a02268e74aab41e77018b46a8de15d187",
+      "log": "/tmp/hbide-ctrlf2-clean/saveall-conflict-cancel-1793491031290007355.log",
+      "log_text": "PASS SaveAll cancelled conflict leaves external bytes and dirty edit, other document saves\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "4eeb0cd9172aec44bde79e6edde70076b0b5f4bc",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8a107ce8a8fadac535b798d71607fdd34fab8b5ba18ba990c07f367ffe10f15a",
+      "binary_sha256": "7648aff2cb681eeaa136ab81b861fcca3b25c5ac7a03007677e19f03a1abb502",
+      "build_receipt": "/tmp/hbide-ctrlf2-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "42abcde092f5e0703f1d0f32cc8bf6349dec2b263ef63bde49e36404dc498b91",
+      "case": "saveall-conflict-reload",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_saveall_conflict_reload_pty.py"
+      ],
+      "started": 1793491040.0705144,
+      "seconds": 7.58,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "bd78388572be73377d44c64d53627ea3ed4f0b4d8ba4a4a09d2b8f3e24e265e0",
+      "log": "/tmp/hbide-ctrlf2-clean/saveall-conflict-reload-1793491040070511693.log",
+      "log_text": "PASS SaveAll reload keeps external bytes and prior backup, not counted as saved\n"
+    }
+  ],
+  "inventory_log": ".................................\n----------------------------------------------------------------------\nRan 33 tests in 0.314s\n\nOK\n",
+  "execution": "4modes cleanexit0no failure/retry/interruption;33inventory34docs. See logs for numberedchecks/scenarios."
+}

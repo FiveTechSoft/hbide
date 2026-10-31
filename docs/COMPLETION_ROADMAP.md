@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q115 | M0 CtrlF2SaveAllexactolink/conflictos/fallos. | 4modos40checks+2scenarios33inventory34docsPASSsource4eeb0cd;linux-inventory-saveall-ctrlf2.json. No productfix/pixels/models/global. |
 | Q114 | M5 guardasfailclosedauditoravisos,gatepermaneceabierto. | Source0ad7d31/5guards32inventory34docsPASS;28fuentes14LICENSEreferenciasausentes14sinheaderdetectado;gate1expected;linux-distribution-notice-gate.json. No licenseclearance/release/Windows. |
 | Q113 | Bracketliteraltras*/%^noconfundecomentarios. | Antes2PASS2FAIL;7guards38PTY22models32inventory34docsPASSsourceb756ad2;nativeinspeccionado;linux-editor-bracket-arithmetic.json. No runtime/type/generallexer/Windows. |
 | Q112 | RegresióninputIDE/debugger trasGTkeymap. | 11modos163checks+2scenarios22models32inventory34docsPASSsourceec9d3a0;linux-input-joint-q112.json. No fullmatrix/newfix/pixels/candidate/Windows. |

@@ -3805,3 +3805,13 @@ missingLICENSE.txt,14withoutdetectedGPLheader;absenceisnotproofnolicence.
 --check-release exit1expected, release review stillrequired.
 linux-distribution-notice-gate.json. No licenseinvented/copied/cleared, no
 productbinary/model/PTY/pixels/nativeWindows/M5closure.
+
+## Q115 - M0 actual CtrlF2 SaveAll dispatch
+
+Exact source/context/condition bound toactualCtrlF2PTY,notmenuproxy.
+Source4eeb0cd:Navigation35checks+SaveAllFailure5checks+ConflictCancel/Reload
+2assertion-richscenariosPASS;33inventory34docs,cleannofailure/retry.
+Namedbuffersindependent,untitledskipped,failedwritekeepsdirty;conflictCancel
+keepseditedbuffer/externaldiskwhileothersaves;Reloadpreservesexternalbytes/
+priorbackupandisnotcountedassave. linux-inventory-saveall-ctrlf2.json.
+No newproductfix/pixels/modelrerun/allterminals/menus-open/Windows/global.
