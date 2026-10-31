@@ -2656,3 +2656,13 @@ Clean7b7f4af: twelve recent suites pass same binary8835931a in two bounded
 steps without retry, plus21models15inventory33docs. Ledger
 linux-editor-clipboard-joint.json. Roadmap indexesQ41 and candidate8 with
 limits; no product change, full147mode matrix, new pixels or M1/Windows closure.
+
+## 31 October UTF8 cross-document clipboard acceptance
+
+New9check PTY selects café+TAB+two trailing spaces, CRLF, niño LF through
+start final. Copy/Paste into second document, destination Undo/Redo and
+source Cut/Undo preserve exact UTF8/TAB/spaces bytes; destination uses LF.
+No productfix. First fixture required glyphs from PTY decoder but GT emitted
+question marks while disk checks passed; open check uses ASCII final marker.
+No native glyph/render acceptance is claimed. Runner148=147PTY modes+guard.
+No OSclipboard/Windows/global. Clean pending.
