@@ -3,7 +3,7 @@ import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re,js
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
-exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[];created='--create' in sys.argv
+exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[];created='--create' in sys.argv;popup='--popup' in sys.argv
 for kind in ['say','get','checkbox','button','radiogroup','listbox','combobox']:
  modelpath=work/'fixture.json'
  pid,fd=pty.fork()
@@ -48,19 +48,27 @@ for kind in ['say','get','checkbox','button','radiogroup','listbox','combobox']:
    send(b'\x1b[21~',.25)
    if 'Save dialog as JSON' in screen.text():send(b'\r');send(b'\r',.3)
    return json.loads(modelpath.read_text())
+  def command(key):
+   if not popup:send(key);return
+   send(b'\x1bOQ')
+   check(kind+' F2 clipboard popup visible','Ctrl+C' in screen.text() and 'Ctrl+V' in screen.text())
+   # P and R each have two menu entries. The first matching letter selects,
+   # the second cycles; Enter activates only that final entry.
+   letters={b'\x03':b'c',b'\x16':b'pp\r',b'\x1a':b'u',b'\x19':b'rr\r',b'\x18':b't'}[key]
+   for letter in letters:send(bytes([letter]))
   baseline=model()['controls']
   check(kind+(' real F2 create and F10 persist type' if created else ' real F12 load and F10 persist type'),len(baseline)==1 and baseline[0]['type']==kind)
-  send(b'\x03');send(b'\x16');send(b'\x16')
+  command(b'\x03');command(b'\x16');command(b'\x16')
   copied=model()['controls'];preserved=[k for k in baseline[0] if k not in ['row','col','variable']]
   check(kind+' Copy two Paste preserves all nonbinding fields',len(copied)==3 and all(all(c[k]==baseline[0][k] for k in preserved) for c in copied))
   if not created:check(kind+' Paste offsets exact',[(c['row'],c['col']) for c in copied]==[(1,2),(2,3),(3,4)])
   else:check(kind+' Paste positions inside existing dialog',all(c['row']>=0 and c['col']>=0 for c in copied))
   check(kind+' bindings unique or absent',all('variable' not in c for c in copied) if 'variable' not in baseline[0] else len({c['variable'].upper() for c in copied})==3)
-  send(b'\x1a');check(kind+' Undo removes last only',model()['controls']==copied[:2])
-  send(b'\x19');check(kind+' Redo restores complete models',model()['controls']==copied)
-  send(b'\x18');check(kind+' Cut removes selected only',model()['controls']==copied[:2])
-  send(b'\x1a');check(kind+' Undo Cut restores complete models',model()['controls']==copied)
-  send(b'\x16');more=model()['controls']
+  command(b'\x1a');check(kind+' Undo removes last only',model()['controls']==copied[:2])
+  command(b'\x19');check(kind+' Redo restores complete models',model()['controls']==copied)
+  command(b'\x18');check(kind+' Cut removes selected only',model()['controls']==copied[:2])
+  command(b'\x1a');check(kind+' Undo Cut restores complete models',model()['controls']==copied)
+  command(b'\x16');more=model()['controls']
   check(kind+' Paste after Cut Undo keeps fields',len(more)==4 and all(more[-1][k]==copied[-1][k] for k in preserved))
 
  finally:

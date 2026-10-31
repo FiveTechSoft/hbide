@@ -604,7 +604,7 @@
         "test_designer_clipboard_loaded_types_pty.py",
         "test_designer_clipboard_pty.py"
       ],
-      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. This covers keyboard dispatch, not clicking this popup menu entry, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
     },
     "DSN-010": {
       "expected_label": "Redo        Ctrl+Y",
@@ -613,7 +613,7 @@
         "test_designer_clipboard_loaded_types_pty.py",
         "test_designer_clipboard_pty.py"
       ],
-      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. This covers keyboard dispatch, not clicking this popup menu entry, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
     },
     "DSN-011": {
       "expected_label": "Copy        Ctrl+C",
@@ -622,7 +622,7 @@
         "test_designer_clipboard_loaded_types_pty.py",
         "test_designer_clipboard_pty.py"
       ],
-      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. This covers keyboard dispatch, not clicking this popup menu entry, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
     },
     "DSN-012": {
       "expected_label": "Cut         Ctrl+X",
@@ -631,7 +631,7 @@
         "test_designer_clipboard_loaded_types_pty.py",
         "test_designer_clipboard_pty.py"
       ],
-      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. This covers keyboard dispatch, not clicking this popup menu entry, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
     },
     "DSN-013": {
       "expected_label": "Paste       Ctrl+V",
@@ -640,7 +640,7 @@
         "test_designer_clipboard_loaded_types_pty.py",
         "test_designer_clipboard_pty.py"
       ],
-      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. This covers keyboard dispatch, not clicking this popup menu entry, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
     },
     "DSN-001": {
       "expected_label": "Label (SAY)",

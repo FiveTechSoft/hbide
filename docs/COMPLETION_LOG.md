@@ -2207,3 +2207,11 @@ array/hash/object enlazan columnaslargas,navegacion,tipo/empty. Vinculo no
 PASS; popupentryclic no se prueba por atajo, nueva redaccion lo conserva.
 Inventario regenerado de fuente,15checksPASS,33docs reembebidos. No cambio
 producto ni cierre M0/M4 por aumentar contratos.
+
+## 31 octubre: popupclipboard siete tipos
+
+Nuevo --popup reusa fixturesF12sietetipos, pero cada Copy/Paste/Cut/Undo/Redo
+abre F2yactiva entrada por mnemonic, duplicadosP/R ciclan+Enter. Primera
+exploracion63checksPASS con snapshotdirtyd63eaa68, no defectoenproducto.
+Seagrega comprobacionpopupvisible por operacion antesdelcleanrun.
+No mouse,pixels,Windows ni cumplimiento global. Runner122=121PTYmodes+guard.
