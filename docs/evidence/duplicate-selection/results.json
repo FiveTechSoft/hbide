@@ -1,0 +1,7 @@
+{
+  "source": "f0c46c7fbc7f80d54128fe0c7525c2cfe686a100",
+  "dirty": true,
+  "typed_disk": "alpha CRLF Xalpha CRLF beta CRLF gamma",
+  "undo_disk": "alpha CRLF alpha CRLF beta CRLF gamma",
+  "scope": "Native120x40 old anchor row3 to row1 then Duplicate Line; typing and Undo exact. Pixels require inspection."
+}

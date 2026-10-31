@@ -238,6 +238,8 @@ METHOD DuplicateLine() CLASS HBSrcEdit
 
    local aBefore := ::LinesSnapshot()
 
+   // The line command consumes the old range before moving its cursor.
+   ::ClearSelection()
    // Insert a copy below current line; independent of insert/overstrike mode
    ::InsertLine( ::aText[ ::nRow ]:cText, .F., ::nRow + 1 )
    ::RecordEdit( aBefore )

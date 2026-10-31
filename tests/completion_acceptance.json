@@ -249,9 +249,10 @@
     "IDE-014": {
       "tests": [
         "test_editor_eol.prg",
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_duplicate_selection_pty.py"
       ],
-      "contract": "Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. Real Edit-menu dispatch now checks exact saved bytes.",
+      "contract": "Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. Real Edit-menu dispatch now checks exact saved bytes. Duplicate Line clears old marked range before moving the cursor. Subsequent typing cannot silently replace that stale block; exact Undo typing/duplicate and Redo verified.",
       "expected_label": "Duplicate Line"
     },
     "IDE-017": {

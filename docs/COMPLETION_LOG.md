@@ -2574,3 +2574,14 @@ Not blanket no-op contract, visual or Windows acceptance.
 Cleanc376c81: BoundaryNoop6, Overtype3, Identity3 and DeleteSelection6 pass
 same binaryc3809152 without retry;15inventory33docs pass. No new model run.
 Ledger docs/evidence/linux-boundary-noop.json.
+
+## Q40 Clear stale selection after Duplicate Line
+
+Selection row3->row1, Duplicate Line then typing used the old range and
+silently removed source text instead of inserting into the duplicate.
+Before5/6PTY. Duplicate now clears the range before its line command.
+After6/6PTY: exact disk, Undo typing, Undo duplicate and Redo; four new
+model checks include clean Undo. Native120x40 alpha/Xalpha/beta/gamma
+and Undo alpha/alpha/beta/gamma inspected with full lower frames.
+Runner144=143PTY modes plus guard. No marked Cut semantic change,
+Windows or global acceptance. Clean regression pending.
