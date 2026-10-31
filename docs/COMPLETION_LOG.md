@@ -3382,3 +3382,10 @@ Before1PASS2FAIL. Join only declaration-looking masked lines with trailing
 semicolon, retaining first physical line and dropping pending text at a
 directive. Five model guards plus focused PTY. No arbitrary preprocessing.
 Evidence linux-navigation-declaration-continuation.json follows.
+
+### Q81 extension - compact continuation
+
+Compiler-valid FUNCTION; without separating space still failed1PASS2FAIL.
+Detect declaration start after removing finalsemicolon, preserving
+original physical line. CompactPTYmode plus3guards function/static/method.
+Evidence linux-navigation-declaration-compact.json follows; bounded only.

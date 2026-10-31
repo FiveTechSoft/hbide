@@ -1,5 +1,5 @@
 """Real IDE Edit-menu dispatch. Linux PTY, not visual certification."""
-import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
+import sys, os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
 ROWS, COLS = 40, 120
 BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
 class Scr:
@@ -77,6 +77,8 @@ work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 (work/'home').mkdir(); (work/'rec').mkdir()
 target = work/'source.prg'
 original = (pathlib.Path(__file__).resolve().parent/'fixtures/nav_declaration_continuation.prg').read_bytes()
+if '--compact' in sys.argv:
+    original=original.replace(b'function ;',b'function;')
 target.write_bytes(original)
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
 pid, fd = pty.fork()
@@ -114,7 +116,7 @@ try:
     menu(b'u')
     check('Picker includes continued Target declaration','Target' in scr.text() and '3/3' not in scr.text() and '2/2' in scr.text())
     send(b'Target\r');send(b'X')
-    saved('Picker jumps to real Target declaration',original.replace(b'function ;',b'Xfunction ;'))
+    saved('Picker jumps to real Target declaration',original.replace(b'function ;',b'Xfunction ;').replace(b'function;',b'Xfunction;'))
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)

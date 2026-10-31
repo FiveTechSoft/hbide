@@ -53,7 +53,7 @@ FUNCTION HBIDE_ScanProcs( cText )
       ENDIF
       // Only declaration-looking logical lines are joined. A semicolon
       // masked inside a string/comment never reaches this code.
-      IF Right( cL, 1 ) == ";" .AND. HBIDE_NavDeclStart( cL )
+      IF Right( cL, 1 ) == ";" .AND. HBIDE_NavDeclStart( RTrim( Left(cL,Len(cL)-1) ) )
          cPending := RTrim( Left( cL, Len(cL)-1 ) )
          nDeclLine := nSourceLine
          LOOP

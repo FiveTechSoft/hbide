@@ -50,6 +50,12 @@ procedure Main()
  Check(Len(a)==2.and.a[2,3]==3,'literal semicolon not declaration continuation',@nPass,@nFail)
  a:=HBIDE_ScanProcs('function ;'+hb_eol()+'#define X 1'+hb_eol()+'function Target()')
  Check(Len(a)==1.and.a[1,1]=='Target'.and.a[1,3]==3,'directive drops pending incomplete declaration',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('function;'+hb_eol()+'Target()')
+ Check(Len(a)==1.and.a[1,1]=='Target'.and.a[1,3]==1,'compact function continuation',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('static;'+hb_eol()+'function;'+hb_eol()+'Target()')
+ Check(Len(a)==1.and.a[1,1]=='Target'.and.a[1,3]==1,'compact modifier and function continuations',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('method;'+hb_eol()+'Target() CLASS Demo')
+ Check(Len(a)==1.and.a[1,1]=='Demo:Target'.and.a[1,3]==1,'compact method continuation',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return
