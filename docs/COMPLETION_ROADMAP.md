@@ -164,6 +164,14 @@ NEXUS es demo adicional solicitada31Oct11:15 y entregada11:22, no cierreM1-M6.
 Fuente/instrucciones demos/nexus.prg y demos/NEXUS.md; evidencianativa
  docs/evidence/nexus-demo/. Botonesverdes/sombra sincorchetes, datosficticios.
 
+### Candidate11 - Q47-Q49 incluido
+
+Exporte4130d5 stripped9936b5ee pasa8smokes+Virtual6/VirtualBS5/Find7/Repeat7/
+Tab7 mismo binario inalterado, dos pasos sinreintentos. Ledger
+linux-candidate-find-virtual.json. Incluye fuenteNEXUS pero no ejecución
+NEXUSenestecandidato. No release/licencia/instalador/Windows/matriz159global/
+nuevascapturas/determinismo. Último cambiofuncional040e2eaQ49 sin cambios.
+
 ## Ampliaciones que no se confunden con cierre probado
 
 El [plan de diseno anterior](ROADMAP.md) y la

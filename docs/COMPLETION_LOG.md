@@ -2877,3 +2877,12 @@ andUndo. Local7PASS, no newproductfix. Runner160=159PTY+guard. Cleanfollows.
 ExtensionQ49cleane2482e6 RepeatFind7/Find7/NoChangeReplace9PASS same1696d442,
 15inventory34docsPASS,no retries. Ledgerlinux-find-repeat-selection.json.
 No newfix/model/pixels/global/Windows. MapsFindIDE015/RepeatIDE016linked.
+
+## Candidate11 - virtual editing and Find Q47-Q49
+
+Exporte4130d5strippedSHA9936b5ee3695789a6d32a6e83a6c66188e04b92fbf1d71704291a518d4f8343a.
+8standard+VirtualSelection6/VirtualBS5/Find7/Repeat7/Tab7PASS samebinary,
+two boundedsteps without retries. Ledgerlinux-candidate-find-virtual.json
+includesmanifest/toolchain/ldd/logs. IncludesNEXUSsource but no execution
+ofNEXUSonthiscandidate. No release/installer/license/Windows/full159PTY/
+newpixels/determinism. No newfix or milestoneclosure.
