@@ -595,338 +595,339 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 
 Estas condiciones amplian el inventario fuera del menu. No se suman como funciones independientes.
 
-| Fuente:linea | Condicion |
-| --- | --- |
-| hbdebug/debugger.prg:908 | `CASE Empty( cCommand )` |
-| hbdebug/debugger.prg:911 | `CASE hb_LeftEq( cCommand, "??" )` |
-| hbdebug/debugger.prg:915 | `CASE hb_LeftEq( cCommand, "?" )` |
-| hbdebug/debugger.prg:933 | `CASE cCommand == "??" .OR. cCommand == "?"` |
-| hbdebug/debugger.prg:951 | `CASE hb_LeftEqN( "ANIMATE", cCommand, 4 )` |
-| hbdebug/debugger.prg:957 | `CASE cCommand == "BP"` |
-| hbdebug/debugger.prg:967 | `CASE hb_LeftEqN( "CALLSTACK", cCommand, 4 )` |
-| hbdebug/debugger.prg:970 | `CASE hb_LeftEqN( "DELETE", cCommand, 3 )` |
-| hbdebug/debugger.prg:972 | `CASE cParam1 == "BP"` |
-| hbdebug/debugger.prg:974 | `CASE cParam1 == "WP" .OR. cParam1 == "TP"` |
-| hbdebug/debugger.prg:976 | `CASE cParam1 == "ALL"` |
-| hbdebug/debugger.prg:978 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:981 | `CASE hb_LeftEqI( "BP", cParam2 )` |
-| hbdebug/debugger.prg:983 | `CASE hb_LeftEqI( "WP", cParam2 ) .OR. hb_LeftEqI( "TP", cParam2 )` |
-| hbdebug/debugger.prg:993 | `CASE cCommand == "DOS"` |
-| hbdebug/debugger.prg:996 | `CASE hb_LeftEq( "FILE", cCommand )` |
-| hbdebug/debugger.prg:998 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1000 | `CASE hb_LeftEq( "OPEN", cParam1 )` |
-| hbdebug/debugger.prg:1002 | `CASE hb_LeftEq( "RESUME", cParam1 )` |
-| hbdebug/debugger.prg:1004 | `CASE hb_LeftEq( "OS", cParam1 ) .OR. hb_LeftEq( "DOS", cParam1 )` |
-| hbdebug/debugger.prg:1006 | `CASE hb_LeftEq( "EXIT", cParam1 )` |
-| hbdebug/debugger.prg:1012 | `CASE cCommand == "FIND"` |
-| hbdebug/debugger.prg:1015 | `CASE hb_LeftEqN( "GOTO", cCommand, 4 ) .AND. ( n := Val( cParam1 ) ) > 0` |
-| hbdebug/debugger.prg:1018 | `CASE hb_LeftEq( "GO", cCommand )` |
-| hbdebug/debugger.prg:1021 | `CASE cCommand == "HELP"` |
-| hbdebug/debugger.prg:1024 | `CASE hb_LeftEqN( "INPUT", cCommand, 4 )` |
-| hbdebug/debugger.prg:1037 | `CASE cCommand == "LIST"` |
-| hbdebug/debugger.prg:1039 | `CASE "BP"` |
-| hbdebug/debugger.prg:1042 | `CASE "WP"` |
-| hbdebug/debugger.prg:1043 | `CASE "TP"` |
-| hbdebug/debugger.prg:1050 | `CASE hb_LeftEq( "LOCATE", cCommand )` |
-| hbdebug/debugger.prg:1052 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1054 | `CASE hb_LeftEq( "FIND", cParam1 )` |
-| hbdebug/debugger.prg:1056 | `CASE hb_LeftEq( "NEXT", cParam1 )` |
-| hbdebug/debugger.prg:1058 | `CASE hb_LeftEq( "PREVIOUS", cParam1 )` |
-| hbdebug/debugger.prg:1060 | `CASE hb_LeftEq( "GOTOLINE", cParam1 )` |
-| hbdebug/debugger.prg:1062 | `CASE hb_LeftEq( "CASESENSITIVE", cParam1 )` |
-| hbdebug/debugger.prg:1064 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:1066 | `CASE Upper( cParam2 ) == "ON"` |
-| hbdebug/debugger.prg:1068 | `CASE Upper( cParam2 ) == "OFF"` |
-| hbdebug/debugger.prg:1077 | `CASE hb_LeftEq( "MONITOR", cCommand )` |
-| hbdebug/debugger.prg:1094 | `CASE ! Empty( cResult )` |
-| hbdebug/debugger.prg:1096 | `CASE hb_LeftEq( "PUBLIC", cParam1 )` |
-| hbdebug/debugger.prg:1098 | `CASE hb_LeftEq( "PRIVATE", cParam1 )` |
-| hbdebug/debugger.prg:1100 | `CASE hb_LeftEq( "STATIC", cParam1 )` |
-| hbdebug/debugger.prg:1102 | `CASE hb_LeftEq( "LOCAL", cParam1 )` |
-| hbdebug/debugger.prg:1104 | `CASE hb_LeftEq( "GLOBAL", cParam1 )` |
-| hbdebug/debugger.prg:1106 | `CASE hb_LeftEq( "ALL", cParam1 )` |
-| hbdebug/debugger.prg:1108 | `CASE hb_LeftEq( "SORT", cParam1 )` |
-| hbdebug/debugger.prg:1110 | `CASE hb_LeftEq( "SHOWALLGLOBALS", cParam1 )` |
-| hbdebug/debugger.prg:1116 | `CASE cCommand == "NEXT"` |
-| hbdebug/debugger.prg:1119 | `CASE cCommand == "NUM"` |
-| hbdebug/debugger.prg:1121 | `CASE "OFF"` |
-| hbdebug/debugger.prg:1123 | `CASE "ON"` |
-| hbdebug/debugger.prg:1129 | `CASE hb_LeftEq( "OPTIONS", cCommand )` |
-| hbdebug/debugger.prg:1131 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1133 | `CASE hb_LeftEq( "PREPROCESSEDCODE", cParam1 )` |
-| hbdebug/debugger.prg:1135 | `CASE hb_LeftEq( "LINENUMBERS", cParam1 )` |
-| hbdebug/debugger.prg:1137 | `CASE hb_LeftEq( "EXCHANGESCREENS", cParam1 ) .OR. ;` |
-| hbdebug/debugger.prg:1140 | `CASE hb_LeftEq( "MENUBAR", cParam1 )` |
-| hbdebug/debugger.prg:1142 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:1144 | `CASE Upper( cParam2 ) == "ON"` |
-| hbdebug/debugger.prg:1146 | `CASE Upper( cParam2 ) == "OFF"` |
-| hbdebug/debugger.prg:1151 | `CASE hb_LeftEq( "CODEBLOCKTRACE", cParam1 )` |
-| hbdebug/debugger.prg:1153 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:1155 | `CASE Upper( cParam2 ) == "ON"` |
-| hbdebug/debugger.prg:1157 | `CASE Upper( cParam2 ) == "OFF"` |
-| hbdebug/debugger.prg:1162 | `CASE hb_LeftEq( "MONODISPLAY", cParam1 )` |
-| hbdebug/debugger.prg:1164 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:1166 | `CASE Upper( cParam2 ) == "ON"` |
-| hbdebug/debugger.prg:1168 | `CASE Upper( cParam2 ) == "OFF"` |
-| hbdebug/debugger.prg:1173 | `CASE hb_LeftEq( "COLORS", cParam1 )` |
-| hbdebug/debugger.prg:1206 | `CASE hb_LeftEq( "TABWIDTH", cParam1 )` |
-| hbdebug/debugger.prg:1215 | `CASE hb_LeftEq( "PATHFORFILES", cParam1 )` |
-| hbdebug/debugger.prg:1217 | `CASE hb_LeftEq( "RUNATSTARTUP", cParam1 )` |
-| hbdebug/debugger.prg:1219 | `CASE hb_LeftEq( "NORUNATSTARTUP", cParam1 )` |
-| hbdebug/debugger.prg:1221 | `CASE hb_LeftEq( "SAVESETTINGS", cParam1 )` |
-| hbdebug/debugger.prg:1223 | `CASE hb_LeftEq( "RESTORESETTINGS", cParam1 )` |
-| hbdebug/debugger.prg:1229 | `CASE hb_LeftEqN( "OUTPUT", cCommand, 4 )` |
-| hbdebug/debugger.prg:1232 | `CASE hb_LeftEq( "POINT", cCommand )` |
-| hbdebug/debugger.prg:1234 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1236 | `CASE hb_LeftEq( "WATCHPOINT", cParam1 )` |
-| hbdebug/debugger.prg:1238 | `CASE hb_LeftEq( "TRACEPOINT", cParam1 )` |
-| hbdebug/debugger.prg:1240 | `CASE hb_LeftEq( "BREAKPOINT", cParam1 )` |
-| hbdebug/debugger.prg:1242 | `CASE hb_LeftEq( "DELETE", cParam1 )` |
-| hbdebug/debugger.prg:1248 | `CASE cCommand == "PREV"` |
-| hbdebug/debugger.prg:1251 | `CASE hb_LeftEq( "QUIT", cCommand )` |
-| hbdebug/debugger.prg:1256 | `CASE hb_LeftEqN( "RESUME", cCommand, 4 )` |
-| hbdebug/debugger.prg:1259 | `CASE hb_LeftEq( "RUN", cCommand )` |
-| hbdebug/debugger.prg:1261 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1263 | `CASE hb_LeftEq( "ANIMATE", cParam1 )` |
-| hbdebug/debugger.prg:1266 | `CASE hb_LeftEq( "STEP", cParam1 )` |
-| hbdebug/debugger.prg:1268 | `CASE hb_LeftEq( "TRACE", cParam1 )` |
-| hbdebug/debugger.prg:1270 | `CASE hb_LeftEq( "GO", cParam1 )` |
-| hbdebug/debugger.prg:1272 | `CASE hb_LeftEq( "TOCURSOR", cParam1 )` |
-| hbdebug/debugger.prg:1274 | `CASE hb_LeftEq( "NEXTROUTINE", cParam1 )` |
-| hbdebug/debugger.prg:1276 | `CASE hb_LeftEq( "SPEED", cParam1 )` |
-| hbdebug/debugger.prg:1286 | `CASE hb_LeftEqN( "SPEED", cCommand, 4 )` |
-| hbdebug/debugger.prg:1293 | `CASE cCommand == "STEP"` |
-| hbdebug/debugger.prg:1296 | `CASE cCommand == "TP"` |
-| hbdebug/debugger.prg:1299 | `CASE hb_LeftEq( "VIEW", cCommand )` |
-| hbdebug/debugger.prg:1301 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1303 | `CASE hb_LeftEq( "SETS", cParam1 )` |
-| hbdebug/debugger.prg:1305 | `CASE hb_LeftEq( "WORKAREAS", cParam1 )` |
-| hbdebug/debugger.prg:1307 | `CASE hb_LeftEq( "APPSCREEN", cParam1 )` |
-| hbdebug/debugger.prg:1309 | `CASE hb_LeftEq( "CALLSTACK", cParam1 )` |
-| hbdebug/debugger.prg:1315 | `CASE hb_LeftEq( "WINDOW", cCommand )` |
-| hbdebug/debugger.prg:1317 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1319 | `CASE hb_LeftEq( "SELECT", cParam1 )` |
-| hbdebug/debugger.prg:1323 | `CASE hb_LeftEq( "NEXT", cParam1 )` |
-| hbdebug/debugger.prg:1325 | `CASE hb_LeftEq( "PREV", cParam1 )` |
-| hbdebug/debugger.prg:1327 | `CASE hb_LeftEq( "MOVE", cParam1 )` |
-| hbdebug/debugger.prg:1335 | `CASE hb_LeftEq( "SIZE", cParam1 )` |
-| hbdebug/debugger.prg:1341 | `CASE hb_LeftEq( "ZOOM", cParam1 )` |
-| hbdebug/debugger.prg:1343 | `CASE hb_LeftEq( "TILE", cParam1 )` |
-| hbdebug/debugger.prg:1345 | `CASE hb_LeftEq( "CASCADE", cParam1 )` |
-| hbdebug/debugger.prg:1347 | `CASE hb_LeftEq( "ICONIZE", cParam1 )` |
-| hbdebug/debugger.prg:1349 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:1351 | `CASE Upper( cParam2 ) == "ON"` |
-| hbdebug/debugger.prg:1353 | `CASE Upper( cParam2 ) == "OFF"` |
-| hbdebug/debugger.prg:1362 | `CASE cCommand == "WP"` |
-| designer.prg:235 | `case nKey == K_F4` |
-| designer.prg:238 | `case nKey == K_F6` |
-| designer.prg:249 | `case nKey == K_ESC` |
-| designer.prg:272 | `case nKey == K_F2` |
-| designer.prg:275 | `case nKey == K_F3` |
-| designer.prg:278 | `case nKey == K_F9` |
-| designer.prg:281 | `case nKey == K_F10` |
-| designer.prg:284 | `case nKey == K_F11` |
-| designer.prg:287 | `case nKey == K_F12` |
-| designer.prg:290 | `case nKey == K_ENTER` |
-| designer.prg:297 | `case nKey == K_DEL` |
-| designer.prg:302 | `case nKey == DSNK_CTRL_Z .or. nKey == K_CTRL_Z` |
-| designer.prg:307 | `case nKey == DSNK_CTRL_Y .or. nKey == K_CTRL_Y` |
-| designer.prg:312 | `case nKey == DSNK_CTRL_C .or. nKey == K_CTRL_C` |
-| designer.prg:317 | `case nKey == DSNK_CTRL_X   // EXT only: classic 24 aliases K_DOWN; the arrow case below claims it (move wins over cut without EXT)` |
-| designer.prg:322 | `case nKey == DSNK_CTRL_V .or. nKey == K_CTRL_V` |
-| designer.prg:327 | `case nKey == K_F7` |
-| designer.prg:330 | `case nKey == K_F5` |
-| designer.prg:342 | `case nKey == K_PGUP .or. ( ::lCodeView .and. nKey == Asc( "-" ) )` |
-| designer.prg:348 | `case ::lCodeView .and. nKey == Asc( "," )` |
-| designer.prg:351 | `case ::lCodeView .and. nKey == Asc( "." )` |
-| designer.prg:354 | `case nKey == K_PGDN .or. ( ::lCodeView .and. nKey == Asc( "+" ) )` |
-| designer.prg:361 | `case nKey == K_UP` |
-| designer.prg:370 | `case nKey == K_DOWN` |
-| designer.prg:379 | `case nKey == K_LEFT` |
-| designer.prg:388 | `case nKey == K_RIGHT` |
-| designer.prg:397 | `case nKey == K_CTRL_UP` |
-| designer.prg:402 | `case nKey == K_CTRL_DOWN` |
-| designer.prg:407 | `case nKey == DSNK_CTRLLEFT   // classic 26 aliases K_CTRL_Z; the undo case above claims it (non-destructive)` |
-| designer.prg:412 | `case nKey == DSNK_CTRLRIGHT   // classic 2 aliases K_CTRL_B; unreachable without EXT (safe no-op)` |
-| designer.prg:417 | `case nKey == K_TAB` |
-| designer.prg:426 | `case nKey == K_SH_TAB` |
-| designer.prg:435 | `case nKey == K_LBUTTONUP` |
-| designer.prg:438 | `case nKey == K_LBUTTONDOWN` |
-| projectui.prg:20 | `CASE nKey == K_ESC` |
-| projectui.prg:22 | `CASE nKey == K_UP` |
-| projectui.prg:24 | `CASE nKey == K_DOWN` |
-| projectui.prg:26 | `CASE nKey == K_HOME` |
-| projectui.prg:28 | `CASE nKey == K_END` |
-| projectui.prg:30 | `CASE nKey == K_PGUP` |
-| projectui.prg:32 | `CASE nKey == K_PGDN` |
-| projectui.prg:34 | `CASE nKey == K_F4` |
-| projectui.prg:36 | `CASE nKey == K_F6 .AND. ! Empty( oProject:hBuild )` |
-| projectui.prg:38 | `CASE nKey == K_F9 .OR. nKey == K_CTRL_F9` |
-| projectui.prg:42 | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` |
-| designer.prg:2286 | `case nKey == K_ESC .or. nKey == K_F6` |
-| designer.prg:2291 | `case nKey == K_F4` |
-| designer.prg:2294 | `case nKey == K_UP` |
-| designer.prg:2298 | `case nKey == K_DOWN` |
-| designer.prg:2302 | `case nKey == K_LEFT` |
-| designer.prg:2305 | `case nKey == K_RIGHT` |
-| designer.prg:2308 | `case nKey == K_ENTER` |
-| designer.prg:2311 | `case nKey == K_CTRL_UP` |
-| designer.prg:2315 | `case nKey == K_CTRL_DOWN` |
-| designer.prg:2319 | `case nKey == K_CTRL_LEFT` |
-| designer.prg:2323 | `case nKey == K_CTRL_RIGHT` |
-| designer.prg:2142 | `case nKey == K_ENTER` |
-| designer.prg:2145 | `case nKey == K_ESC` |
-| designer.prg:2147 | `case nKey == K_LEFT` |
-| designer.prg:2149 | `case nKey == K_RIGHT` |
-| designer.prg:2151 | `case nKey == K_HOME` |
-| designer.prg:2153 | `case nKey == K_END` |
-| designer.prg:2155 | `case nKey == K_BS` |
-| designer.prg:2160 | `case nKey == K_DEL` |
-| designer.prg:2164 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` |
-| designer.prg:2168 | `case nKey >= 32 .and. nKey <= 255` |
-| hbide.prg:649 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F8, HB_KF_ALT, K_ALT_F8 )` |
-| hbide.prg:652 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )` |
-| hbide.prg:655 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )` |
-| hbide.prg:658 | `case nKeyStd == K_ALT_0` |
-| hbide.prg:662 | `case nKeyStd == K_CTRL_G .and. hb_keyExt( nKey ) != HB_KX_DEL` |
-| help.prg:535 | `CASE nKey == K_ESC` |
-| help.prg:538 | `CASE nKey == K_ENTER` |
-| help.prg:540 | `CASE nKey == K_BS` |
-| help.prg:542 | `CASE nKey >= 32 .AND. nKey <= 126 .AND. Len( h[ "query" ] ) < 30` |
-| help.prg:548 | `CASE nKey == K_ESC` |
-| help.prg:550 | `CASE nKey == K_TAB` |
-| help.prg:552 | `CASE nKey == K_SH_TAB` |
-| help.prg:554 | `CASE nKey == K_F7` |
-| help.prg:556 | `CASE nKey == K_F3` |
-| help.prg:558 | `CASE nKey == K_MWFORWARD` |
-| help.prg:560 | `CASE nKey == K_MWBACKWARD` |
-| help.prg:562 | `CASE nKey == K_LBUTTONDOWN` |
-| help.prg:580 | `CASE h[ "pane" ] == "index"` |
-| help.prg:582 | `CASE nKey == K_UP    ; h[ "row" ]--` |
-| help.prg:583 | `CASE nKey == K_DOWN  ; h[ "row" ]++` |
-| help.prg:584 | `CASE nKey == K_HOME  ; h[ "row" ] := 1` |
-| help.prg:585 | `CASE nKey == K_END   ; h[ "row" ] := Len( h[ "rows" ] )` |
-| help.prg:586 | `CASE nKey == K_PGUP  ; h[ "row" ] -= g[ "idxH" ]` |
-| help.prg:587 | `CASE nKey == K_PGDN  ; h[ "row" ] += g[ "idxH" ]` |
-| help.prg:588 | `CASE nKey == K_ENTER .OR. nKey == K_RIGHT` |
-| help.prg:596 | `CASE h[ "pane" ] == "text"` |
-| help.prg:598 | `CASE nKey == K_UP    ; h[ "top" ]--` |
-| help.prg:599 | `CASE nKey == K_DOWN  ; h[ "top" ]++` |
-| help.prg:600 | `CASE nKey == K_PGUP  ; h[ "top" ] -= g[ "txtH" ]` |
-| help.prg:601 | `CASE nKey == K_PGDN  ; h[ "top" ] += g[ "txtH" ]` |
-| help.prg:602 | `CASE nKey == K_HOME  ; h[ "top" ] := 1` |
-| help.prg:603 | `CASE nKey == K_END   ; h[ "top" ] := 99999` |
-| help.prg:604 | `CASE nKey == K_LEFT  ; h[ "row" ] := Max( 1, h[ "row" ] - 1 ) ; h[ "top" ] := 1` |
-| help.prg:605 | `CASE nKey == K_RIGHT ; h[ "row" ] := Min( Len( h[ "rows" ] ), h[ "row" ] + 1 ) ; h[ "top" ] := 1` |
-| help.prg:606 | `CASE nKey == K_ENTER ; h[ "pane" ] := "index"` |
-| help.prg:608 | `CASE h[ "pane" ] == "buttons"` |
-| help.prg:610 | `CASE nKey == K_LEFT  ; h[ "btn" ] := iif( h[ "btn" ] > 1, h[ "btn" ] - 1, Len( g[ "btnCaps" ] ) )` |
-| help.prg:611 | `CASE nKey == K_RIGHT ; h[ "btn" ] := h[ "btn" ] % Len( g[ "btnCaps" ] ) + 1` |
-| help.prg:612 | `CASE nKey == K_ENTER ; HBHelpButton( h, aTopics, g, h[ "btn" ] )` |
-| help.prg:613 | `CASE nKey == K_UP    ; h[ "pane" ] := "index"` |
-| help.prg:851 | `CASE nKey == K_ESC` |
-| help.prg:853 | `CASE nKey == K_F1` |
-| help.prg:855 | `CASE nKey == K_BS .AND. ! Empty( aHistory )` |
-| help.prg:859 | `CASE hb_keyStd( nKey ) == K_ALT_RIGHT .AND. ! Empty( aForward )` |
-| help.prg:863 | `CASE nKey == K_TAB .AND. Len( aLinks ) > 0` |
-| help.prg:865 | `CASE nKey == K_SH_TAB .AND. Len( aLinks ) > 0` |
-| help.prg:867 | `CASE nKey == K_ENTER .AND. Len( aLinks ) > 0` |
-| help.prg:869 | `CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR` |
-| help.prg:871 | `CASE nKey == K_UP .OR. nKey == K_MWFORWARD` |
-| help.prg:873 | `CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD` |
-| help.prg:875 | `CASE nKey == K_PGUP` |
-| help.prg:877 | `CASE nKey == K_PGDN` |
-| help.prg:879 | `CASE nKey == K_HOME` |
-| help.prg:881 | `CASE nKey == K_END` |
-| editor.prg:483 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` |
-| editor.prg:489 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` |
-| editor.prg:495 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` |
-| editor.prg:496 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` |
-| editor.prg:497 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` |
-| editor.prg:498 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` |
-| editor.prg:499 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` |
-| editor.prg:500 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` |
-| editor.prg:503 | `case nKeyStd == K_CTRL_Z` |
-| editor.prg:507 | `case nKeyStd == K_CTRL_U` |
-| editor.prg:511 | `case nKeyStd == K_LDBLCLK` |
-| editor.prg:516 | `case nKeyStd == K_LBUTTONDOWN` |
-| editor.prg:521 | `case nKeyStd == K_MWBACKWARD` |
-| editor.prg:524 | `case nKeyStd == K_MWFORWARD` |
-| editor.prg:527 | `case nKeyStd == K_BS` |
-| editor.prg:552 | `case nKeyStd == K_DEL` |
-| editor.prg:566 | `case nKeyStd == K_ENTER` |
-| editor.prg:576 | `case nKeyStd == K_RIGHT` |
-| editor.prg:585 | `case nKeyStd == K_LEFT` |
-| editor.prg:594 | `case nKeyStd == K_HOME` |
-| editor.prg:597 | `case nKeyStd == K_END` |
-| editor.prg:600 | `case nKeyStd == K_CTRL_RIGHT` |
-| editor.prg:604 | `case nKeyStd == K_ALT_LEFT` |
-| editor.prg:612 | `case nKeyStd == K_CTRL_Y` |
-| editor.prg:615 | `case nKeyStd == K_F2` |
-| editor.prg:621 | `case nKeyStd == K_F8` |
-| editor.prg:625 | `case nKeyStd == K_F9` |
-| editor.prg:628 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
-| editor.prg:2025 | `case K_UP` |
-| editor.prg:2026 | `case K_DOWN` |
-| editor.prg:2027 | `case K_LEFT` |
-| editor.prg:2028 | `case K_RIGHT` |
-| editor.prg:2029 | `case K_HOME` |
-| editor.prg:2030 | `case K_END` |
-| editor.prg:2031 | `case K_PGUP` |
-| editor.prg:2032 | `case K_PGDN` |
-| editor.prg:2033 | `case K_MWFORWARD` |
-| editor.prg:2034 | `case K_MWBACKWARD` |
-| hbdebug/debugger.prg:1600 | `CASE K_LDBLCLK` |
-| hbdebug/debugger.prg:1620 | `CASE K_LBUTTONDOWN` |
-| hbdebug/debugger.prg:1649 | `CASE K_RBUTTONDOWN` |
-| hbdebug/debugger.prg:1652 | `CASE K_ESC` |
-| hbdebug/debugger.prg:1661 | `CASE K_ENTER` |
-| hbdebug/debugger.prg:1666 | `CASE K_UP` |
-| hbdebug/debugger.prg:1667 | `CASE K_DOWN` |
-| hbdebug/debugger.prg:1668 | `CASE K_LEFT` |
-| hbdebug/debugger.prg:1669 | `CASE K_RIGHT` |
-| hbdebug/debugger.prg:1670 | `CASE K_PGUP` |
-| hbdebug/debugger.prg:1671 | `CASE K_PGDN` |
-| hbdebug/debugger.prg:1672 | `CASE K_HOME` |
-| hbdebug/debugger.prg:1673 | `CASE K_END` |
-| hbdebug/debugger.prg:1674 | `CASE K_DEL` |
-| hbdebug/debugger.prg:1675 | `CASE K_CTRL_PGUP` |
-| hbdebug/debugger.prg:1676 | `CASE K_CTRL_PGDN` |
-| hbdebug/debugger.prg:1677 | `CASE K_CTRL_HOME` |
-| hbdebug/debugger.prg:1678 | `CASE K_CTRL_END` |
-| hbdebug/debugger.prg:1679 | `CASE K_CTRL_ENTER` |
-| hbdebug/debugger.prg:1683 | `CASE K_ALT_U /* Move the border between Command and Code windows Up */` |
-| hbdebug/debugger.prg:1687 | `CASE K_ALT_D /* Move the border between Command and Code windows Down */` |
-| hbdebug/debugger.prg:1691 | `CASE K_ALT_G /* Grow active window */` |
-| hbdebug/debugger.prg:1695 | `CASE K_ALT_S /* Shrink active window */` |
-| hbdebug/debugger.prg:1699 | `CASE K_F1` |
-| hbdebug/debugger.prg:1703 | `CASE K_F2` |
-| hbdebug/debugger.prg:1707 | `CASE K_F4` |
-| hbdebug/debugger.prg:1711 | `CASE K_F5` |
-| hbdebug/debugger.prg:1715 | `CASE K_CTRL_F5` |
-| hbdebug/debugger.prg:1719 | `CASE K_F6` |
-| hbdebug/debugger.prg:1723 | `CASE K_F7` |
-| hbdebug/debugger.prg:1727 | `CASE K_F8` |
-| hbdebug/debugger.prg:1731 | `CASE K_F9` |
-| hbdebug/debugger.prg:1735 | `CASE K_F10` |
-| hbdebug/debugger.prg:1739 | `CASE K_TAB` |
-| hbdebug/debugger.prg:1743 | `CASE K_SH_TAB` |
-| hbdebug/debugger.prg:843 | `CASE K_UP` |
-| hbdebug/debugger.prg:844 | `CASE K_F3` |
-| hbdebug/debugger.prg:850 | `CASE K_DOWN` |
-| hbdebug/debugger.prg:856 | `CASE K_ENTER` |
-| hbdebug/debugger.prg:707 | `CASE K_CTRL_PGUP` |
-| hbdebug/debugger.prg:708 | `CASE K_CTRL_HOME` |
-| hbdebug/debugger.prg:713 | `CASE K_CTRL_PGDN` |
-| hbdebug/debugger.prg:714 | `CASE K_CTRL_END` |
-| hbdebug/debugger.prg:721 | `CASE K_HOME` |
-| hbdebug/debugger.prg:725 | `CASE K_END` |
-| hbdebug/debugger.prg:729 | `CASE K_LEFT` |
-| hbdebug/debugger.prg:733 | `CASE K_RIGHT` |
-| hbdebug/debugger.prg:737 | `CASE K_UP` |
-| hbdebug/debugger.prg:741 | `CASE K_DOWN` |
-| hbdebug/debugger.prg:745 | `CASE K_PGUP` |
-| hbdebug/debugger.prg:749 | `CASE K_PGDN` |
+| Fuente:linea | Condicion | Aceptacion |
+| --- | --- | --- |
+| hbdebug/debugger.prg:908 | `CASE Empty( cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:911 | `CASE hb_LeftEq( cCommand, "??" )` | Pendiente vinculo |
+| hbdebug/debugger.prg:915 | `CASE hb_LeftEq( cCommand, "?" )` | Pendiente vinculo |
+| hbdebug/debugger.prg:933 | `CASE cCommand == "??" .OR. cCommand == "?"` | Pendiente vinculo |
+| hbdebug/debugger.prg:951 | `CASE hb_LeftEqN( "ANIMATE", cCommand, 4 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:957 | `CASE cCommand == "BP"` | Pendiente vinculo |
+| hbdebug/debugger.prg:967 | `CASE hb_LeftEqN( "CALLSTACK", cCommand, 4 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:970 | `CASE hb_LeftEqN( "DELETE", cCommand, 3 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:972 | `CASE cParam1 == "BP"` | Pendiente vinculo |
+| hbdebug/debugger.prg:974 | `CASE cParam1 == "WP" .OR. cParam1 == "TP"` | Pendiente vinculo |
+| hbdebug/debugger.prg:976 | `CASE cParam1 == "ALL"` | Pendiente vinculo |
+| hbdebug/debugger.prg:978 | `CASE Empty( cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:981 | `CASE hb_LeftEqI( "BP", cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:983 | `CASE hb_LeftEqI( "WP", cParam2 ) .OR. hb_LeftEqI( "TP", cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:993 | `CASE cCommand == "DOS"` | Pendiente vinculo |
+| hbdebug/debugger.prg:996 | `CASE hb_LeftEq( "FILE", cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:998 | `CASE Empty( cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1000 | `CASE hb_LeftEq( "OPEN", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1002 | `CASE hb_LeftEq( "RESUME", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1004 | `CASE hb_LeftEq( "OS", cParam1 ) .OR. hb_LeftEq( "DOS", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1006 | `CASE hb_LeftEq( "EXIT", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1012 | `CASE cCommand == "FIND"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1015 | `CASE hb_LeftEqN( "GOTO", cCommand, 4 ) .AND. ( n := Val( cParam1 ) ) > 0` | Pendiente vinculo |
+| hbdebug/debugger.prg:1018 | `CASE hb_LeftEq( "GO", cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1021 | `CASE cCommand == "HELP"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1024 | `CASE hb_LeftEqN( "INPUT", cCommand, 4 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1037 | `CASE cCommand == "LIST"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1039 | `CASE "BP"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1042 | `CASE "WP"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1043 | `CASE "TP"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1050 | `CASE hb_LeftEq( "LOCATE", cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1052 | `CASE Empty( cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1054 | `CASE hb_LeftEq( "FIND", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1056 | `CASE hb_LeftEq( "NEXT", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1058 | `CASE hb_LeftEq( "PREVIOUS", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1060 | `CASE hb_LeftEq( "GOTOLINE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1062 | `CASE hb_LeftEq( "CASESENSITIVE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1064 | `CASE Empty( cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1066 | `CASE Upper( cParam2 ) == "ON"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1068 | `CASE Upper( cParam2 ) == "OFF"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1077 | `CASE hb_LeftEq( "MONITOR", cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1094 | `CASE ! Empty( cResult )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1096 | `CASE hb_LeftEq( "PUBLIC", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1098 | `CASE hb_LeftEq( "PRIVATE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1100 | `CASE hb_LeftEq( "STATIC", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1102 | `CASE hb_LeftEq( "LOCAL", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1104 | `CASE hb_LeftEq( "GLOBAL", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1106 | `CASE hb_LeftEq( "ALL", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1108 | `CASE hb_LeftEq( "SORT", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1110 | `CASE hb_LeftEq( "SHOWALLGLOBALS", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1116 | `CASE cCommand == "NEXT"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1119 | `CASE cCommand == "NUM"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1121 | `CASE "OFF"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1123 | `CASE "ON"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1129 | `CASE hb_LeftEq( "OPTIONS", cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1131 | `CASE Empty( cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1133 | `CASE hb_LeftEq( "PREPROCESSEDCODE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1135 | `CASE hb_LeftEq( "LINENUMBERS", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1137 | `CASE hb_LeftEq( "EXCHANGESCREENS", cParam1 ) .OR. ;` | Pendiente vinculo |
+| hbdebug/debugger.prg:1140 | `CASE hb_LeftEq( "MENUBAR", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1142 | `CASE Empty( cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1144 | `CASE Upper( cParam2 ) == "ON"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1146 | `CASE Upper( cParam2 ) == "OFF"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1151 | `CASE hb_LeftEq( "CODEBLOCKTRACE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1153 | `CASE Empty( cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1155 | `CASE Upper( cParam2 ) == "ON"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1157 | `CASE Upper( cParam2 ) == "OFF"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1162 | `CASE hb_LeftEq( "MONODISPLAY", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1164 | `CASE Empty( cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1166 | `CASE Upper( cParam2 ) == "ON"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1168 | `CASE Upper( cParam2 ) == "OFF"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1173 | `CASE hb_LeftEq( "COLORS", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1206 | `CASE hb_LeftEq( "TABWIDTH", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1215 | `CASE hb_LeftEq( "PATHFORFILES", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1217 | `CASE hb_LeftEq( "RUNATSTARTUP", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1219 | `CASE hb_LeftEq( "NORUNATSTARTUP", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1221 | `CASE hb_LeftEq( "SAVESETTINGS", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1223 | `CASE hb_LeftEq( "RESTORESETTINGS", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1229 | `CASE hb_LeftEqN( "OUTPUT", cCommand, 4 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1232 | `CASE hb_LeftEq( "POINT", cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1234 | `CASE Empty( cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1236 | `CASE hb_LeftEq( "WATCHPOINT", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1238 | `CASE hb_LeftEq( "TRACEPOINT", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1240 | `CASE hb_LeftEq( "BREAKPOINT", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1242 | `CASE hb_LeftEq( "DELETE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1248 | `CASE cCommand == "PREV"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1251 | `CASE hb_LeftEq( "QUIT", cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1256 | `CASE hb_LeftEqN( "RESUME", cCommand, 4 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1259 | `CASE hb_LeftEq( "RUN", cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1261 | `CASE Empty( cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1263 | `CASE hb_LeftEq( "ANIMATE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1266 | `CASE hb_LeftEq( "STEP", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1268 | `CASE hb_LeftEq( "TRACE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1270 | `CASE hb_LeftEq( "GO", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1272 | `CASE hb_LeftEq( "TOCURSOR", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1274 | `CASE hb_LeftEq( "NEXTROUTINE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1276 | `CASE hb_LeftEq( "SPEED", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1286 | `CASE hb_LeftEqN( "SPEED", cCommand, 4 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1293 | `CASE cCommand == "STEP"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1296 | `CASE cCommand == "TP"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1299 | `CASE hb_LeftEq( "VIEW", cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1301 | `CASE Empty( cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1303 | `CASE hb_LeftEq( "SETS", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1305 | `CASE hb_LeftEq( "WORKAREAS", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1307 | `CASE hb_LeftEq( "APPSCREEN", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1309 | `CASE hb_LeftEq( "CALLSTACK", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1315 | `CASE hb_LeftEq( "WINDOW", cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1317 | `CASE Empty( cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1319 | `CASE hb_LeftEq( "SELECT", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1323 | `CASE hb_LeftEq( "NEXT", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1325 | `CASE hb_LeftEq( "PREV", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1327 | `CASE hb_LeftEq( "MOVE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1335 | `CASE hb_LeftEq( "SIZE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1341 | `CASE hb_LeftEq( "ZOOM", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1343 | `CASE hb_LeftEq( "TILE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1345 | `CASE hb_LeftEq( "CASCADE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1347 | `CASE hb_LeftEq( "ICONIZE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1349 | `CASE Empty( cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1351 | `CASE Upper( cParam2 ) == "ON"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1353 | `CASE Upper( cParam2 ) == "OFF"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1362 | `CASE cCommand == "WP"` | Pendiente vinculo |
+| designer.prg:235 | `case nKey == K_F4` | Pendiente vinculo |
+| designer.prg:238 | `case nKey == K_F6` | Pendiente vinculo |
+| designer.prg:249 | `case nKey == K_ESC` | Pendiente vinculo |
+| designer.prg:272 | `case nKey == K_F2` | Pendiente vinculo |
+| designer.prg:275 | `case nKey == K_F3` | Pendiente vinculo |
+| designer.prg:278 | `case nKey == K_F9` | Pendiente vinculo |
+| designer.prg:281 | `case nKey == K_F10` | Pendiente vinculo |
+| designer.prg:284 | `case nKey == K_F11` | Pendiente vinculo |
+| designer.prg:287 | `case nKey == K_F12` | Pendiente vinculo |
+| designer.prg:290 | `case nKey == K_ENTER` | Pendiente vinculo |
+| designer.prg:297 | `case nKey == K_DEL` | Pendiente vinculo |
+| designer.prg:302 | `case nKey == DSNK_CTRL_Z .or. nKey == K_CTRL_Z` | Pendiente vinculo |
+| designer.prg:307 | `case nKey == DSNK_CTRL_Y .or. nKey == K_CTRL_Y` | Pendiente vinculo |
+| designer.prg:312 | `case nKey == DSNK_CTRL_C .or. nKey == K_CTRL_C` | Pendiente vinculo |
+| designer.prg:317 | `case nKey == DSNK_CTRL_X   // EXT only: classic 24 aliases K_DOWN; the arrow case below claims it (move wins over cut without EXT)` | Pendiente vinculo |
+| designer.prg:322 | `case nKey == DSNK_CTRL_V .or. nKey == K_CTRL_V` | Pendiente vinculo |
+| designer.prg:327 | `case nKey == K_F7` | Pendiente vinculo |
+| designer.prg:330 | `case nKey == K_F5` | DSN-KEY-LIVEPRG-F5 |
+| designer.prg:342 | `case nKey == K_PGUP .or. ( ::lCodeView .and. nKey == Asc( "-" ) )` | Pendiente vinculo |
+| designer.prg:348 | `case ::lCodeView .and. nKey == Asc( "," )` | Pendiente vinculo |
+| designer.prg:351 | `case ::lCodeView .and. nKey == Asc( "." )` | Pendiente vinculo |
+| designer.prg:354 | `case nKey == K_PGDN .or. ( ::lCodeView .and. nKey == Asc( "+" ) )` | Pendiente vinculo |
+| designer.prg:361 | `case nKey == K_UP` | Pendiente vinculo |
+| designer.prg:370 | `case nKey == K_DOWN` | Pendiente vinculo |
+| designer.prg:379 | `case nKey == K_LEFT` | Pendiente vinculo |
+| designer.prg:388 | `case nKey == K_RIGHT` | Pendiente vinculo |
+| designer.prg:397 | `case nKey == K_CTRL_UP` | Pendiente vinculo |
+| designer.prg:402 | `case nKey == K_CTRL_DOWN` | Pendiente vinculo |
+| designer.prg:407 | `case nKey == DSNK_CTRLLEFT   // classic 26 aliases K_CTRL_Z; the undo case above claims it (non-destructive)` | Pendiente vinculo |
+| designer.prg:412 | `case nKey == DSNK_CTRLRIGHT   // classic 2 aliases K_CTRL_B; unreachable without EXT (safe no-op)` | Pendiente vinculo |
+| designer.prg:417 | `case nKey == K_TAB` | Pendiente vinculo |
+| designer.prg:426 | `case nKey == K_SH_TAB` | Pendiente vinculo |
+| designer.prg:435 | `case nKey == K_LBUTTONUP` | Pendiente vinculo |
+| designer.prg:438 | `case nKey == K_LBUTTONDOWN` | Pendiente vinculo |
+| projectui.prg:20 | `CASE nKey == K_ESC` | Pendiente vinculo |
+| projectui.prg:22 | `CASE nKey == K_UP` | Pendiente vinculo |
+| projectui.prg:24 | `CASE nKey == K_DOWN` | Pendiente vinculo |
+| projectui.prg:26 | `CASE nKey == K_HOME` | Pendiente vinculo |
+| projectui.prg:28 | `CASE nKey == K_END` | Pendiente vinculo |
+| projectui.prg:30 | `CASE nKey == K_PGUP` | Pendiente vinculo |
+| projectui.prg:32 | `CASE nKey == K_PGDN` | Pendiente vinculo |
+| projectui.prg:34 | `CASE nKey == K_F4` | Pendiente vinculo |
+| projectui.prg:36 | `CASE nKey == K_F6 .AND. ! Empty( oProject:hBuild )` | Pendiente vinculo |
+| projectui.prg:38 | `CASE nKey == K_F9 .OR. nKey == K_CTRL_F9` | Pendiente vinculo |
+| projectui.prg:42 | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` | Pendiente vinculo |
+| designer.prg:2286 | `case nKey == K_ESC .or. nKey == K_F6` | Pendiente vinculo |
+| designer.prg:2291 | `case nKey == K_F4` | Pendiente vinculo |
+| designer.prg:2294 | `case nKey == K_UP` | Pendiente vinculo |
+| designer.prg:2298 | `case nKey == K_DOWN` | Pendiente vinculo |
+| designer.prg:2302 | `case nKey == K_LEFT` | Pendiente vinculo |
+| designer.prg:2305 | `case nKey == K_RIGHT` | Pendiente vinculo |
+| designer.prg:2308 | `case nKey == K_ENTER` | Pendiente vinculo |
+| designer.prg:2311 | `case nKey == K_CTRL_UP` | Pendiente vinculo |
+| designer.prg:2315 | `case nKey == K_CTRL_DOWN` | Pendiente vinculo |
+| designer.prg:2319 | `case nKey == K_CTRL_LEFT` | Pendiente vinculo |
+| designer.prg:2323 | `case nKey == K_CTRL_RIGHT` | Pendiente vinculo |
+| designer.prg:2142 | `case nKey == K_ENTER` | Pendiente vinculo |
+| designer.prg:2145 | `case nKey == K_ESC` | Pendiente vinculo |
+| designer.prg:2147 | `case nKey == K_LEFT` | Pendiente vinculo |
+| designer.prg:2149 | `case nKey == K_RIGHT` | Pendiente vinculo |
+| designer.prg:2151 | `case nKey == K_HOME` | Pendiente vinculo |
+| designer.prg:2153 | `case nKey == K_END` | Pendiente vinculo |
+| designer.prg:2155 | `case nKey == K_BS` | Pendiente vinculo |
+| designer.prg:2160 | `case nKey == K_DEL` | Pendiente vinculo |
+| designer.prg:2164 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` | Pendiente vinculo |
+| designer.prg:2168 | `case nKey >= 32 .and. nKey <= 255` | Pendiente vinculo |
+| hbide.prg:649 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F8, HB_KF_ALT, K_ALT_F8 )` | Pendiente vinculo |
+| hbide.prg:652 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )` | Pendiente vinculo |
+| hbide.prg:655 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )` | Pendiente vinculo |
+| hbide.prg:658 | `case nKeyStd == K_ALT_0` | Pendiente vinculo |
+| hbide.prg:662 | `case nKeyStd == K_CTRL_G .and. hb_keyExt( nKey ) != HB_KX_DEL` | Pendiente vinculo |
+| help.prg:535 | `CASE nKey == K_ESC` | Pendiente vinculo |
+| help.prg:538 | `CASE nKey == K_ENTER` | Pendiente vinculo |
+| help.prg:540 | `CASE nKey == K_BS` | Pendiente vinculo |
+| help.prg:542 | `CASE nKey >= 32 .AND. nKey <= 126 .AND. Len( h[ "query" ] ) < 30` | Pendiente vinculo |
+| help.prg:548 | `CASE nKey == K_ESC` | Pendiente vinculo |
+| help.prg:550 | `CASE nKey == K_TAB` | Pendiente vinculo |
+| help.prg:552 | `CASE nKey == K_SH_TAB` | Pendiente vinculo |
+| help.prg:554 | `CASE nKey == K_F7` | Pendiente vinculo |
+| help.prg:556 | `CASE nKey == K_F3` | Pendiente vinculo |
+| help.prg:558 | `CASE nKey == K_MWFORWARD` | Pendiente vinculo |
+| help.prg:560 | `CASE nKey == K_MWBACKWARD` | Pendiente vinculo |
+| help.prg:562 | `CASE nKey == K_LBUTTONDOWN` | Pendiente vinculo |
+| help.prg:580 | `CASE h[ "pane" ] == "index"` | Pendiente vinculo |
+| help.prg:582 | `CASE nKey == K_UP    ; h[ "row" ]--` | Pendiente vinculo |
+| help.prg:583 | `CASE nKey == K_DOWN  ; h[ "row" ]++` | Pendiente vinculo |
+| help.prg:584 | `CASE nKey == K_HOME  ; h[ "row" ] := 1` | Pendiente vinculo |
+| help.prg:585 | `CASE nKey == K_END   ; h[ "row" ] := Len( h[ "rows" ] )` | Pendiente vinculo |
+| help.prg:586 | `CASE nKey == K_PGUP  ; h[ "row" ] -= g[ "idxH" ]` | Pendiente vinculo |
+| help.prg:587 | `CASE nKey == K_PGDN  ; h[ "row" ] += g[ "idxH" ]` | Pendiente vinculo |
+| help.prg:588 | `CASE nKey == K_ENTER .OR. nKey == K_RIGHT` | Pendiente vinculo |
+| help.prg:596 | `CASE h[ "pane" ] == "text"` | Pendiente vinculo |
+| help.prg:598 | `CASE nKey == K_UP    ; h[ "top" ]--` | Pendiente vinculo |
+| help.prg:599 | `CASE nKey == K_DOWN  ; h[ "top" ]++` | Pendiente vinculo |
+| help.prg:600 | `CASE nKey == K_PGUP  ; h[ "top" ] -= g[ "txtH" ]` | Pendiente vinculo |
+| help.prg:601 | `CASE nKey == K_PGDN  ; h[ "top" ] += g[ "txtH" ]` | Pendiente vinculo |
+| help.prg:602 | `CASE nKey == K_HOME  ; h[ "top" ] := 1` | Pendiente vinculo |
+| help.prg:603 | `CASE nKey == K_END   ; h[ "top" ] := 99999` | Pendiente vinculo |
+| help.prg:604 | `CASE nKey == K_LEFT  ; h[ "row" ] := Max( 1, h[ "row" ] - 1 ) ; h[ "top" ] := 1` | Pendiente vinculo |
+| help.prg:605 | `CASE nKey == K_RIGHT ; h[ "row" ] := Min( Len( h[ "rows" ] ), h[ "row" ] + 1 ) ; h[ "top" ] := 1` | Pendiente vinculo |
+| help.prg:606 | `CASE nKey == K_ENTER ; h[ "pane" ] := "index"` | Pendiente vinculo |
+| help.prg:608 | `CASE h[ "pane" ] == "buttons"` | Pendiente vinculo |
+| help.prg:610 | `CASE nKey == K_LEFT  ; h[ "btn" ] := iif( h[ "btn" ] > 1, h[ "btn" ] - 1, Len( g[ "btnCaps" ] ) )` | Pendiente vinculo |
+| help.prg:611 | `CASE nKey == K_RIGHT ; h[ "btn" ] := h[ "btn" ] % Len( g[ "btnCaps" ] ) + 1` | Pendiente vinculo |
+| help.prg:612 | `CASE nKey == K_ENTER ; HBHelpButton( h, aTopics, g, h[ "btn" ] )` | Pendiente vinculo |
+| help.prg:613 | `CASE nKey == K_UP    ; h[ "pane" ] := "index"` | Pendiente vinculo |
+| help.prg:851 | `CASE nKey == K_ESC` | Pendiente vinculo |
+| help.prg:853 | `CASE nKey == K_F1` | Pendiente vinculo |
+| help.prg:855 | `CASE nKey == K_BS .AND. ! Empty( aHistory )` | Pendiente vinculo |
+| help.prg:859 | `CASE hb_keyStd( nKey ) == K_ALT_RIGHT .AND. ! Empty( aForward )` | Pendiente vinculo |
+| help.prg:863 | `CASE nKey == K_TAB .AND. Len( aLinks ) > 0` | Pendiente vinculo |
+| help.prg:865 | `CASE nKey == K_SH_TAB .AND. Len( aLinks ) > 0` | Pendiente vinculo |
+| help.prg:867 | `CASE nKey == K_ENTER .AND. Len( aLinks ) > 0` | Pendiente vinculo |
+| help.prg:869 | `CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR` | Pendiente vinculo |
+| help.prg:871 | `CASE nKey == K_UP .OR. nKey == K_MWFORWARD` | Pendiente vinculo |
+| help.prg:873 | `CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD` | Pendiente vinculo |
+| help.prg:875 | `CASE nKey == K_PGUP` | Pendiente vinculo |
+| help.prg:877 | `CASE nKey == K_PGDN` | Pendiente vinculo |
+| help.prg:879 | `CASE nKey == K_HOME` | Pendiente vinculo |
+| help.prg:881 | `CASE nKey == K_END` | Pendiente vinculo |
+| editor.prg:483 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
+| editor.prg:489 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` | Pendiente vinculo |
+| editor.prg:495 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
+| editor.prg:496 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
+| editor.prg:497 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
+| editor.prg:498 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` | Pendiente vinculo |
+| editor.prg:499 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` | Pendiente vinculo |
+| editor.prg:500 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` | Pendiente vinculo |
+| editor.prg:503 | `case nKeyStd == K_CTRL_Z` | Pendiente vinculo |
+| editor.prg:507 | `case nKeyStd == K_CTRL_U` | Pendiente vinculo |
+| editor.prg:511 | `case nKeyStd == K_LDBLCLK` | Pendiente vinculo |
+| editor.prg:516 | `case nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
+| editor.prg:521 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:524 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:527 | `case nKeyStd == K_BS` | Pendiente vinculo |
+| editor.prg:552 | `case nKeyStd == K_DEL` | Pendiente vinculo |
+| editor.prg:566 | `case nKeyStd == K_ENTER` | Pendiente vinculo |
+| editor.prg:576 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
+| editor.prg:585 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
+| editor.prg:594 | `case nKeyStd == K_HOME` | Pendiente vinculo |
+| editor.prg:597 | `case nKeyStd == K_END` | Pendiente vinculo |
+| editor.prg:600 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
+| editor.prg:604 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
+| editor.prg:612 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
+| editor.prg:615 | `case nKeyStd == K_F2` | Pendiente vinculo |
+| editor.prg:621 | `case nKeyStd == K_F8` | Pendiente vinculo |
+| editor.prg:625 | `case nKeyStd == K_F9` | Pendiente vinculo |
+| editor.prg:628 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` | Pendiente vinculo |
+| editor.prg:2025 | `case K_UP` | Pendiente vinculo |
+| editor.prg:2026 | `case K_DOWN` | Pendiente vinculo |
+| editor.prg:2027 | `case K_LEFT` | Pendiente vinculo |
+| editor.prg:2028 | `case K_RIGHT` | Pendiente vinculo |
+| editor.prg:2029 | `case K_HOME` | Pendiente vinculo |
+| editor.prg:2030 | `case K_END` | Pendiente vinculo |
+| editor.prg:2031 | `case K_PGUP` | Pendiente vinculo |
+| editor.prg:2032 | `case K_PGDN` | Pendiente vinculo |
+| editor.prg:2033 | `case K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:2034 | `case K_MWBACKWARD` | Pendiente vinculo |
+| hbdebug/debugger.prg:1600 | `CASE K_LDBLCLK` | Pendiente vinculo |
+| hbdebug/debugger.prg:1620 | `CASE K_LBUTTONDOWN` | Pendiente vinculo |
+| hbdebug/debugger.prg:1649 | `CASE K_RBUTTONDOWN` | Pendiente vinculo |
+| hbdebug/debugger.prg:1652 | `CASE K_ESC` | Pendiente vinculo |
+| hbdebug/debugger.prg:1661 | `CASE K_ENTER` | Pendiente vinculo |
+| hbdebug/debugger.prg:1666 | `CASE K_UP` | Pendiente vinculo |
+| hbdebug/debugger.prg:1667 | `CASE K_DOWN` | Pendiente vinculo |
+| hbdebug/debugger.prg:1668 | `CASE K_LEFT` | Pendiente vinculo |
+| hbdebug/debugger.prg:1669 | `CASE K_RIGHT` | Pendiente vinculo |
+| hbdebug/debugger.prg:1670 | `CASE K_PGUP` | Pendiente vinculo |
+| hbdebug/debugger.prg:1671 | `CASE K_PGDN` | Pendiente vinculo |
+| hbdebug/debugger.prg:1672 | `CASE K_HOME` | Pendiente vinculo |
+| hbdebug/debugger.prg:1673 | `CASE K_END` | Pendiente vinculo |
+| hbdebug/debugger.prg:1674 | `CASE K_DEL` | Pendiente vinculo |
+| hbdebug/debugger.prg:1675 | `CASE K_CTRL_PGUP` | Pendiente vinculo |
+| hbdebug/debugger.prg:1676 | `CASE K_CTRL_PGDN` | Pendiente vinculo |
+| hbdebug/debugger.prg:1677 | `CASE K_CTRL_HOME` | Pendiente vinculo |
+| hbdebug/debugger.prg:1678 | `CASE K_CTRL_END` | Pendiente vinculo |
+| hbdebug/debugger.prg:1679 | `CASE K_CTRL_ENTER` | Pendiente vinculo |
+| hbdebug/debugger.prg:1683 | `CASE K_ALT_U /* Move the border between Command and Code windows Up */` | Pendiente vinculo |
+| hbdebug/debugger.prg:1687 | `CASE K_ALT_D /* Move the border between Command and Code windows Down */` | Pendiente vinculo |
+| hbdebug/debugger.prg:1691 | `CASE K_ALT_G /* Grow active window */` | Pendiente vinculo |
+| hbdebug/debugger.prg:1695 | `CASE K_ALT_S /* Shrink active window */` | Pendiente vinculo |
+| hbdebug/debugger.prg:1699 | `CASE K_F1` | Pendiente vinculo |
+| hbdebug/debugger.prg:1703 | `CASE K_F2` | Pendiente vinculo |
+| hbdebug/debugger.prg:1707 | `CASE K_F4` | Pendiente vinculo |
+| hbdebug/debugger.prg:1711 | `CASE K_F5` | Pendiente vinculo |
+| hbdebug/debugger.prg:1715 | `CASE K_CTRL_F5` | Pendiente vinculo |
+| hbdebug/debugger.prg:1719 | `CASE K_F6` | Pendiente vinculo |
+| hbdebug/debugger.prg:1723 | `CASE K_F7` | Pendiente vinculo |
+| hbdebug/debugger.prg:1727 | `CASE K_F8` | Pendiente vinculo |
+| hbdebug/debugger.prg:1731 | `CASE K_F9` | Pendiente vinculo |
+| hbdebug/debugger.prg:1735 | `CASE K_F10` | Pendiente vinculo |
+| hbdebug/debugger.prg:1739 | `CASE K_TAB` | Pendiente vinculo |
+| hbdebug/debugger.prg:1743 | `CASE K_SH_TAB` | Pendiente vinculo |
+| hbdebug/debugger.prg:843 | `CASE K_UP` | Pendiente vinculo |
+| hbdebug/debugger.prg:844 | `CASE K_F3` | Pendiente vinculo |
+| hbdebug/debugger.prg:850 | `CASE K_DOWN` | Pendiente vinculo |
+| hbdebug/debugger.prg:856 | `CASE K_ENTER` | Pendiente vinculo |
+| hbdebug/debugger.prg:707 | `CASE K_CTRL_PGUP` | Pendiente vinculo |
+| hbdebug/debugger.prg:708 | `CASE K_CTRL_HOME` | Pendiente vinculo |
+| hbdebug/debugger.prg:713 | `CASE K_CTRL_PGDN` | Pendiente vinculo |
+| hbdebug/debugger.prg:714 | `CASE K_CTRL_END` | Pendiente vinculo |
+| hbdebug/debugger.prg:721 | `CASE K_HOME` | Pendiente vinculo |
+| hbdebug/debugger.prg:725 | `CASE K_END` | Pendiente vinculo |
+| hbdebug/debugger.prg:729 | `CASE K_LEFT` | Pendiente vinculo |
+| hbdebug/debugger.prg:733 | `CASE K_RIGHT` | Pendiente vinculo |
+| hbdebug/debugger.prg:737 | `CASE K_UP` | Pendiente vinculo |
+| hbdebug/debugger.prg:741 | `CASE K_DOWN` | Pendiente vinculo |
+| hbdebug/debugger.prg:745 | `CASE K_PGUP` | Pendiente vinculo |
+| hbdebug/debugger.prg:749 | `CASE K_PGDN` | Pendiente vinculo |
+- DSN-KEY-LIVEPRG-F5: Actual F5 LivePRG anchor fixtures: quoted SAY caption, accelerator-transformed button, caption equal to dialog title, reserved generated GET binding and duplicate SAY captions. Default, --button, --dialog-caption, --reserved-binding, --duplicate-caption modes check exact highlighted declaration. Generator model guards cover emitted index anchors, unchanged code and skipped empty item controls. Not all controls/properties/bindings, all F5 states, pixels or Windows; links are not PASS, consult source-identified ledgers Q68-Q75. Pruebas: [test_designer_quote_anchor_pty.py](../tests/test_designer_quote_anchor_pty.py), [test_designer.prg](../tests/test_designer.prg)
 
 ## Gate de cierre
 

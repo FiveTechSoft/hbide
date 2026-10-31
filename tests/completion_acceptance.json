@@ -1926,5 +1926,17 @@
       ],
       "contract": "Actual DELETE BP noargs input typedEsc preserves exact two-function VM breakpoint list; -1/huge/0x/1.5 leave list unchanged;0deletesfirst;ALLclears. Saved settings read actual VM list. No all indices/source breakpoints/platform acceptance."
     }
+  },
+  "dispatch_acceptance": {
+    "DSN-KEY-LIVEPRG-F5": {
+      "source": "designer.prg",
+      "context": "METHOD Activate(",
+      "condition": "case nKey == K_F5",
+      "tests": [
+        "test_designer_quote_anchor_pty.py",
+        "test_designer.prg"
+      ],
+      "contract": "Actual F5 LivePRG anchor fixtures: quoted SAY caption, accelerator-transformed button, caption equal to dialog title, reserved generated GET binding and duplicate SAY captions. Default, --button, --dialog-caption, --reserved-binding, --duplicate-caption modes check exact highlighted declaration. Generator model guards cover emitted index anchors, unchanged code and skipped empty item controls. Not all controls/properties/bindings, all F5 states, pixels or Windows; links are not PASS, consult source-identified ledgers Q68-Q75."
+    }
   }
 }

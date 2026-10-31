@@ -212,6 +212,22 @@ def mouse_routes():
                 acceptance='Pending gesture-specific acceptance; event branch is not a unique feature'))
     return rows
 
+def link_dispatch_contracts(routes, specs):
+    """Stable source/context/condition binding. Links are not runtime acceptance."""
+    out=[dict(row) for row in routes]
+    seen=set()
+    for ident,spec in specs.items():
+        matches=[r for r in out if all(r[k]==spec[k] for k in ['source','context','condition'])]
+        if len(matches)!=1:raise ValueError('Dispatch contract must bind exactly one route: '+ident)
+        key=tuple(spec[k] for k in ['source','context','condition'])
+        if key in seen:raise ValueError('Duplicate dispatch contract: '+ident)
+        seen.add(key)
+        for name in spec['tests']:
+            if not (ROOT/'tests'/name).is_file():raise ValueError('Missing dispatch test: '+name)
+        matches[0]['acceptance_id']=ident
+        matches[0]['acceptance']=spec
+    return out
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--json', action='store_true')
@@ -220,6 +236,7 @@ def main():
     menus,routes=inventory()
     stubs=[m for m in menus if m['wiring']=='stub']
     specs=json.loads((ROOT/'tests/completion_acceptance.json').read_text())
+    routes=link_dispatch_contracts(routes,specs.get('dispatch_acceptance',{}))
     acceptance=specs['menus']
     modal_contracts=specs.get('modal_contracts',[])
     for spec in modal_contracts:
@@ -344,11 +361,16 @@ def main():
             print(f"| {field['label']} | {field['key']} | {field['kind']} | designer.prg:{field['line']} | Pendiente vincular prueba especifica |")
         print('\n## Rutas de teclado y comandos\n')
         print('Estas condiciones amplian el inventario fuera del menu. No se suman como funciones independientes.\n')
-        print('| Fuente:linea | Condicion |')
-        print('| --- | --- |')
+        print('| Fuente:linea | Condicion | Aceptacion |')
+        print('| --- | --- | --- |')
         for r in routes:
             condition=r['condition'].replace('|','&#124;')
-            print(f"| {r['source']}:{r['line']} | `{condition}` |")
+            print(f"| {r['source']}:{r['line']} | `{condition}` | {r.get('acceptance_id','Pendiente vinculo')} |")
+        for r in routes:
+            if 'acceptance' in r:
+                spec=r['acceptance']
+                links=', '.join('['+t+'](../tests/'+t+')' for t in spec['tests'])
+                print(f"- {r['acceptance_id']}: {spec['contract']} Pruebas: {links}")
         print('\n## Gate de cierre\n')
         print(f"{len(menus)} acciones de menu; {len(stubs)} stubs. Incluye rutas de inspector, ayuda y bucle IDE; faltan campos de modales y gestos; rutas del editor incluidas, sin aceptacion completa. No es aun el inventario exhaustivo.")
         print('`python scripts/audit_completion_surface.py --check-stubs` falla mientras haya stubs visibles.')

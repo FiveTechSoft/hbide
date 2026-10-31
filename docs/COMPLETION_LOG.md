@@ -3428,3 +3428,11 @@ Prior Q83 checked both aliases in picker but only ACCESS jump/save.
 Add independent ASSIGN mode to filter actual Demo:_Value, Enter and
 write exactly at ASSIGN implementation. No new productfix/modelguard.
 Evidence linux-navigation-assign-jump.json follows; no globalmatrix.
+
+## Q85 - M0 links non-menu F5 LivePRG route
+
+Add exact source/context/condition dispatch contracts, validated unique
+route and test existence. Five fail-closed inventory guards,24total.
+Bind F5 to Q68-Q75 anchor modes and model guards with bounded scope.
+Links do not mean fresh runtime PASS/all-controls/Windows acceptance.
+No productfix/candidate/globalmatrix. linux-inventory-f5-route.json follows.

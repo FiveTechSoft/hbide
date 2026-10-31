@@ -157,4 +157,29 @@ class RecentAcceptanceLinks(unittest.TestCase):
         for phrase in ['raw output remains unchanged','absent/ambiguous/non-ASCII/cropped','not a semantic-correctness claim','Output viewer ANSI']:
             self.assertIn(phrase,contract)
 
+class DispatchAcceptance(unittest.TestCase):
+    def setUp(self):
+        self.routes=audit.inventory()[1]
+        self.specs=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['dispatch_acceptance']
+    def test_f5_exact_route_and_scope(self):
+        rows=audit.link_dispatch_contracts(self.routes,self.specs)
+        linked=[r for r in rows if 'acceptance' in r]
+        self.assertEqual(len(linked),1)
+        self.assertEqual(linked[0]['condition'],'case nKey == K_F5')
+        self.assertEqual(linked[0]['source'],'designer.prg')
+        self.assertIn('Not all controls',linked[0]['acceptance']['contract'])
+        self.assertNotIn('acceptance',self.routes[0])
+    def test_missing_route_fails_closed(self):
+        broken={k:dict(v,condition='case nKey == K_NONEXISTENT') for k,v in self.specs.items()}
+        with self.assertRaisesRegex(ValueError,'exactly one route'):audit.link_dispatch_contracts(self.routes,broken)
+    def test_ambiguous_route_fails_closed(self):
+        row=next(r for r in self.routes if r['source']=='designer.prg' and r['condition']=='case nKey == K_F5')
+        with self.assertRaisesRegex(ValueError,'exactly one route'):audit.link_dispatch_contracts(self.routes+[row],self.specs)
+    def test_missing_test_fails_closed(self):
+        broken={k:dict(v,tests=['nonexistent_acceptance_probe.py']) for k,v in self.specs.items()}
+        with self.assertRaisesRegex(ValueError,'Missing dispatch test'):audit.link_dispatch_contracts(self.routes,broken)
+    def test_duplicate_contract_fails_closed(self):
+        broken=dict(self.specs,duplicate=next(iter(self.specs.values())))
+        with self.assertRaisesRegex(ValueError,'Duplicate dispatch contract'):audit.link_dispatch_contracts(self.routes,broken)
+
 if __name__=='__main__':unittest.main()
