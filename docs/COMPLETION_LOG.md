@@ -3541,3 +3541,11 @@ checks both first and second string color, later return and exact source.
 Evidence linux-editor-bracket-list.json follows; no complete lexer claim.
 
 Q92 clean acceptance0ff590210066b4bef188d34c20b55cb43bcb5081 binary91544eb47f588ed1a51b17ad5a59dbf22afe539b4685333ab8c54248cb2d4d4e:16PTYchecks(List5/Paren4/Variants7),22models26inventory34docsPASS;no retries/failures. Nativeambosstringsyellow/followingfunction+returnscyan/fullbordersinspected/F2exact. C19predatesQ91Q92,Q87separate84e58b3.
+
+## Q93 - literal .hpp header in Sources
+
+Actual hbmk2 C project including values.hpp compiled; Sources omitted literal
+header and Enter could not open it. Before1PASS2FAIL. Add .hpp to listed
+source/header extensions with three modelguards and real menuPTY.
+No new compiler/C++bridge, no extension-prefix policy change.
+Evidence linux-project-hpp-header.json follows.

@@ -59,9 +59,10 @@
         "test_open_unreadable_pty.py",
         "test_project_bom_pty.py",
         "test_project_eof_pty.py",
-        "test_project_cxx_source_pty.py"
+        "test_project_cxx_source_pty.py",
+        "test_project_hpp_pty.py"
       ],
-      "contract": "HBP parsed and preserved; opening never executes build hooks. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Unreadable HBP rejected distinctly from valid empty HBP; host retains active editor and does not select rejected project. Literal source inventory strips leading UTF-8 BOM and one final DOS EOF only in its parse copy, preserving exact original bytes. Existing .cc/.cxx/.cx aliases join .cpp; missing aliases stay visible. Real hbmk2 fixtures establish BOM/EOF and PRG+cc builds, not all encodings or compiler modes.",
+      "contract": "HBP parsed and preserved; opening never executes build hooks. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Unreadable HBP rejected distinctly from valid empty HBP; host retains active editor and does not select rejected project. Literal source inventory strips leading UTF-8 BOM and one final DOS EOF only in its parse copy, preserving exact original bytes. Existing .cc/.cxx/.cx aliases join .cpp; missing aliases stay visible. Real hbmk2 fixtures establish BOM/EOF and PRG+cc builds, not all encodings or compiler modes. Literal .hpp header is listed/opened byte-exact; missing .hpp remains visible. No compiler mode, C++ bridge or all extension acceptance.",
       "expected_label": "Open .hbp..."
     },
     "IDE-021": {
@@ -76,9 +77,10 @@
         "test_gcc_caret_column_pty.py",
         "test_project_bom_pty.py",
         "test_project_eof_pty.py",
-        "test_project_cxx_source_pty.py"
+        "test_project_cxx_source_pty.py",
+        "test_project_hpp_pty.py"
       ],
-      "contract": "Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently. F6 output Left/Right reveals long diagnostic tails; Esc returns to the same project failure state. Real GCC colored output is normalized only for CSI m/K location/severity/caret parsing; raw output remains unchanged. Exact ASCII source+unique caret can map tested TAB widths; absent/ambiguous/non-ASCII/cropped evidence keeps reported column, not a semantic-correctness claim. GCC wrapper acceptance does not certify hbmk2 colon-path builds or Output viewer ANSI handling. Literal source inventory strips leading UTF-8 BOM and one final DOS EOF only in its parse copy, preserving exact original bytes. Existing .cc/.cxx/.cx aliases join .cpp; missing aliases stay visible. Real hbmk2 fixtures establish BOM/EOF and PRG+cc builds, not all encodings or compiler modes.",
+      "contract": "Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently. F6 output Left/Right reveals long diagnostic tails; Esc returns to the same project failure state. Real GCC colored output is normalized only for CSI m/K location/severity/caret parsing; raw output remains unchanged. Exact ASCII source+unique caret can map tested TAB widths; absent/ambiguous/non-ASCII/cropped evidence keeps reported column, not a semantic-correctness claim. GCC wrapper acceptance does not certify hbmk2 colon-path builds or Output viewer ANSI handling. Literal source inventory strips leading UTF-8 BOM and one final DOS EOF only in its parse copy, preserving exact original bytes. Existing .cc/.cxx/.cx aliases join .cpp; missing aliases stay visible. Real hbmk2 fixtures establish BOM/EOF and PRG+cc builds, not all encodings or compiler modes. Literal .hpp header is listed/opened byte-exact; missing .hpp remains visible. No compiler mode, C++ bridge or all extension acceptance.",
       "expected_label": "Sources / Build..."
     },
     "IDE-026": {

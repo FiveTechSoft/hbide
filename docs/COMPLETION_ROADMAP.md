@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q93 | Sources incluye header.hpp literal. | ProyectoC/hppcompiladoantes1PASS2FAIL;3modelguards/menuPTY;linux-project-hpp-header.json. No puenteC++/compiladornuevo/Windows. |
 | Q92 | Bracketstrings en arrayliteral/coma no abren bloque falso. | Fixturecompiladaantes2PASS2FAIL;4repaintguardas/16PTY22models26inventory34docsPASS fuente0ff5902;nativeambascadenasamarillas/posteriorescyaninspeccionado;linux-editor-bracket-list.json. No lexercompleto/Windows. |
 | Q91 | Bracketliteral tras ( no contamina pintado/estado. | Fixturecompiler-valid return([/*literal]);antes2PASS2FAIL;4repaintguardas/17PTY22models26inventory34docsPASS fuente49aa4a5;nativeamarillo/cyaninspeccionado;linux-editor-paren-bracket.json. No lexercompleto/Windows. |
 | C19 | CandidatoLinux temporal incluye Q86/Q88/Q89. | Export6a2f06d binaryab4ac913,8smoke+6modosrecientesPASSmismaidentidad;nativeINITEXIT/saltoexactinspeccionado;linux-candidate-lifecycle-comments.json. No release/Windows/licencias/instalacion/globalmatrix. |
