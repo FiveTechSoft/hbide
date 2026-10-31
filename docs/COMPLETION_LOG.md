@@ -1884,3 +1884,10 @@ Regresion del primer fixcf03a1d:Mouse14PASS peroKeyboard12/14 por nombre corto
 tras largo enGET (aaa.prgith spaces.prg). STATEinicial expuso cola deGET no
 rellenada; VarPut ahoraPadR250antesAssign/Display, conserva ancho del buffer.
 No se presenta cf03a1d como verde global; ambos intentos quedan en ledger.
+
+Filelistfix nativeLinux120x40 fuente49dce27 fresca: tecladoTabHomeDown muestra
+nombrecortoaaa.prgsincola traslargo,ProjectTabHome sincronizaprimerbbb.hbp yOK
+abreproyectoexactoconmiembroespaciadoquotedexistente. Pixeles/marcoscompletos
+inspeccionados. Intento mousefisico no enfoco/activo y quedo modal; noaceptacion
+nativeMouse,14PTYratonporseparado. No fallo producto atribuido sin diagnostico.
+Evidencia docs/evidence/file-modal-first-item/native-results.json y capturas.
