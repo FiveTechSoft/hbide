@@ -3413,3 +3413,11 @@ method actual name has underscore prefix. No inference for member
 declarations without CLASS. Five lexical guards, focused PTY. Initial
 exploratory harness wrong fixture path corrected before before-run.
 Evidence linux-navigation-access-assign.json follows. No arbitrary macros.
+
+## Q84 - PROCEDURE CLASS method navigation alias
+
+Compiler-valid PROCEDURE Touch() CLASS Demo listed as unqualified
+procedure, so Demo:Touch filter/jump failed (before1PASS2FAIL). Honor
+explicit hbclass.ch backward-compatible alias only; ordinary procedures
+and commented CLASS remain unqualified. Four guards plus focused PTY.
+Evidence linux-navigation-procedure-class.json follows. No arbitrarymacros.

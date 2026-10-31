@@ -82,6 +82,14 @@ FUNCTION HBIDE_ScanProcs( cText )
          cKind := "function"; cName := aTok[ 2 ]
       ELSEIF HBIDE_IsKw( cT1, "PROCEDURE" )
          cKind := "procedure"; cName := aTok[ 2 ]
+         // hbclass.ch backward-compatible PROCEDURE name CLASS cls alias.
+         FOR n := 3 TO Len( aTok )
+            IF Upper( aTok[n] ) == "CLASS" .AND. n < Len(aTok)
+               cCls := aTok[n+1]
+               cKind := "method"
+               EXIT
+            ENDIF
+         NEXT
       ELSEIF cT1 == "METHOD" .OR. cT1 == "ACCESS" .OR. cT1 == "ASSIGN"
          // only the implementation form names its class: "METHOD x() CLASS c"
          cCls := ""
