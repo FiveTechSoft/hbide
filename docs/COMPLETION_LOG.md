@@ -2999,3 +2999,11 @@ Exportclean041df6dstrippedSHA582e15f26ed02e1dba440999298ee67e9f547d884d043425b89
 exactsamebinarytwo boundedsteps noretries/interruption. Manifest/toolchain/
 deps/logs persistedlinux-candidate-current-navigation.json. No newfix/full165
 PTY/Windows/release/installer/license/newpixels/determinism/NEXUSexecution.
+
+## Q56 - Adjacent comments swallowed by source painter tokens
+
+1&&commentand1+/*block*/2werenotcoloredascomments becausegenericword/
+operatorloopsconsumedtheir opener. Before3PASS2FAIL;local5PASS. Tokenloops
+nowstopexactlybeforecommentdelimiters, outertokenizerhandlescommentand
+resumesafterblockclosing. Extendedfixtureadds+//. No sourcebyteschanged,
+no fulllexer/Unicode/Windowsclaim. Runner167=166PTY+guard.

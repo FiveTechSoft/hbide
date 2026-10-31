@@ -1542,11 +1542,18 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
             case hb_USubStr( cLine, n, 1 ) $ cOperators
                while hb_USubStr( cLine, n, 1 ) $ cOperators .and. n <= hb_ULen( cLine )
+                  if hb_USubStr( cLine, n, 2 ) == "/*" .or. ;
+                     hb_USubStr( cLine, n, 2 ) == "//" .or. hb_USubStr( cLine, n, 2 ) == "&&"
+                     exit
+                  endif
                   cToken += hb_USubStr( cLine, n++, 1 )
                end
 
             case ! hb_USubStr( cLine, n, 1 ) $ " " + cOperators .and. n <= hb_ULen( cLine )
                while ! hb_USubStr( cLine, n, 1 ) $ " " + cOperators .and. n <= hb_ULen( cLine )
+                  if hb_USubStr( cLine, n, 2 ) == "&&"
+                     exit
+                  endif
                   cToken += hb_USubStr( cLine, n++, 1 )
                end
 
