@@ -2828,3 +2828,11 @@ linux-candidate-selection.json includesmanifest/toolchain/dependencies/logs.
 PredatesNEXUSdemo only. No newproduct/newpixels/determinism, release,
 installer/licenseclearance/Windows/full155PTYmatrix. Evidence publication
 paused for user-requestedNEXUSdemo, delivered11:22; results not repeated.
+
+## Q47 - Virtual Backspace false dirty
+
+End on long line thenDown to shortx preserves virtualcolumn. Backspace
+moves left without changing bytes but marked dirty. Realbefore1PASS1FAIL
+falseCloseprompt. Set dirty only if deletionposition exists, retain cursor
+movement and realchar deletion. Clean/redo/model/native evidence follows.
+Runner157=156PTY+guard; no global virtualspace-policy change.

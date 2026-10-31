@@ -526,7 +526,11 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            else
            ::ClearSelection()
            IF ::nCol > 5
-              ::lDirty := .T.
+              // Vertical movement can retain a column past a short EOL.
+              // Backspace there moves left but removes no source byte.
+              if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )
+                 ::lDirty := .T.
+              endif
               ::aText[ ::nRow ]:cText := hb_UStuff( ::aText[ ::nRow ]:cText, --::nCol - 4, 1, "" )
               ::GoTo( ::nRow, ::nCol, _REFRESH_LINE )
            ELSEIF ::nRow > 1
