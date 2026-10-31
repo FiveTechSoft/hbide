@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| C21 | CandidatoLinux temporal incluyeQ100/Q101/Q102. | Exportdf2e7a5 binary6d116c74,8smoke11modos57checksPASSexactbinary/nativainspeccionada;linux-candidate-comparisons-c21.json. No release/Windows/licenses/install/fullmatrixinherit. |
 | Q104 | Matriz Linux registrada completa hastaQ103. | 212/212distinct=211PTY+guardPASSsourcea0b7b82binary1bf96b2e;22models29inventory34docs;linux-full-matrix-q104.json. No newfix/pixels/candidate/Windows/licensing/Cancel/hitos. Q87historicalseparate. |
 | Q103 | Regresión conjunta editor/navegación/proyecto hastaQ102. | Fuente7647451 binarybbfc505b20modos85checks22models29inventory34docsPASS;linux-joint-editor-project-q103.json. No full212/newfix/pixels/candidate. |
 | Q102 | M0 inventaría IF/ELSEIF ademásCASE;F2/F3 vinculados. | 2newguards29inventory34docsPASS/2PTYsuitesFindRepeat7checks+Backupscenario fuente26f69d3;linux-inventory-if-dispatch.json. No productfix/pixels/modelrerun/global. |

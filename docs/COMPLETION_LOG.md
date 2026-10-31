@@ -3687,3 +3687,16 @@ multidoc stopped beforeteststarted,noledgerchange;foregroundcontinued.
 linux-full-matrix-q104.json includes receipts/logs/plan.
 No newproductfix/pixels/candidate/release/nativeWindows/licensing/M2Cancel/
 hitoclosed/100percent. Q87full201remains historical84e58b3, not combined.
+
+## C21 - temporary Linux candidate through comparison contexts
+
+Exportdf2e7a5837f90a6a808966f23b3fe46728578a4c clean,stripped
+6d116c748ab43369460c5e2ad971a613d9648034f401883e3724f6e64f771adc.
+8standard smoke+11recentmodes57checksPASS exactbinary,lddresolved,
+no retry/failure. Comparisons12/minus4/multiline4/gap4/operator5/list5/
+paren4/variants7/HPP3/INITEXIT3/NOTE6. Native120x40actualcandidateinspected:
+9comparisonstringsyellow/posteriorreturnsfunctioncyan/fullborders/F2exact.
+ReplacesC20temporarycandidateonly,includesQ100/Q101fixes/Q102inventory.
+Q104full212 remainsa0b7b82;notinheritedbythisexport.
+Notrelease/licenses/Windows/install/determinism/globalmatrix/hitoclosed.
+linux-candidate-comparisons-c21.json.
