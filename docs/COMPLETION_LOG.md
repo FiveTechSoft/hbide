@@ -3080,3 +3080,11 @@ MessageSelection/NavSelection/NavLiteral/NavTyped/ProjectMessages/Find
 PASSsamebinary,twoboundedPTYbatchesand22models115repaintPASS;15inventory
 34docs. linux-paint-project-joint.json. No retries/interruption/newfix/
 newpixels/full168PTY/Windows/milestoneclosure.
+
+## Candidate14 - Q56-Q58 paint and caret included
+
+Exportcleanb1e49e8strippedSHA371f2170fb7051b4cfb27241d28cabc1f95f8b635981d587c80405be677593f2.
+8standardsmokes+Escape4/Adjacent6/Caret6/MessageSelection9PASSsamebinary
+twoboundedstepsnoretries/interruption. Manifest/toolchain/ldd/logs persisted
+linux-candidate-paint-caret.json. No newfix/full168PTY/Windows/release/license/
+installer/newpixels/determinism/NEXUSexecution;Q58generalstillpartial.

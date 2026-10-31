@@ -210,6 +210,14 @@ mismo binario, dos lotes PTY acotados y22modelos115repaint PASS;15inventory34doc
 Ledger linux-paint-project-joint.json. Sin reintentos/interrupciones ni nueva
 corrección/captura/matriz168PTY/Windows/cierre de hito.
 
+### Candidate14 - Q56-Q58 incluidos
+
+Exportb1e49e8 stripped371f2170 pasa8smokes estándar+Escape4/Adjacent6/
+Caret6/MessageSelection9 mismo binario, dos pasos sin reintentos/interrupciones.
+Ledger linux-candidate-paint-caret.json. No nuevofix/matriz168PTY/Windows/
+release/licencia/instalador/nuevos píxeles/determinismo/NEXUSejecutado.
+Q58 conserva sus límites de evidenciaASCII/caret no universal.
+
 ## Ampliaciones que no se confunden con cierre probado
 
 El [plan de diseno anterior](ROADMAP.md) y la
