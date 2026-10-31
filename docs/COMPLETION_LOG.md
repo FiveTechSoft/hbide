@@ -3199,3 +3199,13 @@ Q58fallback/Q64parse-onlyscope. Addedtwonavsuitelinksandexplicitbounded
 contractswithoutclaimingAltF7/AltF8colorcoverageorfullpreprocessor. Two
 sourceinventoryguardsadded. Notnewproductfixorfeaturecount. Regenerate
 inventory/catalogue;focusedjointusesonefreshbinary,nothistoricalsum.
+
+## Q66 - Generated captions silently changed double quotes
+
+DsnQuotereplacedall doublequoteswithapostrophes; JSON/modelsretainedtext
+butcompiledruntimechangedcaption. ActualF9/Pastebuttonfixturebefore
+11PASS3FAIL,handlers/focusalreadywork. UseHarbourhb_StrToExpforsafeliteral
+withoutchangingbytes. Threemodelguardsdialog/say/mixedquotesbracket/slash;
+realgeneratedruntimechecksdoublequotesandbothbuttonactions/focus. Runner
+181=180PTY+guard. Acceptance linux-designer-quote-runtime.json follows;
+notallcaptiontypes/Unicode/allcontrolgrammar/Windows/global.

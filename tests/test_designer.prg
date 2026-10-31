@@ -30,6 +30,15 @@ procedure Main()
    Check( "var rejects digit start", DsnValidVar( "1abc", "cVar1" ) == "cVar1" )
    Check( "var rejects empty", DsnValidVar( "", "cVar1" ) == "cVar1" )
 
+   hModel := { "name"=>"Quotes", "caption"=>'Say "Hello"', "width"=>60, "height"=>20, ;
+      "controls"=>{ { "type"=>"say", "row"=>1, "col"=>2, "caption"=>'He said "yes"' } } }
+   cCode := DsnGenCode(hModel)
+   Check("dialog double quotes emitted losslessly",hb_StrToExp(hModel["caption"])$cCode)
+   Check("say double quotes emitted losslessly",hb_StrToExp(hModel["controls",1,"caption"])$cCode)
+   hModel["controls",1,"caption"] := 'Both "double" and '+"'single' with ] and "+Chr(92)
+   cCode := DsnGenCode(hModel)
+   Check("mixed quotes bracket backslash emitted losslessly",hb_StrToExp(hModel["controls",1,"caption"])$cCode)
+
    // model -> JSON -> model round trip
    hModel = { "name"     => "Customer", ;
               "caption"  => "Customer data", ;

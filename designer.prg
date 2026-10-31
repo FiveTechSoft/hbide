@@ -4234,7 +4234,8 @@ return cCode + If( Len( aItems ) > 0, " }", "}" )
 
 static function DsnQuote( cText )
 
-return '"' + StrTran( hb_defaultValue( cText, "" ), '"', "'" ) + '"'
+// Harbour chooses a safe delimiter or escaped literal without changing text.
+return hb_StrToExp( hb_defaultValue( cText, "" ) )
 
 //-----------------------------------------------------------------------------------------//
 
