@@ -42,6 +42,7 @@ CASES = {
     'recovery-unreadable': ('test_recovery_unreadable_pty.py', [], 30),
     'external-changes': ('test_external_changes_pty.py', [], 60),
     'close-routes': ('test_close_routes_pty.py', [], 120),
+    'file-modal-mouse': ('test_file_modal_mouse_pty.py', [], 120),
     'file-modal-buttons': ('test_file_modal_buttons_pty.py', [], 120),
     'about-build': ('test_about_build_pty.py', [], 120),
     'help-mouse': ('test_help_mouse_pty.py', [], 120),

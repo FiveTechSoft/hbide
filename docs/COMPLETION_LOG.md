@@ -1861,3 +1861,12 @@ Enter/Backspace/CopyPaste/Cut y su Undo, comparando fixture completo BOM/TAB/
 acentos/CRLF/LF. Paste conserva contrato de insertar debajo de linea, no se
 convierte a pegar en cursor por inferencia. Datos exactos, no nuevos pixels ni
 Windows. Conteo de modos no equivale a dos funciones ni toda matriz global.
+
+## 31 octubre: botones de fichero/proyecto con raton
+
+10checks reales Linux120x40: OpenOK/Cancel,SaveAsOK/Cancel,ProjectOK/Cancel
+pulsados con raton. Paths con espacios, identidad solo cambia trasOK, dirty
+retiene contenido trasCancel; comparacion completa de tres ficheros/EOLmixto.
+No se confunde con prueba teclado de botones/listas. Primer intento25x80del
+simulador no tuvo pintura util; no se afirma25x80ni defecto de producto.
+Sin cambio de producto niWindows, no todosmodales ni cliclista en este caso.
