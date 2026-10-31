@@ -1,0 +1,18 @@
+{
+  "candidate_source": "990b8ad54ec58873a161dc590765bbd8985b1a49",
+  "candidate_binary_sha256": "39c990e15f2df0e2c94ad38bb283675f167be2aed9ec27af1b4d8868fd2f7bca",
+  "actual_size": "25rows80cols,802x477pixels after Options/Display25x80",
+  "visual": {
+    "picker": {
+      "path": "/downloads/hbide-c17-80x25-native-picker.png",
+      "sha256": "4b1bffa3cfe4a5bc4fc934a325d4be4987b357a69860697d438d732e4636efe6"
+    },
+    "target": {
+      "path": "/downloads/hbide-c17-80x25-native-target.png",
+      "sha256": "c53915896519e3d251fcbf3e8c874cb3c6e1d368a5cb781d5aa9175b116c61b4"
+    }
+  },
+  "inspected": "Native pickerMain1/Target7only2/2 with complete modal+shadow+IDEborders; EnterTargetX/F2 exactline7, complete bottom/status.",
+  "preparation_incident": "Initial terminal80x25 argument insufficient because IDEstartupSetMode40x120; firstcaptures were120x40 and discarded, not accepted as80x25. Corrected using real Options/Display preset before finalcapture.",
+  "scope": "C17 bounded Q80navigation visual at25x80 only. No new productfix/PTY/model/fullmatrix/release/Windows/tearing acceptance."
+}

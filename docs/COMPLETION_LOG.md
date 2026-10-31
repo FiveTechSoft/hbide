@@ -3365,3 +3365,12 @@ No retries/failures. Actual native Q80 picker/jump inspected on C17.
 C16 superseded as temporary Linuxcandidate, not release/distribution.
 Evidence linux-candidate-recent-navigation.json; Q77matrix stays separate.
 License/nativeWindows/install/determinism/tearing/global milestones open.
+
+### C17 visual supplement: real 25x80 display
+
+Exact same candidate39c990e1, Options/Display25x80 then Q80 picker
+and EnterTargetX/F2. Inspected actual802x477pixel terminal frames:
+Main1/Target7only2/2, complete picker/shadow/IDEborders and exactsavedline7.
+First attempt only changed terminal geometry, IDEstartupreset40x120;
+those preparatory frames discarded, not25x80acceptance. No new productfix
+or tests/matrix/tearing/release claim. linux-candidate-c17-small-display.json.
