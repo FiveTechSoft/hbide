@@ -205,9 +205,10 @@
         "test_edit_menu_pty.py",
         "test_replace_undo_boundary_pty.py",
         "test_selection_undo_boundary_pty.py",
-        "test_selection_destructive_boundary_pty.py"
+        "test_selection_destructive_boundary_pty.py",
+        "test_selection_identity_pty.py"
       ],
-      "contract": "Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu.",
+      "contract": "Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged.",
       "expected_label": "Undo           Ctrl+Z"
     },
     "IDE-009": {
@@ -218,9 +219,10 @@
         "test_edit_menu_pty.py",
         "test_replace_undo_boundary_pty.py",
         "test_selection_undo_boundary_pty.py",
-        "test_selection_destructive_boundary_pty.py"
+        "test_selection_destructive_boundary_pty.py",
+        "test_selection_identity_pty.py"
       ],
-      "contract": "Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu.",
+      "contract": "Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged.",
       "expected_label": "Redo           Ctrl+U"
     },
     "IDE-011": {

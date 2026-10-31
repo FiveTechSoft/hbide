@@ -150,8 +150,8 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-002: Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. LoadText clears selection anchors belonging to the old buffer. External short reload with anchor on old row3 permits typing without out-of-bounds selection deletion. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py), [test_reload_selection_pty.py](../tests/test_reload_selection_pty.py)
 - IDE-003: F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified. Symlink refusal only promises a recovery temp after verified complete write; failed copy preserves buffer/link/destination and reports no complete recovery copy. Exclusive temp creation/full write/close precede replacement. Complete recovery bytes are checked after symlink/promotion refusal; partial write promises no complete temp. Not after-close third-party replacement, fsync/power-loss or native Windows certification. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_utf8_valid.prg](../tests/test_utf8_valid.prg), [test_atomic.prg](../tests/test_atomic.prg), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py)
 - IDE-004: Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Failed Save As retains old name/stamps/journal for initially clean and dirty buffers; later F2 still writes original. Accepted overwrite preserves destination as exact .bak, keeps old source unchanged, clears source journal and subsequent F2 targets new name. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py), [test_saveas_failure_identity_pty.py](../tests/test_saveas_failure_identity_pty.py), [test_saveas_overwrite_accept_pty.py](../tests/test_saveas_overwrite_accept_pty.py), [test_saveas_overwrite_cancel_pty.py](../tests/test_saveas_overwrite_cancel_pty.py)
-- IDE-008: Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py)
-- IDE-009: Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py)
+- IDE-008: Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py), [test_selection_identity_pty.py](../tests/test_selection_identity_pty.py)
+- IDE-009: Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py), [test_selection_identity_pty.py](../tests/test_selection_identity_pty.py)
 - IDE-011: Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes. Explicit Cut records a separate undo command from typing before or after it; Undo Cut preserves earlier unsaved typing. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_cut_undo_boundary_pty.py](../tests/test_cut_undo_boundary_pty.py)
 - IDE-012: Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes. A copied line containing only spaces is real clipboard data; Paste inserts it with exact disk bytes and Undo/Redo. Editor clipboard is shared across document instances; Paste changes only destination history and bytes, source stays unchanged. Not OS clipboard. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_clipboard_spaces_pty.py](../tests/test_clipboard_spaces_pty.py), [test_clipboard_multidoc_pty.py](../tests/test_clipboard_multidoc_pty.py)
 - IDE-013: Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial. Delete Line clears prior range selection so an old row3 anchor cannot access beyond the shorter line array when typing. Undo typing, Undo deletion and Redo preserve exact bytes. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_delete_selection_pty.py](../tests/test_delete_selection_pty.py)
@@ -537,12 +537,12 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | --- | --- | --- | --- | --- |
 | MOUSE-hbide-Activate-1 | METHOD Activate() CLASS HBIde | `if nKeyStd == K_LBUTTONDOWN` | hbide.prg:707 | Pendiente gesto |
 | MOUSE-hbide-Activate-2 | METHOD Activate() CLASS HBIde | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | hbide.prg:728 | Pendiente gesto |
-| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:501 | Pendiente gesto |
-| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:506 | Pendiente gesto |
-| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:511 | Pendiente gesto |
-| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:514 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:1951 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:1952 | Pendiente gesto |
+| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:507 | Pendiente gesto |
+| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:512 | Pendiente gesto |
+| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:517 | Pendiente gesto |
+| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:520 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:1957 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:1958 | Pendiente gesto |
 | MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:435 | Pendiente gesto |
 | MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:438 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
@@ -838,44 +838,44 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:877 | `CASE nKey == K_PGDN` |
 | help.prg:879 | `CASE nKey == K_HOME` |
 | help.prg:881 | `CASE nKey == K_END` |
-| editor.prg:473 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` |
-| editor.prg:479 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` |
-| editor.prg:485 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` |
-| editor.prg:486 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` |
-| editor.prg:487 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` |
-| editor.prg:488 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` |
-| editor.prg:489 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` |
-| editor.prg:490 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` |
-| editor.prg:493 | `case nKeyStd == K_CTRL_Z` |
-| editor.prg:497 | `case nKeyStd == K_CTRL_U` |
-| editor.prg:501 | `case nKeyStd == K_LDBLCLK` |
-| editor.prg:506 | `case nKeyStd == K_LBUTTONDOWN` |
-| editor.prg:511 | `case nKeyStd == K_MWBACKWARD` |
-| editor.prg:514 | `case nKeyStd == K_MWFORWARD` |
-| editor.prg:517 | `case nKeyStd == K_BS` |
-| editor.prg:538 | `case nKeyStd == K_DEL` |
-| editor.prg:552 | `case nKeyStd == K_ENTER` |
-| editor.prg:562 | `case nKeyStd == K_RIGHT` |
-| editor.prg:571 | `case nKeyStd == K_LEFT` |
-| editor.prg:580 | `case nKeyStd == K_HOME` |
-| editor.prg:583 | `case nKeyStd == K_END` |
-| editor.prg:586 | `case nKeyStd == K_CTRL_RIGHT` |
-| editor.prg:590 | `case nKeyStd == K_ALT_LEFT` |
-| editor.prg:598 | `case nKeyStd == K_CTRL_Y` |
-| editor.prg:601 | `case nKeyStd == K_F2` |
-| editor.prg:607 | `case nKeyStd == K_F8` |
-| editor.prg:611 | `case nKeyStd == K_F9` |
-| editor.prg:614 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
-| editor.prg:1943 | `case K_UP` |
-| editor.prg:1944 | `case K_DOWN` |
-| editor.prg:1945 | `case K_LEFT` |
-| editor.prg:1946 | `case K_RIGHT` |
-| editor.prg:1947 | `case K_HOME` |
-| editor.prg:1948 | `case K_END` |
-| editor.prg:1949 | `case K_PGUP` |
-| editor.prg:1950 | `case K_PGDN` |
-| editor.prg:1951 | `case K_MWFORWARD` |
-| editor.prg:1952 | `case K_MWBACKWARD` |
+| editor.prg:479 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` |
+| editor.prg:485 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` |
+| editor.prg:491 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` |
+| editor.prg:492 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` |
+| editor.prg:493 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` |
+| editor.prg:494 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` |
+| editor.prg:495 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` |
+| editor.prg:496 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` |
+| editor.prg:499 | `case nKeyStd == K_CTRL_Z` |
+| editor.prg:503 | `case nKeyStd == K_CTRL_U` |
+| editor.prg:507 | `case nKeyStd == K_LDBLCLK` |
+| editor.prg:512 | `case nKeyStd == K_LBUTTONDOWN` |
+| editor.prg:517 | `case nKeyStd == K_MWBACKWARD` |
+| editor.prg:520 | `case nKeyStd == K_MWFORWARD` |
+| editor.prg:523 | `case nKeyStd == K_BS` |
+| editor.prg:544 | `case nKeyStd == K_DEL` |
+| editor.prg:558 | `case nKeyStd == K_ENTER` |
+| editor.prg:568 | `case nKeyStd == K_RIGHT` |
+| editor.prg:577 | `case nKeyStd == K_LEFT` |
+| editor.prg:586 | `case nKeyStd == K_HOME` |
+| editor.prg:589 | `case nKeyStd == K_END` |
+| editor.prg:592 | `case nKeyStd == K_CTRL_RIGHT` |
+| editor.prg:596 | `case nKeyStd == K_ALT_LEFT` |
+| editor.prg:604 | `case nKeyStd == K_CTRL_Y` |
+| editor.prg:607 | `case nKeyStd == K_F2` |
+| editor.prg:613 | `case nKeyStd == K_F8` |
+| editor.prg:617 | `case nKeyStd == K_F9` |
+| editor.prg:620 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
+| editor.prg:1949 | `case K_UP` |
+| editor.prg:1950 | `case K_DOWN` |
+| editor.prg:1951 | `case K_LEFT` |
+| editor.prg:1952 | `case K_RIGHT` |
+| editor.prg:1953 | `case K_HOME` |
+| editor.prg:1954 | `case K_END` |
+| editor.prg:1955 | `case K_PGUP` |
+| editor.prg:1956 | `case K_PGDN` |
+| editor.prg:1957 | `case K_MWFORWARD` |
+| editor.prg:1958 | `case K_MWBACKWARD` |
 | hbdebug/debugger.prg:1600 | `CASE K_LDBLCLK` |
 | hbdebug/debugger.prg:1620 | `CASE K_LBUTTONDOWN` |
 | hbdebug/debugger.prg:1649 | `CASE K_RBUTTONDOWN` |

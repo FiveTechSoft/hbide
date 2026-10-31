@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'selection-identity': ('test_selection_identity_pty.py', [], 120),
     'selection-destructive-boundary': ('test_selection_destructive_boundary_pty.py', [], 120),
     'selection-undo-boundary': ('test_selection_undo_boundary_pty.py', [], 120),
     'replace-nochange-selection': ('test_replace_nochange_selection_pty.py', [], 120),

@@ -408,7 +408,7 @@ return nil
 
 METHOD Edit( nKey ) CLASS HBSrcEdit
 
-   local aBefore, lSelectionEdit
+   local aBefore, lSelectionEdit, lDirtyBefore
    local cCharKey := iif( hb_keyStd( nKey ) == K_TAB .AND. Set( _SET_INSERT ), ;
                           Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), ;
                           hb_keyChar( nKey ) )
@@ -436,6 +436,7 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
    endif
 
    aBefore := ::LinesSnapshot()
+   lDirtyBefore := ::lDirty
    lSelectionEdit := ::SelRange() != NIL
    ::lOpRecorded := .F.
    ::EditKey( nKey )
@@ -446,6 +447,11 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
       // Replacing/deleting a marked range is one distinct undo action,
       // not part of typing before or after that range.
       ::RecordEdit( aBefore, lSelectionEdit )
+      // Delete+insert can reproduce the selected bytes exactly. SelDelete
+      // dirties eagerly; no recorded change must keep the old dirty state.
+      if lSelectionEdit .and. ! ::lOpRecorded
+         ::lDirty := lDirtyBefore
+      endif
       // RecordEdit adjusts breakpoints in PushOp, but edits on this path
       // (Enter, typing, paste) already repainted inside EditKey: repaint so
       // the gutter shows the marks on their shifted lines at once
