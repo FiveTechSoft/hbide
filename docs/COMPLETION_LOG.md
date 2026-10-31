@@ -2682,4 +2682,8 @@ Native120x40 Paste beta/café/niño and Undo beta inspected with full frames;
 TAB/spaces/disk source+destination exact. No productfix. Existing POSIX mode
 retained separately, not reinterpreted as rendering acceptance.
 Runner149=148PTY modes plus guard, two modes not two features.
-No universal Unicode widget/GET/Windows/OSclipboard acceptance. Clean pending.
+No universal Unicode widget/GET/Windows/OSclipboard acceptance.
+
+Cleancdbf775: UTF8Terminal10, UTF8Bytes9 and Block9 pass same binary
+803e20dd without retry;15inventory33docs pass. No new model run.
+Ledger docs/evidence/linux-clipboard-utf8-terminal.json.
