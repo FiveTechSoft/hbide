@@ -1,0 +1,38 @@
+{
+  "scope": "CleanLinux9checks:8actualmouse byteeffects withUTF8 BOM TAB accents mixedEOL Undo;1separateddisplayfallbackobservationcaf?/na?ve/a?o. Rendering NOT accepted.33docs. No productchange,20modelsremainbaeda47.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "ce4b8ff824fcaef6433fa4e31320fc1dca594b67",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "f3be50f889b84805b60842dcef54176af6c58f6e50f7b3e887793193da32530d",
+    "binary_sha256": "b74f389f42eabef4be926187b479730f130324e75e0816f19a8398a9483f9e90",
+    "built_at": 1793407639.2885985
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ce4b8ff824fcaef6433fa4e31320fc1dca594b67",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f3be50f889b84805b60842dcef54176af6c58f6e50f7b3e887793193da32530d",
+      "binary_sha256": "b74f389f42eabef4be926187b479730f130324e75e0816f19a8398a9483f9e90",
+      "build_receipt": "/tmp/hbide-editor-utf8-mouse/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "a28b2cd33763232095011e49595f4980ad12462b745f4bd873689a39bf8b3efe",
+      "case": "editor-mouse-utf8",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_mouse_utf8_pty.py"
+      ],
+      "started": 1793407639.2890172,
+      "seconds": 12.12,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "913011de473b092f29949d6e89afb607ff06334f1af0dadfcd0ca07eee561f14",
+      "log": "/tmp/hbide-editor-utf8-mouse/editor-mouse-utf8-1793407639289012783.log"
+    }
+  ]
+}
