@@ -1,5 +1,10 @@
 """Pasted PushButton retains custom action and accelerator in actual F9 runtime."""
+import argparse
 import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re,json
+parser=argparse.ArgumentParser()
+parser.add_argument('--mixed',action='store_true')
+args=parser.parse_args()
+caption='He said "yes"' if not args.mixed else 'Say "yes" and '+"'no' ] "+chr(92)
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
@@ -24,7 +29,7 @@ for kind in ['button']:
  def send(b,wait=.15):os.write(fd,b);pump(wait)
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
  try:
-  control={'type':'button','row':1,'col':2,'caption':'He said "yes"','accelerator':'Q','action':'MarkState(), lOk := .T., oDlg:End()','focus':'MarkFocus()','style':'brackets'}
+  control={'type':'button','row':1,'col':2,'caption':caption,'accelerator':'Q','action':'MarkState(), lOk := .T., oDlg:End()','focus':'MarkFocus()','style':'brackets'}
   modelpath.write_text(json.dumps({'name':'Fixture','caption':'Fixture','width':60,'height':20,'controls':[control]}))
   pump(.8);send(b'\x1bo');send(b's',.3);send(b'\x1b[24~',.3)
   send(b'\x19'+str(modelpath).encode());send(b'\r');send(b'\r',.3);send(b'\t')
@@ -36,7 +41,7 @@ for kind in ['button']:
   send(b'\x1b[20~',.4)
   generated=(work/'fixture.prg').read_text()
   check('actual F9 emits both custom actions',generated.count('MarkState(), lOk := .T., oDlg:End()')==2)
-  check('actual F9 emits both focus handlers and accelerators',generated.count('MarkFocus()')==2 and generated.count('He said "yes" (&Q)')==2)
+  check('actual F9 emits both focus handlers and accelerators',generated.count('MarkFocus()')==2 and generated.count('(&Q)')==2)
 
  finally:
   w=os.waitpid(pid,os.WNOHANG)
@@ -59,7 +64,7 @@ if build.returncode==0:
   if pid==0:os.execve(str(runtime),[str(runtime)],dict(os.environ,TERM='xterm'))
   fcntl.ioctl(fd,termios.TIOCSWINSZ,struct.pack('HHHH',ROWS,COLS,0,0));screen=Scr()
   try:
-   pump(.8);check(scenario+' runtime caption retains double quotes','He said "yes"' in screen.text());send(keys,.5)
+   pump(.8);check(scenario+' runtime caption retains double quotes',caption in screen.text());send(keys,.5)
    check(scenario+' generated button accepts dialog true',resultpath.exists() and resultpath.read_text()=='.T.')
    check(scenario+' preserved custom action executes',marker.exists() and marker.read_text()=='called')
    check(scenario+' preserved focus handler executes',focus.exists() and focus.read_text()=='focus')

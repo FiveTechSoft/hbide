@@ -3209,3 +3209,11 @@ withoutchangingbytes. Threemodelguardsdialog/say/mixedquotesbracket/slash;
 realgeneratedruntimechecksdoublequotesandbothbuttonactions/focus. Runner
 181=180PTY+guard. Acceptance linux-designer-quote-runtime.json follows;
 notallcaptiontypes/Unicode/allcontrolgrammar/Windows/global.
+
+## Q66 acceptance extension - mixed quotes escaped literal runtime
+
+Doublequote-onlyfixtureexercisedsinglequotedoutput. Newmixedmodecontains
+bothquotetypes,closingbracketandbackslash,forcinghb_StrToExpescapedliteral.
+ActualF9artifactcompiledandruntwobuttons;captioncheckedat runtime,handlers
+andfocusunchanged. No productfix; runner182=181PTY+guard. Evidence
+linux-designer-mixed-quote-runtime.json recordsfocusedcleanacceptance.
