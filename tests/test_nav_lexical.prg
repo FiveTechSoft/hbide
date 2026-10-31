@@ -16,6 +16,8 @@ procedure Main()
  Check(Len(a)==3,'class members are not class declarations',@nPass,@nFail)
  Check(a[2,1]=='Demo:New'.and.a[2,3]==5,'typed function method name and line',@nPass,@nFail)
  Check(a[3,1]=='Demo:Touch'.and.a[3,3]==6,'typed procedure method name and line',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('function Main()'+hb_eol()+'local n := a[1 /* realblock'+hb_eol()+'function Hidden()'+hb_eol()+'*/ ]'+hb_eol()+'return n'+hb_eol()+'function Target()')
+ Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==6,'array index multiline block excludes hidden declaration',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

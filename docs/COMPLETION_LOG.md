@@ -3134,3 +3134,11 @@ realcommentinsidearrayindex; local7PASS. No productfix. Newmode
 Q59extensionclean1480594 BracketVariants7/Bracket4/EscapeVariants7/Caret6
 PASSsamebinary,15inventory34docsPASS; linux-editor-bracket-variants.json.
 No retries/newfix/newmodels/newpixels/full175PTY/Windows.
+
+## Q60 - Array-index block comment leaked false navigation entry
+
+Compiler-validfixturecontainsarrayindexwithmultiline/* */andfakefunction
+insidecomment. Before2PASS1FAIL;local3PASS+16lexicalmodelassertions. NavCode
+onlymasksbracketasstringwhenclosing]existsonsamephysical line, leaving
+multilinearraycommentstatevisible. No fullHarbourlexer/preprocessorclaim.
+Runner177=176PTY+guard. Cleanacceptanceandnativepickerfollow.
