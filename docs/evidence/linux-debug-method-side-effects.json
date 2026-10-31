@@ -1,0 +1,88 @@
+{
+  "scope": "CleanLinuxsamebinary MethodOnly10 GetterFailure6 SetterFailure8PASS. AAProbe method would write marker; opening/Enter/Resume markerabsent and ClassNameexact. Not getter sideeffectpromise/allmethods/pixels/Windows/global107acceptance.20models last769ed46;33docs.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "f69cc8c10fdea6fbb09f5860f091cdaa8eebc9e8",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "cd1c50d6f4563c96a2f9aa894d313456d51a0dc1adb64faba2b16672c1ab2e24",
+    "binary_sha256": "6203b743f9b3053bfff0b7a665b7127475ce3cadf2dc6e69e4d9c1ba11345e17",
+    "built_at": 1793411777.7198904
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "f69cc8c10fdea6fbb09f5860f091cdaa8eebc9e8",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "cd1c50d6f4563c96a2f9aa894d313456d51a0dc1adb64faba2b16672c1ab2e24",
+      "binary_sha256": "6203b743f9b3053bfff0b7a665b7127475ce3cadf2dc6e69e4d9c1ba11345e17",
+      "build_receipt": "/tmp/hbide-method-side-effects/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "48e334ddf872eefe9e72fe1dc02e6f2ccd25499738f9bee83e76e23f1740c8ea",
+      "case": "debug-method-only-object",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_method_only_object_pty.py"
+      ],
+      "started": 1793411777.7202356,
+      "seconds": 10.72,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "bf0004da6dca9c77c9b815d29b586363ea0f8cefb407440410795ce0562ffcbb",
+      "log": "/tmp/hbide-method-side-effects/debug-method-only-object-1793411777720231916.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "f69cc8c10fdea6fbb09f5860f091cdaa8eebc9e8",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "cd1c50d6f4563c96a2f9aa894d313456d51a0dc1adb64faba2b16672c1ab2e24",
+      "binary_sha256": "6203b743f9b3053bfff0b7a665b7127475ce3cadf2dc6e69e4d9c1ba11345e17",
+      "build_receipt": "/tmp/hbide-method-side-effects/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "48e334ddf872eefe9e72fe1dc02e6f2ccd25499738f9bee83e76e23f1740c8ea",
+      "case": "debug-getter-failure",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_getter_failure_pty.py"
+      ],
+      "started": 1793411788.4367785,
+      "seconds": 10.42,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+      "log": "/tmp/hbide-method-side-effects/debug-getter-failure-1793411788436775558.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "f69cc8c10fdea6fbb09f5860f091cdaa8eebc9e8",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "cd1c50d6f4563c96a2f9aa894d313456d51a0dc1adb64faba2b16672c1ab2e24",
+      "binary_sha256": "6203b743f9b3053bfff0b7a665b7127475ce3cadf2dc6e69e4d9c1ba11345e17",
+      "build_receipt": "/tmp/hbide-method-side-effects/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "48e334ddf872eefe9e72fe1dc02e6f2ccd25499738f9bee83e76e23f1740c8ea",
+      "case": "debug-setter-failure",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_setter_failure_pty.py"
+      ],
+      "started": 1793411798.8534997,
+      "seconds": 11.37,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+      "log": "/tmp/hbide-method-side-effects/debug-setter-failure-1793411798853495919.log"
+    }
+  ]
+}
