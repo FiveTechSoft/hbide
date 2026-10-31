@@ -2612,3 +2612,12 @@ Runner145=144PTY modes plus guard. No Windows/global claim.
 Clean764472e: ClipboardMultidoc6, Spaces4, Duplicate6 and Delete6 pass
 same binarye3e1a478 without retry;21models15inventory33docs pass.
 Ledger docs/evidence/linux-clipboard-multidoc.json.
+
+## 31 October clipboard lifetime acceptance
+
+New8check PTY: Cut line saves source keep, close source, Paste alpha into
+beta destination, isolated Undo/Redo exact; Copy current beta replaces shared
+clipboard and Paste works in new document. Exploratory8PASS, no productfix.
+First harness expected alpha after copying current beta row; corrected
+expectation before clean acceptance. Runner146=145PTY modes plus guard.
+No OSclipboard, Windows, visual or global acceptance. Clean pending.
