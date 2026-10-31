@@ -1,0 +1,93 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "bba89b84dba42206718b667905473e6cf216d6a7",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9bc1cb37e4689e9c7d620938be72ad59cb324f4aaaab39307f17e7b4c3007dfe",
+      "binary_sha256": "39d6e3a1b68efa8b2428f7fb1e1f338bcae22facd90585ad1ea169ac72941441",
+      "build_receipt": "/tmp/hbide-replace-nochange-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "236e6aea2c98f131ef7a8a932bc3280088ad3c2b1b603d42db1cb4314ff0af13",
+      "case": "replace-nochange-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_replace_nochange_selection_pty.py"
+      ],
+      "started": 1793435862.7148745,
+      "seconds": 20.53,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "7b55b73f4e93d173b99f07c7bcd9db45ae633d40a95ba6c7ca54a0fa6470586d",
+      "log": "/tmp/hbide-replace-nochange-clean/replace-nochange-selection-1793435862714871195.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "bba89b84dba42206718b667905473e6cf216d6a7",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9bc1cb37e4689e9c7d620938be72ad59cb324f4aaaab39307f17e7b4c3007dfe",
+      "binary_sha256": "39d6e3a1b68efa8b2428f7fb1e1f338bcae22facd90585ad1ea169ac72941441",
+      "build_receipt": "/tmp/hbide-replace-nochange-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "236e6aea2c98f131ef7a8a932bc3280088ad3c2b1b603d42db1cb4314ff0af13",
+      "case": "replace-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_replace_selection_pty.py"
+      ],
+      "started": 1793435883.2407796,
+      "seconds": 10.75,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "d6c004b3ba6e553e0bb32def0d35df9bf85d439a54b3d011f826acc812a0050e",
+      "log": "/tmp/hbide-replace-nochange-clean/replace-selection-1793435883240774748.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "bba89b84dba42206718b667905473e6cf216d6a7",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9bc1cb37e4689e9c7d620938be72ad59cb324f4aaaab39307f17e7b4c3007dfe",
+      "binary_sha256": "39d6e3a1b68efa8b2428f7fb1e1f338bcae22facd90585ad1ea169ac72941441",
+      "build_receipt": "/tmp/hbide-replace-nochange-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "236e6aea2c98f131ef7a8a932bc3280088ad3c2b1b603d42db1cb4314ff0af13",
+      "case": "cut-undo-boundary",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_cut_undo_boundary_pty.py"
+      ],
+      "started": 1793435893.9915066,
+      "seconds": 15.07,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "830d07057e62128a03aef60216c819fde4baf768d5eefeac4b6ff89ac8abd733",
+      "log": "/tmp/hbide-replace-nochange-clean/cut-undo-boundary-1793435893991503021.log"
+    }
+  ],
+  "logs": {
+    "replace-nochange-selection-1793435862714871195.log": "PASS Open requested fixture\nPASS cancel retains original selection for typing\nPASS cancel Undo restores original exact\nPASS identity correct replacement count\nPASS identity retains original selection for typing\nPASS identity Undo restores original exact\nPASS missing correct replacement count\nPASS missing retains original selection for typing\nPASS missing Undo restores original exact\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-g6s3tdv5\n",
+    "replace-selection-1793435883240774748.log": "PASS Open requested fixture\nPASS Replace applies with prior marked range\nPASS typing after Replace inserts without deleting stale selection\nPASS Undo typing keeps Replace\nPASS Undo Replace restores original\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-mgscjg2b\n",
+    "cut-undo-boundary-1793435893991503021.log": "PASS Open requested fixture\nPASS Cut selected al keeps earlier typed X\nPASS Undo Cut alone preserves earlier typing\nPASS Redo Cut alone exact\nPASS Undo later typing keeps Cut\nPASS next Undo restores pre-Cut typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-0z0ef0va\n"
+  },
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "bba89b84dba42206718b667905473e6cf216d6a7",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "9bc1cb37e4689e9c7d620938be72ad59cb324f4aaaab39307f17e7b4c3007dfe",
+    "binary_sha256": "39d6e3a1b68efa8b2428f7fb1e1f338bcae22facd90585ad1ea169ac72941441",
+    "built_at": 1793435862.714612
+  },
+  "limits": "Linux Replace Cancel/identity/missing selection retention, changed Replace clearing, Cut boundary. No product change, new model-suite run, visual, Windows or full IDE acceptance."
+}

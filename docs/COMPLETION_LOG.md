@@ -2721,4 +2721,8 @@ New9check PTY: Cancel, identical alpha->alpha and missing search leave old
 selection intact; next typing replaces selected al with X, Undo restores
 alpha. Counts1/0 verified. Exploratory9PASS, no productfix. This complements
 Q42 changed-Replace clearing, not a blanket modal-selection rule.
-Runner152=151PTY modes plus guard. No pixels/Windows/global. Clean pending.
+Runner152=151PTY modes plus guard. No pixels/Windows/global.
+
+Cleanbba89b8: NoChange9, ChangedSelection5 and Cut7 pass same binary
+39d6e3a1 without retry;15inventory33docs pass. No new model run.
+Ledger docs/evidence/linux-replace-nochange-selection.json.
