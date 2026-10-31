@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q46 | Tab sobre selección dependía de dirección del rango. | 64382ac expandeTab después de borrar rango, en punto real de inserción. Antes5PASS2FAIL; cleanTab7/Identity5/Destructive19/Selection7mismo4cebd9e0+21modelosPASS. Nativefourspacescd col5/Undoabcd inspeccionados. Runner156=155PTY+guard. docs/evidence/linux-selection-tab.json. No wordwrap/Unicode/Windows global. |
 | Q45 | Escribir texto idéntico sobre selección dejaba dirty falso. | a600e4c conserva dirty previo si selección no registra cambio neto. CleanIdentity5/Destructive19/Selection7/OVR3mismof495a8f0+21modelosPASS. Nativealpha col2/Close sinprompt inspeccionados. Runner155=154PTY+guard. docs/evidence/linux-selection-identity.json. No política general de no-op ni Windows. |
 | Q44 | Escribir sobre selección absorbía escritura anterior en Undo. | 2fcc82b pasa selección previa a RecordEdit como frontera explícita. Antes5PASS2FAIL; clean Selection7/Cut7/NoChange9/Changed5 mismo128d0816+21modelos(87repaint)PASS. NativeUndoXalpha/RedoXYpha inspeccionados. docs/evidence/linux-selection-undo-boundary.json. No agrupación universal ni Windows. |
 | Q43 | Cut absorbía escritura anterior en Undo. | 1c46903 marca Cut como operación separada; clean Cut7/Changed5/Boundary6/Block9 mismoadaf68d6+21modelosPASS. NativeUndoXalpha/RedoXpha inspeccionados. docs/evidence/linux-cut-undo-boundary.json. |

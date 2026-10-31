@@ -2786,3 +2786,8 @@ Tab was computed at old endpoint before SelDelete moved cursor to start.
 Before5PASS2FAIL realPTY. Recompute Tab only after range deletion, at actual
 insertion point. Fourmodel checks+forward/reversePTY. Runner156=155PTY+guard.
 Clean/native evidence follows, no wordwrap/Unicode/global contract inferred.
+
+Q46clean64382ac:Tab7,Identity5,Destructive19,Selection7PASS same4cebd9e0;
+21modelsPASS including95repaint,15inventory33docsPASS. Native120x40fourspacescd
+col5/Undoabcd col1 actual pixels inspected, full borders. No re-runs.
+Ledger linux-selection-tab.json. No wordwrap/Unicode/Windows/global acceptance.
