@@ -2258,3 +2258,10 @@ vinculados de116,runner124=123PTYmodes+guard,no124funcionesPASS.
 Cleanfa78719Snap6+ClipboardCase18sameIDE84fd72ea y21modelosPASS,
 15inventory33docs. Ledgerdocs/evidence/linux-designer-snap-edges.json.
 Capturasnativas de snapshotprecommit, no herencia de pixels al build limpio.
+
+## Q29 seguimiento: dragrealPTY
+
+Modo--drag pulsa primera celdaGET, mueveboton32manteniendopulsacion y
+suelta al bordeimpar; seischecks incluidas dimensiones/variable/UndoRedo.
+Exploratorio6PASSsin cambioproducto. Nativo anterior solo teclado, no se
+convierte en dragpixels. Runner125=124PTYmodes+guard.

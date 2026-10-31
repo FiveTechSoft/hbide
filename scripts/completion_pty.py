@@ -64,6 +64,7 @@ CASES = {
     'designer-clipboard-combo-runtime': ('test_designer_clipboard_combo_runtime_pty.py', [], 120),
     'designer-clipboard-get-runtime': ('test_designer_clipboard_get_runtime_pty.py', [], 120),
     'designer-clipboard-runtime': ('test_designer_clipboard_runtime_pty.py', [], 120),
+    'designer-snap-drag-edges': ('test_designer_snap_edges_pty.py', ['--drag'], 120),
     'designer-snap-edges': ('test_designer_snap_edges_pty.py', [], 120),
     'designer-clipboard-popup-types': ('test_designer_clipboard_loaded_types_pty.py', ['--popup'], 120),
     'designer-clipboard-created-types': ('test_designer_clipboard_loaded_types_pty.py', ['--create'], 120),

@@ -1,9 +1,9 @@
-"""Actual designer loaded-control clipboard and history dispatch preserves persisted model."""
+"""Snap rounding keeps a complete fitting control inside odd dialog edges."""
 import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re,json
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
-exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[];created='--create' in sys.argv;popup='--popup' in sys.argv
+exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[];drag='--drag' in sys.argv
 for kind in ['get']:
  modelpath=work/'fixture.json'
  pid,fd=pty.fork()
@@ -34,9 +34,20 @@ for kind in ['get']:
    return json.loads(modelpath.read_text())
   baseline=model()['controls'];check('odd-edge fixture exact',baseline[0]['row']==10 and baseline[0]['col']==28)
   send(b'\x1bOQ');send(b'g');send(b'\r')
-  send(b'\x1b[B\x1b[C')
+  if drag:
+   # Fixture uses the same fit-center formula as the existing dialog;
+   # its painted caption supplies row and verifies the expected size.
+   row=next(r for r,line in enumerate(screen.g) if 'Fixture' in ''.join(line))
+   col=(COLS-1-41)//2
+   def mouse(code,r,c,wait=.15):send(b'\x1b[M'+bytes([code+32,c+33,r+33]),wait)
+   # The first GET cell is not its
+   # resize handle. Xterm button-motion32 updates position while held.
+   mouse(0,row+11,col+29)
+   mouse(32,row+13,col+31)
+   mouse(3,row+13,col+31)
+  else:send(b'\x1b[B\x1b[C')
   moved=model()['controls'][0]
-  check('Snap arrows clamp after rounding at odd edges',moved['row']==11 and moved['col']==29)
+  check(('Snap drag' if drag else 'Snap arrows')+' clamp after rounding at odd edges',moved['row']==11 and moved['col']==29)
   check('complete GET remains within interior',moved['row']+1<=12 and moved['col']+moved['width']<=39)
   check('Snap move keeps dimensions and binding',moved['width']==10 and moved['variable']=='CVAR1')
   send(b'\x1a');check('Undo snapped burst restores complete original',model()['controls']==baseline)
