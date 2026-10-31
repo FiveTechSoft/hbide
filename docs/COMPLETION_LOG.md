@@ -2124,3 +2124,14 @@ El mismo PTY prueba escalar a array/hash de dos elementos y a array/hash
 vacios. Cada fixture exige representacion, Enter abre browser correcto o
 alerta vacio, y Resume valor entero exacto.24checks, cuatro fixtures no
 cuatro funciones. No nuevo cambio de producto ni getter sin efectos.
+
+## 31 octubre: recuperacion de entorno y regresion de inspectores
+
+Entorno efimero reiniciado; checkout publicado1903975 recuperado sin perdida
+conocida de trabajo pendiente. Harbour694428e1 recompilado: version declarada
+igual pero hashhbmk2nuevo78e2990e, no identidad de binario heredada.
+Make general agoto envolvente durante contrib opcionales; herramientas y
+librerias necesarias funcionan y build IDE PASS. Regresion limpia1903975:
+Readonly20Depth24Type24Method10ObjectEmpty12 mismo nuevoIDE, dospasos acotados,
+20modelos15inventario33docsPASS. No nueva captura/candidato/determinismo,
+ni116global/Windows. Evidencia linux-rebuilt-guards-1903975.json.
