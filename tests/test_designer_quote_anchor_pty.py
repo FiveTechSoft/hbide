@@ -38,7 +38,7 @@ for kind in ['button']:
   check('F5 live view visible','live view' in screen.text())
   rows=[r for r,g in enumerate(screen.g) if 'oDlg:Say(' in ''.join(g)]
   check('Live view includes generated quoted SAY',bool(rows))
-  check('Quoted SAY is highlighted current control',bool(rows) and any(bg==3 for fg,bg in screen.at[rows[0]][64:115]))
+  check('Quoted SAY is highlighted current control',bool(rows) and any(bg==6 for fg,bg in screen.at[rows[0]][64:115]))
   check('Opening view leaves JSON exact',json.loads(modelpath.read_text())['controls'][0]['caption']==caption)
 
  finally:

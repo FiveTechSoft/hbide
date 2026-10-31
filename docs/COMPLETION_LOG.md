@@ -3235,3 +3235,7 @@ before4PASS1FAIL(nohighlight). Use sameDsnQuote serializerforlookup. Two
 modelguardssimple/mixedquotes. Runner183=182PTY+guard. Evidence
 linux-designer-quote-anchor.json containscleanacceptance/nativepixels;
 notallambiguousduplicatecaptions/controlbindings/Windows/global.
+
+Q68firstclean78d60b7anchorPTY4/5becauseharnessexpectedbackground3,
+actualCLR_CODEVIEW_HL N/BG=>6. NativepixelsshowscorrectcyanSAYhighlight;
+modelspassed+bothruntime14. Correctharnesscolorandrepeatcleanacceptance.
