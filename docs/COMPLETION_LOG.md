@@ -2873,3 +2873,7 @@ linux-find-selection.json. No retries/searchscope/Windows/global assertion.
 Acceptance-only7checks: realFind from oldmultirowrange, F3Repeat with old
 singleline range, wrappedF3fromtail; subsequenttyping atmatch, exactdisk
 andUndo. Local7PASS, no newproductfix. Runner160=159PTY+guard. Cleanfollows.
+
+ExtensionQ49cleane2482e6 RepeatFind7/Find7/NoChangeReplace9PASS same1696d442,
+15inventory34docsPASS,no retries. Ledgerlinux-find-repeat-selection.json.
+No newfix/model/pixels/global/Windows. MapsFindIDE015/RepeatIDE016linked.

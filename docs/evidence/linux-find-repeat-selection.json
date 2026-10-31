@@ -1,0 +1,93 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "e2482e669b9b1458be791c6d1f81a608c797fe49",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f09469fb369e23ead073ab1fd0d56a11c175fc4a49f74cd172ce27ca38af3363",
+      "binary_sha256": "1696d442a5eb6c02bcd0605c759fd887adf28a7a0d5f4b341ac64951ceeeb2b3",
+      "build_receipt": "/tmp/hbide-find-repeat-selection-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6017a54ca807716034e6445b1132e4085441f859bffa0745a6649d1ddccc168b",
+      "case": "find-repeat-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_find_repeat_selection_pty.py"
+      ],
+      "started": 1793445701.1351273,
+      "seconds": 18.62,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "969ec83aeb61d954572e7bb9844b3ba426963a2eb6ef3fc2f5bdce4a7ee4b17c",
+      "log": "/tmp/hbide-find-repeat-selection-clean/find-repeat-selection-1793445701135123618.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "e2482e669b9b1458be791c6d1f81a608c797fe49",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f09469fb369e23ead073ab1fd0d56a11c175fc4a49f74cd172ce27ca38af3363",
+      "binary_sha256": "1696d442a5eb6c02bcd0605c759fd887adf28a7a0d5f4b341ac64951ceeeb2b3",
+      "build_receipt": "/tmp/hbide-find-repeat-selection-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6017a54ca807716034e6445b1132e4085441f859bffa0745a6649d1ddccc168b",
+      "case": "find-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_find_selection_pty.py"
+      ],
+      "started": 1793445719.7575884,
+      "seconds": 19.77,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "3ce3425dc070bc83240929b1d47c820118db1385a119c8ff909ddc3b2835ceb7",
+      "log": "/tmp/hbide-find-repeat-selection-clean/find-selection-1793445719757585129.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "e2482e669b9b1458be791c6d1f81a608c797fe49",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f09469fb369e23ead073ab1fd0d56a11c175fc4a49f74cd172ce27ca38af3363",
+      "binary_sha256": "1696d442a5eb6c02bcd0605c759fd887adf28a7a0d5f4b341ac64951ceeeb2b3",
+      "build_receipt": "/tmp/hbide-find-repeat-selection-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6017a54ca807716034e6445b1132e4085441f859bffa0745a6649d1ddccc168b",
+      "case": "replace-nochange-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_replace_nochange_selection_pty.py"
+      ],
+      "started": 1793445739.5313175,
+      "seconds": 20.53,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "7b55b73f4e93d173b99f07c7bcd9db45ae633d40a95ba6c7ca54a0fa6470586d",
+      "log": "/tmp/hbide-find-repeat-selection-clean/replace-nochange-selection-1793445739531314531.log"
+    }
+  ],
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "e2482e669b9b1458be791c6d1f81a608c797fe49",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "f09469fb369e23ead073ab1fd0d56a11c175fc4a49f74cd172ce27ca38af3363",
+    "binary_sha256": "1696d442a5eb6c02bcd0605c759fd887adf28a7a0d5f4b341ac64951ceeeb2b3",
+    "built_at": 1793445701.134887
+  },
+  "logs": {
+    "find-repeat-selection-1793445701135123618.log": "PASS Open requested fixture\nPASS Find consumes old multirow range at second match\nPASS Undo after multirow selected Find exact\nPASS Repeat Last Find clears old range\nPASS Undo after repeated Find exact\nPASS Wrapped Repeat Find clears old range on other row\nPASS Undo after wrapped Repeat Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-_ilueh1a\n",
+    "find-selection-1793445719757585129.log": "PASS Open requested fixture\nPASS Typing after Find inserts at match without old range\nPASS Undo Find-following typing exact\nPASS Cancelled Find retains old range\nPASS Undo after cancelled Find exact\nPASS Missing Find retains old range\nPASS Undo after missing Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ormri034\n",
+    "replace-nochange-selection-1793445739531314531.log": "PASS Open requested fixture\nPASS cancel retains original selection for typing\nPASS cancel Undo restores original exact\nPASS identity correct replacement count\nPASS identity retains original selection for typing\nPASS identity Undo restores original exact\nPASS missing correct replacement count\nPASS missing retains original selection for typing\nPASS missing Undo restores original exact\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ndilfxg4\n"
+  },
+  "limits": "Acceptance only clean e2482e6 same1696d442 RepeatFind7Find7NoChangeReplace9PASS. No new productfix,models,visuals,Windows or fullmatrix. One boundedstep without retries."
+}
