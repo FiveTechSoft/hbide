@@ -17,6 +17,14 @@ FUNCTION HBIDE_ScanProcs( cText )
    aLines := hb_ATokens( cText, Chr( 10 ) )
    FOR EACH cLine IN aLines
       nLine++
+      // C dump contents have their own lexical rules. Do not let an
+      // embedded C comment leak into the Harbour scanner after enddump.
+      IF lDump
+         IF Upper( StrTran( StrTran( AllTrim( cLine ), Chr( 9 ), "" ), " ", "" ) ) == "#PRAGMAENDDUMP"
+            lDump := .F.
+         ENDIF
+         LOOP
+      ENDIF
       // Comments inside quoted strings are data, and line comments cannot
       // start a block comment that hides declarations on following lines.
       cL := HBIDE_NavCode( cLine, @lBlock )

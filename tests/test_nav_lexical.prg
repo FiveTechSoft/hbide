@@ -10,6 +10,8 @@ procedure Main()
  Check(Len(a)==2.and.a[2,1]=='Other','trailinglinecomment opener ignored',@nPass,@nFail)
  a:=HBIDE_ScanProcs('#pragma begindump'+hb_eol()+'function Cnoise()'+hb_eol()+'#pragma enddump'+hb_eol()+'function Harbour()')
  Check(Len(a)==1.and.a[1,1]=='Harbour'.and.a[1,3]==4,'C dump excluded',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('#pragma begindump'+hb_eol()+'/* C comment'+hb_eol()+'#pragma enddump'+hb_eol()+'function Harbour()')
+ Check(Len(a)==1.and.a[1,1]=='Harbour'.and.a[1,3]==4,'dump comment state stays outside Harbour lexer',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

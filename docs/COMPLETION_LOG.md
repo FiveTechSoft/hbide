@@ -2893,5 +2893,7 @@ A localstring "/*" or linecomment containing /* hid later functions.
 Scanner strippedblockcomments without lexical context. Before1PASS2FAIL
 realGoToFunction couldn't list/jumpTarget; afterlocal3PASS. Newlexer masks
 single/double/bracketstrings, escape/doubledquotes, stops//&&and*comments,
-keepsrealblockstate and lineindexes. Newmodel11checks incl realblock/pragmadump.
+keepsrealblockstate and lineindexes. Newmodel12checks incl realblock/pragmadump.
+Additional dump-state probe caught C comment leaking beyond enddump;
+scanner now excludes dump body before Harbour lexical processing.
 Runner161=160PTY+guard, modelbaseline22. No fullHarbourparser/preprocessor.
