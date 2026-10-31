@@ -2477,10 +2477,17 @@ Clean880fae2Boundary6Spaces10EditMenu37sameIDEcfd57268PASSsinretry,
 21modelos15inventory33docsPASS. linux-replace-undo-boundary.json
 retieneidentity/logs y6newrepaintchecksnormaltypingfusion/cleanRedo.
 
-## Q35 Identity Replace no dirty falso
+## Q35 Identity Replace does not dirty unchanged text
 
-alpha->alpha contaba1peromar cabadirtysinundo(antes2/3Closeprompt).
-Secompararesultadoexactoporlineaantesmutar;matchcountsiguesiendo1,
-nohistory/dirty/redoalterados. DespuesPTY3PASS+3newmodelchecks.
-Native120x40count1/Closevuelve noname sinpromptinspeccionados.
-Runner138=137PTY+guard. NoUnicodecaseexpansion/Windows/global.
+Replacing alpha with alpha counted one match but marked the clean buffer dirty
+without an undo entry. Before: 2/3 PTY checks, Close requested a save.
+Replace now compares each output line byte-for-byte before applying changes.
+The match count is unchanged; identical output leaves dirty state and redo intact.
+Three PTY checks and three new model checks cover this case.
+Native 120x40 count and Close frames inspected, including full lower borders.
+Runner 138 entries = 137 PTY modes plus one guard, not accepted functions.
+No Unicode case expansion, Windows or global acceptance claim.
+
+Clean 3516276: Identity3, Boundary6 and Spaces10 on the same binary fe0224bc,
+without retry. All 21 model probes, 15 inventory tests and 33 embedded documents
+pass. Identity ledger: docs/evidence/linux-replace-identity.json.
