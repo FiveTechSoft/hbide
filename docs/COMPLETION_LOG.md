@@ -2038,3 +2038,11 @@ bc0adb0 limpio: LongArray7+LongHash7+StructuredDepth24PASS mismoIDE,
 20modelos15inventario33docsPASS. Native120x40array hijo de clave larga,
 41 visible, Cancel99 conserva41 y Resumeexacto. Capturas completas
 inspeccionadas. Evidencia `docs/evidence/debug-long-array-path/`.
+
+## 31 octubre: asercion de valor acotada al browser
+
+Los dos fixtures LongHash/LongArray ahora buscan41 en la columna de valor
+de las primeras ocho filas y exigen la ruta V["long_key_ en la columna
+izquierda de esa misma fila. Antes buscaban41 en toda la pantalla. No se
+cambia producto ni se cuenta cobertura funcional nueva por precisar el
+comparador. Se reagrupa regresion de clipboard y contenedores tras los fixes.

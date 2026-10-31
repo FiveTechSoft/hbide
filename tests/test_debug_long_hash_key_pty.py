@@ -29,6 +29,8 @@ for kind in ['hash']:
    if b'\x1b[18t' in d:os.write(fd,b'\x1b[8;25;80t')
   screen.feed(b)
  def send(b,wait=.35):os.write(fd,b);pump(wait)
+ def scalar_visible(value):
+  return any('V["long_key_' in ''.join(row[:39]) and ''.join(row[39:73]).strip()==str(value) for row in screen.g[:8])
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
  try:
   pump(1.5);send(b'\x1bf');send(b'o');send(str(target).encode());send(b'\r',.6)
@@ -47,9 +49,9 @@ for kind in ['hash']:
   # Long captions are intentionally clipped. Assert the value column, not a hidden caption suffix.
   send(b'\r',.3);send(b'41\r',.4)
   (work/(kind+'-edited.screen')).write_text(screen.text())
-  check(kind+' nested first scalar shows41',bool(re.search(r'(?<![0-9])41(?![0-9])',screen.text())))
+  check(kind+' nested first scalar shows41',scalar_visible(41))
   send(b'\r',.3);send(b'99\x1b',.4)
-  check(kind+' nested typed Esc keeps41',bool(re.search(r'(?<![0-9])41(?![0-9])',screen.text())) and '99' not in screen.text())
+  check(kind+' nested typed Esc keeps41',scalar_visible(41) and '99' not in screen.text())
   send(b'\r',.3);send(b'bad_expr(\r',.4)
   check(kind+' nested invalid expression rejected','Expression error' in screen.text())
   send(b'\r',.3);send(b'\x1b',.3)
