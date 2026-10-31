@@ -1,0 +1,25 @@
+ File  Locate  View  Run  Point  Monitor  Options  Window  Help
+l[�]ql[�]qqqqqqqqqqqqqqqq V is of class: MODALFIXTURE qqqqqqqqqqqqqqqqqqqqkqqqqk
+x0) VxBAD          "Zero divisor"                                         x    x
+mqqqqxNVALUE       1                                                      xqqqqj
+l[�]qxmodalfixture Method                                                 xqqqqk
+x1:  xrealclass    Method                                                 x    x
+x2:  mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj    x
+x3:     hb_Meml[�]qqqqqqqqqqqqqqqqqqq V qqqqqqqqqqqqqqqqqqqqqqqqk hb_ntos( v:nVx
+x4:  return   xClass MODALFIXTURE object                        x              x
+x5:  function mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj              x
+x6:     local oClass := HBClaslqqqqqqqqqqqqqqqqqqkre" )                        x
+x7:     oClass:AddData( "nValux   Zero divisor   x                             x
+x8:     oClass:AddInline( "Badx                  x                             x
+x9:     oClass:AddInline( "_Bax        Ok        xnValue := x} )               x
+x10:    oClass:Create()       mqqqqqqqqqqqqqqqqqqj                             x
+x11: return oClass:Instance()                                                  x
+x12:                                                                           x
+x13: init procedure __hbide_debug__()                                          x
+mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
+l[�]qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq Command qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk
+x> monitor local on                                                            x
+x> window select monitor                                                       x
+x>                                                                             x
+mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
+F1-Help F2-Zoom F3-Repeat F4-User F5-Go F6-WA F7-Here F8-Step F9-BkPt F10-Trace

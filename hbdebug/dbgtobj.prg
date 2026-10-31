@@ -79,6 +79,7 @@ METHOD New( oObject, cVarName, lEditable ) CLASS HBDbObject
    LOCAL cMsg, cMsgAcc
    LOCAL aMessages, aMethods
    LOCAL xValue
+   LOCAL lCanAcc
 
    __dbgSetGo( __dbg():pInfo )
 
@@ -89,8 +90,8 @@ METHOD New( oObject, cVarName, lEditable ) CLASS HBDbObject
    FOR EACH cMsg IN aMessages
       IF hb_LeftEq( cMsg, "_" ) .AND. ;
          hb_AScan( aMessages, cMsgAcc := SubStr( cMsg, 2 ),,, .T. ) > 0
-         xValue := __dbgObjGetValue( oObject, cMsgAcc )
-         AAdd( ::pItems, { cMsgAcc, xValue, .T. } )
+         xValue := __dbgObjGetValue( oObject, cMsgAcc, @lCanAcc )
+         AAdd( ::pItems, { cMsgAcc, xValue, lCanAcc } )
       ELSEIF hb_AScan( aMessages, "_" + cMsg,,, .T. ) == 0
          AAdd( aMethods, cMsg )
       ENDIF

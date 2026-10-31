@@ -1804,3 +1804,13 @@ exacta completa del debuggee tras Resume. No se confunde rechazo de reemplazo
 directo con readonly recursivo: esas rutas son editables por contrato actual.
 Sin cambios de producto, getterfallido/lEditablefalse y profundidad arbitraria
 siguen sin aceptacion.20modelos frescos38c4fdd en ledger separado.
+
+## 31 octubre: getter de objeto fallido no habilita setter
+
+Reproduccion real: getterBad falla con Zero divisor y su texto de error
+aparece en inspector, pero Enter abre editor (5/6checks PASS). El constructor
+ignoraba flaglCanAcc ya devuelto por __dbgObjGetValue y marcaba todo par
+getter/setter editable. Se conserva ese flag en OMSG_EDIT, evitando editar un
+texto de error como valor real. No cambia edicion de propiedades legibles,
+readonly recursivo ni politica general de setters. Fixture con backing1 y
+getterfallido/setter existente; debe rechazar Enter y Resume conservar1.
