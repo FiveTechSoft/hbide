@@ -2801,3 +2801,14 @@ DeleteSelection/DuplicateSelection/ReloadSelection/DeleteEOF/OVRIdentity.
 AllPASS, fourboundedsteps without retries;21models15inventory33docsPASS.
 Ledger linux-editor-selection-joint.json. Supersedes12suite7b7f4af for this
 block only, includesQ42-Q46. No newfix/captures/155PTYglobal/Windows/closure.
+
+## Requested NEXUS demo - 31 October 11:15
+
+Newuser requested real eye-catching professional hbide demo+screenshot.
+Added demos/nexus.prg+hbp+NEXUS.md: actualHbWindow,GETbuttons,portfolio,
+illustrativebars,scenario,modalInspector,CSVexport,Reset,Exit. All records
+fictional labelled. Native120x40 launched from currenthbide Run>Script,
+scenario/inspect/export/reset/return and standalonebuild checked.
+Firstpreviewhalfblockmojibake fixed by demo-only native[]buttonstyle;
+no coreGUI modification. Full screenshot/pixels inspected. Ledger
+ docs/evidence/nexus-demo/. Not globalIDE/Windowsacceptance or release.

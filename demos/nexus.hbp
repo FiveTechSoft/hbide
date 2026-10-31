@@ -1,0 +1,8 @@
+-I..
+nexus.prg
+../hbwindow.prg
+../hbgetu.prg
+../hbbutton.prg
+../hbmenu.prg
+../hbdebug/dbgtwin.prg
+-onexus

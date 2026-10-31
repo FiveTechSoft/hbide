@@ -1,0 +1,14 @@
+{
+  "scope": "Native Linux120x40. New user requested real eyecatching hbide demo. Fictional data labelled. No global IDE or Windows acceptance.",
+  "source_sha256": "d6ae3ec94ca9041325fea17f34cf8d3e740783fc4b3dba546cb2894555a117d5",
+  "verified": [
+    "standalone real hbmk2 demos/nexus.hbp compile",
+    "open nexus.prg in current hbide then Run>Script HRB",
+    "scenario Enter changes Atlas REVIEW->READY and2/4->3/4",
+    "modal Inspect open/close via native GET buttons",
+    "Export produces4rows exact currentstatuses CSV",
+    "Reset restoresAtlasREVIEW/OrbitACTIVE verified re-export",
+    "Escape returns sourceeditor"
+  ],
+  "visual_notes": "Firstpreview had mojibake half-block button shadows in script mode. Changed demo buttons to supported native ASCII [] style, no core GUI mutation. Secondpreview clean fullborders, shadows, chartlabels. Finalmouse screenshot separately inspected."
+}
