@@ -3099,3 +3099,10 @@ Newmode169PTY+guard=170entries. Cleanacceptancefollows.
 Extensioncleanc867554 Variants7/Escape4/Adjacent6/Caret6PASSsamebinary,
 15inventory34docsPASS. linux-editor-escape-variants.json. No newfix/model
 run/newpixels/global/Windows; cleanattemptnoretries.
+
+## Q58 acceptance extension - real GCC unit and missing-caret modes
+
+Newrunner modesbyte/tab4/tab16/no-caretuseactualGCCflagsnotrecordedoutput.
+Expectedchar9whenexactcaretpresent,reported16whencaretabsent(notsilent
+claimofcorrectsemanticlocation). Localbyte6/no-caret6PASS, no productfix.
+Runner174=173PTYmodes+guard, not174features. Cleanfivevariantsfollows.

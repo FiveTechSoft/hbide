@@ -1,6 +1,8 @@
 """Real IDE Edit-menu dispatch. Linux PTY, not visual certification."""
-import shlex, shutil
+import shlex, shutil, argparse
 import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
+parser=argparse.ArgumentParser();parser.add_argument('--column-mode',choices=['default','byte','tab4','tab16','no-caret'],default='default');args=parser.parse_args()
+flags={'default':[], 'byte':['-fdiagnostics-column-unit=byte'], 'tab4':['-ftabstop=4'], 'tab16':['-ftabstop=16'], 'no-caret':['-fno-diagnostics-show-caret']}[args.column_mode]
 ROWS, COLS = 40, 120
 BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
 class Scr:
@@ -82,7 +84,7 @@ original = b'int main(void) {\n\treturn unknown_name;\n}\n'
 target.write_bytes(original)
 project=work/'test.hbp';project.write_text('"folder:12:part/bad.c"\n')
 gcc=shutil.which('gcc');assert gcc
-compiler=work/'tools/hbmk2';compiler.write_text('#!/bin/sh\nexec '+shlex.quote(gcc)+' -fsyntax-only '+shlex.quote(str(target))+'\n');compiler.chmod(0o700)
+compiler=work/'tools/hbmk2';compiler.write_text('#!/bin/sh\nexec '+shlex.quote(gcc)+' -fsyntax-only '+shlex.join(flags)+' '+shlex.quote(str(target))+'\n');compiler.chmod(0o700)
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm',PATH=str(work/'tools')+':'+os.environ['PATH'])
 pid, fd = pty.fork()
 if pid == 0:
@@ -121,7 +123,8 @@ try:
     check('Only actual error counted, not GCC context/note','1 diagnostics' in scr.text())
     send(b'\r',1)
     check('Jump opens exact colon-bearing source','bad.c' in scr.text() and 'return unknown_name;' in scr.text())
-    check('Jump lands at unknown identifier char9 after tab',bool(re.search(r'row:\s*2,\s*col:\s*9',scr.text())))
+    expected_col=16 if args.column_mode=='no-caret' else 9
+    check('Jump honors grounded caret or preserves absent-evidence column '+args.column_mode,bool(re.search(r'row:\s*2,\s*col:\s*'+str(expected_col)+r'\b',scr.text())))
     check('Diagnostic jump leaves source bytes unchanged',target.read_bytes()==original)
 
 finally:
