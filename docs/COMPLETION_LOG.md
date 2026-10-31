@@ -2017,3 +2017,9 @@ la clave real no cambia, solo se recorta su representacion. No es scrolling
 horizontal nuevo ni cambio de claves. La primera prueba exploratoria tambien
 exigia el sufijo de un titulo largo, que ya se trunca a proposito: se retiro
 esa expectativa de titulo, no se presenta como defecto de producto.
+
+e537b71 limpio: LongHash7+StructuredDepth24PASS sobre el mismo binario,
+20modelos actuales,15inventario33docsPASS. Capturas nativas120x40 edit41 y
+Cancel99mantiene41 inspeccionadas completas, Resume exacto. Primer script
+de captura pulso un Enter adicional y dejaba1; corregida secuencia de
+captura, sin cambio de producto. No certificacion de todas las geometrias.

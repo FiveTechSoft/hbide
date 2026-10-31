@@ -1,0 +1,6 @@
+{
+  "source": "e537b71dda235f9a77fd81b817b5d8ad96865a59",
+  "expected": "{\"long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_\"=>{\"one\"=>41, \"two\"=>2}}",
+  "actual": "{\"long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_\"=>{\"one\"=>41, \"two\"=>2}}",
+  "scope": "Native Linux terminal120x40, nested long-key hash edit41/cancel99/Resume exact. Not Windows or all geometry."
+}
