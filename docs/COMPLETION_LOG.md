@@ -3272,3 +3272,13 @@ semicolon. New raw matcher preserves C comment isolation, token boundaries
 and rejects lookalikes. Eight lexical model guards. Runner187=186PTY+guard.
 Evidence linux-navigation-enddump-comment.json follows. Not full
 preprocessor/Windows/global.
+
+## Q73 - Child caption matching dialog title highlighted constructor
+
+Actual loaded SAY caption equal to dialog title: F5 before4PASS1FAIL.
+Caption lookup selected the first literal, in HBWindow():Dialog. Exclude
+the dialog constructor from child caption lookup. Two model guards SAY
+and button. Runner188=187PTY+guard. Evidence
+linux-designer-dialog-caption-anchor.json follows. Ambiguous duplicate
+child captions and generated variable conflicts remain outside this fix.
+No Windows/global certification.

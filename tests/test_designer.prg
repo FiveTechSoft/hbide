@@ -51,6 +51,15 @@ procedure Main()
    hModel["controls",1,"accelerator"] := "H"
    cCode := DsnGenCode(hModel)
    Check("codeview finds button caption with internal accelerator",DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",1])>0)
+   hModel := { "name"=>"Same", "caption"=>"Same caption", "width"=>60, "height"=>20, ;
+      "controls"=>{ { "type"=>"say", "row"=>1, "col"=>2, "caption"=>"Same caption" } } }
+   cCode := DsnGenCode(hModel)
+   nI := DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",1])
+   Check("caption same as dialog anchors SAY not constructor",nI>0.and."oDlg:Say("$hb_ATokens(cCode,hb_eol())[nI])
+   hModel["controls",1] := { "type"=>"button", "row"=>1,"col"=>2,"caption"=>"Same caption", "accelerator"=>"" }
+   cCode := DsnGenCode(hModel)
+   nI := DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",1])
+   Check("caption same as dialog anchors button not constructor",nI>0.and."PUSHBUTTON"$hb_ATokens(cCode,hb_eol())[nI])
    // model -> JSON -> model round trip
    hModel = { "name"     => "Customer", ;
               "caption"  => "Customer data", ;

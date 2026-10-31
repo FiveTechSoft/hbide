@@ -4,6 +4,7 @@ import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re,js
 parser=argparse.ArgumentParser()
 parser.add_argument('--mixed',action='store_true')
 parser.add_argument('--button',action='store_true')
+parser.add_argument('--dialog-caption',action='store_true')
 args=parser.parse_args()
 caption='He said "yes"' if not args.mixed else 'Say "yes" and '+"'no' ] "+chr(92)
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
@@ -30,7 +31,7 @@ for kind in ['button']:
  def send(b,wait=.15):os.write(fd,b);pump(wait)
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
  try:
-  caption='He said "yes"'
+  caption='Fixture' if args.dialog_caption else 'He said "yes"'
   modelpath.write_text(json.dumps({'name':'Fixture','caption':'Fixture','width':60,'height':20,'controls':[{'type':'button' if args.button else 'say','row':1,'col':2,'caption':caption, 'accelerator':'Q'}]}))
   pump(.8);send(b'\x1bo');send(b's',.3);send(b'\x1b[24~',.3)
   send(b'\x19'+str(modelpath).encode());send(b'\r');send(b'\r',.3);send(b'\t')

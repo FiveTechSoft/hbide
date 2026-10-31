@@ -4288,7 +4288,8 @@ function DsnCodeFindLine( aLines, oCtrl )
    endif
    if ! Empty( cCaption )
       for n = 1 to Len( aLines )
-         if DsnQuote( cCaption ) $ aLines[ n ]
+         // The dialog title is not the selected child control.
+         if !( "HBWindow():Dialog(" $ aLines[ n ] ) .and. DsnQuote( cCaption ) $ aLines[ n ]
             return n
          endif
       next
