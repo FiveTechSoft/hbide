@@ -3404,3 +3404,12 @@ Compiler-valid hbclass.ch CREATE CLASS Target omitted from GoToFunction,
 before1PASS2FAIL. Recognize explicit alias and bounded CREATE; continuation.
 Four guards include other CREATEcommands and CLASS VAR/METHOD negatives.
 No arbitrary macro expansion. linux-navigation-create-class.json follows.
+
+## Q83 - ACCESS and ASSIGN method navigation aliases
+
+Compiler-valid explicit CLASS accessors omitted, before1PASS2FAIL.
+Accept ACCESS/ASSIGN implementation aliases from hbclass.ch; assignment
+method actual name has underscore prefix. No inference for member
+declarations without CLASS. Five lexical guards, focused PTY. Initial
+exploratory harness wrong fixture path corrected before before-run.
+Evidence linux-navigation-access-assign.json follows. No arbitrary macros.
