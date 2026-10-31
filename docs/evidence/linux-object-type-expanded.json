@@ -1,0 +1,113 @@
+{
+  "scope": "Four PTY suites same clean5ffb32esource and binary:TypeChange24(fourfixtures)ObjectEmpty12Getter6Setter8PASS. No new product change/pixels/Windows or global116. Last20models daed4cc, not claimed re-executed here.33docs check.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "5ffb32ed51bfa89a769b980ad2111eee64e968bd",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "ee5fd05480b560bfbf7748c765dd1c013ebe91f7c3feb23ecb1a153eb0411d54",
+    "binary_sha256": "18a0e4da07b58207cb0c4f40fdf7a39f584d27a40e6aefdee0ad261c021a7b4e",
+    "built_at": 1793414612.5698543
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "5ffb32ed51bfa89a769b980ad2111eee64e968bd",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ee5fd05480b560bfbf7748c765dd1c013ebe91f7c3feb23ecb1a153eb0411d54",
+      "binary_sha256": "18a0e4da07b58207cb0c4f40fdf7a39f584d27a40e6aefdee0ad261c021a7b4e",
+      "build_receipt": "/tmp/hbide-object-type-expanded/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ec4c1ab4bb37a65f55630cd6855c43084353107a2782c0f4ec752cb31578d43f",
+      "case": "debug-object-type-change",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_object_type_change_pty.py"
+      ],
+      "started": 1793414612.5701265,
+      "seconds": 44.28,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "3449f5b8342002ed0f84a8269c33afc3cf4636a6d6eda6d2b4f77b92808a4010",
+      "log": "/tmp/hbide-object-type-expanded/debug-object-type-change-1793414612570122408.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "5ffb32ed51bfa89a769b980ad2111eee64e968bd",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ee5fd05480b560bfbf7748c765dd1c013ebe91f7c3feb23ecb1a153eb0411d54",
+      "binary_sha256": "18a0e4da07b58207cb0c4f40fdf7a39f584d27a40e6aefdee0ad261c021a7b4e",
+      "build_receipt": "/tmp/hbide-object-type-expanded/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ec4c1ab4bb37a65f55630cd6855c43084353107a2782c0f4ec752cb31578d43f",
+      "case": "debug-object-empty-child",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_object_empty_child_pty.py"
+      ],
+      "started": 1793414656.846941,
+      "seconds": 21.39,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8899a00a408b6dcb597ff6e5a4e731bcb21c945a2037e710b7155a922c880eb9",
+      "log": "/tmp/hbide-object-type-expanded/debug-object-empty-child-1793414656846937191.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "5ffb32ed51bfa89a769b980ad2111eee64e968bd",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ee5fd05480b560bfbf7748c765dd1c013ebe91f7c3feb23ecb1a153eb0411d54",
+      "binary_sha256": "18a0e4da07b58207cb0c4f40fdf7a39f584d27a40e6aefdee0ad261c021a7b4e",
+      "build_receipt": "/tmp/hbide-object-type-expanded/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ec4c1ab4bb37a65f55630cd6855c43084353107a2782c0f4ec752cb31578d43f",
+      "case": "debug-getter-failure",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_getter_failure_pty.py"
+      ],
+      "started": 1793414678.233717,
+      "seconds": 10.42,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+      "log": "/tmp/hbide-object-type-expanded/debug-getter-failure-1793414678233712777.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "5ffb32ed51bfa89a769b980ad2111eee64e968bd",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ee5fd05480b560bfbf7748c765dd1c013ebe91f7c3feb23ecb1a153eb0411d54",
+      "binary_sha256": "18a0e4da07b58207cb0c4f40fdf7a39f584d27a40e6aefdee0ad261c021a7b4e",
+      "build_receipt": "/tmp/hbide-object-type-expanded/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ec4c1ab4bb37a65f55630cd6855c43084353107a2782c0f4ec752cb31578d43f",
+      "case": "debug-setter-failure",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_setter_failure_pty.py"
+      ],
+      "started": 1793414688.6523843,
+      "seconds": 11.32,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+      "log": "/tmp/hbide-object-type-expanded/debug-setter-failure-1793414688652379119.log"
+    }
+  ]
+}
