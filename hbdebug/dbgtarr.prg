@@ -109,7 +109,9 @@ METHOD addWindows( aArray, nRow ) CLASS HBDbArray
    AAdd( oBrwSets:Cargo[ 2 ], aArray )
 
    oBrwSets:AddColumn( oCol := HBDbColumnNew( "", {|| ::arrayName + "[" + hb_ntos( oBrwSets:cargo[ 1 ] ) + "]" } ) )
-   oCol:width := Len( ::arrayName + "[" + hb_ntos( Len( aArray ) ) + "]" )
+   // A long parent hash path must leave room for the scalar value/editor.
+   oCol:width := Min( Len( ::arrayName + "[" + hb_ntos( Len( aArray ) ) + "]" ), ;
+      Max( 1, Int( ( oWndSets:nRight - oWndSets:nLeft - 2 ) / 2 ) ) )
    oCol:DefColor := { 1, 2 }
    nColWidth := oCol:Width
 

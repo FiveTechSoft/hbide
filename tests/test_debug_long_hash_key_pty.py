@@ -3,7 +3,7 @@ import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=25,80
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
-exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
+exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[];array_child='--array-child' in sys.argv
 for kind in ['hash']:
  target=work/(kind+'.prg');value=work/(kind+'.txt')
  init={'array':'{{1, 2}}','hash':'{"'+('long_key_'*16)+'" => {"one" => 1, "two" => 2}}','object':'MakeValue()'}[kind]
@@ -11,6 +11,7 @@ for kind in ['hash']:
  code='procedure main()\n   local v := '+init+'\n   hb_MemoWrit( "'+str(value)+'", '+result+' )\nreturn\n'
  if kind=='object':
   code+='function MakeValue()\n   local oClass := HBClass():New( "ModalFixture" )\n   oClass:AddData( "aValue", {1, 2} )\n   oClass:Create()\nreturn oClass:Instance()\n'
+ if array_child:code=code.replace('{"one" => 1, "two" => 2}', '{1, 2}')
  target.write_text(code)
  pid,fd=pty.fork()
  if pid==0:
@@ -55,6 +56,7 @@ for kind in ['hash']:
   send(b'\x1b',.3);send(b'\x1b',.3);send(b'\x1b',.3) # inner, outer, top inspector
   send(b'\x1b[15~',.7)
   expected={'array':'{{41, 2}}','hash':'{"'+('long_key_'*16)+'"=>{"one"=>41, "two"=>2}}','object':'{41, 2}'}[kind]
+  if array_child:expected=expected.replace('{"one"=>41, "two"=>2}', '{41, 2}')
   actual=value.read_text() if value.exists() else ''
   print(kind+' actual '+repr(actual),flush=True)
   check(kind+' nested edit affects resumed debuggee exact value',actual==expected)

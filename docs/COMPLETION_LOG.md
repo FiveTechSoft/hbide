@@ -2023,3 +2023,13 @@ e537b71 limpio: LongHash7+StructuredDepth24PASS sobre el mismo binario,
 Cancel99mantiene41 inspeccionadas completas, Resume exacto. Primer script
 de captura pulso un Enter adicional y dejaba1; corregida secuencia de
 captura, sin cambio de producto. No certificacion de todas las geometrias.
+
+## 31 octubre: array hijo de clave hash larga
+
+La misma ruta larga llegaba al inspector array, que calculaba su propia
+columna sin limite. Fixture hermano con array hijo antes5/7:41 se aplicaba
+pero no se veia. Misma reserva de media ventana para el valor, nombre real
+intacto. No es otra funcion por añadir un modo de fixture.
+Una investigacion separada probo nombres de miembro de120bytes: Harbour
+trunca simbolos a63 y no forma el par getter/setter; no se usa ese fixture
+invalido como prueba de fallo de columna objeto ni se cambia esa politica.

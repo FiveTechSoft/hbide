@@ -1,0 +1,25 @@
+ File  Locate  View  Run  Point  Monitor  Options  Window  Help
+l[�]q V["long_key_long_key_long_key_long_key_long_key_long_key_long_ke... kqqqqk
+x0) VxV["long_key_long_key_long_key_long_key_long_key_long_key_long_key_lox    x
+mqqqqxV["long_key_long_key_long_key_long_key_long_key_long_key_long_key_loxqqqqj
+l[�]qmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqjqqqqk
+x1: procedure main()                                                           x
+x2:    local v := {"long_key_long_key_long_key_long_key_long_key_long_key_long_x
+x3:    hb_Memol[�]qqqqqqqqqqqqqqqqqqq V qqqqqqqqqqqqqqqqqqqqqqqqk_ValToExp( v )x
+x4: return    x{ => }                                           x              x
+x5:           mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj              x
+x6: init procedure __hbide_debug__()                                           x
+x7:    __dbgInvokeDebug( .T. )                                                 x
+x8: return                                                                     x
+x9:                                                                            x
+x                                                                              x
+x                                                                              x
+x                                                                              x
+x                                                                              x
+mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
+l[�]qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq Command qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqk
+x> monitor local on                                                            x
+x> window select monitor                                                       x
+x>                                                                             x
+mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj
+F1-Help F2-Zoom F3-Repeat F4-User F5-Go F6-WA F7-Here F8-Step F9-BkPt F10-Trace
