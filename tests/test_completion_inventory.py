@@ -187,7 +187,7 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertNotIn('acceptance',self.routes[0])
     def test_ctrl_g_delete_identity_route_linked(self):
         linked=[r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance' in r]
-        self.assertEqual(len(linked),4)
+        self.assertEqual(len(linked),5)
         row=next(r for r in linked if r['acceptance_id']=='IDE-KEY-GOTOFUNCTION-CTRL-G')
         self.assertEqual(row['source'],'hbide.prg')
         self.assertIn('hb_keyExt( nKey ) != HB_KX_DEL',row['condition'])
@@ -207,6 +207,11 @@ class DispatchAcceptance(unittest.TestCase):
         for row in self.routes:
             line=(ROOT/row['source']).read_text().splitlines()[row['line']-1]
             self.assertEqual(row['condition'],line.strip())
+    def test_find_f5_if_dispatch_is_bound(self):
+        row=next(r for r in audit.link_dispatch_contracts(self.routes,self.specs) if r.get('acceptance_id')=='IDE-KEY-FIND-F5')
+        self.assertEqual(row['condition'],'if nKeyStd == K_F5 .and. ! ::oMenu:IsOpen()')
+        self.assertEqual(row['acceptance']['tests'],['test_find_f5_selection_pty.py'])
+        self.assertIn('success/cancel/missing',row['acceptance']['contract'])
     def test_missing_route_fails_closed(self):
         broken={k:dict(v,condition='case nKey == K_NONEXISTENT') for k,v in self.specs.items()}
         with self.assertRaisesRegex(ValueError,'exactly one route'):audit.link_dispatch_contracts(self.routes,broken)

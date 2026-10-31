@@ -1989,6 +1989,15 @@
         "test_find_repeat_selection_pty.py"
       ],
       "contract": "Actual F3 repeat and wrapped repeat clear old selected range before following typing, Undo restores exact original after F2 save. Initial Find in fixture uses Edit menu, not F5 key. Bounded repeated selection fixture, not all search options/menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger."
+    },
+    "IDE-KEY-FIND-F5": {
+      "source": "hbide.prg",
+      "context": "METHOD Activate(",
+      "condition": "if nKeyStd == K_F5 .and. ! ::oMenu:IsOpen()",
+      "tests": [
+        "test_find_f5_selection_pty.py"
+      ],
+      "contract": "Actual F5 Find: successful match clears old selected range before typing, Cancel and missing match retain selection; Undo restores exact original after F2 save. Bounded success/cancel/missing selection fixture only, not all search options/terminal encodings/menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger."
     }
   }
 }
