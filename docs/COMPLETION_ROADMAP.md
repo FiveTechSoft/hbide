@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q103 | Regresión conjunta editor/navegación/proyecto hastaQ102. | Fuente7647451 binarybbfc505b20modos85checks22models29inventory34docsPASS;linux-joint-editor-project-q103.json. No full212/newfix/pixels/candidate. |
 | Q102 | M0 inventaría IF/ELSEIF ademásCASE;F2/F3 vinculados. | 2newguards29inventory34docsPASS/2PTYsuitesFindRepeat7checks+Backupscenario fuente26f69d3;linux-inventory-if-dispatch.json. No productfix/pixels/modelrerun/global. |
 | Q101 | Comparaciones bracketliteral no abren bloque falso. | Compiler-valid9operators;antes2PASS2FAIL;12guardas36PTY22models27inventory34docsPASS sourcea1d0892;nativeinspeccionado;linux-editor-bracket-comparisons.json. No lexercompleto/Windows. |
 | Q100 | Bracketliteral tras minus no abre bloque falso. | Compiler-validantes2PASS2FAIL;5guardas/24PTY22models27inventory34docsPASS source3564515;nativeinspeccionado;linux-editor-bracket-minus.json. No lexercompleto/Windows. |

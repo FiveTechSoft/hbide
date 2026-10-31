@@ -3662,3 +3662,15 @@ failedbackup promotion preservesoldchild/recoverabletempwhile sourcesaves).
 No failures/retries. Links not general keyboard/menus-open coverage; initial
 Find uses Edit menu, not F5. No productfix/pixels/modelrerun/Windows/global.
 linux-inventory-if-dispatch.json;34docsbyteexact.
+
+## Q103 - joint editor/navigation/project regression throughQ102
+
+Source7647451b18d8530b5e37fe62456a6e908654f4bb binary
+bbfc505b5a29bb18db4a0d979550455afca34580a5b3ae40e756886c4ac5d0af:
+20distinctmodes85checksPASS:comparisons12/minus4/multiline4/gap4/operator5/
+list5/paren4/variants7/assignment4/NOTE6/INITEXIT3/navNOTE3/destructor3/
+assignjump3/procedureclass3/accessassign3/HPP3/Cxx3/BOM3/EOF3.
+Two completed sequential10+10batches sameidentity,no failures/retries/
+interruption.22models29inventory34docsPASS.
+linux-joint-editor-project-q103.json. Notfull212registeredmatrix, no product
+fix/pixels/newcandidate/Windows/hitoclosed. Q87full201remains84e58b3.
