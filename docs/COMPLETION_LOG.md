@@ -3603,3 +3603,5 @@ Measured3ScanBlkLinepasses at100/300/600strings(729/2129/4229bytes):
 completed comment */. Other suffixes use bounded context directly. Two
 longlineguards plus recent context/colorPTY. No C helper/generalperfclaim.
 Evidence linux-editor-bracket-gap-performance.json follows.
+
+Q98 clean acceptance6acb198fdb52918367828c59029236055a43ecdd binaryee986291313c92e55d3f61798919536eeb2296ebeeeb0f2fa7e53df37eac8a41:21PTYchecks(Gap4/Operator5/List5/Variants7),22models27inventory34docsPASS;no retries/failures. Timingafter100/300/600strings3passes0/1/3ms vs28/231/921ms. Samehostonly, no universal/fullredraw claim. No newpixels;Q97visualseparate.

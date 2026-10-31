@@ -68,7 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
-| Q98 | Evitar rescansprefijo innecesarios bracket. | Antes3pasadas600strings4229bytes921msestehost;2longlineguardas+PTYcontexto;linux-editor-bracket-gap-performance.json. No C/generalperf/global. |
+| Q98 | Evitar rescansprefijo innecesarios bracket. | Antes3pasadas600strings4229bytes921msestehost;despues0/1/3msvs28/231/921ms100/300/600strings;2longlineguardas+21PTY22models27inventory34docsPASS source6acb198;linux-editor-bracket-gap-performance.json. No C/generalperf/global. |
 | Q97 | Comentario completo conserva contexto bracketliteral. | Fixturecompiladaantes2PASS2FAIL;5repaintguardas/21PTY22models27inventory34docsPASS sourcea4ad3a1;nativecommentmagenta/literalyellow/cyaninspeccionado;linux-editor-bracket-gap.json. No lexercompleto/Windows. |
 | Q96 | M0 enlaza Ctrl+G/extendedDelete a dispatch exacto. | Guardafuente/contexto/condicion+48PTY27inventory34docsPASS fuente63a03f1;linux-inventory-ctrlg-delete.json. No nuevoproducto/pixels/global. |
 | Q95 | Regresion conjunta editor/nav/proyecto trasQ91-Q94. | Fuente26698af binary578a6fa3,15modos63checksPTY+22models26inventory34docsPASS,mismoidentity/sinretries;linux-joint-editor-project-q95.json. No newfix/pixels/candidato/matrizglobal. |
