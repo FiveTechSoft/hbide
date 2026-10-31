@@ -2112,3 +2112,8 @@ Resume ya conservaba array exacto; no perdida de dato. Tras el setter se
 actualizan valor y accesibilidad del item desde getter, tambien tras error
 del setter. No transaccion de setters con efectos ni actualizacion externa
 arbitraria. Se prueba abrir el array tras editar y Resume exacto.
+
+daed4cclimpio Type6Getter6Setter8PASSmismoIDE+20modelos15inventario33docs.
+Native120x40arraybrowsertrascambiodetipo inspeccionado,Resume{41,2}exacto.
+Getter se invoca explicitamente para refrescar cache tras intentar setter;
+no promesa de getter libre de efectos, rollback ni cambios externos.
