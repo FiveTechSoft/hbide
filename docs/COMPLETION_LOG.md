@@ -2589,3 +2589,11 @@ Windows or global acceptance.
 Clean0fa7d14: Duplicate6, Delete6, Reload4 and Overtype3 pass same
 binary7c95d9d0 without retry;21models15inventory33docs pass.
 Ledger docs/evidence/linux-duplicate-selection.json.
+
+## 31 October joint recent editor regression
+
+Clean98f3dfd: nine recent editor suites pass same binary873f807d without
+retry, plus21models15inventory33docs. Ledger linux-editor-recent-joint.json.
+Roadmap now indexes Q33-Q40 with individual provenance and current runner144,
+without aggregating old per-fix runs into current acceptance. No product change,
+full144mode regression, Windows, new visuals or M1 closure.
