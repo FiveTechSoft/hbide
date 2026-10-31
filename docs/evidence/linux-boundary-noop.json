@@ -1,0 +1,119 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c376c819887b40e0ffad80bfa3808de72da4b5f0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1680ae0d161f641853a2d4504f75fa6af3b1d23555f3471b232a4698cff84348",
+      "binary_sha256": "c380915277a9bfe98c5b0c358242c79e39bac5e0dd944524411329c35f7aea87",
+      "build_receipt": "/tmp/hbide-boundary-noop-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6cdcf2c18e22ca367b1d3091909bea9a6e6c8a1bc423a0034a283391b3f50e51",
+      "case": "delete-eof",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_delete_eof_pty.py"
+      ],
+      "started": 1793426602.5131843,
+      "seconds": 16.35,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b80fd4209481a9b5755f0804aa0bd24c2ed264edfa1ec7e66cc7d17270305399",
+      "log": "/tmp/hbide-boundary-noop-clean/delete-eof-1793426602513180690.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c376c819887b40e0ffad80bfa3808de72da4b5f0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1680ae0d161f641853a2d4504f75fa6af3b1d23555f3471b232a4698cff84348",
+      "binary_sha256": "c380915277a9bfe98c5b0c358242c79e39bac5e0dd944524411329c35f7aea87",
+      "build_receipt": "/tmp/hbide-boundary-noop-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6cdcf2c18e22ca367b1d3091909bea9a6e6c8a1bc423a0034a283391b3f50e51",
+      "case": "overtype-identity",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_overtype_identity_pty.py"
+      ],
+      "started": 1793426618.8616235,
+      "seconds": 5.33,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "727f4ad989822628c59bbc5d9c40580144e4c483271c94841a71aba38e7e83ff",
+      "log": "/tmp/hbide-boundary-noop-clean/overtype-identity-1793426618861619620.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c376c819887b40e0ffad80bfa3808de72da4b5f0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1680ae0d161f641853a2d4504f75fa6af3b1d23555f3471b232a4698cff84348",
+      "binary_sha256": "c380915277a9bfe98c5b0c358242c79e39bac5e0dd944524411329c35f7aea87",
+      "build_receipt": "/tmp/hbide-boundary-noop-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6cdcf2c18e22ca367b1d3091909bea9a6e6c8a1bc423a0034a283391b3f50e51",
+      "case": "replace-identity",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_replace_identity_pty.py"
+      ],
+      "started": 1793426624.1890385,
+      "seconds": 6.58,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b9abff047745e560ab4356b4878f7f167b6eb89bbc3ea1dee4972a1d52a28d8c",
+      "log": "/tmp/hbide-boundary-noop-clean/replace-identity-1793426624189034501.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c376c819887b40e0ffad80bfa3808de72da4b5f0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1680ae0d161f641853a2d4504f75fa6af3b1d23555f3471b232a4698cff84348",
+      "binary_sha256": "c380915277a9bfe98c5b0c358242c79e39bac5e0dd944524411329c35f7aea87",
+      "build_receipt": "/tmp/hbide-boundary-noop-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6cdcf2c18e22ca367b1d3091909bea9a6e6c8a1bc423a0034a283391b3f50e51",
+      "case": "delete-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_delete_selection_pty.py"
+      ],
+      "started": 1793426630.7709203,
+      "seconds": 12.31,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "2c229972d3976e8193309e4258c7fbb39767acd3732a41b550c00868ecd0843e",
+      "log": "/tmp/hbide-boundary-noop-clean/delete-selection-1793426630770916607.log"
+    }
+  ],
+  "logs": {
+    "delete-eof-1793426602513180690.log": "PASS Open requested fixture\nPASS Delete at EOF leaves source visible\nPASS Delete at EOF closes without false save prompt\nPASS Backspace at BOF closes without false save prompt\nPASS Delete at EOF preserves redo of undone edit\nPASS Backspace at BOF preserves redo of undone edit\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-1r08ujvs\n",
+    "overtype-identity-1793426618861619620.log": "PASS Open requested fixture\nPASS identical overtype advances cursor without text change\nPASS identical overtype closes without false save prompt\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ds0v1zoi\n",
+    "replace-identity-1793426624189034501.log": "PASS Open requested fixture\nPASS identity replacement still reports one match\nPASS identity replacement of clean buffer closes without save prompt\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-9ahsqcjk\n",
+    "delete-selection-1793426630770916607.log": "PASS Open requested fixture\nPASS typing after Delete Line has no stale out-of-range mark\nPASS editor remains alive after Delete Line and typing\nPASS Undo typing preserves line deletion\nPASS Undo Delete Line restores exact original\nPASS Redo Delete Line exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ibo15h1f\n"
+  },
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "c376c819887b40e0ffad80bfa3808de72da4b5f0",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "1680ae0d161f641853a2d4504f75fa6af3b1d23555f3471b232a4698cff84348",
+    "binary_sha256": "c380915277a9bfe98c5b0c358242c79e39bac5e0dd944524411329c35f7aea87",
+    "built_at": 1793426602.5129032
+  },
+  "limits": "Linux DeleteEOF/BackspaceBOF no-op/redo, identical overtype/Replace and DeleteSelection. No product change, new visual, model-suite run, Windows or whole IDE acceptance."
+}

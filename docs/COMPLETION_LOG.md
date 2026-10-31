@@ -2569,4 +2569,8 @@ Ledger docs/evidence/linux-overtype-identity.json.
 New six-check PTY: Delete at EOF and Backspace at BOF on clean alpha close
 without save prompt; both preserve redo of earlier undone X insertion.
 Exploratory6PASS, no product fix. Runner143=142PTY modes plus guard.
-Not blanket no-op contract, visual or Windows acceptance. Clean pending.
+Not blanket no-op contract, visual or Windows acceptance.
+
+Cleanc376c81: BoundaryNoop6, Overtype3, Identity3 and DeleteSelection6 pass
+same binaryc3809152 without retry;15inventory33docs pass. No new model run.
+Ledger docs/evidence/linux-boundary-noop.json.
