@@ -264,7 +264,8 @@
         "test_replace_spaces_pty.py",
         "test_replace_undo_boundary_pty.py",
         "test_replace_identity_pty.py",
-        "test_replace_selection_pty.py"
+        "test_replace_selection_pty.py",
+        "test_replace_nochange_selection_pty.py"
       ],
       "contract": "Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes. Empty replacement deletes only matches; missing text reports zero and preserves bytes. One-space and two-space search strings are real data: exact counts4/1, disk bytes retain TAB/mixed EOL and trailing replacement, single Undo/Redo exact, Cancel unchanged. No Unicode expansion or multiline replacement claim. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Identity replacement counts matches but leaves clean state and history/redo unchanged; clean buffer closes without save prompt. Case-insensitive matching that changes case is still a real edit. A changed Replace clears the old range before typing; stale selected text cannot be deleted from the new result. No-change/Cancel retain their prior semantics.",
       "expected_label": "Replace..."

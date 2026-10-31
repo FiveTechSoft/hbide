@@ -2714,3 +2714,11 @@ Runner151=150PTY modes plus guard. No other command grouping/Windows/global.
 Clean1c46903: Cut7, ReplaceSelection5, Boundary6 and Block9 pass same
 binaryadaf68d6 without retry;21models15inventory33docs pass.
 Ledger docs/evidence/linux-cut-undo-boundary.json.
+
+## 31 October no-change Replace selection acceptance
+
+New9check PTY: Cancel, identical alpha->alpha and missing search leave old
+selection intact; next typing replaces selected al with X, Undo restores
+alpha. Counts1/0 verified. Exploratory9PASS, no productfix. This complements
+Q42 changed-Replace clearing, not a blanket modal-selection rule.
+Runner152=151PTY modes plus guard. No pixels/Windows/global. Clean pending.
