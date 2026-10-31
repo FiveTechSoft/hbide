@@ -1,0 +1,89 @@
+{
+  "scope": "Q111 onebuffer previousshortcut inert bytes/dirty/cursor typingUndo plus boththreefile modes;notgeneralkeys/Windows/globalmatrix/newproductfix/pixels/models.",
+  "source": "433c7730813344ec646a1e06aaa53fdf19cae556",
+  "binary_sha256": "55cf21576e5297fce4c096d3880668f90964449304ef57730cf48e06a0912de4",
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "433c7730813344ec646a1e06aaa53fdf19cae556",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "6b27911fe7b6b04e8644a2c5fc751dc80729929d85666ced1fb7c360273da760",
+      "binary_sha256": "55cf21576e5297fce4c096d3880668f90964449304ef57730cf48e06a0912de4",
+      "build_receipt": "/tmp/hbide-prevdoc-single-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "30f259b7ac224b3722a4289ddbb4c380b815f62f455d7971ee95e9ede4625457",
+      "case": "prevdoc-shortcut-single",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_prevdoc_shortcut_pty.py",
+        "--single"
+      ],
+      "started": 1793489746.4239445,
+      "seconds": 6.87,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "log": "/tmp/hbide-prevdoc-single-clean/prevdoc-shortcut-single-1793489746423940714.log",
+      "log_text": "PASS Single file opened\nPASS Previous shortcut single buffer byte inert\nPASS No dirty caption after inert shortcut\nPASS Following typing saves at unchanged cursor\nPASS Undo following inert shortcut exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-67cdf3y2\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "433c7730813344ec646a1e06aaa53fdf19cae556",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "6b27911fe7b6b04e8644a2c5fc751dc80729929d85666ced1fb7c360273da760",
+      "binary_sha256": "55cf21576e5297fce4c096d3880668f90964449304ef57730cf48e06a0912de4",
+      "build_receipt": "/tmp/hbide-prevdoc-single-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "30f259b7ac224b3722a4289ddbb4c380b815f62f455d7971ee95e9ede4625457",
+      "case": "prevdoc-shortcut-compact-256",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_prevdoc_shortcut_pty.py",
+        "--compact-256"
+      ],
+      "started": 1793489753.2953343,
+      "seconds": 10.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "log": "/tmp/hbide-prevdoc-single-clean/prevdoc-shortcut-compact-256-1793489753295331203.log",
+      "log_text": "PASS Third of three opened files active\nPASS CtrlShiftF6 goes third to second, not forward\nPASS Typing F2 saves exact second destination\nPASS Previous second to first\nPASS Previous first wraps to third\nPASS Return to second retains modified text\nPASS Undo remains second-only exact\nPASS CtrlF6 forward returns third\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-t3p01p7i\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "433c7730813344ec646a1e06aaa53fdf19cae556",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "6b27911fe7b6b04e8644a2c5fc751dc80729929d85666ced1fb7c360273da760",
+      "binary_sha256": "55cf21576e5297fce4c096d3880668f90964449304ef57730cf48e06a0912de4",
+      "build_receipt": "/tmp/hbide-prevdoc-single-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "30f259b7ac224b3722a4289ddbb4c380b815f62f455d7971ee95e9ede4625457",
+      "case": "prevdoc-shortcut",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_prevdoc_shortcut_pty.py"
+      ],
+      "started": 1793489763.774333,
+      "seconds": 10.53,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "log": "/tmp/hbide-prevdoc-single-clean/prevdoc-shortcut-1793489763774329922.log",
+      "log_text": "PASS Third of three opened files active\nPASS CtrlShiftF6 goes third to second, not forward\nPASS Typing F2 saves exact second destination\nPASS Previous second to first\nPASS Previous first wraps to third\nPASS Return to second retains modified text\nPASS Undo remains second-only exact\nPASS CtrlF6 forward returns third\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-fdhfc1bz\n"
+    }
+  ],
+  "inventory_log": "................................\n----------------------------------------------------------------------\nRan 32 tests in 0.301s\n\nOK\n",
+  "execution": "3modes21checks32inventory34docsPASS nofail/retry/interruption."
+}

@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q111 | PrevDoc conunbufferinertebytes/dirty/cursor+Undo. | 3modos21checks32inventory34docsPASSsource433c773;linux-prevdoc-single.json. No productfix/pixels/models/Windows/global. |
 | Q110 | PrevDoc modo80x25xterm-256colorcon8checksíntegros. | 4modos23checks32inventory34docsPASSsource0b2e615;linux-prevdoc-compact-256.json. No productfix/pixels/modelrerun/allterminals/Windows. |
 | Q109 | xtermCtrlShiftF6 no insertasecuencia;PrevDocfunciona. | Antes2PASS7FAIL;localHarbourkeymap/sourcec1bba4f52PTY32inventory34docsPASS/nativeinspeccionado;linux-prevdoc-shortcut.json. No otherterminals/Windows/modelrerun/global. |
 | Q108 | M0 conserva condiciónmultilíneaCtrlF6vinculada. | source63a5f55multidoc37checks31inventory34docsPASS;linux-inventory-multiline-dispatch.json. No CtrlShiftF6/productfix/pixels/global. |

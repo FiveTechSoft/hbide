@@ -3765,3 +3765,12 @@ EditorTAB4=23checksPASS32inventory34docs,no failure/retry/interruption.
 linux-prevdoc-compact-256.json. No productfix/pixels/modelrerun/allterminals/
 Windows/global/hitoclosed. HBPinline#explorationnotbug:hbmk2itselfrejects
 #.prg, no parsingchange.
+
+## Q111 - previous-document shortcut onebuffer boundary
+
+New--single mode:rawCtrlShiftF6inoneopenbuffer isbyteinert/no dirtycaption,
+followingtype/F2cursorunchangedandUndoexact. Preliminaryprobe2PASS,no
+productbug. Source433c773:single5+compact256threefile8+baselinethreefile8=
+21checksPASS32inventory34docs,no failure/retry/interruption.
+linux-prevdoc-single.json. No newproductfix/pixels/modelrerun/allkeys/Windows/
+global/hitoclosed. NavTABstarprobe3PASS,nochange.
