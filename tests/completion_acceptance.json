@@ -229,9 +229,10 @@
     "IDE-012": {
       "tests": [
         "test_editor_eol.prg",
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_clipboard_spaces_pty.py"
       ],
-      "contract": "Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes.",
+      "contract": "Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes. A copied line containing only spaces is real clipboard data; Paste inserts it with exact disk bytes and Undo/Redo.",
       "expected_label": "Paste"
     },
     "IDE-013": {

@@ -2500,4 +2500,9 @@ content, Undo and Redo. Four new model checks include TAB plus spaces.
 Native 120x40 Paste row3 and Undo row2 inspected with complete lower frames;
 exact bytes verified separately. No empty-line clipboard policy change.
 Runner139 entries = 138 PTY modes plus guard, not accepted functions.
-No Windows or whole-IDE acceptance. Clean regression pending.
+No Windows or whole-IDE acceptance.
+
+Clean797dea5: Clipboard4, Identity3, Boundary6 and Spaces10 pass on the
+same binary14f42d97, without retry; all21models,15inventory,33docs pass.
+Ledger docs/evidence/linux-clipboard-spaces.json retains source/hash/logs.
+IDE012 acceptance link added after clean run, no product changes.
