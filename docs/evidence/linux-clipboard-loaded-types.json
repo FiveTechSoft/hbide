@@ -1,0 +1,64 @@
+{
+  "scope": "Cleanb4338bfLinuxPTYLoadedTypes63(sevenJSONfixtures)+originalComboBoxCase18(realF2/inspector) sameIDE. Loadedfixtures are not F2creation/inspector edit coverage. Not pixels/runtime/handlerexecution/Windows/global117. Last21modelsdc08a40,33docs currentcheck.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "b4338bf3f536a47ed0477b4ac43a5382d2456fdc",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "dcdab0d67f0e8eade7da29535095d51c6ad16216a2503b120094e69a57c693ff",
+    "binary_sha256": "81946d9ed74124eab04beeba9639bd2de9f44536f712774769ee3b30d4011c79",
+    "built_at": 1793415435.8153043
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "b4338bf3f536a47ed0477b4ac43a5382d2456fdc",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "dcdab0d67f0e8eade7da29535095d51c6ad16216a2503b120094e69a57c693ff",
+      "binary_sha256": "81946d9ed74124eab04beeba9639bd2de9f44536f712774769ee3b30d4011c79",
+      "build_receipt": "/tmp/hbide-clipboard-loaded-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "68d556e3fbd4f48f5667cbd1acca3e23a61c5aad80a0fba3b1dacd416ea2c9d8",
+      "case": "designer-clipboard-loaded-types",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_loaded_types_pty.py"
+      ],
+      "started": 1793415435.815562,
+      "seconds": 38.91,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "59658954e57f4670fbdc0fe623e37730417be485951ef3efda3fef050306ded2",
+      "log": "/tmp/hbide-clipboard-loaded-clean/designer-clipboard-loaded-types-1793415435815557889.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "b4338bf3f536a47ed0477b4ac43a5382d2456fdc",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "dcdab0d67f0e8eade7da29535095d51c6ad16216a2503b120094e69a57c693ff",
+      "binary_sha256": "81946d9ed74124eab04beeba9639bd2de9f44536f712774769ee3b30d4011c79",
+      "build_receipt": "/tmp/hbide-clipboard-loaded-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "68d556e3fbd4f48f5667cbd1acca3e23a61c5aad80a0fba3b1dacd416ea2c9d8",
+      "case": "designer-clipboard-case",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_pty.py",
+        "--case-insensitive"
+      ],
+      "started": 1793415474.7270744,
+      "seconds": 24.39,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1a5025ecea16014cf96b6b867f578f70d2813938aa28d991f927d48cab04579a",
+      "log": "/tmp/hbide-clipboard-loaded-clean/designer-clipboard-case-1793415474727070107.log"
+    }
+  ]
+}
