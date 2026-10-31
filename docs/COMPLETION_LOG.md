@@ -3700,3 +3700,14 @@ ReplacesC20temporarycandidateonly,includesQ100/Q101fixes/Q102inventory.
 Q104full212 remainsa0b7b82;notinheritedbythisexport.
 Notrelease/licenses/Windows/install/determinism/globalmatrix/hitoclosed.
 linux-candidate-comparisons-c21.json.
+
+## Q105 - raw TAB bracket context matches painted text
+
+Harbour-valid assignment followedTABbracketliteral:beforeC21 3PASS1FAIL,
+literalpaintedcorrectlybut rawstate falsely openedblockcontaminatingnextline.
+NormalizeTABonlyincontextprefix.5newguards assignment/gap/comparison/index/
+nextstate. Cleansource4610113:6modes35PTYchecks22models173repaint29inventory
+34docsPASS,no failures/retries. Actualnative120x40inspected:literalyellow/
+nextreturnsfunctioncyan/fullborders/F2rawTABexact.
+linux-editor-bracket-tabs.json. No generallexer/Windows/global/hitoclosed.
+C21exportdf2e7a5/Q104full212a0b7b82predatethisfix.
