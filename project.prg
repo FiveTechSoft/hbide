@@ -170,8 +170,8 @@ FUNCTION HBIDEProjectDiagnostics( cOutput, cRoot )
    LOCAL cLevel, h, nSearch, aOutput, nOutput := 0
    cOutput := StrTran( StrTran( cOutput, Chr(13) + Chr(10), Chr(10) ), Chr(13), Chr(10) )
    aOutput := hb_ATokens( cOutput, Chr(10) )
-   FOR EACH cLine IN aOutput
-      nOutput++
+   FOR nOutput := 1 TO Len( aOutput )
+      cLine := aOutput[ nOutput ]
       // Compiler color controls are presentation, not filename/severity.
       cLine := HBIDEProjectDiagnosticText( cLine )
       cFile := ""; cRow := ""; cCol := ""; cText := ""

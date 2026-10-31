@@ -3187,3 +3187,7 @@ bytesintact. Parse-onlynormalizationremovesCSI m/K,keepsraworiginal;
 normalizescaret/renderbeforeQ58mapping. No HBPflagchange,nogeneralANSI
 terminalemulation/Outputviewerfixclaim. Runner180=179PTY+guard. Clean
 acceptance/nativeevidence linux-gcc-colored-diagnostics.json follows.
+
+Q64firstcleane1f0c13PTY27PASSbutprojectmodelFAIL:FOREACHaliasnormalizing
+cLinechangedaOutputandthusraw. Fixedindexediterationtopreserveraworiginal;
+notclaimfirstcleanallpass. Finalacceptancefollows.
