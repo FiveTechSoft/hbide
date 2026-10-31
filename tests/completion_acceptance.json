@@ -2016,6 +2016,18 @@
         "test_prevdoc_shortcut_pty.py"
       ],
       "contract": "Actual xterm Ctrl+Shift+F6 sequence ESC[17;6~ switches third/second/first with first-to-third wrap, subsequent typing/F2 and Undo stay on second, CtrlF6 forward reaches third. New startup mapping preserves extended Ctrl/Shift/F6 identity in gttrm. Bounded three opened files, not other terminals/native Windows/all keys/menus-open states. Parent CtrlF6 dispatch guard separate; link is not PASS without exact source/hash ledger."
+    },
+    "IDE-KEY-SAVEALL-CTRL-F2": {
+      "source": "hbide.prg",
+      "context": "METHOD Activate(",
+      "condition": "case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )",
+      "tests": [
+        "test_nav_pty.py",
+        "test_saveall_fail_pty.py",
+        "test_saveall_conflict_cancel_pty.py",
+        "test_saveall_conflict_reload_pty.py"
+      ],
+      "contract": "Actual CtrlF2 SaveAll saves named dirty buffers independently; nochange status, untitled skipped, failed write remains dirty. Conflict Cancel preserves edited buffer/disk while other document saves; Reload skips writing/backup and reports reloaded separately. Bounded fixtures and ESC[12;5~ encoding, not all SaveAll policies/terminals/menus-open states/Windows. Link is not runtime PASS; inspect exact source/hash ledger."
     }
   }
 }

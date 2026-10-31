@@ -187,7 +187,7 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertNotIn('acceptance',self.routes[0])
     def test_ctrl_g_delete_identity_route_linked(self):
         linked=[r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance' in r]
-        self.assertEqual(len(linked),7)
+        self.assertEqual(len(linked),8)
         row=next(r for r in linked if r['acceptance_id']=='IDE-KEY-GOTOFUNCTION-CTRL-G')
         self.assertEqual(row['source'],'hbide.prg')
         self.assertIn('hb_keyExt( nKey ) != HB_KX_DEL',row['condition'])
@@ -232,6 +232,11 @@ class DispatchAcceptance(unittest.TestCase):
         source=(ROOT/'hbide.prg').read_text()
         self.assertIn('HB_GTI_ADDKEYMAP',source)
         self.assertIn('Chr(27)+"[17;6~"',source)
+    def test_ctrl_f2_saveall_route_and_conflict_scope(self):
+        row=next(r for r in audit.link_dispatch_contracts(self.routes,self.specs) if r.get('acceptance_id')=='IDE-KEY-SAVEALL-CTRL-F2')
+        self.assertEqual(row['condition'],'case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )')
+        self.assertIn('test_saveall_conflict_reload_pty.py',row['acceptance']['tests'])
+        self.assertIn('reloaded separately',row['acceptance']['contract'])
     def test_missing_route_fails_closed(self):
         broken={k:dict(v,condition='case nKey == K_NONEXISTENT') for k,v in self.specs.items()}
         with self.assertRaisesRegex(ValueError,'exactly one route'):audit.link_dispatch_contracts(self.routes,broken)
