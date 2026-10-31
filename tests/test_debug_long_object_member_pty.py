@@ -42,10 +42,10 @@ for kind in ['object']:
   send(b'\r',.3) # dismiss alert, still in structured inspector
   send(b'\r',.4) # Enter drills into nested browser; edits enabled by default
   (work/(kind+'-browser.screen')).write_text(screen.text())
-  check('valid long member numeric value visible',any(member[:12].lower() in ''.join(row) and '123456789' in ''.join(row) for row in screen.g[:8]))
+  check('valid long member numeric value visible',any(member[:12].upper() in ''.join(row).upper() and '123456789' in ''.join(row) for row in screen.g[:8]))
   send(b'\r',.3);send(b'987654321\r',.4)
   (work/'long-member-edited.screen').write_text(screen.text())
-  def value_visible():return any(member[:12].lower() in ''.join(row) and '987654321' in ''.join(row) for row in screen.g[:8])
+  def value_visible():return any(member[:12].upper() in ''.join(row).upper() and '987654321' in ''.join(row) for row in screen.g[:8])
   check('long member edited value visible',value_visible())
   send(b'\r',.3);send(b'99\x1b',.3)
   check('long member Cancel99 keeps edited value visible',value_visible())

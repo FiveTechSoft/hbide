@@ -2056,3 +2056,8 @@ pero no puede leerse completo en el inspector80columnas. Reserva de media
 ventana para valor igual que hash/array, sin alterar miembro ni setter.
 Log y pantalla previos retenidos. El test exige nombre y numero entero en
 la misma fila del browser, no el numero en el codigo fuente.
+
+Primer runner f82ad4f conserva5/8 por comparador de nombre en minusculas:
+el browser muestra el miembro DATA en mayusculas. Pantalla anterior prueba
+987654 truncado; pantalla tras fix numero entero. Comparador se corrige
+sin distinguir caja y se repite, no se borra el intento anterior.
