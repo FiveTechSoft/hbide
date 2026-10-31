@@ -1926,3 +1926,8 @@ Readonlyexplicito nativeLinux120x40fuente355a765fresca: objetoarray abrecon.F.,
 Entersobrescalar1rechazaconalertalegible,Resumeconservaarray{1,2}exacto.
 Doscapturasinspeccionadasmarcoscompletos. No cambia politicaMonitor ni certifica
 otroscontenedores. Evidencia debug-readonly-depth/native-results.json/script.
+
+Readonlyexplicito ampliado a20checks: añade objetohash y objetoobjetoarray,
+ademas arrayarray/hashhash/objetoarray. Las cincofixture invocan.F.desde
+expresiondebugger, rechazanEntersobrescalar yResumeproducevalorcompletoexacto.
+No cambios de producto ni politicaMonitor/default; no profundidad arbitraria.

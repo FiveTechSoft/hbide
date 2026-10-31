@@ -4,13 +4,17 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=25,80
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
-for kind in ['array','hash','object']:
+for kind in ['array','hash','object','objecthash','objectobject']:
  target=work/(kind+'.prg');value=work/(kind+'.txt')
- init={'array':'{{1, 2}}','hash':'{"nest" => {"one" => 1, "two" => 2}}','object':'MakeValue()'}[kind]
- result='hb_ValToExp( v:aValue )' if kind=='object' else 'hb_ValToExp( v )'
+ objectkind=kind.startswith('object')
+ fixture='object' if objectkind else kind
+ init={'array':'{{1, 2}}','hash':'{"nest" => {"one" => 1, "two" => 2}}','object':'MakeValue()'}[fixture]
+ result='hb_ValToExp( v:aValue:aValue )' if kind=='objectobject' else 'hb_ValToExp( v:aValue )' if objectkind else 'hb_ValToExp( v )'
  code='procedure main()\n   local v := '+init+'\n   hb_MemoWrit( "'+str(value)+'", '+result+' )\nreturn\n'
- if kind=='object':
+ if objectkind:
   code+='function MakeValue()\n   local oClass := HBClass():New( "ModalFixture" )\n   oClass:AddData( "aValue", {1, 2} )\n   oClass:Create()\nreturn oClass:Instance()\n'
+ if kind=='objecthash':code=code.replace('{1, 2}', '{"one" => 1, "two" => 2}')
+ if kind=='objectobject':code=code.replace('oClass:AddData( "aValue", {1, 2} )','oClass:AddData( "aValue", MakeInner() )')+'function MakeInner()\n   local oClass := HBClass():New( "InnerFixture" )\n   oClass:AddData( "aValue", {1, 2} )\n   oClass:Create()\nreturn oClass:Instance()\n'
  target.write_text(code)
  pid,fd=pty.fork()
  if pid==0:
@@ -34,18 +38,21 @@ for kind in ['array','hash','object']:
   send(b'\x1b[B\x1b[B');send(b'\x1b[20~',.4)
   send(b'\x1br');send(b'd',1);send(b'\x1b[15~',.7)
   check(kind+' debugger stopped','Command' in screen.text())
-  fn={'array':'__dbgArrays','hash':'__dbgHashes','object':'__dbgObject'}[kind]
+  fn={'array':'__dbgArrays','hash':'__dbgHashes','object':'__dbgObject'}[fixture]
   send(('? '+fn+'(v,"ReadonlyFixture",.F.)\r').encode(),.6)
   (work/(kind+'-readonly-open.screen')).write_text(screen.text())
   check(kind+' explicit readonly container opens','ReadonlyFixture' in screen.text())
   send(b'\r',.4)
   (work/(kind+'-readonly-nested.screen')).write_text(screen.text())
+  if kind=='objectobject':send(b'\r',.4)
   send(b'\r',.4)
   check(kind+' readonly nested scalar rejects Enter','Value cannot be edited' in screen.text())
   (work/(kind+'-readonly-attempt.screen')).write_text(screen.text())
   send(b'\r',.3);send(b'\x1b',.3);send(b'\x1b',.3);send(b'\x1b',.3)
+  if kind=='objectobject':send(b'\x1b',.3)
   send(b'\x1b[15~',.7)
-  expected={'array':'{{1, 2}}','hash':'{"nest"=>{"one"=>1, "two"=>2}}','object':'{1, 2}'}[kind]
+  expected={'array':'{{1, 2}}','hash':'{"nest"=>{"one"=>1, "two"=>2}}','object':'{1, 2}'}[fixture]
+  if kind=='objecthash':expected='{"one"=>1, "two"=>2}'
   check(kind+' readonly fixture remains exact',value.exists() and value.read_text()==expected)
 
  finally:
