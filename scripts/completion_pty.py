@@ -113,12 +113,16 @@ def source_snapshot():
         h.update(rel.encode() + b'\0')
         h.update(path.read_bytes() if path.is_file() else b'<missing>')
         h.update(b'\0')
-    return dict(source=subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT, text=True).strip(),
+    untracked = subprocess.check_output(['git','ls-files','--others','--exclude-standard','-z'], cwd=ROOT).decode().split('\0')
+    extra = hashlib.sha256()
+    for rel in sorted(p for p in untracked if p and pathlib.Path(p).suffix.lower() in ('.prg','.ch','.c','.h','.hbp','.hbc','.hbm','.py')):
+        extra.update(rel.encode()+b'\0'+(ROOT/rel).read_bytes()+b'\0')
+    return dict(untracked_inputs_sha256=extra.hexdigest(), source=subprocess.check_output(['git','rev-parse','HEAD'], cwd=ROOT, text=True).strip(),
                 tracked_changes=subprocess.check_output(['git','status','--porcelain','--untracked-files=no'], cwd=ROOT, text=True),
                 tracked_snapshot_sha256=h.hexdigest())
 
 def validate_receipt(receipt, state, binary_hash):
-    for key in ('source','tracked_changes','tracked_snapshot_sha256'):
+    for key in ('source','tracked_changes','tracked_snapshot_sha256','untracked_inputs_sha256'):
         if receipt.get(key) != state[key]:
             raise ValueError('build receipt does not match current '+key+'; rebuild')
     if receipt.get('binary_sha256') != binary_hash:

@@ -1747,3 +1747,10 @@ usar --build-receipt de otra carpeta. Cambios durante build no emiten recibo;
 cambios durante prueba invalidan resultado. Tests de validacion rechazan
 campos ausentes y fuente/dirty/bytes/binario distintos. Evidencia historica
 baeda47 conserva su procedencia comprobada, no se reescribe retroactivamente.
+
+### Inputs locales no tracked tambien invalidan reuse
+
+Snapshot incluye ahora archivos fuente/include/HBP/HBC/HBM/Python no tracked
+no ignorados, con ruta y bytes. Evita que un header local añadido cambie el
+build sin cambiar HEAD/status tracked. No promete detectar toda dependencia
+externa del compilador; el hash del binario sigue siendo el objeto probado.
