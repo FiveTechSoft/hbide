@@ -1,0 +1,82 @@
+{
+  "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+  "source": "f9c2af696ba632c474fd1f33aabbb2477c538689",
+  "archive_sha256": "f29254e21f7bc27e8acc08babbb52f8da634e0fc902950e7dd612278aceefd25",
+  "dirty": false,
+  "started": 1793410287.528889,
+  "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+  "compiler_sha256": "036892183255330fe1330d5109f32d5bbe523bbfd8270ec458b913c93910adbb",
+  "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+  "removed_inherited_binaries": [
+    {
+      "path": "hbide.exe",
+      "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+    },
+    {
+      "path": "tests/hbide",
+      "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+    }
+  ],
+  "tests": {
+    "test_about_build_pty.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+      "binary_sha256": "d3900284eaed2a0560878e8c917918c202d56611e93fea715e40317de6e15022"
+    },
+    "test_help_mouse_pty.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+      "binary_sha256": "d3900284eaed2a0560878e8c917918c202d56611e93fea715e40317de6e15022"
+    },
+    "test_run_source_pty.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+      "binary_sha256": "d3900284eaed2a0560878e8c917918c202d56611e93fea715e40317de6e15022"
+    },
+    "test_debug_getter_failure_pty.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+      "binary_sha256": "d3900284eaed2a0560878e8c917918c202d56611e93fea715e40317de6e15022"
+    },
+    "test_debug_setter_failure_pty.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+      "binary_sha256": "d3900284eaed2a0560878e8c917918c202d56611e93fea715e40317de6e15022"
+    },
+    "test_file_modal_long_list_pty.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+      "binary_sha256": "d3900284eaed2a0560878e8c917918c202d56611e93fea715e40317de6e15022"
+    },
+    "test_file_modal_mouse_pty.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+      "binary_sha256": "d3900284eaed2a0560878e8c917918c202d56611e93fea715e40317de6e15022"
+    },
+    "test_file_modal_buttons_pty.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+      "binary_sha256": "d3900284eaed2a0560878e8c917918c202d56611e93fea715e40317de6e15022"
+    }
+  },
+  "build_exit": 0,
+  "generated_buildinfo_sha256": "a65e7386f980e9ad6b395aa9540a70c0a2106bfee5ec8c94adfa527baea860e4",
+  "release_status": "not cleared; source notice review required",
+  "unstripped_sha256": "202503bff2fe688abced4d228da1c5163a923cfe33b1ea7544607c93bcf0de39",
+  "strip_tool": {
+    "path": "/usr/bin/strip",
+    "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+  },
+  "binary_sha256": "d3900284eaed2a0560878e8c917918c202d56611e93fea715e40317de6e15022",
+  "dependency_check_exit": 0,
+  "ok": true,
+  "finished": 1793410384.5981574
+}
