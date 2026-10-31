@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q41 | Clipboard interno no cruzaba documentos. | 764472e comparte cClipboard entre instancias; Undo/Redo siguen porbuffer. Copy/Paste6 y4model checks, nativebeta/alpha/Undoinspeccionados. ExtensionesClose8/Block9cubren Cut,cierre/New,EOLmixto. No OSclipboard/Windows. docs/evidence/linux-clipboard-multidoc.json, linux-clipboard-lifetime.json y linux-clipboard-block.json. |
 | Q40 | Duplicate Line conservaba selección antigua. | 0fa7d14 limpia rango antes de duplicar; antes5/6PTY por borrado de bloque al escribir, después6PASS+4model checks. Native120x40 copia/Undo inspeccionados. Sin cambio Cut niWindows. docs/evidence/linux-duplicate-selection.json. |
 | Q39 | OVR idéntico ensuciaba sin cambiar bytes. | a4857f7 activa dirty sólo si cambia línea. Antes2/3PTY, después3PASS+4model checks cursor/redo. NativeOVRcol2/Close sinprompt inspeccionados. No contrato global de no-op. docs/evidence/linux-overtype-identity.json. |
 | Q38 | Delete Line dejaba ancla fuera de rango. | 8f256d5 limpia selección antes de quitar línea; selección3->1, Delete, typing antes error, después6PASS+4model checks. Native120x40typing/Undo inspeccionados. docs/evidence/linux-delete-selection.json. |
@@ -107,12 +108,15 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ### Regresión conjunta reciente del editor
 
-Clean98f3dfd: nueve suites de selección/reload, no-op OVR/DeleteEOF/BackspaceBOF,
-Replace identidad/frontera/espacios y clipboard blanco pasan sobre el mismo
-binario873f807d, sin reintentos;21modelos15inventario33docs PASS.
-Ledger `docs/evidence/linux-editor-recent-joint.json`. No son144modos globales
-ni cierreM1/Windows. Runner actual144entradas =143modosPTY+guard.
-Candidate7 export2f13366 es anterior aQ39/Q40 y no hereda esos fixes.
+Clean7b7f4af: doce suites recientes de selección/reload, no-op OVR/DeleteEOF/
+BackspaceBOF, Replace identidad/frontera/espacios y clipboard (espacios,
+multidocumento, Cut/cierre/New y bloques) pasan sobre el mismo binario8835931a,
+en dos pasos acotados sin reintentos;21modelos15inventario33docs PASS.
+Ledger `docs/evidence/linux-editor-clipboard-joint.json`. Sustituye la conjunta
+98f3dfd de nueve suites para este bloque, no sus evidencias históricas.
+No son147modos globales ni cierreM1/Windows. Runner147=146modosPTY+guard.
+Candidate8 export513e9b9 incluyeQ39-Q41:8smokes+6extrasPASS en binarioexacto
+4b4a5ca9. No release/instalador/licencias/Windows ni matrizcompleta.
 
 ## Ampliaciones que no se confunden con cierre probado
 

@@ -2649,3 +2649,10 @@ Binary hash unchanged; two bounded steps without retries.
 Manifest/toolchain/dependencies/logs retained in linux-candidate-clipboard.json.
 Local temporary candidate8, not release/installer/Windows/license clearance,
 full147mode regression, new determinism proof or new visual acceptance.
+
+## 31 October joint editor plus clipboard regression
+
+Clean7b7f4af: twelve recent suites pass same binary8835931a in two bounded
+steps without retry, plus21models15inventory33docs. Ledger
+linux-editor-clipboard-joint.json. Roadmap indexesQ41 and candidate8 with
+limits; no product change, full147mode matrix, new pixels or M1/Windows closure.
