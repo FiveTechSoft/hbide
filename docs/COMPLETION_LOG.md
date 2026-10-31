@@ -2231,3 +2231,12 @@ Ledger+log:docs/evidence/linux-debug-functions-original-current.json.
 Inventario enlaza17rutas acotadas: popup cuando probado, Fkeys se etiquetan
 como tales, Sort solo retencionvista, WorkAreas solo ningunDBF.
 No nuevo cierre de milestone ni cambio producto por esta reconciliacion.
+
+## 31 octubre: Window popup efectos acotados
+
+Nueva prueba realpopup Move/SizearrowsEscEnter, Zoomroundtrip charactergrid,
+Iconize->Tilereattachbrowser, focuscycle y Resumeexact12locals. Exploratorio
+16PASS, sinbugproductenfixture. No pixeles/solapamientoglobal/Windows.
+Se vinculan5entradas,97contratosmenu/116acciones no97funcionesaceptadas.
+Runner123entradas=122PTYmodes+guard. Modelo layout existente sigue
+independiente, no se asume ejecutado por vincular archivo.

@@ -767,6 +767,46 @@
         "test_debug_functions_pty.py"
       ],
       "contract": "Original fixed-wait Linux session: Window Cascade moves source caption upward and Tab continues cycling across surviving windows. No pixel geometry or all window layouts. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+    },
+    "DBG-048": {
+      "expected_label": "Move",
+      "tests": [
+        "test_debug_window_layout_pty.py",
+        "test_debug_layout.prg"
+      ],
+      "contract": "Real Window popup mnemonic dispatch in bounded Linux fixture. Move arrows shift source caption down/right, Esc restores position, Enter preserves it. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise."
+    },
+    "DBG-049": {
+      "expected_label": "Size",
+      "tests": [
+        "test_debug_window_layout_pty.py",
+        "test_debug_layout.prg"
+      ],
+      "contract": "Real Window popup mnemonic dispatch in bounded Linux fixture. Size arrows change grid, Esc restores entire character grid, Enter preserves changed grid. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise."
+    },
+    "DBG-050": {
+      "expected_label": "Zoom       F2",
+      "tests": [
+        "test_debug_window_layout_pty.py",
+        "test_debug_layout.prg"
+      ],
+      "contract": "Real Window popup mnemonic dispatch in bounded Linux fixture. Zoom menu brings caption to desktop top; second Zoom restores complete prior character grid. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise."
+    },
+    "DBG-051": {
+      "expected_label": "Iconize",
+      "tests": [
+        "test_debug_window_layout_pty.py",
+        "test_debug_layout.prg"
+      ],
+      "contract": "Real Window popup mnemonic dispatch in bounded Linux fixture. Iconize hides source browser and subsequent Tile reattaches it. Separate earlier commands fixture covers iconize toggle viewport. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise."
+    },
+    "DBG-052": {
+      "expected_label": "Tile",
+      "tests": [
+        "test_debug_window_layout_pty.py",
+        "test_debug_layout.prg"
+      ],
+      "contract": "Real Window popup mnemonic dispatch in bounded Linux fixture. Tile restores iconized source painter, focus cycling retains caption, Resume serializes all twelve locals unchanged except intended increment. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise."
     }
   },
   "modal_contracts": [

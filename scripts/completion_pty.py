@@ -118,6 +118,7 @@ CASES = {
     'debug-mouse': ('test_debug_mouse_pty.py', [], 120),
     'debug-value-modal': ('test_debug_value_modal_pty.py', [], 120),
     'debug-numeric-modal': ('test_debug_numeric_modal_pty.py', [], 120),
+    'debug-window-layout': ('test_debug_window_layout_pty.py', [], 120),
     'debug-commands': ('test_debug_commands_pty.py', [], 120),
     'debug-functions': ('test_debug_functions_pty.py', [], 180),
     'debug-functions-idle': ('test_debug_functions_pty.py', ['--idle-settle'], 120),

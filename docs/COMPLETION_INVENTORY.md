@@ -92,11 +92,11 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-045 | Options | Restore Settings... | hbdebug/dbgmenu.prg:192 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-046 | Window | Next      Tab | hbdebug/dbgmenu.prg:197 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-047 | Window | Prev   Sh-Tab | hbdebug/dbgmenu.prg:198 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-048 | Window | Move | hbdebug/dbgmenu.prg:199 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-049 | Window | Size | hbdebug/dbgmenu.prg:200 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-050 | Window | Zoom       F2 | hbdebug/dbgmenu.prg:201 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-051 | Window | Iconize | hbdebug/dbgmenu.prg:202 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
-| DBG-052 | Window | Tile | hbdebug/dbgmenu.prg:204 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-048 | Window | Move | hbdebug/dbgmenu.prg:199 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-049 | Window | Size | hbdebug/dbgmenu.prg:200 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-050 | Window | Zoom       F2 | hbdebug/dbgmenu.prg:201 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-051 | Window | Iconize | hbdebug/dbgmenu.prg:202 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DBG-052 | Window | Tile | hbdebug/dbgmenu.prg:204 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-053 | Window | Cascade | hbdebug/dbgmenu.prg:205 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-054 | Help | About Help | hbdebug/dbgmenu.prg:210 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
 | DBG-055 | Help | Keys | hbdebug/dbgmenu.prg:212 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
@@ -219,6 +219,11 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-046: Original fixed-wait Linux session: Tab changes hardware cursor between debugger windows, and cycles after Cascade. No all focus layouts/platform promise. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
 - DBG-047: Original fixed-wait Linux session: ShiftTab returns hardware cursor to previous debugger window. No all focus layouts/platform promise. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
 - DBG-053: Original fixed-wait Linux session: Window Cascade moves source caption upward and Tab continues cycling across surviving windows. No pixel geometry or all window layouts. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Pruebas: [test_debug_functions_pty.py](../tests/test_debug_functions_pty.py)
+- DBG-048: Real Window popup mnemonic dispatch in bounded Linux fixture. Move arrows shift source caption down/right, Esc restores position, Enter preserves it. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise. Pruebas: [test_debug_window_layout_pty.py](../tests/test_debug_window_layout_pty.py), [test_debug_layout.prg](../tests/test_debug_layout.prg)
+- DBG-049: Real Window popup mnemonic dispatch in bounded Linux fixture. Size arrows change grid, Esc restores entire character grid, Enter preserves changed grid. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise. Pruebas: [test_debug_window_layout_pty.py](../tests/test_debug_window_layout_pty.py), [test_debug_layout.prg](../tests/test_debug_layout.prg)
+- DBG-050: Real Window popup mnemonic dispatch in bounded Linux fixture. Zoom menu brings caption to desktop top; second Zoom restores complete prior character grid. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise. Pruebas: [test_debug_window_layout_pty.py](../tests/test_debug_window_layout_pty.py), [test_debug_layout.prg](../tests/test_debug_layout.prg)
+- DBG-051: Real Window popup mnemonic dispatch in bounded Linux fixture. Iconize hides source browser and subsequent Tile reattaches it. Separate earlier commands fixture covers iconize toggle viewport. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise. Pruebas: [test_debug_window_layout_pty.py](../tests/test_debug_window_layout_pty.py), [test_debug_layout.prg](../tests/test_debug_layout.prg)
+- DBG-052: Real Window popup mnemonic dispatch in bounded Linux fixture. Tile restores iconized source painter, focus cycling retains caption, Resume serializes all twelve locals unchanged except intended increment. Character-grid assertions are not pixel/overlap/Windows acceptance; no all panels/layout sizes promise. Pruebas: [test_debug_window_layout_pty.py](../tests/test_debug_window_layout_pty.py), [test_debug_layout.prg](../tests/test_debug_layout.prg)
 
 ## Contratos modales y edicion inline vinculados
 
