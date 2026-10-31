@@ -2934,3 +2934,9 @@ RealPTYbefore3PASS3FAIL,localafter6PASS; byteexactF2 unchanged. ScanBlkLine
 now honors&&/leading* comments and paintercolorswholeline. Realblockstate
 takesprecedence overstar; sixmodelassertions added. No bracket/estring/full
 lexer/viewporthorizontal/Windows claim. Runner163=162PTY+guard.
+
+Q52cleandd94e1d LineComments6/Literal3/Typed3/Find7PASS samebinary;
+22modelsPASSincl112repaint,15inventory34docsPASS. Native120x40three
+returnkeywords cyan andtwo commentsmagenta actualpixels/fullborders
+inspected,F2exact. Ledgerlinux-editor-line-comments.json. No retries/global/
+Windows/fulllexer/viewporthorizontal. Candidate12predatesQ52.
