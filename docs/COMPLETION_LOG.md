@@ -3007,3 +3007,8 @@ operatorloopsconsumedtheir opener. Before3PASS2FAIL;local5PASS. Tokenloops
 nowstopexactlybeforecommentdelimiters, outertokenizerhandlescommentand
 resumesafterblockclosing. Extendedfixtureadds+//. No sourcebyteschanged,
 no fulllexer/Unicode/Windowsclaim. Runner167=166PTY+guard.
+
+Q56clean3fb6f1f Adjacent6/LineComments6/MessageSelection9PASSsamebinary,
+22models112repaintPASS/15inventory34docs. Native120x40adjacentcomments
+magentaandcodeafter*/resumes,fullbordersinspected,F2exact. Ledger
+linux-editor-adjacent-comments.json. No retries/newcandidate/full166PTY/Windows.
