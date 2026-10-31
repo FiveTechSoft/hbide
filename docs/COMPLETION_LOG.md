@@ -2812,3 +2812,9 @@ scenario/inspect/export/reset/return and standalonebuild checked.
 Firstpreviewhalfblockmojibake fixed by demo-only native[]buttonstyle;
 no coreGUI modification. Full screenshot/pixels inspected. Ledger
  docs/evidence/nexus-demo/. Not globalIDE/Windowsacceptance or release.
+
+NEXUS finish revision before user delivery: native green shadowedbuttons,
+no brackets; white-on-teal sidebar contrast. RealScript requires demoUTF8
+SetDispCP plus escapedchartglyphs, restoredhostCP onexit. No coremutation,
+no methodoverride. Retested Enter/mouse/modal/export/reset/return and
+standalonebuild; final fullpixels inspected. Supersedes[]previewevidence.

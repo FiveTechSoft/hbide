@@ -12,6 +12,7 @@ static s_a := { { 'NOVA STUDIO', 'Design system', 12800, 'READY' }, ;
 procedure Main()
  local cSave := SaveScreen(), nCursor := SetCursor( SC_NONE ), GetList := {}, l1:=.F.,l2:=.F.,l3:=.F.,l4:=.F.,l5:=.F.,o, nMask, cOldCP:=hb_cdpSelect(), nMsg:=Set(_SET_MESSAGE), cOldShadow:=HBBtnShadowColor()
  hb_cdpSelect('UTF8')
+ hb_SetDispCP('UTF8','UTF8',.T.)
  SetMode(40,120)
  Set(_SET_MESSAGE,39)
  Set(_SET_INSERT,.T.)
@@ -19,11 +20,11 @@ procedure Main()
  o:bInit:={|| Paint()}
  o:Show()
  HBBtnShadowColor('N/W')
- @ 34, 5 GET l1 PUSHBUTTON CAPTION ' Run scenario ' STYLE "[]" COLOR 'W+/BG,W+/B,N/BG,Y+/BG' STATE {|| Simulate(),Paint()}
- @ 34, 30 GET l2 PUSHBUTTON CAPTION ' Inspect data ' STYLE "[]" COLOR 'N/W,W+/B,N/W,R/W' STATE {|| Inspect(),Paint()}
- @ 34, 54 GET l3 PUSHBUTTON CAPTION ' Export CSV ' STYLE "[]" COLOR 'N/W,W+/B,N/W,R/W' STATE {|| ExportDemo(),Paint()}
- @ 34, 77 GET l4 PUSHBUTTON CAPTION ' Reset ' STYLE "[]" COLOR 'N/W,W+/B,N/W,R/W' STATE {|| ResetDemo(),Paint()}
- @ 34, 95 GET l5 PUSHBUTTON CAPTION ' Exit ' STYLE "[]" COLOR 'N/W,W+/B,N/W,R/W' STATE {|| o:End()}
+ @ 34, 5 GET l1 PUSHBUTTON CAPTION ' Run scenario ' COLOR 'N/G,W+/G,N/G,Y+/G' STATE {|| Simulate(),Paint()}
+ @ 34, 30 GET l2 PUSHBUTTON CAPTION ' Inspect data ' COLOR 'N/G,W+/G,N/G,Y+/G' STATE {|| Inspect(),Paint()}
+ @ 34, 54 GET l3 PUSHBUTTON CAPTION ' Export CSV ' COLOR 'N/G,W+/G,N/G,Y+/G' STATE {|| ExportDemo(),Paint()}
+ @ 34, 77 GET l4 PUSHBUTTON CAPTION ' Reset ' COLOR 'N/G,W+/G,N/G,Y+/G' STATE {|| ResetDemo(),Paint()}
+ @ 34, 95 GET l5 PUSHBUTTON CAPTION ' Exit ' COLOR 'N/G,W+/G,N/G,Y+/G' STATE {|| o:End()}
  s_get:=GetList
  nMask:=Set(_SET_EVENTMASK,INKEY_ALL)
  o:Activate(GetList)
@@ -31,6 +32,7 @@ procedure Main()
  Set(_SET_MESSAGE,nMsg)
  HBBtnShadowColor(cOldShadow)
  hb_cdpSelect(cOldCP)
+ hb_SetDispCP('UTF8',cOldCP,.T.)
  RestScreen(0,0,MaxRow(),MaxCol(),cSave)
  SetCursor(nCursor)
 return
@@ -60,10 +62,10 @@ static procedure Paint()
  Put(14,5,'Scenario engine','W+/BG')
  Put(16,5,'Local CSV export','W+/BG')
  Put(22,5,'100% HARBOUR','W+/BG')
- Put(24,5,'Real windows','W/BG')
- Put(25,5,'Real controls','W/BG')
- Put(26,5,'Real actions','W/BG')
- Put(29,5,'LOCAL / OFFLINE','Y+/BG')
+ Put(24,5,'Real windows','W+/BG')
+ Put(25,5,'Real controls','W+/BG')
+ Put(26,5,'Real actions','W+/BG')
+ Put(29,5,'LOCAL / OFFLINE','W+/BG')
  for each v in s_a
  total+=v[3]
  if v[4]=='READY';ready++;endif
@@ -79,7 +81,7 @@ static procedure Paint()
  Put(9,91,'No browser. Native TUI.','N/W')
  Panel(13,26,24,78,' PROJECT PORTFOLIO ','N/W')
  Put(15,28,'CLIENT          WORKSTREAM       EUR    STATUS','B/W')
- hb_DispOutAt(16,28,Replicate(hb_UTF8ToStr('─'),48),'BG/W')
+ hb_DispOutAt(16,28,Replicate(hb_UTF8ToStr(e"\xE2\x94\x80"),48),'BG/W')
  for n:=1 to Len(s_a)
  Put(16+n,28,PadR(s_a[n,1],16)+PadR(s_a[n,2],16)+PadL(hb_ntos(s_a[n,3]),6)+'  '+PadR(s_a[n,4],6),iif(n==1,'W+/B','N/W'))
  next
@@ -87,7 +89,7 @@ static procedure Paint()
  Panel(13,81,24,114,' REVENUE / SAMPLE ','N/W')
  for n:=1 to 10
  v:=Int(bars[n]/5)
- hb_DispOutAt(21-v,83+(n-1)*3,Replicate(hb_UTF8ToStr('█'),2),'BG/W')
+ hb_DispOutAt(21-v,83+(n-1)*3,Replicate(hb_UTF8ToStr(e"\xE2\x96\x88"),2),'BG/W')
  if v>1;hb_Scroll(22-v,83+(n-1)*3,21,84+(n-1)*3,,, 'W/BG');endif
  Put(22,83+(n-1)*3,aMon[n],'N/W')
  next
@@ -135,6 +137,7 @@ static procedure Inspect()
  Put(14,36,'NOVA STUDIO / Design system','B/W')
  Put(16,36,'Value: 12,800 EUR   |   Status: '+s_a[1,4],'N/W')
  Put(18,36,'Fictional record. No production systems connected.','N/W')
- @ 21,55 GET l PUSHBUTTON CAPTION ' Close ' STYLE "[]" COLOR 'W+/BG,W+/B,N/BG,Y+/BG' STATE {|| w:End()}
+ @ 21,55 GET l PUSHBUTTON CAPTION ' Close ' COLOR 'N/G,W+/G,N/G,Y+/G' STATE {|| w:End()}
  w:Activate(GetList)
 return
+
