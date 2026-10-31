@@ -2399,3 +2399,11 @@ Cleanbc64f13Stack7MonitorMouse7Help12sameIDEef72604fPASS,
 21modelos15inventory33docsPASS. linux-debug-stack-border.json
 retieneidentidades/logs. NativeMAIN101/CHILD202inspeccionados,
 peroentregaclicfisico titulo no demostrada; no heredar comoPTYPASS.
+
+## 31 octubre frame shadowing real slots
+
+Nueva suite9PASSexploratorioSHAREDcaller101/callee202:editarcaller707
+no cambiacallee;editarcallee808no cambi acaller;volver ambosretienevalores.
+Resumeexact{707,809}pruebadosslotsVMdistintosconincrementoposterior.
+Sinproductfix,nopixelsnuevos,solo2framesnumericos,Windowsno.
+Runner132=131modosPTY+guard,no132funciones. Clean pendiente.

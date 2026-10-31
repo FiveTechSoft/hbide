@@ -674,9 +674,10 @@
     "DBG-013": {
       "expected_label": "CallStack",
       "tests": [
-        "test_debug_functions_pty.py"
+        "test_debug_functions_pty.py",
+        "test_debug_shadowed_frame_pty.py"
       ],
-      "contract": "Original fixed-wait Linux session: View CallStack toggles Calls and displays bump in actual nested routine. No arbitrary stack/unwind acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+      "contract": "Original fixed-wait Linux session: View CallStack toggles Calls and displays bump in actual nested routine. No arbitrary stack/unwind acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Shadowed local SHARED across caller/callee: MAIN101 edited707, CHILD remains202 edited808, switching frames retains both; resumed exact vector707,809 proves distinct VM slots. Source unchanged. Two frames and numeric locals only."
     },
     "DBG-015": {
       "expected_label": "Step              F8",
@@ -725,9 +726,10 @@
     "DBG-028": {
       "expected_label": "Local",
       "tests": [
-        "test_debug_monitor_scopes_pty.py"
+        "test_debug_monitor_scopes_pty.py",
+        "test_debug_shadowed_frame_pty.py"
       ],
-      "contract": "Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance."
+      "contract": "Real Monitor popup Local/Public/Private/Static toggles actual five fixture variables and values; All exposes them and second All hides them. Sort changes declaration QZ,QA to QA,QZ, persists across scope additions, edit sorted first row changes QA77 and exact resumed vector is12,77,30,40,50. No Global VM support, cross-frame shadowing, alltypes, pixels or Windows acceptance. Shadowed local SHARED across caller/callee: MAIN101 edited707, CHILD remains202 edited808, switching frames retains both; resumed exact vector707,809 proves distinct VM slots. Source unchanged. Two frames and numeric locals only."
     },
     "DBG-032": {
       "expected_label": "sOrt",

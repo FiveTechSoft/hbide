@@ -117,6 +117,7 @@ CASES = {
     'debug-structured-depth': ('test_debug_structured_depth_pty.py', [], 120),
     'debug-structured-modal': ('test_debug_structured_modal_pty.py', [], 120),
     'debug-monitor-mouse-scroll': ('test_debug_monitor_mouse_scroll_pty.py', [], 120),
+    'debug-shadowed-frame': ('test_debug_shadowed_frame_pty.py', [], 120),
     'debug-stack-mouse': ('test_debug_stack_mouse_pty.py', [], 120),
     'debug-mouse': ('test_debug_mouse_pty.py', [], 120),
     'debug-value-modal': ('test_debug_value_modal_pty.py', [], 120),
