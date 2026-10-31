@@ -1772,3 +1772,15 @@ separada registra esa limitacion y los gestos localizan esa pintura, sin
 pretender mostrar Unicode correctamente. Son9checks incluyendo observacion
 de display. No se cambia traduccion global ni se considera resuelto el
 renderUTF8. Prueba funcional de datos, no certificacion visual niWindows.
+
+
+### Correccion del diagnostico UTF8: respuesta de terminal simulada
+
+La atribucion anterior queda limitada al simulador: GTTRM detecta UTF8
+pintando í y consultando cursor (harbour/src/rtl/gttrm/gttrm.c hb_trm_isUTF8).
+El simulador respondia siempre columna1, que significa ISO. Cambiar solamente
+LC_ALL no corrige esa respuesta. Modo --utf8-terminal responde columna2 a esa
+consulta y observa café,naïve,año literales, mas los mismos8efectos byte-exactos.
+Se mantienen ambos modos separados:9checks cada uno. Ningun cambio de producto
+ni certificacion de terminal real/pixeles; no hay defecto de producto demostrado.
+La evidencia anterior conserva su dato real, no sugiere un fallo Unicode general.
