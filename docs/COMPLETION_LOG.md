@@ -3795,3 +3795,13 @@ typevalidity. Before2PASS2FAILeditorfalseblock. Extendboundedcontext*/%^,
 Native120x40fourliteralsyellow/followingreturnsfunctioncyan/fullborders/
 F2exactinspected. linux-editor-bracket-arithmetic.json. No generallexer/
 runtimechange/Windows/global/hitoclosed. Q104/C21predateQ105+.
+
+## Q114 - M5 source notice gate guard tests
+
+Source0ad7d31:auditorrootparameterenablesisolatedfixtures;5guardsmissing
+referencedLICENSE/unmarkedsource/header-vs-body/notice-is-not-legalclearance/
+currentgate. Clean5PASS32inventory34docs. Audit28HBPsourcefiles:14reference
+missingLICENSE.txt,14withoutdetectedGPLheader;absenceisnotproofnolicence.
+--check-release exit1expected, release review stillrequired.
+linux-distribution-notice-gate.json. No licenseinvented/copied/cleared, no
+productbinary/model/PTY/pixels/nativeWindows/M5closure.

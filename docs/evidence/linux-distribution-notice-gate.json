@@ -1,0 +1,272 @@
+{
+  "scope": "Q114 M5 localsource noticeinventory/gate guardtests only, not legaladvice/licenseclearance/release/readiness/runtime/Windows.",
+  "audit": {
+    "scope": "Local HBP source notice inventory only. Absence of a detected header is not proof of no license or ownership. Does not clear redistribution.",
+    "source": "0ad7d318dd38c0448f98e607a6b7d507725ad2e0",
+    "root_notice_files": [],
+    "sources": [
+      {
+        "path": "hbide.prg",
+        "sha256": "8c2f8deedcb993d5415c3625875f20566d36e69b80367589b654cc9f0bb5fa35",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "editor.prg",
+        "sha256": "79f4d7a06c19471fc265222abcf8315526ed963ccd9b90adbd10a72447d6cf94",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "safeio.prg",
+        "sha256": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbmenu.prg",
+        "sha256": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbwindow.prg",
+        "sha256": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "designer.prg",
+        "sha256": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbbutton.prg",
+        "sha256": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbgetu.prg",
+        "sha256": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "help.prg",
+        "sha256": "4d00294fd70317df9c0ee6129852f7fd824c3c191ffaf56c8b5342c851e29e0b",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "project.prg",
+        "sha256": "1f95644a018650b9112fa511aca065647888fe9ee66c00c9f3489624d8429bdd",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "projectui.prg",
+        "sha256": "9deb02dbb32facf57e7e3cadc01e5e225e57bc5ca770333ad0635e5a0b08fe11",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "nav.prg",
+        "sha256": "d851c10673997cbd88ae1aafd90ef08d619e61cf2ace6764137e1b0ada050b5d",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "recovery.prg",
+        "sha256": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbdebug/dbgbrwsr.prg",
+        "sha256": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbghelp.prg",
+        "sha256": "49e63db24a757fb8f8771c5b629a822dc6617970ab9bb93171050e0a1746f27a",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgmenu.prg",
+        "sha256": "30fb330448e0af889dc7e3688c520498afd14dffac8870d0bb687f647a846598",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtarr.prg",
+        "sha256": "281578e4ee39be97da081eba31335a4e4bb2aabc6789c1f769855a5c2591630f",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgthsh.prg",
+        "sha256": "660c9f94b84fbbba74859908843c20c1a19307f6b3ee3443ecaca4c1a58f4d21",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtinp.prg",
+        "sha256": "b7fd0a70fbe1af58600917c4eff1357ee7bf4ac8987faa497a9ce6fe98b28ec7",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtmenu.prg",
+        "sha256": "5e88fd251bc5bc69da09c5a3b9c27009aa897aa72a72ae51f10fae2aa5251d06",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtmitm.prg",
+        "sha256": "9b5d72a1ef05356b7eb91060fd1701f078055dce6b8e771a8e0834d3df822c17",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtobj.prg",
+        "sha256": "3f97ea1f3a58f361a3e30d1c7d37495a7a532528b5419deb25c75cde3a4b7b58",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtwin.prg",
+        "sha256": "0b0389ee7c0a26be8a10995f28eb30be10a5b8c772e99bf610d7458f7f953efa",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgwa.prg",
+        "sha256": "8b2a033818ecffa3e322eb0d7dab00dd3c26fd79823eee2f5f7f330dbaa1f147",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/tbrwtext.prg",
+        "sha256": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgscript.prg",
+        "sha256": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbdebug/debugger.prg",
+        "sha256": "9816ba356782f9d4b818ef93d136d1590d2e1e30b23ebd7f6ce78431428b8b15",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgentry.c",
+        "sha256": "2bbab7508c0fb685aceb020a249917830db38e6e50f3c8da62552b0625537d2c",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      }
+    ],
+    "missing_referenced_license": [
+      "hbdebug/dbgbrwsr.prg",
+      "hbdebug/dbghelp.prg",
+      "hbdebug/dbgmenu.prg",
+      "hbdebug/dbgtarr.prg",
+      "hbdebug/dbgthsh.prg",
+      "hbdebug/dbgtinp.prg",
+      "hbdebug/dbgtmenu.prg",
+      "hbdebug/dbgtmitm.prg",
+      "hbdebug/dbgtobj.prg",
+      "hbdebug/dbgtwin.prg",
+      "hbdebug/dbgwa.prg",
+      "hbdebug/tbrwtext.prg",
+      "hbdebug/debugger.prg",
+      "hbdebug/dbgentry.c"
+    ],
+    "without_detected_gpl_header": [
+      "hbide.prg",
+      "editor.prg",
+      "safeio.prg",
+      "hbmenu.prg",
+      "hbwindow.prg",
+      "designer.prg",
+      "hbbutton.prg",
+      "hbgetu.prg",
+      "help.prg",
+      "project.prg",
+      "projectui.prg",
+      "nav.prg",
+      "recovery.prg",
+      "hbdebug/dbgscript.prg"
+    ],
+    "release_review_required": true
+  },
+  "expected_check_release_exit": 1,
+  "tests_log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.009s\n\nOK\n",
+  "test_count": 5,
+  "inventory_log": "................................\n----------------------------------------------------------------------\nRan 32 tests in 0.299s\n\nOK\n",
+  "execution": "5noticeguards32inventory34docsPASS. Gateexpectedexit1. No failure/retry. No productbinary/model/PTY/newpixels."
+}
