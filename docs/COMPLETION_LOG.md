@@ -2441,3 +2441,6 @@ NuevaPTY10PASSinclSavebytesmixedEOL/TAB/trailing,UndoRedo/Cancel.
 Native120x40count4/resultadobordescompletosinspeccionados,Save/Undoexactos.
 Runner135=134modosPTY+guard. No Unicodeexpansion/multiline/Windows.
 Primerfixtureexploratoriosinespaciosnocertificababytes;corregidoantesfix.
+
+Clean7fd0a6bSpaces10EditMenu37sameIDE7b9725f0PASSsinretry,
+21modelos15inventory33docsPASS. linux-replace-spaces.jsonretieneidentity/logs.
