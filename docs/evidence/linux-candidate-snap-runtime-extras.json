@@ -1,0 +1,155 @@
+{
+  "manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "3b3c606a91ffa853f0a8974490699b4e23ec3c71",
+    "archive_sha256": "9c22cf0fd81d5bc76121fe05bbe0b0feeb914c2334fb6567fd220053222a35ab",
+    "dirty": false,
+    "started": 1793418012.9060476,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "78e2990ee8920a382cd8e699a771c2f7275a15a6c73498fa2498056280fd0554",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "3d06d424fd2dd878671c6e44e887899775a8c35a27a63823628a7d76ab1143cb",
+    "release_status": "not cleared; source notice review required",
+    "unstripped_sha256": "554b5971e2f650299f53d30eb92894c21cbc5c242e660b9ca601f9f123482e26",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793418109.9734418
+  },
+  "runs": [
+    {
+      "test": "test_designer_snap_edges_pty.py",
+      "args": [],
+      "seconds": 4.461588144302368,
+      "exit": 0,
+      "reported_failure": false,
+      "binary_before": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "binary_after": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "test_sha256": "ddd5c5f8db105e133511efca0e83c3e8ec7ad032cac1964ab91fe46b84e4d02d",
+      "log": "PASS odd-edge fixture exact\nPASS Snap arrows clamp after rounding at odd edges\nPASS complete GET remains within interior\nPASS Snap move keeps dimensions and binding\nPASS Undo snapped burst restores complete original\nPASS Redo snapped burst restores complete edge model\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-3hd6kjb0\n"
+    },
+    {
+      "test": "test_designer_snap_edges_pty.py",
+      "args": [
+        "--drag"
+      ],
+      "seconds": 4.747133016586304,
+      "exit": 0,
+      "reported_failure": false,
+      "binary_before": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "binary_after": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "test_sha256": "ddd5c5f8db105e133511efca0e83c3e8ec7ad032cac1964ab91fe46b84e4d02d",
+      "log": "PASS odd-edge fixture exact\nPASS Snap drag clamp after rounding at odd edges\nPASS complete GET remains within interior\nPASS Snap move keeps dimensions and binding\nPASS Undo snapped burst restores complete original\nPASS Redo snapped burst restores complete edge model\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-n4eesdco\n"
+    },
+    {
+      "test": "test_designer_clipboard_get_runtime_pty.py",
+      "args": [],
+      "seconds": 6.058182001113892,
+      "exit": 0,
+      "reported_failure": false,
+      "binary_before": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "binary_after": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "test_sha256": "7d5402ccd1aad77be845cd0084c6c6da52e0d3064836444733d4d5765a4d2d86",
+      "log": "PASS pasted GET binding case-insensitively distinct\nPASS pasted GET VALID handler retained\nPASS actual F9 generates two separate text bindings\nPASS actual F9 emits both VALID handlers\nPASS generated pasted-GET artifact compiles\nPASS first GET text edit affects only its bound value\nPASS first preserved VALID handler executes in generated runtime\nPASS second GET text edit affects only its bound value\nPASS second preserved VALID handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-g1qka0oo\n"
+    },
+    {
+      "test": "test_designer_clipboard_combo_runtime_pty.py",
+      "args": [],
+      "seconds": 5.978618860244751,
+      "exit": 0,
+      "reported_failure": false,
+      "binary_before": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "binary_after": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "test_sha256": "f7545a0827f8646d3a3dafab2dc0836186b04620c599cd9283e07937bb064c98",
+      "log": "PASS pasted ComboBox binding case-insensitively distinct\nPASS pasted ComboBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ComboBox artifact compiles\nPASS first ComboBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ComboBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-hdn2a81g\n"
+    },
+    {
+      "test": "test_designer_clipboard_runtime_pty.py",
+      "args": [],
+      "seconds": 6.000286340713501,
+      "exit": 0,
+      "reported_failure": false,
+      "binary_before": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "binary_after": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "test_sha256": "27076b5bbd5185042c2f3c2e4bf0ece0dd9ea7272c7a29dce93ac61d4c532443",
+      "log": "PASS pasted checkbox binding case-insensitively distinct\nPASS pasted checkbox state handler retained\nPASS actual F9 generates two separate logical bindings\nPASS actual F9 emits both state handlers\nPASS generated pasted-checkbox artifact compiles\nPASS first checkbox toggle affects only its bound value\nPASS first preserved state handler executes in generated runtime\nPASS second checkbox toggle affects only its bound value\nPASS second preserved state handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-vspzbcgz\n"
+    },
+    {
+      "test": "test_debug_window_layout_pty.py",
+      "args": [],
+      "seconds": 17.494049787521362,
+      "exit": 0,
+      "reported_failure": false,
+      "binary_before": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "binary_after": "ea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072",
+      "test_sha256": "587d3dcc133ec66e11a53b46555ba306387a8b583e23e794309682c450cb83be",
+      "log": "PASS debugger stopped before increment\nPASS code caption begins inside requested rect\nPASS Move menu opens arrow edit\nPASS Move arrows change caption row and col\nPASS Move Esc restores caption position\nPASS Move Enter keeps changed position\nPASS Size menu opens arrow edit\nPASS Size Esc restores complete painted character grid\nPASS Size Enter changes painted grid\nPASS Zoom moves code caption to desktop top\nPASS second Zoom restores resized grid\nPASS Iconize hides selected source text\nPASS Tile restores iconized source browser\nPASS Tile retains source caption after focus cycle\nPASS layout changes preserve exact debuggee values\nPASS layout changes leave source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-zg24kuwf\n"
+    }
+  ],
+  "scope": "Same stripped candidate six extras; not full125runner/Windows/license/release acceptance."
+}

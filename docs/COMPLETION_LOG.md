@@ -2268,3 +2268,14 @@ convierte en dragpixels. Runner125=124PTYmodes+guard.
 
 Clean5cc04acDrag6Arrows6sameIDEed24ffa6,15inventory33docsPASS,
 21modelsultima fa78719. docs/evidence/linux-designer-snap-drag.json.
+
+## 31 octubre: candidateLinux actualizado Q29
+
+Export3b3c606freshstrip-debug SHAea72f2261cc4bcf68fbe3488b1764bf6d89709b9c581a5e2bc50018bccc8d072.
+Ocho smokes estandarPASS y seisextrasmismobinariohashinalterado:
+SnapArrows6Drag6GETRuntime9ComboRuntime9CheckboxRuntime9WindowLayout16.
+Preparacion yextras dos pasosacotados sininterrupcion; no se mezcla con
+matrizglobal125,nopixels/Windows/determinism/licenciareleaseready.
+Durable docs/evidence/linux-candidate-snap-runtime-extras.json conserva
+manifestcompilerhash/deps/strip/testidentity ylogs extras. Binarioqueda
+/tmp/hbide-linux-current-candidate-3, no publicacionrelease.
