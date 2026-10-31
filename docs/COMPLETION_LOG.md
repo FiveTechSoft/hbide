@@ -2356,3 +2356,7 @@ alrectangulobrowserizquierdo;body/outside conservanKeys,topiccolumnclic
 abreFunction.12checks incluyen5menus exactbody,Resumevector/bytesexactos.
 Native120x40body/Functioncapturas inspeccionadas. No paginas/geometrias/
 Windowsglobal.109contratosmenu/116no109funciones;runner130=129PTY+guard.
+
+Cleanc830b19Help12Cursor10sameIDEee121db4 y21modelosPASS,
+15inventory33docs. linux-debug-help-click.json. Nativo precommit
+separado, no herenciapixels albuildlimpio. Milestones nocerrados.
