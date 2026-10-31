@@ -102,6 +102,7 @@ CASES = {
     'debug-object-empty-child': ('test_debug_object_empty_child_pty.py', [], 120),
     'debug-hash-navigation': ('test_debug_hash_navigation_pty.py', [], 120),
     'debug-array-navigation': ('test_debug_hash_navigation_pty.py', ['--array'], 120),
+    'debug-object-type-change': ('test_debug_object_type_change_pty.py', [], 120),
     'debug-empty-structures': ('test_debug_empty_structures_pty.py', [], 120),
     'debug-readonly-depth': ('test_debug_readonly_depth_pty.py', [], 120),
     'debug-structured-depth': ('test_debug_structured_depth_pty.py', [], 120),

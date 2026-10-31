@@ -194,6 +194,10 @@ METHOD PROCEDURE doGet( oBrowse ) CLASS HBDbObject
       RECOVER USING oErr
          __dbgAlert( oErr:description )
       END SEQUENCE
+      // The setter can change the property type. Keep Enter dispatch in sync
+      // with the refreshed value, including a rejected setter or getter.
+      aItemRef[ OMSG_VALUE ] := __dbgObjGetValue( ::TheObj, aItemRef[ OMSG_NAME ], @lCanAcc )
+      aItemRef[ OMSG_EDIT ] := lCanAcc
    ENDIF
 
    RETURN

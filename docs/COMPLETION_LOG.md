@@ -2103,3 +2103,12 @@ retenidos. Dos modos del mismo harness no son dos funciones nuevas.
 20modelos15inventario33docsPASS. Native120x40hashEndtitulo40 yresaltado40,
 Home/PageDowntitulo36yresaltado36 inspeccionados completos;Resumeexacto.
 PTY80x25PageDownmueve1a21; no se presupone21en todas las geometrias.
+
+## 31 octubre: cambio de tipo de una propiedad en inspector objeto
+
+Cambiar nValue escalar por {41,2} mostraba el array pero Enter seguia
+abriendo editor escalar: despacho usaba cache del tipo inicial. Antes5/6,
+Resume ya conservaba array exacto; no perdida de dato. Tras el setter se
+actualizan valor y accesibilidad del item desde getter, tambien tras error
+del setter. No transaccion de setters con efectos ni actualizacion externa
+arbitraria. Se prueba abrir el array tras editar y Resume exacto.
