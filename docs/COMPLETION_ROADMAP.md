@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q92 | Bracketstrings en arrayliteral/coma no abren bloque falso. | Fixturecompiladaantes2PASS2FAIL;4repaintguardas/colorPTYambascadenas;linux-editor-bracket-list.json. No lexercompleto/Windows. |
 | Q91 | Bracketliteral tras ( no contamina pintado/estado. | Fixturecompiler-valid return([/*literal]);antes2PASS2FAIL;4repaintguardas/17PTY22models26inventory34docsPASS fuente49aa4a5;nativeamarillo/cyaninspeccionado;linux-editor-paren-bracket.json. No lexercompleto/Windows. |
 | C19 | CandidatoLinux temporal incluye Q86/Q88/Q89. | Export6a2f06d binaryab4ac913,8smoke+6modosrecientesPASSmismaidentidad;nativeINITEXIT/saltoexactinspeccionado;linux-candidate-lifecycle-comments.json. No release/Windows/licencias/instalacion/globalmatrix. |
 | Q90 | M0 vincula Designer y Watchpoint a pruebas reales de menu. | Dosguardas alcanceacotadoListbox/scalarwatch;32PTY26inventory34docsPASS fuenteff81639;linux-inventory-designer-watch.json. No nuevoproducto/pixels/global. |

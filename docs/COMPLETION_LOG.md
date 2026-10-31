@@ -3531,3 +3531,11 @@ compile in exploratory probe; not treated as accepted syntax.
 Evidence linux-editor-paren-bracket.json follows; no complete lexer claim.
 
 Q91 clean acceptance49aa4a5d26a74a36f9aeb9ca138bb85ca701efb0 binary3727c2bfeb9547ab109ffab1724d162ad735acbb16490eed7aa7be1f2402e246:17PTYchecks(Paren4/BracketVariants7/NOTE6),22models26inventory34docsPASS;no retries/failures. Native literal yellow/following function+returncyan/fullbordersinspected,F2exact. C19predatesfix,Q87separate84e58b3.
+
+## Q92 - bracket strings in array/list contexts
+
+Compiler-valid local a := {[/* first], [/* second]} opened false block
+and contaminated later code. Before2PASS2FAIL. Add leftbrace/comma to bounded
+bracket string context, not arrayresultindex. Four repaint guards; realPTY
+checks both first and second string color, later return and exact source.
+Evidence linux-editor-bracket-list.json follows; no complete lexer claim.
