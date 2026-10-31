@@ -3255,3 +3255,11 @@ andEnterdidnothing. Before1PASS2FAIL. ParsecopystripsleadingUTF8BOM,
 cOriginalkeepsallbytes. Threeprojectmodelguards. Runner185=184PTY+guard.
 Clean/nativeevidence linux-project-bom.json follows;notgeneralHBPUnicode/
 nonASCIIpaths/UTF16/Windows/globalcoverage.
+
+## Q71 - Final DOS EOF hid last HBP source
+
+Real hbmk2 compiles legacy HBP ending in 0x1A; IDE did not list its last
+source and Enter did nothing. Before: 1 PASS / 2 FAIL. Match MemoRead by
+removing one final EOF only from parse copy. Preserve original HBP bytes
+and embedded EOF. Four model guards. Runner186=185PTY+guard. Evidence
+linux-project-eof.json follows. Not general encoding/Windows/global.

@@ -43,6 +43,10 @@ METHOD Open( cFile ) CLASS HBIDEProject
    IF Left( cParse, 3 ) == Chr(239) + Chr(187) + Chr(191)
       cParse := SubStr( cParse, 4 )
    ENDIF
+   // Match hbmk2 MemoRead: ignore one final DOS EOF in the parse copy.
+   IF Right( cParse, 1 ) == Chr(26)
+      cParse := Left( cParse, Len( cParse ) - 1 )
+   ENDIF
    FOR EACH cLine IN hb_ATokens( StrTran( cParse, Chr(13), "" ), Chr(10) )
       nLine++
       IF Empty( AllTrim( cLine ) ) .OR. Left( LTrim( cLine ), 1 ) == "#"

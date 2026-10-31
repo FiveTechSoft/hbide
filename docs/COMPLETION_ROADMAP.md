@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q71 | DOS EOF final ocultaba ultima fuente HBP. | hbmk2 real compila, antes1PASS2FAIL. Quitar un EOF final solo de copia parseo, original/EOF interno intactos. Evidencia linux-project-eof.json. No encoding general/Windows. |
 | Q70 | BOMUTF8 deHBP formaba parte del primerfilename. | hbmk2realcompila,IDEantes1PASS2FAIL. QuitarBOMsólodecopiaparseo,cOriginalintacto. Evidencia linux-project-bom.json. NoUnicodegeneral/UTF16/Windows. |
 | Q69 | LivePRG no anclaba botón con accelerator en captiongenerado. | Antes4PASS1FAIL F5; aplicaDsnAccelCaptionantesDsnQuote. Evidencia linux-designer-button-anchor.json, sin captionsduplicadosambiguos/Windows. |
 | Q68 | LivePRG perdía highlight deSAY con caption entrecomillado. | Antes4PASS1FAIL F5; lookupusa mismoserieDsnQuote. Evidencia linux-designer-quote-anchor.json. No duplicadosambiguos/todosbindings/Windows. |
