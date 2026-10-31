@@ -2639,3 +2639,13 @@ Runner147=146PTY modes plus guard. No OSclipboard/Windows/pixels/global.
 Cleanaed4a8a: Block9, Close8, Multidoc6 and Spaces4 pass same binary
 eab3c0d3 without retry;15inventory33docs pass. No new model run.
 Ledger docs/evidence/linux-clipboard-block.json.
+
+## 31 October candidate with Q39-Q41
+
+Export513e9b9 stripped SHA4b4a5ca995b6c4020e1a143f330669a02e4bee6bcb0fb1dc88d2d160c8b5f696.
+Eight standard smoke suites plus ClipboardBlock9, Close8, Multidoc6,
+Spaces4, DuplicateSelection6 and Overtype3 pass on the exact candidate.
+Binary hash unchanged; two bounded steps without retries.
+Manifest/toolchain/dependencies/logs retained in linux-candidate-clipboard.json.
+Local temporary candidate8, not release/installer/Windows/license clearance,
+full147mode regression, new determinism proof or new visual acceptance.
