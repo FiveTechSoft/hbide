@@ -1931,3 +1931,11 @@ Readonlyexplicito ampliado a20checks: añade objetohash y objetoobjetoarray,
 ademas arrayarray/hashhash/objetoarray. Las cincofixture invocan.F.desde
 expresiondebugger, rechazanEntersobrescalar yResumeproducevalorcompletoexacto.
 No cambios de producto ni politicaMonitor/default; no profundidad arbitraria.
+
+## 31 octubre: reconciliacion de cola con evidencia reciente
+
+RoadmapQ20getter/setter,Q21filelist,Q22readonlyexplicito enlazan fuentes,
+primerosfallos/regresionintermedia,conjuntas/capturas y limites actuales.
+Q19distingue candidatof9c2af6deactuala9ecaa6,determinismo557e51fnoheredado.
+Estados de los7hitos intactos:0cerrados. No porcentaje ni acumulacion de
+checksporversion como cierre de producto. OriginalFunctions fixedwait pendiente.
