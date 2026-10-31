@@ -3111,3 +3111,11 @@ Extensionclean16c698d default/byte/tab4/tab16/absent6eachPASSsamebinary
 (30checks),15inventory34docsPASS. linux-gcc-column-variants.json. No failed
 cleanattempts/newfix/modelrun/newpixels. Absentexplicitlyfallback16,not
 correctsemanticlocationclaim. Q58generalremainspartial.
+
+## Q59 - Bracket literal after assignment leaked comment state
+
+Compiler-validlocalc:=[/*literal] coloredlaterreturnascomment. Before
+2PASS2FAIL;local4PASS. Boundedrecognitiononlybracketafter:=,notblanket
+bracketmask(whichwouldhidearrayindexcomments). PainterandScanBlkLine
+consumeuntilclosing],threemodelguardsinclarrayindexrealcomment. Full
+Harbourbracketcontextnotclaimed. Runner175=174PTY+guard.

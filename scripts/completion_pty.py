@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'editor-bracket-assignment': ('test_editor_bracket_assignment_pty.py', [], 120),
     'gcc-caret-byte': ('test_gcc_caret_column_pty.py', ['--column-mode','byte'], 120),
     'gcc-caret-tab4': ('test_gcc_caret_column_pty.py', ['--column-mode','tab4'], 120),
     'gcc-caret-tab16': ('test_gcc_caret_column_pty.py', ['--column-mode','tab16'], 120),

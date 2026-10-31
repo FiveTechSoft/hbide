@@ -964,6 +964,11 @@ METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
             lIn := .F.
             n++
          endif
+      elseif c == "[" .and. HBIDE_BracketAssignment( cText, hb_ULen(Left(cText,n-1))+1 )
+         n++
+         while n <= nLen .and. SubStr( cText, n, 1 ) != "]"
+            n++
+         end
       elseif Lower( SubStr( cText, n, 2 ) ) == 'e"'
          n += 2
          while n <= nLen
@@ -1531,6 +1536,15 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
          lInComment = .T.
       else
          do case
+            case hb_USubStr( cLine, n, 1 ) == "[" .and. HBIDE_BracketAssignment( cLine, n )
+                cToken := "["; n++
+                while n <= hb_ULen( cLine )
+                   cToken += hb_USubStr( cLine, n, 1 )
+                   if hb_USubStr( cLine, n++, 1 ) == "]"
+                      exit
+                   endif
+                end
+
             case Lower( hb_USubStr( cLine, n, 2 ) ) == 'e"'
                 cToken := hb_USubStr( cLine, n, 2 )
                 n += 2
@@ -1568,7 +1582,8 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
             case hb_USubStr( cLine, n, 1 ) $ cOperators
                while hb_USubStr( cLine, n, 1 ) $ cOperators .and. n <= hb_ULen( cLine )
-                  if hb_USubStr( cLine, n, 2 ) == "/*" .or. ;
+                  if ( hb_USubStr(cLine,n,1) == "[" .and. HBIDE_BracketAssignment(cLine,n) ) .or. ;
+                     hb_USubStr( cLine, n, 2 ) == "/*" .or. ;
                      hb_USubStr( cLine, n, 2 ) == "//" .or. hb_USubStr( cLine, n, 2 ) == "&&"
                      exit
                   endif
@@ -1595,6 +1610,9 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
                case Left( cToken, 1 ) $ "0123456789" .and. ;
                     Right( cToken, 1 ) $ "0123456789"
                     cColor = ::cClrNumber
+
+               case Left( cToken, 1 ) == "[" .and. Right(cToken,1) == "]"
+                    cColor = ::cClrString
 
                case Left( cToken, 1 ) $ '"' + "'" .or. Lower( Left( cToken, 2 ) ) == 'e"' 
                     cColor = ::cClrString
@@ -2017,3 +2035,8 @@ static function HBIDE_IsNavKey( nKey )
    endswitch
 
 return .F.
+
+// Deliberately bounded string context: bracket after :=, not array index.
+STATIC FUNCTION HBIDE_BracketAssignment( cLine, nAt )
+   LOCAL cBefore := RTrim( hb_ULeft( cLine, nAt - 1 ) )
+RETURN Right( cBefore, 2 ) == ":="
