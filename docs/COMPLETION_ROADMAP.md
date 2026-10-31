@@ -128,3 +128,5 @@ Las demos TOTAL ON, agenda y FoxPro no certifican el conjunto del IDE.
 `hbdebug/debugger.prg` y `tests/`, leidos en la base indicada.
 El registro conserva las discrepancias para que el roadmap no herede estados
 obsoletos de las notas del 25-26 de octubre.
+
+Nota31Oct: EOL149era ejecuciones; bloqueUTF8word8duplicado se retira,141checks del modelo. Historial preservado, no149casos distintos.

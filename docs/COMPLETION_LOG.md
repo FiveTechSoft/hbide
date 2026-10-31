@@ -1845,3 +1845,11 @@ El build exportado fuera del checkout añade getterfallido6/setterfallido8 a
 About/HelpMouse/RunSource. Ensaya el binario exportado y stripped, no el IDE
 heredado del checkout. Sigue candidato interno, no release/licencias/portabilidad
 niWindows; no hereda toda la matriz de pruebas del IDE de desarrollo.
+
+## 31 octubre: correccion de conteo EOL duplicado
+
+Revision encontro bloqueUTF8word8checks identico repetido dos veces en EOL.
+Se elimina una copia, sin cambio de producto:141checks en vez de149ejecuciones.
+Los149historicos no representan149casos distintos. Se mantienen los8checks
+UTF8word una vez, las pruebasPTY y capturas nativas independientes. Se repite
+suite20modelos actual; no se reescribe evidencia historica ni se infla cobertura.
