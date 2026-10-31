@@ -2970,3 +2970,11 @@ Q54cleand417e7f NavSelection7/Literal3/Typed3/Find7PASS samebinary,
 22models112repaintPASS,15inventory34docsPASS. Native120x40TargetX/Undo
 actualpixelsfullborders inspected. linux-navigation-selection.json preserves
 earliercleanharnessfailure4eaafa3, notpassedfirsttryclaim.
+
+## Focused joint Q50-Q54 navigation/project/editor
+
+Clean2b5ad8b nine distinctsuites (NavSelection,NavLiteral,NavTyped,LineComments,
+ColonDiagnostic,ProjectMessages,Navigation,OutputScroll,FindSelection) PASS
+samef8988087,twoboundedstepsnoretries/interruption;22models112repaint
+PASS,15inventory34docs. linux-navigation-project-joint.json. No newfix/
+full164PTY/newpixels/Windows/milestoneclosure. Candidate12stillpredatesQ52-Q54.
