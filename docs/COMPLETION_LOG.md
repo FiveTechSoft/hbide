@@ -2736,3 +2736,11 @@ two bounded steps without retries. Manifest/toolchain/dependencies/logs
 retained in linux-candidate-cut-replace.json. Local temporary candidate9,
 not release/installer/Windows/license clearance/full152mode regression,
 new determinism proof or new visual acceptance.
+
+## Q44 - Selected typing undo boundary
+
+Real PTY before5PASS2FAIL: typeX, markal, typeY; Undo incorrectly
+removes priorX as well. RecordEdit accepts lSeparate and Edit carries the
+pre-key selection state into that flag. Marked edits no longer coalesce
+with adjacent typing. Local after7PASS; clean acceptance follows separately.
+Runner153entries=152PTYmodes+guard. Not all command grouping or Windows.

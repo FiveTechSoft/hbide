@@ -94,7 +94,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD Edit( nKey )
    METHOD EditKey( nKey )
    METHOD LinesSnapshot()
-   METHOD RecordEdit( aBefore )
+   METHOD RecordEdit( aBefore, lSeparate )
    METHOD PushOp( nRow, aOld, aNew, lSeparate )
    METHOD ApplyOp( aOp, lInverse )
    METHOD Undo()
@@ -408,7 +408,7 @@ return nil
 
 METHOD Edit( nKey ) CLASS HBSrcEdit
 
-   local aBefore
+   local aBefore, lSelectionEdit
    local cCharKey := iif( hb_keyStd( nKey ) == K_TAB .AND. Set( _SET_INSERT ), ;
                           Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), ;
                           hb_keyChar( nKey ) )
@@ -436,13 +436,16 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
    endif
 
    aBefore := ::LinesSnapshot()
+   lSelectionEdit := ::SelRange() != NIL
    ::lOpRecorded := .F.
    ::EditKey( nKey )
 
    if ::lInUndo
       ::lInUndo := .F.
    elseif ! ::lOpRecorded
-      ::RecordEdit( aBefore )
+      // Replacing/deleting a marked range is one distinct undo action,
+      // not part of typing before or after that range.
+      ::RecordEdit( aBefore, lSelectionEdit )
       // RecordEdit adjusts breakpoints in PushOp, but edits on this path
       // (Enter, typing, paste) already repainted inside EditKey: repaint so
       // the gutter shows the marks on their shifted lines at once
@@ -724,7 +727,7 @@ return aLines
 STATIC FUNCTION HBIDE_StrEq( cA, cB )
 return Len( cA ) == Len( cB ) .and. cA == cB
 
-METHOD RecordEdit( aBefore ) CLASS HBSrcEdit
+METHOD RecordEdit( aBefore, lSeparate ) CLASS HBSrcEdit
 
    local aAfter := ::LinesSnapshot()
    local nB := Len( aBefore ), nA := Len( aAfter )
@@ -755,7 +758,7 @@ METHOD RecordEdit( aBefore ) CLASS HBSrcEdit
       AAdd( aNew, aAfter[ i ] )
    next
 
-   ::PushOp( nPre + 1, aOld, aNew )
+   ::PushOp( nPre + 1, aOld, aNew, lSeparate )
 
 return Self
 
