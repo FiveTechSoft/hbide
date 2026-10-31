@@ -1,0 +1,123 @@
+{
+  "scope": "Cleanb0b8972 CursorPopup10Scopes16WorkAreas10sameIDEc45bf334. Firstexploratory6of9wrong FileResume execution expectation and emptyBPmessage corrected harness only, retained. No FileResumecursorlocation/pixels/Windows/global129.21models last23bd0af.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "b0b897220c3369a972dfa47d8b0a04d122f4362b",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "bd866e02f013e5d5ed2f727a17bdc204255d11d2838faa08fa6ff9dfb84673b0",
+    "binary_sha256": "c45bf334b7a94bbc40eb041dfd0e159f85b5c677d97e2f553c08a82f1bc2ec5d",
+    "built_at": 1793419125.79561
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "b0b897220c3369a972dfa47d8b0a04d122f4362b",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "bd866e02f013e5d5ed2f727a17bdc204255d11d2838faa08fa6ff9dfb84673b0",
+      "binary_sha256": "c45bf334b7a94bbc40eb041dfd0e159f85b5c677d97e2f553c08a82f1bc2ec5d",
+      "build_receipt": "/tmp/hbide-cursor-popup-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "787699474850944f90fa117e53415406397fa4f04c7f66e4237c875747028882",
+      "case": "debug-cursor-popup",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_cursor_popup_pty.py"
+      ],
+      "started": 1793419125.7958865,
+      "seconds": 13.72,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "540c2beb4d4501d37ef1172e2ef7dd3d440dc71d98a1677cd47e01b367428077",
+      "log": "/tmp/hbide-cursor-popup-clean/debug-cursor-popup-1793419125795883031.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "b0b897220c3369a972dfa47d8b0a04d122f4362b",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "bd866e02f013e5d5ed2f727a17bdc204255d11d2838faa08fa6ff9dfb84673b0",
+      "binary_sha256": "c45bf334b7a94bbc40eb041dfd0e159f85b5c677d97e2f553c08a82f1bc2ec5d",
+      "build_receipt": "/tmp/hbide-cursor-popup-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "787699474850944f90fa117e53415406397fa4f04c7f66e4237c875747028882",
+      "case": "debug-monitor-scopes",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_monitor_scopes_pty.py"
+      ],
+      "started": 1793419139.5168695,
+      "seconds": 15.97,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "875ff87539eb0ecb7e3c40311cfa08de7414eeefe76b8cfcf1a228a17d9d18ef",
+      "log": "/tmp/hbide-cursor-popup-clean/debug-monitor-scopes-1793419139516866002.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "b0b897220c3369a972dfa47d8b0a04d122f4362b",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "bd866e02f013e5d5ed2f727a17bdc204255d11d2838faa08fa6ff9dfb84673b0",
+      "binary_sha256": "c45bf334b7a94bbc40eb041dfd0e159f85b5c677d97e2f553c08a82f1bc2ec5d",
+      "build_receipt": "/tmp/hbide-cursor-popup-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "787699474850944f90fa117e53415406397fa4f04c7f66e4237c875747028882",
+      "case": "debug-workareas",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_workareas_pty.py"
+      ],
+      "started": 1793419155.4897895,
+      "seconds": 11.82,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "60dc3e118fb3cb83889113fe8d2f52cecee2bd896138e0a00400502ba7622713",
+      "log": "/tmp/hbide-cursor-popup-clean/debug-workareas-1793419155489785472.log"
+    }
+  ],
+  "logs": {
+    "debug-cursor-popup-1793419125795883031.log": "PASS debugger stopped before increment\nPASS Run to Cursor stops before line6 mutation\nPASS Point Breakpoint adds cursor line8\nPASS second to Cursor stops before line7 mutation\nPASS Run Go stops at popup breakpoint before write\nPASS second Point Breakpoint removes cursor line8\nPASS File Resume does not execute debuggee\nPASS Go after removing BP writes exact final result\nPASS Resume returns to IDE editor\nPASS cursor and breakpoint leave source bytes unchanged\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-4g37bfmq\n",
+    "debug-monitor-scopes-1793419139516866002.log": "PASS debugger stopped before increment\nPASS Local menu displays both exact scalar values\nPASS unsorted locals retain declaration order\nPASS Sort menu orders actual local names\nPASS Public menu adds actual memvar value\nPASS Private menu adds actual memvar value\nPASS Static menu adds actual static value\nPASS Sort remains active across scope additions\nPASS Public toggle removes only public fixture variable\nPASS Private toggle removes only private fixture variable\nPASS Static toggle removes only static fixture variable\nPASS All menu exposes fixture scopes with exact values\nPASS second All hides all fixture variables\nPASS editing sorted first row targets QA\nPASS scope toggles and sorted edit reach exact debuggee slots\nPASS scope test leaves source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-u0qr42g7\n",
+    "debug-workareas-1793419155489785472.log": "PASS debugger stopped before increment\nPASS View WorkAreas opens actual three browser dialog\nPASS ALPHA actual field structure shown\nPASS switching alias updates exact BETA structure\nPASS switching alias updates Alias status\nPASS cycling panes and returning alias restores ALPHA fields\nPASS Esc closes WorkAreas to debugger\nPASS F6 reopens WorkAreas with original alias\nPASS Resume retains original workarea record and exact fields\nPASS WorkAreas inspection leaves source bytes unchanged\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-kwqjwyle\n"
+  },
+  "exploratory": [
+    {
+      "run": {
+        "untracked_inputs_sha256": "95bbdea0373dc87b6f523e36bb9e377fa75c0e08a06ffa0d6c5d20699ed844e7",
+        "source": "0289a15be092ba6d1a0720f6d1102c23ea678da6",
+        "tracked_changes": " M scripts/completion_pty.py\n",
+        "tracked_snapshot_sha256": "51a21acd32e143302bdfe2709dae814730094d9c61810c925b7361baffe30012",
+        "binary_sha256": "9111f627ed5e923742151a9944bf05df1e52d494e62a6ab3b56d195fdc6ff3a1",
+        "build_receipt": "/tmp/hbide-cursor-popup-exploratory/build-identity.json",
+        "platform": "linux",
+        "build": "fresh",
+        "scope": "Linux PTY only; not full visual/Windows acceptance",
+        "runner_sha256": "787699474850944f90fa117e53415406397fa4f04c7f66e4237c875747028882",
+        "case": "debug-cursor-popup",
+        "command": [
+          "/opt/instinct/compat-bin/python",
+          "-u",
+          "/home/sandbox/hbide/tests/test_debug_cursor_popup_pty.py"
+        ],
+        "started": 1793419043.0509052,
+        "seconds": 12.67,
+        "exit_code": 1,
+        "printed_failure": true,
+        "source_or_binary_changed": false,
+        "test_sha256": "9852b3bc90804c138790950ecc2272fe1418da784bd00ac48592de9997089e32",
+        "log": "/tmp/hbide-cursor-popup-exploratory/debug-cursor-popup-1793419043050900549.log"
+      },
+      "log": "PASS debugger stopped before increment\nPASS Run to Cursor stops before line6 mutation\nPASS Point Breakpoint adds cursor line8\nPASS second to Cursor stops before line7 mutation\nPASS Run Go stops at popup breakpoint before write\nFAIL second Point Breakpoint removes cursor line8\nFAIL File Resume runs to exact final result\nFAIL Resume returns to IDE editor\nPASS cursor and breakpoint leave source bytes unchanged\nTOTAL 6 PASS 3 FAIL; evidence /tmp/hbide-source-run-m7otxd_x\n"
+    }
+  ]
+}

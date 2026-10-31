@@ -2336,3 +2336,7 @@ lo confundio y esperaba NoBreakpoints inexistente. Se corrige harness,
 no producto. AssertionslistBPseanclan0)8module, no cualquier8decaption.
 10PASSexploratorio,104menucontracts/116no104funciones;runner129=128PTY+guard.
 NoFileResumecursorlocation acceptance ni invalidthread/multifile/Windows.
+
+Cleanb0b8972CursorPopup10Scopes16WorkAreas10sameIDEc45bf334PASS,
+15inventory33docs;21modelosultima23bd0af. linux-debug-cursor-popup.json
+retieneclean y exploratorioconexpectativaequivocada, sin productfix.
