@@ -1906,3 +1906,10 @@ Home se rechazanexplicitamente max250sintruncar;nombrecorto manual conserva
 prioridadpeseaiteminiciallargo;actualeditor ytresficherosbyteexactos. No nuevo
 limite ni politica, regression del fixSTATEvacio/PadR250. Enlaces inventario
 actualizados para teclado/raton/longlist sin convertir testencierre de funcion.
+
+## 31 octubre: candidato exportado incluye regresion filelist
+
+Smokes internos añaden LongList5/Mouse14/Keyboard14 al binario exportado,
+posterior a fixesSTATEinicial/PadR250. No heredar candidato anteriorb9575d7 a
+fuente actual; conservar manifiesto por revision. Sigue candidato no release,
+licencias/instalacion/Windows pendientes, no104matrizglobal.
