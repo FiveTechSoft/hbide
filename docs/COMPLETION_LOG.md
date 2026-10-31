@@ -3142,3 +3142,7 @@ insidecomment. Before2PASS1FAIL;local3PASS+16lexicalmodelassertions. NavCode
 onlymasksbracketasstringwhenclosing]existsonsamephysical line, leaving
 multilinearraycommentstatevisible. No fullHarbourlexer/preprocessorclaim.
 Runner177=176PTY+guard. Cleanacceptanceandnativepickerfollow.
+
+FirstQ60cleanPTY16checksand22modelspassfb40f2f;offlinecataloguecheck
+wasstaleafterroadmapedit. Regeneratecataloguebeforefinalcleanacceptance;
+no documentationPASS claimedforfirstattempt.
