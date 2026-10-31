@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q63 | Literal con apertura backtick y cierre apóstrofo contaminaba comentarios. | FixtureHarbourválido, antes2PASS2FAIL. Pintado/scanner/navegación reconocen pareja; aceptación linux-editor-backtick-literal.json. No lexercompleto/Windows. |
 | Q62 | Texto#pragma begindump en#define ocultaba funciones reales. | Fixturecompilado, antes1PASS2FAIL. Matchdirectivaexacta,no substring. Aceptación/evidenciaseparada linux-navigation-pragma-macro.json; no preprocesadorcompleto/Windows. |
 | Q61 | CandidatoLinux15 incluyeQ59/Q60. | Exportf440946 stripped80eca2c5;8smokes+Bracket4/BracketVariants7/NavArray3/EscapeVariants7/Caret6PASSmismobinario,2pasossinreintentos. linux-candidate-bracket-navigation.json. TemporalNOrelease/Windows/global/licencias/instalador/nuevospixels. |
 | Q60 | Go to Function mostraba función falsa dentro de comentario multilinea en índice array. | FixtureHarbourcompilado, antes2PASS1FAIL/local3PASS. Se conserva estado/* al no existir cierre]enlínea. Clean33f5009Array3/Literal3/Typed3/BracketVariants7PASSmismobinario+22modelos16lexical118repaint;34docsPASStrasregenerarcatálogoobsoletoinicial. Nativepicker2/2Targetline7inspeccionados/F2exacto. linux-navigation-array-comment.json. Runner177=176PTY+guard. No lexercompleto/Windows. |

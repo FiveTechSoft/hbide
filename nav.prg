@@ -139,11 +139,11 @@ STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
          lBlock := .T.
          cOut += " "
          n++
-      CASE c == Chr( 34 ) .OR. c == "'" .OR. ;
+      CASE c == Chr( 34 ) .OR. c == "'" .OR. c == "`" .OR. ;
            ( c == "[" .AND. "]" $ SubStr( cLine, n + 1 ) )
          // A bracket string must close on this physical line. An array
          // index can instead contain a block comment spanning later lines.
-         q := iif( c == "[", "]", c )
+         q := iif( c == "[", "]", iif( c == "`", "'", c ) )
          lEscape := n > 1 .AND. Lower( SubStr( cLine, n - 1, 1 ) ) == "e" .AND. c == Chr( 34 )
          cOut += " "
       OTHERWISE

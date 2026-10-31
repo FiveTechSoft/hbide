@@ -3171,3 +3171,11 @@ directive. Substringmatchtreateditasrealpragmaandhidallfollowingfunctions.
 Before1PASS2FAIL. Requireexactnormalizeddirective;existingdumpisolation
 unchanged. Newlexicalmodelguard. Runner178=177PTY+guard. Cleanacceptance
 andnativepickerrecordedseparately,notfullpreprocessor/Windowscoverage.
+
+## Q63 - Backtick string opener leaked comment paint state
+
+Harbourppcore.c acceptsbacktickopeningandapostropheclosing;compiler-valid
+fixture localc:=`/*literal' leakedblockstateintoreturn. Before2PASS2FAIL,
+F2bytesalreadyexact. Scanner/painterandnavigationrecognizequotepair;
+modelguardsincludeactualcommentafterliteral. Runner179=178PTY+guard.
+Cleanacceptance/nativepixelsfollowinevidence;notfulllexer/Windows.

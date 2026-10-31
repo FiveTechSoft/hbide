@@ -952,7 +952,7 @@ return ::aBlkCmt[ nLine ]
 // UTF-8 continuation bytes can never alias them.
 METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
 
-   local n := 1, nLen := Len( cText ), c
+   local n := 1, nLen := Len( cText ), c, q
 
    if ! lIn .and. Left( LTrim( StrTran( cText, Chr( 9 ), " " ) ), 1 ) == "*"
       return .F.
@@ -980,9 +980,10 @@ METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
                n++
             endif
          end
-      elseif c == '"' .or. c == "'"
+      elseif c == '"' .or. c == "'" .or. c == "`"
+         q := iif( c == "`", "'", c )
          n++
-         while n <= nLen .and. SubStr( cText, n, 1 ) != c
+         while n <= nLen .and. SubStr( cText, n, 1 ) != q
             n++
          end
       elseif c == "/" .and. SubStr( cText, n, 2 ) == "/*"
@@ -1570,8 +1571,8 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
                 endif
                 n++
 
-            case hb_USubStr( cLine, n, 1 ) == "'"
-                cToken += "'"
+            case hb_USubStr( cLine, n, 1 ) == "'" .or. hb_USubStr( cLine, n, 1 ) == "`"
+                cToken += hb_USubStr( cLine, n, 1 )
                 while hb_USubStr( cLine, ++n, 1 ) != "'" .and. n <= hb_ULen( cLine )
                    cToken += hb_USubStr( cLine, n, 1 )
                 end
@@ -1614,7 +1615,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
                case Left( cToken, 1 ) == "[" .and. Right(cToken,1) == "]"
                     cColor = ::cClrString
 
-               case Left( cToken, 1 ) $ '"' + "'" .or. Lower( Left( cToken, 2 ) ) == 'e"' 
+               case Left( cToken, 1 ) $ '"' + "'`" .or. Lower( Left( cToken, 2 ) ) == 'e"' 
                     cColor = ::cClrString
 
                case Upper( cToken ) $ cOperators

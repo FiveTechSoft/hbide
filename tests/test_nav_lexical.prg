@@ -1,6 +1,6 @@
 procedure Main()
  local a, c, nPass:=0,nFail:=0
- for each c in { 'local c := "/*"', "local c := '/*'", 'local c := [/*]', '// /*', '&& /*', '* /*', 'local c := "//" // /*', 'local c := "&&" && /*' }
+ for each c in { "local c := `/* literal'", 'local c := "/*"', "local c := '/*'", 'local c := [/*]', '// /*', '&& /*', '* /*', 'local c := "//" // /*', 'local c := "&&" && /*' }
  a:=HBIDE_ScanProcs('function Main()'+hb_eol()+c+hb_eol()+'return nil'+hb_eol()+'function Target()'+hb_eol()+'return nil')
  Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==4,'literal or linecomment does not startblock: '+c,@nPass,@nFail)
  next
