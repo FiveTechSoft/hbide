@@ -1,0 +1,92 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "efff9990720563bbceb20d8d405651c869f888c1",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "6130da907422cd320310c85e6bf1a9aad03bf16acc45821e37603653c2700022",
+      "binary_sha256": "57a99ee303ad47037fc078ee5eecbce8e85eb4b9fa9e853e984d9905e819277b",
+      "build_receipt": "/tmp/hbide-designer-mixed-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "be9cada7f6b83f954a03f6f5bbfe2ac1c4373101f6046528de58f12362392852",
+      "case": "designer-quote-mixed-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_quote_runtime_pty.py",
+        "--mixed"
+      ],
+      "started": 1793458589.7827141,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "3b230f2955a231dc8cb7fa2fc4af4a6687475b35667c533f58df6518cc606c27",
+      "log": "/tmp/hbide-designer-mixed-clean/designer-quote-mixed-runtime-1793458589782710503.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "efff9990720563bbceb20d8d405651c869f888c1",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "6130da907422cd320310c85e6bf1a9aad03bf16acc45821e37603653c2700022",
+      "binary_sha256": "57a99ee303ad47037fc078ee5eecbce8e85eb4b9fa9e853e984d9905e819277b",
+      "build_receipt": "/tmp/hbide-designer-mixed-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "be9cada7f6b83f954a03f6f5bbfe2ac1c4373101f6046528de58f12362392852",
+      "case": "designer-quote-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_quote_runtime_pty.py"
+      ],
+      "started": 1793458595.2656212,
+      "seconds": 5.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "3b230f2955a231dc8cb7fa2fc4af4a6687475b35667c533f58df6518cc606c27",
+      "log": "/tmp/hbide-designer-mixed-clean/designer-quote-runtime-1793458595265617545.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "efff9990720563bbceb20d8d405651c869f888c1",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "6130da907422cd320310c85e6bf1a9aad03bf16acc45821e37603653c2700022",
+      "binary_sha256": "57a99ee303ad47037fc078ee5eecbce8e85eb4b9fa9e853e984d9905e819277b",
+      "build_receipt": "/tmp/hbide-designer-mixed-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "be9cada7f6b83f954a03f6f5bbfe2ac1c4373101f6046528de58f12362392852",
+      "case": "designer-clipboard-combo-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_combo_runtime_pty.py"
+      ],
+      "started": 1793458600.7500017,
+      "seconds": 6.13,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f7545a0827f8646d3a3dafab2dc0836186b04620c599cd9283e07937bb064c98",
+      "log": "/tmp/hbide-designer-mixed-clean/designer-clipboard-combo-runtime-1793458600749998722.log"
+    }
+  ],
+  "logs": {
+    "designer-clipboard-combo-runtime-1793458600749998722.log": "PASS pasted ComboBox binding case-insensitively distinct\nPASS pasted ComboBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ComboBox artifact compiles\nPASS first ComboBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ComboBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-_9g68jdh\n",
+    "build.log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling 'hbide.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n100\n\n200\n\n100\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\nLines 4715, Functions/Procedures 80\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/hbide.c'... Done.\nCompiling 'editor.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\nLines 3405, Functions/Procedures 68\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/editor.c'... Done.\nCompiling 'safeio.prg'...\n\n100\n\n100\n\nLines 379, Functions/Procedures 4\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/safeio.c'... Done.\nCompiling 'hbmenu.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\nLines 1561, Functions/Procedures 12\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/hbmenu.c'... Done.\nCompiling 'hbwindow.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\nLines 2485, Functions/Procedures 33\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/hbwindow.c'... Done.\nCompiling 'designer.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\n3100\n\n3200\n\n3300\n\n3400\n\n3500\n\n3600\n\n3700\n\n3800\n\n3900\n\n4000\n\n4100\n\n4200\n\n4300\n\n4400\n\nLines 5572, Functions/Procedures 127\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/designer.c'... Done.\nCompiling 'hbbutton.prg'...\n\n100\n\nLines 182, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/hbbutton.c'... Done.\nCompiling 'hbgetu.prg'...\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\nLines 1695, Functions/Procedures 24\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/hbgetu.c'... Done.\nCompiling 'help.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\nLines 2046, Functions/Procedures 27\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/help.c'... Done.\nCompiling 'project.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\nLines 1082, Functions/Procedures 14\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/project.c'... Done.\nCompiling 'projectui.prg'...\n\n100\n\n200\n\n300\n\n100\n\nLines 583, Functions/Procedures 4\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/projectui.c'... Done.\nCompiling 'nav.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 712, Functions/Procedures 7\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/nav.c'... Done.\nCompiling 'recovery.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\nLines 675, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/recovery.c'... Done.\nCompiling 'hbdebug/dbgbrwsr.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\nLines 1011, Functions/Procedures 13\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbgbrwsr.c'... Done.\nCompiling 'hbdebug/dbghelp.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 705, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbghelp.c'... Done.\nCompiling 'hbdebug/dbgmenu.prg'...\n\n100\n\n200\n\nLines 222, Functions/Procedures 1\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbgmenu.c'... Done.\nCompiling 'hbdebug/dbgtarr.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1399, Functions/Procedures 9\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbgtarr.c'... Done.\nCompiling 'hbdebug/dbgthsh.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1409, Functions/Procedures 10\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbgthsh.c'... Done.\nCompiling 'hbdebug/dbgtinp.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1413, Functions/Procedures 9\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbgtinp.c'... Done.\nCompiling 'hbdebug/dbgtmenu.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 1784, Functions/Procedures 21\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbgtmenu.c'... Done.\nCompiling 'hbdebug/dbgtmitm.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 810, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbgtmitm.c'... Done.\nCompiling 'hbdebug/dbgtobj.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 1458, Functions/Procedures 8\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbgtobj.c'... Done.\nCompiling 'hbdebug/dbgtwin.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\nLines 1677, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbgtwin.c'... Done.\nCompiling 'hbdebug/dbgwa.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 946, Functions/Procedures 7\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbgwa.c'... Done.\nCompiling 'hbdebug/tbrwtext.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\nLines 1063, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/tbrwtext.c'... Done.\nCompiling 'hbdebug/dbgscript.prg'...\n\n100\n\nLines 196, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/dbgscript.c'... Done.\nCompiling 'hbdebug/debugger.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n100\n\n200\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\n3100\n\n3200\n\n3300\n\n3400\n\n3500\n\n3600\n\n3700\n\n3800\n\n3900\n\n4000\n\n4100\n\n4200\n\n4300\n\n4400\n\nLines 6143, Functions/Procedures 133\nGenerating C source output to '/tmp/hbmk_zhfiul.dir/debugger.c'... Done.\n",
+    "designer-quote-runtime-1793458595265617545.log": "PASS paste creates two buttons\nPASS pasted button custom action and focus retained\nPASS pasted button accelerator and style retained\nPASS actual F9 emits both custom actions\nPASS actual F9 emits both focus handlers and accelerators\nPASS generated pasted-button artifact compiles\nPASS first-enter runtime caption retains double quotes\nPASS first-enter generated button accepts dialog true\nPASS first-enter preserved custom action executes\nPASS first-enter preserved focus handler executes\nPASS second-enter runtime caption retains double quotes\nPASS second-enter generated button accepts dialog true\nPASS second-enter preserved custom action executes\nPASS second-enter preserved focus handler executes\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-raxrl347\n",
+    "designer-quote-mixed-runtime-1793458589782710503.log": "PASS paste creates two buttons\nPASS pasted button custom action and focus retained\nPASS pasted button accelerator and style retained\nPASS actual F9 emits both custom actions\nPASS actual F9 emits both focus handlers and accelerators\nPASS generated pasted-button artifact compiles\nPASS first-enter runtime caption retains double quotes\nPASS first-enter generated button accepts dialog true\nPASS first-enter preserved custom action executes\nPASS first-enter preserved focus handler executes\nPASS second-enter runtime caption retains double quotes\nPASS second-enter generated button accepts dialog true\nPASS second-enter preserved custom action executes\nPASS second-enter preserved focus handler executes\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-r3vwfqd1\n"
+  },
+  "generated": "//\n// fixture.prg - dialog generated by the HbIde designer\n//\n\n#include 'hbclass.ch'\n#include 'inkey.ch'\n#include 'setcurs.ch'\n\nfunction Dlg_Fixture()\n\n   local oDlg, GetList := {}, lOk := .F.\n   local lDummy\n\n   oDlg = HBWindow():Dialog( \"Fixture\", 60, 20, \"W+/W\" )\n\n\n   @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lDummy PUSHBUTTON CAPTION e\"Say \\\"yes\\\" and 'no' ] \\\\ (&Q)\" ;\n      COLOR 'GR+/G,W+/G,N/G,BG+/G' FOCUS {|| MarkFocus() } STATE { || MarkState(), lOk := .T., oDlg:End() } STYLE '[]'\n   @ oDlg:nTop + 3, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION e\"Say \\\"yes\\\" and 'no' ] \\\\ (&Q)\" ;\n      COLOR 'GR+/G,W+/G,N/G,BG+/G' FOCUS {|| MarkFocus() } STATE { || MarkState(), lOk := .T., oDlg:End() } STYLE '[]'\n\n   oDlg:Activate( GetList )\n\nreturn lOk\n",
+  "runtime_source": "//\n// fixture.prg - dialog generated by the HbIde designer\n//\n\n#include 'hbclass.ch'\n#include 'inkey.ch'\n#include 'setcurs.ch'\n\nfunction Dlg_Fixture()\n\n   local oDlg, GetList := {}, lOk := .F.\n   local lDummy\n\n   oDlg = HBWindow():Dialog( \"Fixture\", 60, 20, \"W+/W\" )\n\n\n   @ oDlg:nTop + 2, oDlg:nLeft + 3 GET lDummy PUSHBUTTON CAPTION e\"Say \\\"yes\\\" and 'no' ] \\\\ (&Q)\" ;\n      COLOR 'GR+/G,W+/G,N/G,BG+/G' FOCUS {|| MarkFocus() } STATE { || MarkState(), lOk := .T., oDlg:End() } STYLE '[]'\n   @ oDlg:nTop + 3, oDlg:nLeft + 4 GET lDummy PUSHBUTTON CAPTION e\"Say \\\"yes\\\" and 'no' ] \\\\ (&Q)\" ;\n      COLOR 'GR+/G,W+/G,N/G,BG+/G' FOCUS {|| MarkFocus() } STATE { || MarkState(), lOk := .T., oDlg:End() } STYLE '[]'\n\n   oDlg:Activate( GetList )\n\nreturn lOk\n\nprocedure Main()\n   hb_MemoWrit(\"/tmp/hbide-source-run-r3vwfqd1/runtime-values.txt\", hb_ValToExp(Dlg_Fixture()))\nreturn\nfunction MarkState()\n   hb_MemoWrit(\"/tmp/hbide-source-run-r3vwfqd1/handler-calls.txt\", \"called\")\nreturn .T.\nfunction MarkFocus()\n   hb_MemoWrit(\"/tmp/hbide-source-run-r3vwfqd1/focus-calls.txt\", \"focus\")\nreturn .T.\n",
+  "build": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-source-run-r3vwfqd1/runtime.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\nLines 1177, Functions/Procedures 4\nGenerating C source output to '/tmp/hbmk_jjx1h6.dir/runtime.c'... Done.\nCompiling '/home/sandbox/hbide/hbwindow.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\nLines 2485, Functions/Procedures 33\nGenerating C source output to '/tmp/hbmk_jjx1h6.dir/hbwindow.c'... Done.\nCompiling '/home/sandbox/hbide/hbmenu.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\nLines 1561, Functions/Procedures 12\nGenerating C source output to '/tmp/hbmk_jjx1h6.dir/hbmenu.c'... Done.\nCompiling '/home/sandbox/hbide/hbbutton.prg'...\n\n100\n\nLines 182, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_jjx1h6.dir/hbbutton.c'... Done.\nCompiling '/home/sandbox/hbide/hbgetu.prg'...\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\nLines 1695, Functions/Procedures 24\nGenerating C source output to '/tmp/hbmk_jjx1h6.dir/hbgetu.c'... Done.\n",
+  "runtime_sha256": "7a1dd36fd38d08cae70e7829f9a448b5683a0c0ea97ea09c8daf0ac6c0bcf593",
+  "acceptance": "Cleanefff999 Mixed14/Quote14/Combo9=37PASSsame57a99ee3,17inventory34docs. No retries, new product, model run or pixels. Mixed bothquote/bracket/backslash forces escaped literal compiled and actualcaptionchecks two runtimebuttons.",
+  "scope": "Noallcontroltypes/Unicode/Windows/global; product8ed9feeunchanged. Candidate15predatesQ62-Q66."
+}
