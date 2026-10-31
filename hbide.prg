@@ -1146,6 +1146,7 @@ METHOD ProjectDesktop() CLASS HbIde
    endif
    if hNavigate != nil
       if ::OpenInEditor( hNavigate[ "path" ] )
+         ::oEditor:ClearSelection()
          ::oEditor:Goto( hNavigate[ "line" ], hNavigate[ "column" ] + 4 )
          ::oEditor:Display()
          ::nMsg := AScan( ::aMessages, {| h | h[ "path" ] == hNavigate[ "path" ] .and. ;
@@ -2547,6 +2548,7 @@ METHOD JumpMessage( n, cWrap ) CLASS HbIde
       return nil
    endif
    ::nMsg := n
+   ::oEditor:ClearSelection()
    ::oEditor:Goto( h[ "line" ], h[ "column" ] + 4 )
    ::oEditor:Display()
    ::oEditor:ShowCursor()

@@ -2978,3 +2978,11 @@ ColonDiagnostic,ProjectMessages,Navigation,OutputScroll,FindSelection) PASS
 samef8988087,twoboundedstepsnoretries/interruption;22models112repaint
 PASS,15inventory34docs. linux-navigation-project-joint.json. No newfix/
 full164PTY/newpixels/Windows/milestoneclosure. Candidate12stillpredatesQ52-Q54.
+
+## Q55 - Message/project jump reused selected buffer without clearing range
+
+MeasuredAltF8samebufferaftermarkatline1 causedtypingatGCCline2 todelete
+oldrange, before5PASS1FAIL. ClearSelection aftersuccessfulOpenInEditor
+inJumpMessageandProjectDesktoponly; failedopen untouched. Local9PASSincl
+NextMessage/UndoandProjectsourcesamebufferjump/Undo. Initialsourceprobe
+toggledF4toMessagesbyerror,correctedharnessnotproduct. Runner166=165PTY+guard.
