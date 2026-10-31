@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q106 | M0 F5Find real éxito/Cancel/missing vinculado. | Source3ac5026/3modos21checks30inventory34docsPASS;linux-inventory-find-f5.json. No productfix/pixels/modelrerun/global. |
 | Q105 | TAB antesbracketliteral no contamina estado posterior. | Antes3PASS1FAIL;5newguards35PTY22models29inventory34docsPASSsource4610113;nativeinspeccionado;linux-editor-bracket-tabs.json. C21/Q104predatesfix. |
 | C21 | CandidatoLinux temporal incluyeQ100/Q101/Q102. | Exportdf2e7a5 binary6d116c74,8smoke11modos57checksPASSexactbinary/nativainspeccionada;linux-candidate-comparisons-c21.json. No release/Windows/licenses/install/fullmatrixinherit. |
 | Q104 | Matriz Linux registrada completa hastaQ103. | 212/212distinct=211PTY+guardPASSsourcea0b7b82binary1bf96b2e;22models29inventory34docs;linux-full-matrix-q104.json. No newfix/pixels/candidate/Windows/licensing/Cancel/hitos. Q87historicalseparate. |

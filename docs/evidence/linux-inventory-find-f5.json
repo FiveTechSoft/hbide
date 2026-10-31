@@ -1,0 +1,87 @@
+{
+  "scope": "Q106 M0 actualF5Find dispatch bounded success/cancel/missing selection. No productfix/pixels/modelrerun/Windows/globalmatrix/milestone.",
+  "source": "3ac5026dd532bdc398bb62d18696bdd18cb60388",
+  "binary_sha256": "c35b5b78e257507d067649a01d38de207ec0a56ed4746c86ae0a8e90c037d91c",
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "3ac5026dd532bdc398bb62d18696bdd18cb60388",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "c29775e15a0671feacd1989ccfd46258da5a0d72fafb743fad4028f2de938250",
+      "binary_sha256": "c35b5b78e257507d067649a01d38de207ec0a56ed4746c86ae0a8e90c037d91c",
+      "build_receipt": "/tmp/hbide-f5-find-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "87ddc172dc34eee6a6fd4379d85e230ef2367d599782dc9ddd155b15c45c14b2",
+      "case": "find-f5-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_find_f5_selection_pty.py"
+      ],
+      "started": 1793488374.4624114,
+      "seconds": 18.75,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "31dc55106d51b9955c82934a9c5e8a2977fec02e4472d4c57cc3402bde20eb07",
+      "log": "/tmp/hbide-f5-find-clean/find-f5-selection-1793488374462407836.log",
+      "log_text": "PASS Open requested fixture\nPASS Typing after Find inserts at match without old range\nPASS Undo Find-following typing exact\nPASS Cancelled Find retains old range\nPASS Undo after cancelled Find exact\nPASS Missing Find retains old range\nPASS Undo after missing Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-awywkgxq\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "3ac5026dd532bdc398bb62d18696bdd18cb60388",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "c29775e15a0671feacd1989ccfd46258da5a0d72fafb743fad4028f2de938250",
+      "binary_sha256": "c35b5b78e257507d067649a01d38de207ec0a56ed4746c86ae0a8e90c037d91c",
+      "build_receipt": "/tmp/hbide-f5-find-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "87ddc172dc34eee6a6fd4379d85e230ef2367d599782dc9ddd155b15c45c14b2",
+      "case": "find-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_find_selection_pty.py"
+      ],
+      "started": 1793488393.2128758,
+      "seconds": 19.85,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "3ce3425dc070bc83240929b1d47c820118db1385a119c8ff909ddc3b2835ceb7",
+      "log": "/tmp/hbide-f5-find-clean/find-selection-1793488393212872465.log",
+      "log_text": "PASS Open requested fixture\nPASS Typing after Find inserts at match without old range\nPASS Undo Find-following typing exact\nPASS Cancelled Find retains old range\nPASS Undo after cancelled Find exact\nPASS Missing Find retains old range\nPASS Undo after missing Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-gqtwyypm\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "3ac5026dd532bdc398bb62d18696bdd18cb60388",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "c29775e15a0671feacd1989ccfd46258da5a0d72fafb743fad4028f2de938250",
+      "binary_sha256": "c35b5b78e257507d067649a01d38de207ec0a56ed4746c86ae0a8e90c037d91c",
+      "build_receipt": "/tmp/hbide-f5-find-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "87ddc172dc34eee6a6fd4379d85e230ef2367d599782dc9ddd155b15c45c14b2",
+      "case": "find-repeat-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_find_repeat_selection_pty.py"
+      ],
+      "started": 1793488413.0647748,
+      "seconds": 18.7,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "969ec83aeb61d954572e7bb9844b3ba426963a2eb6ef3fc2f5bdce4a7ee4b17c",
+      "log": "/tmp/hbide-f5-find-clean/find-repeat-selection-1793488413064771677.log",
+      "log_text": "PASS Open requested fixture\nPASS Find consumes old multirow range at second match\nPASS Undo after multirow selected Find exact\nPASS Repeat Last Find clears old range\nPASS Undo after repeated Find exact\nPASS Wrapped Repeat Find clears old range on other row\nPASS Undo after wrapped Repeat Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-kxy3dbui\n"
+    }
+  ],
+  "inventory_log": "..............................\n----------------------------------------------------------------------\nRan 30 tests in 0.278s\n\nOK\n",
+  "execution": "3modes21checks nofailure/retry/interruption;30inventory34docs. InitialFind now actualF5 in newcase, legacy Editcase retained."
+}

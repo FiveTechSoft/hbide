@@ -3711,3 +3711,13 @@ nextstate. Cleansource4610113:6modes35PTYchecks22models173repaint29inventory
 nextreturnsfunctioncyan/fullborders/F2rawTABexact.
 linux-editor-bracket-tabs.json. No generallexer/Windows/global/hitoclosed.
 C21exportdf2e7a5/Q104full212a0b7b82predatethisfix.
+
+## Q106 - M0 actual F5 Find dispatch
+
+New F5 harness derived from existing EditFind fixture but actual keyF5 in
+success/Cancel/missing paths. Success clears old selection,Cancel/missing
+retain it; followingtype/Undo/F2exact. Source3ac5026clean:3modes21checksPASS
+F5Find/EditFind/RepeatFind;1newinventoryguard30total/34docsPASS.
+No failure/retry/interruption. ExactIFroute source/context/condition linked.
+linux-inventory-find-f5.json. No newproductfix/pixels/modelrerun/Windows/global.
+Q102initialFindstillEdit; thisindependentcase isF5. Q104/C21predateQ105+.
