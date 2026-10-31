@@ -28,6 +28,12 @@ procedure Main()
  a:=HBIDE_ScanProcs('#pragma begindump'+hb_eol()+c+hb_eol()+'function Hidden()'+hb_eol()+'#pragma enddump'+hb_eol()+'function Real()')
  Check(Len(a)==1.and.a[1,1]=='Real'.and.a[1,3]==5,'nonterminator does not leak C text: '+c,@nPass,@nFail)
  next
+ for each c in { 'local n := a[1 /* ] marker', 'local n := a [1 /* ] marker', 'local n := GetArray()[1 /* ] marker' }
+ a:=HBIDE_ScanProcs('function Main()'+hb_eol()+c+hb_eol()+'function Hidden()'+hb_eol()+'*/ ]'+hb_eol()+'function Target()')
+ Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==5,'index comment with closing bracket is not literal: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('function Main()'+hb_eol()+'return [/* literal]'+hb_eol()+'function Target()')
+ Check(Len(a)==2.and.a[2,1]=='Target','RETURN bracket literal remains masked',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

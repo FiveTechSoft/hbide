@@ -159,7 +159,7 @@ STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
          cOut += " "
          n++
       CASE c == Chr( 34 ) .OR. c == "'" .OR. c == "`" .OR. ;
-           ( c == "[" .AND. "]" $ SubStr( cLine, n + 1 ) )
+           ( c == "[" .AND. HBIDE_NavBracketQuote( cLine, n ) )
          // A bracket string must close on this physical line. An array
          // index can instead contain a block comment spanning later lines.
          q := iif( c == "[", "]", iif( c == "`", "'", c ) )
@@ -171,6 +171,29 @@ STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
       n++
    ENDDO
 RETURN cOut
+
+// Bounded distinction: a bracket following a value/name is an index.
+// RETURN is an expression introducer, not an array name.
+STATIC FUNCTION HBIDE_NavBracketQuote( cLine, nAt )
+   LOCAL cBefore := RTrim( StrTran( Left( cLine, nAt - 1 ), Chr(9), " " ) )
+   LOCAL cLast := Right( cBefore, 1 ), n := Len( cBefore ), cWord
+   IF !( "]" $ SubStr( cLine, nAt + 1 ) )
+      RETURN .F.
+   ENDIF
+   IF Empty( cBefore )
+      RETURN .T.
+   ENDIF
+   IF cLast $ ")]}'" + Chr(34)
+      RETURN .F.
+   ENDIF
+   IF cLast $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
+      DO WHILE n > 0 .AND. SubStr(cBefore,n,1) $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
+         n--
+      ENDDO
+      cWord := Upper( SubStr(cBefore,n+1) )
+      RETURN HBIDE_IsKw( cWord, "RETURN" )
+   ENDIF
+   RETURN .T.
 
 // FUNC/PROC may be abbreviated to four letters in Harbour/Clipper
 STATIC FUNCTION HBIDE_IsKw( cWord, cFull )

@@ -3325,3 +3325,14 @@ Allreceipts/logs/buildidentity/incident preserved in
 linux-full-matrix-q77.json. No productfix/newpixels/candidate; no Windows,
 visualtearing, nativeinstallation, licence clearance or globalIDE closure.
 Q58general partial and all milestone gates remain open as recorded.
+
+## Q78 - Closing bracket inside real array comment leaked false function
+
+Compiler-valid array index contains /* ] marker followed by a fake
+declaration before closing comment. Scanner treated any same-line closing
+bracket as literal, before2PASS1FAIL. Bounded value/name-before-bracket
+distinction leaves real index comments active; RETURN bracket literal
+remains masked. Four lexical guards. Runner192=191PTY+guard. Evidence
+linux-navigation-array-bracket-comment.json follows. Not a full Harbour
+lexer/preprocessor or Windows/global certification. Q77 remains its frozen
+191-fixture acceptance, not proof against every possible source.
