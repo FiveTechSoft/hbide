@@ -1742,7 +1742,7 @@ METHOD CutSelection() CLASS HBSrcEdit
    endif
    ::cClipboard = ::SelectionText()
    aOld = ::SelDelete( aSel )
-   ::PushOp( aSel[ 1 ], aOld, { HBIDE_LinePack( ::aText[ aSel[ 1 ] ] ) } )
+   ::PushOp( aSel[ 1 ], aOld, { HBIDE_LinePack( ::aText[ aSel[ 1 ] ] ) }, .T. )
 
 return nil
 

@@ -222,9 +222,10 @@
     "IDE-011": {
       "tests": [
         "test_editor_eol.prg",
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_cut_undo_boundary_pty.py"
       ],
-      "contract": "Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes.",
+      "contract": "Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes. Explicit Cut records a separate undo command from typing before or after it; Undo Cut preserves earlier unsaved typing.",
       "expected_label": "Cut"
     },
     "IDE-012": {

@@ -2702,3 +2702,12 @@ Runner150=149PTY modes plus guard. No Windows/global/M1 closure.
 Clean1dba6ee: Selection5, Identity3, Boundary6 and Spaces10 pass same
 binary05c99a2b without retry;21models15inventory33docs pass.
 Ledger docs/evidence/linux-replace-selection.json.
+
+## Q43 Cut does not merge into earlier typing
+
+Type X in alpha, select al and Cut: Undo also removed X (before5/7PTY).
+Cut now records separate undo op using existing boundary flag; typing before
+and after remains independently undoable. After7/7PTY, five new model checks.
+Native120x40 UndoXalpha/RedoXpha inspected, full frames, saved bytes exact.
+Runner151=150PTY modes plus guard. No other command grouping/Windows/global.
+Clean pending.
