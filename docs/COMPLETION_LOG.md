@@ -2836,3 +2836,8 @@ moves left without changing bytes but marked dirty. Realbefore1PASS1FAIL
 falseCloseprompt. Set dirty only if deletionposition exists, retain cursor
 movement and realchar deletion. Clean/redo/model/native evidence follows.
 Runner157=156PTY+guard; no global virtualspace-policy change.
+
+Q47clean56e76ad VirtualBS5/EOF6/Tab7/SelectionIdentity5PASS same98a4ede3;
+21modelsPASS including99repaint,15inventory34docsPASS. Native120x40virtualcol10
+andClose->noname inspected fullborders. Ledger linux-virtual-backspace.json.
+No retries/globalvirtualspacepolicy/Windows. Candidate10predatesQ47.
