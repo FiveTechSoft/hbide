@@ -3374,3 +3374,11 @@ Main1/Target7only2/2, complete picker/shadow/IDEborders and exactsavedline7.
 First attempt only changed terminal geometry, IDEstartupreset40x120;
 those preparatory frames discarded, not25x80acceptance. No new productfix
 or tests/matrix/tearing/release claim. linux-candidate-c17-small-display.json.
+
+## Q81 - continued declaration navigation
+
+Compiler-valid FUNCTION ; followed by Target() was omitted by picker.
+Before1PASS2FAIL. Join only declaration-looking masked lines with trailing
+semicolon, retaining first physical line and dropping pending text at a
+directive. Five model guards plus focused PTY. No arbitrary preprocessing.
+Evidence linux-navigation-declaration-continuation.json follows.

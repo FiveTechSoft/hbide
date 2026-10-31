@@ -11,7 +11,7 @@
 // (//, *, &&, /* */) and #pragma begindump C blocks are skipped.
 FUNCTION HBIDE_ScanProcs( cText )
    LOCAL aOut := {}, aLines, cLine, cL, nLine := 0, lBlock := .F., lDump := .F.
-   LOCAL aTok, cT1, cT2, cName, n, cKind, cCls
+   LOCAL aTok, cT1, cT2, cName, n, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine
 
    cText := StrTran( StrTran( cText, Chr( 13 ) + Chr( 10 ), Chr( 10 ) ), Chr( 13 ), Chr( 10 ) )
    aLines := hb_ATokens( cText, Chr( 10 ) )
@@ -33,6 +33,7 @@ FUNCTION HBIDE_ScanProcs( cText )
          LOOP
       ENDIF
       IF Left( cL, 1 ) == "#"
+         cPending := ""
          cT1 := Upper( StrTran( cL, " ", "" ) )
          IF cT1 == "#PRAGMABEGINDUMP"
             lDump := .T.
@@ -42,6 +43,19 @@ FUNCTION HBIDE_ScanProcs( cText )
          LOOP
       ENDIF
       IF lDump .OR. Left( cL, 2 ) == "//" .OR. Left( cL, 1 ) == "*" .OR. Left( cL, 2 ) == "&&"
+         LOOP
+      ENDIF
+      nSourceLine := nLine
+      IF ! Empty( cPending )
+         cL := cPending + " " + cL
+         nSourceLine := nDeclLine
+         cPending := ""
+      ENDIF
+      // Only declaration-looking logical lines are joined. A semicolon
+      // masked inside a string/comment never reaches this code.
+      IF Right( cL, 1 ) == ";" .AND. HBIDE_NavDeclStart( cL )
+         cPending := RTrim( Left( cL, Len(cL)-1 ) )
+         nDeclLine := nSourceLine
          LOOP
       ENDIF
       aTok := hb_ATokens( cL, " " )
@@ -103,9 +117,19 @@ FUNCTION HBIDE_ScanProcs( cText )
       IF cKind == "method"
          cName := cCls + ":" + cName
       ENDIF
-      AAdd( aOut, { cName, cKind, nLine } )
+      AAdd( aOut, { cName, cKind, nSourceLine } )
    NEXT
    RETURN aOut
+
+// Bounded declaration continuations, not arbitrary statement preprocessing.
+STATIC FUNCTION HBIDE_NavDeclStart( cLine )
+   LOCAL a := HBIDE_Compact( hb_ATokens( cLine, " " ) ), c
+   IF Empty( a )
+      RETURN .F.
+   ENDIF
+   c := Upper( a[1] )
+   RETURN HBIDE_IsKw(c,"FUNCTION") .OR. HBIDE_IsKw(c,"PROCEDURE") .OR. ;
+      c == "STATIC" .OR. c == "INIT" .OR. c == "EXIT" .OR. c == "METHOD" .OR. c == "CLASS"
 
 // Match the raw C-dump terminator without running Harbour comment state.
 // hb_pp_hasCommand accepts trailing comments or a command separator.

@@ -40,6 +40,16 @@ procedure Main()
  next
  a:=HBIDE_ScanProcs('function Main()'+hb_eol()+'return /* gap */ [/* literal]'+hb_eol()+'function Target()')
  Check(Len(a)==2.and.a[2,1]=='Target','RETURN with completed comment still introduces bracket literal',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('function Main()'+hb_eol()+'return nil'+hb_eol()+'function ; // declaration continues'+hb_eol()+'/* gap */ Target()'+hb_eol()+'return nil')
+ Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==3,'continued declaration preserves first physical line',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('static ;'+hb_eol()+'function ;'+hb_eol()+'Target()')
+ Check(Len(a)==1.and.a[1,1]=='Target'.and.a[1,3]==1,'multiple declaration continuations preserve first line',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('function ;'+hb_eol()+'// intervening comment'+hb_eol()+'Target()')
+ Check(Len(a)==1.and.a[1,1]=='Target'.and.a[1,3]==1,'line comment between declaration parts ignored',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('function Main()'+hb_eol()+'local x := ";"'+hb_eol()+'function Target()')
+ Check(Len(a)==2.and.a[2,3]==3,'literal semicolon not declaration continuation',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('function ;'+hb_eol()+'#define X 1'+hb_eol()+'function Target()')
+ Check(Len(a)==1.and.a[1,1]=='Target'.and.a[1,3]==3,'directive drops pending incomplete declaration',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return
