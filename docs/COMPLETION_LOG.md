@@ -3217,3 +3217,12 @@ bothquotetypes,closingbracketandbackslash,forcinghb_StrToExpescapedliteral.
 ActualF9artifactcompiledandruntwobuttons;captioncheckedat runtime,handlers
 andfocusunchanged. No productfix; runner182=181PTY+guard. Evidence
 linux-designer-mixed-quote-runtime.json recordsfocusedcleanacceptance.
+
+## Candidate16 - Current quote/navigation/color fixes exported
+
+Exportclean3109a9a,strippedSHA773983e192a50c063421f171d9ace3867b35eefe2cb33e5a9a5af1c3b46974f1.
+8standardsmokes+MixedQuote14/Pragma3/Backtick4/Color6PASSsameexactbinary.
+Twoboundedstepsnoretries/interruption,manifest/toolchain/ldd/logspreserved
+linux-candidate-designer-quotes.json. IncludesQ62/Q63/Q64/Q66andmixed
+acceptancefixture. No newfix/full181PTY/Windows/release/license/installer/
+newpixels/determinism/NEXUSrun;Q58generalpartial.
