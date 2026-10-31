@@ -1,0 +1,442 @@
+{
+  "scope": "Cleanb8f77d7Linux seven loadedtypes F2popup CopyPasteCutUndoRedo mnemonicactivation119checks;notmousepixelsWindows. CompanionCase18GetRuntime9sameIDE21models15inventory33docs. Notall122runnerentries/globalacceptance.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "b8f77d7b4d636853e878b4b5a0e7493213ec4d3f",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "0c5fdcaa0e92277b750b9dba9d72fb2510aacaabd8cf2240ba0342b149b42278",
+    "binary_sha256": "f2a5a2af77899f11a8a4e78be76e4f917b3f40dae1d7f39cff9d41d172a88021",
+    "built_at": 1793417027.3782506
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "b8f77d7b4d636853e878b4b5a0e7493213ec4d3f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "0c5fdcaa0e92277b750b9dba9d72fb2510aacaabd8cf2240ba0342b149b42278",
+      "binary_sha256": "f2a5a2af77899f11a8a4e78be76e4f917b3f40dae1d7f39cff9d41d172a88021",
+      "build_receipt": "/tmp/hbide-popup-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5de9acc977941a8863efc42964098cae7fc7f1f38716bfcacd36a0070ba58d7b",
+      "case": "designer-clipboard-popup-types",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_loaded_types_pty.py",
+        "--popup"
+      ],
+      "started": 1793417027.3785143,
+      "seconds": 56.89,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ec07396175878718147d7f489bfd8495b21ed0319f0865dc19aea42d1e896dce",
+      "log": "/tmp/hbide-popup-clean/designer-clipboard-popup-types-1793417027378510703.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "b8f77d7b4d636853e878b4b5a0e7493213ec4d3f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "0c5fdcaa0e92277b750b9dba9d72fb2510aacaabd8cf2240ba0342b149b42278",
+      "binary_sha256": "f2a5a2af77899f11a8a4e78be76e4f917b3f40dae1d7f39cff9d41d172a88021",
+      "build_receipt": "/tmp/hbide-popup-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5de9acc977941a8863efc42964098cae7fc7f1f38716bfcacd36a0070ba58d7b",
+      "case": "designer-clipboard-case",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_pty.py",
+        "--case-insensitive"
+      ],
+      "started": 1793417088.2413886,
+      "seconds": 24.39,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1a5025ecea16014cf96b6b867f578f70d2813938aa28d991f927d48cab04579a",
+      "log": "/tmp/hbide-popup-clean/designer-clipboard-case-1793417088241385029.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "b8f77d7b4d636853e878b4b5a0e7493213ec4d3f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "0c5fdcaa0e92277b750b9dba9d72fb2510aacaabd8cf2240ba0342b149b42278",
+      "binary_sha256": "f2a5a2af77899f11a8a4e78be76e4f917b3f40dae1d7f39cff9d41d172a88021",
+      "build_receipt": "/tmp/hbide-popup-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5de9acc977941a8863efc42964098cae7fc7f1f38716bfcacd36a0070ba58d7b",
+      "case": "designer-clipboard-get-runtime",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_get_runtime_pty.py"
+      ],
+      "started": 1793417112.6301568,
+      "seconds": 6.16,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "7d5402ccd1aad77be845cd0084c6c6da52e0d3064836444733d4d5765a4d2d86",
+      "log": "/tmp/hbide-popup-clean/designer-clipboard-get-runtime-1793417112630153252.log"
+    }
+  ],
+  "logs": {
+    "designer-clipboard-get-runtime-1793417112630153252.log": "PASS pasted GET binding case-insensitively distinct\nPASS pasted GET VALID handler retained\nPASS actual F9 generates two separate text bindings\nPASS actual F9 emits both VALID handlers\nPASS generated pasted-GET artifact compiles\nPASS first GET text edit affects only its bound value\nPASS first preserved VALID handler executes in generated runtime\nPASS second GET text edit affects only its bound value\nPASS second preserved VALID handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-m3c2i3fx\n",
+    "designer-clipboard-case-1793417088241385029.log": "PASS ComboBox created in real designer\nPASS inspector saved nondefault items and four handlers exactly\nPASS initial ComboBox model exact type\nPASS Copy plus two Paste produces three controls\nPASS pasted variables all unique\nPASS Paste preserves nondefault items dimensions and four handlers\nPASS Paste offsets exact row col\nPASS Undo removes only last pasted control\nPASS Redo restores complete pasted model\nPASS Cut selected control removes only last exact model\nPASS Undo Cut restores complete model\nPASS Paste after Cut Undo creates unique variable\nPASS clipboard preserves cut control fields\nPASS source edit after Copy changes only selected items\nPASS clipboard is detached from later source item mutation\nPASS detached paste keeps four handlers and unique binding\nPASS Undo detached Paste preserves edited source\nPASS Undo source item edit restores full preedit model\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-3pm_dkyp\n",
+    "designer-clipboard-popup-types-1793417027378510703.log": "PASS say real F12 load and F10 persist type\nPASS say F2 clipboard popup visible\nPASS say F2 clipboard popup visible\nPASS say F2 clipboard popup visible\nPASS say Copy two Paste preserves all nonbinding fields\nPASS say Paste offsets exact\nPASS say bindings unique or absent\nPASS say F2 clipboard popup visible\nPASS say Undo removes last only\nPASS say F2 clipboard popup visible\nPASS say Redo restores complete models\nPASS say F2 clipboard popup visible\nPASS say Cut removes selected only\nPASS say F2 clipboard popup visible\nPASS say Undo Cut restores complete models\nPASS say F2 clipboard popup visible\nPASS say Paste after Cut Undo keeps fields\nPASS get real F12 load and F10 persist type\nPASS get F2 clipboard popup visible\nPASS get F2 clipboard popup visible\nPASS get F2 clipboard popup visible\nPASS get Copy two Paste preserves all nonbinding fields\nPASS get Paste offsets exact\nPASS get bindings unique or absent\nPASS get F2 clipboard popup visible\nPASS get Undo removes last only\nPASS get F2 clipboard popup visible\nPASS get Redo restores complete models\nPASS get F2 clipboard popup visible\nPASS get Cut removes selected only\nPASS get F2 clipboard popup visible\nPASS get Undo Cut restores complete models\nPASS get F2 clipboard popup visible\nPASS get Paste after Cut Undo keeps fields\nPASS checkbox real F12 load and F10 persist type\nPASS checkbox F2 clipboard popup visible\nPASS checkbox F2 clipboard popup visible\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Copy two Paste preserves all nonbinding fields\nPASS checkbox Paste offsets exact\nPASS checkbox bindings unique or absent\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Undo removes last only\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Redo restores complete models\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Cut removes selected only\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Undo Cut restores complete models\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Paste after Cut Undo keeps fields\nPASS button real F12 load and F10 persist type\nPASS button F2 clipboard popup visible\nPASS button F2 clipboard popup visible\nPASS button F2 clipboard popup visible\nPASS button Copy two Paste preserves all nonbinding fields\nPASS button Paste offsets exact\nPASS button bindings unique or absent\nPASS button F2 clipboard popup visible\nPASS button Undo removes last only\nPASS button F2 clipboard popup visible\nPASS button Redo restores complete models\nPASS button F2 clipboard popup visible\nPASS button Cut removes selected only\nPASS button F2 clipboard popup visible\nPASS button Undo Cut restores complete models\nPASS button F2 clipboard popup visible\nPASS button Paste after Cut Undo keeps fields\nPASS radiogroup real F12 load and F10 persist type\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Copy two Paste preserves all nonbinding fields\nPASS radiogroup Paste offsets exact\nPASS radiogroup bindings unique or absent\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Undo removes last only\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Redo restores complete models\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Cut removes selected only\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Undo Cut restores complete models\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Paste after Cut Undo keeps fields\nPASS listbox real F12 load and F10 persist type\nPASS listbox F2 clipboard popup visible\nPASS listbox F2 clipboard popup visible\nPASS listbox F2 clipboard popup visible\nPASS listbox Copy two Paste preserves all nonbinding fields\nPASS listbox Paste offsets exact\nPASS listbox bindings unique or absent\nPASS listbox F2 clipboard popup visible\nPASS listbox Undo removes last only\nPASS listbox F2 clipboard popup visible\nPASS listbox Redo restores complete models\nPASS listbox F2 clipboard popup visible\nPASS listbox Cut removes selected only\nPASS listbox F2 clipboard popup visible\nPASS listbox Undo Cut restores complete models\nPASS listbox F2 clipboard popup visible\nPASS listbox Paste after Cut Undo keeps fields\nPASS combobox real F12 load and F10 persist type\nPASS combobox F2 clipboard popup visible\nPASS combobox F2 clipboard popup visible\nPASS combobox F2 clipboard popup visible\nPASS combobox Copy two Paste preserves all nonbinding fields\nPASS combobox Paste offsets exact\nPASS combobox bindings unique or absent\nPASS combobox F2 clipboard popup visible\nPASS combobox Undo removes last only\nPASS combobox F2 clipboard popup visible\nPASS combobox Redo restores complete models\nPASS combobox F2 clipboard popup visible\nPASS combobox Cut removes selected only\nPASS combobox F2 clipboard popup visible\nPASS combobox Undo Cut restores complete models\nPASS combobox F2 clipboard popup visible\nPASS combobox Paste after Cut Undo keeps fields\nTOTAL 119 PASS 0 FAIL; evidence /tmp/hbide-source-run-hr3eci5w\n"
+  },
+  "models": {
+    "source": "b8f77d7b4d636853e878b4b5a0e7493213ec4d3f",
+    "dirty": false,
+    "tracked_changes": "",
+    "runner_sha256": "96cfcf5915627c69fd4f09b5fa75408ae3e52194259b6a4c0c2ada6ec7c5e836",
+    "platform": "Linux",
+    "hbmk2": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "started": 1793417124.4058795,
+    "scope": "Linux model probes only. Not PTY, visual or Windows certification.",
+    "tests": {
+      "designer-clipboard-types": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_clipboard_types.prg": "3c99eef8fc38ce661bccfca80145764a180a1497f3a0b7a329bcd688758c1cc2",
+          "designer.prg": "6920c29e3ea037ef0ba43d44d080adf62236cd514592f08d198d3a333e2f342c",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "b86436080ac83f4f792cd1d59378fe343057cd038ed961b8f4aa5da8be52e6b9",
+        "started": 1793417124.4061804,
+        "seconds": 0.48665761947631836
+      },
+      "designer-schema": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_schema.prg": "839431d2ba2c137fc60a6eeebdfd8e79fee6a7252c50ebc45778504df89d176b",
+          "designer.prg": "6920c29e3ea037ef0ba43d44d080adf62236cd514592f08d198d3a333e2f342c",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "b1cb3a07394e9b9eac12ca6fea2125bd167adbd799d5eaa6e68090dc63d9feca",
+        "started": 1793417124.8931646,
+        "seconds": 0.42455339431762695
+      },
+      "designer-load": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_load.prg": "501e3671019f0b9536a9eb41d5436055ff01acc8d10e213c1522b72581ba6878",
+          "designer.prg": "6920c29e3ea037ef0ba43d44d080adf62236cd514592f08d198d3a333e2f342c",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "49e8985fcdd74cb8fb5b58e0019b4a265b9cb00025c5aa2f576e59288d444a0c",
+        "started": 1793417125.3180087,
+        "seconds": 0.4865076541900635
+      },
+      "designer-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_write.prg": "3f99f13a61d120788382dc36bb5e1899ac48bb90fda302a6f57dc13328f426df",
+          "designer.prg": "6920c29e3ea037ef0ba43d44d080adf62236cd514592f08d198d3a333e2f342c",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "2d6f4e361a3d1d6685947cc9b01d6cfcdc812d9bb3924174de094c3ce785997d",
+        "started": 1793417125.8048217,
+        "seconds": 3.541102170944214
+      },
+      "designer-inline-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_inline_geometry.prg": "c9de281ea69447a12c364072d2cfa6b1bdf8a5fa3fea04f0f453cccce8bd91bc",
+          "designer.prg": "6920c29e3ea037ef0ba43d44d080adf62236cd514592f08d198d3a333e2f342c",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "cc1aa8f771b92c82fba1994539f1bcc5eeb34ef851c66fd7940d7ea3b7d04c9e",
+        "started": 1793417129.3462434,
+        "seconds": 0.47415685653686523
+      },
+      "designer-property-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_geometry.prg": "a693f8dba9e34558aa2ae7967cbdc4836e1cc5b32f6051aedd1b002270b63ab5",
+          "designer.prg": "6920c29e3ea037ef0ba43d44d080adf62236cd514592f08d198d3a333e2f342c",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "f637ac94dbc26d8737c90800580cf1788f893b25229acc51dfbbd9821bf7e30e",
+        "started": 1793417129.8207004,
+        "seconds": 24.626826763153076
+      },
+      "designer-property-cancel": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_cancel.prg": "179843e9c41312e238f36da596c662a5bde637fa68452adff94bf98b9b22bdd3",
+          "designer.prg": "6920c29e3ea037ef0ba43d44d080adf62236cd514592f08d198d3a333e2f342c",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "50b3fb40f33859497c99f86afcbe5cdfde7e038b8a013ae82c8a985192911443",
+        "started": 1793417154.447827,
+        "seconds": 4.044141054153442
+      },
+      "project-output": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project_output.prg": "69e3067d0d088c411840a3bb81d1f30149e0bbbf35671a46b98ca677c8e9a8cb",
+          "projectui.prg": "9deb02dbb32facf57e7e3cadc01e5e225e57bc5ca770333ad0635e5a0b08fe11",
+          "project.prg": "08bb8a48d0ca320009b12a5433a17693bd85e61535d2dec87eee66cf7e87f407",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "200fc900396c410a3f568681a459c8a7f4b14d2a2ee9f7812f08f08f15dfe13a",
+        "started": 1793417158.4921238,
+        "seconds": 0.2844574451446533
+      },
+      "backup": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_backup.prg": "b3543b008b2d06ec45aa7836daa09c5f8e3f75287e266b6f06c9f7344e006d61",
+          "editor.prg": "7ac9f571a318ead0a1c2e4f775954fbd71809fd9afceec76531d1e0604b780fa",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "0670e15e2190fff3ccad2514931f729f4a3e4f818475940a787cb63f0248bbd3",
+        "started": 1793417158.7767403,
+        "seconds": 0.276655912399292
+      },
+      "debug-temp-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_temp_write.prg": "210526b082b0d8d07e92f438e394de575a7ee2c47ce39fc0c6818f86df22b449",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "bcaa9ef2c0f2b8c40c12fbcb26b3d4b630760ac8d151da73414c8e34f70f229d",
+        "started": 1793417159.0534513,
+        "seconds": 0.12174844741821289
+      },
+      "debug-script-path": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_script_path.prg": "a856a0583716db4e22a24e0be04b6b344406f3eed7c261201d72268519efb71a",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "072f41fb18b9fbbbacdfb40c035e0d1520a22f847443b959c8319a7a3daf4f4f",
+        "started": 1793417159.1752625,
+        "seconds": 0.11951470375061035
+      },
+      "debug-search": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_search.prg": "84ec5023c2bf1d2069b1cfbfdb7223cc8933b04bb49231c96f3f1a3e8f486f5b",
+          "hbdebug/tbrwtext.prg": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+          "hbdebug/dbgbrwsr.prg": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "988e08a9a04d5656252f0c0a58c338e97ff89bb025a7e4d33f2cc292dbea0081",
+        "started": 1793417159.2948813,
+        "seconds": 0.22626471519470215
+      },
+      "designer": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer.prg": "0e3754c3e1612aab7f53ea49009999fa48eec2e7e93e09b3b319c596e3947571",
+          "designer.prg": "6920c29e3ea037ef0ba43d44d080adf62236cd514592f08d198d3a333e2f342c",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "298957349bb22369c62604c4f755ba892b790a23c11e4dbd8e26bf4908007fb4",
+        "started": 1793417159.5214577,
+        "seconds": 0.5339624881744385
+      },
+      "editor-repaint": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_repaint.prg": "e7da485a77391cd594dff10a2554189bbde8d4c06e2da2f4324e0b6c19461545",
+          "editor.prg": "7ac9f571a318ead0a1c2e4f775954fbd71809fd9afceec76531d1e0604b780fa",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "a28a7f3ac272fe9b543823382451de5a09ad9859ce8b24e4543c54456eb73456",
+        "started": 1793417160.0555937,
+        "seconds": 3.288877248764038
+      },
+      "find": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_find.prg": "9af32468423371d620d8e6587ab4f56d56485ec332d528709a80338e5926a9e5",
+          "editor.prg": "7ac9f571a318ead0a1c2e4f775954fbd71809fd9afceec76531d1e0604b780fa",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "603a26cdf18421f78fe6edbb99c7b15d3a355b693965ed1713bf2745e1ecc704",
+        "started": 1793417163.3446434,
+        "seconds": 0.27275562286376953
+      },
+      "eol": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_eol.prg": "31153ecd41c90d6cf6cd92eac80ecaeda65d8e2ad3d36e79ecfadcf634ee92ff",
+          "editor.prg": "7ac9f571a318ead0a1c2e4f775954fbd71809fd9afceec76531d1e0604b780fa",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "6cc4ee2a6ee6a82da35779d2b48d638a0e75720db223939e97ec00e26fb0313b",
+        "started": 1793417163.6175447,
+        "seconds": 0.33297109603881836
+      },
+      "utf8": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_utf8_valid.prg": "13cb1239a5934db50f44530289afea8216db9b720ba5e1e7b30eabc98df336f0",
+          "editor.prg": "7ac9f571a318ead0a1c2e4f775954fbd71809fd9afceec76531d1e0604b780fa",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "762af520d1aa4edd286bc3d094615ff23cd92801d07c588cb055883c3fb96ec4",
+        "started": 1793417163.9506667,
+        "seconds": 0.2726268768310547
+      },
+      "atomic": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_atomic.prg": "87f714d53e7324aad60d22f9fb9d02b5899689fdaa7a54d51ef60948f0717e01",
+          "editor.prg": "7ac9f571a318ead0a1c2e4f775954fbd71809fd9afceec76531d1e0604b780fa",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "409ad52a1be4436fd5043226df2e6b91c3b51b8a875abd5421aab8a696e63d57",
+        "started": 1793417164.2235124,
+        "seconds": 0.3009300231933594
+      },
+      "recovery": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_recovery.prg": "714585c485dcb7bce32aa5b94310773019bb57e0814b1ed3bbe0e53e4e32a2d1",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "71eee0570552052d95372eae9d678a1b420cc9a193444e64141a724f189136e7",
+        "started": 1793417164.5245378,
+        "seconds": 0.12607884407043457
+      },
+      "project": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project.prg": "a8ed87c334140ab46e859eee0c88351e4a75ce15dffed2662281de0030d223a7",
+          "project.prg": "08bb8a48d0ca320009b12a5433a17693bd85e61535d2dec87eee66cf7e87f407",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "2848ae7f19575ee2f3290148025306f9c92ed207fdb944d1e8a6af20a3a00420",
+        "started": 1793417164.6507084,
+        "seconds": 0.38335609436035156
+      },
+      "help": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_help.prg": "1dd387e3e5c7ebc79064edb1378adf2541e67e423495c09fb59b981c065d6ea0",
+          "help.prg": "4d00294fd70317df9c0ee6129852f7fd824c3c191ffaf56c8b5342c851e29e0b",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "9d3c4cde401f94a72292fe65cb262ad6617d86ce7919c83c814d733550b82cb3",
+        "started": 1793417165.0342503,
+        "seconds": 1.0870251655578613
+      }
+    },
+    "finished": 1793417166.1212807
+  }
+}

@@ -2215,3 +2215,8 @@ abre F2yactiva entrada por mnemonic, duplicadosP/R ciclan+Enter. Primera
 exploracion63checksPASS con snapshotdirtyd63eaa68, no defectoenproducto.
 Seagrega comprobacionpopupvisible por operacion antesdelcleanrun.
 No mouse,pixels,Windows ni cumplimiento global. Runner122=121PTYmodes+guard.
+
+Cleanb8f77d7: popup119PASS=63modelchecks+56popupvisible assertions, seven
+fixtures. Case18 and GETruntime9PASS sameIDEf2a5a2af;21modelsPASS plus
+15inventory33docs. Durable docs/evidence/linux-clipboard-popup-types.json.
+No sourceproduct change, no pixel/mouse/Windows acceptance.
