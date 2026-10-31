@@ -1,0 +1,97 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "27c724eb934394be0f98f24bcb7e1fc006b3fa71",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "490a641580d6f9cf5e557c6ae4b5df7f113e5cd2b232163948a4a13e6099458e",
+      "binary_sha256": "37a394716d534599c6e6caa0f762d4b3bc7f088778fc6ca04864c3752fb79ab7",
+      "build_receipt": "/tmp/hbide-pasted-button-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "d86289c24054b6e9f35c3e855b0acdeaf2d34387022f50d3762f3cf64ff7dfdd",
+      "case": "designer-clipboard-button-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_button_runtime_pty.py"
+      ],
+      "started": 1793422221.6764526,
+      "seconds": 5.36,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "e54f54199b70a453ac8659f4fb6ecfd72489a7290e8a3483d09d0265dcba40c8",
+      "log": "/tmp/hbide-pasted-button-clean/designer-clipboard-button-runtime-1793422221676448984.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "27c724eb934394be0f98f24bcb7e1fc006b3fa71",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "490a641580d6f9cf5e557c6ae4b5df7f113e5cd2b232163948a4a13e6099458e",
+      "binary_sha256": "37a394716d534599c6e6caa0f762d4b3bc7f088778fc6ca04864c3752fb79ab7",
+      "build_receipt": "/tmp/hbide-pasted-button-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "d86289c24054b6e9f35c3e855b0acdeaf2d34387022f50d3762f3cf64ff7dfdd",
+      "case": "designer-clipboard-list-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_list_runtime_pty.py"
+      ],
+      "started": 1793422227.0400825,
+      "seconds": 6.07,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "2a7fb50417b2f4e67114fac79c7537bd478d4822c943fb772e7faec8c1c44574",
+      "log": "/tmp/hbide-pasted-button-clean/designer-clipboard-list-runtime-1793422227040078162.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "27c724eb934394be0f98f24bcb7e1fc006b3fa71",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "490a641580d6f9cf5e557c6ae4b5df7f113e5cd2b232163948a4a13e6099458e",
+      "binary_sha256": "37a394716d534599c6e6caa0f762d4b3bc7f088778fc6ca04864c3752fb79ab7",
+      "build_receipt": "/tmp/hbide-pasted-button-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "d86289c24054b6e9f35c3e855b0acdeaf2d34387022f50d3762f3cf64ff7dfdd",
+      "case": "designer-clipboard-radio-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_radio_runtime_pty.py"
+      ],
+      "started": 1793422233.105618,
+      "seconds": 6.06,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b657f07d733fd3cfc2cdc94dc10c31cc5e70d49e1f1d307a7d79b0717294459b",
+      "log": "/tmp/hbide-pasted-button-clean/designer-clipboard-radio-runtime-1793422233105611350.log"
+    }
+  ],
+  "logs": {
+    "designer-clipboard-button-runtime-1793422221676448984.log": "PASS paste creates two buttons\nPASS pasted button custom action and focus retained\nPASS pasted button accelerator and style retained\nPASS actual F9 emits both custom actions\nPASS actual F9 emits both focus handlers and accelerators\nPASS generated pasted-button artifact compiles\nPASS first-enter generated button accepts dialog true\nPASS first-enter preserved custom action executes\nPASS first-enter preserved focus handler executes\nPASS second-enter generated button accepts dialog true\nPASS second-enter preserved custom action executes\nPASS second-enter preserved focus handler executes\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-swmx_8vc\n",
+    "designer-clipboard-list-runtime-1793422227040078162.log": "PASS pasted ListBox binding case-insensitively distinct\nPASS pasted ListBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ListBox artifact compiles\nPASS first ListBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ListBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-2rhbxa4j\n",
+    "designer-clipboard-radio-runtime-1793422233105611350.log": "PASS pasted RadioGroup binding case-insensitively distinct\nPASS pasted RadioGroup VALID handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both VALID handlers\nPASS generated pasted-RadioGroup artifact compiles\nPASS first RadioGroup selection affects only its bound value\nPASS first preserved VALID handler executes in generated runtime\nPASS second RadioGroup selection affects only its bound value\nPASS second preserved VALID handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-8rndzqfc\n"
+  },
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "27c724eb934394be0f98f24bcb7e1fc006b3fa71",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "490a641580d6f9cf5e557c6ae4b5df7f113e5cd2b232163948a4a13e6099458e",
+    "binary_sha256": "37a394716d534599c6e6caa0f762d4b3bc7f088778fc6ca04864c3752fb79ab7",
+    "built_at": 1793422221.6761758
+  },
+  "checks": [
+    "15 inventory PASS",
+    "33 complete documents byte-exact PASS"
+  ],
+  "limits": "Actual F9 pasted PushButton Enter activation Action/Focus only; accelerator text retained but activation not certified. No product change, pixels, Windows or full matrix."
+}
