@@ -1,6 +1,9 @@
 REQUEST __DBGENTRY   // link the Harbour source debugger (libhbdebug)
 REQUEST HB_HRBRUN    // Script/Debug invoke it by name; static links need the request
 REQUEST __MVPRIVATE  // HRB debuggee PRIVATE declarations need this VM helper
+// These RDD APIs are called by HRB debuggees, not by the host source.
+// Linking their C module is not enough: register their public symbols.
+REQUEST DBCREATE, DBUSEAREA, DBAPPEND, DBCLOSEALL, DBSELECTAREA
 
 #include "hbclass.ch"
 #include "buildinfo.ch"

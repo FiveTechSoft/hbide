@@ -666,9 +666,10 @@
     "DBG-011": {
       "expected_label": "WorkAreas   F6",
       "tests": [
-        "test_debug_functions_pty.py"
+        "test_debug_functions_pty.py",
+        "test_debug_workareas_pty.py"
       ],
-      "contract": "Original fixed-wait Linux session: F6 with no workareas displays No workareas in use. No openDBF browse or mouse/menu dispatch acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance."
+      "contract": "Original fixed-wait Linux session: F6 with no workareas displays No workareas in use. No openDBF browse or mouse/menu dispatch acceptance. Exact628b088 ledger has58checks, including six separate state-only assertions; link is not global acceptance. Separate actual twoDBF fixture now uses View WorkAreas popup and F6: ALPHA/BETA alias changes exact structure/status, Tab/ShiftTab pane navigation, Esc/reopen, Resume preserves original ALPHA record1 NAME paddedFIRST QTY11. Explicit host REQUEST registers five RDD HRB APIs. Native120x40 twoalias captures separately inspected; not allRDD/recordnavigation/Windows."
     },
     "DBG-013": {
       "expected_label": "CallStack",

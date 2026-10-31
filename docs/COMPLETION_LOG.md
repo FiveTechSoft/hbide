@@ -2292,3 +2292,14 @@ bordertrasnumero, corregido16PASS sincambioproducto. Runner126=125PTY+guard;
 Cleandea063dScopes16MouseScroll7sameIDE501cd4f8PASS;15inventory33docs,
 21modelos ultima fa78719. Ledgerlinux-debug-monitor-scopes.json conserva
 clean yambosexploratorios, nocambio producto ni cierreGlobal/M3.
+
+## Q30: registrar APIsRDD paraHRB y probarWorkAreas conDBF
+
+AntesUnknownunregisteredDBCREATEimpideiniciarfixture,1PASS9FAIL. Diagnostico
+OperationtemporalconfirmaDBCREATE, retirado sin cambiarDoBreak. REQUEST
+DBCREATE/DBUSEAREA/DBAPPEND/DBCLOSEALL/DBSELECTAREA registra simbolos para
+HRB (codigo C ya linkado no implica export). Despues10PASS:2DBF temporales,
+aliasALPHA/BETA estructuras/statuscorrectos,paneles,Esc/F6,ResumeALPHA
+record1datos exactos. Native120x40capturas ambas inspeccionadas. No todos
+RDD/HRB/externalDBF/Windows. Runner127=126PTYmodes+guard;102contratosmenu
+no102funcionesaceptadas. Cleanrevisionyregresion siguen abajo.

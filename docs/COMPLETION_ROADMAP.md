@@ -158,3 +158,12 @@ Ocho smokes y seis extras pasan en mismo binario inalterado: Snap6,Drag6,
 GET9,Combo9,Checkbox9,WindowLayout16. Manifest en
 linux-candidate-snap-runtime-extras.json. No nueva prueba determinismo,
 Windows, instalacionlimpia o licenciaaclarada. No closureM5.
+
+### Q30 - DBF HRB APIs y WorkAreas real
+
+HRB rechazaba DBCREATE antes de entrar al debugger aunque codigo C estaba
+linkado. REQUEST explicito de DBCREATE/DBUSEAREA/DBAPPEND/DBCLOSEALL/
+DBSELECTAREA registra esas APIs. Dos DBF propios temporales, WorkAreas
+alias/estructura/status,paneles,Esc/F6 y ResumeALPHArecord1exacto. Antes1/10,
+despues10/10exploratorio; clean ledger pendiente. Native120x40dosalias
+inspeccionados. No implica catalogo completo HRB/RDD o Windows.

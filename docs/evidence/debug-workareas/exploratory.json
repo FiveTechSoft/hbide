@@ -1,0 +1,86 @@
+[
+  {
+    "run": {
+      "untracked_inputs_sha256": "201262d16b3f877f55fa44ce67d9af1a28a6ba7d92cf4f6a04c35d2c02fec796",
+      "source": "bfd9b65f65b38016fed633ca50d6ab1e794b9594",
+      "tracked_changes": " M scripts/completion_pty.py\n",
+      "tracked_snapshot_sha256": "31d86fb5659e286589b65ee0804bf276a522da6a971ef8a7b7b09ac897ec5908",
+      "binary_sha256": "7176ae9fb67826c5c92b9b77615b2ed1756cba83c1841c5c5c6346eb7bc3ab1c",
+      "build_receipt": "/tmp/hbide-workareas-exploratory/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "b6cfb9fd43d05eea5457dff29063ca43113b7780615562caa9b10e569127d731",
+      "case": "debug-workareas",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_workareas_pty.py"
+      ],
+      "started": 1793418422.279909,
+      "seconds": 9.72,
+      "exit_code": 1,
+      "printed_failure": true,
+      "source_or_binary_changed": false,
+      "test_sha256": "93db3971869972c459da6c4ff7bd12dde1c6a600f90c44b282255d7e76dd8aa2",
+      "log": "/tmp/hbide-workareas-exploratory/debug-workareas-1793418422279905059.log"
+    },
+    "log": "FAIL debugger stopped before increment\nFAIL View WorkAreas opens actual three browser dialog\nFAIL ALPHA actual field structure shown\nFAIL switching alias updates exact BETA structure\nFAIL switching alias updates Alias status\nFAIL cycling panes and returning alias restores ALPHA fields\nFAIL Esc closes WorkAreas to debugger\nFAIL F6 reopens WorkAreas with original alias\nFAIL Resume retains original workarea record and exact fields\nPASS WorkAreas inspection leaves source bytes unchanged\nTOTAL 1 PASS 9 FAIL; evidence /tmp/hbide-source-run-1tf287b8\n"
+  },
+  {
+    "run": {
+      "untracked_inputs_sha256": "201262d16b3f877f55fa44ce67d9af1a28a6ba7d92cf4f6a04c35d2c02fec796",
+      "source": "bfd9b65f65b38016fed633ca50d6ab1e794b9594",
+      "tracked_changes": " M hbide.prg\n M scripts/completion_pty.py\n",
+      "tracked_snapshot_sha256": "5bc5d1b221ab059e26117859067b16150c13715867b1adb618bd5827a04570a0",
+      "binary_sha256": "af5792afed711bc086fd3dc76ac0f3c372de6e19468edab5fc4f29cd3aaf7d58",
+      "build_receipt": "/tmp/hbide-workareas-diagnostic/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "b6cfb9fd43d05eea5457dff29063ca43113b7780615562caa9b10e569127d731",
+      "case": "debug-workareas",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_workareas_pty.py"
+      ],
+      "started": 1793418470.080537,
+      "seconds": 9.72,
+      "exit_code": 1,
+      "printed_failure": true,
+      "source_or_binary_changed": false,
+      "test_sha256": "93db3971869972c459da6c4ff7bd12dde1c6a600f90c44b282255d7e76dd8aa2",
+      "log": "/tmp/hbide-workareas-diagnostic/debug-workareas-1793418470080533406.log"
+    },
+    "log": "FAIL debugger stopped before increment\nFAIL View WorkAreas opens actual three browser dialog\nFAIL ALPHA actual field structure shown\nFAIL switching alias updates exact BETA structure\nFAIL switching alias updates Alias status\nFAIL cycling panes and returning alias restores ALPHA fields\nFAIL Esc closes WorkAreas to debugger\nFAIL F6 reopens WorkAreas with original alias\nFAIL Resume retains original workarea record and exact fields\nPASS WorkAreas inspection leaves source bytes unchanged\nTOTAL 1 PASS 9 FAIL; evidence /tmp/hbide-source-run-mhcispzz\n"
+  },
+  {
+    "run": {
+      "untracked_inputs_sha256": "201262d16b3f877f55fa44ce67d9af1a28a6ba7d92cf4f6a04c35d2c02fec796",
+      "source": "bfd9b65f65b38016fed633ca50d6ab1e794b9594",
+      "tracked_changes": " M hbide.prg\n M scripts/completion_pty.py\n",
+      "tracked_snapshot_sha256": "0193b7b39df87c411d614b3fe70a99e4783cbaaf92a212b765b1e451ed395a3b",
+      "binary_sha256": "9c36ccdccc811d9613a63365bb726ed36fc16a7d0f69480c703852de4e5bc201",
+      "build_receipt": "/tmp/hbide-workareas-after/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "b6cfb9fd43d05eea5457dff29063ca43113b7780615562caa9b10e569127d731",
+      "case": "debug-workareas",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_workareas_pty.py"
+      ],
+      "started": 1793418491.2993147,
+      "seconds": 11.82,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "93db3971869972c459da6c4ff7bd12dde1c6a600f90c44b282255d7e76dd8aa2",
+      "log": "/tmp/hbide-workareas-after/debug-workareas-1793418491299310893.log"
+    },
+    "log": "PASS debugger stopped before increment\nPASS View WorkAreas opens actual three browser dialog\nPASS ALPHA actual field structure shown\nPASS switching alias updates exact BETA structure\nPASS switching alias updates Alias status\nPASS cycling panes and returning alias restores ALPHA fields\nPASS Esc closes WorkAreas to debugger\nPASS F6 reopens WorkAreas with original alias\nPASS Resume retains original workarea record and exact fields\nPASS WorkAreas inspection leaves source bytes unchanged\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-2w4v2avu\n"
+  }
+]
