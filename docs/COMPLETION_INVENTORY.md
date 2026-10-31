@@ -481,29 +481,29 @@ Sitios de llamada InputBox/__dbgInput y constructores HBDbInput. No son campos u
 | DBG-INPUT-dbgthsh-doGet-inline_input-1 | inline_input / editable_or_dynamic | METHOD PROCEDURE doGet( oBrowse, pItem, nSet ) CLASS HBDbHash | `IF __dbgInput( Row(), oBrowse:nLeft + oBrowse:GetColumn( 1 ):width + 1, ; oBrowse:getColumn( 2 ):Width, @cValue, ; __dbgExprValidBlock(), __dbgColors()[ 2 ], 256 )` | hbdebug/dbgthsh.prg:151 | Vinculo focal; ver alcance |
 | DBG-INPUT-dbgtobj-doGet-inline_input-1 | inline_input / editable_or_dynamic | METHOD PROCEDURE doGet( oBrowse ) CLASS HBDbObject | `IF __dbgInput( Row(), oBrowse:nLeft + oBrowse:GetColumn( 1 ):width + 1, ; oBrowse:getColumn( oBrowse:colPos ):Width, @cValue, ; __dbgExprValidBlock(), __dbgColors()[ 2 ], 256 )` | hbdebug/dbgtobj.prg:189 | Vinculo focal; ver alcance |
 | DBG-INPUT-debugger-BuildCommandWindow-input_constructor-1 | input_constructor / editable_or_dynamic | METHOD PROCEDURE BuildCommandWindow() CLASS HBDebugger | `::oGetCommand := HbDbInput():new( ::oWndCommand:nBottom - 1, ::oWndCommand:nLeft + 3, ; nSize, "", __dbgColors()[ 2 ], Max( nSize, 256 ) )` | hbdebug/debugger.prg:577 | Pendiente caller |
-| DBG-INPUT-debugger-DoCommand-inputbox-1 | inputbox / editable_or_dynamic | METHOD DoCommand( cCommand ) CLASS HBDebugger | `cParams := AllTrim( ::InputBox( "File name",, ; {&#124; cFile &#124; hb_FileExists( AllTrim( cFile ) ) .OR. ; ( __dbgAlert( "File unavailable" ), .F. ) } ) )` | hbdebug/debugger.prg:1019 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-EditColor-inline_input-1 | inline_input / editable_or_dynamic | METHOD PROCEDURE EditColor( nColor, oBrwColors ) CLASS HBDebugger | `IF __dbgInput( Row(), oBrwColors:nLeft + oBrwColors:GetColumn( 1 ):width + 1, ; oBrwColors:getColumn( 2 ):Width, ; @cColor, __dbgExprValidBlock( "C" ), ; SubStr( ::ClrModal(), 5 ) )` | hbdebug/debugger.prg:1413 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-EditSet-inline_input-1 | inline_input / editable_or_dynamic | METHOD PROCEDURE EditSet( nSet, oBrwSets ) CLASS HBDebugger | `IF __dbgInput( Row(), oBrwSets:nLeft + oBrwSets:GetColumn( 1 ):width + 1, ; oBrwSets:getColumn( 2 ):Width, ; @cSet, __dbgExprValidBlock( cType ), ; SubStr( ::ClrModal(), 5 ), 256 )` | hbdebug/debugger.prg:1434 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-EditVar-inputbox-1 | inputbox / explicit_readonly | METHOD PROCEDURE EditVar( nVar ) CLASS HBDebugger | `::InputBox( cVarName, uVarValue,, .F. )` | hbdebug/debugger.prg:1456 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-EditVar-inputbox-2 | inputbox / editable_or_dynamic | METHOD PROCEDURE EditVar( nVar ) CLASS HBDebugger | `cVarStr := ::InputBox( cVarName, __dbgValToExp( uVarValue ), __dbgExprValidBlock() )` | hbdebug/debugger.prg:1458 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-InputBox-inline_input-1 | inline_input / editable_or_dynamic | METHOD InputBox( cMsg, uValue, bValid, lEditable ) CLASS HBDebugger | `__dbgInput( nTop + 1, nLeft + 1, nWidth, @uTemp, bValid, ; __dbgColors()[ 5 ], Max( Max( nWidth, Len( uTemp ) ), 256 ) )` | hbdebug/debugger.prg:1850 | Pendiente caller |
-| DBG-INPUT-debugger-Inspect-inputbox-1 | inputbox / explicit_readonly | METHOD PROCEDURE Inspect( uValue, cValueName ) CLASS HBDebugger | `::InputBox( uValue, cValueName,, .F. )` | hbdebug/debugger.prg:1908 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-Locate-inputbox-1 | inputbox / editable_or_dynamic | METHOD Locate( nMode, cValue ) CLASS HBDebugger | `cValue := ::InputBox( "Search string", ::cSearchString )` | hbdebug/debugger.prg:2140 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-Open-inputbox-1 | inputbox / editable_or_dynamic | METHOD PROCEDURE Open( cFileName ) CLASS HBDebugger | `cFileName := AllTrim( ::InputBox( "Please enter the filename" ) )` | hbdebug/debugger.prg:2235 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-PathForFiles-inputbox-1 | inputbox / editable_or_dynamic | METHOD PathForFiles( cPathForFiles ) CLASS HBDebugger | `cPathForFiles := ::InputBox( "Search path for source files:", ::cPathForFiles )` | hbdebug/debugger.prg:2382 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-RestoreSettings-inputbox-1 | inputbox / editable_or_dynamic | METHOD PROCEDURE RestoreSettings( cFileName ) CLASS HBDebugger | `::cSettingsFileName := ::InputBox( "File name", ::cSettingsFileName )` | hbdebug/debugger.prg:2565 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-SaveSettings-inputbox-1 | inputbox / editable_or_dynamic | METHOD SaveSettings( cFileName ) CLASS HBDebugger | `::cSettingsFileName := ::InputBox( "File name", ::cSettingsFileName )` | hbdebug/debugger.prg:2653 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-SearchLine-inputbox-1 | inputbox / editable_or_dynamic | METHOD PROCEDURE SearchLine( cLine ) CLASS HBDebugger | `nLine := ::InputBox( "Line number", 1 )` | hbdebug/debugger.prg:2850 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-TabWidth-inputbox-1 | inputbox / editable_or_dynamic | METHOD PROCEDURE TabWidth() CLASS HBDebugger | `LOCAL nWidth := ::InputBox( "Tab width", ::nTabWidth )` | hbdebug/debugger.prg:3184 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-Speed-inputbox-1 | inputbox / editable_or_dynamic | METHOD PROCEDURE Speed() CLASS HBDebugger | `LOCAL nSpeed := ::InputBox( "Step delay (in tenths of a second)", ::nSpeed )` | hbdebug/debugger.prg:3197 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-BreakPointDelete-inputbox-1 | inputbox / editable_or_dynamic | METHOD BreakPointDelete( cPos ) CLASS HBDebugger | `cPos := AllTrim( ::InputBox( "Item number to delete", "0" ) )` | hbdebug/debugger.prg:3334 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-TracepointAdd-inputbox-1 | inputbox / editable_or_dynamic | METHOD TracepointAdd( cExpr ) CLASS HBDebugger | `cExpr := AllTrim( ::InputBox( "Enter Tracepoint",, __dbgExprValidBlock() ) )` | hbdebug/debugger.prg:3395 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-WatchpointAdd-inputbox-1 | inputbox / editable_or_dynamic | METHOD WatchpointAdd( cExpr ) CLASS HBDebugger | `cExpr := ::InputBox( "Enter Watchpoint",, __dbgExprValidBlock() )` | hbdebug/debugger.prg:3530 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-WatchpointDel-inputbox-1 | inputbox / editable_or_dynamic | METHOD WatchpointDel( xPos ) CLASS HBDebugger | `nPos := ::InputBox( "Enter item number to delete", ::oBrwPnt:cargo[ 1 ] - 1 )` | hbdebug/debugger.prg:3565 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-WatchpointEdit-inputbox-1 | inputbox / editable_or_dynamic | METHOD WatchpointEdit( nPos ) CLASS HBDebugger | `LOCAL cExpr := ::InputBox( "Enter Watchpoint", ::aWatch[ nPos ][ WP_EXPR ], __dbgExprValidBlock() )` | hbdebug/debugger.prg:3595 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-WatchpointInspect-inputbox-1 | inputbox / explicit_readonly | METHOD WatchpointInspect( nPos ) CLASS HBDebugger | `::InputBox( ::aWatch[ nPos ][ WP_EXPR ], xValue,, .F. )` | hbdebug/debugger.prg:3626 | Vinculo focal; ver alcance |
-| DBG-INPUT-debugger-__dbgInput-input_constructor-1 | input_constructor / editable_or_dynamic | FUNCTION __dbgInput( nRow, nCol, nWidth, cValue, bValid, cColor, nSize ) | `oGet := HbDbInput():new( nRow, nCol, nWidth, cValue, cColor, nSize )` | hbdebug/debugger.prg:3980 | Pendiente caller |
-| DBG-INPUT-debugger-WindowRepaint-input_constructor-1 | input_constructor / editable_or_dynamic | METHOD WindowRepaint() CLASS HBDebugger | `::oGetCommand := HBDbInput():new( oWnd:nBottom - 1, oWnd:nLeft + 3, ; oWnd:nWidth() - 4, cCommand, __dbgColors()[ 2 ], Max( 256, oWnd:nWidth() - 4 ) )` | hbdebug/debugger.prg:4193 | Pendiente caller |
+| DBG-INPUT-debugger-DoCommand-inputbox-1 | inputbox / editable_or_dynamic | METHOD DoCommand( cCommand ) CLASS HBDebugger | `cParams := AllTrim( ::InputBox( "File name",, ; {&#124; cFile &#124; hb_FileExists( AllTrim( cFile ) ) .OR. ; ( __dbgAlert( "File unavailable" ), .F. ) } ) )` | hbdebug/debugger.prg:1026 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-EditColor-inline_input-1 | inline_input / editable_or_dynamic | METHOD PROCEDURE EditColor( nColor, oBrwColors ) CLASS HBDebugger | `IF __dbgInput( Row(), oBrwColors:nLeft + oBrwColors:GetColumn( 1 ):width + 1, ; oBrwColors:getColumn( 2 ):Width, ; @cColor, __dbgExprValidBlock( "C" ), ; SubStr( ::ClrModal(), 5 ) )` | hbdebug/debugger.prg:1420 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-EditSet-inline_input-1 | inline_input / editable_or_dynamic | METHOD PROCEDURE EditSet( nSet, oBrwSets ) CLASS HBDebugger | `IF __dbgInput( Row(), oBrwSets:nLeft + oBrwSets:GetColumn( 1 ):width + 1, ; oBrwSets:getColumn( 2 ):Width, ; @cSet, __dbgExprValidBlock( cType ), ; SubStr( ::ClrModal(), 5 ), 256 )` | hbdebug/debugger.prg:1441 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-EditVar-inputbox-1 | inputbox / explicit_readonly | METHOD PROCEDURE EditVar( nVar ) CLASS HBDebugger | `::InputBox( cVarName, uVarValue,, .F. )` | hbdebug/debugger.prg:1463 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-EditVar-inputbox-2 | inputbox / editable_or_dynamic | METHOD PROCEDURE EditVar( nVar ) CLASS HBDebugger | `cVarStr := ::InputBox( cVarName, __dbgValToExp( uVarValue ), __dbgExprValidBlock() )` | hbdebug/debugger.prg:1465 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-InputBox-inline_input-1 | inline_input / editable_or_dynamic | METHOD InputBox( cMsg, uValue, bValid, lEditable ) CLASS HBDebugger | `__dbgInput( nTop + 1, nLeft + 1, nWidth, @uTemp, bValid, ; __dbgColors()[ 5 ], Max( Max( nWidth, Len( uTemp ) ), 256 ) )` | hbdebug/debugger.prg:1857 | Pendiente caller |
+| DBG-INPUT-debugger-Inspect-inputbox-1 | inputbox / explicit_readonly | METHOD PROCEDURE Inspect( uValue, cValueName ) CLASS HBDebugger | `::InputBox( uValue, cValueName,, .F. )` | hbdebug/debugger.prg:1915 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-Locate-inputbox-1 | inputbox / editable_or_dynamic | METHOD Locate( nMode, cValue ) CLASS HBDebugger | `cValue := ::InputBox( "Search string", ::cSearchString )` | hbdebug/debugger.prg:2147 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-Open-inputbox-1 | inputbox / editable_or_dynamic | METHOD PROCEDURE Open( cFileName ) CLASS HBDebugger | `cFileName := AllTrim( ::InputBox( "Please enter the filename" ) )` | hbdebug/debugger.prg:2242 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-PathForFiles-inputbox-1 | inputbox / editable_or_dynamic | METHOD PathForFiles( cPathForFiles ) CLASS HBDebugger | `cPathForFiles := ::InputBox( "Search path for source files:", ::cPathForFiles )` | hbdebug/debugger.prg:2389 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-RestoreSettings-inputbox-1 | inputbox / editable_or_dynamic | METHOD PROCEDURE RestoreSettings( cFileName ) CLASS HBDebugger | `::cSettingsFileName := ::InputBox( "File name", ::cSettingsFileName )` | hbdebug/debugger.prg:2572 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-SaveSettings-inputbox-1 | inputbox / editable_or_dynamic | METHOD SaveSettings( cFileName ) CLASS HBDebugger | `::cSettingsFileName := ::InputBox( "File name", ::cSettingsFileName )` | hbdebug/debugger.prg:2660 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-SearchLine-inputbox-1 | inputbox / editable_or_dynamic | METHOD PROCEDURE SearchLine( cLine ) CLASS HBDebugger | `nLine := ::InputBox( "Line number", 1 )` | hbdebug/debugger.prg:2857 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-TabWidth-inputbox-1 | inputbox / editable_or_dynamic | METHOD PROCEDURE TabWidth() CLASS HBDebugger | `LOCAL nWidth := ::InputBox( "Tab width", ::nTabWidth )` | hbdebug/debugger.prg:3191 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-Speed-inputbox-1 | inputbox / editable_or_dynamic | METHOD PROCEDURE Speed() CLASS HBDebugger | `LOCAL nSpeed := ::InputBox( "Step delay (in tenths of a second)", ::nSpeed )` | hbdebug/debugger.prg:3204 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-BreakPointDelete-inputbox-1 | inputbox / editable_or_dynamic | METHOD BreakPointDelete( cPos ) CLASS HBDebugger | `cPos := AllTrim( ::InputBox( "Item number to delete", "0" ) )` | hbdebug/debugger.prg:3341 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-TracepointAdd-inputbox-1 | inputbox / editable_or_dynamic | METHOD TracepointAdd( cExpr ) CLASS HBDebugger | `cExpr := AllTrim( ::InputBox( "Enter Tracepoint",, __dbgExprValidBlock() ) )` | hbdebug/debugger.prg:3402 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-WatchpointAdd-inputbox-1 | inputbox / editable_or_dynamic | METHOD WatchpointAdd( cExpr ) CLASS HBDebugger | `cExpr := ::InputBox( "Enter Watchpoint",, __dbgExprValidBlock() )` | hbdebug/debugger.prg:3537 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-WatchpointDel-inputbox-1 | inputbox / editable_or_dynamic | METHOD WatchpointDel( xPos ) CLASS HBDebugger | `nPos := ::InputBox( "Enter item number to delete", ::oBrwPnt:cargo[ 1 ] - 1 )` | hbdebug/debugger.prg:3572 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-WatchpointEdit-inputbox-1 | inputbox / editable_or_dynamic | METHOD WatchpointEdit( nPos ) CLASS HBDebugger | `LOCAL cExpr := ::InputBox( "Enter Watchpoint", ::aWatch[ nPos ][ WP_EXPR ], __dbgExprValidBlock() )` | hbdebug/debugger.prg:3602 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-WatchpointInspect-inputbox-1 | inputbox / explicit_readonly | METHOD WatchpointInspect( nPos ) CLASS HBDebugger | `::InputBox( ::aWatch[ nPos ][ WP_EXPR ], xValue,, .F. )` | hbdebug/debugger.prg:3633 | Vinculo focal; ver alcance |
+| DBG-INPUT-debugger-__dbgInput-input_constructor-1 | input_constructor / editable_or_dynamic | FUNCTION __dbgInput( nRow, nCol, nWidth, cValue, bValid, cColor, nSize ) | `oGet := HbDbInput():new( nRow, nCol, nWidth, cValue, cColor, nSize )` | hbdebug/debugger.prg:3987 | Pendiente caller |
+| DBG-INPUT-debugger-WindowRepaint-input_constructor-1 | input_constructor / editable_or_dynamic | METHOD WindowRepaint() CLASS HBDebugger | `::oGetCommand := HBDbInput():new( oWnd:nBottom - 1, oWnd:nLeft + 3, ; oWnd:nWidth() - 4, cCommand, __dbgColors()[ 2 ], Max( 256, oWnd:nWidth() - 4 ) )` | hbdebug/debugger.prg:4200 | Pendiente caller |
 - DBG-INPUT-dbgtarr-doGet-inline_input-1: Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Separate explicit .F. expression probe rejects scalar edits in five bounded container fixtures, preserves whole resumed values; does not alter default Monitor/Watch policy. Long parent paths retain visible scalar column; 40-element array/hash Home/End/Page navigation repaints matching caption, exact edits in1/21/40 retained. Pruebas: [test_debug_structured_modal_pty.py](../tests/test_debug_structured_modal_pty.py), [test_debug_structured_depth_pty.py](../tests/test_debug_structured_depth_pty.py), [test_debug_readonly_depth_pty.py](../tests/test_debug_readonly_depth_pty.py), [test_debug_long_hash_key_pty.py](../tests/test_debug_long_hash_key_pty.py), [test_debug_hash_navigation_pty.py](../tests/test_debug_hash_navigation_pty.py)
 - DBG-INPUT-dbgthsh-doGet-inline_input-1: Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Separate explicit .F. expression probe rejects scalar edits in five bounded container fixtures, preserves whole resumed values; does not alter default Monitor/Watch policy. Long hash keys retain visible scalar column; 40-element hash navigation repaints matching caption and preserves exact selected edits. Pruebas: [test_debug_structured_modal_pty.py](../tests/test_debug_structured_modal_pty.py), [test_debug_structured_depth_pty.py](../tests/test_debug_structured_depth_pty.py), [test_debug_readonly_depth_pty.py](../tests/test_debug_readonly_depth_pty.py), [test_debug_long_hash_key_pty.py](../tests/test_debug_long_hash_key_pty.py), [test_debug_hash_navigation_pty.py](../tests/test_debug_hash_navigation_pty.py)
 - DBG-INPUT-dbgtobj-doGet-inline_input-1: Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Failed getter with matching setter displays captured Zero divisor, rejects edit before setter, resumes backing1 unchanged; valid property editing remains separately covered. Throwing setter with readable getter reports Zero divisor, refresh and Cancel preserve backing1, exact resumed value unchanged; no partial side effects are promised to roll back. Separate explicit .F. expression probe rejects scalar edits in five bounded container fixtures, preserves whole resumed values; does not alter default Monitor/Watch policy. Object without AddData still has method rows, Enter refuses editing, returns Monitor and ClassName remains exact. Valid61-character member leaves complete numeric value visible; empty array/hash properties explain Enter. Scalar edits to array/hash, empty/nonempty, update Enter dispatch and Resume exact. Getter invoked for refresh; no side-effect-free or rollback promise. Pruebas: [test_debug_getter_failure_pty.py](../tests/test_debug_getter_failure_pty.py), [test_debug_setter_failure_pty.py](../tests/test_debug_setter_failure_pty.py), [test_debug_structured_modal_pty.py](../tests/test_debug_structured_modal_pty.py), [test_debug_structured_depth_pty.py](../tests/test_debug_structured_depth_pty.py), [test_debug_readonly_depth_pty.py](../tests/test_debug_readonly_depth_pty.py), [test_debug_method_only_object_pty.py](../tests/test_debug_method_only_object_pty.py), [test_debug_long_object_member_pty.py](../tests/test_debug_long_object_member_pty.py), [test_debug_object_empty_child_pty.py](../tests/test_debug_object_empty_child_pty.py), [test_debug_object_type_change_pty.py](../tests/test_debug_object_type_change_pty.py)
@@ -556,10 +556,10 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | MOUSE-hbwindow-DsnMouseRoute-2 | METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow | `case nCode == DSNK_MLDBL` | hbwindow.prg:433 | Pendiente gesto |
 | MOUSE-hbwindow-DsnMouseRoute-3 | METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow | `case nCode == DSNK_MLUP` | hbwindow.prg:436 | Pendiente gesto |
 | MOUSE-debugger-CallStackProcessKey-1 | METHOD PROCEDURE CallStackProcessKey( nKey ) CLASS HBDebugger | `CASE K_LBUTTONDOWN` | hbdebug/debugger.prg:644 | Pendiente gesto |
-| MOUSE-debugger-HandleEvent-1 | METHOD PROCEDURE HandleEvent() CLASS HBDebugger | `CASE K_LDBLCLK` | hbdebug/debugger.prg:1593 | Pendiente gesto |
-| MOUSE-debugger-HandleEvent-2 | METHOD PROCEDURE HandleEvent() CLASS HBDebugger | `CASE K_LBUTTONDOWN` | hbdebug/debugger.prg:1613 | Pendiente gesto |
-| MOUSE-debugger-HandleEvent-3 | METHOD PROCEDURE HandleEvent() CLASS HBDebugger | `CASE K_RBUTTONDOWN` | hbdebug/debugger.prg:1642 | Pendiente gesto |
-| MOUSE-debugger-ShowAppScreen-1 | METHOD PROCEDURE ShowAppScreen() CLASS HBDebugger | `IF LastKey() == K_LBUTTONDOWN` | hbdebug/debugger.prg:2883 | Pendiente gesto |
+| MOUSE-debugger-HandleEvent-1 | METHOD PROCEDURE HandleEvent() CLASS HBDebugger | `CASE K_LDBLCLK` | hbdebug/debugger.prg:1600 | Pendiente gesto |
+| MOUSE-debugger-HandleEvent-2 | METHOD PROCEDURE HandleEvent() CLASS HBDebugger | `CASE K_LBUTTONDOWN` | hbdebug/debugger.prg:1620 | Pendiente gesto |
+| MOUSE-debugger-HandleEvent-3 | METHOD PROCEDURE HandleEvent() CLASS HBDebugger | `CASE K_RBUTTONDOWN` | hbdebug/debugger.prg:1649 | Pendiente gesto |
+| MOUSE-debugger-ShowAppScreen-1 | METHOD PROCEDURE ShowAppScreen() CLASS HBDebugger | `IF LastKey() == K_LBUTTONDOWN` | hbdebug/debugger.prg:2890 | Pendiente gesto |
 | MOUSE-dbgtwin-ShowModal-1 | METHOD PROCEDURE ShowModal() CLASS HBDbWindow | `CASE K_LBUTTONDOWN` | hbdebug/dbgtwin.prg:248 | Pendiente gesto |
 
 ## Campos de inspector
@@ -596,127 +596,127 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 
 | Fuente:linea | Condicion |
 | --- | --- |
-| hbdebug/debugger.prg:901 | `CASE Empty( cCommand )` |
-| hbdebug/debugger.prg:904 | `CASE hb_LeftEq( cCommand, "??" )` |
-| hbdebug/debugger.prg:908 | `CASE hb_LeftEq( cCommand, "?" )` |
-| hbdebug/debugger.prg:926 | `CASE cCommand == "??" .OR. cCommand == "?"` |
-| hbdebug/debugger.prg:944 | `CASE hb_LeftEqN( "ANIMATE", cCommand, 4 )` |
-| hbdebug/debugger.prg:950 | `CASE cCommand == "BP"` |
-| hbdebug/debugger.prg:960 | `CASE hb_LeftEqN( "CALLSTACK", cCommand, 4 )` |
-| hbdebug/debugger.prg:963 | `CASE hb_LeftEqN( "DELETE", cCommand, 3 )` |
-| hbdebug/debugger.prg:965 | `CASE cParam1 == "BP"` |
-| hbdebug/debugger.prg:967 | `CASE cParam1 == "WP" .OR. cParam1 == "TP"` |
-| hbdebug/debugger.prg:969 | `CASE cParam1 == "ALL"` |
-| hbdebug/debugger.prg:971 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:974 | `CASE hb_LeftEqI( "BP", cParam2 )` |
-| hbdebug/debugger.prg:976 | `CASE hb_LeftEqI( "WP", cParam2 ) .OR. hb_LeftEqI( "TP", cParam2 )` |
-| hbdebug/debugger.prg:986 | `CASE cCommand == "DOS"` |
-| hbdebug/debugger.prg:989 | `CASE hb_LeftEq( "FILE", cCommand )` |
-| hbdebug/debugger.prg:991 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:993 | `CASE hb_LeftEq( "OPEN", cParam1 )` |
-| hbdebug/debugger.prg:995 | `CASE hb_LeftEq( "RESUME", cParam1 )` |
-| hbdebug/debugger.prg:997 | `CASE hb_LeftEq( "OS", cParam1 ) .OR. hb_LeftEq( "DOS", cParam1 )` |
-| hbdebug/debugger.prg:999 | `CASE hb_LeftEq( "EXIT", cParam1 )` |
-| hbdebug/debugger.prg:1005 | `CASE cCommand == "FIND"` |
-| hbdebug/debugger.prg:1008 | `CASE hb_LeftEqN( "GOTO", cCommand, 4 ) .AND. ( n := Val( cParam1 ) ) > 0` |
-| hbdebug/debugger.prg:1011 | `CASE hb_LeftEq( "GO", cCommand )` |
-| hbdebug/debugger.prg:1014 | `CASE cCommand == "HELP"` |
-| hbdebug/debugger.prg:1017 | `CASE hb_LeftEqN( "INPUT", cCommand, 4 )` |
-| hbdebug/debugger.prg:1030 | `CASE cCommand == "LIST"` |
-| hbdebug/debugger.prg:1032 | `CASE "BP"` |
-| hbdebug/debugger.prg:1035 | `CASE "WP"` |
-| hbdebug/debugger.prg:1036 | `CASE "TP"` |
-| hbdebug/debugger.prg:1043 | `CASE hb_LeftEq( "LOCATE", cCommand )` |
-| hbdebug/debugger.prg:1045 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1047 | `CASE hb_LeftEq( "FIND", cParam1 )` |
-| hbdebug/debugger.prg:1049 | `CASE hb_LeftEq( "NEXT", cParam1 )` |
-| hbdebug/debugger.prg:1051 | `CASE hb_LeftEq( "PREVIOUS", cParam1 )` |
-| hbdebug/debugger.prg:1053 | `CASE hb_LeftEq( "GOTOLINE", cParam1 )` |
-| hbdebug/debugger.prg:1055 | `CASE hb_LeftEq( "CASESENSITIVE", cParam1 )` |
-| hbdebug/debugger.prg:1057 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:1059 | `CASE Upper( cParam2 ) == "ON"` |
-| hbdebug/debugger.prg:1061 | `CASE Upper( cParam2 ) == "OFF"` |
-| hbdebug/debugger.prg:1070 | `CASE hb_LeftEq( "MONITOR", cCommand )` |
-| hbdebug/debugger.prg:1087 | `CASE ! Empty( cResult )` |
-| hbdebug/debugger.prg:1089 | `CASE hb_LeftEq( "PUBLIC", cParam1 )` |
-| hbdebug/debugger.prg:1091 | `CASE hb_LeftEq( "PRIVATE", cParam1 )` |
-| hbdebug/debugger.prg:1093 | `CASE hb_LeftEq( "STATIC", cParam1 )` |
-| hbdebug/debugger.prg:1095 | `CASE hb_LeftEq( "LOCAL", cParam1 )` |
-| hbdebug/debugger.prg:1097 | `CASE hb_LeftEq( "GLOBAL", cParam1 )` |
-| hbdebug/debugger.prg:1099 | `CASE hb_LeftEq( "ALL", cParam1 )` |
-| hbdebug/debugger.prg:1101 | `CASE hb_LeftEq( "SORT", cParam1 )` |
-| hbdebug/debugger.prg:1103 | `CASE hb_LeftEq( "SHOWALLGLOBALS", cParam1 )` |
-| hbdebug/debugger.prg:1109 | `CASE cCommand == "NEXT"` |
-| hbdebug/debugger.prg:1112 | `CASE cCommand == "NUM"` |
-| hbdebug/debugger.prg:1114 | `CASE "OFF"` |
-| hbdebug/debugger.prg:1116 | `CASE "ON"` |
-| hbdebug/debugger.prg:1122 | `CASE hb_LeftEq( "OPTIONS", cCommand )` |
-| hbdebug/debugger.prg:1124 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1126 | `CASE hb_LeftEq( "PREPROCESSEDCODE", cParam1 )` |
-| hbdebug/debugger.prg:1128 | `CASE hb_LeftEq( "LINENUMBERS", cParam1 )` |
-| hbdebug/debugger.prg:1130 | `CASE hb_LeftEq( "EXCHANGESCREENS", cParam1 ) .OR. ;` |
-| hbdebug/debugger.prg:1133 | `CASE hb_LeftEq( "MENUBAR", cParam1 )` |
-| hbdebug/debugger.prg:1135 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:1137 | `CASE Upper( cParam2 ) == "ON"` |
-| hbdebug/debugger.prg:1139 | `CASE Upper( cParam2 ) == "OFF"` |
-| hbdebug/debugger.prg:1144 | `CASE hb_LeftEq( "CODEBLOCKTRACE", cParam1 )` |
-| hbdebug/debugger.prg:1146 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:1148 | `CASE Upper( cParam2 ) == "ON"` |
-| hbdebug/debugger.prg:1150 | `CASE Upper( cParam2 ) == "OFF"` |
-| hbdebug/debugger.prg:1155 | `CASE hb_LeftEq( "MONODISPLAY", cParam1 )` |
-| hbdebug/debugger.prg:1157 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:1159 | `CASE Upper( cParam2 ) == "ON"` |
-| hbdebug/debugger.prg:1161 | `CASE Upper( cParam2 ) == "OFF"` |
-| hbdebug/debugger.prg:1166 | `CASE hb_LeftEq( "COLORS", cParam1 )` |
-| hbdebug/debugger.prg:1199 | `CASE hb_LeftEq( "TABWIDTH", cParam1 )` |
-| hbdebug/debugger.prg:1208 | `CASE hb_LeftEq( "PATHFORFILES", cParam1 )` |
-| hbdebug/debugger.prg:1210 | `CASE hb_LeftEq( "RUNATSTARTUP", cParam1 )` |
-| hbdebug/debugger.prg:1212 | `CASE hb_LeftEq( "NORUNATSTARTUP", cParam1 )` |
-| hbdebug/debugger.prg:1214 | `CASE hb_LeftEq( "SAVESETTINGS", cParam1 )` |
-| hbdebug/debugger.prg:1216 | `CASE hb_LeftEq( "RESTORESETTINGS", cParam1 )` |
-| hbdebug/debugger.prg:1222 | `CASE hb_LeftEqN( "OUTPUT", cCommand, 4 )` |
-| hbdebug/debugger.prg:1225 | `CASE hb_LeftEq( "POINT", cCommand )` |
-| hbdebug/debugger.prg:1227 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1229 | `CASE hb_LeftEq( "WATCHPOINT", cParam1 )` |
-| hbdebug/debugger.prg:1231 | `CASE hb_LeftEq( "TRACEPOINT", cParam1 )` |
-| hbdebug/debugger.prg:1233 | `CASE hb_LeftEq( "BREAKPOINT", cParam1 )` |
-| hbdebug/debugger.prg:1235 | `CASE hb_LeftEq( "DELETE", cParam1 )` |
-| hbdebug/debugger.prg:1241 | `CASE cCommand == "PREV"` |
-| hbdebug/debugger.prg:1244 | `CASE hb_LeftEq( "QUIT", cCommand )` |
-| hbdebug/debugger.prg:1249 | `CASE hb_LeftEqN( "RESUME", cCommand, 4 )` |
-| hbdebug/debugger.prg:1252 | `CASE hb_LeftEq( "RUN", cCommand )` |
-| hbdebug/debugger.prg:1254 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1256 | `CASE hb_LeftEq( "ANIMATE", cParam1 )` |
-| hbdebug/debugger.prg:1259 | `CASE hb_LeftEq( "STEP", cParam1 )` |
-| hbdebug/debugger.prg:1261 | `CASE hb_LeftEq( "TRACE", cParam1 )` |
-| hbdebug/debugger.prg:1263 | `CASE hb_LeftEq( "GO", cParam1 )` |
-| hbdebug/debugger.prg:1265 | `CASE hb_LeftEq( "TOCURSOR", cParam1 )` |
-| hbdebug/debugger.prg:1267 | `CASE hb_LeftEq( "NEXTROUTINE", cParam1 )` |
-| hbdebug/debugger.prg:1269 | `CASE hb_LeftEq( "SPEED", cParam1 )` |
-| hbdebug/debugger.prg:1279 | `CASE hb_LeftEqN( "SPEED", cCommand, 4 )` |
-| hbdebug/debugger.prg:1286 | `CASE cCommand == "STEP"` |
-| hbdebug/debugger.prg:1289 | `CASE cCommand == "TP"` |
-| hbdebug/debugger.prg:1292 | `CASE hb_LeftEq( "VIEW", cCommand )` |
-| hbdebug/debugger.prg:1294 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1296 | `CASE hb_LeftEq( "SETS", cParam1 )` |
-| hbdebug/debugger.prg:1298 | `CASE hb_LeftEq( "WORKAREAS", cParam1 )` |
-| hbdebug/debugger.prg:1300 | `CASE hb_LeftEq( "APPSCREEN", cParam1 )` |
-| hbdebug/debugger.prg:1302 | `CASE hb_LeftEq( "CALLSTACK", cParam1 )` |
-| hbdebug/debugger.prg:1308 | `CASE hb_LeftEq( "WINDOW", cCommand )` |
-| hbdebug/debugger.prg:1310 | `CASE Empty( cParam1 )` |
-| hbdebug/debugger.prg:1312 | `CASE hb_LeftEq( "SELECT", cParam1 )` |
-| hbdebug/debugger.prg:1316 | `CASE hb_LeftEq( "NEXT", cParam1 )` |
-| hbdebug/debugger.prg:1318 | `CASE hb_LeftEq( "PREV", cParam1 )` |
-| hbdebug/debugger.prg:1320 | `CASE hb_LeftEq( "MOVE", cParam1 )` |
-| hbdebug/debugger.prg:1328 | `CASE hb_LeftEq( "SIZE", cParam1 )` |
-| hbdebug/debugger.prg:1334 | `CASE hb_LeftEq( "ZOOM", cParam1 )` |
-| hbdebug/debugger.prg:1336 | `CASE hb_LeftEq( "TILE", cParam1 )` |
-| hbdebug/debugger.prg:1338 | `CASE hb_LeftEq( "CASCADE", cParam1 )` |
-| hbdebug/debugger.prg:1340 | `CASE hb_LeftEq( "ICONIZE", cParam1 )` |
-| hbdebug/debugger.prg:1342 | `CASE Empty( cParam2 )` |
-| hbdebug/debugger.prg:1344 | `CASE Upper( cParam2 ) == "ON"` |
-| hbdebug/debugger.prg:1346 | `CASE Upper( cParam2 ) == "OFF"` |
-| hbdebug/debugger.prg:1355 | `CASE cCommand == "WP"` |
+| hbdebug/debugger.prg:908 | `CASE Empty( cCommand )` |
+| hbdebug/debugger.prg:911 | `CASE hb_LeftEq( cCommand, "??" )` |
+| hbdebug/debugger.prg:915 | `CASE hb_LeftEq( cCommand, "?" )` |
+| hbdebug/debugger.prg:933 | `CASE cCommand == "??" .OR. cCommand == "?"` |
+| hbdebug/debugger.prg:951 | `CASE hb_LeftEqN( "ANIMATE", cCommand, 4 )` |
+| hbdebug/debugger.prg:957 | `CASE cCommand == "BP"` |
+| hbdebug/debugger.prg:967 | `CASE hb_LeftEqN( "CALLSTACK", cCommand, 4 )` |
+| hbdebug/debugger.prg:970 | `CASE hb_LeftEqN( "DELETE", cCommand, 3 )` |
+| hbdebug/debugger.prg:972 | `CASE cParam1 == "BP"` |
+| hbdebug/debugger.prg:974 | `CASE cParam1 == "WP" .OR. cParam1 == "TP"` |
+| hbdebug/debugger.prg:976 | `CASE cParam1 == "ALL"` |
+| hbdebug/debugger.prg:978 | `CASE Empty( cParam2 )` |
+| hbdebug/debugger.prg:981 | `CASE hb_LeftEqI( "BP", cParam2 )` |
+| hbdebug/debugger.prg:983 | `CASE hb_LeftEqI( "WP", cParam2 ) .OR. hb_LeftEqI( "TP", cParam2 )` |
+| hbdebug/debugger.prg:993 | `CASE cCommand == "DOS"` |
+| hbdebug/debugger.prg:996 | `CASE hb_LeftEq( "FILE", cCommand )` |
+| hbdebug/debugger.prg:998 | `CASE Empty( cParam1 )` |
+| hbdebug/debugger.prg:1000 | `CASE hb_LeftEq( "OPEN", cParam1 )` |
+| hbdebug/debugger.prg:1002 | `CASE hb_LeftEq( "RESUME", cParam1 )` |
+| hbdebug/debugger.prg:1004 | `CASE hb_LeftEq( "OS", cParam1 ) .OR. hb_LeftEq( "DOS", cParam1 )` |
+| hbdebug/debugger.prg:1006 | `CASE hb_LeftEq( "EXIT", cParam1 )` |
+| hbdebug/debugger.prg:1012 | `CASE cCommand == "FIND"` |
+| hbdebug/debugger.prg:1015 | `CASE hb_LeftEqN( "GOTO", cCommand, 4 ) .AND. ( n := Val( cParam1 ) ) > 0` |
+| hbdebug/debugger.prg:1018 | `CASE hb_LeftEq( "GO", cCommand )` |
+| hbdebug/debugger.prg:1021 | `CASE cCommand == "HELP"` |
+| hbdebug/debugger.prg:1024 | `CASE hb_LeftEqN( "INPUT", cCommand, 4 )` |
+| hbdebug/debugger.prg:1037 | `CASE cCommand == "LIST"` |
+| hbdebug/debugger.prg:1039 | `CASE "BP"` |
+| hbdebug/debugger.prg:1042 | `CASE "WP"` |
+| hbdebug/debugger.prg:1043 | `CASE "TP"` |
+| hbdebug/debugger.prg:1050 | `CASE hb_LeftEq( "LOCATE", cCommand )` |
+| hbdebug/debugger.prg:1052 | `CASE Empty( cParam1 )` |
+| hbdebug/debugger.prg:1054 | `CASE hb_LeftEq( "FIND", cParam1 )` |
+| hbdebug/debugger.prg:1056 | `CASE hb_LeftEq( "NEXT", cParam1 )` |
+| hbdebug/debugger.prg:1058 | `CASE hb_LeftEq( "PREVIOUS", cParam1 )` |
+| hbdebug/debugger.prg:1060 | `CASE hb_LeftEq( "GOTOLINE", cParam1 )` |
+| hbdebug/debugger.prg:1062 | `CASE hb_LeftEq( "CASESENSITIVE", cParam1 )` |
+| hbdebug/debugger.prg:1064 | `CASE Empty( cParam2 )` |
+| hbdebug/debugger.prg:1066 | `CASE Upper( cParam2 ) == "ON"` |
+| hbdebug/debugger.prg:1068 | `CASE Upper( cParam2 ) == "OFF"` |
+| hbdebug/debugger.prg:1077 | `CASE hb_LeftEq( "MONITOR", cCommand )` |
+| hbdebug/debugger.prg:1094 | `CASE ! Empty( cResult )` |
+| hbdebug/debugger.prg:1096 | `CASE hb_LeftEq( "PUBLIC", cParam1 )` |
+| hbdebug/debugger.prg:1098 | `CASE hb_LeftEq( "PRIVATE", cParam1 )` |
+| hbdebug/debugger.prg:1100 | `CASE hb_LeftEq( "STATIC", cParam1 )` |
+| hbdebug/debugger.prg:1102 | `CASE hb_LeftEq( "LOCAL", cParam1 )` |
+| hbdebug/debugger.prg:1104 | `CASE hb_LeftEq( "GLOBAL", cParam1 )` |
+| hbdebug/debugger.prg:1106 | `CASE hb_LeftEq( "ALL", cParam1 )` |
+| hbdebug/debugger.prg:1108 | `CASE hb_LeftEq( "SORT", cParam1 )` |
+| hbdebug/debugger.prg:1110 | `CASE hb_LeftEq( "SHOWALLGLOBALS", cParam1 )` |
+| hbdebug/debugger.prg:1116 | `CASE cCommand == "NEXT"` |
+| hbdebug/debugger.prg:1119 | `CASE cCommand == "NUM"` |
+| hbdebug/debugger.prg:1121 | `CASE "OFF"` |
+| hbdebug/debugger.prg:1123 | `CASE "ON"` |
+| hbdebug/debugger.prg:1129 | `CASE hb_LeftEq( "OPTIONS", cCommand )` |
+| hbdebug/debugger.prg:1131 | `CASE Empty( cParam1 )` |
+| hbdebug/debugger.prg:1133 | `CASE hb_LeftEq( "PREPROCESSEDCODE", cParam1 )` |
+| hbdebug/debugger.prg:1135 | `CASE hb_LeftEq( "LINENUMBERS", cParam1 )` |
+| hbdebug/debugger.prg:1137 | `CASE hb_LeftEq( "EXCHANGESCREENS", cParam1 ) .OR. ;` |
+| hbdebug/debugger.prg:1140 | `CASE hb_LeftEq( "MENUBAR", cParam1 )` |
+| hbdebug/debugger.prg:1142 | `CASE Empty( cParam2 )` |
+| hbdebug/debugger.prg:1144 | `CASE Upper( cParam2 ) == "ON"` |
+| hbdebug/debugger.prg:1146 | `CASE Upper( cParam2 ) == "OFF"` |
+| hbdebug/debugger.prg:1151 | `CASE hb_LeftEq( "CODEBLOCKTRACE", cParam1 )` |
+| hbdebug/debugger.prg:1153 | `CASE Empty( cParam2 )` |
+| hbdebug/debugger.prg:1155 | `CASE Upper( cParam2 ) == "ON"` |
+| hbdebug/debugger.prg:1157 | `CASE Upper( cParam2 ) == "OFF"` |
+| hbdebug/debugger.prg:1162 | `CASE hb_LeftEq( "MONODISPLAY", cParam1 )` |
+| hbdebug/debugger.prg:1164 | `CASE Empty( cParam2 )` |
+| hbdebug/debugger.prg:1166 | `CASE Upper( cParam2 ) == "ON"` |
+| hbdebug/debugger.prg:1168 | `CASE Upper( cParam2 ) == "OFF"` |
+| hbdebug/debugger.prg:1173 | `CASE hb_LeftEq( "COLORS", cParam1 )` |
+| hbdebug/debugger.prg:1206 | `CASE hb_LeftEq( "TABWIDTH", cParam1 )` |
+| hbdebug/debugger.prg:1215 | `CASE hb_LeftEq( "PATHFORFILES", cParam1 )` |
+| hbdebug/debugger.prg:1217 | `CASE hb_LeftEq( "RUNATSTARTUP", cParam1 )` |
+| hbdebug/debugger.prg:1219 | `CASE hb_LeftEq( "NORUNATSTARTUP", cParam1 )` |
+| hbdebug/debugger.prg:1221 | `CASE hb_LeftEq( "SAVESETTINGS", cParam1 )` |
+| hbdebug/debugger.prg:1223 | `CASE hb_LeftEq( "RESTORESETTINGS", cParam1 )` |
+| hbdebug/debugger.prg:1229 | `CASE hb_LeftEqN( "OUTPUT", cCommand, 4 )` |
+| hbdebug/debugger.prg:1232 | `CASE hb_LeftEq( "POINT", cCommand )` |
+| hbdebug/debugger.prg:1234 | `CASE Empty( cParam1 )` |
+| hbdebug/debugger.prg:1236 | `CASE hb_LeftEq( "WATCHPOINT", cParam1 )` |
+| hbdebug/debugger.prg:1238 | `CASE hb_LeftEq( "TRACEPOINT", cParam1 )` |
+| hbdebug/debugger.prg:1240 | `CASE hb_LeftEq( "BREAKPOINT", cParam1 )` |
+| hbdebug/debugger.prg:1242 | `CASE hb_LeftEq( "DELETE", cParam1 )` |
+| hbdebug/debugger.prg:1248 | `CASE cCommand == "PREV"` |
+| hbdebug/debugger.prg:1251 | `CASE hb_LeftEq( "QUIT", cCommand )` |
+| hbdebug/debugger.prg:1256 | `CASE hb_LeftEqN( "RESUME", cCommand, 4 )` |
+| hbdebug/debugger.prg:1259 | `CASE hb_LeftEq( "RUN", cCommand )` |
+| hbdebug/debugger.prg:1261 | `CASE Empty( cParam1 )` |
+| hbdebug/debugger.prg:1263 | `CASE hb_LeftEq( "ANIMATE", cParam1 )` |
+| hbdebug/debugger.prg:1266 | `CASE hb_LeftEq( "STEP", cParam1 )` |
+| hbdebug/debugger.prg:1268 | `CASE hb_LeftEq( "TRACE", cParam1 )` |
+| hbdebug/debugger.prg:1270 | `CASE hb_LeftEq( "GO", cParam1 )` |
+| hbdebug/debugger.prg:1272 | `CASE hb_LeftEq( "TOCURSOR", cParam1 )` |
+| hbdebug/debugger.prg:1274 | `CASE hb_LeftEq( "NEXTROUTINE", cParam1 )` |
+| hbdebug/debugger.prg:1276 | `CASE hb_LeftEq( "SPEED", cParam1 )` |
+| hbdebug/debugger.prg:1286 | `CASE hb_LeftEqN( "SPEED", cCommand, 4 )` |
+| hbdebug/debugger.prg:1293 | `CASE cCommand == "STEP"` |
+| hbdebug/debugger.prg:1296 | `CASE cCommand == "TP"` |
+| hbdebug/debugger.prg:1299 | `CASE hb_LeftEq( "VIEW", cCommand )` |
+| hbdebug/debugger.prg:1301 | `CASE Empty( cParam1 )` |
+| hbdebug/debugger.prg:1303 | `CASE hb_LeftEq( "SETS", cParam1 )` |
+| hbdebug/debugger.prg:1305 | `CASE hb_LeftEq( "WORKAREAS", cParam1 )` |
+| hbdebug/debugger.prg:1307 | `CASE hb_LeftEq( "APPSCREEN", cParam1 )` |
+| hbdebug/debugger.prg:1309 | `CASE hb_LeftEq( "CALLSTACK", cParam1 )` |
+| hbdebug/debugger.prg:1315 | `CASE hb_LeftEq( "WINDOW", cCommand )` |
+| hbdebug/debugger.prg:1317 | `CASE Empty( cParam1 )` |
+| hbdebug/debugger.prg:1319 | `CASE hb_LeftEq( "SELECT", cParam1 )` |
+| hbdebug/debugger.prg:1323 | `CASE hb_LeftEq( "NEXT", cParam1 )` |
+| hbdebug/debugger.prg:1325 | `CASE hb_LeftEq( "PREV", cParam1 )` |
+| hbdebug/debugger.prg:1327 | `CASE hb_LeftEq( "MOVE", cParam1 )` |
+| hbdebug/debugger.prg:1335 | `CASE hb_LeftEq( "SIZE", cParam1 )` |
+| hbdebug/debugger.prg:1341 | `CASE hb_LeftEq( "ZOOM", cParam1 )` |
+| hbdebug/debugger.prg:1343 | `CASE hb_LeftEq( "TILE", cParam1 )` |
+| hbdebug/debugger.prg:1345 | `CASE hb_LeftEq( "CASCADE", cParam1 )` |
+| hbdebug/debugger.prg:1347 | `CASE hb_LeftEq( "ICONIZE", cParam1 )` |
+| hbdebug/debugger.prg:1349 | `CASE Empty( cParam2 )` |
+| hbdebug/debugger.prg:1351 | `CASE Upper( cParam2 ) == "ON"` |
+| hbdebug/debugger.prg:1353 | `CASE Upper( cParam2 ) == "OFF"` |
+| hbdebug/debugger.prg:1362 | `CASE cCommand == "WP"` |
 | designer.prg:235 | `case nKey == K_F4` |
 | designer.prg:238 | `case nKey == K_F6` |
 | designer.prg:249 | `case nKey == K_ESC` |
@@ -875,57 +875,57 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:1926 | `case K_PGDN` |
 | editor.prg:1927 | `case K_MWFORWARD` |
 | editor.prg:1928 | `case K_MWBACKWARD` |
-| hbdebug/debugger.prg:1593 | `CASE K_LDBLCLK` |
-| hbdebug/debugger.prg:1613 | `CASE K_LBUTTONDOWN` |
-| hbdebug/debugger.prg:1642 | `CASE K_RBUTTONDOWN` |
-| hbdebug/debugger.prg:1645 | `CASE K_ESC` |
-| hbdebug/debugger.prg:1654 | `CASE K_ENTER` |
-| hbdebug/debugger.prg:1659 | `CASE K_UP` |
-| hbdebug/debugger.prg:1660 | `CASE K_DOWN` |
-| hbdebug/debugger.prg:1661 | `CASE K_LEFT` |
-| hbdebug/debugger.prg:1662 | `CASE K_RIGHT` |
-| hbdebug/debugger.prg:1663 | `CASE K_PGUP` |
-| hbdebug/debugger.prg:1664 | `CASE K_PGDN` |
-| hbdebug/debugger.prg:1665 | `CASE K_HOME` |
-| hbdebug/debugger.prg:1666 | `CASE K_END` |
-| hbdebug/debugger.prg:1667 | `CASE K_DEL` |
-| hbdebug/debugger.prg:1668 | `CASE K_CTRL_PGUP` |
-| hbdebug/debugger.prg:1669 | `CASE K_CTRL_PGDN` |
-| hbdebug/debugger.prg:1670 | `CASE K_CTRL_HOME` |
-| hbdebug/debugger.prg:1671 | `CASE K_CTRL_END` |
-| hbdebug/debugger.prg:1672 | `CASE K_CTRL_ENTER` |
-| hbdebug/debugger.prg:1676 | `CASE K_ALT_U /* Move the border between Command and Code windows Up */` |
-| hbdebug/debugger.prg:1680 | `CASE K_ALT_D /* Move the border between Command and Code windows Down */` |
-| hbdebug/debugger.prg:1684 | `CASE K_ALT_G /* Grow active window */` |
-| hbdebug/debugger.prg:1688 | `CASE K_ALT_S /* Shrink active window */` |
-| hbdebug/debugger.prg:1692 | `CASE K_F1` |
-| hbdebug/debugger.prg:1696 | `CASE K_F2` |
-| hbdebug/debugger.prg:1700 | `CASE K_F4` |
-| hbdebug/debugger.prg:1704 | `CASE K_F5` |
-| hbdebug/debugger.prg:1708 | `CASE K_CTRL_F5` |
-| hbdebug/debugger.prg:1712 | `CASE K_F6` |
-| hbdebug/debugger.prg:1716 | `CASE K_F7` |
-| hbdebug/debugger.prg:1720 | `CASE K_F8` |
-| hbdebug/debugger.prg:1724 | `CASE K_F9` |
-| hbdebug/debugger.prg:1728 | `CASE K_F10` |
-| hbdebug/debugger.prg:1732 | `CASE K_TAB` |
-| hbdebug/debugger.prg:1736 | `CASE K_SH_TAB` |
-| hbdebug/debugger.prg:836 | `CASE K_UP` |
-| hbdebug/debugger.prg:837 | `CASE K_F3` |
-| hbdebug/debugger.prg:843 | `CASE K_DOWN` |
-| hbdebug/debugger.prg:849 | `CASE K_ENTER` |
-| hbdebug/debugger.prg:700 | `CASE K_CTRL_PGUP` |
-| hbdebug/debugger.prg:701 | `CASE K_CTRL_HOME` |
-| hbdebug/debugger.prg:706 | `CASE K_CTRL_PGDN` |
-| hbdebug/debugger.prg:707 | `CASE K_CTRL_END` |
-| hbdebug/debugger.prg:714 | `CASE K_HOME` |
-| hbdebug/debugger.prg:718 | `CASE K_END` |
-| hbdebug/debugger.prg:722 | `CASE K_LEFT` |
-| hbdebug/debugger.prg:726 | `CASE K_RIGHT` |
-| hbdebug/debugger.prg:730 | `CASE K_UP` |
-| hbdebug/debugger.prg:734 | `CASE K_DOWN` |
-| hbdebug/debugger.prg:738 | `CASE K_PGUP` |
-| hbdebug/debugger.prg:742 | `CASE K_PGDN` |
+| hbdebug/debugger.prg:1600 | `CASE K_LDBLCLK` |
+| hbdebug/debugger.prg:1620 | `CASE K_LBUTTONDOWN` |
+| hbdebug/debugger.prg:1649 | `CASE K_RBUTTONDOWN` |
+| hbdebug/debugger.prg:1652 | `CASE K_ESC` |
+| hbdebug/debugger.prg:1661 | `CASE K_ENTER` |
+| hbdebug/debugger.prg:1666 | `CASE K_UP` |
+| hbdebug/debugger.prg:1667 | `CASE K_DOWN` |
+| hbdebug/debugger.prg:1668 | `CASE K_LEFT` |
+| hbdebug/debugger.prg:1669 | `CASE K_RIGHT` |
+| hbdebug/debugger.prg:1670 | `CASE K_PGUP` |
+| hbdebug/debugger.prg:1671 | `CASE K_PGDN` |
+| hbdebug/debugger.prg:1672 | `CASE K_HOME` |
+| hbdebug/debugger.prg:1673 | `CASE K_END` |
+| hbdebug/debugger.prg:1674 | `CASE K_DEL` |
+| hbdebug/debugger.prg:1675 | `CASE K_CTRL_PGUP` |
+| hbdebug/debugger.prg:1676 | `CASE K_CTRL_PGDN` |
+| hbdebug/debugger.prg:1677 | `CASE K_CTRL_HOME` |
+| hbdebug/debugger.prg:1678 | `CASE K_CTRL_END` |
+| hbdebug/debugger.prg:1679 | `CASE K_CTRL_ENTER` |
+| hbdebug/debugger.prg:1683 | `CASE K_ALT_U /* Move the border between Command and Code windows Up */` |
+| hbdebug/debugger.prg:1687 | `CASE K_ALT_D /* Move the border between Command and Code windows Down */` |
+| hbdebug/debugger.prg:1691 | `CASE K_ALT_G /* Grow active window */` |
+| hbdebug/debugger.prg:1695 | `CASE K_ALT_S /* Shrink active window */` |
+| hbdebug/debugger.prg:1699 | `CASE K_F1` |
+| hbdebug/debugger.prg:1703 | `CASE K_F2` |
+| hbdebug/debugger.prg:1707 | `CASE K_F4` |
+| hbdebug/debugger.prg:1711 | `CASE K_F5` |
+| hbdebug/debugger.prg:1715 | `CASE K_CTRL_F5` |
+| hbdebug/debugger.prg:1719 | `CASE K_F6` |
+| hbdebug/debugger.prg:1723 | `CASE K_F7` |
+| hbdebug/debugger.prg:1727 | `CASE K_F8` |
+| hbdebug/debugger.prg:1731 | `CASE K_F9` |
+| hbdebug/debugger.prg:1735 | `CASE K_F10` |
+| hbdebug/debugger.prg:1739 | `CASE K_TAB` |
+| hbdebug/debugger.prg:1743 | `CASE K_SH_TAB` |
+| hbdebug/debugger.prg:843 | `CASE K_UP` |
+| hbdebug/debugger.prg:844 | `CASE K_F3` |
+| hbdebug/debugger.prg:850 | `CASE K_DOWN` |
+| hbdebug/debugger.prg:856 | `CASE K_ENTER` |
+| hbdebug/debugger.prg:707 | `CASE K_CTRL_PGUP` |
+| hbdebug/debugger.prg:708 | `CASE K_CTRL_HOME` |
+| hbdebug/debugger.prg:713 | `CASE K_CTRL_PGDN` |
+| hbdebug/debugger.prg:714 | `CASE K_CTRL_END` |
+| hbdebug/debugger.prg:721 | `CASE K_HOME` |
+| hbdebug/debugger.prg:725 | `CASE K_END` |
+| hbdebug/debugger.prg:729 | `CASE K_LEFT` |
+| hbdebug/debugger.prg:733 | `CASE K_RIGHT` |
+| hbdebug/debugger.prg:737 | `CASE K_UP` |
+| hbdebug/debugger.prg:741 | `CASE K_DOWN` |
+| hbdebug/debugger.prg:745 | `CASE K_PGUP` |
+| hbdebug/debugger.prg:749 | `CASE K_PGDN` |
 
 ## Gate de cierre
 

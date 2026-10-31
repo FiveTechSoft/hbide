@@ -643,6 +643,13 @@ METHOD PROCEDURE CallStackProcessKey( nKey ) CLASS HBDebugger
 
    CASE K_LBUTTONDOWN
 
+      // The frame is not a browser row. Keep the selected stack frame
+      // when focusing the title or clicking a border.
+      IF MRow() < ::oBrwStack:nTop .OR. MRow() > ::oBrwStack:nBottom .OR. ;
+         MCol() < ::oBrwStack:nLeft .OR. MCol() > ::oBrwStack:nRight
+         EXIT
+      ENDIF
+
       IF ( nSkip := MRow() - ::oWndStack:nTop - ::oBrwStack:RowPos ) != 0
          IF nSkip > 0
             FOR n := 1 TO nSkip
