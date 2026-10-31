@@ -2,19 +2,19 @@
 """Inventory in-source notices. Not legal advice or a license determination."""
 import argparse,hashlib,json,pathlib,subprocess,sys
 ROOT=pathlib.Path(__file__).resolve().parents[1]
-def audit():
+def audit(root=ROOT):
  rows=[]
- for line in (ROOT/'hbide.hbp').read_text().splitlines():
+ for line in (root/'hbide.hbp').read_text().splitlines():
   rel=line.strip()
   if not rel.endswith(('.prg','.c')) or rel.startswith('#'):continue
-  path=ROOT/rel;text=path.read_text();header=text.split('#include',1)[0]
+  path=root/rel;text=path.read_text();header=text.split('#include',1)[0]
   rows.append({'path':rel,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
    'gpl_notice':'GNU General Public License' in header,
    'harbour_exception':'special exception' in header,
    'copyright_notice':'Copyright' in header,
    'license_file_reference':'LICENSE.txt' in header})
- notices=[p.name for p in ROOT.iterdir() if p.is_file() and p.name.lower().startswith(('license','copying','notice'))]
- missing=[r['path'] for r in rows if r['license_file_reference'] and not (ROOT/'LICENSE.txt').is_file()]
+ notices=[p.name for p in root.iterdir() if p.is_file() and p.name.lower().startswith(('license','copying','notice'))]
+ missing=[r['path'] for r in rows if r['license_file_reference'] and not (root/'LICENSE.txt').is_file()]
  unspecified=[r['path'] for r in rows if not r['gpl_notice']]
  return {'scope':'Local HBP source notice inventory only. Absence of a detected header is not proof of no license or ownership. Does not clear redistribution.',
   'source':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
