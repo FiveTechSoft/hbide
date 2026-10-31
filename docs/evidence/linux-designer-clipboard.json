@@ -1,0 +1,38 @@
+{
+  "scope": "CleanLinuxrealdesignerComboBox12checks actual CopyPasteCutUndoRedo and F10 persistedfullmodels,uniquevariables and clamp offsets. Earlierharnessincorrectly expectedunclampedrow/pressedEnterafteralreadyassociatedF10, correctedtestnotproduct. No newoversizedpolicy/nonnileventpreservation/allcontrols/runtime/pixels/Windows/global108acceptance.20models last769ed46;33docs.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "493febf97d04f54df97520a7710a7f7a592172a0",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "d7245b6c36bbbf980dfc6bf54cb7f70751a1edc9820a73bc00a083a16d3b0554",
+    "binary_sha256": "6b0586265c3828e688e9039f1cea8965a36f61a44eb72434dbfe201e52297e1b",
+    "built_at": 1793411952.4579515
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "493febf97d04f54df97520a7710a7f7a592172a0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "d7245b6c36bbbf980dfc6bf54cb7f70751a1edc9820a73bc00a083a16d3b0554",
+      "binary_sha256": "6b0586265c3828e688e9039f1cea8965a36f61a44eb72434dbfe201e52297e1b",
+      "build_receipt": "/tmp/hbide-designer-clipboard/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "d98940c6570d9e58f074e4d6b7bcb28b037c0a6cc9db54fecbb250fa232d955c",
+      "case": "designer-clipboard",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_pty.py"
+      ],
+      "started": 1793411952.4582784,
+      "seconds": 10.22,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1abaa1e6306e3fb2c62e1538947d9dab5914307a038342248ad9ea2d48e09688",
+      "log": "/tmp/hbide-designer-clipboard/designer-clipboard-1793411952458274700.log"
+    }
+  ]
+}
