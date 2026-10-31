@@ -148,16 +148,20 @@
     "IDE-015": {
       "tests": [
         "test_editor_find.prg",
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_find_selection_pty.py",
+        "test_find_repeat_selection_pty.py"
       ],
-      "contract": "Search next position case-insensitively; wrap within current and other lines; missing match retains cursor. Real Find modal navigates requested text; Esc leaves source bytes untouched.",
+      "contract": "Search next position case-insensitively; wrap within current and other lines; missing match retains cursor. Real Find modal navigates requested text; Esc leaves source bytes untouched. Successful Find/Repeat clears old selection, including multirow and wrapped matches, before subsequent typing; exact saved bytes and Undo checked. Cancel/missing Find keep old range.",
       "expected_label": "Find...         F5"
     },
     "IDE-016": {
       "tests": [
-        "test_editor_find.prg"
+        "test_editor_find.prg",
+        "test_find_selection_pty.py",
+        "test_find_repeat_selection_pty.py"
       ],
-      "contract": "Repeat visits adjacent and overlapping matches without double increment, then wraps.",
+      "contract": "Repeat visits adjacent and overlapping matches without double increment, then wraps. Successful Find/Repeat clears old selection, including multirow and wrapped matches, before subsequent typing; exact saved bytes and Undo checked. Cancel/missing Find keep old range.",
       "expected_label": "Repeat Last Find F3"
     },
     "IDE-001": {

@@ -2867,3 +2867,9 @@ Q49clean040e2ea FindSelection7/NoChangeReplace9/ChangedReplace5/Virtual6PASS
 same5e401ae6;21modelsPASS including106repaint,15inventory34docsPASS.
 Native120x40alXpha/Undoalpha actualpixels inspected fullborders. Ledger
 linux-find-selection.json. No retries/searchscope/Windows/global assertion.
+
+## Q49 extension - Repeat/wrap/multirow selected Find
+
+Acceptance-only7checks: realFind from oldmultirowrange, F3Repeat with old
+singleline range, wrappedF3fromtail; subsequenttyping atmatch, exactdisk
+andUndo. Local7PASS, no newproductfix. Runner160=159PTY+guard. Cleanfollows.
