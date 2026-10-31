@@ -3738,7 +3738,7 @@ preprocessor/Windows/global/hitoclosed. C21/Q104predateQ105+.
 Sourcebranch inventory retains logical condition continuation beyond ;,
 exactCtrlF6route/extendedidentity now linked to existingmulti-documentPTY.
 Parent menuclosed/multipledoc guard separate; noCtrlShiftF6acceptanceclaim.
-Source63a5f55cleanmultidocPTY35checksPASS31inventory34docsPASS.
+Source63a5f55cleanmultidocPTY37checksPASS31inventory34docsPASS.
 Development:firstunitcondition assertion split wronglyat.or.,1unitfailure;
 reconstructed fullsourcecontinuations31PASS. CleanPTYnofailure/retry.
 linux-inventory-multiline-dispatch.json. No productfix/pixels/modelrerun/
