@@ -2421,3 +2421,11 @@ acciones no110funciones. Unfichero, noRestart niWindows.
 
 Clean379c12aCursor11Shadow9WindowLayout16sameIDE3e964e7cPASSsinretry,
 15inventory33docsPASS. linux-debug-resume-viewing-cursor.json.
+
+## 31 octubre clipboard ListBox/RadioGroup runtime
+
+Dos suites9checks cadauna: F12cargaNVAR1,CopyPastegeneraNVAR2independiente,
+F9artifactcompila;seleccionprimer/segundocontrolproduce{2,1}/{1,2},
+STATEListBox/VALIDRadioGrouppreservadosse ejecutan. Instrumentarsoloreturn.
+Exploratorio9+9PASS,sinproductfix,nopixels/Windows/allhandlers.
+Runner134=133modosPTY+guard,no134funciones. Clean pendiente.
