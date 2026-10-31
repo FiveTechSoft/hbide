@@ -1,0 +1,6 @@
+{
+  "source": "bc0adb0ac710ed30e262b112cad267c561bc6ad2",
+  "expected": "{\"long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_\"=>{41, 2}}",
+  "actual": "{\"long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_\"=>{41, 2}}",
+  "scope": "Native Linux terminal120x40, array under long-key hash edit41/cancel99/Resume exact. Not Windows or all geometry."
+}

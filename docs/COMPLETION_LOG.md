@@ -2033,3 +2033,8 @@ intacto. No es otra funcion por añadir un modo de fixture.
 Una investigacion separada probo nombres de miembro de120bytes: Harbour
 trunca simbolos a63 y no forma el par getter/setter; no se usa ese fixture
 invalido como prueba de fallo de columna objeto ni se cambia esa politica.
+
+bc0adb0 limpio: LongArray7+LongHash7+StructuredDepth24PASS mismoIDE,
+20modelos15inventario33docsPASS. Native120x40array hijo de clave larga,
+41 visible, Cancel99 conserva41 y Resumeexacto. Capturas completas
+inspeccionadas. Evidencia `docs/evidence/debug-long-array-path/`.
