@@ -3641,3 +3641,13 @@ Development: runner tuple corrected beforetests; firstmultilineguard reused
 WordWrap-alteredbuffer155PASS1FAIL, freshPaintProbe156PASS. Clean no failures
 or retries. linux-editor-bracket-minus.json. No lexercomplete/Windows/global.
 C20 remains frozen6da0304, Q87full201frozen84e58b3.
+
+## Q101 - comparison bracket literal contexts
+
+Compiler-valid !=/<>/#/<=/>=/= plus </>/$ followed by bracket literals.
+Before2PASS2FAILQ100binary; comparisoncontexts now recognize =<>#$ suffix
+except aliasarrow->. Twelve newguards:9operators/gap/completedvalueindex/arrow.
+Clean sourcea1d0892:6modos36PTYchecks22models168repaint27inventory34docsPASS,
+no failures/retries. Native120x40ninebracketstringsyellow/nextreturnsfunctioncyan/
+fullborders/F2exact inspected. linux-editor-bracket-comparisons.json.
+No generallexer/Windows/globalmatrix/hitoclosed. C20frozen6da0304 predatesQ100+.

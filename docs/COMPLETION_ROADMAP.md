@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q101 | Comparaciones bracketliteral no abren bloque falso. | Compiler-valid9operators;antes2PASS2FAIL;12guardas36PTY22models27inventory34docsPASS sourcea1d0892;nativeinspeccionado;linux-editor-bracket-comparisons.json. No lexercompleto/Windows. |
 | Q100 | Bracketliteral tras minus no abre bloque falso. | Compiler-validantes2PASS2FAIL;5guardas/24PTY22models27inventory34docsPASS source3564515;nativeinspeccionado;linux-editor-bracket-minus.json. No lexercompleto/Windows. |
 | C20 | CandidatoLinux temporal incluyeQ91-Q99. | Export6da0304 binary5a4f86e8,8smoke+9modos41checksPASSexactbinary;nativeQ99inspeccionado;linux-candidate-bracket-context-c20.json. No release/Windows/licencias/install/globalmatrix. |
 | Q99 | Contexto bracket conserva intro cruzando comentario multilinea. | Antes2PASS2FAIL;cachelazyestado+pintado/6guardas/20PTY22models27inventory34docsPASS source240471f;nativeinspeccionado;linux-editor-bracket-multiline.json. No lexercompleto/Windows. |
