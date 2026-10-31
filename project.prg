@@ -193,23 +193,37 @@ FUNCTION HBIDEProjectDiagnostics( cOutput, cRoot )
          aPart := hb_ATokens( cLine, ":" )
          FOR n := 2 TO Len( aPart ) - 1
             IF HBIDEProjectDigits( AllTrim( aPart[ n ] ) )
-               cFile := aPart[ 1 ]
-               FOR nColon := 2 TO n - 1
-                  cFile += ":" + aPart[ nColon ]
-               NEXT
-               cRow := aPart[ n ]; nColon := n + 1
+               nColon := n + 1
                IF HBIDEProjectDigits( AllTrim( aPart[ nColon ] ) )
-                  cCol := aPart[ nColon ]; nColon++
+                  nColon++
                ENDIF
+               // A numeric path component is not a source line. The
+               // location must be immediately followed by severity.
                cText := ""
                FOR nOpen := nColon TO Len( aPart )
-                  cText += iif( Empty( cText ), "", ":" ) + aPart[ nOpen ]
+                  cText += iif( nOpen == nColon, "", ":" ) + aPart[ nOpen ]
                NEXT
+               cText := AllTrim( cText )
+               IF ! ( Left( Lower( cText ), 6 ) == "error:" .OR. ;
+                      Left( Lower( cText ), 8 ) == "warning:" .OR. ;
+                      Left( Lower( cText ), 12 ) == "fatal error:" )
+                  LOOP
+               ENDIF
+               cFile := aPart[ 1 ]
+               FOR nOpen := 2 TO n - 1
+                  cFile += ":" + aPart[ nOpen ]
+               NEXT
+               cRow := aPart[ n ]; cCol := ""
+               IF nColon == n + 2
+                  cCol := aPart[ n + 1 ]
+               ENDIF
                EXIT
             ENDIF
          NEXT
       ENDIF
-      cLevel := iif( "ERROR" $ Upper( cText ), "error", iif( "WARNING" $ Upper( cText ), "warning", "" ) )
+      cLevel := iif( Left( Upper( cText ), 5 ) == "ERROR" .OR. ;
+         Left( Upper( cText ), 11 ) == "FATAL ERROR", "error", ;
+         iif( Left( Upper( cText ), 7 ) == "WARNING", "warning", "" ) )
       IF ! Empty( cFile ) .AND. ! Empty( cLevel ) .AND. Val( cRow ) > 0
          h := { "path" => HBIDEProjectPath( cRoot, cFile ), "line" => Val( cRow ), ;
             "column" => Max( 1, Val( cCol ) ), "level" => cLevel, "text" => AllTrim( cText ), "raw" => cLine }

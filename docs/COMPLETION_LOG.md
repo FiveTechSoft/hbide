@@ -2940,3 +2940,12 @@ Q52cleandd94e1d LineComments6/Literal3/Typed3/Find7PASS samebinary;
 returnkeywords cyan andtwo commentsmagenta actualpixels/fullborders
 inspected,F2exact. Ledgerlinux-editor-line-comments.json. No retries/global/
 Windows/fulllexer/viewporthorizontal. Candidate12predatesQ52.
+
+## Q53 - GCC numeric colon path mistaken for line number
+
+RealGCCdiagnostic folder:12:part/bad.c:2:9 was parsed asfolderline12,
+Enteropenedwrongpath. Before3PASS3FAIL,localafter6PASS. Wrapper invokes
+realgcc-fsyntax-only, nothbmk2 pathhandlingacceptance. Parserrequires
+severityimmediatelyafterlocation,skipnotes/context;severityfromprefixnot
+wordsinside message. Fourmodelassertions addedinclfatalerror/nocolumn.
+Runner164=163PTY+guard; clean/nativeevidence follows.
