@@ -2517,4 +2517,9 @@ First exploratory fixture anchor row1 did not crash and had a wrong cursor
 expectation; revised anchor row3 reproduced the real failure before fixing.
 Native120x40 Xfresh and Undo fresh inspected with complete lower frames;
 saved bytes exact. No filename-UndoLoad policy change or Windows claim.
-Runner140=139PTY modes plus guard. Clean regression pending.
+Runner140=139PTY modes plus guard.
+
+Cleanf758bbe: ReloadSelection4, Clipboard4, Identity3 plus external-change
+and unreadable-reload suites pass on same binaryae8c65e2 in two bounded steps,
+without retry;21models15inventory33docs pass.
+Ledger docs/evidence/linux-reload-selection.json retains identity and logs.
