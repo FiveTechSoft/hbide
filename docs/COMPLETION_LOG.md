@@ -1762,3 +1762,13 @@ sin alterar terminadores vecinos; Backspace borra solo palabra; overtype
 sustituye palabra sin comerse byte siguiente. Undo compara el fixture entero
 en los tres casos. Gestos PTY sobre IDE real, no solo SelectWord directo.
 Sin cambio de producto, no Windows/aceptacion global.
+
+## 31 octubre: gestos UTF8 preservan datos, display no certificado
+
+EditorMouseUtf8 verifica8efectos de clic/doble clic con cafe/naive/ano
+acentuados: reemplazo/Delete/Undo comparan bytes completos con BOM,TAB,CRLF/LF.
+El host opt-in UTF8 en esta configuracion pinta caf?,na?ve,a?o; una asercion
+separada registra esa limitacion y los gestos localizan esa pintura, sin
+pretender mostrar Unicode correctamente. Son9checks incluyendo observacion
+de display. No se cambia traduccion global ni se considera resuelto el
+renderUTF8. Prueba funcional de datos, no certificacion visual niWindows.
