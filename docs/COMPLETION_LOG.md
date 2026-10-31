@@ -3559,3 +3559,5 @@ block in editor. Before2PASS2FAIL. Add + except++ and == to bounded string
 context. Four repaint guards and realPTY both stringcolors/latercode/exact
 source. No complete tokenization/general expression/platform claim.
 Evidence linux-editor-bracket-operator.json follows.
+
+Q94 clean acceptance0dbf0ccbf6c5c81a1d8b676213e19815bbc60623 binary60b1e58eae024831467be0707185abc720b88a79d73d8c082dd6059e896b66f9:17PTYchecks(Operator5/List5/Variants7),22models26inventory34docsPASS;no retries/failures. Nativeconcat/compareyellow/followingfunction+returnscyan/fullbordersinspected/F2exact. C19predatesfix,Q87separate84e58b3.
