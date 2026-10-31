@@ -3302,3 +3302,13 @@ Generated code unchanged. Four model guards include duplicate SAY/shared
 GET/skipped empty control. Runner190=189PTY+guard. Evidence
 linux-designer-duplicate-anchor.json follows. Not all control modes or
 Windows/global certification.
+
+## Q76 - Existing C++ alias source omitted from project Sources
+
+Real hbmk2 compiles PRG plus helper.cc; IDE omitted helper.cc and Enter
+did nothing. Before1PASS2FAIL. Include hbmk2 C++ aliases .cc/.cxx/.cx
+in literal source inventory, retaining .cpp. Four model guards cover all
+aliases, existing/missing state and original bytes. Runner191=190PTY+guard.
+Evidence linux-project-cxx-source.json follows. Reading existing sources
+only, no new C++ bridge or product code; no syntax/compiler modes/Windows
+certification.

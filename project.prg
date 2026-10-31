@@ -63,7 +63,7 @@ METHOD Open( cFile ) CLASS HBIDEProject
             LOOP
          ENDIF
          cExt := Lower( hb_FNameExt( cToken ) )
-         IF Left( cToken, 1 ) != "-" .AND. AScan( { ".prg", ".ch", ".c", ".cpp", ".h", ".hbp", ".hbm", ".hbc" }, cExt ) > 0
+         IF Left( cToken, 1 ) != "-" .AND. AScan( { ".prg", ".ch", ".c", ".cpp", ".cc", ".cxx", ".cx", ".h", ".hbp", ".hbm", ".hbc" }, cExt ) > 0
             IF ! Empty( cExt )
                cMember := HBIDEProjectPath( ::cRoot, cToken )
                IF AScan( ::aMembers, {| m | m[ "path" ] == cMember } ) == 0
