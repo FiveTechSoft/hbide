@@ -3585,3 +3585,11 @@ Q96 clean63a03f1 binary0efa45cf58ed324b785f413267726b1f93ea0d8dae9ecf1c1bbe387e6
 35navigation+13breakpointpolicy=48checksPTY,27inventory34docsPASS, nofail/retry.
 Publication narrows wording to exact selectionDelete and separateDeleteLineUndo,
 no new product/modelrerun/pixels/candidate/Windows/global.
+
+## Q97 - completed comment gap before editor bracket literal
+
+Compiler-valid := /* gap */ [/* literal] lost introducer and opened false
+block. Before2PASS2FAIL. Recover lexical context only for prefix containing
+possible comment; prior strings/values remain nonintroducers. Five repaint
+guards and real colorPTY. No complete preprocessor claim.
+Evidence linux-editor-bracket-gap.json follows.

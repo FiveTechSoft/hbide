@@ -2040,6 +2040,43 @@ return .F.
 // Bounded string context: :=, ==, binary + and delimiters, not array index.
 STATIC FUNCTION HBIDE_BracketAssignment( cLine, nAt )
    LOCAL cBefore := RTrim( hb_ULeft( cLine, nAt - 1 ) )
+   LOCAL n := 1, c, q := "", lEscape := .F., lBlock := .F., cContext := ""
+   // Fast path stays cheap. Only prefixes containing a possible comment
+   // need lexical context; markers inside prior strings must remain data.
+   IF !("/*" $ cBefore)
+      RETURN HBIDE_BracketContext(cBefore)
+   ENDIF
+   DO WHILE n <= Len(cBefore)
+      c := SubStr(cBefore,n,1)
+      DO CASE
+      CASE lBlock
+         IF SubStr(cBefore,n,2) == "*/"
+            lBlock := .F.
+            cContext += " "
+            n++
+         ENDIF
+      CASE !Empty(q)
+         IF lEscape .AND. c == Chr(92)
+            n++
+         ELSEIF c == q
+            q := ""
+            cContext += ")" // completed string is a value, not := context
+         ENDIF
+      CASE SubStr(cBefore,n,2) == "/*"
+         lBlock := .T.
+         n++
+      CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. ;
+           (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))
+         q := iif(c=="[","]",iif(c=="`","'",c))
+         lEscape := c == Chr(34) .AND. n > 1 .AND. Lower(SubStr(cBefore,n-1,1)) == "e"
+      OTHERWISE
+         cContext += c
+      ENDCASE
+      n++
+   ENDDO
+   RETURN !lBlock .AND. Empty(q) .AND. HBIDE_BracketContext(RTrim(cContext))
+
+STATIC FUNCTION HBIDE_BracketContext( cBefore )
 RETURN Right( cBefore, 2 ) == ":=" .OR. Right(cBefore,2) == "==" .OR. ;
    ( Right(cBefore,1) == "+" .AND. Right(cBefore,2) != "++" ) .OR. ;
    ( ! Empty(cBefore) .AND. Right(cBefore,1) $ "({," )
