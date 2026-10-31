@@ -2986,3 +2986,8 @@ oldrange, before5PASS1FAIL. ClearSelection aftersuccessfulOpenInEditor
 inJumpMessageandProjectDesktoponly; failedopen untouched. Local9PASSincl
 NextMessage/UndoandProjectsourcesamebufferjump/Undo. Initialsourceprobe
 toggledF4toMessagesbyerror,correctedharnessnotproduct. Runner166=165PTY+guard.
+
+Q55cleanfb2feea MessageSelection9/NavSelection7/Colon6PASSsamebinary,
+22models112repaint/15inventory34docsPASS. Native120x40Xunknown_name/Undo
+actualpixelsinspectedfullbordersanddiskexact. linux-message-selection.json.
+No cleanretries/full165PTY/Windows/release. Candidate12predatesQ52-Q55.
