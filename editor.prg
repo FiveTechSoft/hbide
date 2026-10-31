@@ -2093,6 +2093,7 @@ STATIC FUNCTION HBIDE_BracketAssignment( cLine, nAt )
 STATIC FUNCTION HBIDE_BracketContext( cBefore )
 RETURN Right( cBefore, 2 ) == ":=" .OR. Right(cBefore,2) == "==" .OR. ;
    ( Right(cBefore,1) == "+" .AND. Right(cBefore,2) != "++" ) .OR. ;
+   ( Right(cBefore,1) == "-" .AND. Right(cBefore,2) != "--" ) .OR. ;
    ( ! Empty(cBefore) .AND. Right(cBefore,1) $ "({," )
 
 // NOTE is a physical-line comment. Keep identifier prefixes as code.
