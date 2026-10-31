@@ -290,9 +290,10 @@
       "tests": [
         "test_designer_pty.py",
         "gui_roundtrip_fixture.prg",
-        "test_gui_roundtrip_pty.py"
+        "test_gui_roundtrip_pty.py",
+        "test_designer_clipboard_loaded_types_pty.py"
       ],
-      "contract": "Real F2 ListBox placement, inspector width/height edits, JSON save/load, generated PRG open. Runtime selection has separate GUI coverage, not certified by this test. Runtime roundtrip also covers eight items, keyboard scrolling then mouse selecting visible itemSixth; ComboBox opens when another GET has focus."
+      "contract": "Real F2 ListBox placement, inspector width/height edits, JSON save/load, generated PRG open. Runtime selection has separate GUI coverage, not certified by this test. Runtime roundtrip also covers eight items, keyboard scrolling then mouse selecting visible itemSixth; ComboBox opens when another GET has focus. Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing."
     },
     "DSN-007": {
       "expected_label": "ComboBox",
@@ -300,9 +301,10 @@
         "test_combobox_pty.py",
         "test_designer.prg",
         "gui_roundtrip_fixture.prg",
-        "test_gui_roundtrip_pty.py"
+        "test_gui_roundtrip_pty.py",
+        "test_designer_clipboard_loaded_types_pty.py"
       ],
-      "contract": "Real F2 ComboBox placement; inspector resize with minimum popup height; JSON save/load; PRG generate/open/compile/execute. Space/arrow/Tab and mouse open/select/close update numeric bound variable. Selection only, not editable text. Runtime roundtrip also covers eight items, keyboard scrolling then mouse selecting visible itemSixth; ComboBox opens when another GET has focus."
+      "contract": "Real F2 ComboBox placement; inspector resize with minimum popup height; JSON save/load; PRG generate/open/compile/execute. Space/arrow/Tab and mouse open/select/close update numeric bound variable. Selection only, not editable text. Runtime roundtrip also covers eight items, keyboard scrolling then mouse selecting visible itemSixth; ComboBox opens when another GET has focus. Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing."
     },
     "DSN-015": {
       "expected_label": "Save JSON    F10",
@@ -332,9 +334,12 @@
         "probes/check_designer_reserved.py",
         "probes/check_designer_events_pty.py",
         "probes/check_designer_veto_pty.py",
-        "probes/check_designer_narrow_pty.py"
+        "probes/check_designer_narrow_pty.py",
+        "test_designer_clipboard_runtime_pty.py",
+        "test_designer_clipboard_get_runtime_pty.py",
+        "test_designer_clipboard_combo_runtime_pty.py"
       ],
-      "contract": "F9 generates PRG from edited/reloaded model; ComboBox artifact compiles and executes keyboard/mouse selection. Partial/promotion failures preserve destination, complete retained PRG byte exact. Eight reserved-name artifacts compile and smoke-run initialization/Esc false; not interaction coverage for those artifacts. Synthetic generated GET/checkbox/button/radiogroup/listbox/ComboBox execute their exposed When/Valid/Focus/State plus Button Action and return OK true. Generated GET When/Valid false veto then accept after enabling; GET widths1..3 keyboard/mouse retain exact bound values. Not all controls have veto/all-input coverage; no pixels/Windows acceptance."
+      "contract": "F9 generates PRG from edited/reloaded model; ComboBox artifact compiles and executes keyboard/mouse selection. Partial/promotion failures preserve destination, complete retained PRG byte exact. Eight reserved-name artifacts compile and smoke-run initialization/Esc false; not interaction coverage for those artifacts. Synthetic generated GET/checkbox/button/radiogroup/listbox/ComboBox execute their exposed When/Valid/Focus/State plus Button Action and return OK true. Generated GET When/Valid false veto then accept after enabling; GET widths1..3 keyboard/mouse retain exact bound values. Not all controls have veto/all-input coverage; no pixels/Windows acceptance. Actual F9 artifacts after clipboard duplication separately compile/run checkbox/GET/ComboBox with uppercase original names, independent first/second bound values and preserved STATE/VALID fixture handlers. Return instrumentation records results; not all types/handlers or pixels/Windows."
     },
     "DSN-019": {
       "expected_label": "Generate and open",
@@ -348,33 +353,37 @@
       "expected_label": "Input (GET)",
       "tests": [
         "gui_roundtrip_fixture.prg",
-        "test_gui_roundtrip_pty.py"
+        "test_gui_roundtrip_pty.py",
+        "test_designer_clipboard_loaded_types_pty.py"
       ],
-      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test."
+      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test. Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing."
     },
     "DSN-003": {
       "expected_label": "CheckBox",
       "tests": [
         "gui_roundtrip_fixture.prg",
-        "test_gui_roundtrip_pty.py"
+        "test_gui_roundtrip_pty.py",
+        "test_designer_clipboard_loaded_types_pty.py"
       ],
-      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test."
+      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test. Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing."
     },
     "DSN-004": {
       "expected_label": "PushButton",
       "tests": [
         "gui_roundtrip_fixture.prg",
-        "test_gui_roundtrip_pty.py"
+        "test_gui_roundtrip_pty.py",
+        "test_designer_clipboard_loaded_types_pty.py"
       ],
-      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test."
+      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test. Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing."
     },
     "DSN-005": {
       "expected_label": "RadioGroup",
       "tests": [
         "gui_roundtrip_fixture.prg",
-        "test_gui_roundtrip_pty.py"
+        "test_gui_roundtrip_pty.py",
+        "test_designer_clipboard_loaded_types_pty.py"
       ],
-      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test."
+      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test. Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing."
     },
     "IDE-031": {
       "expected_label": "Script",
@@ -587,6 +596,58 @@
         "test_designer.prg"
       ],
       "contract": "Actual F3 dialog Esc and explicit Cancel preserve model/dirty/history. Existing model geometry/color tests are separate. No exhaustive modal field accept/pixel/platform coverage."
+    },
+    "DSN-009": {
+      "expected_label": "Undo        Ctrl+Z",
+      "tests": [
+        "test_designer_clipboard_types.prg",
+        "test_designer_clipboard_loaded_types_pty.py",
+        "test_designer_clipboard_pty.py"
+      ],
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. This covers keyboard dispatch, not clicking this popup menu entry, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
+    },
+    "DSN-010": {
+      "expected_label": "Redo        Ctrl+Y",
+      "tests": [
+        "test_designer_clipboard_types.prg",
+        "test_designer_clipboard_loaded_types_pty.py",
+        "test_designer_clipboard_pty.py"
+      ],
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. This covers keyboard dispatch, not clicking this popup menu entry, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
+    },
+    "DSN-011": {
+      "expected_label": "Copy        Ctrl+C",
+      "tests": [
+        "test_designer_clipboard_types.prg",
+        "test_designer_clipboard_loaded_types_pty.py",
+        "test_designer_clipboard_pty.py"
+      ],
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. This covers keyboard dispatch, not clicking this popup menu entry, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
+    },
+    "DSN-012": {
+      "expected_label": "Cut         Ctrl+X",
+      "tests": [
+        "test_designer_clipboard_types.prg",
+        "test_designer_clipboard_loaded_types_pty.py",
+        "test_designer_clipboard_pty.py"
+      ],
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. This covers keyboard dispatch, not clicking this popup menu entry, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
+    },
+    "DSN-013": {
+      "expected_label": "Paste       Ctrl+V",
+      "tests": [
+        "test_designer_clipboard_types.prg",
+        "test_designer_clipboard_loaded_types_pty.py",
+        "test_designer_clipboard_pty.py"
+      ],
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. This covers keyboard dispatch, not clicking this popup menu entry, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links."
+    },
+    "DSN-001": {
+      "expected_label": "Label (SAY)",
+      "tests": [
+        "test_designer_clipboard_loaded_types_pty.py"
+      ],
+      "contract": " Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing."
     }
   },
   "modal_contracts": [
@@ -1459,17 +1520,21 @@
       "tests": [
         "test_debug_structured_modal_pty.py",
         "test_debug_structured_depth_pty.py",
-        "test_debug_readonly_depth_pty.py"
+        "test_debug_readonly_depth_pty.py",
+        "test_debug_long_hash_key_pty.py",
+        "test_debug_hash_navigation_pty.py"
       ],
-      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Separate explicit .F. expression probe rejects scalar edits in five bounded container fixtures, preserves whole resumed values; does not alter default Monitor/Watch policy."
+      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Separate explicit .F. expression probe rejects scalar edits in five bounded container fixtures, preserves whole resumed values; does not alter default Monitor/Watch policy. Long parent paths retain visible scalar column; 40-element array/hash Home/End/Page navigation repaints matching caption, exact edits in1/21/40 retained."
     },
     "DBG-INPUT-dbgthsh-doGet-inline_input-1": {
       "tests": [
         "test_debug_structured_modal_pty.py",
         "test_debug_structured_depth_pty.py",
-        "test_debug_readonly_depth_pty.py"
+        "test_debug_readonly_depth_pty.py",
+        "test_debug_long_hash_key_pty.py",
+        "test_debug_hash_navigation_pty.py"
       ],
-      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Separate explicit .F. expression probe rejects scalar edits in five bounded container fixtures, preserves whole resumed values; does not alter default Monitor/Watch policy."
+      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Separate explicit .F. expression probe rejects scalar edits in five bounded container fixtures, preserves whole resumed values; does not alter default Monitor/Watch policy. Long hash keys retain visible scalar column; 40-element hash navigation repaints matching caption and preserves exact selected edits."
     },
     "DBG-INPUT-dbgtobj-doGet-inline_input-1": {
       "tests": [
@@ -1478,9 +1543,12 @@
         "test_debug_structured_modal_pty.py",
         "test_debug_structured_depth_pty.py",
         "test_debug_readonly_depth_pty.py",
-        "test_debug_method_only_object_pty.py"
+        "test_debug_method_only_object_pty.py",
+        "test_debug_long_object_member_pty.py",
+        "test_debug_object_empty_child_pty.py",
+        "test_debug_object_type_change_pty.py"
       ],
-      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Failed getter with matching setter displays captured Zero divisor, rejects edit before setter, resumes backing1 unchanged; valid property editing remains separately covered. Throwing setter with readable getter reports Zero divisor, refresh and Cancel preserve backing1, exact resumed value unchanged; no partial side effects are promised to roll back. Separate explicit .F. expression probe rejects scalar edits in five bounded container fixtures, preserves whole resumed values; does not alter default Monitor/Watch policy. Object without AddData still has method rows, Enter refuses editing, returns Monitor and ClassName remains exact."
+      "contract": "Actual structured Monitor nested first scalar/property accepts41; typed99/Esc and invalid expression/Esc preserve41. Resumed debuggee asserts exact array/hash/property value. Additional arrayarray/hashhash/objectarray container depth preserves exact complete resumed values. Focal default editable branch only, not lEditable false, arbitrary depth, setter faults or all expressions/platforms. Failed getter with matching setter displays captured Zero divisor, rejects edit before setter, resumes backing1 unchanged; valid property editing remains separately covered. Throwing setter with readable getter reports Zero divisor, refresh and Cancel preserve backing1, exact resumed value unchanged; no partial side effects are promised to roll back. Separate explicit .F. expression probe rejects scalar edits in five bounded container fixtures, preserves whole resumed values; does not alter default Monitor/Watch policy. Object without AddData still has method rows, Enter refuses editing, returns Monitor and ClassName remains exact. Valid61-character member leaves complete numeric value visible; empty array/hash properties explain Enter. Scalar edits to array/hash, empty/nonempty, update Enter dispatch and Resume exact. Getter invoked for refresh; no side-effect-free or rollback promise."
     },
     "DBG-INPUT-debugger-WatchpointAdd-inputbox-1": {
       "tests": [

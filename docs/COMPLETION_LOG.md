@@ -2198,3 +2198,12 @@ Fixture NVAR1/STATEMarkState(),F12CopyPasteF10F9reales;PRGrealcompilado,
 instrumentacion return para valores. Dos ejecuciones: abrirprimerdropdown,
 DownTab produce{2,1};Tabal segundo,SpaceDownTab produce{1,2}. STATEejecuta
 ambas.9checks. Sin producto nuevo/pixels/Windows, no todoshandlers/tipos.
+
+## 31 octubre: reconciliar inventario con pruebas recientes
+
+Vinculados Ctrlclipboard/history DSN009..013 a modelos y PTY recientes,
+F2sietetipos separado de JSONnondefaults y F9runtime3tipos. Rutas inline
+array/hash/object enlazan columnaslargas,navegacion,tipo/empty. Vinculo no
+PASS; popupentryclic no se prueba por atajo, nueva redaccion lo conserva.
+Inventario regenerado de fuente,15checksPASS,33docs reembebidos. No cambio
+producto ni cierre M0/M4 por aumentar contratos.
