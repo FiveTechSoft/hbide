@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'nav-assign-jump': ('test_nav_access_assign_pty.py', ['--assign'], 120),
     'nav-procedure-class': ('test_nav_procedure_class_pty.py', [], 120),
     'nav-access-assign': ('test_nav_access_assign_pty.py', [], 120),
     'nav-create-class': ('test_nav_create_class_pty.py', [], 120),

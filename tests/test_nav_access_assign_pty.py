@@ -1,5 +1,5 @@
 """Real IDE Edit-menu dispatch. Linux PTY, not visual certification."""
-import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
+import sys, os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
 ROWS, COLS = 40, 120
 BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
 class Scr:
@@ -113,8 +113,10 @@ try:
     check('Open requested fixture','CLASS Demo' in scr.text())
     menu(b'u')
     check('Picker indexes ACCESS and ASSIGN implementation aliases','Demo:Value' in scr.text() and 'Demo:_Value' in scr.text() and '4/4' in scr.text())
-    send(b'Demo:Value\r');send(b'X')
-    saved('Picker jumps to ACCESS implementation',original.replace(b'ACCESS Value() CLASS Demo',b'XACCESS Value() CLASS Demo'))
+    assign='--assign' in sys.argv
+    send(b'Demo:_Value\r' if assign else b'Demo:Value\r');send(b'X')
+    marker=b'ASSIGN Value(n) CLASS Demo' if assign else b'ACCESS Value() CLASS Demo'
+    saved('Picker jumps to exact '+('ASSIGN' if assign else 'ACCESS')+' implementation',original.replace(marker,b'X'+marker))
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)

@@ -3421,3 +3421,10 @@ procedure, so Demo:Touch filter/jump failed (before1PASS2FAIL). Honor
 explicit hbclass.ch backward-compatible alias only; ordinary procedures
 and commented CLASS remain unqualified. Four guards plus focused PTY.
 Evidence linux-navigation-procedure-class.json follows. No arbitrarymacros.
+
+### Q83 acceptance extension - ASSIGN jump
+
+Prior Q83 checked both aliases in picker but only ACCESS jump/save.
+Add independent ASSIGN mode to filter actual Demo:_Value, Enter and
+write exactly at ASSIGN implementation. No new productfix/modelguard.
+Evidence linux-navigation-assign-jump.json follows; no globalmatrix.
