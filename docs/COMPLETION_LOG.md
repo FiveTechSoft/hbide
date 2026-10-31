@@ -3478,3 +3478,9 @@ NOTE as linecomment with identifier boundary; NOTEBOOK remains code.
 Four lexical and five repaint guards plus nav/colorPTY. Physical-line
 only, no statement-separator preprocessor handling.
 Evidence linux-editor-note-comment.json follows; Q87predatesfix.
+
+Q88 acceptance a0d088e clean build d0dece197d2743324038db478839235d2aac27ce54b6ec4e160d017efbaff688:
+18PTYchecks (Note3/color6/linecomments6/arraygap3),22models24inventory34docsPASS.
+Native120x40pixelsinspected NOTE magenta/returncyan/Main1Target4only2/2,
+EnterTarget X/F2exact4/fullborders. No fail/retry in clean acceptance.
+Q87 remains frozen84e58b3; C18 predates this.

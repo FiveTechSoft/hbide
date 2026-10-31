@@ -68,7 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
-| Q88 | NOTE linecomment no abre bloque falso. | Fixturecompiladaantes1PASS2FAILnavegacion;scanner/pintadoestado,4lexical5repaintguardas;linux-editor-note-comment.json. No parserstatementsep/Windows/global. |
+| Q88 | NOTE linecomment no abre bloque falso. | Fixturecompiladaantes1PASS2FAILnavegacion;scanner/pintadoestado,4lexical5repaintguardas;18PTY22models24inventory34docsPASS sourcea0d088e. NativeNOTE magenta/Target4Xexact/fullborders;linux-editor-note-comment.json. No parserstatementsep/Windows/global. |
 | Q87 | Matriz Linux registrada completa tras aliasesnavegacion. | 201/201(200PTY+guard)PASS fuente84e58b3/binario2bdfbe63,22modelos24inventario34docs,sinfallos/reintentos. linux-full-matrix-q87.json. No nuevofix/visual/candidato/Windows/hitos. |
 | Q86 | GoToFunction incluye DESTRUCTOR CLASS explicito. | Fixturecompiladaantes1PASS2FAIL,4guardasmiembro/binding/continuacion;linux-navigation-destructor.json. No macrosgenerales/Windows/global. |
 | C18 | Candidato Linux temporal actualizado hastaQ85. | Export813d95d,8smoke+10modosnavegacion34checks binarioexacto0d9a1505,visualASSIGNinspeccionado;linux-candidate-navigation-aliases.json. No release/licencias/Windows/instalacion/globalmatrix. |
