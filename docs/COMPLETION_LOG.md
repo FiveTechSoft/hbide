@@ -2563,3 +2563,10 @@ No blanket no-op editing, Windows or global acceptance.
 Cleana4857f7: Overtype3, Identity3, DeleteSelection6 and ReloadSelection4
 pass same binary2533a40e without retry;21models,15inventory,33docs pass.
 Ledger docs/evidence/linux-overtype-identity.json.
+
+## 31 October no-op boundary keys acceptance
+
+New six-check PTY: Delete at EOF and Backspace at BOF on clean alpha close
+without save prompt; both preserve redo of earlier undone X insertion.
+Exploratory6PASS, no product fix. Runner143=142PTY modes plus guard.
+Not blanket no-op contract, visual or Windows acceptance. Clean pending.
