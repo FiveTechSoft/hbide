@@ -2625,3 +2625,14 @@ No OSclipboard, Windows, visual or global acceptance.
 Clean9834943: ClipboardClose8, Multidoc6 and Spaces4 pass same binary
 6d08e37d without retry;15inventory33docs pass. No new model run.
 Ledger docs/evidence/linux-clipboard-lifetime.json.
+
+## 31 October multiline cross-document clipboard acceptance
+
+New9check PTY selects source alpha CRLF beta LF through start of gamma,
+Copy/Paste destination uses LF lines and trailing selected boundary;
+Undo/Redo destination exact, source mixed EOL untouched. Cut source exact,
+Undo restores mixed EOL and subsequent destination Paste retains block.
+Exploratory9PASS, no productfix. First Cut harness started on row3 after
+switching back; corrected two Up keys before checking actual range.
+Runner147=146PTY modes plus guard. No OSclipboard/Windows/pixels/global.
+Clean pending.
