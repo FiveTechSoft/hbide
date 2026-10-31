@@ -1,0 +1,38 @@
+{
+  "scope": "Linux actual debugger24checks arrayarray/hashhash/objectarray nested first scalar edit41,Cancel99,invalid expression,resumed whole values exact. Not arbitrary depth/readonlyfalse/getterfail/pixels/Windows.33docs;20models separately38c4fdd.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "399cb1d120f4ea926421003151e5f6e0da15d926",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "3bb041954b4ebd08b6e8843cda05919cdd4a360f00f12dd3b2ab7f1409ec78a7",
+    "binary_sha256": "7c6f08c375e6673b8cf8a3fb800e3dc3365641b013ed30537dc30106bf7baea7",
+    "built_at": 1793407974.1594946
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "399cb1d120f4ea926421003151e5f6e0da15d926",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "3bb041954b4ebd08b6e8843cda05919cdd4a360f00f12dd3b2ab7f1409ec78a7",
+      "binary_sha256": "7c6f08c375e6673b8cf8a3fb800e3dc3365641b013ed30537dc30106bf7baea7",
+      "build_receipt": "/tmp/hbide-structured-depth/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "393e50e21936a83f4d97c07422c430356c62b5022549ec1f0177bd4842651c74",
+      "case": "debug-structured-depth",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_structured_depth_pty.py"
+      ],
+      "started": 1793407974.1598709,
+      "seconds": 39.47,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "fff969a153f355f9a0b9a311d991fca98e85d9fb749e7f9d6f2a896f6a05f4b8",
+      "log": "/tmp/hbide-structured-depth/debug-structured-depth-1793407974159866613.log"
+    }
+  ]
+}
