@@ -3436,3 +3436,15 @@ route and test existence. Five fail-closed inventory guards,24total.
 Bind F5 to Q68-Q75 anchor modes and model guards with bounded scope.
 Links do not mean fresh runtime PASS/all-controls/Windows acceptance.
 No productfix/candidate/globalmatrix. linux-inventory-f5-route.json follows.
+
+## C18 - refresh temporary Linux candidate through Q85
+
+Isolated export813d95dba8f34f404f03f3dafcea61c4025568e4, strippedbinary
+0d9a150524aed5549aacac0d0b4a7e0a6d6dfd0486204195eb839fd7f81e0b29.
+8standard smoke suites plus10navigation modes (34checks) passed samebinary.
+Continued/compact/STAT,CREATECLASS,ACCESS,ASSIGNjump,PROCEDURECLASS,
+selection/cancel,typedmethods,indexcomment tested. No retries/failures.
+Actual native ASSIGNpicker/jump inspected on C18. C17superseded only
+as temporarycandidate. linux-candidate-navigation-aliases.json.
+Not release/install/license/Windows/determinism/tearing/globalmatrix.
+Q77 stays separately frozen531a6f1; no milestone closure inferred.

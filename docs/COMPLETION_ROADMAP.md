@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| C18 | Candidato Linux temporal actualizado hastaQ85. | Export813d95d,8smoke+10modosnavegacion34checks binarioexacto0d9a1505,visualASSIGNinspeccionado;linux-candidate-navigation-aliases.json. No release/licencias/Windows/instalacion/globalmatrix. |
 | Q85 | M0 vincula F5LivePRG fuera delmenu. | Contratosdispatchancladosafuente/contexto/condicion,5guardasfailclosed24inventario;linux-inventory-f5-route.json. No producto/candidato/global. |
 | Q84 | GoToFunction cualifica PROCEDURE nombre CLASS cls como metodo. | Fixturecompiladaantes1PASS2FAIL;4guardas ordinaria/comentario/continuacion;linux-navigation-procedure-class.json. No macrosgenerales/Windows/global. |
 | Q83 | GoToFunction incluye ACCESS/ASSIGN CLASS explicitos. | Fixturecompiladaantes1PASS2FAIL;metodosDemo:Value/Demo:_Value,5guardas;linux-navigation-access-assign.json. ExtensionASSIGNjumpindependiente3checks,linux-navigation-assign-jump.json,sinnewfix. No inferenciamiembros/macrosgenerales/Windows/global. |
