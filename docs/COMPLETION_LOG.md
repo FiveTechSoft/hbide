@@ -1954,3 +1954,7 @@ abreninspector,EntersobreMethodrechazaedicion,cierranavuelvenMonitor yResume
 conservaClassNameexacto. Primer probe esperaba alertaemptyantesdeabrirbrowser,
 se corrigio expectativa al observar metodos; no defecto de producto demostrado.
 Sin producto nuevo, no objeto sinmetodosarbitrario/Windows/pixels.
+
+Inventario enlaza las pruebas readonlyexplicito/guardasarrayhashvacios/objeto
+sinAddData con limites distintosdeldefaultMonitor. No cuenta5fixturescomo
+5funcionesnuevasni sustituyeaceptacionplataformas.15inventario/33docsPASS.
