@@ -541,8 +541,8 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:498 | Pendiente gesto |
 | MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:503 | Pendiente gesto |
 | MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:506 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:1941 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:1942 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:1943 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:1944 | Pendiente gesto |
 | MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:435 | Pendiente gesto |
 | MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:438 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
@@ -866,16 +866,16 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:599 | `case nKeyStd == K_F8` |
 | editor.prg:603 | `case nKeyStd == K_F9` |
 | editor.prg:606 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` |
-| editor.prg:1933 | `case K_UP` |
-| editor.prg:1934 | `case K_DOWN` |
-| editor.prg:1935 | `case K_LEFT` |
-| editor.prg:1936 | `case K_RIGHT` |
-| editor.prg:1937 | `case K_HOME` |
-| editor.prg:1938 | `case K_END` |
-| editor.prg:1939 | `case K_PGUP` |
-| editor.prg:1940 | `case K_PGDN` |
-| editor.prg:1941 | `case K_MWFORWARD` |
-| editor.prg:1942 | `case K_MWBACKWARD` |
+| editor.prg:1935 | `case K_UP` |
+| editor.prg:1936 | `case K_DOWN` |
+| editor.prg:1937 | `case K_LEFT` |
+| editor.prg:1938 | `case K_RIGHT` |
+| editor.prg:1939 | `case K_HOME` |
+| editor.prg:1940 | `case K_END` |
+| editor.prg:1941 | `case K_PGUP` |
+| editor.prg:1942 | `case K_PGDN` |
+| editor.prg:1943 | `case K_MWFORWARD` |
+| editor.prg:1944 | `case K_MWBACKWARD` |
 | hbdebug/debugger.prg:1600 | `CASE K_LDBLCLK` |
 | hbdebug/debugger.prg:1620 | `CASE K_LBUTTONDOWN` |
 | hbdebug/debugger.prg:1649 | `CASE K_RBUTTONDOWN` |

@@ -613,7 +613,6 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            else
               ::ClearSelection()
            endif
-           ::lDirty := .T.
            oLine := ::aText[ ::nRow ]
            // capture BEFORE the past-EOL padding below: the recorded undo op
            // must restore the line as it was, padding included in the new
@@ -629,6 +628,9 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            endif
            oLine:cText := hb_UStuff( oLine:cText, ::nCol - 4, ;
                                      iif( Set( _SET_INSERT ), 0, 1 ), cKey )
+           if ! HBIDE_StrEq( cOldLine, oLine:cText )
+              ::lDirty := .T.
+           endif
            ::nCol += hb_ULen( cKey )
            IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol
               ::ReformParagraph()

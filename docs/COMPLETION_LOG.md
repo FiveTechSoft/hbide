@@ -2548,3 +2548,14 @@ Binary hash unchanged; two bounded steps without retries.
 Manifest/toolchain/dependencies/logs retained in linux-candidate-editor-selection.json.
 Local temporary candidate7, not release/installer/Windows/license clearance,
 full141-mode regression, new determinism proof or new visual acceptance.
+
+## Q39 Identical overtype does not falsely dirty clean buffer
+
+Overtyping first a of alpha with a left bytes unchanged but marked dirty,
+with no Undo entry; before2/3PTY, Close asked to save. Dirty now set only
+when the edited line differs byte-for-byte; selection deletion keeps its
+own dirty state. After3/3PTY and four new model checks: cursor advancement,
+real overwrite dirty, no-op redo preservation and redo exact.
+Native120x40 OVR alpha/col2 and Close noname inspected, full lower frames;
+disk alpha unchanged. Runner142=141PTY modes plus guard.
+No blanket no-op editing, Windows or global acceptance. Clean pending.

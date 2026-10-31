@@ -1,0 +1,6 @@
+{
+  "source": "44c110305bc2ae0a88a19c534defa29aaced5326",
+  "dirty": true,
+  "disk_exact": "alpha",
+  "scope": "Native120x40 identical overtype advances cursor then closes without save prompt; pixels require inspection."
+}
