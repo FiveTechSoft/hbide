@@ -11,7 +11,7 @@
 // (//, *, &&, /* */) and #pragma begindump C blocks are skipped.
 FUNCTION HBIDE_ScanProcs( cText )
    LOCAL aOut := {}, aLines, cLine, cL, nLine := 0, lBlock := .F., lDump := .F.
-   LOCAL aTok, cT1, cT2, cName, n, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine
+   LOCAL aTok, cT1, cT2, cName, n, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine, cModifier
 
    cText := StrTran( StrTran( cText, Chr( 13 ) + Chr( 10 ), Chr( 10 ) ), Chr( 13 ), Chr( 10 ) )
    aLines := hb_ATokens( cText, Chr( 10 ) )
@@ -70,6 +70,7 @@ FUNCTION HBIDE_ScanProcs( cText )
          IF Len( aTok ) < 3
             LOOP
          ENDIF
+         cModifier := iif(HBIDE_IsKw(cT1,"STATIC"),"static",Lower(cT1))
          cT1 := cT2
          cName := aTok[ 3 ]
          cKind := Lower( iif( HBIDE_IsKw( cT1, "FUNCTION" ), "function", ;
@@ -77,7 +78,7 @@ FUNCTION HBIDE_ScanProcs( cText )
          IF Empty( cKind )
             LOOP
          ENDIF
-         cKind := "static " + cKind
+         cKind := cModifier + " " + cKind
       ELSEIF HBIDE_IsKw( cT1, "FUNCTION" )
          cKind := "function"; cName := aTok[ 2 ]
       ELSEIF HBIDE_IsKw( cT1, "PROCEDURE" )

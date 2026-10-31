@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'nav-init-exit': ('test_nav_init_exit_pty.py', [], 120),
     'nav-note-comment': ('test_nav_note_comment_pty.py', [], 120),
     'editor-note-comment': ('test_editor_note_comment_pty.py', [], 120),
     'nav-destructor': ('test_nav_destructor_pty.py', [], 120),

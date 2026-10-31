@@ -103,6 +103,12 @@ procedure Main()
  next
  a:=HBIDE_ScanProcs('NOTEBOOK := 1 /* real'+hb_eol()+'function Hidden()'+hb_eol()+'*/'+hb_eol()+'function Target()')
  Check(Len(a)==1.and.a[1,1]=='Target','NOTE identifier prefix is not comment',@nPass,@nFail)
+ for each c in { 'INIT', 'EXIT', 'STATIC', 'STAT' }
+ a:=HBIDE_ScanProcs(c+' PROCEDURE Target()')
+ Check(Len(a)==1.and.a[1,2]==iif(Left(c,4)=='STAT','static',Lower(c))+' procedure','modifier kind retained: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('INIT;'+hb_eol()+'PROCEDURE Startup()'+hb_eol()+'EXIT;'+hb_eol()+'PROCEDURE Cleanup()')
+ Check(Len(a)==2.and.a[1,2]=='init procedure'.and.a[1,3]==1.and.a[2,2]=='exit procedure'.and.a[2,3]==3,'continued lifecycle modifiers keep kind and start line',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

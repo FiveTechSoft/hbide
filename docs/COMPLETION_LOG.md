@@ -3484,3 +3484,11 @@ Q88 acceptance a0d088e clean build d0dece197d2743324038db478839235d2aac27ce54b6e
 Native120x40pixelsinspected NOTE magenta/returncyan/Main1Target4only2/2,
 EnterTarget X/F2exact4/fullborders. No fail/retry in clean acceptance.
 Q87 remains frozen84e58b3; C18 predates this.
+
+## Q89 - INIT/EXIT navigation labels
+
+Compiler-valid INIT PROCEDURE and EXIT PROCEDURE were both labelled static
+procedure. Before2PASS1FAIL; jump already worked. Keep static abbreviation
+normalization but retain init/exit kind. Five lexical guards and realPTY.
+Evidence linux-navigation-init-exit.json follows. No runtime lifecycle changes
+or general macro/preprocessor/Windows claim.
