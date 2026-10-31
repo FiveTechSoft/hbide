@@ -4283,6 +4283,9 @@ function DsnCodeFindLine( aLines, oCtrl )
          endif
       next
    endif
+   if hb_HGetDef( oCtrl, "type", "" ) == DSN_BUTTON
+      cCaption := DsnAccelCaption( cCaption, hb_HGetDef( oCtrl, "accelerator", "" ) )
+   endif
    if ! Empty( cCaption )
       for n = 1 to Len( aLines )
          if DsnQuote( cCaption ) $ aLines[ n ]

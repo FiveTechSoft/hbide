@@ -45,6 +45,12 @@ procedure Main()
    hModel["controls",1,"caption"] := 'Both "double" and '+"'single' with ] and "+Chr(92)
    cCode := DsnGenCode(hModel)
    Check("codeview finds escaped mixed caption",DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",1])>0)
+   hModel["controls",1] := { "type"=>"button", "row"=>1,"col"=>2,"caption"=>'He said "yes"',"accelerator"=>"Q" }
+   cCode := DsnGenCode(hModel)
+   Check("codeview finds button caption with appended accelerator",DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",1])>0)
+   hModel["controls",1,"accelerator"] := "H"
+   cCode := DsnGenCode(hModel)
+   Check("codeview finds button caption with internal accelerator",DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",1])>0)
    // model -> JSON -> model round trip
    hModel = { "name"     => "Customer", ;
               "caption"  => "Customer data", ;

@@ -3,6 +3,7 @@ import argparse
 import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re,json
 parser=argparse.ArgumentParser()
 parser.add_argument('--mixed',action='store_true')
+parser.add_argument('--button',action='store_true')
 args=parser.parse_args()
 caption='He said "yes"' if not args.mixed else 'Say "yes" and '+"'no' ] "+chr(92)
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
@@ -30,15 +31,15 @@ for kind in ['button']:
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
  try:
   caption='He said "yes"'
-  modelpath.write_text(json.dumps({'name':'Fixture','caption':'Fixture','width':60,'height':20,'controls':[{'type':'say','row':1,'col':2,'caption':caption}]}))
+  modelpath.write_text(json.dumps({'name':'Fixture','caption':'Fixture','width':60,'height':20,'controls':[{'type':'button' if args.button else 'say','row':1,'col':2,'caption':caption, 'accelerator':'Q'}]}))
   pump(.8);send(b'\x1bo');send(b's',.3);send(b'\x1b[24~',.3)
   send(b'\x19'+str(modelpath).encode());send(b'\r');send(b'\r',.3);send(b'\t')
-  check('Loaded quoted say selected',caption in screen.text())
+  check('Loaded quoted control selected',caption in screen.text())
   send(b'\x1b[15~',.4)
   check('F5 live view visible','live view' in screen.text())
-  rows=[r for r,g in enumerate(screen.g) if 'oDlg:Say(' in ''.join(g)]
-  check('Live view includes generated quoted SAY',bool(rows))
-  check('Quoted SAY is highlighted current control',bool(rows) and any(bg==6 for fg,bg in screen.at[rows[0]][64:115]))
+  rows=[r for r,g in enumerate(screen.g) if ('PUSHBUTTON' if args.button else 'oDlg:Say(') in ''.join(g)]
+  check('Live view includes generated selected control',bool(rows))
+  check('Generated control is highlighted current control',bool(rows) and any(bg==6 for fg,bg in screen.at[rows[0]][64:115]))
   check('Opening view leaves JSON exact',json.loads(modelpath.read_text())['controls'][0]['caption']==caption)
 
  finally:

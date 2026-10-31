@@ -3239,3 +3239,11 @@ notallambiguousduplicatecaptions/controlbindings/Windows/global.
 Q68firstclean78d60b7anchorPTY4/5becauseharnessexpectedbackground3,
 actualCLR_CODEVIEW_HL N/BG=>6. NativepixelsshowscorrectcyanSAYhighlight;
 modelspassed+bothruntime14. Correctharnesscolorandrepeatcleanacceptance.
+
+## Q69 - Live code view ignored generated button accelerator caption
+
+ActualF5buttoncaptionwithQappendedwasnotanchored:before4PASS1FAIL.
+DsnCodeFindLineusesDsnAccelCaptionforbuttonbeforeliteralserialization,
+matchingDsnGenCode. Twomodelguardsinternal/appendedaccelerator. Runner
+184=183PTY+guard. Evidence linux-designer-button-anchor.json follows;
+noallcontrolbinding/duplicatecaptionambiguity/Windows/globalclaim.

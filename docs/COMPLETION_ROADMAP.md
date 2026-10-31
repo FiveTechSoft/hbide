@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q69 | LivePRG no anclaba botón con accelerator en captiongenerado. | Antes4PASS1FAIL F5; aplicaDsnAccelCaptionantesDsnQuote. Evidencia linux-designer-button-anchor.json, sin captionsduplicadosambiguos/Windows. |
 | Q68 | LivePRG perdía highlight deSAY con caption entrecomillado. | Antes4PASS1FAIL F5; lookupusa mismoserieDsnQuote. Evidencia linux-designer-quote-anchor.json. No duplicadosambiguos/todosbindings/Windows. |
 | Q67 | CandidatoLinux16 incluyeQ62/Q63/Q64/Q66. | Export3109a9a stripped773983e1;8smokes+MixedQuote14/Pragma3/Backtick4/Color6PASSmismobinario,2pasossinreintentos. linux-candidate-designer-quotes.json. TemporalNOrelease/Windows/global/licencias/instalador/nuevospixels. |
 | Q66 | GenerarPRG cambiaba comillasdobles de captions por apóstrofos. | Antes11PASS3FAIL con F9/compilar/runtime; hb_StrToExp preservaliteral. Evidencia linux-designer-quote-runtime.json, sin todoscontroles/Unicode/Windows. |
