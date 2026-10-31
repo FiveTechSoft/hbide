@@ -2491,3 +2491,13 @@ No Unicode case expansion, Windows or global acceptance claim.
 Clean 3516276: Identity3, Boundary6 and Spaces10 on the same binary fe0224bc,
 without retry. All 21 model probes, 15 inventory tests and 33 embedded documents
 pass. Identity ledger: docs/evidence/linux-replace-identity.json.
+
+## Q36 Paste accepts a copied whitespace-only line
+
+Copy of three spaces followed by Paste did nothing because Empty() discarded it.
+Before 2/4 PTY checks; after Len()>0, four checks pass including exact disk
+content, Undo and Redo. Four new model checks include TAB plus spaces.
+Native 120x40 Paste row3 and Undo row2 inspected with complete lower frames;
+exact bytes verified separately. No empty-line clipboard policy change.
+Runner139 entries = 138 PTY modes plus guard, not accepted functions.
+No Windows or whole-IDE acceptance. Clean regression pending.

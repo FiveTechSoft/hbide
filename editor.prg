@@ -187,7 +187,8 @@ METHOD PasteLine() CLASS HBSrcEdit
 
    local aLines, n, aBefore
 
-   if ! Empty( ::cClipboard )
+   // Whitespace-only copied lines contain data, not an absent clipboard.
+   if Len( ::cClipboard ) > 0
       ::ClearSelection()   // same stale-mark guard as CopySelection
       // A copied/cut block carries hb_eol() between its lines: split it back
       // into real lines (hb_ATokens with lAll=.T. keeps empty ones) instead
