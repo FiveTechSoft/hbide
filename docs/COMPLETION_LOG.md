@@ -2791,3 +2791,13 @@ Q46clean64382ac:Tab7,Identity5,Destructive19,Selection7PASS same4cebd9e0;
 21modelsPASS including95repaint,15inventory33docsPASS. Native120x40fourspacescd
 col5/Undoabcd col1 actual pixels inspected, full borders. No re-runs.
 Ledger linux-selection-tab.json. No wordwrap/Unicode/Windows/global acceptance.
+
+## 31 October editor selection joint regression
+
+Clean9f2736c same53cdeb14: twenty distinct suitesSelectionTab/Identity/
+Destructive/UndoBoundary/CutBoundary, ReplaceNoChange/Selection/Identity/
+UndoBoundary/Spaces, ClipboardUTF8Terminal/Block/Multidoc/Spaces/Close,
+DeleteSelection/DuplicateSelection/ReloadSelection/DeleteEOF/OVRIdentity.
+AllPASS, fourboundedsteps without retries;21models15inventory33docsPASS.
+Ledger linux-editor-selection-joint.json. Supersedes12suite7b7f4af for this
+block only, includesQ42-Q46. No newfix/captures/155PTYglobal/Windows/closure.

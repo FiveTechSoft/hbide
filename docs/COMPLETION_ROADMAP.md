@@ -143,6 +143,14 @@ ni capturas. Runneractual154=153modosPTY+guard;153anterior era corteQ44.
 Siete hitos conservan estados: cero cerrados, uno en curso, cuatro parciales,
 dos pendientes. Decisiones oversizededit/filenameUndoLoad y límiteM2 intactos.
 
+### Conjunta editor posterior Q46
+
+Clean9f2736c:20suites distintas sobre mismo53cdeb14, cuatro pasos acotados
+sin reintentos;21modelos15inventario33docsPASS. Incluye selecciónTab/identidad/
+destructivas/boundary, Cut, cincoReplace, cincoClipboard, Delete/Duplicate/
+Reload/EOF/OVR. Ledger linux-editor-selection-joint.json. Sustituye conjunta
+12suites7b7f4af para este bloque, no historia; no155modosglobales ni cierreM1.
+
 ## Ampliaciones que no se confunden con cierre probado
 
 El [plan de diseno anterior](ROADMAP.md) y la
