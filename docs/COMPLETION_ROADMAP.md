@@ -165,5 +165,6 @@ HRB rechazaba DBCREATE antes de entrar al debugger aunque codigo C estaba
 linkado. REQUEST explicito de DBCREATE/DBUSEAREA/DBAPPEND/DBCLOSEALL/
 DBSELECTAREA registra esas APIs. Dos DBF propios temporales, WorkAreas
 alias/estructura/status,paneles,Esc/F6 y ResumeALPHArecord1exacto. Antes1/10,
-despues10/10exploratorio; clean ledger pendiente. Native120x40dosalias
+despuesclean23bd0afWorkAreas10Scopes16sameIDE90a92c94+21modelosPASS;
+linux-debug-workareas.json. Native120x40dosalias
 inspeccionados. No implica catalogo completo HRB/RDD o Windows.

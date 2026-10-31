@@ -2303,3 +2303,7 @@ aliasALPHA/BETA estructuras/statuscorrectos,paneles,Esc/F6,ResumeALPHA
 record1datos exactos. Native120x40capturas ambas inspeccionadas. No todos
 RDD/HRB/externalDBF/Windows. Runner127=126PTYmodes+guard;102contratosmenu
 no102funcionesaceptadas. Cleanrevisionyregresion siguen abajo.
+
+Clean23bd0afWorkAreas10Scopes16mismoIDE90a92c94y21modelosPASS,
+15inventory33docs. docs/evidence/linux-debug-workareas.json. Nativo
+precommit separado de buildlimpio; no herenciaWindows/global127.
