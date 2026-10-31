@@ -2670,3 +2670,16 @@ No OSclipboard/Windows/global.
 Cleanafe1d52: UTF8Block9, Block9 and Close8 pass same binarye8fe99bf
 without retry;15inventory33docs pass. No new model run.
 Ledger docs/evidence/linux-clipboard-utf8.json.
+
+## 31 October clipboard in explicit UTF8 terminal
+
+Added explicit UTF8-terminal mode to same byte-integrity harness with locale
+C.UTF-8 and width-probe response matching real UTF8 terminal (1;2R). Without
+that probe prior harness advertised non-UTF8 width, hence question marks.
+First locale-only exploration10checks had one label fail; corrected probe,
+then10PASS including café/niño painted labels and same exact byte effects.
+Native120x40 Paste beta/café/niño and Undo beta inspected with full frames;
+TAB/spaces/disk source+destination exact. No productfix. Existing POSIX mode
+retained separately, not reinterpreted as rendering acceptance.
+Runner149=148PTY modes plus guard, two modes not two features.
+No universal Unicode widget/GET/Windows/OSclipboard acceptance. Clean pending.

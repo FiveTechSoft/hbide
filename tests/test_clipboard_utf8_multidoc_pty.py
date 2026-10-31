@@ -1,4 +1,5 @@
 """Real IDE Edit-menu dispatch. Linux PTY, not visual certification."""
+import sys
 import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
 ROWS, COLS = 40, 120
 BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
@@ -79,7 +80,11 @@ target = work/'source.prg'
 original = 'café\t  \r\nniño\nfinal'.encode()
 target.write_bytes(original)
 other=work/'destination.prg';other.write_bytes(b'beta')
+utf8_terminal = '--utf8-terminal' in sys.argv
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm', HBIDE_UTF8='1')
+if utf8_terminal:
+    env.update(LANG='C.UTF-8', LC_ALL='C.UTF-8')
+
 pid, fd = pty.fork()
 if pid == 0:
     os.execve(BIN, [BIN], env)
@@ -94,7 +99,7 @@ def pump(seconds=.4):
         except OSError: break
         if not data: break
         buf+=data
-        for query, answer in [(b'\x1b[6n', b'\x1b[40;1R'), (b'\x1b[18t', b'\x1b[8;40;120t')]:
+        for query, answer in [(b'\x1b[6n', b'\x1b[1;2R' if utf8_terminal else b'\x1b[40;1R'), (b'\x1b[18t', b'\x1b[8;40;120t')]:
             while query in buf:
                 buf=buf.replace(query,b'',1); os.write(fd,answer)
     scr.feed(buf)
@@ -112,6 +117,7 @@ try:
     pump(2)
     send(b'\x1bf');send(b'o');send(str(target).encode()+b'\r',1)
     check('Open source fixture', 'final' in scr.text() and 'source.prg' in scr.text())
+    if utf8_terminal: check('UTF8 terminal decodes accented source text', 'café' in scr.text() and 'niño' in scr.text())
     send(b'\x1b[19~');send(b'\x1b[B');send(b'\x1b[B')
     menu(b'c')
     send(b'\x1bf');send(b'o');send(str(other).encode()+b'\r',1)

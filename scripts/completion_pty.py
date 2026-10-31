@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'clipboard-utf8-terminal': ('test_clipboard_utf8_multidoc_pty.py', ['--utf8-terminal'], 120),
     'clipboard-utf8-multidoc': ('test_clipboard_utf8_multidoc_pty.py', [], 120),
     'clipboard-block-multidoc': ('test_clipboard_block_multidoc_pty.py', [], 120),
     'clipboard-close': ('test_clipboard_close_pty.py', [], 120),
