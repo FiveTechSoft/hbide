@@ -3572,3 +3572,11 @@ HPP3/Cxx3/BOM3/EOF3. Sameidentity, two completedbatches8+7, nofail/retry/
 interruption;22models26inventory34docsPASS.
 Evidence linux-joint-editor-project-q95.json. No newfix/pixels/candidate/
 globalmatrix/Windows/hitocerrado;Q87frozen84e58b3,C19older6a2f06d.
+
+## Q96 - M0 Ctrl+G versus extended Delete dispatch link
+
+Source inventory knew the exact identity guard but had no acceptance link.
+Bind route source/context/condition to actual Ctrl+G navigation and Delete
+normalization/UndoPTY. One inventoryguard preserves bounded scope. No new
+product fix or all extendedkey terminal coverage.
+Evidence linux-inventory-ctrlg-delete.json follows.

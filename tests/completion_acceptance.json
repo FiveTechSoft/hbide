@@ -1959,6 +1959,16 @@
         "test_designer.prg"
       ],
       "contract": "Actual F5 LivePRG anchor fixtures: quoted SAY caption, accelerator-transformed button, caption equal to dialog title, reserved generated GET binding and duplicate SAY captions. Default, --button, --dialog-caption, --reserved-binding, --duplicate-caption modes check exact highlighted declaration. Generator model guards cover emitted index anchors, unchanged code and skipped empty item controls. Not all controls/properties/bindings, all F5 states, pixels or Windows; links are not PASS, consult source-identified ledgers Q68-Q75."
+    },
+    "IDE-KEY-GOTOFUNCTION-CTRL-G": {
+      "source": "hbide.prg",
+      "context": "METHOD Activate(",
+      "condition": "case nKeyStd == K_CTRL_G .and. hb_keyExt( nKey ) != HB_KX_DEL",
+      "tests": [
+        "test_nav_pty.py",
+        "test_bp_delete_policy.py"
+      ],
+      "contract": "Actual Ctrl+G opens function picker, filter/Enter jumps correct function and preserves line/kind workflow. Extended Delete normalization never opens picker; actual Delete removes char and Undo restores bytes. Bounded two entry routes, not all terminal extended-key encodings, menus-open states, every navigation fixture or Windows. Links require exact source-identified PTY ledger."
     }
   }
 }

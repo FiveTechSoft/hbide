@@ -179,12 +179,20 @@ class DispatchAcceptance(unittest.TestCase):
         self.specs=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['dispatch_acceptance']
     def test_f5_exact_route_and_scope(self):
         rows=audit.link_dispatch_contracts(self.routes,self.specs)
-        linked=[r for r in rows if 'acceptance' in r]
+        linked=[r for r in rows if r.get('acceptance_id')=='DSN-KEY-LIVEPRG-F5']
         self.assertEqual(len(linked),1)
         self.assertEqual(linked[0]['condition'],'case nKey == K_F5')
         self.assertEqual(linked[0]['source'],'designer.prg')
         self.assertIn('Not all controls',linked[0]['acceptance']['contract'])
         self.assertNotIn('acceptance',self.routes[0])
+    def test_ctrl_g_delete_identity_route_linked(self):
+        linked=[r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance' in r]
+        self.assertEqual(len(linked),2)
+        row=next(r for r in linked if r['acceptance_id']=='IDE-KEY-GOTOFUNCTION-CTRL-G')
+        self.assertEqual(row['source'],'hbide.prg')
+        self.assertIn('hb_keyExt( nKey ) != HB_KX_DEL',row['condition'])
+        self.assertEqual(row['acceptance']['tests'],['test_nav_pty.py','test_bp_delete_policy.py'])
+        self.assertIn('not all terminal extended-key encodings',row['acceptance']['contract'])
     def test_missing_route_fails_closed(self):
         broken={k:dict(v,condition='case nKey == K_NONEXISTENT') for k,v in self.specs.items()}
         with self.assertRaisesRegex(ValueError,'exactly one route'):audit.link_dispatch_contracts(self.routes,broken)

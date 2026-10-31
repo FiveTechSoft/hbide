@@ -790,7 +790,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbide.prg:652 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )` | Pendiente vinculo |
 | hbide.prg:655 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )` | Pendiente vinculo |
 | hbide.prg:658 | `case nKeyStd == K_ALT_0` | Pendiente vinculo |
-| hbide.prg:662 | `case nKeyStd == K_CTRL_G .and. hb_keyExt( nKey ) != HB_KX_DEL` | Pendiente vinculo |
+| hbide.prg:662 | `case nKeyStd == K_CTRL_G .and. hb_keyExt( nKey ) != HB_KX_DEL` | IDE-KEY-GOTOFUNCTION-CTRL-G |
 | help.prg:535 | `CASE nKey == K_ESC` | Pendiente vinculo |
 | help.prg:538 | `CASE nKey == K_ENTER` | Pendiente vinculo |
 | help.prg:540 | `CASE nKey == K_BS` | Pendiente vinculo |
@@ -930,6 +930,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:745 | `CASE K_PGUP` | Pendiente vinculo |
 | hbdebug/debugger.prg:749 | `CASE K_PGDN` | Pendiente vinculo |
 - DSN-KEY-LIVEPRG-F5: Actual F5 LivePRG anchor fixtures: quoted SAY caption, accelerator-transformed button, caption equal to dialog title, reserved generated GET binding and duplicate SAY captions. Default, --button, --dialog-caption, --reserved-binding, --duplicate-caption modes check exact highlighted declaration. Generator model guards cover emitted index anchors, unchanged code and skipped empty item controls. Not all controls/properties/bindings, all F5 states, pixels or Windows; links are not PASS, consult source-identified ledgers Q68-Q75. Pruebas: [test_designer_quote_anchor_pty.py](../tests/test_designer_quote_anchor_pty.py), [test_designer.prg](../tests/test_designer.prg)
+- IDE-KEY-GOTOFUNCTION-CTRL-G: Actual Ctrl+G opens function picker, filter/Enter jumps correct function and preserves line/kind workflow. Extended Delete normalization never opens picker; actual Delete removes char and Undo restores bytes. Bounded two entry routes, not all terminal extended-key encodings, menus-open states, every navigation fixture or Windows. Links require exact source-identified PTY ledger. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py)
 
 ## Gate de cierre
 
