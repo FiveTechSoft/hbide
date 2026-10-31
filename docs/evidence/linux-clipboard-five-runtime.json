@@ -1,0 +1,149 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "869351c2ae10397e32bdde94c5279f410bfcbd5f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1c1355e52081cd9fd3a0c4add604010940306806330eac59857744c84b30bb6e",
+      "binary_sha256": "679499f47c838d0912fa38b583ff53a3d08e25bd77ae147e410616f3f8221347",
+      "build_receipt": "/tmp/hbide-clipboard-five-runtime-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ce0246e7e1d73a708bad0c2b7e0c79715355a77b90b9957078e311053552eed3",
+      "case": "designer-clipboard-list-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_list_runtime_pty.py"
+      ],
+      "started": 1793421491.2643986,
+      "seconds": 6.06,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "2a7fb50417b2f4e67114fac79c7537bd478d4822c943fb772e7faec8c1c44574",
+      "log": "/tmp/hbide-clipboard-five-runtime-clean/designer-clipboard-list-runtime-1793421491264395260.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "869351c2ae10397e32bdde94c5279f410bfcbd5f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1c1355e52081cd9fd3a0c4add604010940306806330eac59857744c84b30bb6e",
+      "binary_sha256": "679499f47c838d0912fa38b583ff53a3d08e25bd77ae147e410616f3f8221347",
+      "build_receipt": "/tmp/hbide-clipboard-five-runtime-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ce0246e7e1d73a708bad0c2b7e0c79715355a77b90b9957078e311053552eed3",
+      "case": "designer-clipboard-radio-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_radio_runtime_pty.py"
+      ],
+      "started": 1793421497.3250775,
+      "seconds": 6.01,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b657f07d733fd3cfc2cdc94dc10c31cc5e70d49e1f1d307a7d79b0717294459b",
+      "log": "/tmp/hbide-clipboard-five-runtime-clean/designer-clipboard-radio-runtime-1793421497325074295.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "869351c2ae10397e32bdde94c5279f410bfcbd5f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1c1355e52081cd9fd3a0c4add604010940306806330eac59857744c84b30bb6e",
+      "binary_sha256": "679499f47c838d0912fa38b583ff53a3d08e25bd77ae147e410616f3f8221347",
+      "build_receipt": "/tmp/hbide-clipboard-five-runtime-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ce0246e7e1d73a708bad0c2b7e0c79715355a77b90b9957078e311053552eed3",
+      "case": "designer-clipboard-combo-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_combo_runtime_pty.py"
+      ],
+      "started": 1793421503.335328,
+      "seconds": 6.01,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f7545a0827f8646d3a3dafab2dc0836186b04620c599cd9283e07937bb064c98",
+      "log": "/tmp/hbide-clipboard-five-runtime-clean/designer-clipboard-combo-runtime-1793421503335324488.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "869351c2ae10397e32bdde94c5279f410bfcbd5f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1c1355e52081cd9fd3a0c4add604010940306806330eac59857744c84b30bb6e",
+      "binary_sha256": "679499f47c838d0912fa38b583ff53a3d08e25bd77ae147e410616f3f8221347",
+      "build_receipt": "/tmp/hbide-clipboard-five-runtime-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ce0246e7e1d73a708bad0c2b7e0c79715355a77b90b9957078e311053552eed3",
+      "case": "designer-clipboard-get-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_get_runtime_pty.py"
+      ],
+      "started": 1793421509.3452158,
+      "seconds": 6.11,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "7d5402ccd1aad77be845cd0084c6c6da52e0d3064836444733d4d5765a4d2d86",
+      "log": "/tmp/hbide-clipboard-five-runtime-clean/designer-clipboard-get-runtime-1793421509345212277.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "869351c2ae10397e32bdde94c5279f410bfcbd5f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1c1355e52081cd9fd3a0c4add604010940306806330eac59857744c84b30bb6e",
+      "binary_sha256": "679499f47c838d0912fa38b583ff53a3d08e25bd77ae147e410616f3f8221347",
+      "build_receipt": "/tmp/hbide-clipboard-five-runtime-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ce0246e7e1d73a708bad0c2b7e0c79715355a77b90b9957078e311053552eed3",
+      "case": "designer-clipboard-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_runtime_pty.py"
+      ],
+      "started": 1793421515.455273,
+      "seconds": 6.06,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "27076b5bbd5185042c2f3c2e4bf0ece0dd9ea7272c7a29dce93ac61d4c532443",
+      "log": "/tmp/hbide-clipboard-five-runtime-clean/designer-clipboard-runtime-1793421515455268746.log"
+    }
+  ],
+  "logs": {
+    "designer-clipboard-list-runtime-1793421491264395260.log": "PASS pasted ListBox binding case-insensitively distinct\nPASS pasted ListBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ListBox artifact compiles\nPASS first ListBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ListBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-n0kq7uc3\n",
+    "designer-clipboard-radio-runtime-1793421497325074295.log": "PASS pasted RadioGroup binding case-insensitively distinct\nPASS pasted RadioGroup VALID handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both VALID handlers\nPASS generated pasted-RadioGroup artifact compiles\nPASS first RadioGroup selection affects only its bound value\nPASS first preserved VALID handler executes in generated runtime\nPASS second RadioGroup selection affects only its bound value\nPASS second preserved VALID handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-6lmq090m\n",
+    "designer-clipboard-combo-runtime-1793421503335324488.log": "PASS pasted ComboBox binding case-insensitively distinct\nPASS pasted ComboBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ComboBox artifact compiles\nPASS first ComboBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ComboBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-6cpuly2v\n",
+    "designer-clipboard-get-runtime-1793421509345212277.log": "PASS pasted GET binding case-insensitively distinct\nPASS pasted GET VALID handler retained\nPASS actual F9 generates two separate text bindings\nPASS actual F9 emits both VALID handlers\nPASS generated pasted-GET artifact compiles\nPASS first GET text edit affects only its bound value\nPASS first preserved VALID handler executes in generated runtime\nPASS second GET text edit affects only its bound value\nPASS second preserved VALID handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-q1wjvd10\n",
+    "designer-clipboard-runtime-1793421515455268746.log": "PASS pasted checkbox binding case-insensitively distinct\nPASS pasted checkbox state handler retained\nPASS actual F9 generates two separate logical bindings\nPASS actual F9 emits both state handlers\nPASS generated pasted-checkbox artifact compiles\nPASS first checkbox toggle affects only its bound value\nPASS first preserved state handler executes in generated runtime\nPASS second checkbox toggle affects only its bound value\nPASS second preserved state handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-q5lynn7z\n"
+  },
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "869351c2ae10397e32bdde94c5279f410bfcbd5f",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "1c1355e52081cd9fd3a0c4add604010940306806330eac59857744c84b30bb6e",
+    "binary_sha256": "679499f47c838d0912fa38b583ff53a3d08e25bd77ae147e410616f3f8221347",
+    "built_at": 1793421491.2641838
+  },
+  "checks": [
+    "15 inventory PASS",
+    "33 complete documents embedded byte-exact PASS"
+  ],
+  "limits": "Actual F9 clipboard artifacts five bound control types only, retained fixture STATE or VALID effects. Return instrumentation, no all-handler, pixel, Windows or full matrix acceptance."
+}
