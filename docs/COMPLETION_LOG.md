@@ -2965,3 +2965,8 @@ GotoLinejump. ClearSelection only after confirmedpicker/numericgoto, not
 in genericGoto (arrowrangeextensionstays). InitialCancelharnessHomecollapsed
 range; secondprobeusedwrongarrowencodingandassertedMainwhileatTarget,
 so clean4eaafa3 retained6PASS1FAIL. Harness correctedtoCSIarrow, notproduct. Runner165=164PTY+guard.
+
+Q54cleand417e7f NavSelection7/Literal3/Typed3/Find7PASS samebinary,
+22models112repaintPASS,15inventory34docsPASS. Native120x40TargetX/Undo
+actualpixelsfullborders inspected. linux-navigation-selection.json preserves
+earliercleanharnessfailure4eaafa3, notpassedfirsttryclaim.

@@ -32,7 +32,8 @@
         "test_bp_delete_policy.py",
         "test_nav_literal_comment_pty.py",
         "test_nav_lexical.prg",
-        "test_nav_typed_methods_pty.py"
+        "test_nav_typed_methods_pty.py",
+        "test_nav_selection_pty.py"
       ],
       "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated.",
       "expected_label": "Go to Function... Ctrl+G"
@@ -307,7 +308,8 @@
     },
     "IDE-018": {
       "tests": [
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_nav_selection_pty.py"
       ],
       "contract": "Real Goto Line modal navigates source line; Esc preserves row. Zero/negative clamp first line and oversized input clamps final line.",
       "expected_label": "Goto Line..."
