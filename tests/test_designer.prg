@@ -10,7 +10,7 @@ static s_nPassed := 0, s_nFailed := 0
 
 procedure Main()
 
-   local hModel, cCode, cJson, hBack, aSize, hBindings
+   local hModel, cCode, cJson, hBack, aSize, hBindings, hAnchors
    local oD, oD2, aRect, nMaxRow, nMaxCol, oCtrl, cCellRef, cCellNow, nI, nJ
    local oDlg, nCell, cBefore, cAfter, hS0, hS1, aU, aR, hT, oBtn
 
@@ -69,6 +69,18 @@ procedure Main()
    cCode := DsnGenCode(hModel,,, @hBindings)
    nI := DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",2],hBindings[2])
    Check("type-conflict generated binding anchors second control",nI>0.and." GET shared2 CHECKBOX"$hb_ATokens(cCode,hb_eol())[nI].and.hModel["controls",2,"variable"]=="shared")
+   hModel := { "name"=>"Duplicates", "controls"=>{ { "type"=>"say","row"=>1,"col"=>2,"caption"=>"Same" }, ;
+      { "type"=>"say","row"=>3,"col"=>2,"caption"=>"Same" } } }
+   cCode := DsnGenCode(hModel,,, @hBindings, @hAnchors)
+   Check("same-caption control anchors keep exact separate lines",hAnchors[1]!=hAnchors[2].and.'oDlg:Say( 2, 3, "Same" )'$hb_ATokens(cCode,hb_eol())[hAnchors[1]].and.'oDlg:Say( 4, 3, "Same" )'$hb_ATokens(cCode,hb_eol())[hAnchors[2]])
+   Check("anchor metadata does not change generated code",cCode==DsnGenCode(hModel))
+   hModel["controls"] := { { "type"=>"get","row"=>1,"col"=>2,"variable"=>"shared","width"=>10 }, ;
+      { "type"=>"get","row"=>3,"col"=>2,"variable"=>"shared","width"=>10 } }
+   cCode := DsnGenCode(hModel,,, @hBindings, @hAnchors)
+   Check("shared GET binding anchors exact second declaration",hAnchors[1]!=hAnchors[2].and."oDlg:nTop + 4"$hb_ATokens(cCode,hb_eol())[hAnchors[2]])
+   hModel["controls"] := { { "type"=>"listbox","row"=>1,"col"=>2,"variable"=>"nList","items"=>"","width"=>10,"height"=>4 } }
+   cCode := DsnGenCode(hModel,,, @hBindings, @hAnchors)
+   Check("skipped empty control has no misleading anchor",!hb_HHasKey(hAnchors,1))
    // model -> JSON -> model round trip
    hModel = { "name"     => "Customer", ;
               "caption"  => "Customer data", ;

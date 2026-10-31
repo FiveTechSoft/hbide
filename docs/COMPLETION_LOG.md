@@ -3292,3 +3292,13 @@ binding map for live lookup, preserving model/JSON. Reserved and mixed-type
 conflict model guards. Runner189=188PTY+guard. Evidence
 linux-designer-binding-anchor.json follows. Not all bindings/duplicate
 child captions/Windows/global.
+
+## Q75 - Duplicate captions selected first child in live PRG
+
+Two actual loaded SAYs with identical captions: selecting second/F5 before
+4PASS1FAIL. Generator now returns declaration-line metadata per control
+index for live selection, independent of caption/shared binding identity.
+Generated code unchanged. Four model guards include duplicate SAY/shared
+GET/skipped empty control. Runner190=189PTY+guard. Evidence
+linux-designer-duplicate-anchor.json follows. Not all control modes or
+Windows/global certification.

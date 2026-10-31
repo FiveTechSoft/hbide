@@ -1125,7 +1125,7 @@ return nil
 
 METHOD RefreshCodeView() CLASS HbDesigner
 
-   local hModel, cSig, oCtrl, hBindings, cCode
+   local hModel, cSig, oCtrl, hBindings, hAnchors, cCode
 
    if ! ::lCodeView
       return nil
@@ -1140,11 +1140,11 @@ METHOD RefreshCodeView() CLASS HbDesigner
       cSig = hb_jsonEncode( hModel ) + "|" + hb_ntos( ::nSelected )
       if !( cSig == ::cCodeSig )
          ::cCodeSig    = cSig
-         cCode = DsnGenCode( hModel,,, @hBindings )
+         cCode = DsnGenCode( hModel,,, @hBindings, @hAnchors )
          ::aCodeLines  = hb_ATokens( StrTran( cCode, Chr( 13 ), "" ), Chr( 10 ) )
          oCtrl = If( ::nSelected >= 1 .and. ::nSelected <= Len( ::aControls ), ;
                      ::aControls[ ::nSelected ], NIL )
-         ::nCodeAnchor = DsnCodeFindLine( ::aCodeLines, oCtrl, hb_HGetDef( hBindings, ::nSelected, "" ) )
+         ::nCodeAnchor = hb_HGetDef( hAnchors, ::nSelected, 0 )
          ::nCodeTop    = DsnCodeViewTop( ::nCodeAnchor, Len( ::aCodeLines ), MaxRow() - 3 )
       endif
    recover
@@ -2892,7 +2892,7 @@ return cResult
 // generate the .prg that rebuilds the dialog with HBWindow.
 // hModel is the hash produced by DsnBuildModel() (or read from JSON)
 
-function DsnGenCode( hModel, nSkipped, nConflicts, hBindings )
+function DsnGenCode( hModel, nSkipped, nConflicts, hBindings, hAnchors )
 
    local cCode := ""
    local oCtrl, n, aSize, cVar, cType, lNew
@@ -2917,6 +2917,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts, hBindings )
       cClrFocus = DSN_CLR_FOCUS
    endif
 
+   hAnchors := { => }   // control index => emitted declaration line, never caption identity
    nSkipped   = 0
    nConflicts = 0
 
@@ -3026,6 +3027,11 @@ function DsnGenCode( hModel, nSkipped, nConflicts, hBindings )
    n = 0
    for each oCtrl in hModel[ "controls" ]
       n++
+      // The next emitted line belongs to this exact control, even when
+      // captions or same-type bindings are intentionally shared.
+      if !( ( oCtrl[ "type" ] $ DSN_RADIO + "|" + DSN_LISTBOX + "|" + DSN_COMBOBOX ) .and. Empty( DsnItems( oCtrl ) ) )
+         hAnchors[ n ] := Len( hb_ATokens( cCode, Chr(10), .T. ) )
+      endif
       do case
          case oCtrl[ "type" ] == DSN_SAY
             if aDlgPair[ 2 ] == "W"
@@ -3092,6 +3098,7 @@ function DsnGenCode( hModel, nSkipped, nConflicts, hBindings )
                cCode += "   // warning: " + oCtrl[ "type" ] + " " + hGenVars[ n ] + ;
                         " popup too short: the scrollbar will not be drawn" + hb_eol()
             endif
+            hAnchors[ n ] := Len( hb_ATokens( cCode, Chr(10), .T. ) )
             cCode += "   @ oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + 1 ) + ;
                      ", oDlg:nLeft + " + hb_ntos( oCtrl[ "col" ] + 1 ) + ;
                      ", oDlg:nTop + " + hb_ntos( oCtrl[ "row" ] + aSize[ 2 ] ) + ;
