@@ -3088,3 +3088,10 @@ Exportcleanb1e49e8strippedSHA371f2170fb7051b4cfb27241d28cabc1f95f8b635981d587c80
 twoboundedstepsnoretries/interruption. Manifest/toolchain/ldd/logs persisted
 linux-candidate-paint-caret.json. No newfix/full168PTY/Windows/release/license/
 installer/newpixels/determinism/NEXUSexecution;Q58generalstillpartial.
+
+## Q57 acceptance extension - escaped string variants
+
+Compiler-backedfixturecoversuppercaseE,escapedbackslashbeforeclosingquote,
+escapedtabandliteral/*,//,&&,realblockafterliteral. Localinitial6PASS1FAIL
+expectedcyanforRETURNbutkeyword1isG+10; correctedharness, no productchange.
+Newmode169PTY+guard=170entries. Cleanacceptancefollows.
