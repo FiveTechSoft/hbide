@@ -2956,3 +2956,11 @@ Native120x40Messagesbad.c:2andexactpathjump2:9inspectedfullborders.
 Ledgerlinux-project-colon-diagnostic.json. WrapperrealGCCnotnativehbmk2
 colonpath; finalnativeGCCLC_ALL=C fixesfixturemojibakeonly. No encoding
 productfix/Windows/global/retries. Candidate12predatesQ52/Q53.
+
+## Q54 - Explicit navigation retained old marked range
+
+SelectfuinMain,jumpTarget,typeX deletedblockfromMain throughTarget.
+Before2PASS1FAIL; local7PASS coversFunctionjump/Undo,Cancelretainsrange,
+GotoLinejump. ClearSelection only after confirmedpicker/numericgoto, not
+in genericGoto (arrowrangeextensionstays). InitialCancelharnessHomecollapsed
+range; fixedassertiontypesatunchangedcursor. Runner165=164PTY+guard.

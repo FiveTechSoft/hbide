@@ -351,6 +351,7 @@ METHOD GotoLine() CLASS HBIde
    ::ResumeStatus()
 
    if lOk
+      ::oEditor:ClearSelection()
       ::oEditor:GotoLine( nLine )
       ::oEditor:Display()
       ::oEditor:ShowCursor()
@@ -2432,6 +2433,7 @@ METHOD GotoFunction() CLASS HbIde
    ::ResumeStatus()
    ::Repaint()
    if n > 0
+      ::oEditor:ClearSelection()
       ::oEditor:GotoLine( aProcs[ n ][ 3 ] )
       ::oEditor:Display()
    endif
