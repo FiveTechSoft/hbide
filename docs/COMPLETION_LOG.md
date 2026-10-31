@@ -2472,3 +2472,7 @@ fusionaprevianiadmitetypingposterior. Filtrolegado3slotsconservado.
 DespuesPTY6PASS/6modelchecksnew;typingnormalcontinuafusionando.
 Native120x40UndoXalpha/RedoXomegainspeccionadosSaveexactos.
 Runner137=136PTY+guard. No otroscomandosundosplit niWindows/global.
+
+Clean880fae2Boundary6Spaces10EditMenu37sameIDEcfd57268PASSsinretry,
+21modelos15inventory33docsPASS. linux-replace-undo-boundary.json
+retieneidentity/logs y6newrepaintchecksnormaltypingfusion/cleanRedo.
