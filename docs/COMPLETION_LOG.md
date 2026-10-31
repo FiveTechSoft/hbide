@@ -2265,3 +2265,6 @@ Modo--drag pulsa primera celdaGET, mueveboton32manteniendopulsacion y
 suelta al bordeimpar; seischecks incluidas dimensiones/variable/UndoRedo.
 Exploratorio6PASSsin cambioproducto. Nativo anterior solo teclado, no se
 convierte en dragpixels. Runner125=124PTYmodes+guard.
+
+Clean5cc04acDrag6Arrows6sameIDEed24ffa6,15inventory33docsPASS,
+21modelsultima fa78719. docs/evidence/linux-designer-snap-drag.json.
