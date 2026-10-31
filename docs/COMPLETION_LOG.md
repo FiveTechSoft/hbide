@@ -3344,3 +3344,12 @@ Contracts retain parse-copy/original-byte/missing-file and bounded
 lexer/encoding/compiler-mode limits. Two new inventory guards,19total.
 No productfix/newpixels/candidate/globalmatrix inherited. Focused clean
 acceptance evidence linux-inventory-project-navigation.json follows.
+
+## Q80 - navigation index context across completed comments
+
+Real hbmk2-valid array fixture with a completed block comment between
+name and index exposed Hidden inside a later multiline comment (2PASS1FAIL).
+Scanner now carries its own comment-free context, marking closed string
+values without copying their content; no backward raw-source comment guess.
+Five model guards plus focused PTY. Bounded scanner, not full preprocessor.
+Evidence linux-navigation-array-gap-comment.json, no Q77 matrix inheritance.

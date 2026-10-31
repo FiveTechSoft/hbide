@@ -128,7 +128,7 @@ STATIC FUNCTION HBIDE_NavEndDump( cLine )
 
 // Strip comments and mask string contents without changing line count.
 STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
-   LOCAL cOut := "", n := 1, c, q := "", lEscape := .F.
+   LOCAL cOut := "", cContext := "", n := 1, c, q := "", lEscape := .F.
    IF Left( LTrim( cLine ), 1 ) == "*" .AND. ! lBlock
       RETURN ""
    ENDIF
@@ -139,6 +139,7 @@ STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
          IF SubStr( cLine, n, 2 ) == "*/"
             lBlock := .F.
             cOut += " "
+            cContext += " "
             n++
          ENDIF
       CASE ! Empty( q )
@@ -149,6 +150,7 @@ STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
                n++
             ELSE
                q := ""
+               cContext += ")" // a closed string is a value, not an introducer
             ENDIF
          ENDIF
          cOut += " "
@@ -159,7 +161,7 @@ STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
          cOut += " "
          n++
       CASE c == Chr( 34 ) .OR. c == "'" .OR. c == "`" .OR. ;
-           ( c == "[" .AND. HBIDE_NavBracketQuote( cLine, n ) )
+           ( c == "[" .AND. HBIDE_NavBracketQuote( cLine, n, cContext ) )
          // A bracket string must close on this physical line. An array
          // index can instead contain a block comment spanning later lines.
          q := iif( c == "[", "]", iif( c == "`", "'", c ) )
@@ -167,15 +169,17 @@ STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
          cOut += " "
       OTHERWISE
          cOut += c
+         cContext += c
       ENDCASE
       n++
    ENDDO
 RETURN cOut
 
 // Bounded distinction: a bracket following a value/name is an index.
-// RETURN is an expression introducer, not an array name.
-STATIC FUNCTION HBIDE_NavBracketQuote( cLine, nAt )
-   LOCAL cBefore := RTrim( StrTran( Left( cLine, nAt - 1 ), Chr(9), " " ) )
+// RETURN is an expression introducer, not an array name. Context comes
+// from this scan: completed comments are whitespace, closed strings values.
+STATIC FUNCTION HBIDE_NavBracketQuote( cLine, nAt, cContext )
+   LOCAL cBefore := RTrim( StrTran( cContext, Chr(9), " " ) )
    LOCAL cLast := Right( cBefore, 1 ), n := Len( cBefore ), cWord
    IF !( "]" $ SubStr( cLine, nAt + 1 ) )
       RETURN .F.

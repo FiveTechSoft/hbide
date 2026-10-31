@@ -34,6 +34,12 @@ procedure Main()
  next
  a:=HBIDE_ScanProcs('function Main()'+hb_eol()+'return [/* literal]'+hb_eol()+'function Target()')
  Check(Len(a)==2.and.a[2,1]=='Target','RETURN bracket literal remains masked',@nPass,@nFail)
+ for each c in { 'local n := a /* gap */ [1 /* ] marker', 'local n := a /* first */ /* next */ [1 /* ] marker', 'local n := GetArray() /* gap */ [1 /* ] marker', 'local n := "array value" /* gap */ [1 /* ] marker' }
+ a:=HBIDE_ScanProcs('function Main()'+hb_eol()+c+hb_eol()+'function Hidden()'+hb_eol()+'*/ ]'+hb_eol()+'function Target()')
+ Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==5,'completed comment preserves preceding index value: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('function Main()'+hb_eol()+'return /* gap */ [/* literal]'+hb_eol()+'function Target()')
+ Check(Len(a)==2.and.a[2,1]=='Target','RETURN with completed comment still introduces bracket literal',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

@@ -37,9 +37,10 @@
         "test_nav_array_comment_pty.py",
         "test_nav_pragma_macro_pty.py",
         "test_nav_enddump_comment_pty.py",
-        "test_nav_array_bracket_comment_pty.py"
+        "test_nav_array_bracket_comment_pty.py",
+        "test_nav_array_gap_comment_pty.py"
       ],
-      "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated; raw ENDDUMP with trailing comments resumes Harbour declarations. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor. Closing bracket inside real named/function-result array-index comment does not become a bracket literal; RETURN bracket literal stays masked in bounded lexical fixtures.",
+      "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated; raw ENDDUMP with trailing comments resumes Harbour declarations. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor. Closing bracket inside real named/function-result array-index comment does not become a bracket literal; RETURN bracket literal stays masked in bounded lexical fixtures. Completed comments preserve preceding index-value context; closed strings remain values and RETURN remains an introducer in bounded fixtures.",
       "expected_label": "Go to Function... Ctrl+G"
     },
     "IDE-020": {
