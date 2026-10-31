@@ -1,0 +1,64 @@
+{
+  "scope": "Two simulated terminal modes17checks each, same clean source and binary. Actual mouse word gestures and bytes; UTF8 labels in coherent simulated cursor mode/ISO fallback separate. EnterBSDeleteCopyCutPasteUndo preserve complete BOM TAB accents mixedEOL. Paste existing insertbelowline contract. No added nativepixels/Windows or globalacceptance.20models lastf824f37,33docs.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "a40f1efbb6711192184d843d4271b3b400e796ec",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "e77c8e88d3b91615f0e40137a828b3f7659dc17c5a86a34f8650ccb9683fdfd2",
+    "binary_sha256": "eed2cdb0ac7297110ccd941bce65eaa36b9c70f8b48891d12d3caddcf96336aa",
+    "built_at": 1793409028.2934659
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "a40f1efbb6711192184d843d4271b3b400e796ec",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e77c8e88d3b91615f0e40137a828b3f7659dc17c5a86a34f8650ccb9683fdfd2",
+      "binary_sha256": "eed2cdb0ac7297110ccd941bce65eaa36b9c70f8b48891d12d3caddcf96336aa",
+      "build_receipt": "/tmp/hbide-utf8-mouse-expanded/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "cdda9f08b3bbbdfc91d5f4c0aa28a767399548c3f486c607b912c379b50a2441",
+      "case": "editor-mouse-utf8-terminal",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_mouse_utf8_pty.py",
+        "--utf8-terminal"
+      ],
+      "started": 1793409028.2938156,
+      "seconds": 22.68,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "89c315ebc9f9caaf220e33cc9ad64d72d2d3fa877c577c55bc2b91440c9ba6fa",
+      "log": "/tmp/hbide-utf8-mouse-expanded/editor-mouse-utf8-terminal-1793409028293811234.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "a40f1efbb6711192184d843d4271b3b400e796ec",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e77c8e88d3b91615f0e40137a828b3f7659dc17c5a86a34f8650ccb9683fdfd2",
+      "binary_sha256": "eed2cdb0ac7297110ccd941bce65eaa36b9c70f8b48891d12d3caddcf96336aa",
+      "build_receipt": "/tmp/hbide-utf8-mouse-expanded/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "cdda9f08b3bbbdfc91d5f4c0aa28a767399548c3f486c607b912c379b50a2441",
+      "case": "editor-mouse-utf8",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_mouse_utf8_pty.py"
+      ],
+      "started": 1793409050.9783072,
+      "seconds": 22.69,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "89c315ebc9f9caaf220e33cc9ad64d72d2d3fa877c577c55bc2b91440c9ba6fa",
+      "log": "/tmp/hbide-utf8-mouse-expanded/editor-mouse-utf8-1793409050978303653.log"
+    }
+  ]
+}
