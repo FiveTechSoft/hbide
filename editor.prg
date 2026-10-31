@@ -964,6 +964,17 @@ METHOD ScanBlkLine( cText, lIn ) CLASS HBSrcEdit
             lIn := .F.
             n++
          endif
+      elseif Lower( SubStr( cText, n, 2 ) ) == 'e"'
+         n += 2
+         while n <= nLen
+            if SubStr( cText, n, 1 ) == Chr( 92 )
+               n += 2
+            elseif SubStr( cText, n, 1 ) == '"'
+               exit
+            else
+               n++
+            endif
+         end
       elseif c == '"' .or. c == "'"
          n++
          while n <= nLen .and. SubStr( cText, n, 1 ) != c
@@ -1520,6 +1531,21 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
          lInComment = .T.
       else
          do case
+            case Lower( hb_USubStr( cLine, n, 2 ) ) == 'e"'
+                cToken := hb_USubStr( cLine, n, 2 )
+                n += 2
+                while n <= hb_ULen( cLine )
+                   cToken += hb_USubStr( cLine, n, 1 )
+                   if hb_USubStr( cLine, n, 1 ) == Chr( 92 )
+                      n++
+                      cToken += hb_USubStr( cLine, n, 1 )
+                   elseif hb_USubStr( cLine, n, 1 ) == '"'
+                      n++
+                      exit
+                   endif
+                   n++
+                end
+
             case hb_USubStr( cLine, n, 1 ) == '"'
                 cToken += '"'
                 while hb_USubStr( cLine, ++n, 1 ) != '"' .and. n <= hb_ULen( cLine )
@@ -1570,7 +1596,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
                     Right( cToken, 1 ) $ "0123456789"
                     cColor = ::cClrNumber
 
-               case Left( cToken, 1 ) $ '"' + "'"
+               case Left( cToken, 1 ) $ '"' + "'" .or. Lower( Left( cToken, 2 ) ) == 'e"' 
                     cColor = ::cClrString
 
                case Upper( cToken ) $ cOperators

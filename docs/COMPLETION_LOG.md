@@ -3012,3 +3012,12 @@ Q56clean3fb6f1f Adjacent6/LineComments6/MessageSelection9PASSsamebinary,
 22models112repaintPASS/15inventory34docs. Native120x40adjacentcomments
 magentaandcodeafter*/resumes,fullbordersinspected,F2exact. Ledger
 linux-editor-adjacent-comments.json. No retries/newcandidate/full166PTY/Windows.
+
+## Q57 - Escape string quote leaked false block comment paint state
+
+Compiler-backed valid e"quoted\"/* literal" coloredliteralmarkercomment
+andreturnbelowcomment. Before2PASS2FAIL. Scanner/painter recognizeE/e
+escapedstring,backslashescapeconsumesnextchar;threeblockstatemodelchecks.
+Firstaftercolorassertionexpectedyellow14but configuredGR+ iscyan11,
+correctedharnessexpectationnotproduct. No bracketliteral/fulllexerclaim.
+Runner168=167PTY+guard; clean/nativefollow.
