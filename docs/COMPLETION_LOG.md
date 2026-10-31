@@ -3732,3 +3732,14 @@ afterclose.3modelguardsvalueindex/literalintro/reset. Clean source4775e6b:
 Native120x40Main1/Target8only2of2/noHidden;EnterTarget/X/F2exactrow8,full
 bordersinspected. linux-navigation-multiline-gap.json. No generallexer/
 preprocessor/Windows/global/hitoclosed. C21/Q104predateQ105+.
+
+## Q108 - M0 complete multiline dispatch conditions
+
+Sourcebranch inventory retains logical condition continuation beyond ;,
+exactCtrlF6route/extendedidentity now linked to existingmulti-documentPTY.
+Parent menuclosed/multipledoc guard separate; noCtrlShiftF6acceptanceclaim.
+Source63a5f55cleanmultidocPTY35checksPASS31inventory34docsPASS.
+Development:firstunitcondition assertion split wronglyat.or.,1unitfailure;
+reconstructed fullsourcecontinuations31PASS. CleanPTYnofailure/retry.
+linux-inventory-multiline-dispatch.json. No productfix/pixels/modelrerun/
+Windows/global/hitoclosed.

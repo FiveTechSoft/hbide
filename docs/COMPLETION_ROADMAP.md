@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q108 | M0 conserva condiciónmultilíneaCtrlF6vinculada. | Source63a5f55multidoc35checks31inventory34docsPASS;linux-inventory-multiline-dispatch.json. No CtrlShiftF6/productfix/pixels/global. |
 | Q107 | Navegación conserva contextoindex/intro entrecomentariomultilínea. | Antes2PASS1FAIL;3modelguards15PTY22models30inventory34docsPASSsource4775e6b;native2of2Target8exact;linux-navigation-multiline-gap.json. No preprocesadorgeneral/Windows. |
 | Q106 | M0 F5Find real éxito/Cancel/missing vinculado. | Source3ac5026/3modos21checks30inventory34docsPASS;linux-inventory-find-f5.json. No productfix/pixels/modelrerun/global. |
 | Q105 | TAB antesbracketliteral no contamina estado posterior. | Antes3PASS1FAIL;5newguards35PTY22models29inventory34docsPASSsource4610113;nativeinspeccionado;linux-editor-bracket-tabs.json. C21/Q104predatesfix. |
