@@ -342,9 +342,10 @@
         "test_designer_clipboard_get_runtime_pty.py",
         "test_designer_clipboard_combo_runtime_pty.py",
         "test_designer_clipboard_list_runtime_pty.py",
-        "test_designer_clipboard_radio_runtime_pty.py"
+        "test_designer_clipboard_radio_runtime_pty.py",
+        "test_designer_clipboard_button_runtime_pty.py"
       ],
-      "contract": "F9 generates PRG from edited/reloaded model; ComboBox artifact compiles and executes keyboard/mouse selection. Partial/promotion failures preserve destination, complete retained PRG byte exact. Eight reserved-name artifacts compile and smoke-run initialization/Esc false; not interaction coverage for those artifacts. Synthetic generated GET/checkbox/button/radiogroup/listbox/ComboBox execute their exposed When/Valid/Focus/State plus Button Action and return OK true. Generated GET When/Valid false veto then accept after enabling; GET widths1..3 keyboard/mouse retain exact bound values. Not all controls have veto/all-input coverage; no pixels/Windows acceptance. Actual F9 artifacts after clipboard duplication separately compile/run checkbox/GET/ComboBox with uppercase original names, independent first/second bound values and preserved STATE/VALID fixture handlers. Return instrumentation records results; not all types/handlers or pixels/Windows. Actual F9 clipboard ListBox/RadioGroup fixtures separately compile and execute: first/second selection changes only its independent uppercase-derived numeric binding, preserved ListBox STATE and RadioGroup VALID handlers execute. Return instrumentation only; no all-handler or pixel/Windows claim."
+      "contract": "F9 generates PRG from edited/reloaded model; ComboBox artifact compiles and executes keyboard/mouse selection. Partial/promotion failures preserve destination, complete retained PRG byte exact. Eight reserved-name artifacts compile and smoke-run initialization/Esc false; not interaction coverage for those artifacts. Synthetic generated GET/checkbox/button/radiogroup/listbox/ComboBox execute their exposed When/Valid/Focus/State plus Button Action and return OK true. Generated GET When/Valid false veto then accept after enabling; GET widths1..3 keyboard/mouse retain exact bound values. Not all controls have veto/all-input coverage; no pixels/Windows acceptance. Actual F9 artifacts after clipboard duplication separately compile/run checkbox/GET/ComboBox with uppercase original names, independent first/second bound values and preserved STATE/VALID fixture handlers. Return instrumentation records results; not all types/handlers or pixels/Windows. Actual F9 clipboard ListBox/RadioGroup fixtures separately compile and execute: first/second selection changes only its independent uppercase-derived numeric binding, preserved ListBox STATE and RadioGroup VALID handlers execute. Return instrumentation only; no all-handler or pixel/Windows claim. Actual F9 pasted PushButtons retain custom Action, Focus, bracket style and accelerator text; compiled runtime Enter on first or Tab+Enter on second runs retained Action/Focus and returns true. Accelerator activation itself is not accepted by this probe."
     },
     "DSN-019": {
       "expected_label": "Generate and open",
@@ -377,9 +378,10 @@
       "tests": [
         "gui_roundtrip_fixture.prg",
         "test_gui_roundtrip_pty.py",
-        "test_designer_clipboard_loaded_types_pty.py"
+        "test_designer_clipboard_loaded_types_pty.py",
+        "test_designer_clipboard_button_runtime_pty.py"
       ],
-      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test. Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing."
+      "contract": "Generated runtime artifact compiles and commits final control variable after keyboard and mouse selection plus OK button. No real F2 placement coverage for this type in this test. Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing. Actual F9 pasted PushButtons retain custom Action, Focus, bracket style and accelerator text; compiled runtime Enter on first or Tab+Enter on second runs retained Action/Focus and returns true. Accelerator activation itself is not accepted by this probe."
     },
     "DSN-005": {
       "expected_label": "RadioGroup",
@@ -629,9 +631,10 @@
         "test_designer_clipboard_loaded_types_pty.py",
         "test_designer_clipboard_pty.py",
         "test_designer_clipboard_list_runtime_pty.py",
-        "test_designer_clipboard_radio_runtime_pty.py"
+        "test_designer_clipboard_radio_runtime_pty.py",
+        "test_designer_clipboard_button_runtime_pty.py"
       ],
-      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links. Actual F9 clipboard ListBox/RadioGroup fixtures separately compile and execute: first/second selection changes only its independent uppercase-derived numeric binding, preserved ListBox STATE and RadioGroup VALID handlers execute. Return instrumentation only; no all-handler or pixel/Windows claim."
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links. Actual F9 clipboard ListBox/RadioGroup fixtures separately compile and execute: first/second selection changes only its independent uppercase-derived numeric binding, preserved ListBox STATE and RadioGroup VALID handlers execute. Return instrumentation only; no all-handler or pixel/Windows claim. Actual F9 pasted PushButtons retain custom Action, Focus, bracket style and accelerator text; compiled runtime Enter on first or Tab+Enter on second runs retained Action/Focus and returns true. Accelerator activation itself is not accepted by this probe."
     },
     "DSN-012": {
       "expected_label": "Cut         Ctrl+X",
@@ -640,9 +643,10 @@
         "test_designer_clipboard_loaded_types_pty.py",
         "test_designer_clipboard_pty.py",
         "test_designer_clipboard_list_runtime_pty.py",
-        "test_designer_clipboard_radio_runtime_pty.py"
+        "test_designer_clipboard_radio_runtime_pty.py",
+        "test_designer_clipboard_button_runtime_pty.py"
       ],
-      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links. Actual F9 clipboard ListBox/RadioGroup fixtures separately compile and execute: first/second selection changes only its independent uppercase-derived numeric binding, preserved ListBox STATE and RadioGroup VALID handlers execute. Return instrumentation only; no all-handler or pixel/Windows claim."
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links. Actual F9 clipboard ListBox/RadioGroup fixtures separately compile and execute: first/second selection changes only its independent uppercase-derived numeric binding, preserved ListBox STATE and RadioGroup VALID handlers execute. Return instrumentation only; no all-handler or pixel/Windows claim. Actual F9 pasted PushButtons retain custom Action, Focus, bracket style and accelerator text; compiled runtime Enter on first or Tab+Enter on second runs retained Action/Focus and returns true. Accelerator activation itself is not accepted by this probe."
     },
     "DSN-013": {
       "expected_label": "Paste       Ctrl+V",
@@ -651,9 +655,10 @@
         "test_designer_clipboard_loaded_types_pty.py",
         "test_designer_clipboard_pty.py",
         "test_designer_clipboard_list_runtime_pty.py",
-        "test_designer_clipboard_radio_runtime_pty.py"
+        "test_designer_clipboard_radio_runtime_pty.py",
+        "test_designer_clipboard_button_runtime_pty.py"
       ],
-      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links. Actual F9 clipboard ListBox/RadioGroup fixtures separately compile and execute: first/second selection changes only its independent uppercase-derived numeric binding, preserved ListBox STATE and RadioGroup VALID handlers execute. Return instrumentation only; no all-handler or pixel/Windows claim."
+      "contract": "Seven existing types: real F2-created default controls and separate F12-loaded nondefault fixtures exercise Ctrl+C/X/V/Z/Y and exact F10 persisted models; detached clone and uppercase binding uniqueness have model/ComboBox inspector tests. Separate --popup mode opens F2 and activates these entries by mnemonic, including duplicated P/R cycling and Enter. This is popup keyboard dispatch, not mouse clicking, all properties/handlers or pixels/Windows. Source-identified execution remains in ledgers, not inferred from links. Actual F9 clipboard ListBox/RadioGroup fixtures separately compile and execute: first/second selection changes only its independent uppercase-derived numeric binding, preserved ListBox STATE and RadioGroup VALID handlers execute. Return instrumentation only; no all-handler or pixel/Windows claim. Actual F9 pasted PushButtons retain custom Action, Focus, bracket style and accelerator text; compiled runtime Enter on first or Tab+Enter on second runs retained Action/Focus and returns true. Accelerator activation itself is not accepted by this probe."
     },
     "DSN-001": {
       "expected_label": "Label (SAY)",

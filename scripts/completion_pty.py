@@ -64,6 +64,7 @@ CASES = {
     'designer-clipboard-case': ('test_designer_clipboard_pty.py', ['--case-insensitive'], 120),
     'designer-clipboard-list-runtime': ('test_designer_clipboard_list_runtime_pty.py', [], 120),
     'designer-clipboard-radio-runtime': ('test_designer_clipboard_radio_runtime_pty.py', [], 120),
+    'designer-clipboard-button-runtime': ('test_designer_clipboard_button_runtime_pty.py', [], 120),
     'designer-clipboard-combo-runtime': ('test_designer_clipboard_combo_runtime_pty.py', [], 120),
     'designer-clipboard-get-runtime': ('test_designer_clipboard_get_runtime_pty.py', [], 120),
     'designer-clipboard-runtime': ('test_designer_clipboard_runtime_pty.py', [], 120),

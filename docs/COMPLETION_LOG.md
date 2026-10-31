@@ -2452,3 +2452,11 @@ Export4ddf0b3 strippedSHAad4b24b8ed4e6cecaf90ea63624e2e9145696b5d9fee5336d8a0049
 PASSmismobinariohashinalterado,dospasosacotadossinretry. Manifest/logs
 linux-candidate-spaces-frames.json. Localcandidate6temporal,no entrega
 release/licencia/Windows/instalador/nuevos pixels/matriz135global.
+
+## 31 octubre pasted PushButton actual F9
+
+NuevaPTY12checks:firstEnter/TabsecondEnter ejecutan customAction/Focus
+yDlgdevuelve.T.;F9retieneambosAction/Focus/style/acceleratortext.
+ExploratorioEnterPASS. PrimerharnessesperabaAltQejecutaseautomatico,
+pero coreAcceleratorseleccionafoco; no productfix niaceptacionacelerador.
+Runner136=135PTY+guard,no136funciones. Noallhandlers/pixels/Windows.
