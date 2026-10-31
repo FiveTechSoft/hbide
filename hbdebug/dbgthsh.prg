@@ -113,7 +113,8 @@ METHOD addWindows( hHash, nRow ) CLASS HBDbHash
    // calculate max key length
    nKeyLen := 0
    hb_HEval( hHash, {| k, v, p | HB_SYMBOL_UNUSED( k ), HB_SYMBOL_UNUSED( v ), nKeyLen := Max( nKeyLen, Len( ::hashName + HashKeyString( hHash, p ) ) + 2 ) } )
-   oCol:width := nKeyLen
+   // Long keys and nested paths must not consume the value/editor column.
+   oCol:width := Min( nKeyLen, Max( 1, Int( ( oWndSets:nRight - oWndSets:nLeft - 2 ) / 2 ) ) )
    oCol:DefColor := { 1, 2 }
    nColWidth := oCol:Width
 

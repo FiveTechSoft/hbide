@@ -1,0 +1,9 @@
+PASS hash debugger stopped
+PASS hash structured top inspector opens
+PASS hash top inspector refuses replacement
+FAIL hash nested first scalar shows41
+FAIL hash nested typed Esc keeps41
+PASS hash nested invalid expression rejected
+hash actual '{"long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_"=>{"one"=>41, "two"=>2}}'
+PASS hash nested edit affects resumed debuggee exact value
+TOTAL 5 PASS 2 FAIL; evidence /tmp/hbide-source-run-ky9__9k4

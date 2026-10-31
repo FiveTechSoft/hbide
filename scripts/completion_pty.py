@@ -96,6 +96,7 @@ CASES = {
     'debug-setter-failure': ('test_debug_setter_failure_pty.py', [], 120),
     'debug-getter-failure': ('test_debug_getter_failure_pty.py', [], 120),
     'debug-method-only-object': ('test_debug_method_only_object_pty.py', [], 120),
+    'debug-long-hash-key': ('test_debug_long_hash_key_pty.py', [], 120),
     'debug-empty-structures': ('test_debug_empty_structures_pty.py', [], 120),
     'debug-readonly-depth': ('test_debug_readonly_depth_pty.py', [], 120),
     'debug-structured-depth': ('test_debug_structured_depth_pty.py', [], 120),

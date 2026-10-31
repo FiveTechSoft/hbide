@@ -2005,3 +2005,15 @@ son dos fixtures, no dos funciones ni109aceptaciones globales.
 Paste muestra nVar2, Undo muestra NVAR1, JSONRedo igual a Paste. Capturas
 completas inspeccionadas, incluidos bordes inferiores. Las dos ComboBox
 se solapan por el offset de una celda previsto, sin prometer no solapamiento.
+
+## 31 octubre: claves largas no deben ocultar el valor del hash
+
+Fixture hash con clave de144bytes y hash hijo. Antes5PASS2FAIL: edita y el
+programa reanuda con41, pero el inspector no muestra41 ni permite comprobar
+visualmente el Cancel de99, porque la columna de ruta toma todo el ancho y
+la columna de valor queda negativa. Log y pantalla previos retenidos.
+La columna de clave ahora ocupa como maximo la mitad del ancho disponible;
+la clave real no cambia, solo se recorta su representacion. No es scrolling
+horizontal nuevo ni cambio de claves. La primera prueba exploratoria tambien
+exigia el sufijo de un titulo largo, que ya se trunca a proposito: se retiro
+esa expectativa de titulo, no se presenta como defecto de producto.
