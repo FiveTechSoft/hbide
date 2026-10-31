@@ -458,6 +458,10 @@ procedure Main()
    Check( "unique var skips used", DsnUniqueVar( { { "variable" => "cVar1" } }, "cVar" ) == "cVar2" )
    Check( "unique var fills gaps", DsnUniqueVar( { { "variable" => "cVar1" }, { "variable" => "cVar2" } }, "cVar" ) == "cVar3" )
 
+   Check( "unique var skips mixed case", DsnUniqueVar( { { "variable" => "CVAR1" }, { "variable" => "cVaR2" } }, "cVar" ) == "cVar3" )
+   Check( "unique var case-insensitive prefix", DsnUniqueVar( { { "variable" => "nVar1" } }, "NVAR" ) == "NVAR2" )
+   Check( "unique var different names remain distinct", DsnUniqueVar( { { "variable" => "cVar10" }, { "variable" => "other" } }, "cVar" ) == "cVar1" )
+
    // the generator declares a shared variable only once
    hModel = { "name" => "Dup", "caption" => "Dup", "width" => 40, "height" => 12, "color" => "W+/W", "controls" => { ;
       { "type" => "get", "row" => 1, "col" => 2, "variable" => "cName", "width" => 10 }, ;

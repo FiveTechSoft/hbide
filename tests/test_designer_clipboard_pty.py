@@ -3,7 +3,7 @@ import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re,js
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
-exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
+exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[];folded='--case-insensitive' in sys.argv
 for kind in ['combobox']:
  modelpath=work/'mydialog.json'
  pid,fd=pty.fork()
@@ -40,6 +40,7 @@ for kind in ['combobox']:
           8:('valid',"CheckChoice( nVar1 )"),
           9:('focus',"OnFocus( 'quoted' )"),
           10:('state',"OnState( nVar1 )")}
+  if folded:values[3]=('variable','NVAR1')
   for field in range(2,11):
    send(b'\x1b[B',.1)
    if field in values:
@@ -52,7 +53,7 @@ for kind in ['combobox']:
   send(b'\x03');send(b'\x16');send(b'\x16')
   pasted=model();c=pasted['controls']
   check('Copy plus two Paste produces three controls',len(c)==3)
-  check('pasted variables all unique',len({x['variable'] for x in c})==3)
+  check('pasted variables all unique',len({x['variable'].upper() for x in c})==3)
   preserved=[k for k in original if k not in ['row','col','variable']]
   check('Paste preserves nondefault items dimensions and four handlers',all(all(x[k]==original[k] for k in preserved) for x in c))
   check('Paste offsets exact row col',[(x['row'],x['col']) for x in c]==[(min(original['row']+i,baseline['height']-2-original['height']),original['col']+i) for i in range(3)])
@@ -65,7 +66,7 @@ for kind in ['combobox']:
   send(b'\x1a');restored=model()
   check('Undo Cut restores complete model',restored['controls']==c)
   send(b'\x16');clone=model()['controls']
-  check('Paste after Cut Undo creates unique variable',len(clone)==4 and len({x['variable'] for x in clone})==4)
+  check('Paste after Cut Undo creates unique variable',len(clone)==4 and len({x['variable'].upper() for x in clone})==4)
   check('clipboard preserves cut control fields',all(clone[-1][k]==c[-1][k] for k in preserved))
   send(b'\x03')
   send(b'\x1b[17~')
@@ -76,7 +77,7 @@ for kind in ['combobox']:
   check('source edit after Copy changes only selected items',mutated[-1]['items']=='Mutated,Source,Only' and mutated[:-1]==clone[:-1])
   send(b'\x16');detached=model()['controls']
   check('clipboard is detached from later source item mutation',len(detached)==5 and detached[-1]['items']==original['items'] and detached[:-1]==mutated)
-  check('detached paste keeps four handlers and unique binding',len({x['variable'] for x in detached})==5 and all(detached[-1][key]==value for key,value in values.values()))
+  check('detached paste keeps four handlers and unique binding',len({x['variable'].upper() for x in detached})==5 and all(detached[-1][key]==value for key,value in values.values() if key!='variable'))
   send(b'\x1a');check('Undo detached Paste preserves edited source',model()['controls']==mutated)
   send(b'\x1a');check('Undo source item edit restores full preedit model',model()['controls']==clone)
 

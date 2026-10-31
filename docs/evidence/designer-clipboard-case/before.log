@@ -1,0 +1,19 @@
+PASS ComboBox created in real designer
+PASS inspector saved nondefault items and four handlers exactly
+PASS initial ComboBox model exact type
+PASS Copy plus two Paste produces three controls
+FAIL pasted variables all unique
+PASS Paste preserves nondefault items dimensions and four handlers
+PASS Paste offsets exact row col
+PASS Undo removes only last pasted control
+PASS Redo restores complete pasted model
+PASS Cut selected control removes only last exact model
+PASS Undo Cut restores complete model
+FAIL Paste after Cut Undo creates unique variable
+PASS clipboard preserves cut control fields
+PASS source edit after Copy changes only selected items
+PASS clipboard is detached from later source item mutation
+FAIL detached paste keeps four handlers and unique binding
+PASS Undo detached Paste preserves edited source
+PASS Undo source item edit restores full preedit model
+TOTAL 15 PASS 3 FAIL; evidence /tmp/hbide-source-run-57anyb9i

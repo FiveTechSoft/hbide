@@ -1,0 +1,51 @@
+{
+  "name": "MyDialog",
+  "caption": "My Dialog",
+  "width": 40,
+  "height": 12,
+  "color": "W+/W",
+  "colortext": "W+",
+  "colorback": "W",
+  "colorfocus": "W+/B",
+  "controls": [
+    {
+      "type": "combobox",
+      "row": 4,
+      "col": 15,
+      "variable": "NVAR1",
+      "items": "Alpha,Quoted 'item',Omega",
+      "width": 20,
+      "height": 6,
+      "when": "CanUse( 'combo', .T. )",
+      "valid": "CheckChoice( nVar1 )",
+      "focus": "OnFocus( 'quoted' )",
+      "state": "OnState( nVar1 )"
+    },
+    {
+      "type": "combobox",
+      "row": 4,
+      "col": 16,
+      "variable": "nVar1",
+      "items": "Alpha,Quoted 'item',Omega",
+      "width": 20,
+      "height": 6,
+      "when": "CanUse( 'combo', .T. )",
+      "valid": "CheckChoice( nVar1 )",
+      "focus": "OnFocus( 'quoted' )",
+      "state": "OnState( nVar1 )"
+    },
+    {
+      "type": "combobox",
+      "row": 4,
+      "col": 17,
+      "variable": "nVar2",
+      "items": "Alpha,Quoted 'item',Omega",
+      "width": 20,
+      "height": 6,
+      "when": "CanUse( 'combo', .T. )",
+      "valid": "CheckChoice( nVar1 )",
+      "focus": "OnFocus( 'quoted' )",
+      "state": "OnState( nVar1 )"
+    }
+  ]
+}

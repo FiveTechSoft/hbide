@@ -1986,3 +1986,16 @@ seleccion; se ancla ahora con Up hasta Row y Down hasta Items. No fue un
 fallo de producto. No se ejecutan esos handlers ni se renombran sus
 referencias internas al duplicar la variable enlazada. No todos los tipos,
 revision visual nueva ni Windows, y no cierra M4.
+
+## 31 octubre: Paste no debe compartir una variable por diferencias de caja
+
+Reproducido en IDE real: original NVAR1 escrito en inspector, Paste elegia
+nVar1. DsnVarUsed comparaba con distincion de mayusculas, pero Harbour no.
+El generador admite compartir variables del mismo tipo, asi que no se
+presenta como error de compilacion: se viola el contrato de enlace unico al
+pegar. Fixture mixto antes15PASS3FAIL; JSON y log retenidos en
+`docs/evidence/designer-clipboard-case/`. DsnVarUsed ahora compara Upper de
+ambos nombres. No cambia la opcion de compartir nombres escritos a mano,
+ni reescribe referencias dentro de handlers. Tres checks de modelo para
+mayusculas mixtas, prefijo mixto y nombre distinto; dos modos del mismo PTY
+son dos fixtures, no dos funciones ni109aceptaciones globales.

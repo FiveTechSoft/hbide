@@ -4148,7 +4148,7 @@ static function DsnVarUsed( aControls, cName )
    local oCtrl
 
    for each oCtrl in aControls
-      if HB_IsHash( oCtrl ) .and. hb_HGetDef( oCtrl, "variable", "" ) == cName
+      if HB_IsHash( oCtrl ) .and. Upper( hb_HGetDef( oCtrl, "variable", "" ) ) == Upper( cName )
          return .T.
       endif
    next

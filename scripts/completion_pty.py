@@ -60,6 +60,7 @@ CASES = {
     'run-source': ('test_run_source_pty.py', [], 120),
     'gui-roundtrip': ('test_gui_roundtrip_pty.py', [], 120),
     'combobox': ('test_combobox_pty.py', [], 120),
+    'designer-clipboard-case': ('test_designer_clipboard_pty.py', ['--case-insensitive'], 120),
     'designer-clipboard': ('test_designer_clipboard_pty.py', [], 120),
     'designer': ('test_designer_pty.py', [], 120),
     'editor-mouse-utf8-terminal': ('test_editor_mouse_utf8_pty.py', ['--utf8-terminal'], 120),
