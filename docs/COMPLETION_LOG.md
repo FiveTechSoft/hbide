@@ -1879,3 +1879,8 @@ STATEahora sincroniza si item cambia O GETvacio; path manual no vacio conserva
 prioridad al solo enfocar lista. Mismo fix en Openfile/Openproject, sin cambiar
 250chars ni politica de SaveAs. Primer item no alfabetico: no asumir Directory
 ordenada. Pruebas comparan fichero/proyecto exacto y bytes tras editar/guardar.
+
+Regresion del primer fixcf03a1d:Mouse14PASS peroKeyboard12/14 por nombre corto
+tras largo enGET (aaa.prgith spaces.prg). STATEinicial expuso cola deGET no
+rellenada; VarPut ahoraPadR250antesAssign/Display, conserva ancho del buffer.
+No se presenta cf03a1d como verde global; ambos intentos quedan en ledger.

@@ -1048,7 +1048,7 @@ METHOD ProjectOpen() CLASS HbIde
                ( cLastLB := oListBox:buffer, ;
                  If( Len( cLastLB ) > 250, ;
                      ( oGetName:VarPut( Space( 250 ) ), oGetName:Display() ), ;
-                     ( oGetName:VarPut( cLastLB ), oGetName:Assign(), oGetName:Display() ) ) ), ) }
+                     ( oGetName:VarPut( PadR( cLastLB, 250 ) ), oGetName:Assign(), oGetName:Display() ) ) ), ) }
 
    with object oListBox := ATail( GetList ):Control  
       :CapRow = nT + 4   
@@ -1242,7 +1242,7 @@ METHOD OpenFile() CLASS HbIde
                ( cLastLB := oListBox:buffer, ;
                  If( Len( cLastLB ) > 250, ;
                      ( oGetName:VarPut( Space( 250 ) ), oGetName:Display() ), ;
-                     ( oGetName:VarPut( cLastLB ), oGetName:Assign(), oGetName:Display() ) ) ), ) }
+                     ( oGetName:VarPut( PadR( cLastLB, 250 ) ), oGetName:Assign(), oGetName:Display() ) ) ), ) }
 
    with object oListBox := ATail( GetList ):Control  
       :CapRow = nT + 4   
