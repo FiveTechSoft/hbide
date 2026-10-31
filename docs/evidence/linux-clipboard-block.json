@@ -1,0 +1,119 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "aed4a8ac9dc897149c351d970d472f2a6060d3fc",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ac4bffee8e8c0a923940323713a6bee0d40a4f0b17c48542c9ebe78c611a2729",
+      "binary_sha256": "eab3c0d3b3d446e5f6f76f043e918cff8f1e9e2a819028d449fecd0df1b22ae4",
+      "build_receipt": "/tmp/hbide-clipboard-block-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6886592beabf685b16cf785975ea8d326cc49a1f0ce4c1d90d03d9960b801f24",
+      "case": "clipboard-block-multidoc",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_clipboard_block_multidoc_pty.py"
+      ],
+      "started": 1793430428.0877097,
+      "seconds": 19.76,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "85802744523168aaf84622697e98cf5275fd8a5595d4510c2d8b7c210ad0ea26",
+      "log": "/tmp/hbide-clipboard-block-clean/clipboard-block-multidoc-1793430428087705611.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "aed4a8ac9dc897149c351d970d472f2a6060d3fc",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ac4bffee8e8c0a923940323713a6bee0d40a4f0b17c48542c9ebe78c611a2729",
+      "binary_sha256": "eab3c0d3b3d446e5f6f76f043e918cff8f1e9e2a819028d449fecd0df1b22ae4",
+      "build_receipt": "/tmp/hbide-clipboard-block-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6886592beabf685b16cf785975ea8d326cc49a1f0ce4c1d90d03d9960b801f24",
+      "case": "clipboard-close",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_clipboard_close_pty.py"
+      ],
+      "started": 1793430447.8463664,
+      "seconds": 14.3,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1748cca360147228158bea743e6226bdc251bcd07af72b0ba70fa5d4a6431e2f",
+      "log": "/tmp/hbide-clipboard-block-clean/clipboard-close-1793430447846362805.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "aed4a8ac9dc897149c351d970d472f2a6060d3fc",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ac4bffee8e8c0a923940323713a6bee0d40a4f0b17c48542c9ebe78c611a2729",
+      "binary_sha256": "eab3c0d3b3d446e5f6f76f043e918cff8f1e9e2a819028d449fecd0df1b22ae4",
+      "build_receipt": "/tmp/hbide-clipboard-block-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6886592beabf685b16cf785975ea8d326cc49a1f0ce4c1d90d03d9960b801f24",
+      "case": "clipboard-multidoc",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_clipboard_multidoc_pty.py"
+      ],
+      "started": 1793430462.143118,
+      "seconds": 11.74,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "37c53b88e21c615212a8f158592175b73b27f3b1b23539b5533dd62b973233b1",
+      "log": "/tmp/hbide-clipboard-block-clean/clipboard-multidoc-1793430462143113716.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "aed4a8ac9dc897149c351d970d472f2a6060d3fc",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ac4bffee8e8c0a923940323713a6bee0d40a4f0b17c48542c9ebe78c611a2729",
+      "binary_sha256": "eab3c0d3b3d446e5f6f76f043e918cff8f1e9e2a819028d449fecd0df1b22ae4",
+      "build_receipt": "/tmp/hbide-clipboard-block-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6886592beabf685b16cf785975ea8d326cc49a1f0ce4c1d90d03d9960b801f24",
+      "case": "clipboard-spaces",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_clipboard_spaces_pty.py"
+      ],
+      "started": 1793430473.8849452,
+      "seconds": 9.29,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "db599e487f4a446007a7e250cc02615408cd1c600a43fec0f31f29bc43554ca9",
+      "log": "/tmp/hbide-clipboard-block-clean/clipboard-spaces-1793430473884940953.log"
+    }
+  ],
+  "logs": {
+    "clipboard-block-multidoc-1793430428087705611.log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-d6p5dqkc\n",
+    "clipboard-close-1793430447846362805.log": "PASS Open source fixture\nPASS Cut source line saves remaining bytes exact\nPASS closed cut source returns to noname\nPASS Paste retains cut clipboard after source closes\nPASS Undo paste isolated after source closes\nPASS Redo paste after source closes exact\nPASS new document opened\nPASS latest Copy replaces shared clipboard in new document\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-21wkz8i4\n",
+    "clipboard-multidoc-1793430462143113716.log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste uses source clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores pasted bytes\nPASS source document remained unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-z85kipdu\n",
+    "clipboard-spaces-1793430473884940953.log": "PASS Open requested fixture\nPASS Paste copied three spaces as a real third line\nPASS Undo space-only paste exact\nPASS Redo space-only paste exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ff0s_8is\n"
+  },
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "aed4a8ac9dc897149c351d970d472f2a6060d3fc",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "ac4bffee8e8c0a923940323713a6bee0d40a4f0b17c48542c9ebe78c611a2729",
+    "binary_sha256": "eab3c0d3b3d446e5f6f76f043e918cff8f1e9e2a819028d449fecd0df1b22ae4",
+    "built_at": 1793430428.0874465
+  },
+  "limits": "Linux multiline selected internal clipboard Copy/Cut/Undo across documents, source mixed EOL and destination LF boundary. No product change, model-suite run, visual, OS clipboard, Windows or full IDE acceptance."
+}

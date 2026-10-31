@@ -2635,4 +2635,7 @@ Undo restores mixed EOL and subsequent destination Paste retains block.
 Exploratory9PASS, no productfix. First Cut harness started on row3 after
 switching back; corrected two Up keys before checking actual range.
 Runner147=146PTY modes plus guard. No OSclipboard/Windows/pixels/global.
-Clean pending.
+
+Cleanaed4a8a: Block9, Close8, Multidoc6 and Spaces4 pass same binary
+eab3c0d3 without retry;15inventory33docs pass. No new model run.
+Ledger docs/evidence/linux-clipboard-block.json.
