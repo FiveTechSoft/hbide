@@ -3756,3 +3756,12 @@ retry. Native120x40actualshortcutsecond.prg/XSECOND/noescapetail/fullborders/
 F2exactsecondotherfilesunchanged inspected. linux-prevdoc-shortcut.json.
 No modelrerun/otherterminals/nativeWindows/global/hitoclosed. Q108historical
 NoCtrlShiftF6claimretained;newdispatchShiftlinkseparate.
+
+## Q110 - compact xterm-256color previous-document mode
+
+New--compact-256 mode runs all8PrevDocchecks at80x25TERM=xterm-256color.
+Source0b2e615samebinary:compact8+baselinexterm120x40 8+NavMultigap3+
+EditorTAB4=23checksPASS32inventory34docs,no failure/retry/interruption.
+linux-prevdoc-compact-256.json. No productfix/pixels/modelrerun/allterminals/
+Windows/global/hitoclosed. HBPinline#explorationnotbug:hbmk2itselfrejects
+#.prg, no parsingchange.
