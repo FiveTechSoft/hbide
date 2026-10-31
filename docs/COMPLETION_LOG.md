@@ -2098,3 +2098,8 @@ probaba ediciones exactas en1/21/40, no se afirma corrupcion. Ahora repinta
 ShowCaption tras SetCaption en ambos inspectores. No cambio de navegacion,
 reordenacion, edicion ni estructura del contenedor. Logs/pantallas previos
 retenidos. Dos modos del mismo harness no son dos funciones nuevas.
+
+8cd5a01limpio HashNav11ArrayNav11LongHash7LongArray7PASS mismoIDE,
+20modelos15inventario33docsPASS. Native120x40hashEndtitulo40 yresaltado40,
+Home/PageDowntitulo36yresaltado36 inspeccionados completos;Resumeexacto.
+PTY80x25PageDownmueve1a21; no se presupone21en todas las geometrias.
