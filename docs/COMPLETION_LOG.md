@@ -3616,3 +3616,5 @@ contextarray row fixed. Two model expectations for deletion corrected:
 without original openingblock, stray */ does not put following line inblock.
 Final local151repaintPASS and2PTY8checksPASS; clean acceptance follows.
 No complete preprocessor/Windows claim.
+
+Q99 clean acceptance240471fbcc344725f1dfc79c70a5efacbf9bd917 binaryd1cb74f8908143c3f8c9f853c7a755d489bd5991f04aa0fd51387cc5398f6074:20PTYchecks(Multiline4/Gap4/Operator5/Variants7),22models27inventory34docsPASS;no fail/retry in clean acceptance. Nativegap+closingmagenta/literalyellow/followingfunction+returnscyan/fullbordersinspected/F2exact. Earlierdevelopmentfaults recorded above/evidence. C19predatesfix,Q87separate84e58b3.
