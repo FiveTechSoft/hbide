@@ -2538,3 +2538,13 @@ Runner141=140PTY modes plus guard.
 Clean8f256d5: DeleteSelection6, ReloadSelection4, Clipboard4 and breakpoint
 delete suite pass on same binary95a08995 without retry;21models,15inventory,
 33docs pass. Ledger docs/evidence/linux-delete-selection.json.
+
+## 31 October candidate with Q34-Q38 editor fixes
+
+Export2f13366 stripped SHA0cefac5f35df4fc1d716603511230fcc221b5cedc05e0077889de6d65f6ea55e.
+Eight standard smoke suites plus DeleteSelection6, ReloadSelection4,
+Clipboard4, Identity3, Boundary6 and Spaces10 pass on the exact candidate.
+Binary hash unchanged; two bounded steps without retries.
+Manifest/toolchain/dependencies/logs retained in linux-candidate-editor-selection.json.
+Local temporary candidate7, not release/installer/Windows/license clearance,
+full141-mode regression, new determinism proof or new visual acceptance.
