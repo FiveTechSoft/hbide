@@ -243,6 +243,7 @@ METHOD SetsKeyPressed( nKey, oBrwSets, oWnd, cName, hHash ) CLASS HBDbHash
 
    ::aWindows[ ::nCurwindow ]:SetCaption( cName + "[" + hb_ntos( oBrwSets:cargo[ 1 ] ) + ".." + ;
       hb_ntos( Len( hHash ) ) + "]" )
+   ::aWindows[ ::nCurWindow ]:ShowCaption()
 
    RETURN Self
 

@@ -2088,3 +2088,13 @@ politica readonly. Pantallas y log previos retenidos.
 53e20eblimpio ObjectEmpty12+TopEmpty12+LongObject8PASS mismoIDE,
 20modelos15inventario33docsPASS. Native120x40ambasalertas inspeccionadas,
 bordes completos y Resume valores{}y{=>}exactos. NoWindows/cierreM3.
+
+## 31 octubre: titulo del inspector debe seguir el registro seleccionado
+
+Con40elementos End/PageDown movian y editaban el elemento correcto, pero
+el titulo seguia V[1..40]: SetCaption solo guarda texto, no repinta. Hash y
+array antes8/11 cada fixture, tres fallos de titulo; Resume completo ya
+probaba ediciones exactas en1/21/40, no se afirma corrupcion. Ahora repinta
+ShowCaption tras SetCaption en ambos inspectores. No cambio de navegacion,
+reordenacion, edicion ni estructura del contenedor. Logs/pantallas previos
+retenidos. Dos modos del mismo harness no son dos funciones nuevas.

@@ -1,0 +1,12 @@
+PASS hash debugger stopped
+PASS hash structured top inspector opens
+PASS hash top inspector refuses replacement
+FAIL End selects last hash record
+PASS last record edit visible
+FAIL PageDown at end stays at last record
+PASS Home selects first hash record
+PASS PageUp at first stays at first record
+FAIL PageDown caption follows selected record
+PASS PageUp returns first record
+PASS Resume container has exactly the three intended edits
+TOTAL 8 PASS 3 FAIL; evidence /tmp/hbide-source-run-v0952qac
