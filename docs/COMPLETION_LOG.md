@@ -1729,3 +1729,11 @@ Linux genera buildinfo.ch solo dentro del export e incluye hash de ese
 header en manifest. Smoke About confirma revision esperada, OK, documento
 dirty y Undo byte-exacto. Manifest distingue candidato de release no
 habilitado por avisos pendientes; no se habilita publicacion de paquetes.
+
+## 31 octubre: seleccion de palabra Unicode con TAB y EOL mixto
+
+Se añaden8checks al modelo EOL (149total): UTF8 café tras TAB usa posiciones
+de caracteres; escribir/Cut/Copy operan sobre la palabra exacta y conservan
+TAB/CRLF/LF, Undo/Redo restauran bytes, Copy limpia mark y clic logico sobre
+espacio quita seleccion previa. No declara gestos UTF8 nativos ni todas las
+reglas de identificador Unicode. Sin cambio de producto ni politica de fuente.
