@@ -3282,3 +3282,13 @@ and button. Runner188=187PTY+guard. Evidence
 linux-designer-dialog-caption-anchor.json follows. Ambiguous duplicate
 child captions and generated variable conflicts remain outside this fix.
 No Windows/global certification.
+
+## Q74 - Generated renamed GET binding lost live code anchor
+
+Reserved oDlg generates oDlg2 correctly but F5 searched original model
+name. Actual fixture before4PASS1FAIL after correcting exploratory
+harness suffix oDlg_2/left-field assumption. Generator returns its actual
+binding map for live lookup, preserving model/JSON. Reserved and mixed-type
+conflict model guards. Runner189=188PTY+guard. Evidence
+linux-designer-binding-anchor.json follows. Not all bindings/duplicate
+child captions/Windows/global.

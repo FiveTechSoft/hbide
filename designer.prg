@@ -1125,7 +1125,7 @@ return nil
 
 METHOD RefreshCodeView() CLASS HbDesigner
 
-   local hModel, cSig, oCtrl
+   local hModel, cSig, oCtrl, hBindings, cCode
 
    if ! ::lCodeView
       return nil
@@ -1140,10 +1140,11 @@ METHOD RefreshCodeView() CLASS HbDesigner
       cSig = hb_jsonEncode( hModel ) + "|" + hb_ntos( ::nSelected )
       if !( cSig == ::cCodeSig )
          ::cCodeSig    = cSig
-         ::aCodeLines  = hb_ATokens( StrTran( DsnGenCode( hModel ), Chr( 13 ), "" ), Chr( 10 ) )
+         cCode = DsnGenCode( hModel,,, @hBindings )
+         ::aCodeLines  = hb_ATokens( StrTran( cCode, Chr( 13 ), "" ), Chr( 10 ) )
          oCtrl = If( ::nSelected >= 1 .and. ::nSelected <= Len( ::aControls ), ;
                      ::aControls[ ::nSelected ], NIL )
-         ::nCodeAnchor = DsnCodeFindLine( ::aCodeLines, oCtrl )
+         ::nCodeAnchor = DsnCodeFindLine( ::aCodeLines, oCtrl, hb_HGetDef( hBindings, ::nSelected, "" ) )
          ::nCodeTop    = DsnCodeViewTop( ::nCodeAnchor, Len( ::aCodeLines ), MaxRow() - 3 )
       endif
    recover
@@ -2891,7 +2892,7 @@ return cResult
 // generate the .prg that rebuilds the dialog with HBWindow.
 // hModel is the hash produced by DsnBuildModel() (or read from JSON)
 
-function DsnGenCode( hModel, nSkipped, nConflicts )
+function DsnGenCode( hModel, nSkipped, nConflicts, hBindings )
 
    local cCode := ""
    local oCtrl, n, aSize, cVar, cType, lNew
@@ -3134,6 +3135,8 @@ function DsnGenCode( hModel, nSkipped, nConflicts )
       cCode += hb_eol()
       cCode += DsnFillAreaCode()
    endif
+
+   hBindings := hGenVars
 
 return cCode
 
@@ -4267,14 +4270,14 @@ return "exit"
 // line of its variable, else the line carrying its caption. 0 when neither
 // shows up (or no control is selected)
 
-function DsnCodeFindLine( aLines, oCtrl )
+function DsnCodeFindLine( aLines, oCtrl, cGeneratedVar )
 
    local cVar, cCaption, n
 
    if oCtrl == NIL
       return 0
    endif
-   cVar     = hb_HGetDef( oCtrl, "variable", "" )
+   cVar     = hb_defaultValue( cGeneratedVar, hb_HGetDef( oCtrl, "variable", "" ) )
    cCaption = hb_HGetDef( oCtrl, "caption", "" )
    if ! Empty( cVar )
       for n = 1 to Len( aLines )

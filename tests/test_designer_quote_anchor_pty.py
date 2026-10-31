@@ -5,6 +5,7 @@ parser=argparse.ArgumentParser()
 parser.add_argument('--mixed',action='store_true')
 parser.add_argument('--button',action='store_true')
 parser.add_argument('--dialog-caption',action='store_true')
+parser.add_argument('--reserved-binding',action='store_true')
 args=parser.parse_args()
 caption='He said "yes"' if not args.mixed else 'Say "yes" and '+"'no' ] "+chr(92)
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
@@ -32,16 +33,16 @@ for kind in ['button']:
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
  try:
   caption='Fixture' if args.dialog_caption else 'He said "yes"'
-  modelpath.write_text(json.dumps({'name':'Fixture','caption':'Fixture','width':60,'height':20,'controls':[{'type':'button' if args.button else 'say','row':1,'col':2,'caption':caption, 'accelerator':'Q'}]}))
+  modelpath.write_text(json.dumps({'name':'Fixture','caption':'Fixture','width':60,'height':20,'controls':[{'type':'get' if args.reserved_binding else ('button' if args.button else 'say'),'variable':'oDlg','width':12,'row':1,'col':2,'caption':caption, 'accelerator':'Q'}]}))
   pump(.8);send(b'\x1bo');send(b's',.3);send(b'\x1b[24~',.3)
   send(b'\x19'+str(modelpath).encode());send(b'\r');send(b'\r',.3);send(b'\t')
-  check('Loaded quoted control selected',caption in screen.text())
+  check('Loaded fixture retains original binding/caption',json.loads(modelpath.read_text())['controls'][0]['variable']=='oDlg' if args.reserved_binding else caption in screen.text())
   send(b'\x1b[15~',.4)
   check('F5 live view visible','live view' in screen.text())
-  rows=[r for r,g in enumerate(screen.g) if ('PUSHBUTTON' if args.button else 'oDlg:Say(') in ''.join(g)]
+  rows=[r for r,g in enumerate(screen.g) if (' GET oDlg2 ' if args.reserved_binding else ('PUSHBUTTON' if args.button else 'oDlg:Say(')) in ''.join(g)]
   check('Live view includes generated selected control',bool(rows))
   check('Generated control is highlighted current control',bool(rows) and any(bg==6 for fg,bg in screen.at[rows[0]][64:115]))
-  check('Opening view leaves JSON exact',json.loads(modelpath.read_text())['controls'][0]['caption']==caption)
+  check('Opening view leaves JSON exact',json.loads(modelpath.read_text())['controls'][0]['caption']==caption and json.loads(modelpath.read_text())['controls'][0]['variable']=='oDlg')
 
  finally:
   w=os.waitpid(pid,os.WNOHANG)

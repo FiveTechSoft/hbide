@@ -10,7 +10,7 @@ static s_nPassed := 0, s_nFailed := 0
 
 procedure Main()
 
-   local hModel, cCode, cJson, hBack, aSize
+   local hModel, cCode, cJson, hBack, aSize, hBindings
    local oD, oD2, aRect, nMaxRow, nMaxCol, oCtrl, cCellRef, cCellNow, nI, nJ
    local oDlg, nCell, cBefore, cAfter, hS0, hS1, aU, aR, hT, oBtn
 
@@ -60,6 +60,15 @@ procedure Main()
    cCode := DsnGenCode(hModel)
    nI := DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",1])
    Check("caption same as dialog anchors button not constructor",nI>0.and."PUSHBUTTON"$hb_ATokens(cCode,hb_eol())[nI])
+   hModel := { "name"=>"Binding", "controls"=>{ { "type"=>"get", "row"=>1,"col"=>2,"variable"=>"oDlg","width"=>12 } } }
+   cCode := DsnGenCode(hModel,,, @hBindings)
+   nI := DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",1],hBindings[1])
+   Check("reserved generated binding anchors exact GET without model mutation",nI>0.and." GET oDlg2 "$hb_ATokens(cCode,hb_eol())[nI].and.hModel["controls",1,"variable"]=="oDlg")
+   hModel["controls"] := { { "type"=>"get", "row"=>1,"col"=>2,"variable"=>"shared","width"=>12 }, ;
+      { "type"=>"checkbox","row"=>3,"col"=>2,"variable"=>"shared","caption"=>"Check" } }
+   cCode := DsnGenCode(hModel,,, @hBindings)
+   nI := DsnCodeFindLine(hb_ATokens(cCode,hb_eol()),hModel["controls",2],hBindings[2])
+   Check("type-conflict generated binding anchors second control",nI>0.and." GET shared2 CHECKBOX"$hb_ATokens(cCode,hb_eol())[nI].and.hModel["controls",2,"variable"]=="shared")
    // model -> JSON -> model round trip
    hModel = { "name"     => "Customer", ;
               "caption"  => "Customer data", ;
