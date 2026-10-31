@@ -1853,3 +1853,11 @@ Se elimina una copia, sin cambio de producto:141checks en vez de149ejecuciones.
 Los149historicos no representan149casos distintos. Se mantienen los8checks
 UTF8word una vez, las pruebasPTY y capturas nativas independientes. Se repite
 suite20modelos actual; no se reescribe evidencia historica ni se infla cobertura.
+
+## 31 octubre: UTF8 raton Enter/Backspace/Copy/Cut
+
+Los dos modos de terminal simulado ahora tienen17checks cada uno: se añaden
+Enter/Backspace/CopyPaste/Cut y su Undo, comparando fixture completo BOM/TAB/
+acentos/CRLF/LF. Paste conserva contrato de insertar debajo de linea, no se
+convierte a pegar en cursor por inferencia. Datos exactos, no nuevos pixels ni
+Windows. Conteo de modos no equivale a dos funciones ni toda matriz global.
