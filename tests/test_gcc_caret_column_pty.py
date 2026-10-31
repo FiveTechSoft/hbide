@@ -1,8 +1,8 @@
 """Real IDE Edit-menu dispatch. Linux PTY, not visual certification."""
 import shlex, shutil, argparse
 import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
-parser=argparse.ArgumentParser();parser.add_argument('--column-mode',choices=['default','byte','tab4','tab16','no-caret'],default='default');args=parser.parse_args()
-flags={'default':[], 'byte':['-fdiagnostics-column-unit=byte'], 'tab4':['-ftabstop=4'], 'tab16':['-ftabstop=16'], 'no-caret':['-fno-diagnostics-show-caret']}[args.column_mode]
+parser=argparse.ArgumentParser();parser.add_argument('--column-mode',choices=['default','byte','tab4','tab16','no-caret','color'],default='default');args=parser.parse_args()
+flags={'default':[], 'color':['-fdiagnostics-color=always'], 'byte':['-fdiagnostics-column-unit=byte'], 'tab4':['-ftabstop=4'], 'tab16':['-ftabstop=16'], 'no-caret':['-fno-diagnostics-show-caret']}[args.column_mode]
 ROWS, COLS = 40, 120
 BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
 class Scr:

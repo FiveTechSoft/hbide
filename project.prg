@@ -172,6 +172,8 @@ FUNCTION HBIDEProjectDiagnostics( cOutput, cRoot )
    aOutput := hb_ATokens( cOutput, Chr(10) )
    FOR EACH cLine IN aOutput
       nOutput++
+      // Compiler color controls are presentation, not filename/severity.
+      cLine := HBIDEProjectDiagnosticText( cLine )
       cFile := ""; cRow := ""; cCol := ""; cText := ""
       // Harbour: path/name.prg(123) Error E0020 ...
       // Parentheses can be part of a directory or filename. Only (digits)
@@ -228,15 +230,36 @@ FUNCTION HBIDEProjectDiagnostics( cOutput, cRoot )
          iif( Left( Upper( cText ), 7 ) == "WARNING", "warning", "" ) )
       IF ! Empty( cFile ) .AND. ! Empty( cLevel ) .AND. Val( cRow ) > 0
          h := { "path" => HBIDEProjectPath( cRoot, cFile ), "line" => Val( cRow ), ;
-            "column" => Max( 1, Val( cCol ) ), "level" => cLevel, "text" => AllTrim( cText ), "raw" => cLine }
+            "column" => Max( 1, Val( cCol ) ), "level" => cLevel, "text" => AllTrim( cText ), "raw" => aOutput[ nOutput ] }
          IF nOutput + 2 <= Len( aOutput ) .AND. ! Empty( cCol )
             h[ "column" ] := HBIDEProjectCaretColumn( h[ "path" ], h[ "line" ], ;
-               h[ "column" ], aOutput[ nOutput + 1 ], aOutput[ nOutput + 2 ] )
+               h[ "column" ], HBIDEProjectDiagnosticText( aOutput[ nOutput + 1 ] ), ;
+               HBIDEProjectDiagnosticText( aOutput[ nOutput + 2 ] ) )
          ENDIF
          AAdd( a, h )
       ENDIF
    NEXT
    RETURN a
+
+// Remove only GCC-style CSI color/reset (m) and erase-line (K) controls.
+// Unknown/malformed escape sequences remain data, not an execution request.
+STATIC FUNCTION HBIDEProjectDiagnosticText( cText )
+   LOCAL cOut := "", n := 1, nEnd, c
+   DO WHILE n <= Len( cText )
+      IF SubStr( cText, n, 2 ) == Chr(27) + "["
+         nEnd := n + 2
+         DO WHILE nEnd <= Len(cText) .AND. SubStr(cText,nEnd,1) $ "0123456789;"
+            nEnd++
+         ENDDO
+         c := SubStr(cText,nEnd,1)
+         IF nEnd <= Len(cText) .AND. ( c == "m" .OR. c == "K" )
+            n := nEnd + 1
+            LOOP
+         ENDIF
+      ENDIF
+      cOut += SubStr(cText,n++,1)
+   ENDDO
+RETURN cOut
 
 // Resolve only from an exact ASCII source rendering plus caret. Numeric
 // columns can be bytes or display cells with compiler-selected tab stops.

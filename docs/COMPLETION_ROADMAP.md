@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q64 | GCC con colorANSI no aparecía enMessages. | GCCrealcoloralways antes2PASS4FAIL; normalizaciónacotadaCSI m/K sóloparseo,rawintacto. Aceptación linux-gcc-colored-diagnostics.json; no flagsHBP/visorOutput/ANSIgeneral/Windows. |
 | Q63 | Literal con apertura backtick y cierre apóstrofo contaminaba comentarios. | FixtureHarbourválido, antes2PASS2FAIL. Pintado/scanner/navegación reconocen pareja; aceptación linux-editor-backtick-literal.json. No lexercompleto/Windows. |
 | Q62 | Texto#pragma begindump en#define ocultaba funciones reales. | Fixturecompilado, antes1PASS2FAIL. Matchdirectivaexacta,no substring. Aceptación/evidenciaseparada linux-navigation-pragma-macro.json; no preprocesadorcompleto/Windows. |
 | Q61 | CandidatoLinux15 incluyeQ59/Q60. | Exportf440946 stripped80eca2c5;8smokes+Bracket4/BracketVariants7/NavArray3/EscapeVariants7/Caret6PASSmismobinario,2pasossinreintentos. linux-candidate-bracket-navigation.json. TemporalNOrelease/Windows/global/licencias/instalador/nuevospixels. |

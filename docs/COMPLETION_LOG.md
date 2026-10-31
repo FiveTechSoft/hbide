@@ -3179,3 +3179,11 @@ fixture localc:=`/*literal' leakedblockstateintoreturn. Before2PASS2FAIL,
 F2bytesalreadyexact. Scanner/painterandnavigationrecognizequotepair;
 modelguardsincludeactualcommentafterliteral. Runner179=178PTY+guard.
 Cleanacceptance/nativepixelsfollowinevidence;notfulllexer/Windows.
+
+## Q64 - GCC colored diagnostics disappeared from Messages
+
+RealGCC-fdiagnostics-color=always TAB/colonpathbefore2PASS4FAIL;source
+bytesintact. Parse-onlynormalizationremovesCSI m/K,keepsraworiginal;
+normalizescaret/renderbeforeQ58mapping. No HBPflagchange,nogeneralANSI
+terminalemulation/Outputviewerfixclaim. Runner180=179PTY+guard. Clean
+acceptance/nativeevidence linux-gcc-colored-diagnostics.json follows.
