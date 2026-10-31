@@ -3785,3 +3785,13 @@ andcodeblock2scenarios.3completedbatches5+2+4sameidentitynofailure/retry/
 interruption.22models32inventory34docsPASS. linux-input-joint-q112.json.
 No fullmatrix/newfix/pixels/candidate/Windows/hitoclosed. Q104full212a0b7b82
 andC21df2e7a5remainseparateolderidentities.
+
+## Q113 - arithmetic bracket literal lexical context
+
+Harbourcompileracceptsbracketstringsafter*/%^;notclaimingruntimeoperand
+typevalidity. Before2PASS2FAILeditorfalseblock. Extendboundedcontext*/%^,
+7newguards4operators/gap/realcomment/completedvalueindex. Sourceb756ad2:
+6modes38PTYchecks22models180repaint32inventory34docsPASS,clean nofail/retry.
+Native120x40fourliteralsyellow/followingreturnsfunctioncyan/fullborders/
+F2exactinspected. linux-editor-bracket-arithmetic.json. No generallexer/
+runtimechange/Windows/global/hitoclosed. Q104/C21predateQ105+.

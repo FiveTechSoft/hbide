@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q113 | Bracketliteraltras*/%^noconfundecomentarios. | Antes2PASS2FAIL;7guards38PTY22models32inventory34docsPASSsourceb756ad2;nativeinspeccionado;linux-editor-bracket-arithmetic.json. No runtime/type/generallexer/Windows. |
 | Q112 | RegresióninputIDE/debugger trasGTkeymap. | 11modos163checks+2scenarios22models32inventory34docsPASSsourceec9d3a0;linux-input-joint-q112.json. No fullmatrix/newfix/pixels/candidate/Windows. |
 | Q111 | PrevDoc conunbufferinertebytes/dirty/cursor+Undo. | 3modos21checks32inventory34docsPASSsource433c773;linux-prevdoc-single.json. No productfix/pixels/models/Windows/global. |
 | Q110 | PrevDoc modo80x25xterm-256colorcon8checksíntegros. | 4modos23checks32inventory34docsPASSsource0b2e615;linux-prevdoc-compact-256.json. No productfix/pixels/modelrerun/allterminals/Windows. |
