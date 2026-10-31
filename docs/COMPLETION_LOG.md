@@ -3046,3 +3046,12 @@ PurePythoninvestigationonly,notintegratedorHarbouracceptance. Persisted
 linux-gcc-caret-investigation.jsonandtests/known_gaps/investigate_gcc_caret_mapping.py.
 Beforeintegrationmustverifyreadsource/evidenceagreement,ASCIIguard,cropping/
 ambiguousfallback,regressionsandpixels. Q58remainsopen; no policychange.
+
+## Q58 bounded integration - exact ASCII source+caret evidence
+
+HBIDEProjectCaretColumn onlymapswhencheckedsource,row,renderedASCIIlineand
+uniquecaret agree; tries widths1..32, allmatchingwidthsmustsamechar. No
+caret/mismatch/nonASCII/cropped/ambiguouskeepsreportedcolumn. No flagchange
+orcompilerunitguess. RealGCCbefore5PASS1FAIL,localafter6PASS. Tenmodel
+assertions addeddefault/byte/tab4/tab16andfallbacks. Runner169=168PTY+guard.
+No allUnicode/compilercoverage. Historical20Pythoncasesremainresearch.

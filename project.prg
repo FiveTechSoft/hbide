@@ -167,9 +167,11 @@ FUNCTION HBIDEProjectTokens( cLine )
 
 FUNCTION HBIDEProjectDiagnostics( cOutput, cRoot )
    LOCAL a := {}, cLine, nOpen, nClose, cFile, cRow, cCol, cText, nColon, aPart, n
-   LOCAL cLevel, h, nSearch
+   LOCAL cLevel, h, nSearch, aOutput, nOutput := 0
    cOutput := StrTran( StrTran( cOutput, Chr(13) + Chr(10), Chr(10) ), Chr(13), Chr(10) )
-   FOR EACH cLine IN hb_ATokens( cOutput, Chr(10) )
+   aOutput := hb_ATokens( cOutput, Chr(10) )
+   FOR EACH cLine IN aOutput
+      nOutput++
       cFile := ""; cRow := ""; cCol := ""; cText := ""
       // Harbour: path/name.prg(123) Error E0020 ...
       // Parentheses can be part of a directory or filename. Only (digits)
@@ -227,10 +229,69 @@ FUNCTION HBIDEProjectDiagnostics( cOutput, cRoot )
       IF ! Empty( cFile ) .AND. ! Empty( cLevel ) .AND. Val( cRow ) > 0
          h := { "path" => HBIDEProjectPath( cRoot, cFile ), "line" => Val( cRow ), ;
             "column" => Max( 1, Val( cCol ) ), "level" => cLevel, "text" => AllTrim( cText ), "raw" => cLine }
+         IF nOutput + 2 <= Len( aOutput ) .AND. ! Empty( cCol )
+            h[ "column" ] := HBIDEProjectCaretColumn( h[ "path" ], h[ "line" ], ;
+               h[ "column" ], aOutput[ nOutput + 1 ], aOutput[ nOutput + 2 ] )
+         ENDIF
          AAdd( a, h )
       ENDIF
    NEXT
    RETURN a
+
+// Resolve only from an exact ASCII source rendering plus caret. Numeric
+// columns can be bytes or display cells with compiler-selected tab stops.
+// Missing, truncated, changed, non-ASCII or ambiguous evidence keeps the
+// original column. This does not infer a compiler or alter its flags.
+FUNCTION HBIDEProjectCaretColumn( cPath, nRow, nOriginal, cShown, cCaret )
+   LOCAL lOk := .F., cSource := HBIDE_ReadFileChecked( cPath, @lOk )
+   LOCAL aLines, cLine, nPipe := At( "|", cShown ), nCaretPipe := At( "|", cCaret )
+   LOCAL cRender, cMark, nCaret, nWidth, n, c, cExpanded, nStart, nFound, nResult := 0
+   IF ! lOk .OR. nPipe == 0 .OR. nCaretPipe == 0 .OR. ;
+      ! HBIDEProjectDigits( AllTrim( Left( cShown, nPipe - 1 ) ) ) .OR. ;
+      Val( Left( cShown, nPipe - 1 ) ) != nRow .OR. ;
+      ! Empty( AllTrim( Left( cCaret, nCaretPipe - 1 ) ) ) .OR. ;
+      SubStr( cShown, nPipe + 1, 1 ) != " " .OR. SubStr( cCaret, nCaretPipe + 1, 1 ) != " "
+      RETURN nOriginal
+   ENDIF
+   aLines := hb_ATokens( StrTran( StrTran( cSource, Chr(13)+Chr(10), Chr(10) ), Chr(13), Chr(10) ), Chr(10), .T. )
+   IF nRow < 1 .OR. nRow > Len( aLines )
+      RETURN nOriginal
+   ENDIF
+   cLine := aLines[ nRow ]
+   cRender := SubStr( cShown, nPipe + 2 ); cMark := SubStr( cCaret, nCaretPipe + 2 )
+   nCaret := At( "^", cMark )
+   IF nCaret == 0 .OR. "^" $ SubStr( cMark, nCaret + 1 )
+      RETURN nOriginal
+   ENDIF
+   FOR n := 1 TO Len( cMark )
+      c := SubStr( cMark, n, 1 )
+      IF ( n < nCaret .AND. c != " " ) .OR. ! ( c $ " ^~" )
+         RETURN nOriginal
+      ENDIF
+   NEXT
+   FOR n := 1 TO Len( cLine )
+      c := SubStr( cLine, n, 1 )
+      IF ( Asc(c) < 32 .AND. c != Chr(9) ) .OR. Asc(c) > 126
+         RETURN nOriginal
+      ENDIF
+   NEXT
+   FOR nWidth := 1 TO 32
+      cExpanded := ""; nFound := 0
+      FOR n := 1 TO Len( cLine )
+         c := SubStr( cLine, n, 1 ); nStart := Len( cExpanded ) + 1
+         cExpanded += iif( c == Chr(9), Space( nWidth - Len(cExpanded) % nWidth ), c )
+         IF nStart <= nCaret .AND. nCaret <= Len( cExpanded )
+            nFound := n
+         ENDIF
+      NEXT
+      IF Len(cExpanded) == Len(cRender) .AND. cExpanded == cRender .AND. nFound > 0
+         IF nResult > 0 .AND. nResult != nFound
+            RETURN nOriginal
+         ENDIF
+         nResult := nFound
+      ENDIF
+   NEXT
+   RETURN iif( nResult > 0, nResult, nOriginal )
 
 FUNCTION HBIDEProjectDigits( c )
    LOCAL i
