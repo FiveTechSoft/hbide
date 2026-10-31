@@ -2912,3 +2912,9 @@ and METHOD PROCEDURE. BeforepickerlistedVARclassandDemo:FUNCTION/PROCEDURE
 insteadofnames;1PASS2FAIL. Now skipCLASSVAR/METHODaliases and readexplicit
 methodtypebeforename. Local3PASS and15lexicalmodelPASS. No arbitrary
 preprocessor/implicitCLASSmethod support claimed. Runner162=161PTY+guard.
+
+Q51clean87f7a90 Typed3/Literal3/Find7/Navigation35PASS samebinary,
+22models15lexical/106repaintPASS;15inventory34docsPASS. Nativepicker4/4
+andjumpNewline9exacttyping inspectedfullborders. Ledgerlinux-navigation-typed-methods.json.
+Two boundedsteps noretries. Initialbeforeprobe wrongdefaultbinaryfrom/tmp
+failedall; explicitHBIDE_BINthenreal1PASS2FAIL. No fullgrammar/implicitCLASS/Windows.

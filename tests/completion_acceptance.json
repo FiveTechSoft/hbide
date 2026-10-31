@@ -31,7 +31,8 @@
         "test_nav_pty.py",
         "test_bp_delete_policy.py",
         "test_nav_literal_comment_pty.py",
-        "test_nav_lexical.prg"
+        "test_nav_lexical.prg",
+        "test_nav_typed_methods_pty.py"
       ],
       "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated.",
       "expected_label": "Go to Function... Ctrl+G"
