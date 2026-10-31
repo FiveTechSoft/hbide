@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| C20 | CandidatoLinux temporal incluyeQ91-Q99. | Export6da0304 binary5a4f86e8,8smoke+9modos41checksPASSexactbinary;nativeQ99inspeccionado;linux-candidate-bracket-context-c20.json. No release/Windows/licencias/install/globalmatrix. |
 | Q99 | Contexto bracket conserva intro cruzando comentario multilinea. | Antes2PASS2FAIL;cachelazyestado+pintado/6guardas/20PTY22models27inventory34docsPASS source240471f;nativeinspeccionado;linux-editor-bracket-multiline.json. No lexercompleto/Windows. |
 | Q98 | Evitar rescansprefijo innecesarios bracket. | Antes3pasadas600strings4229bytes921msestehost;despues0/1/3msvs28/231/921ms100/300/600strings;2longlineguardas+21PTY22models27inventory34docsPASS source6acb198;linux-editor-bracket-gap-performance.json. No C/generalperf/global. |
 | Q97 | Comentario completo conserva contexto bracketliteral. | Fixturecompiladaantes2PASS2FAIL;5repaintguardas/21PTY22models27inventory34docsPASS sourcea4ad3a1;nativecommentmagenta/literalyellow/cyaninspeccionado;linux-editor-bracket-gap.json. No lexercompleto/Windows. |

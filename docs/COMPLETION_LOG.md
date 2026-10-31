@@ -3618,3 +3618,15 @@ Final local151repaintPASS and2PTY8checksPASS; clean acceptance follows.
 No complete preprocessor/Windows claim.
 
 Q99 clean acceptance240471fbcc344725f1dfc79c70a5efacbf9bd917 binaryd1cb74f8908143c3f8c9f853c7a755d489bd5991f04aa0fd51387cc5398f6074:20PTYchecks(Multiline4/Gap4/Operator5/Variants7),22models27inventory34docsPASS;no fail/retry in clean acceptance. Nativegap+closingmagenta/literalyellow/followingfunction+returnscyan/fullbordersinspected/F2exact. Earlierdevelopmentfaults recorded above/evidence. C19predatesfix,Q87separate84e58b3.
+
+## C20 - temporary Linux candidate through multiline bracket context
+
+Export6da0304b52ea06332f4431fbd80bc88bf2f0c601 clean, stripped
+5a4f86e8fd344f0e78367a26f918ad6870cc5bbab1e17bc502db93d7a5f66319.
+8standard smoke suites plus9recentmodes41checks: Multiline4/Gap4/Operator5/
+List5/Paren4/Variants7/HPP3/INITEXIT3/NOTE6PASS exactbinary,lddresolved,
+no retry/failure. Actualcandidate native120x40 inspected multilinegapmagenta/
+literalyellow/nextfunctionreturnscyan/fullborders/F2exact.
+SupersedesC19temporarycandidate only;notrelease/licenses/Windows/install/
+determinism/globalmatrix/NEXUS/hitocerrado. Evidence
+linux-candidate-bracket-context-c20.json. Q87frozen84e58b3.
