@@ -157,6 +157,22 @@ class RecentAcceptanceLinks(unittest.TestCase):
         for phrase in ['raw output remains unchanged','absent/ambiguous/non-ASCII/cropped','not a semantic-correctness claim','Output viewer ANSI']:
             self.assertIn(phrase,contract)
 
+class RemainingMenuLinks(unittest.TestCase):
+    def test_designer_real_menu_workflow_is_bounded(self):
+        data=json.loads((ROOT/'tests/completion_acceptance.json').read_text())
+        row=data['menus']['IDE-036']
+        self.assertEqual(row['expected_label'],'Designer...')
+        self.assertIn('test_designer_pty.py',row['tests'])
+        for text in ['Actual Options Designer menu','Linux25x80','not all controls/properties']:
+            self.assertIn(text,row['contract'])
+    def test_watchpoint_menu_link_does_not_claim_triggering(self):
+        data=json.loads((ROOT/'tests/completion_acceptance.json').read_text())
+        row=data['menus']['DBG-021']
+        self.assertEqual(row['expected_label'],'Watchpoint...')
+        self.assertIn('test_debug_watch_modal_pty.py',row['tests'])
+        self.assertIn('Actual Point Watchpoint menu',row['contract'])
+        self.assertIn('not all expressions/containers, change-trigger behavior',row['contract'])
+
 class DispatchAcceptance(unittest.TestCase):
     def setUp(self):
         self.routes=audit.inventory()[1]

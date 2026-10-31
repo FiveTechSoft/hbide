@@ -3499,3 +3499,11 @@ Nativepixels Main1/initprocedureStartup3/exitprocedureCleanup5only3/3;
 EnterCleanupX/F2exact5/fullborders. Outer120s interrupted firstbaseline
 after completedPTY;22models repeated separatelyPASS. Case-name typo nav
 was rejected before tests. Evidence preserves both notes.
+
+## Q90 - M0 missing menu acceptance links
+
+Options Designer and Point Watchpoint remained unlinked despite actual-menu
+PTY workflows. Link IDE-036/DBG-021 to existing bounded listbox and scalar
+watch add/edit/inspect tests. Two inventory guards preserve limitations.
+No new product fix or coverage beyond tests; links are not PASS.
+Evidence linux-inventory-designer-watch.json follows.

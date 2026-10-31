@@ -41,7 +41,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-033 | Run | Arguments... | hbide.prg:834 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-034 | Options | Compiler Flags... | hbide.prg:839 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-035 | Options | Display... | hbide.prg:840 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-036 | Options | Designer... | hbide.prg:842 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| IDE-036 | Options | Designer... | hbide.prg:842 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-037 | Help | Index | hbide.prg:847 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-038 | Help | Contents | hbide.prg:848 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-039 | Help | About... | hbide.prg:850 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -65,7 +65,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-018 | Run | to Cursor         F7 | hbdebug/dbgmenu.prg:116 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-019 | Run | Next routine Ctrl-F5 | hbdebug/dbgmenu.prg:117 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-020 | Run | sPeed... | hbdebug/dbgmenu.prg:119 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-021 | Point | Watchpoint... | hbdebug/dbgmenu.prg:124 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-021 | Point | Watchpoint... | hbdebug/dbgmenu.prg:124 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-022 | Point | Tracepoint... | hbdebug/dbgmenu.prg:125 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-023 | Point | Breakpoint   F9 | hbdebug/dbgmenu.prg:126 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-024 | Point | Delete... | hbdebug/dbgmenu.prg:127 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -237,6 +237,8 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-057: Actual Help popup AboutHelp/Keys/Windows/Menus/Commands opens exact topic body; body/outside clicks preserve Keys and left topic-column click opens Function body. Resume exact locals/source unchanged. Native120x40 body/column captures separately inspected. No allpages/clickrows/25x80/Windows acceptance. Pruebas: [test_debug_help_topics_pty.py](../tests/test_debug_help_topics_pty.py)
 - DBG-058: Actual Help popup AboutHelp/Keys/Windows/Menus/Commands opens exact topic body; body/outside clicks preserve Keys and left topic-column click opens Function body. Resume exact locals/source unchanged. Native120x40 body/column captures separately inspected. No allpages/clickrows/25x80/Windows acceptance. Pruebas: [test_debug_help_topics_pty.py](../tests/test_debug_help_topics_pty.py)
 - DBG-002: File Resume restores source viewing cursor to paused execution line8 after explicit goto3, without executing. A real Point Breakpoint then adds8 not3, verified by anchored list entry; removed again and Go writes151 exact. Single file and stopped execution only, not restart. Pruebas: [test_debug_cursor_popup_pty.py](../tests/test_debug_cursor_popup_pty.py)
+- IDE-036: Actual Options Designer menu opens default dialog; F2 duplicate P cycles PushButton/Paste without executing; Listbox placement, inspector width/height edit, JSON save/reload and generated PRG with LISTBOX, Generate and open returns correct PRG to IDE. Linux25x80 bounded listbox workflow, not all controls/properties, native pixels, Windows or full designer acceptance. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py)
+- DBG-021: Actual Point Watchpoint menu adds n and persists exact WP expression; Cancel and invalid add preserve list. Points window edits n+2 evaluating3; Cancel and invalid edits preserve expression. Readonly inspector refuses scalar9; resume leaves debuggee2. Focal scalar watch add/edit/inspect contract, not all expressions/containers, change-trigger behavior, pixels or Windows. Pruebas: [test_debug_watch_modal_pty.py](../tests/test_debug_watch_modal_pty.py)
 
 ## Contratos modales y edicion inline vinculados
 

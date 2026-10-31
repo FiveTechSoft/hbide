@@ -973,6 +973,20 @@
         "test_debug_cursor_popup_pty.py"
       ],
       "contract": "File Resume restores source viewing cursor to paused execution line8 after explicit goto3, without executing. A real Point Breakpoint then adds8 not3, verified by anchored list entry; removed again and Go writes151 exact. Single file and stopped execution only, not restart."
+    },
+    "IDE-036": {
+      "expected_label": "Designer...",
+      "tests": [
+        "test_designer_pty.py"
+      ],
+      "contract": "Actual Options Designer menu opens default dialog; F2 duplicate P cycles PushButton/Paste without executing; Listbox placement, inspector width/height edit, JSON save/reload and generated PRG with LISTBOX, Generate and open returns correct PRG to IDE. Linux25x80 bounded listbox workflow, not all controls/properties, native pixels, Windows or full designer acceptance."
+    },
+    "DBG-021": {
+      "expected_label": "Watchpoint...",
+      "tests": [
+        "test_debug_watch_modal_pty.py"
+      ],
+      "contract": "Actual Point Watchpoint menu adds n and persists exact WP expression; Cancel and invalid add preserve list. Points window edits n+2 evaluating3; Cancel and invalid edits preserve expression. Readonly inspector refuses scalar9; resume leaves debuggee2. Focal scalar watch add/edit/inspect contract, not all expressions/containers, change-trigger behavior, pixels or Windows."
     }
   },
   "modal_contracts": [
