@@ -2,7 +2,7 @@
 import shlex, shutil
 import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
 ROWS, COLS = 40, 120
-BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
+BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[2] / 'hbide'))
 class Scr:
     def __init__(self):
         self.g = [[' ']*COLS for _ in range(ROWS)]

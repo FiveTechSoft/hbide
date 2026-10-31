@@ -1,0 +1,165 @@
+{
+  "scope": "Investigation only, not integrated. ASCII exact source rendering + caret can yield unambiguous char under multiple tab widths; absent/mismatched/ambiguous evidence must keep original number. Need source matching and Unicode/cropping handling before integration.",
+  "results": [
+    {
+      "text": "\treturn unknown_name;",
+      "mode": "default",
+      "resolved_character": 9,
+      "expected": 9,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: error: 'unknown_name' undeclared (first use in this function)\n    2 |         return unknown_name;\n      |                ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\treturn unknown_name;",
+      "mode": "byte",
+      "resolved_character": 9,
+      "expected": 9,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:9: error: 'unknown_name' undeclared (first use in this function)\n    2 |         return unknown_name;\n      |                ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:9: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\treturn unknown_name;",
+      "mode": "tab4",
+      "resolved_character": 9,
+      "expected": 9,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:12: error: 'unknown_name' undeclared (first use in this function)\n    2 |     return unknown_name;\n      |            ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:12: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\treturn unknown_name;",
+      "mode": "tab16",
+      "resolved_character": 9,
+      "expected": 9,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:24: error: 'unknown_name' undeclared (first use in this function)\n    2 |                 return unknown_name;\n      |                        ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:24: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\treturn unknown_name;",
+      "mode": "no-caret",
+      "resolved_character": null,
+      "expected": 9,
+      "safe_fallback": true,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: error: 'unknown_name' undeclared (first use in this function)\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\t\treturn unknown_name;",
+      "mode": "default",
+      "resolved_character": 10,
+      "expected": 10,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:24: error: 'unknown_name' undeclared (first use in this function)\n    2 |                 return unknown_name;\n      |                        ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:24: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\t\treturn unknown_name;",
+      "mode": "byte",
+      "resolved_character": 10,
+      "expected": 10,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:10: error: 'unknown_name' undeclared (first use in this function)\n    2 |                 return unknown_name;\n      |                        ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:10: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\t\treturn unknown_name;",
+      "mode": "tab4",
+      "resolved_character": 10,
+      "expected": 10,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: error: 'unknown_name' undeclared (first use in this function)\n    2 |         return unknown_name;\n      |                ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\t\treturn unknown_name;",
+      "mode": "tab16",
+      "resolved_character": 10,
+      "expected": 10,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:40: error: 'unknown_name' undeclared (first use in this function)\n    2 |                                 return unknown_name;\n      |                                        ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:40: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\t\treturn unknown_name;",
+      "mode": "no-caret",
+      "resolved_character": null,
+      "expected": 10,
+      "safe_fallback": true,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:24: error: 'unknown_name' undeclared (first use in this function)\n/tmp/hbide-gcc-caret-evidence/bad.c:2:24: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": " \treturn unknown_name;",
+      "mode": "default",
+      "resolved_character": 10,
+      "expected": 10,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: error: 'unknown_name' undeclared (first use in this function)\n    2 |         return unknown_name;\n      |                ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": " \treturn unknown_name;",
+      "mode": "byte",
+      "resolved_character": 10,
+      "expected": 10,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:10: error: 'unknown_name' undeclared (first use in this function)\n    2 |         return unknown_name;\n      |                ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:10: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": " \treturn unknown_name;",
+      "mode": "tab4",
+      "resolved_character": 10,
+      "expected": 10,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:12: error: 'unknown_name' undeclared (first use in this function)\n    2 |     return unknown_name;\n      |            ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:12: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": " \treturn unknown_name;",
+      "mode": "tab16",
+      "resolved_character": 10,
+      "expected": 10,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:24: error: 'unknown_name' undeclared (first use in this function)\n    2 |                 return unknown_name;\n      |                        ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:24: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": " \treturn unknown_name;",
+      "mode": "no-caret",
+      "resolved_character": null,
+      "expected": 10,
+      "safe_fallback": true,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: error: 'unknown_name' undeclared (first use in this function)\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\treturn unknown_name+unknown_name;",
+      "mode": "default",
+      "resolved_character": 9,
+      "expected": 9,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: error: 'unknown_name' undeclared (first use in this function)\n    2 |         return unknown_name+unknown_name;\n      |                ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\treturn unknown_name+unknown_name;",
+      "mode": "byte",
+      "resolved_character": 9,
+      "expected": 9,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:9: error: 'unknown_name' undeclared (first use in this function)\n    2 |         return unknown_name+unknown_name;\n      |                ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:9: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\treturn unknown_name+unknown_name;",
+      "mode": "tab4",
+      "resolved_character": 9,
+      "expected": 9,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:12: error: 'unknown_name' undeclared (first use in this function)\n    2 |     return unknown_name+unknown_name;\n      |            ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:12: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\treturn unknown_name+unknown_name;",
+      "mode": "tab16",
+      "resolved_character": 9,
+      "expected": 9,
+      "safe_fallback": false,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:24: error: 'unknown_name' undeclared (first use in this function)\n    2 |                 return unknown_name+unknown_name;\n      |                        ^~~~~~~~~~~~\n/tmp/hbide-gcc-caret-evidence/bad.c:2:24: note: each undeclared identifier is reported only once for each function it appears in\n"
+    },
+    {
+      "text": "\treturn unknown_name+unknown_name;",
+      "mode": "no-caret",
+      "resolved_character": null,
+      "expected": 9,
+      "safe_fallback": true,
+      "output": "/tmp/hbide-gcc-caret-evidence/bad.c: In function 'main':\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: error: 'unknown_name' undeclared (first use in this function)\n/tmp/hbide-gcc-caret-evidence/bad.c:2:16: note: each undeclared identifier is reported only once for each function it appears in\n"
+    }
+  ]
+}

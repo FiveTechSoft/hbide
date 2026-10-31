@@ -3036,3 +3036,13 @@ tests/known_gaps/gcc_display_column_pty.py intentionallyfails; evidence
 linux-gcc-column-unit-gap.json. No productfix/universalvisualcolumninference.
 Needcompilerunit/flags/caretprovenancebeforeconversion; don'trewriteHBP
 orforcecompilerflagswithoutcontract. Bytesintact; rest remainsunblocked.
+
+## Q58 investigation - source rendering and caret, not guessed units
+
+20isolatedcompiler-backedmappingcasesPASS: fourASCII/tabsourceforms across
+GCCdefault/byte/tab4/tab16/no-caret. Exactexpandedsourceandcaretcanresolve
+uniquecharacterpositionindependentofreportednumber; no-caretfallsback.
+PurePythoninvestigationonly,notintegratedorHarbouracceptance. Persisted
+linux-gcc-caret-investigation.jsonandtests/known_gaps/investigate_gcc_caret_mapping.py.
+Beforeintegrationmustverifyreadsource/evidenceagreement,ASCIIguard,cropping/
+ambiguousfallback,regressionsandpixels. Q58remainsopen; no policychange.
