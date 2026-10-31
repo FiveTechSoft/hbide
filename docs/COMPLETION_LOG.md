@@ -1784,3 +1784,13 @@ consulta y observa café,naïve,año literales, mas los mismos8efectos byte-exac
 Se mantienen ambos modos separados:9checks cada uno. Ningun cambio de producto
 ni certificacion de terminal real/pixeles; no hay defecto de producto demostrado.
 La evidencia anterior conserva su dato real, no sugiere un fallo Unicode general.
+
+### UTF8 nativo: seleccion/reemplazo/Undo con evidencia visual
+
+Fuente limpia54f2288 reconstruida: terminal Linux xfce4 real120x40, LANGC.UTF-8,
+hostUTF8 y deteccion de cursor real. Dobleclick fisico selecciona café tras TAB;
+teclearZ sustituye palabra completa y Undo restaura fixture BOM/TAB/CRLF/LF
+byte-exacto. Inspeccion de tres capturas confirma café/naïve/año legibles,
+seleccion solo de café, Z y Undo, marco inferior completo. Evidencia y script
+original en docs/evidence/editor-mouse-utf8/. No todas las acciones Unicode,
+Windows ni cierre de hito. Repite ademas modoPTYUTF8 de9checks en esa fuente.

@@ -1,0 +1,17 @@
+{
+  "scope": "Linux native xfce4-terminal120x40 DejaVuSansMono12 UTF8host, real cursor detection, physical mouse doubleclick. Pixel inspection: caf\u00e9 selected only, Z replacement, exact Undo; na\u00efve/a\u00f1o legible and complete lower borders/statusbar. Byte effects compare full BOM TAB CRLF/LF fixture. Not general Unicode, full editor, Windows or milestone acceptance.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "54f22883c1b876f978d66c7563bdd8536d5cd446",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "bf6855b7fe44bef98be9c0da3007d24ec5b68d7f2846641427809bd0ab689f68",
+    "binary_sha256": "91618c4aa4f99cd4855c3eb2afa77101fb2d198eaf4e242cb4ac4ea2dceb1914",
+    "built_at": 1793407814.9377265
+  },
+  "files": {
+    "hbide-utf8-native-replaced.png": "d07f6183fc114a46e1bebc329578e0d54676b9dd441617d0a6f968e6a36a00ae",
+    "hbide-utf8-native-selected.png": "438590c55e21f2d73c278c5363a5e9c04c3348cc59942780740316c0cd1c1ab3",
+    "capture.py": "a7750712d57f31d1b661320dfcfd410d640b265cd20e2f439808752a3361b3e5",
+    "hbide-utf8-native-undo.png": "5854f5610da6718e11fb881daaeecf5db1865642cf08e0f3847837ab42649a5f"
+  }
+}
