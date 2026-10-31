@@ -2041,9 +2041,9 @@ return .F.
 STATIC FUNCTION HBIDE_BracketAssignment( cLine, nAt )
    LOCAL cBefore := RTrim( hb_ULeft( cLine, nAt - 1 ) )
    LOCAL n := 1, c, q := "", lEscape := .F., lBlock := .F., cContext := ""
-   // Fast path stays cheap. Only prefixes containing a possible comment
-   // need lexical context; markers inside prior strings must remain data.
-   IF !("/*" $ cBefore)
+   // Only a completed comment immediately before [ can hide its prior
+   // context. Every other suffix already decides this bounded contract.
+   IF Right(cBefore,2) != "*/"
       RETURN HBIDE_BracketContext(cBefore)
    ENDIF
    DO WHILE n <= Len(cBefore)

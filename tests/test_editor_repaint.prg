@@ -443,6 +443,8 @@ procedure Main()
    Check('completed gap preserves array index',o:ScanBlkLine('a /* gap */ [1 /* real',.F.))
    Check('completed string containing markers remains value',o:ScanBlkLine('"/* text */" /* gap */ [1 /* real',.F.))
    Check('previous bracket literal remains value',o:ScanBlkLine('local c := [/* text] /* gap */ [1 /* real',.F.))
+   Check('many bracket literals after gap stay strings',!o:ScanBlkLine('local a := /* gap */ {'+Replicate('[/* text],',100)+'[last]}',.F.))
+   Check('comment after many bracket literals still real',o:ScanBlkLine('local a := /* gap */ {'+Replicate('[text],',100)+'[last]} /* real',.F.))
    hb_MemoWrit( '/tmp/hbide-repaint-tests.txt', 'PASS ' + hb_ntos( nPass ) + ' FAIL ' + hb_ntos( nFail ) )
    if nFail > 0
       ErrorLevel( 1 )

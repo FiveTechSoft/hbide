@@ -3595,3 +3595,11 @@ guards and real colorPTY. No complete preprocessor claim.
 Evidence linux-editor-bracket-gap.json follows.
 
 Q97 clean acceptancea4ad3a18fbcef4e52f70426225639d635af43a96 binary889994fc33fa057d416f6c7e35abec1853993244cae87e54494ddac0ce4fa2e7:21PTYchecks(Gap4/Operator5/List5/Variants7),22models27inventory34docsPASS;no retries/failures. Nativegapmagenta/literalyellow/followingfunction+returnscyan/fullbordersinspected/F2exact. C19predatesfix,Q87separate84e58b3.
+
+## Q98 - avoid repeated prefix rescans for ordinary bracket suffixes
+
+Measured3ScanBlkLinepasses at100/300/600strings(729/2129/4229bytes):
+28/231/921ms on this host. Lexical prefix rescans only needed if suffix is
+completed comment */. Other suffixes use bounded context directly. Two
+longlineguards plus recent context/colorPTY. No C helper/generalperfclaim.
+Evidence linux-editor-bracket-gap-performance.json follows.
