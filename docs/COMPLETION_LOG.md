@@ -3124,3 +3124,9 @@ Q59clean65e9324 Bracket4/Variants7/Adjacent6PASSsamebinary+22models
 118repaintPASS,15inventory34docs. Native120x40bracketstring/arrayindex/
 returnactualpixelsfullbordersinspected,F2exact. linux-editor-bracket-assignment.json.
 No retries/allbracketcontext/Windows/global. Candidate14predatesQ59.
+
+## Q59 acceptance extension - no-space assignment and array comments
+
+Compiler-validfixturec:=[/*literal],bracket&&literal,realblockafterliteral,
+realcommentinsidearrayindex; local7PASS. No productfix. Newmode
+176=175PTY+guard. Cleanacceptancefollows; no fullbracketgrammarclaim.
