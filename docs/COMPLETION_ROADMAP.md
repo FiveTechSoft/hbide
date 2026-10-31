@@ -68,7 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
-| Q97 | Comentario completo conserva contexto bracketliteral. | Fixturecompiladaantes2PASS2FAIL;5repaintguardas/colorPTY;linux-editor-bracket-gap.json. No lexercompleto/Windows. |
+| Q97 | Comentario completo conserva contexto bracketliteral. | Fixturecompiladaantes2PASS2FAIL;5repaintguardas/21PTY22models27inventory34docsPASS sourcea4ad3a1;nativecommentmagenta/literalyellow/cyaninspeccionado;linux-editor-bracket-gap.json. No lexercompleto/Windows. |
 | Q96 | M0 enlaza Ctrl+G/extendedDelete a dispatch exacto. | Guardafuente/contexto/condicion+48PTY27inventory34docsPASS fuente63a03f1;linux-inventory-ctrlg-delete.json. No nuevoproducto/pixels/global. |
 | Q95 | Regresion conjunta editor/nav/proyecto trasQ91-Q94. | Fuente26698af binary578a6fa3,15modos63checksPTY+22models26inventory34docsPASS,mismoidentity/sinretries;linux-joint-editor-project-q95.json. No newfix/pixels/candidato/matrizglobal. |
 | Q94 | Bracketstrings tras +/== no contaminan bloque/pintado. | Fixturecompiladaantes2PASS2FAIL;4repaintguardas/17PTY22models26inventory34docsPASS source0dbf0cc;nativeamarillo/cyaninspeccionado;linux-editor-bracket-operator.json. No lexercompleto/Windows. |

@@ -3593,3 +3593,5 @@ block. Before2PASS2FAIL. Recover lexical context only for prefix containing
 possible comment; prior strings/values remain nonintroducers. Five repaint
 guards and real colorPTY. No complete preprocessor claim.
 Evidence linux-editor-bracket-gap.json follows.
+
+Q97 clean acceptancea4ad3a18fbcef4e52f70426225639d635af43a96 binary889994fc33fa057d416f6c7e35abec1853993244cae87e54494ddac0ce4fa2e7:21PTYchecks(Gap4/Operator5/List5/Variants7),22models27inventory34docsPASS;no retries/failures. Nativegapmagenta/literalyellow/followingfunction+returnscyan/fullbordersinspected/F2exact. C19predatesfix,Q87separate84e58b3.
