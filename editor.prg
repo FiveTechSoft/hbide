@@ -2091,7 +2091,7 @@ STATIC FUNCTION HBIDE_BracketAssignment( cLine, nAt )
    RETURN !lBlock .AND. Empty(q) .AND. HBIDE_BracketContext(RTrim(cContext))
 
 STATIC FUNCTION HBIDE_BracketContext( cBefore )
-RETURN Right( cBefore, 2 ) == ":=" .OR. Right(cBefore,2) == "==" .OR. ;
+RETURN ( !Empty(cBefore) .AND. Right(cBefore,1) $ "=<>#$" .AND. Right(cBefore,2) != "->" ) .OR. ;
    ( Right(cBefore,1) == "+" .AND. Right(cBefore,2) != "++" ) .OR. ;
    ( Right(cBefore,1) == "-" .AND. Right(cBefore,2) != "--" ) .OR. ;
    ( ! Empty(cBefore) .AND. Right(cBefore,1) $ "({," )
