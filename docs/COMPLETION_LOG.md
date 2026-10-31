@@ -2394,3 +2394,8 @@ ni todos indices/sideeffects. Pendiente clean separado.
 Cleanfd3d2acTracepoint16Watch14mismoIDEe1e4e1f0PASSsinretry,
 15inventory33docsPASS. linux-debug-tracepoint-modal.json retiene
 receipt+logs. No se heredan modelos anteriores a esta fuente.
+
+Cleanbc64f13Stack7MonitorMouse7Help12sameIDEef72604fPASS,
+21modelos15inventory33docsPASS. linux-debug-stack-border.json
+retieneidentidades/logs. NativeMAIN101/CHILD202inspeccionados,
+peroentregaclicfisico titulo no demostrada; no heredar comoPTYPASS.
