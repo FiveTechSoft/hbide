@@ -170,9 +170,10 @@
     "IDE-002": {
       "tests": [
         "test_multidoc_pty.py",
-        "test_recovery_deep_path.py"
+        "test_recovery_deep_path.py",
+        "test_reload_selection_pty.py"
       ],
-      "contract": "Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered.",
+      "contract": "Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. LoadText clears selection anchors belonging to the old buffer. External short reload with anchor on old row3 permits typing without out-of-bounds selection deletion.",
       "expected_label": "Open..."
     },
     "IDE-003": {

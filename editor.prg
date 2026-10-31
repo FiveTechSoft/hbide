@@ -952,6 +952,9 @@ METHOD LoadText( cText ) CLASS HBSrcEdit
    local aEnds := {}, aPhysical := {}, n := 1, nStart := 1, c
    local oNew, aLines, i
 
+   // Selection coordinates belong to the old buffer. A shorter reload
+   // must not leave an anchor outside the new line array.
+   ::ClearSelection()
    ::cEol := hb_eol()
    while n <= Len( cText )
       c := SubStr( cText, n, 1 )

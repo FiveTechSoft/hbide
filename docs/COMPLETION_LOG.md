@@ -2506,3 +2506,15 @@ Clean797dea5: Clipboard4, Identity3, Boundary6 and Spaces10 pass on the
 same binary14f42d97, without retry; all21models,15inventory,33docs pass.
 Ledger docs/evidence/linux-clipboard-spaces.json retains source/hash/logs.
 IDE012 acceptance link added after clean run, no product changes.
+
+## Q37 Clear stale selection on shorter reload
+
+A clean buffer selected from row3 back to row1, followed by external reload
+of one line, retained anchor row3. Typing then failed (before2/4PTY).
+LoadText now clears old selection before replacing lines. After4/4PTY;
+four model checks cover selection reset, typing and clean Undo.
+First exploratory fixture anchor row1 did not crash and had a wrong cursor
+expectation; revised anchor row3 reproduced the real failure before fixing.
+Native120x40 Xfresh and Undo fresh inspected with complete lower frames;
+saved bytes exact. No filename-UndoLoad policy change or Windows claim.
+Runner140=139PTY modes plus guard. Clean regression pending.
