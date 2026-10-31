@@ -2533,4 +2533,8 @@ After6/6PTY cover typing, exact saved bytes, separate Undo typing/deletion
 and Redo. Four new model checks cover reset, typing and clean Undo.
 Native120x40 Xbeta/gamma then Undo beta/gamma inspected, full lower frames;
 bytes exact. Does not change Cut marked-range semantics or Windows claim.
-Runner141=140PTY modes plus guard. Clean regression pending.
+Runner141=140PTY modes plus guard.
+
+Clean8f256d5: DeleteSelection6, ReloadSelection4, Clipboard4 and breakpoint
+delete suite pass on same binary95a08995 without retry;21models,15inventory,
+33docs pass. Ledger docs/evidence/linux-delete-selection.json.
