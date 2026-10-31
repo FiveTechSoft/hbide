@@ -2897,3 +2897,10 @@ keepsrealblockstate and lineindexes. Newmodel12checks incl realblock/pragmadump.
 Additional dump-state probe caught C comment leaking beyond enddump;
 scanner now excludes dump body before Harbour lexical processing.
 Runner161=160PTY+guard, modelbaseline22. No fullHarbourparser/preprocessor.
+
+Q50clean18cd290 NavLiteral3/Find7/Repeat7/NavigationPASS same4ec0ef2b;
+22modelsPASSincl12lexical/106repaint,15inventory34docsPASS.
+Native120x40pickerMain/Targetline4and exacttypingjump inspected fullborders.
+Ledgerlinux-navigation-lexical.json. Final command timeout before Navigation
+finished, noresultrecorded; boundedseparate Navigation step sameverifiedbinary.
+No failedcheckrerun/fullgrammar/Windows/milestoneclosure.
