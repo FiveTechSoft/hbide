@@ -2697,4 +2697,8 @@ After5/5PTY and four new model checks typing/UndoReplaceclean.
 First harness appended to prefilled search al; corrected two Backspaces
 before reproducing actual stale-range failure. Native120x40 omXega/Undoomega
 inspected with complete lower frames and exact disk bytes.
-Runner150=149PTY modes plus guard. No Windows/global/M1 closure. Clean pending.
+Runner150=149PTY modes plus guard. No Windows/global/M1 closure.
+
+Clean1dba6ee: Selection5, Identity3, Boundary6 and Spaces10 pass same
+binary05c99a2b without retry;21models15inventory33docs pass.
+Ledger docs/evidence/linux-replace-selection.json.
