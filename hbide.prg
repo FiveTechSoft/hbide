@@ -1043,7 +1043,8 @@ METHOD ProjectOpen() CLASS HbIde
                   ( lTooLong := .T., nTooLong := Len( oListBox:buffer ), ;
                     cTooLong := Left( oListBox:buffer, 40 ), GetActive():exitState := GE_ESCAPE ), ;
                   ( lOk := .T., GetActive():exitState := GE_ESCAPE ) ), ), .T. } ;
-      STATE { || If( oListBox != nil .and. oListBox:buffer != cLastLB, ;
+      STATE { || If( oListBox != nil .and. ( oListBox:buffer != cLastLB .or. ;
+               Empty( AllTrim( oGetName:VarGet() ) ) ), ;
                ( cLastLB := oListBox:buffer, ;
                  If( Len( cLastLB ) > 250, ;
                      ( oGetName:VarPut( Space( 250 ) ), oGetName:Display() ), ;
@@ -1236,7 +1237,8 @@ METHOD OpenFile() CLASS HbIde
                   ( lTooLong := .T., nTooLong := Len( oListBox:buffer ), ;
                     cTooLong := Left( oListBox:buffer, 40 ), GetActive():exitState := GE_ESCAPE ), ;
                   ( lOk := .T., GetActive():exitState := GE_ESCAPE ) ), ), .T. } ;
-      STATE { || If( oListBox != nil .and. oListBox:buffer != cLastLB, ;
+      STATE { || If( oListBox != nil .and. ( oListBox:buffer != cLastLB .or. ;
+               Empty( AllTrim( oGetName:VarGet() ) ) ), ;
                ( cLastLB := oListBox:buffer, ;
                  If( Len( cLastLB ) > 250, ;
                      ( oGetName:VarPut( Space( 250 ) ), oGetName:Display() ), ;

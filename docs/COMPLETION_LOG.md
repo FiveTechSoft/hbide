@@ -1870,3 +1870,12 @@ retiene contenido trasCancel; comparacion completa de tres ficheros/EOLmixto.
 No se confunde con prueba teclado de botones/listas. Primer intento25x80del
 simulador no tuvo pintura util; no se afirma25x80ni defecto de producto.
 Sin cambio de producto niWindows, no todosmodales ni cliclista en este caso.
+
+## 31 octubre: primer item de lista modal con filename vacio
+
+Mouse14checks descubrio13PASS1FAIL: primerproyecto ya seleccionado visualmente,
+click+OKnoabreporqueGETvacioy marcadorcLastLBsuprimeSTATEsin cambio de indice.
+STATEahora sincroniza si item cambia O GETvacio; path manual no vacio conserva
+prioridad al solo enfocar lista. Mismo fix en Openfile/Openproject, sin cambiar
+250chars ni politica de SaveAs. Primer item no alfabetico: no asumir Directory
+ordenada. Pruebas comparan fichero/proyecto exacto y bytes tras editar/guardar.

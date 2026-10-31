@@ -56,7 +56,16 @@ for kind in ['autorun']:
   projectopen();send(str(work/'aaa.hbp').encode());clicklabel('OK')
   check('Project mouse OK opens exact project','aaa.hbp' in screen.text() and 'aaa.prg' in screen.text())
   send(b'\x1b')
-  check('Project mouse operations preserve all file bytes',target.read_bytes()==original and other.read_bytes()==b'BBB second\nreturn\n' and dest.read_bytes()==b'X'+original)
+  filemenu(b'o');clicklabel('bbb.prg');clicklabel('OK')
+  check('Open mouse list selects exact second file','bbb.prg' in screen.text() and 'BBB second' in screen.text())
+  send(b'Y');send(b'\x1bOQ')
+  check('mouse opened exact list file saved only selected bytes',other.read_bytes()==b'YBBB second\nreturn\n' and target.read_bytes()==original and dest.read_bytes()==b'X'+original)
+  filemenu(b'o');clicklabel('aaa.prg');clicklabel('OK')
+  check('Open mouse first list item selects exact original','aaa.prg' in screen.text() and 'AAA first' in screen.text() and 'XAAA first' not in screen.text())
+  projectopen();(work/'project-list-before.screen').write_text(screen.text());clicklabel('bbb.hbp');(work/'project-list-selected.screen').write_text(screen.text());clicklabel('OK');(work/'project-list-after.screen').write_text(screen.text())
+  check('Project mouse list chooses exact second project','bbb.hbp' in screen.text() and 'bbb.prg' in screen.text())
+  send(b'\x1b')
+  check('Project mouse operations preserve all file bytes',target.read_bytes()==original and other.read_bytes()==b'YBBB second\nreturn\n' and dest.read_bytes()==b'X'+original)
 
  finally:
   w=os.waitpid(pid,os.WNOHANG)
