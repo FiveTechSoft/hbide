@@ -3146,3 +3146,11 @@ Runner177=176PTY+guard. Cleanacceptanceandnativepickerfollow.
 FirstQ60cleanPTY16checksand22modelspassfb40f2f;offlinecataloguecheck
 wasstaleafterroadmapedit. Regeneratecataloguebeforefinalcleanacceptance;
 no documentationPASS claimedforfirstattempt.
+
+Q60clean33f5009 Array3/Literal3/Typed3/BracketVariants7PASSsamebinary+
+22modelspass(16navlexical/118repaint),34offlineDocsPASS. Earlierfb40f2f
+clean16PTY+22modelspassedbutcataloguestale;33f5009correctsit. Native120x40
+picker2/2onlyMain/TargetandTargetline7typing/F2exactfullbordersinspected.
+Evidence linux-navigation-array-comment.json. Finaldocumentation-refresh
+sourcewillalsogetfocusedacceptancebeforepublication;nofulllexer/Windows/
+globalclosure. Candidate14predatesQ59/Q60.
