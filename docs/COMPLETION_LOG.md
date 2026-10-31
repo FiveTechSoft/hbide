@@ -3520,3 +3520,12 @@ Native120x40actualcandidate inspected Main1/initStartup3/exitCleanup5only3/3;
 EnterCleanupX/F2exact5/fullborders. SupersedesC18temporarycandidate only.
 No release/licenses/Windows/install/determinism/globalmatrix/NEXUS claim.
 Evidence linux-candidate-lifecycle-comments.json; Q87remains84e58b3.
+
+## Q91 - parenthesized bracket literal editor color/state
+
+Compiler-valid return ([/* literal]) opened false comment and colored
+following function as comment. Before2PASS2FAIL. Extend bounded bracket
+context from := to also leftparenthesis, preserving array/callresult index.
+Four repaint guards and colorPTY. RETURN [..] without parentheses did not
+compile in exploratory probe; not treated as accepted syntax.
+Evidence linux-editor-paren-bracket.json follows; no complete lexer claim.

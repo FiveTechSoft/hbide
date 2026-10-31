@@ -2037,10 +2037,10 @@ static function HBIDE_IsNavKey( nKey )
 
 return .F.
 
-// Deliberately bounded string context: bracket after :=, not array index.
+// Bounded string context: bracket after := or left parenthesis, not array index.
 STATIC FUNCTION HBIDE_BracketAssignment( cLine, nAt )
    LOCAL cBefore := RTrim( hb_ULeft( cLine, nAt - 1 ) )
-RETURN Right( cBefore, 2 ) == ":="
+RETURN Right( cBefore, 2 ) == ":=" .OR. Right(cBefore,1) == "("
 
 // NOTE is a physical-line comment. Keep identifier prefixes as code.
 static function HBIDE_EditorNoteLine( cLine )
