@@ -3492,3 +3492,10 @@ procedure. Before2PASS1FAIL; jump already worked. Keep static abbreviation
 normalization but retain init/exit kind. Five lexical guards and realPTY.
 Evidence linux-navigation-init-exit.json follows. No runtime lifecycle changes
 or general macro/preprocessor/Windows claim.
+
+Q89 acceptance43b6f33 clean build20c492cdcf612423e3e9c21cc31ad428f46a28e0ff0aea518d71e5b5698117ae:
+41PTYchecks(3initexit+3note+35navigation),22models24inventory34docsPASS.
+Nativepixels Main1/initprocedureStartup3/exitprocedureCleanup5only3/3;
+EnterCleanupX/F2exact5/fullborders. Outer120s interrupted firstbaseline
+after completedPTY;22models repeated separatelyPASS. Case-name typo nav
+was rejected before tests. Evidence preserves both notes.

@@ -1,0 +1,474 @@
+{
+  "scope": "Q89 INIT/EXIT labels, Linux only, no lifecycle runtime change, complete preprocessor, Windows or global claim",
+  "source": "43b6f337c44fa7fe0c315a2a5f11cdb86f30ae6e",
+  "binary_sha256": "20c492cdcf612423e3e9c21cc31ad428f46a28e0ff0aea518d71e5b5698117ae",
+  "before_log": "PASS Open requested fixture\nFAIL Picker distinguishes init and exit modifiers\nPASS Picker jumps to real Target declaration\nTOTAL 2 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-446wdavj\n",
+  "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling 'probe.prg'...\n\nLines 6, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_x4cipd.dir/probe.c'... Done.\n",
+  "build_identity": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "43b6f337c44fa7fe0c315a2a5f11cdb86f30ae6e",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "7fb1e4319204c660d05fa69428260eeb36c29698ef73ea2a3f8da8e9c796fbd7",
+    "binary_sha256": "20c492cdcf612423e3e9c21cc31ad428f46a28e0ff0aea518d71e5b5698117ae",
+    "built_at": 1793478916.3651597
+  },
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "43b6f337c44fa7fe0c315a2a5f11cdb86f30ae6e",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "7fb1e4319204c660d05fa69428260eeb36c29698ef73ea2a3f8da8e9c796fbd7",
+      "binary_sha256": "20c492cdcf612423e3e9c21cc31ad428f46a28e0ff0aea518d71e5b5698117ae",
+      "build_receipt": "/tmp/hbide-init-exit-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "513f3c5c4ba693d3e38bd5b98c093b5415228668e09ac3d8da6d8f11509e3a26",
+      "case": "nav-init-exit",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_nav_init_exit_pty.py"
+      ],
+      "started": 1793478916.3654425,
+      "seconds": 6.19,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "3d903da461f1dcc8482619f286052ac87c701d7577ea6e4b8771489da9421f82",
+      "log": "/tmp/hbide-init-exit-clean/nav-init-exit-1793478916365438620.log",
+      "log_text": "PASS Open requested fixture\nPASS Picker distinguishes init and exit modifiers\nPASS Picker jumps to actual EXIT declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-5chzc2ee\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "43b6f337c44fa7fe0c315a2a5f11cdb86f30ae6e",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "7fb1e4319204c660d05fa69428260eeb36c29698ef73ea2a3f8da8e9c796fbd7",
+      "binary_sha256": "20c492cdcf612423e3e9c21cc31ad428f46a28e0ff0aea518d71e5b5698117ae",
+      "build_receipt": "/tmp/hbide-init-exit-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "513f3c5c4ba693d3e38bd5b98c093b5415228668e09ac3d8da6d8f11509e3a26",
+      "case": "nav-note-comment",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_nav_note_comment_pty.py"
+      ],
+      "started": 1793478922.5517735,
+      "seconds": 6.17,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "def0ac21faae1dbad837c5cd1199dd61bc61e25a37b546cb196b33b200d66264",
+      "log": "/tmp/hbide-init-exit-clean/nav-note-comment-1793478922551769357.log",
+      "log_text": "PASS Open requested fixture\nPASS Picker includes declaration after NOTE comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ufeqzwse\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "43b6f337c44fa7fe0c315a2a5f11cdb86f30ae6e",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "7fb1e4319204c660d05fa69428260eeb36c29698ef73ea2a3f8da8e9c796fbd7",
+      "binary_sha256": "20c492cdcf612423e3e9c21cc31ad428f46a28e0ff0aea518d71e5b5698117ae",
+      "build_receipt": "/tmp/hbide-init-exit-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "513f3c5c4ba693d3e38bd5b98c093b5415228668e09ac3d8da6d8f11509e3a26",
+      "case": "navigation",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_nav_pty.py"
+      ],
+      "started": 1793478928.7263029,
+      "seconds": 66.99,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1a4bc70d1b37cd6915c6e39d48ad819421db5e759926bd00d834c57e4c11a04b",
+      "log": "/tmp/hbide-init-exit-clean/navigation-1793478928726299944.log",
+      "log_text": "PASS boot\nPASS good.prg opened\nPASS function list opens with real entries\nPASS commented and block-commented names are not listed\nPASS static procedure labelled\nPASS filter narrows list (Helper kept, Main gone)\nPASS Enter jumps to Helper line 11\nPASS Esc leaves the cursor where it was\nPASS failed build shows compiler output\nPASS failed build lands on the first error line (3)\nPASS status row shows message 1/3\nPASS Alt+F8 goes to the second error (line 7)\nPASS status row shows message 2/3\nPASS Alt+F8 reaches the warning (3/3, line 9)\nPASS Alt+F8 wraps to the first error\nPASS Alt+F7 goes back (wraps to last, line 9)\nPASS message list opens\nPASS Enter in the list jumps to the picked message\nPASS window list shows documents\nPASS window list marks modified document\nPASS window list switches document\nPASS Save All reports in the status row\nPASS bad.prg saved to disk\nPASS other.prg saved to disk\nPASS Save All with nothing modified says so\nPASS arguments dialog opens\nPASS arguments confirmed in status row\nPASS Start passes the arguments to the program\nPASS shell metacharacters stay literal (no extra command ran)\nPASS Script passes the arguments to Main()\nPASS Debug passes the arguments to Main()\nPASS Save All reports failure and untitled skipped\nPASS no misleading global success message\nPASS named file saved, untitled not written anywhere\nPASS untitled buffer stays marked modified\n35/35 passed\n"
+    }
+  ],
+  "checks": 41,
+  "models": {
+    "source": "43b6f337c44fa7fe0c315a2a5f11cdb86f30ae6e",
+    "dirty": false,
+    "tracked_changes": "",
+    "runner_sha256": "0769892109e69ffb4d74cabc8ea80ac3bbd9f1a2ef8602138a1d68826830fdf2",
+    "platform": "Linux",
+    "hbmk2": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "started": 1793479039.1107929,
+    "scope": "Linux model probes only. Not PTY, visual or Windows certification.",
+    "tests": {
+      "navigation-lexical": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_nav_lexical.prg": "30d187a8dd50ac7a89ab216b239678c2b1158329b1d68a01cc252d6d826a7932",
+          "nav.prg": "089c8e147d2b61d2fb18155cd50ffee70234849be64c0839b92b9d615d71c5af"
+        },
+        "binary_sha256": "e9c45956c491749450fda0537ed4e19e40f2a7eeb867e04d61ba91c5c5bc2d09",
+        "started": 1793479039.1108468,
+        "seconds": 0.17687773704528809
+      },
+      "designer-clipboard-types": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_clipboard_types.prg": "3c99eef8fc38ce661bccfca80145764a180a1497f3a0b7a329bcd688758c1cc2",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "2d446cce796dbfffddf97776fc51ad613c82b82531d7e977acf987ac139da78b",
+        "started": 1793479039.2881062,
+        "seconds": 0.4364807605743408
+      },
+      "designer-schema": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_schema.prg": "839431d2ba2c137fc60a6eeebdfd8e79fee6a7252c50ebc45778504df89d176b",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "8d9978e4a4ba9bc9a96e64a20545fe9624a3d63b07c816d65b9383afe29e1d5d",
+        "started": 1793479039.7248926,
+        "seconds": 0.4243741035461426
+      },
+      "designer-load": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_load.prg": "501e3671019f0b9536a9eb41d5436055ff01acc8d10e213c1522b72581ba6878",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "5f0a8a15bddf5e112933bfcf2f46d21c33189682067cacdc5daf7e9b6b05b3b3",
+        "started": 1793479040.1495843,
+        "seconds": 0.486830472946167
+      },
+      "designer-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_write.prg": "3f99f13a61d120788382dc36bb5e1899ac48bb90fda302a6f57dc13328f426df",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "d1384cddf465770baa2dc213599f8979424b08463cbcd861fba5f3bddb26cd22",
+        "started": 1793479040.6367111,
+        "seconds": 3.544844388961792
+      },
+      "designer-inline-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_inline_geometry.prg": "c9de281ea69447a12c364072d2cfa6b1bdf8a5fa3fea04f0f453cccce8bd91bc",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "53dcce9df13a8688796acdf9bdf3d335424e21ca891de98597d300a7eebb9ec5",
+        "started": 1793479044.1818755,
+        "seconds": 0.48034095764160156
+      },
+      "designer-property-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_geometry.prg": "a693f8dba9e34558aa2ae7967cbdc4836e1cc5b32f6051aedd1b002270b63ab5",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "c106e05b63e9e2540d7fb97b19974a1fd4ad90e90013edb3123b3b90b01443e9",
+        "started": 1793479044.6625478,
+        "seconds": 24.678635120391846
+      },
+      "designer-property-cancel": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_cancel.prg": "179843e9c41312e238f36da596c662a5bde637fa68452adff94bf98b9b22bdd3",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "469af6221e949b272949c374ae55295070f30f7ff590d61c211c7c76bd926672",
+        "started": 1793479069.341501,
+        "seconds": 4.042301416397095
+      },
+      "project-output": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project_output.prg": "69e3067d0d088c411840a3bb81d1f30149e0bbbf35671a46b98ca677c8e9a8cb",
+          "projectui.prg": "9deb02dbb32facf57e7e3cadc01e5e225e57bc5ca770333ad0635e5a0b08fe11",
+          "project.prg": "b1afd76c82f5405c2ef08c64662a74da417995d407948993b460b13878322fb2",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "ba2db0acb5ca648c76dfd1e5badc9b980a3eb467a27ece4dee23d69bd1a5095e",
+        "started": 1793479073.383917,
+        "seconds": 0.2848951816558838
+      },
+      "backup": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_backup.prg": "b3543b008b2d06ec45aa7836daa09c5f8e3f75287e266b6f06c9f7344e006d61",
+          "editor.prg": "2c334db1baf842df05a9cb824f1c5ad4a3aa515bbbc5ce7d803aa9d2c2cf870b",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "1b1122f63fe0bd9f695e988e3b3bad791a4b0662b42dd5d3897a55571382df5d",
+        "started": 1793479073.6689768,
+        "seconds": 0.27733826637268066
+      },
+      "debug-temp-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_temp_write.prg": "210526b082b0d8d07e92f438e394de575a7ee2c47ce39fc0c6818f86df22b449",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "cd875447b3e0664c3d72e8acebbf2a0e38878244ec43384ae00ef19c4e408d3a",
+        "started": 1793479073.9463842,
+        "seconds": 0.1228175163269043
+      },
+      "debug-script-path": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_script_path.prg": "a856a0583716db4e22a24e0be04b6b344406f3eed7c261201d72268519efb71a",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "e25c5f8ec5bfeea5934f1d5eab560d0da715a101e0552078d5101be1b5d4e521",
+        "started": 1793479074.0692644,
+        "seconds": 0.12241125106811523
+      },
+      "debug-search": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_search.prg": "84ec5023c2bf1d2069b1cfbfdb7223cc8933b04bb49231c96f3f1a3e8f486f5b",
+          "hbdebug/tbrwtext.prg": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+          "hbdebug/dbgbrwsr.prg": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "ed313074590b944ab3093de6478267de755dcb3d35ac10efe975e2e0815382ac",
+        "started": 1793479074.1918087,
+        "seconds": 0.2271442413330078
+      },
+      "designer": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer.prg": "5e020c61123e21dad5181bd216eba36941c445cc36844bf61b5c1be140716fed",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "ac56fd12ccd9d2d5d056629c7a9f615acadce387c40fd91d3dfd6acada319061",
+        "started": 1793479074.4192889,
+        "seconds": 0.5352797508239746
+      },
+      "editor-repaint": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_repaint.prg": "408dfdaa2c927f2d46b563144978722e349377a3ace48598c759f070661896c1",
+          "editor.prg": "2c334db1baf842df05a9cb824f1c5ad4a3aa515bbbc5ce7d803aa9d2c2cf870b",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "fba9258a776f18c364ea82debd8b7d04da214a930e96ace7fd622727843b4037",
+        "started": 1793479074.954737,
+        "seconds": 3.3398361206054688
+      },
+      "find": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_find.prg": "9af32468423371d620d8e6587ab4f56d56485ec332d528709a80338e5926a9e5",
+          "editor.prg": "2c334db1baf842df05a9cb824f1c5ad4a3aa515bbbc5ce7d803aa9d2c2cf870b",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "130e8d33a83057c241caa40de28464bac84ede6c42bebb380feecf6b3a7de461",
+        "started": 1793479078.2947237,
+        "seconds": 0.2730109691619873
+      },
+      "eol": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_eol.prg": "31153ecd41c90d6cf6cd92eac80ecaeda65d8e2ad3d36e79ecfadcf634ee92ff",
+          "editor.prg": "2c334db1baf842df05a9cb824f1c5ad4a3aa515bbbc5ce7d803aa9d2c2cf870b",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "cfe0db05a2b06b8566643f223a721ee42ce9aabd2a05c57f98868c25a68d0938",
+        "started": 1793479078.5678864,
+        "seconds": 0.38408565521240234
+      },
+      "utf8": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_utf8_valid.prg": "13cb1239a5934db50f44530289afea8216db9b720ba5e1e7b30eabc98df336f0",
+          "editor.prg": "2c334db1baf842df05a9cb824f1c5ad4a3aa515bbbc5ce7d803aa9d2c2cf870b",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "a6a51099e0ca09cc898b6d0dd6778c9fd96c99ad14bcaa8f4bb8e072e0a382ec",
+        "started": 1793479078.952145,
+        "seconds": 0.2728309631347656
+      },
+      "atomic": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_atomic.prg": "87f714d53e7324aad60d22f9fb9d02b5899689fdaa7a54d51ef60948f0717e01",
+          "editor.prg": "2c334db1baf842df05a9cb824f1c5ad4a3aa515bbbc5ce7d803aa9d2c2cf870b",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "3e03b1a10d0952259609c13906e3308be306ac23fae42c6f92964a961dff4c86",
+        "started": 1793479079.2251382,
+        "seconds": 0.30122900009155273
+      },
+      "recovery": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_recovery.prg": "714585c485dcb7bce32aa5b94310773019bb57e0814b1ed3bbe0e53e4e32a2d1",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "65940d4d084087cf7e33ccd39dc9da272998b50dc0e90059e37a63c9c0baf7d8",
+        "started": 1793479079.526441,
+        "seconds": 0.17661333084106445
+      },
+      "project": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project.prg": "5356a5527ab78820d0a511115e5633259acdb846dd67cf3913ede8ec70927a20",
+          "project.prg": "b1afd76c82f5405c2ef08c64662a74da417995d407948993b460b13878322fb2",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "feb52288458110504a6686d2ad4e740ac716ff8e13f0d57563479b9023b5602e",
+        "started": 1793479079.703146,
+        "seconds": 0.38341832160949707
+      },
+      "help": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_help.prg": "1dd387e3e5c7ebc79064edb1378adf2541e67e423495c09fb59b981c065d6ea0",
+          "help.prg": "4d00294fd70317df9c0ee6129852f7fd824c3c191ffaf56c8b5342c851e29e0b",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "6d9c114cc2d6370b2adef02fd9a19b8e0552ef19ae1a5994554599a405db2e23",
+        "started": 1793479080.086751,
+        "seconds": 1.237361192703247
+      }
+    },
+    "finished": 1793479081.3241203
+  },
+  "inventory": "........................\n----------------------------------------------------------------------\nRan 24 tests in 0.131s\n\nOK\n",
+  "docs": "PASS: 34 complete documents embedded byte-for-byte\n",
+  "execution_notes": [
+    "Initial case-name typo nav rejected by argparse before build/tests. Corrected navigation.",
+    "PTY batch3/3 complete,41checksPASS. Combined outer120s call then interrupted first model baseline /tmp/hbide-completion-5yqa5ota during backup probe before results.json. No test failure receipt. Baseline repeated separately22/22PASS; do not call whole acceptance uninterrupted."
+  ],
+  "visual": [
+    {
+      "file": "hbide-init-exit-native-picker.png",
+      "sha256": "b2ab677df0aaa3c3c02c74ff3d0ebc85cc201b8d23b83b05c646e4e11ab606b6",
+      "inspection": "actual native120x40 pixels inspected: Main1/init procedure Startup3/exit procedure Cleanup5 only3/3; EnterCleanup X/F2exactline5; full lower borders"
+    },
+    {
+      "file": "hbide-init-exit-native-target.png",
+      "sha256": "d783ef2e9c36455a5ff1e780688d5e1ca4d4d84752304f31872ab678adc4a24b",
+      "inspection": "actual native120x40 pixels inspected: Main1/init procedure Startup3/exit procedure Cleanup5 only3/3; EnterCleanup X/F2exactline5; full lower borders"
+    }
+  ]
+}

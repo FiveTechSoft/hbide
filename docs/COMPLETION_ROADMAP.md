@@ -68,7 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
-| Q89 | INIT/EXIT conservan tipo en GoToFunction. | Fixturecompiladaantes2PASS1FAIL;5guardas+PTY;linux-navigation-init-exit.json. No runtime/modificacionciclo/parsergeneral/Windows. |
+| Q89 | INIT/EXIT conservan tipo en GoToFunction. | Fixturecompiladaantes2PASS1FAIL;5guardas+41PTY22models24inventory34docsPASS fuente43b6f33;native3/3tiposdistintos/saltoCleanup5exact;primerbaselineinterrumpidoexterno/repetidoPASS;linux-navigation-init-exit.json. No runtime/modificacionciclo/parsergeneral/Windows. |
 | Q88 | NOTE linecomment no abre bloque falso. | Fixturecompiladaantes1PASS2FAILnavegacion;scanner/pintadoestado,4lexical5repaintguardas;18PTY22models24inventory34docsPASS sourcea0d088e. NativeNOTE magenta/Target4Xexact/fullborders;linux-editor-note-comment.json. No parserstatementsep/Windows/global. |
 | Q87 | Matriz Linux registrada completa tras aliasesnavegacion. | 201/201(200PTY+guard)PASS fuente84e58b3/binario2bdfbe63,22modelos24inventario34docs,sinfallos/reintentos. linux-full-matrix-q87.json. No nuevofix/visual/candidato/Windows/hitos. |
 | Q86 | GoToFunction incluye DESTRUCTOR CLASS explicito. | Fixturecompiladaantes1PASS2FAIL,4guardasmiembro/binding/continuacion;linux-navigation-destructor.json. No macrosgenerales/Windows/global. |
