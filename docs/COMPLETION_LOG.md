@@ -3721,3 +3721,14 @@ F5Find/EditFind/RepeatFind;1newinventoryguard30total/34docsPASS.
 No failure/retry/interruption. ExactIFroute source/context/condition linked.
 linux-inventory-find-f5.json. No newproductfix/pixels/modelrerun/Windows/global.
 Q102initialFindstillEdit; thisindependentcase isF5. Q104/C21predateQ105+.
+
+## Q107 - navigation context survives multiline block gaps
+
+Compiler-valid a /* gapLF */ [1 /* ]realcommentLFfunctionHidden...
+Before2PASS1FAILpickerincludedHiddeninsidecomment. Navphysicalscanner now
+carries bounded introducer/value marker only whileblockspanslines, resets
+afterclose.3modelguardsvalueindex/literalintro/reset. Clean source4775e6b:
+5modes15checks22models30inventory34docsPASS,no failures/retries.
+Native120x40Main1/Target8only2of2/noHidden;EnterTarget/X/F2exactrow8,full
+bordersinspected. linux-navigation-multiline-gap.json. No generallexer/
+preprocessor/Windows/global/hitoclosed. C21/Q104predateQ105+.
