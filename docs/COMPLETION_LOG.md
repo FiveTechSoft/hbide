@@ -2360,3 +2360,14 @@ Windowsglobal.109contratosmenu/116no109funciones;runner130=129PTY+guard.
 Cleanc830b19Help12Cursor10sameIDEee121db4 y21modelosPASS,
 15inventory33docs. linux-debug-help-click.json. Nativo precommit
 separado, no herenciapixels albuildlimpio. Milestones nocerrados.
+
+## 31 octubre segundo reinicio entorno, evidencia nueva
+
+05:15checkout/toolchain/tmpdesaparecidos, ultimoHEADb3efec2publicadoprotegido.
+16modospreviosPASSobservadosentranscriptperoledgerlocalperdido, no evidencia
+durable/global. Recuperadorepo limpio yHarbour694428e1, hbmk2SHA1f80870f;
+makegeneral120sinterrumpidooptionalcontrib, compiler/coreoperativos.
+Nueva pasada fuenteigualb3efec2IDE7d6a9301Help12WorkAreas10ScriptDBF5Snap6
+Drag6+21modelos15inventory33docsPASS. linux-second-rebuild-b3efec2.json.
+No heredar candidateanteriorbinarios/pixels/determinismo;carpeta candidate4
+perdida,manifestpublicadosiguedurable. No producto perdido ni nuevo cierre.
