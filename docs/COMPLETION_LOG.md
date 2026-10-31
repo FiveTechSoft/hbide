@@ -1939,3 +1939,10 @@ primerosfallos/regresionintermedia,conjuntas/capturas y limites actuales.
 Q19distingue candidatof9c2af6deactuala9ecaa6,determinismo557e51fnoheredado.
 Estados de los7hitos intactos:0cerrados. No porcentaje ni acumulacion de
 checksporversion como cierre de producto. OriginalFunctions fixedwait pendiente.
+
+## 31 octubre: limites explicitos de estructuras vacias
+
+12checks reales Monitorarray/hashvacios: inspector top abre/rechaza reemplazo,
+EntermuestraArray/Hash is empty,cerrarvuelveMonitor,Resumeescribe{}o{=>}exacto.
+Sin cambio producto, cubre guardasdeLen0antesdeabrirbrowser; no todoscontenedores,
+readonlyexplicito/objetovacio/nativoWindows ni nueva politica de inspeccion.
