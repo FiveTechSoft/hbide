@@ -2191,3 +2191,10 @@ instrumentado solo para registrar AllTrim de ambosvalores. Primeraejecucion
 AlphaTab deja{"Alpha",""};segundaTabBetaTab deja{"","Beta"};VALID preservado
 se ejecuta enambas.9checks, sin producto nuevo/pixels/Windows ni todoslos
 handlers. Complementa checkboxSTATE, no se generaliza a todoslostipos.
+
+## 31 octubre: ComboBox pegado con binding numerico independiente
+
+Fixture NVAR1/STATEMarkState(),F12CopyPasteF10F9reales;PRGrealcompilado,
+instrumentacion return para valores. Dos ejecuciones: abrirprimerdropdown,
+DownTab produce{2,1};Tabal segundo,SpaceDownTab produce{1,2}. STATEejecuta
+ambas.9checks. Sin producto nuevo/pixels/Windows, no todoshandlers/tipos.

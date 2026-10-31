@@ -61,6 +61,7 @@ CASES = {
     'gui-roundtrip': ('test_gui_roundtrip_pty.py', [], 120),
     'combobox': ('test_combobox_pty.py', [], 120),
     'designer-clipboard-case': ('test_designer_clipboard_pty.py', ['--case-insensitive'], 120),
+    'designer-clipboard-combo-runtime': ('test_designer_clipboard_combo_runtime_pty.py', [], 120),
     'designer-clipboard-get-runtime': ('test_designer_clipboard_get_runtime_pty.py', [], 120),
     'designer-clipboard-runtime': ('test_designer_clipboard_runtime_pty.py', [], 120),
     'designer-clipboard-created-types': ('test_designer_clipboard_loaded_types_pty.py', ['--create'], 120),
