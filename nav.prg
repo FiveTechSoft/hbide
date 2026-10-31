@@ -10,7 +10,7 @@
 // CLASS cls (implementation form only), and CLASS name. Commented-out lines
 // (//, *, &&, /* */) and #pragma begindump C blocks are skipped.
 FUNCTION HBIDE_ScanProcs( cText )
-   LOCAL aOut := {}, aLines, cLine, cL, nLine := 0, lBlock := .F., lDump := .F.
+   LOCAL aOut := {}, aLines, cLine, cL, nLine := 0, lBlock := .F., lDump := .F., cBlockContext := ""
    LOCAL aTok, cT1, cT2, cName, n, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine, cModifier
 
    cText := StrTran( StrTran( cText, Chr( 13 ) + Chr( 10 ), Chr( 10 ) ), Chr( 13 ), Chr( 10 ) )
@@ -27,7 +27,7 @@ FUNCTION HBIDE_ScanProcs( cText )
       ENDIF
       // Comments inside quoted strings are data, and line comments cannot
       // start a block comment that hides declarations on following lines.
-      cL := HBIDE_NavCode( cLine, @lBlock )
+      cL := HBIDE_NavCode( cLine, @lBlock, @cBlockContext )
       cL := AllTrim( StrTran( cL, Chr( 9 ), " " ) )
       IF Empty( cL )
          LOOP
@@ -168,8 +168,9 @@ STATIC FUNCTION HBIDE_NavNoteLine( cLine )
       ( Empty(next) .OR. !(next $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_") )
 
 // Strip comments and mask string contents without changing line count.
-STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
+STATIC FUNCTION HBIDE_NavCode( cLine, lBlock, cCarry )
    LOCAL cOut := "", cContext := "", n := 1, c, q := "", lEscape := .F.
+   cContext := iif(lBlock,hb_defaultValue(cCarry,""),"")
    IF ( Left( LTrim( cLine ), 1 ) == "*" .OR. HBIDE_NavNoteLine(cLine) ) .AND. ! lBlock
       RETURN ""
    ENDIF
@@ -198,6 +199,7 @@ STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
       CASE SubStr( cLine, n, 2 ) == "//" .OR. SubStr( cLine, n, 2 ) == "&&"
          EXIT
       CASE SubStr( cLine, n, 2 ) == "/*"
+         cCarry := iif(HBIDE_NavBracketQuote("[]",1,cContext),":=",")")
          lBlock := .T.
          cOut += " "
          n++
@@ -214,6 +216,9 @@ STATIC FUNCTION HBIDE_NavCode( cLine, lBlock )
       ENDCASE
       n++
    ENDDO
+   IF !lBlock
+      cCarry := ""
+   ENDIF
 RETURN cOut
 
 // Bounded distinction: a bracket following a value/name is an index.

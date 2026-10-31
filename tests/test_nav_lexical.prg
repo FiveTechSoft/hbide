@@ -1,5 +1,11 @@
 procedure Main()
  local a, c, nPass:=0,nFail:=0
+ a:=HBIDE_ScanProcs('function Main()'+hb_eol()+'local n := a /* gap'+hb_eol()+'*/ [1 /* ] real'+hb_eol()+'function Hidden()'+hb_eol()+'*/ ]'+hb_eol()+'function Target()')
+ Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==6,'multiline gap carries value index context',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('function Main()'+hb_eol()+'local c := /* gap'+hb_eol()+'*/ [/* literal]'+hb_eol()+'function Target()')
+ Check(Len(a)==2.and.a[2,1]=='Target','multiline gap carries literal introducer',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('function Main()'+hb_eol()+'a /* gap'+hb_eol()+'*/ [1]'+hb_eol()+'local c := [/* literal]'+hb_eol()+'function Target()')
+ Check(Len(a)==2.and.a[2,1]=='Target','closed block carry resets on next physical line',@nPass,@nFail)
  for each c in { "local c := `/* literal'", 'local c := "/*"', "local c := '/*'", 'local c := [/*]', '// /*', '&& /*', '* /*', 'local c := "//" // /*', 'local c := "&&" && /*' }
  a:=HBIDE_ScanProcs('function Main()'+hb_eol()+c+hb_eol()+'return nil'+hb_eol()+'function Target()'+hb_eol()+'return nil')
  Check(Len(a)==2.and.a[2,1]=='Target'.and.a[2,3]==4,'literal or linecomment does not startblock: '+c,@nPass,@nFail)
