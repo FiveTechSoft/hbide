@@ -187,12 +187,26 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertNotIn('acceptance',self.routes[0])
     def test_ctrl_g_delete_identity_route_linked(self):
         linked=[r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance' in r]
-        self.assertEqual(len(linked),2)
+        self.assertEqual(len(linked),4)
         row=next(r for r in linked if r['acceptance_id']=='IDE-KEY-GOTOFUNCTION-CTRL-G')
         self.assertEqual(row['source'],'hbide.prg')
         self.assertIn('hb_keyExt( nKey ) != HB_KX_DEL',row['condition'])
         self.assertEqual(row['acceptance']['tests'],['test_nav_pty.py','test_bp_delete_policy.py'])
         self.assertIn('not all terminal extended-key encodings',row['acceptance']['contract'])
+    def test_f2_f3_if_dispatch_routes_are_bound(self):
+        linked={r['acceptance_id']:r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance_id' in r}
+        for ident,key in [('IDE-KEY-SAVE-F2','K_F2'),('IDE-KEY-REPEAT-FIND-F3','K_F3')]:
+            row=linked[ident]
+            self.assertEqual(row['condition'],'if nKeyStd == '+key+' .and. ! ::oMenu:IsOpen()')
+            self.assertEqual(row['source'],'hbide.prg')
+            self.assertIn('not all',row['acceptance']['contract'])
+        self.assertIn('not F5 key',linked['IDE-KEY-REPEAT-FIND-F3']['acceptance']['contract'])
+    def test_case_and_if_source_conditions_preserved(self):
+        self.assertTrue(any(r['condition'].startswith('case ') for r in self.routes))
+        self.assertTrue(any(r['condition'].startswith('if ') for r in self.routes))
+        for row in self.routes:
+            line=(ROOT/row['source']).read_text().splitlines()[row['line']-1]
+            self.assertEqual(row['condition'],line.strip())
     def test_missing_route_fails_closed(self):
         broken={k:dict(v,condition='case nKey == K_NONEXISTENT') for k,v in self.specs.items()}
         with self.assertRaisesRegex(ValueError,'exactly one route'):audit.link_dispatch_contracts(self.routes,broken)

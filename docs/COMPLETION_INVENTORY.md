@@ -602,9 +602,18 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:908 | `CASE Empty( cCommand )` | Pendiente vinculo |
 | hbdebug/debugger.prg:911 | `CASE hb_LeftEq( cCommand, "??" )` | Pendiente vinculo |
 | hbdebug/debugger.prg:915 | `CASE hb_LeftEq( cCommand, "?" )` | Pendiente vinculo |
+| hbdebug/debugger.prg:920 | `IF ( n := At( " ", cCommand ) ) > 0` | Pendiente vinculo |
+| hbdebug/debugger.prg:923 | `IF ( n := At( " ", cParam1 ) ) > 0` | Pendiente vinculo |
 | hbdebug/debugger.prg:933 | `CASE cCommand == "??" .OR. cCommand == "?"` | Pendiente vinculo |
+| hbdebug/debugger.prg:941 | `IF aCmnd[ WP_TYPE ] == "??"` | Pendiente vinculo |
+| hbdebug/debugger.prg:942 | `IF lValid` | Pendiente vinculo |
+| hbdebug/debugger.prg:946 | `ELSEIF lValid` | Pendiente vinculo |
 | hbdebug/debugger.prg:951 | `CASE hb_LeftEqN( "ANIMATE", cCommand, 4 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:952 | `IF ::lActive` | Pendiente vinculo |
 | hbdebug/debugger.prg:957 | `CASE cCommand == "BP"` | Pendiente vinculo |
+| hbdebug/debugger.prg:958 | `IF Empty( cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:960 | `ELSEIF HBIDE_DbgIndex( cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:963 | `ELSEIF hb_asciiIsAlpha( cParam1 ) .OR. hb_LeftEq( cParam1, "_" )` | Pendiente vinculo |
 | hbdebug/debugger.prg:967 | `CASE hb_LeftEqN( "CALLSTACK", cCommand, 4 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:970 | `CASE hb_LeftEqN( "DELETE", cCommand, 3 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:972 | `CASE cParam1 == "BP"` | Pendiente vinculo |
@@ -625,6 +634,9 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1018 | `CASE hb_LeftEq( "GO", cCommand )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1021 | `CASE cCommand == "HELP"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1024 | `CASE hb_LeftEqN( "INPUT", cCommand, 4 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1025 | `IF Empty( cParams )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1029 | `IF LastKey() == K_ESC` | Pendiente vinculo |
+| hbdebug/debugger.prg:1033 | `IF ! Empty( cParams )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1037 | `CASE cCommand == "LIST"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1039 | `CASE "BP"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1042 | `CASE "WP"` | Pendiente vinculo |
@@ -640,6 +652,9 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1066 | `CASE Upper( cParam2 ) == "ON"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1068 | `CASE Upper( cParam2 ) == "OFF"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1077 | `CASE hb_LeftEq( "MONITOR", cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1079 | `IF hb_LeftEq( "PUBLIC", cParam1 ) .OR. hb_LeftEq( "PRIVATE", cParam1 ) .OR. ;` | Pendiente vinculo |
+| hbdebug/debugger.prg:1082 | `IF ! Empty( cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1083 | `IF Upper( cParam2 ) == "ON" .OR. Upper( cParam2 ) == "OFF"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1094 | `CASE ! Empty( cResult )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1096 | `CASE hb_LeftEq( "PUBLIC", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1098 | `CASE hb_LeftEq( "PRIVATE", cParam1 )` | Pendiente vinculo |
@@ -671,7 +686,14 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1166 | `CASE Upper( cParam2 ) == "ON"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1168 | `CASE Upper( cParam2 ) == "OFF"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1173 | `CASE hb_LeftEq( "COLORS", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1174 | `IF Empty( cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1181 | `IF lValid` | Pendiente vinculo |
+| hbdebug/debugger.prg:1184 | `IF Len( cColor ) < 3 .OR. Left( cColor, 1 ) != '"' .OR. Right( cColor, 1 ) != '"'` | Pendiente vinculo |
+| hbdebug/debugger.prg:1189 | `IF Empty( cColor ) .OR. ! Empty( hb_StrReplace( Upper( cColor ), ;` | Pendiente vinculo |
+| hbdebug/debugger.prg:1199 | `IF lValid .AND. Len( aNewColors ) == Len( ::aColors )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1206 | `CASE hb_LeftEq( "TABWIDTH", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1207 | `IF IsDigit( cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1209 | `IF ::oBrwText != NIL` | Pendiente vinculo |
 | hbdebug/debugger.prg:1215 | `CASE hb_LeftEq( "PATHFORFILES", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1217 | `CASE hb_LeftEq( "RUNATSTARTUP", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1219 | `CASE hb_LeftEq( "NORUNATSTARTUP", cParam1 )` | Pendiente vinculo |
@@ -696,7 +718,9 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1272 | `CASE hb_LeftEq( "TOCURSOR", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1274 | `CASE hb_LeftEq( "NEXTROUTINE", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1276 | `CASE hb_LeftEq( "SPEED", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1277 | `IF IsDigit( cParam2 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1286 | `CASE hb_LeftEqN( "SPEED", cCommand, 4 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1287 | `IF IsDigit( cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1293 | `CASE cCommand == "STEP"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1296 | `CASE cCommand == "TP"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1299 | `CASE hb_LeftEq( "VIEW", cCommand )` | Pendiente vinculo |
@@ -708,10 +732,15 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1315 | `CASE hb_LeftEq( "WINDOW", cCommand )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1317 | `CASE Empty( cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1319 | `CASE hb_LeftEq( "SELECT", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1320 | `IF ! ::WindowSelect( cParam2 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1323 | `CASE hb_LeftEq( "NEXT", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1325 | `CASE hb_LeftEq( "PREV", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1327 | `CASE hb_LeftEq( "MOVE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1328 | `IF Empty( cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1331 | `IF ! ::WindowCommandRect( cParam2, .F. )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1335 | `CASE hb_LeftEq( "SIZE", cParam1 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1336 | `IF Empty( cParam2 )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1338 | `ELSEIF ! ::WindowCommandRect( cParam2, .T. )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1341 | `CASE hb_LeftEq( "ZOOM", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1343 | `CASE hb_LeftEq( "TILE", cParam1 )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1345 | `CASE hb_LeftEq( "CASCADE", cParam1 )` | Pendiente vinculo |
@@ -720,9 +749,20 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1351 | `CASE Upper( cParam2 ) == "ON"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1353 | `CASE Upper( cParam2 ) == "OFF"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1362 | `CASE cCommand == "WP"` | Pendiente vinculo |
+| hbdebug/debugger.prg:1372 | `IF ::lActive .AND. ::lDebuggerWindowIsOpen` | Pendiente vinculo |
+| hbdebug/debugger.prg:1377 | `IF ! Empty( cResult )` | Pendiente vinculo |
+| designer.prg:226 | `if nKey != K_UP .and. nKey != K_DOWN .and. nKey != K_LEFT .and. nKey != K_RIGHT` | Pendiente vinculo |
+| designer.prg:230 | `if ::lInspector .and. ::lInspFocus .and. ::InspectorKey( nKey )` | Pendiente vinculo |
 | designer.prg:235 | `case nKey == K_F4` | Pendiente vinculo |
 | designer.prg:238 | `case nKey == K_F6` | Pendiente vinculo |
+| designer.prg:239 | `if ::lInspector` | Pendiente vinculo |
+| designer.prg:241 | `if ::lInspFocus` | Pendiente vinculo |
 | designer.prg:249 | `case nKey == K_ESC` | Pendiente vinculo |
+| designer.prg:251 | `if cEsc == "placing"` | Pendiente vinculo |
+| designer.prg:253 | `elseif cEsc == "inspector"` | Pendiente vinculo |
+| designer.prg:256 | `elseif cEsc == "codeview"` | Pendiente vinculo |
+| designer.prg:261 | `elseif cEsc == "dirty"` | Pendiente vinculo |
+| designer.prg:265 | `if nChoice == 1` | Pendiente vinculo |
 | designer.prg:272 | `case nKey == K_F2` | Pendiente vinculo |
 | designer.prg:275 | `case nKey == K_F3` | Pendiente vinculo |
 | designer.prg:278 | `case nKey == K_F9` | Pendiente vinculo |
@@ -730,30 +770,61 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | designer.prg:284 | `case nKey == K_F11` | Pendiente vinculo |
 | designer.prg:287 | `case nKey == K_F12` | Pendiente vinculo |
 | designer.prg:290 | `case nKey == K_ENTER` | Pendiente vinculo |
+| designer.prg:291 | `if ::lPlacing` | Pendiente vinculo |
+| designer.prg:293 | `elseif ::nSelected > 0` | Pendiente vinculo |
 | designer.prg:297 | `case nKey == K_DEL` | Pendiente vinculo |
+| designer.prg:298 | `if ! ::lPlacing` | Pendiente vinculo |
 | designer.prg:302 | `case nKey == DSNK_CTRL_Z .or. nKey == K_CTRL_Z` | Pendiente vinculo |
+| designer.prg:303 | `if ! ::lPlacing` | Pendiente vinculo |
 | designer.prg:307 | `case nKey == DSNK_CTRL_Y .or. nKey == K_CTRL_Y` | Pendiente vinculo |
+| designer.prg:308 | `if ! ::lPlacing` | Pendiente vinculo |
 | designer.prg:312 | `case nKey == DSNK_CTRL_C .or. nKey == K_CTRL_C` | Pendiente vinculo |
+| designer.prg:313 | `if ! ::lPlacing` | Pendiente vinculo |
 | designer.prg:317 | `case nKey == DSNK_CTRL_X   // EXT only: classic 24 aliases K_DOWN; the arrow case below claims it (move wins over cut without EXT)` | Pendiente vinculo |
+| designer.prg:318 | `if ! ::lPlacing` | Pendiente vinculo |
 | designer.prg:322 | `case nKey == DSNK_CTRL_V .or. nKey == K_CTRL_V` | Pendiente vinculo |
+| designer.prg:323 | `if ! ::lPlacing` | Pendiente vinculo |
 | designer.prg:327 | `case nKey == K_F7` | Pendiente vinculo |
 | designer.prg:330 | `case nKey == K_F5` | DSN-KEY-LIVEPRG-F5 |
+| designer.prg:331 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:333 | `if ::lCodeView` | Pendiente vinculo |
 | designer.prg:342 | `case nKey == K_PGUP .or. ( ::lCodeView .and. nKey == Asc( "-" ) )` | Pendiente vinculo |
+| designer.prg:343 | `if ::lCodeView` | Pendiente vinculo |
 | designer.prg:348 | `case ::lCodeView .and. nKey == Asc( "," )` | Pendiente vinculo |
 | designer.prg:351 | `case ::lCodeView .and. nKey == Asc( "." )` | Pendiente vinculo |
 | designer.prg:354 | `case nKey == K_PGDN .or. ( ::lCodeView .and. nKey == Asc( "+" ) )` | Pendiente vinculo |
+| designer.prg:355 | `if ::lCodeView` | Pendiente vinculo |
 | designer.prg:361 | `case nKey == K_UP` | Pendiente vinculo |
+| designer.prg:362 | `if ::lPlacing` | Pendiente vinculo |
 | designer.prg:370 | `case nKey == K_DOWN` | Pendiente vinculo |
+| designer.prg:371 | `if ::lPlacing` | Pendiente vinculo |
 | designer.prg:379 | `case nKey == K_LEFT` | Pendiente vinculo |
+| designer.prg:380 | `if ::lPlacing` | Pendiente vinculo |
 | designer.prg:388 | `case nKey == K_RIGHT` | Pendiente vinculo |
+| designer.prg:389 | `if ::lPlacing` | Pendiente vinculo |
 | designer.prg:397 | `case nKey == K_CTRL_UP` | Pendiente vinculo |
+| designer.prg:398 | `if ! ::lPlacing` | Pendiente vinculo |
 | designer.prg:402 | `case nKey == K_CTRL_DOWN` | Pendiente vinculo |
+| designer.prg:403 | `if ! ::lPlacing` | Pendiente vinculo |
 | designer.prg:407 | `case nKey == DSNK_CTRLLEFT   // classic 26 aliases K_CTRL_Z; the undo case above claims it (non-destructive)` | Pendiente vinculo |
+| designer.prg:408 | `if ! ::lPlacing` | Pendiente vinculo |
 | designer.prg:412 | `case nKey == DSNK_CTRLRIGHT   // classic 2 aliases K_CTRL_B; unreachable without EXT (safe no-op)` | Pendiente vinculo |
+| designer.prg:413 | `if ! ::lPlacing` | Pendiente vinculo |
 | designer.prg:417 | `case nKey == K_TAB` | Pendiente vinculo |
+| designer.prg:418 | `if ! Empty( ::aControls )` | Pendiente vinculo |
 | designer.prg:426 | `case nKey == K_SH_TAB` | Pendiente vinculo |
+| designer.prg:427 | `if ! Empty( ::aControls )` | Pendiente vinculo |
 | designer.prg:435 | `case nKey == K_LBUTTONUP` | Pendiente vinculo |
 | designer.prg:438 | `case nKey == K_LBUTTONDOWN` | Pendiente vinculo |
+| designer.prg:439 | `if ::lPlacing` | Pendiente vinculo |
+| designer.prg:440 | `if ::HitClient( MRow(), MCol() )` | Pendiente vinculo |
+| designer.prg:447 | `if ::lInspector .and. nInspHit != 0` | Pendiente vinculo |
+| designer.prg:448 | `if nInspHit == -1` | Pendiente vinculo |
+| designer.prg:457 | `if ::lInspFocus` | Pendiente vinculo |
+| designer.prg:470 | `if nIndex > 0` | Pendiente vinculo |
+| designer.prg:473 | `if ::HandleHit( MRow(), MCol() )` | Pendiente vinculo |
+| designer.prg:488 | `if ::nIdleDraw != nil` | Pendiente vinculo |
+| projectui.prg:14 | `IF nPick >= nTop + nVisible` | Pendiente vinculo |
 | projectui.prg:20 | `CASE nKey == K_ESC` | Pendiente vinculo |
 | projectui.prg:22 | `CASE nKey == K_UP` | Pendiente vinculo |
 | projectui.prg:24 | `CASE nKey == K_DOWN` | Pendiente vinculo |
@@ -765,6 +836,10 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | projectui.prg:36 | `CASE nKey == K_F6 .AND. ! Empty( oProject:hBuild )` | Pendiente vinculo |
 | projectui.prg:38 | `CASE nKey == K_F9 .OR. nKey == K_CTRL_F9` | Pendiente vinculo |
 | projectui.prg:42 | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` | Pendiente vinculo |
+| projectui.prg:44 | `IF MRow() >= 6 .AND. MRow() < 6 + nVisible .AND. nClick <= Len( aRows )` | Pendiente vinculo |
+| projectui.prg:46 | `IF nKey == K_LDBLCLK` | Pendiente vinculo |
+| projectui.prg:51 | `IF nKey == K_ENTER .AND. Len( aRows ) > 0` | Pendiente vinculo |
+| projectui.prg:53 | `IF ! Empty( h[ "path" ] )` | Pendiente vinculo |
 | designer.prg:2286 | `case nKey == K_ESC .or. nKey == K_F6` | Pendiente vinculo |
 | designer.prg:2291 | `case nKey == K_F4` | Pendiente vinculo |
 | designer.prg:2294 | `case nKey == K_UP` | Pendiente vinculo |
@@ -776,6 +851,12 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | designer.prg:2315 | `case nKey == K_CTRL_DOWN` | Pendiente vinculo |
 | designer.prg:2319 | `case nKey == K_CTRL_LEFT` | Pendiente vinculo |
 | designer.prg:2323 | `case nKey == K_CTRL_RIGHT` | Pendiente vinculo |
+| designer.prg:2097 | `if ::nInspField < 1 .or. ::nInspField > Len( aFields )` | Pendiente vinculo |
+| designer.prg:2100 | `if aFields[ ::nInspField ][ 3 ] == "choice"` | Pendiente vinculo |
+| designer.prg:2104 | `if aFields[ ::nInspField ][ 3 ] == "color"` | Pendiente vinculo |
+| designer.prg:2108 | `if aFields[ ::nInspField ][ 3 ] != "text"` | Pendiente vinculo |
+| designer.prg:2133 | `if nPos - 1 - nOff > nWidth - 1` | Pendiente vinculo |
+| designer.prg:2135 | `elseif nPos - 1 - nOff < 0` | Pendiente vinculo |
 | designer.prg:2142 | `case nKey == K_ENTER` | Pendiente vinculo |
 | designer.prg:2145 | `case nKey == K_ESC` | Pendiente vinculo |
 | designer.prg:2147 | `case nKey == K_LEFT` | Pendiente vinculo |
@@ -783,14 +864,48 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | designer.prg:2151 | `case nKey == K_HOME` | Pendiente vinculo |
 | designer.prg:2153 | `case nKey == K_END` | Pendiente vinculo |
 | designer.prg:2155 | `case nKey == K_BS` | Pendiente vinculo |
+| designer.prg:2156 | `if nPos > 1` | Pendiente vinculo |
 | designer.prg:2160 | `case nKey == K_DEL` | Pendiente vinculo |
+| designer.prg:2161 | `if nPos <= Len( cVal )` | Pendiente vinculo |
 | designer.prg:2164 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` | Pendiente vinculo |
 | designer.prg:2168 | `case nKey >= 32 .and. nKey <= 255` | Pendiente vinculo |
+| designer.prg:2169 | `if Len( cVal ) < 200` | Pendiente vinculo |
+| designer.prg:2181 | `if lApply` | Pendiente vinculo |
+| hbide.prg:622 | `if nKeyStd == K_ESC .and. ! ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:623 | `if ::CheckUnsavedAll()` | Pendiente vinculo |
+| hbide.prg:630 | `if nKeyStd >= K_ALT_Q .and. nKeyStd <= K_ALT_M` | Pendiente vinculo |
+| hbide.prg:633 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:634 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:641 | `if nKeyStd == K_F1` | Pendiente vinculo |
+| hbide.prg:647 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
 | hbide.prg:649 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F8, HB_KF_ALT, K_ALT_F8 )` | Pendiente vinculo |
 | hbide.prg:652 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )` | Pendiente vinculo |
 | hbide.prg:655 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )` | Pendiente vinculo |
 | hbide.prg:658 | `case nKeyStd == K_ALT_0` | Pendiente vinculo |
 | hbide.prg:662 | `case nKeyStd == K_CTRL_G .and. hb_keyExt( nKey ) != HB_KX_DEL` | IDE-KEY-GOTOFUNCTION-CTRL-G |
+| hbide.prg:666 | `if nKey != 0 .and. ! Empty( ::cMsgBar )` | Pendiente vinculo |
+| hbide.prg:673 | `if nKeyStd == K_F5 .and. ! ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:679 | `if nKeyStd == K_F2 .and. ! ::oMenu:IsOpen()` | IDE-KEY-SAVE-F2 |
+| hbide.prg:685 | `if ! ::oMenu:IsOpen() .and. Len( ::aEditors ) > 1` | Pendiente vinculo |
+| hbide.prg:686 | `if nKeyStd == K_CTRL_F6 .or. ;` | Pendiente vinculo |
+| hbide.prg:688 | `if hb_bitAnd( hb_keyMod( nKey ), HB_KF_SHIFT ) != 0` | Pendiente vinculo |
+| hbide.prg:701 | `if nKeyStd == K_F3 .and. ! ::oMenu:IsOpen()` | IDE-KEY-REPEAT-FIND-F3 |
+| hbide.prg:708 | `if nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
+| hbide.prg:709 | `if MRow() == 0 .or. ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:712 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:713 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:718 | `if MRow() == 1 .and. MCol() == 2` | Pendiente vinculo |
+| hbide.prg:722 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:729 | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
+| hbide.prg:730 | `if ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:733 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:740 | `if ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:742 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:743 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:748 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:756 | `if Seconds() - ::nLastDiskCheck >= 2 .or. Seconds() < ::nLastDiskCheck` | Pendiente vinculo |
+| hbide.prg:765 | `if "xterm" $ Lower( GetEnv( "TERM" ) )` | Pendiente vinculo |
+| help.prg:533 | `IF h[ "mode" ] == "search"` | Pendiente vinculo |
 | help.prg:535 | `CASE nKey == K_ESC` | Pendiente vinculo |
 | help.prg:538 | `CASE nKey == K_ENTER` | Pendiente vinculo |
 | help.prg:540 | `CASE nKey == K_BS` | Pendiente vinculo |
@@ -803,6 +918,11 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:558 | `CASE nKey == K_MWFORWARD` | Pendiente vinculo |
 | help.prg:560 | `CASE nKey == K_MWBACKWARD` | Pendiente vinculo |
 | help.prg:562 | `CASE nKey == K_LBUTTONDOWN` | Pendiente vinculo |
+| help.prg:563 | `IF MRow() > g[ "lbT" ] .AND. MRow() <= g[ "lbT" ] + g[ "idxH" ] .AND. MCol() >= g[ "lbL" ] .AND. MCol() <= g[ "lbR" ]` | Pendiente vinculo |
+| help.prg:564 | `IF h[ "itop" ] + MRow() - g[ "lbT" ] - 1 <= Len( h[ "rows" ] )` | Pendiente vinculo |
+| help.prg:569 | `ELSEIF MRow() > g[ "rbT" ] .AND. MRow() < g[ "rbB" ] .AND. MCol() >= g[ "rbL" ] .AND. MCol() <= g[ "rbR" ]` | Pendiente vinculo |
+| help.prg:571 | `ELSEIF MRow() == g[ "btnRow" ]` | Pendiente vinculo |
+| help.prg:574 | `IF MCol() >= aCols[ n ][ 1 ] .AND. MCol() < aCols[ n ][ 2 ]` | Pendiente vinculo |
 | help.prg:580 | `CASE h[ "pane" ] == "index"` | Pendiente vinculo |
 | help.prg:582 | `CASE nKey == K_UP    ; h[ "row" ]--` | Pendiente vinculo |
 | help.prg:583 | `CASE nKey == K_DOWN  ; h[ "row" ]++` | Pendiente vinculo |
@@ -811,6 +931,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:586 | `CASE nKey == K_PGUP  ; h[ "row" ] -= g[ "idxH" ]` | Pendiente vinculo |
 | help.prg:587 | `CASE nKey == K_PGDN  ; h[ "row" ] += g[ "idxH" ]` | Pendiente vinculo |
 | help.prg:588 | `CASE nKey == K_ENTER .OR. nKey == K_RIGHT` | Pendiente vinculo |
+| help.prg:592 | `IF nKey == K_UP .OR. nKey == K_DOWN .OR. nKey == K_HOME .OR. nKey == K_END .OR. ;` | Pendiente vinculo |
 | help.prg:596 | `CASE h[ "pane" ] == "text"` | Pendiente vinculo |
 | help.prg:598 | `CASE nKey == K_UP    ; h[ "top" ]--` | Pendiente vinculo |
 | help.prg:599 | `CASE nKey == K_DOWN  ; h[ "top" ]++` | Pendiente vinculo |
@@ -826,6 +947,9 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:611 | `CASE nKey == K_RIGHT ; h[ "btn" ] := h[ "btn" ] % Len( g[ "btnCaps" ] ) + 1` | Pendiente vinculo |
 | help.prg:612 | `CASE nKey == K_ENTER ; HBHelpButton( h, aTopics, g, h[ "btn" ] )` | Pendiente vinculo |
 | help.prg:613 | `CASE nKey == K_UP    ; h[ "pane" ] := "index"` | Pendiente vinculo |
+| help.prg:617 | `IF h[ "row" ] < h[ "itop" ]` | Pendiente vinculo |
+| help.prg:619 | `ELSEIF h[ "row" ] > h[ "itop" ] + g[ "idxH" ] - 1` | Pendiente vinculo |
+| help.prg:820 | `IF nTopic == 0` | Pendiente vinculo |
 | help.prg:851 | `CASE nKey == K_ESC` | Pendiente vinculo |
 | help.prg:853 | `CASE nKey == K_F1` | Pendiente vinculo |
 | help.prg:855 | `CASE nKey == K_BS .AND. ! Empty( aHistory )` | Pendiente vinculo |
@@ -840,8 +964,11 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:877 | `CASE nKey == K_PGDN` | Pendiente vinculo |
 | help.prg:879 | `CASE nKey == K_HOME` | Pendiente vinculo |
 | help.prg:881 | `CASE nKey == K_END` | Pendiente vinculo |
+| help.prg:884 | `IF nTarget > 0 .AND. nTarget != nTopic` | Pendiente vinculo |
+| help.prg:886 | `IF Len( aHistory ) > 100` | Pendiente vinculo |
 | editor.prg:484 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
 | editor.prg:490 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. ;` | Pendiente vinculo |
+| editor.prg:492 | `if ! ::lMark` | Pendiente vinculo |
 | editor.prg:496 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
 | editor.prg:497 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
 | editor.prg:498 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
@@ -855,10 +982,21 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:522 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
 | editor.prg:525 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
 | editor.prg:528 | `case nKeyStd == K_BS` | Pendiente vinculo |
+| editor.prg:529 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:533 | `IF ::nCol > 5` | Pendiente vinculo |
+| editor.prg:536 | `if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:541 | `ELSEIF ::nRow > 1` | Pendiente vinculo |
 | editor.prg:553 | `case nKeyStd == K_DEL` | Pendiente vinculo |
+| editor.prg:554 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:560 | `if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
 | editor.prg:567 | `case nKeyStd == K_ENTER` | Pendiente vinculo |
+| editor.prg:568 | `if ::SelRange() != NIL` | Pendiente vinculo |
 | editor.prg:577 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
+| editor.prg:578 | `if ::nCol - 4 > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:579 | `if ::nRow < Len( ::aText )` | Pendiente vinculo |
 | editor.prg:586 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
+| editor.prg:587 | `if ::nCol <= 5` | Pendiente vinculo |
+| editor.prg:588 | `if ::nRow > 1` | Pendiente vinculo |
 | editor.prg:595 | `case nKeyStd == K_HOME` | Pendiente vinculo |
 | editor.prg:598 | `case nKeyStd == K_END` | Pendiente vinculo |
 | editor.prg:601 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
@@ -868,6 +1006,34 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:622 | `case nKeyStd == K_F8` | Pendiente vinculo |
 | editor.prg:626 | `case nKeyStd == K_F9` | Pendiente vinculo |
 | editor.prg:629 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), ;` | Pendiente vinculo |
+| editor.prg:634 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:641 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
+| editor.prg:649 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
+| editor.prg:652 | `if lHotPath` | Pendiente vinculo |
+| editor.prg:659 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
+| editor.prg:663 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
+| editor.prg:665 | `ELSEIF lHotPath` | Pendiente vinculo |
+| editor.prg:666 | `if ! ::lWordWrap` | Pendiente vinculo |
+| editor.prg:672 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore` | Pendiente vinculo |
+| editor.prg:693 | `if ! lSkipTail` | Pendiente vinculo |
+| editor.prg:694 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
+| editor.prg:701 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
+| editor.prg:705 | `if ::Row() > ::nTop` | Pendiente vinculo |
+| editor.prg:711 | `if ::Row() < ::nBottom` | Pendiente vinculo |
+| editor.prg:721 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
+| editor.prg:1924 | `if nKey == K_LEFT` | Pendiente vinculo |
+| editor.prg:1925 | `if Col() > 5` | Pendiente vinculo |
+| editor.prg:1928 | `if ::nFirstCol > 1` | Pendiente vinculo |
+| editor.prg:1953 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
+| editor.prg:1973 | `if nB < 0x80` | Pendiente vinculo |
+| editor.prg:1976 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
+| editor.prg:1978 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
+| editor.prg:1980 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
+| editor.prg:1985 | `if nI + nNeed > nLen` | Pendiente vinculo |
+| editor.prg:1991 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ;` | Pendiente vinculo |
+| editor.prg:1999 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
+| editor.prg:2016 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
+| editor.prg:2020 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
 | editor.prg:2039 | `case K_UP` | Pendiente vinculo |
 | editor.prg:2040 | `case K_DOWN` | Pendiente vinculo |
 | editor.prg:2041 | `case K_LEFT` | Pendiente vinculo |
@@ -878,15 +1044,39 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:2046 | `case K_PGDN` | Pendiente vinculo |
 | editor.prg:2047 | `case K_MWFORWARD` | Pendiente vinculo |
 | editor.prg:2048 | `case K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:2060 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
 | editor.prg:2066 | `CASE lBlock` | Pendiente vinculo |
+| editor.prg:2067 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
 | editor.prg:2072 | `CASE !Empty(q)` | Pendiente vinculo |
+| editor.prg:2073 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
+| editor.prg:2075 | `ELSEIF c == q` | Pendiente vinculo |
 | editor.prg:2079 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
 | editor.prg:2082 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. ;` | Pendiente vinculo |
+| hbdebug/debugger.prg:1563 | `IF ::lAnimate` | Pendiente vinculo |
+| hbdebug/debugger.prg:1564 | `IF ::nSpeed != 0` | Pendiente vinculo |
+| hbdebug/debugger.prg:1567 | `IF __dbgInvokeDebug()  // NextKey() == K_ALT_D` | Pendiente vinculo |
+| hbdebug/debugger.prg:1579 | `IF ::oWndCommand:lFocused .AND. ! ::IsWindowIconized( ::oWndCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1581 | `ELSEIF ::oWndCode:lFocused .AND. ::oBrwText != NIL .AND. ! ::IsWindowIconized( ::oWndCode )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1590 | `IF nKey == K_ALT_X` | Pendiente vinculo |
+| hbdebug/debugger.prg:1592 | `ELSEIF ::oPullDown:IsOpen()` | Pendiente vinculo |
+| hbdebug/debugger.prg:1594 | `IF ::oPullDown:nOpenPopup == 0 // Closed` | Pendiente vinculo |
 | hbdebug/debugger.prg:1600 | `CASE K_LDBLCLK` | Pendiente vinculo |
+| hbdebug/debugger.prg:1602 | `IF MRow() != 0 .AND. MRow() != ::nMaxRow` | Pendiente vinculo |
+| hbdebug/debugger.prg:1607 | `IF oWnd != NIL` | Pendiente vinculo |
+| hbdebug/debugger.prg:1608 | `IF oWnd:IsOver( nMRow, nMCol )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1609 | `IF ! oWnd:lFocused` | Pendiente vinculo |
 | hbdebug/debugger.prg:1620 | `CASE K_LBUTTONDOWN` | Pendiente vinculo |
+| hbdebug/debugger.prg:1622 | `IF MRow() == 0` | Pendiente vinculo |
+| hbdebug/debugger.prg:1624 | `IF ! ::lMenuBar` | Pendiente vinculo |
+| hbdebug/debugger.prg:1627 | `IF ( nPopup := ::oPullDown:GetItemOrdByCoors( 0, MCol() ) ) != 0` | Pendiente vinculo |
+| hbdebug/debugger.prg:1631 | `ELSEIF MRow() != ::nMaxRow` | Pendiente vinculo |
+| hbdebug/debugger.prg:1636 | `IF oWnd != NIL` | Pendiente vinculo |
+| hbdebug/debugger.prg:1637 | `IF oWnd:IsOver( nMRow, nMCol )` | Pendiente vinculo |
+| hbdebug/debugger.prg:1638 | `IF ! oWnd:lFocused` | Pendiente vinculo |
 | hbdebug/debugger.prg:1649 | `CASE K_RBUTTONDOWN` | Pendiente vinculo |
 | hbdebug/debugger.prg:1652 | `CASE K_ESC` | Pendiente vinculo |
 | hbdebug/debugger.prg:1661 | `CASE K_ENTER` | Pendiente vinculo |
+| hbdebug/debugger.prg:1662 | `IF ! Empty( ::oGetCommand:getValue() )` | Pendiente vinculo |
 | hbdebug/debugger.prg:1666 | `CASE K_UP` | Pendiente vinculo |
 | hbdebug/debugger.prg:1667 | `CASE K_DOWN` | Pendiente vinculo |
 | hbdebug/debugger.prg:1668 | `CASE K_LEFT` | Pendiente vinculo |
@@ -917,10 +1107,17 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1735 | `CASE K_F10` | Pendiente vinculo |
 | hbdebug/debugger.prg:1739 | `CASE K_TAB` | Pendiente vinculo |
 | hbdebug/debugger.prg:1743 | `CASE K_SH_TAB` | Pendiente vinculo |
+| hbdebug/debugger.prg:1748 | `IF ! ::OpenMenu( __dbgAltToKey( nKey ) )` | Pendiente vinculo |
 | hbdebug/debugger.prg:843 | `CASE K_UP` | Pendiente vinculo |
 | hbdebug/debugger.prg:844 | `CASE K_F3` | Pendiente vinculo |
+| hbdebug/debugger.prg:845 | `IF ::nCommand > 1` | Pendiente vinculo |
 | hbdebug/debugger.prg:850 | `CASE K_DOWN` | Pendiente vinculo |
+| hbdebug/debugger.prg:851 | `IF ::nCommand < Len( ::aLastCommands )` | Pendiente vinculo |
 | hbdebug/debugger.prg:856 | `CASE K_ENTER` | Pendiente vinculo |
+| hbdebug/debugger.prg:858 | `IF ! Empty( cCommand )` | Pendiente vinculo |
+| hbdebug/debugger.prg:859 | `IF ( n := hb_AScan( ::aLastCommands, cCommand, , , .T. ) ) > 0 .AND. n < Len( ::aLastCommands )` | Pendiente vinculo |
+| hbdebug/debugger.prg:871 | `IF ::lDebuggerWindowIsOpen` | Pendiente vinculo |
+| hbdebug/debugger.prg:704 | `IF ::oBrwText != NIL` | Pendiente vinculo |
 | hbdebug/debugger.prg:707 | `CASE K_CTRL_PGUP` | Pendiente vinculo |
 | hbdebug/debugger.prg:708 | `CASE K_CTRL_HOME` | Pendiente vinculo |
 | hbdebug/debugger.prg:713 | `CASE K_CTRL_PGDN` | Pendiente vinculo |
@@ -933,8 +1130,39 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:741 | `CASE K_DOWN` | Pendiente vinculo |
 | hbdebug/debugger.prg:745 | `CASE K_PGUP` | Pendiente vinculo |
 | hbdebug/debugger.prg:749 | `CASE K_PGDN` | Pendiente vinculo |
+| designer.prg:1299 | `if ::nSelected < 1 .or. ::nSelected > Len( ::aControls )` | Pendiente vinculo |
+| designer.prg:1333 | `if oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX` | Pendiente vinculo |
+| designer.prg:1338 | `if oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX` | Pendiente vinculo |
+| designer.prg:1343 | `if oCtrl[ "type" ] == DSN_GET` | Pendiente vinculo |
+| designer.prg:1348 | `if oCtrl[ "type" ] == DSN_BUTTON` | Pendiente vinculo |
+| designer.prg:1358 | `if oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
+| designer.prg:1365 | `if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )` | Pendiente vinculo |
+| designer.prg:1372 | `if oCtrl[ "type" ] != DSN_SAY` | Pendiente vinculo |
+| designer.prg:1377 | `if oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
+| designer.prg:1381 | `if oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
+| designer.prg:1400 | `if ! lOk .and. ! lCancel .and. LastKey() != K_ESC` | Pendiente vinculo |
+| designer.prg:1404 | `if lOk` | Pendiente vinculo |
+| designer.prg:1408 | `if "caption" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1411 | `if "variable" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1417 | `if "width" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1420 | `if "items" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1423 | `if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )` | Pendiente vinculo |
+| designer.prg:1426 | `if oCtrl[ "type" ] == DSN_BUTTON` | Pendiente vinculo |
+| designer.prg:1431 | `if oCtrl[ "type" ] != DSN_SAY` | Pendiente vinculo |
+| designer.prg:1448 | `if lOk .and. DsnListSBarHidden( oCtrl )` | Pendiente vinculo |
+| designer.prg:1509 | `if ! lOk .and. ! lCancel .and. LastKey() != K_ESC` | Pendiente vinculo |
+| designer.prg:1513 | `if lOk` | Pendiente vinculo |
+| designer.prg:1516 | `if nWidth < aMin[ 1 ] .or. nHeight < aMin[ 2 ]` | Pendiente vinculo |
+| designer.prg:1525 | `if ! Empty( AllTrim( cClrBack ) )` | Pendiente vinculo |
+| designer.prg:1526 | `if ! DsnValidColor( AllTrim( cClrBack ) )` | Pendiente vinculo |
+| designer.prg:1532 | `if ! Empty( AllTrim( cClrText ) )` | Pendiente vinculo |
+| designer.prg:1533 | `if ! DsnValidColor( AllTrim( cClrText ) )` | Pendiente vinculo |
+| designer.prg:1539 | `if ! Empty( AllTrim( cClrFocus ) )` | Pendiente vinculo |
+| designer.prg:1540 | `if ! DsnValidColor( AllTrim( cClrFocus ) )` | Pendiente vinculo |
 - DSN-KEY-LIVEPRG-F5: Actual F5 LivePRG anchor fixtures: quoted SAY caption, accelerator-transformed button, caption equal to dialog title, reserved generated GET binding and duplicate SAY captions. Default, --button, --dialog-caption, --reserved-binding, --duplicate-caption modes check exact highlighted declaration. Generator model guards cover emitted index anchors, unchanged code and skipped empty item controls. Not all controls/properties/bindings, all F5 states, pixels or Windows; links are not PASS, consult source-identified ledgers Q68-Q75. Pruebas: [test_designer_quote_anchor_pty.py](../tests/test_designer_quote_anchor_pty.py), [test_designer.prg](../tests/test_designer.prg)
 - IDE-KEY-GOTOFUNCTION-CTRL-G: Actual Ctrl+G opens function picker, filter/Enter jumps correct function and preserves line/kind workflow. Extended Delete normalization never opens picker; actual extended Delete removes selected marked lines; separate DeleteLine/Undo restores text but not removed breakpoint. Bounded two entry routes, not all terminal extended-key encodings, menus-open states, every navigation fixture or Windows. Links require exact source-identified PTY ledger. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py)
+- IDE-KEY-SAVE-F2: Actual F2 saves source byte-exact and rotates prior disk version into backup. Failed backup promotion retains old backup child and complete recovery while source saves. Bounded fixture only, not all Save/SaveAs/conflict/menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_backup_pty.py](../tests/test_backup_pty.py)
+- IDE-KEY-REPEAT-FIND-F3: Actual F3 repeat and wrapped repeat clear old selected range before following typing, Undo restores exact original after F2 save. Initial Find in fixture uses Edit menu, not F5 key. Bounded repeated selection fixture, not all search options/menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_find_repeat_selection_pty.py](../tests/test_find_repeat_selection_pty.py)
 
 ## Gate de cierre
 
