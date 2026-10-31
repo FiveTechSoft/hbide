@@ -46,7 +46,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | IDE-038 | Help | Contents | hbide.prg:847 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | IDE-039 | Help | About... | hbide.prg:849 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-001 | File | Open... | hbdebug/dbgmenu.prg:78 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DBG-002 | File | Resume | hbdebug/dbgmenu.prg:79 | wired | Pendiente vincular aceptacion | Fuente actual sin validar |
+| DBG-002 | File | Resume | hbdebug/dbgmenu.prg:79 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-003 | File | OS Shell | hbdebug/dbgmenu.prg:80 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-004 | File | eXit    Alt-X | hbdebug/dbgmenu.prg:82 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-005 | Locate | Find | hbdebug/dbgmenu.prg:87 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -236,6 +236,7 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - DBG-056: Actual Help popup AboutHelp/Keys/Windows/Menus/Commands opens exact topic body; body/outside clicks preserve Keys and left topic-column click opens Function body. Resume exact locals/source unchanged. Native120x40 body/column captures separately inspected. No allpages/clickrows/25x80/Windows acceptance. Pruebas: [test_debug_help_topics_pty.py](../tests/test_debug_help_topics_pty.py)
 - DBG-057: Actual Help popup AboutHelp/Keys/Windows/Menus/Commands opens exact topic body; body/outside clicks preserve Keys and left topic-column click opens Function body. Resume exact locals/source unchanged. Native120x40 body/column captures separately inspected. No allpages/clickrows/25x80/Windows acceptance. Pruebas: [test_debug_help_topics_pty.py](../tests/test_debug_help_topics_pty.py)
 - DBG-058: Actual Help popup AboutHelp/Keys/Windows/Menus/Commands opens exact topic body; body/outside clicks preserve Keys and left topic-column click opens Function body. Resume exact locals/source unchanged. Native120x40 body/column captures separately inspected. No allpages/clickrows/25x80/Windows acceptance. Pruebas: [test_debug_help_topics_pty.py](../tests/test_debug_help_topics_pty.py)
+- DBG-002: File Resume restores source viewing cursor to paused execution line8 after explicit goto3, without executing. A real Point Breakpoint then adds8 not3, verified by anchored list entry; removed again and Go writes151 exact. Single file and stopped execution only, not restart. Pruebas: [test_debug_cursor_popup_pty.py](../tests/test_debug_cursor_popup_pty.py)
 
 ## Contratos modales y edicion inline vinculados
 

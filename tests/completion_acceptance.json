@@ -897,6 +897,13 @@
         "test_debug_help_topics_pty.py"
       ],
       "contract": "Actual Help popup AboutHelp/Keys/Windows/Menus/Commands opens exact topic body; body/outside clicks preserve Keys and left topic-column click opens Function body. Resume exact locals/source unchanged. Native120x40 body/column captures separately inspected. No allpages/clickrows/25x80/Windows acceptance."
+    },
+    "DBG-002": {
+      "expected_label": "Resume",
+      "tests": [
+        "test_debug_cursor_popup_pty.py"
+      ],
+      "contract": "File Resume restores source viewing cursor to paused execution line8 after explicit goto3, without executing. A real Point Breakpoint then adds8 not3, verified by anchored list entry; removed again and Go writes151 exact. Single file and stopped execution only, not restart."
     }
   },
   "modal_contracts": [

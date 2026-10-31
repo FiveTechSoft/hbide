@@ -2411,3 +2411,10 @@ Runner132=131modosPTY+guard,no132funciones. Clean pendiente.
 Clean03f58d0Shadow9Stack7Tracepoint16WorkAreas10Scopes16sameIDE51b06c97
 PASSsinretry,15inventory33docsPASS. linux-debug-shadowed-frame.json
 retieneidentidad/logs, sin heredar modelos ni pixels anteriores.
+
+## 31 octubre File Resume viewing cursor comprobado
+
+AmpliadaCursorPopup11checks: tras BP8stop ygoto3, FileResume noejecuta
+yPointBreakpointagrega8(no3), probadoenlistanclada;remove+Go151exact.
+Exploratorio11PASS,sinproductfix. NuevoenlaceDBG002,110contratos/116
+acciones no110funciones. Unfichero, noRestart niWindows.
