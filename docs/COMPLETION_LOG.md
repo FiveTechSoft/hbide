@@ -2584,4 +2584,8 @@ After6/6PTY: exact disk, Undo typing, Undo duplicate and Redo; four new
 model checks include clean Undo. Native120x40 alpha/Xalpha/beta/gamma
 and Undo alpha/alpha/beta/gamma inspected with full lower frames.
 Runner144=143PTY modes plus guard. No marked Cut semantic change,
-Windows or global acceptance. Clean regression pending.
+Windows or global acceptance.
+
+Clean0fa7d14: Duplicate6, Delete6, Reload4 and Overtype3 pass same
+binary7c95d9d0 without retry;21models15inventory33docs pass.
+Ledger docs/evidence/linux-duplicate-selection.json.
