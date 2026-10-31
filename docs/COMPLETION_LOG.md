@@ -2855,3 +2855,10 @@ Q48clean d9c148b VirtualSelection6,VirtualBS5,Cut7,Destructive19PASS sameae53bc5
 andClose->noname inspected fullborders; linux-virtual-selection.json.
 No re-runs/global/Windows/clipboardemptypolicy claim. FirstRightprobe
 clampedtoEOL so notvirtualrange; Leftprobe was realbeforefixreproduction.
+
+## Q49 - Successful Find leaves stale marked range
+
+Selectal inalpha,Findpha,typeX deletedoldal instead of inserting at match.
+Before2PASS1FAIL realPTY. ClearSelection only when FindText finds a match
+(forward or wrap); missing/cancel preserve range. No searchscope expansion.
+Runner159=158PTY+guard. Clean/native and nochange paths follow.

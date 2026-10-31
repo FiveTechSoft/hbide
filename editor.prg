@@ -281,6 +281,8 @@ METHOD FindText( cText ) CLASS HBSrcEdit
          nPos = hb_UAt( Upper( cText ), Upper( ::aText[ n ]:cText ) )
       endif
       if nPos > 0
+         // A successful search leaves no stale range from the old cursor.
+         ::ClearSelection()
          ::GoTo( n, nPos + 4 )
          ::Display()
          return nil
@@ -291,6 +293,8 @@ METHOD FindText( cText ) CLASS HBSrcEdit
    for n = 1 to ::nRow
       nPos = hb_UAt( Upper( cText ), Upper( ::aText[ n ]:cText ) )
       if nPos > 0
+         // A successful search leaves no stale range from the old cursor.
+         ::ClearSelection()
          ::GoTo( n, nPos + 4 )
          ::Display()
          return nil
