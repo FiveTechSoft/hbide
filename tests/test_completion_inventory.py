@@ -137,6 +137,20 @@ class RecentAcceptanceLinks(unittest.TestCase):
         for name in ['test_nav_array_comment_pty.py','test_nav_pragma_macro_pty.py','test_nav_lexical.prg']:
             self.assertIn(name,linked)
             self.assertTrue((ROOT/'tests'/name).is_file())
+    def test_recent_project_inventory_acceptance_linked(self):
+        data=json.loads((ROOT/'tests/completion_acceptance.json').read_text())
+        for key in ['IDE-020','IDE-021']:
+            row=data['menus'][key]
+            for name in ['test_project_bom_pty.py','test_project_eof_pty.py','test_project_cxx_source_pty.py']:
+                self.assertIn(name,row['tests'])
+                self.assertTrue((ROOT/'tests'/name).is_file())
+            for phrase in ['parse copy','preserving exact original bytes','missing aliases stay visible','not all encodings or compiler modes']:
+                self.assertIn(phrase,row['contract'])
+    def test_array_bracket_comment_scope_linked(self):
+        row=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['menus']['IDE-019']
+        self.assertIn('test_nav_array_bracket_comment_pty.py',row['tests'])
+        self.assertIn('RETURN bracket literal stays masked',row['contract'])
+        self.assertIn('not a full Harbour preprocessor',row['contract'])
     def test_gcc_color_and_fallback_scope_remains_explicit(self):
         data=json.loads((ROOT/'tests/completion_acceptance.json').read_text())
         contract=data['menus']['IDE-021']['contract']

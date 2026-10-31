@@ -130,9 +130,9 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-005: Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive. Conflict Cancel keeps dirty buffer; Reload skips writing/backup and reports reload separately from save. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_saveall_fail_pty.py](../tests/test_saveall_fail_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py), [test_saveall_conflict_cancel_pty.py](../tests/test_saveall_conflict_cancel_pty.py), [test_saveall_conflict_reload_pty.py](../tests/test_saveall_conflict_reload_pty.py)
 - IDE-006: Save/Discard/Cancel reviews the correct document; Cancel keeps it open and unchanged. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-007: All dirty documents reviewed; Cancel keeps IDE alive; clean exit after decisions. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
-- IDE-019: Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated; raw ENDDUMP with trailing comments resumes Harbour declarations. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py), [test_nav_literal_comment_pty.py](../tests/test_nav_literal_comment_pty.py), [test_nav_lexical.prg](../tests/test_nav_lexical.prg), [test_nav_typed_methods_pty.py](../tests/test_nav_typed_methods_pty.py), [test_nav_selection_pty.py](../tests/test_nav_selection_pty.py), [test_nav_array_comment_pty.py](../tests/test_nav_array_comment_pty.py), [test_nav_pragma_macro_pty.py](../tests/test_nav_pragma_macro_pty.py), [test_nav_enddump_comment_pty.py](../tests/test_nav_enddump_comment_pty.py)
-- IDE-020: HBP parsed and preserved; opening never executes build hooks. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Unreadable HBP rejected distinctly from valid empty HBP; host retains active editor and does not select rejected project. Pruebas: [test_project_desktop_pty.py](../tests/test_project_desktop_pty.py), [test_project.prg](../tests/test_project.prg), [test_project_read.py](../tests/test_project_read.py), [test_project_read.prg](../tests/test_project_read.prg), [test_open_unreadable_pty.py](../tests/test_open_unreadable_pty.py)
-- IDE-021: Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently. F6 output Left/Right reveals long diagnostic tails; Esc returns to the same project failure state. Real GCC colored output is normalized only for CSI m/K location/severity/caret parsing; raw output remains unchanged. Exact ASCII source+unique caret can map tested TAB widths; absent/ambiguous/non-ASCII/cropped evidence keeps reported column, not a semantic-correctness claim. GCC wrapper acceptance does not certify hbmk2 colon-path builds or Output viewer ANSI handling. Pruebas: [test_project_desktop_pty.py](../tests/test_project_desktop_pty.py), [test_project_messages_pty.py](../tests/test_project_messages_pty.py), [test_project_leading_pty.py](../tests/test_project_leading_pty.py), [test_project_output.prg](../tests/test_project_output.prg), [test_project_output_pty.py](../tests/test_project_output_pty.py), [test_project_colon_diagnostic_pty.py](../tests/test_project_colon_diagnostic_pty.py), [test_message_selection_pty.py](../tests/test_message_selection_pty.py), [test_gcc_caret_column_pty.py](../tests/test_gcc_caret_column_pty.py)
+- IDE-019: Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated; raw ENDDUMP with trailing comments resumes Harbour declarations. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor. Closing bracket inside real named/function-result array-index comment does not become a bracket literal; RETURN bracket literal stays masked in bounded lexical fixtures. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py), [test_nav_literal_comment_pty.py](../tests/test_nav_literal_comment_pty.py), [test_nav_lexical.prg](../tests/test_nav_lexical.prg), [test_nav_typed_methods_pty.py](../tests/test_nav_typed_methods_pty.py), [test_nav_selection_pty.py](../tests/test_nav_selection_pty.py), [test_nav_array_comment_pty.py](../tests/test_nav_array_comment_pty.py), [test_nav_pragma_macro_pty.py](../tests/test_nav_pragma_macro_pty.py), [test_nav_enddump_comment_pty.py](../tests/test_nav_enddump_comment_pty.py), [test_nav_array_bracket_comment_pty.py](../tests/test_nav_array_bracket_comment_pty.py)
+- IDE-020: HBP parsed and preserved; opening never executes build hooks. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Unreadable HBP rejected distinctly from valid empty HBP; host retains active editor and does not select rejected project. Literal source inventory strips leading UTF-8 BOM and one final DOS EOF only in its parse copy, preserving exact original bytes. Existing .cc/.cxx/.cx aliases join .cpp; missing aliases stay visible. Real hbmk2 fixtures establish BOM/EOF and PRG+cc builds, not all encodings or compiler modes. Pruebas: [test_project_desktop_pty.py](../tests/test_project_desktop_pty.py), [test_project.prg](../tests/test_project.prg), [test_project_read.py](../tests/test_project_read.py), [test_project_read.prg](../tests/test_project_read.prg), [test_open_unreadable_pty.py](../tests/test_open_unreadable_pty.py), [test_project_bom_pty.py](../tests/test_project_bom_pty.py), [test_project_eof_pty.py](../tests/test_project_eof_pty.py), [test_project_cxx_source_pty.py](../tests/test_project_cxx_source_pty.py)
+- IDE-021: Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently. F6 output Left/Right reveals long diagnostic tails; Esc returns to the same project failure state. Real GCC colored output is normalized only for CSI m/K location/severity/caret parsing; raw output remains unchanged. Exact ASCII source+unique caret can map tested TAB widths; absent/ambiguous/non-ASCII/cropped evidence keeps reported column, not a semantic-correctness claim. GCC wrapper acceptance does not certify hbmk2 colon-path builds or Output viewer ANSI handling. Literal source inventory strips leading UTF-8 BOM and one final DOS EOF only in its parse copy, preserving exact original bytes. Existing .cc/.cxx/.cx aliases join .cpp; missing aliases stay visible. Real hbmk2 fixtures establish BOM/EOF and PRG+cc builds, not all encodings or compiler modes. Pruebas: [test_project_desktop_pty.py](../tests/test_project_desktop_pty.py), [test_project_messages_pty.py](../tests/test_project_messages_pty.py), [test_project_leading_pty.py](../tests/test_project_leading_pty.py), [test_project_output.prg](../tests/test_project_output.prg), [test_project_output_pty.py](../tests/test_project_output_pty.py), [test_project_colon_diagnostic_pty.py](../tests/test_project_colon_diagnostic_pty.py), [test_message_selection_pty.py](../tests/test_message_selection_pty.py), [test_gcc_caret_column_pty.py](../tests/test_gcc_caret_column_pty.py), [test_project_bom_pty.py](../tests/test_project_bom_pty.py), [test_project_eof_pty.py](../tests/test_project_eof_pty.py), [test_project_cxx_source_pty.py](../tests/test_project_cxx_source_pty.py)
 - IDE-026: List marks dirty and switches selected buffer without crossing state. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-027: Real compiler messages list and navigate to correct source. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_project_messages_pty.py](../tests/test_project_messages_pty.py), [test_project_leading_pty.py](../tests/test_project_leading_pty.py), [test_message_selection_pty.py](../tests/test_message_selection_pty.py)
 - IDE-028: Next diagnostic wraps with correct line and status. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_project_messages_pty.py](../tests/test_project_messages_pty.py), [test_project_leading_pty.py](../tests/test_project_leading_pty.py), [test_message_selection_pty.py](../tests/test_message_selection_pty.py)
@@ -253,36 +253,36 @@ Extraidas de EditProperties/DlgProperties/SelectFileName. Condiciones literales,
 
 | ID | Etiqueta | Tipo / picture | Condiciones fuente | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- | --- |
-| DSN-FIELD-EditProperties-nRow-1 | Row: | value 999 | Siempre | designer.prg:1327 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nCol-1 | Col: | value 999 | Siempre | designer.prg:1328 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cCaption-1 | Caption: | value @S40 | oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX | designer.prg:1333 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cVariable-1 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX | designer.prg:1338 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nWidth-1 | Width: | value 999 | oCtrl[ "type" ] == DSN_GET | designer.prg:1343 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cAccel-1 | Accel: | value  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1348 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cAction-1 | Action: | value @S40 | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1350 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lBrackets-1 | B&rackets look (uncheck for 3D shadow) | checkbox  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1352 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cVariable-2 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1358 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cItems-1 | Items: | value @S40 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1360 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nWidth-2 | Width: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1365 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nHeight-1 | Height: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1367 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cWhen-1 | When: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1372 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cValid-1 | Valid: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1374 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cFocus-1 | Focus: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1377 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cState-1 | State: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1381 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1386 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1390 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cCaption-1 | Caption: | value @S40 | Siempre | designer.prg:1474 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cName-1 | Name: | value  | Siempre | designer.prg:1477 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-nWidth-1 | Width: | value 999 | Siempre | designer.prg:1480 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-nHeight-1 | Height: | value 999 | Siempre | designer.prg:1483 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrBack-1 | Back: | value @S20 | Siempre | designer.prg:1486 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrText-1 | Text: | value @S20 | Siempre | designer.prg:1489 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrFocus-1 | Focus: | value @S20 | Siempre | designer.prg:1492 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1495 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1499 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-cFile-1 | File: | value @S35 | Siempre | designer.prg:1600 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-lDummy-1 | &OK | button  | Siempre | designer.prg:1603 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1607 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nRow-1 | Row: | value 999 | Siempre | designer.prg:1328 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nCol-1 | Col: | value 999 | Siempre | designer.prg:1329 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cCaption-1 | Caption: | value @S40 | oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX | designer.prg:1334 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cVariable-1 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX | designer.prg:1339 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nWidth-1 | Width: | value 999 | oCtrl[ "type" ] == DSN_GET | designer.prg:1344 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cAccel-1 | Accel: | value  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1349 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cAction-1 | Action: | value @S40 | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1351 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lBrackets-1 | B&rackets look (uncheck for 3D shadow) | checkbox  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1353 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cVariable-2 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1359 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cItems-1 | Items: | value @S40 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1361 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nWidth-2 | Width: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1366 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nHeight-1 | Height: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1368 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cWhen-1 | When: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1373 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cValid-1 | Valid: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1375 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cFocus-1 | Focus: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1378 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cState-1 | State: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1382 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1387 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1391 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cCaption-1 | Caption: | value @S40 | Siempre | designer.prg:1475 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cName-1 | Name: | value  | Siempre | designer.prg:1478 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-nWidth-1 | Width: | value 999 | Siempre | designer.prg:1481 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-nHeight-1 | Height: | value 999 | Siempre | designer.prg:1484 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrBack-1 | Back: | value @S20 | Siempre | designer.prg:1487 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrText-1 | Text: | value @S20 | Siempre | designer.prg:1490 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrFocus-1 | Focus: | value @S20 | Siempre | designer.prg:1493 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1496 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1500 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-cFile-1 | File: | value @S35 | Siempre | designer.prg:1601 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-lDummy-1 | &OK | button  | Siempre | designer.prg:1604 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1608 | Pendiente por campo; contratos de superficie separados |
 
 ## Pares control/campo modal
 
@@ -567,29 +567,29 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 
 | Campo | Clave | Tipo | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- |
-| Row | row | num | designer.prg:1794 | Pendiente vincular prueba especifica |
-| Col | col | num | designer.prg:1795 | Pendiente vincular prueba especifica |
-| Caption | caption | text | designer.prg:1797 | Pendiente vincular prueba especifica |
-| Variable | variable | text | designer.prg:1800 | Pendiente vincular prueba especifica |
-| Width | width | num | designer.prg:1803 | Pendiente vincular prueba especifica |
-| Accel | accelerator | text | designer.prg:1806 | Pendiente vincular prueba especifica |
-| Action | action | text | designer.prg:1807 | Pendiente vincular prueba especifica |
-| Style | style | choice | designer.prg:1808 | Pendiente vincular prueba especifica |
-| Variable | variable | text | designer.prg:1811 | Pendiente vincular prueba especifica |
-| Items | items | text | designer.prg:1812 | Pendiente vincular prueba especifica |
-| Width | width | num | designer.prg:1815 | Pendiente vincular prueba especifica |
-| Height | height | num | designer.prg:1816 | Pendiente vincular prueba especifica |
-| When | when | text | designer.prg:1819 | Pendiente vincular prueba especifica |
-| Valid | valid | text | designer.prg:1820 | Pendiente vincular prueba especifica |
-| Focus | focus | text | designer.prg:1822 | Pendiente vincular prueba especifica |
-| State | state | text | designer.prg:1825 | Pendiente vincular prueba especifica |
-| Name | dlgname | text | designer.prg:1829 | Pendiente vincular prueba especifica |
-| Caption | dlgcaption | text | designer.prg:1830 | Pendiente vincular prueba especifica |
-| Width | dlgwidth | num | designer.prg:1831 | Pendiente vincular prueba especifica |
-| Height | dlgheight | num | designer.prg:1832 | Pendiente vincular prueba especifica |
-| Back | dlgback | color | designer.prg:1833 | Pendiente vincular prueba especifica |
-| Text | dlgtext | color | designer.prg:1834 | Pendiente vincular prueba especifica |
-| Focus | dlgfocus | color | designer.prg:1835 | Pendiente vincular prueba especifica |
+| Row | row | num | designer.prg:1795 | Pendiente vincular prueba especifica |
+| Col | col | num | designer.prg:1796 | Pendiente vincular prueba especifica |
+| Caption | caption | text | designer.prg:1798 | Pendiente vincular prueba especifica |
+| Variable | variable | text | designer.prg:1801 | Pendiente vincular prueba especifica |
+| Width | width | num | designer.prg:1804 | Pendiente vincular prueba especifica |
+| Accel | accelerator | text | designer.prg:1807 | Pendiente vincular prueba especifica |
+| Action | action | text | designer.prg:1808 | Pendiente vincular prueba especifica |
+| Style | style | choice | designer.prg:1809 | Pendiente vincular prueba especifica |
+| Variable | variable | text | designer.prg:1812 | Pendiente vincular prueba especifica |
+| Items | items | text | designer.prg:1813 | Pendiente vincular prueba especifica |
+| Width | width | num | designer.prg:1816 | Pendiente vincular prueba especifica |
+| Height | height | num | designer.prg:1817 | Pendiente vincular prueba especifica |
+| When | when | text | designer.prg:1820 | Pendiente vincular prueba especifica |
+| Valid | valid | text | designer.prg:1821 | Pendiente vincular prueba especifica |
+| Focus | focus | text | designer.prg:1823 | Pendiente vincular prueba especifica |
+| State | state | text | designer.prg:1826 | Pendiente vincular prueba especifica |
+| Name | dlgname | text | designer.prg:1830 | Pendiente vincular prueba especifica |
+| Caption | dlgcaption | text | designer.prg:1831 | Pendiente vincular prueba especifica |
+| Width | dlgwidth | num | designer.prg:1832 | Pendiente vincular prueba especifica |
+| Height | dlgheight | num | designer.prg:1833 | Pendiente vincular prueba especifica |
+| Back | dlgback | color | designer.prg:1834 | Pendiente vincular prueba especifica |
+| Text | dlgtext | color | designer.prg:1835 | Pendiente vincular prueba especifica |
+| Focus | dlgfocus | color | designer.prg:1836 | Pendiente vincular prueba especifica |
 
 ## Rutas de teclado y comandos
 
@@ -763,27 +763,27 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | projectui.prg:36 | `CASE nKey == K_F6 .AND. ! Empty( oProject:hBuild )` |
 | projectui.prg:38 | `CASE nKey == K_F9 .OR. nKey == K_CTRL_F9` |
 | projectui.prg:42 | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` |
-| designer.prg:2285 | `case nKey == K_ESC .or. nKey == K_F6` |
-| designer.prg:2290 | `case nKey == K_F4` |
-| designer.prg:2293 | `case nKey == K_UP` |
-| designer.prg:2297 | `case nKey == K_DOWN` |
-| designer.prg:2301 | `case nKey == K_LEFT` |
-| designer.prg:2304 | `case nKey == K_RIGHT` |
-| designer.prg:2307 | `case nKey == K_ENTER` |
-| designer.prg:2310 | `case nKey == K_CTRL_UP` |
-| designer.prg:2314 | `case nKey == K_CTRL_DOWN` |
-| designer.prg:2318 | `case nKey == K_CTRL_LEFT` |
-| designer.prg:2322 | `case nKey == K_CTRL_RIGHT` |
-| designer.prg:2141 | `case nKey == K_ENTER` |
-| designer.prg:2144 | `case nKey == K_ESC` |
-| designer.prg:2146 | `case nKey == K_LEFT` |
-| designer.prg:2148 | `case nKey == K_RIGHT` |
-| designer.prg:2150 | `case nKey == K_HOME` |
-| designer.prg:2152 | `case nKey == K_END` |
-| designer.prg:2154 | `case nKey == K_BS` |
-| designer.prg:2159 | `case nKey == K_DEL` |
-| designer.prg:2163 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` |
-| designer.prg:2167 | `case nKey >= 32 .and. nKey <= 255` |
+| designer.prg:2286 | `case nKey == K_ESC .or. nKey == K_F6` |
+| designer.prg:2291 | `case nKey == K_F4` |
+| designer.prg:2294 | `case nKey == K_UP` |
+| designer.prg:2298 | `case nKey == K_DOWN` |
+| designer.prg:2302 | `case nKey == K_LEFT` |
+| designer.prg:2305 | `case nKey == K_RIGHT` |
+| designer.prg:2308 | `case nKey == K_ENTER` |
+| designer.prg:2311 | `case nKey == K_CTRL_UP` |
+| designer.prg:2315 | `case nKey == K_CTRL_DOWN` |
+| designer.prg:2319 | `case nKey == K_CTRL_LEFT` |
+| designer.prg:2323 | `case nKey == K_CTRL_RIGHT` |
+| designer.prg:2142 | `case nKey == K_ENTER` |
+| designer.prg:2145 | `case nKey == K_ESC` |
+| designer.prg:2147 | `case nKey == K_LEFT` |
+| designer.prg:2149 | `case nKey == K_RIGHT` |
+| designer.prg:2151 | `case nKey == K_HOME` |
+| designer.prg:2153 | `case nKey == K_END` |
+| designer.prg:2155 | `case nKey == K_BS` |
+| designer.prg:2160 | `case nKey == K_DEL` |
+| designer.prg:2164 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` |
+| designer.prg:2168 | `case nKey >= 32 .and. nKey <= 255` |
 | hbide.prg:649 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F8, HB_KF_ALT, K_ALT_F8 )` |
 | hbide.prg:652 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )` |
 | hbide.prg:655 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )` |

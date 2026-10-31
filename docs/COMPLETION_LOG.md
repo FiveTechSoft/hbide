@@ -3336,3 +3336,11 @@ remains masked. Four lexical guards. Runner192=191PTY+guard. Evidence
 linux-navigation-array-bracket-comment.json follows. Not a full Harbour
 lexer/preprocessor or Windows/global certification. Q77 remains its frozen
 191-fixture acceptance, not proof against every possible source.
+
+## Q79 - M0 links recent project and navigation acceptance
+
+Link BOM/EOF/C++aliases to OpenProject/Sources and Q78 to GoToFunction.
+Contracts retain parse-copy/original-byte/missing-file and bounded
+lexer/encoding/compiler-mode limits. Two new inventory guards,19total.
+No productfix/newpixels/candidate/globalmatrix inherited. Focused clean
+acceptance evidence linux-inventory-project-navigation.json follows.
