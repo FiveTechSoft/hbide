@@ -1,0 +1,97 @@
+{
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "379c12a430c698813e9acc79226705881c46ea32",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1737ca25d5c4b956158f9bf96b13636704ccbe8bae19836e485e240c9bfe5a32",
+      "binary_sha256": "3e964e7c32232f2fcb9b18cf897aa6951d0b26fb4c2f9dc79280277b40352957",
+      "build_receipt": "/tmp/hbide-resume-cursor-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6508d7860a89abba323e9fc4f26e98434730fbb4c86008654fc4fe7884917899",
+      "case": "debug-cursor-popup",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_cursor_popup_pty.py"
+      ],
+      "started": 1793421335.0104418,
+      "seconds": 15.43,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "7755dd63c12dc29766c40cb35163514b6aa7d5c067d9b94f9d870cd062254307",
+      "log": "/tmp/hbide-resume-cursor-clean/debug-cursor-popup-1793421335010437765.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "379c12a430c698813e9acc79226705881c46ea32",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1737ca25d5c4b956158f9bf96b13636704ccbe8bae19836e485e240c9bfe5a32",
+      "binary_sha256": "3e964e7c32232f2fcb9b18cf897aa6951d0b26fb4c2f9dc79280277b40352957",
+      "build_receipt": "/tmp/hbide-resume-cursor-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6508d7860a89abba323e9fc4f26e98434730fbb4c86008654fc4fe7884917899",
+      "case": "debug-shadowed-frame",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_shadowed_frame_pty.py"
+      ],
+      "started": 1793421350.4380438,
+      "seconds": 11.73,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c3b68c97ddf948536c82fbccdc68cc7e437bf4e4030bbc4be02a92a6ce72602f",
+      "log": "/tmp/hbide-resume-cursor-clean/debug-shadowed-frame-1793421350438040427.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "379c12a430c698813e9acc79226705881c46ea32",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "1737ca25d5c4b956158f9bf96b13636704ccbe8bae19836e485e240c9bfe5a32",
+      "binary_sha256": "3e964e7c32232f2fcb9b18cf897aa6951d0b26fb4c2f9dc79280277b40352957",
+      "build_receipt": "/tmp/hbide-resume-cursor-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6508d7860a89abba323e9fc4f26e98434730fbb4c86008654fc4fe7884917899",
+      "case": "debug-window-layout",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_window_layout_pty.py"
+      ],
+      "started": 1793421362.1681867,
+      "seconds": 17.58,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "587d3dcc133ec66e11a53b46555ba306387a8b583e23e794309682c450cb83be",
+      "log": "/tmp/hbide-resume-cursor-clean/debug-window-layout-1793421362168180409.log"
+    }
+  ],
+  "logs": {
+    "debug-cursor-popup-1793421335010437765.log": "PASS debugger stopped before increment\nPASS Run to Cursor stops before line6 mutation\nPASS Point Breakpoint adds cursor line8\nPASS second to Cursor stops before line7 mutation\nPASS Run Go stops at popup breakpoint before write\nPASS second Point Breakpoint removes cursor line8\nPASS File Resume does not execute debuggee\nPASS File Resume restores viewing cursor to paused execution line8\nPASS Go after removing BP writes exact final result\nPASS Resume returns to IDE editor\nPASS cursor and breakpoint leave source bytes unchanged\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-iluhyiw1\n",
+    "debug-shadowed-frame-1793421350438040427.log": "PASS callee shadowed local starts202\nPASS caller shadowed local starts101\nPASS caller edit displays707\nPASS caller edit does not change callee202\nPASS callee edit displays808\nPASS callee edit leaves caller707\nPASS callee edited slot retained808\nPASS Resume proves distinct caller707 and incremented callee809\nPASS frame edits leave source bytes exact\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-g0kzhewg\n",
+    "debug-window-layout-1793421362168180409.log": "PASS debugger stopped before increment\nPASS code caption begins inside requested rect\nPASS Move menu opens arrow edit\nPASS Move arrows change caption row and col\nPASS Move Esc restores caption position\nPASS Move Enter keeps changed position\nPASS Size menu opens arrow edit\nPASS Size Esc restores complete painted character grid\nPASS Size Enter changes painted grid\nPASS Zoom moves code caption to desktop top\nPASS second Zoom restores resized grid\nPASS Iconize hides selected source text\nPASS Tile restores iconized source browser\nPASS Tile retains source caption after focus cycle\nPASS layout changes preserve exact debuggee values\nPASS layout changes leave source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-cq1232b0\n"
+  },
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "379c12a430c698813e9acc79226705881c46ea32",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "1737ca25d5c4b956158f9bf96b13636704ccbe8bae19836e485e240c9bfe5a32",
+    "binary_sha256": "3e964e7c32232f2fcb9b18cf897aa6951d0b26fb4c2f9dc79280277b40352957",
+    "built_at": 1793421335.0101824
+  },
+  "checks": [
+    "15 inventory PASS",
+    "33 complete documents embedded byte-exact PASS"
+  ],
+  "limits": "Single-file stopped debugger File Resume viewing cursor; no restart, native pixels, Windows or global matrix."
+}

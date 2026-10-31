@@ -2418,3 +2418,6 @@ AmpliadaCursorPopup11checks: tras BP8stop ygoto3, FileResume noejecuta
 yPointBreakpointagrega8(no3), probadoenlistanclada;remove+Go151exact.
 Exploratorio11PASS,sinproductfix. NuevoenlaceDBG002,110contratos/116
 acciones no110funciones. Unfichero, noRestart niWindows.
+
+Clean379c12aCursor11Shadow9WindowLayout16sameIDE3e964e7cPASSsinretry,
+15inventory33docsPASS. linux-debug-resume-viewing-cursor.json.
