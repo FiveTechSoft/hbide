@@ -1968,7 +1968,7 @@
         "test_nav_pty.py",
         "test_bp_delete_policy.py"
       ],
-      "contract": "Actual Ctrl+G opens function picker, filter/Enter jumps correct function and preserves line/kind workflow. Extended Delete normalization never opens picker; actual Delete removes char and Undo restores bytes. Bounded two entry routes, not all terminal extended-key encodings, menus-open states, every navigation fixture or Windows. Links require exact source-identified PTY ledger."
+      "contract": "Actual Ctrl+G opens function picker, filter/Enter jumps correct function and preserves line/kind workflow. Extended Delete normalization never opens picker; actual extended Delete removes selected marked lines; separate DeleteLine/Undo restores text but not removed breakpoint. Bounded two entry routes, not all terminal extended-key encodings, menus-open states, every navigation fixture or Windows. Links require exact source-identified PTY ledger."
     }
   }
 }

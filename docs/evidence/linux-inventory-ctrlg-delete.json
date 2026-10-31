@@ -1,0 +1,72 @@
+{
+  "scope": "Q96 M0 dispatch links only, no new product/pixels/models rerun/full matrix/Windows/global.",
+  "source": "63a03f1a472306bcb0631b3fa2eb9262b7dfc8fe",
+  "binary_sha256": "0efa45cf58ed324b785f413267726b1f93ea0d8dae9ecf1c1bbe387e6853bb12",
+  "build_identity": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "63a03f1a472306bcb0631b3fa2eb9262b7dfc8fe",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "5433403b6bdd555d400b74283d42c3c976f0e1f4791e9aa8d7bb35fc81a0135b",
+    "binary_sha256": "0efa45cf58ed324b785f413267726b1f93ea0d8dae9ecf1c1bbe387e6853bb12",
+    "built_at": 1793481187.460867
+  },
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "63a03f1a472306bcb0631b3fa2eb9262b7dfc8fe",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "5433403b6bdd555d400b74283d42c3c976f0e1f4791e9aa8d7bb35fc81a0135b",
+      "binary_sha256": "0efa45cf58ed324b785f413267726b1f93ea0d8dae9ecf1c1bbe387e6853bb12",
+      "build_receipt": "/tmp/hbide-ctrlg-delete-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "4e547beb6a0666fca143b60656a2392bc717da8458b50fc50d64d4f61197a656",
+      "case": "navigation",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_nav_pty.py"
+      ],
+      "started": 1793481187.4611697,
+      "seconds": 67.04,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1a4bc70d1b37cd6915c6e39d48ad819421db5e759926bd00d834c57e4c11a04b",
+      "log": "/tmp/hbide-ctrlg-delete-clean/navigation-1793481187461165391.log",
+      "log_text": "PASS boot\nPASS good.prg opened\nPASS function list opens with real entries\nPASS commented and block-commented names are not listed\nPASS static procedure labelled\nPASS filter narrows list (Helper kept, Main gone)\nPASS Enter jumps to Helper line 11\nPASS Esc leaves the cursor where it was\nPASS failed build shows compiler output\nPASS failed build lands on the first error line (3)\nPASS status row shows message 1/3\nPASS Alt+F8 goes to the second error (line 7)\nPASS status row shows message 2/3\nPASS Alt+F8 reaches the warning (3/3, line 9)\nPASS Alt+F8 wraps to the first error\nPASS Alt+F7 goes back (wraps to last, line 9)\nPASS message list opens\nPASS Enter in the list jumps to the picked message\nPASS window list shows documents\nPASS window list marks modified document\nPASS window list switches document\nPASS Save All reports in the status row\nPASS bad.prg saved to disk\nPASS other.prg saved to disk\nPASS Save All with nothing modified says so\nPASS arguments dialog opens\nPASS arguments confirmed in status row\nPASS Start passes the arguments to the program\nPASS shell metacharacters stay literal (no extra command ran)\nPASS Script passes the arguments to Main()\nPASS Debug passes the arguments to Main()\nPASS Save All reports failure and untitled skipped\nPASS no misleading global success message\nPASS named file saved, untitled not written anywhere\nPASS untitled buffer stays marked modified\n35/35 passed\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "63a03f1a472306bcb0631b3fa2eb9262b7dfc8fe",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "5433403b6bdd555d400b74283d42c3c976f0e1f4791e9aa8d7bb35fc81a0135b",
+      "binary_sha256": "0efa45cf58ed324b785f413267726b1f93ea0d8dae9ecf1c1bbe387e6853bb12",
+      "build_receipt": "/tmp/hbide-ctrlg-delete-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "4e547beb6a0666fca143b60656a2392bc717da8458b50fc50d64d4f61197a656",
+      "case": "breakpoint-delete",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_bp_delete_policy.py",
+        "hbide"
+      ],
+      "started": 1793481257.7437437,
+      "seconds": 18.7,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c6ea1d1004d2a70d381d089bbb0badca3967dce444e76ef5a2a35b27ff70ce95",
+      "log": "/tmp/hbide-ctrlg-delete-clean/breakpoint-delete-1793481257743740361.log",
+      "log_text": "PASS boot noname\nPASS BP set on line 2\nPASS marked line deleted\nPASS deleting marked line drops BP (no red gutter)\nPASS undo restores text\nPASS undo does NOT restore the mark\nPASS BP re-set on line 2\nPASS split keeps mark on first fragment\nPASS Delete does not open Go to Function\nPASS selection removed marked lines\nPASS selection delete drops BP (no red gutter)\nPASS found marked dup line\nPASS mark shifted onto its own dup copy\nPASS BP deletion policy: drop on delete, no undo restore, split first fragment, follow own copy\n"
+    }
+  ],
+  "checks": 48,
+  "inventory": "...........................\n----------------------------------------------------------------------\nRan 27 tests in 0.137s\n\nOK\n",
+  "docs": "PASS: 34 complete documents embedded byte-for-byte\n",
+  "notes": "35navigation+13breakpointpolicy checks, samebinary/source, no failures/retries. Publication wording narrows Delete claim to exact checked selection deletion and separate DeleteLineUndo; not new product."
+}

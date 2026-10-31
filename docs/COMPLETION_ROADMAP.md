@@ -68,7 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
-| Q96 | M0 enlaza Ctrl+G/extendedDelete a dispatch exacto. | Guardafuente/contexto/condicion+PTYnav/DeleteUndo;linux-inventory-ctrlg-delete.json. No nuevoproducto/pixels/global. |
+| Q96 | M0 enlaza Ctrl+G/extendedDelete a dispatch exacto. | Guardafuente/contexto/condicion+48PTY27inventory34docsPASS fuente63a03f1;linux-inventory-ctrlg-delete.json. No nuevoproducto/pixels/global. |
 | Q95 | Regresion conjunta editor/nav/proyecto trasQ91-Q94. | Fuente26698af binary578a6fa3,15modos63checksPTY+22models26inventory34docsPASS,mismoidentity/sinretries;linux-joint-editor-project-q95.json. No newfix/pixels/candidato/matrizglobal. |
 | Q94 | Bracketstrings tras +/== no contaminan bloque/pintado. | Fixturecompiladaantes2PASS2FAIL;4repaintguardas/17PTY22models26inventory34docsPASS source0dbf0cc;nativeamarillo/cyaninspeccionado;linux-editor-bracket-operator.json. No lexercompleto/Windows. |
 | Q93 | Sources incluye header.hpp literal. | ProyectoC/hppcompiladoantes1PASS2FAIL;3modelguards/12PTY22models26inventory34docsPASS sourceb45b674;nativeSources/Enterinspeccionados;linux-project-hpp-header.json. No puenteC++/compiladornuevo/Windows. |

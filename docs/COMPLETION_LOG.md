@@ -3580,3 +3580,8 @@ Bind route source/context/condition to actual Ctrl+G navigation and Delete
 normalization/UndoPTY. One inventoryguard preserves bounded scope. No new
 product fix or all extendedkey terminal coverage.
 Evidence linux-inventory-ctrlg-delete.json follows.
+
+Q96 clean63a03f1 binary0efa45cf58ed324b785f413267726b1f93ea0d8dae9ecf1c1bbe387e6853bb12:
+35navigation+13breakpointpolicy=48checksPTY,27inventory34docsPASS, nofail/retry.
+Publication narrows wording to exact selectionDelete and separateDeleteLineUndo,
+no new product/modelrerun/pixels/candidate/Windows/global.
