@@ -1,0 +1,64 @@
+{
+  "scope": "Cleanc7fb6bfCreatedTypes63(realF2defaults)+LoadedTypes63(JSONnondefaults) sameLinuxIDE. First exploratory creation harness omitted second Enter for duplicate P/R menu selection, corrected, not product. Same harness two modes, not functions. No all-inspectorhandlers/runtime/pixels/Windows/global118. Last21modelsdc08a40,33docs currentcheck.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "c7fb6bfa7f9fb105e192d17d1904359ed1bba023",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "d8e29035e3492ff8a975ddb7aa99ac53acfbf01a33867652cd4d41287f1bb198",
+    "binary_sha256": "4e276ba1b96343548c80567e3425972deed51636f720c7cf654c88e6e317b9a1",
+    "built_at": 1793415683.414366
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c7fb6bfa7f9fb105e192d17d1904359ed1bba023",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "d8e29035e3492ff8a975ddb7aa99ac53acfbf01a33867652cd4d41287f1bb198",
+      "binary_sha256": "4e276ba1b96343548c80567e3425972deed51636f720c7cf654c88e6e317b9a1",
+      "build_receipt": "/tmp/hbide-clipboard-created-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "da2220995f4bfd9b0a8b38f00ca28272bf68a98d1406d997ffbf7bd69587f9b9",
+      "case": "designer-clipboard-created-types",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_loaded_types_pty.py",
+        "--create"
+      ],
+      "started": 1793415683.4146504,
+      "seconds": 40.42,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b588c49f5b837f11d9b647d61603c686b42522132b185ac96a7198974af70832",
+      "log": "/tmp/hbide-clipboard-created-clean/designer-clipboard-created-types-1793415683414646599.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c7fb6bfa7f9fb105e192d17d1904359ed1bba023",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "d8e29035e3492ff8a975ddb7aa99ac53acfbf01a33867652cd4d41287f1bb198",
+      "binary_sha256": "4e276ba1b96343548c80567e3425972deed51636f720c7cf654c88e6e317b9a1",
+      "build_receipt": "/tmp/hbide-clipboard-created-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "da2220995f4bfd9b0a8b38f00ca28272bf68a98d1406d997ffbf7bd69587f9b9",
+      "case": "designer-clipboard-loaded-types",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_loaded_types_pty.py"
+      ],
+      "started": 1793415723.8342195,
+      "seconds": 38.92,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b588c49f5b837f11d9b647d61603c686b42522132b185ac96a7198974af70832",
+      "log": "/tmp/hbide-clipboard-created-clean/designer-clipboard-loaded-types-1793415723834215474.log"
+    }
+  ]
+}
