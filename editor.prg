@@ -66,7 +66,8 @@ CLASS HBSrcEdit FROM HBEditor
    DATA   cKeywords2   INIT "STATIC,LOCAL,NIL,SELF,SUPER,#INCLUDE,#XCOMMAND,#DEFINE," + ;
       "#IFDEF,#IFNDEF,#ENDIF,#ELSE,PRIVATE,PUBLIC,FIELD,MEMVAR,.T.,.F.,.AND.,.OR.,.NOT."
 
-   DATA   cClipboard   INIT ""
+   // One editor clipboard across documents; undo/history stay per buffer.
+   CLASSDATA cClipboard INIT ""
    DATA   cFindText    INIT ""
    DATA   nSelRow      INIT 0
    DATA   lMark        INIT .F.   // range-selection anchor active (F8)

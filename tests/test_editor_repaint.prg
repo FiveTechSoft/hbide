@@ -31,7 +31,7 @@ procedure Main()
    // the IDE drives the editor in insert mode; the Harbour default for
    // SET(_SET_INSERT) is .F., so pin it explicitly for the hot-path checks
    local o := PaintProbe():New( 'local a := 1' + hb_eol() + 'return a', 2, 1, 20, 79, .T. )
-   local cText
+   local cText, oOther
    Set( _SET_INSERT, .T. )
    o:GoTo( 1, 5 )
    o:nLines := o:nFull := 0
@@ -250,6 +250,18 @@ procedure Main()
    Check('typing Undo keeps Duplicate Line',o:GetText()=='alpha'+hb_eol()+'alpha'+hb_eol()+'beta'+hb_eol()+'gamma')
    o:Undo()
    Check('Duplicate Line Undo restores clean source',o:GetText()=='alpha'+hb_eol()+'beta'+hb_eol()+'gamma'.and.!o:Dirty())
+   o := PaintProbe():New('alpha',2,1,20,79,.T.)
+   o:GoTo(1,5)
+   o:CopyLine()
+   oOther := PaintProbe():New('beta',2,1,20,79,.T.)
+   oOther:GoTo(1,5)
+   oOther:PasteLine()
+   Check('clipboard crosses editor instances',oOther:GetText()=='beta'+hb_eol()+'alpha')
+   Check('cross-document Paste leaves source clean',o:GetText()=='alpha'.and.!o:Dirty().and.Empty(o:aUndo))
+   oOther:Undo()
+   Check('cross-document Paste Undo isolated',oOther:GetText()=='beta'.and.o:GetText()=='alpha')
+   oOther:Redo()
+   Check('cross-document Paste Redo exact',oOther:GetText()=='beta'+hb_eol()+'alpha')
    o := PaintProbe():New( 'one two three', 2, 1, 20, 79, .T., 16 )
    o:GoTo( 1, 5 )
    o:Edit( Asc( 'Z' ) )

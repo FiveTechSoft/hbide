@@ -2597,3 +2597,14 @@ retry, plus21models15inventory33docs. Ledger linux-editor-recent-joint.json.
 Roadmap now indexes Q33-Q40 with individual provenance and current runner144,
 without aggregating old per-fix runs into current acceptance. No product change,
 full144mode regression, Windows, new visuals or M1 closure.
+
+## Q41 Share editor clipboard across documents
+
+Copy in source alpha followed by Open destination beta and Paste did nothing:
+clipboard lived in each editor instance. Changed cClipboard to CLASSDATA;
+Undo/Redo remain per document. PTY6PASS, four new model checks source clean,
+destination Undo/Redo. Initial fixture wrongly expected CRLF in unterminated
+LF-default document; corrected expected LF before acceptance.
+Native120x40 destination beta/alpha and Undo beta inspected, full frames;
+source disk alpha unchanged. Not OS clipboard or other-app integration.
+Runner145=144PTY modes plus guard. No Windows/global claim. Clean pending.

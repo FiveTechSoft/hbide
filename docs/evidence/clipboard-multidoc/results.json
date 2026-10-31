@@ -1,0 +1,8 @@
+{
+  "source": "9ba3b39cebfbd6bf169b2e3a9cf63be8a3c2dea4",
+  "dirty": true,
+  "paste_disk": "beta LF alpha",
+  "undo_disk": "beta",
+  "source_disk": "alpha",
+  "scope": "Native120x40 clipboard crosses two documents, Undo destination exact and source unchanged. Pixels require inspection."
+}

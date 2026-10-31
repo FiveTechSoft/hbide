@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'clipboard-multidoc': ('test_clipboard_multidoc_pty.py', [], 120),
     'duplicate-selection': ('test_duplicate_selection_pty.py', [], 120),
     'delete-eof': ('test_delete_eof_pty.py', [], 120),
     'overtype-identity': ('test_overtype_identity_pty.py', [], 120),
