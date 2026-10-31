@@ -2007,6 +2007,15 @@
         "test_multidoc_pty.py"
       ],
       "contract": "Actual Ctrl+F6 cycles active buffers in bounded multi-document PTY: per-document text/undo/selection, SaveAs journals and close decisions remain isolated. Complete multiline dispatch condition retained; parent menu-closed/multiple-doc guard remains separate, not inferred coverage. No Ctrl+Shift+F6 acceptance, all terminal encodings, all navigation states or Windows. Link is not runtime PASS; inspect exact source/hash ledger."
+    },
+    "IDE-KEY-PREVDOC-CTRL-SHIFT-F6": {
+      "source": "hbide.prg",
+      "context": "METHOD Activate(",
+      "condition": "if hb_bitAnd( hb_keyMod( nKey ), HB_KF_SHIFT ) != 0",
+      "tests": [
+        "test_prevdoc_shortcut_pty.py"
+      ],
+      "contract": "Actual xterm Ctrl+Shift+F6 sequence ESC[17;6~ switches third/second/first with first-to-third wrap, subsequent typing/F2 and Undo stay on second, CtrlF6 forward reaches third. New startup mapping preserves extended Ctrl/Shift/F6 identity in gttrm. Bounded three opened files, not other terminals/native Windows/all keys/menus-open states. Parent CtrlF6 dispatch guard separate; link is not PASS without exact source/hash ledger."
     }
   }
 }

@@ -187,7 +187,7 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertNotIn('acceptance',self.routes[0])
     def test_ctrl_g_delete_identity_route_linked(self):
         linked=[r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance' in r]
-        self.assertEqual(len(linked),6)
+        self.assertEqual(len(linked),7)
         row=next(r for r in linked if r['acceptance_id']=='IDE-KEY-GOTOFUNCTION-CTRL-G')
         self.assertEqual(row['source'],'hbide.prg')
         self.assertIn('hb_keyExt( nKey ) != HB_KX_DEL',row['condition'])
@@ -225,6 +225,13 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertNotIn(';',row['condition'])
         self.assertEqual(row['acceptance']['tests'],['test_multidoc_pty.py'])
         self.assertIn('No Ctrl+Shift+F6 acceptance',row['acceptance']['contract'])
+    def test_prevdoc_shift_dispatch_and_xterm_map_bound(self):
+        row=next(r for r in audit.link_dispatch_contracts(self.routes,self.specs) if r.get('acceptance_id')=='IDE-KEY-PREVDOC-CTRL-SHIFT-F6')
+        self.assertEqual(row['condition'],'if hb_bitAnd( hb_keyMod( nKey ), HB_KF_SHIFT ) != 0')
+        self.assertEqual(row['acceptance']['tests'],['test_prevdoc_shortcut_pty.py'])
+        source=(ROOT/'hbide.prg').read_text()
+        self.assertIn('HB_GTI_ADDKEYMAP',source)
+        self.assertIn('Chr(27)+"[17;6~"',source)
     def test_missing_route_fails_closed(self):
         broken={k:dict(v,condition='case nKey == K_NONEXISTENT') for k,v in self.specs.items()}
         with self.assertRaisesRegex(ValueError,'exactly one route'):audit.link_dispatch_contracts(self.routes,broken)

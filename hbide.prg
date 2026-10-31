@@ -165,6 +165,10 @@ METHOD New() CLASS HBIde
    // the user having to configure the terminal. Restored on exit.
    if "xterm" $ Lower( GetEnv( "TERM" ) )
       XTermMetaEsc( .T. )
+      // gttrm maps Ctrl+F6 but not the xterm Ctrl+Shift+F6 sequence.
+      // Preserve extended modifiers instead of inserting its tail as text.
+      // HB_INKEY_NEW_KEY encoding from hbapigt.h: EXT|KEY|flags<<16|value.
+      hb_gtInfo(HB_GTI_ADDKEYMAP,{hb_bitOr(0x41000000,HB_KX_F6,hb_bitShift(hb_bitOr(HB_KF_CTRL,HB_KF_SHIFT),16)),Chr(27)+"[17;6~"})
    endif
 
    ::oMenu       = ::BuildMenu()
