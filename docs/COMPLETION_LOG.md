@@ -2726,3 +2726,13 @@ Runner152=151PTY modes plus guard. No pixels/Windows/global.
 Cleanbba89b8: NoChange9, ChangedSelection5 and Cut7 pass same binary
 39d6e3a1 without retry;15inventory33docs pass. No new model run.
 Ledger docs/evidence/linux-replace-nochange-selection.json.
+
+## 31 October candidate with Q42-Q43
+
+Export6a85950 stripped SHA2908eae5798535836e081d37333c9968f0aef39a1d7355fb7a6eab6a6b49e3b4.
+Eight standard smoke suites plus Cut7, ReplaceSelection5, NoChange9,
+UTF8Terminal10 and Block9 pass on exact candidate, hash unchanged;
+two bounded steps without retries. Manifest/toolchain/dependencies/logs
+retained in linux-candidate-cut-replace.json. Local temporary candidate9,
+not release/installer/Windows/license clearance/full152mode regression,
+new determinism proof or new visual acceptance.
