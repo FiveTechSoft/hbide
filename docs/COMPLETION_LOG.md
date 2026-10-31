@@ -2288,3 +2288,7 @@ rowordenadoQA llegaaQA77 yResumevector12,77,30,40,50exacto. NoGlobal,
 shadowingotroframe,tipos/pixels/Windows. Exploratorio11/16fallosparserincluia
 bordertrasnumero, corregido16PASS sincambioproducto. Runner126=125PTY+guard;
 102contratosmenu/116no102funcionesaceptadas. Seconservanambosintentos.
+
+Cleandea063dScopes16MouseScroll7sameIDE501cd4f8PASS;15inventory33docs,
+21modelos ultima fa78719. Ledgerlinux-debug-monitor-scopes.json conserva
+clean yambosexploratorios, nocambio producto ni cierreGlobal/M3.

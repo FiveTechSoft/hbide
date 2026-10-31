@@ -1,0 +1,125 @@
+{
+  "scope": "Cleandea063d MonitorScopes16MouseScroll7sameIDE501cd4f8. Prior11of16failures were parser including border after digits, not product; retained. NoGlobalVM/shadowing/alltypes/pixelsWindows/global126.21models lastfa78719.15inventory33docscurrent.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "dea063d7932a07a6ea0b55e34abd1f8d9b7b467e",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "3b848725cd62ab84ddaefa9228871cda234a4e8287fe8bd77795972509d1bbdd",
+    "binary_sha256": "501cd4f83b29f09f2a8e29fd88e782b35225047d13cbc7695e72bb3b1140c275",
+    "built_at": 1793418309.2441428
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "dea063d7932a07a6ea0b55e34abd1f8d9b7b467e",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "3b848725cd62ab84ddaefa9228871cda234a4e8287fe8bd77795972509d1bbdd",
+      "binary_sha256": "501cd4f83b29f09f2a8e29fd88e782b35225047d13cbc7695e72bb3b1140c275",
+      "build_receipt": "/tmp/hbide-monitor-scopes-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ddf4702c172665aa670b51799143310bda53ec12c6f217d26bd0fa52e9fcee2a",
+      "case": "debug-monitor-scopes",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_monitor_scopes_pty.py"
+      ],
+      "started": 1793418309.2443821,
+      "seconds": 15.97,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "875ff87539eb0ecb7e3c40311cfa08de7414eeefe76b8cfcf1a228a17d9d18ef",
+      "log": "/tmp/hbide-monitor-scopes-clean/debug-monitor-scopes-1793418309244378241.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "dea063d7932a07a6ea0b55e34abd1f8d9b7b467e",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "3b848725cd62ab84ddaefa9228871cda234a4e8287fe8bd77795972509d1bbdd",
+      "binary_sha256": "501cd4f83b29f09f2a8e29fd88e782b35225047d13cbc7695e72bb3b1140c275",
+      "build_receipt": "/tmp/hbide-monitor-scopes-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ddf4702c172665aa670b51799143310bda53ec12c6f217d26bd0fa52e9fcee2a",
+      "case": "debug-monitor-mouse-scroll",
+      "command": [
+        "/opt/instinct/compat-bin/python",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_monitor_mouse_scroll_pty.py"
+      ],
+      "started": 1793418325.2196229,
+      "seconds": 10.21,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a7df21171e780a50a07f0d7e24b4220b203c1b54500a8c99b442a4752f53faa9",
+      "log": "/tmp/hbide-monitor-scopes-clean/debug-monitor-mouse-scroll-1793418325219619583.log"
+    }
+  ],
+  "logs": {
+    "debug-monitor-scopes-1793418309244378241.log": "PASS debugger stopped before increment\nPASS Local menu displays both exact scalar values\nPASS unsorted locals retain declaration order\nPASS Sort menu orders actual local names\nPASS Public menu adds actual memvar value\nPASS Private menu adds actual memvar value\nPASS Static menu adds actual static value\nPASS Sort remains active across scope additions\nPASS Public toggle removes only public fixture variable\nPASS Private toggle removes only private fixture variable\nPASS Static toggle removes only static fixture variable\nPASS All menu exposes fixture scopes with exact values\nPASS second All hides all fixture variables\nPASS editing sorted first row targets QA\nPASS scope toggles and sorted edit reach exact debuggee slots\nPASS scope test leaves source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-8tgwpun8\n",
+    "debug-monitor-mouse-scroll-1793418325219619583.log": "PASS debugger stopped before increment\nPASS Monitor PageDown exposes later locals\nPASS doubleclick scrolled Monitor edits exact visible local\nPASS PageUp returns first Monitor locals\nPASS click after PageUp edits correct second local\nPASS scrolled Monitor edit reaches exact debuggee slot\nPASS scrolled Monitor leaves source bytes unchanged\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-1eeru5ij\n"
+  },
+  "exploratory": [
+    {
+      "run": {
+        "untracked_inputs_sha256": "2c6be802d8dca90d2f615b2490d7abf125f8e157fa386cb222065acb4f2fa784",
+        "source": "607f6941397c3714dd124270f5ae61e03932de75",
+        "tracked_changes": " M scripts/completion_pty.py\n",
+        "tracked_snapshot_sha256": "6bcd9024f7b92ddbb49870332f7dac4750b86a3d8cde9c2772c4d58cfff6094c",
+        "binary_sha256": "4486ee6e68769e3474537dd6e176b0c8eff345435edaa5ebc9a50e3e929213d5",
+        "build_receipt": "/tmp/hbide-monitor-scopes-exploratory/build-identity.json",
+        "platform": "linux",
+        "build": "fresh",
+        "scope": "Linux PTY only; not full visual/Windows acceptance",
+        "runner_sha256": "ddf4702c172665aa670b51799143310bda53ec12c6f217d26bd0fa52e9fcee2a",
+        "case": "debug-monitor-scopes",
+        "command": [
+          "/opt/instinct/compat-bin/python",
+          "-u",
+          "/home/sandbox/hbide/tests/test_debug_monitor_scopes_pty.py"
+        ],
+        "started": 1793418259.0388017,
+        "seconds": 15.98,
+        "exit_code": 1,
+        "printed_failure": true,
+        "source_or_binary_changed": false,
+        "test_sha256": "5d783ed01400301b6e0244b53f6ec0b68a162a32cb1265cb9a196c177e9921d9",
+        "log": "/tmp/hbide-monitor-scopes-exploratory/debug-monitor-scopes-1793418259038797817.log"
+      },
+      "log": "PASS debugger stopped before increment\nFAIL Local menu displays both exact scalar values\nPASS unsorted locals retain declaration order\nPASS Sort menu orders actual local names\nFAIL Public menu adds actual memvar value\nFAIL Private menu adds actual memvar value\nFAIL Static menu adds actual static value\nPASS Sort remains active across scope additions\nPASS Public toggle removes only public fixture variable\nPASS Private toggle removes only private fixture variable\nPASS Static toggle removes only static fixture variable\nPASS All menu exposes fixture scopes with exact values\nPASS second All hides all fixture variables\nFAIL editing sorted first row targets QA\nPASS scope toggles and sorted edit reach exact debuggee slots\nPASS scope test leaves source bytes unchanged\nTOTAL 11 PASS 5 FAIL; evidence /tmp/hbide-source-run-yjholdd4\n"
+    },
+    {
+      "run": {
+        "untracked_inputs_sha256": "e46bee83805700dd96c874ff4d8063e76958ec90c531a14a95c9976f4677ed10",
+        "source": "607f6941397c3714dd124270f5ae61e03932de75",
+        "tracked_changes": " M scripts/completion_pty.py\n",
+        "tracked_snapshot_sha256": "6bcd9024f7b92ddbb49870332f7dac4750b86a3d8cde9c2772c4d58cfff6094c",
+        "binary_sha256": "2dd7de3aaff15101433b414c42efffee1b6f9310ebf10307cc1c1f4c2a9edd51",
+        "build_receipt": "/tmp/hbide-monitor-scopes-exploratory2/build-identity.json",
+        "platform": "linux",
+        "build": "fresh",
+        "scope": "Linux PTY only; not full visual/Windows acceptance",
+        "runner_sha256": "ddf4702c172665aa670b51799143310bda53ec12c6f217d26bd0fa52e9fcee2a",
+        "case": "debug-monitor-scopes",
+        "command": [
+          "/opt/instinct/compat-bin/python",
+          "-u",
+          "/home/sandbox/hbide/tests/test_debug_monitor_scopes_pty.py"
+        ],
+        "started": 1793418281.529842,
+        "seconds": 15.98,
+        "exit_code": 0,
+        "printed_failure": false,
+        "source_or_binary_changed": false,
+        "test_sha256": "884920a6c860802e361b7a3e0fe738f5c67d30aedcdfdcb829fec1006e206b52",
+        "log": "/tmp/hbide-monitor-scopes-exploratory2/debug-monitor-scopes-1793418281529837636.log"
+      },
+      "log": "PASS debugger stopped before increment\nPASS Local menu displays both exact scalar values\nPASS unsorted locals retain declaration order\nPASS Sort menu orders actual local names\nPASS Public menu adds actual memvar value\nPASS Private menu adds actual memvar value\nPASS Static menu adds actual static value\nPASS Sort remains active across scope additions\nPASS Public toggle removes only public fixture variable\nPASS Private toggle removes only private fixture variable\nPASS Static toggle removes only static fixture variable\nPASS All menu exposes fixture scopes with exact values\nPASS second All hides all fixture variables\nPASS editing sorted first row targets QA\nPASS scope toggles and sorted edit reach exact debuggee slots\nPASS scope test leaves source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-8i1dkufl\n"
+    }
+  ]
+}
