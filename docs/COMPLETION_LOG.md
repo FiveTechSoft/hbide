@@ -3055,3 +3055,9 @@ caret/mismatch/nonASCII/cropped/ambiguouskeepsreportedcolumn. No flagchange
 orcompilerunitguess. RealGCCbefore5PASS1FAIL,localafter6PASS. Tenmodel
 assertions addeddefault/byte/tab4/tab16andfallbacks. Runner169=168PTY+guard.
 No allUnicode/compilercoverage. Historical20Pythoncasesremainresearch.
+
+Q58boundedcleanadeb10f Caret6/Colon6/Message9PASSsamebinary+22models
+115repaintPASS,15inventory34docs. Tenprojectmodelmapping/fallbackassertions.
+Native120x40TABjumpcorrectchar9actualpixels/fullbordersinspected,sourceexact.
+linux-gcc-caret-column.json. Generalmissing/nonASCII/ambiguousunitgapremains;
+notglobalQ58closed/noflagchange/Windows/dirtybufferremappingclaim.
