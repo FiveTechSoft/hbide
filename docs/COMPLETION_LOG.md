@@ -2371,3 +2371,13 @@ Nueva pasada fuenteigualb3efec2IDE7d6a9301Help12WorkAreas10ScriptDBF5Snap6
 Drag6+21modelos15inventory33docsPASS. linux-second-rebuild-b3efec2.json.
 No heredar candidateanteriorbinarios/pixels/determinismo;carpeta candidate4
 perdida,manifestpublicadosiguedurable. No producto perdido ni nuevo cierre.
+
+## 31 octubre candidateLinux reconstruido con Q31
+
+Export e0d4b23, compiler1f80870f, strippedSHA
+edfb42126ea4074672de9b47bc6ced9ee8427e6d2d85ca07735da3291182d86f.
+8smokesestandarPASS + Help12WorkAreas10ScriptDBF5Snap6Drag6PASS
+mismo binario verificado antes/despues. Dos pasos acotados, sin retries.
+Manifest/logs en linux-candidate-current-help-rdd.json. Carpeta temporal
+/tmp/hbide-linux-current-candidate-5. No release, licencia, Windows,
+instalador, nueva inspeccion pixels ni cierre de hitos.
