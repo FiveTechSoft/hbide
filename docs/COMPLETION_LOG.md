@@ -3507,3 +3507,5 @@ PTY workflows. Link IDE-036/DBG-021 to existing bounded listbox and scalar
 watch add/edit/inspect tests. Two inventory guards preserve limitations.
 No new product fix or coverage beyond tests; links are not PASS.
 Evidence linux-inventory-designer-watch.json follows.
+
+Q90 acceptance cleanff81639de963cbf11c9d7401219cb179d8b77288 binary9678761a712f4883a3a5e24d617c44e4003c38e90f56002af81aa043c645cad2:32checksPTY(Designer18/Watch14),26inventory34docsPASS. No retry/fail. No model rerun/newpixels/productfix.

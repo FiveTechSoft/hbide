@@ -1,0 +1,71 @@
+{
+  "scope": "Q90 M0 links only, actual-menu bounded workflows. Not new product, native pixels, Windows, model rerun or global closure",
+  "source": "ff81639de963cbf11c9d7401219cb179d8b77288",
+  "binary_sha256": "9678761a712f4883a3a5e24d617c44e4003c38e90f56002af81aa043c645cad2",
+  "build_identity": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "ff81639de963cbf11c9d7401219cb179d8b77288",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "951132e76fb6ea5f49728e3a2b898ef8adfd3ea11f10cde4c94cfdd170dc24eb",
+    "binary_sha256": "9678761a712f4883a3a5e24d617c44e4003c38e90f56002af81aa043c645cad2",
+    "built_at": 1793479276.8571134
+  },
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ff81639de963cbf11c9d7401219cb179d8b77288",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "951132e76fb6ea5f49728e3a2b898ef8adfd3ea11f10cde4c94cfdd170dc24eb",
+      "binary_sha256": "9678761a712f4883a3a5e24d617c44e4003c38e90f56002af81aa043c645cad2",
+      "build_receipt": "/tmp/hbide-menu-links-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "513f3c5c4ba693d3e38bd5b98c093b5415228668e09ac3d8da6d8f11509e3a26",
+      "case": "designer",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_pty.py"
+      ],
+      "started": 1793479276.8573768,
+      "seconds": 24.92,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f81758bfc8ea0f62bb84910a95b4bb09ba5cb522cdd2495a4bcea5ee5c6a4e97",
+      "log": "/tmp/hbide-menu-links-clean/designer-1793479276857372784.log",
+      "log_text": "PASS boot caption noname\nPASS designer opens with default dialog\nPASS duplicate P keeps palette open at PushButton\nPASS second P keeps palette open at Paste\nPASS palette popup opens\nPASS listbox placed with default items\nPASS inspector visible\nPASS resize via inspector: width 20 -> 23\nPASS resize via inspector: height 6 -> 7\nPASS JSON saved with resized model\nPASS model dirtied again (width 22)\nPASS F12 reload restores width 23\nPASS F12 reload restores height 7\nPASS generate hint shown\nPASS generated PRG contains the LISTBOX\nPASS designer exits and IDE opens generated PRG\nPASS editor left the designer (IDE menu back)\nPASS IDE exits clean\nTOTAL 18 PASS 0 FAIL\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ff81639de963cbf11c9d7401219cb179d8b77288",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "951132e76fb6ea5f49728e3a2b898ef8adfd3ea11f10cde4c94cfdd170dc24eb",
+      "binary_sha256": "9678761a712f4883a3a5e24d617c44e4003c38e90f56002af81aa043c645cad2",
+      "build_receipt": "/tmp/hbide-menu-links-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "513f3c5c4ba693d3e38bd5b98c093b5415228668e09ac3d8da6d8f11509e3a26",
+      "case": "debug-watch-modal",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_debug_watch_modal_pty.py"
+      ],
+      "started": 1793479306.117963,
+      "seconds": 21.55,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "ef1782232e17a0007a43482280e2dc8bb442bdd0ff7d560e96d8683aa7f76203",
+      "log": "/tmp/hbide-menu-links-clean/debug-watch-modal-1793479306117958093.log",
+      "log_text": "PASS watch n evaluated\nPASS add exact saved watch expressions\nPASS cancel add exact saved watch expressions\nPASS invalid add rejected\nPASS invalid add exact saved watch expressions\nPASS edited watch evaluates3\nPASS edit exact saved watch expressions\nPASS cancel edit exact saved watch expressions\nPASS invalid edit rejected\nPASS invalid edit exact saved watch expressions\nPASS watch readonly inspector shows3\nPASS watch readonly inspector refuses edit\nPASS inspect leaves expression exact saved watch expressions\nPASS watch operations leave debuggee value unchanged\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-93vor7e6\n"
+    }
+  ],
+  "checks": 32,
+  "inventory": "..........................\n----------------------------------------------------------------------\nRan 26 tests in 0.191s\n\nOK\n",
+  "docs": "PASS: 34 complete documents embedded byte-for-byte\n",
+  "notes": "Designer18 + Watch14 same exact fresh binary, no retries/failures. Existing native evidence not recertified by these PTY tests."
+}
