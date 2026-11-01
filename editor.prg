@@ -623,6 +623,14 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
       // extended codes (gttrm + HB_INKEY_EXT, wired in the IDE loop) can tell
       // them apart; elsewhere Ctrl+Left keeps arriving as Undo, as before.
 
+      case nKeyStd == K_CTRL_T
+           // HBEditor word deletion expects text columns, not our gutter.
+           nPos := Max( ::nCol - 4, 1 )
+           ::nCol := nPos
+           ::nBlkDirty := Min( ::nBlkDirty, ::nRow )
+           ::Super:Edit( nKey )
+           ::GoTo( ::nRow, nPos + 4, _REFRESH_ALL )
+
       case nKeyStd == K_CTRL_Y
            ::DeleteLine()
 
