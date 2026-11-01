@@ -5935,3 +5935,28 @@ SHA original/manifest/decomprimido idénticos;370928288bytes liberados, resto
 intacto. Q411docs/catálogo posteriores no embebidos C86, sin rebuildpor docs.
 No nueva matrizcompleta/modelosheredados/píxelesextra/Windows/install/licencias
 ni cierre de hito; macros/customstreams/CP/toolchain/políticas no cambiadas.
+
+### Q412-Q417 (1 noviembre 2026): aceptación focal C86
+
+Q412cinconav15checksPASS: rawBOM/ENDCLASS/DECLARED/bareTEXT/arraycomment.
+Q413cincomodosrecoveryPASS: deeppathmixedEOL y UTF8BOM por separado,
+kill/recover/save exacto; Compare readonly/reopenrefresh/Later; Undo/Reload
+retiran journal obsoleto y restart no lo ofrece. Q414cincomodosclipboard30checks
+PASS: Copy/Cutvirtualvacío no-op/Undo, línea física vacía PasteUndoRedo,
+blockmixedEOL/UTF8multidoc bindings/historia independientes.
+Q415cincoM2modos62checksPASS: compilerabsent/failureoutput/missingoutput,
+argvvacíos Start/Script/Debug, diagnóstico real proyecto preserva dirtybuffer,
+sin duplicación ni save silencioso. Primer intento harness sin compilerPATH
+falló antes del IDE; log retenido, repetido con PATH explícito, no retry-free.
+Q416cuatromodosdesigner52checksPASS: fixturemixed12controles/F9/compile/
+runescape-save-cancel-selectors; GETVALIDfalse/true; clipboardComboSTATE y
+bindings independientes; inspector25x80 close/F4/JSON. Defaultmixed8checks
+adicionales conservados por separado, no usados para inflar52checks.
+Cada modo confirmó binC86intacto
+c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27,
+fuente81c06602b621616005bc9b2e45195fd9184f51a9. Runtimegenerado instrumentado
+para observar valores/salida, no certificación del paquete. Sin nuevos
+píxeles/modelos/matrizcompleta/Windows/install/licencias/cierre de hito.
+Receipts linux-c86-nav-regression-q412.json, linux-c86-recovery-q413.json,
+linux-c86-clipboard-q414.json, linux-c86-m2-q415.json y
+linux-c86-designer-q416.json. Q417docs/catálogo posteriores no embebidosC86.
