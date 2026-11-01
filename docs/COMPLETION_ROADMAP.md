@@ -66,19 +66,22 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre17:51 Q322: candidato focal C63,
-source89f6eb5bbd335c2ca37ed1e1f8718b55290210de,
+Corte 1 noviembre18:03 Q324-Q326: candidato focal C64,
+source92949b344380ae3d6bd73364b7894c2a31e65cd5,
+bin17169a76081a72c66609d72493effbefb67c5f1ed69ec7c47af5cc6d270f4625.
+Q324navegación reconoce METHOD implícito tras ENDCLASS y excluye miembros.
+C63baseline1PASS2FAIL; C64cincoPTY15checksPASS y modelo léxico106/0.
+Par nativo1202x762 completo inspeccionado. Q325cincofixtures compiladas y
+15checksPTY postexport PASS: FUNCTION/PROCEDURE, CREATE CLASS, continuación,
+última clase. Q32637modelos GTSTD fresh del source7f7b581 limpioPASS.
+No37modosIDE ni certificados del binarioC64; globalVM/inputhook caracterizan límites.
+C63focal previoCtrlT TAB: source89f6eb5bbd335c2ca37ed1e1f8718b55290210de,
 bin9b49b783fe8176f915825a8b4570b0b7cc82d5231e62576835e7b8f9c1816d6a.
-Q320CtrlT reconoceTABraw como separador, no borra palabra siguiente. C62baseline
-1PASS2FAIL; C63cincomodosPTY23checksPASS, modelos18DeleteWord/161EOL/210repaint,
-par nativo1202x762 inspeccionado. Q321arnés postexport22modelo/6PTYchecksPASS:
-virtualEOL/actualEOL/empty/redo/clipboard/nojournal/nofalseprompt sin producto nuevo.
-Q32237modelos GTSTD fresh del source584c00b limpioPASS. No37modosIDE ni
-certificados del binarioC63; globalVM/inputhook caracterizan límites.
+Q320cincomodosPTY23checksPASS; Q32122modelo/6PTYchecks postexport PASS.
 C61identificado fuentef63e189288ae03122f892e0edccefc4129452503,
 bine0399cb224f06c707b228d5d3291e3957a81bccd22278de355ac02f00e325c43:
 About/catálogoQ314/ldd/8smokes/6BPmodos32checks PASS, no heredados aC63.
-Q323docs posteriores no embebidos en C63 ni C61. No sumar fuentes/binarios
+Q327docs posteriores no embebidos en C64, C63 ni C61. No sumar fuentes/binarios
 como matriz. Sin fullpreprocessor/customstream/navcontinuation/Windows/release/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
@@ -1093,3 +1096,13 @@ Q321postexport22modelo/6PTYchecksPASS no-op virtualEOL/actualEOL/empty/redo/
 clipboard/nojournal/nofalseprompt, recibo linux-delete-word-noop-q321.json.
 Q32237modelosGTSTD source584c00b limpioPASS, recibo linux-model-baseline-q322.json.
 Q323aceptación/inventario/catálogo actualizados, no rebuild sólo docs ni Windows/hito.
+
+### Seguimiento Q324-Q327 (1 noviembre 2026)
+
+Q324METHOD implícito tras ENDCLASS faltaba en Go to function. Fix acotado
+al último CLASS/CREATE CLASS, distingue miembro de implementación. Baseline
+C63 1/2; C64 15checksPTY/106modelo PASS y par nativo completo inspeccionado.
+Q325otros15checksPTY con cincofixtures compiler-valid PASS. Q32637modelos
+fresh sobre7f7b581 PASS. Receipts linux-nav-implicit-method-q324.json,
+linux-nav-implicit-contexts-q325.json y linux-model-baseline-q326.json.
+Q327docs/catálogo actualizados; no rebuild sólo docs ni matriz/Windows/hito.

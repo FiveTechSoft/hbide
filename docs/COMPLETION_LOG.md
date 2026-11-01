@@ -5689,3 +5689,11 @@ no-op vacío. Roadmap separa C47focal/C45identificado/36modelosQ289/C30plan353.
 Catálogo34docs regenerado;8guardas y50tests de inventario en
 linux-sole-bp-docs-q290.json. Sin producto/build/PTY/modelo/píxeles/Windows/
 hito nuevo, no reconstrucción solo por documentación.
+
+### Q324-Q327 (1 noviembre 2026): métodos implícitos
+
+Q324reproduce omisiónMETHOD trasENDCLASS (C63 1/2), corrige en92949b3,
+C64hash17169a76081a72c66609d72493effbefb67c5f1ed69ec7c47af5cc6d270f4625.
+15checksPTY/106modelo y pareja nativa completa PASS. Q325cincofixtures
+compiler-valid/15checksPTY postexportPASS. Q32637modelos fresh7f7b581PASS.
+Q327guía/roadmap/catálogo, sin reconstrucción docs ni hito/Windows.

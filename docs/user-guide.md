@@ -314,3 +314,9 @@ Go to Function recognizes compact method implementations such as
 is not the owning class qualifier. The picker keeps the declaration's
 first physical line for supported continuations. This is a bounded source
 scanner, not a full Harbour preprocessor or a guarantee for every macro.
+
+Plain and typed `METHOD` implementations after a closed `CLASS` or
+`CREATE CLASS` inherit that last class name in the picker, matching the
+bounded hbclass.ch form tested here. Member declarations before ENDCLASS
+stay out of the implementation list. An explicit CLASS qualifier wins.
+Custom macro state and arbitrary preprocessor redefinitions are not tracked.
