@@ -20,6 +20,11 @@ PROCEDURE Main()
    hb_keyPut( K_ESC )
    HBIDEProjectOutput( "" )
    Check( Empty( ScreenText( 3, 4, 3, 76 ) ), "empty output stays safe" )
+   hb_keyPut( K_ESC )
+   HBIDEProjectOutput( Chr(27) + "[31mError" + Chr(27) + "[0m" + Chr(27) + "[K tail" )
+   Check( Left( ScreenText( 3, 4, 3, 76 ), 10 ) == "Error tail", "GCC color notation removed from display copy" )
+   Check( HBIDEProjectDiagnosticText( Chr(27) + "[2J" ) == Chr(27) + "[2J", "unknown CSI stays data" )
+   Check( HBIDEProjectDiagnosticText( Chr(27) + "[31" ) == Chr(27) + "[31", "incomplete CSI stays data" )
    ? "PASS output horizontal navigation and boundaries"
    RETURN
 STATIC PROCEDURE Check( lOk, cText )

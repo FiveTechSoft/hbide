@@ -253,7 +253,7 @@ FUNCTION HBIDEProjectDiagnostics( cOutput, cRoot )
 
 // Remove only GCC-style CSI color/reset (m) and erase-line (K) controls.
 // Unknown/malformed escape sequences remain data, not an execution request.
-STATIC FUNCTION HBIDEProjectDiagnosticText( cText )
+FUNCTION HBIDEProjectDiagnosticText( cText )
    LOCAL cOut := "", n := 1, nEnd, c
    DO WHILE n <= Len( cText )
       IF SubStr( cText, n, 2 ) == Chr(27) + "["

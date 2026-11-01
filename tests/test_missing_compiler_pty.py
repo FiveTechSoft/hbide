@@ -9,6 +9,7 @@ success_long='--success-long-output' in sys.argv
 recover_promotion='--promotion-retry' in sys.argv
 promotion='--promotion-failure' in sys.argv or recover_promotion
 restore='--restore' in sys.argv
+color_output='--color-output' in sys.argv
 horizontal='--horizontal' in sys.argv
 long_output='--long-output' in sys.argv
 diagnostic='--missing-output-diagnostic' in sys.argv or long_output
@@ -39,6 +40,8 @@ for kind in ['autorun']:
    launcher.write_text(launcher.read_text().replace('printf \"%s(3)', 'i=0; while [ "$i" -lt 60 ]; do printf "compiler progress %s\\n" "$i"; i=$((i+1)); done\n'+ 'printf \"%s(3)'))
   if success_long:
    launcher.write_text('#!/bin/sh\ni=0; while [ "$i" -lt 60 ]; do printf "compiler progress %s\\n" "$i"; i=$((i+1)); done\nPATH='+shlex.quote(os.environ['PATH'])+'; export PATH\nexec '+shlex.quote(compiler)+' "$@"\n')
+  if color_output:
+   launcher.write_text(launcher.read_text().replace('Error E0030', '\\033[31mError\\033[0m E0030'))
   launcher.chmod(0o700)
  pid,fd=pty.fork()
  if pid==0:
@@ -103,6 +106,9 @@ for kind in ['autorun']:
    if long_output:
     check('long build output opens scrollable viewer','Output - arrows scroll' in screen.text())
     send(b'\x1b[F',.4)
+    if color_output:
+     (work/('color-'+str(attempt)+'.screen')).write_text(screen.text())
+     check('viewer hides GCC color control notation','[31m' not in screen.text() and '[0m' not in screen.text())
     check('End reveals last compiler diagnostic','Error E0030' in screen.text())
     if horizontal:
      for _ in range(12):send(b'\x1b[C'*8,.05)

@@ -121,6 +121,10 @@ FUNCTION HBIDEProjectPaint( oProject, lMessages, aRows, nPick, nTop, nVisible )
 FUNCTION HBIDEProjectOutput( cOutput )
    LOCAL a := hb_ATokens( cOutput, Chr(10) ), nTop := 1, nKey, nR := MaxRow(), nC := MaxCol(), i, n, cLine
    LOCAL nLeft := 1, nMaxWidth := 0, nWidth := Max( 1, nC - 7 )
+   // Display copy only: keep raw build output and diagnostic raw records exact.
+   FOR i := 1 TO Len( a )
+      a[ i ] := HBIDEProjectDiagnosticText( a[ i ] )
+   NEXT
    FOR EACH cLine IN a
       nMaxWidth := Max( nMaxWidth, Len( cLine ) )
    NEXT
