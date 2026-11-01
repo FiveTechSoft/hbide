@@ -169,6 +169,14 @@ procedure Main()
  Check(Len(a)==1.and.a[1,1]=='Main'.and.a[1,3]==1,'initial raw UTF8 BOM ignored only for navigation',@nPass,@nFail)
  a:=HBIDE_ScanProcs('procedure First()'+hb_eol()+Chr(239)+Chr(187)+Chr(191)+'procedure Hidden()')
  Check(Len(a)==1.and.a[1,1]=='First','embedded BOM not silently removed from source',@nPass,@nFail)
+ for each c in {'// comment','* comment','NOTE comment','#include "hbclass.ch"'}
+ a:=HBIDE_ScanProcs(Chr(239)+Chr(187)+Chr(191)+c+hb_eol()+'procedure Main()')
+ Check(Len(a)==1.and.a[1,1]=='Main'.and.a[1,3]==2,'initial BOM before comment/directive retains line: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs(Chr(239)+Chr(187)+Chr(191)+'TEXT'+hb_eol()+'procedure Hidden()'+hb_eol()+'ENDTEXT'+hb_eol()+'procedure Main()')
+ Check(Len(a)==1.and.a[1,1]=='Main'.and.a[1,3]==4,'BOM before TEXT keeps phantom excluded',@nPass,@nFail)
+ a:=HBIDE_ScanProcs(Chr(239)+Chr(187)+Chr(191)+'#pragma begindump'+hb_eol()+'procedure Hidden()'+hb_eol()+'#pragma enddump'+hb_eol()+'procedure Main()')
+ Check(Len(a)==1.and.a[1,1]=='Main'.and.a[1,3]==4,'BOM before C dump keeps phantom excluded',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return
