@@ -6050,3 +6050,28 @@ Inventario mouse vincula9de27ramas fuente con alcancefocal,18siguenpendientes;
 ramas no son funciones y vínculos no son PASS.55inventoryunitsPASS y catálogo34
 byteexact. Receipts por Q434-Q439. Q440docs/catálogo posteriores no embebidosC87,
 sinbuildpor docs, nuevosmodelos/píxeles/matrizcompleta/Windows/licencia/hito.
+
+### Q442-Q449 (1 noviembre 2026): wheel y ratón debugger acotados
+
+Q442nuevoEditorWheelC87 9checksPASS:100logicalCRLFsinseparatorfinal,
+cursor±1/viewportcross/top-endclamp/closeclean/no diskchange. Initial7/2
+por esperar100 con CRLFfinal que crea blank101 se conserva como errorfixture,
+no defectoproducto. Q443tresrutas parent/Editorwheel links scope menuclosed/
+visibleeditor, no selection/hidden/menu states. Q444nuevolinkviewerwheel9PASS,
+UI separada de Contents: topiclargo/±1/top-endclamp/dirtyreturn/Undoexact.
+Combinedkeyboard-wheelbranches vinculadas sólo wheel, no nueva aceptaciónkeys.
+Q445dosdebuggermousefixtures14PASS: localclick/Enter/doubleclickedCnotpriorB/
+CancelpreservaA/resumeexpectedvalues y caller-calleeframe101/202/borders/no source
+change. Q446rightclick8PASSincl1nuevoignoredMonitorgridcheck, no contextmenu
+feature. Restantesramasclasificadas:2IsNavKeyinternas, designerUPtrace,
+3readerarmrelease/doublesuppression requierenfixturepropio, IDEleftparent,
+AppScreeninputconsumption, modalclose. Q447Helpmodalclose11PASSincl4newchecks:
+col8titleoutside stays; closecol3 yedgecol5 afterreopenKeys cierran; resumesource
+exact. ContratoShowModal sóloHelp, no todoscallers/coordenadas.
+M0mouse19de27ramasfuente conlinksacotados,8pendientes; no porcentaje deIDE ni
+funciones, links no son runtimePASS.55inventoryunitsPASS. ReceiptsQ442/Q444-Q447.
+C87fuentee84d41e1d57f35aa1b42fe538b4ab11aa598f6fe,
+bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48
+intacto. PTYcounter/grid/JSON no son píxeles nuevos. Q448docs/catálogo posteriores
+noembebidosC87, sinbuildpor docs. Q449toolingguards separados, no producto/
+modelos/fullmatrix/Windows/install/licencias/cierre de hito.
