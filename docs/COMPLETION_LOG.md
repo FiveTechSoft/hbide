@@ -4596,3 +4596,17 @@ binario e4da362bb7a9815c0763240cf236e1a68d2ae11269a48ae1af78e0b3cb39085f.
 Tres nativas C27 revisadas, bordes y underlay limpios. No todas las
 variantes de gesto, nueva UX, Windows, matriz global ni cierre M4.
 Evidencia `docs/evidence/linux-designer-inspector-edge-return-q175.json`.
+
+
+### Q176 (1 noviembre 2026): compilador ausente
+
+Se compila un ejecutable real previo y se inicia el IDE con PATH vacio.
+Dos Run > Start fallan con mensaje claro, conservan binario y fuente
+byte-exactos, no ejecutan el binario anterior ni dejan temporales y
+el editor sigue usable. Un modo PTY11checks73guardas34docsPASS en
+e3719180e2da1663b668f601aa5781d4190f30cd, binario
+091d1888ad79f54a9a515e0b559ef4445361495eabefd0abaec6194561cb0d6e.
+Primer probe corrigio solo la expectativa de mensaje partido en dos
+lineas. No arreglo de producto ni prueba de Cancel, respuesta de UI,
+Windows, matriz global o cierre M2.
+Evidencia `docs/evidence/linux-missing-compiler-q176.json`.

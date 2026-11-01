@@ -1,0 +1,106 @@
+{
+  "scope": "Q176 Linux missingcompiler negative runtime fixture, no productfix or Cancel acceptance.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "e3719180e2da1663b668f601aa5781d4190f30cd",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "3876a319b4a922fe30ef2a3ecb12d58b51cb599de70e08743c8bd7596e572ea2",
+    "binary_sha256": "091d1888ad79f54a9a515e0b559ef4445361495eabefd0abaec6194561cb0d6e",
+    "built_at": 1793518132.43081
+  },
+  "result": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "e3719180e2da1663b668f601aa5781d4190f30cd",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "3876a319b4a922fe30ef2a3ecb12d58b51cb599de70e08743c8bd7596e572ea2",
+    "binary_sha256": "091d1888ad79f54a9a515e0b559ef4445361495eabefd0abaec6194561cb0d6e",
+    "build_receipt": "/tmp/hbide-q176-final/build-identity.json",
+    "platform": "linux",
+    "build": "fresh",
+    "scope": "Linux PTY only; not full visual/Windows acceptance",
+    "runner_sha256": "e1854ad3e4bbb16c352ecc343198a39e4b85280c551dc339d7f3e53392c60370",
+    "case": "missing-compiler-preserves-executable",
+    "command": [
+      "/usr/bin/python3",
+      "-u",
+      "/home/sandbox/hbide/tests/test_missing_compiler_pty.py"
+    ],
+    "started": 1793518132.4310977,
+    "seconds": 6.54,
+    "exit_code": 0,
+    "printed_failure": false,
+    "source_or_binary_changed": false,
+    "test_sha256": "1bb7d529328a850409791b76367707f1de9f9e8e70fffc4c41f343c282c8990b",
+    "log": "/tmp/hbide-q176-final/missing-compiler-preserves-executable-1793518132431093461.log"
+  },
+  "log": "PASS missing compiler gives clear failed build message\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS missing compiler gives clear failed build message\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-3xaele4m\n",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "e3719180e2da1663b668f601aa5781d4190f30cd",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "35ca24835d6111fc5676886e6fefe46efe30e8867e6de80f5d32c728fa73db81",
+    "started": 1793518139.1611319,
+    "runner_sha256": "d8e1b33008b126ce28f71722967a5ba136d9a3c979a0ce5732d5c3a00027d71f",
+    "tests": {
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q176-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.269
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q176-guards/test_completion_guards.py.log",
+        "seconds": 0.217
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q176-guards/test_build_receipt.py.log",
+        "seconds": 0.219
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "5c178c60879f6f854039d24bc71bf0cbea3a01c22d29963770bd60d7bae50905",
+        "log": "/tmp/hbide-q176-guards/test_completion_inventory.py.log",
+        "seconds": 0.77
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q176-guards/test_distribution_notices.py.log",
+        "seconds": 0.217
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q176-guards/test_embed_help_docs.py.log",
+        "seconds": 0.217
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q176-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.369
+      }
+    },
+    "ok": true,
+    "finished": 1793518141.4407797
+  },
+  "limits": "Real existingexecutable compiled beforelaunch,childPATHempty,RunStart twice; visiblefailure,oldbinarybyteexact/notlaunched/sourceexact/notemps/editorusable11checks. Initialprobe2messageassertfailures duewrappedphrase, correctedharness beforefrozenfinalPASS. No UIcancel/responsiveness/descendantkill/Windows/fullmatrix/global/M2closure."
+}
