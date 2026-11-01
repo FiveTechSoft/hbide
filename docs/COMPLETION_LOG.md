@@ -5134,3 +5134,12 @@ binbf0093a4029eb8aac4aa51d26f68c437d5445205c6dbc3e55d6b55d1720d103e.
 87guardas34docsPASS. Nativa1202x762inspeccionadaidentidadliteralguardada
 sinmodalfantasma,bordescompletos. SinWindows/raceproof/cierreM1/global.
 Evidencia: docs/evidence/linux-saveas-literal-new-q213.json.
+
+### Q214 (1 noviembre 2026): regresion conjunta ficheros e inspector
+
+9modosPTYsinfallossobreunIDEfreshmismafuente3f77fee324fd0e1c4be41a579c6218d280e2fe7a
+bin60f767ccb46872de4c277788e5dad1ca7c24846214b239aaa513126050d5b958.
+LiteralSaveAsnuevo,symlinkclean/dirty,externalnormal/literalrecreate;
+inspectorcentro/cierre/dragdosdimensiones. No nuevoproducto/pixeles/modelos,
+Windows/matrizregistradacompleta/cierrehitos. Nohereda309modos/31modelos.
+Evidencia: docs/evidence/linux-file-inspector-joint-q214.json.
