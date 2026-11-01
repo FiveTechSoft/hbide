@@ -532,9 +532,11 @@
     "IDE-034": {
       "expected_label": "Compiler Flags...",
       "tests": [
-        "test_compiler_flags_pty.py"
+        "test_compiler_flags_pty.py",
+        "test_compiler_flags_mouse_pty.py",
+        "test_compiler_flags_mouse_edges_pty.py"
       ],
-      "contract": "Real options dialog with keyboard Tab/Space/Enter/Esc. Default GCC warnings strict flags, Cancel leaves old flags, OK applies warnings/debug/strict/incremental/optimize and compiler selection to actual hbmk2 process argv. A fake hbmk2 captures argv and returns failure, not proof MSVC/other toolchains build successfully. Nested Help returns to unsaved option controls and OK still applies those edits to build argv."
+      "contract": "Real options dialog with keyboard Tab/Space/Enter/Esc. Default GCC warnings strict flags, Cancel leaves old flags, OK applies warnings/debug/strict/incremental/optimize and compiler selection to actual hbmk2 process argv. A fake hbmk2 captures argv and returns failure, not proof MSVC/other toolchains build successfully. Nested Help returns to unsaved option controls and OK still applies those edits to build argv. C88 Q460-Q461 caption mouse MSVC/MinGW64/GCC, checkbox subset, Cancel/Help/OK reach exact argv after native RadioGroup hit-index fix. No successful foreign toolchain claim."
     },
     "IDE-035": {
       "expected_label": "Display...",
@@ -1555,21 +1557,25 @@
   "ide_modal_field_acceptance": {
     "IDE-FIELD-CompilerFlags-cCompiler-1": {
       "tests": [
-        "test_compiler_flags_pty.py"
+        "test_compiler_flags_pty.py",
+        "test_compiler_flags_mouse_pty.py",
+        "test_compiler_flags_mouse_edges_pty.py"
       ],
-      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows."
+      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Q460 C88 bounded caption mouse workflow selects MSVC and changes Warnings/Debug/Incremental/Optimize, explicit Cancel discards, Help returns same controls, OK applies actual argv. No mouse Strict/AutoRun toggle proof, successful foreign toolchain, all coordinates or Windows; link not runtime PASS. Q461 last MinGW64 to first GCC caption clicks reach exact argv."
     },
     "IDE-FIELD-CompilerFlags-lWarnings-1": {
       "tests": [
-        "test_compiler_flags_pty.py"
+        "test_compiler_flags_pty.py",
+        "test_compiler_flags_mouse_pty.py"
       ],
-      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows."
+      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Q460 C88 bounded caption mouse workflow selects MSVC and changes Warnings/Debug/Incremental/Optimize, explicit Cancel discards, Help returns same controls, OK applies actual argv. No mouse Strict/AutoRun toggle proof, successful foreign toolchain, all coordinates or Windows; link not runtime PASS."
     },
     "IDE-FIELD-CompilerFlags-lDebug-1": {
       "tests": [
-        "test_compiler_flags_pty.py"
+        "test_compiler_flags_pty.py",
+        "test_compiler_flags_mouse_pty.py"
       ],
-      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows."
+      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Q460 C88 bounded caption mouse workflow selects MSVC and changes Warnings/Debug/Incremental/Optimize, explicit Cancel discards, Help returns same controls, OK applies actual argv. No mouse Strict/AutoRun toggle proof, successful foreign toolchain, all coordinates or Windows; link not runtime PASS."
     },
     "IDE-FIELD-CompilerFlags-lStrict-1": {
       "tests": [
@@ -1579,27 +1585,31 @@
     },
     "IDE-FIELD-CompilerFlags-lIncremental-1": {
       "tests": [
-        "test_compiler_flags_pty.py"
+        "test_compiler_flags_pty.py",
+        "test_compiler_flags_mouse_pty.py"
       ],
-      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows."
+      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Q460 C88 bounded caption mouse workflow selects MSVC and changes Warnings/Debug/Incremental/Optimize, explicit Cancel discards, Help returns same controls, OK applies actual argv. No mouse Strict/AutoRun toggle proof, successful foreign toolchain, all coordinates or Windows; link not runtime PASS."
     },
     "IDE-FIELD-CompilerFlags-lOptimize-1": {
       "tests": [
-        "test_compiler_flags_pty.py"
+        "test_compiler_flags_pty.py",
+        "test_compiler_flags_mouse_pty.py"
       ],
-      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows."
+      "contract": "Actual PTY options changes affect fake compiler argv; Esc retains previous flags. Compiler GCC/MSVC chosen, five switches toggled. Not all compilers/values, build success, pixels or Windows. Q460 C88 bounded caption mouse workflow selects MSVC and changes Warnings/Debug/Incremental/Optimize, explicit Cancel discards, Help returns same controls, OK applies actual argv. No mouse Strict/AutoRun toggle proof, successful foreign toolchain, all coordinates or Windows; link not runtime PASS."
     },
     "IDE-FIELD-CompilerFlags-lDummy-1": {
       "tests": [
-        "test_compiler_flags_pty.py"
+        "test_compiler_flags_pty.py",
+        "test_compiler_flags_mouse_pty.py"
       ],
-      "contract": "Actual explicit OK persists selected compiler/flags into process argv. Explicit Cancel has its own field test."
+      "contract": "Actual explicit OK persists selected compiler/flags into process argv. Explicit Cancel has its own field test. Q460 C88 bounded caption mouse workflow selects MSVC and changes Warnings/Debug/Incremental/Optimize, explicit Cancel discards, Help returns same controls, OK applies actual argv. No mouse Strict/AutoRun toggle proof, successful foreign toolchain, all coordinates or Windows; link not runtime PASS."
     },
     "IDE-FIELD-CompilerFlags-lDummy-3": {
       "tests": [
-        "test_compiler_flags_pty.py"
+        "test_compiler_flags_pty.py",
+        "test_compiler_flags_mouse_pty.py"
       ],
-      "contract": "Actual nested Help opens compiler topic and Esc restores option controls/current checked state; later OK applies flags."
+      "contract": "Actual nested Help opens compiler topic and Esc restores option controls/current checked state; later OK applies flags. Q460 C88 bounded caption mouse workflow selects MSVC and changes Warnings/Debug/Incremental/Optimize, explicit Cancel discards, Help returns same controls, OK applies actual argv. No mouse Strict/AutoRun toggle proof, successful foreign toolchain, all coordinates or Windows; link not runtime PASS."
     },
     "IDE-FIELD-DisplayOpts-cSize-1": {
       "tests": [
@@ -1639,9 +1649,10 @@
     },
     "IDE-FIELD-CompilerFlags-lDummy-2": {
       "tests": [
-        "test_compiler_flags_pty.py"
+        "test_compiler_flags_pty.py",
+        "test_compiler_flags_mouse_pty.py"
       ],
-      "contract": "Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform."
+      "contract": "Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform. Q460 C88 bounded caption mouse workflow selects MSVC and changes Warnings/Debug/Incremental/Optimize, explicit Cancel discards, Help returns same controls, OK applies actual argv. No mouse Strict/AutoRun toggle proof, successful foreign toolchain, all coordinates or Windows; link not runtime PASS."
     },
     "IDE-FIELD-DisplayOpts-lDummy-2": {
       "tests": [

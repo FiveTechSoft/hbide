@@ -67,6 +67,14 @@ class ModalInventory(unittest.TestCase):
             self.assertIn('test_delete_only_line_bp_pty.py',menus[key]['tests'])
             self.assertIn('drops its breakpoint',menus[key]['contract'])
 
+    def test_compiler_mouse_links_keep_untested_switches_separate(self):
+        fields=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['ide_modal_field_acceptance']
+        self.assertIn('test_compiler_flags_mouse_edges_pty.py',fields['IDE-FIELD-CompilerFlags-cCompiler-1']['tests'])
+        self.assertNotIn('test_compiler_flags_mouse_pty.py',fields['IDE-FIELD-CompilerFlags-lStrict-1']['tests'])
+        self.assertNotIn('test_compiler_flags_mouse_pty.py',fields['IDE-FIELD-CompilerFlags-lAutoRun-1']['tests'])
+        for var in ['lWarnings','lDebug','lIncremental','lOptimize']:
+            self.assertIn('test_compiler_flags_mouse_pty.py',fields['IDE-FIELD-CompilerFlags-'+var+'-1']['tests'])
+
     def test_generation_deterministic(self):
         self.assertEqual(self.rows,audit.modal_fields())
 
