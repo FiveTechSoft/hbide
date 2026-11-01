@@ -71,7 +71,8 @@ fuente e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe,
 bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48.
 8smokes oficiales/13TEXTcompilerfixtures39checksPASS; PRINTERabreviaciónfix.
 GTSTD141PASS separado, sin heredar matriz/modelos/píxeles previos. Píxeles
-C86/C87Q418 limitados al picker. Q419docs posteriores no embebidos C87,
+C86/C87Q418 limitados al picker. Q420-Q425 agregan aceptaciónfocal sólo de
+ese binario, detallada al final. Q426docs posteriores no embebidos C87,
 sin rebuild por docs. Detalle al final.
 
 Histórico anterior, no evidencia heredada por C87:
@@ -1520,3 +1521,27 @@ verifica SHA original/manifest/decomprimido, preserva árboles/bin/log/evidencia
 Docs/catálogo Q419posteriores no embebidos C87, sin rebuild por docs.
 Sin matrizcompleta/modelosheredados/Windows/install/licencias/cierre de hito,
 macros/customstreams/payloadexecution/CP/toolchain/políticas no cambiados.
+
+### Q420-Q426 (1 noviembre 2026): aceptación focal C87
+
+Q420cinconav15checksPASS(rawBOM/ENDCLASS/DECLARED/bareTEXT/arraycomment).
+Q421compactación reversible20unstrippedantiguos, SHA original/manifest/gzip
+restaurado idénticos;81595286bytes liberados, árboles/bins/log/manifests/evidencia
+intactos. Hardlinks entre exports descartados, copias independientes.
+Q422cincoeditor52checksPASS: EnterCRLF6/BackspaceCRLF5, continuationjoinBS12/
+Delete12, UTF8terminalmouse17 bytes exactos/BOM/TAB/mixedEOL/history. Iniciales
+dos sesiones LF por envCRLF ignorado se conservaron identificadas LF; repetidas
+con --crlf realPASS, sin cambiar asserts. Q423cincomodosrecoveryPASS:
+deeppathmixedEOL/BOM separados killrecover/saveexact, Compare/Laterreadonly
+refresh, Undo/Reloadjournalretirement/restart. Q424cuatroM2modos55checksPASS:
+promotionfailure retieneoutput, unblockretryfreshrealrun, missingoutputdiag
+jump, RunargumentsmodalOK/Cancel/Esc/quotevalidation/clear. Controlledcompiler
+fixtures y escenario retry explícito, no afirmación retry-free.
+Q425cuatrodesigner52checksPASS: mixed12controles/F9compile/runescape-save-
+cancel-selectors, GETVALIDveto/allow, ComboClipboardSTATE/bindingsindependientes,
+inspector25x80close/F4/JSON. Runtimegenerado instrumentado para valores/salida,
+PTYsemántica/JSON no píxeles. Cada modo confirmó binC87intacto
+ a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48,
+fuentee84d41e1d57f35aa1b42fe538b4ab11aa598f6fe. Receipts por Q420-Q425.
+Q426docs/catálogo posteriores no embebidos C87, sin rebuild por docs.
+No nuevos píxeles/modelos/matrizcompleta/Windows/install/licencias/hito.
