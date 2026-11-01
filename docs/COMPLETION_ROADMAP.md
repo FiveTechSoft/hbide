@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q120 | M5 documentpreflightworkswithout.git. | Sourcedf5af1d/5guards+actualexport34docsPASS/stalemutationreject;linux-export-document-preflight.json.34inventory.No productbinary/newcandidate/release/Windows/global. |
 | C22 | CandidatoLinux temporalhastaQ119. | Export4e15503/bin46292e4c,8smokes10recent64checksPASSexactbinary/nativenueva;linux-candidate-recent-c22.json.No release/licenses/Windows/install/fullmatrixinherit.C21historical. |
 | Q119 | Regresiónconjuntaeditor/nav/inputconayudasincronizada. | Source1070624/109PTY20modos22models34inventory34docsPASS;linux-joint-editor-input-q119.json.Priorhelpdriftdisclosed.Nofullmatrix/newpixels/candidate/Windows/global. |
 | Q118 | M0 AltF8/AltF7 exactdispatchlinked. | Sourcebe3610c/44PTY2modes34inventory34docsPASS;linux-inventory-alt-diagnostic-dispatch.json.No productfix/pixels/models/Windows/global. |

@@ -3870,3 +3870,13 @@ F2exactinspected. linux-candidate-recent-c22.json. Exportdoc--checkrequiresgit
 andfailedwithout.git;frozenpathlistfromgitls-tree+samegeneratorverified34
 byteexactdocswithoutchangingexport. No testfailure/retry.NoQ119matrixinherit/
 release/licenses/nativeWindows/install/determinism/hitoclosure.C21historical.
+
+## Q120 - frozen export offline document preflight
+
+Source df5af1d adds explicitJSONtrackedpathlist;rejectsduplicates/nonMD/
+missing/absolute/traversal/symlinkescapes. FiveguardsPASS. Actualgitarchive
+without.gitchecks34docsPASS;isolatedREADMEchangefailsstalegateasexpected.
+Candidatebuildernowfailsprebuildonstalecatalogue.Record linux-export-document-
+preflight.json (actualfilename linux-export-document-preflight.json).
+34inventory34docsPASS.No productbinary/PTY/models/pixels/newcandidate/release/
+Windows/globalmilestone.C22manualverificationhistoricalunchanged.

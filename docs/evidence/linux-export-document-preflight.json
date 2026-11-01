@@ -1,0 +1,11 @@
+{
+  "source": "df5af1dfce84a9baf62f1caa507669405bdab04e",
+  "scope": "actual git archive without .git, then isolated README mutation; no product build or candidate promoted",
+  "clean_exit": 0,
+  "clean_output": "PASS: 34 complete documents embedded byte-for-byte\n",
+  "stale_exit": 1,
+  "stale_error": "Stale helpdocs.ch: run python3 scripts/embed_help_docs.py\n",
+  "tests_log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+  "inventory_log": "..................................\n----------------------------------------------------------------------\nRan 34 tests in 0.322s\n\nOK\n",
+  "docs": "34 byte-exact PASS"
+}
