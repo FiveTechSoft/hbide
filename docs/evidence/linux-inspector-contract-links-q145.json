@@ -2,10 +2,10 @@
   "scope": "Source contract traceability only; no new product/PTY/native acceptance",
   "guards": {
     "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
-    "source": "e03e0d5cfbcc1b60d487319db6686030b2cb3656",
+    "source": "579e522821d5ec009b03033257d87e559d75d65c",
     "tracked_changes": "",
-    "tracked_snapshot_sha256": "939b22155f83fcc918ac2cd35e8e5ae879f7d68171d37c4038026a2666e5f5a9",
-    "started": 1793507030.5979393,
+    "tracked_snapshot_sha256": "d5efc04cdb188d50c204dc2e2aab81eb6c28b23007c0e1122a420f8960a51732",
+    "started": 1793507051.3854442,
     "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
     "tests": {
       "test_completion_guards.py": {
@@ -13,7 +13,7 @@
         "reported_failure": false,
         "source_or_test_changed": false,
         "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
-        "log": "/tmp/hbide-q145-guards/test_completion_guards.py.log",
+        "log": "/tmp/hbide-q145-final-guards/test_completion_guards.py.log",
         "seconds": 0.205
       },
       "test_build_receipt.py": {
@@ -21,50 +21,59 @@
         "reported_failure": false,
         "source_or_test_changed": false,
         "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
-        "log": "/tmp/hbide-q145-guards/test_build_receipt.py.log",
+        "log": "/tmp/hbide-q145-final-guards/test_build_receipt.py.log",
         "seconds": 0.205
       },
       "test_completion_inventory.py": {
         "exit": 0,
         "reported_failure": false,
         "source_or_test_changed": false,
-        "test_sha256": "818c949e29faf3c3bcb1e331f1d88fde230fe4066318521865383aef2ec78e93",
-        "log": "/tmp/hbide-q145-guards/test_completion_inventory.py.log",
-        "seconds": 0.552
+        "test_sha256": "177c22d6bedd8cba16d90be576a51a233e9006716e4a06b67abadd25f6d9ee87",
+        "log": "/tmp/hbide-q145-final-guards/test_completion_inventory.py.log",
+        "seconds": 0.707
       },
       "test_distribution_notices.py": {
         "exit": 0,
         "reported_failure": false,
         "source_or_test_changed": false,
         "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
-        "log": "/tmp/hbide-q145-guards/test_distribution_notices.py.log",
-        "seconds": 0.198
+        "log": "/tmp/hbide-q145-final-guards/test_distribution_notices.py.log",
+        "seconds": 0.201
       },
       "test_embed_help_docs.py": {
         "exit": 0,
         "reported_failure": false,
         "source_or_test_changed": false,
         "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
-        "log": "/tmp/hbide-q145-guards/test_embed_help_docs.py.log",
-        "seconds": 0.198
+        "log": "/tmp/hbide-q145-final-guards/test_embed_help_docs.py.log",
+        "seconds": 0.2
       },
       "test_candidate_doc_preflight.py": {
         "exit": 0,
         "reported_failure": false,
         "source_or_test_changed": false,
         "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
-        "log": "/tmp/hbide-q145-guards/test_candidate_doc_preflight.py.log",
+        "log": "/tmp/hbide-q145-final-guards/test_candidate_doc_preflight.py.log",
         "seconds": 0.349
       }
     },
     "ok": true,
-    "finished": 1793507032.3057857
+    "finished": 1793507053.2539244
   },
-  "inventory_tests": "test_calls_not_declarations (test_completion_inventory.DebuggerInputInventory) ... ok\ntest_readonly_and_expression_context_not_lost (test_completion_inventory.DebuggerInputInventory) ... ok\ntest_alt_diagnostic_routes_are_exact_and_bounded (test_completion_inventory.DispatchAcceptance) ... ok\ntest_alt_zero_windowlist_route_bounded (test_completion_inventory.DispatchAcceptance) ... ok\ntest_ambiguous_route_fails_closed (test_completion_inventory.DispatchAcceptance) ... ok\ntest_case_and_if_source_conditions_preserved (test_completion_inventory.DispatchAcceptance) ... ok\ntest_ctrl_f2_saveall_route_and_conflict_scope (test_completion_inventory.DispatchAcceptance) ... ok\ntest_ctrl_g_delete_identity_route_linked (test_completion_inventory.DispatchAcceptance) ... ok\ntest_duplicate_contract_fails_closed (test_completion_inventory.DispatchAcceptance) ... ok\ntest_f1_context_help_route_has_no_invented_menu_guard (test_completion_inventory.DispatchAcceptance) ... ok\ntest_f2_f3_if_dispatch_routes_are_bound (test_completion_inventory.DispatchAcceptance) ... ok\ntest_f5_exact_route_and_scope (test_completion_inventory.DispatchAcceptance) ... ok\ntest_find_f5_if_dispatch_is_bound (test_completion_inventory.DispatchAcceptance) ... ok\ntest_missing_route_fails_closed (test_completion_inventory.DispatchAcceptance) ... ok\ntest_missing_test_fails_closed (test_completion_inventory.DispatchAcceptance) ... ok\ntest_multiline_ctrl_f6_route_preserved_and_bound (test_completion_inventory.DispatchAcceptance) ... ok\ntest_prevdoc_shift_dispatch_and_xterm_map_bound (test_completion_inventory.DispatchAcceptance) ... ok\ntest_bound_links_do_not_certify_execution (test_completion_inventory.InspectorInventory) ... ok\ntest_exact_guard_expansion (test_completion_inventory.InspectorInventory) ... ok\ntest_missing_test_rejected_and_unlinked_stays_pending (test_completion_inventory.InspectorInventory) ... ok\ntest_source_lines_and_determinism (test_completion_inventory.InspectorInventory) ... ok\ntest_unknown_identity_rejected (test_completion_inventory.InspectorInventory) ... ok\ntest_wrong_kind_or_control_rejected (test_completion_inventory.InspectorInventory) ... ok\ntest_buttons_and_pictures (test_completion_inventory.ModalInventory) ... ok\ntest_control_expansion (test_completion_inventory.ModalInventory) ... ok\ntest_exact_current_surface_denominator (test_completion_inventory.ModalInventory) ... ok\ntest_file_and_help_modal_declarations (test_completion_inventory.ModalInventory) ... ok\ntest_generation_deterministic (test_completion_inventory.ModalInventory) ... ok\ntest_ide_modal_non_get_inputs_and_multiline_kinds (test_completion_inventory.ModalInventory) ... ok\ntest_ide_modal_source_lines (test_completion_inventory.ModalInventory) ... ok\ntest_nested_event_conditions_preserved (test_completion_inventory.ModalInventory) ... ok\ntest_repeated_variables_have_distinct_condition_paths (test_completion_inventory.ModalInventory) ... ok\ntest_source_identity_and_labels (test_completion_inventory.ModalInventory) ... ok\ntest_unknown_condition_fails_closed (test_completion_inventory.ModalInventory) ... ok\ntest_bounded_event_branch_counts_and_identity (test_completion_inventory.MouseRouteInventory) ... ok\ntest_context_and_non_get_mouse_route (test_completion_inventory.MouseRouteInventory) ... ok\ntest_array_bracket_comment_scope_linked (test_completion_inventory.RecentAcceptanceLinks) ... ok\ntest_gcc_color_and_fallback_scope_remains_explicit (test_completion_inventory.RecentAcceptanceLinks) ... ok\ntest_recent_navigation_suites_are_linked (test_completion_inventory.RecentAcceptanceLinks) ... ok\ntest_recent_project_inventory_acceptance_linked (test_completion_inventory.RecentAcceptanceLinks) ... ok\ntest_designer_real_menu_workflow_is_bounded (test_completion_inventory.RemainingMenuLinks) ... ok\ntest_watchpoint_menu_link_does_not_claim_triggering (test_completion_inventory.RemainingMenuLinks) ... ok\n\n----------------------------------------------------------------------\nRan 42 tests in 0.484s\n\nOK\n",
+  "logs": {
+    "test_completion_guards.py": "probe.py FAIL\nResults: /tmp/tmp23gom4mr/out/results.json\n.probe.py PASS\nResults: /tmp/tmpv3h1ccoz/out/results.json\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.probe.py FAIL\nResults: /tmp/tmpzxwrgq45/out/results.json\n.probe.py FAIL\nResults: /tmp/tmp20igcf57/out/results.json\n.probe.py FAIL\nResults: /tmp/tmp7ofhex6p/out/results.json\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.007s\n\nOK\n",
+    "test_build_receipt.py": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "test_completion_inventory.py": "..........................................\n----------------------------------------------------------------------\nRan 42 tests in 0.478s\n\nOK\n",
+    "test_distribution_notices.py": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.010s\n\nOK\n",
+    "test_embed_help_docs.py": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+    "test_candidate_doc_preflight.py": "{\n  \"ok\": false,\n  \"source\": \"7d8652a2698c1665760eb7d5d2221adc8b3bd5e2\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp7h4ix2z6/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"1aada79db5388035d43f7045e730271cf87f4150\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmprcn_c1oi/candidate/manifest.json\"\n}\n.\n----------------------------------------------------------------------\nRan 2 tests in 0.141s\n\nOK\n"
+  },
+  "total_guard_tests": 63,
   "pairs": {
     "total": 60,
     "control": 53,
     "dialog": 7
   },
-  "limits": "No runtime handler/all values/colors/oversized/mouse/Windows or M4 closure. Links point to bounded Q139-Q144 tests, not current-source PTY PASS."
+  "initial_runner_correction": "First 57-test runner excluded six new cases located after unittest.main. Moved main to end, fresh final63 test run. No product failure inferred.",
+  "limits": "No handler/all values/colors/oversized/mouse/Windows or M4 closure. Links to bounded Q139-Q144 tests, not current-source PTY PASS."
 }

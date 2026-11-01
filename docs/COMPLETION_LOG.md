@@ -4186,3 +4186,6 @@ Cambio de trazabilidad, no arreglo de producto ni nuevo resultado PTY/visual.
 Q145: descubrimiento unitario dio 42 tests, pero el runner directo ejecutaba
 36 por orden del unittest.main. Se mueve al final antes de pasada final;
 no se mezcla el primer resultado de 57 guardas con las seis nuevas.
+
+Q145 final separado:63 guardas PASS (42 inventario),34 docs.
+Evidencia `docs/evidence/linux-inspector-contract-links-q145.json`.
