@@ -5458,3 +5458,15 @@ primer log sobrescrito. No afirmar global sin fallos/reintentos. Tests
 propios hashados/binario inalterado.335 variantes distintas cotejadas con
 plan353/normalizaciónQ223; no producto/píxeles/modelos/Windows/matriz completa/hitos.
 Evidencia: docs/evidence/linux-c30-run-modals-blocks108113-q241.json.
+
+### Q242 (1 noviembre 2026): C30 suites generales y protocolo viewer
+
+Edit-menu/multidoc PASS tests congelados; navigation original falla por
+conductor que envía Enter al viewer output largo (requiere Esc), conserva
+modal abierto y termina args.out ausente. Se cambia SOLO test para usar
+Esc si viewer visible/Enter si modal corto. Versión adaptada pasa suite
+completa sobre MISMO C30 96d77549/export049b533, sin producto cambiado.
+Recibo/log/capturas texto del fallo y fuente adaptada hashada preservados.
+338 variantes del plan cubiertas con esta adaptación; NO338scriptscongelados
+originales PASS ni353completo. Sin nuevos píxeles/modelos/Windows/hitos.
+Evidencia: docs/evidence/linux-c30-general-blocks114116-q242.json.

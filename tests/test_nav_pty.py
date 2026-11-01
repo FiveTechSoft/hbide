@@ -196,7 +196,7 @@ send(b'\x1bf'); pump(0.1)
 send(b'\x1b'); pump(0.4)
 send(b'\x1br'); pump(0.8); send(b's')      # Run > Start
 t = wait_has('failed build shows compiler output', ['Error'], timeout=40)
-send(b'\r'); pump(1.5)                     # dismiss the build output dialog
+send(b'\x1b' if 'Output - arrows scroll' in scr.text() else b'\r'); pump(1.5) # viewer uses Esc, short dialog Enter
 send(b'\r'); pump(2.0)                     # dismiss the "Build failed" dialog
 t = scr.text()
 m = re.search(r'row:\s*(\d+)', t)
