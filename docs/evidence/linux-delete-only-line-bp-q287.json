@@ -1,0 +1,54 @@
+{
+  "candidate": {
+    "source": "f0347c888fe876c078b83661b0db8e842a97b7df",
+    "removed": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "scope": "C47soleinstruction breakpoint deletion focal only, no fullmatrix/release/Windows",
+    "binary_sha256": "0bfcfd3ef106a1f743d4e7c6053cb678a44fb2d13818a4b876434db4947a0afc",
+    "build_exit": 0
+  },
+  "baseline": {
+    "source": "bc8e8ef84a901f00a798653377a9097de96882f2",
+    "log": "PASS F9 marks sole source line\nFAIL Delete sole instruction drops breakpoint\nFAIL Undo text does not resurrect deleted breakpoint\nFAIL Redo keeps breakpoint absent\nPASS Redo saves empty sole-line buffer\nTOTAL 2 PASS 3 FAIL\nArtifacts /tmp/hbide-edit-menu-kmk_cp69\n"
+  },
+  "model": {
+    "source": "f0347c888fe876c078b83661b0db8e842a97b7df",
+    "log": "\n\n    1\n    2\n    3\n    4\n    5\n    6\n    7\n    8\n    9\n   10\n   11\n   12\n   13\n   14\n   15\n   16\n   17\n   18\n   19\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1alpha beta\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1caf\u00e9\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1    x\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\nP   2\nP   3\nPASS Undo restores sole line clean\nP   2\nPASS Redo clears sole line dirty\nPASS empty buffer delete no-opty\nPASS empty no-op preserves clipboard\n    1alpha\nP   2\nP   3\n    1\nPASS sole-line command consumes old mark\n    1alpha\nP   2\nPASS Undo sole marked line exact\n    1Xalpha\n    1\nP   2\n    1Xalpha\nPASS Undo DeleteLine preserves prior typing\n    1\nP   2\nPASS Redo DeleteLine clears typed line\n    1Y\n    1\nP   2\nPASS Undo subsequent typing preserves DeleteLine\n    1Xalpha\nP   2\nPASS next Undo restores typed line\n    1alpha\nP   2\nPASS third Undo returns clean original\n    1\nP   2\nPASS sole instruction delete drops BP\n    1instruction\nP   2\nPASS text Undo cannot restore removed BP\n    1\nP   2\nPASS text Redo keeps BP absent\nPASS empty no-op keeps deliberate empty-line BP\nTOTAL         29 PASS          0 FAIL"
+  },
+  "tests": {
+    "test_delete_only_line_bp_pty.py": {
+      "exit": 0,
+      "sha256": "f6f2a8234c1c1b485d14dcae707227ca013f1af8b06ba1d2144ee4e89a19b073",
+      "seconds": 7.044784069061279,
+      "log": "PASS F9 marks sole source line\nPASS Delete sole instruction drops breakpoint\nPASS Undo text does not resurrect deleted breakpoint\nPASS Redo keeps breakpoint absent\nPASS Redo saves empty sole-line buffer\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ir6rbez5\n"
+    },
+    "test_bp_delete_policy.py": {
+      "exit": 0,
+      "sha256": "c6ea1d1004d2a70d381d089bbb0badca3967dce444e76ef5a2a35b27ff70ce95",
+      "seconds": 18.53077721595764,
+      "log": "PASS boot noname\nPASS BP set on line 2\nPASS marked line deleted\nPASS deleting marked line drops BP (no red gutter)\nPASS undo restores text\nPASS undo does NOT restore the mark\nPASS BP re-set on line 2\nPASS split keeps mark on first fragment\nPASS Delete does not open Go to Function\nPASS selection removed marked lines\nPASS selection delete drops BP (no red gutter)\nPASS found marked dup line\nPASS mark shifted onto its own dup copy\nPASS BP deletion policy: drop on delete, no undo restore, split first fragment, follow own copy\n"
+    },
+    "test_delete_line_undo_boundary_pty.py": {
+      "exit": 0,
+      "sha256": "b9d381a167800728378aed55b6056043db1d5f365b2937252a3b542b2922bced",
+      "seconds": 12.442884683609009,
+      "log": "PASS Open requested fixture\nPASS Undo line command alone preserves earlier typing\nPASS Redo line command exact\nPASS Undo later typing keeps line command\nPASS next Undo restores pre-command typing\nPASS third Undo removes earlier typing\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-vz0wfq50\n"
+    }
+  },
+  "visual": {
+    "images": [
+      "hbide-q287-solebp-before.png",
+      "hbide-q287-solebp-c47.png"
+    ],
+    "inspection": "Full1202x762 inspected: baseline red BP remains on emptied row1; C47 neutral gutter, complete borders."
+  },
+  "scope": "Q287explicit sole instruction DeleteLine drops BP following existing deletion policy; Undo/Redo text does not resurrect it. Empty no-op preserves deliberate BP. Three focused PTY scripts PASS, separate29-check model. No fullmatrix/Windows/release/milestone. Local scratch directory named q288 is only an identifier mismatch, evidence belongs Q287. Exploratory HBP singlequote variant failed actual compiler, no parser change made."
+}
