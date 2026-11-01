@@ -66,6 +66,15 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Actualización 1 noviembre19:36 Q359: último candidato limpio identificado C75,
+fuente93d3876480c5217e4eadddc2f88a4400c321146a,
+bin e78652a51a586d67550d526c05a1ac54278d7b62459d26a23beace1afca024ef.
+Builder8smokes y cuatro modosclipboard19checks PASS. Integra Q357 vacío copiado,
+pero no hereda matriz ni píxeles; Q360docs posteriores no están embebidos.
+Detalle Q355-Q360 al final. M5/M6 y decisiones pendientes sin cambios.
+
+Histórico anterior, no evidencia heredada por C75:
+
 Corte 1 noviembre19:10 Q347-Q350: candidato identificado C73,
 source87222cbcada24332b0088889b1f34b59585b54f0,
 bin18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be.
@@ -1214,3 +1223,27 @@ LICENSE.upstream.txt separada en third-party/harbour desde upstream694428e,
 para código propio/modificaciones ni clearance de paquete. Receipts
 linux-c73-rebuild-isolation-q352.json y harbour-notice-provenance-q353.json.
 Q354docs/catálogo sin producto/build. M5 sigue pendiente, igual que Windows y M6.
+
+### Q355-Q360 (1 noviembre 2026): recuperación y clipboard vacío
+
+Q355C73 recuperación/encoding cinco modos PASS; primer fixture mixedEOL+BOM
+contradictorio conservado como inválido, no defecto de producto. Q356guardas de
+fixture incompatibles:12subcasos y deepmixedEOL válido PASS.
+Q357Copy de línea vacía se confundía con clipboard ausente: C73baseline2PASS2FAIL.
+Presencia compartida explícita en productores, sin cambiar Paste debajo de línea.
+C74focal4PTYchecks y cuatro regresiones PASS; modelos separados187/202PASS,
+píxeles antes/después1202x762 completos inspeccionados sólo C73/C74.
+Q358seis modos31checks C74PASS: ausencia no-op, CopyLF, DeleteLF/CRLF,
+Cut de límite vacío LF/CRLF compartido entre documentos tras Undo del origen.
+Cut conserva dos fragmentos vacíos, sin cambiar semántica de bloques.
+Q359C75 identificado por builder oficial strip-debug fuente
+93d3876480c5217e4eadddc2f88a4400c321146a,
+bin e78652a51a586d67550d526c05a1ac54278d7b62459d26a23beace1afca024ef.
+8smokes/About revisión exacta/docs34byteexact/ldd y cuatro modosclipboard19checks
+PASS sobre ese binario intacto. Es el último candidato limpio identificado,
+no hereda matrices ni píxeles previos; C30 sigue único plan histórico completo.
+Q360reconcilia docs/catálogo, no nuevo producto/build/píxeles; docs posteriores
+no embebidos en C75. Windows/install/licencias/M5/M6/políticas siguen abiertos.
+Evidencias: linux-recovery-encoding-c73-q355.json,
+linux-empty-line-clipboard-q357.json, linux-empty-clipboard-guards-q358.json,
+linux-clean-candidate-q359.json.
