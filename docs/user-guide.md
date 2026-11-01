@@ -89,6 +89,9 @@ stays in the internal clipboard and Undo restores it. On an already empty
 buffer, Delete Line does nothing and keeps the previous clipboard and Redo.
 Line deletion is a separate Undo action from typing before or after it,
 including Cut without a marked range.
+Deleting the sole instruction drops its breakpoint, and text Undo/Redo
+does not restore that mark. A breakpoint deliberately set on an already
+empty line survives an empty Delete Line no-op.
 
 ## Multiple documents
 

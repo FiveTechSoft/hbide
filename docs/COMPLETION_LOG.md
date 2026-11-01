@@ -5667,3 +5667,25 @@ C46focal/C45identificado/36modelosQ285 y C30plan353. Catálogo34docs
 regenerado;8guardas y50tests de inventario en
 linux-delete-line-undo-docs-q286.json. No nuevo producto/build/PTY/modelo,
 píxeles, Windows o hito. No reconstrucción solo por este cambio documental.
+
+### Q287-Q289 (1 noviembre 2026): BP en única instrucción borrada
+
+Al vaciar la única línea persistía el BP porque el delta de líneas era0.
+DeleteLine retira ese BP conforme al contrato existente, sin resucitarlo
+con Undo/Redo de texto. Vacío no-op conserva BP creado deliberadamente.
+C46baseline2PASS3FAIL; C47tres scriptsPTY PASS, modelo29 separado y nativas
+1202x762 completas antes/después inspeccionadas. C47source
+f0347c888fe876c078b83661b0db8e842a97b7df,
+bin0bfcfd3ef106a1f743d4e7c6053cb678a44fb2d13818a4b876434db4947a0afc.
+Q288dosmodosCtrlY/Cut16checks de arnés postexport PASS; Q28936GTSTDfresh
+sobre b24b952PASS, no modosIDE ni heredados aC47. No política nueva,
+matrizglobal/Windows/hito. Evidencias linux-delete-only-line-bp-q287.json,
+linux-delete-only-line-bp-routes-q288.json y linux-models-sole-bp-q289.json.
+
+### Q290 (1 noviembre 2026): enlaces BP y catálogo
+
+Cut/DeleteLine enlazan guardasBP, guía mantiene drop/noUndo y excepción
+no-op vacío. Roadmap separa C47focal/C45identificado/36modelosQ289/C30plan353.
+Catálogo34docs regenerado;8guardas y50tests de inventario en
+linux-sole-bp-docs-q290.json. Sin producto/build/PTY/modelo/píxeles/Windows/
+hito nuevo, no reconstrucción solo por documentación.

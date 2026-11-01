@@ -66,18 +66,18 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre16:04 Q285: candidato focal C46,
-sourcebc8e8ef84a901f00a798653377a9097de96882f2,
-bin0e0fb165c31dc512e9812ecc8c94109a6152bf6333236edf546db12093f3af55.
-Q284separa Undo DeleteLine/Cut sin marca/CtrlY de escritura adyacente:
-cinco modosPTY33checks PASS, modelo25separado y nativas1202x762 inspeccionadas.
-Fallo inicial de modelo por overstrike conservado, fixture INSERT explícito.
-Q28536modelos fresh de sourceedbbaa0 no son36modosIDE ni de binarioC46.
+Corte 1 noviembre16:14 Q289: candidato focal C47,
+sourcef0347c888fe876c078b83661b0db8e842a97b7df,
+bin0bfcfd3ef106a1f743d4e7c6053cb678a44fb2d13818a4b876434db4947a0afc.
+Q287DeleteLine única instrucción retiraBP/noUndoResurrection según política
+existente. Tres scriptsPTY PASS, modelo29separado y nativas1202x762
+inspeccionadas. Q288CtrlY/Cut16checks son arnés postexport, no-op vacío
+conserva BP deliberado. Q28936modelos fresh de sourceb24b952 no son36modosIDE
+ni del binarioC47. Q284fronteraUndo conserva su ledger separado.
 C45source41905b4868f5903cb1ec5adacba00efadd34d4ab,
 bin5cb92c95b5e859ff6bcaa2acf07a31fae9bfefe1a8b21ad7ff27054cbcc72ef4
-conserva About/catálogoQ282/8smokes y5modosfocales35checks, no heredados aC46.
-Q279borrar única línea y Q275-Q276navegación compacta siguen sus ledgers.
-Q286docs posteriores todavía no embebidos en C46. No sumar fuentes/binarios
+conserva About/catálogoQ282/8smokes y5modos35checks, no heredados aC47.
+Q290docs posteriores todavía no embebidos en C47. No sumar fuentes/binarios
 como matriz ni funciones. Sin Windows/release/licencias/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,

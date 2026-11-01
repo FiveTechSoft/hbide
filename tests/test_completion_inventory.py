@@ -64,6 +64,8 @@ class ModalInventory(unittest.TestCase):
             self.assertIn('Empty buffer is a no-op',menus[key]['contract'])
             self.assertIn('test_delete_line_undo_boundary_pty.py',menus[key]['tests'])
             self.assertIn('separate Undo operation',menus[key]['contract'])
+            self.assertIn('test_delete_only_line_bp_pty.py',menus[key]['tests'])
+            self.assertIn('drops its breakpoint',menus[key]['contract'])
 
     def test_generation_deterministic(self):
         self.assertEqual(self.rows,audit.modal_fields())

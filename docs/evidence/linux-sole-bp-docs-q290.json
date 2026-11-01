@@ -1,0 +1,100 @@
+{
+  "scope": "Q290docs/inventory/catalogue only; C47does not embed these later notes. No new product/build/PTY/model/pixels/Windows/hito, no rebuild solelydocs.",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "f97b371e2c378b9ba3a3744aee1f16b32150a603",
+    "tracked_changes": " M docs/COMPLETION_INVENTORY.md\n M docs/COMPLETION_LOG.md\n M docs/COMPLETION_ROADMAP.md\n M docs/user-guide.md\n M helpdocs.ch\n M tests/completion_acceptance.json\n M tests/test_completion_inventory.py\n",
+    "tracked_snapshot_sha256": "085d821ac5faa3cd0a7969000110a132742f4e2cee097f62ddd20418e20ba7c5",
+    "started": 1793546092.6118636,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "test_foreign_root_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "1e97d47fd21cd837401080f0cff716b3666d9706771eddb62f437bd34870f41a",
+        "log": "/tmp/hbide-q290-guards/test_foreign_root_guard.py.log",
+        "seconds": 0.229
+      },
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q290-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.22
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q290-guards/test_completion_guards.py.log",
+        "seconds": 0.22
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q290-guards/test_build_receipt.py.log",
+        "seconds": 0.22
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19d9e23abee531f03d5056771c03f36cf7833f984561e61adb2e43f2f2357dbb",
+        "log": "/tmp/hbide-q290-guards/test_completion_inventory.py.log",
+        "seconds": 0.775
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "62951fcdcd3c708f1bbf433cd97d6d160c8736d1fe628e89e24284b9dadc33a3",
+        "log": "/tmp/hbide-q290-guards/test_distribution_notices.py.log",
+        "seconds": 0.222
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q290-guards/test_embed_help_docs.py.log",
+        "seconds": 0.222
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "748bdd859802a6cb51418e98e9ffac879a94892690e9ea7500791cc691a9f08a",
+        "log": "/tmp/hbide-q290-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.573
+      }
+    },
+    "ok": true,
+    "finished": 1793546095.292864
+  },
+  "document_check": "PASS34complete documents byte-exact",
+  "inventory_tests": 50,
+  "logs": {
+    "test_foreign_root_guard.py": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n",
+    "test_linux_rebuild_guard.py": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.007s\n\nOK\n",
+    "test_completion_guards.py": "probe.py FAIL\nResults: /tmp/tmp0znjpdgb/out/results.json\n.probe.py PASS\nResults: /tmp/tmp1dx6qmb3/out/results.json\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.probe.py FAIL\nResults: /tmp/tmprvvg6yru/out/results.json\n.probe.py FAIL\nResults: /tmp/tmpf4vulcqa/out/results.json\n.probe.py FAIL\nResults: /tmp/tmp8ln5q0co/out/results.json\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n",
+    "test_build_receipt.py": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "test_completion_inventory.py": "..................................................\n----------------------------------------------------------------------\nRan 50 tests in 0.572s\n\nOK\n",
+    "test_distribution_notices.py": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.017s\n\nOK\n",
+    "test_embed_help_docs.py": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+    "test_candidate_doc_preflight.py": "{\n  \"ok\": false,\n  \"source\": \"c1d3201e29218c3887d52528b37f5816c77eb3bc\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpraidbs5w/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"47f1093aca8bd496329db24240145a7655158106\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp9ctsfi37/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"ff6a32a1b0edc8437b8b6e118cfa4c2ad6b58475\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpdt3mmzy9/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"376de89f1d4615bca7301e9dc8ce404a9d2e1267\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpyrucz0y_/candidate/manifest.json\"\n}\n.\n----------------------------------------------------------------------\nRan 4 tests in 0.319s\n\nOK\n"
+  },
+  "changed_file_sha256": {
+    "docs/COMPLETION_INVENTORY.md": "416d6d7dbfe124a2f6fe45178141f2b1479d78ff2aca006d968f0fed005d8c0b",
+    "docs/COMPLETION_LOG.md": "c626f793706c565d1c7af093ef6d48bde9e12fac60fa8796fdee9a76dc140b01",
+    "docs/COMPLETION_ROADMAP.md": "f2e106311bc9ffd5716a3654047b5881fcdf0b7bf309ab62da870f6f8ce860b7",
+    "docs/user-guide.md": "b2a8016370abf71f3de61f175d5911b9c6e130d1b30214bd0ac626c682db7807",
+    "helpdocs.ch": "f4ccff6d938ed1798ddb2200c428dbadb068b184bf6ad61b00f09c78197004d5",
+    "tests/completion_acceptance.json": "0355307f941ae00fae8bc0bf02c64280efe790684d2326eeec8490a07d2abcad",
+    "tests/test_completion_inventory.py": "19d9e23abee531f03d5056771c03f36cf7833f984561e61adb2e43f2f2357dbb"
+  }
+}
