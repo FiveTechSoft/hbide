@@ -330,3 +330,8 @@ When Enter inserts an empty line before another identical empty line,
 breakpoints on following original lines move with those lines, including
 Undo and Redo. This keeps the existing breakpoint identity policy; it does
 not recreate breakpoints on deleted instructions.
+
+Backspace at the beginning of a line and Delete at its end also preserve
+breakpoints on untouched following lines when identical empty lines make
+the join ambiguous. Undo and Redo keep those surviving marks on their
+original lines. The existing policy for a deleted instruction is unchanged.

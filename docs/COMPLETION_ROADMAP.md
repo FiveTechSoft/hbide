@@ -66,15 +66,24 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre18:25 Q333-Q335: candidato focal C67,
-sourcefa2d571b2164e44230d228332a091c9a3ec5d608,
-bin57a059065dc2f736bd53c91c5781c1c9b3004a7aad505c492936bcaeb303886f.
-Q333Enter sin selección ancla inserción de línea vacía al cursor para
-mantener identidad BP de líneas vacías siguientes. C66baseline4PASS2FAIL;
-C67focal6checksPTY/4scriptsregresiónBP PASS y modeloEOL164/0.
-Par nativo1202x762 completo inspeccionado. Q334CRLF6checksPTY y modeloEOL172/0
-postexport PASS, finalesvacíos/BPactual/LF/CRLF/iniciolínea. Q33537modelos GTSTD
-fresh del source7ba77e7 limpioPASS; no37modosIDE ni certificación del binarioC67.
+Corte 1 noviembre18:41 Q338-Q340: candidato focal C71,
+source2ad2f5cc0096523d2fa1d0cbd2cd28de2be544b2,
+bin632ba2ac1afd6cdd3cf1220820e9c5f0fcac5b4570acc7931c4fcba2457f905d.
+Q339Delete EOL sin selección ancla join para preservar BP intactos tras
+vacías idénticas. C70baseline2PASS3FAIL; C71LF5/CRLF5checksPTY y tres
+scriptsBP PASS, modeloEOL184/0. Par nativo1202x762 completo inspeccionado.
+Q338Backspace inicio presentaba defecto independiente: C69baseline2/3;
+C70sourcea489844f48553e65d0629cbae915e5f2a3195a98,
+bind822794b7f21dafc10d789a03ad818572e12bf80a813264b3da8bcdc5e976155,
+LF5/CRLF5checksPTY y tresregresiones/EOL178 PASS, par nativo inspeccionado.
+Q34037modelos GTSTD fresh del source25b3585 limpioPASS, no37modosIDE.
+C69último identificado: fuente81671a06363b92386d77ce540a1d528c88f66340,
+bin742396e08064b4692ff96a064e019d8a7f02c698a69deea0ceebc1c9b7f2b8e9:
+About/catálogo34/ldd/8smokes y21checksPTY PASS. C68export parcial por disco
+lleno nunca fue candidato; reintento C69 documentado, no ocultado.
+C67focal Enter sourcefa2d571b2164e44230d228332a091c9a3ec5d608,
+bin57a059065dc2f736bd53c91c5781c1c9b3004a7aad505c492936bcaeb303886f,
+Q3336checksPTY/4regresiones y164modelo; Q334CRLF6checks/EOL172 PASS.
 C66focal DECLARED METHOD sourcefa41c0a1afdb65ace575cb00174f4afbce63ca47,
 bind981da58befdee0cecdec71232f6bbb921d6073267802757ec02e0873d1d112a;
 Q32912checksPTY/111modelo PASS; Q330otros12checks compiler-valid PASS.
@@ -90,7 +99,7 @@ Q320cincomodosPTY23checksPASS; Q32122modelo/6PTYchecks postexport PASS.
 C61identificado fuentef63e189288ae03122f892e0edccefc4129452503,
 bine0399cb224f06c707b228d5d3291e3957a81bccd22278de355ac02f00e325c43:
 About/catálogoQ314/ldd/8smokes/6BPmodos32checks PASS, no heredados aC63.
-Q336docs posteriores no embebidos en C67, C66 ni C65. No sumar fuentes/binarios
+Q341docs posteriores no embebidos en C71, C70 ni C69. No sumar fuentes/binarios
 como matriz. Sin fullpreprocessor/customstream/navcontinuation/Windows/release/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
@@ -1137,3 +1146,15 @@ Q33537modelosfresh7ba77e7limpio PASS; ejecución preliminar con tests modificado
 no se usa como baseline limpio. Receipts linux-enter-identical-blank-bp-q333.json,
 linux-enter-blank-guards-q334.json y linux-model-baseline-q335.json. Q336docs y
 catálogo, sin rebuild sólo docs. No política BP nueva/matrizglobal/Windows/hito.
+
+### Seguimiento Q337-Q341 (1 noviembre 2026)
+
+Q337C69 identificado tras C68export parcial por disco lleno.8smokes y21checks
+focalesPASS; interrupción y limpieza de ejecutables derivados con hashes
+retenidas enreceipt. Q338Backspace blankjoin: C69baseline2/3, C70LF5/CRLF5 y
+3regresiones/EOL178 PASS, pareja nativa completa. Q339Delete EOL independiente:
+C70baseline2/3, C71LF5/CRLF5 y3regresiones/EOL184 PASS, pareja nativa completa.
+Q34037modelos fresh25b3585limpioPASS. Q341docs/catálogo sin rebuild sólo docs.
+Receipts linux-clean-candidate-q337.json, linux-backspace-identical-blank-bp-q338.json,
+linux-delete-eol-blank-bp-q339.json y linux-model-baseline-q340.json.
+No nueva política BP/matrizglobal/Windows/install/licencias/hito.

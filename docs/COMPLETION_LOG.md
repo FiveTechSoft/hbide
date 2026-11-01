@@ -5711,3 +5711,11 @@ C66baseline4/2, fixfa2d571/C67 ancla Enter sin selección,6checksPTY y4scriptsBP
 PASS/164EOL. Par nativo inspeccionado. Q334CRLF6checks/EOL172PASS; Q33537modelos
 fresh7ba77e7limpioPASS, no baseline limpio del preliminar dirty. Q336docs y
 catálogo. Sin política BP nueva ni Windows/matrizglobal/hito.
+
+### Q337-Q341 (1 noviembre 2026): joins de vacías y candidato
+
+C69 identificado tras C68export parcial disco lleno conservado. Q338Backspace
+inicio y Q339Delete EOL eran defectos independientes: baseline2/3 cada uno;
+C70/C71LF5CRLF5checks y3regresiones PASS, EOL178/184 y parejas nativas completas.
+Q34037modelosfresh25b3585limpioPASS. Q341docs/catálogo. Sin política nueva ni
+Windows/matrizglobal/hito.
