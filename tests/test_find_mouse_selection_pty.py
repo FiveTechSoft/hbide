@@ -102,6 +102,7 @@ def send(data, pause=.35):
 def menu(letter):
     send(b'\x1be'); send(letter)
 def check(name, ok):
+    ok=ok and 'Unrecoverable error' not in scr.text()
     results.append((name,bool(ok)))
     if not ok: (work/('failure-%02d.txt'%len(results))).write_text(name+'\n'+scr.text())
 def saved(name, expected):

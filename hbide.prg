@@ -11,6 +11,7 @@ REQUEST DBCREATE, DBUSEAREA, DBAPPEND, DBCLOSEALL, DBSELECTAREA
 #include "hbmenu.ch"
 #include "inkey.ch"
 #include "getexit.ch"
+#include "button.ch"
 #include "setcurs.ch"
 #include 'hbgtinfo.ch'
 
