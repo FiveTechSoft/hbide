@@ -1,0 +1,43 @@
+{
+  "scope": "Q379 C77 breakpoint identity editor mutations only",
+  "source": "74db43fe4e4bc5dae5f54e4663a4ffb8e9d0abd9",
+  "binary_sha256": "b0ad4e6bb4ad5f5d87eef67111995dfdce3963c59745e2b101f543ea323beaeb",
+  "results": {
+    "test_enter_identical_blank_bp_pty.py": {
+      "exit": 0,
+      "log": "PASS Breakpoint on second identical line\nPASS Enter blank split inserted bytes\nPASS Breakpoint follows original second line to third\nPASS Undo blank split returns original breakpoint second\nPASS Redo blank split moves original breakpoint third\nPASS Enter blank split saves exact bytes\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-7y5089rg\n",
+      "binary_unchanged": true
+    },
+    "test_backspace_identical_blank_bp_pty.py": {
+      "exit": 0,
+      "log": "PASS Breakpoint on third blank line\nPASS Backspace join shifts untouched third blank BP to second\nPASS Undo blank join restores untouched BP third\nPASS Redo blank join shifts untouched BP second\nPASS Blank join saves exact bytes\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-cl4gaogk\n",
+      "binary_unchanged": true
+    },
+    "test_cut_identical_bp_pty.py": {
+      "exit": 0,
+      "log": "PASS Cut complete first identical instruction drops its BP\nPASS Undo cut does not resurrect removed instruction BP\nPASS Redo cut leaves BP absent\nPASS Cut selected complete line saves exact bytes\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-wg8slqql\n",
+      "binary_unchanged": true
+    },
+    "test_delete_identical_bp_pty.py": {
+      "exit": 0,
+      "log": "PASS Breakpoint on second identical line\nPASS Deleting preceding identical line keeps original breakpoint row1\nPASS Undo deletion moves surviving original breakpoint row2\nPASS Redo deletion keeps surviving original breakpoint row1\nPASS Delete saves exact bytes\nPASS Deleting marked identical instruction drops its own BP\nPASS Undo does not restore removed identical instruction BP\nPASS Redo keeps removed identical instruction BP absent\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-88ql7hdi\n",
+      "binary_unchanged": true
+    },
+    "test_selection_delete_identical_bp_pty.py": {
+      "exit": 0,
+      "log": "PASS Selected Delete complete first identical instruction drops its BP\nPASS Undo selected Delete does not resurrect removed instruction BP\nPASS Redo selected Delete leaves BP absent\nPASS Selected Delete selected complete line saves exact bytes\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-w9_lph1w\n",
+      "binary_unchanged": true
+    },
+    "test_paste_identical_bp_pty.py": {
+      "exit": 0,
+      "log": "PASS Breakpoint on second identical line\nPASS Paste inserted bytes\nPASS Breakpoint follows original second line to third\nPASS Undo paste returns original breakpoint second\nPASS Redo paste moves original breakpoint third\nPASS Paste saves exact bytes\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6su50vqt\n",
+      "binary_unchanged": true
+    }
+  },
+  "limitations": [
+    "Six scripts33checksPASS, line identity not full debugger/matrix certification",
+    "Enter/Backspace defaultLF modes here; no CRLF inheritance",
+    "Exploratory single-quoted HBP path rejected by real hbmk2 exit6, no support added",
+    "No new product/build/models/pixels/Windows/license/milestone closure"
+  ]
+}
