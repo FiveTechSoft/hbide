@@ -5073,3 +5073,14 @@ No son30PASSsobreunIDE ni nuevamatrizPTY/Windows. Falloinicialconservado.
 Core694428e1solohookreadinicio/filtertrastecla,no callbackal timeout.
 Q207limitepermanece,noimplementaromutarlosparamsapp.
 Evidencia: docs/evidence/linux-post-inspector-models-q208.json.
+
+### Q209 (1 noviembre 2026): mismo caracter de cierre que otras ventanas
+
+Pedido10:23:41:sinx,mismocaracterotrasventanas. Reusadoexactamentecode
+hbdebug/dbgtwin.prg199:hb_DispOutAtBox+hb_UTF8ToStrBox("[■]").
+Conservaarribaizquierda yareaClick,restotitulodrag/F4.
+Fuented4489ed9c12927251e3bdcde804c521ba0ef1b06
+bin460992fae48275aba7c489c01b10390c6c50f9e07855e83f3518a18548f2e760.
+4PTY26checksPASS;dosactuales802x477inspeccionadas,caracterigualalfondo
+yclickocultasinrestos.34docsPASS. NoWindows/M4closure/matrizglobal.
+Evidencia: docs/evidence/linux-designer-inspector-close-glyph-q209.json.

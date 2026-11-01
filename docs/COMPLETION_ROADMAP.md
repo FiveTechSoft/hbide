@@ -74,7 +74,9 @@ registran30modelos sobre sus fuentes, no herencia al candidato. Q200/Q201
 acreditan generacion/compilacion/runtime mixto y accionesTabEnter; Q202
 separa AltCconSETCANCELdefault (aborto) del launcher explicitoSetCancel(.F.).
 No se modifica politica del generado. Q206: usuario pidio boton arriba izquierda10:16:27; implementado[x]
-conclick/F4/JSONpreservado y regresiondrag,4PTY26checks sobre48de499. Ultimas capturas C29 completas
+conclick/F4/JSONpreservado y regresiondrag,4PTY26checks sobre48de499.
+Q209 cambiaxpor[■]usandomismoAPI/codigo deotrasventanas,4PTY26checks
+sobred4489ed ydosactuales802x477inspeccionadas. Ultimas capturas C29 completas
 inspeccionadas: comillasUTF8U y retorno al error fila2col9.
 
 

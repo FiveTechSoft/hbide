@@ -1,0 +1,124 @@
+{
+  "scope": "Existing close glyph reused from hbdebug/dbgtwin.prg199, exact APIhb_DispOutAtBox/hb_UTF8ToStrBox([\u25a0]); Linux4PTY26checks+twoactual802x477imagesinspected. Not Windows/M4closure/fullmatrix.",
+  "build": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "d4489ed9c12927251e3bdcde804c521ba0ef1b06",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "e35fddcffd184fa13297d4a9b532ed997618b6768b5560926b5b1314e18a217f",
+    "binary_sha256": "460992fae48275aba7c489c01b10390c6c50f9e07855e83f3518a18548f2e760",
+    "built_at": 1793525036.613674
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "d4489ed9c12927251e3bdcde804c521ba0ef1b06",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e35fddcffd184fa13297d4a9b532ed997618b6768b5560926b5b1314e18a217f",
+      "binary_sha256": "460992fae48275aba7c489c01b10390c6c50f9e07855e83f3518a18548f2e760",
+      "build_receipt": "/tmp/hbide-q209/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3e88b0fd6af9a253e89c0eb15ed4feded91dd27e1a5b227f3e1ac22b0fadeb1d",
+      "case": "designer-inspector-close",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_close_pty.py"
+      ],
+      "started": 1793525036.6139624,
+      "seconds": 5.19,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "504b8adaba60280a2d73ca983bebc694c3e3cf6200b2bb372283c12871d58ea3",
+      "log": "/tmp/hbide-q209/designer-inspector-close-1793525036613958550.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "d4489ed9c12927251e3bdcde804c521ba0ef1b06",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e35fddcffd184fa13297d4a9b532ed997618b6768b5560926b5b1314e18a217f",
+      "binary_sha256": "460992fae48275aba7c489c01b10390c6c50f9e07855e83f3518a18548f2e760",
+      "build_receipt": "/tmp/hbide-q209/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3e88b0fd6af9a253e89c0eb15ed4feded91dd27e1a5b227f3e1ac22b0fadeb1d",
+      "case": "designer-inspector-close-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_close_pty.py",
+        "--small"
+      ],
+      "started": 1793525041.8040674,
+      "seconds": 6.54,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "504b8adaba60280a2d73ca983bebc694c3e3cf6200b2bb372283c12871d58ea3",
+      "log": "/tmp/hbide-q209/designer-inspector-close-small-1793525041804064039.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "d4489ed9c12927251e3bdcde804c521ba0ef1b06",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e35fddcffd184fa13297d4a9b532ed997618b6768b5560926b5b1314e18a217f",
+      "binary_sha256": "460992fae48275aba7c489c01b10390c6c50f9e07855e83f3518a18548f2e760",
+      "build_receipt": "/tmp/hbide-q209/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3e88b0fd6af9a253e89c0eb15ed4feded91dd27e1a5b227f3e1ac22b0fadeb1d",
+      "case": "designer-inspector-drag-anchor",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py"
+      ],
+      "started": 1793525048.3465674,
+      "seconds": 4.24,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "9af3832445682e12f0f20c4192580a4b6548ab52b470afae03492f41d9fe1288",
+      "log": "/tmp/hbide-q209/designer-inspector-drag-anchor-1793525048346564544.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "d4489ed9c12927251e3bdcde804c521ba0ef1b06",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e35fddcffd184fa13297d4a9b532ed997618b6768b5560926b5b1314e18a217f",
+      "binary_sha256": "460992fae48275aba7c489c01b10390c6c50f9e07855e83f3518a18548f2e760",
+      "build_receipt": "/tmp/hbide-q209/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3e88b0fd6af9a253e89c0eb15ed4feded91dd27e1a5b227f3e1ac22b0fadeb1d",
+      "case": "designer-inspector-drag-anchor-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py",
+        "--small"
+      ],
+      "started": 1793525052.5849547,
+      "seconds": 5.59,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "9af3832445682e12f0f20c4192580a4b6548ab52b470afae03492f41d9fe1288",
+      "log": "/tmp/hbide-q209/designer-inspector-drag-anchor-small-1793525052584950522.log"
+    }
+  ],
+  "logs": {
+    "designer-inspector-drag-anchor-small-1793525052584950522.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-cint03et\n",
+    "designer-inspector-drag-anchor-1793525048346564544.log": "PASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-we4d3m7v\n",
+    "designer-inspector-close-1793525036613958550.log": "PASS combobox inspector visible\nPASS left header x hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-usnzqu_d\n",
+    "designer-inspector-close-small-1793525041804064039.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS left header x hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-yi2f04el\n"
+  },
+  "binary_after_tests": "460992fae48275aba7c489c01b10390c6c50f9e07855e83f3518a18548f2e760",
+  "user_request": "WhatsApp1Nov10:23:41CET wamid.HBgLMzQ2MTMzNzg0NTIVAgASGBYzRUIwRkMxN0Q2MTA0NUE4NEY3NUVBAA== no le pongas x en el boton, usa el mismo caracter que en las otras",
+  "visual": "Actual panelsame[\u25a0]asotherwindows,top-left. Clickhiddenimageclean/form12controls preserved."
+}
