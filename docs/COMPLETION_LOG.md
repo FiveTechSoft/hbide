@@ -4869,3 +4869,18 @@ tienen header GPL detectado. No se copia ni asigna licencia. Archivo
 presente no equivale a permiso de redistribucion ni revision legal.
 Sin binario, PTY, pixeles, Windows ni cierre M5.
 Evidencia: docs/evidence/linux-license-file-usability-q193.json.
+
+### Q194 (1 noviembre 2026): consolidacion M2 sobre fuente unica
+
+Fuente 2bdecc78149e7729c1c1bd2761c1aea641650a54, binario
+09cc26fd7529b1d7a1b4abfe57917fe549acab8ec0eba2100bc4645427049ee6.
+20 modos PTY/267 checks PASS: compilador ausente y restaurado, salida
+larga/color/scroll25x80 y40x120, fallo al promover/reintento real,
+status0 sin output y statuserror tras crearlo, visor de proyecto, caret
+GCC real con/sin color y rutas con dos puntos, lista y escritorio proyecto.
+Tres lotes secuenciales, un build fresco y receipt verificado en los otros
+dos. Un intento detached inicial termino antes de crear build/ledger y
+no cuenta. Ningun modo duplicado ni fuente/binario cambiados.
+85 guardas y34 documentos PASS. No arreglo nuevo, pixeles nuevos,
+matriz341 completa, Windows, Cancel, ni cierre M2/M6. No hereda Q164.
+Evidencia: docs/evidence/linux-project-joint-q194.json.

@@ -92,7 +92,8 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
   la sustitucion del destino; prueba con directorio bloqueante real.
   Q183 lo comprueba con hbmk2 real y reintento exitoso sin reiniciar.
   Q184 hace accesible la salida larga de Start en el visor con scroll;
-  las alertas cortas conservan su comportamiento.
+  las alertas cortas conservan su comportamiento. Q194 consolida20
+  modos/267checks sobre fuente2bdecc7 y un solo binario, no cierra M2.
 - **M2/M3:** Cancel sigue abierto sin helper C ni contrato rebajado a
   process-group. Exchange Screens y swap on Input siguen siendo stubs;
   el hook INKEYREAD probado no distingue espera y poll. Global/reinicio
