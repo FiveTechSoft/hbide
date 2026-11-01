@@ -1,0 +1,37 @@
+{
+  "scope": "Q367 C75 bounded build failure/retry/output and run arguments acceptance only",
+  "source": "93d3876480c5217e4eadddc2f88a4400c321146a",
+  "binary_sha256": "e78652a51a586d67550d526c05a1ac54278d7b62459d26a23beace1afca024ef",
+  "results": {
+    "promotion-failure": {
+      "exit": 0,
+      "log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS editor remains usable after repeated failure\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-6pl2wr5b\n",
+      "binary_unchanged": true
+    },
+    "promotion-retry": {
+      "exit": 0,
+      "log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS retry with unblocked destination builds\nPASS retry launches fresh real compiler result\nPASS retry promotes new executable\nPASS retained first output stays exact\nPASS retry preserves source\nPASS retry has no unnamed temporary outputs\nPASS editor remains usable after repeated failure\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-vbxm5_yt\n",
+      "binary_unchanged": true
+    },
+    "missing-output-diag": {
+      "exit": 0,
+      "log": "PASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-u9za42ur\n",
+      "binary_unchanged": true
+    },
+    "run-modal": {
+      "exit": 0,
+      "log": "PASS arguments modal opens\nPASS explicit-ok exact Script argv\nPASS arguments modal opens\nPASS explicit-cancel exact Script argv\nPASS arguments modal opens\nPASS esc-preserve exact Script argv\nPASS arguments modal opens\nPASS invalid quote rejected\nPASS invalid-preserve exact Script argv\nPASS arguments modal opens\nPASS explicit-clear exact Script argv\nPASS arguments modal opens\nPASS enter-accept exact Script argv\nPASS editor remains usable\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-4sxb3dgj\n",
+      "binary_unchanged": true
+    },
+    "project-output": {
+      "exit": 0,
+      "log": "PASS F6 opens full output and horizontal scrolling reveals diagnostic tail\nPASS Esc returns to same project failure state\n",
+      "binary_unchanged": true
+    }
+  },
+  "limitations": [
+    "Five modesPASS, failure/promotion harnesses use controlled compiler fixtures; retry is an explicit tested scenario, not a claim of retry-free matrix",
+    "Project output PTY checks full output horizontal scroll/Esc same failed state, not pixel inspection",
+    "No product/buildIDE/models/pixels/Windows/globalmatrix/release or milestone claim"
+  ]
+}
