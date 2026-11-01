@@ -1,0 +1,55 @@
+{
+  "scope": "Q357 empty-line clipboard focal fix only; no global acceptance, Windows, release or inherited matrices",
+  "candidate": {
+    "source": "8fe95b2b5b95938d8d56642dd2e2df02f110cba0",
+    "build_exit": 0,
+    "removed": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "scope": "C74focal emptyclipboard only, not fullmatrix/Windows",
+    "binary_sha256": "a27dbd51b1dc2805eae8d49337a03c694994abec59e4f6760f97e1d88cf9df85"
+  },
+  "baseline": {
+    "candidate": "C73",
+    "log": "PASS Open requested fixture\nFAIL Paste copied empty line as a real third line\nPASS Undo empty-line paste exact\nFAIL Redo empty-line paste exact\nTOTAL 2 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-tc85hcba\n"
+  },
+  "fixed": "PASS Open requested fixture\nPASS Paste copied empty line as a real third line\nPASS Undo empty-line paste exact\nPASS Redo empty-line paste exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-aj6zqe2o\n",
+  "regressions": {
+    "test_clipboard_spaces_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Paste copied three spaces as a real third line\nPASS Undo space-only paste exact\nPASS Redo space-only paste exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-xvgnjvza\n"
+    },
+    "test_clipboard_multidoc_pty.py": {
+      "exit": 0,
+      "log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste uses source clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores pasted bytes\nPASS source document remained unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-mlem6du5\n"
+    },
+    "test_paste_identical_bp_pty.py": {
+      "exit": 0,
+      "log": "PASS Breakpoint on second identical line\nPASS Paste inserted bytes\nPASS Breakpoint follows original second line to third\nPASS Undo paste returns original breakpoint second\nPASS Redo paste moves original breakpoint third\nPASS Paste saves exact bytes\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-w_xbgjnh\n"
+    },
+    "test_clipboard_block_multidoc_pty.py": {
+      "exit": 0,
+      "log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-g5y04ac0\n"
+    }
+  },
+  "model_initial": "187 PASS 0 FAIL; source same C74",
+  "model_guards": "        202 PASS          0 FAIL",
+  "model_caveat": "GTSTD model compiled separately, not IDE acceptance",
+  "visual": {
+    "before": "/downloads/hbide-q357-clipboard-before.png",
+    "after": "/downloads/hbide-q357-clipboard-c74.png",
+    "inspection": "Both complete 1202x762 frame including lower borders/status inspected. C73 row2 cannot move to third blank after paste; C74 row3 is reachable. Byte-exact save/Undo/Redo checked separately by PTY."
+  },
+  "limitations": [
+    "C74 focal direct hbmk2 build, not official clean candidate matrix",
+    "C73 remains latest official identified builder candidate",
+    "Existing unresolved policies unchanged"
+  ]
+}

@@ -18,6 +18,31 @@ PROCEDURE Main()
          ? 'FAIL:', aCase[ 1 ], 'load-save changed bytes'
       ENDIF
    NEXT
+   o:LoadText('fresh')
+   o:PasteLine()
+   Check(o:GetText()=='fresh'.and.!o:Changed(),'Initial absent clipboard paste is no-op',@nPass,@nFail)
+   FOR EACH aCase IN { { 'CRLF', cCRLF }, { 'LF', cLF } }
+      o:LoadText(aCase[2]+'anchor')
+      o:GoTo(1,5)
+      o:CopyLine()
+      oRecovered := HBSrcEdit():New('',2,1,20,79,.T.)
+      oRecovered:LoadText('target'+aCase[2]+'tail')
+      oRecovered:aBPs := {2}
+      oRecovered:GoTo(1,5)
+      oRecovered:PasteLine()
+      Check(oRecovered:GetText()=='target'+aCase[2]+aCase[2]+'tail'.and.oRecovered:aBPs[1]==3,'Empty clipboard shared across documents and shifts BP '+aCase[1],@nPass,@nFail)
+      oRecovered:Undo()
+      Check(oRecovered:GetText()=='target'+aCase[2]+'tail'.and.oRecovered:aBPs[1]==2,'Undo empty paste preserves destination BP '+aCase[1],@nPass,@nFail)
+      oRecovered:Redo()
+      Check(oRecovered:GetText()=='target'+aCase[2]+aCase[2]+'tail'.and.oRecovered:aBPs[1]==3,'Redo empty paste preserves destination BP '+aCase[1],@nPass,@nFail)
+      Check(o:GetText()==aCase[2]+'anchor','Empty Copy leaves source intact '+aCase[1],@nPass,@nFail)
+      o:DeleteLine()
+      Check(o:GetText()=='anchor','Delete empty physical line '+aCase[1],@nPass,@nFail)
+      o:PasteLine()
+      Check(o:GetText()=='anchor'+aCase[2],'Deleted empty line remains pasteable '+aCase[1],@nPass,@nFail)
+      o:Undo()
+      Check(o:GetText()=='anchor','Undo empty deleted-line paste '+aCase[1],@nPass,@nFail)
+   NEXT
    o:cFile := "previous.prg"
    o:LoadText( "PRECIOUS BUFFER" )
    o:SetDirty( .T. )
