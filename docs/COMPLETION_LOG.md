@@ -4232,3 +4232,14 @@ q/Altq no aceptados como activacion; no fallo producto inferido.
 Evidencia `docs/evidence/linux-designer-inline-button-runtime-q148.json`.
 Sin otros eventos/tipos, todosgestos/aceleradores/Windows/global/cierreM4
 ni nueva aceptacion visual.
+
+
+## 1 noviembre 2026: Q149 STATE inline al runtime Combo/List
+
+STATE se sustituye mediante inspector real,F10 persiste,F9 emite y
+artefacto generado compila. Una/dos flechas cambian valor enlazado a2/3
+y ejecutan handler editado:7checksCombo+7List+12Buttonregresion=26checks
+en3modosPTY,63guardas34docsPASS. Fuentecec0457;sin arreglo.
+Evidencia `docs/evidence/linux-designer-inline-state-runtime-q149.json`.
+Sin otros handlers/tipos/todosvalores/mouse/Windows/global/cierreM4
+ni nuevos modelos/pixeles.

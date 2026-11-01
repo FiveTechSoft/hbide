@@ -1,0 +1,149 @@
+{
+  "scope": "Combo/List inline STATE edits through F10/F9 compile runtime, bounded Linux fixture, no product fix",
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "cec0457ae8eb786cf0232c3521f202227c3f987d",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9d53c495ef196c1953b1d19c318377814e7a41efbd2854537734498bf1304849",
+      "binary_sha256": "2af8b4b96649cde9001b711a185f1b5faf8e41c30e44e45b0d3189346cc593d9",
+      "build_receipt": "/tmp/hbide-q149-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "53df4f20414e837f0599287f77417b1dbd08d0da897c3c435d343a4075b8d461",
+      "case": "designer-inline-combo-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_combo_runtime_pty.py"
+      ],
+      "started": 1793508099.9432998,
+      "seconds": 7.23,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "31e175cc4dcf46b63e860c4cb6b4b7235f2c205a882aa6f1c2a2c6b7a533ade2",
+      "log": "/tmp/hbide-q149-final/designer-inline-combo-runtime-1793508099943294701.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "cec0457ae8eb786cf0232c3521f202227c3f987d",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9d53c495ef196c1953b1d19c318377814e7a41efbd2854537734498bf1304849",
+      "binary_sha256": "2af8b4b96649cde9001b711a185f1b5faf8e41c30e44e45b0d3189346cc593d9",
+      "build_receipt": "/tmp/hbide-q149-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "53df4f20414e837f0599287f77417b1dbd08d0da897c3c435d343a4075b8d461",
+      "case": "designer-inline-list-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_combo_runtime_pty.py",
+        "--listbox"
+      ],
+      "started": 1793508107.1730957,
+      "seconds": 7.22,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "31e175cc4dcf46b63e860c4cb6b4b7235f2c205a882aa6f1c2a2c6b7a533ade2",
+      "log": "/tmp/hbide-q149-final/designer-inline-list-runtime-1793508107173090730.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "cec0457ae8eb786cf0232c3521f202227c3f987d",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9d53c495ef196c1953b1d19c318377814e7a41efbd2854537734498bf1304849",
+      "binary_sha256": "2af8b4b96649cde9001b711a185f1b5faf8e41c30e44e45b0d3189346cc593d9",
+      "build_receipt": "/tmp/hbide-q149-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "53df4f20414e837f0599287f77417b1dbd08d0da897c3c435d343a4075b8d461",
+      "case": "designer-inline-button-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_button_runtime_pty.py"
+      ],
+      "started": 1793508114.3981655,
+      "seconds": 9.29,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "878375e81662477a0f1b42e6b13ef0c55f26f76b65a4a15fb2e770ca0f3ccd1b",
+      "log": "/tmp/hbide-q149-final/designer-inline-button-runtime-1793508114398161615.log"
+    }
+  ],
+  "logs": {
+    "designer-inline-combo-runtime": "PASS inline STATE exact persisted\nPASS actual F9 emits inline STATE\nPASS generated inline-edited-ComboBox artifact compiles\nPASS down ComboBox selection updates exact bound value\nPASS down inline-edited STATE handler executes in generated runtime\nPASS two-down ComboBox selection updates exact bound value\nPASS two-down inline-edited STATE handler executes in generated runtime\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-1n9qo2zn\n",
+    "designer-inline-list-runtime": "PASS inline STATE exact persisted\nPASS actual F9 emits inline STATE\nPASS generated inline-edited-ComboBox artifact compiles\nPASS down ComboBox selection updates exact bound value\nPASS down inline-edited STATE handler executes in generated runtime\nPASS two-down ComboBox selection updates exact bound value\nPASS two-down inline-edited STATE handler executes in generated runtime\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-igajunpz\n",
+    "designer-inline-button-runtime": "PASS edited action persisted exact\nPASS edited focus persisted exact\nPASS actual F9 emits edited action and focus\nPASS generated inline-edited-button artifact compiles\nPASS enter runtime caption retains double quotes\nPASS enter generated button accepts dialog true\nPASS enter inline-edited custom action executes\nPASS enter inline-edited focus handler executes\nPASS space runtime caption retains double quotes\nPASS space generated button accepts dialog true\nPASS space inline-edited custom action executes\nPASS space inline-edited focus handler executes\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-p17vgune\n"
+  },
+  "checks": 26,
+  "modes": 3,
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "cec0457ae8eb786cf0232c3521f202227c3f987d",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "b9189ca5ff57cdf564135301406f438479d66f6ff450301fe4b673c3a6c2a9d6",
+    "started": 1793508123.8612723,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q149-guards/test_completion_guards.py.log",
+        "seconds": 0.203
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q149-guards/test_build_receipt.py.log",
+        "seconds": 0.203
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "177c22d6bedd8cba16d90be576a51a233e9006716e4a06b67abadd25f6d9ee87",
+        "log": "/tmp/hbide-q149-guards/test_completion_inventory.py.log",
+        "seconds": 0.706
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q149-guards/test_distribution_notices.py.log",
+        "seconds": 0.203
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q149-guards/test_embed_help_docs.py.log",
+        "seconds": 0.203
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q149-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.354
+      }
+    },
+    "ok": true,
+    "finished": 1793508125.733107
+  },
+  "limits": "No other handlers/control types/all values/mouse/Windows/global/M4 or new native visual/model acceptance."
+}

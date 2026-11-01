@@ -532,3 +532,11 @@ Sin aceptacion de todosgestos/geometrias/Windows ni cierreM4.
 Button Action/Focus editados inline,F10,F9,compilacion y runtime
 Enter/Space:12checks,regresiones en evidencia Q148. No todos handlers
 ni aceleradores/Windows/cierreM4;sin arreglo de producto ni nuevos pixels.
+
+
+### Seguimiento Q149 (1 noviembre 2026)
+
+Combo/List STATE editado inline,F10,F9,compilacion y runtime valor2/3
+con handler ejecutado:3PTY26checks63guardas34docsPASS incl.Buttonregresion.
+Evidencia `docs/evidence/linux-designer-inline-state-runtime-q149.json`.
+Sin otros handlers/tipos/Windows/cierreM4 ni nuevos pixeles/modelos.
