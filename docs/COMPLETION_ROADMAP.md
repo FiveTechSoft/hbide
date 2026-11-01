@@ -66,14 +66,17 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre 13:47, Q248: candidato focal C32 exportce12ac1,
-binc6d5ec7f8e09e59baee54efb098739bf3ce00ee4673dc8cf98ba4b1c61dc837e.
-Recovery/Undo mantiene dirty sin guardar; E2E recovery, Copy y EditMenu
-focales PASS, modelos separados recovery/EOL. EvidenciaQ248.
-C31 anterior export93e45a4,
-binaa1e30275c13b894e0bfac5cc2edc110cdc199d09df6cf680fc69b7c13bcf36a,
-7scripts/77checks selección y dos modelos separados PASS. C31 no hereda
-matriz353. C30 sigue siendo el candidato con plan353 reconciliado,
+Corte 1 noviembre 14:23, Q258: candidato focal C35,
+exporta83cd74b25dd7e405a39c3bd48150d714c49bd3c,
+bin080cd8f006e59034f5de3d5b7650e37bd098adc77c63f38916c5614a014a26b5.
+Q257 cuatro scripts congelados PASS; Q258 arnés postexport dos modos
+RecoveredReload exitoso/fallido PASS, con kill/restart. Q255 C34 corrige
+journals obsoletos Undo/Redo clean, Q256 extiende reinicio. Q248 mantiene
+baseline recuperado dirty; Q247 Copy repinta al retirar marca. Cada recibo
+conserva su fuente/binario, no se agregan como matriz ni funciones nuevas.
+C35 no inyecta nueva identidadAbout; C33 sí la verifica y34docs exactos
+con su catálogo anterior a esta actualización. Sin Windows/release/hitos.
+C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
 bin96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29.
 Plan353 reconciliado sin faltantes ni extras:352PTY y1guardafuente.

@@ -133,6 +133,12 @@ What to expect:
 
 - You get the content of the last 2-second tick, not of every keystroke.
 - Unnamed buffers are recovered too.
+- Undo or Redo back to the saved disk state removes that instance's stale
+  journal. Undo back to a recovered, still-unsaved baseline keeps it dirty
+  and recoverable until Save or an explicit discard.
+- A successful disk Reload discards the replaced unsaved buffer's journal,
+  including its associated recovered generation. If Reload cannot read the
+  file, the buffer and its recovery generations stay intact.
 - Each running instance keeps its own journal, so saving or discarding in
   one never deletes another instance's unsaved work.
 - If the journal cannot be written (permissions, full disk), editing

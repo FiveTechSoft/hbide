@@ -5580,3 +5580,12 @@ Los binariosC31/C32 anteriores no incorporan estas notas nuevas; no se
 reescribe su evidencia ni se les atribuye catálogo actualizado. Guardas
 y comprobación exacta registradas en linux-offline-catalogue-q252.json.
 Sin producto/PTY/modelo/píxeles/Windows/hito nuevo.
+
+### Q259 (1 noviembre 2026): reconciliación roadmap y recuperación
+
+Roadmap distingue C35focal de C30plan353 y C33catálogo/About. Guía explica
+Undo/Redo clean frente a baseline recuperado dirty, Reload exitoso retira
+journals y fallido los conserva. Enlaces aceptación Q247/Q255-Q258, no
+resultados nuevos ni cobertura global. Catálogo offline regenerado34docs.
+Ocho guardas y check exacto en linux-roadmap-recovery-docs-q259.json.
+Sin producto/build/PTY/píxeles/modelos/Windows/hito nuevo.
