@@ -1,0 +1,63 @@
+{
+  "source": "87222cbcada24332b0088889b1f34b59585b54f0",
+  "binary_sha256": "18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be",
+  "results": {
+    "test_saveall_fail_pty.py": {
+      "exit": 0,
+      "log": "PASS boot\nPASS summary says 1 saved and 1 could not be saved\nPASS failed file content on disk untouched\nPASS ok file saved with its edit\nPASS failed doc still marked modified, ok doc clean\n5/5 passed\n",
+      "test_sha256": "867f41dfed5f1947f30ef5b090265a1cc87ec7ee1177947074e59acb548b729f",
+      "seconds": 17.79753017425537,
+      "binary_unchanged": true
+    },
+    "test_saveas_failure_identity_pty.py": {
+      "exit": 0,
+      "log": "PASS failed Save As retains old name and subsequent F2 writes original document\n",
+      "test_sha256": "36159f33a1687bee72ffb1b8618a6d73036076195561e4697c6b20eb3fb55568",
+      "seconds": 9.57058072090149,
+      "binary_unchanged": true
+    },
+    "invalid_invocation": {
+      "exit": 1,
+      "log": "Traceback (most recent call last):\n  File \"/tmp/hbide-c73/source/tests/test_saveas_refusal_recovery_pty.py\", line 163, in <module>\n    check('refusal left dup.prg byte-identical', open(dup, 'rb').read() == before)\nFileNotFoundError: [Errno 2] No such file or directory: '/tmp/hbide-md-work-i5t_q4gn/dup.prg'\n",
+      "test_sha256": "ec10d6e7bb4251cdd2e7ae6ca891f520b314bbe2ed99b38f57cd96229eddbc59",
+      "seconds": 20.145970344543457,
+      "binary_unchanged": true
+    },
+    "test_saveas_refusal_recovery_pty.py": {
+      "exit": 0,
+      "log": "PASS boot caption noname\nPASS doc2 saved as dup.prg\nPASS dup.prg written\nPASS dup.prg holds doc2 text only\nPASS doc1 shows aa1\nPASS SaveAs collision refused\nPASS refusal left dup.prg byte-identical\nPASS refusal created no other file\nPASS doc1 still unsaved noname\nPASS dup.prg edit visible\nPASS two base journals (noname doc + dup.prg)\nPASS dup.prg still unchanged on disk before kill\nPASS recovery prompt on restart\nPASS recovery dialogs cleared\nPASS prompts named dup.prg\nPASS noname buffer recovered (aa1)\nPASS dup.prg buffer recovered (bb2 and q7k)\nPASS recovered into separate docs\nPASS disk dup.prg still the pre-crash save\nPASS F2 saved recovered dup.prg with q7k\nPASS saved file is old bytes plus the lost edit only\nTOTAL 21 PASS 0 FAIL\n",
+      "test_sha256": "ec10d6e7bb4251cdd2e7ae6ca891f520b314bbe2ed99b38f57cd96229eddbc59",
+      "seconds": 31.219032764434814,
+      "binary_unchanged": true
+    },
+    "test_replace_undo_boundary_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS one Undo reverts Replace but preserves earlier typed X\nPASS Redo reapplies only replacement\nPASS Undo later typing preserves replacement\nPASS next Undo restores text before Replace\nPASS third Undo removes earlier typing alone\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-yrsl9d38\n",
+      "test_sha256": "9c7dfd85b8bd258fe24611a9d9f442ae3bb34fe721a214c8cb411ebd40242559",
+      "seconds": 13.52168607711792,
+      "binary_unchanged": true
+    },
+    "test_selection_undo_boundary_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Typing replaces selected al but preserves earlier X\nPASS Undo selected replacement alone preserves earlier typing\nPASS Redo selected replacement exact\nPASS Undo later typing keeps selection replacement\nPASS next Undo restores pre-replacement typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-v3vdwj8c\n",
+      "test_sha256": "49d4c846fb5c901bf8025681dfa7a470021cabde305736b196f9a870db455ea8",
+      "seconds": 14.588366508483887,
+      "binary_unchanged": true
+    },
+    "test_run_empty_args_pty.py": {
+      "exit": 0,
+      "log": "PASS start run1 retains empty argument positions\nPASS start editor remains usable\nPASS script run1 retains empty argument positions\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 retains empty argument positions\nPASS debug editor remains usable\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-xpowh3em\n",
+      "test_sha256": "38110f01457b6b707a630e32a0c4a44189e5a676c637209a9e3960f44a33c520",
+      "seconds": 20.16673183441162,
+      "binary_unchanged": true
+    },
+    "test_project_messages_pty.py": {
+      "exit": 0,
+      "log": "PASS boot caption noname\nPASS desktop opens after project open (no dirty docs)\nPASS real build fails (exit shown)\nPASS Messages lists parsed diagnostic bad1.prg:3\nPASS diagnostic jump opens bad1.prg\nPASS cursor lands on line 3\nPASS cursor lands on column 1\nPASS desktop closed after jump\nPASS buffer loaded clean from disk\nPASS cursor moved to line 1\nPASS buffer now dirty with z edit visible\nPASS jump returns to the already-open bad1.prg\nPASS dirty buffer preserved (z edit survives)\nPASS cursor back on line 3\nPASS disk file untouched (no silent save)\nPASS second source opens as its own doc\nPASS exactly two docs cycle (no duplicate)\nPASS IDE exits clean\nTOTAL 18 PASS 0 FAIL\n",
+      "test_sha256": "fb54d7fe3bb7b29ebab71979954ec63c7b57f4308a472576a7b5b8363dae0b98",
+      "seconds": 23.059723615646362,
+      "binary_unchanged": true
+    }
+  },
+  "scope": "Seven distinct critical path scripts passed on exactC73binary. Invalid first recovery invocation retained separately, corrected positional binary invocation passed. Not retry-free/fullmatrix/visual/Windows/install/license acceptance."
+}
