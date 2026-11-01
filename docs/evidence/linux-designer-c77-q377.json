@@ -1,0 +1,33 @@
+{
+  "scope": "Q377 C77 four bounded designer modes only",
+  "source": "74db43fe4e4bc5dae5f54e4663a4ffb8e9d0abd9",
+  "binary_sha256": "b0ad4e6bb4ad5f5d87eef67111995dfdce3963c59745e2b101f543ea323beaeb",
+  "results": {
+    "mixed": {
+      "exit": 0,
+      "log": "PASS F9 generates committed mixed-control fixture\nPASS designer load preserves all twelve controls\nPASS actual mixed generated PRG compiles\nPASS escape runtime mixed dialog visible\nPASS escape runtime returns and writes bound values\nPASS escape mixed GET fields retain independent input\nPASS escape checkbox state independent\nPASS escape unvisited selectors keep defaults\nPASS save runtime mixed dialog visible\nPASS save runtime returns and writes bound values\nPASS save mixed GET fields retain independent input\nPASS save checkbox state independent\nPASS save unvisited selectors keep defaults\nPASS save actual button action returns expected flag\nPASS cancel runtime mixed dialog visible\nPASS cancel runtime returns and writes bound values\nPASS cancel mixed GET fields retain independent input\nPASS cancel checkbox state independent\nPASS cancel unvisited selectors keep defaults\nPASS cancel actual button action returns expected flag\nPASS selectors runtime mixed dialog visible\nPASS selectors runtime returns and writes bound values\nPASS combo radio and list change independent bindings\nTOTAL 23 PASS 0 FAIL; evidence /tmp/hbide-source-run-upi5ij3m\n",
+      "binary_unchanged": true
+    },
+    "get-valid": {
+      "exit": 0,
+      "log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS get sentinel initially not entered\nPASS get first VALID returns false\nPASS get false VALID prevents sentinel entry\nPASS get false VALID keeps runtime active\nPASS get second VALID returns true\nPASS get true VALID enters sentinel\nPASS get true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-dc0bq1_f\n",
+      "binary_unchanged": true
+    },
+    "combo-clipboard": {
+      "exit": 0,
+      "log": "PASS pasted ComboBox binding case-insensitively distinct\nPASS pasted ComboBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ComboBox artifact compiles\nPASS first ComboBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ComboBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-45i4b8sh\n",
+      "binary_unchanged": true
+    },
+    "inspector-small": {
+      "exit": 0,
+      "log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS title centered in 31-column panel\nPASS left header close hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-vt6g5yl0\n",
+      "binary_unchanged": true
+    }
+  },
+  "limitations": [
+    "52checksPASS generated mixed runtime, GETVALID veto, Combo clipboard handlers, inspectorclose25x80 only",
+    "Generated runtime is instrumented by harness for values/exit; not certification of uninstrumented distribution",
+    "PTY output/model bytes not actual pixel inspection, no new screenshots",
+    "No Tree/Tabs/Grid or oversized editing policy changes, no Windows/fullmatrix/milestone closure"
+  ]
+}
