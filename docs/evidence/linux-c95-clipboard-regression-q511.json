@@ -1,0 +1,20 @@
+{
+  "scope": "Fresh C95 threeboundedclipboardroutes22PASS, noinheritance/model/fullmatrix",
+  "source": "1cdedd93da118bcdb33866d574943a784a00c0f6",
+  "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845",
+  "results": {
+    "test_clipboard_block_multidoc_pty.py": {
+      "test_sha256": "85802744523168aaf84622697e98cf5275fd8a5595d4510c2d8b7c210ad0ea26",
+      "log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-7n32ohh4\n"
+    },
+    "test_clipboard_utf8_multidoc_pty.py": {
+      "test_sha256": "f850dc526d634f483cf4b6194c109f77ae970ebd8816cb48eac4d93199098368",
+      "log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-uceo3ril\n"
+    },
+    "test_clipboard_virtual_empty_pty.py": {
+      "test_sha256": "3e1b04ab46adc400803d6d0f66916ec9b72a21a84c475065aae45526d046528f",
+      "log": "PASS Open requested fixture\nPASS Copy virtual range has no source bytes\nPASS Copy virtual empty range Paste remains no-op\nPASS Undo after virtual Copy Paste remains no-op\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-u9qo4ki9\n"
+    }
+  },
+  "limits": "Only harnessdefaultUTF8multidoc mode (not all flags), no newpixels/Windows/license/allEOL/Unicode/graphemes"
+}
