@@ -1,0 +1,18 @@
+{
+  "scope": "Fresh C96 four existing parser/navigation modes, 15 PASS; no inherited C95 acceptance",
+  "source": "ea630625ac5cab04a30a1f17fae3ee5016e0d7e2",
+  "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9",
+  "tests": {
+    "project_bom": "0b1c7ceb749cb783695fdd92557779a16f3a79f7f987d988119b1fb056036faa",
+    "project_eof": "b64182ac6bbef28e4c686ba45c79dc29d7d3e2f84405fd204d7b3354ef025365",
+    "project_extensionless": "fe07a4fb6c86f6205d82393297be47f9fadeadb3f7cc54550dc3576e09582ba1",
+    "project_colon_diagnostic": "f58ed6b74c3effb3cade8efbf1f15764e2b1980c598382364342e4a154f02b04"
+  },
+  "logs": {
+    "project_bom": "PASS BOM project source is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP BOM and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-k1g6jhmy\n",
+    "project_eof": "PASS EOF project source is listed\nPASS Enter opens actual first source\nPASS HBP EOF and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-rw7w_pgz\n",
+    "project_extensionless": "PASS Extensionless project source is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-l7vp3vdg\n",
+    "project_colon_diagnostic": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump lands at real GCC row2 column9\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-pim6chtl\n"
+  },
+  "limits": "No Windows/fullmatrix/newpixels/license/hito closure. Stop equivalent parser variants."
+}
