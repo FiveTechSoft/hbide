@@ -1621,3 +1621,33 @@ bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48
 intacto. PTYcounter/grid/JSON no son píxeles nuevos. Q448docs/catálogo posteriores
 noembebidosC87, sinbuildpor docs. Q449toolingguards separados, no producto/
 modelos/fullmatrix/Windows/install/licencias/cierre de hito.
+
+### Q450-Q455 (1 noviembre 2026): rutas de ratón y límites del inventario
+
+Q450 prueba el PushButton emitido por F9 de C87 compilado con helpers del
+checkout48641da, identificados con hashes separados del binario IDE:10PASS.
+Press arma sin ejecutar, release coincidente ejecuta una vez, cruces de frontera
+no ejecutan, doble rápido añade una acción, Esc sale. Initial9/1 usaba0.2s por
+edge y produjo dos singles legítimos;0.01s por edge reproduce double, sin fix.
+Q451 C87AppScreen9PASS: menu press oculta debugger, releasepareado no reabre,
+nextkey restaura; F4 también, resume valores/sourceexact. Probe coordenadas
+incompleto y tres fallos de expectativasunit se conservan, final55unitsPASS.
+Q452 C87parentleft9PASS: Fileclick/outside, visibleeditor inserción/Undoexact,
+closeglyphoculta, hidden click/typing ignora, File/reopen/F2originalexact.
+Q453 C87wheelUndo12PASS: cruza viewport, primerUndoelimina typing sin entrada
+wheel fantasma, Redo y dos ediciones separadas conservan límites/CRLFexactos.
+Dos links HBIDE_IsNavKey son clasificación interna, no gestos adicionales ni
+prueba de rendimiento/instrumentación. Q454 C87releaseunpaired8PASS: canvas,
+title y closeglyph no cambian grilla ni controlsJSON, close release solo no
+oculta inspector. DSN_TRACE vacío, no prueba de logging habilitado o drag.
+Initialsyntaxerrorfixture retenido; ningún cambio producto en Q450-Q454.
+
+Las27ramas sintácticas detectadas tienen contratos acotados, incluidos ignored,
+trace-only y clasificadores. No es inventario exhaustivo de gestos, no cuenta
+funciones completas y no cierra M0. Sigue pendiente cobertura de subrutas,
+coordenadas, controles y estados, modelos completos, revisión visual, Windows,
+instalación/licencias y repetición de matriz final. C87fuentee84d41e1d57f35aa1b42fe538b4ab11aa598f6fe,
+bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48 intacto.
+Nuevos documentos/catálogo no están embebidos en C87; no build por docs.
+Q455 consolida esta evidencia y catálogo34byteexact, sin nuevos píxeles,
+fullmatrix o cierre. Cada receipt Q450-Q454 conserva alcance y fallos previos.
