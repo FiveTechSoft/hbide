@@ -1,0 +1,33 @@
+{
+  "scope": "Five bounded C87 save failure conflict and refusal-recovery modes",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "results": {
+    "saveall-partial": {
+      "exit": 0,
+      "log": "PASS boot\nPASS summary says 1 saved and 1 could not be saved\nPASS failed file content on disk untouched\nPASS ok file saved with its edit\nPASS failed doc still marked modified, ok doc clean\n5/5 passed\n",
+      "binary_unchanged": true
+    },
+    "saveas-identity": {
+      "exit": 0,
+      "log": "PASS failed Save As retains old name and subsequent F2 writes original document\n",
+      "binary_unchanged": true
+    },
+    "saveas-refusal-recovery": {
+      "exit": 0,
+      "log": "PASS boot caption noname\nPASS doc2 saved as dup.prg\nPASS dup.prg written\nPASS dup.prg holds doc2 text only\nPASS doc1 shows aa1\nPASS SaveAs collision refused\nPASS refusal left dup.prg byte-identical\nPASS refusal created no other file\nPASS doc1 still unsaved noname\nPASS dup.prg edit visible\nPASS two base journals (noname doc + dup.prg)\nPASS dup.prg still unchanged on disk before kill\nPASS recovery prompt on restart\nPASS recovery dialogs cleared\nPASS prompts named dup.prg\nPASS noname buffer recovered (aa1)\nPASS dup.prg buffer recovered (bb2 and q7k)\nPASS recovered into separate docs\nPASS disk dup.prg still the pre-crash save\nPASS F2 saved recovered dup.prg with q7k\nPASS saved file is old bytes plus the lost edit only\nTOTAL 21 PASS 0 FAIL\n",
+      "binary_unchanged": true
+    },
+    "conflict-cancel": {
+      "exit": 0,
+      "log": "PASS SaveAll cancelled conflict leaves external bytes and dirty edit, other document saves\n",
+      "binary_unchanged": true
+    },
+    "conflict-reload": {
+      "exit": 0,
+      "log": "PASS SaveAll reload keeps external bytes and prior backup, not counted as saved\n",
+      "binary_unchanged": true
+    }
+  },
+  "limits": "No new pixels/models/fullmatrix/Windows/install/license/hitoclosure"
+}
