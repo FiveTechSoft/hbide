@@ -1,0 +1,11 @@
+{
+  "scope": "Q459 C87 F8 actual-key wheel marked range across short EOL forward/reverse, existing behavior not policy change",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "test_sha256": "e79e41cb52fbb5cd8238fd7675e6772583c56fd1c62eeeb4e3db2b023bfd1b31",
+  "modes": {
+    "forward": "PASS F8 wheel range across short EOL removes physical boundary not virtual padding\nPASS Undo short-endpoint wheel replacement exact\nPASS Redo short-endpoint wheel replacement exact\nTOTAL 3 PASS 0 FAIL; evidence /tmp/hbide-source-run-x_vztygd\n",
+    "reverse": "PASS Wheel retains end column beyond short second-line EOL\nPASS F8 wheel range across short EOL removes physical boundary not virtual padding\nPASS Undo short-endpoint wheel replacement exact\nPASS Redo short-endpoint wheel replacement exact\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-ong1d6p2\n"
+  },
+  "limits": "Three ASCII rows/CRLF/no trailing separator, xterm40x120, F8anchor at long EOL or short virtual endpoint. Typing removes physical boundary without materializing virtual padding, UndoRedo exact. Not every virtual selection operation, UTF8 width, viewport, pixels, Windows."
+}
