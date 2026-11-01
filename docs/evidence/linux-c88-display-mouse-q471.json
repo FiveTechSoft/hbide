@@ -1,0 +1,8 @@
+{
+  "scope": "Q471 fresh C88 Display frameless radio mouse preset all3/Cancel, no new feature count",
+  "source": "e32c6ece0a8d461f04f7244eb451e378211c7f14",
+  "binary_sha256": "e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38",
+  "test_sha256": "8e15338ad16b016aa83d8b6bdabc7656c1d9a3311cb417c85122c9df702c0753",
+  "runtime_log": "PASS Display mouse Cancel preserves 40x120\nPASS Display mouse third item applies25x80\nPASS Display mouse middle item applies30x100\nPASS Display mouse first item restores40x120\nPASS second undo/save preserves original bytes\nPASS first undo/save preserves original bytes\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-67kri0yi\n",
+  "limits": "PTYwindowresizeprotocol exact40x120/25x80/30x100/40x120 and two doc Undo/save bytes, not all geometry/hit regions/nativepixelrestoration/Windows."
+}

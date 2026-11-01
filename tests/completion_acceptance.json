@@ -541,9 +541,10 @@
     "IDE-035": {
       "expected_label": "Display...",
       "tests": [
-        "test_display_multidoc_pty.py"
+        "test_display_multidoc_pty.py",
+        "test_display_mouse_pty.py"
       ],
-      "contract": "Real Options Display applies 40x120->25x80->40x120. Inactive documents share current geometry; switched cursor and last line stay visible, expansion uses new rows. Independent edits/undo/save remain byte exact. Linux terminal resize negotiation, not Windows certification."
+      "contract": "Real Options Display applies 40x120->25x80->40x120. Inactive documents share current geometry; switched cursor and last line stay visible, expansion uses new rows. Independent edits/undo/save remain byte exact. Linux terminal resize negotiation, not Windows certification. Q471 caption mouse all3presets/Cancel/OK and two doc Undo bytes bounded."
     },
     "IDE-037": {
       "expected_label": "Index",
@@ -1613,15 +1614,17 @@
     },
     "IDE-FIELD-DisplayOpts-cSize-1": {
       "tests": [
-        "test_display_multidoc_pty.py"
+        "test_display_multidoc_pty.py",
+        "test_display_mouse_pty.py"
       ],
-      "contract": "Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered."
+      "contract": "Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered. Q471 C88 caption mouse Cancel preserves40x120; third25x80/middle30x100/first40x120 accepted via mouseOK; two documents Undo/save exact. PTY resize protocol, not pixels or Windows."
     },
     "IDE-FIELD-DisplayOpts-lDummy-1": {
       "tests": [
-        "test_display_multidoc_pty.py"
+        "test_display_multidoc_pty.py",
+        "test_display_mouse_pty.py"
       ],
-      "contract": "Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered."
+      "contract": "Actual Display25x80 and40x120 presets/OK resize terminal with inactive document cursor/layout retained. Esc cancellation preserves grid; explicit Cancel separately covered. Q471 C88 caption mouse Cancel preserves40x120; third25x80/middle30x100/first40x120 accepted via mouseOK; two documents Undo/save exact. PTY resize protocol, not pixels or Windows."
     },
     "IDE-FIELD-ReplaceDialog-cFind-1": {
       "tests": [
@@ -1656,9 +1659,10 @@
     },
     "IDE-FIELD-DisplayOpts-lDummy-2": {
       "tests": [
-        "test_display_multidoc_pty.py"
+        "test_display_multidoc_pty.py",
+        "test_display_mouse_pty.py"
       ],
-      "contract": "Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform."
+      "contract": "Actual explicit Cancel after changing options preserves prior compiler argv flags or display grid. Separate Esc path retained. Chosen settings only, not every dirty state/pixel/platform. Q471 C88 caption mouse Cancel preserves40x120; third25x80/middle30x100/first40x120 accepted via mouseOK; two documents Undo/save exact. PTY resize protocol, not pixels or Windows."
     },
     "IDE-FIELD-CompilerFlags-lAutoRun-1": {
       "tests": [
