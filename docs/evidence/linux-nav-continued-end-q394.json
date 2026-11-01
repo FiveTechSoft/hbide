@@ -1,0 +1,60 @@
+{
+  "scope": "Q394 continued class terminator logical boundary fix only",
+  "candidate": {
+    "source": "fc8a96958ef236d7739faacb9fd4dcb8b29f86ec",
+    "build_exit": 0,
+    "scope": "C82focal only, not official builder/fullmatrix/Windows",
+    "binary_sha256": "e84a0939695a9038afc51c0e0808bef0a79573bd3b6434e5957a88a1c77510f5"
+  },
+  "compiler_exit": 0,
+  "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q394/continued.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 720, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_kw7psy.dir/continued.c'... Done.\n",
+  "baseline_c81": "PASS Open requested fixture\nFAIL Picker includes implicit implementation, excludes member\nFAIL Picker jumps to implicit implementation after END CLASS\nTOTAL 1 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-s_xajbsh\n",
+  "fixed_c82": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after END CLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-fr2m9_fb\n",
+  "contexts": {
+    "continued": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-contexts-8c5i8r40/continued.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 720, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_5tmpaj.dir/continued.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCREATE CLASS Demo\nMETHOD Ping()\nEND ;\nCLASS\nMETHOD Ping()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after END CLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-f9mdfc6v\n"
+    },
+    "locked": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-contexts-8c5i8r40/locked.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 719, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_riq0ia.dir/locked.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCREATE CLASS Demo\nMETHOD Ping()\nEND CLASS LOCKED\nMETHOD Ping()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after END CLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-x44cs880\n"
+    },
+    "tab": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-contexts-8c5i8r40/tab.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 719, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_3i9dah.dir/tab.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCREATE CLASS Demo\nMETHOD Ping()\nEND\tCLASS\nMETHOD Ping()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after END CLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-g4bg_5cp\n"
+    },
+    "typed": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-contexts-8c5i8r40/typed.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 719, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_w4dc9v.dir/typed.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCREATE CLASS Demo\nMETHOD Ping()\nEND CLASS\nMETHOD FUNCTION Ping()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after END CLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-fhygx89c\n"
+    },
+    "latest": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-contexts-8c5i8r40/latest.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 721, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_nfk2ig.dir/latest.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCREATE CLASS One\nEND CLASS\nCREATE CLASS Demo\nMETHOD Ping()\nEND CLASS\nMETHOD Ping()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after END CLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-itel1rll\n"
+    }
+  },
+  "model": "127PASS0FAIL lexical GTSTD separate sourcefc8a969 including ENDCLASSLOCKED continuation and negative END IF",
+  "visual": {
+    "before": "/downloads/hbide-q394-contend-before.png",
+    "after": "/downloads/hbide-q394-contend-c82.png",
+    "inspection": "Complete1202x762 frames inspected including lower borders/status. C81onlyDemo1of1, C82methodDemo:Pingline6/2of2; actual jump/save bytes independently checked."
+  },
+  "limitations": [
+    "C82focal direct build only, C81latestofficial; no inherited matrix/models/pixels/Windows/install/license/hitoclosure",
+    "No CP/toolchain/pendingpolicy changes"
+  ]
+}
