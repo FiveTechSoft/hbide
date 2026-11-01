@@ -1,0 +1,13 @@
+{
+  "candidate_source": "89f6eb5bbd335c2ca37ed1e1f8718b55290210de",
+  "binary_sha256": "9b49b783fe8176f915825a8b4570b0b7cc82d5231e62576835e7b8f9c1816d6a",
+  "pty": {
+    "sha256": "8ed7ed380c9adec243b33d7d945502aabddbaccf23b0b772155e000f134d2b6e",
+    "log": "PASS CtrlT virtual EOL creates no journal\nPASS Virtual CtrlT preserves prior Redo\nPASS CtrlT actual EOL remains byte exact\nPASS No-op CtrlT retains copied clipboard\nPASS Undo clipboard probe exact\nPASS No-op CtrlT closes without false save prompt\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-2alh6l0p\n"
+  },
+  "model": {
+    "sha256": "554575a577f194d0b483f439497d9e4b8448588420ec00947e7a1b113e96981c",
+    "log": "\n\n    1 beta\n    2\n    3\n    4\n    5\n    6\n    7\n    8\n    9\n   10\n   11\n   12\n   13\n   14\n   15\n   16\n   17\n   18\n   19\nPASS UTF8 word removes whole accented word\n    1caf\u00e9 beta\nP   2\nPASS UTF8 Undo restores exact\n    1caf beta\nP   2\nPASS UTF8 midword deletes one scalar not byte\n    1caf\u00e9 beta\nP   2\n    1     beta\nPASS TAB is one model column, not display width\n    1    alpha beta\nP   2\nPASS TAB Undo exact\nPASS initial block comment reaches next row\n    1 comment\nP   2return nil\nPASS word deletion invalidates block state\n    1/* comment\nP   2return nil\nPASS Undo restores block state\n    1 comment\nP   2return nil\nPASS Redo clears block state\n    1alpha beta gamma\nP   2\n    1beta gamma\nPASS CtrlT consumes marked range before word at cursor\n    1alpha beta gamma\nP   2\nPASS marked CtrlT Undo exact\n    1beta gamma\nP   2\nPASS marked CtrlT Redo exact\n    1Xbeta gamma\nPASS typing after CtrlT has no stale selection\n    1    beta gamma\nP   2\nPASS CtrlT raw TAB separates words\n    1alpha   beta gamma\nP   2\nPASS TAB boundary Undo exact\n    1    beta gamma\nP   2\nPASS TAB boundary Redo exact\n    1    beta\nP   2\nPASS leading TAB skipped before current word\n    1    alpha   beta\nP   2\nPASS leading TAB Undo exact\n    1Xabcdefghij\n    1abcdefghij\nP   2x\n    1abcdefghij\nP   2x\nPASS virtual CtrlT keeps bytes dirty and history unchanged\nPASS virtual CtrlT preserves clipboard and cursor\n    1Xabcdefghij\nP   2x\nP   3\nP   4\nPASS Redo survives virtual CtrlT\n    1abcdefghij\nP   2x\n    1\nP   2\nPASS empty CtrlT no dirty/history\nTOTAL         22 PASS          0 FAIL"
+  },
+  "scope": "Postexport no-op guardsharness only; unchangedC63binary/product.22DeleteWordmodel/6PTYchecksPASS includingvirtualEOL/actualEOL/emptymodel/nojournal/redo/clipboard/nofalseprompt. No pixels/newmatrix/Windows/hito."
+}
