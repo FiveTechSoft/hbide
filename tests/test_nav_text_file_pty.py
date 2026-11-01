@@ -77,6 +77,8 @@ work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 (work/'home').mkdir(); (work/'rec').mkdir()
 target = work/'source.prg'
 original = b'procedure Main()\nTEXT TO FILE "out.txt"\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n'
+if os.environ.get('HBIDE_NAV_FIXTURE'):
+    original = pathlib.Path(os.environ['HBIDE_NAV_FIXTURE']).read_bytes()
 target.write_bytes(original)
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
 pid, fd = pty.fork()
