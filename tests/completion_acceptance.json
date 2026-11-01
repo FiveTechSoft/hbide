@@ -3026,9 +3026,10 @@
       "condition": "elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD",
       "tests": [
         "test_editor_wheel_pty.py",
-        "test_editor_wheel_mark_pty.py"
+        "test_editor_wheel_mark_pty.py",
+        "test_editor_wheel_mark_utf8_pty.py"
       ],
-      "contract": "Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature. Separate Q457 ASCII three-row CRLF selected-word fixture characterizes existing wheel extension to second-row endpoint and down/up contraction; typing/Undo/Redo exact. Not all selection states or policy approval."
+      "contract": "Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature. Separate Q457 ASCII three-row CRLF selected-word fixture characterizes existing wheel extension to second-row endpoint and down/up contraction; typing/Undo/Redo exact. Not all selection states or policy approval. Q458 adds explicit UTF8 host/terminal accented word after TAB with BOM/mixedEOL down/up range and Undo/Redo exact; not every Unicode width or F8 path."
     },
     "GESTURE-EDITOR-WHEEL-UP": {
       "source": "editor.prg",
@@ -3036,9 +3037,10 @@
       "condition": "case nKeyStd == K_MWFORWARD",
       "tests": [
         "test_editor_wheel_pty.py",
-        "test_editor_wheel_mark_pty.py"
+        "test_editor_wheel_mark_pty.py",
+        "test_editor_wheel_mark_utf8_pty.py"
       ],
-      "contract": "Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature. Separate Q457 ASCII three-row CRLF selected-word fixture characterizes existing wheel extension to second-row endpoint and down/up contraction; typing/Undo/Redo exact. Not all selection states or policy approval."
+      "contract": "Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature. Separate Q457 ASCII three-row CRLF selected-word fixture characterizes existing wheel extension to second-row endpoint and down/up contraction; typing/Undo/Redo exact. Not all selection states or policy approval. Q458 adds explicit UTF8 host/terminal accented word after TAB with BOM/mixedEOL down/up range and Undo/Redo exact; not every Unicode width or F8 path."
     },
     "GESTURE-EDITOR-WHEEL-DOWN": {
       "source": "editor.prg",
@@ -3046,9 +3048,10 @@
       "condition": "case nKeyStd == K_MWBACKWARD",
       "tests": [
         "test_editor_wheel_pty.py",
-        "test_editor_wheel_mark_pty.py"
+        "test_editor_wheel_mark_pty.py",
+        "test_editor_wheel_mark_utf8_pty.py"
       ],
-      "contract": "Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature. Separate Q457 ASCII three-row CRLF selected-word fixture characterizes existing wheel extension to second-row endpoint and down/up contraction; typing/Undo/Redo exact. Not all selection states or policy approval."
+      "contract": "Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature. Separate Q457 ASCII three-row CRLF selected-word fixture characterizes existing wheel extension to second-row endpoint and down/up contraction; typing/Undo/Redo exact. Not all selection states or policy approval. Q458 adds explicit UTF8 host/terminal accented word after TAB with BOM/mixedEOL down/up range and Undo/Redo exact; not every Unicode width or F8 path."
     },
     "GESTURE-HELP-LINK-VIEWER-WHEEL-UP": {
       "source": "help.prg",
