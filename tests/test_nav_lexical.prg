@@ -195,6 +195,12 @@ procedure Main()
  next
  a:=HBIDE_ScanProcs('TEXTCUSTOM'+hb_eol()+'function Real()')
  Check(Len(a)==1.and.a[1,1]=='Real','custom TEXT prefix does not start raw stream',@nPass,@nFail)
+ for each c in {'TEXT ;'+hb_eol()+'TO FILE "out.txt"','TEXT TO ;'+hb_eol()+'FILE "out.txt"','TEXT TO ;'+hb_eol()+'PRINTER','TEXT ; // join'+hb_eol()+'TO ;'+hb_eol()+'FILE "out.txt"'}
+ a:=HBIDE_ScanProcs('procedure Main()'+hb_eol()+c+hb_eol()+'function Phantom()'+hb_eol()+'/* literal'+hb_eol()+'ENDTEXT'+hb_eol()+'function Real()')
+ Check(Len(a)==2.and.a[2,1]=='Real','continued standard TEXT excludes raw payload: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('TEXTCUSTOM ;'+hb_eol()+'function Real()')
+ Check(Len(a)==1.and.a[1,1]=='Real','continued custom prefix does not absorb declaration',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

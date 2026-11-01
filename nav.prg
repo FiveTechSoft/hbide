@@ -22,7 +22,7 @@ FUNCTION HBIDE_ScanProcs( cText )
    aLines := hb_ATokens( cText, Chr( 10 ) )
    FOR EACH cLine IN aLines
       nLine++
-      // Standard bare TEXT/ENDTEXT contents are literal physical lines,
+      // Standard TEXT/ENDTEXT stream contents are literal physical lines,
       // not Harbour comments or declarations. Inspect its raw terminator
       // before letting any payload affect the normal lexical state.
       IF lText
@@ -46,11 +46,6 @@ FUNCTION HBIDE_ScanProcs( cText )
       IF Empty( cL )
          LOOP
       ENDIF
-      IF HBIDE_NavTextStart( cL )
-         cPending := ""
-         lText := .T.
-         LOOP
-      ENDIF
       IF Left( cL, 1 ) == "#"
          cPending := ""
          cT1 := Upper( StrTran( cL, " ", "" ) )
@@ -70,11 +65,17 @@ FUNCTION HBIDE_ScanProcs( cText )
          nSourceLine := nDeclLine
          cPending := ""
       ENDIF
-      // Only declaration-looking logical lines are joined. A semicolon
+      // Only declarations or standard TEXT prefixes are joined. A semicolon
       // masked inside a string/comment never reaches this code.
-      IF Right( cL, 1 ) == ";" .AND. HBIDE_NavDeclStart( RTrim( Left(cL,Len(cL)-1) ) )
+      IF Right( cL, 1 ) == ";" .AND. ( HBIDE_NavDeclStart( RTrim( Left(cL,Len(cL)-1) ) ) .OR. ;
+         HBIDE_NavTextPrefix( RTrim( Left(cL,Len(cL)-1) ) ) )
          cPending := RTrim( Left( cL, Len(cL)-1 ) )
          nDeclLine := nSourceLine
+         LOOP
+      ENDIF
+      IF HBIDE_NavTextStart( cL )
+         cPending := ""
+         lText := .T.
          LOOP
       ENDIF
       // Harbour accepts a class qualifier touching the closing argument
@@ -214,6 +215,21 @@ STATIC FUNCTION HBIDE_NavEndDump( cLine )
    c := LTrim( SubStr( c, 8 ) )
    RETURN Empty( c ) .OR. Left( c, 1 ) == ";" .OR. ;
       Left( c, 2 ) == "//" .OR. Left( c, 2 ) == "&&" .OR. Left( c, 2 ) == "/*"
+
+// Join only possible standard TEXT command prefixes, never TEXT-prefixed
+// identifiers. Recognition waits until the logical command is complete.
+STATIC FUNCTION HBIDE_NavTextPrefix( cLine )
+   LOCAL a := HBIDE_Compact( hb_ATokens( Upper(cLine), " " ) )
+   IF Empty(a) .OR. !(a[1] == "TEXT")
+      RETURN .F.
+   ENDIF
+   IF Len(a) == 1
+      RETURN .T.
+   ENDIF
+   IF !(a[2] == "TO")
+      RETURN .F.
+   ENDIF
+   RETURN Len(a) == 2 .OR. HBIDE_NavTextStart(cLine)
 
 // Standard std.ch text streams only. String payload/target was masked
 // by NavCode; no macro evaluation or output side effect belongs here.
