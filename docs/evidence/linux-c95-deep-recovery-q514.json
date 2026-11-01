@@ -1,0 +1,20 @@
+{
+  "scope": "C95 fresh threeboundedrecoverymodesdeepmixed/deepUTF8hostBOM/Compare25x80,noinheritance",
+  "source": "1cdedd93da118bcdb33866d574943a784a00c0f6",
+  "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845",
+  "results": {
+    "deep-mixed": {
+      "test_sha256": "9b24c3e619fcde8e021136980c9bffcb598c9191ea1b1f9a1e5509bddc646639",
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n"
+    },
+    "deep-bom": {
+      "test_sha256": "9b24c3e619fcde8e021136980c9bffcb598c9191ea1b1f9a1e5509bddc646639",
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal encoding generation stored\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n"
+    },
+    "compare": {
+      "test_sha256": "c5163ac5b4a8807c4bf258cd75b2ea48237cd1457d67249093cc5fc9023ed01d",
+      "log": "PASS Compare is read-only; open snapshots stay stable; reopening refreshes disk; Later keeps bytes and current document\n"
+    }
+  },
+  "limits": "Noallrecovery/filesystems/newpolicy/pixels/fullmatrix/Windows/license"
+}
