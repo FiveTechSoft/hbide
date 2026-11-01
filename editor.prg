@@ -1402,6 +1402,9 @@ METHOD SetDirty( l ) CLASS HBSrcEdit
 
    hb_defaultValue( l, .T. )
    ::lDirty := l
+   // Recovery loads an unsaved baseline outside the undo history. It is
+   // not the on-disk state: undoing its first edit must stay dirty.
+   ::nSavedUndoLen := iif( l, -1, Len( ::aUndo ) )
 
 return nil
 
