@@ -276,7 +276,6 @@ class DispatchAcceptance(unittest.TestCase):
         broken=dict(self.specs,duplicate=next(iter(self.specs.values())))
         with self.assertRaisesRegex(ValueError,'Duplicate dispatch contract'):audit.link_dispatch_contracts(self.routes,broken)
 
-if __name__=='__main__':unittest.main()
 
 class InspectorInventory(unittest.TestCase):
     def setUp(self):
@@ -315,3 +314,5 @@ class InspectorInventory(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Missing inspector test'):
             audit.link_inspector_contracts(self.rows,{'DSN-INSP-get-row':dict(self.specs['DSN-INSP-get-row'],tests=['missing-inspector.py'])})
         self.assertTrue(all(r['acceptance'] is None for r in audit.link_inspector_contracts(self.rows,{})))
+
+if __name__=='__main__':unittest.main()

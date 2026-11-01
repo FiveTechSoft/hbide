@@ -4183,5 +4183,6 @@ y existencia del test falla ante desajuste; vinculo ausente queda pendiente.
 Seis nuevas pruebas de inventario cubren expansion y rechazos negativos.
 Cambio de trazabilidad, no arreglo de producto ni nuevo resultado PTY/visual.
 
-Q145 final: 57 guardas PASS (inventario 42 tests internos),34 docs byte-for-byte.
-Fuente `e03e0d5`; evidencia `docs/evidence/linux-inspector-contract-links-q145.json`.
+Q145: descubrimiento unitario dio 42 tests, pero el runner directo ejecutaba
+36 por orden del unittest.main. Se mueve al final antes de pasada final;
+no se mezcla el primer resultado de 57 guardas con las seis nuevas.
