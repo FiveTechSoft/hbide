@@ -66,7 +66,8 @@ function HBIDE_AtomicWriteFile( cFile, cContent, cFailInfo )
    endif
 
    aDir := Directory( cFile )
-   if Len( aDir ) > 0 .and. "L" $ aDir[ 1 ][ F_ATTR ]
+   if ! Empty( hb_vfLinkRead( cFile ) ) .or. ;
+      ( Len( aDir ) > 0 .and. "L" $ aDir[ 1 ][ F_ATTR ] )
       cFailInfo := cFile + " is a symlink: saving there is not safe yet. " + ;
                    "Destination untouched; your content is recoverable at " + cTmp
       return .F.

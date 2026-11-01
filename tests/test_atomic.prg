@@ -107,6 +107,19 @@ proc Main()
    Check( "save to dangling symlink refused", ! HBIDE_AtomicWriteFile( cDir + "/dangling.txt", "NEW", @cInfo ) )
    Check( "dangling link preserved", hb_vfLinkRead( cDir + "/dangling.txt" ) == "absent-target" )
 
+   // Literal wildcard characters are legal POSIX filenames. Directory(cFile)
+   // is a pattern lookup and may return a different sibling first.
+#ifndef __PLATFORM__WINDOWS
+   hb_MemoWrit( cDir + "/literal-other.prg", "OTHER" )
+   hb_Run( "ln -s real.txt '" + cDir + "/literal*.prg'" )
+   cInfo := ""
+   Check( "literal wildcard symlink save refused", ! HBIDE_AtomicWriteFile( cDir + "/literal*.prg", "WILD-NEW", @cInfo ) )
+   Check( "literal wildcard link preserved", hb_vfLinkRead( cDir + "/literal*.prg" ) == "real.txt" )
+   Check( "wildcard sibling and target intact", hb_MemoRead( cDir + "/literal-other.prg" ) == "OTHER" .and. hb_MemoRead( cOld ) == "target-v1" )
+   cRecover := SubStr( cInfo, At( "recoverable at ", cInfo ) + Len( "recoverable at " ) )
+   Check( "wildcard complete recovery named", "recoverable at " $ cInfo .and. hb_MemoRead( cRecover ) == "WILD-NEW" )
+#endif
+
    // Symlink refusal must not promise a recovery file that could not be written.
    hb_Run( "ln -s ../real.txt " + cDir + "/ro/link.txt" )
    hb_Run( "chmod 0555 " + cDir + "/ro" )

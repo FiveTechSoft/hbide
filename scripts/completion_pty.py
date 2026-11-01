@@ -6,6 +6,8 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'saveas-literal-symlink': ('test_saveas_literal_symlink_pty.py', [], 40),
+    'saveas-literal-symlink-dirty': ('test_saveas_literal_symlink_pty.py', ['--dirty'], 40),
     'designer-inspector-close-small': ('test_designer_inspector_close_pty.py', ['--small'], 120),
     'designer-inspector-close': ('test_designer_inspector_close_pty.py', [], 120),
     'designer-mixed-fixture-accelerators': ('test_designer_mixed_fixture_runtime_pty.py', ['--actions','--accelerators'], 120),
