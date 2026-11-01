@@ -1,0 +1,41 @@
+{
+  "scope": "Q403 standard TEXT TO FILE/PRINTER raw payload navigation fix",
+  "candidate": {
+    "source": "6d855540cdff2c85335f69ad38ee9ecb2f8e8a3f",
+    "build_exit": 0,
+    "scope": "C84focal only, not official builder/fullmatrix/Windows",
+    "binary_sha256": "584878460045dae3e8c13a1c2604006b025f47b9ba57c1f67e2e1055a1456be3"
+  },
+  "exact_fixture_compiler_exit": 0,
+  "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q403/exact.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_t47rkq.dir/exact.c'... Done.\n",
+  "baseline_c83": "PASS Open requested fixture\nFAIL Picker excludes TEXT phantom and includes real declaration\nFAIL Picker jumps after raw TEXT block\nTOTAL 1 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-awotcxn7\n",
+  "fixed_c84": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-iy6h5_ij\n",
+  "regressions": {
+    "test_nav_text_block_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-j7q_dgxy\n"
+    },
+    "test_nav_raw_bom_pty.py": {
+      "exit": 0,
+      "log": "PASS Raw UTF8 warning\nPASS Picker includes first declaration behind raw BOM\nPASS Navigation preserves raw UTF8 BOM file\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-5jlkqet5\n"
+    },
+    "test_nav_end_class_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after END CLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-bo4ckxip\n"
+    },
+    "test_nav_declared_method_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes DECLARED implementation, excludes member\nPASS Picker jumps to DECLARED implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-fsulfmi1\n"
+    }
+  },
+  "model": "131PASS0FAIL lexical GTSTD separate source6d85554 including FILE/PRINTER/TAB and customprefixnegative",
+  "visual": {
+    "before": "/downloads/hbide-q403-textfile-before.png",
+    "after": "/downloads/hbide-q403-textfile-c84.png",
+    "inspection": "Complete1202x762frames including lower borders/status inspected. C83Phantomline3 instead ofReal; C84RealLine7, payload excluded. Source colors unchanged, not syntax-coloring fix."
+  },
+  "limitations": [
+    "No payload execution, macro/custom stream support, CP/toolchain/policy change",
+    "C84focal direct build only;C83latestofficial; no matrices/models/pixels inherited/Windows/install/license/hitoclosure"
+  ]
+}
