@@ -4925,3 +4925,15 @@ no eran fallo de producto UTF8. Un experimento no compilaba por nombre de
 DispBegin, corregido antes de fuente final. No anchoUnicode general,
 malformedUTF8,Windows,matriz342 ni cierreM2. C28 no incluye este cambio.
 Evidencia: docs/evidence/linux-output-explicit-utf8-q196.json.
+
+### Q197 (1 noviembre 2026): scroll UTF-8 y restauracion de CP
+
+Fuente6efe2961465f821c7faf8ea4d57cd642e31dc336/binario
+6fb101ba4a2d9be76dd64408aa10abf159169a1fda6fe21d97f08b536b57f12d.
+3PTY27checksPASS: linea140caracteres multibyte, cola accesible, vuelta
+al inicio sin replacement ni corte de caracter; U/L/U conserva copia
+legible y salto al fuente. ModeloGTSTD9checksPASS incluye raw byte exacto
+y hostCP restaurado tanto EN como UTF8. No pixels del modelo.
+87guardas34docsPASS. Sin cambio producto/nuevos pixeles, anchoUnicode
+general, malformedUTF8, Windows, matriz343 o cierre.
+Evidencia: docs/evidence/linux-output-utf8-boundaries-q197.json.

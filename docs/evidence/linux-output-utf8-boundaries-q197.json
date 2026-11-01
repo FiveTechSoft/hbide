@@ -1,0 +1,187 @@
+{
+  "scope": "Acceptance expansion only, no new product fix or pixels. Not malformed/wide Unicode, full 343 matrix, Windows or milestone closure.",
+  "rows": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "6efe2961465f821c7faf8ea4d57cd642e31dc336",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "6b7e669a4b530e24f0d4963fbd7a59602f8e7fe7cd055fd45e9340390dd691dd",
+      "binary_sha256": "6fb101ba4a2d9be76dd64408aa10abf159169a1fda6fe21d97f08b536b57f12d",
+      "build_receipt": "/tmp/hbide-q197-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "bc43cdaec4925bcc16cea6196769b523e6987d81c32914021ffe80108b22ebd3",
+      "case": "gcc-utf8-output-horizontal",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "color",
+        "--output-viewer",
+        "--utf8-viewer",
+        "--utf8-scroll"
+      ],
+      "started": 1793522738.3346462,
+      "seconds": 13.76,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+      "log": "/tmp/hbide-q197-final/gcc-utf8-output-horizontal-1793522738334642119.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "6efe2961465f821c7faf8ea4d57cd642e31dc336",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "6b7e669a4b530e24f0d4963fbd7a59602f8e7fe7cd055fd45e9340390dd691dd",
+      "binary_sha256": "6fb101ba4a2d9be76dd64408aa10abf159169a1fda6fe21d97f08b536b57f12d",
+      "build_receipt": "/tmp/hbide-q197-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "bc43cdaec4925bcc16cea6196769b523e6987d81c32914021ffe80108b22ebd3",
+      "case": "gcc-utf8-output-viewer",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "color",
+        "--output-viewer",
+        "--utf8-viewer"
+      ],
+      "started": 1793522752.0914552,
+      "seconds": 10.8,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+      "log": "/tmp/hbide-q197-final/gcc-utf8-output-viewer-1793522752091451088.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "6efe2961465f821c7faf8ea4d57cd642e31dc336",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "6b7e669a4b530e24f0d4963fbd7a59602f8e7fe7cd055fd45e9340390dd691dd",
+      "binary_sha256": "6fb101ba4a2d9be76dd64408aa10abf159169a1fda6fe21d97f08b536b57f12d",
+      "build_receipt": "/tmp/hbide-q197-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "bc43cdaec4925bcc16cea6196769b523e6987d81c32914021ffe80108b22ebd3",
+      "case": "project-output-scroll",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_project_output_pty.py"
+      ],
+      "started": 1793522762.8902783,
+      "seconds": 12.0,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "da7836afe1085933995ded88f46a19c405b320399a4561182b72a5d375a0dec0",
+      "log": "/tmp/hbide-q197-final/project-output-scroll-1793522762890275018.log"
+    }
+  ],
+  "logs": {
+    "gcc-utf8-output-horizontal": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Real colored GCC output viewer opens\nPASS Real GCC diagnostic readable without color notation\nPASS Explicit UTF8 view renders real GCC quotes\nPASS UTF8 horizontal tail accessible\nPASS UTF8 left clamp restores complete multibyte start\nPASS Legacy view remains selectable\nPASS UTF8 repeated selection preserves original display copy\nPASS Esc restores project diagnostics\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column color\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 14 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-11jejb74\n",
+    "gcc-utf8-output-viewer": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Real colored GCC output viewer opens\nPASS Real GCC diagnostic readable without color notation\nPASS Explicit UTF8 view renders real GCC quotes\nPASS Legacy view remains selectable\nPASS Esc restores project diagnostics\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column color\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 11 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-hld72ie3\n",
+    "project-output-scroll": "PASS F6 opens full output and horizontal scrolling reveals diagnostic tail\nPASS Esc returns to same project failure state\n"
+  },
+  "checks": 27,
+  "model": {
+    "source": "6efe2961465f821c7faf8ea4d57cd642e31dc336",
+    "source_hashes": {
+      "tests/test_project_output.prg": "cc192d864e7ded4a498957a19b102a86de0f2b42b123bf592d4e5a3d0538d171",
+      "projectui.prg": "b6b1e2254805825b32c7d983c308cb1caaf8e9c000db55b3ca90100f16a910d1",
+      "project.prg": "1f7ef0d684a5ec6fd9cc2327b3a85db8c2451ace08a11803c2b0424216007198",
+      "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+    },
+    "binary_sha256": "27c0a2d7ef52a12dc51226c7366b7d982f0c581ef47ed046a25f1bbdc2a513a6",
+    "result": "PASS output horizontal navigation and boundaries",
+    "build_exit": 0,
+    "run_exit": 0,
+    "checks": 9,
+    "scope": "GTSTD queued model, not visual evidence"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "6efe2961465f821c7faf8ea4d57cd642e31dc336",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "075864f51f6426ccbb415ae2a675e78bd6aa9e79c1230105cbdb92953a3cde3c",
+    "started": 1793522775.0786176,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "test_foreign_root_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "1e97d47fd21cd837401080f0cff716b3666d9706771eddb62f437bd34870f41a",
+        "log": "/tmp/hbide-q197-guards/test_foreign_root_guard.py.log",
+        "seconds": 0.217
+      },
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q197-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.217
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q197-guards/test_completion_guards.py.log",
+        "seconds": 0.216
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q197-guards/test_build_receipt.py.log",
+        "seconds": 0.216
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "e6f79e6fa0af285676b2ab2be7e585568186ed37e369759008f959635c3f6a81",
+        "log": "/tmp/hbide-q197-guards/test_completion_inventory.py.log",
+        "seconds": 0.767
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "62951fcdcd3c708f1bbf433cd97d6d160c8736d1fe628e89e24284b9dadc33a3",
+        "log": "/tmp/hbide-q197-guards/test_distribution_notices.py.log",
+        "seconds": 0.22
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q197-guards/test_embed_help_docs.py.log",
+        "seconds": 0.214
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "748bdd859802a6cb51418e98e9ffac879a94892690e9ea7500791cc691a9f08a",
+        "log": "/tmp/hbide-q197-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.567
+      }
+    },
+    "ok": true,
+    "finished": 1793522777.7117999
+  },
+  "docs": "34 complete documents PASS"
+}
