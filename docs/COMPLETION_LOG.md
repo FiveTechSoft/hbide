@@ -4897,3 +4897,16 @@ sin .git de esta fuente auditado: exit1 esperado,14referencias ausentes,
 14fuentes sin header detectado,34docsPASS. No candidato/binario nuevo,
 PTY, pixeles, Windows ni cierre M5.
 Evidencia: docs/evidence/linux-candidate-notice-export-q195.json.
+
+### C28 (1 noviembre 2026): candidato temporal tras correcciones M2
+
+Export a86b9d879a6cf5450fcf23cb824a9fbd4ac4913a, stripped binario
+a9de4328f65dee8a6d8ac4ed23c89df82fb392d336a59e7fc8fc6eba58ff46db.
+8smokes del constructor y3modos recientes/45checks PASS sobre binario
+exacto: promocion/reintento real, salida larga color, GCC real/visor/salto.
+Inventario de avisos del export conservado con hash/revision; no clearance.
+Dos capturas nativas completas1202x762 revisadas: bordes completos, retorno
+al fuente fila2col9 sin restos. Limite observado: comillas UTF-8 de GCC
+se ven como mojibake con HBIDE_UTF8=0 y compilador C.UTF-8. No se declara
+encoding limpio; investigar. No release, instalacion, Windows ni matriz341.
+Evidencia: docs/evidence/linux-candidate-c28.json.
