@@ -123,6 +123,12 @@ procedure Main()
  Check(Len(a)==1.and.a[1,1]=='Demo:_Value','compact assign retains underscore method name',@nPass,@nFail)
  a:=HBIDE_ScanProcs('METHOD Ping()CLASS;'+hb_eol()+'Demo')
  Check(Len(a)==1.and.a[1,1]=='Demo:Ping'.and.a[1,3]==1,'compact qualifier continuation retains declaration line',@nPass,@nFail)
+ for each c in { 'METHOD Ping( CLASS )CLASS Demo', 'METHOD FUNCTION Ping(CLASS)CLASS Demo', 'PROCEDURE Ping(CLASS)CLASS Demo', 'ACCESS Ping(CLASS)CLASS Demo' }
+ a:=HBIDE_ScanProcs(c)
+ Check(Len(a)==1.and.a[1,1]=='Demo:Ping','CLASS parameter is not owner qualifier: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('CLASS Demo'+hb_eol()+'METHOD Ping( CLASS )'+hb_eol()+'ENDCLASS')
+ Check(Len(a)==1.and.a[1,1]=='Demo','member CLASS parameter is not implementation',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

@@ -11,7 +11,7 @@
 // (//, *, &&, /* */) and #pragma begindump C blocks are skipped.
 FUNCTION HBIDE_ScanProcs( cText )
    LOCAL aOut := {}, aLines, cLine, cL, nLine := 0, lBlock := .F., lDump := .F., cBlockContext := ""
-   LOCAL aTok, cT1, cT2, cName, n, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine, cModifier
+   LOCAL aTok, cT1, cT2, cName, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine, cModifier
 
    cText := StrTran( StrTran( cText, Chr( 13 ) + Chr( 10 ), Chr( 10 ) ), Chr( 13 ), Chr( 10 ) )
    aLines := hb_ATokens( cText, Chr( 10 ) )
@@ -61,7 +61,7 @@ FUNCTION HBIDE_ScanProcs( cText )
       // Harbour accepts a class qualifier touching the closing argument
       // parenthesis: METHOD Ping()CLASS Demo. Preserve the method name,
       // but make that lexical boundary visible to the word-token scan.
-      aTok := hb_ATokens( StrTran( cL, ")", ") " ), " " )
+      aTok := hb_ATokens( StrTran( StrTran( cL, "(", " ( " ), ")", " ) " ), " " )
       // collapse blanks left by consecutive spaces
       aTok := HBIDE_Compact( aTok )
       IF Len( aTok ) < 2
@@ -87,22 +87,14 @@ FUNCTION HBIDE_ScanProcs( cText )
       ELSEIF HBIDE_IsKw( cT1, "PROCEDURE" )
          cKind := "procedure"; cName := aTok[ 2 ]
          // hbclass.ch backward-compatible PROCEDURE name CLASS cls alias.
-         FOR n := 3 TO Len( aTok )
-            IF Upper( aTok[n] ) == "CLASS" .AND. n < Len(aTok)
-               cCls := aTok[n+1]
-               cKind := "method"
-               EXIT
-            ENDIF
-         NEXT
+         cCls := HBIDE_NavMethodClass( aTok, 3 )
+         IF ! Empty( cCls )
+            cKind := "method"
+         ENDIF
       ELSEIF cT1 == "METHOD" .OR. cT1 == "ACCESS" .OR. cT1 == "ASSIGN" .OR. cT1 == "DESTRUCTOR"
          // only the implementation form names its class: "METHOD x() CLASS c"
-         cCls := ""
-         FOR n := 3 TO Len( aTok )
-            IF Upper( aTok[ n ] ) == "CLASS" .AND. n < Len( aTok )
-               cCls := aTok[ n + 1 ]
-               EXIT
-            ENDIF
-         NEXT
+         cCls := HBIDE_NavMethodClass( aTok, ;
+            iif( cT2 == "FUNCTION" .OR. cT2 == "PROCEDURE", 4, 3 ) )
          IF Empty( cCls )
             LOOP
          ENDIF
@@ -134,6 +126,22 @@ FUNCTION HBIDE_ScanProcs( cText )
       AAdd( aOut, { cName, cKind, nSourceLine } )
    NEXT
    RETURN aOut
+
+// CLASS is also a legal parameter name. Only a qualifier outside the
+// signature's parentheses identifies the implementation's owning class.
+STATIC FUNCTION HBIDE_NavMethodClass( aTok, nStart )
+   LOCAL n, nDepth := 0
+   FOR n := nStart TO Len( aTok )
+      DO CASE
+      CASE aTok[n] == "("
+         nDepth++
+      CASE aTok[n] == ")"
+         nDepth := Max( 0, nDepth - 1 )
+      CASE nDepth == 0 .AND. Upper( aTok[n] ) == "CLASS" .AND. n < Len(aTok)
+         RETURN aTok[n+1]
+      ENDCASE
+   NEXT
+   RETURN ""
 
 // Bounded declaration continuations, not arbitrary statement preprocessing.
 STATIC FUNCTION HBIDE_NavDeclStart( cLine )

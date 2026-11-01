@@ -77,6 +77,8 @@ work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 (work/'home').mkdir(); (work/'rec').mkdir()
 target = work/'source.prg'
 original = b'#include "hbclass.ch"\nCREATE CLASS Demo\n METHOD Ping()\nENDCLASS\nprocedure Main()\n ? Demo():New():Ping()\nreturn\nMETHOD Ping()CLASS Demo\nreturn 42\n'
+if os.environ.get('COMPACT_CLASS_PARAM') == '1':
+    original = original.replace(b'METHOD Ping()CLASS Demo',b'METHOD Ping( CLASS )CLASS Demo')
 target.write_bytes(original)
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
 pid, fd = pty.fork()
@@ -114,7 +116,7 @@ try:
     menu(b'u')
     check('Picker includes compact method implementation','Demo:Ping' in scr.text())
     send(b'Demo:Ping\r');send(b'X')
-    saved('Picker jumps to compact method implementation',original.replace(b'METHOD Ping()CLASS Demo',b'XMETHOD Ping()CLASS Demo'))
+    saved('Picker jumps to compact method implementation',original.replace(b'\nMETHOD Ping(',b'\nXMETHOD Ping('))
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
