@@ -1,0 +1,281 @@
+{
+  "scope": "Frozen C30 designer quotes/clipboard/snap.17additional command variants;292distinct across blocks1..91 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "interruption": "Block90 exceeded120s shell budget after popup+created receipts PASS; loaded-types possibly interrupted, resumed skipping2 receipts and reran loaded mode. Not globally retryfree. --create genuinely consumed in loaded_types harness unlike Q222.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-duplicate-caption-anchor",
+          "command": [
+            "test_designer_quote_anchor_pty.py",
+            "--duplicate-caption"
+          ],
+          "exit": 0,
+          "seconds": 3.033660888671875,
+          "test_sha256": "fe0bd69612d5dcf3074fe3a4f93d2a48cf31b59b4cddf21d0b488642da81f4df",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-duplicate-caption-anchor.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-reserved-binding-anchor",
+          "command": [
+            "test_designer_quote_anchor_pty.py",
+            "--reserved-binding"
+          ],
+          "exit": 0,
+          "seconds": 2.8644309043884277,
+          "test_sha256": "fe0bd69612d5dcf3074fe3a4f93d2a48cf31b59b4cddf21d0b488642da81f4df",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-reserved-binding-anchor.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-dialog-caption-anchor",
+          "command": [
+            "test_designer_quote_anchor_pty.py",
+            "--dialog-caption"
+          ],
+          "exit": 0,
+          "seconds": 2.873142957687378,
+          "test_sha256": "fe0bd69612d5dcf3074fe3a4f93d2a48cf31b59b4cddf21d0b488642da81f4df",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-dialog-caption-anchor.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-button-anchor",
+          "command": [
+            "test_designer_quote_anchor_pty.py",
+            "--button"
+          ],
+          "exit": 0,
+          "seconds": 2.873140335083008,
+          "test_sha256": "fe0bd69612d5dcf3074fe3a4f93d2a48cf31b59b4cddf21d0b488642da81f4df",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-button-anchor.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-quote-anchor",
+          "command": [
+            "test_designer_quote_anchor_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 2.8738551139831543,
+          "test_sha256": "fe0bd69612d5dcf3074fe3a4f93d2a48cf31b59b4cddf21d0b488642da81f4df",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-quote-anchor.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-quote-mixed-runtime",
+          "command": [
+            "test_designer_quote_runtime_pty.py",
+            "--mixed"
+          ],
+          "exit": 0,
+          "seconds": 5.335336923599243,
+          "test_sha256": "3b230f2955a231dc8cb7fa2fc4af4a6687475b35667c533f58df6518cc606c27",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-quote-mixed-runtime.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-quote-runtime",
+          "command": [
+            "test_designer_quote_runtime_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.3326685428619385,
+          "test_sha256": "3b230f2955a231dc8cb7fa2fc4af4a6687475b35667c533f58df6518cc606c27",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-quote-runtime.log",
+          "printed_failure": false
+        },
+        {
+          "name": "gui-roundtrip",
+          "command": [
+            "test_gui_roundtrip_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 28.682716608047485,
+          "test_sha256": "15d680d6144442f356fd96777fd5ad8e87d27e394ab8b7c5e0450841b8df5bba",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/gui-roundtrip.log",
+          "printed_failure": false
+        },
+        {
+          "name": "combobox",
+          "command": [
+            "test_combobox_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 33.00958752632141,
+          "test_sha256": "314281579fd028478bd32fa03f57884d219ec81b85a860fed0ae95d7cd26247b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/combobox.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-clipboard-case",
+          "command": [
+            "test_designer_clipboard_pty.py",
+            "--case-insensitive"
+          ],
+          "exit": 0,
+          "seconds": 24.363393545150757,
+          "test_sha256": "1a5025ecea16014cf96b6b867f578f70d2813938aa28d991f927d48cab04579a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-clipboard-case.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-snap-drag-edges",
+          "command": [
+            "test_designer_snap_edges_pty.py",
+            "--drag"
+          ],
+          "exit": 0,
+          "seconds": 4.7479071617126465,
+          "test_sha256": "ddd5c5f8db105e133511efca0e83c3e8ec7ad032cac1964ab91fe46b84e4d02d",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-snap-drag-edges.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-snap-edges",
+          "command": [
+            "test_designer_snap_edges_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.457517147064209,
+          "test_sha256": "ddd5c5f8db105e133511efca0e83c3e8ec7ad032cac1964ab91fe46b84e4d02d",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-snap-edges.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-clipboard-popup-types",
+          "command": [
+            "test_designer_clipboard_loaded_types_pty.py",
+            "--popup"
+          ],
+          "exit": 0,
+          "seconds": 56.92447113990784,
+          "test_sha256": "ec07396175878718147d7f489bfd8495b21ed0319f0865dc19aea42d1e896dce",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-clipboard-popup-types.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-clipboard-created-types",
+          "command": [
+            "test_designer_clipboard_loaded_types_pty.py",
+            "--create"
+          ],
+          "exit": 0,
+          "seconds": 40.36230516433716,
+          "test_sha256": "ec07396175878718147d7f489bfd8495b21ed0319f0865dc19aea42d1e896dce",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-clipboard-created-types.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-clipboard-loaded-types",
+          "command": [
+            "test_designer_clipboard_loaded_types_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 38.83881616592407,
+          "test_sha256": "ec07396175878718147d7f489bfd8495b21ed0319f0865dc19aea42d1e896dce",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-clipboard-loaded-types.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-clipboard",
+          "command": [
+            "test_designer_clipboard_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 23.251349210739136,
+          "test_sha256": "1a5025ecea16014cf96b6b867f578f70d2813938aa28d991f927d48cab04579a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-clipboard.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer",
+          "command": [
+            "test_designer_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 24.697166442871094,
+          "test_sha256": "f81758bfc8ea0f62bb84910a95b4bb09ba5cb522cdd2495a4bcea5ee5c6a4e97",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 292,
+  "logs": {
+    "designer-duplicate-caption-anchor.log": "PASS Loaded fixture retains original binding/caption\nPASS F5 live view visible\nPASS Live view includes generated selected control\nPASS Generated control is highlighted current control\nPASS Opening view leaves JSON exact\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-fe5aaihu\n",
+    "designer-reserved-binding-anchor.log": "PASS Loaded fixture retains original binding/caption\nPASS F5 live view visible\nPASS Live view includes generated selected control\nPASS Generated control is highlighted current control\nPASS Opening view leaves JSON exact\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-5x4wj4yy\n",
+    "designer-dialog-caption-anchor.log": "PASS Loaded fixture retains original binding/caption\nPASS F5 live view visible\nPASS Live view includes generated selected control\nPASS Generated control is highlighted current control\nPASS Opening view leaves JSON exact\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-63a91dqu\n",
+    "designer-button-anchor.log": "PASS Loaded fixture retains original binding/caption\nPASS F5 live view visible\nPASS Live view includes generated selected control\nPASS Generated control is highlighted current control\nPASS Opening view leaves JSON exact\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-5njr7og9\n",
+    "designer-quote-anchor.log": "PASS Loaded fixture retains original binding/caption\nPASS F5 live view visible\nPASS Live view includes generated selected control\nPASS Generated control is highlighted current control\nPASS Opening view leaves JSON exact\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-t0d8lumo\n",
+    "designer-quote-mixed-runtime.log": "PASS paste creates two buttons\nPASS pasted button custom action and focus retained\nPASS pasted button accelerator and style retained\nPASS actual F9 emits both custom actions\nPASS actual F9 emits both focus handlers and accelerators\nPASS generated pasted-button artifact compiles\nPASS first-enter runtime caption retains double quotes\nPASS first-enter generated button accepts dialog true\nPASS first-enter preserved custom action executes\nPASS first-enter preserved focus handler executes\nPASS second-enter runtime caption retains double quotes\nPASS second-enter generated button accepts dialog true\nPASS second-enter preserved custom action executes\nPASS second-enter preserved focus handler executes\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-bzcntgig\n",
+    "designer-quote-runtime.log": "PASS paste creates two buttons\nPASS pasted button custom action and focus retained\nPASS pasted button accelerator and style retained\nPASS actual F9 emits both custom actions\nPASS actual F9 emits both focus handlers and accelerators\nPASS generated pasted-button artifact compiles\nPASS first-enter runtime caption retains double quotes\nPASS first-enter generated button accepts dialog true\nPASS first-enter preserved custom action executes\nPASS first-enter preserved focus handler executes\nPASS second-enter runtime caption retains double quotes\nPASS second-enter generated button accepts dialog true\nPASS second-enter preserved custom action executes\nPASS second-enter preserved focus handler executes\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-_ih9gky2\n",
+    "gui-roundtrip.log": "PASS radiogroup artifact compiles\nPASS radiogroup keyboard commits final value\nPASS radiogroup mouse commits final value\nPASS listbox artifact compiles\nPASS listbox keyboard commits final value\nPASS listbox mouse commits final value\nPASS listbox scroll reaches eighth\nPASS listbox scrolled-mouse commits final value\nPASS combobox artifact compiles\nPASS combobox keyboard commits final value\nPASS combo mouse opens from another GET\nPASS combobox mouse commits final value\nPASS combo mouse opens from another GET\nPASS combobox scroll reaches eighth\nPASS combobox scrolled-mouse commits final value\nPASS checkbox artifact compiles\nPASS checkbox keyboard commits final value\nPASS checkbox mouse commits final value\nPASS get artifact compiles\nPASS get keyboard commits final value\nPASS get mouse commits final value\nTOTAL 21 PASS 0 FAIL; evidence /tmp/hbide-gui-roundtrip-_m34ixlo\n",
+    "combobox.log": "PASS boot caption noname\nPASS designer opens with default dialog\nPASS duplicate P keeps palette open at PushButton\nPASS second P keeps palette open at Paste\nPASS palette popup opens\nPASS combobox placed with default item\nPASS inspector visible\nPASS resize via inspector: width 20 -> 23\nPASS resize via inspector: height 6 -> 7\nPASS inspector combo minimum height is four\nPASS inspector combo restores height seven\nPASS JSON saved with resized model\nPASS model dirtied again (width 22)\nPASS F12 reload restores width 23\nPASS F12 reload restores height 7\nPASS generate hint shown\nPASS generated PRG contains native dropdown\nPASS designer exits and IDE opens generated PRG\nPASS editor left the designer (IDE menu back)\nPASS IDE exits clean\nPASS generated combobox artifact compiles\nPASS runtime collapsed first item\nPASS runtime space opens dropdown\nPASS runtime tab closes popup\nPASS runtime mouse opens dropdown\nPASS runtime mouse selects and closes\nPASS runtime selection reaches bound variable\nTOTAL 27 PASS 0 FAIL\n",
+    "designer-clipboard-case.log": "PASS ComboBox created in real designer\nPASS inspector saved nondefault items and four handlers exactly\nPASS initial ComboBox model exact type\nPASS Copy plus two Paste produces three controls\nPASS pasted variables all unique\nPASS Paste preserves nondefault items dimensions and four handlers\nPASS Paste offsets exact row col\nPASS Undo removes only last pasted control\nPASS Redo restores complete pasted model\nPASS Cut selected control removes only last exact model\nPASS Undo Cut restores complete model\nPASS Paste after Cut Undo creates unique variable\nPASS clipboard preserves cut control fields\nPASS source edit after Copy changes only selected items\nPASS clipboard is detached from later source item mutation\nPASS detached paste keeps four handlers and unique binding\nPASS Undo detached Paste preserves edited source\nPASS Undo source item edit restores full preedit model\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-drqe0sly\n",
+    "designer-snap-drag-edges.log": "PASS odd-edge fixture exact\nPASS Snap drag clamp after rounding at odd edges\nPASS complete GET remains within interior\nPASS Snap move keeps dimensions and binding\nPASS Undo snapped burst restores complete original\nPASS Redo snapped burst restores complete edge model\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-vp_0dcof\n",
+    "designer-snap-edges.log": "PASS odd-edge fixture exact\nPASS Snap arrows clamp after rounding at odd edges\nPASS complete GET remains within interior\nPASS Snap move keeps dimensions and binding\nPASS Undo snapped burst restores complete original\nPASS Redo snapped burst restores complete edge model\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-6h2a2t4d\n",
+    "designer-clipboard-popup-types.log": "PASS say real F12 load and F10 persist type\nPASS say F2 clipboard popup visible\nPASS say F2 clipboard popup visible\nPASS say F2 clipboard popup visible\nPASS say Copy two Paste preserves all nonbinding fields\nPASS say Paste offsets exact\nPASS say bindings unique or absent\nPASS say F2 clipboard popup visible\nPASS say Undo removes last only\nPASS say F2 clipboard popup visible\nPASS say Redo restores complete models\nPASS say F2 clipboard popup visible\nPASS say Cut removes selected only\nPASS say F2 clipboard popup visible\nPASS say Undo Cut restores complete models\nPASS say F2 clipboard popup visible\nPASS say Paste after Cut Undo keeps fields\nPASS get real F12 load and F10 persist type\nPASS get F2 clipboard popup visible\nPASS get F2 clipboard popup visible\nPASS get F2 clipboard popup visible\nPASS get Copy two Paste preserves all nonbinding fields\nPASS get Paste offsets exact\nPASS get bindings unique or absent\nPASS get F2 clipboard popup visible\nPASS get Undo removes last only\nPASS get F2 clipboard popup visible\nPASS get Redo restores complete models\nPASS get F2 clipboard popup visible\nPASS get Cut removes selected only\nPASS get F2 clipboard popup visible\nPASS get Undo Cut restores complete models\nPASS get F2 clipboard popup visible\nPASS get Paste after Cut Undo keeps fields\nPASS checkbox real F12 load and F10 persist type\nPASS checkbox F2 clipboard popup visible\nPASS checkbox F2 clipboard popup visible\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Copy two Paste preserves all nonbinding fields\nPASS checkbox Paste offsets exact\nPASS checkbox bindings unique or absent\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Undo removes last only\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Redo restores complete models\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Cut removes selected only\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Undo Cut restores complete models\nPASS checkbox F2 clipboard popup visible\nPASS checkbox Paste after Cut Undo keeps fields\nPASS button real F12 load and F10 persist type\nPASS button F2 clipboard popup visible\nPASS button F2 clipboard popup visible\nPASS button F2 clipboard popup visible\nPASS button Copy two Paste preserves all nonbinding fields\nPASS button Paste offsets exact\nPASS button bindings unique or absent\nPASS button F2 clipboard popup visible\nPASS button Undo removes last only\nPASS button F2 clipboard popup visible\nPASS button Redo restores complete models\nPASS button F2 clipboard popup visible\nPASS button Cut removes selected only\nPASS button F2 clipboard popup visible\nPASS button Undo Cut restores complete models\nPASS button F2 clipboard popup visible\nPASS button Paste after Cut Undo keeps fields\nPASS radiogroup real F12 load and F10 persist type\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Copy two Paste preserves all nonbinding fields\nPASS radiogroup Paste offsets exact\nPASS radiogroup bindings unique or absent\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Undo removes last only\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Redo restores complete models\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Cut removes selected only\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Undo Cut restores complete models\nPASS radiogroup F2 clipboard popup visible\nPASS radiogroup Paste after Cut Undo keeps fields\nPASS listbox real F12 load and F10 persist type\nPASS listbox F2 clipboard popup visible\nPASS listbox F2 clipboard popup visible\nPASS listbox F2 clipboard popup visible\nPASS listbox Copy two Paste preserves all nonbinding fields\nPASS listbox Paste offsets exact\nPASS listbox bindings unique or absent\nPASS listbox F2 clipboard popup visible\nPASS listbox Undo removes last only\nPASS listbox F2 clipboard popup visible\nPASS listbox Redo restores complete models\nPASS listbox F2 clipboard popup visible\nPASS listbox Cut removes selected only\nPASS listbox F2 clipboard popup visible\nPASS listbox Undo Cut restores complete models\nPASS listbox F2 clipboard popup visible\nPASS listbox Paste after Cut Undo keeps fields\nPASS combobox real F12 load and F10 persist type\nPASS combobox F2 clipboard popup visible\nPASS combobox F2 clipboard popup visible\nPASS combobox F2 clipboard popup visible\nPASS combobox Copy two Paste preserves all nonbinding fields\nPASS combobox Paste offsets exact\nPASS combobox bindings unique or absent\nPASS combobox F2 clipboard popup visible\nPASS combobox Undo removes last only\nPASS combobox F2 clipboard popup visible\nPASS combobox Redo restores complete models\nPASS combobox F2 clipboard popup visible\nPASS combobox Cut removes selected only\nPASS combobox F2 clipboard popup visible\nPASS combobox Undo Cut restores complete models\nPASS combobox F2 clipboard popup visible\nPASS combobox Paste after Cut Undo keeps fields\nTOTAL 119 PASS 0 FAIL; evidence /tmp/hbide-source-run-t8z73kwx\n",
+    "designer-clipboard-created-types.log": "PASS say real F2 create and F10 persist type\nPASS say Copy two Paste preserves all nonbinding fields\nPASS say Paste positions inside existing dialog\nPASS say bindings unique or absent\nPASS say Undo removes last only\nPASS say Redo restores complete models\nPASS say Cut removes selected only\nPASS say Undo Cut restores complete models\nPASS say Paste after Cut Undo keeps fields\nPASS get real F2 create and F10 persist type\nPASS get Copy two Paste preserves all nonbinding fields\nPASS get Paste positions inside existing dialog\nPASS get bindings unique or absent\nPASS get Undo removes last only\nPASS get Redo restores complete models\nPASS get Cut removes selected only\nPASS get Undo Cut restores complete models\nPASS get Paste after Cut Undo keeps fields\nPASS checkbox real F2 create and F10 persist type\nPASS checkbox Copy two Paste preserves all nonbinding fields\nPASS checkbox Paste positions inside existing dialog\nPASS checkbox bindings unique or absent\nPASS checkbox Undo removes last only\nPASS checkbox Redo restores complete models\nPASS checkbox Cut removes selected only\nPASS checkbox Undo Cut restores complete models\nPASS checkbox Paste after Cut Undo keeps fields\nPASS button real F2 create and F10 persist type\nPASS button Copy two Paste preserves all nonbinding fields\nPASS button Paste positions inside existing dialog\nPASS button bindings unique or absent\nPASS button Undo removes last only\nPASS button Redo restores complete models\nPASS button Cut removes selected only\nPASS button Undo Cut restores complete models\nPASS button Paste after Cut Undo keeps fields\nPASS radiogroup real F2 create and F10 persist type\nPASS radiogroup Copy two Paste preserves all nonbinding fields\nPASS radiogroup Paste positions inside existing dialog\nPASS radiogroup bindings unique or absent\nPASS radiogroup Undo removes last only\nPASS radiogroup Redo restores complete models\nPASS radiogroup Cut removes selected only\nPASS radiogroup Undo Cut restores complete models\nPASS radiogroup Paste after Cut Undo keeps fields\nPASS listbox real F2 create and F10 persist type\nPASS listbox Copy two Paste preserves all nonbinding fields\nPASS listbox Paste positions inside existing dialog\nPASS listbox bindings unique or absent\nPASS listbox Undo removes last only\nPASS listbox Redo restores complete models\nPASS listbox Cut removes selected only\nPASS listbox Undo Cut restores complete models\nPASS listbox Paste after Cut Undo keeps fields\nPASS combobox real F2 create and F10 persist type\nPASS combobox Copy two Paste preserves all nonbinding fields\nPASS combobox Paste positions inside existing dialog\nPASS combobox bindings unique or absent\nPASS combobox Undo removes last only\nPASS combobox Redo restores complete models\nPASS combobox Cut removes selected only\nPASS combobox Undo Cut restores complete models\nPASS combobox Paste after Cut Undo keeps fields\nTOTAL 63 PASS 0 FAIL; evidence /tmp/hbide-source-run-9mcvklek\n",
+    "designer-clipboard-loaded-types.log": "PASS say real F12 load and F10 persist type\nPASS say Copy two Paste preserves all nonbinding fields\nPASS say Paste offsets exact\nPASS say bindings unique or absent\nPASS say Undo removes last only\nPASS say Redo restores complete models\nPASS say Cut removes selected only\nPASS say Undo Cut restores complete models\nPASS say Paste after Cut Undo keeps fields\nPASS get real F12 load and F10 persist type\nPASS get Copy two Paste preserves all nonbinding fields\nPASS get Paste offsets exact\nPASS get bindings unique or absent\nPASS get Undo removes last only\nPASS get Redo restores complete models\nPASS get Cut removes selected only\nPASS get Undo Cut restores complete models\nPASS get Paste after Cut Undo keeps fields\nPASS checkbox real F12 load and F10 persist type\nPASS checkbox Copy two Paste preserves all nonbinding fields\nPASS checkbox Paste offsets exact\nPASS checkbox bindings unique or absent\nPASS checkbox Undo removes last only\nPASS checkbox Redo restores complete models\nPASS checkbox Cut removes selected only\nPASS checkbox Undo Cut restores complete models\nPASS checkbox Paste after Cut Undo keeps fields\nPASS button real F12 load and F10 persist type\nPASS button Copy two Paste preserves all nonbinding fields\nPASS button Paste offsets exact\nPASS button bindings unique or absent\nPASS button Undo removes last only\nPASS button Redo restores complete models\nPASS button Cut removes selected only\nPASS button Undo Cut restores complete models\nPASS button Paste after Cut Undo keeps fields\nPASS radiogroup real F12 load and F10 persist type\nPASS radiogroup Copy two Paste preserves all nonbinding fields\nPASS radiogroup Paste offsets exact\nPASS radiogroup bindings unique or absent\nPASS radiogroup Undo removes last only\nPASS radiogroup Redo restores complete models\nPASS radiogroup Cut removes selected only\nPASS radiogroup Undo Cut restores complete models\nPASS radiogroup Paste after Cut Undo keeps fields\nPASS listbox real F12 load and F10 persist type\nPASS listbox Copy two Paste preserves all nonbinding fields\nPASS listbox Paste offsets exact\nPASS listbox bindings unique or absent\nPASS listbox Undo removes last only\nPASS listbox Redo restores complete models\nPASS listbox Cut removes selected only\nPASS listbox Undo Cut restores complete models\nPASS listbox Paste after Cut Undo keeps fields\nPASS combobox real F12 load and F10 persist type\nPASS combobox Copy two Paste preserves all nonbinding fields\nPASS combobox Paste offsets exact\nPASS combobox bindings unique or absent\nPASS combobox Undo removes last only\nPASS combobox Redo restores complete models\nPASS combobox Cut removes selected only\nPASS combobox Undo Cut restores complete models\nPASS combobox Paste after Cut Undo keeps fields\nTOTAL 63 PASS 0 FAIL; evidence /tmp/hbide-source-run-jrziwt_5\n",
+    "designer-clipboard.log": "PASS ComboBox created in real designer\nPASS inspector saved nondefault items and four handlers exactly\nPASS initial ComboBox model exact type\nPASS Copy plus two Paste produces three controls\nPASS pasted variables all unique\nPASS Paste preserves nondefault items dimensions and four handlers\nPASS Paste offsets exact row col\nPASS Undo removes only last pasted control\nPASS Redo restores complete pasted model\nPASS Cut selected control removes only last exact model\nPASS Undo Cut restores complete model\nPASS Paste after Cut Undo creates unique variable\nPASS clipboard preserves cut control fields\nPASS source edit after Copy changes only selected items\nPASS clipboard is detached from later source item mutation\nPASS detached paste keeps four handlers and unique binding\nPASS Undo detached Paste preserves edited source\nPASS Undo source item edit restores full preedit model\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-1fo9fqny\n",
+    "designer.log": "PASS boot caption noname\nPASS designer opens with default dialog\nPASS duplicate P keeps palette open at PushButton\nPASS second P keeps palette open at Paste\nPASS palette popup opens\nPASS listbox placed with default items\nPASS inspector visible\nPASS resize via inspector: width 20 -> 23\nPASS resize via inspector: height 6 -> 7\nPASS JSON saved with resized model\nPASS model dirtied again (width 22)\nPASS F12 reload restores width 23\nPASS F12 reload restores height 7\nPASS generate hint shown\nPASS generated PRG contains the LISTBOX\nPASS designer exits and IDE opens generated PRG\nPASS editor left the designer (IDE menu back)\nPASS IDE exits clean\nTOTAL 18 PASS 0 FAIL\n"
+  }
+}

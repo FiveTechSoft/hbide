@@ -5407,3 +5407,17 @@ propios hashados/binario inalterado, sin fallo/reintento en estas11.275
 variantes distintas cotejadas con plan353/normalizaciónQ223. No producto
 nuevo/píxeles/modelos/Windows/matriz completa/hitos.
 Evidencia: docs/evidence/linux-c30-gcc-prevdoc-blocks8285-q237.json.
+
+### Q238 (1 noviembre 2026): C30 diseñador/anchors/clipboard
+
+17 variantes finales PASS mismo C30 96d77549/export049b533: anchors de
+caption duplicado/reservado/dialog/button/quote, quote runtime normal/mixto,
+gui roundtrip/combobox, clipboard case-insensitive/normal, snap con drag,
+clipboard tipos popup/creados/cargados y diseñador general. --create sí
+se consume en loaded_types (distinto de los tres inertes Q222). Tests
+propios hashados/binario inalterado. Bloque90 agotó120s después de popup
+y created PASS; reanudó omitiendo ambos y repitió loaded posiblemente
+interrumpido. Sin fallo IDE registrado, no global sinreintentos.292 variantes
+distintas cotejadas con plan353/normalizaciónQ223. No producto/píxeles/
+modelos/Windows/matriz completa/cierre hitos.
+Evidencia: docs/evidence/linux-c30-designer-blocks8691-q238.json.
