@@ -28,6 +28,14 @@ for kind in ['help']:
  try:
   pump(1.5);send(b'\x1bf');send(b'o');send(str(target).encode());send(b'\r',.6)
   send(b'X')
+  send(b'\x1bOP',.5)
+  check('F1 without menu opens welcome topic','Welcome to hbide' in screen.text())
+  send(b'\x1b',.4)
+  check('F1 welcome returns unchanged dirty document','Xprocedure main()' in screen.text() and 'help-source.prg' in screen.text())
+  send(b'\x1be',.3);send(b'\x1bOP',.5)
+  check('F1 Edit menu opens Edit topic without Undo','Edit menu' in screen.text())
+  send(b'\x1b',.4)
+  check('F1 Edit close keeps pending insertion','Xprocedure main()' in screen.text() and 'help-source.prg' in screen.text())
   send(b'\x1bh');send(b'i');send(b'Find, Replace');send(b'\r',.6)
   check('Index opens requested topic','Find, Replace, Goto Line' in screen.text())
   # 80-column topic scrolls: End must expose literal-blank rule.

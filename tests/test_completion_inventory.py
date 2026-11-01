@@ -187,7 +187,7 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertNotIn('acceptance',self.routes[0])
     def test_ctrl_g_delete_identity_route_linked(self):
         linked=[r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance' in r]
-        self.assertEqual(len(linked),11)
+        self.assertEqual(len(linked),12)
         row=next(r for r in linked if r['acceptance_id']=='IDE-KEY-GOTOFUNCTION-CTRL-G')
         self.assertEqual(row['source'],'hbide.prg')
         self.assertIn('hb_keyExt( nKey ) != HB_KX_DEL',row['condition'])
@@ -255,6 +255,13 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertEqual(row['acceptance']['tests'],['test_nav_pty.py','test_multidoc_pty.py'])
         self.assertIn('Parent menu-closed guard remains separate',row['acceptance']['contract'])
         self.assertIn('not all filter inputs/empty or huge lists',row['acceptance']['contract'])
+
+    def test_f1_context_help_route_has_no_invented_menu_guard(self):
+        row=next(r for r in audit.link_dispatch_contracts(self.routes,self.specs) if r.get('acceptance_id')=='IDE-KEY-CONTEXTHELP-F1')
+        self.assertEqual(row['condition'],'if nKeyStd == K_F1')
+        self.assertEqual(row['acceptance']['tests'],['test_help_pty.py'])
+        self.assertIn('F1 intentionally handles open menus',row['acceptance']['contract'])
+        self.assertIn('not all menu commands',row['acceptance']['contract'])
 
     def test_missing_route_fails_closed(self):
         broken={k:dict(v,condition='case nKey == K_NONEXISTENT') for k,v in self.specs.items()}
