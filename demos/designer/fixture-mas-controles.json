@@ -1,0 +1,98 @@
+{
+  "name": "Fixture",
+  "caption": "Fixture",
+  "width": 60,
+  "height": 20,
+  "controls": [
+    {
+      "type": "combobox",
+      "row": 1,
+      "col": 2,
+      "caption": "Before",
+      "width": 20,
+      "height": 6,
+      "items": "Before,After",
+      "variable": "nBefore"
+    },
+    {
+      "type": "say",
+      "row": 3,
+      "col": 2,
+      "caption": "Nombre:"
+    },
+    {
+      "type": "get",
+      "row": 3,
+      "col": 12,
+      "variable": "cNombre",
+      "width": 22
+    },
+    {
+      "type": "say",
+      "row": 5,
+      "col": 2,
+      "caption": "Correo:"
+    },
+    {
+      "type": "get",
+      "row": 5,
+      "col": 12,
+      "variable": "cCorreo",
+      "width": 38
+    },
+    {
+      "type": "checkbox",
+      "row": 7,
+      "col": 2,
+      "caption": "Activo",
+      "variable": "lActivo"
+    },
+    {
+      "type": "checkbox",
+      "row": 9,
+      "col": 2,
+      "caption": "Recibir avisos",
+      "variable": "lAvisos"
+    },
+    {
+      "type": "radiogroup",
+      "row": 11,
+      "col": 2,
+      "variable": "nTipo",
+      "items": "Personal,Empresa"
+    },
+    {
+      "type": "say",
+      "row": 7,
+      "col": 32,
+      "caption": "Proyectos:"
+    },
+    {
+      "type": "listbox",
+      "row": 8,
+      "col": 32,
+      "variable": "nProyecto",
+      "width": 22,
+      "height": 6,
+      "items": "IDE Harbour,Disenador,Depurador,Documentacion"
+    },
+    {
+      "type": "button",
+      "row": 16,
+      "col": 12,
+      "caption": "Guardar",
+      "accelerator": "G",
+      "action": "lOk := .T., oDlg:End()",
+      "style": "shadow"
+    },
+    {
+      "type": "button",
+      "row": 16,
+      "col": 34,
+      "caption": "Cancelar",
+      "accelerator": "C",
+      "action": "oDlg:End()",
+      "style": "shadow"
+    }
+  ]
+}
