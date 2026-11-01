@@ -751,3 +751,14 @@ handlers. Nueva guarda evita ampliar esas afirmaciones.67guardas
 (46inventario),34docsPASS en d89d810. No nuevaejecucionPTY/modelos/
 pixeles/arregloproducto/Windows/porcentajeglobal/cierreM4. Evidencia
 `docs/evidence/linux-designer-when-runtime-links-q167.json`.
+
+
+### Seguimiento Q168 (1 noviembre 2026)
+
+GTSTD40x120/25x80, dialogo y siete tipos: seis posiciones solicitadas,
+incluidas esquinas extremas.480cambios reales de posicion clamp, bytes
+SaveScreen incremental iguales a Redraw completo;104transicionesaltura
+y16movimientos previos se mantienen.29modelos67guardas34docsPASS
+en a604c24f0613860946a4f19310cab992b4934890. No producto/arreglo/PTY/
+pixelesnativos/todoslayouts/gestos/Windows/herenciamatriz/cierreM4.
+Evidencia `docs/evidence/linux-designer-inspector-edge-model-q168.json`.
