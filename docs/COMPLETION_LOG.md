@@ -4559,3 +4559,13 @@ Fuente del candidato4f9c681c605e8386b56cef228eeb3f21f1162031. Runner555a4b1,
 no determinismo entre maquinas/compiladores/entornos, instalacion limpia,
 licencias, Windows, nuevo runtime/productfix/native ni cierre de M5.
 Evidencia `docs/evidence/linux-candidate-rebuild-q171.json`.
+
+
+### Q172 (1 noviembre 2026): barreras de entrada del rebuild
+
+Seis fixtures negativos: archive/binario/compiler/strip alterados,
+candidato fallido y output existente se rechazan antes de ejecutar
+compilador; output previo conservado.73guardas34docsPASS en
+49fea792bcbc70df930c8660e73d496dca1f2493. No nuevo build/runtime real,
+PTY/modelos/pixeles/Windows/licencias/release/global/cierreM5. Evidencia
+`docs/evidence/linux-rebuild-input-guards-q172.json`.
