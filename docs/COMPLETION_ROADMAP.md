@@ -540,3 +540,12 @@ Combo/List STATE editado inline,F10,F9,compilacion y runtime valor2/3
 con handler ejecutado:3PTY26checks63guardas34docsPASS incl.Buttonregresion.
 Evidencia `docs/evidence/linux-designer-inline-state-runtime-q149.json`.
 Sin otros handlers/tipos/Windows/cierreM4 ni nuevos pixeles/modelos.
+
+
+### Seguimiento Q150 (1 noviembre 2026)
+
+Handlers inline al runtime en seis tipos existentes:GET/Radio VALID,
+Checkbox/Combo/List STATE,ButtonAction/Focus.6PTY47checks63guardas34docs
+PASS. Sin todos pares evento/tipo,WHEN/otros handlers, nuevos pixeles,
+Windows/global/cierreM4. Evidencia
+`docs/evidence/linux-designer-inline-events-runtime-q150.json`.

@@ -4243,3 +4243,16 @@ en3modosPTY,63guardas34docsPASS. Fuentecec0457;sin arreglo.
 Evidencia `docs/evidence/linux-designer-inline-state-runtime-q149.json`.
 Sin otros handlers/tipos/todosvalores/mouse/Windows/global/cierreM4
 ni nuevos modelos/pixeles.
+
+
+## 1 noviembre 2026: Q150 eventos inline en seis tipos al runtime
+
+GET VALID (Alpha/Beta),Radio VALID (down/two-down),Checkbox STATE
+(toggle/twice) editados inline,F10,F9,compilarartefactoreal y runtime
+valores exactos/handler ejecutado:7checks cada uno. Regresion Combo/List
+STATE7+7,ButtonAction/Focus12:6modosPTY47checks63guardas34docsPASS
+en d1da1a7. Sin arreglo de producto.
+Evidencia `docs/evidence/linux-designer-inline-events-runtime-q150.json`.
+No todos pares evento/tipo: WHEN y otros focus/valid/state siguen sin
+aceptacion runtime por esta prueba. Sin nuevos modelos/pixeles,Windows
+global ni cierreM4.
