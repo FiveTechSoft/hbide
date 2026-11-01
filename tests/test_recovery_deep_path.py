@@ -5,6 +5,16 @@ import os, pty, sys, struct, fcntl, termios, select, time, signal, tempfile, re,
 # write), so its recovery journal silently never existed. With the bounded
 # key (prefix + dual hash) the journal is written, and after a SIGKILL the
 # IDE recovers the doc byte-exactly: saved bytes == pre-kill journal bytes.
+# These legacy fixture modes replace the complete original text. Reject
+# combinations whose encoding expectations would contradict that fixture.
+fixture_flags = set(sys.argv[2:])
+if fixture_flags & {'--mixed-eol', '--tabs'} and fixture_flags & {
+    '--utf8-bom', '--utf8-raw', '--refuse-cp', '--utf8-host', '--crlf'
+}:
+    raise SystemExit('Incompatible fixture modes: mixed-eol/tabs replace encoding and EOL; run separately')
+if {'--mixed-eol', '--tabs'} <= fixture_flags:
+    raise SystemExit('Choose one fixture mode: mixed-eol or tabs')
+
 ROWS, COLS = 40, 120
 BIN = os.path.abspath(sys.argv[1])
 
