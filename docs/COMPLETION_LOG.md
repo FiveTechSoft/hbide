@@ -4149,3 +4149,14 @@ Control normal dentro de limites, no politica oversized/edge clamps.
 Captura nativa StyleShadow y sombra real inspeccionada, bordes completos.
 Sin arreglo/nueva corrida modelos/Windows/matrizglobal/cierreM4. Evidencia
 `docs/evidence/linux-designer-inline-numeric-q142.json`.
+
+
+## 1 noviembre 2026: Q143 inspector de dialogo texto/tamano
+
+Fuente `01cb529`: Name/Caption con entrada real/F10/Undo/Redo/Esc
+exactos y Width/Height dosRight/Undo/Redo de rafaga. Controles intactos.
+Dialogo16checks+regresionButton14=30checks en2modosPTY,57guardas PASS.
+Captura nativa con captioncomillado en ventana e inspector y bordes
+completos, JSONexacto. Evidencia
+`docs/evidence/linux-designer-dialog-inline-q143.json`. Sin arreglo,
+modelos nuevos,colores/minimos/oversized/todoscampos/Windows/cierreM4.

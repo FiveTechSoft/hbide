@@ -484,3 +484,11 @@ pendiente de causa; no se considera arreglada. Evidencia
 Ajustes numericos/Style en7modosPTY77checks57guardasPASS,rafagaUndo/Redo
 y persistencia exactas. Sin decision oversized ni nueva UI/arreglo/
 cierreM4. Evidencia `docs/evidence/linux-designer-inline-numeric-q142.json`.
+
+
+### Seguimiento Q143 (1 noviembre 2026)
+
+DialogoName/Caption/Width/Height:2modosPTY30checks57guardasPASS con
+regresionButton,visualcaption inspeccionada. Evidencia
+`docs/evidence/linux-designer-dialog-inline-q143.json`;sin arreglo ni
+aceptacioncolores/oversized/Windows/cierreM4.
