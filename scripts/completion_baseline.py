@@ -43,6 +43,11 @@ cases = {
     'project': ['tests/test_project.prg', 'project.prg', 'recovery.prg'],
     'help': ['tests/test_help.prg', 'help.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
 }
+# Existing debugger model probes need the full vendored debugger, not stubs.
+debug_sources = [str(p.relative_to(ROOT)) for p in sorted((ROOT/'hbdebug').glob('*.prg'))]
+debug_sources += ['hbdebug/dbgentry.c', 'safeio.prg', 'recovery.prg']
+cases['debug-layout'] = ['tests/test_debug_layout.prg', *debug_sources]
+cases['debug-tabwidth'] = ['tests/test_debug_tabwidth.prg', *debug_sources]
 def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
