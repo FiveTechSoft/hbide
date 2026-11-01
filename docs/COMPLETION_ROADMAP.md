@@ -446,3 +446,10 @@ El hook actual no distingue poll de espera (cero argumentos en ambos);
 Swap on Input y Exchange Screens siguen abiertos sin degradar contrato.
 Evidencia `docs/evidence/linux-debug-input-hook-q137.json`; no arreglo
 ni cierre M3/global, continúan áreas independientes.
+
+
+### Seguimiento Q138 (1 noviembre 2026)
+
+Modelo InspEdit13pares texto no-evento/79checks PASS;baseline28modelos/
+57guardas PASS. Sin arreglo producto ni visual/PTY/Windows ni cierreM4.
+Evidencia `docs/evidence/linux-designer-inline-fields-q138.json`.

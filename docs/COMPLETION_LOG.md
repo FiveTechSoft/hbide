@@ -4085,3 +4085,15 @@ y debugger. Ambos stubs permanecen abiertos, sin cambio de contrato.
 27 modelos y 57 guardas PASS. Evidencia
 `docs/evidence/linux-debug-input-hook-q137.json`. No implementacion,
 PTY, visual, Windows ni cierre de M3; no bloquea las demas areas.
+
+
+## 1 noviembre 2026: Q138 campos de texto inline, modelo
+
+Fuente `df9fead016942bd2fe8ea796af7ba919778e239c`: 13 pares
+control/campo no-evento en siete tipos existentes. InspEdit con entrada
+en cola real: texto exacto, dirty/un undo, Undo/Redo exactos, Esc conserva
+modelo/historial. 79 checks PASS, baseline28modelos/57guardas PASS.
+Fixture inicial olvido reenfocar tras Undo/Redo (restablece campo a1);
+corregido harness, no producto. Conteo esperado14 corregido a13 calculados.
+No arreglo ni aceptacion visual/PTY/Windows/todos campos ni cierreM4.
+Evidencia `docs/evidence/linux-designer-inline-fields-q138.json`.
