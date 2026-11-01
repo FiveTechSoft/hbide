@@ -6329,3 +6329,24 @@ Q503loteautorizadoC72-C74 uno por uno independiente, sin hardlinks/mezcla:
 576,757,760bytes=550MiB libres. C93 y candidatos recientes intactos. Ningún
 coste/destinatario/publicación/distribución ni política nueva. No más retiradas.
 Q504docs posteriores no embebidosC93; no build sólo docs/reserva disponible.
+
+
+### Q505-Q508 (2 noviembre 2026): regresión C93 y filtro ListPick UTF8
+
+Q505C93exportsafe5modes20/ListPickGoto6/MessageListGCC8freshPASS;Q506M2promotion
+failure9/retry15/missingoutputdiagnostic17freshPASS,noherenciaC92,nuevospíxelesno.
+Q507C93WindowListfiltrocafé BSLeftLen-1 cortabyteUTF8,baseline4PASS1FAIL. Inicial
+aperturapicturedGETaccentpathfalló antesfiltro; privatecwdTablistboxabreexacto,
+fixturecorregido conserva límite experimental picturedGETsinfixcolateral.
+C94source8d36e987fce134675d82f154de35a69abe0bdd46,
+bine5f749e386f62d35b156859e3412f8013cd0532fe30de8bbdf365dc2e512bff6:
+8smokes/focal5PASSperoGetUPrevintroducenav-onlyhelperdependency,no finalaceptado,
+conservado. C95source1cdedd93da118bcdb33866d574943a784a00c0f6,
+bin112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845.
+Usahb_ULeft/hb_ULenindependientenativo;own8smokes/About/ldd/docs34PASS,
+UTF8filter5/WindowList9/Goto6freshPASS;standalonelexicalhelper141PASS separado.
+Actual1202x762C93caf+replacementglyph/C95caf_ trasBS inspeccionados complete
+source/borders/status. SinherenciaC94,graphemes/wideUnicode/casefold/picturedGET/
+Windows/fullmatrix/install/license ni cambio UTF8hostexperimentaloptin.
+C93/C94conservados. Reserva109MiB tras dos builds, no nuevas retiradas.
+Q508docs posteriores no embebidosC95, no build sólo por docs/reserva.
