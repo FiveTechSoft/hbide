@@ -66,7 +66,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre23:55 Q496: último candidato aceptado en alcance focal **C92**,
+Corte 2 noviembre00:05 Q501: último candidato aceptado en alcance focal **C92**,
 fuente `cdac56d54fd36c416678734e5ca94ba2595607a4`,
 bin `d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb`.
 Q495 reproduce HelpExport C91 siguiendo symlink y truncando notas de fixture.
@@ -80,8 +80,11 @@ concurrentes de alias/directorio padre. C91 conservado, sin herencia de matriz.
 C82exportado preservado íntegro en archivo independiente antes retirar sólo
 expandido; bin/manifiestos/logs/fuente original/evidencia intactos. Espacio~87MiB,
 no más retiradas autorizadas. Docs posteriores no embebidosC92, no build por docs.
-Windows/install/license/gates/políticas siguen abiertos. Próximo regresión
-identificada y hueco funcional distinto, no variantes equivalentes.
+Q497-Q500 añaden regresión propia fresca ListPick/Helpwheel, SaveAs/recovery,
+M2promotion/retry/missingoutput y M4mixed/validveto/ComboClipboard/InspectorSmall
+con receipts separados. No equivalen a matriz completa ni herencia de C91.
+Windows/install/license/gates/políticas siguen abiertos. Próximo hueco funcional
+distinto, no variantes equivalentes. Espacio posterior~75MiB.
 
 Histórico anterior, no evidencia heredada por C92:
 

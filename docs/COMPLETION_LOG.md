@@ -6289,3 +6289,20 @@ C82unárbol preservado independiente10,912,391bytes1473entradas, cada archivo
 fullydecompressedmemory SHA/size/mode/inventario y dirs/linkmetadata/original
 recheck antes retirar sólo expandido; original/bin/manifiesto/log/evidencia
 intactos. C91 conservado. Q496docs posteriores no embebidosC92, no build por docs.
+
+
+### Q497-Q501 (2 noviembre 2026): regresión propia C92, no herencia
+
+Q497 ListPickGoto6/WindowListdirtySaveUndo9/MessageListGCC8/HelpLinkWheel9
+frescosPASS. Q498SaveAsliteralregular/literalsymlink/refusedSaveAscrashrecovery21
+3modosPASS; alias/target/sibling/backup/identity/journal conservados según fixture.
+Q499M2promotionfailure9/explicitretry15/missingoutputdiagnostic17PASS. Iniciales
+compilerNoneporPATHsinhbmk2 fallaron al preparar fixture antesIDE; explicitPATH
+repetidoPASS, logs originales conservados sin producto cambiado.
+Q500M4mixedF9--actions23/GETvalidveto10/ComboClipboardtwoSTATE9/Inspector25x80
+close10PASS. Runtimehelpers desde checkout0290411 separadosdelIDE; cuatro
+fuenteshelper byteidénticas candidato porSHA verificadas. No modelos completos,
+matriz/píxeles nuevos/Windows/install/license ni cierre basado en conteos.
+C92bind507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb intacto.
+Q501docs/catálogo posteriores no embebidosC92; no build sólo docs. Espacio75MiB,
+no nuevas retiradas autorizadas; restricciones/políticas pendientes igual.
