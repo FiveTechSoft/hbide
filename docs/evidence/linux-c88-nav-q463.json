@@ -1,0 +1,38 @@
+{
+  "scope": "Five bounded navigation modes15checks, fresh C88 only, not inherited C87/fullmatrix/pixels/Windows",
+  "source": "e32c6ece0a8d461f04f7244eb451e378211c7f14",
+  "binary_sha256": "e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38",
+  "harness_checkout": "9cc8ac9ea1100a109f7ac537ca9b28852eed104d",
+  "results": {
+    "test_nav_raw_bom_pty.py": {
+      "exit": 0,
+      "log": "PASS Raw UTF8 warning\nPASS Picker includes first declaration behind raw BOM\nPASS Navigation preserves raw UTF8 BOM file\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-kdxu6e2e\n",
+      "test_sha256": "7fa6a5bbb1fc051899f15cecbbd58813c156255a3fca2e1263e6dee8fcb763a8",
+      "binary_unchanged": true
+    },
+    "test_nav_end_class_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after END CLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-pqo2m1ki\n",
+      "test_sha256": "85900f59c3e77036a8bd00cf0e069ad870f11860b156de33166ef43c327cafae",
+      "binary_unchanged": true
+    },
+    "test_nav_declared_method_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes DECLARED implementation, excludes member\nPASS Picker jumps to DECLARED implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-zu59g_ap\n",
+      "test_sha256": "42563e4a2999af11345b060ac0da4c88698aa6c05d2aee2208e552d69a07356e",
+      "binary_unchanged": true
+    },
+    "test_nav_text_block_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-i0r3qr6c\n",
+      "test_sha256": "2ed5ea5f1658fe15c8d47e3aaef9c93bfbb5a82fa32641481f60b4feb41ebe67",
+      "binary_unchanged": true
+    },
+    "test_nav_array_bracket_comment_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-s7m8xpiw\n",
+      "test_sha256": "cd0726fa837e13c1696dd61ea5a27be2f44aeb71a3f7df25d411bcf937960b65",
+      "binary_unchanged": true
+    }
+  }
+}
