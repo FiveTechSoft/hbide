@@ -5544,3 +5544,13 @@ journal por idle: solo se llama UpdateJournal si dirty; queda corregida
 la hipótesis de impacto inicial. Primeros arneses usaron mnemonic/criterio
 caption erróneos, logs preservados. No píxeles ni matriz completa/Windows.
 Evidencia: docs/evidence/linux-recovered-undo-dirty-q248.json.
+
+### Q249 (1 noviembre 2026): revisión salida/SaveAll tras recoveredUndo
+
+Extensión del arnés Q248 sobre C32exacto: Exit presenta Unsaved changes,
+Cancel conserva buffer/disco/journal; SaveAll incluye el recuperado y
+guarda bytes exactos eliminando journal. Dos modos PASS, sin producto
+ni build nuevo. Test extendido posterior al export, no suite congeladaC32.
+Primer modoSaveAll usó mnemonicv incorrecto y produjo4fallos de arnés;
+corregidol PASS y original conservado. Sin píxeles/Windows/matriz/hito.
+Evidencia: docs/evidence/linux-recovered-review-q249.json.

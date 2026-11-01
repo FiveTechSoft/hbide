@@ -194,7 +194,19 @@ try:
     check('recovered document remains dirty after Undo',any(re.search(r'1> \* /tmp/',row) for row in scr.text().split('\n')))
     os.write(fd,b'\x1b');pump(.5,fd)
     check('recovery journal survives Undo to recovered baseline',bool(journals()))
-    os.write(fd, b'\x1bOQ')  # F2 save
+    if os.environ.get('RECOVERED_UNDO_REVIEW') == 'exit':
+        os.write(fd,b'\x1bf');pump(.3,fd);os.write(fd,b'x');pump(.7,fd)
+        check('Exit reviews unsaved recovered baseline','Unsavedchanges' in scr.text().replace(' ',''))
+        os.write(fd,b'\x1b');pump(.7,fd)
+        check('Exit Cancel retains recovered buffer','ZZlineone' in scr.text().replace(' ',''))
+        check('Exit Cancel leaves disk untouched',pathlib.Path(deep).read_bytes()==orig.encode())
+        check('Exit Cancel leaves recovery journal',bool(journals()))
+        os.write(fd,b'\x1bOQ');pump(.5,fd)
+    elif os.environ.get('RECOVERED_UNDO_REVIEW') == 'saveall':
+        os.write(fd,b'\x1bf');pump(.3,fd);os.write(fd,b'l');pump(.8,fd)
+        check('SaveAll includes recovered baseline','1file(s)saved' in scr.text().replace(' ',''))
+    else:
+        os.write(fd, b'\x1bOQ')  # F2 save
     t0 = time.time()
     while time.time() - t0 < 6.0:
         if not journals(): break
