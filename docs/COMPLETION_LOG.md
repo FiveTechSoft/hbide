@@ -4960,3 +4960,16 @@ GLOBALS; count0/getNULL/listvacia. No sustituir por PUBLIC/STATIC.
 M3 sigue abierto: otra VM/compilador requeriria decision de alcance,
 no autorizacion inferida. Sin nuevo producto/PTY/pixeles/Windows/reinicio.
 Evidencia: docs/evidence/linux-debug-global-vm-q199.json.
+
+### Q200 (1 noviembre 2026): fixture12controles genera y ejecuta
+
+Fuentef2249dbe691b59810207102f56d5a036fba29901/IDEbinario
+b7bd6ea751ed52c7e4d8f07a952002767148201a9f058a0c5578a8005ed2381f.
+F9real generaPRG de fixture pedida; compilacion y runtime instrumentado
+solo al return para leer valores.8checksPASS: controles visibles, nombre
+ycorreo independientes, Activo independiente, defaults de selectores,
+Esc retorna. Captura runtime real1202x762 inspeccionada:12controles y
+bordes completos.87guardas34docsPASS. Sin arregloproducto ni prueba
+de cada interaccion/botones/Windows/cierreM4. Capturas del disenador
+entregadas antes conservan su alcance propio.
+Evidencia: docs/evidence/linux-designer-mixed-runtime-q200.json.
