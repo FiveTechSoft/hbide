@@ -4524,3 +4524,14 @@ Nativas completas antes/despues inspeccionadas, underlay limpio y bordes
 inferiores completos. Primer harness titulo corregido48->49 antes de
 comparacion final. No todasgestos/vertical/Windows/herenciamatriz/M4/100%.
 Evidencia `docs/evidence/linux-designer-inspector-drag-anchor-q169.json`.
+
+
+### Q170 (1 noviembre 2026): arrastre vertical
+
+Inspector clampado abajo tras50CtrlDown, arrastre5filas arriba en25x80/40x120;
+4PTY20checks67guardas34docsPASS. OldC26 5PASS1FAIL frente al delta vertical.
+Nativa25x80 mismo binario antes/despues95px inspeccionada, underlay limpio
+y bordes completos. Fuente deccb7a31c2cefcbd1f92b022b2361db4fdf48e0, binario
+671da6af795bef5f7465c85c11f3653482b28f12182477541e866c07a198f393.
+No nuevo arreglo/modelos/todosgestos/Windows/herenciamatriz/cierreM4.
+Evidencia `docs/evidence/linux-designer-inspector-vertical-drag-q170.json`.

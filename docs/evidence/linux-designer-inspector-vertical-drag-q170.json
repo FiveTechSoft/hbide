@@ -1,0 +1,194 @@
+{
+  "scope": "Q170 vertical actual drag acceptance of Q169 fix, not new productfix",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "deccb7a31c2cefcbd1f92b022b2361db4fdf48e0",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "edc3def664f55f46270e803923fd669fc4e7ad904f458b8a890607814569bb06",
+    "binary_sha256": "671da6af795bef5f7465c85c11f3653482b28f12182477541e866c07a198f393",
+    "built_at": 1793517219.3586655
+  },
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "deccb7a31c2cefcbd1f92b022b2361db4fdf48e0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "edc3def664f55f46270e803923fd669fc4e7ad904f458b8a890607814569bb06",
+      "binary_sha256": "671da6af795bef5f7465c85c11f3653482b28f12182477541e866c07a198f393",
+      "build_receipt": "/tmp/hbide-q170-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "70f7ef3059b501d2e75c6796391ee303a49327bb2349609719103c1bf6499b57",
+      "case": "designer-inspector-drag-anchor-vertical-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py",
+        "--small",
+        "--vertical"
+      ],
+      "started": 1793517219.3591454,
+      "seconds": 7.84,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8b2d31b7d4e4807c653d9b51d7b8ea6ca70141ea1b376700c409b71b453814ee",
+      "log": "/tmp/hbide-q170-final/designer-inspector-drag-anchor-vertical-small-1793517219359139593.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "deccb7a31c2cefcbd1f92b022b2361db4fdf48e0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "edc3def664f55f46270e803923fd669fc4e7ad904f458b8a890607814569bb06",
+      "binary_sha256": "671da6af795bef5f7465c85c11f3653482b28f12182477541e866c07a198f393",
+      "build_receipt": "/tmp/hbide-q170-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "70f7ef3059b501d2e75c6796391ee303a49327bb2349609719103c1bf6499b57",
+      "case": "designer-inspector-drag-anchor-vertical",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py",
+        "--vertical"
+      ],
+      "started": 1793517227.2013626,
+      "seconds": 6.03,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8b2d31b7d4e4807c653d9b51d7b8ea6ca70141ea1b376700c409b71b453814ee",
+      "log": "/tmp/hbide-q170-final/designer-inspector-drag-anchor-vertical-1793517227201358525.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "deccb7a31c2cefcbd1f92b022b2361db4fdf48e0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "edc3def664f55f46270e803923fd669fc4e7ad904f458b8a890607814569bb06",
+      "binary_sha256": "671da6af795bef5f7465c85c11f3653482b28f12182477541e866c07a198f393",
+      "build_receipt": "/tmp/hbide-q170-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "70f7ef3059b501d2e75c6796391ee303a49327bb2349609719103c1bf6499b57",
+      "case": "designer-inspector-drag-anchor-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py",
+        "--small"
+      ],
+      "started": 1793517233.2358046,
+      "seconds": 5.58,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8b2d31b7d4e4807c653d9b51d7b8ea6ca70141ea1b376700c409b71b453814ee",
+      "log": "/tmp/hbide-q170-final/designer-inspector-drag-anchor-small-1793517233235800907.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "deccb7a31c2cefcbd1f92b022b2361db4fdf48e0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "edc3def664f55f46270e803923fd669fc4e7ad904f458b8a890607814569bb06",
+      "binary_sha256": "671da6af795bef5f7465c85c11f3653482b28f12182477541e866c07a198f393",
+      "build_receipt": "/tmp/hbide-q170-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "70f7ef3059b501d2e75c6796391ee303a49327bb2349609719103c1bf6499b57",
+      "case": "designer-inspector-drag-anchor",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py"
+      ],
+      "started": 1793517238.8200629,
+      "seconds": 4.23,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8b2d31b7d4e4807c653d9b51d7b8ea6ca70141ea1b376700c409b71b453814ee",
+      "log": "/tmp/hbide-q170-final/designer-inspector-drag-anchor-1793517238820059338.log"
+    }
+  ],
+  "checks": 20,
+  "logs": {
+    "designer-inspector-drag-anchor-vertical-small-1793517219359139593.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS inspector initially clamped to bottom\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-62of3lfn\n",
+    "designer-inspector-drag-anchor-vertical-1793517227201358525.log": "PASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS inspector initially clamped to bottom\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-qzseed6p\n",
+    "designer-inspector-drag-anchor-small-1793517233235800907.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-54zksni2\n",
+    "designer-inspector-drag-anchor-1793517238820059338.log": "PASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-80tow9i_\n"
+  },
+  "before": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS inspector initially clamped to bottom\nFAIL drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 5 PASS 1 FAIL; evidence /tmp/hbide-source-run-ah4w8u8m\n",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "deccb7a31c2cefcbd1f92b022b2361db4fdf48e0",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "812790374c3fda6f0024900b86c33e123f02e8a30061f0346a671a506c14c0df",
+    "started": 1793517243.2338715,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q170-guards/test_completion_guards.py.log",
+        "seconds": 0.212
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q170-guards/test_build_receipt.py.log",
+        "seconds": 0.213
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "5c178c60879f6f854039d24bc71bf0cbea3a01c22d29963770bd60d7bae50905",
+        "log": "/tmp/hbide-q170-guards/test_completion_inventory.py.log",
+        "seconds": 0.764
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q170-guards/test_distribution_notices.py.log",
+        "seconds": 0.211
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q170-guards/test_embed_help_docs.py.log",
+        "seconds": 0.211
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q170-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.364
+      }
+    },
+    "ok": true,
+    "finished": 1793517245.2104626
+  },
+  "native": {
+    "files": {
+      "hbide-q170-bottom-before.png": "50874849a2e46df7c69e32b8b3d94227426643053ab867237508fdd2d8c980f0",
+      "hbide-q170-bottom-after.png": "7811e3ada9b7c5337b1c6440bc02e2995aa475741d924922c07077fc13af5789"
+    },
+    "inspection": "Same exact binary actualIDE25x80 bottomclamped panel moved upward95px=5rows after50CtrlDowns. Full802x477beforeafterpixelsinspected,underlayrestoredlowerborderscomplete.",
+    "log": "/tmp/hbide-c24-visual-myviuwpa\nWINDOW=2097155\nX=0\nY=0\nWIDTH=802\nHEIGHT=477\nSCREEN=0\n\n"
+  },
+  "limits": "4PTY20checks,67guards34docs. Initial expectedbottomrow9 corrected10 before frozen run; oldC26then5PASS1FAIL verticaldelta, current4modesPASS. No allgestures/layouts/Windows/newmodels/global/M4/fullmatrixinheritance."
+}
