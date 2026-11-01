@@ -3988,3 +3988,21 @@ shortened;initial5e109c8passnotinheritedafterrepaintfix.Actualnative120x40
 literalyellow/nextkeywordscyan/fullborders/F2exactinspected.
 linux-editor-bracket-continuation.json.No generalpreprocessor/lexer/runtime/
 Windows/globalmatrix/hitoclosure.C23/Q121historicalseparate.
+
+
+## 1 noviembre 2026: Q132 repaint al quitar y reponer continuacion
+
+Fuente final `46aeb9049a1584314093211ab745f6fdda1c9fb1`, binario Linux
+`3d22656b3b5b1aa15c93af563f0a28aa30203242332ff61820e4ec21308ef731`.
+La ampliacion PTY detecto dos colores obsoletos (10/12, tras corregir el
+accelerator de Redo del harness). Backspace invalidaba despues del repaint.
+Primer arreglo `43469c2` dejo 11/12; se encontro ademas que `!=` de Harbour
+aceptaba contexto vacio como prefijo. Comparacion exacta y estado invalidado
+antes de pintar corrigen ambos sentidos, sin convertir cada tecla en repaint total.
+
+Validacion final independiente: seis modos PTY, 37 checks PASS; 26 modelos
+PASS, 206 controles repaint PASS y 57 guardas PASS. Secuencia abre, F2,
+Backspace, F2, ;, F2, Undo, F2, Redo, F2: bytes exactos y colores sin
+redraw forzado. Terminal nativo Linux inspeccionado en ambos estados,
+bordes inferiores completos. No es nueva matriz completa ni cierre Windows.
+Evidencia: `docs/evidence/linux-editor-continuation-edit-q132.json`.

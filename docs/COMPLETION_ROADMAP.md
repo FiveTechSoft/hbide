@@ -392,3 +392,12 @@ Expression-start pipe now preserves bracket strings for empty/argument blocks
 and comment gaps. 32 Linux PTY checks in six modes, 22 models and native120x40
 inspected; evidence linux-editor-bracket-codeblock.json. Bounded lexical fix,
 not full lexer/runtime/Windows/global milestone acceptance.
+
+
+### Seguimiento Q132 (1 noviembre 2026)
+
+Corregido repaint de continuacion al quitar/reponer ;: invalidacion previa
+en Backspace y contexto lexical comparado exacto. Seis modos PTY, 37 checks,
+26 modelos, 206 controles repaint y 57 guardas PASS sobre fuente `46aeb904`.
+Evidencia en `docs/evidence/linux-editor-continuation-edit-q132.json`;
+no hereda matriz Q121 ni cierra hitos abiertos.
