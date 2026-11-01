@@ -494,7 +494,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
    local nKeyExt := hb_keyExt( nKey )   // HB_KX_* when an extended special key, else 0
    local nKeyMod := hb_keyMod( nKey )   // HB_KF_* flags of the extended code
    local nOldScrRow := ::Row()
-   local cKey, oLine, nPos, lHotPath, lBlkBefore, cCtxBefore, lSkipTail := .F., cOldLine
+   local cKey, oLine, nPos, lHotPath, lBlkBefore, cCtxBefore, lSkipTail := .F., cOldLine, nWordEnd
 
    do case
       // Distinct only under HB_INKEY_EXT: the classic set delivers Ctrl+Left
@@ -643,12 +643,23 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            if ::SelRange() != NIL
               ::SelDelete(::SelRange())
            else
-           // HBEditor word deletion expects text columns, not our gutter.
-           nPos := Max( ::nCol - 4, 1 )
-           ::nCol := nPos
-           ::nBlkDirty := Min( ::nBlkDirty, ::nRow )
-           ::Super:Edit( nKey )
-           ::GoTo( ::nRow, nPos + 4, _REFRESH_ALL )
+              // Raw TAB is one source character but a word separator like
+              // space. HBEditor SkipWord only recognizes literal spaces.
+              nPos := Max(::nCol-4,1)
+              cOldLine := ::aText[::nRow]:cText
+              nWordEnd := nPos
+              do while nWordEnd <= hb_ULen(cOldLine) .and. hb_USubStr(cOldLine,nWordEnd,1) $ (" "+Chr(9))
+                 nWordEnd++
+              enddo
+              do while nWordEnd <= hb_ULen(cOldLine) .and. !(hb_USubStr(cOldLine,nWordEnd,1) $ (" "+Chr(9)))
+                 nWordEnd++
+              enddo
+              if nWordEnd > nPos
+                 ::aText[::nRow]:cText := hb_UStuff(cOldLine,nPos,nWordEnd-nPos,"")
+                 ::lDirty := .T.
+                 ::nBlkDirty := Min(::nBlkDirty,::nRow)
+              endif
+              ::GoTo(::nRow,nPos+4,_REFRESH_ALL)
            endif
 
       case nKeyStd == K_CTRL_Y
