@@ -1,0 +1,274 @@
+{
+  "scope": "Frozen C30 clipboard/editor operations.16additional command variants;308distinct across blocks1..99 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "virtual-backspace",
+          "command": [
+            "test_virtual_backspace_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 12.442215919494629,
+          "test_sha256": "8142ae844b69914199d4e5ce07208b9bef445a4d963ec1bed3886c214421da93",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/virtual-backspace.log",
+          "printed_failure": false
+        },
+        {
+          "name": "cut-undo-boundary",
+          "command": [
+            "test_cut_undo_boundary_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 14.977639436721802,
+          "test_sha256": "830d07057e62128a03aef60216c819fde4baf768d5eefeac4b6ff89ac8abd733",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/cut-undo-boundary.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "clipboard-utf8-terminal",
+          "command": [
+            "test_clipboard_utf8_multidoc_pty.py",
+            "--utf8-terminal"
+          ],
+          "exit": 0,
+          "seconds": 19.644521236419678,
+          "test_sha256": "f850dc526d634f483cf4b6194c109f77ae970ebd8816cb48eac4d93199098368",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-utf8-terminal.log",
+          "printed_failure": false
+        },
+        {
+          "name": "clipboard-utf8-multidoc",
+          "command": [
+            "test_clipboard_utf8_multidoc_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 19.66832399368286,
+          "test_sha256": "f850dc526d634f483cf4b6194c109f77ae970ebd8816cb48eac4d93199098368",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-utf8-multidoc.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "clipboard-block-multidoc",
+          "command": [
+            "test_clipboard_block_multidoc_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 19.662418127059937,
+          "test_sha256": "85802744523168aaf84622697e98cf5275fd8a5595d4510c2d8b7c210ad0ea26",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-block-multidoc.log",
+          "printed_failure": false
+        },
+        {
+          "name": "clipboard-close",
+          "command": [
+            "test_clipboard_close_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 14.248096704483032,
+          "test_sha256": "1748cca360147228158bea743e6226bdc251bcd07af72b0ba70fa5d4a6431e2f",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-close.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "clipboard-multidoc",
+          "command": [
+            "test_clipboard_multidoc_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 11.675423383712769,
+          "test_sha256": "37c53b88e21c615212a8f158592175b73b27f3b1b23539b5533dd62b973233b1",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-multidoc.log",
+          "printed_failure": false
+        },
+        {
+          "name": "delete-eof",
+          "command": [
+            "test_delete_eof_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 16.285797119140625,
+          "test_sha256": "b80fd4209481a9b5755f0804aa0bd24c2ed264edfa1ec7e66cc7d17270305399",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/delete-eof.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "overtype-identity",
+          "command": [
+            "test_overtype_identity_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.25655460357666,
+          "test_sha256": "727f4ad989822628c59bbc5d9c40580144e4c483271c94841a71aba38e7e83ff",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/overtype-identity.log",
+          "printed_failure": false
+        },
+        {
+          "name": "clipboard-spaces",
+          "command": [
+            "test_clipboard_spaces_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 9.21963095664978,
+          "test_sha256": "db599e487f4a446007a7e250cc02615408cd1c600a43fec0f31f29bc43554ca9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-spaces.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "replace-identity",
+          "command": [
+            "test_replace_identity_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 6.471062898635864,
+          "test_sha256": "b9abff047745e560ab4356b4878f7f167b6eb89bbc3ea1dee4972a1d52a28d8c",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/replace-identity.log",
+          "printed_failure": false
+        },
+        {
+          "name": "replace-undo-boundary",
+          "command": [
+            "test_replace_undo_boundary_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 13.527444839477539,
+          "test_sha256": "9c7dfd85b8bd258fe24611a9d9f442ae3bb34fe721a214c8cb411ebd40242559",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/replace-undo-boundary.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "replace-spaces",
+          "command": [
+            "test_replace_spaces_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 16.537927627563477,
+          "test_sha256": "cc9f1d772926c9e4cc4f952045f676aacb987677e36540d457b2d3c1bbc90332",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/replace-spaces.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-mouse-utf8-terminal",
+          "command": [
+            "test_editor_mouse_utf8_pty.py",
+            "--utf8-terminal"
+          ],
+          "exit": 0,
+          "seconds": 22.60843801498413,
+          "test_sha256": "89c315ebc9f9caaf220e33cc9ad64d72d2d3fa877c577c55bc2b91440c9ba6fa",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-mouse-utf8-terminal.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "editor-mouse-utf8",
+          "command": [
+            "test_editor_mouse_utf8_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 22.615803003311157,
+          "test_sha256": "89c315ebc9f9caaf220e33cc9ad64d72d2d3fa877c577c55bc2b91440c9ba6fa",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-mouse-utf8.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-mouse",
+          "command": [
+            "test_editor_mouse_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 44.33536076545715,
+          "test_sha256": "882067d19b14c14ae930893b9467f1d01df6d31ad1a55bd731436401784b7b51",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-mouse.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 308,
+  "logs": {
+    "virtual-backspace.log": "PASS Open requested fixture\nPASS Virtual Backspace moves left without deleting text\nPASS Backspace beyond short line closes without false prompt\nPASS Virtual Backspace preserves earlier redo\nPASS Undo earlier edit exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-j5u12fjx\n",
+    "cut-undo-boundary.log": "PASS Open requested fixture\nPASS Cut selected al keeps earlier typed X\nPASS Undo Cut alone preserves earlier typing\nPASS Redo Cut alone exact\nPASS Undo later typing keeps Cut\nPASS next Undo restores pre-Cut typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-lwubp245\n",
+    "clipboard-utf8-terminal.log": "PASS Open source fixture\nPASS UTF8 terminal decodes accented source text\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 10 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-jf77sbqs\n",
+    "clipboard-utf8-multidoc.log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-bgpz4udk\n",
+    "clipboard-block-multidoc.log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-amtwd48x\n",
+    "clipboard-close.log": "PASS Open source fixture\nPASS Cut source line saves remaining bytes exact\nPASS closed cut source returns to noname\nPASS Paste retains cut clipboard after source closes\nPASS Undo paste isolated after source closes\nPASS Redo paste after source closes exact\nPASS new document opened\nPASS latest Copy replaces shared clipboard in new document\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-i1smz12y\n",
+    "clipboard-multidoc.log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste uses source clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores pasted bytes\nPASS source document remained unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-46yj2n0a\n",
+    "delete-eof.log": "PASS Open requested fixture\nPASS Delete at EOF leaves source visible\nPASS Delete at EOF closes without false save prompt\nPASS Backspace at BOF closes without false save prompt\nPASS Delete at EOF preserves redo of undone edit\nPASS Backspace at BOF preserves redo of undone edit\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-zw8tez5b\n",
+    "overtype-identity.log": "PASS Open requested fixture\nPASS identical overtype advances cursor without text change\nPASS identical overtype closes without false save prompt\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-n8ofs4pi\n",
+    "clipboard-spaces.log": "PASS Open requested fixture\nPASS Paste copied three spaces as a real third line\nPASS Undo space-only paste exact\nPASS Redo space-only paste exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-4_7slkq1\n",
+    "replace-identity.log": "PASS Open requested fixture\nPASS identity replacement still reports one match\nPASS identity replacement of clean buffer closes without save prompt\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ms4fl0lv\n",
+    "replace-undo-boundary.log": "PASS Open requested fixture\nPASS one Undo reverts Replace but preserves earlier typed X\nPASS Redo reapplies only replacement\nPASS Undo later typing preserves replacement\nPASS next Undo restores text before Replace\nPASS third Undo removes earlier typing alone\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-10tvd347\n",
+    "replace-spaces.log": "PASS Open requested fixture\nPASS Replace one-space search reports4\nPASS Replace space changes exact fixture spaces\nPASS Undo space replacement restores exact bytes\nPASS Redo space replacement restores exact changed bytes\nPASS Undo again restores exact source\nPASS Replace two-space search reports1\nPASS Replace pair touches only adjacent spaces\nPASS Undo pair replacement restores exact bytes\nPASS Cancel all-space replace preserves exact bytes\nTOTAL 10 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-dvf29kmi\n",
+    "editor-mouse-utf8-terminal.log": "PASS explicit terminal locale paints expected word labels\nPASS UTF8 doubleclick replaces whole accented word after TAB\nPASS Undo UTF8 word exact BOM TAB mixed EOL\nPASS UTF8 click after accented word maps exact byte\nPASS Undo UTF8 byte insertion exact\nPASS UTF8 doubleclick Delete exact accented word\nPASS Undo UTF8 Delete exact\nPASS UTF8 doubleclick final accented word exact\nPASS Undo UTF8 final word exact\nPASS UTF8 word Enter exact BOM TAB CRLF\nPASS Undo UTF8 Enter exact\nPASS UTF8 word Backspace exact BOM TAB mixed EOL\nPASS Undo UTF8 Backspace exact\nPASS UTF8 word Copy Paste exact bytes and line contract\nPASS Undo UTF8 Copy Paste exact\nPASS UTF8 word Cut exact BOM TAB mixed EOL\nPASS Undo UTF8 Cut exact\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-mzbpob98\n",
+    "editor-mouse-utf8.log": "PASS explicit terminal locale paints expected word labels\nPASS UTF8 doubleclick replaces whole accented word after TAB\nPASS Undo UTF8 word exact BOM TAB mixed EOL\nPASS UTF8 click after accented word maps exact byte\nPASS Undo UTF8 byte insertion exact\nPASS UTF8 doubleclick Delete exact accented word\nPASS Undo UTF8 Delete exact\nPASS UTF8 doubleclick final accented word exact\nPASS Undo UTF8 final word exact\nPASS UTF8 word Enter exact BOM TAB CRLF\nPASS Undo UTF8 Enter exact\nPASS UTF8 word Backspace exact BOM TAB mixed EOL\nPASS Undo UTF8 Backspace exact\nPASS UTF8 word Copy Paste exact bytes and line contract\nPASS Undo UTF8 Copy Paste exact\nPASS UTF8 word Cut exact BOM TAB mixed EOL\nPASS Undo UTF8 Cut exact\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-qjdyqdfg\n",
+    "editor-mouse.log": "PASS click places cursor at exact beta byte\nPASS Undo click insertion exact\nPASS click expanded TAB maps to correct source byte\nPASS Undo TAB click exact\nPASS doubleclick selects whole word not line\nPASS Undo doubleclick replacement exact\nPASS doubleclick Enter replaces word with exact CRLF\nPASS Undo word Enter exact\nPASS doubleclick Backspace removes word only\nPASS Undo word Backspace exact\nPASS doubleclick overtype replaces word without next byte loss\nPASS Undo word overtype exact\nPASS doubleclick Delete removes exact word\nPASS Undo word Delete exact\nPASS doubleclick expanded TAB selects correct word\nPASS Undo TAB word replacement exact\nPASS doubleclick Copy uses word not whole line\nPASS Undo copied word paste exact\nPASS doubleclick Cut removes word only\nPASS Undo cut word exact\nPASS wheel down moves four source rows\nPASS wheel up returns to first row\nPASS wheel top clamps first row\nPASS wheel navigation never changes source bytes\nPASS PageDown exposes later source rows\nPASS click scrolled row maps exact source byte\nPASS Undo scrolled row click exact\nPASS click horizontally scrolled row exact byte\nPASS Undo horizontal click exact\nPASS doubleclick horizontally scrolled word exact\nPASS Undo horizontal word exact\nPASS whitespace click inserts at precise space\nPASS Undo whitespace click exact\nPASS click beyond EOL preserves exact padding\nPASS Undo beyond EOL exact\nPASS wheel bottom clamps final empty row\nPASS bottom wheel preserves every byte\nTOTAL 37 PASS 0 FAIL; evidence /tmp/hbide-source-run-4j_patkk\n"
+  }
+}

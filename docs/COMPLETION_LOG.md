@@ -5421,3 +5421,15 @@ interrumpido. Sin fallo IDE registrado, no global sinreintentos.292 variantes
 distintas cotejadas con plan353/normalizaciónQ223. No producto/píxeles/
 modelos/Windows/matriz completa/cierre hitos.
 Evidencia: docs/evidence/linux-c30-designer-blocks8691-q238.json.
+
+### Q239 (1 noviembre 2026): C30 clipboard/editor
+
+16 variantes adicionales PASS mismo C30 96d77549/export049b533: virtual
+Backspace/Cut Undo, clipboard UTF8 terminal/multidoc/block/close/normal/
+spaces, Delete EOF, overtype identity, Replace identity/Undo/spaces y
+mouse editor normal/UTF8/terminalUTF8. Fixtures acotadas de bytes/estado
+según contrato, no todos encodings/terminales. Tests propios hashados/
+binario inalterado, sin fallo/reintento en estas16.308 variantes distintas
+cotejadas con plan353/normalizaciónQ223. No producto nuevo/píxeles/modelos/
+Windows/matriz completa/hitos.
+Evidencia: docs/evidence/linux-c30-clipboard-editor-blocks9299-q239.json.
