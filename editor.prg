@@ -1914,14 +1914,21 @@ return nil
 METHOD CutSelection() CLASS HBSrcEdit
 
    local aSel := ::SelRange()
-   local aOld
+   local aOld, aBefore
 
    if aSel == NIL
       return nil
    endif
    ::cClipboard = ::SelectionText()
+   aBefore := ::LinesSnapshot()
    aOld = ::SelDelete( aSel )
-   ::PushOp( aSel[ 1 ], aOld, { HBIDE_LinePack( ::aText[ aSel[ 1 ] ] ) }, .T. )
+   if aSel[1] < aSel[3] .and. aSel[2] <= 5 .and. aSel[4] <= 5
+      // Whole physical lines were removed; the equal final fragment is
+      // the surviving endpoint, never a replacement for the deleted copy.
+      ::RecordEdit(aBefore,.T.,aSel[1]-1)
+   else
+      ::PushOp( aSel[ 1 ], aOld, { HBIDE_LinePack( ::aText[ aSel[ 1 ] ] ) }, .T. )
+   endif
 
 return nil
 

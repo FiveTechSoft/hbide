@@ -82,6 +82,17 @@ PROCEDURE Main()
    Check(Len(o:aBPs)==0,'deleting marked identical instruction drops BP',@nPass,@nFail)
    o:Undo()
    Check(Len(o:aBPs)==0,'Undo cannot resurrect deleted identical instruction BP',@nPass,@nFail)
+   o:LoadText('same'+cLF+'same'+cLF+'tail')
+   o:aBPs := {1,2}
+   o:GoTo(1,5)
+   o:Edit(K_F8)
+   o:GoTo(2,5)
+   o:CutSelection()
+   Check(o:GetText()=='same'+cLF+'tail'.and.Len(o:aBPs)==1.and.o:aBPs[1]==1,'whole-line Cut drops deleted BP keeps endpoint identity',@nPass,@nFail)
+   o:Undo()
+   Check(Len(o:aBPs)==1.and.o:aBPs[1]==2,'Undo whole-line Cut restores only surviving BP position',@nPass,@nFail)
+   o:Redo()
+   Check(Len(o:aBPs)==1.and.o:aBPs[1]==1,'Redo whole-line Cut preserves surviving BP',@nPass,@nFail)
    // Every edit is checked in both directions, including adjacent metadata.
    cText := 'abc' + cCRLF + 'def' + cLF + 'ghi' + Chr( 13 ) + 'tail'
    o:LoadText( cText )
