@@ -1,0 +1,33 @@
+{
+  "scope": "Five bounded navigation modes15checks C87only",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "results": {
+    "test_nav_raw_bom_pty.py": {
+      "exit": 0,
+      "log": "PASS Raw UTF8 warning\nPASS Picker includes first declaration behind raw BOM\nPASS Navigation preserves raw UTF8 BOM file\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-x8a0a69z\n",
+      "binary_unchanged": true
+    },
+    "test_nav_end_class_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after END CLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-d_eds1yx\n",
+      "binary_unchanged": true
+    },
+    "test_nav_declared_method_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes DECLARED implementation, excludes member\nPASS Picker jumps to DECLARED implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-cyv_1xlq\n",
+      "binary_unchanged": true
+    },
+    "test_nav_text_block_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-7wbgr4l2\n",
+      "binary_unchanged": true
+    },
+    "test_nav_array_bracket_comment_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-oerqkc_7\n",
+      "binary_unchanged": true
+    }
+  },
+  "limits": "No new pixel/model/fullmatrix/Windows/install/license/hitoclosure claims"
+}
