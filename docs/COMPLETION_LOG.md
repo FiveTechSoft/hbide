@@ -4037,3 +4037,23 @@ por sentencia incompleta, y se corrigio el test, no el editor. Terminal
 nativo inspeccionado antes/despues del join, bordes completos.
 Evidencia `docs/evidence/linux-editor-continuation-joins-q134.json`.
 Sin nueva corrida de modelos ni matriz completa ni cierre de hitos.
+
+
+## 1 noviembre 2026: Q136 matriz Linux completa nueva
+
+Fuente congelada `134fd459bbe25f90bf21d16af1159f56e25faf54`, ejecutable
+`62e7b63e3cb5b6435af0f7ed48f1b3c5ee7e9b69341db420993cf64a8ecebf94`.
+228/228 casos distintos PASS (227 PTY + una guarda fuente), 26 modelos,
+57 guardas y 34 documentos PASS. Recibo/fuente/hash actual verificados.
+Q135 habia llegado a 162/228 reportados antes de perder el entorno local;
+sin ledger/binario recuperable no es aceptacion reproducible. Se comprobo
+y recupero remoto 134fd459 sin perdida de cambios publicados. Q136 empieza
+de cero y no hereda resultados de Q135.
+
+Una llamada de lote Q136 alcanzo el limite externo durante navigation
+tras Edit-menu completado PASS. Se conserva intento incompleto y se repite
+navigation explicitamente PASS con mismo fuente/binario; no es diagnostico
+de fallo de producto ni se oculta como corrida sin interrupciones.
+Checkpoints adjuntos al seguimiento conservan ejecutable y registros.
+Evidencia `docs/evidence/linux-full-matrix-q136.json`. No certifica
+Windows/instalacion/licencias, todos los comportamientos ni cierre de hitos.

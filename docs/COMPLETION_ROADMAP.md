@@ -419,3 +419,13 @@ Undo/Redo/F2 en cuatro modos PTY, 48 checks y 57 guardas PASS. Expectativa
 inicial corregida tras contraste con Harbour; la linea vacia termina
 continuacion. Evidencia `docs/evidence/linux-editor-continuation-joins-q134.json`.
 No nueva matriz global ni cierre de hitos.
+
+
+### Seguimiento Q136 (1 noviembre 2026)
+
+Matriz Linux registrada nueva 228/228 (227PTY+1guarda) PASS sobre134fd459,
+binario62e7b63e;26modelos57guardas34docs PASS. Q135162/228 queda solo
+historico reportado tras reset, no heredado. Q136 incluye una interrupcion
+externa de navigation y repeticion explicita PASS, documentadas. Evidencia
+`docs/evidence/linux-full-matrix-q136.json`. No equivale a100%ni cierre
+de Windows/licencias/instalacion/hitos.
