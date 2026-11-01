@@ -1628,21 +1628,24 @@
     },
     "IDE-FIELD-ReplaceDialog-cFind-1": {
       "tests": [
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_replace_mouse_selection_pty.py"
       ],
-      "contract": "Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows."
+      "contract": "Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. C90 Q479 direct native button pairs during free-form input accept/cancel without Tab; source/selection or Script argv exact in bounded consumer fixture. No all mouse/Unicode/Windows claim."
     },
     "IDE-FIELD-ReplaceDialog-cReplace-1": {
       "tests": [
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_replace_mouse_selection_pty.py"
       ],
-      "contract": "Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows."
+      "contract": "Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. C90 Q479 direct native button pairs during free-form input accept/cancel without Tab; source/selection or Script argv exact in bounded consumer fixture. No all mouse/Unicode/Windows claim."
     },
     "IDE-FIELD-FindDialog-cText-1": {
       "tests": [
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_find_mouse_selection_pty.py"
       ],
-      "contract": "Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows."
+      "contract": "Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. C90 Q479 direct native button pairs during free-form input accept/cancel without Tab; source/selection or Script argv exact in bounded consumer fixture. No all mouse/Unicode/Windows claim."
     },
     "IDE-FIELD-GotoLine-nLine-1": {
       "tests": [
@@ -1673,21 +1676,24 @@
     },
     "IDE-FIELD-RunArguments-cText-1": {
       "tests": [
-        "test_run_arguments_modal_pty.py"
+        "test_run_arguments_modal_pty.py",
+        "test_run_arguments_mouse_pty.py"
       ],
-      "contract": "Actual explicit OK sets Script argv including quoted/empty arguments; explicit Cancel and Esc preserve prior argv; invalid quote rejected with prior argv preserved; explicit clear and Enter checked. Linux focal test, not all inputs/platforms."
+      "contract": "Actual explicit OK sets Script argv including quoted/empty arguments; explicit Cancel and Esc preserve prior argv; invalid quote rejected with prior argv preserved; explicit clear and Enter checked. Linux focal test, not all inputs/platforms. C90 Q479 direct native button pairs during free-form input accept/cancel without Tab; source/selection or Script argv exact in bounded consumer fixture. No all mouse/Unicode/Windows claim."
     },
     "IDE-FIELD-RunArguments-lDummy-1": {
       "tests": [
-        "test_run_arguments_modal_pty.py"
+        "test_run_arguments_modal_pty.py",
+        "test_run_arguments_mouse_pty.py"
       ],
-      "contract": "Actual explicit OK sets Script argv including quoted/empty arguments; explicit Cancel and Esc preserve prior argv; invalid quote rejected with prior argv preserved; explicit clear and Enter checked. Linux focal test, not all inputs/platforms."
+      "contract": "Actual explicit OK sets Script argv including quoted/empty arguments; explicit Cancel and Esc preserve prior argv; invalid quote rejected with prior argv preserved; explicit clear and Enter checked. Linux focal test, not all inputs/platforms. C90 Q479 direct native button pairs during free-form input accept/cancel without Tab; source/selection or Script argv exact in bounded consumer fixture. No all mouse/Unicode/Windows claim."
     },
     "IDE-FIELD-RunArguments-lDummy-2": {
       "tests": [
-        "test_run_arguments_modal_pty.py"
+        "test_run_arguments_modal_pty.py",
+        "test_run_arguments_mouse_pty.py"
       ],
-      "contract": "Actual explicit OK sets Script argv including quoted/empty arguments; explicit Cancel and Esc preserve prior argv; invalid quote rejected with prior argv preserved; explicit clear and Enter checked. Linux focal test, not all inputs/platforms."
+      "contract": "Actual explicit OK sets Script argv including quoted/empty arguments; explicit Cancel and Esc preserve prior argv; invalid quote rejected with prior argv preserved; explicit clear and Enter checked. Linux focal test, not all inputs/platforms. C90 Q479 direct native button pairs during free-form input accept/cancel without Tab; source/selection or Script argv exact in bounded consumer fixture. No all mouse/Unicode/Windows claim."
     },
     "IDE-FIELD-GotoLine-lDummy-1": {
       "tests": [
@@ -1705,27 +1711,31 @@
     },
     "IDE-FIELD-FindDialog-lDummy-1": {
       "tests": [
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_find_mouse_selection_pty.py"
       ],
-      "contract": "Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only."
+      "contract": "Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. C90 Q479 direct native button pairs during free-form input accept/cancel without Tab; source/selection or Script argv exact in bounded consumer fixture. No all mouse/Unicode/Windows claim."
     },
     "IDE-FIELD-FindDialog-lDummy-2": {
       "tests": [
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_find_mouse_selection_pty.py"
       ],
-      "contract": "Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only."
+      "contract": "Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. C90 Q479 direct native button pairs during free-form input accept/cancel without Tab; source/selection or Script argv exact in bounded consumer fixture. No all mouse/Unicode/Windows claim."
     },
     "IDE-FIELD-ReplaceDialog-lDummy-1": {
       "tests": [
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_replace_mouse_selection_pty.py"
       ],
-      "contract": "Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only."
+      "contract": "Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. C90 Q479 direct native button pairs during free-form input accept/cancel without Tab; source/selection or Script argv exact in bounded consumer fixture. No all mouse/Unicode/Windows claim."
     },
     "IDE-FIELD-ReplaceDialog-lDummy-2": {
       "tests": [
-        "test_edit_menu_pty.py"
+        "test_edit_menu_pty.py",
+        "test_replace_mouse_selection_pty.py"
       ],
-      "contract": "Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only."
+      "contract": "Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. C90 Q479 direct native button pairs during free-form input accept/cancel without Tab; source/selection or Script argv exact in bounded consumer fixture. No all mouse/Unicode/Windows claim."
     },
     "IDE-FIELD-HelpIndex-cFilter-1": {
       "tests": [
@@ -3211,6 +3221,30 @@
         "test_designer_release_noop_pty.py"
       ],
       "contract": "Trace-only main-loop branch with DSN_TRACE disabled: C87 xterm40x120 ComboBox model, canvas-focused unpaired release on canvas/title/close glyph leaves complete normalized grid and full controls JSON unchanged; close glyph release alone does not close inspector. Not paired drag completion/inspector loop/log enabled/alltypes/allcoords/pixels/Windows; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-FREEINPUT-PAIRED-BUTTONS": {
+      "source": "hbide.prg",
+      "context": "static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons )",
+      "condition": "if nMouse == K_LBUTTONDOWN .or. nMouse == K_LBUTTONUP .or. nMouse == K_LDBLCLK",
+      "tests": [
+        "test_freeinput_mouse_pairs_pty.py",
+        "test_find_mouse_selection_pty.py",
+        "test_replace_mouse_selection_pty.py",
+        "test_run_arguments_mouse_pty.py"
+      ],
+      "contract": "C90 direct Find/Replace both fields/RunArguments button pairs accept or cancel without Tab; press alone/cross-boundary/unpaired release do not activate. Exact selection/source/argv. Combined branch link covers DOWN/UP only, not DBL timing; no all coordinates/Unicode/Windows. Link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-FREEINPUT-ARM": {
+      "source": "hbide.prg",
+      "context": "static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons )",
+      "condition": "case nMouse == K_LBUTTONDOWN",
+      "tests": [
+        "test_freeinput_mouse_pairs_pty.py",
+        "test_find_mouse_selection_pty.py",
+        "test_replace_mouse_selection_pty.py",
+        "test_run_arguments_mouse_pty.py"
+      ],
+      "contract": "C90 direct Find/Replace both fields/RunArguments button pairs accept or cancel without Tab; press alone/cross-boundary/unpaired release do not activate. Exact selection/source/argv. Combined branch link covers DOWN/UP only, not DBL timing; no all coordinates/Unicode/Windows. Link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }
