@@ -1,0 +1,42 @@
+{
+  "scope": "Q472 fresh C88 four bounded M2 build failure/retry/diagnostic/args modes55checks",
+  "source": "e32c6ece0a8d461f04f7244eb451e378211c7f14",
+  "binary_sha256": "e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38",
+  "results": {
+    "missing-output-diag": {
+      "exit": 0,
+      "log": "PASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-w5b_re_y\n",
+      "args": [
+        "--missing-output-diagnostic"
+      ],
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true
+    },
+    "promotion-failure": {
+      "exit": 0,
+      "log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS editor remains usable after repeated failure\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-5_ohxvt5\n",
+      "args": [
+        "--promotion-failure"
+      ],
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true
+    },
+    "promotion-retry": {
+      "exit": 0,
+      "log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS retry with unblocked destination builds\nPASS retry launches fresh real compiler result\nPASS retry promotes new executable\nPASS retained first output stays exact\nPASS retry preserves source\nPASS retry has no unnamed temporary outputs\nPASS editor remains usable after repeated failure\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-qch3xa3q\n",
+      "args": [
+        "--promotion-retry"
+      ],
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true
+    },
+    "run-modal": {
+      "exit": 0,
+      "log": "PASS arguments modal opens\nPASS explicit-ok exact Script argv\nPASS arguments modal opens\nPASS explicit-cancel exact Script argv\nPASS arguments modal opens\nPASS esc-preserve exact Script argv\nPASS arguments modal opens\nPASS invalid quote rejected\nPASS invalid-preserve exact Script argv\nPASS arguments modal opens\nPASS explicit-clear exact Script argv\nPASS arguments modal opens\nPASS enter-accept exact Script argv\nPASS editor remains usable\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-nghol2k9\n",
+      "args": [],
+      "test_sha256": "ce24ee133541f28a8720bc4c8df8aab24da86d308699f6a71c070b36b202fc81",
+      "binary_unchanged": true
+    }
+  },
+  "limits": "Controlled compiler fixtures and explicit retry scenario, not retry-free claim/fullmatrix/pixels/models/Windows/install/license/hitoclosure."
+}
