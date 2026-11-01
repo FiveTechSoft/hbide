@@ -1,0 +1,10 @@
+{
+  "scope": "Q477 C88 Goto mouse Cancel retains selected range; OK clears selection and keeps cursor column, mixed EOL Undo exact",
+  "source": "e32c6ece0a8d461f04f7244eb451e378211c7f14",
+  "binary_sha256": "e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38",
+  "test_sha256": "d257c075c5e66a326dd29b89c2d3af7d631df256b6161e0e4109fd9797c7a4b5",
+  "initial_log": "PASS Open requested fixture\nPASS Goto mouse Cancel preserves selected al range\nPASS Undo after Goto Cancel exact mixed EOL\nPASS Goto mouse OK navigates third row\nFAIL Goto mouse OK clears old range before typing\nPASS Undo after Goto OK exact mixed EOL\nTOTAL 5 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-ihn57vo0\n",
+  "final_log": "PASS Open requested fixture\nPASS Goto mouse Cancel preserves selected al range\nPASS Undo after Goto Cancel exact mixed EOL\nPASS Goto mouse OK navigates third row\nPASS Goto mouse OK clears old range before typing\nPASS Undo after Goto OK exact mixed EOL\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-sdkl8e1i\n",
+  "fixture_correction": "Initial expected GotoLine reset column1, but inherited HBEditor GoToLine retains nCol; actual gaYmma at column3 is valid. Expected corrected, no product fix.",
+  "limits": "One selected al ASCII range, Cancel/OK mouse buttons, target3/mixedEOL, not all Goto clamps/terminals/pixels/Windows/policy change."
+}
