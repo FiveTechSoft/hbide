@@ -1,0 +1,4691 @@
+{
+  "plan_sha256": "7a5218f0dd92430f1f2defefd0145f4aa8145d0f47267d2057590f72b7623963",
+  "plan_cases": 353,
+  "final_cases": [
+    {
+      "name": "saveas-new",
+      "command": [
+        "test_saveas_literal_new_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.749048948287964,
+      "test_sha256": "8b1a92b1ba059d27dcbf5510950c593c2ecc3e65c2c5c712a6f82c0ee34672cb",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveas-new.log",
+      "printed_failure": false
+    },
+    {
+      "name": "saveas-regular",
+      "command": [
+        "test_saveas_literal_regular_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.97020673751831,
+      "test_sha256": "595b251f93da480ca52acb86b622fddb7390c0e938915acde780c532e8c12d95",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveas-regular.log",
+      "printed_failure": false
+    },
+    {
+      "name": "saveas-link",
+      "command": [
+        "test_saveas_literal_symlink_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.80928373336792,
+      "test_sha256": "1f48217926ce21af315d0b40181ff92a1a44f3f375657fd2907f7cc42f71aa25",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveas-link.log",
+      "printed_failure": false
+    },
+    {
+      "name": "saveas-link-dirty",
+      "command": [
+        "test_saveas_literal_symlink_pty.py",
+        "--dirty"
+      ],
+      "exit": 0,
+      "seconds": 12.388280391693115,
+      "test_sha256": "1f48217926ce21af315d0b40181ff92a1a44f3f375657fd2907f7cc42f71aa25",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveas-link-dirty.log",
+      "printed_failure": false
+    },
+    {
+      "name": "overwrite-accept",
+      "command": [
+        "test_saveas_overwrite_accept_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.97125506401062,
+      "test_sha256": "8e4c7d3ae75239cdccf2b4ede8ee7b5603b4599fd579f06444062fb7030eae36",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/overwrite-accept.log",
+      "printed_failure": false
+    },
+    {
+      "name": "overwrite-cancel",
+      "command": [
+        "test_saveas_overwrite_cancel_pty.py",
+        "--dirty"
+      ],
+      "exit": 0,
+      "seconds": 12.230037927627563,
+      "test_sha256": "20fa50534fd6bed9040b6ba913567658ce797d15f95bf3a3ed7ffc044a43d1f1",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/overwrite-cancel.log",
+      "printed_failure": false
+    },
+    {
+      "name": "external-normal",
+      "command": [
+        "test_external_changes_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 15.614820003509521,
+      "test_sha256": "f3c5115b2aa248e1f37a655aba7f3258a8eb5b8dac5ca0c7d3fe2a18001979ac",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/external-normal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "external-literal",
+      "command": [
+        "test_external_changes_pty.py",
+        "--literal"
+      ],
+      "exit": 0,
+      "seconds": 15.614081621170044,
+      "test_sha256": "f3c5115b2aa248e1f37a655aba7f3258a8eb5b8dac5ca0c7d3fe2a18001979ac",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/external-literal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "failure-clean",
+      "command": [
+        "test_saveas_failure_identity_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.569040060043335,
+      "test_sha256": "36159f33a1687bee72ffb1b8618a6d73036076195561e4697c6b20eb3fb55568",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/failure-clean.log",
+      "printed_failure": false
+    },
+    {
+      "name": "failure-dirty",
+      "command": [
+        "test_saveas_failure_identity_pty.py",
+        "--dirty"
+      ],
+      "exit": 0,
+      "seconds": 12.186487913131714,
+      "test_sha256": "36159f33a1687bee72ffb1b8618a6d73036076195561e4697c6b20eb3fb55568",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/failure-dirty.log",
+      "printed_failure": false
+    },
+    {
+      "name": "failure-crash",
+      "command": [
+        "test_saveas_failure_identity_pty.py",
+        "--crash"
+      ],
+      "exit": 0,
+      "seconds": 15.82459807395935,
+      "test_sha256": "36159f33a1687bee72ffb1b8618a6d73036076195561e4697c6b20eb3fb55568",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/failure-crash.log",
+      "printed_failure": false
+    },
+    {
+      "name": "saveall-failure",
+      "command": [
+        "test_saveall_fail_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 17.7970552444458,
+      "test_sha256": "867f41dfed5f1947f30ef5b090265a1cc87ec7ee1177947074e59acb548b729f",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveall-failure.log",
+      "printed_failure": false
+    },
+    {
+      "name": "saveall-conflict-cancel",
+      "command": [
+        "test_saveall_conflict_cancel_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 8.588459014892578,
+      "test_sha256": "ab77a9370a252d66eee86a3ff627ab5a02268e74aab41e77018b46a8de15d187",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveall-conflict-cancel.log",
+      "printed_failure": false
+    },
+    {
+      "name": "saveall-conflict-reload",
+      "command": [
+        "test_saveall_conflict_reload_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 7.398799419403076,
+      "test_sha256": "bd78388572be73377d44c64d53627ea3ed4f0b4d8ba4a4a09d2b8f3e24e265e0",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveall-conflict-reload.log",
+      "printed_failure": false
+    },
+    {
+      "name": "gcc-utf8-horizontal",
+      "command": [
+        "test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "color",
+        "--output-viewer",
+        "--utf8-viewer",
+        "--utf8-scroll"
+      ],
+      "exit": 0,
+      "seconds": 13.562041282653809,
+      "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/gcc-utf8-horizontal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "compiler-absent",
+      "command": [
+        "test_missing_compiler_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.324206829071045,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/compiler-absent.log",
+      "printed_failure": false
+    },
+    {
+      "name": "compiler-restore",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--restore"
+      ],
+      "exit": 0,
+      "seconds": 9.05484676361084,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/compiler-restore.log",
+      "printed_failure": false
+    },
+    {
+      "name": "missing-output",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--missing-output"
+      ],
+      "exit": 0,
+      "seconds": 6.341779470443726,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/missing-output.log",
+      "printed_failure": false
+    },
+    {
+      "name": "failed-output",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--failed-output"
+      ],
+      "exit": 0,
+      "seconds": 6.3390092849731445,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/failed-output.log",
+      "printed_failure": false
+    },
+    {
+      "name": "promotion-failure",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--promotion-failure"
+      ],
+      "exit": 0,
+      "seconds": 5.256774425506592,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/promotion-failure.log",
+      "printed_failure": false
+    },
+    {
+      "name": "missing-output-diagnostic",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--missing-output-diagnostic"
+      ],
+      "exit": 0,
+      "seconds": 7.142953872680664,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/missing-output-diagnostic.log",
+      "printed_failure": false
+    },
+    {
+      "name": "long-output",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--long-output"
+      ],
+      "exit": 0,
+      "seconds": 8.117903709411621,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/long-output.log",
+      "printed_failure": false
+    },
+    {
+      "name": "long-output-small",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--long-output",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 7.942075729370117,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/long-output-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "long-output-horizontal-small",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--long-output",
+        "--small",
+        "--horizontal"
+      ],
+      "exit": 0,
+      "seconds": 10.931260347366333,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/long-output-horizontal-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "long-output-color",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--long-output",
+        "--color-output"
+      ],
+      "exit": 0,
+      "seconds": 8.127932071685791,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/long-output-color.log",
+      "printed_failure": false
+    },
+    {
+      "name": "promotion-retry",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--promotion-retry"
+      ],
+      "exit": 0,
+      "seconds": 7.081920385360718,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/promotion-retry.log",
+      "printed_failure": false
+    },
+    {
+      "name": "success-long-output",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--success-long-output"
+      ],
+      "exit": 0,
+      "seconds": 5.499308824539185,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/success-long-output.log",
+      "printed_failure": false
+    },
+    {
+      "name": "success-long-output-small",
+      "command": [
+        "test_missing_compiler_pty.py",
+        "--success-long-output",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 5.486995458602905,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/success-long-output-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inspector-close",
+      "command": [
+        "test_designer_inspector_close_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.025399923324585,
+      "test_sha256": "927131481c688e8009f6bf6c74054f78b01c613ecb4ff792521f307bc7575eee",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inspector-close.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inspector-close-small",
+      "command": [
+        "test_designer_inspector_close_pty.py",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 6.353672504425049,
+      "test_sha256": "927131481c688e8009f6bf6c74054f78b01c613ecb4ff792521f307bc7575eee",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inspector-close-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inspector-drag",
+      "command": [
+        "test_designer_inspector_drag_anchor_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.045684337615967,
+      "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inspector-drag.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inspector-drag-small",
+      "command": [
+        "test_designer_inspector_drag_anchor_pty.py",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 5.3921308517456055,
+      "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inspector-drag-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inspector-drag-vertical",
+      "command": [
+        "test_designer_inspector_drag_anchor_pty.py",
+        "--vertical"
+      ],
+      "exit": 0,
+      "seconds": 5.872826099395752,
+      "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inspector-drag-vertical.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inspector-drag-vertical-small",
+      "command": [
+        "test_designer_inspector_drag_anchor_pty.py",
+        "--vertical",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 7.641233682632446,
+      "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inspector-drag-vertical-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "mixed-runtime",
+      "command": [
+        "test_designer_mixed_fixture_runtime_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.21439790725708,
+      "test_sha256": "3155aba992e0e9a2e6e2237c74c5065f04b1f715499d17320ef88bb8a6278a4c",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/mixed-runtime.log",
+      "printed_failure": false
+    },
+    {
+      "name": "mixed-actions",
+      "command": [
+        "test_designer_mixed_fixture_runtime_pty.py",
+        "--actions"
+      ],
+      "exit": 0,
+      "seconds": 12.385322570800781,
+      "test_sha256": "3155aba992e0e9a2e6e2237c74c5065f04b1f715499d17320ef88bb8a6278a4c",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/mixed-actions.log",
+      "printed_failure": false
+    },
+    {
+      "name": "mixed-accelerators",
+      "command": [
+        "test_designer_mixed_fixture_runtime_pty.py",
+        "--actions",
+        "--accelerators"
+      ],
+      "exit": 0,
+      "seconds": 12.381347894668579,
+      "test_sha256": "3155aba992e0e9a2e6e2237c74c5065f04b1f715499d17320ef88bb8a6278a4c",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/mixed-accelerators.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-checkbox",
+      "command": [
+        "test_designer_clipboard_runtime_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.008421897888184,
+      "test_sha256": "27076b5bbd5185042c2f3c2e4bf0ece0dd9ea7272c7a29dce93ac61d4c532443",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-checkbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-checkbox-create",
+      "command": [
+        "test_designer_clipboard_runtime_pty.py",
+        "--create"
+      ],
+      "exit": 0,
+      "seconds": 5.984723329544067,
+      "test_sha256": "27076b5bbd5185042c2f3c2e4bf0ece0dd9ea7272c7a29dce93ac61d4c532443",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-checkbox-create.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-get",
+      "command": [
+        "test_designer_clipboard_get_runtime_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.076779842376709,
+      "test_sha256": "7d5402ccd1aad77be845cd0084c6c6da52e0d3064836444733d4d5765a4d2d86",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-get.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-get-create",
+      "command": [
+        "test_designer_clipboard_get_runtime_pty.py",
+        "--create"
+      ],
+      "exit": 0,
+      "seconds": 6.084369897842407,
+      "test_sha256": "7d5402ccd1aad77be845cd0084c6c6da52e0d3064836444733d4d5765a4d2d86",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-get-create.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-combo",
+      "command": [
+        "test_designer_clipboard_combo_runtime_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.009605884552002,
+      "test_sha256": "f7545a0827f8646d3a3dafab2dc0836186b04620c599cd9283e07937bb064c98",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-combo.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-combo-create",
+      "command": [
+        "test_designer_clipboard_combo_runtime_pty.py",
+        "--create"
+      ],
+      "exit": 0,
+      "seconds": 5.99446964263916,
+      "test_sha256": "f7545a0827f8646d3a3dafab2dc0836186b04620c599cd9283e07937bb064c98",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-combo-create.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-button",
+      "command": [
+        "test_designer_clipboard_button_runtime_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.3541364669799805,
+      "test_sha256": "e54f54199b70a453ac8659f4fb6ecfd72489a7290e8a3483d09d0265dcba40c8",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-button.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-list",
+      "command": [
+        "test_designer_clipboard_list_runtime_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.0074241161346436,
+      "test_sha256": "2a7fb50417b2f4e67114fac79c7537bd478d4822c943fb772e7faec8c1c44574",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-list.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-radio",
+      "command": [
+        "test_designer_clipboard_radio_runtime_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.989841461181641,
+      "test_sha256": "b657f07d733fd3cfc2cdc94dc10c31cc5e70d49e1f1d307a7d79b0717294459b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-radio.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-all_events-get",
+      "command": [
+        "test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "get"
+      ],
+      "exit": 0,
+      "seconds": 8.641273260116577,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-get.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-all_events-radiogroup",
+      "command": [
+        "test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "radiogroup"
+      ],
+      "exit": 0,
+      "seconds": 9.870798587799072,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-radiogroup.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-all_events-checkbox",
+      "command": [
+        "test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "checkbox"
+      ],
+      "exit": 0,
+      "seconds": 10.021472930908203,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-checkbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-all_events-listbox",
+      "command": [
+        "test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "listbox"
+      ],
+      "exit": 0,
+      "seconds": 10.346637487411499,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-listbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-all_events-combobox",
+      "command": [
+        "test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "combobox"
+      ],
+      "exit": 0,
+      "seconds": 10.326220512390137,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-combobox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-all_events-button",
+      "command": [
+        "test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "button"
+      ],
+      "exit": 0,
+      "seconds": 8.626821279525757,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-button.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-valid_veto-get",
+      "command": [
+        "test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "get"
+      ],
+      "exit": 0,
+      "seconds": 6.214555740356445,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-get.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-valid_veto-radiogroup",
+      "command": [
+        "test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "radiogroup"
+      ],
+      "exit": 0,
+      "seconds": 6.154493808746338,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-radiogroup.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-valid_veto-checkbox",
+      "command": [
+        "test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "checkbox"
+      ],
+      "exit": 0,
+      "seconds": 6.153726577758789,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-checkbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-valid_veto-listbox",
+      "command": [
+        "test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "listbox"
+      ],
+      "exit": 0,
+      "seconds": 6.275464773178101,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-listbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-valid_veto-combobox",
+      "command": [
+        "test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "combobox"
+      ],
+      "exit": 0,
+      "seconds": 6.2782886028289795,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-combobox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-valid_veto-button",
+      "command": [
+        "test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "button"
+      ],
+      "exit": 0,
+      "seconds": 6.2737438678741455,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-button.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_veto-get",
+      "command": [
+        "test_designer_inline_when_veto_runtime_pty.py",
+        "--kind",
+        "get"
+      ],
+      "exit": 0,
+      "seconds": 5.9309892654418945,
+      "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-get.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_veto-radiogroup",
+      "command": [
+        "test_designer_inline_when_veto_runtime_pty.py",
+        "--kind",
+        "radiogroup"
+      ],
+      "exit": 0,
+      "seconds": 5.940622568130493,
+      "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-radiogroup.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_veto-checkbox",
+      "command": [
+        "test_designer_inline_when_veto_runtime_pty.py",
+        "--kind",
+        "checkbox"
+      ],
+      "exit": 0,
+      "seconds": 5.965360879898071,
+      "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-checkbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_veto-listbox",
+      "command": [
+        "test_designer_inline_when_veto_runtime_pty.py",
+        "--kind",
+        "listbox"
+      ],
+      "exit": 0,
+      "seconds": 6.079381227493286,
+      "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-listbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_veto-combobox",
+      "command": [
+        "test_designer_inline_when_veto_runtime_pty.py",
+        "--kind",
+        "combobox"
+      ],
+      "exit": 0,
+      "seconds": 6.060293436050415,
+      "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-combobox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_veto-button",
+      "command": [
+        "test_designer_inline_when_veto_runtime_pty.py",
+        "--kind",
+        "button"
+      ],
+      "exit": 0,
+      "seconds": 6.0567498207092285,
+      "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-button.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_reenable-get",
+      "command": [
+        "test_designer_inline_when_reenable_runtime_pty.py",
+        "--kind",
+        "get"
+      ],
+      "exit": 0,
+      "seconds": 6.726942539215088,
+      "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-get.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_reenable-radiogroup",
+      "command": [
+        "test_designer_inline_when_reenable_runtime_pty.py",
+        "--kind",
+        "radiogroup"
+      ],
+      "exit": 0,
+      "seconds": 6.530738592147827,
+      "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-radiogroup.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_reenable-checkbox",
+      "command": [
+        "test_designer_inline_when_reenable_runtime_pty.py",
+        "--kind",
+        "checkbox"
+      ],
+      "exit": 0,
+      "seconds": 6.530534029006958,
+      "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-checkbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_reenable-listbox",
+      "command": [
+        "test_designer_inline_when_reenable_runtime_pty.py",
+        "--kind",
+        "listbox"
+      ],
+      "exit": 0,
+      "seconds": 6.64124870300293,
+      "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-listbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_reenable-combobox",
+      "command": [
+        "test_designer_inline_when_reenable_runtime_pty.py",
+        "--kind",
+        "combobox"
+      ],
+      "exit": 0,
+      "seconds": 6.658108234405518,
+      "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-combobox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "inline-when_reenable-button",
+      "command": [
+        "test_designer_inline_when_reenable_runtime_pty.py",
+        "--kind",
+        "button"
+      ],
+      "exit": 0,
+      "seconds": 6.65645432472229,
+      "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-button.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-16-get",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "get"
+      ],
+      "exit": 0,
+      "seconds": 4.448156356811523,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-get.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-16-radiogroup",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "radiogroup"
+      ],
+      "exit": 0,
+      "seconds": 4.451102018356323,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-radiogroup.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-16-checkbox",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "checkbox"
+      ],
+      "exit": 0,
+      "seconds": 4.468245506286621,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-checkbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-16-listbox",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "listbox"
+      ],
+      "exit": 0,
+      "seconds": 4.568671226501465,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-listbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-16-combobox",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "combobox"
+      ],
+      "exit": 0,
+      "seconds": 4.569505929946899,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-combobox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-16-button",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "button"
+      ],
+      "exit": 0,
+      "seconds": 4.567712783813477,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-button.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-17-get",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "get",
+        "--pair"
+      ],
+      "exit": 0,
+      "seconds": 4.4485955238342285,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-get.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-17-radiogroup",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "radiogroup",
+        "--pair"
+      ],
+      "exit": 0,
+      "seconds": 4.4506402015686035,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-radiogroup.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-17-checkbox",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "checkbox",
+        "--pair"
+      ],
+      "exit": 0,
+      "seconds": 4.451634645462036,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-checkbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-17-listbox",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "listbox",
+        "--pair"
+      ],
+      "exit": 0,
+      "seconds": 4.590542316436768,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-listbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-17-combobox",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "combobox",
+        "--pair"
+      ],
+      "exit": 0,
+      "seconds": 4.587211608886719,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-combobox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-17-button",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "button",
+        "--pair"
+      ],
+      "exit": 0,
+      "seconds": 4.568081617355347,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-button.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-18-get",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "get",
+        "--pair",
+        "--peer-kind",
+        "radiogroup"
+      ],
+      "exit": 0,
+      "seconds": 4.450364112854004,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-get.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-18-radiogroup",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "radiogroup",
+        "--pair",
+        "--peer-kind",
+        "checkbox"
+      ],
+      "exit": 0,
+      "seconds": 4.449833631515503,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-radiogroup.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-18-checkbox",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "checkbox",
+        "--pair",
+        "--peer-kind",
+        "listbox"
+      ],
+      "exit": 0,
+      "seconds": 4.446888208389282,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-checkbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-18-listbox",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "listbox",
+        "--pair",
+        "--peer-kind",
+        "combobox"
+      ],
+      "exit": 0,
+      "seconds": 4.568420886993408,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-listbox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-18-combobox",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "combobox",
+        "--pair",
+        "--peer-kind",
+        "button"
+      ],
+      "exit": 0,
+      "seconds": 4.566318988800049,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-combobox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "all-skipped-18-button",
+      "command": [
+        "test_designer_inline_all_skipped_runtime_pty.py",
+        "--kind",
+        "button",
+        "--pair",
+        "--peer-kind",
+        "get"
+      ],
+      "exit": 0,
+      "seconds": 4.567821264266968,
+      "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-button.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-init-exit",
+      "command": [
+        "test_nav_init_exit_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.984953165054321,
+      "test_sha256": "3d903da461f1dcc8482619f286052ac87c701d7577ea6e4b8771489da9421f82",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-init-exit.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-note-comment",
+      "command": [
+        "test_nav_note_comment_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.962447881698608,
+      "test_sha256": "def0ac21faae1dbad837c5cd1199dd61bc61e25a37b546cb196b33b200d66264",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-note-comment.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-destructor",
+      "command": [
+        "test_nav_destructor_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.975683212280273,
+      "test_sha256": "813d39fefdbd8095e35d607a30cbdc189c8b641f8fab1165fc63fbfce5992ea5",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-destructor.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-assign-jump",
+      "command": [
+        "test_nav_access_assign_pty.py",
+        "--assign"
+      ],
+      "exit": 0,
+      "seconds": 5.972479581832886,
+      "test_sha256": "307d86563d66554fc3443b07baee29b9850a35a62ed497d76ba2b6ae04b2d12c",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-assign-jump.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-procedure-class",
+      "command": [
+        "test_nav_procedure_class_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.9730141162872314,
+      "test_sha256": "94bd13bf4d3bdf0cff4d8132a22b54bd3aa997e863ef7803ad5c25ec8d613bc1",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-procedure-class.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-access-assign",
+      "command": [
+        "test_nav_access_assign_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.974342346191406,
+      "test_sha256": "307d86563d66554fc3443b07baee29b9850a35a62ed497d76ba2b6ae04b2d12c",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-access-assign.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-create-class",
+      "command": [
+        "test_nav_create_class_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.973918676376343,
+      "test_sha256": "9c713b228d151c52aeea510a24478f222396765273c43dcd8b5368728ed0e700",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-create-class.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-declaration-static-abbrev",
+      "command": [
+        "test_nav_declaration_continuation_pty.py",
+        "--static-abbrev"
+      ],
+      "exit": 0,
+      "seconds": 5.973158121109009,
+      "test_sha256": "fbb2af9f793b9277504764bda1f6bbafda1e05e70c82af03b3beb4a6fdf8967a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-declaration-static-abbrev.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-declaration-compact",
+      "command": [
+        "test_nav_declaration_continuation_pty.py",
+        "--compact"
+      ],
+      "exit": 0,
+      "seconds": 5.972596645355225,
+      "test_sha256": "fbb2af9f793b9277504764bda1f6bbafda1e05e70c82af03b3beb4a6fdf8967a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-declaration-compact.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-declaration-continuation",
+      "command": [
+        "test_nav_declaration_continuation_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.971729040145874,
+      "test_sha256": "fbb2af9f793b9277504764bda1f6bbafda1e05e70c82af03b3beb4a6fdf8967a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-declaration-continuation.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-multiline-gap",
+      "command": [
+        "test_nav_multiline_gap_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.972679615020752,
+      "test_sha256": "89cbce90e88a3387095608b75441709b2dad47ea601a45bfa33d15766d0b93b8",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-multiline-gap.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-array-gap-comment",
+      "command": [
+        "test_nav_array_gap_comment_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.9744908809661865,
+      "test_sha256": "a8f657ca3f16a763a0d90fe830d89862cf6fce0337368242e46ae3d8d9f031b7",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-array-gap-comment.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-array-bracket-comment",
+      "command": [
+        "test_nav_array_bracket_comment_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.972699880599976,
+      "test_sha256": "cd0726fa837e13c1696dd61ea5a27be2f44aeb71a3f7df25d411bcf937960b65",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-array-bracket-comment.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-enddump-comment",
+      "command": [
+        "test_nav_enddump_comment_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.972994804382324,
+      "test_sha256": "c924157d0d48860bdf3abf1dfeb2aba6a116e92892076af54fe61bf173e519f6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-enddump-comment.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-pragma-macro",
+      "command": [
+        "test_nav_pragma_macro_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.973059177398682,
+      "test_sha256": "c17d3dd07856dc2aafbb3dc9f6cc257f8f260c2a81964390b2af0fd6dbd04b06",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-pragma-macro.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-array-comment",
+      "command": [
+        "test_nav_array_comment_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.97102427482605,
+      "test_sha256": "16a9b3e8023c8f750b77b71d504bfd6e3805fefe6d534225c6d9d28b01ae6a42",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-array-comment.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-selection",
+      "command": [
+        "test_nav_selection_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 19.382415294647217,
+      "test_sha256": "793438e504bcd6500158ce880928c5b1b0450c58ae8e50dadcb4e66025c45490",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-typed-methods",
+      "command": [
+        "test_nav_typed_methods_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.973400592803955,
+      "test_sha256": "c52ceee10a4080b3a17b052287a699c7cc40526fd4312c9b7153b6e0fe7df7e7",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-typed-methods.log",
+      "printed_failure": false
+    },
+    {
+      "name": "nav-literal-comment",
+      "command": [
+        "test_nav_literal_comment_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.97115421295166,
+      "test_sha256": "aabd081894aea0b749d97926854d43afd5f3ff54d863f4dee892abf8ddd491f1",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/nav-literal-comment.log",
+      "printed_failure": false
+    },
+    {
+      "name": "find-f5-selection",
+      "command": [
+        "test_find_f5_selection_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 18.59719753265381,
+      "test_sha256": "31dc55106d51b9955c82934a9c5e8a2977fec02e4472d4c57cc3402bde20eb07",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/find-f5-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "find-repeat-selection",
+      "command": [
+        "test_find_repeat_selection_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 18.514030933380127,
+      "test_sha256": "969ec83aeb61d954572e7bb9844b3ba426963a2eb6ef3fc2f5bdce4a7ee4b17c",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/find-repeat-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "find-selection",
+      "command": [
+        "test_find_selection_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 19.687803983688354,
+      "test_sha256": "3ce3425dc070bc83240929b1d47c820118db1385a119c8ff909ddc3b2835ceb7",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/find-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "virtual-selection",
+      "command": [
+        "test_virtual_selection_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 26.11492657661438,
+      "test_sha256": "dc383490bb249481865369ca35c9d744d761151e67810e010f24735921186381",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/virtual-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "selection-tab",
+      "command": [
+        "test_selection_tab_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 16.74718689918518,
+      "test_sha256": "05969c31e08a955f584548a5ee20a551689fa7b608e2d5524cdf4aea2110aaa0",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/selection-tab.log",
+      "printed_failure": false
+    },
+    {
+      "name": "selection-identity",
+      "command": [
+        "test_selection_identity_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 13.139593601226807,
+      "test_sha256": "9ef6f84dd3d1a915dc2e6840f703964f906a665d1a67833051a3fc0b07c35f82",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/selection-identity.log",
+      "printed_failure": false
+    },
+    {
+      "name": "selection-destructive-boundary",
+      "command": [
+        "test_selection_destructive_boundary_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 37.209794998168945,
+      "test_sha256": "12379682ea24bcc6fac3fad6464b80bda4a44119975c1e41b401e48d4ea4d46c",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/selection-destructive-boundary.log",
+      "printed_failure": false
+    },
+    {
+      "name": "selection-undo-boundary",
+      "command": [
+        "test_selection_undo_boundary_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 14.586518049240112,
+      "test_sha256": "49d4c846fb5c901bf8025681dfa7a470021cabde305736b196f9a870db455ea8",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/selection-undo-boundary.log",
+      "printed_failure": false
+    },
+    {
+      "name": "replace-nochange-selection",
+      "command": [
+        "test_replace_nochange_selection_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 20.411811113357544,
+      "test_sha256": "7b55b73f4e93d173b99f07c7bcd9db45ae633d40a95ba6c7ca54a0fa6470586d",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/replace-nochange-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "replace-selection",
+      "command": [
+        "test_replace_selection_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 10.661768436431885,
+      "test_sha256": "d6c004b3ba6e553e0bb32def0d35df9bf85d439a54b3d011f826acc812a0050e",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/replace-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "duplicate-selection",
+      "command": [
+        "test_duplicate_selection_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 12.17006802558899,
+      "test_sha256": "f174ad8790ecb0041fa1082a9243852fd15b112f2ea56dab0c9b5fc982c566a9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/duplicate-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "delete-selection",
+      "command": [
+        "test_delete_selection_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 12.17228102684021,
+      "test_sha256": "2c229972d3976e8193309e4258c7fbb39767acd3732a41b550c00868ecd0843e",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/delete-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "reload-selection",
+      "command": [
+        "test_reload_selection_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 10.504945516586304,
+      "test_sha256": "0985cef9fa5ff6653a857d303fcec659c7652055b1adc37bd28f284ff274d8bc",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/reload-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-continuation-selection",
+      "command": [
+        "test_editor_bracket_continuation_pty.py",
+        "--selection"
+      ],
+      "exit": 0,
+      "seconds": 10.96738052368164,
+      "test_sha256": "b330bb40c7fb9c4e58a4fc1d20e195bdcf4489261bf77de79da582bd384e0084",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-continuation-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-hh",
+      "command": [
+        "test_project_hh_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.535681962966919,
+      "test_sha256": "175b53643aa4563a43438d4e634227998017f3801a030acad7ef58fe8ccad59e",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-hh.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-hpp",
+      "command": [
+        "test_project_hpp_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.536055564880371,
+      "test_sha256": "b2aa7602389bc48c1f2878bad9552910c967a5bfba3aaa589cf2cda2c41f4360",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-hpp.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-cxx-source",
+      "command": [
+        "test_project_cxx_source_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.535040616989136,
+      "test_sha256": "3b9122e9d06e05ab1d436e7a573f4b9bf4b25e366038cc75fb11efbe812b441b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-cxx-source.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-eof",
+      "command": [
+        "test_project_eof_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.53593373298645,
+      "test_sha256": "b64182ac6bbef28e4c686ba45c79dc29d7d3e2f84405fd204d7b3354ef025365",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-eof.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-bom",
+      "command": [
+        "test_project_bom_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.5344929695129395,
+      "test_sha256": "0b1c7ceb749cb783695fdd92557779a16f3a79f7f987d988119b1fb056036faa",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-bom.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-colon-diagnostic",
+      "command": [
+        "test_project_colon_diagnostic_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.871986150741577,
+      "test_sha256": "f58ed6b74c3effb3cade8efbf1f15764e2b1980c598382364342e4a154f02b04",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-colon-diagnostic.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-output-scroll",
+      "command": [
+        "test_project_output_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 11.80675983428955,
+      "test_sha256": "da7836afe1085933995ded88f46a19c405b320399a4561182b72a5d375a0dec0",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-output-scroll.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-leading-source",
+      "command": [
+        "test_project_leading_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 7.515254020690918,
+      "test_sha256": "5ffeb982925d27aff6b064e6b2f10267d10ee276fb22cb32a3736f16fa6f2d0a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-leading-source.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-unreadable",
+      "command": [
+        "test_open_unreadable_pty.py",
+        "--project"
+      ],
+      "exit": 0,
+      "seconds": 7.132725238800049,
+      "test_sha256": "a024e5a06cf25a0cd104f216e037419a0431e730ffbf12d7560156dc361b79d6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-unreadable.log",
+      "printed_failure": false
+    },
+    {
+      "name": "help-mouse",
+      "command": [
+        "test_help_mouse_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 13.266883373260498,
+      "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/help-mouse.log",
+      "printed_failure": false
+    },
+    {
+      "name": "help",
+      "command": [
+        "test_help_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 27.117051124572754,
+      "test_sha256": "b5ed2c4ad9bb94e7a2f5c3291958f7818fb362a5224acad3a3e328c992454ddf",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/help.log",
+      "printed_failure": false
+    },
+    {
+      "name": "display-multidoc",
+      "command": [
+        "test_display_multidoc_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 23.59936547279358,
+      "test_sha256": "a271dd0ebc380a06a1c14f4cf512e9ab605c2b71bd374878e0f637e10b803dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/display-multidoc.log",
+      "printed_failure": false
+    },
+    {
+      "name": "compiler-autorun",
+      "command": [
+        "test_compiler_autorun_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 25.655040740966797,
+      "test_sha256": "efb0c99f2d69f6896caccd476d358a06accbc8924e4eaf9c6c87784b789cef27",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/compiler-autorun.log",
+      "printed_failure": false
+    },
+    {
+      "name": "compiler-flags",
+      "command": [
+        "test_compiler_flags_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 33.69749140739441,
+      "test_sha256": "bc07e3c06a6b1112295a3552128947baa935e22cf92c51b9f64b1a5956091501",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/compiler-flags.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-desktop",
+      "command": [
+        "test_project_desktop_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 29.751365900039673,
+      "test_sha256": "fb625386e5645a45fa30f022965c7c0f14689140be527b751e2469086644e65f",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-desktop.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-mouse",
+      "command": [
+        "test_project_mouse_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 11.766063928604126,
+      "test_sha256": "a58401a72f385a263687341e336abc4fd7a87969ff7e8d98e52400234fd43f9d",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-mouse.log",
+      "printed_failure": false
+    },
+    {
+      "name": "project-messages",
+      "command": [
+        "test_project_messages_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 23.06011176109314,
+      "test_sha256": "fb54d7fe3bb7b29ebab71979954ec63c7b57f4308a472576a7b5b8363dae0b98",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/project-messages.log",
+      "printed_failure": false
+    },
+    {
+      "name": "message-selection",
+      "command": [
+        "test_message_selection_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 18.89715552330017,
+      "test_sha256": "436211836297857137a75b47370987bcd768914c7cdd859362a214bbdf88a49d",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/message-selection.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-auto-source-read",
+      "command": [
+        "test_debug_auto_source_read_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 23.013715982437134,
+      "test_sha256": "5557a656ec9b7c8cf8ba88809c8d7d198129aa1a59023df15601ac720a2fa289",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-auto-source-read.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-source-read",
+      "command": [
+        "test_debug_source_read_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.953559160232544,
+      "test_sha256": "6a1b561de70cee9b9656186a17e3917cfb18d0edc3e03356826e8f7a1c6c5c50",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-source-read.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-source-path",
+      "command": [
+        "test_debug_path_cancel_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 10.200187921524048,
+      "test_sha256": "d5dcb63d6b61c2003b21e5a65d51153348776987217bfbc21fa38c691879b611",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-source-path.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-source-partial",
+      "command": [
+        "test_debug_module_failure_pty.py",
+        "source"
+      ],
+      "exit": 0,
+      "seconds": 6.3075408935546875,
+      "test_sha256": "0e872ae3bf7e13980b426d91339ae915cb174974456c8ee8f54d7d162f0a4d51",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-source-partial.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-compile-cleanup",
+      "command": [
+        "test_debug_module_failure_pty.py",
+        "compile"
+      ],
+      "exit": 0,
+      "seconds": 6.308714389801025,
+      "test_sha256": "0e872ae3bf7e13980b426d91339ae915cb174974456c8ee8f54d7d162f0a4d51",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-compile-cleanup.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-module-failure",
+      "command": [
+        "test_debug_module_failure_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.287461042404175,
+      "test_sha256": "0e872ae3bf7e13980b426d91339ae915cb174974456c8ee8f54d7d162f0a4d51",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-module-failure.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-temp-failure",
+      "command": [
+        "test_debug_temp_failure_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.905815839767456,
+      "test_sha256": "99e883ea4603d60aa95f72bf38f67c847ad9952a0920a29782e5d321f8fc718e",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-temp-failure.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-script-lookup",
+      "command": [
+        "test_debug_script_lookup_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.154723644256592,
+      "test_sha256": "0d592a81f13d56593378107301d59c8d36e885eff16309d9b2c7579f455dd79a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-script-lookup.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-script-read",
+      "command": [
+        "test_debug_script_read_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 8.746974229812622,
+      "test_sha256": "98fa6beab15b425743b78d2ef5f05af4a8d1d90188943df8a7c9371cfa9e395b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-script-read.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-missing-source",
+      "command": [
+        "test_debug_missing_source_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 23.010310649871826,
+      "test_sha256": "2b7d687e2d0a046f7dc3edb45a50fcf02150ec220b67daf2a298335aa248eb9f",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-missing-source.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-restored-points",
+      "command": [
+        "test_debug_restored_points_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 82.45176482200623,
+      "test_sha256": "861fe40f835e1ccda7fb386352a8a80b313bcdda7a03ac8ec3b26fd8aa9b0eb0",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-restored-points.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-bp-modal",
+      "command": [
+        "test_debug_bp_modal_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 12.662814378738403,
+      "test_sha256": "cc30bf0ad202ca5a64c3e8669e8b078763242b5d5c17d93346efc18f53efd2dd",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-bp-modal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-color-set-modal",
+      "command": [
+        "test_debug_color_set_modal_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 20.513041973114014,
+      "test_sha256": "c2a4f87b9c330852c444ae82ef1e66f2307a2e6b6c68f6f68badf51027d2c9a1",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-color-set-modal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-input-paths-modal",
+      "command": [
+        "test_debug_input_paths_modal_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 14.76543927192688,
+      "test_sha256": "3047f232dfa89928131a8bd1fe00456ff3fe701788a10c51dd7aacc32842e0d4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-input-paths-modal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-tracepoint-modal",
+      "command": [
+        "test_debug_tracepoint_modal_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 23.28014039993286,
+      "test_sha256": "79906cbf71d099d5153c2e3e51b3475d936e39dc3a6ef872419ab1006251a2a4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-tracepoint-modal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-watch-modal",
+      "command": [
+        "test_debug_watch_modal_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 21.38263702392578,
+      "test_sha256": "ef1782232e17a0007a43482280e2dc8bb442bdd0ff7d560e96d8683aa7f76203",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-watch-modal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-setter-failure",
+      "command": [
+        "test_debug_setter_failure_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 11.294375896453857,
+      "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-setter-failure.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-getter-failure",
+      "command": [
+        "test_debug_getter_failure_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 10.375874280929565,
+      "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-getter-failure.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-method-only-object",
+      "command": [
+        "test_debug_method_only_object_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 10.653484344482422,
+      "test_sha256": "bf0004da6dca9c77c9b815d29b586363ea0f8cefb407440410795ce0562ffcbb",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-method-only-object.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-long-object-member",
+      "command": [
+        "test_debug_long_object_member_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 12.304754495620728,
+      "test_sha256": "4d20a3f3da7d98cc596a7e45df756d6ab9ab7e3d9f2a68f6d44e98df75bfa562",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-long-object-member.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-long-array-path",
+      "command": [
+        "test_debug_long_hash_key_pty.py",
+        "--array-child"
+      ],
+      "exit": 0,
+      "seconds": 13.156205892562866,
+      "test_sha256": "485351bd030044458d22b71b17cbb009fe6be4e0ffb4f7460256f41932a0f279",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-long-array-path.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-long-hash-key",
+      "command": [
+        "test_debug_long_hash_key_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 13.118771076202393,
+      "test_sha256": "485351bd030044458d22b71b17cbb009fe6be4e0ffb4f7460256f41932a0f279",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-long-hash-key.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-object-empty-child",
+      "command": [
+        "test_debug_object_empty_child_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 21.340877532958984,
+      "test_sha256": "8899a00a408b6dcb597ff6e5a4e731bcb21c945a2037e710b7155a922c880eb9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-object-empty-child.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-hash-navigation",
+      "command": [
+        "test_debug_hash_navigation_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 13.67598843574524,
+      "test_sha256": "0059100de87d93409d17efabba428b4b656f9231e5e7a9c0d3ceadbe32750de7",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-hash-navigation.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-array-navigation",
+      "command": [
+        "test_debug_hash_navigation_pty.py",
+        "--array"
+      ],
+      "exit": 0,
+      "seconds": 13.672844886779785,
+      "test_sha256": "0059100de87d93409d17efabba428b4b656f9231e5e7a9c0d3ceadbe32750de7",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-array-navigation.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-object-type-change",
+      "command": [
+        "test_debug_object_type_change_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 44.19485354423523,
+      "test_sha256": "3449f5b8342002ed0f84a8269c33afc3cf4636a6d6eda6d2b4f77b92808a4010",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-object-type-change.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-empty-structures",
+      "command": [
+        "test_debug_empty_structures_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 19.81933283805847,
+      "test_sha256": "6492c985e07b8d2efabf752312266712db98fc43315cb78870d613bcae142b26",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-empty-structures.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-readonly-depth",
+      "command": [
+        "test_debug_readonly_depth_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 47.95703601837158,
+      "test_sha256": "18a9f8cd52dd4dc15bd53ccb7d616152ed2f5254c712eda5d63e0588d5d78341",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-readonly-depth.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-structured-depth",
+      "command": [
+        "test_debug_structured_depth_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 39.34890580177307,
+      "test_sha256": "fff969a153f355f9a0b9a311d991fca98e85d9fb749e7f9d6f2a896f6a05f4b8",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-structured-depth.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-structured-modal",
+      "command": [
+        "test_debug_structured_modal_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 37.22106409072876,
+      "test_sha256": "d7c5010c483588e1ca5d1d25ddf368a4f442d92822a07f4e748ef5ccb4d5857b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-structured-modal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-monitor-mouse-scroll",
+      "command": [
+        "test_debug_monitor_mouse_scroll_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 10.198247194290161,
+      "test_sha256": "a7df21171e780a50a07f0d7e24b4220b203c1b54500a8c99b442a4752f53faa9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-monitor-mouse-scroll.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-shadowed-frame",
+      "command": [
+        "test_debug_shadowed_frame_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 11.627154111862183,
+      "test_sha256": "c3b68c97ddf948536c82fbccdc68cc7e437bf4e4030bbc4be02a92a6ce72602f",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-shadowed-frame.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-stack-mouse",
+      "command": [
+        "test_debug_stack_mouse_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.432279348373413,
+      "test_sha256": "c1d3f60be21d25df55fa6aebb0c71cf4c63174480347355f409d6d798dfe1cc9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-stack-mouse.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-mouse",
+      "command": [
+        "test_debug_mouse_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 10.098992347717285,
+      "test_sha256": "dfa6f54b1e8767372ad9f806288b3a4d4dd62d12436fcdd2979ab9bac5430c75",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-mouse.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-value-modal",
+      "command": [
+        "test_debug_value_modal_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 14.411350727081299,
+      "test_sha256": "11a5a8d194be3a41a5ff4a2bc2166808926c0a423522cd8ea2664e8655827c10",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-value-modal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-numeric-modal",
+      "command": [
+        "test_debug_numeric_modal_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 25.88402009010315,
+      "test_sha256": "ba30a1b8fe84ffe8df872046f92808ac43a2c259f7a78e79bd20faf858f43183",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-numeric-modal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-help-topics",
+      "command": [
+        "test_debug_help_topics_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 14.813052415847778,
+      "test_sha256": "efd5a8ba6a455ed3cdf2a9f7814498950a396ef1898fc5d57e3b07d03e96c833",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-help-topics.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-cursor-popup",
+      "command": [
+        "test_debug_cursor_popup_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 15.382841110229492,
+      "test_sha256": "7755dd63c12dc29766c40cb35163514b6aa7d5c067d9b94f9d870cd062254307",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-cursor-popup.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-workareas",
+      "command": [
+        "test_debug_workareas_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 11.77991509437561,
+      "test_sha256": "60dc3e118fb3cb83889113fe8d2f52cecee2bd896138e0a00400502ba7622713",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-workareas.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-monitor-scopes",
+      "command": [
+        "test_debug_monitor_scopes_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 15.936971664428711,
+      "test_sha256": "875ff87539eb0ecb7e3c40311cfa08de7414eeefe76b8cfcf1a228a17d9d18ef",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-monitor-scopes.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-window-layout",
+      "command": [
+        "test_debug_window_layout_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 17.476865530014038,
+      "test_sha256": "587d3dcc133ec66e11a53b46555ba306387a8b583e23e794309682c450cb83be",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-window-layout.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-commands",
+      "command": [
+        "test_debug_commands_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 79.97251868247986,
+      "test_sha256": "a773230ce8d1b867f7581ae8de0928d40828baacb3ebc7ec846fb1b6713bc753",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-commands.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-functions",
+      "command": [
+        "test_debug_functions_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 114.18578815460205,
+      "test_sha256": "efe4c25a8904447ffc3da7cca79fab6eb3aa1d55bca2acaa24dcb7d8c8001dfa",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-functions.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-functions-idle",
+      "command": [
+        "test_debug_functions_pty.py",
+        "--idle-settle"
+      ],
+      "exit": 0,
+      "seconds": 53.310821294784546,
+      "test_sha256": "efe4c25a8904447ffc3da7cca79fab6eb3aa1d55bca2acaa24dcb7d8c8001dfa",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-functions-idle.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-session",
+      "command": [
+        "test_debug_session_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 25.544443607330322,
+      "test_sha256": "20f0276c19f993c911ff4cee2d824de8f3ebf0ce897a4bdbaaa0194dd52616a7",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-session.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-startup",
+      "command": [
+        "test_debug_startup_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 14.277028799057007,
+      "test_sha256": "8cb2433919c705abbbf7dc29ae41276a50c60733ab4dcddfa287ae8c5ce3e1c6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-startup.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-monitor",
+      "command": [
+        "test_debug_monitor_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 28.54452085494995,
+      "test_sha256": "01bf62b9a0b3f6c7bb8bf64c784b43a63c8a73f2c2f7d9e986d91fdafd82358e",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-monitor.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-callstack",
+      "command": [
+        "test_debug_callstack_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 55.65342330932617,
+      "test_sha256": "6ce6a21f1fdaddbae3cfe4c8668db271eb76eb40138e464842b8b67d4bb114d2",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-callstack.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-codeblock",
+      "command": [
+        "test_debug_codeblock_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 23.97059679031372,
+      "test_sha256": "889369c427ebafb2ec679b9364f98a77a887ff72160d7dc9d0b8a0bf89c24bf7",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-codeblock.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-animate",
+      "command": [
+        "test_debug_animate_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 7.54410982131958,
+      "test_sha256": "20b56116fb9ff1e6f749fed80b202fb7e95e01873c9dfdb3bb62b99cac2822b7",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-animate.log",
+      "printed_failure": false
+    },
+    {
+      "name": "debug-exits",
+      "command": [
+        "test_debug_exit_paths_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 32.26489973068237,
+      "test_sha256": "78e8e426e968fc1fc6e0238bbe2e029ee8459fafeba1ec0a829892937c6cf685",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/debug-exits.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-get-runtime",
+      "command": [
+        "test_designer_inline_other_runtime_pty.py",
+        "--kind",
+        "get"
+      ],
+      "exit": 0,
+      "seconds": 6.869871377944946,
+      "test_sha256": "1beffe86b233223941eac5e3160fc60f01c262cef3a9454116ca0be96b69184a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-runtime.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-radio-runtime",
+      "command": [
+        "test_designer_inline_other_runtime_pty.py",
+        "--kind",
+        "radiogroup"
+      ],
+      "exit": 0,
+      "seconds": 6.772923231124878,
+      "test_sha256": "1beffe86b233223941eac5e3160fc60f01c262cef3a9454116ca0be96b69184a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radio-runtime.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-checkbox-runtime",
+      "command": [
+        "test_designer_inline_other_runtime_pty.py",
+        "--kind",
+        "checkbox"
+      ],
+      "exit": 0,
+      "seconds": 6.910597324371338,
+      "test_sha256": "1beffe86b233223941eac5e3160fc60f01c262cef3a9454116ca0be96b69184a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-runtime.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-combo-runtime",
+      "command": [
+        "test_designer_inline_combo_runtime_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 7.016864061355591,
+      "test_sha256": "31e175cc4dcf46b63e860c4cb6b4b7235f2c205a882aa6f1c2a2c6b7a533ade2",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combo-runtime.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-list-runtime",
+      "command": [
+        "test_designer_inline_combo_runtime_pty.py",
+        "--listbox"
+      ],
+      "exit": 0,
+      "seconds": 7.017261505126953,
+      "test_sha256": "31e175cc4dcf46b63e860c4cb6b4b7235f2c205a882aa6f1c2a2c6b7a533ade2",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-list-runtime.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-button-runtime",
+      "command": [
+        "test_designer_inline_button_runtime_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.101132869720459,
+      "test_sha256": "878375e81662477a0f1b42e6b13ef0c55f26f76b65a4a15fb2e770ca0f3ccd1b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-runtime.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inspector-drag-edge-return-small",
+      "command": [
+        "test_designer_inspector_drag_anchor_pty.py",
+        "--small",
+        "--edge-return"
+      ],
+      "exit": 0,
+      "seconds": 5.792430400848389,
+      "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inspector-drag-edge-return-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inspector-drag-edge-return",
+      "command": [
+        "test_designer_inspector_drag_anchor_pty.py",
+        "--edge-return"
+      ],
+      "exit": 0,
+      "seconds": 4.448553085327148,
+      "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inspector-drag-edge-return.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inspector-shrink-small",
+      "command": [
+        "test_designer_inspector_shrink_pty.py",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 5.8074727058410645,
+      "test_sha256": "c48a484a86ae4f88c757ecb1ff3ba44e357d6547b624e5d7e3ba3c141e2461f1",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inspector-shrink-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inspector-shrink",
+      "command": [
+        "test_designer_inspector_shrink_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.455677509307861,
+      "test_sha256": "c48a484a86ae4f88c757ecb1ff3ba44e357d6547b624e5d7e3ba3c141e2461f1",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inspector-shrink.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-say-numeric",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "say"
+      ],
+      "exit": 0,
+      "seconds": 7.136219024658203,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-say-numeric.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-get-numeric",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "get"
+      ],
+      "exit": 0,
+      "seconds": 9.353357076644897,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-numeric.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-checkbox-numeric",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "checkbox"
+      ],
+      "exit": 0,
+      "seconds": 7.1366798877716064,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-numeric.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-button-numeric",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "button"
+      ],
+      "exit": 0,
+      "seconds": 11.612595558166504,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-numeric.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-radiogroup-numeric",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "radiogroup"
+      ],
+      "exit": 0,
+      "seconds": 7.139387845993042,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radiogroup-numeric.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-listbox-numeric",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--listbox"
+      ],
+      "exit": 0,
+      "seconds": 11.736412048339844,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-numeric.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-combobox-numeric",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "combobox"
+      ],
+      "exit": 0,
+      "seconds": 11.716304063796997,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combobox-numeric.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-say-numeric-small",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "say",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 8.502384424209595,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-say-numeric-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-get-numeric-small",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "get",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 10.678734540939331,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-numeric-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-button-numeric-small",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "button",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 12.979395627975464,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-numeric-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-checkbox-numeric-small",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "checkbox",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 8.485061883926392,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-numeric-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-radiogroup-numeric-small",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "radiogroup",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 8.484813451766968,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radiogroup-numeric-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-combobox-numeric-small",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--kind",
+        "combobox",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 13.083705425262451,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combobox-numeric-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-listbox-numeric-small",
+      "command": [
+        "test_designer_inline_numeric_pty.py",
+        "--listbox",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 13.065613269805908,
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-numeric-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-dialog-inline",
+      "command": [
+        "test_designer_dialog_inline_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 14.436535120010376,
+      "test_sha256": "8fcf2f7d3649bd91f30c47feb1338543739425763e51452eeac158e386232a44",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-dialog-inline.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-dialog-inline-colors",
+      "command": [
+        "test_designer_dialog_colors_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 15.703163146972656,
+      "test_sha256": "31c792b869a0e9f35cd09ec5be7f609b94eddbebec069e8e0d4b7579347a06a7",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-dialog-inline-colors.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-dialog-inline-colors-small",
+      "command": [
+        "test_designer_dialog_colors_pty.py",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 17.094502210617065,
+      "test_sha256": "31c792b869a0e9f35cd09ec5be7f609b94eddbebec069e8e0d4b7579347a06a7",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-dialog-inline-colors-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-get-events-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "get",
+        "--events",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 12.611482858657837,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-events-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-button-events-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "button",
+        "--events",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 17.65151810646057,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-events-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-checkbox-events-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "checkbox",
+        "--events",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 21.35654306411743,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-events-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-radiogroup-events-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "radiogroup",
+        "--events",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 16.911967515945435,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radiogroup-events-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-combobox-events-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "combobox",
+        "--events",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 22.358720302581787,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combobox-events-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-listbox-events-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--listbox",
+        "--events",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 22.385713815689087,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-events-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-say-text-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "say",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 8.199206829071045,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-say-text-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-get-text-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "get",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 8.19427490234375,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-text-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-button-text-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "button",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 16.126290798187256,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-text-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-checkbox-text-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "checkbox",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 12.111610651016235,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-text-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-radiogroup-text-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "radiogroup",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 12.091938495635986,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radiogroup-text-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-combobox-text-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "combobox",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 12.100836753845215,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combobox-text-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-listbox-text-small",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--listbox",
+        "--small"
+      ],
+      "exit": 0,
+      "seconds": 12.11637806892395,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-text-small.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-get-events",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "get",
+        "--events"
+      ],
+      "exit": 0,
+      "seconds": 11.241877794265747,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-events.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-checkbox-events",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "checkbox",
+        "--events"
+      ],
+      "exit": 0,
+      "seconds": 19.998310327529907,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-events.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-button-events",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "button",
+        "--events"
+      ],
+      "exit": 0,
+      "seconds": 16.307417154312134,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-events.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-radiogroup-events",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "radiogroup",
+        "--events"
+      ],
+      "exit": 0,
+      "seconds": 15.542333841323853,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radiogroup-events.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-listbox-events",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--listbox",
+        "--events"
+      ],
+      "exit": 0,
+      "seconds": 21.036977291107178,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-events.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-combobox-events",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "combobox",
+        "--events"
+      ],
+      "exit": 0,
+      "seconds": 21.026015520095825,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combobox-events.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-say-text",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "say"
+      ],
+      "exit": 0,
+      "seconds": 6.8494768142700195,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-say-text.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-checkbox-text",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "checkbox"
+      ],
+      "exit": 0,
+      "seconds": 10.740049839019775,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-text.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-radio-text",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "radiogroup"
+      ],
+      "exit": 0,
+      "seconds": 10.749393463134766,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radio-text.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-combo-text",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--kind",
+        "combobox"
+      ],
+      "exit": 0,
+      "seconds": 10.7777578830719,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combo-text.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-button-text",
+      "command": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 14.820374250411987,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-text.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-get-binding",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--get"
+      ],
+      "exit": 0,
+      "seconds": 6.848051309585571,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-binding.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-inline-listbox-text",
+      "command": [
+        "test_designer_inline_text_pty.py",
+        "--listbox"
+      ],
+      "exit": 0,
+      "seconds": 10.75740647315979,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-text.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-continuation-backspace-join",
+      "command": [
+        "test_editor_continuation_join_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 10.246478080749512,
+      "test_sha256": "b6c6e46f6bbb9774be009d9ed9d1361c0020071b492e792e552ea6c599c6f078",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-continuation-backspace-join.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-continuation-delete-join",
+      "command": [
+        "test_editor_continuation_join_pty.py",
+        "--delete-join"
+      ],
+      "exit": 0,
+      "seconds": 10.971610307693481,
+      "test_sha256": "b6c6e46f6bbb9774be009d9ed9d1361c0020071b492e792e552ea6c599c6f078",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-continuation-delete-join.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-continuation-delete",
+      "command": [
+        "test_editor_bracket_continuation_pty.py",
+        "--delete"
+      ],
+      "exit": 0,
+      "seconds": 10.604449272155762,
+      "test_sha256": "b330bb40c7fb9c4e58a4fc1d20e195bdcf4489261bf77de79da582bd384e0084",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-continuation-delete.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-continuation",
+      "command": [
+        "test_editor_bracket_continuation_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 10.243614912033081,
+      "test_sha256": "b330bb40c7fb9c4e58a4fc1d20e195bdcf4489261bf77de79da582bd384e0084",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-continuation.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-output",
+      "command": [
+        "test_editor_bracket_output_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.512470006942749,
+      "test_sha256": "a76cb99ccfdb8272c3c23ce6682456657d0e147ac9c6140a454e2e1154f90915",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-output.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-codeblock",
+      "command": [
+        "test_editor_bracket_codeblock_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.514770030975342,
+      "test_sha256": "2564546fe0c87027741be0270a3b14f0888834e261ceefa7c8094095c4c12897",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-codeblock.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-logical",
+      "command": [
+        "test_editor_bracket_logical_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.514660835266113,
+      "test_sha256": "44eb04d83bc8e48e96241bdaed354ac04b36e79d3dbcdfcba936e4227f69424b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-logical.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-arithmetic",
+      "command": [
+        "test_editor_bracket_arithmetic_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.523042917251587,
+      "test_sha256": "a36ed3e8be8e739459ac925d10e1df3806d53e97d792725dfce633514d0bf374",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-arithmetic.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-tabs",
+      "command": [
+        "test_editor_bracket_tabs_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.51275372505188,
+      "test_sha256": "1313ab9b195c98399350ae355fa04cdb74d17a141378da203618cf2ccf3ad94a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-tabs.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-comparisons",
+      "command": [
+        "test_editor_bracket_comparisons_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.513940811157227,
+      "test_sha256": "2b052c6613e033744068bd6d80c670ab7f6d4df98ee3b9333ffaeb707162279b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-comparisons.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-minus",
+      "command": [
+        "test_editor_bracket_minus_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.513489723205566,
+      "test_sha256": "7f501a5287c1e50cbafe93c7ec8c88de651025eb3e3474be79af33367fe638b0",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-minus.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-multiline",
+      "command": [
+        "test_editor_bracket_multiline_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.515619993209839,
+      "test_sha256": "3d6e16362b6ba09d04f51e5d666191445e3c62efe1fcb2e3e9363ee3a7d88619",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-multiline.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-gap",
+      "command": [
+        "test_editor_bracket_gap_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.512408018112183,
+      "test_sha256": "02964671c81f24be84bc2fe953b0fd80e301ac4b829f737008c0517849fdaac3",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-gap.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-operator",
+      "command": [
+        "test_editor_bracket_operator_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.5124831199646,
+      "test_sha256": "032dc4a598002d313e48982cf7834307fbd597130c5547946dc43ef67095c050",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-operator.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-list",
+      "command": [
+        "test_editor_bracket_list_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.513640880584717,
+      "test_sha256": "71a5ab61f74ecb2c0a63d78723012040e9a575830d39171a31d26689cd4dac2f",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-list.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-paren-bracket",
+      "command": [
+        "test_editor_paren_bracket_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.5164268016815186,
+      "test_sha256": "c6e504ab46823ea6f70d0b00f99545c3798f3f39566e8ad08e92f5ec01b6a312",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-paren-bracket.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-note-comment",
+      "command": [
+        "test_editor_note_comment_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.516858816146851,
+      "test_sha256": "b67ed0ba907bdad8fb51a10e0af3a7bfcf8fa8d63a6d2db6ee17d6ed5d83a5cc",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-note-comment.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-backtick-literal",
+      "command": [
+        "test_editor_backtick_literal_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.515301465988159,
+      "test_sha256": "9dca239709c825f57893c5e8fc7ebc87b480c83d5b9232ff3067f0c7269fd5ec",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-backtick-literal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-variants",
+      "command": [
+        "test_editor_bracket_variants_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.513808488845825,
+      "test_sha256": "20f4c1068e8f6fcdb8dbe29797f65bde49ead6fba53a4ef1a72d766cd92a6ea8",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-variants.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-bracket-assignment",
+      "command": [
+        "test_editor_bracket_assignment_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.516896486282349,
+      "test_sha256": "63d029b64d124bb711b2aee012488409b8a70ca15f4eab0b61e9ab302eb87fb0",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-assignment.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-escape-variants",
+      "command": [
+        "test_editor_escape_variants_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.512066841125488,
+      "test_sha256": "de736574f509e7cfb611ca9cb31d6f62421f88e19ba501f895c25e44c9749dde",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-escape-variants.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-escape-literal",
+      "command": [
+        "test_editor_escape_literal_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.512755632400513,
+      "test_sha256": "d8a2fd0236403c2f937c2665d52b2437d4466b42f79c5b3a4f383e2226711e5f",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-escape-literal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-adjacent-comments",
+      "command": [
+        "test_editor_adjacent_comments_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.512868404388428,
+      "test_sha256": "9bb57e52a16ab0b8a480af1cf2a47b0b8ff557b0111a6354b175be23a32a1eb7",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-adjacent-comments.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-line-comments",
+      "command": [
+        "test_editor_line_comments_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.512800216674805,
+      "test_sha256": "eadf96c2383b05104d064025e4da0339da22c5bd869a139f4d100e1c39e7ad05",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-line-comments.log",
+      "printed_failure": false
+    },
+    {
+      "name": "gcc-utf8-output-viewer",
+      "command": [
+        "test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "color",
+        "--output-viewer",
+        "--utf8-viewer"
+      ],
+      "exit": 0,
+      "seconds": 10.617288589477539,
+      "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/gcc-utf8-output-viewer.log",
+      "printed_failure": false
+    },
+    {
+      "name": "gcc-color-output-viewer",
+      "command": [
+        "test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "color",
+        "--output-viewer"
+      ],
+      "exit": 0,
+      "seconds": 8.62959623336792,
+      "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/gcc-color-output-viewer.log",
+      "printed_failure": false
+    },
+    {
+      "name": "gcc-caret-color",
+      "command": [
+        "test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "color"
+      ],
+      "exit": 0,
+      "seconds": 6.875041961669922,
+      "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-color.log",
+      "printed_failure": false
+    },
+    {
+      "name": "gcc-caret-byte",
+      "command": [
+        "test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "byte"
+      ],
+      "exit": 0,
+      "seconds": 6.875782012939453,
+      "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-byte.log",
+      "printed_failure": false
+    },
+    {
+      "name": "gcc-caret-tab4",
+      "command": [
+        "test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "tab4"
+      ],
+      "exit": 0,
+      "seconds": 6.875168323516846,
+      "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-tab4.log",
+      "printed_failure": false
+    },
+    {
+      "name": "gcc-caret-tab16",
+      "command": [
+        "test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "tab16"
+      ],
+      "exit": 0,
+      "seconds": 6.877317667007446,
+      "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-tab16.log",
+      "printed_failure": false
+    },
+    {
+      "name": "gcc-caret-absent",
+      "command": [
+        "test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "no-caret"
+      ],
+      "exit": 0,
+      "seconds": 6.87569522857666,
+      "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-absent.log",
+      "printed_failure": false
+    },
+    {
+      "name": "gcc-caret-column",
+      "command": [
+        "test_gcc_caret_column_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.876641750335693,
+      "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-column.log",
+      "printed_failure": false
+    },
+    {
+      "name": "prevdoc-shortcut-single",
+      "command": [
+        "test_prevdoc_shortcut_pty.py",
+        "--single"
+      ],
+      "exit": 0,
+      "seconds": 6.703911066055298,
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/prevdoc-shortcut-single.log",
+      "printed_failure": false
+    },
+    {
+      "name": "prevdoc-shortcut-compact-256",
+      "command": [
+        "test_prevdoc_shortcut_pty.py",
+        "--compact-256"
+      ],
+      "exit": 0,
+      "seconds": 10.306582927703857,
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/prevdoc-shortcut-compact-256.log",
+      "printed_failure": false
+    },
+    {
+      "name": "prevdoc-shortcut",
+      "command": [
+        "test_prevdoc_shortcut_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 10.375117063522339,
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/prevdoc-shortcut.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-duplicate-caption-anchor",
+      "command": [
+        "test_designer_quote_anchor_pty.py",
+        "--duplicate-caption"
+      ],
+      "exit": 0,
+      "seconds": 3.033660888671875,
+      "test_sha256": "fe0bd69612d5dcf3074fe3a4f93d2a48cf31b59b4cddf21d0b488642da81f4df",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-duplicate-caption-anchor.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-reserved-binding-anchor",
+      "command": [
+        "test_designer_quote_anchor_pty.py",
+        "--reserved-binding"
+      ],
+      "exit": 0,
+      "seconds": 2.8644309043884277,
+      "test_sha256": "fe0bd69612d5dcf3074fe3a4f93d2a48cf31b59b4cddf21d0b488642da81f4df",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-reserved-binding-anchor.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-dialog-caption-anchor",
+      "command": [
+        "test_designer_quote_anchor_pty.py",
+        "--dialog-caption"
+      ],
+      "exit": 0,
+      "seconds": 2.873142957687378,
+      "test_sha256": "fe0bd69612d5dcf3074fe3a4f93d2a48cf31b59b4cddf21d0b488642da81f4df",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-dialog-caption-anchor.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-button-anchor",
+      "command": [
+        "test_designer_quote_anchor_pty.py",
+        "--button"
+      ],
+      "exit": 0,
+      "seconds": 2.873140335083008,
+      "test_sha256": "fe0bd69612d5dcf3074fe3a4f93d2a48cf31b59b4cddf21d0b488642da81f4df",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-button-anchor.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-quote-anchor",
+      "command": [
+        "test_designer_quote_anchor_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 2.8738551139831543,
+      "test_sha256": "fe0bd69612d5dcf3074fe3a4f93d2a48cf31b59b4cddf21d0b488642da81f4df",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-quote-anchor.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-quote-mixed-runtime",
+      "command": [
+        "test_designer_quote_runtime_pty.py",
+        "--mixed"
+      ],
+      "exit": 0,
+      "seconds": 5.335336923599243,
+      "test_sha256": "3b230f2955a231dc8cb7fa2fc4af4a6687475b35667c533f58df6518cc606c27",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-quote-mixed-runtime.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-quote-runtime",
+      "command": [
+        "test_designer_quote_runtime_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.3326685428619385,
+      "test_sha256": "3b230f2955a231dc8cb7fa2fc4af4a6687475b35667c533f58df6518cc606c27",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-quote-runtime.log",
+      "printed_failure": false
+    },
+    {
+      "name": "gui-roundtrip",
+      "command": [
+        "test_gui_roundtrip_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 28.682716608047485,
+      "test_sha256": "15d680d6144442f356fd96777fd5ad8e87d27e394ab8b7c5e0450841b8df5bba",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/gui-roundtrip.log",
+      "printed_failure": false
+    },
+    {
+      "name": "combobox",
+      "command": [
+        "test_combobox_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 33.00958752632141,
+      "test_sha256": "314281579fd028478bd32fa03f57884d219ec81b85a860fed0ae95d7cd26247b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/combobox.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-clipboard-case",
+      "command": [
+        "test_designer_clipboard_pty.py",
+        "--case-insensitive"
+      ],
+      "exit": 0,
+      "seconds": 24.363393545150757,
+      "test_sha256": "1a5025ecea16014cf96b6b867f578f70d2813938aa28d991f927d48cab04579a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-clipboard-case.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-snap-drag-edges",
+      "command": [
+        "test_designer_snap_edges_pty.py",
+        "--drag"
+      ],
+      "exit": 0,
+      "seconds": 4.7479071617126465,
+      "test_sha256": "ddd5c5f8db105e133511efca0e83c3e8ec7ad032cac1964ab91fe46b84e4d02d",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-snap-drag-edges.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-snap-edges",
+      "command": [
+        "test_designer_snap_edges_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.457517147064209,
+      "test_sha256": "ddd5c5f8db105e133511efca0e83c3e8ec7ad032cac1964ab91fe46b84e4d02d",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-snap-edges.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-clipboard-popup-types",
+      "command": [
+        "test_designer_clipboard_loaded_types_pty.py",
+        "--popup"
+      ],
+      "exit": 0,
+      "seconds": 56.92447113990784,
+      "test_sha256": "ec07396175878718147d7f489bfd8495b21ed0319f0865dc19aea42d1e896dce",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-clipboard-popup-types.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-clipboard-created-types",
+      "command": [
+        "test_designer_clipboard_loaded_types_pty.py",
+        "--create"
+      ],
+      "exit": 0,
+      "seconds": 40.36230516433716,
+      "test_sha256": "ec07396175878718147d7f489bfd8495b21ed0319f0865dc19aea42d1e896dce",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-clipboard-created-types.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-clipboard-loaded-types",
+      "command": [
+        "test_designer_clipboard_loaded_types_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 38.83881616592407,
+      "test_sha256": "ec07396175878718147d7f489bfd8495b21ed0319f0865dc19aea42d1e896dce",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-clipboard-loaded-types.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer-clipboard",
+      "command": [
+        "test_designer_clipboard_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 23.251349210739136,
+      "test_sha256": "1a5025ecea16014cf96b6b867f578f70d2813938aa28d991f927d48cab04579a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer-clipboard.log",
+      "printed_failure": false
+    },
+    {
+      "name": "designer",
+      "command": [
+        "test_designer_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 24.697166442871094,
+      "test_sha256": "f81758bfc8ea0f62bb84910a95b4bb09ba5cb522cdd2495a4bcea5ee5c6a4e97",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/designer.log",
+      "printed_failure": false
+    },
+    {
+      "name": "virtual-backspace",
+      "command": [
+        "test_virtual_backspace_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 12.442215919494629,
+      "test_sha256": "8142ae844b69914199d4e5ce07208b9bef445a4d963ec1bed3886c214421da93",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/virtual-backspace.log",
+      "printed_failure": false
+    },
+    {
+      "name": "cut-undo-boundary",
+      "command": [
+        "test_cut_undo_boundary_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 14.977639436721802,
+      "test_sha256": "830d07057e62128a03aef60216c819fde4baf768d5eefeac4b6ff89ac8abd733",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/cut-undo-boundary.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-utf8-terminal",
+      "command": [
+        "test_clipboard_utf8_multidoc_pty.py",
+        "--utf8-terminal"
+      ],
+      "exit": 0,
+      "seconds": 19.644521236419678,
+      "test_sha256": "f850dc526d634f483cf4b6194c109f77ae970ebd8816cb48eac4d93199098368",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-utf8-terminal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-utf8-multidoc",
+      "command": [
+        "test_clipboard_utf8_multidoc_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 19.66832399368286,
+      "test_sha256": "f850dc526d634f483cf4b6194c109f77ae970ebd8816cb48eac4d93199098368",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-utf8-multidoc.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-block-multidoc",
+      "command": [
+        "test_clipboard_block_multidoc_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 19.662418127059937,
+      "test_sha256": "85802744523168aaf84622697e98cf5275fd8a5595d4510c2d8b7c210ad0ea26",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-block-multidoc.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-close",
+      "command": [
+        "test_clipboard_close_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 14.248096704483032,
+      "test_sha256": "1748cca360147228158bea743e6226bdc251bcd07af72b0ba70fa5d4a6431e2f",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-close.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-multidoc",
+      "command": [
+        "test_clipboard_multidoc_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 11.675423383712769,
+      "test_sha256": "37c53b88e21c615212a8f158592175b73b27f3b1b23539b5533dd62b973233b1",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-multidoc.log",
+      "printed_failure": false
+    },
+    {
+      "name": "delete-eof",
+      "command": [
+        "test_delete_eof_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 16.285797119140625,
+      "test_sha256": "b80fd4209481a9b5755f0804aa0bd24c2ed264edfa1ec7e66cc7d17270305399",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/delete-eof.log",
+      "printed_failure": false
+    },
+    {
+      "name": "overtype-identity",
+      "command": [
+        "test_overtype_identity_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.25655460357666,
+      "test_sha256": "727f4ad989822628c59bbc5d9c40580144e4c483271c94841a71aba38e7e83ff",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/overtype-identity.log",
+      "printed_failure": false
+    },
+    {
+      "name": "clipboard-spaces",
+      "command": [
+        "test_clipboard_spaces_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.21963095664978,
+      "test_sha256": "db599e487f4a446007a7e250cc02615408cd1c600a43fec0f31f29bc43554ca9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/clipboard-spaces.log",
+      "printed_failure": false
+    },
+    {
+      "name": "replace-identity",
+      "command": [
+        "test_replace_identity_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.471062898635864,
+      "test_sha256": "b9abff047745e560ab4356b4878f7f167b6eb89bbc3ea1dee4972a1d52a28d8c",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/replace-identity.log",
+      "printed_failure": false
+    },
+    {
+      "name": "replace-undo-boundary",
+      "command": [
+        "test_replace_undo_boundary_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 13.527444839477539,
+      "test_sha256": "9c7dfd85b8bd258fe24611a9d9f442ae3bb34fe721a214c8cb411ebd40242559",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/replace-undo-boundary.log",
+      "printed_failure": false
+    },
+    {
+      "name": "replace-spaces",
+      "command": [
+        "test_replace_spaces_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 16.537927627563477,
+      "test_sha256": "cc9f1d772926c9e4cc4f952045f676aacb987677e36540d457b2d3c1bbc90332",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/replace-spaces.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-mouse-utf8-terminal",
+      "command": [
+        "test_editor_mouse_utf8_pty.py",
+        "--utf8-terminal"
+      ],
+      "exit": 0,
+      "seconds": 22.60843801498413,
+      "test_sha256": "89c315ebc9f9caaf220e33cc9ad64d72d2d3fa877c577c55bc2b91440c9ba6fa",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-mouse-utf8-terminal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-mouse-utf8",
+      "command": [
+        "test_editor_mouse_utf8_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 22.615803003311157,
+      "test_sha256": "89c315ebc9f9caaf220e33cc9ad64d72d2d3fa877c577c55bc2b91440c9ba6fa",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-mouse-utf8.log",
+      "printed_failure": false
+    },
+    {
+      "name": "editor-mouse",
+      "command": [
+        "test_editor_mouse_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 44.33536076545715,
+      "test_sha256": "882067d19b14c14ae930893b9467f1d01df6d31ad1a55bd731436401784b7b51",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/editor-mouse.log",
+      "printed_failure": false
+    },
+    {
+      "name": "backup-f2",
+      "command": [
+        "test_backup_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 7.116902589797974,
+      "test_sha256": "1124cc08ac894a736bb078a171e85cf62d7a099fa1ec51133fcd4b639ebbc599",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/backup-f2.log",
+      "printed_failure": false
+    },
+    {
+      "name": "start-open-document-collision",
+      "command": [
+        "test_start_collision_pty.py",
+        "--other-document"
+      ],
+      "exit": 0,
+      "seconds": 7.092347621917725,
+      "test_sha256": "39d68596ee0c599fb9657eef3bfe66d890bbf4c4ae6efabeea22dbeeb74be408",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/start-open-document-collision.log",
+      "printed_failure": false
+    },
+    {
+      "name": "start-source-collision-relative",
+      "command": [
+        "test_start_collision_pty.py",
+        "--relative"
+      ],
+      "exit": 0,
+      "seconds": 5.661599636077881,
+      "test_sha256": "39d68596ee0c599fb9657eef3bfe66d890bbf4c4ae6efabeea22dbeeb74be408",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/start-source-collision-relative.log",
+      "printed_failure": false
+    },
+    {
+      "name": "start-source-collision",
+      "command": [
+        "test_start_collision_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.661462068557739,
+      "test_sha256": "39d68596ee0c599fb9657eef3bfe66d890bbf4c4ae6efabeea22dbeeb74be408",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/start-source-collision.log",
+      "printed_failure": false
+    },
+    {
+      "name": "start-target-space",
+      "command": [
+        "test_recovery_unreadable_pty.py",
+        "--start-target-space"
+      ],
+      "exit": 0,
+      "seconds": 5.4742112159729,
+      "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/start-target-space.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-invalid-target",
+      "command": [
+        "test_recovery_unreadable_pty.py",
+        "--invalid-target"
+      ],
+      "exit": 0,
+      "seconds": 4.253500461578369,
+      "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-invalid-target.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-invalid-flags",
+      "command": [
+        "test_recovery_unreadable_pty.py",
+        "--invalid-flags"
+      ],
+      "exit": 0,
+      "seconds": 4.256376504898071,
+      "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-invalid-flags.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-compare-large",
+      "command": [
+        "test_recovery_compare_pty.py",
+        "--large"
+      ],
+      "exit": 0,
+      "seconds": 4.982656955718994,
+      "test_sha256": "c5163ac5b4a8807c4bf258cd75b2ea48237cd1457d67249093cc5fc9023ed01d",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-compare-large.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-compare",
+      "command": [
+        "test_recovery_compare_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 7.939841985702515,
+      "test_sha256": "c5163ac5b4a8807c4bf258cd75b2ea48237cd1457d67249093cc5fc9023ed01d",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-compare.log",
+      "printed_failure": false
+    },
+    {
+      "name": "reload-unreadable",
+      "command": [
+        "test_reload_unreadable_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 8.722631216049194,
+      "test_sha256": "a9f421134abb38618b301595634e33cfcb7838c8ee98fbca7b46ec42003f86a1",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/reload-unreadable.log",
+      "printed_failure": false
+    },
+    {
+      "name": "open-unreadable",
+      "command": [
+        "test_open_unreadable_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.724586009979248,
+      "test_sha256": "a024e5a06cf25a0cd104f216e037419a0431e730ffbf12d7560156dc361b79d6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/open-unreadable.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-target-space",
+      "command": [
+        "test_recovery_unreadable_pty.py",
+        "--target-space"
+      ],
+      "exit": 0,
+      "seconds": 4.4515180587768555,
+      "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-target-space.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-unknown-codepage",
+      "command": [
+        "test_recovery_unreadable_pty.py",
+        "--unknown-codepage"
+      ],
+      "exit": 0,
+      "seconds": 4.253196477890015,
+      "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-unknown-codepage.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-malformed",
+      "command": [
+        "test_recovery_unreadable_pty.py",
+        "--malformed-envelope"
+      ],
+      "exit": 0,
+      "seconds": 4.2536022663116455,
+      "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-malformed.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-unreadable",
+      "command": [
+        "test_recovery_unreadable_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 4.253248929977417,
+      "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-unreadable.log",
+      "printed_failure": false
+    },
+    {
+      "name": "close-routes",
+      "command": [
+        "test_close_routes_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 11.84554409980774,
+      "test_sha256": "f85b7e37254c3c9c039a896dcfe05698b953419539ddf57ed6dc5fce3cc3f280",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/close-routes.log",
+      "printed_failure": false
+    },
+    {
+      "name": "file-modal-long-list",
+      "command": [
+        "test_file_modal_long_list_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 7.087541580200195,
+      "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/file-modal-long-list.log",
+      "printed_failure": false
+    },
+    {
+      "name": "file-modal-mouse",
+      "command": [
+        "test_file_modal_mouse_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 17.039295196533203,
+      "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/file-modal-mouse.log",
+      "printed_failure": false
+    },
+    {
+      "name": "file-modal-buttons",
+      "command": [
+        "test_file_modal_buttons_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 15.771790504455566,
+      "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/file-modal-buttons.log",
+      "printed_failure": false
+    },
+    {
+      "name": "run-arguments-modal",
+      "command": [
+        "test_run_arguments_modal_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 22.767831563949585,
+      "test_sha256": "ce24ee133541f28a8720bc4c8df8aab24da86d308699f6a71c070b36b202fc81",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/run-arguments-modal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "about-build",
+      "command": [
+        "test_about_build_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 5.9073474407196045,
+      "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/about-build.log",
+      "printed_failure": false
+    },
+    {
+      "name": "run-empty-args",
+      "command": [
+        "test_run_empty_args_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 20.109438180923462,
+      "test_sha256": "38110f01457b6b707a630e32a0c4a44189e5a676c637209a9e3960f44a33c520",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/run-empty-args.log",
+      "printed_failure": false
+    },
+    {
+      "name": "script-screen",
+      "command": [
+        "test_script_screen_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 6.974275588989258,
+      "test_sha256": "f2a410361f5490a93d8b9980cb600d2ab2c6de20ba8ba7f52ca1fc73eee96614",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/script-screen.log",
+      "printed_failure": false
+    },
+    {
+      "name": "source-includes",
+      "command": [
+        "test_source_includes_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 13.893235445022583,
+      "test_sha256": "117954e588fb44629ce8a521e003d39570913841af16b5a2168f35018821be57",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/source-includes.log",
+      "printed_failure": false
+    },
+    {
+      "name": "script-errors",
+      "command": [
+        "test_script_errors_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 18.139761686325073,
+      "test_sha256": "5fa2c6ad9066943a72eda04e3a43b84dde2393ec9cc9a37a3ffa2e48c1a9d90f",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/script-errors.log",
+      "printed_failure": false
+    },
+    {
+      "name": "start-paths",
+      "command": [
+        "test_start_paths_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 15.769402980804443,
+      "test_sha256": "5d6480733df1778be1a3303b97c4d02b4915eeb8c8247b158a14445f6c45075d",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/start-paths.log",
+      "printed_failure": false
+    },
+    {
+      "name": "run-source",
+      "command": [
+        "test_run_source_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 13.891942024230957,
+      "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/run-source.log",
+      "printed_failure": false
+    },
+    {
+      "name": "edit-menu",
+      "command": [
+        "test_edit_menu_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 54.329702854156494,
+      "test_sha256": "8b0ba8629bfc47543f1f318474ddb7f20c9d754db34993fb43da7d0790125a0a",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/edit-menu.log",
+      "printed_failure": false
+    },
+    {
+      "name": "navigation",
+      "command": [
+        "test_nav_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 66.93279600143433,
+      "test_sha256": "d3e8ee7342e20758fbd6f016a6acb565502ce96d8a8bf9509eb2f71da13d55a4",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/navigation.log",
+      "printed_failure": false
+    },
+    {
+      "name": "multidoc",
+      "command": [
+        "test_multidoc_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 59.898407220840454,
+      "test_sha256": "4441eda434c5d55b3a2736b32759589977f38ef4460f568f45cedfdb2d59764d",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/multidoc.log",
+      "printed_failure": false
+    },
+    {
+      "name": "saveas-recovery",
+      "command": [
+        "test_saveas_refusal_recovery_pty.py",
+        "hbide"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_saveas_refusal_recovery_pty.py",
+        "/tmp/hbide-c30/bin/hbide"
+      ],
+      "exit": 0,
+      "seconds": 31.214648723602295,
+      "test_sha256": "ec10d6e7bb4251cdd2e7ae6ca891f520b314bbe2ed99b38f57cd96229eddbc59",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveas-recovery.log",
+      "printed_failure": false
+    },
+    {
+      "name": "breakpoint-delete",
+      "command": [
+        "test_bp_delete_policy.py",
+        "hbide"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_bp_delete_policy.py",
+        "/tmp/hbide-c30/bin/hbide"
+      ],
+      "exit": 0,
+      "seconds": 18.520101070404053,
+      "test_sha256": "c6ea1d1004d2a70d381d089bbb0badca3967dce444e76ef5a2a35b27ff70ce95",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/breakpoint-delete.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-multi",
+      "command": [
+        "test_recovery_multi.py",
+        "hbide"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_multi.py",
+        "/tmp/hbide-c30/bin/hbide"
+      ],
+      "exit": 0,
+      "seconds": 2.5658934116363525,
+      "test_sha256": "75fcda145e583d6b5345bca2f4a06e2f1f6cd2084f255b6bea28a0a318ade722",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-multi.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-retention",
+      "command": [
+        "test_recovery_retention.py",
+        "hbide"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_retention.py",
+        "/tmp/hbide-c30/bin/hbide"
+      ],
+      "exit": 0,
+      "seconds": 5.111306190490723,
+      "test_sha256": "0cb803de7652d2157452b006d9643c8132e4fdc817915630573b72c451d0bf2b",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-retention.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-deep-path",
+      "command": [
+        "test_recovery_deep_path.py",
+        "hbide"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+        "/tmp/hbide-c30/bin/hbide"
+      ],
+      "exit": 0,
+      "seconds": 5.427222013473511,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-deep-path.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-utf8-host",
+      "command": [
+        "test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-host"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+        "/tmp/hbide-c30/bin/hbide",
+        "--utf8-host"
+      ],
+      "exit": 0,
+      "seconds": 5.427022218704224,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-utf8-host.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-utf8-raw",
+      "command": [
+        "test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-raw"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+        "/tmp/hbide-c30/bin/hbide",
+        "--utf8-raw"
+      ],
+      "exit": 0,
+      "seconds": 7.031137704849243,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-utf8-raw.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-codepage-refusal",
+      "command": [
+        "test_recovery_deep_path.py",
+        "hbide",
+        "--refuse-cp"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+        "/tmp/hbide-c30/bin/hbide",
+        "--refuse-cp"
+      ],
+      "exit": 0,
+      "seconds": 5.927684545516968,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-codepage-refusal.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-codepage",
+      "command": [
+        "test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-bom",
+        "--switch-cp"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+        "/tmp/hbide-c30/bin/hbide",
+        "--utf8-bom",
+        "--switch-cp"
+      ],
+      "exit": 0,
+      "seconds": 5.429175853729248,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-codepage.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-utf8-bom",
+      "command": [
+        "test_recovery_deep_path.py",
+        "hbide",
+        "--utf8-bom"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+        "/tmp/hbide-c30/bin/hbide",
+        "--utf8-bom"
+      ],
+      "exit": 0,
+      "seconds": 5.428164720535278,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-utf8-bom.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-tabs",
+      "command": [
+        "test_recovery_deep_path.py",
+        "hbide",
+        "--tabs"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+        "/tmp/hbide-c30/bin/hbide",
+        "--tabs"
+      ],
+      "exit": 0,
+      "seconds": 5.427944898605347,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-tabs.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-mixed-eol",
+      "command": [
+        "test_recovery_deep_path.py",
+        "hbide",
+        "--mixed-eol"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+        "/tmp/hbide-c30/bin/hbide",
+        "--mixed-eol"
+      ],
+      "exit": 0,
+      "seconds": 5.428264856338501,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-mixed-eol.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-crlf",
+      "command": [
+        "test_recovery_deep_path.py",
+        "hbide",
+        "--crlf"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+        "/tmp/hbide-c30/bin/hbide",
+        "--crlf"
+      ],
+      "exit": 0,
+      "seconds": 5.42845606803894,
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-crlf.log",
+      "printed_failure": false
+    },
+    {
+      "name": "recovery-route-guard",
+      "command": [
+        "test_recovery_route_guard.py"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_recovery_route_guard.py"
+      ],
+      "exit": 0,
+      "seconds": 0.01305079460144043,
+      "test_sha256": "97f17c514f6bd7ce30d65c2d9234423275e39923e43d70175e18d010d817ca43",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/recovery-route-guard.log",
+      "printed_failure": false
+    },
+    {
+      "name": "script-dbf",
+      "command": [
+        "test_debug_workareas_pty.py",
+        "--script"
+      ],
+      "executed_command": [
+        "/tmp/hbide-c30/source/tests/test_debug_workareas_pty.py",
+        "--script"
+      ],
+      "exit": 0,
+      "seconds": 5.652099847793579,
+      "test_sha256": "60dc3e118fb3cb83889113fe8d2f52cecee2bd896138e0a00400502ba7622713",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/script-dbf.log",
+      "printed_failure": false
+    }
+  ],
+  "missing": [],
+  "extra": [],
+  "caveats": [
+    "1navigation harness adapted for Esc viewer,352original scripts",
+    "3inert --create repeats excluded",
+    "About expected12char revision env corrected after2failures",
+    "driver interruptions4/23/27/90 preserved in prior evidence; not retryfree",
+    "352PTY+1sourceguard,not353functionalities",
+    "notrelease/fullIDE/Windows/pixels/models/milestoneclosure"
+  ]
+}

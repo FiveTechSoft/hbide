@@ -5470,3 +5470,19 @@ Recibo/log/capturas texto del fallo y fuente adaptada hashada preservados.
 338 variantes del plan cubiertas con esta adaptación; NO338scriptscongelados
 originales PASS ni353completo. Sin nuevos píxeles/modelos/Windows/hitos.
 Evidencia: docs/evidence/linux-c30-general-blocks114116-q242.json.
+
+### Q243 (1 noviembre 2026): C30 reconciliación del plan353
+
+Últimas15 variantes PASS mismo C30 96d77549/export049b533: SaveAs recovery,
+breakpoint delete, recovery multi/retention/deep path/UTF8 host/raw/BOM/
+codepage/refusal/TAB/mixedEOL/CRLF, sourceguard ruta y script DBF. Argumento
+hbide sustituido solo al ejecutar por ruta absoluta del candidato, receta
+original+ejecutada preservadas. Tests propios hashados/binario inalterado.
+Reconciliación exacta de conjuntos:353variantes plan, cero faltantes/extra,
+excluidas3repeticionesinertesQ222.352PTY+1guardafuente, NO353funciones.
+352scriptscongelados originales +1navigation adaptadoQ242. About env
+corregidoQ241 y fallos/interrupciones previos conservados, NO ejecución
+global sin fallos/reintentos ni353scriptsoriginalesPASS. No sumar extras
+C30/smokes solapados. No release/hbide100%/Windows/modelos/píxeles/hitos.
+Evidencia: docs/evidence/linux-c30-final-blocks117131-q243.json y
+docs/evidence/linux-c30-plan-reconciliation-q243.json.

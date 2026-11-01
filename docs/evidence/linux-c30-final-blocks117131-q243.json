@@ -1,0 +1,399 @@
+{
+  "scope": "C30 last15variants PASS. Full353plan reconciled:352original frozen scripts and1navigation adapted,352PTY+1sourceguard. Not release/fullIDE/Windows/pixels/models/milestone closure; not retryfree.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "saveas-recovery",
+          "command": [
+            "test_saveas_refusal_recovery_pty.py",
+            "hbide"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_saveas_refusal_recovery_pty.py",
+            "/tmp/hbide-c30/bin/hbide"
+          ],
+          "exit": 0,
+          "seconds": 31.214648723602295,
+          "test_sha256": "ec10d6e7bb4251cdd2e7ae6ca891f520b314bbe2ed99b38f57cd96229eddbc59",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/saveas-recovery.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "breakpoint-delete",
+          "command": [
+            "test_bp_delete_policy.py",
+            "hbide"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_bp_delete_policy.py",
+            "/tmp/hbide-c30/bin/hbide"
+          ],
+          "exit": 0,
+          "seconds": 18.520101070404053,
+          "test_sha256": "c6ea1d1004d2a70d381d089bbb0badca3967dce444e76ef5a2a35b27ff70ce95",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/breakpoint-delete.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-multi",
+          "command": [
+            "test_recovery_multi.py",
+            "hbide"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_multi.py",
+            "/tmp/hbide-c30/bin/hbide"
+          ],
+          "exit": 0,
+          "seconds": 2.5658934116363525,
+          "test_sha256": "75fcda145e583d6b5345bca2f4a06e2f1f6cd2084f255b6bea28a0a318ade722",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-multi.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-retention",
+          "command": [
+            "test_recovery_retention.py",
+            "hbide"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_retention.py",
+            "/tmp/hbide-c30/bin/hbide"
+          ],
+          "exit": 0,
+          "seconds": 5.111306190490723,
+          "test_sha256": "0cb803de7652d2157452b006d9643c8132e4fdc817915630573b72c451d0bf2b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-retention.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-deep-path",
+          "command": [
+            "test_recovery_deep_path.py",
+            "hbide"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+            "/tmp/hbide-c30/bin/hbide"
+          ],
+          "exit": 0,
+          "seconds": 5.427222013473511,
+          "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-deep-path.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-utf8-host",
+          "command": [
+            "test_recovery_deep_path.py",
+            "hbide",
+            "--utf8-host"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+            "/tmp/hbide-c30/bin/hbide",
+            "--utf8-host"
+          ],
+          "exit": 0,
+          "seconds": 5.427022218704224,
+          "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-utf8-host.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-utf8-raw",
+          "command": [
+            "test_recovery_deep_path.py",
+            "hbide",
+            "--utf8-raw"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+            "/tmp/hbide-c30/bin/hbide",
+            "--utf8-raw"
+          ],
+          "exit": 0,
+          "seconds": 7.031137704849243,
+          "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-utf8-raw.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-codepage-refusal",
+          "command": [
+            "test_recovery_deep_path.py",
+            "hbide",
+            "--refuse-cp"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+            "/tmp/hbide-c30/bin/hbide",
+            "--refuse-cp"
+          ],
+          "exit": 0,
+          "seconds": 5.927684545516968,
+          "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-codepage-refusal.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-codepage",
+          "command": [
+            "test_recovery_deep_path.py",
+            "hbide",
+            "--utf8-bom",
+            "--switch-cp"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+            "/tmp/hbide-c30/bin/hbide",
+            "--utf8-bom",
+            "--switch-cp"
+          ],
+          "exit": 0,
+          "seconds": 5.429175853729248,
+          "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-codepage.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-utf8-bom",
+          "command": [
+            "test_recovery_deep_path.py",
+            "hbide",
+            "--utf8-bom"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+            "/tmp/hbide-c30/bin/hbide",
+            "--utf8-bom"
+          ],
+          "exit": 0,
+          "seconds": 5.428164720535278,
+          "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-utf8-bom.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-tabs",
+          "command": [
+            "test_recovery_deep_path.py",
+            "hbide",
+            "--tabs"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+            "/tmp/hbide-c30/bin/hbide",
+            "--tabs"
+          ],
+          "exit": 0,
+          "seconds": 5.427944898605347,
+          "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-tabs.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-mixed-eol",
+          "command": [
+            "test_recovery_deep_path.py",
+            "hbide",
+            "--mixed-eol"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+            "/tmp/hbide-c30/bin/hbide",
+            "--mixed-eol"
+          ],
+          "exit": 0,
+          "seconds": 5.428264856338501,
+          "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-mixed-eol.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-crlf",
+          "command": [
+            "test_recovery_deep_path.py",
+            "hbide",
+            "--crlf"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_deep_path.py",
+            "/tmp/hbide-c30/bin/hbide",
+            "--crlf"
+          ],
+          "exit": 0,
+          "seconds": 5.42845606803894,
+          "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-crlf.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-route-guard",
+          "command": [
+            "test_recovery_route_guard.py"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_recovery_route_guard.py"
+          ],
+          "exit": 0,
+          "seconds": 0.01305079460144043,
+          "test_sha256": "97f17c514f6bd7ce30d65c2d9234423275e39923e43d70175e18d010d817ca43",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-route-guard.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "script-dbf",
+          "command": [
+            "test_debug_workareas_pty.py",
+            "--script"
+          ],
+          "executed_command": [
+            "/tmp/hbide-c30/source/tests/test_debug_workareas_pty.py",
+            "--script"
+          ],
+          "exit": 0,
+          "seconds": 5.652099847793579,
+          "test_sha256": "60dc3e118fb3cb83889113fe8d2f52cecee2bd896138e0a00400502ba7622713",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/script-dbf.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_plan_variants": 353,
+  "logs": {
+    "saveas-recovery.log": "PASS boot caption noname\nPASS doc2 saved as dup.prg\nPASS dup.prg written\nPASS dup.prg holds doc2 text only\nPASS doc1 shows aa1\nPASS SaveAs collision refused\nPASS refusal left dup.prg byte-identical\nPASS refusal created no other file\nPASS doc1 still unsaved noname\nPASS dup.prg edit visible\nPASS two base journals (noname doc + dup.prg)\nPASS dup.prg still unchanged on disk before kill\nPASS recovery prompt on restart\nPASS recovery dialogs cleared\nPASS prompts named dup.prg\nPASS noname buffer recovered (aa1)\nPASS dup.prg buffer recovered (bb2 and q7k)\nPASS recovered into separate docs\nPASS disk dup.prg still the pre-crash save\nPASS F2 saved recovered dup.prg with q7k\nPASS saved file is old bytes plus the lost edit only\nTOTAL 21 PASS 0 FAIL\n",
+    "breakpoint-delete.log": "PASS boot noname\nPASS BP set on line 2\nPASS marked line deleted\nPASS deleting marked line drops BP (no red gutter)\nPASS undo restores text\nPASS undo does NOT restore the mark\nPASS BP re-set on line 2\nPASS split keeps mark on first fragment\nPASS Delete does not open Go to Function\nPASS selection removed marked lines\nPASS selection delete drops BP (no red gutter)\nPASS found marked dup line\nPASS mark shifted onto its own dup copy\nPASS BP deletion policy: drop on delete, no undo restore, split first fragment, follow own copy\n",
+    "recovery-multi.log": "PASS prompt for A\nPASS prompt for B\nPASS B recovered as own doc\nPASS both base journals kept\nPASS both session journals written\nPASS B saved file\nPASS B bytes exact\nPASS B journals deleted\nPASS A journals intact after B save\nPASS A visible after switch\nPASS A saved file\nPASS A bytes exact\nPASS all journals gone\nPASS multidoc recovery: A and B open side by side, each save exact and isolated\n",
+    "recovery-retention.log": "PASS prompt before Discard\nPASS Discard deletes base journal\nPASS Discard deletes sidecar\nPASS no re-prompt after Discard\nPASS prompt before Later\nPASS Later keeps base journal\nPASS prompt returns after Later\nPASS retention: Discard deletes, Later keeps and re-prompts\n",
+    "recovery-deep-path.log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+    "recovery-utf8-host.log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal encoding generation stored\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+    "recovery-utf8-raw.log": "PASS boot\nPASS Open dialog\nPASS raw UTF8 warning visible\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal encoding generation stored\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+    "recovery-codepage-refusal.log": "PASS lossy codepage recovery refused; journal and original retained\n",
+    "recovery-codepage.log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal encoding generation stored\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+    "recovery-utf8-bom.log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal encoding generation stored\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+    "recovery-tabs.log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+    "recovery-mixed-eol.log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+    "recovery-crlf.log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+    "recovery-route-guard.log": "PASS RecoverJournal: FindDoc>0 -> SwitchDoc -> CheckUnsaved before LoadText\nPASS RecoveryCheck: no pre-CheckUnsaved before RecoverJournal (batch recovery)\n",
+    "script-dbf.log": "PASS Script DBF run1 exact record vector\nPASS Script DBF run1 returns editor without loader error\nPASS Script DBF run2 exact record vector\nPASS Script DBF run2 returns editor without loader error\nPASS Script DBF leaves source bytes unchanged\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-ar36efxs\n"
+  }
+}
