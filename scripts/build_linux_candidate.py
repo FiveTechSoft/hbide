@@ -35,6 +35,14 @@ def main():
   'removed_inherited_binaries':inherited,'tests':{},'build_exit':None,
   'generated_buildinfo_sha256':sha(src/'buildinfo.ch'),'release_status':'not cleared; source notice review required'}
  try:
+  paths=command(['git','ls-tree','-r','--name-only',revision],ROOT)
+  if paths.returncode:raise RuntimeError('frozen document path inventory failed')
+  docpaths=[p for p in paths.stdout.decode().splitlines() if p.endswith('.md')]
+  docfile=out/'document-paths.json';docfile.write_text(json.dumps(docpaths)+'\n')
+  r=command([sys.executable,str(src/'scripts/embed_help_docs.py'),'--check','--paths-file',str(docfile)],src,env)
+  (out/'document-check.log').write_bytes(r.stdout)
+  manifest['document_check']={'exit':r.returncode,'paths_sha256':sha(docfile),'count':len(docpaths)}
+  if r.returncode:raise RuntimeError('export embedded documents stale; see document-check.log')
   r=command([compiler,'hbide.hbp','-quiet','-o'+str(binpath/'hbide')],src,env)
   (out/'build.log').write_bytes(r.stdout);manifest['build_exit']=r.returncode
   if r.returncode:raise RuntimeError('build failed, see build.log')
