@@ -1,0 +1,128 @@
+{
+  "scope": "C30 frozen block2+3 eight modes only, 14distinct modes including Q217block1. Not full353matrix/Windows/newpixels/models/M1closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "external-normal",
+          "command": [
+            "test_external_changes_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 15.614820003509521,
+          "test_sha256": "f3c5115b2aa248e1f37a655aba7f3258a8eb5b8dac5ca0c7d3fe2a18001979ac",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/external-normal.log",
+          "printed_failure": false
+        },
+        {
+          "name": "external-literal",
+          "command": [
+            "test_external_changes_pty.py",
+            "--literal"
+          ],
+          "exit": 0,
+          "seconds": 15.614081621170044,
+          "test_sha256": "f3c5115b2aa248e1f37a655aba7f3258a8eb5b8dac5ca0c7d3fe2a18001979ac",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/external-literal.log",
+          "printed_failure": false
+        },
+        {
+          "name": "failure-clean",
+          "command": [
+            "test_saveas_failure_identity_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 9.569040060043335,
+          "test_sha256": "36159f33a1687bee72ffb1b8618a6d73036076195561e4697c6b20eb3fb55568",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/failure-clean.log",
+          "printed_failure": false
+        },
+        {
+          "name": "failure-dirty",
+          "command": [
+            "test_saveas_failure_identity_pty.py",
+            "--dirty"
+          ],
+          "exit": 0,
+          "seconds": 12.186487913131714,
+          "test_sha256": "36159f33a1687bee72ffb1b8618a6d73036076195561e4697c6b20eb3fb55568",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/failure-dirty.log",
+          "printed_failure": false
+        },
+        {
+          "name": "failure-crash",
+          "command": [
+            "test_saveas_failure_identity_pty.py",
+            "--crash"
+          ],
+          "exit": 0,
+          "seconds": 15.82459807395935,
+          "test_sha256": "36159f33a1687bee72ffb1b8618a6d73036076195561e4697c6b20eb3fb55568",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/failure-crash.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "saveall-failure",
+          "command": [
+            "test_saveall_fail_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 17.7970552444458,
+          "test_sha256": "867f41dfed5f1947f30ef5b090265a1cc87ec7ee1177947074e59acb548b729f",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/saveall-failure.log",
+          "printed_failure": false
+        },
+        {
+          "name": "saveall-conflict-cancel",
+          "command": [
+            "test_saveall_conflict_cancel_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 8.588459014892578,
+          "test_sha256": "ab77a9370a252d66eee86a3ff627ab5a02268e74aab41e77018b46a8de15d187",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/saveall-conflict-cancel.log",
+          "printed_failure": false
+        },
+        {
+          "name": "saveall-conflict-reload",
+          "command": [
+            "test_saveall_conflict_reload_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 7.398799419403076,
+          "test_sha256": "bd78388572be73377d44c64d53627ea3ed4f0b4d8ba4a4a09d2b8f3e24e265e0",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/saveall-conflict-reload.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "logs": {
+    "external-normal.log": "PASS clean external change reloads actual disk content\nPASS Keep mine still asks before overwrite; Cancel preserves disk and buffer\nPASS explicit overwrite saves buffer and backs up external version byte-exact\nPASS deleted file Cancel does not recreate or discard buffer\nPASS explicit Recreate restores buffer and preserves last external backup\n",
+    "external-literal.log": "PASS clean external change reloads actual disk content\nPASS Keep mine still asks before overwrite; Cancel preserves disk and buffer\nPASS explicit overwrite saves buffer and backs up external version byte-exact\nPASS deleted file Cancel does not recreate or discard buffer\nPASS explicit Recreate restores buffer and preserves last external backup\n",
+    "failure-clean.log": "PASS failed Save As retains old name and subsequent F2 writes original document\n",
+    "failure-dirty.log": "PASS failed Save As retains old name and subsequent F2 writes original document\n",
+    "failure-crash.log": "PASS failed SaveAs journal bytes/target survive kill, recovery and exact save\nPASS failed Save As retains old name and subsequent F2 writes original document\n",
+    "saveall-failure.log": "PASS boot\nPASS summary says 1 saved and 1 could not be saved\nPASS failed file content on disk untouched\nPASS ok file saved with its edit\nPASS failed doc still marked modified, ok doc clean\n5/5 passed\n",
+    "saveall-conflict-cancel.log": "PASS SaveAll cancelled conflict leaves external bytes and dirty edit, other document saves\n",
+    "saveall-conflict-reload.log": "PASS SaveAll reload keeps external bytes and prior backup, not counted as saved\n"
+  }
+}

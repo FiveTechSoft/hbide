@@ -5175,3 +5175,12 @@ linkclean/dirty/overwriteaceptado/cancelado. Pruebasdelpropioexportcon
 hashes,binariosincambios. No6nuevasfunciones/matriz353/cierreM1/Windows.
 Noherenciade9modosQ214ni31modelos. Fuenteybincompletosenevidencia.
 Evidencia: docs/evidence/linux-c30-file-block1-q217.json.
+
+### Q218 (1 noviembre 2026): C30cambios externos/fallos/SaveAll
+
+8modosmasPASSbinC3096d77549/export049b533,pruebasdelpropioexporthash
+ybinariosincambios:externosnormal/literal,SaveAsfailureclean/dirty/crash,
+SaveAllfailure/conflictCancel/Reload. ConQ217son14modosdistintos,no
+sumarosextrasC30duplicados. Sinfallos/reintentosdeestosbloques.
+No nuevoproducto/pixeles/modelos/Windows/matriz353/cierreM1.
+Evidencia: docs/evidence/linux-c30-file-blocks23-q218.json.
