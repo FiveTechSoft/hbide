@@ -6183,3 +6183,29 @@ por docs. No modelos nuevos/fullmatrix/Windows/install/licencia/cierre M0-M6.
 Cabecera roadmap actualizada a C88/source/hash y receipts focales. Bloque C87
 conservado como histórico, sin presentarlo como último candidato. No build ni
 pruebas producto nuevas; docs/catálogo posteriores no embebidosC88.
+
+### Q477-Q481 (1 noviembre 2026): botones directos de entrada libre
+
+Q477C88GotoMouseSelection6PASS: Cancelpreservarango,OKlimpia/retienecolumna3,
+Undo mixedEOLexact. Initialexpectedcol1erróneo, HBEditorGotoLineusa::nCol,
+fixturecorregido/logretenido, no producto. Q478 C88FindCancel directoinput
+ignorado3PASS1FAIL, shared HBIDE_DlgInput consumía ratón pero sólo Tab/Down
+pasaba al READ de botones. Fix reconoce DOWN/UPmismobotón nativehitTest,
+preserva typing/Tab/Esc y se aplica Find/Replaceamboscampos/RunArguments.
+C89cfbc911 bin263e3752db8037ee655fd2e7bf592da425af401fa0fb5216f7abd678809e8257
+pasó8smokes pero falló focal por HTNOWHEREsinbutton.ch: rechazado/conservado.
+C906678e43385060fb018065ec0b842f00e604e44d2,
+bin28e836faac4040ac64737a9cccfd9d5a8d3de60cbdfe9a0d4a3a23f5757ccb7d
+incluyeconstante: fresh8smokes/Find7/Replace11/Args14directmousePASS;
+EditMenu37/Args14keyboardPASS separados. Q480pairededges8PASS:noactivation
+pressalone/crossboundary/unpairedrelease, samepaircloses/sourceexact.
+Actualnative1202x762C88vsC90Cancel inspected fullborder/status/source restore.
+No allmodalgeometry/Unicode/doubletiming/fullmatrix/models/Windows/license/hito.
+
+C86/C85 unárbol exportado cadauno preservado en archivo independiente autorizado,
+restauradosfiles SHA/size/mode verificadose íntegros antesretirar sólo expandido;
+bin/manifiesto/log/sourcearchiveoriginalintactos. C88oldunstrippedgzip SHAoriginal/
+descomprimido=manifest antesretirar redundante, testedbinintacto. No hardlinks.
+Q480tooling7groupsPASS/inventory2countfails: nuevas3ramas hacen30,27linked;
+expectativasactualizadas56unitsPASS. Initialfailretained. Q481docs/catalog
+posterioresnoembebidosC90. No cierre basado en conteo de ramas.
