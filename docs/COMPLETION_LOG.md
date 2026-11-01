@@ -4624,3 +4624,19 @@ f35ca99fa0df6567f62de7aeedc35a8a2ee4fda1e3db42bc4441e38810919bb2.
 Sin arreglo de producto, Cancel, respuesta UI, Windows, todas las
 variantes de fallo, matriz global ni cierre M2.
 Evidencia `docs/evidence/linux-restored-compiler-q177.json`.
+
+
+### Q178 (1 noviembre 2026): salida y estado del compilador
+
+Dos fixtures invocados desde Run > Start: exito sin crear output y error7
+tras crear output. Dos intentos cada uno conservan ejecutable real previo
+y fuente byte-exactos, no lanzan el antiguo y limpian temporales.
+Regresion de compilador ausente y restaurado en la misma sesion incluida:
+cuatro modos PTY53checks73guardas34docsPASS en
+746c7761a9ebcbac6e0356a35e209c79f9f2d232, binario
+00c21eb92b7cbb2c13bab317b236c81e660d64c3923fa6f47367f51ca234e2e0.
+La primera pasada fallo solo por expectativa nueva de status -1 para
+proceso ausente; el host devuelve1. Corregida la asercion antes de la
+pasada congelada final; los dos fixtures nuevos ya pasaban. No arreglo
+de producto, Cancel, respuesta UI, Windows, matriz global ni cierre M2.
+Evidencia `docs/evidence/linux-compiler-output-contract-q178.json`.
