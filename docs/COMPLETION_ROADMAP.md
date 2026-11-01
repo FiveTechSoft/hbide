@@ -635,3 +635,19 @@ TemporalLinux48ec271/bine3298a29:8smokes+6recent55checks,ldd/preflight
 34docsPASS,nativepairactualIDE25x80inspeccionadosinrestos. No release/
 install/licencias/Windows/globalheredado/cierreM4M5. Evidencia
 `docs/evidence/linux-candidate-c25.json`.
+
+
+### Seguimiento Q161 (1 noviembre 2026)
+
+Dos controles del mismo tipo con WHEN falso regresan sin teclas en 1,5 s.
+Se comprueban ambos handlers, valores conservados y ausencia de foco GUI.
+La primera expresion se edita en el inspector, se guarda con F10 y el PRG
+generado con F9 se compila y ejecuta. Seis tipos y regresion de un control:
+12 modos PTY, 105 comprobaciones, 66 guardas y 34 documentos PASS.
+Fuente b4b6c529326aa8ad62889f71bf86ad50510d42e2, binario
+b9dea838a99851e20d044c6045a10e7245a827afe5d88a95b80dc1426cc90ead.
+No arreglo de producto, mezcla de tipos, reactivacion, nuevos modelos o
+pixeles, Windows, matriz global ni cierre M4. Button comparte lDummy.
+El primer probe tuvo un fallo en el separador esperado del array; se
+corrigio la prueba, no el producto. Evidencia: 
+`docs/evidence/linux-designer-inline-pair-all-skipped-q161.json`.

@@ -4383,3 +4383,19 @@ e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc.
 Comboinspeccionado,sinrestos,handleprevistoselected,marcoscompletos.
 Evidencia `docs/evidence/linux-candidate-c25.json`. No release/install/
 licencias/Windows/matrizglobalheredada/alllayouts/gestos/cierreM4M5.
+
+
+## 1 noviembre 2026: Q161, dos controles con WHEN falso
+
+Dos controles del mismo tipo con WHEN falso regresan sin teclas en 1,5 s.
+Se comprueban ambos handlers, valores conservados y ausencia de foco GUI.
+La primera expresion se edita en el inspector, se guarda con F10 y el PRG
+generado con F9 se compila y ejecuta. Seis tipos y regresion de un control:
+12 modos PTY, 105 comprobaciones, 66 guardas y 34 documentos PASS.
+Fuente b4b6c529326aa8ad62889f71bf86ad50510d42e2, binario
+b9dea838a99851e20d044c6045a10e7245a827afe5d88a95b80dc1426cc90ead.
+No arreglo de producto, mezcla de tipos, reactivacion, nuevos modelos o
+pixeles, Windows, matriz global ni cierre M4. Button comparte lDummy.
+El primer probe tuvo un fallo en el separador esperado del array; se
+corrigio la prueba, no el producto. Evidencia: 
+`docs/evidence/linux-designer-inline-pair-all-skipped-q161.json`.
