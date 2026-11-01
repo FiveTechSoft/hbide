@@ -1,0 +1,36 @@
+{
+  "scope": "Q398 C83 bounded build run project messages only",
+  "source": "c245e8c3047f97a8674f75bb0f1ae33123defe1e",
+  "binary_sha256": "92504b3338a3e2f24a14615d54d8ad4fd14b12f9901fd53cd8c1f8aa157309a5",
+  "results": {
+    "missing": {
+      "exit": 0,
+      "log": "PASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-0fj85qdr\n",
+      "binary_unchanged": true
+    },
+    "failed-output": {
+      "exit": 0,
+      "log": "PASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 13 PASS 0 FAIL; evidence /tmp/hbide-source-run-rufefhnd\n",
+      "binary_unchanged": true
+    },
+    "missing-output": {
+      "exit": 0,
+      "log": "PASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 13 PASS 0 FAIL; evidence /tmp/hbide-source-run-70pd_rqt\n",
+      "binary_unchanged": true
+    },
+    "empty-args": {
+      "exit": 0,
+      "log": "PASS start run1 retains empty argument positions\nPASS start editor remains usable\nPASS script run1 retains empty argument positions\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 retains empty argument positions\nPASS debug editor remains usable\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-qnzu60b8\n",
+      "binary_unchanged": true
+    },
+    "project-messages": {
+      "exit": 0,
+      "log": "PASS boot caption noname\nPASS desktop opens after project open (no dirty docs)\nPASS real build fails (exit shown)\nPASS Messages lists parsed diagnostic bad1.prg:3\nPASS diagnostic jump opens bad1.prg\nPASS cursor lands on line 3\nPASS cursor lands on column 1\nPASS desktop closed after jump\nPASS buffer loaded clean from disk\nPASS cursor moved to line 1\nPASS buffer now dirty with z edit visible\nPASS jump returns to the already-open bad1.prg\nPASS dirty buffer preserved (z edit survives)\nPASS cursor back on line 3\nPASS disk file untouched (no silent save)\nPASS second source opens as its own doc\nPASS exactly two docs cycle (no duplicate)\nPASS IDE exits clean\nTOTAL 18 PASS 0 FAIL\n",
+      "binary_unchanged": true
+    }
+  },
+  "limitations": [
+    "Five modes62checksPASS exactbin only; controlled compiler fixtures for failure-created/missing-output modes",
+    "No new product/buildIDE/models/pixels/fullmatrix/Windows/install/license/hitoclosure"
+  ]
+}
