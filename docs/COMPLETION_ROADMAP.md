@@ -79,7 +79,12 @@ handlers, Inspectorclose25x80. Runtime generado instrumentado acotado, no stock.
 Q348primera invocación recuperación sin binario posicional inválida; Q350primer
 GET sin --kind inválido. Corregidas y PASS; intentos retenidos, no retry-free.
 Estos bloques son evidencia del MISMO C73, no matriz completa ni nuevos píxeles.
-Q351docs posteriores no embebidos en C73; no rebuild por receipts/docs.
+Q352dos rebuilds independientes mismo host/compilador/strip reproducen C73byteexact;
+raíz mínima mismo host About/help/inspectordrag25x80 PASS, no instalación limpia.
+Q353copia upstreamHarbour separada y procedencia14avisos:4archivos idénticos,
+10modificados. No licencia global ni redistribución autorizada; LICENSE raíz
+sigue ausente y decisión del titular/revisión de paquete abiertas.
+Q354docs posteriores no embebidos en C73; no rebuild por receipts/docs.
 C72focal anterior sourcea40862b43a362095202a85bdfc590f1d54ff8cee,
 bin53d7a97a94793a1f946bb16005eba613cbce6f38d5ceef6fdf6d872a9a6d9937.
 Q342tokens HBP literales sin extensión resuelven .prg como hbmk2, conservando
@@ -1199,3 +1204,13 @@ estado/docs/catálogo sin producto/build nuevo. Receipts linux-tooling-guards-q3
 linux-clean-candidate-q347.json, linux-critical-paths-c73-q348.json,
 linux-critical-build-isolation-c73-q349.json y linux-designer-critical-c73-q350.json.
 No suma de checks como porcentaje/matriz, nuevos píxeles, Windows o hito.
+
+### Seguimiento Q352-Q354 (1 noviembre 2026)
+
+Q352dos rebuilds independientes mismohost/compilador/strip byteexactC73 y tres
+smokesPTY raíz mínima PASS. No VM ni instalación limpia. Q353referencia literal
+LICENSE.upstream.txt separada en third-party/harbour desde upstream694428e,
+14avisos iniciales idénticos;4archivos completos idénticos/10difieren. No licencia
+para código propio/modificaciones ni clearance de paquete. Receipts
+linux-c73-rebuild-isolation-q352.json y harbour-notice-provenance-q353.json.
+Q354docs/catálogo sin producto/build. M5 sigue pendiente, igual que Windows y M6.

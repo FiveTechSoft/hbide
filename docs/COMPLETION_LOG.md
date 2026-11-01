@@ -5734,3 +5734,9 @@ Q348siete scripts críticos, Q349cinco modos48checks, Q350cuatro modos52checks
 PASS sobre mismo binario18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be.
 Q348/Q350invocaciones inválidas retenidas y corregidasPASS, no retry-free.
 Q351estado/docs/catálogo sin rebuild/producto. Sin matrizglobal/píxeles/Windows/hito.
+
+### Q352-Q354 (1 noviembre 2026): reproducibilidad y avisos
+
+Q352rebuilds mismohost byteexactC73/raíz mínima3smokes PASS, no installlimpio.
+Q353referencia upstream literal separada, procedencia14avisos/4archivos idénticos
+10difieren; sin licencia global/clearance. Q354docs/catálogo, no producto/build.
