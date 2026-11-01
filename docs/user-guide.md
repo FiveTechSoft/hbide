@@ -83,6 +83,11 @@ it does not paste at the cursor position.
 In dialogs: Tab / Shift+Tab move between fields, arrows move inside a
 field or list, Enter confirms, Space toggles.
 
+Delete Line (Ctrl+Y) and Cut without a marked range also clear a sole
+nonempty physical line, keeping one editable empty line. The deleted text
+stays in the internal clipboard and Undo restores it. On an already empty
+buffer, Delete Line does nothing and keeps the previous clipboard and Redo.
+
 ## Multiple documents
 
 File > New and File > Open... add documents; the Window menu and

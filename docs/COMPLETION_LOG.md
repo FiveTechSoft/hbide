@@ -5620,3 +5620,27 @@ vínculo en ejecución actual. Roadmap separa C42focal de C40identificado y
 C30plan353. Catálogo34Markdown regenerado; guardas y check exacto en
 linux-nav-compact-docs-q277.json. No nuevo producto/build/PTY/píxeles/modelo,
 Windows o hito.
+
+### Q279-Q281 (1 noviembre 2026): borrar la única línea
+
+Delete Line/CtrlY/Cut sin selección no actuaban sobre documento con una
+sola línea física no vacía. Se vacía conservando una línea editable,
+clipboard y Undo/Redo; vacío sigue no-op sin dirty/historial y conserva
+clipboard previo. C43baseline1PASS3FAIL; C44cinco modosPTY55checksPASS,
+modelo20separado y nativas1202x762 antes/después inspeccionadas.
+C44source93fc047ce560bfc91fda38e36c1217707fe71154,
+bin8658732bcbd7b02285aa876bd7857515e3109bb04f11dcd4853658f64cab492c.
+Q280arnés posterior al export: ASCII/UTF8TAB16checksPASS, vacío conserva
+Redo/clipboard sin journal ni falso aviso al cerrar. Q28136modelosGTSTD
+freshPASS desde81d3310, no modosIDE/cobertura del binario. GlobalVM y
+inputHook siguen caracterización de límites, no implementación. No
+matriz heredada, Windows, release o hito. Evidencias linux-delete-only-line-q279.json,
+linux-delete-only-line-noop-q280.json y linux-models-expanded-q281.json.
+
+### Q282 (1 noviembre 2026): enlaces y catálogo de borrado de línea
+
+Aceptación Cut/Delete Line enlaza modelo/PTY y acota expansión postexport.
+Roadmap separa C44focal/C43identificado/C30plan353 y36modelos. Catálogo34
+docs regenerado;8guardas y50assertions inventario en
+linux-delete-only-line-docs-q282.json. No producto/build/PTY/modelo/píxeles,
+Windows o hito nuevo.

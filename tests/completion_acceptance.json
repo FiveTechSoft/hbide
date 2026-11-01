@@ -287,9 +287,11 @@
       "tests": [
         "test_editor_eol.prg",
         "test_edit_menu_pty.py",
-        "test_cut_undo_boundary_pty.py"
+        "test_cut_undo_boundary_pty.py",
+        "test_delete_only_line.prg",
+        "test_delete_only_line_pty.py"
       ],
-      "contract": "Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes. Explicit Cut records a separate undo command from typing before or after it; Undo Cut preserves earlier unsaved typing.",
+      "contract": "Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes. Explicit Cut records a separate undo command from typing before or after it; Undo Cut preserves earlier unsaved typing. Sole nonempty physical line clears to one editable empty line with clipboard and exact Undo/Redo; CtrlY and unmarked Cut share this route. Empty buffer is a no-op preserving clipboard/redo and does not create a journal or false save prompt. Q280 ASCII/UTF8-TAB expansion is postexport, not frozen C44 test coverage.",
       "expected_label": "Cut"
     },
     "IDE-012": {
@@ -307,9 +309,11 @@
         "test_editor_eol.prg",
         "test_bp_delete_policy.py",
         "test_edit_menu_pty.py",
-        "test_delete_selection_pty.py"
+        "test_delete_selection_pty.py",
+        "test_delete_only_line.prg",
+        "test_delete_only_line_pty.py"
       ],
-      "contract": "Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial. Delete Line clears prior range selection so an old row3 anchor cannot access beyond the shorter line array when typing. Undo typing, Undo deletion and Redo preserve exact bytes.",
+      "contract": "Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial. Delete Line clears prior range selection so an old row3 anchor cannot access beyond the shorter line array when typing. Undo typing, Undo deletion and Redo preserve exact bytes. Sole nonempty physical line clears to one editable empty line with clipboard and exact Undo/Redo; CtrlY and unmarked Cut share this route. Empty buffer is a no-op preserving clipboard/redo and does not create a journal or false save prompt. Q280 ASCII/UTF8-TAB expansion is postexport, not frozen C44 test coverage.",
       "expected_label": "Delete Line  Ctrl+Y"
     },
     "IDE-014": {

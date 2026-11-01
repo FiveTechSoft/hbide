@@ -66,20 +66,19 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre15:29 Q276: candidato focal C42,
-source929f08dcb2300736ee213a67d1ab9547255558ed,
-bin320852bc1e11f8a65bf824be0f239423c9eebb76851787c168684da294143927.
-Q275-Q276 corrigen método compacto ')CLASS' y parámetro legal CLASS
-confundido con dueño. C42cinco modosPTY15checks PASS, modelo90 separado;
-dos parejas nativas1202x762 antes/después inspeccionadas. No parser completo.
-C40source3a2424ffecb2f95e7a14d68c23f969739cfcb928,
-binc954b10402947d1daa4c3e32c081e6dd7c52bf9e95d9ecece520b9cd6aa57b54
-conserva identidadAbout/catálogo34docs y focalesQ270-Q274, no heredados aC42.
-Q26835modelos fresh de sourced8791a2 no son35modosIDE ni del binarioC42.
-Q277actualiza documentación posterior, todavía no embebida en C42.
-No se agregan fuentes/binarios distintos como matriz ni funciones.
-Sin Windows/release/licencias/hitos. Evidencias Q275/Q276 con fallos
-baseline conservados y scope exacto por candidato.
+Corte 1 noviembre15:48 Q281: candidato focal C44,
+source93fc047ce560bfc91fda38e36c1217707fe71154,
+bin8658732bcbd7b02285aa876bd7857515e3109bb04f11dcd4853658f64cab492c.
+Q279borrar única línea no vacía: cinco modosPTY55checks PASS, modelo20
+separado y nativas1202x762 inspeccionadas. Q280ASCII/UTF8TAB16checks
+son arnés postexport: vacío conserva Redo/clipboard, sin journal/falso aviso.
+Q28136modelos fresh de source81d3310 no son36modosIDE ni de binarioC44.
+C43source0e3fe103b7d9b43c32989e91b80ada16fe0814b9,
+binb7ea16b82cdcf091e53cf208d7ba45cfc2e4dab1cd377d178853f923f53e65b3
+conserva About/catálogoQ277/8smokes y5modosnav15checks, no heredados aC44.
+Q275-Q276métodos compactos/CLASS parámetro corregidos; no parser completo.
+Q282docs posteriores todavía no embebidos en C44. No sumar fuentes/binarios
+como matriz ni funciones. Sin Windows/release/licencias/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
 bin96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29.
