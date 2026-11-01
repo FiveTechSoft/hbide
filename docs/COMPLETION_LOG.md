@@ -5384,3 +5384,15 @@ inalterado, sin fallo/reintento en estas26.240 variantes distintas de
 comando cotejadas con plan353/normalizaciónQ223 aplicada. No producto nuevo,
 modelos/Windows/matriz completa/cierre hitos ni nuevas políticas.
 Evidencia: docs/evidence/linux-c30-text-blocks6573-q235.json.
+
+### Q236 (1 noviembre 2026): C30 léxico editor
+
+24 variantes adicionales PASS mismo C30 96d77549/export049b533: join de
+continuaciones por Backspace/Delete, brackets en continuación/output/
+codeblock/operadores/TAB/comparaciones/listas/paréntesis, NOTE, backtick,
+escape y comentarios adyacentes/de línea. Fixtures acotadas de color/estado
+y edición/Undo según contrato; no preprocesador Harbour completo. Tests
+propios hashados/binario inalterado, sin fallo/reintento en estas24.264
+variantes distintas cotejadas con plan353/normalizaciónQ223. No producto
+nuevo/píxeles/modelos/Windows/matriz completa/hitos.
+Evidencia: docs/evidence/linux-c30-editor-lexical-blocks7481-q236.json.

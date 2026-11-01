@@ -1,0 +1,378 @@
+{
+  "scope": "Frozen C30 editor lexical states.24additional command variants;264distinct across blocks1..81 after Q223 normalization. Not full353/Harbour-preprocessor/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "editor-continuation-backspace-join",
+          "command": [
+            "test_editor_continuation_join_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 10.246478080749512,
+          "test_sha256": "b6c6e46f6bbb9774be009d9ed9d1361c0020071b492e792e552ea6c599c6f078",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-continuation-backspace-join.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-continuation-delete-join",
+          "command": [
+            "test_editor_continuation_join_pty.py",
+            "--delete-join"
+          ],
+          "exit": 0,
+          "seconds": 10.971610307693481,
+          "test_sha256": "b6c6e46f6bbb9774be009d9ed9d1361c0020071b492e792e552ea6c599c6f078",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-continuation-delete-join.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-bracket-continuation-delete",
+          "command": [
+            "test_editor_bracket_continuation_pty.py",
+            "--delete"
+          ],
+          "exit": 0,
+          "seconds": 10.604449272155762,
+          "test_sha256": "b330bb40c7fb9c4e58a4fc1d20e195bdcf4489261bf77de79da582bd384e0084",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-continuation-delete.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "editor-bracket-continuation",
+          "command": [
+            "test_editor_bracket_continuation_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 10.243614912033081,
+          "test_sha256": "b330bb40c7fb9c4e58a4fc1d20e195bdcf4489261bf77de79da582bd384e0084",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-continuation.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-bracket-output",
+          "command": [
+            "test_editor_bracket_output_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.512470006942749,
+          "test_sha256": "a76cb99ccfdb8272c3c23ce6682456657d0e147ac9c6140a454e2e1154f90915",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-output.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-bracket-codeblock",
+          "command": [
+            "test_editor_bracket_codeblock_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.514770030975342,
+          "test_sha256": "2564546fe0c87027741be0270a3b14f0888834e261ceefa7c8094095c4c12897",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-codeblock.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "editor-bracket-logical",
+          "command": [
+            "test_editor_bracket_logical_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.514660835266113,
+          "test_sha256": "44eb04d83bc8e48e96241bdaed354ac04b36e79d3dbcdfcba936e4227f69424b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-logical.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-bracket-arithmetic",
+          "command": [
+            "test_editor_bracket_arithmetic_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.523042917251587,
+          "test_sha256": "a36ed3e8be8e739459ac925d10e1df3806d53e97d792725dfce633514d0bf374",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-arithmetic.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-bracket-tabs",
+          "command": [
+            "test_editor_bracket_tabs_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.51275372505188,
+          "test_sha256": "1313ab9b195c98399350ae355fa04cdb74d17a141378da203618cf2ccf3ad94a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-tabs.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "editor-bracket-comparisons",
+          "command": [
+            "test_editor_bracket_comparisons_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.513940811157227,
+          "test_sha256": "2b052c6613e033744068bd6d80c670ab7f6d4df98ee3b9333ffaeb707162279b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-comparisons.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-bracket-minus",
+          "command": [
+            "test_editor_bracket_minus_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.513489723205566,
+          "test_sha256": "7f501a5287c1e50cbafe93c7ec8c88de651025eb3e3474be79af33367fe638b0",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-minus.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-bracket-multiline",
+          "command": [
+            "test_editor_bracket_multiline_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.515619993209839,
+          "test_sha256": "3d6e16362b6ba09d04f51e5d666191445e3c62efe1fcb2e3e9363ee3a7d88619",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-multiline.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "editor-bracket-gap",
+          "command": [
+            "test_editor_bracket_gap_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.512408018112183,
+          "test_sha256": "02964671c81f24be84bc2fe953b0fd80e301ac4b829f737008c0517849fdaac3",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-gap.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-bracket-operator",
+          "command": [
+            "test_editor_bracket_operator_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.5124831199646,
+          "test_sha256": "032dc4a598002d313e48982cf7834307fbd597130c5547946dc43ef67095c050",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-operator.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-bracket-list",
+          "command": [
+            "test_editor_bracket_list_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.513640880584717,
+          "test_sha256": "71a5ab61f74ecb2c0a63d78723012040e9a575830d39171a31d26689cd4dac2f",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-list.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "editor-paren-bracket",
+          "command": [
+            "test_editor_paren_bracket_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.5164268016815186,
+          "test_sha256": "c6e504ab46823ea6f70d0b00f99545c3798f3f39566e8ad08e92f5ec01b6a312",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-paren-bracket.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-note-comment",
+          "command": [
+            "test_editor_note_comment_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.516858816146851,
+          "test_sha256": "b67ed0ba907bdad8fb51a10e0af3a7bfcf8fa8d63a6d2db6ee17d6ed5d83a5cc",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-note-comment.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-backtick-literal",
+          "command": [
+            "test_editor_backtick_literal_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.515301465988159,
+          "test_sha256": "9dca239709c825f57893c5e8fc7ebc87b480c83d5b9232ff3067f0c7269fd5ec",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-backtick-literal.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "editor-bracket-variants",
+          "command": [
+            "test_editor_bracket_variants_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.513808488845825,
+          "test_sha256": "20f4c1068e8f6fcdb8dbe29797f65bde49ead6fba53a4ef1a72d766cd92a6ea8",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-variants.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-bracket-assignment",
+          "command": [
+            "test_editor_bracket_assignment_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.516896486282349,
+          "test_sha256": "63d029b64d124bb711b2aee012488409b8a70ca15f4eab0b61e9ab302eb87fb0",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-assignment.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-escape-variants",
+          "command": [
+            "test_editor_escape_variants_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.512066841125488,
+          "test_sha256": "de736574f509e7cfb611ca9cb31d6f62421f88e19ba501f895c25e44c9749dde",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-escape-variants.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "editor-escape-literal",
+          "command": [
+            "test_editor_escape_literal_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.512755632400513,
+          "test_sha256": "d8a2fd0236403c2f937c2665d52b2437d4466b42f79c5b3a4f383e2226711e5f",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-escape-literal.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-adjacent-comments",
+          "command": [
+            "test_editor_adjacent_comments_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.512868404388428,
+          "test_sha256": "9bb57e52a16ab0b8a480af1cf2a47b0b8ff557b0111a6354b175be23a32a1eb7",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-adjacent-comments.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-line-comments",
+          "command": [
+            "test_editor_line_comments_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.512800216674805,
+          "test_sha256": "eadf96c2383b05104d064025e4da0339da22c5bd869a139f4d100e1c39e7ad05",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-line-comments.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 264,
+  "logs": {
+    "editor-continuation-backspace-join.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Enter blank line ends continuation and shows real comment\nPASS Split continuation saves exact bytes\nPASS Line join keeps literal and keyword colors\nPASS Backspace join restores original bytes\nPASS Undo join restores real comment after blank line\nPASS Undo join restores split bytes\nPASS Redo join keeps literal and keyword colors\nPASS Redo join restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-68tyxwmq\n",
+    "editor-continuation-delete-join.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Enter blank line ends continuation and shows real comment\nPASS Split continuation saves exact bytes\nPASS Line join keeps literal and keyword colors\nPASS Backspace join restores original bytes\nPASS Undo join restores real comment after blank line\nPASS Undo join restores split bytes\nPASS Redo join keeps literal and keyword colors\nPASS Redo join restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-xsdz2v1c\n",
+    "editor-bracket-continuation-delete.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Removing continuation recolors following literal and return as real comment\nPASS Removed semicolon saves exact bytes\nPASS Typing semicolon repaints following literal and return without forced redraw\nPASS Retyped semicolon restores exact bytes\nPASS Undo semicolon restores real comment colors\nPASS Undo semicolon saves exact bytes\nPASS Redo semicolon restores literal and keyword colors\nPASS Redo semicolon restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-2cqky0t5\n",
+    "editor-bracket-continuation.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Removing continuation recolors following literal and return as real comment\nPASS Removed semicolon saves exact bytes\nPASS Typing semicolon repaints following literal and return without forced redraw\nPASS Retyped semicolon restores exact bytes\nPASS Undo semicolon restores real comment colors\nPASS Undo semicolon saves exact bytes\nPASS Redo semicolon restores literal and keyword colors\nPASS Redo semicolon restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-s2eruqt8\n",
+    "editor-bracket-output.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Output literal bracket literal stays string\nPASS Output second bracket literal stays string\nPASS Output gapliteral bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ntp748sr\n",
+    "editor-bracket-codeblock.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Codeblock literal bracket literal stays string\nPASS Codeblock argument bracket literal stays string\nPASS Codeblock gapliteral bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ge0u_jfu\n",
+    "editor-bracket-logical.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Logical and bracket literal stays string\nPASS Logical or bracket literal stays string\nPASS Logical not bracket literal stays string\nPASS Logical bang bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-g5a2sl2a\n",
+    "editor-bracket-arithmetic.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Arithmetic multiply bracket literal stays string\nPASS Arithmetic divide bracket literal stays string\nPASS Arithmetic modulo bracket literal stays string\nPASS Arithmetic power bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ei3fxsw8\n",
+    "editor-bracket-tabs.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-80g9nrvo\n",
+    "editor-bracket-comparisons.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Comparison different bracket literal stays string\nPASS Comparison alternate bracket literal stays string\nPASS Comparison hash bracket literal stays string\nPASS Comparison less bracket literal stays string\nPASS Comparison greater bracket literal stays string\nPASS Comparison equal bracket literal stays string\nPASS Comparison below bracket literal stays string\nPASS Comparison above bracket literal stays string\nPASS Comparison contains bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-xgk46hrg\n",
+    "editor-bracket-minus.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-dx2ydidp\n",
+    "editor-bracket-multiline.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-udl494u1\n",
+    "editor-bracket-gap.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-7qouw2rb\n",
+    "editor-bracket-operator.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS Comparison bracket literal stays string color\nPASS F2 bracket source byte exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-2tsjbfem\n",
+    "editor-bracket-list.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS Second comma-delimited bracket literal stays string color\nPASS F2 bracket source byte exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-v77j_2a4\n",
+    "editor-paren-bracket.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-0bhig_hj\n",
+    "editor-note-comment.log": "PASS Open requested fixture\nPASS Return after NOTE comment keeps original keyword color\nPASS Return after adjacent NOTE comment keeps original keyword color\nPASS Whole line comment colored NOTE\nPASS Whole line comment colored note/*\nPASS F2 keeps source byte exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-n84vf3ao\n",
+    "editor-backtick-literal.log": "PASS Open requested fixture\nPASS Return after backtick literal keeps keyword color\nPASS Backtick literal marker stays string color\nPASS F2 backtick source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-vk00r5fi\n",
+    "editor-bracket-variants.log": "PASS Open requested fixture\nPASS Assignment literal marker string-colored /* literal\nPASS Assignment literal marker string-colored && literal\nPASS Actual block comment still colored /* real */\nPASS Actual block comment still colored /* index comment */\nPASS Return after bracket variants normal keyword\nPASS F2 bracket variants exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-dchgs46i\n",
+    "editor-bracket-assignment.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-tzlw5d8j\n",
+    "editor-escape-variants.log": "PASS Open requested fixture\nPASS Escape literal marker stays string color /* literal\nPASS Escape literal marker stays string color // literal\nPASS Escape literal marker stays string color && literal\nPASS Real block after escaped backslash closes string\nPASS Return after escape matrix stays keyword color\nPASS F2 escape variants byte exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-hetaws1x\n",
+    "editor-escape-literal.log": "PASS Open requested fixture\nPASS Return after escape literal keeps keyword color\nPASS Escape literal comment marker stays string color\nPASS F2 escape literal byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-xprpcsud\n",
+    "editor-adjacent-comments.log": "PASS Open requested fixture\nPASS Adjacent comment opener colored /* row3\nPASS Adjacent comment opener colored /* row5\nPASS Adjacent comment opener colored && row4\nPASS Adjacent comment opener colored // row6\nPASS F2 keeps source byte exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6ijpavyj\n",
+    "editor-line-comments.log": "PASS Open requested fixture\nPASS Return after && comment keeps original keyword color\nPASS Return after star comment keeps original keyword color\nPASS Whole line comment colored &&\nPASS Whole line comment colored * /*\nPASS F2 keeps source byte exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-yjgu8lba\n"
+  }
+}
