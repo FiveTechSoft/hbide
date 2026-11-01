@@ -107,6 +107,7 @@ F4 toggles a floating, non-modal inspector panel. It shows the properties of
 the selected control, or of the dialog itself when no control is selected.
 The [■] button at the top left hides only the inspector, without discarding
 the dialog or controls. F4 shows it again; the rest of the header still drags.
+The Inspector title is centered on the panel border.
 
 - F6 (or a click inside the panel) moves keyboard focus between the canvas
   and the inspector.

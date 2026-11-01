@@ -55,18 +55,21 @@ for kind in [args.kind or ('listbox' if args.listbox else ('get' if args.get els
    lines=screen.text().splitlines()
    return next(((row,line.index('Inspector')) for row,line in enumerate(lines) if 'Inspector' in line),(-1,-1))
   startrow,start=title_pos()
+  line=screen.text().splitlines()[startrow]
+  left=line.rfind("[",0,start)-1
+  check("title centered in 31-column panel",start==left+11)
   def mouse(code,col,row):send(b'\x1b[M'+bytes([code+32,col+33,row+33]),.2)
-  # Inspector text starts left+6; x is left+2, as other windows.
-  mouse(0,start-4,startrow)
-  mouse(3,start-4,startrow)
-  check('left header x hides inspector','Inspector' not in screen.text())
+  # Centered Inspector starts left+11; close glyph remains left+2.
+  mouse(0,start-9,startrow)
+  mouse(3,start-9,startrow)
+  check('left header close hides inspector','Inspector' not in screen.text())
   check('close preserves full control JSON',model()['controls']==baseline)
   send(b'\x1bOS')
   check('F4 reopens inspector','Inspector' in screen.text())
   check('reopened at same position',title_pos()==(startrow,start))
   send(b'\x1b[17~')
-  mouse(0,start-4,startrow)
-  mouse(3,start-4,startrow)
+  mouse(0,start-9,startrow)
+  mouse(3,start-9,startrow)
   check('click closes from inspector focus','Inspector' not in screen.text())
   send(b'\x1bOS')
   send(b'\x1bOS')

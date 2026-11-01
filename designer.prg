@@ -1938,7 +1938,8 @@ METHOD DrawInspector() CLASS HbDesigner
    DispBox( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ], 2, CLR_INSP )
    DrawShadow( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ] )
    hb_DispOutAtBox( aRect[ 1 ], aRect[ 2 ] + 1, hb_UTF8ToStrBox( "[■]" ), CLR_INSP )
-   hb_DispOutAt( aRect[ 1 ], aRect[ 2 ] + 5, " Inspector ", CLR_INSP )
+   hb_DispOutAt( aRect[ 1 ], aRect[ 2 ] + ;
+      Int( ( aRect[ 4 ] - aRect[ 2 ] + 1 - Len( " Inspector " ) ) / 2 ), " Inspector ", CLR_INSP )
 
    for n = 1 to Len( aFields )
       cLabel = " " + PadR( aFields[ n ][ 1 ] + ":", 9 )
