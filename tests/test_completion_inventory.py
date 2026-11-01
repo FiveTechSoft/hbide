@@ -395,14 +395,14 @@ class GestureContractLinks(unittest.TestCase):
     def setUp(self):
         self.rows=audit.mouse_routes()
         self.specs=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['mouse_acceptance']
-    def test_five_bounded_gestures_not_27_branch_acceptance(self):
+    def test_seven_bounded_gestures_not_27_branch_acceptance(self):
         linked=audit.link_dispatch_contracts(self.rows,self.specs)
         self.assertEqual(len(linked),27)
         selected=[r for r in linked if isinstance(r['acceptance'],dict)]
-        self.assertEqual(len(selected),5)
-        self.assertEqual({r['condition'] for r in selected},{'case nKeyStd == K_LDBLCLK','case nKeyStd == K_LBUTTONDOWN','case nKey == K_LBUTTONDOWN','CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK','IF nKey == K_LDBLCLK'})
+        self.assertEqual(len(selected),7)
+        self.assertEqual({r['condition'] for r in selected},{'case nKeyStd == K_LDBLCLK','case nKeyStd == K_LBUTTONDOWN','case nKey == K_LBUTTONDOWN','CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK','IF nKey == K_LDBLCLK','CASE nKey == K_LBUTTONDOWN','CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR'})
         for row in selected:
-            self.assertIn(row['context'],['METHOD EditKey( nKey ) CLASS HBSrcEdit','METHOD Activate() CLASS HbDesigner','FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 )'])
+            self.assertIn(row['context'],['METHOD EditKey( nKey ) CLASS HBSrcEdit','METHOD Activate() CLASS HbDesigner','FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 )','FUNCTION HBHelpInput( h, aTopics, g, nKey )','FUNCTION HBIDEHelpOpen( cTitle, aTopics )'])
             self.assertIn('not current runtime PASS',row['acceptance']['contract'])
             self.assertIn('Event branch is not a unique feature',row['acceptance']['contract'])
         self.assertTrue(all(isinstance(r['acceptance'],str) for r in self.rows))
