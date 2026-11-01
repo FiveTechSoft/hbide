@@ -1,0 +1,14 @@
+{
+  "scope": "Q451 Linux C87 debugger App Screen bounded mouse input consumption, not visual acceptance",
+  "ide_source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "ide_binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "source_checkout": "e377c2b02a853156e03c4e4eacc235a63ed0988f",
+  "debugger_source_unchanged_since_candidate": true,
+  "test_sha256": "a02e2d4f338d3d74c964def13b43b4d42146c97c654a78e87bb644b4c81bb335",
+  "runtime_log": "PASS debugger stopped before increment\nPASS View menu exposes App Screen F4\nPASS App Screen menu press closes debugger\nPASS Paired mouse release does not immediately reopen debugger\nPASS Next key restores debugger after menu mouse\nPASS F4 also closes debugger\nPASS Next key restores debugger after F4\nPASS App Screen leaves exact debuggee values unchanged\nPASS App Screen leaves source bytes unchanged\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-flwu9rjn\n",
+  "evidence": "/tmp/hbide-source-run-flwu9rjn",
+  "probe_log": "PASS debugger stopped before increment\nFAIL Help leaves exact debuggee values unchanged\nPASS Help leaves source bytes unchanged\nTOTAL 2 PASS 1 FAIL; evidence /tmp/hbide-source-run-pk89c0ih\n",
+  "probe_limit": "Menu coordinate scouting probe left menu open and intentionally did not complete debuggee; its inherited value check failed, not product defect. Final dedicated fixture completed program.",
+  "limits": "One xterm 40x120 View/App Screen press/release plus F4; PTY Command absence/presence and exact program effects, not pixel restoration, all mouse drivers, movement filtering or Windows.",
+  "inventory_initial_failure": "54PASS1FAIL: added context omitted from unit expectation allowlist; corrected expectation, not product behavior."
+}

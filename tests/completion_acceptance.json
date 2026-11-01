@@ -3137,6 +3137,15 @@
         "test_designer_button_mouse_route_pty.py"
       ],
       "contract": "C87 F9 generated button with current checkout helper runtime: press arms without action, same-button release executes once, press-in/release-out and press-out/release-in do not activate, rapid double sequence adds one action, Esc exits. Runtime helper source identity in Q450 receipt separate from IDE binary. One PushButton/xterm only, not all GET controls/drag/focus handlers/otherterminals/Windows; PTY/action marker not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-DEBUGGER-APPSCREEN-CONSUME": {
+      "source": "hbdebug/debugger.prg",
+      "context": "METHOD PROCEDURE ShowAppScreen() CLASS HBDebugger",
+      "condition": "IF LastKey() == K_LBUTTONDOWN",
+      "tests": [
+        "test_debug_app_screen_mouse_pty.py"
+      ],
+      "contract": "Stopped C87 debuggee: View/App Screen menu left press closes debugger, paired release leaves it hidden, next key restores it; F4/next-key path also returns. Resume exact values and unchanged source. One xterm40x120 menu only, PTY state not restored pixels/all mouse drivers/movement filtering/Windows; source branch is not a feature count or current runtime PASS."
     }
   }
 }
