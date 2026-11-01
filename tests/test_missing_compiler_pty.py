@@ -5,23 +5,28 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
+promotion='--promotion-failure' in sys.argv
 restore='--restore' in sys.argv
 diagnostic='--missing-output-diagnostic' in sys.argv
 missing_output='--missing-output' in sys.argv or diagnostic
 failed_output='--failed-output' in sys.argv
-fake=missing_output or failed_output
+fake=missing_output or failed_output or promotion
 for kind in ['autorun']:
  target=work/'missing.prg';value=work/'stale-launched.txt'
  target.write_text('procedure main()\n hb_MemoWrit("'+str(value)+'", "stale")\nreturn\n')
  compiler=__import__('shutil').which('hbmk2')
  subprocess.run([compiler,str(target),'-quiet','-o'+str(work/'missing')],check=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
  previous=(work/'missing').read_bytes()
+ if promotion:
+  (work/'missing').unlink();(work/'missing').mkdir();(work/'missing/keep').write_bytes(b'original directory member')
  if restore:target.write_text(target.read_text().replace('"stale"','"fresh"'))
  original=target.read_bytes()
  (work/'empty-path').mkdir()
  if fake:
   launcher=work/'empty-path/hbmk2'
   launcher.write_text('#!/bin/sh\nfor arg do case "$arg" in -o*) out=${arg#-o};; esac; done\nprintf \"%s\\n\" "$out" >> '+shlex.quote(str(work/'invocations'))+'\n'+('printf \"broken output\" > "$out"\nexit 7\n' if failed_output else 'exit 0\n'))
+  if promotion:
+   launcher.write_text(launcher.read_text().replace('exit 0\n','printf "new output" > "$out"\nexit 0\n'))
   if diagnostic:
    launcher.write_text(launcher.read_text().replace('exit 0\n', 'printf \"%s(3) Error E0030 simulated fixture error\\n\" '+shlex.quote(str(target))+'\nexit 0\n'))
   launcher.chmod(0o700)
@@ -44,8 +49,20 @@ for kind in ['autorun']:
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
  try:
   pump(1.5);send(b'\x1bf');send(b'o');send(str(target).encode());send(b'\r',.6)
-  for attempt in range(2):
+  for attempt in range(1 if promotion else 2):
    send(b'\x1br');send(b's',.7)
+   if promotion:
+    check('build output ready','Build OK:' in screen.text());send(b'\r',.4)
+    (work/'promotion.screen').write_text(screen.text())
+    check('replacement failure visible','could not replace' in screen.text())
+    check('replacement failure names retained output','new executable kept at' in screen.text() and (work/'invocations').read_text().strip() in ''.join(line[29:91].strip() for line in screen.text().splitlines()))
+    send(b'\r',.4)
+    check('blocked destination directory untouched',(work/'missing/keep').read_bytes()==b'original directory member')
+    tmp=pathlib.Path((work/'invocations').read_text().strip())
+    check('complete output retained after failed promotion',tmp.read_bytes()==b'new output')
+    check('source remains byte exact after failed promotion',target.read_bytes()==original)
+    check('no stale executable launched',not value.exists())
+    break
    if diagnostic:
     check('compiler diagnostic output visible','Error E0030' in screen.text())
     send(b'\r',.4)

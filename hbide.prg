@@ -972,7 +972,8 @@ METHOD Start() CLASS HbIde
    lBuildReady := nRc == 0 .and. File( cExeTmp )
    if lBuildReady
       if ! HBIDE_ReplaceFile( cExeTmp, cExe, @cRecovery )
-         HBIDE_MsgAlert( "Build succeeded but could not replace " + cExe + ": " + cRecovery )
+         HBIDE_MsgAlert( "Build succeeded but could not replace " + cExe + ": " + cRecovery + ;
+                         "; new executable kept at " + cExeTmp )
       elseif ::lAutoRun
          // Run > Arguments: split like Script/Debug, then each word is quoted for the
          // shell so ; & | $ ` > etc. stay literal argument text, never extra commands
