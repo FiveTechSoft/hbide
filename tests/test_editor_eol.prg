@@ -93,6 +93,19 @@ PROCEDURE Main()
    Check(Len(o:aBPs)==1.and.o:aBPs[1]==2,'Undo whole-line Cut restores only surviving BP position',@nPass,@nFail)
    o:Redo()
    Check(Len(o:aBPs)==1.and.o:aBPs[1]==1,'Redo whole-line Cut preserves surviving BP',@nPass,@nFail)
+   for each n in {K_DEL,K_BS}
+      o:LoadText('same'+cLF+'same'+cLF+'tail')
+      o:aBPs := {1,2}
+      o:GoTo(1,5)
+      o:Edit(K_F8)
+      o:GoTo(2,5)
+      o:Edit(n)
+      Check(o:GetText()=='same'+cLF+'tail'.and.Len(o:aBPs)==1.and.o:aBPs[1]==1,'selected Delete/BS keeps only surviving BP',@nPass,@nFail)
+      o:Undo()
+      Check(Len(o:aBPs)==1.and.o:aBPs[1]==2,'Undo selected Delete/BS only survivor BP',@nPass,@nFail)
+      o:Redo()
+      Check(Len(o:aBPs)==1.and.o:aBPs[1]==1,'Redo selected Delete/BS only survivor BP',@nPass,@nFail)
+   next
    // Every edit is checked in both directions, including adjacent metadata.
    cText := 'abc' + cCRLF + 'def' + cLF + 'ghi' + Chr( 13 ) + 'tail'
    o:LoadText( cText )

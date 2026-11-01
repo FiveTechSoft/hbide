@@ -425,7 +425,7 @@ return nil
 
 METHOD Edit( nKey ) CLASS HBSrcEdit
 
-   local aBefore, lSelectionEdit, lDirtyBefore
+   local aBefore, lSelectionEdit, lDirtyBefore, aSelection, nMaxPrefix
    local cCharKey := iif( hb_keyStd( nKey ) == K_TAB .AND. Set( _SET_INSERT ), ;
                           Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), ;
                           hb_keyChar( nKey ) )
@@ -454,7 +454,13 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
 
    aBefore := ::LinesSnapshot()
    lDirtyBefore := ::lDirty
-   lSelectionEdit := ::SelRange() != NIL
+   aSelection := ::SelRange()
+   lSelectionEdit := aSelection != NIL
+   if lSelectionEdit .and. (hb_keyStd(nKey)==K_DEL.or.hb_keyStd(nKey)==K_BS)
+      if aSelection[1] < aSelection[3] .and. aSelection[2] <= 5 .and. aSelection[4] <= 5
+         nMaxPrefix := aSelection[1]-1
+      endif
+   endif
    ::lOpRecorded := .F.
    ::EditKey( nKey )
 
@@ -463,7 +469,7 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
    elseif ! ::lOpRecorded
       // Replacing/deleting a marked range is one distinct undo action,
       // not part of typing before or after that range.
-      ::RecordEdit( aBefore, lSelectionEdit )
+      ::RecordEdit( aBefore, lSelectionEdit, nMaxPrefix )
       // Delete+insert can reproduce the selected bytes exactly. SelDelete
       // dirties eagerly; no recorded change must keep the old dirty state.
       if lSelectionEdit .and. ! ::lOpRecorded
