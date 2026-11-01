@@ -461,3 +461,11 @@ Seis pares texto inline en tres modos PTY/30checks y57guardas PASS,
 visualAction/F10 inspeccionada. Evidencia
 `docs/evidence/linux-designer-inline-text-q139.json`; no arreglo ni
 aceptacion todoscampos/handlerexecution/Windows/cierreM4.
+
+
+### Seguimiento Q140 (1 noviembre 2026)
+
+13pares texto no-evento en7tipos:7modosPTY66checks57guardasPASS. Sin
+arreglo ni cierreM4; capturaItems tiene recorte horizontal y celda
+cursorgris anotados, no aceptacion pixelglobal. Evidencia
+`docs/evidence/linux-designer-inline-text-q140.json`.

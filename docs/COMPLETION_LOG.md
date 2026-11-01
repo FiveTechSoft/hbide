@@ -4109,3 +4109,17 @@ con Action de argumento entre comillas y bordes completos tras F10.
 Evidencia `docs/evidence/linux-designer-inline-text-q139.json`. No arreglo,
 handler ejecutado, todoscampos, Windows ni matriz global heredada.
 Sin nueva corrida de modelos en este lote.
+
+
+## 1 noviembre 2026: Q140 trece pares texto inline por PTY
+
+Fuente `b86bc200488570898e5f1c4070a6230f92052b87`, binario
+`b3233855b269ae16c0810a0d4756160c08a8e7423dec9060c3db6203ce564bfe`.
+Siete modos/66checks y57guardas PASS. Trece pares texto no-evento en
+siete tipos existentes: F10/Undo/Redo/Esc con JSON exacto. Sin cambio de
+producto. Captura nativa ComboBoxItems inspeccionada: primer item comillado
+y bordes completos; campo largo recortado visualmente a derecha, JSON
+completo verificado. Celda gris con forma de cursor en canvas, sin afirmar
+limpieza de todos los pixeles. No nueva corrida modelos ni todoscampos/
+eventos/handlers/Windows/matrizglobal. Evidencia
+`docs/evidence/linux-designer-inline-text-q140.json`.
