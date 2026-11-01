@@ -4855,3 +4855,17 @@ con dos puntos en la ruta y columna sustentada por caret. Bytes intactos.
 80 guardas y 34 documentos PASS. Sin cambio de producto, nuevos pixeles,
 Windows, matriz global ni cierre M2. 341 modos registrados son plan, no PASS.
 Evidencia: docs/evidence/linux-project-real-gcc-output-q192.json.
+
+### Q193 (1 noviembre 2026): no aceptar LICENSE.txt vacio o externo
+
+Fuente 0d2be05. El gate de avisos aceptaba un archivo vacio, solo espacios
+o un symlink externo como referencia satisfecha. Tres fixtures reproducen
+el falso negativo; otros dos checks nuevos exigen tipo e identidad. Ahora
+se rechazan vacio, espacios, symlink y no-regular sin seguir el enlace,
+y se conserva hash/tamano del archivo presente como present_unreviewed.
+10 pruebas de avisos y 85 guardas totales PASS; 34 documentos PASS.
+El gate real sigue exit1: falta LICENSE.txt para 14 fuentes; otras14 no
+tienen header GPL detectado. No se copia ni asigna licencia. Archivo
+presente no equivale a permiso de redistribucion ni revision legal.
+Sin binario, PTY, pixeles, Windows ni cierre M5.
+Evidencia: docs/evidence/linux-license-file-usability-q193.json.
