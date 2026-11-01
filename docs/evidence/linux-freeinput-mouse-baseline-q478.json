@@ -1,0 +1,7 @@
+{
+  "scope": "Q478 C88 baseline Find direct Cancel ignored during free-form input; C89 fix pending fresh acceptance",
+  "baseline_log": "PASS Open requested fixture\nFAIL Direct mouse Cancel exits Find free-form input\nPASS Esc after ignored click retains selected range\nPASS Undo exact original after free-input Cancel probe\nTOTAL 3 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-k2bsqa8h\n",
+  "storage": "Parent authorized single C86 expanded export tree reversible independent archive.1486entries SHA/size/mode restored individually before removing redundant expanded tree; originalbin/manifest/log/sourcearchive unchanged. Initial tar ./ prefix normalization assertion stopped removal, corrected and reverified.",
+  "storage_record": "/tmp/hbide-c86/tree-preservation-q478.json",
+  "storage_restore": "mkdir -p /tmp/hbide-c86/source && tar -xzf /tmp/hbide-c86/source-expanded-preserved-q478.tar.gz -C /tmp/hbide-c86/source"
+}

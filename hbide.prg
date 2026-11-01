@@ -1993,11 +1993,12 @@ return cFlags
 // trailing blanks are real data, not field padding. Enter confirms the
 // dialog, Tab/Down advances to the next control, Esc cancels. Returns
 // { cText, lConfirm, lNext }.
-static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor )
+static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons )
 
    local cText := hb_defaultValue( cInit, "" )
    local nPos := Len( cText ) + 1, nOfs := 1, nKey, cKey, cVis, nPrev
    local lInsert := .T., nOldCursor := SetCursor( SC_NORMAL )
+   local nArm := 0, nHit, oButton, nMouse
    hb_default( @cColor, "W/B" )
 
    // positions are byte offsets, always kept on character boundaries
@@ -2015,6 +2016,31 @@ static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor )
       SetPos( nRow, nCol + hb_ULen( SubStr( cText, nOfs, nPos - nOfs ) ) )
 
       nKey := Inkey( 0, hb_bitOr( INKEY_KEYBOARD, HB_INKEY_GTEVENT, INKEY_ALL ) )
+      // Input runs before READ. Activate only a paired native-button hit.
+      nMouse := hb_keyStd( nKey )
+      if nMouse == K_LBUTTONDOWN .or. nMouse == K_LBUTTONUP .or. nMouse == K_LDBLCLK
+         nHit := 0
+         if HB_ISARRAY( aButtons )
+            for each oButton in aButtons
+               if ! Empty( oButton:control ) .and. oButton:control:hitTest( MRow(), MCol() ) != HTNOWHERE
+                  nHit := oButton:__enumIndex()
+                  exit
+               endif
+            next
+         endif
+         do case
+         case nMouse == K_LBUTTONDOWN
+            nArm := nHit
+         case nMouse == K_LDBLCLK
+            nArm := 0
+         case nArm > 0 .and. nHit == nArm
+            SetCursor( nOldCursor )
+            return { cText, nArm == 1, .F. }
+         otherwise
+            nArm := 0
+         endcase
+         loop
+      endif
       do case
       case nKey == K_ESC
          SetCursor( nOldCursor )
@@ -2083,14 +2109,14 @@ METHOD ReplaceDialog() CLASS HbIde
    @ oDlg:nBottom - 2, oDlg:nLeft + 22 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
-   aIn := HBIDE_DlgInput( oDlg:nTop + 3, oDlg:nLeft + 5, 28, cFind )
+   aIn := HBIDE_DlgInput( oDlg:nTop + 3, oDlg:nLeft + 5, 28, cFind, NIL, GetList )
    if aIn[ 2 ]   // Enter: confirm with both fields as typed so far
       cFind := aIn[ 1 ]
       lOk := .T.
       oDlg:Hide()
    elseif aIn[ 3 ]   // Tab: next field
       cFind := aIn[ 1 ]
-      aIn := HBIDE_DlgInput( oDlg:nTop + 5, oDlg:nLeft + 5, 28, cReplace )
+      aIn := HBIDE_DlgInput( oDlg:nTop + 5, oDlg:nLeft + 5, 28, cReplace, NIL, GetList )
       if aIn[ 2 ]
          cReplace := aIn[ 1 ]
          lOk := .T.
@@ -2140,7 +2166,7 @@ METHOD FindDialog() CLASS HbIde
    @ oDlg:nBottom - 2, oDlg:nLeft + 22 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
-   aIn := HBIDE_DlgInput( oDlg:nTop + 3, oDlg:nLeft + 5, 28, cText )
+   aIn := HBIDE_DlgInput( oDlg:nTop + 3, oDlg:nLeft + 5, 28, cText, NIL, GetList )
    if aIn[ 2 ]   // Enter: confirm
       cText := aIn[ 1 ]
       lOk := .T.
@@ -2479,7 +2505,7 @@ METHOD RunArguments() CLASS HbIde
    @ oDlg:nBottom - 2, oDlg:nLeft + 28 GET lDummy PUSHBUTTON CAPTION "&Cancel" COLOR "GR+/G,W+/G,N/G,BG+/G" ;
       STATE { || oDlg:End() }
 
-   aIn := HBIDE_DlgInput( oDlg:nTop + 4, oDlg:nLeft + 3, 48, cText, "N/BG" )
+   aIn := HBIDE_DlgInput( oDlg:nTop + 4, oDlg:nLeft + 3, 48, cText, "N/BG", GetList )
    if aIn[ 2 ]
       cText := aIn[ 1 ]
       lOk := .T.
