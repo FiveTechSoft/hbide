@@ -4428,3 +4428,24 @@ asumio clave vacia existente tras Undo; ausencia es baseline valido. Se
 corrigio solo el harness y se repitio completo. No arreglo, ejecucion de
 handlers, startup25x80, modelos, todosgestos/layouts/Windows/global/M4.
 Evidencia `docs/evidence/linux-designer-inline-events-small-q163.json`.
+
+
+## 1 noviembre 2026: Q164, matriz Linux actual completa
+
+Fuente congelada `6ad102ef132ae30d2bcf7242a6501d3485d990ac`, binario
+`2a7dc67d887465834f9080523220a7aa7972f1b698840ffc7b7b2db0010c7314`.
+309/309 modos registrados PASS: 308 PTY y una guarda estructural de recovery.
+Plan y ledger coinciden, casos unicos, fuente y hash sin cambios. No se
+heredan los 228 modos de Q136 ni resultados de otras fuentes.
+29 modelos, 66 guardas de tooling y 34 documentos tambien PASS en esa fuente.
+Tres capturas nativas del mismo binario, IDE real Display25x80: Combo State
+editado, Undo/Redo y deseleccion. Pixeles completos revisados: valor JSON
+exacto, recorte visual del texto largo previsto, handle solo seleccionado,
+sin restos de State/borde/handle y con marcos inferiores completos.
+No hubo casos fallidos, repetidos ni interrumpidos. El limite de sesion a
+07:03 y la pausa a 07:36 ocurrieron entre lotes, reconciliados antes de
+continuar; no se describe como una ejecucion continua de reloj.
+Checkpoint conserva ejecutable exacto, plan, receipt, ledger y logs.
+No arreglo de producto, release, instalacion limpia, licencias, Windows,
+todos los comportamientos, porcentaje global ni cierre de hitos.
+Evidencia: `docs/evidence/linux-full-matrix-q164.json`.
