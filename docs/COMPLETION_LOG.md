@@ -4640,3 +4640,23 @@ proceso ausente; el host devuelve1. Corregida la asercion antes de la
 pasada congelada final; los dos fixtures nuevos ya pasaban. No arreglo
 de producto, Cancel, respuesta UI, Windows, matriz global ni cierre M2.
 Evidencia `docs/evidence/linux-compiler-output-contract-q178.json`.
+
+
+### Q179 (1 noviembre 2026): error del build actual, no del binario viejo
+
+Arreglo: Start decidia saltar al primer error usando el status del proceso
+y la existencia del ejecutable final. Con status0 sin nuevo output y
+binario viejo presente, omitia el salto. Ahora conserva el resultado del
+output temporal del build actual. El fixture antes da15PASS2FAIL y
+despues17PASS: dos intentos, linea3 correcta, viejo binario sin ejecutar
+ni alterar. Nativas40x120 antes/despues revisadas con borde inferior:
+antes fila1, despues fila3 y1/1ERROR; restauracion modal limpia.
+Siete modos PTY125checks73guardas34docsPASS, fuente
+33985eb8204809041ae4e9847cdf6d6fe2a7e899, binario
+378b1939a47b6ce543f7347686a8e0d20dab63f443552637abfa84f72e9531c6.
+El comando exterior se interrumpio en autorun tras seis modos completos;
+autorun se repitio completo con recibo y binario sin cambios,20PASS. No
+se cuenta el log parcial ni se afirma pasada continua. Diagnostico
+sintetico: no nueva certificacion del parser/compilador general, Cancel,
+respuestaUI, Windows, matriz global ni cierreM2.
+Evidencia `docs/evidence/linux-build-error-navigation-q179.json`.
