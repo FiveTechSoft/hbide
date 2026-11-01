@@ -1,0 +1,31 @@
+{
+  "source": "41f3478d3d638421642a086f68f13ead6a2049ee",
+  "binary_sha256": "f265f805fee0d98b8d474ce9ac1f51315fb84c9940690c9cd49ee25b1db8a2f0",
+  "scope": "C39 Linux focused inherited CtrlT gutter translation. No fullmatrix, pixels, model, About identity, Windows or milestone acceptance.",
+  "fix": "Translate guttercolumn totextcolumn before inherited deleteword then restore gutter cursor/full paint, invalidate lexical cache. Existing space delimiter semantics retained.",
+  "baseline": {
+    "source": "c4222674473cfeb524f5bde126bae7db1b07ef28",
+    "log": "FAIL CtrlT deletes word from text column1\nPASS Undo CtrlT restores bytes\nFAIL CtrlT midword uses text offset\nPASS midword Undo exact\nPASS CtrlT at EOL leaves bytes unchanged\nTOTAL 3 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-zn7_f1lj\n"
+  },
+  "initial_harness_error": {
+    "log": "FAIL CtrlT deletes word from text column1\nPASS Undo CtrlT restores bytes\nTOTAL 1 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-_agyudqb\n",
+    "reason": "Expected separator space to be deleted, but inherited SkipWord stops at space. Corrected expectations retain existing behavior."
+  },
+  "tests": {
+    "test_delete_word_columns_pty.py": {
+      "test_sha256": "02762307c1d8483fba2a5ee0ed762531c202d94c2336ac8b0a24752d91869d61",
+      "exit": 0,
+      "log": "PASS CtrlT deletes word from text column1\nPASS Undo CtrlT restores bytes\nPASS CtrlT midword uses text offset\nPASS midword Undo exact\nPASS CtrlT at EOL leaves bytes unchanged\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-r55w41_p\n"
+    },
+    "test_selection_jump_repaint_pty.py": {
+      "test_sha256": "c715da526f746b3c7d2e1a579eb9259b36b56b31c110b3c2b3f7504f5cfe95d7",
+      "exit": 0,
+      "log": "PASS jump extends mark\nPASS middle selected row painted\nPASS contracted jump clears middle row\nPASS jump leaves source bytes untouched\nPASS reverse jump paints middle selected row\nPASS reverse contraction clears middle row\nPASS PageDown paints middle selected row\nPASS PageUp contraction clears middle row\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-hsjmng6i\n"
+    },
+    "test_edit_menu_pty.py": {
+      "test_sha256": "8b0ba8629bfc47543f1f318474ddb7f20c9d754db34993fb43da7d0790125a0a",
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Edit Undo restores original exact bytes\nPASS Edit Redo reapplies insertion exact bytes\nPASS Edit Duplicate Line inserts local CRLF boundary\nPASS Edit Delete Line removes selected duplicate\nPASS Edit Copy then Paste inserts copied line\nPASS Edit Cut line removes pasted line\nPASS Edit Undo restores cut line\nPASS Edit Redo reapplies cut\nPASS Replace modal opened\nPASS Replace reports count\nPASS Replace modal applies text without changing EOL/TAB\nPASS Undo modal replace exact\nPASS Replace Esc cancels without text mutation\nPASS Find modal opened\nPASS Find modal navigates real second line\nPASS Goto modal opened\nPASS Goto modal navigates third line\nPASS Goto Esc preserves current row\nPASS Find Esc leaves source bytes untouched\nPASS Replace retains trailing spaces in free-form field\nPASS Undo trailing-space replace restores exact bytes\nPASS Goto zero clamps to first source line\nPASS Goto oversized clamps to final source line\nPASS Goto negative clamps to first source line\nPASS Replace empty replacement deletes matching bytes only\nPASS Undo deletion replace restores exact original\nPASS Replace missing text reports zero\nPASS Replace missing text preserves bytes\nPASS Goto explicit OK navigates first row\nPASS Goto explicit Cancel preserves first row\nPASS Find explicit OK navigates second row\nPASS Find explicit Cancel preserves second row\nPASS Replace explicit OK reports count\nPASS Replace explicit OK applies exact bytes\nPASS Undo explicit replace exact\nPASS Replace explicit Cancel leaves exact bytes\nTOTAL 37 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-29x8601z\n"
+    }
+  }
+}
