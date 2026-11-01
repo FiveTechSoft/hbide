@@ -66,7 +66,10 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre 13:22, Q243: C30 es el candidato interno actual,
+Corte 1 noviembre 13:40, Q247: candidato focal C31 export93e45a4,
+binaa1e30275c13b894e0bfac5cc2edc110cdc199d09df6cf680fc69b7c13bcf36a,
+7scripts/77checks selección y dos modelos separados PASS. C31 no hereda
+matriz353. C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
 bin96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29.
 Plan353 reconciliado sin faltantes ni extras:352PTY y1guardafuente.
