@@ -66,12 +66,19 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre21:10 Q405: último candidato identificado C85,
-fuente fbca0b71789b6d5dd3589587cf138ac91cbc90ba,
-bin 351bd50074b28c6fdfc5b029382c891ac6974ec799a828fc536f86628ba85f34.
-8smokes oficiales/cinco modos TEXT15checksPASS; integra Q403streamestándar.
-No hereda matriz/modelos/píxeles ni aceptación posterior de C83.
-Q406docs posteriores no embebidos C85, sin rebuild por docs. Detalle al final.
+Corte 1 noviembre21:19 Q409: último candidato identificado C86,
+fuente 81c06602b621616005bc9b2e45195fd9184f51a9,
+bin c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27.
+8smokes oficiales/tresTEXTcontinuados9checks/cincoTEXT15checksPASS.
+Q410harness posterior nuevecompilerfixtures27checksPASS sobre ese binario.
+No hereda matriz/modelos/píxeles previos. Q411docs posteriores no embebidos,
+sin rebuild por docs. Píxeles C85/C86Q409 limitados al picker, detalle al final.
+
+Histórico anterior, no evidencia heredada por C86:
+
+Q405candidato anterior C85, fuente fbca0b71789b6d5dd3589587cf138ac91cbc90ba,
+bin351bd50074b28c6fdfc5b029382c891ac6974ec799a828fc536f86628ba85f34.
+8smokes/cincoTEXT15checksPASS identificados en sus receipts.
 
 Histórico anterior, no evidencia heredada por C85:
 
@@ -1442,3 +1449,25 @@ verificada con SHA original/manifest cuando existe/decomprimido; árboles,
 binarios, logs y evidencia conservados,741523760bytes liberados.
 Q406docs/catálogo posteriores no embebidos C85. No matriz completa,
 herencia de modelos/píxeles, Windows/install/licencias ni cierre de hito.
+
+### Q407-Q411 (1 noviembre 2026): TEXT continuado y C86
+
+Q407persistió contextos estándar, cincofixturescompiler-valid/15checks C85PASS.
+Q408ocho toolingguardgroups fuente86ef24aPASS separados del producto.
+Q409reprodujo tres comandos estándar continuados TEXT ; TO FILE / TEXT TO ;
+FILE / TEXT TO ; PRINTER: cada compilerexit0, C85cada1PASS2FAIL.
+Unión limitada a prefijos estándar antes de reconocer TEXT conserva líneas
+físicas y excluye payload. C86oficial fuente81c06602b621616005bc9b2e45195fd9184f51a9,
+bin c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27:
+8smokes/Aboutrev/docs34/lddPASS+trescontinuados9checks+cincoestándar15PASS.
+LexicalGTSTD136PASS separado; initial135/1 por comparación prefix del helper
+conservado, corregido con negación de igualdad exacta antes de build final.
+Píxeles completos1202x762C85/C86 inspeccionados: Phantomline4 pasa a RealLine8,
+no cambio en colores fuente. Q410persistió fixture parametrizado por líneas,
+nuevecompilerfixtures27checksC86PASS incluyendo doblecontinuación/comentario.
+Receipts linux-nav-text-continuation-q409.json y
+linux-text-continuation-contexts-q410.json. Compactación reversibleC85-C86tar
+SHA original/manifest/decomprimido idénticos;370928288bytes liberados, resto
+intacto. Q411docs/catálogo posteriores no embebidos C86, sin rebuildpor docs.
+No nueva matrizcompleta/modelosheredados/píxelesextra/Windows/install/licencias
+ni cierre de hito; macros/customstreams/CP/toolchain/políticas no cambiadas.

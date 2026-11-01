@@ -8,6 +8,10 @@ compiler = os.environ.get('HBMK2', 'hbmk2')
 cases = {
     'file_literal': 'TEXT TO FILE "out.txt"',
     'printer': 'TEXT TO PRINTER',
+    'continued_text': 'TEXT ;\nTO FILE "out.txt"',
+    'continued_to': 'TEXT TO ;\nFILE "out.txt"',
+    'continued_printer': 'TEXT TO ;\nPRINTER',
+    'continued_twice': 'TEXT ; // join\nTO ;\nFILE "out.txt"',
     'file_tab': 'TEXT\tTO\tFILE\t"out.txt"',
     'file_bare': 'TEXT TO FILE out.txt',
     'file_expression': 'TEXT TO FILE ("out" + ".txt")',
