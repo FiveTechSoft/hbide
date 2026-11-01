@@ -1,0 +1,37 @@
+{
+  "source": "81c06602b621616005bc9b2e45195fd9184f51a9",
+  "binary_sha256": "c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27",
+  "tests": [
+    {
+      "test": "test_nav_raw_bom_pty.py",
+      "exit": 0,
+      "log": "PASS Raw UTF8 warning\nPASS Picker includes first declaration behind raw BOM\nPASS Navigation preserves raw UTF8 BOM file\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-1dzs1jo4\n",
+      "binary_sha256": "c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27"
+    },
+    {
+      "test": "test_nav_end_class_pty.py",
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after END CLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-7kksii7k\n",
+      "binary_sha256": "c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27"
+    },
+    {
+      "test": "test_nav_declared_method_pty.py",
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes DECLARED implementation, excludes member\nPASS Picker jumps to DECLARED implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-vthkvia0\n",
+      "binary_sha256": "c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27"
+    },
+    {
+      "test": "test_nav_text_block_pty.py",
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-d_skirh8\n",
+      "binary_sha256": "c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27"
+    },
+    {
+      "test": "test_nav_array_bracket_comment_pty.py",
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-0r5y1svz\n",
+      "binary_sha256": "c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27"
+    }
+  ],
+  "limits": "Five navigation15checks only; no new pixels/models/fullmatrix/Windows/install/license claims"
+}
