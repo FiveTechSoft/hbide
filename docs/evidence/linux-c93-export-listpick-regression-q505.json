@@ -1,0 +1,21 @@
+{
+  "scope": "Fresh C93 existing five HelpExport destinations and two ListPick callers seven bounded modes34checks, no inheritanceC92",
+  "source": "2fb1b433c789f37ffcd45da4bc8cc3cd96627e61",
+  "binary_sha256": "4139216fcc8dc49e1c8492f651250c6418addc0ebab55da5b948b391a61f37ee",
+  "logs": {
+    "export-regular.log": "PASS New regular export succeeds\nPASS Regular overwrite still allowed and complete\nPASS Regular export preserves mode\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-4b9kznq7\n",
+    "export-dangling.log": "PASS Dangling link refused clearly\nPASS Dangling link untouched and no target created\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-99ceewag\n",
+    "export-fifo.log": "PASS Nonregular export refused clearly\nPASS Nonregular destination unchanged\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-un4pssw_\n",
+    "test_picker_horizontal_bounds_pty.py.log": "PASS Open requested fixture\nPASS Picker starts on first declaration\nPASS Outside and border clicks do not select another row\nPASS Undo exact after outside picker clicks\nPASS Interior edge click selects intended implementation\nPASS Undo exact after interior picker click\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-au2f9zhx\n",
+    "test_messages_horizontal_bounds_pty.py.log": "PASS Project opens source desktop\nPASS Real GCC error and warning list exact file lines\nPASS Two real diagnostics counted\nPASS Jump opens exact colon-bearing source\nPASS Window Messages opens actual compiler picker\nPASS Outside Messages clicks keep first diagnostic target\nPASS Interior Messages click jumps exact second diagnostic\nPASS Diagnostic picker leaves source bytes unchanged\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-0hhucin_\n",
+    "test_help_export_symlink_pty.py.log": "PASS Export reports symlink refusal\nPASS Help export does not follow symlink into existing notes\nPASS Close returns unchanged dirty source\nTOTAL 3 PASS 0 FAIL; evidence /tmp/hbide-source-run-b5o7gbh2\n",
+    "export-directory.log": "PASS Nonregular export refused clearly\nPASS Nonregular destination unchanged\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-ole7qeyt\n"
+  },
+  "tests": {
+    "test_help_export_symlink_pty.py": "74f32188a66f2deffe112243585eeded3bd249fa4f0fbd9b6ff8359c690d0d0e",
+    "test_help_export_destinations_pty.py": "2c786903c7a54803d3dbc70e5d3340a8b6200edbaf3a8d564f989d4d9806df49",
+    "test_picker_horizontal_bounds_pty.py": "cdba5fc60483d0a670108a8a33f4d48d2b40fb3201c2713f551ca1a810f994a0",
+    "test_messages_horizontal_bounds_pty.py": "d5db171099cf57b6d2ba9c81ebad6b18e4a871724a7cd50cfa02e63b21993a7e"
+  },
+  "limits": "No new policies/TOCTOUguarantee/allgeometry/DBL/pixels/fullmatrix/Windows/license"
+}
