@@ -1,0 +1,18 @@
+{
+  "scope": "Fresh C96 four bounded editor/history modes,22PASS; no inherited C95 runtime",
+  "source": "ea630625ac5cab04a30a1f17fae3ee5016e0d7e2",
+  "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9",
+  "tests": {
+    "find_repeat_selection": "969ec83aeb61d954572e7bb9844b3ba426963a2eb6ef3fc2f5bdce4a7ee4b17c",
+    "replace_undo_boundary": "9c7dfd85b8bd258fe24611a9d9f442ae3bb34fe721a214c8cb411ebd40242559",
+    "delete_word_tab_boundary": "aca0ed49f269df7aed50f06ac71f597deccead1de2f7fad0e7d87cc4845ee2bb",
+    "delete_line_undo_boundary": "b9d381a167800728378aed55b6056043db1d5f365b2937252a3b542b2922bced"
+  },
+  "logs": {
+    "find_repeat_selection": "PASS Open requested fixture\nPASS Find consumes old multirow range at second match\nPASS Undo after multirow selected Find exact\nPASS Repeat Last Find clears old range\nPASS Undo after repeated Find exact\nPASS Wrapped Repeat Find clears old range on other row\nPASS Undo after wrapped Repeat Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-kpna_lbk\n",
+    "replace_undo_boundary": "PASS Open requested fixture\nPASS one Undo reverts Replace but preserves earlier typed X\nPASS Redo reapplies only replacement\nPASS Undo later typing preserves replacement\nPASS next Undo restores text before Replace\nPASS third Undo removes earlier typing alone\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-1oozbi_4\n",
+    "delete_word_tab_boundary": "PASS CtrlT stops at raw TAB word boundary\nPASS Undo TAB-boundary CtrlT exact\nPASS Redo TAB-boundary CtrlT exact\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ztzbch28\n",
+    "delete_line_undo_boundary": "PASS Open requested fixture\nPASS Undo line command alone preserves earlier typing\nPASS Redo line command exact\nPASS Undo later typing keeps line command\nPASS next Undo restores pre-command typing\nPASS third Undo removes earlier typing\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-kxqxafp5\n"
+  },
+  "limits": "No fullmatrix/models/Windows/newpixels/license/hito closure; no product defect confirmed in these runs. Stop equivalent history variants."
+}
