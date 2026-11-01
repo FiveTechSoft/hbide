@@ -84,8 +84,13 @@ C95 conservado. C75-C77 preservados reversiblemente uno por uno con SHA/size/
 mode/mtime/uid/gid/inventario y recheck original completos antes de retirar
 solo copias expandidas redundantes; originales/binarios/logs intactos.
 Lote detenido al alcanzar613MiB; tras C96 reserva391MiB. No mas retiradas.
-Q522 docs posteriores no embebidos C96; no build por docs. Siguiente regresion
-C96 identificada o hueco funcional distinto, sin variantes equivalentes.
+Q523 cuatro modos frescos ProjectBOM3/EOF3/extensionless3/GCCcolon6,15PASS.
+Q524 cuatro modos editor FindRepeat7/ReplaceUndo6/CtrlTtab3/DeleteLineUndo6,
+22PASS. Q525 standalone Designer load/write/schema recompilados exit0 y
+sentinelPASS, seis fuentes SHA identicas al export C96, helpers separados
+del runtime IDE. Sin nueva decision UndoLoad ni suite completa. Reserva382MiB.
+Q526 docs posteriores no embebidos C96; no build por docs. Siguiente hueco
+funcional distinto, sin variantes equivalentes del parser/history/modelos.
 Gates y politicas pendientes intactos.
 
 Historico anterior, no evidencia heredada por C96:

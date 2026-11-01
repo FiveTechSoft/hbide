@@ -6412,3 +6412,17 @@ mtime-uid-gid-inventory/full decompression/originalrecheck antes de retirar
 solo expandido, sin hardlinks/mezcla. Archivos10871314/10882040/10883825bytes,
 1442/1451/1452entries. Paro613MiB, tras build391MiB; no mas retiradas.
 Q522docs posteriores no embebidos C96, no build solo docs, politicas intactas.
+
+
+### Q523-Q526 (2 noviembre 2026): regresiones acotadas C96
+
+Q523 ProjectBOM3/EOF3/extensionless3/GCCcolon6, cuatro modos15PASS frescos.
+Q524 FindRepeatSelection7/ReplaceUndoBoundary6/CtrlTtab3/DeleteLineUndoBoundary6,
+cuatro modos22PASS frescos. Q525 modelos Designer load/write/schema recompilados
+exit0/sentinelPASS, seis fuentes SHA identicas al export C96. Son helpers
+separados, no runtime IDE ni suite completa. UndoLoad existente no se convierte
+en decision nueva. Lecturas/probes sin nuevo defecto confirmado; se detienen
+variantes equivalentes parser/history/modelos. Cada receipt tiene identidad,
+hashes y logs propios. C96bin861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9 intacto.
+Q526 docs posteriores no embebidos C96, no build por docs. Reserva382MiB;
+sin nuevas retiradas/politicas/fullmatrix/pixeles/Windows/install/license/hitos.
