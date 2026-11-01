@@ -48,6 +48,21 @@ procedure Main()
  Check('Undo continuation edit restores expression',!o:BlkCmtState(5).and.o:aBlkCtx[4]=='')
  o:Redo()
  Check('Redo continuation edit restores stream',!o:BlkCmtState(5).and.o:aBlkCtx[4]=='@TEXT')
+ for each c in {'/* prefix */ TEXT','/* a */ /* b */ TEXT // tail'}
+ o:LoadText(c+hb_eol()+'/* literal'+hb_eol()+'ENDTEXT'+hb_eol()+'return 42')
+ Check('leading closed comments permit stream: '+c,!o:BlkCmtState(4).and.o:aBlkCtx[2]=='@TEXT'.and.o:aBlkCtx[4]=='')
+ next
+ o:LoadText('/* prefix'+hb_eol()+'*/ TEXT'+hb_eol()+'/* literal'+hb_eol()+'ENDTEXT'+hb_eol()+'return 42')
+ Check('closing multiline prefix permits stream',!o:BlkCmtState(5).and.o:aBlkCtx[3]=='@TEXT'.and.o:aBlkCtx[5]=='')
+ o:GoTo(2,5+Len('*/ TEXT'))
+ o:Edit(K_BS)
+ Check('breaking prefixed opener restores real comment',o:BlkCmtState(5))
+ o:Undo()
+ Check('Undo prefixed opener resumes stream',!o:BlkCmtState(5).and.o:aBlkCtx[3]=='@TEXT')
+ o:Redo()
+ Check('Redo prefixed opener restores real comment',o:BlkCmtState(5))
+ o:LoadText('/* still open'+hb_eol()+'TEXT'+hb_eol()+'*/'+hb_eol()+'return 42')
+ Check('TEXT inside unclosed comment not stream',!o:BlkCmtState(4).and.o:aBlkCtx[3]!='@TEXT')
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

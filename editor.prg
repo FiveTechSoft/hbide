@@ -1018,7 +1018,7 @@ METHOD ScanBlkLine( cText, lIn, cCarry ) CLASS HBSrcEdit
    if cCarry == "@TEXT"
       cCarry := iif( HBIDE_EditorEndText(cText), "", "@TEXT" )
       return .F.
-   elseif ! lIn .and. Empty(cCarry) .and. HBIDE_EditorTextStart(cText)
+   elseif ( lIn .or. Empty(cCarry) ) .and. HBIDE_EditorTextStart(cText,lIn)
       cCarry := "@TEXT"
       return .F.
    endif
@@ -2200,8 +2200,22 @@ return Empty(c).or.Left(c,1)==";".or.Left(c,2)=="//".or.Left(c,2)=="&&".or.Left(
 
 // Standard bare TEXT with comments on this physical line only. Reject code
 // after a closed comment, TEXT-prefixed identifiers and custom stream forms.
-STATIC FUNCTION HBIDE_EditorTextStart(cText)
+STATIC FUNCTION HBIDE_EditorTextStart(cText,lIn)
    local c:=AllTrim(StrTran(cText,Chr(9)," ")), n
+   if hb_defaultValue(lIn,.F.)
+      n:=At("*/",c)
+      if n==0
+         return .F.
+      endif
+      c:=LTrim(SubStr(c,n+2))
+   endif
+   do while Left(c,2)=="/*"
+      n:=At("*/",SubStr(c,3))
+      if n==0
+         return .F.
+      endif
+      c:=LTrim(SubStr(c,n+4))
+   enddo
    if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"
       return .F.
    endif
