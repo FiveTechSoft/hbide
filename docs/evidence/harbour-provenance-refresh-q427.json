@@ -1,0 +1,426 @@
+{
+  "scope": "Q427 factual provenance refresh and package-review gaps only, no ownership/license decision or redistribution authorization",
+  "hbide_source": "5f138c82f62c0800b89e3efaf02f165c522aa0f3",
+  "harbour_source": "694428e1c12f726675b19324d62167fa77d68185",
+  "harbour_checkout_clean": true,
+  "upstream_remote": "https://github.com/harbour/core.git",
+  "license_copy": {
+    "path": "third-party/harbour/LICENSE.upstream.txt",
+    "sha256": "a9fe6deb24f0d29dfee442b6b6864d0ca30e7fefdffce331a0c1522d4b2c3095",
+    "equals_checkout_license": true
+  },
+  "compiled_vendored_files": [
+    {
+      "vendored": "hbdebug/dbgbrwsr.prg",
+      "vendored_sha256": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbgbrwsr.prg",
+      "upstream_sha256": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+      "whole_file_identical": true,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/dbghelp.prg",
+      "vendored_sha256": "49e63db24a757fb8f8771c5b629a822dc6617970ab9bb93171050e0a1746f27a",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbghelp.prg",
+      "upstream_sha256": "013490d57a05cd1eca3a886cff5c8281c16e708f49ba61c429b5b3a916ba0637",
+      "whole_file_identical": false,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/dbgmenu.prg",
+      "vendored_sha256": "30fb330448e0af889dc7e3688c520498afd14dffac8870d0bb687f647a846598",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbgmenu.prg",
+      "upstream_sha256": "4f95a56921103ed5bb12961a59f000596cdfc4fa051ed099f81a5232aaa7ca80",
+      "whole_file_identical": false,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/dbgtarr.prg",
+      "vendored_sha256": "281578e4ee39be97da081eba31335a4e4bb2aabc6789c1f769855a5c2591630f",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbgtarr.prg",
+      "upstream_sha256": "ea6567099f2cdfcb81239c6c54b82ed421727b6fdaf955e560f296b9d84dd47a",
+      "whole_file_identical": false,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/dbgthsh.prg",
+      "vendored_sha256": "660c9f94b84fbbba74859908843c20c1a19307f6b3ee3443ecaca4c1a58f4d21",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbgthsh.prg",
+      "upstream_sha256": "3102acc967b70fc593d1f9c1c37d71491776fa1b3c4677be270e21791bf327b6",
+      "whole_file_identical": false,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/dbgtinp.prg",
+      "vendored_sha256": "b7fd0a70fbe1af58600917c4eff1357ee7bf4ac8987faa497a9ce6fe98b28ec7",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbgtinp.prg",
+      "upstream_sha256": "4da2e7481ee7f548e76c00361e730e9ee22829d27060ec8271a97fdfed2199ff",
+      "whole_file_identical": false,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/dbgtmenu.prg",
+      "vendored_sha256": "5e88fd251bc5bc69da09c5a3b9c27009aa897aa72a72ae51f10fae2aa5251d06",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbgtmenu.prg",
+      "upstream_sha256": "5e88fd251bc5bc69da09c5a3b9c27009aa897aa72a72ae51f10fae2aa5251d06",
+      "whole_file_identical": true,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/dbgtmitm.prg",
+      "vendored_sha256": "9b5d72a1ef05356b7eb91060fd1701f078055dce6b8e771a8e0834d3df822c17",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbgtmitm.prg",
+      "upstream_sha256": "9b5d72a1ef05356b7eb91060fd1701f078055dce6b8e771a8e0834d3df822c17",
+      "whole_file_identical": true,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/dbgtobj.prg",
+      "vendored_sha256": "3f97ea1f3a58f361a3e30d1c7d37495a7a532528b5419deb25c75cde3a4b7b58",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbgtobj.prg",
+      "upstream_sha256": "87ec0278f449132adf78dca20ad6c46b1be858359490ecebb24729530d98d217",
+      "whole_file_identical": false,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/dbgtwin.prg",
+      "vendored_sha256": "0b0389ee7c0a26be8a10995f28eb30be10a5b8c772e99bf610d7458f7f953efa",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbgtwin.prg",
+      "upstream_sha256": "f831bf085599c9a48f07bedfe0db22275a08231247a53ff2d0f8140ae0f6d883",
+      "whole_file_identical": false,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/dbgwa.prg",
+      "vendored_sha256": "8b2a033818ecffa3e322eb0d7dab00dd3c26fd79823eee2f5f7f330dbaa1f147",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbgwa.prg",
+      "upstream_sha256": "8b2a033818ecffa3e322eb0d7dab00dd3c26fd79823eee2f5f7f330dbaa1f147",
+      "whole_file_identical": true,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/tbrwtext.prg",
+      "vendored_sha256": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+      "upstream_path": "/home/sandbox/harbour/src/debug/tbrwtext.prg",
+      "upstream_sha256": "6ad7f65bfee79e81c6a83dc6f14daee90cd866d2f1b31fed134ab5359e2bdf13",
+      "whole_file_identical": false,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/debugger.prg",
+      "vendored_sha256": "9816ba356782f9d4b818ef93d136d1590d2e1e30b23ebd7f6ce78431428b8b15",
+      "upstream_path": "/home/sandbox/harbour/src/debug/debugger.prg",
+      "upstream_sha256": "9a4be56ee93fdb2c879f2ec1635313ac6cb9ceadee0644f04efa86184f3e235d",
+      "whole_file_identical": false,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    },
+    {
+      "vendored": "hbdebug/dbgentry.c",
+      "vendored_sha256": "2bbab7508c0fb685aceb020a249917830db38e6e50f3c8da62552b0625537d2c",
+      "upstream_path": "/home/sandbox/harbour/src/debug/dbgentry.c",
+      "upstream_sha256": "a93b666e8d4e63873f8548ff349d50ad576743f46094a8d0b50d7530ae5027cc",
+      "whole_file_identical": false,
+      "unchanged_since_q353": true,
+      "initial_notice_identical": true
+    }
+  ],
+  "bundled_debug_manual": {
+    "vendored": "hbdebug/en.txt",
+    "vendored_sha256": "44ec8ef906cdca172b02cb627378abf0935e5e13a53d91d13b1fdccada3df818",
+    "upstream_sha256": "44ec8ef906cdca172b02cb627378abf0935e5e13a53d91d13b1fdccada3df818",
+    "whole_file_identical": true
+  },
+  "additional_compiled_local_debug_helper": {
+    "path": "hbdebug/dbgscript.prg",
+    "sha256": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18",
+    "same_named_upstream_file_exists": false,
+    "first_add_commit": "de572e6c7ac54b7665803b2c416dce544e7cbb51",
+    "license_selected": false
+  },
+  "notice_inventory": {
+    "scope": "Local HBP source notice inventory only. Absence of a detected header is not proof of no license or ownership. Does not clear redistribution.",
+    "source": "5f138c82f62c0800b89e3efaf02f165c522aa0f3",
+    "referenced_license": {
+      "path": "LICENSE.txt",
+      "status": "missing"
+    },
+    "root_notice_files": [],
+    "sources": [
+      {
+        "path": "hbide.prg",
+        "sha256": "dc9d08431e4ee2482704011310d9315fd69c907c99898da0d91a9c55df3e1e51",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "editor.prg",
+        "sha256": "932cca04bc0b191971d9e3146b9dca6a5db75f5d1250f883da6fc64e2a899dc1",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "safeio.prg",
+        "sha256": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbmenu.prg",
+        "sha256": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbwindow.prg",
+        "sha256": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "designer.prg",
+        "sha256": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbbutton.prg",
+        "sha256": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbgetu.prg",
+        "sha256": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "help.prg",
+        "sha256": "4d00294fd70317df9c0ee6129852f7fd824c3c191ffaf56c8b5342c851e29e0b",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "project.prg",
+        "sha256": "076a187a6ee6a42a1dea765d7a619c76bbc11050759a4d9f3c27af25ba8bd7f4",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "projectui.prg",
+        "sha256": "b6b1e2254805825b32c7d983c308cb1caaf8e9c000db55b3ca90100f16a910d1",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "nav.prg",
+        "sha256": "4a1789e60427d044ed39ad489ae9ab89b599e081ec8b445fc06d8ef1d170179f",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "recovery.prg",
+        "sha256": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbdebug/dbgbrwsr.prg",
+        "sha256": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbghelp.prg",
+        "sha256": "49e63db24a757fb8f8771c5b629a822dc6617970ab9bb93171050e0a1746f27a",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgmenu.prg",
+        "sha256": "30fb330448e0af889dc7e3688c520498afd14dffac8870d0bb687f647a846598",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtarr.prg",
+        "sha256": "281578e4ee39be97da081eba31335a4e4bb2aabc6789c1f769855a5c2591630f",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgthsh.prg",
+        "sha256": "660c9f94b84fbbba74859908843c20c1a19307f6b3ee3443ecaca4c1a58f4d21",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtinp.prg",
+        "sha256": "b7fd0a70fbe1af58600917c4eff1357ee7bf4ac8987faa497a9ce6fe98b28ec7",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtmenu.prg",
+        "sha256": "5e88fd251bc5bc69da09c5a3b9c27009aa897aa72a72ae51f10fae2aa5251d06",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtmitm.prg",
+        "sha256": "9b5d72a1ef05356b7eb91060fd1701f078055dce6b8e771a8e0834d3df822c17",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtobj.prg",
+        "sha256": "3f97ea1f3a58f361a3e30d1c7d37495a7a532528b5419deb25c75cde3a4b7b58",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtwin.prg",
+        "sha256": "0b0389ee7c0a26be8a10995f28eb30be10a5b8c772e99bf610d7458f7f953efa",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgwa.prg",
+        "sha256": "8b2a033818ecffa3e322eb0d7dab00dd3c26fd79823eee2f5f7f330dbaa1f147",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/tbrwtext.prg",
+        "sha256": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgscript.prg",
+        "sha256": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbdebug/debugger.prg",
+        "sha256": "9816ba356782f9d4b818ef93d136d1590d2e1e30b23ebd7f6ce78431428b8b15",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgentry.c",
+        "sha256": "2bbab7508c0fb685aceb020a249917830db38e6e50f3c8da62552b0625537d2c",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      }
+    ],
+    "missing_referenced_license": [
+      "hbdebug/dbgbrwsr.prg",
+      "hbdebug/dbghelp.prg",
+      "hbdebug/dbgmenu.prg",
+      "hbdebug/dbgtarr.prg",
+      "hbdebug/dbgthsh.prg",
+      "hbdebug/dbgtinp.prg",
+      "hbdebug/dbgtmenu.prg",
+      "hbdebug/dbgtmitm.prg",
+      "hbdebug/dbgtobj.prg",
+      "hbdebug/dbgtwin.prg",
+      "hbdebug/dbgwa.prg",
+      "hbdebug/tbrwtext.prg",
+      "hbdebug/debugger.prg",
+      "hbdebug/dbgentry.c"
+    ],
+    "without_detected_gpl_header": [
+      "hbide.prg",
+      "editor.prg",
+      "safeio.prg",
+      "hbmenu.prg",
+      "hbwindow.prg",
+      "designer.prg",
+      "hbbutton.prg",
+      "hbgetu.prg",
+      "help.prg",
+      "project.prg",
+      "projectui.prg",
+      "nav.prg",
+      "recovery.prg",
+      "hbdebug/dbgscript.prg"
+    ],
+    "release_review_required": true
+  },
+  "review_gaps": [
+    "Root LICENSE.txt still absent; separate upstream copy is not a selected license for own code/modifications",
+    "Header match does not decide scope of modifications exception",
+    "Static Harbour/runtime dependencies and final package full notice coverage not established by dynamic ldd or HBP header inventory"
+  ]
+}
