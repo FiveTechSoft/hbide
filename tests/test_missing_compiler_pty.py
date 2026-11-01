@@ -1,16 +1,19 @@
 """Missing compiler never launches or replaces an existing executable. Linux PTY."""
-import subprocess,hashlib
+import subprocess,hashlib,shlex
 import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
+restore='--restore' in sys.argv
 for kind in ['autorun']:
  target=work/'missing.prg';value=work/'stale-launched.txt'
  target.write_text('procedure main()\n hb_MemoWrit("'+str(value)+'", "stale")\nreturn\n')
  compiler=__import__('shutil').which('hbmk2')
  subprocess.run([compiler,str(target),'-quiet','-o'+str(work/'missing')],check=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
- previous=(work/'missing').read_bytes();original=target.read_bytes()
+ previous=(work/'missing').read_bytes()
+ if restore:target.write_text(target.read_text().replace('"stale"','"fresh"'))
+ original=target.read_bytes()
  (work/'empty-path').mkdir()
  pid,fd=pty.fork()
  if pid==0:
@@ -40,6 +43,21 @@ for kind in ['autorun']:
    check('stale executable never launched',not value.exists())
    check('source byte exact',target.read_bytes()==original)
    check('no sibling build temp remains',not [p for p in work.iterdir() if p.name.startswith('missing.') and p!=target])
+  if restore:
+   launcher=work/'empty-path/hbmk2'
+   launcher.write_text('#!/bin/sh\nPATH='+shlex.quote(os.environ['PATH'])+'; export PATH\nexec '+shlex.quote(compiler)+' "$@"\n')
+   launcher.chmod(0o700)
+   send(b'\x1br');send(b's',.5)
+   until=time.monotonic()+20
+   while not ('Done.' in screen.text() or 'Build OK:' in screen.text()) and time.monotonic()<until:pump(.2)
+   check('restored compiler produces successful output','Done.' in screen.text() or 'Build OK:' in screen.text())
+   send(b'\r',.7)
+   check('same session launches fresh executable only',value.exists() and value.read_text()=='fresh')
+   check('fresh executable replaces old bytes',(work/'missing').read_bytes()!=previous)
+   check('rebuild keeps source exact',target.read_bytes()==original)
+   send(b'\x1bw');send(b'm',.4)
+   check('successful retry clears old failure diagnostics','No compiler messages' in screen.text())
+   send(b'\r',.3)
   check('editor remains usable after repeated failure','Edit' in screen.text())
 
  finally:
