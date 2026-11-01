@@ -234,7 +234,7 @@ METHOD DeleteLine() CLASS HBSrcEdit
          ::aText[ 1 ]:lSoftCR := .F.
       endif
       ATail( ::aText ):cEol := ""
-      ::RecordEdit( aBefore )
+      ::RecordEdit( aBefore, .T. )
       ::lDirty := .T.
       ::GoTo( ::nRow, 5 )  // GoTo clamps nRow to LineCount
       ::Display()
