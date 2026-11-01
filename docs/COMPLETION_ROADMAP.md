@@ -66,7 +66,11 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre 13:40, Q247: candidato focal C31 export93e45a4,
+Corte 1 noviembre 13:47, Q248: candidato focal C32 exportce12ac1,
+binc6d5ec7f8e09e59baee54efb098739bf3ce00ee4673dc8cf98ba4b1c61dc837e.
+Recovery/Undo mantiene dirty sin guardar; E2E recovery, Copy y EditMenu
+focales PASS, modelos separados recovery/EOL. EvidenciaQ248.
+C31 anterior export93e45a4,
 binaa1e30275c13b894e0bfac5cc2edc110cdc199d09df6cf680fc69b7c13bcf36a,
 7scripts/77checks selección y dos modelos separados PASS. C31 no hereda
 matriz353. C30 sigue siendo el candidato con plan353 reconciliado,

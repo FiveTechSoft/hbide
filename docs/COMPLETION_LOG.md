@@ -5531,3 +5531,16 @@ incluido. Driver interrumpido por límite después de5scripts,2restantes
 separados; primer borrador fixture produjo2fallos espurios preservados.
 No matriz353heredada, Windows, release ni cierreM1.
 Evidencia: docs/evidence/linux-copy-selection-repaint-q247.json.
+
+### Q248 (1 noviembre 2026): Undo tras recovery conserva dirty
+
+Recovery cargaba texto no guardado con marcador savedUndoLen=0. Escribir
+y Undo devolvía ese texto pero Changed falso, pudiendo omitir revisión al
+salir/SaveAll. SetDirty(true) invalida marcador, SetDirty(false) lo alinea.
+E2E C31 falla solo dirty; exportC32 ce12ac1 binarioc6d5ec7f8e09e59baee54efb098739bf3ce00ee4673dc8cf98ba4b1c61dc837e
+pasa kill/recover/edit/Undo/list/save exacto, Copy repaint y Edit menu.
+Modelos fresh recovery11 y EOL141 PASS, binarios separados. No se borraba
+journal por idle: solo se llama UpdateJournal si dirty; queda corregida
+la hipótesis de impacto inicial. Primeros arneses usaron mnemonic/criterio
+caption erróneos, logs preservados. No píxeles ni matriz completa/Windows.
+Evidencia: docs/evidence/linux-recovered-undo-dirty-q248.json.
