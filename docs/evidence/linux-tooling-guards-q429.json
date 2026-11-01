@@ -1,0 +1,80 @@
+{
+  "scope": "Q429 eight tooling guard groups only, not IDE/PTY/model/pixel/platform/package acceptance",
+  "result": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "858582d871b974b5bc37c39a902e2c3f9761457a",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "6a9901d1571d51ce7d235eeb3df9e4eba6aa3459f547e91cb53d20a834f11396",
+    "started": 1793565952.696359,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "test_foreign_root_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "1e97d47fd21cd837401080f0cff716b3666d9706771eddb62f437bd34870f41a",
+        "log": "/tmp/hbide-q429-guards/test_foreign_root_guard.py.log",
+        "seconds": 0.219
+      },
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q429-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.22
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q429-guards/test_completion_guards.py.log",
+        "seconds": 0.216
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q429-guards/test_build_receipt.py.log",
+        "seconds": 0.214
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19d9e23abee531f03d5056771c03f36cf7833f984561e61adb2e43f2f2357dbb",
+        "log": "/tmp/hbide-q429-guards/test_completion_inventory.py.log",
+        "seconds": 0.777
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "62951fcdcd3c708f1bbf433cd97d6d160c8736d1fe628e89e24284b9dadc33a3",
+        "log": "/tmp/hbide-q429-guards/test_distribution_notices.py.log",
+        "seconds": 0.214
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q429-guards/test_embed_help_docs.py.log",
+        "seconds": 0.212
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "748bdd859802a6cb51418e98e9ffac879a94892690e9ea7500791cc691a9f08a",
+        "log": "/tmp/hbide-q429-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.566
+      }
+    },
+    "ok": true,
+    "finished": 1793565955.3344765
+  },
+  "limitations": "C87 unchanged; no fresh IDE build, fullmatrix or licenseclearance"
+}
