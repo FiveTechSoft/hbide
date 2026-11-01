@@ -66,18 +66,18 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre15:48 Q281: candidato focal C44,
-source93fc047ce560bfc91fda38e36c1217707fe71154,
-bin8658732bcbd7b02285aa876bd7857515e3109bb04f11dcd4853658f64cab492c.
-Q279borrar única línea no vacía: cinco modosPTY55checks PASS, modelo20
-separado y nativas1202x762 inspeccionadas. Q280ASCII/UTF8TAB16checks
-son arnés postexport: vacío conserva Redo/clipboard, sin journal/falso aviso.
-Q28136modelos fresh de source81d3310 no son36modosIDE ni de binarioC44.
-C43source0e3fe103b7d9b43c32989e91b80ada16fe0814b9,
-binb7ea16b82cdcf091e53cf208d7ba45cfc2e4dab1cd377d178853f923f53e65b3
-conserva About/catálogoQ277/8smokes y5modosnav15checks, no heredados aC44.
-Q275-Q276métodos compactos/CLASS parámetro corregidos; no parser completo.
-Q282docs posteriores todavía no embebidos en C44. No sumar fuentes/binarios
+Corte 1 noviembre16:04 Q285: candidato focal C46,
+sourcebc8e8ef84a901f00a798653377a9097de96882f2,
+bin0e0fb165c31dc512e9812ecc8c94109a6152bf6333236edf546db12093f3af55.
+Q284separa Undo DeleteLine/Cut sin marca/CtrlY de escritura adyacente:
+cinco modosPTY33checks PASS, modelo25separado y nativas1202x762 inspeccionadas.
+Fallo inicial de modelo por overstrike conservado, fixture INSERT explícito.
+Q28536modelos fresh de sourceedbbaa0 no son36modosIDE ni de binarioC46.
+C45source41905b4868f5903cb1ec5adacba00efadd34d4ab,
+bin5cb92c95b5e859ff6bcaa2acf07a31fae9bfefe1a8b21ad7ff27054cbcc72ef4
+conserva About/catálogoQ282/8smokes y5modosfocales35checks, no heredados aC46.
+Q279borrar única línea y Q275-Q276navegación compacta siguen sus ledgers.
+Q286docs posteriores todavía no embebidos en C46. No sumar fuentes/binarios
 como matriz ni funciones. Sin Windows/release/licencias/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,

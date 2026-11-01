@@ -5644,3 +5644,26 @@ Roadmap separa C44focal/C43identificado/C30plan353 y36modelos. Catálogo34
 docs regenerado;8guardas y50assertions inventario en
 linux-delete-only-line-docs-q282.json. No producto/build/PTY/modelo/píxeles,
 Windows o hito nuevo.
+
+### Q284-Q285 (1 noviembre 2026): frontera Undo de Delete Line
+
+El borrado de única línea se fusionaba con la escritura previa: Undo
+perdía también esa escritura. DeleteLine registra ahora operación separada,
+también Cut sin marca/CtrlY. C45baseline4PASS2FAIL; C46cinco modosPTY33checks
+PASS y modelo25separado. Primer modelo heredó overstrike,2expectativas
+fallidas; corregido fixture INSERT explícito, sin otro cambio producto.
+C46sourcebc8e8ef84a901f00a798653377a9097de96882f2,
+bin0e0fb165c31dc512e9812ecc8c94109a6152bf6333236edf546db12093f3af55.
+Nativas1202x762 antes/después inspeccionadas. Q28536GTSTDfreshPASS desde
+edbbaa0; no modosIDE ni herencia al binario. Experimento separado6checks
+Duplicate/Paste no encontró defecto. Sin matrizglobal/Windows/hito.
+Evidencias linux-delete-line-undo-boundary-q284.json y
+linux-models-undo-boundary-q285.json.
+
+### Q286 (1 noviembre 2026): contrato Undo y catálogo
+
+Enlaces Cut/DeleteLine amplían frontera Undo, guía/roadmap distinguen
+C46focal/C45identificado/36modelosQ285 y C30plan353. Catálogo34docs
+regenerado;8guardas y50tests de inventario en
+linux-delete-line-undo-docs-q286.json. No nuevo producto/build/PTY/modelo,
+píxeles, Windows o hito. No reconstrucción solo por este cambio documental.
