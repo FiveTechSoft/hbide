@@ -4740,3 +4740,18 @@ revisadas: bordes completos, underlay limpio, row3/1of1ERROR.
 No cambio de modales globales, parser, ANSI/encodings generales, todos
 terminales, Windows, Cancel, respuestaUI, matriz global ni cierreM2.
 Evidencia `docs/evidence/linux-start-long-output-q184.json`.
+
+
+### Q185 (1 noviembre 2026): salida larga en25x80
+
+Regresion del visor de Start en25x80 y40x120: dos modos38checksPTY,
+74guardas34docsPASS en f5091497f8777ffc8184c4bcda858a06b1ba1139,
+binario fe34fb602fc8266fd2a355186ad5c02dc090ea440f53f0d37a53c44c743a3f03.
+Sin cambio de producto. Nativas exactbin25x80/802x477 revisadas: End
+expone error final, Esc/fallo devuelve fila3/1of1ERROR con underlay y
+bordes completos. Cola derecha se recorta segun ancho del visor, no
+se afirma toda la cola visible. Primer intento nativo recupero display
+40x120; descartado y25x80 fijado explicitamente antes de captura final.
+No todos tamanos, ANSI/encodings, salida exitosa, Windows, Cancel,
+respuestaUI, matriz global ni cierreM2.
+Evidencia `docs/evidence/linux-start-long-output-small-q185.json`.

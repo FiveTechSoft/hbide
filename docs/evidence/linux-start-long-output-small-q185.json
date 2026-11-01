@@ -1,0 +1,146 @@
+{
+  "scope": "Q185 compact terminal regression for Q184 scrollable Start output, no new product fix",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "f5091497f8777ffc8184c4bcda858a06b1ba1139",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "d5f3c6dbbcd2d80ce25e843a2d6b96b4c64a5fd958e2402038518725cf71d0f7",
+    "binary_sha256": "fe34fb602fc8266fd2a355186ad5c02dc090ea440f53f0d37a53c44c743a3f03",
+    "built_at": 1793519957.423649
+  },
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "f5091497f8777ffc8184c4bcda858a06b1ba1139",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "d5f3c6dbbcd2d80ce25e843a2d6b96b4c64a5fd958e2402038518725cf71d0f7",
+      "binary_sha256": "fe34fb602fc8266fd2a355186ad5c02dc090ea440f53f0d37a53c44c743a3f03",
+      "build_receipt": "/tmp/hbide-q185-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "8d44c974753bd68244005a8d141ea9936e83bae2a3b3e9c2ce2a3e6771a7e247",
+      "case": "compiler-long-output-scroll-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_missing_compiler_pty.py",
+        "--long-output",
+        "--small"
+      ],
+      "started": 1793519957.4239297,
+      "seconds": 8.15,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "9768a0e086488d1e00fdb16fa9f94a832919aa7237c3109981e609f2f4a5af38",
+      "log": "/tmp/hbide-q185-final/compiler-long-output-scroll-small-1793519957423925733.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "f5091497f8777ffc8184c4bcda858a06b1ba1139",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "d5f3c6dbbcd2d80ce25e843a2d6b96b4c64a5fd958e2402038518725cf71d0f7",
+      "binary_sha256": "fe34fb602fc8266fd2a355186ad5c02dc090ea440f53f0d37a53c44c743a3f03",
+      "build_receipt": "/tmp/hbide-q185-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "8d44c974753bd68244005a8d141ea9936e83bae2a3b3e9c2ce2a3e6771a7e247",
+      "case": "compiler-long-output-scroll",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_missing_compiler_pty.py",
+        "--long-output"
+      ],
+      "started": 1793519965.574424,
+      "seconds": 8.29,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "9768a0e086488d1e00fdb16fa9f94a832919aa7237c3109981e609f2f4a5af38",
+      "log": "/tmp/hbide-q185-final/compiler-long-output-scroll-1793519965574420482.log"
+    }
+  ],
+  "logs": {
+    "compiler-long-output-scroll-small-1793519957423925733.log": "PASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-_asn67ub\n",
+    "compiler-long-output-scroll-1793519965574420482.log": "PASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-9ih_rteg\n"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "f5091497f8777ffc8184c4bcda858a06b1ba1139",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "2a544db8db5d9c36d18d520fca9e5104768ac2e12961ed833702eabf86c6312e",
+    "started": 1793519974.053576,
+    "runner_sha256": "d8e1b33008b126ce28f71722967a5ba136d9a3c979a0ce5732d5c3a00027d71f",
+    "tests": {
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q185-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.216
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q185-guards/test_completion_guards.py.log",
+        "seconds": 0.216
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q185-guards/test_build_receipt.py.log",
+        "seconds": 0.216
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "e6f79e6fa0af285676b2ab2be7e585568186ed37e369759008f959635c3f6a81",
+        "log": "/tmp/hbide-q185-guards/test_completion_inventory.py.log",
+        "seconds": 0.767
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q185-guards/test_distribution_notices.py.log",
+        "seconds": 0.216
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q185-guards/test_embed_help_docs.py.log",
+        "seconds": 0.215
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q185-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.366
+      }
+    },
+    "ok": true,
+    "finished": 1793519976.2658625
+  },
+  "visual": {
+    "inspection": "exactfe34fb60bin actual25x80full802x477. End shows final ErrorE0030 row; text beyond right edge intentionally cropped by scrollviewer, not full diagnostic tail acceptance. Esc returns clean editor row3/1of1ERROR, full lower borders/status. First native attempt restored IDE saved40x120 display; discarded, explicit Display25x80 applied before finalcaptures.",
+    "files": {
+      "hbide-q185-end.png": "0929e8b31af8995e66a6bd5ed89c61bf45835e9d4ab917561795cb23ef10ef92",
+      "hbide-q185-return.png": "fc31ce97a849a313bd83ff8ab99e5d90915ff66425c11e6869729587f1bea325"
+    }
+  },
+  "limits": "2PTY38checks74guards34docsPASS. 25x80 and40x120 60line synthetic output. Not all terminal sizes/ANSI/encoding/horizontal-tail/success-output/Windows/Cancel/responsiveness/fullmatrix/M2closure."
+}

@@ -78,7 +78,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
   host y toolchain.
 - **M6:** no repetir una matriz de horas por cada cambio documental.
   Q164 acredita 309 modos sobre su fuente, anterior al arreglo Q169. El
-  registro actual contiene 335 modos; ese numero es un plan, no 335 PASS.
+  registro actual contiene 336 modos; ese numero es un plan, no 336 PASS.
   La proxima consolidacion debe congelar una fuente que incluya el arreglo
   y reconciliar las pruebas nuevas sin heredar los PASS de Q164.
 - **M2:** Q176-Q178 comprueban compilador ausente, restauracion sin reiniciar,
