@@ -3019,6 +3019,33 @@
         "test_help_wheel_pty.py"
       ],
       "contract": "Actual Contents reading-pane wheel xterm fixture on long generated manual: Home gives top1 with max>3, down moves1to2, up restores1, extra up clamps; End reaches max, down clamps, up movesmax-1. Dirty source return/Undo exact. Bounded 40x120/long topic only, not index wheel/other panes/search mode/other terminals/Windows; counters not pixel proof; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-IDE-VISIBLE-EDITOR-WHEEL": {
+      "source": "hbide.prg",
+      "context": "METHOD Activate() CLASS HBIde",
+      "condition": "elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD",
+      "tests": [
+        "test_editor_wheel_pty.py"
+      ],
+      "contract": "Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-EDITOR-WHEEL-UP": {
+      "source": "editor.prg",
+      "context": "METHOD EditKey( nKey ) CLASS HBSrcEdit",
+      "condition": "case nKeyStd == K_MWFORWARD",
+      "tests": [
+        "test_editor_wheel_pty.py"
+      ],
+      "contract": "Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-EDITOR-WHEEL-DOWN": {
+      "source": "editor.prg",
+      "context": "METHOD EditKey( nKey ) CLASS HBSrcEdit",
+      "condition": "case nKeyStd == K_MWBACKWARD",
+      "tests": [
+        "test_editor_wheel_pty.py"
+      ],
+      "contract": "Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }
