@@ -3110,6 +3110,33 @@
         "test_debug_help_close_mouse_pty.py"
       ],
       "contract": "Actual debugger modal Help at2,2: body/outside/titlecol8 clicks keep dialog open, topic column still selects Function, top-left close span col3 closes and right edgecol5 closes after exact Keys reopen. Resume writes expected locals and source bytes unchanged. Bounded Help dialog only, not every modal/caller/close coordinate/allwindows/terminal/Windows; PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-READER-ARM-BUTTON": {
+      "source": "hbwindow.prg",
+      "context": "METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow",
+      "condition": "case nCode == DSNK_MLDOWN",
+      "tests": [
+        "test_designer_button_mouse_route_pty.py"
+      ],
+      "contract": "C87 F9 generated button with current checkout helper runtime: press arms without action, same-button release executes once, press-in/release-out and press-out/release-in do not activate, rapid double sequence adds one action, Esc exits. Runtime helper source identity in Q450 receipt separate from IDE binary. One PushButton/xterm only, not all GET controls/drag/focus handlers/otherterminals/Windows; PTY/action marker not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-READER-DOUBLE-SUPPRESS": {
+      "source": "hbwindow.prg",
+      "context": "METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow",
+      "condition": "case nCode == DSNK_MLDBL",
+      "tests": [
+        "test_designer_button_mouse_route_pty.py"
+      ],
+      "contract": "C87 F9 generated button with current checkout helper runtime: press arms without action, same-button release executes once, press-in/release-out and press-out/release-in do not activate, rapid double sequence adds one action, Esc exits. Runtime helper source identity in Q450 receipt separate from IDE binary. One PushButton/xterm only, not all GET controls/drag/focus handlers/otherterminals/Windows; PTY/action marker not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-READER-RELEASE-BUTTON": {
+      "source": "hbwindow.prg",
+      "context": "METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow",
+      "condition": "case nCode == DSNK_MLUP",
+      "tests": [
+        "test_designer_button_mouse_route_pty.py"
+      ],
+      "contract": "C87 F9 generated button with current checkout helper runtime: press arms without action, same-button release executes once, press-in/release-out and press-out/release-in do not activate, rapid double sequence adds one action, Esc exits. Runtime helper source identity in Q450 receipt separate from IDE binary. One PushButton/xterm only, not all GET controls/drag/focus handlers/otherterminals/Windows; PTY/action marker not pixels; link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }

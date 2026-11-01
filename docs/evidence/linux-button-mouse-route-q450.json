@@ -1,0 +1,18 @@
+{
+  "scope": "Q450 C87 F9-generated button artifact; linked runtime helpers from checkout48641da, not C87binary code acceptance for helper state machine",
+  "ide_source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "ide_binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "helper_checkout_source": "48641dabf1984b1363b207a6e03df076ac9490a4",
+  "helper_sources_sha256": {
+    "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+    "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+    "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+    "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+  },
+  "initial_log": "PASS edited action persisted exact\nPASS edited focus persisted exact\nPASS actual F9 emits edited action and focus\nPASS generated inline-edited-button artifact compiles\nPASS Press arms button without activating\nPASS Release on same armed button activates once\nPASS Release outside after button press does not activate\nPASS Press outside release inside does not activate\nFAIL Double click sequence adds only one activation\nPASS Mouse fixture exits through Esc\nTOTAL 9 PASS 1 FAIL; evidence /tmp/hbide-source-run-t7zsz0h4\n",
+  "initial_input_correction": "0.2second wait between every edge generated two singles, not doubleclick; callsxxx valid two singles. Final double uses0.01edge wait and0.8settle,10PASS. No product fix.",
+  "final_log": "PASS edited action persisted exact\nPASS edited focus persisted exact\nPASS actual F9 emits edited action and focus\nPASS generated inline-edited-button artifact compiles\nPASS Press arms button without activating\nPASS Release on same armed button activates once\nPASS Release outside after button press does not activate\nPASS Press outside release inside does not activate\nPASS Double click sequence adds only one activation\nPASS Mouse fixture exits through Esc\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-fwvihati\n",
+  "runtime_artifact_sha256": "4e33efb05f0c5a8abf61deb49771b239c052e27ea2557f102fc5a836d8cd1e2b",
+  "runtime_binary_sha256": "c1f55bcd0d310c769dfbc8c6d41821f7f681bb98763168b8cf1d560fcf9fdda6",
+  "limits": "One button arm/release/crossboundary/double suppression only; sourcecheckout helperruntime not independent allcontrol/terminal/pixels/Windows/fullmatrix/license/hitoclosure"
+}
