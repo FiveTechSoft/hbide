@@ -5184,3 +5184,13 @@ SaveAllfailure/conflictCancel/Reload. ConQ217son14modosdistintos,no
 sumarosextrasC30duplicados. Sinfallos/reintentosdeestosbloques.
 No nuevoproducto/pixeles/modelos/Windows/matriz353/cierreM1.
 Evidencia: docs/evidence/linux-c30-file-blocks23-q218.json.
+
+### Q219 (1 noviembre 2026): C30UTF8/compiladorausente/restaurado
+
+3modosPASSmismobin96d77549/export049b533:UTF8horizontal,compiladorausente
+yrestauracionensamasesion. 17distintosconQ217/Q218,nofull353.
+Primerintento2harnessTypeErrorcompilerNoneANTESdearrancarIDEporquePATH
+delconductorcareciahbmk2paracrearfixture. PATHhostcorregidoyrerunPASS;
+PATHdelaAPPsiguevacioparafalloausente. Fallosinicialesconservados.
+Sinfixproducto/nuevospixeles/modelos/Windows/hitos.
+Evidencia: docs/evidence/linux-c30-build-block4-q219.json.

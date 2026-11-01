@@ -1,0 +1,109 @@
+{
+  "scope": "FrozenC30 three-mode block only.17distinct withQ217/Q218,not full353/Windows/pixels/productfix.",
+  "block": {
+    "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+    "source": "049b5332628bbb8faa4458863405bc20438320ca",
+    "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+    "cases": [
+      {
+        "name": "gcc-utf8-horizontal",
+        "command": [
+          "test_gcc_caret_column_pty.py",
+          "--column-mode",
+          "color",
+          "--output-viewer",
+          "--utf8-viewer",
+          "--utf8-scroll"
+        ],
+        "exit": 0,
+        "seconds": 13.562041282653809,
+        "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+        "binary_unchanged": true,
+        "log": "/tmp/hbide-c30/matrix-blocks/gcc-utf8-horizontal.log",
+        "printed_failure": false
+      },
+      {
+        "name": "compiler-absent",
+        "command": [
+          "test_missing_compiler_pty.py"
+        ],
+        "exit": 0,
+        "seconds": 6.324206829071045,
+        "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+        "binary_unchanged": true,
+        "log": "/tmp/hbide-c30/matrix-blocks/compiler-absent.log",
+        "printed_failure": false
+      },
+      {
+        "name": "compiler-restore",
+        "command": [
+          "test_missing_compiler_pty.py",
+          "--restore"
+        ],
+        "exit": 0,
+        "seconds": 9.05484676361084,
+        "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+        "binary_unchanged": true,
+        "log": "/tmp/hbide-c30/matrix-blocks/compiler-restore.log",
+        "printed_failure": false
+      }
+    ]
+  },
+  "initial": {
+    "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+    "source": "049b5332628bbb8faa4458863405bc20438320ca",
+    "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+    "cases": [
+      {
+        "name": "gcc-utf8-horizontal",
+        "command": [
+          "test_gcc_caret_column_pty.py",
+          "--column-mode",
+          "color",
+          "--output-viewer",
+          "--utf8-viewer",
+          "--utf8-scroll"
+        ],
+        "exit": 0,
+        "seconds": 13.561697959899902,
+        "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+        "binary_unchanged": true,
+        "log": "/tmp/hbide-c30/matrix-blocks/gcc-utf8-horizontal.log",
+        "printed_failure": false
+      },
+      {
+        "name": "compiler-absent",
+        "command": [
+          "test_missing_compiler_pty.py"
+        ],
+        "exit": 1,
+        "seconds": 0.06741118431091309,
+        "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+        "binary_unchanged": true,
+        "log": "/tmp/hbide-c30/matrix-blocks/compiler-absent.log",
+        "printed_failure": true
+      },
+      {
+        "name": "compiler-restore",
+        "command": [
+          "test_missing_compiler_pty.py",
+          "--restore"
+        ],
+        "exit": 1,
+        "seconds": 0.06281852722167969,
+        "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+        "binary_unchanged": true,
+        "log": "/tmp/hbide-c30/matrix-blocks/compiler-restore.log",
+        "printed_failure": true
+      }
+    ]
+  },
+  "logs": {
+    "gcc-utf8-horizontal.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Real colored GCC output viewer opens\nPASS Real GCC diagnostic readable without color notation\nPASS Explicit UTF8 view renders real GCC quotes\nPASS UTF8 horizontal tail accessible\nPASS UTF8 left clamp restores complete multibyte start\nPASS Legacy view remains selectable\nPASS UTF8 repeated selection preserves original display copy\nPASS Esc restores project diagnostics\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column color\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 14 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6_11w7ff\n",
+    "compiler-absent.log": "PASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-e17cdefr\n",
+    "compiler-restore.log": "PASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS restored compiler produces successful output\nPASS same session launches fresh executable only\nPASS fresh executable replaces old bytes\nPASS rebuild keeps source exact\nPASS successful retry clears old failure diagnostics\nPASS editor remains usable after repeated failure\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-rm5cfme0\n",
+    "compiler-absent-first.log": "Traceback (most recent call last):\n  File \"/tmp/hbide-c30/source/tests/test_missing_compiler_pty.py\", line 23, in <module>\n    subprocess.run([compiler,str(target),'-quiet','-o'+str(work/'missing')],check=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)\n  File \"/usr/lib/python3.10/subprocess.py\", line 503, in run\n    with Popen(*popenargs, **kwargs) as process:\n  File \"/usr/lib/python3.10/subprocess.py\", line 971, in __init__\n    self._execute_child(args, executable, preexec_fn, close_fds,\n  File \"/usr/lib/python3.10/subprocess.py\", line 1738, in _execute_child\n    and os.path.dirname(executable)\n  File \"/usr/lib/python3.10/posixpath.py\", line 152, in dirname\n    p = os.fspath(p)\nTypeError: expected str, bytes or os.PathLike object, not NoneType\n",
+    "compiler-restore-first.log": "Traceback (most recent call last):\n  File \"/tmp/hbide-c30/source/tests/test_missing_compiler_pty.py\", line 23, in <module>\n    subprocess.run([compiler,str(target),'-quiet','-o'+str(work/'missing')],check=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)\n  File \"/usr/lib/python3.10/subprocess.py\", line 503, in run\n    with Popen(*popenargs, **kwargs) as process:\n  File \"/usr/lib/python3.10/subprocess.py\", line 971, in __init__\n    self._execute_child(args, executable, preexec_fn, close_fds,\n  File \"/usr/lib/python3.10/subprocess.py\", line 1738, in _execute_child\n    and os.path.dirname(executable)\n  File \"/usr/lib/python3.10/posixpath.py\", line 152, in dirname\n    p = os.fspath(p)\nTypeError: expected str, bytes or os.PathLike object, not NoneType\n"
+  },
+  "retry_cause": "Host harness PATH lacked hbmk2 to build previous-executable fixture,compilerNone TypeError before IDE launch. Add host compiler PATH; app PATH remains empty for missing-compiler scenario."
+}
