@@ -1926,6 +1926,7 @@ METHOD CutSelection() CLASS HBSrcEdit
       // Whole physical lines were removed; the equal final fragment is
       // the surviving endpoint, never a replacement for the deleted copy.
       ::RecordEdit(aBefore,.T.,aSel[1]-1)
+      ::Display()
    else
       ::PushOp( aSel[ 1 ], aOld, { HBIDE_LinePack( ::aText[ aSel[ 1 ] ] ) }, .T. )
    endif
