@@ -5396,3 +5396,14 @@ propios hashados/binario inalterado, sin fallo/reintento en estas24.264
 variantes distintas cotejadas con plan353/normalizaciónQ223. No producto
 nuevo/píxeles/modelos/Windows/matriz completa/hitos.
 Evidencia: docs/evidence/linux-c30-editor-lexical-blocks7481-q236.json.
+
+### Q237 (1 noviembre 2026): C30 GCC y documento anterior
+
+11 variantes adicionales PASS mismo C30 96d77549/export049b533: viewer
+UTF8/color, caret color/byte/TAB4/TAB16/ausente/default, prevdoc single/
+compact256/normal. Remapeo y fallback de columna solo fixtures acotadas,
+no corrección semántica de toda columna GCC ni todos terminales. Tests
+propios hashados/binario inalterado, sin fallo/reintento en estas11.275
+variantes distintas cotejadas con plan353/normalizaciónQ223. No producto
+nuevo/píxeles/modelos/Windows/matriz completa/hitos.
+Evidencia: docs/evidence/linux-c30-gcc-prevdoc-blocks8285-q237.json.

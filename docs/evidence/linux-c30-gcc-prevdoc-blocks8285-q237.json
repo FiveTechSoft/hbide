@@ -1,0 +1,198 @@
+{
+  "scope": "Frozen C30 GCC caret/output and previous-document shortcuts.11additional command variants;275distinct across blocks1..85 after Q223 normalization. Not full353/semantic-GCC-column/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "gcc-utf8-output-viewer",
+          "command": [
+            "test_gcc_caret_column_pty.py",
+            "--column-mode",
+            "color",
+            "--output-viewer",
+            "--utf8-viewer"
+          ],
+          "exit": 0,
+          "seconds": 10.617288589477539,
+          "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/gcc-utf8-output-viewer.log",
+          "printed_failure": false
+        },
+        {
+          "name": "gcc-color-output-viewer",
+          "command": [
+            "test_gcc_caret_column_pty.py",
+            "--column-mode",
+            "color",
+            "--output-viewer"
+          ],
+          "exit": 0,
+          "seconds": 8.62959623336792,
+          "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/gcc-color-output-viewer.log",
+          "printed_failure": false
+        },
+        {
+          "name": "gcc-caret-color",
+          "command": [
+            "test_gcc_caret_column_pty.py",
+            "--column-mode",
+            "color"
+          ],
+          "exit": 0,
+          "seconds": 6.875041961669922,
+          "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-color.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "gcc-caret-byte",
+          "command": [
+            "test_gcc_caret_column_pty.py",
+            "--column-mode",
+            "byte"
+          ],
+          "exit": 0,
+          "seconds": 6.875782012939453,
+          "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-byte.log",
+          "printed_failure": false
+        },
+        {
+          "name": "gcc-caret-tab4",
+          "command": [
+            "test_gcc_caret_column_pty.py",
+            "--column-mode",
+            "tab4"
+          ],
+          "exit": 0,
+          "seconds": 6.875168323516846,
+          "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-tab4.log",
+          "printed_failure": false
+        },
+        {
+          "name": "gcc-caret-tab16",
+          "command": [
+            "test_gcc_caret_column_pty.py",
+            "--column-mode",
+            "tab16"
+          ],
+          "exit": 0,
+          "seconds": 6.877317667007446,
+          "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-tab16.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "gcc-caret-absent",
+          "command": [
+            "test_gcc_caret_column_pty.py",
+            "--column-mode",
+            "no-caret"
+          ],
+          "exit": 0,
+          "seconds": 6.87569522857666,
+          "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-absent.log",
+          "printed_failure": false
+        },
+        {
+          "name": "gcc-caret-column",
+          "command": [
+            "test_gcc_caret_column_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 6.876641750335693,
+          "test_sha256": "7923e1a62a056e98304a9780cd4b54366d75745340ac925789d6ebe2d5fba511",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/gcc-caret-column.log",
+          "printed_failure": false
+        },
+        {
+          "name": "prevdoc-shortcut-single",
+          "command": [
+            "test_prevdoc_shortcut_pty.py",
+            "--single"
+          ],
+          "exit": 0,
+          "seconds": 6.703911066055298,
+          "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/prevdoc-shortcut-single.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "prevdoc-shortcut-compact-256",
+          "command": [
+            "test_prevdoc_shortcut_pty.py",
+            "--compact-256"
+          ],
+          "exit": 0,
+          "seconds": 10.306582927703857,
+          "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/prevdoc-shortcut-compact-256.log",
+          "printed_failure": false
+        },
+        {
+          "name": "prevdoc-shortcut",
+          "command": [
+            "test_prevdoc_shortcut_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 10.375117063522339,
+          "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/prevdoc-shortcut.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 275,
+  "logs": {
+    "gcc-utf8-output-viewer.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Real colored GCC output viewer opens\nPASS Real GCC diagnostic readable without color notation\nPASS Explicit UTF8 view renders real GCC quotes\nPASS Legacy view remains selectable\nPASS Esc restores project diagnostics\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column color\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 11 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-_fc7p89y\n",
+    "gcc-color-output-viewer.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Real colored GCC output viewer opens\nPASS Real GCC diagnostic readable without color notation\nPASS Esc restores project diagnostics\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column color\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-nqv0snbu\n",
+    "gcc-caret-color.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column color\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-qokul9yo\n",
+    "gcc-caret-byte.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column byte\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-rpg8dwu5\n",
+    "gcc-caret-tab4.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column tab4\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-2fe_aczb\n",
+    "gcc-caret-tab16.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column tab16\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-hft4_ts1\n",
+    "gcc-caret-absent.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column no-caret\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-hfp1rj8o\n",
+    "gcc-caret-column.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column default\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-4es1cq8w\n",
+    "prevdoc-shortcut-single.log": "PASS Single file opened\nPASS Previous shortcut single buffer byte inert\nPASS No dirty caption after inert shortcut\nPASS Following typing saves at unchanged cursor\nPASS Undo following inert shortcut exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-__vcat13\n",
+    "prevdoc-shortcut-compact-256.log": "PASS Third of three opened files active\nPASS CtrlShiftF6 goes third to second, not forward\nPASS Typing F2 saves exact second destination\nPASS Previous second to first\nPASS Previous first wraps to third\nPASS Return to second retains modified text\nPASS Undo remains second-only exact\nPASS CtrlF6 forward returns third\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-yuukj_3j\n",
+    "prevdoc-shortcut.log": "PASS Third of three opened files active\nPASS CtrlShiftF6 goes third to second, not forward\nPASS Typing F2 saves exact second destination\nPASS Previous second to first\nPASS Previous first wraps to third\nPASS Return to second retains modified text\nPASS Undo remains second-only exact\nPASS CtrlF6 forward returns third\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-96kv9py6\n"
+  }
+}
