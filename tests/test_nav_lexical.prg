@@ -177,6 +177,12 @@ procedure Main()
  Check(Len(a)==1.and.a[1,1]=='Main'.and.a[1,3]==4,'BOM before TEXT keeps phantom excluded',@nPass,@nFail)
  a:=HBIDE_ScanProcs(Chr(239)+Chr(187)+Chr(191)+'#pragma begindump'+hb_eol()+'procedure Hidden()'+hb_eol()+'#pragma enddump'+hb_eol()+'procedure Main()')
  Check(Len(a)==1.and.a[1,1]=='Main'.and.a[1,3]==4,'BOM before C dump keeps phantom excluded',@nPass,@nFail)
+ for each c in {'END CLASS','END'+Chr(9)+'CLASS','END CLASS LOCKED // done'}
+ a:=HBIDE_ScanProcs('CREATE CLASS Demo'+hb_eol()+'METHOD Ping()'+hb_eol()+c+hb_eol()+'METHOD Ping()')
+ Check(Len(a)==2.and.a[2,1]=='Demo:Ping'.and.a[2,3]==4,'END CLASS alias resumes implicit implementation: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('CREATE CLASS Demo'+hb_eol()+'END CLASSNAME'+hb_eol()+'METHOD Hidden()')
+ Check(Len(a)==1,'END CLASSNAME is not END CLASS',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

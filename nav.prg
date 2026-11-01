@@ -83,7 +83,9 @@ FUNCTION HBIDE_ScanProcs( cText )
       aTok := hb_ATokens( StrTran( StrTran( cL, "(", " ( " ), ")", " ) " ), " " )
       // collapse blanks left by consecutive spaces
       aTok := HBIDE_Compact( aTok )
-      IF ! Empty(aTok) .AND. Upper(aTok[1]) == "ENDCLASS"
+      // hbclass.ch CLASSY spelling is the same declaration terminator.
+      IF ! Empty(aTok) .AND. ( Upper(aTok[1]) == "ENDCLASS" .OR. ;
+         ( Len(aTok) >= 2 .AND. Upper(aTok[1]) == "END" .AND. Upper(aTok[2]) == "CLASS" ) )
          lClassBody := .F.
          LOOP
       ENDIF
