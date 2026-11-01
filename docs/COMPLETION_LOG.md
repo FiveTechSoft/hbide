@@ -5764,3 +5764,34 @@ no embebidos en C75. Windows/install/licencias/M5/M6/políticas siguen abiertos.
 Evidencias: linux-recovery-encoding-c73-q355.json,
 linux-empty-line-clipboard-q357.json, linux-empty-clipboard-guards-q358.json,
 linux-clean-candidate-q359.json.
+
+### Q361-Q371 (1 noviembre 2026): aceptación focal y selección virtual
+
+Q36137modelosGTSTD fresh fuente cb77bfb PASS separados, no aceptación IDE.
+Q362C75 cinco scripts clipboard lifecycle/UTF8/CtrlTnoop/journalUndoReload PASS;
+dos invocaciones sin binario posicional inválidas retenidas antes de corregir.
+Q363cinco Replace33checks PASS; Q364 límite UTF8 frente a UTF8EX documentado,
+probe biblioteca separado, sin cambiar CP/toolchain ni prometer Unicodecasefold.
+Q365cinco selecciónvirtual/Duplicate/TAB30checks PASS. Q366cinco proyectos PASS:
+BOM/EOF/extensionless y diagnósticos reales leading-space/colon con GCCwrapper.
+Q367cinco modos fallo-promoción/retry/output/argv PASS; compilerfixtures acotados.
+Todos estos bloques son C75, no se heredan por candidatos posteriores.
+Q368detecta regresión clipboard de selección virtual sin bytes/límites: C75Copy
+3PASS1FAIL y Cut3PASS1FAIL independientes. C76focal ambos4/0; seis regresiones
+PASS y modelo204/0 separado. Primer fixture combinado contaminado retenido.
+Presencia de selección depende ahora de contenido real; CopyLine/DeleteLine
+vacías siguen válidas, Cut de límite real conserva semántica de dos fragmentos.
+Par C75/C76 nativo1202x762 completo inspeccionado: ya no se inserta líneaespuria.
+Q369compactación temporal reversible11archives con SHAdecomprimido verificado,
+sin retirar árboles/binarios/logs/manifiestos/evidencia; no cambio de producto.
+Q370C77 limpio identificado fuente74db43fe4e4bc5dae5f54e4663a4ffb8e9d0abd9,
+bin b0ad4e6bb4ad5f5d87eef67111995dfdce3963c59745e2b101f543ea323beaeb.
+Builderstrip-debug/Aboutrevision/docs34byteexact/ldd/8smokes y seis modosclipboard
+27checksPASS sobre ese binario intacto. Último candidato identificado, sin
+heredar matriz/modelos/píxeles; C30 único plan histórico completo. Q371docs
+posteriores no embebidos en C77, sin rebuild por docs. M5/M6/Windows/install/
+licencias y políticas pendientes abiertos. Evidencias linux-model-baseline-q361,
+linux-clipboard-recovery-c75-q362, linux-replace-c75-q363,
+utf8-casefold-investigation-q364, linux-selection-virtual-c75-q365,
+linux-project-c75-q366, linux-build-retry-c75-q367, linux-virtual-clipboard-q368,
+linux-clean-candidate-q370 (JSON en docs/evidence).
