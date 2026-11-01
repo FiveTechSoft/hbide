@@ -2955,6 +2955,16 @@
         "test_editor_mouse_utf8_pty.py"
       ],
       "contract": "Actual xterm UTF8 terminal click after accented word maps to exact source byte; insertion and Undo preserve fixture bytes including BOM/TAB/mixedEOL. Bounded position only, not every coordinate/scroll/terminal/Windows; link is not current runtime PASS. Event branch is not a unique feature; routing across parent surfaces and every hit-test remain outside this link."
+    },
+    "GESTURE-DESIGNER-INSPECTOR-HEADER": {
+      "source": "designer.prg",
+      "context": "METHOD Activate() CLASS HbDesigner",
+      "condition": "case nKey == K_LBUTTONDOWN",
+      "tests": [
+        "test_designer_inspector_close_pty.py",
+        "test_designer_inspector_drag_anchor_pty.py"
+      ],
+      "contract": "Inspector-visible, non-placing main dispatcher only: close glyph hides panel preserving full control JSON and F4 reopens same position; header drag from clamped visible origin follows immediately horizontally, vertically and after outward edge reversal. Bounded 40x120/--small25x80 ComboBox fixtures and xterm mouse, not placement/control drag/all hit-tests, inspector-focused loop, every terminal or Windows. PTY cells/JSON not pixel proof; link is not current runtime PASS; event branch not unique feature."
     }
   }
 }

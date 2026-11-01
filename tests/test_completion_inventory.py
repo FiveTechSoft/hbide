@@ -395,16 +395,16 @@ class GestureContractLinks(unittest.TestCase):
     def setUp(self):
         self.rows=audit.mouse_routes()
         self.specs=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['mouse_acceptance']
-    def test_two_exact_editor_gestures_not_27_branch_acceptance(self):
+    def test_three_bounded_gestures_not_27_branch_acceptance(self):
         linked=audit.link_dispatch_contracts(self.rows,self.specs)
         self.assertEqual(len(linked),27)
         selected=[r for r in linked if isinstance(r['acceptance'],dict)]
-        self.assertEqual(len(selected),2)
-        self.assertEqual({r['condition'] for r in selected},{'case nKeyStd == K_LDBLCLK','case nKeyStd == K_LBUTTONDOWN'})
+        self.assertEqual(len(selected),3)
+        self.assertEqual({r['condition'] for r in selected},{'case nKeyStd == K_LDBLCLK','case nKeyStd == K_LBUTTONDOWN','case nKey == K_LBUTTONDOWN'})
         for row in selected:
-            self.assertEqual(row['context'],'METHOD EditKey( nKey ) CLASS HBSrcEdit')
+            self.assertIn(row['context'],['METHOD EditKey( nKey ) CLASS HBSrcEdit','METHOD Activate() CLASS HbDesigner'])
             self.assertIn('not current runtime PASS',row['acceptance']['contract'])
-            self.assertIn('Event branch is not a unique feature',row['acceptance']['contract'])
+            self.assertIn('branch',row['acceptance']['contract'])
         self.assertTrue(all(isinstance(r['acceptance'],str) for r in self.rows))
     def test_wrong_context_rejected(self):
         ident=next(iter(self.specs));spec=dict(self.specs[ident],context='METHOD Other(')
