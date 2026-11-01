@@ -119,6 +119,18 @@ try:
     send(b'\x1b[1;5H')
     check('contracted jump clears middle row',scr.at[10][5]!=(0,7))
     check('jump leaves source bytes untouched',target.read_bytes()==original)
+    send(b'\x1b[19~')  # cancel old empty mark
+    send(b'\x1b[1;5F');send(b'\x1b[19~')
+    send(b'\x1b[1;5H')
+    check('reverse jump paints middle selected row',scr.at[10][5]==(0,7))
+    send(b'\x1b[1;5F')
+    check('reverse contraction clears middle row',scr.at[10][5]!=(0,7))
+    send(b'\x1b[19~');send(b'\x1b[1;5H');send(b'\x1b[19~')
+    send(b'\x1b[6~')
+    check('PageDown paints middle selected row',scr.at[10][5]==(0,7))
+    send(b'\x1b[5~')
+    check('PageUp contraction clears middle row',scr.at[10][5]!=(0,7))
+
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)

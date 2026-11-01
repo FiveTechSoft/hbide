@@ -1,0 +1,9 @@
+{
+  "scope": "C38 exact binary, postexport extended jump harness8checks; no product/newbuild/model/pixel/fullmatrix/Windows/hito.",
+  "source": "c4222674473cfeb524f5bde126bae7db1b07ef28",
+  "binary_sha256": "284dc4769e99fd167434c42de7708ea6163cb97fd3a80b4d504ad429f7bb5115",
+  "test_sha256": "c715da526f746b3c7d2e1a579eb9259b36b56b31c110b3c2b3f7504f5cfe95d7",
+  "log": "PASS jump extends mark\nPASS middle selected row painted\nPASS contracted jump clears middle row\nPASS jump leaves source bytes untouched\nPASS reverse jump paints middle selected row\nPASS reverse contraction clears middle row\nPASS PageDown paints middle selected row\nPASS PageUp contraction clears middle row\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-3n_wmrns\n",
+  "exit": 0,
+  "notes": "Adds reverseCtrlHome/CtrlEnd and PageDown/PageUp extension/contraction.8checks includes original4, not8newchecks. No failures/retries on extended harness."
+}
