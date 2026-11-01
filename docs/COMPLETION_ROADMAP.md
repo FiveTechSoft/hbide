@@ -798,3 +798,16 @@ en export fuera.git. Cuatro arrastres horizontal/vertical25x80/40x120
 y shrink25x80. Nativepair exactbin bottomclamp->5filasarriba revisado,
 underlay limpio/bordescompletos. No release/install/licencias/Windows/
 matriz309heredada/global/hitos. Evidencia `docs/evidence/linux-candidate-c27.json`.
+
+
+### Q171 (1 noviembre 2026): reconstruccion independiente Linux
+
+Dos extracciones frescas de source.tar C27 en directorios distintos,
+compiler/strip verificados por hash, buildinfo exacto y sin prebuilts
+heredados. Ambas reconstrucciones strip-debug byte-identicas entre si
+y al candidato851540d50a7451ba5b200a1cb9bf1c3e9bf3d40851ee7cc1f12493c359fe8d93.
+Fuente del candidato4f9c681c605e8386b56cef228eeb3f21f1162031. Runner555a4b1,
+67guardas34docsPASS. Es comparacion acotada al mismo host/toolchain/librerias,
+no determinismo entre maquinas/compiladores/entornos, instalacion limpia,
+licencias, Windows, nuevo runtime/productfix/native ni cierre de M5.
+Evidencia `docs/evidence/linux-candidate-rebuild-q171.json`.

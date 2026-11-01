@@ -1,0 +1,101 @@
+{
+  "scope": "Q171 bounded same-host identical-toolchain reproducibility of C27strip-debug candidate, not general deterministic distribution.",
+  "result": {
+    "scope": "Compare two independent strip-debug rebuilds of an existing Linux candidate.\nBounded same-host/compiler comparison only. Does not clear release or install.\n",
+    "source": "4f9c681c605e8386b56cef228eeb3f21f1162031",
+    "candidate_sha256": "851540d50a7451ba5b200a1cb9bf1c3e9bf3d40851ee7cc1f12493c359fe8d93",
+    "archive_sha256": "e73835ff3af82a36d77193ebd1d621cbd158f09183708c9c7989d76a493b0999",
+    "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+    "strip_sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7",
+    "started": 1793517579.4978333,
+    "builds": [
+      {
+        "name": "a",
+        "build_exit": 0,
+        "log": "/tmp/hbide-q171-final/a-build.log",
+        "strip_exit": 0,
+        "binary_sha256": "851540d50a7451ba5b200a1cb9bf1c3e9bf3d40851ee7cc1f12493c359fe8d93",
+        "binary": "/tmp/hbide-q171-final/a-hbide",
+        "matches_candidate": true
+      },
+      {
+        "name": "b",
+        "build_exit": 0,
+        "log": "/tmp/hbide-q171-final/b-build.log",
+        "strip_exit": 0,
+        "binary_sha256": "851540d50a7451ba5b200a1cb9bf1c3e9bf3d40851ee7cc1f12493c359fe8d93",
+        "binary": "/tmp/hbide-q171-final/b-hbide",
+        "matches_candidate": true
+      }
+    ],
+    "ok": true,
+    "finished": 1793517586.0272486
+  },
+  "runner_source": "555a4b1",
+  "runner_sha256": "4161902b3c50da288abf0c0e51511ffe9a7548e7888be0bc5d8561a5b889a7a5",
+  "logs": {
+    "a-build.log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling 'hbide.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n100\n\n200\n\n100\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\nLines 4717, Functions/Procedures 80\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/hbide.c'... Done.\nCompiling 'editor.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\nLines 3491, Functions/Procedures 70\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/editor.c'... Done.\nCompiling 'safeio.prg'...\n\n100\n\n100\n\nLines 379, Functions/Procedures 4\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/safeio.c'... Done.\nCompiling 'hbmenu.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\nLines 1561, Functions/Procedures 12\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/hbmenu.c'... Done.\nCompiling 'hbwindow.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\nLines 2485, Functions/Procedures 33\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/hbwindow.c'... Done.\nCompiling 'designer.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\n3100\n\n3200\n\n3300\n\n3400\n\n3500\n\n3600\n\n3700\n\n3800\n\n3900\n\n4000\n\n4100\n\n4200\n\n4300\n\n4400\n\nLines 5611, Functions/Procedures 128\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/designer.c'... Done.\nCompiling 'hbbutton.prg'...\n\n100\n\nLines 182, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/hbbutton.c'... Done.\nCompiling 'hbgetu.prg'...\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\nLines 1695, Functions/Procedures 24\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/hbgetu.c'... Done.\nCompiling 'help.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\nLines 2235, Functions/Procedures 27\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/help.c'... Done.\nCompiling 'project.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\nLines 1092, Functions/Procedures 14\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/project.c'... Done.\nCompiling 'projectui.prg'...\n\n100\n\n200\n\n300\n\n100\n\nLines 583, Functions/Procedures 4\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/projectui.c'... Done.\nCompiling 'nav.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 804, Functions/Procedures 11\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/nav.c'... Done.\nCompiling 'recovery.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\nLines 675, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/recovery.c'... Done.\nCompiling 'hbdebug/dbgbrwsr.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\nLines 1011, Functions/Procedures 13\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbgbrwsr.c'... Done.\nCompiling 'hbdebug/dbghelp.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 705, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbghelp.c'... Done.\nCompiling 'hbdebug/dbgmenu.prg'...\n\n100\n\n200\n\nLines 222, Functions/Procedures 1\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbgmenu.c'... Done.\nCompiling 'hbdebug/dbgtarr.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1399, Functions/Procedures 9\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbgtarr.c'... Done.\nCompiling 'hbdebug/dbgthsh.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1409, Functions/Procedures 10\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbgthsh.c'... Done.\nCompiling 'hbdebug/dbgtinp.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1413, Functions/Procedures 9\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbgtinp.c'... Done.\nCompiling 'hbdebug/dbgtmenu.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 1784, Functions/Procedures 21\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbgtmenu.c'... Done.\nCompiling 'hbdebug/dbgtmitm.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 810, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbgtmitm.c'... Done.\nCompiling 'hbdebug/dbgtobj.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 1458, Functions/Procedures 8\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbgtobj.c'... Done.\nCompiling 'hbdebug/dbgtwin.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\nLines 1677, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbgtwin.c'... Done.\nCompiling 'hbdebug/dbgwa.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 946, Functions/Procedures 7\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbgwa.c'... Done.\nCompiling 'hbdebug/tbrwtext.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\nLines 1063, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/tbrwtext.c'... Done.\nCompiling 'hbdebug/dbgscript.prg'...\n\n100\n\nLines 196, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/dbgscript.c'... Done.\nCompiling 'hbdebug/debugger.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n100\n\n200\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\n3100\n\n3200\n\n3300\n\n3400\n\n3500\n\n3600\n\n3700\n\n3800\n\n3900\n\n4000\n\n4100\n\n4200\n\n4300\n\n4400\n\nLines 6143, Functions/Procedures 133\nGenerating C source output to '/tmp/hbmk_0w92x0.dir/debugger.c'... Done.\n",
+    "b-build.log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling 'hbide.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n100\n\n200\n\n100\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\nLines 4717, Functions/Procedures 80\nGenerating C source output to '/tmp/hbmk_4528bl.dir/hbide.c'... Done.\nCompiling 'editor.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\nLines 3491, Functions/Procedures 70\nGenerating C source output to '/tmp/hbmk_4528bl.dir/editor.c'... Done.\nCompiling 'safeio.prg'...\n\n100\n\n100\n\nLines 379, Functions/Procedures 4\nGenerating C source output to '/tmp/hbmk_4528bl.dir/safeio.c'... Done.\nCompiling 'hbmenu.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\nLines 1561, Functions/Procedures 12\nGenerating C source output to '/tmp/hbmk_4528bl.dir/hbmenu.c'... Done.\nCompiling 'hbwindow.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\nLines 2485, Functions/Procedures 33\nGenerating C source output to '/tmp/hbmk_4528bl.dir/hbwindow.c'... Done.\nCompiling 'designer.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\n3100\n\n3200\n\n3300\n\n3400\n\n3500\n\n3600\n\n3700\n\n3800\n\n3900\n\n4000\n\n4100\n\n4200\n\n4300\n\n4400\n\nLines 5611, Functions/Procedures 128\nGenerating C source output to '/tmp/hbmk_4528bl.dir/designer.c'... Done.\nCompiling 'hbbutton.prg'...\n\n100\n\nLines 182, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_4528bl.dir/hbbutton.c'... Done.\nCompiling 'hbgetu.prg'...\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\nLines 1695, Functions/Procedures 24\nGenerating C source output to '/tmp/hbmk_4528bl.dir/hbgetu.c'... Done.\nCompiling 'help.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\nLines 2235, Functions/Procedures 27\nGenerating C source output to '/tmp/hbmk_4528bl.dir/help.c'... Done.\nCompiling 'project.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\nLines 1092, Functions/Procedures 14\nGenerating C source output to '/tmp/hbmk_4528bl.dir/project.c'... Done.\nCompiling 'projectui.prg'...\n\n100\n\n200\n\n300\n\n100\n\nLines 583, Functions/Procedures 4\nGenerating C source output to '/tmp/hbmk_4528bl.dir/projectui.c'... Done.\nCompiling 'nav.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 804, Functions/Procedures 11\nGenerating C source output to '/tmp/hbmk_4528bl.dir/nav.c'... Done.\nCompiling 'recovery.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\nLines 675, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_4528bl.dir/recovery.c'... Done.\nCompiling 'hbdebug/dbgbrwsr.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\nLines 1011, Functions/Procedures 13\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbgbrwsr.c'... Done.\nCompiling 'hbdebug/dbghelp.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 705, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbghelp.c'... Done.\nCompiling 'hbdebug/dbgmenu.prg'...\n\n100\n\n200\n\nLines 222, Functions/Procedures 1\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbgmenu.c'... Done.\nCompiling 'hbdebug/dbgtarr.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1399, Functions/Procedures 9\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbgtarr.c'... Done.\nCompiling 'hbdebug/dbgthsh.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1409, Functions/Procedures 10\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbgthsh.c'... Done.\nCompiling 'hbdebug/dbgtinp.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1413, Functions/Procedures 9\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbgtinp.c'... Done.\nCompiling 'hbdebug/dbgtmenu.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 1784, Functions/Procedures 21\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbgtmenu.c'... Done.\nCompiling 'hbdebug/dbgtmitm.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 810, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbgtmitm.c'... Done.\nCompiling 'hbdebug/dbgtobj.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 1458, Functions/Procedures 8\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbgtobj.c'... Done.\nCompiling 'hbdebug/dbgtwin.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\nLines 1677, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbgtwin.c'... Done.\nCompiling 'hbdebug/dbgwa.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 946, Functions/Procedures 7\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbgwa.c'... Done.\nCompiling 'hbdebug/tbrwtext.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\nLines 1063, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_4528bl.dir/tbrwtext.c'... Done.\nCompiling 'hbdebug/dbgscript.prg'...\n\n100\n\nLines 196, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_4528bl.dir/dbgscript.c'... Done.\nCompiling 'hbdebug/debugger.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n100\n\n200\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\n3100\n\n3200\n\n3300\n\n3400\n\n3500\n\n3600\n\n3700\n\n3800\n\n3900\n\n4000\n\n4100\n\n4200\n\n4300\n\n4400\n\nLines 6143, Functions/Procedures 133\nGenerating C source output to '/tmp/hbmk_4528bl.dir/debugger.c'... Done.\n"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "555a4b18925ab616d1a1aac678d864708d63d8b6",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "971628f5a271911018d5957f69c12ba7b21df916c92c4a1525efe4780a297e89",
+    "started": 1793517586.8074818,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q171-guards/test_completion_guards.py.log",
+        "seconds": 0.27
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q171-guards/test_build_receipt.py.log",
+        "seconds": 0.218
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "5c178c60879f6f854039d24bc71bf0cbea3a01c22d29963770bd60d7bae50905",
+        "log": "/tmp/hbide-q171-guards/test_completion_inventory.py.log",
+        "seconds": 0.773
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q171-guards/test_distribution_notices.py.log",
+        "seconds": 0.22
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q171-guards/test_embed_help_docs.py.log",
+        "seconds": 0.219
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q171-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.372
+      }
+    },
+    "ok": true,
+    "finished": 1793517588.8798704
+  },
+  "limits": "Two fresh gitarchive extractions distinctpaths/builds, reconstructexactbuildinfo/removeinheritedbinaries,compilerstriphashverified,candidatearchivebinaryhashchecked,byteequalitynotonlyhash. Samehosttoolchainlibrariesenvironment only. No crosshost/compiler/environment reproducibility,cleaninstall/licenseclearance/Windows/fullmatrixorproductfix/newnative. C27smokesremaincandidateevidence no newruntimeinferred."
+}
