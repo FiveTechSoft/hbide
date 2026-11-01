@@ -2,7 +2,7 @@
 """Run identified tooling guards. Not product/PTY/visual/Windows acceptance."""
 import argparse,hashlib,json,os,pathlib,subprocess,sys,tempfile,time
 ROOT=pathlib.Path(__file__).resolve().parents[1]
-CASES=['test_build_receipt.py','test_completion_inventory.py','test_distribution_notices.py','test_embed_help_docs.py','test_candidate_doc_preflight.py']
+CASES=['test_completion_guards.py','test_build_receipt.py','test_completion_inventory.py','test_distribution_notices.py','test_embed_help_docs.py','test_candidate_doc_preflight.py']
 def snapshot():
     def git(*args):return subprocess.check_output(['git',*args],cwd=ROOT,text=True)
     files=git('ls-files').splitlines();h=hashlib.sha256()
