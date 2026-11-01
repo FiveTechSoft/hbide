@@ -1,0 +1,20 @@
+{
+  "scope": "Fresh C92 existing sharedAtomicWrite callers three bounded25x80 modes, not inherited prior candidates",
+  "source": "cdac56d54fd36c416678734e5ca94ba2595607a4",
+  "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb",
+  "results": {
+    "literal-regular": {
+      "test_sha256": "595b251f93da480ca52acb86b622fddb7390c0e938915acde780c532e8c12d95",
+      "log": "PASS regular literal wildcard saves despite matching symlink sibling, backup/identity/journal exact\n"
+    },
+    "literal-symlink": {
+      "test_sha256": "1f48217926ce21af315d0b40181ff92a1a44f3f375657fd2907f7cc42f71aa25",
+      "log": "PASS literal wildcard symlink refused, link/target/sibling intact, complete recovery exact and F2 old identity\n"
+    },
+    "refusal-recovery": {
+      "test_sha256": "ec10d6e7bb4251cdd2e7ae6ca891f520b314bbe2ed99b38f57cd96229eddbc59",
+      "log": "PASS boot caption noname\nPASS doc2 saved as dup.prg\nPASS dup.prg written\nPASS dup.prg holds doc2 text only\nPASS doc1 shows aa1\nPASS SaveAs collision refused\nPASS refusal left dup.prg byte-identical\nPASS refusal created no other file\nPASS doc1 still unsaved noname\nPASS dup.prg edit visible\nPASS two base journals (noname doc + dup.prg)\nPASS dup.prg still unchanged on disk before kill\nPASS recovery prompt on restart\nPASS recovery dialogs cleared\nPASS prompts named dup.prg\nPASS noname buffer recovered (aa1)\nPASS dup.prg buffer recovered (bb2 and q7k)\nPASS recovered into separate docs\nPASS disk dup.prg still the pre-crash save\nPASS F2 saved recovered dup.prg with q7k\nPASS saved file is old bytes plus the lost edit only\nTOTAL 21 PASS 0 FAIL\n"
+    }
+  },
+  "limits": "No allfiletypes/atomicrace/newpolicy/Windows/pixels/fullmatrix/license"
+}
