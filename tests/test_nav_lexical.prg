@@ -141,6 +141,12 @@ procedure Main()
  Check(Len(a)==1.and.a[1,1]=='Real','TEXT identifier assignment does not start literal block',@nPass,@nFail)
  a:=HBIDE_ScanProcs('// TEXT'+hb_eol()+'function Real()')
  Check(Len(a)==1.and.a[1,1]=='Real','commented TEXT is inert',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('CLASS Demo'+hb_eol()+'METHOD Ping()'+hb_eol()+'ENDCLASS'+hb_eol()+'METHOD Ping()')
+ Check(Len(a)==2.and.a[2,1]=='Demo:Ping'.and.a[2,3]==4,'implicit implementation follows closed class, member excluded',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('CLASS Demo'+hb_eol()+'ENDCLASS'+hb_eol()+'METHOD FUNCTION Ping()')
+ Check(Len(a)==2.and.a[2,1]=='Demo:Ping','typed implicit implementation qualified',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('METHOD Ping()')
+ Check(Empty(a),'implicit method with no class context stays excluded',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

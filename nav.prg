@@ -11,7 +11,7 @@
 // (//, *, &&, /* */) and #pragma begindump C blocks are skipped.
 FUNCTION HBIDE_ScanProcs( cText )
    LOCAL aOut := {}, aLines, cLine, cL, nLine := 0, lBlock := .F., lDump := .F., lText := .F., cBlockContext := ""
-   LOCAL aTok, cT1, cT2, cName, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine, cModifier
+   LOCAL aTok, cT1, cT2, cName, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine, cModifier, cLastClass := "", lClassBody := .F.
 
    cText := StrTran( StrTran( cText, Chr( 13 ) + Chr( 10 ), Chr( 10 ) ), Chr( 13 ), Chr( 10 ) )
    aLines := hb_ATokens( cText, Chr( 10 ) )
@@ -78,6 +78,10 @@ FUNCTION HBIDE_ScanProcs( cText )
       aTok := hb_ATokens( StrTran( StrTran( cL, "(", " ( " ), ")", " ) " ), " " )
       // collapse blanks left by consecutive spaces
       aTok := HBIDE_Compact( aTok )
+      IF ! Empty(aTok) .AND. Upper(aTok[1]) == "ENDCLASS"
+         lClassBody := .F.
+         LOOP
+      ENDIF
       IF Len( aTok ) < 2
          LOOP
       ENDIF
@@ -109,6 +113,9 @@ FUNCTION HBIDE_ScanProcs( cText )
          // only the implementation form names its class: "METHOD x() CLASS c"
          cCls := HBIDE_NavMethodClass( aTok, ;
             iif( cT2 == "FUNCTION" .OR. cT2 == "PROCEDURE", 4, 3 ) )
+         IF Empty(cCls) .AND. cT1 == "METHOD" .AND. ! lClassBody
+            cCls := cLastClass
+         ENDIF
          IF Empty( cCls )
             LOOP
          ENDIF
@@ -133,6 +140,10 @@ FUNCTION HBIDE_ScanProcs( cText )
       cName := HBIDE_NameOnly( cName )
       IF Empty( cName )
          LOOP
+      ENDIF
+      IF cKind == "class"
+         cLastClass := cName
+         lClassBody := .T.
       ENDIF
       IF cKind == "method"
          cName := cCls + ":" + iif( cT1 == "ASSIGN", "_", "" ) + cName
