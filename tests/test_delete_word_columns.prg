@@ -5,6 +5,7 @@ static nPass:=0,nFail:=0
 procedure Main()
  local o:=HBSrcEdit():New('',2,1,20,79,.T.)
  hb_cdpSelect('UTF8')
+ Set(_SET_INSERT,.T.)
  o:LoadText('café beta')
  o:GoTo(1,5)
  o:Edit(K_CTRL_T)

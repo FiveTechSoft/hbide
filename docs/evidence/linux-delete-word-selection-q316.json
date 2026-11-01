@@ -1,0 +1,62 @@
+{
+  "candidate": {
+    "source": "a9b21dc9e0846a00825afe2fdf4f67e5134c07f1",
+    "build_exit": 0,
+    "removed": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "scope": "C62DeleteWord active range focal only, no fullmatrix/Windows/release",
+    "binary_sha256": "4d537aeb46c86053a443c2311b53716762756d42131dc1d75caf2011c1d41584"
+  },
+  "baseline": {
+    "source": "f63e189288ae03122f892e0edccefc4129452503",
+    "log": "FAIL CtrlT on active range deletes selected bytes only\nPASS Undo marked CtrlT restores exact original\nFAIL Redo marked CtrlT exact\nFAIL Typing after marked CtrlT inserts without stale range\nTOTAL 1 PASS 3 FAIL\nArtifacts /tmp/hbide-edit-menu-q_mrlvi6\n"
+  },
+  "tests": {
+    "test_delete_word_selection_pty.py": {
+      "exit": 0,
+      "sha256": "9bc2b5129759635702dd2a2365f6665a2f74f54d9f1f49f50733d78e110acb4b",
+      "log": "PASS CtrlT on active range deletes selected bytes only\nPASS Undo marked CtrlT restores exact original\nPASS Redo marked CtrlT exact\nPASS Typing after marked CtrlT inserts without stale range\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-xnh37r9c\n"
+    },
+    "test_delete_word_columns_pty.py": {
+      "exit": 0,
+      "sha256": "3e5e81573448daa037c9d1032548eea819089e09896e0b32080a2ad76789ccc3",
+      "log": "PASS CtrlT deletes word from text column1\nPASS Undo CtrlT restores bytes\nPASS CtrlT midword uses text offset\nPASS midword Undo exact\nPASS CtrlT at EOL leaves bytes unchanged\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-4vt0pr92\n"
+    },
+    "test_selection_delete_identical_bp_pty.py": {
+      "exit": 0,
+      "sha256": "1887e1e57ccf0869df6655a34053fc07f87f3105f8397cb965a256947d93b150",
+      "log": "PASS Selected Delete complete first identical instruction drops its BP\nPASS Undo selected Delete does not resurrect removed instruction BP\nPASS Redo selected Delete leaves BP absent\nPASS Selected Delete selected complete line saves exact bytes\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ys7ljl1n\n"
+    },
+    "test_selection_undo_boundary_pty.py": {
+      "exit": 0,
+      "sha256": "49d4c846fb5c901bf8025681dfa7a470021cabde305736b196f9a870db455ea8",
+      "log": "PASS Open requested fixture\nPASS Typing replaces selected al but preserves earlier X\nPASS Undo selected replacement alone preserves earlier typing\nPASS Redo selected replacement exact\nPASS Undo later typing keeps selection replacement\nPASS next Undo restores pre-replacement typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ayn7f3dk\n"
+    },
+    "test_clipboard_block_multidoc_pty.py": {
+      "exit": 0,
+      "sha256": "85802744523168aaf84622697e98cf5275fd8a5595d4510c2d8b7c210ad0ea26",
+      "log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-87gphbqm\n"
+    }
+  },
+  "model": {
+    "initial_log": "\n\n    1 beta\n    2\n    3\n    4\n    5\n    6\n    7\n    8\n    9\n   10\n   11\n   12\n   13\n   14\n   15\n   16\n   17\n   18\n   19\nPASS UTF8 word removes whole accented word\n    1caf\u00e9 beta\nP   2\nPASS UTF8 Undo restores exact\n    1caf beta\nP   2\nPASS UTF8 midword deletes one scalar not byte\n    1caf\u00e9 beta\nP   2\n    1     beta\nPASS TAB is one model column, not display width\n    1    alpha beta\nP   2\nPASS TAB Undo exact\nPASS initial block comment reaches next row\n    1 comment\nP   2return nil\nPASS word deletion invalidates block state\n    1/* comment\nP   2return nil\nPASS Undo restores block state\n    1 comment\nP   2return nil\nPASS Redo clears block state\n    1alpha beta gamma\nP   2\n    1beta gamma\nPASS CtrlT consumes marked range before word at cursor\n    1alpha beta gamma\nP   2\nPASS marked CtrlT Undo exact\n    1beta gamma\nP   2\nPASS marked CtrlT Redo exact\n    1Xeta gamma\nFAIL typing after CtrlT has no stale selection\nTOTAL         12 PASS          1 FAIL",
+    "corrected_log": "\n\n    1 beta\n    2\n    3\n    4\n    5\n    6\n    7\n    8\n    9\n   10\n   11\n   12\n   13\n   14\n   15\n   16\n   17\n   18\n   19\nPASS UTF8 word removes whole accented word\n    1caf\u00e9 beta\nP   2\nPASS UTF8 Undo restores exact\n    1caf beta\nP   2\nPASS UTF8 midword deletes one scalar not byte\n    1caf\u00e9 beta\nP   2\n    1     beta\nPASS TAB is one model column, not display width\n    1    alpha beta\nP   2\nPASS TAB Undo exact\nPASS initial block comment reaches next row\n    1 comment\nP   2return nil\nPASS word deletion invalidates block state\n    1/* comment\nP   2return nil\nPASS Undo restores block state\n    1 comment\nP   2return nil\nPASS Redo clears block state\n    1alpha beta gamma\nP   2\n    1beta gamma\nPASS CtrlT consumes marked range before word at cursor\n    1alpha beta gamma\nP   2\nPASS marked CtrlT Undo exact\n    1beta gamma\nP   2\nPASS marked CtrlT Redo exact\n    1Xbeta gamma\nPASS typing after CtrlT has no stale selection\nTOTAL         13 PASS          0 FAIL",
+    "correction": "Initial overstrike default made final typing expectation wrong. Explicit insertmode in model gives13PASS, product unchanged. Corrected model is postexport harness against exact C62source."
+  },
+  "visual": {
+    "images": [
+      "hbide-q316-range-before.png",
+      "hbide-q316-range-c62.png"
+    ],
+    "inspection": "Full1202x762 actual pixels inspected: baseline deletes cursorword beta leaving alpha gamma and staleMARK; C62deletes selectedalpha+space, leaves beta gamma, clearsMARK and cursoratstart; fullborders/status."
+  },
+  "scope": "CtrlT consumes active selection as other destructive keys, no word beyond range. Existing no-selectionwordbehavior preserved; same wholelineDeleteBPanchor applies. FivePTY29checksPASS/model13PASS. No fullmatrix/Windows/release/hito."
+}
