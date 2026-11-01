@@ -5084,3 +5084,17 @@ bin460992fae48275aba7c489c01b10390c6c50f9e07855e83f3518a18548f2e760.
 4PTY26checksPASS;dosactuales802x477inspeccionadas,caracterigualalfondo
 yclickocultasinrestos.34docsPASS. NoWindows/M4closure/matrizglobal.
 Evidencia: docs/evidence/linux-designer-inspector-close-glyph-q209.json.
+
+### Q210 (1 noviembre 2026): salvar no reemplaza enlace con nombre literal*
+
+DefectoM1real: Directory(cFile)expande wildcard y puede elegirotrosibling
+antesdellinkliteral*.prg;AtomicWriteFiledevolviaT/reemplazabalinkporarchivo.
+Seconsultahb_vfLinkRead(cFile)literalantesfallbackDirectory,sin cambiar
+politicarechazarsymlinks. Antes56/59atomic,despues59/59conmismofixture.
+Fuente6d686edb6380d749122fd07cb80768ca275a9490
+binca513bf931ab4ee6d38d4c2ca8e0e8bc2abbfd142cac1478575ef68f77389892.
+4PTYPASS clean/dirtyliteralSaveAs,overwriteaceptado/fallolimpio:link,target,
+sibling,identidaddoc/journalintactos,recoverycompletoexacto,F2original.
+87guardas34docsPASS. Nativa1202x762inspeccionadaaviso/rutarecovery/bordes
+legibles. SinWindows/carreraconcurrente/matrizglobal/cierreM1.
+Evidencia: docs/evidence/linux-atomic-literal-symlink-q210.json.

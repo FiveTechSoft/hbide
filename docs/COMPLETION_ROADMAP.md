@@ -66,6 +66,12 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Q210 corrige M1: nombresPOSIXliteral* no eluden rechazoenlaces.
+Atomic56/59antes59/59despues,4PTYsobrefuente6d686ed,binarioexacto;
+no raceproof/Windows/cierreM1. M3se detienen variantes equivalentes:
+Q205duplica timeout/Q207sin callback dejaappvisible; no GTadapter
+ni cambio toolchain/politica autorizado, ambostogglespendientes.
+
 Corte operativo C29/Q203 (1 noviembre, 10:10): candidato export7760ab2,
 strippededbe6756 incluye selectorUTF8Q196 y fixturemixta. Ocho smokes y
 dos modos37checks sobre binario exacto; tres modos30checks mas con
