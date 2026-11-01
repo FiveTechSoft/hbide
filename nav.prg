@@ -58,7 +58,10 @@ FUNCTION HBIDE_ScanProcs( cText )
          nDeclLine := nSourceLine
          LOOP
       ENDIF
-      aTok := hb_ATokens( cL, " " )
+      // Harbour accepts a class qualifier touching the closing argument
+      // parenthesis: METHOD Ping()CLASS Demo. Preserve the method name,
+      // but make that lexical boundary visible to the word-token scan.
+      aTok := hb_ATokens( StrTran( cL, ")", ") " ), " " )
       // collapse blanks left by consecutive spaces
       aTok := HBIDE_Compact( aTok )
       IF Len( aTok ) < 2

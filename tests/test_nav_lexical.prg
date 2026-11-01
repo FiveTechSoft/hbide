@@ -115,6 +115,14 @@ procedure Main()
  next
  a:=HBIDE_ScanProcs('INIT;'+hb_eol()+'PROCEDURE Startup()'+hb_eol()+'EXIT;'+hb_eol()+'PROCEDURE Cleanup()')
  Check(Len(a)==2.and.a[1,2]=='init procedure'.and.a[1,3]==1.and.a[2,2]=='exit procedure'.and.a[2,3]==3,'continued lifecycle modifiers keep kind and start line',@nPass,@nFail)
+ for each c in { 'METHOD Ping()CLASS Demo', 'METHOD FUNCTION Ping()CLASS Demo', 'METHOD PROCEDURE Ping()CLASS Demo', 'PROCEDURE Ping()CLASS Demo', 'ACCESS Ping()CLASS Demo', 'DESTRUCTOR Ping()CLASS Demo' }
+ a:=HBIDE_ScanProcs(c)
+ Check(Len(a)==1.and.a[1,1]=='Demo:Ping'.and.a[1,2]=='method'.and.a[1,3]==1,'compact argument/class boundary: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('ASSIGN Value(n)CLASS Demo')
+ Check(Len(a)==1.and.a[1,1]=='Demo:_Value','compact assign retains underscore method name',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('METHOD Ping()CLASS;'+hb_eol()+'Demo')
+ Check(Len(a)==1.and.a[1,1]=='Demo:Ping'.and.a[1,3]==1,'compact qualifier continuation retains declaration line',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return
