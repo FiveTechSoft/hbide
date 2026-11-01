@@ -1,0 +1,23 @@
+{
+  "scope": "C92 fresh four bounded shared caller/help scroll regressions, not inherited C91.6+9+8+9PASS, no allcases/DBL/pixels/fullmatrix/Windows/license",
+  "source": "cdac56d54fd36c416678734e5ca94ba2595607a4",
+  "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb",
+  "results": {
+    "test_picker_horizontal_bounds_pty.py": {
+      "test_sha256": "cdba5fc60483d0a670108a8a33f4d48d2b40fb3201c2713f551ca1a810f994a0",
+      "log": "PASS Open requested fixture\nPASS Picker starts on first declaration\nPASS Outside and border clicks do not select another row\nPASS Undo exact after outside picker clicks\nPASS Interior edge click selects intended implementation\nPASS Undo exact after interior picker click\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-x326nh47\n"
+    },
+    "test_windowlist_horizontal_bounds_pty.py": {
+      "test_sha256": "e2501961a7c67b46c694db439fdb998ef1169ceff970e167607a03c7be373553",
+      "log": "PASS Open first document\nPASS Two dirty documents listed\nPASS Outside aligned row leaves active other document\nPASS Outside click writes only current other document\nPASS Interior edge switches to retained dirty source\nPASS Switch preserves exact source dirty state\nPASS Source undo remains independent\nPASS Typed filter remains functional after bounded clicks\nPASS Other typing transaction undo remains independent\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-2gc7et44\n"
+    },
+    "test_messages_horizontal_bounds_pty.py": {
+      "test_sha256": "d5db171099cf57b6d2ba9c81ebad6b18e4a871724a7cd50cfa02e63b21993a7e",
+      "log": "PASS Project opens source desktop\nPASS Real GCC error and warning list exact file lines\nPASS Two real diagnostics counted\nPASS Jump opens exact colon-bearing source\nPASS Window Messages opens actual compiler picker\nPASS Outside Messages clicks keep first diagnostic target\nPASS Interior Messages click jumps exact second diagnostic\nPASS Diagnostic picker leaves source bytes unchanged\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-e5ytj_xq\n"
+    },
+    "test_help_link_wheel_pty.py": {
+      "test_sha256": "ed168068b7ba5c190367f53b32ed78de75fb759e92d88bacd341f8261ff3e3c7",
+      "log": "PASS Exact long manual opens link viewer at first line\nPASS Link viewer wheel down moves one line\nPASS Link viewer wheel up restores first line\nPASS Link viewer wheel up clamps at first line\nPASS Link viewer End reaches last readable top\nPASS Link viewer wheel down clamps at end\nPASS Link viewer wheel up from end moves one line\nPASS Link viewer returns same dirty source\nPASS Undo after link viewer wheel restores exact bytes\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-pwq5b652\n"
+    }
+  }
+}
