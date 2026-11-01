@@ -4584,3 +4584,15 @@ Runner bfcdb3c. Usa las bibliotecas del mismo host: no es una instalacion
 limpia en otra maquina/distribucion, instalador, licencias, Windows,
 matriz completa, nuevos pixeles ni cierre M5.
 Evidencia `docs/evidence/linux-candidate-isolation-q173.json`.
+
+
+### Q175 (1 noviembre 2026): borde y retorno en un mismo arrastre
+
+Se conserva el punto de agarre del raton al llegar al borde; el panel
+permanece clampado hasta que ese punto vuelve al rango. No es el offset
+inicial incorrecto de Q169, ni se cambia el producto a arrastre relativo.
+Cuatro modos PTY24checks73guardas34docsPASS. Fuente 5dc4f317df6dfc98221b53794635086797a11060,
+binario e4da362bb7a9815c0763240cf236e1a68d2ae11269a48ae1af78e0b3cb39085f.
+Tres nativas C27 revisadas, bordes y underlay limpios. No todas las
+variantes de gesto, nueva UX, Windows, matriz global ni cierre M4.
+Evidencia `docs/evidence/linux-designer-inspector-edge-return-q175.json`.

@@ -66,11 +66,11 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-- **M4, siguiente paso:** revisar los gestos del inspector tras llegar a un
-  borde y volver dentro del mismo arrastre. Q169 corrigio el inicio desde
-  una posicion clampada; Q170 acredita arrastre vertical. No se amplian
-  esos resultados a todos los gestos ni se cambia la politica de controles
-  sobredimensionados pendiente de decision.
+- **M4:** Q175 revisa alcanzar el borde y volver dentro del mismo gesto.
+  Se conserva el punto de agarre: el panel permanece clampado hasta que
+  ese punto vuelve al rango visible. No se confunde con el offset inicial
+  incorrecto corregido en Q169. No se cambia a arrastre relativo ni se
+  cambia la politica de controles sobredimensionados pendiente de decision.
 - **M5, siguiente paso:** separar el smoke Linux aislado de una instalacion
   limpia en otro sistema. Q173 oculta checkout y compilador, pero usa las
   bibliotecas del mismo host. Windows nativo, instalador y licencias siguen
@@ -78,7 +78,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
   host y toolchain.
 - **M6:** no repetir una matriz de horas por cada cambio documental.
   Q164 acredita 309 modos sobre su fuente, anterior al arreglo Q169. El
-  registro actual contiene 325 modos; ese numero es un plan, no 325 PASS.
+  registro actual contiene 327 modos; ese numero es un plan, no 327 PASS.
   La proxima consolidacion debe congelar una fuente que incluya el arreglo
   y reconciliar las pruebas nuevas sin heredar los PASS de Q164.
 - **M2/M3:** Cancel sigue abierto sin helper C ni contrato rebajado a
@@ -872,3 +872,15 @@ Runner bfcdb3c. Usa las bibliotecas del mismo host: no es una instalacion
 limpia en otra maquina/distribucion, instalador, licencias, Windows,
 matriz completa, nuevos pixeles ni cierre M5.
 Evidencia `docs/evidence/linux-candidate-isolation-q173.json`.
+
+
+### Q175 (1 noviembre 2026): borde y retorno en un mismo arrastre
+
+Se conserva el punto de agarre del raton al llegar al borde; el panel
+permanece clampado hasta que ese punto vuelve al rango. No es el offset
+inicial incorrecto de Q169, ni se cambia el producto a arrastre relativo.
+Cuatro modos PTY24checks73guardas34docsPASS. Fuente 5dc4f317df6dfc98221b53794635086797a11060,
+binario e4da362bb7a9815c0763240cf236e1a68d2ae11269a48ae1af78e0b3cb39085f.
+Tres nativas C27 revisadas, bordes y underlay limpios. No todas las
+variantes de gesto, nueva UX, Windows, matriz global ni cierre M4.
+Evidencia `docs/evidence/linux-designer-inspector-edge-return-q175.json`.

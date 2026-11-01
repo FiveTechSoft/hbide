@@ -1,0 +1,203 @@
+{
+  "scope": "Q175 characterization, no productfix or new drag UX.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "5dc4f317df6dfc98221b53794635086797a11060",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "a8ab4a3ab183e65624497e6168f01493ea1624599592269af5c9869c845d6911",
+    "binary_sha256": "e4da362bb7a9815c0763240cf236e1a68d2ae11269a48ae1af78e0b3cb39085f",
+    "built_at": 1793518037.2030125
+  },
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "5dc4f317df6dfc98221b53794635086797a11060",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "a8ab4a3ab183e65624497e6168f01493ea1624599592269af5c9869c845d6911",
+      "binary_sha256": "e4da362bb7a9815c0763240cf236e1a68d2ae11269a48ae1af78e0b3cb39085f",
+      "build_receipt": "/tmp/hbide-q175-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "40352992450605382541bc7011e17d7fa7177d648d48128bb44679e5f4093d8c",
+      "case": "designer-inspector-drag-edge-return-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py",
+        "--small",
+        "--edge-return"
+      ],
+      "started": 1793518037.203328,
+      "seconds": 6.0,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "9a7674d8ecece26483a70c09f3912f7256dfa138c66afff6fa3ecefee236f070",
+      "log": "/tmp/hbide-q175-final/designer-inspector-drag-edge-return-small-1793518037203323936.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "5dc4f317df6dfc98221b53794635086797a11060",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "a8ab4a3ab183e65624497e6168f01493ea1624599592269af5c9869c845d6911",
+      "binary_sha256": "e4da362bb7a9815c0763240cf236e1a68d2ae11269a48ae1af78e0b3cb39085f",
+      "build_receipt": "/tmp/hbide-q175-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "40352992450605382541bc7011e17d7fa7177d648d48128bb44679e5f4093d8c",
+      "case": "designer-inspector-drag-edge-return",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py",
+        "--edge-return"
+      ],
+      "started": 1793518043.1991615,
+      "seconds": 4.64,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "9a7674d8ecece26483a70c09f3912f7256dfa138c66afff6fa3ecefee236f070",
+      "log": "/tmp/hbide-q175-final/designer-inspector-drag-edge-return-1793518043199158042.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "5dc4f317df6dfc98221b53794635086797a11060",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "a8ab4a3ab183e65624497e6168f01493ea1624599592269af5c9869c845d6911",
+      "binary_sha256": "e4da362bb7a9815c0763240cf236e1a68d2ae11269a48ae1af78e0b3cb39085f",
+      "build_receipt": "/tmp/hbide-q175-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "40352992450605382541bc7011e17d7fa7177d648d48128bb44679e5f4093d8c",
+      "case": "designer-inspector-drag-anchor-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py",
+        "--small"
+      ],
+      "started": 1793518047.8404129,
+      "seconds": 5.59,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "9a7674d8ecece26483a70c09f3912f7256dfa138c66afff6fa3ecefee236f070",
+      "log": "/tmp/hbide-q175-final/designer-inspector-drag-anchor-small-1793518047840408395.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "5dc4f317df6dfc98221b53794635086797a11060",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "a8ab4a3ab183e65624497e6168f01493ea1624599592269af5c9869c845d6911",
+      "binary_sha256": "e4da362bb7a9815c0763240cf236e1a68d2ae11269a48ae1af78e0b3cb39085f",
+      "build_receipt": "/tmp/hbide-q175-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "40352992450605382541bc7011e17d7fa7177d648d48128bb44679e5f4093d8c",
+      "case": "designer-inspector-drag-anchor-vertical-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py",
+        "--small",
+        "--vertical"
+      ],
+      "started": 1793518053.433375,
+      "seconds": 7.85,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "9a7674d8ecece26483a70c09f3912f7256dfa138c66afff6fa3ecefee236f070",
+      "log": "/tmp/hbide-q175-final/designer-inspector-drag-anchor-vertical-small-1793518053433370724.log"
+    }
+  ],
+  "logs": {
+    "designer-inspector-drag-edge-return-small-1793518037203323936.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS outward drag remains visibly clamped\nPASS reversal outside grab-point range retains clamp\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-39kxov1a\n",
+    "designer-inspector-drag-edge-return-1793518043199158042.log": "PASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS outward drag remains visibly clamped\nPASS reversal outside grab-point range retains clamp\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-3wl2mae8\n",
+    "designer-inspector-drag-anchor-small-1793518047840408395.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-qeo2tu4m\n",
+    "designer-inspector-drag-anchor-vertical-small-1793518053433370724.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS inspector initially clamped to bottom\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-is3k1oe1\n"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "5dc4f317df6dfc98221b53794635086797a11060",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "c46dca160e695c166873eda9f34ce2f03e1819eb5d2c90b0b1cf09ea9eaa5d8e",
+    "started": 1793518061.4674573,
+    "runner_sha256": "d8e1b33008b126ce28f71722967a5ba136d9a3c979a0ce5732d5c3a00027d71f",
+    "tests": {
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q175-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.284
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q175-guards/test_completion_guards.py.log",
+        "seconds": 0.218
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q175-guards/test_build_receipt.py.log",
+        "seconds": 0.219
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "5c178c60879f6f854039d24bc71bf0cbea3a01c22d29963770bd60d7bae50905",
+        "log": "/tmp/hbide-q175-guards/test_completion_inventory.py.log",
+        "seconds": 0.772
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q175-guards/test_distribution_notices.py.log",
+        "seconds": 0.218
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q175-guards/test_embed_help_docs.py.log",
+        "seconds": 0.218
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q175-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.37
+      }
+    },
+    "ok": true,
+    "finished": 1793518063.7669148
+  },
+  "native": {
+    "candidate": "C27851540d50a7451ba5b200a1cb9bf1c3e9bf3d40851ee7cc1f12493c359fe8d93",
+    "files": {
+      "hbide-q175-edge.png": "96bee6cd6f63b16633dbc440fff5720db8c0cf1ad22fe4e214e1a3d8e4695475",
+      "hbide-q175-reverse.png": "96bee6cd6f63b16633dbc440fff5720db8c0cf1ad22fe4e214e1a3d8e4695475",
+      "hbide-q175-inside.png": "298410023d74f19ddbb5df151fc07151fdc0e3ab9c9fd40e98a4aeea7d4a1309"
+    },
+    "inspection": "Sameheldgesture pointer600->790->700->500. Panelclampsatrightfor790and700, moves100pxleftat500becausefixedgrabpointisbackinrange. Full802x477pixelsinspectedcleanunderlayborders. This is fixedpointclamp, not initialwrongoffsetbugQ169."
+  },
+  "limits": "4PTY24checks73guards34docs. Not all gestures/relative-drag UX decision/newproductfix/nativecurrentbinary/Windows/global/M4."
+}
