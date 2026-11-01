@@ -40,7 +40,10 @@ for kind in ['mixed']:
 import subprocess
 resultpath=work/'runtime-values.json'
 source=work/'runtime.prg'
-source.write_text(generated.replace('return lOk','hb_MemoWrit( "'+str(resultpath)+'", hb_jsonEncode( { AllTrim(cNombre),AllTrim(cCorreo),lActivo,lAvisos,nTipo,nProyecto,nBefore,lOk } ) )\nreturn lOk')+'\nprocedure Main()\nDlg_Fixture()\nreturn\n')
+# Alt+C is Harbour SET CANCEL by default. Explicit launcher policy only for
+# this accelerator scenario; generated dialog and default scenarios unchanged.
+launcher_policy='SetCancel(.F.)\n' if '--accelerators' in sys.argv else ''
+source.write_text(generated.replace('return lOk','hb_MemoWrit( "'+str(resultpath)+'", hb_jsonEncode( { AllTrim(cNombre),AllTrim(cCorreo),lActivo,lAvisos,nTipo,nProyecto,nBefore,lOk } ) )\nreturn lOk')+'\nprocedure Main()\n'+launcher_policy+'Dlg_Fixture()\nreturn\n')
 runtime=work/'runtime'
 build=subprocess.run(['hbmk2',str(source),*[str(ROOT/x) for x in ['hbwindow.prg','hbmenu.prg','hbbutton.prg','hbgetu.prg']],'-gttrm','-quiet','-o'+str(runtime)],stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
 (work/'runtime-build.log').write_bytes(build.stdout)
@@ -61,8 +64,14 @@ if build.returncode==0:
     send(b'\t'*4,.3);send(b'\x1b[B',.2);send(b'\t',.2);send(b'\x1b[B',.2);send(b'\x1b',.4)
    else:
     send(b'\t',.2);send(b'Ana',.2);send(b'\t',.2);send(b'ana@example.test',.2);send(b'\t',.2);send(b' ',.2)
-    if scenario=='save':send(b'\t'*4,.3);send(b'\r',.5)
-    elif scenario=='cancel':send(b'\t'*5,.3);send(b'\r',.5)
+    if scenario=='save':
+     if '--accelerators' in sys.argv:send(b'\x1bg',.3)
+     else:send(b'\t'*4,.3)
+     send(b'\r',.5)
+    elif scenario=='cancel':
+     if '--accelerators' in sys.argv:send(b'\x1bc',.3)
+     else:send(b'\t'*5,.3)
+     send(b'\r',.5)
     else:send(b'\x1b',.4)
    check(scenario+' runtime returns and writes bound values',resultpath.exists())
    if resultpath.exists():
