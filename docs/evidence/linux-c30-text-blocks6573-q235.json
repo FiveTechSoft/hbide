@@ -1,0 +1,479 @@
+{
+  "scope": "Frozen C30 inspector text/events.26additional command variants;240distinct across blocks1..73 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-get-events-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "get",
+            "--events",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 12.611482858657837,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-events-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-button-events-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "button",
+            "--events",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 17.65151810646057,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-events-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-checkbox-events-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "checkbox",
+            "--events",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 21.35654306411743,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-events-small.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-radiogroup-events-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "radiogroup",
+            "--events",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 16.911967515945435,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radiogroup-events-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-combobox-events-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "combobox",
+            "--events",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 22.358720302581787,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combobox-events-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-listbox-events-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--listbox",
+            "--events",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 22.385713815689087,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-events-small.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-say-text-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "say",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 8.199206829071045,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-say-text-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-get-text-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "get",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 8.19427490234375,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-text-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-button-text-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "button",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 16.126290798187256,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-text-small.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-checkbox-text-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "checkbox",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 12.111610651016235,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-text-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-radiogroup-text-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "radiogroup",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 12.091938495635986,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radiogroup-text-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-combobox-text-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "combobox",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 12.100836753845215,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combobox-text-small.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-listbox-text-small",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--listbox",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 12.11637806892395,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-text-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-get-events",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "get",
+            "--events"
+          ],
+          "exit": 0,
+          "seconds": 11.241877794265747,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-events.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-checkbox-events",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "checkbox",
+            "--events"
+          ],
+          "exit": 0,
+          "seconds": 19.998310327529907,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-events.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-button-events",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "button",
+            "--events"
+          ],
+          "exit": 0,
+          "seconds": 16.307417154312134,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-events.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-radiogroup-events",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "radiogroup",
+            "--events"
+          ],
+          "exit": 0,
+          "seconds": 15.542333841323853,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radiogroup-events.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-listbox-events",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--listbox",
+            "--events"
+          ],
+          "exit": 0,
+          "seconds": 21.036977291107178,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-events.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-combobox-events",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "combobox",
+            "--events"
+          ],
+          "exit": 0,
+          "seconds": 21.026015520095825,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combobox-events.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-say-text",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "say"
+          ],
+          "exit": 0,
+          "seconds": 6.8494768142700195,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-say-text.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-checkbox-text",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "checkbox"
+          ],
+          "exit": 0,
+          "seconds": 10.740049839019775,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-text.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-radio-text",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "radiogroup"
+          ],
+          "exit": 0,
+          "seconds": 10.749393463134766,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radio-text.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-combo-text",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--kind",
+            "combobox"
+          ],
+          "exit": 0,
+          "seconds": 10.7777578830719,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combo-text.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-button-text",
+          "command": [
+            "test_designer_inline_text_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 14.820374250411987,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-text.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-get-binding",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--get"
+          ],
+          "exit": 0,
+          "seconds": 6.848051309585571,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-binding.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-listbox-text",
+          "command": [
+            "test_designer_inline_text_pty.py",
+            "--listbox"
+          ],
+          "exit": 0,
+          "seconds": 10.75740647315979,
+          "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-text.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 240,
+  "logs": {
+    "designer-inline-get-events-small.log": "PASS actual Display applies25x80\nPASS get inspector visible\nPASS get inline when typed and F10 persisted\nPASS get inline when Undo exact\nPASS get inline when Redo exact\nPASS get inline when Esc exact\nPASS get inline valid typed and F10 persisted\nPASS get inline valid Undo exact\nPASS get inline valid Redo exact\nPASS get inline valid Esc exact\nPASS get no other controls introduced\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-qc_cy7pt\n",
+    "designer-inline-button-events-small.log": "PASS actual Display applies25x80\nPASS button inspector visible\nPASS button inline when typed and F10 persisted\nPASS button inline when Undo exact\nPASS button inline when Redo exact\nPASS button inline when Esc exact\nPASS button inline valid typed and F10 persisted\nPASS button inline valid Undo exact\nPASS button inline valid Redo exact\nPASS button inline valid Esc exact\nPASS button inline focus typed and F10 persisted\nPASS button inline focus Undo exact\nPASS button inline focus Redo exact\nPASS button inline focus Esc exact\nPASS button no other controls introduced\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-gqp9j992\n",
+    "designer-inline-checkbox-events-small.log": "PASS actual Display applies25x80\nPASS checkbox inspector visible\nPASS checkbox inline when typed and F10 persisted\nPASS checkbox inline when Undo exact\nPASS checkbox inline when Redo exact\nPASS checkbox inline when Esc exact\nPASS checkbox inline valid typed and F10 persisted\nPASS checkbox inline valid Undo exact\nPASS checkbox inline valid Redo exact\nPASS checkbox inline valid Esc exact\nPASS checkbox inline focus typed and F10 persisted\nPASS checkbox inline focus Undo exact\nPASS checkbox inline focus Redo exact\nPASS checkbox inline focus Esc exact\nPASS checkbox inline state typed and F10 persisted\nPASS checkbox inline state Undo exact\nPASS checkbox inline state Redo exact\nPASS checkbox inline state Esc exact\nPASS checkbox no other controls introduced\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-3lk3hcou\n",
+    "designer-inline-radiogroup-events-small.log": "PASS actual Display applies25x80\nPASS radiogroup inspector visible\nPASS radiogroup inline when typed and F10 persisted\nPASS radiogroup inline when Undo exact\nPASS radiogroup inline when Redo exact\nPASS radiogroup inline when Esc exact\nPASS radiogroup inline valid typed and F10 persisted\nPASS radiogroup inline valid Undo exact\nPASS radiogroup inline valid Redo exact\nPASS radiogroup inline valid Esc exact\nPASS radiogroup inline focus typed and F10 persisted\nPASS radiogroup inline focus Undo exact\nPASS radiogroup inline focus Redo exact\nPASS radiogroup inline focus Esc exact\nPASS radiogroup no other controls introduced\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-tr0z9omb\n",
+    "designer-inline-combobox-events-small.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS combobox inline when typed and F10 persisted\nPASS combobox inline when Undo exact\nPASS combobox inline when Redo exact\nPASS combobox inline when Esc exact\nPASS combobox inline valid typed and F10 persisted\nPASS combobox inline valid Undo exact\nPASS combobox inline valid Redo exact\nPASS combobox inline valid Esc exact\nPASS combobox inline focus typed and F10 persisted\nPASS combobox inline focus Undo exact\nPASS combobox inline focus Redo exact\nPASS combobox inline focus Esc exact\nPASS combobox inline state typed and F10 persisted\nPASS combobox inline state Undo exact\nPASS combobox inline state Redo exact\nPASS combobox inline state Esc exact\nPASS combobox no other controls introduced\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-k3bscrfi\n",
+    "designer-inline-listbox-events-small.log": "PASS actual Display applies25x80\nPASS listbox inspector visible\nPASS listbox inline when typed and F10 persisted\nPASS listbox inline when Undo exact\nPASS listbox inline when Redo exact\nPASS listbox inline when Esc exact\nPASS listbox inline valid typed and F10 persisted\nPASS listbox inline valid Undo exact\nPASS listbox inline valid Redo exact\nPASS listbox inline valid Esc exact\nPASS listbox inline focus typed and F10 persisted\nPASS listbox inline focus Undo exact\nPASS listbox inline focus Redo exact\nPASS listbox inline focus Esc exact\nPASS listbox inline state typed and F10 persisted\nPASS listbox inline state Undo exact\nPASS listbox inline state Redo exact\nPASS listbox inline state Esc exact\nPASS listbox no other controls introduced\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-qepebsqu\n",
+    "designer-inline-say-text-small.log": "PASS actual Display applies25x80\nPASS say inspector visible\nPASS say inline caption typed and F10 persisted\nPASS say inline caption Undo exact\nPASS say inline caption Redo exact\nPASS say inline caption Esc exact\nPASS say no other controls introduced\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-xe2hw5j_\n",
+    "designer-inline-get-text-small.log": "PASS actual Display applies25x80\nPASS get inspector visible\nPASS get inline variable typed and F10 persisted\nPASS get inline variable Undo exact\nPASS get inline variable Redo exact\nPASS get inline variable Esc exact\nPASS get no other controls introduced\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-z92p8vap\n",
+    "designer-inline-button-text-small.log": "PASS actual Display applies25x80\nPASS button inspector visible\nPASS button inline caption typed and F10 persisted\nPASS button inline caption Undo exact\nPASS button inline caption Redo exact\nPASS button inline caption Esc exact\nPASS button inline accelerator typed and F10 persisted\nPASS button inline accelerator Undo exact\nPASS button inline accelerator Redo exact\nPASS button inline accelerator Esc exact\nPASS button inline action typed and F10 persisted\nPASS button inline action Undo exact\nPASS button inline action Redo exact\nPASS button inline action Esc exact\nPASS button no other controls introduced\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-vh6tefr3\n",
+    "designer-inline-checkbox-text-small.log": "PASS actual Display applies25x80\nPASS checkbox inspector visible\nPASS checkbox inline caption typed and F10 persisted\nPASS checkbox inline caption Undo exact\nPASS checkbox inline caption Redo exact\nPASS checkbox inline caption Esc exact\nPASS checkbox inline variable typed and F10 persisted\nPASS checkbox inline variable Undo exact\nPASS checkbox inline variable Redo exact\nPASS checkbox inline variable Esc exact\nPASS checkbox no other controls introduced\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-1jgc61ao\n",
+    "designer-inline-radiogroup-text-small.log": "PASS actual Display applies25x80\nPASS radiogroup inspector visible\nPASS radiogroup inline variable typed and F10 persisted\nPASS radiogroup inline variable Undo exact\nPASS radiogroup inline variable Redo exact\nPASS radiogroup inline variable Esc exact\nPASS radiogroup inline items typed and F10 persisted\nPASS radiogroup inline items Undo exact\nPASS radiogroup inline items Redo exact\nPASS radiogroup inline items Esc exact\nPASS radiogroup no other controls introduced\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-9nooayva\n",
+    "designer-inline-combobox-text-small.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS combobox inline variable typed and F10 persisted\nPASS combobox inline variable Undo exact\nPASS combobox inline variable Redo exact\nPASS combobox inline variable Esc exact\nPASS combobox inline items typed and F10 persisted\nPASS combobox inline items Undo exact\nPASS combobox inline items Redo exact\nPASS combobox inline items Esc exact\nPASS combobox no other controls introduced\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-bp3n8_e9\n",
+    "designer-inline-listbox-text-small.log": "PASS actual Display applies25x80\nPASS listbox inspector visible\nPASS listbox inline variable typed and F10 persisted\nPASS listbox inline variable Undo exact\nPASS listbox inline variable Redo exact\nPASS listbox inline variable Esc exact\nPASS listbox inline items typed and F10 persisted\nPASS listbox inline items Undo exact\nPASS listbox inline items Redo exact\nPASS listbox inline items Esc exact\nPASS listbox no other controls introduced\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-si4dn2a7\n",
+    "designer-inline-get-events.log": "PASS get inspector visible\nPASS get inline when typed and F10 persisted\nPASS get inline when Undo exact\nPASS get inline when Redo exact\nPASS get inline when Esc exact\nPASS get inline valid typed and F10 persisted\nPASS get inline valid Undo exact\nPASS get inline valid Redo exact\nPASS get inline valid Esc exact\nPASS get no other controls introduced\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-sfug99cr\n",
+    "designer-inline-checkbox-events.log": "PASS checkbox inspector visible\nPASS checkbox inline when typed and F10 persisted\nPASS checkbox inline when Undo exact\nPASS checkbox inline when Redo exact\nPASS checkbox inline when Esc exact\nPASS checkbox inline valid typed and F10 persisted\nPASS checkbox inline valid Undo exact\nPASS checkbox inline valid Redo exact\nPASS checkbox inline valid Esc exact\nPASS checkbox inline focus typed and F10 persisted\nPASS checkbox inline focus Undo exact\nPASS checkbox inline focus Redo exact\nPASS checkbox inline focus Esc exact\nPASS checkbox inline state typed and F10 persisted\nPASS checkbox inline state Undo exact\nPASS checkbox inline state Redo exact\nPASS checkbox inline state Esc exact\nPASS checkbox no other controls introduced\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-g_fldzn_\n",
+    "designer-inline-button-events.log": "PASS button inspector visible\nPASS button inline when typed and F10 persisted\nPASS button inline when Undo exact\nPASS button inline when Redo exact\nPASS button inline when Esc exact\nPASS button inline valid typed and F10 persisted\nPASS button inline valid Undo exact\nPASS button inline valid Redo exact\nPASS button inline valid Esc exact\nPASS button inline focus typed and F10 persisted\nPASS button inline focus Undo exact\nPASS button inline focus Redo exact\nPASS button inline focus Esc exact\nPASS button no other controls introduced\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-8f_zr14r\n",
+    "designer-inline-radiogroup-events.log": "PASS radiogroup inspector visible\nPASS radiogroup inline when typed and F10 persisted\nPASS radiogroup inline when Undo exact\nPASS radiogroup inline when Redo exact\nPASS radiogroup inline when Esc exact\nPASS radiogroup inline valid typed and F10 persisted\nPASS radiogroup inline valid Undo exact\nPASS radiogroup inline valid Redo exact\nPASS radiogroup inline valid Esc exact\nPASS radiogroup inline focus typed and F10 persisted\nPASS radiogroup inline focus Undo exact\nPASS radiogroup inline focus Redo exact\nPASS radiogroup inline focus Esc exact\nPASS radiogroup no other controls introduced\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-b970h0tz\n",
+    "designer-inline-listbox-events.log": "PASS listbox inspector visible\nPASS listbox inline when typed and F10 persisted\nPASS listbox inline when Undo exact\nPASS listbox inline when Redo exact\nPASS listbox inline when Esc exact\nPASS listbox inline valid typed and F10 persisted\nPASS listbox inline valid Undo exact\nPASS listbox inline valid Redo exact\nPASS listbox inline valid Esc exact\nPASS listbox inline focus typed and F10 persisted\nPASS listbox inline focus Undo exact\nPASS listbox inline focus Redo exact\nPASS listbox inline focus Esc exact\nPASS listbox inline state typed and F10 persisted\nPASS listbox inline state Undo exact\nPASS listbox inline state Redo exact\nPASS listbox inline state Esc exact\nPASS listbox no other controls introduced\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-bqzfmvl2\n",
+    "designer-inline-combobox-events.log": "PASS combobox inspector visible\nPASS combobox inline when typed and F10 persisted\nPASS combobox inline when Undo exact\nPASS combobox inline when Redo exact\nPASS combobox inline when Esc exact\nPASS combobox inline valid typed and F10 persisted\nPASS combobox inline valid Undo exact\nPASS combobox inline valid Redo exact\nPASS combobox inline valid Esc exact\nPASS combobox inline focus typed and F10 persisted\nPASS combobox inline focus Undo exact\nPASS combobox inline focus Redo exact\nPASS combobox inline focus Esc exact\nPASS combobox inline state typed and F10 persisted\nPASS combobox inline state Undo exact\nPASS combobox inline state Redo exact\nPASS combobox inline state Esc exact\nPASS combobox no other controls introduced\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-zdyqjqtt\n",
+    "designer-inline-say-text.log": "PASS say inspector visible\nPASS say inline caption typed and F10 persisted\nPASS say inline caption Undo exact\nPASS say inline caption Redo exact\nPASS say inline caption Esc exact\nPASS say no other controls introduced\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-da2t7o8t\n",
+    "designer-inline-checkbox-text.log": "PASS checkbox inspector visible\nPASS checkbox inline caption typed and F10 persisted\nPASS checkbox inline caption Undo exact\nPASS checkbox inline caption Redo exact\nPASS checkbox inline caption Esc exact\nPASS checkbox inline variable typed and F10 persisted\nPASS checkbox inline variable Undo exact\nPASS checkbox inline variable Redo exact\nPASS checkbox inline variable Esc exact\nPASS checkbox no other controls introduced\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-mx0nkqbp\n",
+    "designer-inline-radio-text.log": "PASS radiogroup inspector visible\nPASS radiogroup inline variable typed and F10 persisted\nPASS radiogroup inline variable Undo exact\nPASS radiogroup inline variable Redo exact\nPASS radiogroup inline variable Esc exact\nPASS radiogroup inline items typed and F10 persisted\nPASS radiogroup inline items Undo exact\nPASS radiogroup inline items Redo exact\nPASS radiogroup inline items Esc exact\nPASS radiogroup no other controls introduced\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-nsk8_1dt\n",
+    "designer-inline-combo-text.log": "PASS combobox inspector visible\nPASS combobox inline variable typed and F10 persisted\nPASS combobox inline variable Undo exact\nPASS combobox inline variable Redo exact\nPASS combobox inline variable Esc exact\nPASS combobox inline items typed and F10 persisted\nPASS combobox inline items Undo exact\nPASS combobox inline items Redo exact\nPASS combobox inline items Esc exact\nPASS combobox no other controls introduced\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-5gszz9ag\n",
+    "designer-inline-button-text.log": "PASS button inspector visible\nPASS button inline caption typed and F10 persisted\nPASS button inline caption Undo exact\nPASS button inline caption Redo exact\nPASS button inline caption Esc exact\nPASS button inline accelerator typed and F10 persisted\nPASS button inline accelerator Undo exact\nPASS button inline accelerator Redo exact\nPASS button inline accelerator Esc exact\nPASS button inline action typed and F10 persisted\nPASS button inline action Undo exact\nPASS button inline action Redo exact\nPASS button inline action Esc exact\nPASS button no other controls introduced\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-mdsgtlg2\n",
+    "designer-inline-get-binding.log": "PASS get inspector visible\nPASS get inline variable typed and F10 persisted\nPASS get inline variable Undo exact\nPASS get inline variable Redo exact\nPASS get inline variable Esc exact\nPASS get no other controls introduced\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-jea34eiz\n",
+    "designer-inline-listbox-text.log": "PASS listbox inspector visible\nPASS listbox inline variable typed and F10 persisted\nPASS listbox inline variable Undo exact\nPASS listbox inline variable Redo exact\nPASS listbox inline variable Esc exact\nPASS listbox inline items typed and F10 persisted\nPASS listbox inline items Undo exact\nPASS listbox inline items Redo exact\nPASS listbox inline items Esc exact\nPASS listbox no other controls introduced\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-6jckcer8\n"
+  }
+}

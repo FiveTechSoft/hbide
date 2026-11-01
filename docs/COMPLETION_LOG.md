@@ -5373,3 +5373,14 @@ inalterado, sin fallo/reintento en estos17.214 escenarios distintos
 cotejados con plan353/normalizaciónQ223. No producto/píxeles/modelos/Windows,
 políticas nuevas/matriz completa/cierre hitos.
 Evidencia: docs/evidence/linux-c30-numeric-blocks5864-q234.json.
+
+### Q235 (1 noviembre 2026): C30 texto/eventos inspector
+
+26 variantes adicionales PASS mismo C30 96d77549/export049b533: campos
+texto/bindings de siete tipos y eventos expuestos en40x120/25x80. Fixtures
+acotadas de persistencia/F10/Undo/Redo/cancelación según contrato. No
+todos valores, expresiones ni píxeles. Tests propios hashados/binario
+inalterado, sin fallo/reintento en estas26.240 variantes distintas de
+comando cotejadas con plan353/normalizaciónQ223 aplicada. No producto nuevo,
+modelos/Windows/matriz completa/cierre hitos ni nuevas políticas.
+Evidencia: docs/evidence/linux-c30-text-blocks6573-q235.json.
