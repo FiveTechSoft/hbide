@@ -1,0 +1,13 @@
+{
+  "source": "073cd3e629c91163df0b656e86e5c2abef3a4fbd",
+  "scope": "Q125 isolated repository candidate-builder integration guards. No real product build/new candidate/PTY/models/pixels/license clearance/Windows/global milestone.",
+  "integration_log": "..\n----------------------------------------------------------------------\nRan 2 tests in 0.137s\n\nOK\n{\n  \"ok\": false,\n  \"source\": \"4196647f05c5dac30e7e6ea77048e0bbb45e3b1e\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp91_g_418/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"434b9c3aae783f759184f3f6c7b7584e3e2b87ef\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmptfr47t5v/candidate/manifest.json\"\n}\n",
+  "document_guard_log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+  "inventory_log": "....................................\n----------------------------------------------------------------------\nRan 36 tests in 0.352s\n\nOK\n",
+  "assertions": [
+    "stale archived README: document gate exit1, build_exit null, compiler-build marker absent, no.git, stale diagnostic recorded",
+    "current archived README: document gate0 and fake compiler invoked, intentional build exit19 correctly returned without candidate ok"
+  ],
+  "docs": "34byte-exactPASS",
+  "caveat": "Isolated fake compiler returns version then intentional build failure19; not product compile failure. Both builder results ok:false are expected test conditions."
+}

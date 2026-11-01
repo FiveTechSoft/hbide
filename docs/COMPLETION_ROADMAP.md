@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q125 | M5 builderstalecataloguebarrierexecuted. | Source073cd3e/2isolatedintegration5docguards36inventory34docsPASS;linux-candidate-document-preflight-integration.json.No realbinary/candidate/Windows/global. |
 | Q124 | Literal.hhheaderlisted/openedexact. | Source3565f64/before1PASS2FAIL/15PTY5modes22models36inventory34docsPASS,nativeinspected;linux-project-hh-header.json.No compiler/bridge/Windows/global. |
 | Q123 | M0 F1contexthelpdirect/File/Editrealroutes. | Sourceafb4576/39PTY2modes36inventory34docsPASS;linux-inventory-context-help-f1.json.No newproductfix/pixels/models/Windows/global. |
 | Q122 | M0 Alt0WindowListexactdispatchlinked. | Source6976fd2/72PTY2modes35inventory34docsPASS;linux-inventory-windowlist-altzero.json.No productfix/pixels/models/Windows/global. |

@@ -3916,3 +3916,12 @@ missingvisible/HBPbytespreserved.15PTY5modes22models36inventory34docsPASS
 cleannofail/retry.Actualnative120x40Sources+Enterheader/fullborders/F2exact
 inspected.linux-project-hh-header.json.No compiler/bridge/macros/allextensions/
 Windows/globalmatrix/hitoclosure.Q121/C22historicalseparate.
+
+## Q125 - execute candidate document prebuild barrier
+
+Source073cd3e/twoisolatedintegrationguardsPASS. Realgitarchiveswithout.git:
+staleREADMEgateexit1/build_exitnull/nocompilerbuildmarker;currentcatalogue
+gate0/fakecompilerinvoked/intentionalexit19reportednotok. Bothok:falseexpected
+fixtures,notproductfailures. Fivepathguards36inventory34docsPASS.
+linux-candidate-document-preflight-integration.json.No realproductbuild/
+newcandidate/PTY/models/pixels/licenses/Windows/globalmilestone.
