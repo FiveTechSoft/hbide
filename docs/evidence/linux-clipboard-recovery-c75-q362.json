@@ -1,0 +1,47 @@
+{
+  "scope": "Q362 five critical scripts on exact C75; not full matrix",
+  "source": "93d3876480c5217e4eadddc2f88a4400c321146a",
+  "binary_sha256": "e78652a51a586d67550d526c05a1ac54278d7b62459d26a23beace1afca024ef",
+  "results": {
+    "test_clipboard_close_pty.py": {
+      "exit": 0,
+      "log": "PASS Open source fixture\nPASS Cut source line saves remaining bytes exact\nPASS closed cut source returns to noname\nPASS Paste retains cut clipboard after source closes\nPASS Undo paste isolated after source closes\nPASS Redo paste after source closes exact\nPASS new document opened\nPASS latest Copy replaces shared clipboard in new document\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-8e387pj7\n",
+      "binary_unchanged": true
+    },
+    "test_clipboard_utf8_multidoc_pty.py": {
+      "exit": 0,
+      "log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-n9p049h9\n",
+      "binary_unchanged": true
+    },
+    "test_delete_word_noop_pty.py": {
+      "exit": 0,
+      "log": "PASS CtrlT virtual EOL creates no journal\nPASS Virtual CtrlT preserves prior Redo\nPASS CtrlT actual EOL remains byte exact\nPASS No-op CtrlT retains copied clipboard\nPASS Undo clipboard probe exact\nPASS No-op CtrlT closes without false save prompt\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-u7uabre2\n",
+      "binary_unchanged": true
+    },
+    "test_undo_journal_cleanup_pty.py": {
+      "exit": 1,
+      "log": "Traceback (most recent call last):\n  File \"/tmp/hbide-c75/source/tests/test_undo_journal_cleanup_pty.py\", line 19, in <module>\n    BIN = os.path.abspath(sys.argv[1])\nIndexError: list index out of range\n",
+      "binary_unchanged": true
+    },
+    "test_reload_journal_cleanup_pty.py": {
+      "exit": 1,
+      "log": "Traceback (most recent call last):\n  File \"/tmp/hbide-c75/source/tests/test_reload_journal_cleanup_pty.py\", line 19, in <module>\n    BIN = os.path.abspath(sys.argv[1])\nIndexError: list index out of range\n",
+      "binary_unchanged": true
+    },
+    "test_undo_journal_cleanup_pty.py-corrected": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS Undo to disk baseline retires stale journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n",
+      "binary_unchanged": true
+    },
+    "test_reload_journal_cleanup_pty.py-corrected": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS dirty disk change offers Reload\nPASS Reload shows external bytes\nPASS Reload retires discarded dirty journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n",
+      "binary_unchanged": true
+    }
+  },
+  "limitations": [
+    "Two initial journal scripts invoked without required positional binary; IndexError before IDE, retained as invalid invocation, not product failure or retry-free acceptance",
+    "Corrected journal invocations use explicit binary path",
+    "No new product/build/models/pixels or inherited Windows/install/release acceptance"
+  ]
+}
