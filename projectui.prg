@@ -121,26 +121,50 @@ FUNCTION HBIDEProjectPaint( oProject, lMessages, aRows, nPick, nTop, nVisible )
 FUNCTION HBIDEProjectOutput( cOutput )
    LOCAL a := hb_ATokens( cOutput, Chr(10) ), nTop := 1, nKey, nR := MaxRow(), nC := MaxCol(), i, n, cLine
    LOCAL nLeft := 1, nMaxWidth := 0, nWidth := Max( 1, nC - 7 )
+   LOCAL lUtf8 := .F., cOldCP, lWidths := .T., cShown
    // Display copy only: keep raw build output and diagnostic raw records exact.
    FOR i := 1 TO Len( a )
       a[ i ] := HBIDEProjectDiagnosticText( a[ i ] )
    NEXT
-   FOR EACH cLine IN a
-      nMaxWidth := Max( nMaxWidth, Len( cLine ) )
-   NEXT
    DO WHILE .T.
+      IF lWidths
+         nMaxWidth := 0
+         FOR EACH cLine IN a
+            nMaxWidth := Max( nMaxWidth, iif( lUtf8, hb_UTF8Len( cLine ), Len( cLine ) ) )
+         NEXT
+         nLeft := Max( 1, Min( nLeft, Max( 1, nMaxWidth - nWidth + 1 ) ) )
+         lWidths := .F.
+      ENDIF
       hb_Scroll( 2, 2, nR - 2, nC - 2,,, "N/W" )
       hb_DispBox( 2, 2, nR - 2, nC - 2, hb_UTF8ToStrBox( "┌─┐│┘─└│" ), "N/W" )
-      hb_DispOutAt( 2, 4, " Output - arrows scroll; PgUp/PgDn/Home/End; Esc Back ", "W+/B" )
+      hb_DispOutAt( 2, 4, " Output - arrows scroll; U UTF-8 / L legacy; Esc Back ", "W+/B" )
+      // Explicit display mode only. Never infer or rewrite compiler bytes.
+      IF lUtf8
+         DispBegin()
+         cOldCP := hb_cdpSelect( "UTF8" )
+         hb_SetDispCP( "UTF8", "UTF8", .F. )
+      ENDIF
       FOR i := 0 TO nR - 7
          n := nTop + i; cLine := ""
          IF n <= Len( a )
             cLine := a[ n ]
          ENDIF
-         hb_DispOutAt( 3 + i, 4, PadR( SubStr( cLine, nLeft, nWidth ), nWidth ), "N/W" )
+         IF lUtf8
+            cShown := hb_UTF8SubStr( cLine, nLeft, nWidth )
+            hb_DispOutAt( 3 + i, 4, cShown + Space( Max( 0, nWidth - hb_UTF8Len( cShown ) ) ), "N/W" )
+         ELSE
+            hb_DispOutAt( 3 + i, 4, PadR( SubStr( cLine, nLeft, nWidth ), nWidth ), "N/W" )
+         ENDIF
       NEXT
+      IF lUtf8
+         DispEnd()
+         hb_cdpSelect( cOldCP )
+         hb_SetDispCP( "EN" )
+      ENDIF
       nKey := hb_keyStd( Inkey( 0, INKEY_ALL + HB_INKEY_EXT ) )
       DO CASE
+      CASE nKey == Asc( "u" ) .OR. nKey == Asc( "U" ); lUtf8 := .T.; lWidths := .T.
+      CASE nKey == Asc( "l" ) .OR. nKey == Asc( "L" ); lUtf8 := .F.; lWidths := .T.
       CASE nKey == K_ESC; EXIT
       CASE nKey == K_UP; nTop--
       CASE nKey == K_DOWN; nTop++
