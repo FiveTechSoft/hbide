@@ -4535,3 +4535,14 @@ y bordes completos. Fuente deccb7a31c2cefcbd1f92b022b2361db4fdf48e0, binario
 671da6af795bef5f7465c85c11f3653482b28f12182477541e866c07a198f393.
 No nuevo arreglo/modelos/todosgestos/Windows/herenciamatriz/cierreM4.
 Evidencia `docs/evidence/linux-designer-inspector-vertical-drag-q170.json`.
+
+
+### C27 (1 noviembre 2026): candidato temporal con arrastre corregido
+
+Export4f9c681c605e8386b56cef228eeb3f21f1162031, strippedbin
+851540d50a7451ba5b200a1cb9bf1c3e9bf3d40851ee7cc1f12493c359fe8d93.
+8smokes mas5recientes27checksPASS exactbin,lddresuelto y34docspreflight
+en export fuera.git. Cuatro arrastres horizontal/vertical25x80/40x120
+y shrink25x80. Nativepair exactbin bottomclamp->5filasarriba revisado,
+underlay limpio/bordescompletos. No release/install/licencias/Windows/
+matriz309heredada/global/hitos. Evidencia `docs/evidence/linux-candidate-c27.json`.
