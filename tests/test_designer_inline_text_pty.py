@@ -1,10 +1,12 @@
 """Actual inline inspector text editing, Undo/Redo/Esc and persisted JSON. Linux PTY."""
+import argparse
 import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re,json
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
-for kind in [('--listbox' in sys.argv and 'listbox') or ('--get' in sys.argv and 'get') or 'button']:
+parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['say','checkbox','radiogroup','combobox']);parser.add_argument('--get',action='store_true');parser.add_argument('--listbox',action='store_true');args=parser.parse_args()
+for kind in [args.kind or ('listbox' if args.listbox else ('get' if args.get else 'button'))]:
  modelpath=work/'fixture.json'
  pid,fd=pty.fork()
  if pid==0:
@@ -43,7 +45,7 @@ for kind in [('--listbox' in sys.argv and 'listbox') or ('--get' in sys.argv and
   baseline=model()['controls']
   send(b'\x1bOS');send(b'\x1b[17~')
   check(kind+' inspector visible','Inspector' in screen.text())
-  fields={'button':[(2,'caption',"Inline 'caption'"),(3,'accelerator','Z'),(4,'action',"Action( 'quoted' )")], 'get':[(2,'variable','cInline')], 'listbox':[(2,'variable','nInline'),(3,'items',"One 'quoted',Two,Three")]}[kind]
+  fields={'button':[(2,'caption',"Inline 'caption'"),(3,'accelerator','Z'),(4,'action',"Action( 'quoted' )")], 'say':[(2,'caption',"Inline 'caption'")], 'checkbox':[(2,'caption',"Inline 'caption'"),(3,'variable','lInline')], 'radiogroup':[(2,'variable','nInline'),(3,'items',"One 'quoted',Two,Three")], 'combobox':[(2,'variable','nInline'),(3,'items',"One 'quoted',Two,Three")], 'get':[(2,'variable','cInline')], 'listbox':[(2,'variable','nInline'),(3,'items',"One 'quoted',Two,Three")]}[kind]
   expected=baseline
   for offset,key,value in fields:
    for _ in range(12):send(b'\x1b[A',.02)
