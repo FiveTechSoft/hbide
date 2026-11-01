@@ -74,8 +74,8 @@ GTSTD141PASS separado, sin heredar matriz/modelos/píxeles previos. Píxeles
 C86/C87Q418 limitados al picker. Q420-Q425 agregan aceptaciónfocal sólo de
 ese binario, detallada al final. Q430-Q432Save/Replace/Find también acotados
 aC87; Q427-Q428 procedencia factual, no licencia elegida. Q433docs posteriores
-no embebidos C87,
-sin rebuild por docs. Detalle al final.
+no embebidos C87. Q434-Q439 contratosM0/gestos acotados detallados al final;
+Q440docs posteriores tampoco embebidos, sin rebuild por docs.
 
 Histórico anterior, no evidencia heredada por C87:
 
@@ -1571,3 +1571,27 @@ bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48
 intacto. Receipts por Q427/Q429-Q432. Sin nuevos modelos/píxeles/matrizcompleta/
 Windows/install/licencias/hito. Q433docs/catálogo posteriores no embebidosC87,
 sin rebuild por docs; no cambiosCP/casefold/toolchain/políticas pendientes.
+
+### Q434-Q440 (1 noviembre 2026): contratos M0 y gestos medidos
+
+Q434vincula cinco dispatch exactos editor(click/doubleclick/Enter/BS/Delete)
+y siete suites navegación recientes;18dispatchlinks en total. Initialtest
+51PASS1FAIL por denominador antiguo13 quedó registrado y fue corregido a18,
+52unitsPASS, sin retirar asserts. Links no son PASS actual ni cierre M0.
+Q435introduce links de gestos exactos por fuente/contexto/condición, con
+wrongcontext/duplicate/missingtest failclosed guards. Q436C87tresinspector
+modes17checksPASS(horizontal40x120/vertical25x80/edge-return25x80), JSONintacto.
+Contrato sólo headerclose/drag bajo main-dispatch no-placing, no todoshit-tests.
+Q437C87ProjectMouse11checksPASS: clickselect/Enter, scroll+doublesource,
+headerdouble/missing/emptyMessagesno-open, realdiagdoubleexactrow, bytesintactos.
+Q438C87HelpMouse18checksPASS: tree/scrolledrow/SearchNextExportClose,
+relatedlinks/history/dirtyreturn/Undo. Su checkwheelbounds no prueba movimiento.
+Q439nueva HelpWheel24checksPASS incluye7medidasnuevascounter: Home1,max>3,
+down1a2/up2a1/upclamp, Endmax/downclamp/upmax-1. El resto conserva workflow
+click/sourceUndo, no se suma como variantes independientes. ProductoC87intacto,
+fuentee84d41e1d57f35aa1b42fe538b4ab11aa598f6fe,
+bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48.
+Inventario mouse vincula9de27ramas fuente con alcancefocal,18siguenpendientes;
+ramas no son funciones y vínculos no son PASS.55inventoryunitsPASS y catálogo34
+byteexact. Receipts por Q434-Q439. Q440docs/catálogo posteriores no embebidosC87,
+sinbuildpor docs, nuevosmodelos/píxeles/matrizcompleta/Windows/licencia/hito.
