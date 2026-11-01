@@ -4071,3 +4071,17 @@ nativo inspeccionado con candidato exacto: quitar/reponer ; repinta sin
 redraw forzado, F2 byte-exacto y bordes completos. Sin fallos/reintentos.
 Evidencia `docs/evidence/linux-candidate-c24.json`. Candidato temporal,
 no release, instalacion limpia, licencias, Windows ni herencia de matrizQ136.
+
+
+## 1 noviembre 2026: Q137 limite de hook de entrada, sin toggle decorativo
+
+Fuente de pruebas `838280e`: nuevo probe Harbour INKEYREAD acredita cinco
+checks PASS. Inkey() no bloqueante e Inkey(.01) invocan una vez el mismo
+hook con cero argumentos; se restaura el hook previo. El core recibe
+fWait/dSeconds, pero no los pasa al bloque. La guia distingue espera
+de entrada y ExchangeOFF; no se puede sustituir por intercambiar en
+cualquier poll. Saltarse RestoreAppScreen tampoco separa salida de app
+y debugger. Ambos stubs permanecen abiertos, sin cambio de contrato.
+27 modelos y 57 guardas PASS. Evidencia
+`docs/evidence/linux-debug-input-hook-q137.json`. No implementacion,
+PTY, visual, Windows ni cierre de M3; no bloquea las demas areas.

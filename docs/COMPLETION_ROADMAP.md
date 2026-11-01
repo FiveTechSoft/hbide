@@ -437,3 +437,12 @@ Candidato exportado3d109f8/binarioa05367ba:8smokes+5modosrecientes60checks
 PASS,34docpreflight,ldd y visual nativa exactbinary. Evidencia
 `docs/evidence/linux-candidate-c24.json`. No release/licencias/Windows/
 instalacion ni herencia de matrizQ136.
+
+
+### Seguimiento Q137 (1 noviembre 2026)
+
+Probe INKEYREAD cinco checks PASS y baseline27modelos/57guardas PASS.
+El hook actual no distingue poll de espera (cero argumentos en ambos);
+Swap on Input y Exchange Screens siguen abiertos sin degradar contrato.
+Evidencia `docs/evidence/linux-debug-input-hook-q137.json`; no arreglo
+ni cierre M3/global, continúan áreas independientes.
