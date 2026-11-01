@@ -3891,3 +3891,11 @@ retry/interruptedtests.No inheritanceQ104/Q119/C22.Evidence linux-full-matrix-q1
 No newfix/pixels/candidate/nativeWindows/licenseclearance/install/determinism/
 Cancelcontract/globalmilestoneclosure.Finaldocpublicationregenerateshelp;
 runtimeevidenceboundtofrozen8305ef0ratherthanlaterdocumentationcommit.
+
+## Q122 - exact Alt zero Window List dispatch
+
+Source6976fd2 links exactsource/context/condition to actualAlt0
+dirtylisting/filter/select and multidocisolation. Parentmenuclosedguard
+separate.Twomodes72checks(35+37)35inventory34docsPASSsamebinary,nofail/retry.
+linux-inventory-windowlist-altzero.json.No productfix/models/pixels/Windows/
+fullmatrixinheritance/globalmilestone.
