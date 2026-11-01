@@ -5,6 +5,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=(25,80) if '--small'
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
+success_long='--success-long-output' in sys.argv
 recover_promotion='--promotion-retry' in sys.argv
 promotion='--promotion-failure' in sys.argv or recover_promotion
 restore='--restore' in sys.argv
@@ -13,7 +14,7 @@ long_output='--long-output' in sys.argv
 diagnostic='--missing-output-diagnostic' in sys.argv or long_output
 missing_output='--missing-output' in sys.argv or diagnostic
 failed_output='--failed-output' in sys.argv
-fake=missing_output or failed_output or promotion
+fake=missing_output or failed_output or promotion or success_long
 for kind in ['autorun']:
  target=work/'missing.prg';value=work/'stale-launched.txt'
  target.write_text('procedure main()\n hb_MemoWrit("'+str(value)+'", "stale")\nreturn\n')
@@ -22,7 +23,7 @@ for kind in ['autorun']:
  previous=(work/'missing').read_bytes()
  if promotion:
   (work/'missing').unlink();(work/'missing').mkdir();(work/'missing/keep').write_bytes(b'original directory member')
- if restore or recover_promotion:target.write_text(target.read_text().replace('"stale"','"fresh"'))
+ if restore or recover_promotion or success_long:target.write_text(target.read_text().replace('"stale"','"fresh"'))
  original=target.read_bytes()
  (work/'empty-path').mkdir()
  if fake:
@@ -36,6 +37,8 @@ for kind in ['autorun']:
    launcher.write_text(launcher.read_text().replace('exit 0\n', 'printf \"%s(3) Error E0030 simulated fixture error\\n\" '+shlex.quote(str(target))+'\nexit 0\n'))
   if long_output:
    launcher.write_text(launcher.read_text().replace('printf \"%s(3)', 'i=0; while [ "$i" -lt 60 ]; do printf "compiler progress %s\\n" "$i"; i=$((i+1)); done\n'+ 'printf \"%s(3)'))
+  if success_long:
+   launcher.write_text('#!/bin/sh\ni=0; while [ "$i" -lt 60 ]; do printf "compiler progress %s\\n" "$i"; i=$((i+1)); done\nPATH='+shlex.quote(os.environ['PATH'])+'; export PATH\nexec '+shlex.quote(compiler)+' "$@"\n')
   launcher.chmod(0o700)
  pid,fd=pty.fork()
  if pid==0:
@@ -58,6 +61,19 @@ for kind in ['autorun']:
   pump(1.5);send(b'\x1bf');send(b'o');send(str(target).encode());send(b'\r',.6)
   for attempt in range(1 if promotion else 2):
    send(b'\x1br');send(b's',.7)
+   if success_long:
+    check('successful real build opens scrollable output','Output - arrows scroll' in screen.text())
+    check('viewer does not prematurely launch program',not value.exists())
+    check('previous executable stays exact until viewer exits',(work/'missing').read_bytes()==previous)
+    send(b'\x1b[F',.3)
+    check('End exposes real compiler completion','Done.' in screen.text())
+    send(b'\x1b',.7)
+    check('Esc viewer exit still runs fresh program',value.exists() and value.read_text()=='fresh')
+    check('success promotes different executable',(work/'missing').read_bytes()!=previous)
+    check('successful build source byte exact',target.read_bytes()==original)
+    check('successful build has no leftover temp',not [p for p in work.iterdir() if p.name.startswith('missing.') and p!=target])
+    check('success never shows failure alert','Build failed' not in screen.text())
+    break
    if promotion:
     check('build output ready','Build OK:' in screen.text() or (recover_promotion and 'Done.' in screen.text()));send(b'\r',.4)
     (work/'promotion.screen').write_text(screen.text())
