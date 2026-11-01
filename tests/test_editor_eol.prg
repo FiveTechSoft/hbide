@@ -74,6 +74,16 @@ PROCEDURE Main()
       o:Redo()
       Check(Len(o:aBPs)==1.and.o:aBPs[1]==2,'Redo blank Delete preserves survivor BP '+aCase[1],@nPass,@nFail)
    NEXT
+   o:LoadText(cLF+'anchor')
+   o:GoTo(1,5)
+   o:CopyLine()
+   o:GoTo(2,5)
+   o:PasteLine()
+   Check(o:GetText()==cLF+'anchor'+cLF,'Copied empty physical line pastes real line',@nPass,@nFail)
+   o:Undo()
+   Check(o:GetText()==cLF+'anchor','Undo empty clipboard paste exact',@nPass,@nFail)
+   o:Redo()
+   Check(o:GetText()==cLF+'anchor'+cLF,'Redo empty clipboard paste exact',@nPass,@nFail)
    // Fresh edits, undo/redo and journal reload use the same terminator.
    FOR EACH aCase IN { { 'CRLF', cCRLF }, { 'LF', cLF } }
       cText := 'abc' + aCase[ 2 ] + 'def' + aCase[ 2 ]

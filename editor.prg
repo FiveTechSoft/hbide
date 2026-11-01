@@ -68,6 +68,7 @@ CLASS HBSrcEdit FROM HBEditor
 
    // One editor clipboard across documents; undo/history stay per buffer.
    CLASSDATA cClipboard INIT ""
+   CLASSDATA lClipboardSet INIT .F.
    DATA   cFindText    INIT ""
    DATA   nSelRow      INIT 0
    DATA   lMark        INIT .F.   // range-selection anchor active (F8)
@@ -182,6 +183,7 @@ return nil
 METHOD CopyLine() CLASS HBSrcEdit
 
    ::cClipboard = ::aText[ ::nRow ]:cText
+   ::lClipboardSet := .T.
 
 return nil
 
@@ -192,12 +194,12 @@ METHOD PasteLine() CLASS HBSrcEdit
    local aLines, n, aBefore
 
    // Whitespace-only copied lines contain data, not an absent clipboard.
-   if Len( ::cClipboard ) > 0
+   if ::lClipboardSet .or. Len( ::cClipboard ) > 0
       ::ClearSelection()   // same stale-mark guard as CopySelection
       // A copied/cut block carries hb_eol() between its lines: split it back
       // into real lines (hb_ATokens with lAll=.T. keeps empty ones) instead
       // of embedding the eol bytes inside a single model line.
-      aLines := hb_ATokens( ::cClipboard, hb_eol(), .T. )
+      aLines := iif(Len(::cClipboard)==0,{""},hb_ATokens( ::cClipboard, hb_eol(), .T. ))
       // Insert below current line; independent of insert/overstrike mode
       aBefore := ::LinesSnapshot()
       for n := 1 to Len( aLines )
@@ -226,6 +228,7 @@ METHOD DeleteLine() CLASS HBSrcEdit
       // Old anchors may point past the line array after the deletion.
       ::ClearSelection()
       ::cClipboard = ::aText[ ::nRow ]:cText
+      ::lClipboardSet := .T.
       if Len( ::aText ) > 1
          ::RemoveLine( ::nRow )
       else
@@ -416,6 +419,7 @@ METHOD SelectWord( nRow, nTextCol ) CLASS HBSrcEdit
    ::lMark := .T.
    ::GoTo( nRow, nEnd + 5, _REFRESH_ALL )
    ::cClipboard := ::SelectionText()
+   ::lClipboardSet := .T.
 
    ::Display()
 
@@ -1939,6 +1943,7 @@ METHOD CopySelection() CLASS HBSrcEdit
 
    if aSel != NIL
       ::cClipboard := ::SelectionText()
+   ::lClipboardSet := .T.
       // Exit extend mode after copying: with the F8 persistent-anchor model
       // the mark otherwise survives and a later typing burst or Cut would
       // silently operate on a stale, still-extended range.
@@ -1959,6 +1964,7 @@ METHOD CutSelection() CLASS HBSrcEdit
       return nil
    endif
    ::cClipboard = ::SelectionText()
+   ::lClipboardSet := .T.
    aBefore := ::LinesSnapshot()
    aOld = ::SelDelete( aSel )
    if aSel[1] < aSel[3] .and. aSel[2] <= 5 .and. aSel[4] <= 5
