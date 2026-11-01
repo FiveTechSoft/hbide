@@ -66,6 +66,14 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Actualización 1 noviembre20:28 Q384: último candidato identificado C79,
+fuentece049bfb140c38d0123c148c8711c7a488bba81e,
+bin71194ee29d394ae294257a506d0d2c1add01cf5ffa307225d462b28ee95505b6.
+8smokes/cuatro nav12checksPASS, integra BOMrawQ382. Sin heredar matrices,
+modelos/píxeles; Q385docs posteriores no embebidos. Detalle al final.
+
+Histórico anterior, no evidencia heredada por C79:
+
 Corte 1 noviembre20:21 Q373-Q380 añade regresiones focales sobre C77exacto
 (saveclose/nav/designer/BP/recoveryUTF8), detalladas al final. No se suman en
 una matriz global ni heredan píxeles/modelos. Q381docs posteriores no embebidos.
@@ -1313,3 +1321,19 @@ completa ni nueva inspección de píxeles. C30único planhistórico completo.
 Q381reconcilia docs/catálogo, sin producto/buildIDE; docs posteriores no
 embebidosC77, no rebuild por receipts. Windows/install/licencias/M5/M6 y
 políticas pendientes intactos. Receipts docs/evidence/linux-*-q372 a q380.json.
+
+### Q382-Q385 (1 noviembre 2026): navegación de BOM en vista raw
+
+Q382fixtureUTF8BOM compiler-valid con carácter fueraCP437 abre raw sin pérdida.
+C77baseline1PASS1FAIL omitía primera PROCEDURE. Sólo la copia del scanner ignora
+la firma inicial; buffer/encoding/CP no cambian. C78focal3/0 y cuatro regresiones
+12checksPASS; lexical113/0 separado. Píxeles completos1202x762 antes/después
+inspeccionados: alertasinfunción pasa a Mainline1/1of1, glyphsraw siguenraw.
+Q383lexical119/0 añade BOMcomentario/directiva/TEXT/dump/linefísical y no elimina
+firma embebida. Q384C79limpio identificado fuentece049bfb140c38d0123c148c8711c7a488bba81e,
+bin71194ee29d394ae294257a506d0d2c1add01cf5ffa307225d462b28ee95505b6.
+Builderstrip-debug/Aboutrevision/docs34byteexact/ldd/8smokes y cuatro modosnav
+12checksPASS binintacto. Último identificado, no hereda matrices/modelos/píxeles
+C77/C78; C30único planhistóricocompleto. Q385docs/catálogo posteriores no embebidos,
+no nuevo producto/buildIDE ni cierreWindows/install/licencias/M5/M6/políticas.
+Receipts linux-nav-raw-bom-q382.json y linux-clean-candidate-q384.json.
