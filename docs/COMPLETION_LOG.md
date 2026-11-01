@@ -4489,3 +4489,13 @@ confirman contrato: corregida prueba, nuevo lote completo PASS. No
 arreglo de producto, prueba Action, reactivacion arbitraria, modelos/
 pixeles/Windows/herencia matriz/cierreM4. Evidencia
 `docs/evidence/linux-designer-inline-when-reenable-q166.json`.
+
+
+## 1 noviembre 2026: Q167, enlaces WHEN ampliados
+
+Seis contratos WHEN enlazan pares iguales/mixtos y reactivacion acotada,
+con limites explicitos. Persistencia sigue sin afirmar ejecucion de
+handlers. Nueva guarda evita ampliar esas afirmaciones.67guardas
+(46inventario),34docsPASS en d89d810. No nuevaejecucionPTY/modelos/
+pixeles/arregloproducto/Windows/porcentajeglobal/cierreM4. Evidencia
+`docs/evidence/linux-designer-when-runtime-links-q167.json`.

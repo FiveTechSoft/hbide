@@ -1,0 +1,73 @@
+{
+  "scope": "Q167 six WHEN runtime contracts add bounded pair/mixed/reenable references while persistence stays nohandlerexecution. Not new product/runtimePASS.",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "d89d810020ceab1c72fa725b2a5a0412433d7909",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "4ee71f3887456a7bcdd25345a8708815fb05e9dd6cf40a2b8fbd44db8b9df619",
+    "started": 1793516696.4678702,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q167-guards/test_completion_guards.py.log",
+        "seconds": 0.209
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q167-guards/test_build_receipt.py.log",
+        "seconds": 0.21
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "5c178c60879f6f854039d24bc71bf0cbea3a01c22d29963770bd60d7bae50905",
+        "log": "/tmp/hbide-q167-guards/test_completion_inventory.py.log",
+        "seconds": 0.762
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q167-guards/test_distribution_notices.py.log",
+        "seconds": 0.205
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q167-guards/test_embed_help_docs.py.log",
+        "seconds": 0.205
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q167-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.356
+      }
+    },
+    "ok": true,
+    "finished": 1793516698.4164062
+  },
+  "logs": {
+    "test_candidate_doc_preflight.py.log": "{\n  \"ok\": false,\n  \"source\": \"9963a7d8067936a6d9376c8870397a8e6ab44fbb\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp7is0zmma/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"d9de0198c965cc70231eebda12d2f8dc35e0ff0f\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmppp_laigr/candidate/manifest.json\"\n}\n.\n----------------------------------------------------------------------\nRan 2 tests in 0.140s\n\nOK\n",
+    "test_embed_help_docs.py.log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+    "test_completion_inventory.py.log": "..............................................\n----------------------------------------------------------------------\nRan 46 tests in 0.552s\n\nOK\n",
+    "test_completion_guards.py.log": "probe.py FAIL\nResults: /tmp/tmpl141ga3j/out/results.json\n.probe.py PASS\nResults: /tmp/tmp56s_2w7v/out/results.json\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.probe.py FAIL\nResults: /tmp/tmp1f_uca4s/out/results.json\n.probe.py FAIL\nResults: /tmp/tmplw7t077z/out/results.json\n.probe.py FAIL\nResults: /tmp/tmp2ak6v3o5/out/results.json\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n",
+    "test_build_receipt.py.log": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "test_distribution_notices.py.log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.010s\n\nOK\n"
+  },
+  "count": 67,
+  "limits": "21runtimecontractsremain,60inspectorfields,46inventoryguards within67total,34docspass. No newPTY/model/native/productfix/Windows/globalpercentage/M4closure."
+}
