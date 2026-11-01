@@ -66,15 +66,19 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre21:19 Q409: último candidato identificado C86,
-fuente 81c06602b621616005bc9b2e45195fd9184f51a9,
+Corte 1 noviembre21:34 Q418: último candidato identificado C87,
+fuente e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe,
+bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48.
+8smokes oficiales/13TEXTcompilerfixtures39checksPASS; PRINTERabreviaciónfix.
+GTSTD141PASS separado, sin heredar matriz/modelos/píxeles previos. Píxeles
+C86/C87Q418 limitados al picker. Q419docs posteriores no embebidos C87,
+sin rebuild por docs. Detalle al final.
+
+Histórico anterior, no evidencia heredada por C87:
+
+Q409candidato anterior C86, fuente81c06602b621616005bc9b2e45195fd9184f51a9,
 bin c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27.
-8smokes oficiales/tresTEXTcontinuados9checks/cincoTEXT15checksPASS.
-Q410harness posterior nuevecompilerfixtures27checksPASS sobre ese binario.
-Q412-Q416 agregan aceptaciónfocal nav/recovery/clipboard/M2/designer sólo
-sobre ese binario, detallada al final. No hereda matriz/modelos/píxeles previos.
-Q417docs posteriores no embebidos,
-sin rebuild por docs. Píxeles C85/C86Q409 limitados al picker, detalle al final.
+Aceptación Q410-Q416 limitada a ese binario, no heredada por C87.
 
 Histórico anterior, no evidencia heredada por C86:
 
@@ -1498,3 +1502,21 @@ píxeles/modelos/matrizcompleta/Windows/install/licencias/cierre de hito.
 Receipts linux-c86-nav-regression-q412.json, linux-c86-recovery-q413.json,
 linux-c86-clipboard-q414.json, linux-c86-m2-q415.json y
 linux-c86-designer-q416.json. Q417docs/catálogo posteriores no embebidosC86.
+
+### Q418-Q419 (1 noviembre 2026): PRINTER abreviado y C87
+
+Q418compilador confirmó TEXT TO PRIN y TEXT TO PRINT válidos; C86cadauno
+1PASS2FAIL con phantompayload y declaración real oculta. FIL(3letras) y ENDT
+rechazados, logs conservados. Scanner usa helper existente de keywords para
+PRINTER>=4letras, sin aceptar PRI/PRINTERCUSTOM ni cambiar terminador ENDTEXT.
+C87oficial fuentee84d41e1d57f35aa1b42fe538b4ab11aa598f6fe,
+bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48:
+8smokes/Aboutrev/docs34byteexact/lddPASS+13compilerfixtures39PTYchecksPASS,
+incluye PRINTE y abreviación continuada. ModeloGTSTD141PASS separado.
+Píxeles1202x762C86/C87 completos inspeccionados: Phantomline3 pasa a RealLine7,
+colores fuente intactos, sin corrección coloring. Receipt
+linux-nav-printer-abbrev-q418.json. Q419compactación reversible source.tarC87
+verifica SHA original/manifest/decomprimido, preserva árboles/bin/log/evidencia.
+Docs/catálogo Q419posteriores no embebidos C87, sin rebuild por docs.
+Sin matrizcompleta/modelosheredados/Windows/install/licencias/cierre de hito,
+macros/customstreams/payloadexecution/CP/toolchain/políticas no cambiados.

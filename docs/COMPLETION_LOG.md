@@ -5960,3 +5960,21 @@ píxeles/modelos/matrizcompleta/Windows/install/licencias/cierre de hito.
 Receipts linux-c86-nav-regression-q412.json, linux-c86-recovery-q413.json,
 linux-c86-clipboard-q414.json, linux-c86-m2-q415.json y
 linux-c86-designer-q416.json. Q417docs/catálogo posteriores no embebidosC86.
+
+### Q418-Q419 (1 noviembre 2026): PRINTER abreviado y C87
+
+Q418compilador confirmó TEXT TO PRIN y TEXT TO PRINT válidos; C86cadauno
+1PASS2FAIL con phantompayload y declaración real oculta. FIL(3letras) y ENDT
+rechazados, logs conservados. Scanner usa helper existente de keywords para
+PRINTER>=4letras, sin aceptar PRI/PRINTERCUSTOM ni cambiar terminador ENDTEXT.
+C87oficial fuentee84d41e1d57f35aa1b42fe538b4ab11aa598f6fe,
+bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48:
+8smokes/Aboutrev/docs34byteexact/lddPASS+13compilerfixtures39PTYchecksPASS,
+incluye PRINTE y abreviación continuada. ModeloGTSTD141PASS separado.
+Píxeles1202x762C86/C87 completos inspeccionados: Phantomline3 pasa a RealLine7,
+colores fuente intactos, sin corrección coloring. Receipt
+linux-nav-printer-abbrev-q418.json. Q419compactación reversible source.tarC87
+verifica SHA original/manifest/decomprimido, preserva árboles/bin/log/evidencia.
+Docs/catálogo Q419posteriores no embebidos C87, sin rebuild por docs.
+Sin matrizcompleta/modelosheredados/Windows/install/licencias/cierre de hito,
+macros/customstreams/payloadexecution/CP/toolchain/políticas no cambiados.
