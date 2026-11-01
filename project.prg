@@ -16,7 +16,7 @@ CREATE CLASS HBIDEProject
 ENDCLASS
 
 METHOD Open( cFile ) CLASS HBIDEProject
-   LOCAL cLine, cToken, aTokens, nLine := 0, cExt, cMember, cOriginal, cParse, lReadOk := .F.
+   LOCAL cLine, cToken, aTokens, nLine := 0, cExt, cMember, cResolved, cOriginal, cParse, lReadOk := .F.
    ::cError := ""
    ::cFile := ""; ::cRoot := ""; ::cOriginal := ""
    ::aMembers := {}; ::aUnresolved := {}; ::hInfo := {=>}; ::hBuild := {=>}
@@ -62,10 +62,16 @@ METHOD Open( cFile ) CLASS HBIDEProject
             AAdd( ::aUnresolved, { nLine, cToken, "Resolved by hbmk2, not by the source list" } )
             LOOP
          ENDIF
-         cExt := Lower( hb_FNameExt( cToken ) )
+         cResolved := cToken
+         // hbmk2 defaults an extensionless literal input to .prg.
+         // Preserve the original token and never infer flags/macros.
+         IF ! Empty(cToken) .AND. Left(cToken,1) != "-" .AND. Empty(hb_FNameExt(cToken))
+            cResolved := hb_FNameExtSet(cToken,".prg")
+         ENDIF
+         cExt := Lower( hb_FNameExt( cResolved ) )
          IF Left( cToken, 1 ) != "-" .AND. AScan( { ".prg", ".ch", ".c", ".cpp", ".cc", ".cxx", ".cx", ".h", ".hpp", ".hh", ".hbp", ".hbm", ".hbc" }, cExt ) > 0
             IF ! Empty( cExt )
-               cMember := HBIDEProjectPath( ::cRoot, cToken )
+               cMember := HBIDEProjectPath( ::cRoot, cResolved )
                IF AScan( ::aMembers, {| m | m[ "path" ] == cMember } ) == 0
                   AAdd( ::aMembers, { "path" => cMember, "token" => cToken, ;
                      "line" => nLine, "exists" => hb_FileExists( cMember ), ;
