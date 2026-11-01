@@ -46,22 +46,38 @@ build=subprocess.run(['hbmk2',str(source),*[str(ROOT/x) for x in ['hbwindow.prg'
 (work/'runtime-build.log').write_bytes(build.stdout)
 check('actual mixed generated PRG compiles',build.returncode==0)
 if build.returncode==0:
- pid,fd=pty.fork()
- if pid==0:os.execve(str(runtime),[str(runtime)],dict(os.environ,TERM='xterm'))
- fcntl.ioctl(fd,termios.TIOCSWINSZ,struct.pack('HHHH',ROWS,COLS,0,0));screen=Scr()
- try:
-  pump(.8)
-  check('runtime mixed dialog visible',all(t in screen.text() for t in ['Fixture','Nombre:','Correo:','Activo','Personal','IDE Harbour','Guardar','Cancelar']))
-  send(b'\t',.2);send(b'Ana',.2);send(b'\t',.2);send(b'ana@example.test',.2);send(b'\t',.2);send(b' ',.2)
-  send(b'\x1b',.4)
-  check('runtime Escape returns and writes bound values',resultpath.exists())
-  if resultpath.exists():
-   values=json.loads(resultpath.read_text());check('mixed GET fields retain independent input',values[0:2]==['Ana','ana@example.test'])
-   check('checkbox state independent',values[2:4]==[True,False])
-   check('unvisited selectors keep defaults',values[4:7]==[1,1,1])
- finally:
-  w=os.waitpid(pid,os.WNOHANG)
-  if w[0]==0:os.kill(pid,signal.SIGKILL);os.waitpid(pid,0)
-  os.close(fd)
+ scenarios=[('escape',None),('save',True),('cancel',False),('selectors',None)] if '--actions' in sys.argv else [('escape',None)]
+ for scenario,expected_ok in scenarios:
+  resultpath.unlink(missing_ok=True)
+  pid,fd=pty.fork()
+  if pid==0:os.execve(str(runtime),[str(runtime)],dict(os.environ,TERM='xterm'))
+  fcntl.ioctl(fd,termios.TIOCSWINSZ,struct.pack('HHHH',ROWS,COLS,0,0));screen=Scr()
+  try:
+   pump(.8)
+   check(scenario+' runtime mixed dialog visible',all(t in screen.text() for t in ['Fixture','Nombre:','Correo:','Activo','Personal','IDE Harbour','Guardar','Cancelar']))
+   if scenario=='selectors':
+    send(b' ',.2);send(b'\x1b[B',.2);send(b'\t',.2)
+    # Nombre, Correo, Activo, Avisos -> radio -> project list
+    send(b'\t'*4,.3);send(b'\x1b[B',.2);send(b'\t',.2);send(b'\x1b[B',.2);send(b'\x1b',.4)
+   else:
+    send(b'\t',.2);send(b'Ana',.2);send(b'\t',.2);send(b'ana@example.test',.2);send(b'\t',.2);send(b' ',.2)
+    if scenario=='save':send(b'\t'*4,.3);send(b'\r',.5)
+    elif scenario=='cancel':send(b'\t'*5,.3);send(b'\r',.5)
+    else:send(b'\x1b',.4)
+   check(scenario+' runtime returns and writes bound values',resultpath.exists())
+   if resultpath.exists():
+    values=json.loads(resultpath.read_text())
+    if scenario=='selectors':check('combo radio and list change independent bindings',values[4:7]==[2,2,2])
+    else:
+     check(scenario+' mixed GET fields retain independent input',values[0:2]==['Ana','ana@example.test'])
+     check(scenario+' checkbox state independent',values[2:4]==[True,False])
+     check(scenario+' unvisited selectors keep defaults',values[4:7]==[1,1,1])
+    if expected_ok is not None:check(scenario+' actual button action returns expected flag',values[7]==expected_ok)
+    (work/(scenario+'-values.json')).write_text(json.dumps(values))
+   (work/(scenario+'.screen')).write_text(screen.text())
+  finally:
+   w=os.waitpid(pid,os.WNOHANG)
+   if w[0]==0:os.kill(pid,signal.SIGKILL);os.waitpid(pid,0)
+   os.close(fd)
 print('TOTAL',sum(results),'PASS',len(results)-sum(results),'FAIL; evidence',work)
 sys.exit(not all(results))
