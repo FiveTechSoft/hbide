@@ -6,6 +6,12 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'designer-inline-get-radiogroup-mixed-skipped-runtime': ('test_designer_inline_all_skipped_runtime_pty.py', ['--kind','get','--pair','--peer-kind','radiogroup'], 120),
+    'designer-inline-radiogroup-checkbox-mixed-skipped-runtime': ('test_designer_inline_all_skipped_runtime_pty.py', ['--kind','radiogroup','--pair','--peer-kind','checkbox'], 120),
+    'designer-inline-checkbox-listbox-mixed-skipped-runtime': ('test_designer_inline_all_skipped_runtime_pty.py', ['--kind','checkbox','--pair','--peer-kind','listbox'], 120),
+    'designer-inline-listbox-combobox-mixed-skipped-runtime': ('test_designer_inline_all_skipped_runtime_pty.py', ['--kind','listbox','--pair','--peer-kind','combobox'], 120),
+    'designer-inline-combobox-button-mixed-skipped-runtime': ('test_designer_inline_all_skipped_runtime_pty.py', ['--kind','combobox','--pair','--peer-kind','button'], 120),
+    'designer-inline-button-get-mixed-skipped-runtime': ('test_designer_inline_all_skipped_runtime_pty.py', ['--kind','button','--pair','--peer-kind','get'], 120),
     'designer-inline-get-events-small': ('test_designer_inline_text_pty.py', ['--kind', 'get', '--events', '--small'], 120),
     'designer-inline-button-events-small': ('test_designer_inline_text_pty.py', ['--kind', 'button', '--events', '--small'], 120),
     'designer-inline-checkbox-events-small': ('test_designer_inline_text_pty.py', ['--kind', 'checkbox', '--events', '--small'], 120),

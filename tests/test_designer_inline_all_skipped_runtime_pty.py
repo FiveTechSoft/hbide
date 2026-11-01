@@ -1,11 +1,13 @@
-"""One or two same-type controls with false WHEN return without input. Linux bounded fixture."""
+"""One control or two same/mixed-type controls with false WHEN return without input. Linux bounded fixture."""
 import argparse
 import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re,json
 ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
-parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['get','radiogroup','checkbox','listbox','combobox','button'],required=True);parser.add_argument('--pair',action='store_true');args=parser.parse_args();kind=args.kind
+parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['get','radiogroup','checkbox','listbox','combobox','button'],required=True);parser.add_argument('--pair',action='store_true');parser.add_argument('--peer-kind',choices=['get','radiogroup','checkbox','listbox','combobox','button']);args=parser.parse_args();kind=args.kind
+if args.peer_kind and not args.pair:parser.error('--peer-kind needs --pair')
+peer_kind=args.peer_kind or kind
 for _ in [0]:
  modelpath=work/'fixture.json'
  pid,fd=pty.fork()
@@ -30,7 +32,7 @@ for _ in [0]:
   offset={'get':4,'radiogroup':4,'checkbox':4,'listbox':6,'combobox':6,'button':6}[kind]
   binding={'get':'CVAR1','radiogroup':'NVAR1','checkbox':'LVAR1','listbox':'NVAR1','combobox':'NVAR1','button':'lDummy'}[kind]
   control={'type':kind,'row':1,'col':2,'width':20,'height':6,'items':'One,Two,Three','caption':'Choice','variable':binding,'style':'brackets','focus':'MarkFocus()',event:'OldState()'}
-  peer=dict(control,row=10,variable={'get':'CPEER','radiogroup':'NPEER','checkbox':'LPEER','listbox':'NPEER','combobox':'NPEER','button':'lDummy'}[kind],when='MarkPeer()',focus='MarkPeerFocus()')
+  peer=dict(control,type=peer_kind,row=10,variable={'get':'CPEER','radiogroup':'NPEER','checkbox':'LPEER','listbox':'NPEER','combobox':'NPEER','button':'lDummy'}[peer_kind],when='MarkPeer()',focus='MarkPeerFocus()')
   initial=[control,peer] if args.pair else [control]
   modelpath.write_text(json.dumps({'name':'Fixture','caption':'Fixture','width':60,'height':20,'controls':initial}))
   pump(.8);send(b'\x1bo');send(b's',.3);send(b'\x1b[24~',.3)
@@ -55,7 +57,7 @@ import subprocess
 resultpath=work/'runtime-values.txt';marker=work/'handler-calls.txt'
 source=work/'runtime.prg'
 value_expr={'get':'AllTrim(CVAR1)','radiogroup':'NVAR1','checkbox':'LVAR1','listbox':'NVAR1','combobox':'NVAR1','button':'lDummy'}[kind]
-if args.pair:value_expr+=', '+{'get':'AllTrim(CPEER)','radiogroup':'NPEER','checkbox':'LPEER','listbox':'NPEER','combobox':'NPEER','button':'lDummy'}[kind]
+if args.pair:value_expr+=', '+{'get':'AllTrim(CPEER)','radiogroup':'NPEER','checkbox':'LPEER','listbox':'NPEER','combobox':'NPEER','button':'lDummy'}[peer_kind]
 source.write_text(generated.replace('return lOk','hb_MemoWrit( "'+str(resultpath)+'", hb_ValToExp( { '+value_expr+' } ) )\nreturn lOk')+'\nprocedure Main()\nDlg_Fixture()\nreturn\nfunction MarkState()\n   static nCalls := 0\n   nCalls++\n   hb_MemoWrit( "'+str(marker)+'", hb_ntos(nCalls) )\nreturn .F.\n')
 source.write_text(source.read_text()+'\nfunction MarkSentinel()\n hb_MemoWrit("'+str(work/'sentinel.txt')+'", "entered")\nreturn .T.\nfunction MarkFocus()\n hb_MemoWrit("'+str(work/'focus.txt')+'", "entered")\nreturn .T.\n')
 source.write_text(source.read_text()+'\nfunction MarkPeer()\n hb_MemoWrit("'+str(work/'peer.txt')+'", "called")\nreturn .F.\nfunction MarkPeerFocus()\n hb_MemoWrit("'+str(work/'peer-focus.txt')+'", "entered")\nreturn .T.\n')
@@ -76,9 +78,10 @@ if build.returncode==0:
    check(kind+' all skipped form returns without input',resultpath.exists())
    expected={'get':'{""}','radiogroup':'{1}','checkbox':'{.F.}','listbox':'{1}','combobox':'{1}','button':'{NIL}'}[kind]
    if args.pair:
-    expected=expected[:-1]+', '+expected[1:]
+    peer_expected={'get':'""','radiogroup':'1','checkbox':'.F.','listbox':'1','combobox':'1','button':'NIL'}[peer_kind]
+    expected=expected[:-1]+', '+peer_expected+'}'
     check(kind+' peer false WHEN evaluated',(work/'peer.txt').exists())
-    if kind!='get':check(kind+' peer GUI focus never entered',not (work/'peer-focus.txt').exists())
+    if peer_kind!='get':check(peer_kind+' peer GUI focus never entered',not (work/'peer-focus.txt').exists())
    check(kind+' all skipped binding unchanged',resultpath.exists() and resultpath.read_text()==expected)
    if kind!='get':check(kind+' all skipped GUI focus never entered',not (work/'focus.txt').exists())
 
