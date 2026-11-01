@@ -2202,7 +2202,7 @@ return Empty(c).or.Left(c,1)==";".or.Left(c,2)=="//".or.Left(c,2)=="&&".or.Left(
 // after a closed comment, TEXT-prefixed identifiers and custom stream forms.
 STATIC FUNCTION HBIDE_EditorTextStart(cText)
    local c:=AllTrim(StrTran(cText,Chr(9)," ")), n
-   if Upper(Left(c,4)) != "TEXT"
+   if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"
       return .F.
    endif
    c:=LTrim(SubStr(c,5))
