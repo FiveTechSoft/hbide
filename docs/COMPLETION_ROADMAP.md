@@ -64,7 +64,43 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 | M5 | Plataformas y paquete | Build limpio Linux y Windows de la misma fuente; hashes y version visibles; smoke del binario distribuido exacto. Windows: F12, drag/resize y generar/abrir/ejecutar, editor/debugger/ayuda. Instalacion en entorno limpio y licencias/dependencias revisadas. | Pendiente |
 | M6 | Cierre verificable | Matriz completa sin fallos criticos ni opciones decorativas; regresion completa repetida sobre el candidato final; capturas completas; docs coinciden; restantes exclusiones y decisiones explicitas, entrega comprobada. | Pendiente |
 
-## Cola inmediata
+## Trabajo siguiente y evidencia vigente
+
+- **M4, siguiente paso:** revisar los gestos del inspector tras llegar a un
+  borde y volver dentro del mismo arrastre. Q169 corrigio el inicio desde
+  una posicion clampada; Q170 acredita arrastre vertical. No se amplian
+  esos resultados a todos los gestos ni se cambia la politica de controles
+  sobredimensionados pendiente de decision.
+- **M5, siguiente paso:** separar el smoke Linux aislado de una instalacion
+  limpia en otro sistema. Q173 oculta checkout y compilador, pero usa las
+  bibliotecas del mismo host. Windows nativo, instalador y licencias siguen
+  pendientes. Q171 solo acredita dos rebuilds byte-identicos con el mismo
+  host y toolchain.
+- **M6:** no repetir una matriz de horas por cada cambio documental.
+  Q164 acredita 309 modos sobre su fuente, anterior al arreglo Q169. El
+  registro actual contiene 325 modos; ese numero es un plan, no 325 PASS.
+  La proxima consolidacion debe congelar una fuente que incluya el arreglo
+  y reconciliar las pruebas nuevas sin heredar los PASS de Q164.
+- **M2/M3:** Cancel sigue abierto sin helper C ni contrato rebajado a
+  process-group. Exchange Screens y swap on Input siguen siendo stubs;
+  el hook INKEYREAD probado no distingue espera y poll. Global/reinicio
+  necesitan contrato y soporte VM, no toggles decorativos.
+
+| Evidencia | Alcance que si acredita | Lo que no acredita |
+| --- | --- | --- |
+| Q164 | 309/309 modos: 308 PTY y una guarda, 29 modelos, 66 guardas, 34 docs, fuente6ad102e | Arreglo Q169 posterior, candidato final o Windows |
+| Q169/Q170 | Arreglo del origen de arrastre clampado; rutas horizontal y vertical, antes/despues y capturas | Todos los gestos o terminales; matriz global del nuevo binario |
+| C27 | Export4f9c681, ocho smokes y cinco modos recientes/27checks del binario851540d5 | Release, licencias, instalacion limpia o herencia de309 |
+| Q171 | Dos reconstrucciones independientes byte-identicas a C27, mismo host/toolchain | Reproducibilidad entre sistemas o compiladores |
+| Q173 | Tres modos/30checks en raiz reducida sin checkout/compilador | Otra distribucion, instalador o maquina limpia |
+
+Los hashes completos y los registros estan en los archivos de evidencia
+citados en el seguimiento. No hay porcentaje global ni hito cerrado nuevo.
+
+## Cola historica auditada
+
+La tabla siguiente conserva la secuencia anterior. No es la cola de trabajo
+actual; la prioridad vigente es la seccion de arriba.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
