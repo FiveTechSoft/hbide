@@ -18,6 +18,7 @@ CASES = {
     'designer-inline-listbox-when-veto-runtime': ('test_designer_inline_when_veto_runtime_pty.py', ['--kind','listbox'], 120),
     'designer-inline-combobox-when-veto-runtime': ('test_designer_inline_when_veto_runtime_pty.py', ['--kind','combobox'], 120),
     'designer-inline-button-when-veto-runtime': ('test_designer_inline_when_veto_runtime_pty.py', ['--kind','button'], 120),
+    'designer-inline-button-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','button'], 120),
     'designer-inline-get-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','get'], 120),
     'designer-inline-radiogroup-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','radiogroup'], 120),
     'designer-inline-checkbox-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','checkbox'], 120),

@@ -5,7 +5,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
-parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['get','radiogroup','checkbox','listbox','combobox'],required=True);args=parser.parse_args();kind=args.kind
+parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['get','radiogroup','checkbox','listbox','combobox','button'],required=True);args=parser.parse_args();kind=args.kind
 for _ in [0]:
  modelpath=work/'fixture.json'
  pid,fd=pty.fork()
@@ -27,9 +27,9 @@ for _ in [0]:
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
  try:
   event='valid'
-  offset={'get':5,'radiogroup':5,'checkbox':5,'listbox':7,'combobox':7}[kind]
-  binding={'get':'CVAR1','radiogroup':'NVAR1','checkbox':'LVAR1','listbox':'NVAR1','combobox':'NVAR1'}[kind]
-  control={'type':kind,'row':1,'col':2,'width':20,'height':6,'items':'One,Two,Three','caption':'Choice','variable':binding,event:'OldState()'}
+  offset={'get':5,'radiogroup':5,'checkbox':5,'listbox':7,'combobox':7,'button':7}[kind]
+  binding={'get':'CVAR1','radiogroup':'NVAR1','checkbox':'LVAR1','listbox':'NVAR1','combobox':'NVAR1','button':'lDummy'}[kind]
+  control={'type':kind,'row':1,'col':2,'width':20,'height':6,'items':'One,Two,Three','caption':'Choice','variable':binding,'style':'brackets','action':'NIL',event:'OldState()'}
   modelpath.write_text(json.dumps({'name':'Fixture','caption':'Fixture','width':60,'height':20,'controls':[control,{'type':'get','row':10,'col':2,'width':10,'variable':'cSentinel','when':'MarkSentinel()'}]}))
   pump(.8);send(b'\x1bo');send(b's',.3);send(b'\x1b[24~',.3)
   send(b'\x19'+str(modelpath).encode());send(b'\r');send(b'\r',.3);send(b'\t')
@@ -50,7 +50,7 @@ for _ in [0]:
 import subprocess
 resultpath=work/'runtime-values.txt';marker=work/'handler-calls.txt'
 source=work/'runtime.prg'
-value_expr={'get':'AllTrim(CVAR1)','radiogroup':'NVAR1','checkbox':'LVAR1','listbox':'NVAR1','combobox':'NVAR1'}[kind]
+value_expr={'get':'AllTrim(CVAR1)','radiogroup':'NVAR1','checkbox':'LVAR1','listbox':'NVAR1','combobox':'NVAR1','button':'lDummy'}[kind]
 source.write_text(generated.replace('return lOk','hb_MemoWrit( "'+str(resultpath)+'", hb_ValToExp( { '+value_expr+' } ) )\nreturn lOk')+'\nprocedure Main()\nDlg_Fixture()\nreturn\nfunction MarkState()\n   static nCalls := 0\n   nCalls++\n   hb_MemoWrit( "'+str(marker)+'", hb_ntos(nCalls) )\nreturn nCalls > 1\n')
 source.write_text(source.read_text()+'\nfunction MarkSentinel()\n hb_MemoWrit("'+str(work/'sentinel.txt')+'", "entered")\nreturn .T.\n')
 runtime=work/'runtime' 
