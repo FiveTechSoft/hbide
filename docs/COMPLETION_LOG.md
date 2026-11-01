@@ -4302,3 +4302,16 @@ SaveScreenbyteexact==Redrawlimpio. Excluyetransicionesmismaaltura
 (callerRedraw),noalega25x80native/pixeles.29modelos63guardas34docs
 PASS en7a11d1a.Sin arreglo/nuevoPTY/visual/gestos/Windows/cierreM4.
 Evidencia `docs/evidence/linux-designer-inspector-repaint-models-q154.json`.
+
+
+## 1 noviembre 2026: Q155 inspector y runtime conjunto focal actual
+
+Fuente3acc1d1904b8081bfd4c93028799e44678958902,binario
+a088a220653b804a5061b294c3eab694eeec6db5c9f4d415f10b2d1b7c5c36cc.
+41/41modos434checksPTY63guardas34docsPASS.22inspector+selection1+
+18runtime(20pareseventopositivos6,WHENfalse6,VALIDfalse5,ButtonAction1).
+Siete lotes misma fuente/binario,sinfallos/reintentos/interrupciones.
+Evidencia `docs/evidence/linux-designer-inspector-runtime-q155.json`.
+No globalIDE,modelos/pixeles nuevos,todosvalores/gestos/teclas,all-skipped,
+re-enable,orden/cuentas/parametros/excepciones/codigoarbitrario,ButtonVALID
+veto/Windows/cierreM4. Modelos/visuales previos mantienen revision propia.

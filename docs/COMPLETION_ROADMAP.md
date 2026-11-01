@@ -583,3 +583,11 @@ Modeloinspector104transicionesaltura+16panelmoves enmodos40x120/25x80
 byteexactincremental==Redraw;29modelos63guardas34docsPASS. No mismoheight,
 nuevoPTY/pixels/25x80native/Windows/cierreM4;sin arreglo. Evidencia
 `docs/evidence/linux-designer-inspector-repaint-models-q154.json`.
+
+
+### Seguimiento Q155 (1 noviembre 2026)
+
+Conjuntofocalactual41/41modos434checksPTY63guardas34docsPASSen3acc1d1,
+7lotes sinreintento/interrupcion. Inspector22+selection1+runtime18.
+No matrizglobalIDE/modelos/pixeles nuevos/todascombinaciones/Windows/M4.
+Evidencia `docs/evidence/linux-designer-inspector-runtime-q155.json`.
