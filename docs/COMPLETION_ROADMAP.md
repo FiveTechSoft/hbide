@@ -591,3 +591,11 @@ Conjuntofocalactual41/41modos434checksPTY63guardas34docsPASSen3acc1d1,
 7lotes sinreintento/interrupcion. Inspector22+selection1+runtime18.
 No matrizglobalIDE/modelos/pixeles nuevos/todascombinaciones/Windows/M4.
 Evidencia `docs/evidence/linux-designer-inspector-runtime-q155.json`.
+
+
+### Seguimiento Q156 (1 noviembre 2026)
+
+Fixturestandalone native25x80/40x120 recibos/cuatropixelesinspeccionados,
+seleccionCombo ydialogosinrestos.63guardas34docsPASS. No startupIDE25x80,
+endtoend/gestos/otroslayouts/Windows/cierreM4 ni arreglo. Evidencia
+`docs/evidence/linux-designer-inspector-native-geometry-q156.json`.

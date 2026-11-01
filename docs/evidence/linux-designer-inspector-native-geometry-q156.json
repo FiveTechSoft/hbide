@@ -1,0 +1,136 @@
+{
+  "source": "ce2c4ba",
+  "scope": "Standalone native visual fixture, not IDE startup/end-to-end interaction",
+  "probe_binary_sha256": "9686d481a5bf5c5103ab10e0716de368f88e65880dc8706cd0fb831d06353902",
+  "geometry_receipts": [
+    {
+      "rows": 25,
+      "cols": 80,
+      "state": "deselected",
+      "inspector": [
+        2,
+        46,
+        10,
+        76
+      ],
+      "handle": [
+        -1,
+        -1
+      ]
+    },
+    {
+      "rows": 40,
+      "cols": 120,
+      "state": "deselected",
+      "inspector": [
+        2,
+        86,
+        10,
+        116
+      ],
+      "handle": [
+        -1,
+        -1
+      ]
+    },
+    {
+      "rows": 25,
+      "cols": 80,
+      "state": "selected",
+      "inspector": [
+        2,
+        46,
+        13,
+        76
+      ],
+      "handle": [
+        12,
+        39
+      ]
+    },
+    {
+      "rows": 40,
+      "cols": 120,
+      "state": "selected",
+      "inspector": [
+        2,
+        86,
+        13,
+        116
+      ],
+      "handle": [
+        19,
+        59
+      ]
+    }
+  ],
+  "captures": {
+    "hbide-q156-40-selected.png": "a35d03f589b13633c7d3553c7f8ea9f90e5a69f1dbefa7e57d74c95f172c2b3d",
+    "hbide-q156-25-selected.png": "76bc75441b25a0f1308f8574c7027ff9e18f5bd77e477c27d18191ada5712d1b",
+    "hbide-q156-25-deselected.png": "c32b6fe0c30298896941a69def4eab8ca45a060d0d321b31f34ccb4933d3ed5b",
+    "hbide-q156-40-deselected.png": "bcb8740de5873f71048e9f5fc8dbea73ebe8d11cc20995bf622e476e44b82cfb"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "ce2c4bad1ca6631649c8a4a323dfd60b46329225",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "e40d23185f324b654fd99102e57363e343b0433d45a3c483f8eef019566ca0d3",
+    "started": 1793509796.1727567,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q156-guards/test_completion_guards.py.log",
+        "seconds": 0.2
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q156-guards/test_build_receipt.py.log",
+        "seconds": 0.199
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "177c22d6bedd8cba16d90be576a51a233e9006716e4a06b67abadd25f6d9ee87",
+        "log": "/tmp/hbide-q156-guards/test_completion_inventory.py.log",
+        "seconds": 0.7
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q156-guards/test_distribution_notices.py.log",
+        "seconds": 0.198
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q156-guards/test_embed_help_docs.py.log",
+        "seconds": 0.197
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q156-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.347
+      }
+    },
+    "ok": true,
+    "finished": 1793509798.0145304
+  },
+  "inspection": "All four complete native images inspected. Actual25x80 and40x120;selectedCombo10fields/intendedhandle,deselecteddialog7fields/no oldFocusStateborder/handle.25x80paneloverlayspartofdialogtitlebydesign;allpanelbordersreadable.",
+  "fixture_correction": "First standalone fixture left rawHBWindowmouseidle active,which repainted window across overlay. SuspendUI before fixture rendering removes rawidle consistent with no Activate loop;cursor hiddenexplicitly. Not diagnosed as new IDE bug.",
+  "limits": "Not IDEstartup25x80,gesturehandling,moving/resizing,all overlap/layout cases,Windows/global/M4. No product fix/new PTY/model rerun."
+}

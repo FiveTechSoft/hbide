@@ -4315,3 +4315,14 @@ Evidencia `docs/evidence/linux-designer-inspector-runtime-q155.json`.
 No globalIDE,modelos/pixeles nuevos,todosvalores/gestos/teclas,all-skipped,
 re-enable,orden/cuentas/parametros/excepciones/codigoarbitrario,ButtonVALID
 veto/Windows/cierreM4. Modelos/visuales previos mantienen revision propia.
+
+
+## 1 noviembre 2026: Q156 fixture native de geometria inspector
+
+StandaloneGTTRM verifica25x80/40x120exactos con recibos. Cuatrocapturas
+completas inspeccionadas:Combo10campos/tiradorprevisto,dialogo7campos
+sinrestosFocusState/borde/tirador.25x80paneltapa parte deltitulo como
+overlay,marcosinspectorcompletos. Fixture corrige rawHBWindowidleactivo
+conSuspendUI,sinActivate;no bugIDEinferido.63guardas34docsPASSen ce2c4ba.
+No startupIDE25x80/endtoend/gestos/otroslayouts/Windows/cierreM4 ni arreglo.
+Evidencia `docs/evidence/linux-designer-inspector-native-geometry-q156.json`.
