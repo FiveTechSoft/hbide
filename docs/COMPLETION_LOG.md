@@ -6231,3 +6231,35 @@ después197,902,336bytes. No hardlinks, ninguna fuente original/bin/manifiesto/
 log/evidencia retirada; archivo persistente y record de recuperación conservados.
 C90 intacto. No autoridad nueva de publicación/distribución ni licencia.
 Q486docs/catálogo posteriores no embebidos en C90; no nuevo build por docs.
+
+
+### Q487-Q491 (1 noviembre 2026): viewport UTF8 y selección horizontal ListPick
+
+Q487 C90input libre28cells:35a+féend, Home/End viewport, BS/Delete acento,
+reinsert/Enter encuentra texto exacto y UndoBOM/mixedEOL7PASS. Initial5/2fixture
+originalcorto no actualizado por reemplazo script; corregido/repetido sinfix.
+
+Q488 defecto C90ListPick: MRow válido sin MCol permite seleccionar Touch con
+clickcol0 fuera del diálogo; EnterX llega fila7PROCEDURE en vez Mainfila2.
+Probe inicial ruta fixture falló antesIDE; expectativa inicial clase incorrecta,
+corregida funciónMain y fallo confirmado. C91fix condición MCol interior;
+sourcea0e87553d3a05138583d6831c3a49a34ff652d58,
+bin2bd8ffa509e6fec8589b338e9683193d9ef811ee285c01020af175217f0fe9b8.
+Own8smokes oficiales/About/ldd/docs34PASS,GotoFunction6PASS outside/borders
+ignore, interior edge selects, Undoexact. Capturas reales1202x762beforeC90/
+afterC91 inspeccionadas bordes completos/status; resultado XPROCEDURErow7
+erróneo vs Xfunctionrow2 preservada. Scriptvisualpathlibtypo anteslaunch,
+corregido y recapturado. No DBL instrumentado aunque condición compartida.
+Q489 WindowList2dirtydocs9PASS outside/borders/interior/filter/save/Undo
+independiente; primer8/1esperabaUndoZsoloenvez transacciónY+Zcoalescida,
+observadooriginalexacto y corregido, sin producto cambiado. Q490MessageList
+8PASSconGCCreal-fsyntax-onlywarningline2/errorline3colonpath, fuera no cambia,
+interior selecciona segundo diagnóstico exacto; fuente intacta.
+
+C83unárbol exportado archivoindependiente10,914,722bytes/1474entradas, cada
+regular restaurado íntegro enmemoria SHA/size/mode, metadata dirs/symlinks e
+inventario verificados, original rechecado antes retirar sólo expandido.
+Fuente original/bin/manifiesto/log/evidencia conservados; no hardlinks.
+C90 intacto. DespuésC91~150MiB libres. Sin otras retiradas autorizadas.
+Q491docs/catálogo posterior no embebidoC91, no build sólo docs. No matriz,
+Windows/install/license/hitos/porcentaje; límites y políticas no cambian.

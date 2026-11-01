@@ -1,0 +1,15 @@
+{
+  "scope": "Q491 post C91 documentation/catalogue/tooling, not embedded in C91, no native runtime matrix implied",
+  "groups": {
+    "test_build_receipt.py.log": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "test_candidate_doc_preflight.py.log": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.331s\n\nOK\n{\n  \"ok\": false,\n  \"source\": \"0d57bfb6eee6de7f8690e7504aad3f893fd38906\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpu_r620xu/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"4a24c8ab44e6de56718d21e11420e58f62a265b1\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpl8mmakgg/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"72a06ca294bd33ca902fffd34da1e588df2e15b4\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp_xebb6zd/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"34a332b233ffdb69356ac3e61580efe4596204d3\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpr0qomxe8/candidate/manifest.json\"\n}\n",
+    "test_completion_guards.py.log": "probe.py FAIL\n.Results: /tmp/tmp24rcm0ya/out/results.json\nprobe.py PASS\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.Results: /tmp/tmpzimffvci/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmp1nduahrm/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmp3xile3za/out/results.json\nprobe.py FAIL\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\nResults: /tmp/tmpymz441fp/out/results.json\n",
+    "test_completion_inventory.py.log": "........................................................\n----------------------------------------------------------------------\nRan 56 tests in 0.646s\n\nOK\n",
+    "test_distribution_notices.py.log": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.018s\n\nOK\n",
+    "test_embed_help_docs.py.log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+    "test_foreign_root_guard.py.log": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n",
+    "test_linux_rebuild_guard.py.log": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.011s\n\nOK\n"
+  },
+  "catalogue": "34 exact byte-for-byte",
+  "candidate_source": "a0e87553d3a05138583d6831c3a49a34ff652d58"
+}

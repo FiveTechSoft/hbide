@@ -66,6 +66,27 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 1 noviembre23:40 Q491: último candidato aceptado en alcance focal **C91**,
+fuente `a0e87553d3a05138583d6831c3a49a34ff652d58`,
+bin `2bd8ffa509e6fec8589b338e9683193d9ef811ee285c01020af175217f0fe9b8`.
+Q488 reproduce C90: ListPick acepta clicks fuera del diálogo horizontalmente
+si comparten fila, y Enter salta a destino incorrecto. C91 limita MCol al
+interior, sin cambiar activación. 8 smokes oficiales/About/ldd/docs34 PASS;
+GotoFunction6, WindowList9, MessageList8 frescos PASS. MessageList usa dos
+diagnósticos GCC reales warning/error con ruta que contiene dos puntos.
+Píxeles nativos completos beforeC90/afterC91: XPROCEDURE fila7 incorrecta
+frente Xfunction Main fila2 conservada; bordes inferiores/status completos.
+C90 conservado. No hereda matriz, DBL instrumentado, todos los callers,
+Windows/install/licencias ni cierre de hitos. Docs posteriores no embebidosC91.
+Q487 C90UTF8 horizontal input7PASS es histórico, no regresión C91 implícita.
+C83 árbol exportado preservado reversible e íntegro antes retirar sólo
+expandido, bin/fuente original/manifiestos/logs/evidencia intactos. Espacio
+posterior C91 ~150MiB; no nuevas retiradas autorizadas. Próximo: regresión
+identificada y hueco funcional distinto, no variantes equivalentes ni builds
+sólo por docs. Políticas/gates pendientes permanecen.
+
+Histórico anterior, no evidencia heredada por C91:
+
 Corte 1 noviembre23:28 Q486: último candidato aceptado en alcance focal **C90**,
 fuente `6678e43385060fb018065ec0b842f00e604e44d2`,
 bin `28e836faac4040ac64737a9cccfd9d5a8d3de60cbdfe9a0d4a3a23f5757ccb7d`.
