@@ -41,6 +41,8 @@ cases = {
     'atomic': ['tests/test_atomic.prg', 'editor.prg', 'safeio.prg', 'recovery.prg'],
     'recovery': ['tests/test_recovery.prg', 'recovery.prg'],
     'project': ['tests/test_project.prg', 'project.prg', 'recovery.prg'],
+    'project-ui': ['tests/test_project_ui.prg', 'project.prg', 'projectui.prg', 'recovery.prg'],
+    'help-browser': ['tests/test_help_browser.prg', 'help.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'help': ['tests/test_help.prg', 'help.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
 }
 # Existing debugger model probes need the full vendored debugger, not stubs.
@@ -66,7 +68,7 @@ for name, sources in cases.items():
     hashes = {path: digest(ROOT / path) for path in sources}
     started = time.time()
     build = run(name + '-build', [HBMK, *sources, '-gtstd', '-quiet', '-o' + str(exe)])
-    rc = None if build else run(name, [str(exe)] + ([HBMK] if name == 'project' else []),
+    rc = None if build else run(name, [str(exe)] + ([HBMK] if name in ['project','project-ui'] else []),
                                 ROOT if name == 'help' else OUT)
     text = (OUT / (name + '.log')).read_text(errors='replace') if rc is not None else ''
     # Legacy atomic probe prints failures but does not set a failing exit code.
