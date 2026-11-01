@@ -1,0 +1,117 @@
+{
+  "manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "cdac56d54fd36c416678734e5ca94ba2595607a4",
+    "archive_sha256": "edde2692ce6591b0164119e654441fd39255eef8c26ec19329265fd497f5bf47",
+    "archive_file": "source.tar.gz",
+    "archive_format": "tar.gz",
+    "dirty": false,
+    "started": 1793573420.1513557,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "a168ed19ffd4fc8e89a183dabbf5b5f05821a4c394fc902524b625434cbb5b36",
+    "release_status": "not cleared; source notice review required",
+    "document_check": {
+      "exit": 0,
+      "paths_sha256": "a9ad0b3a5c47771afa608f0f9b419e12fb6491c24b00f1af4ebba47cff6c1e1b",
+      "count": 34
+    },
+    "source_notice_inventory": {
+      "path": "source-notices.json",
+      "sha256": "75f1c56a8e981a64a28b2752dfe83a32bcf2395c68dbe291f9adec63426a350d",
+      "release_review_required": true,
+      "does_not_clear_redistribution": true
+    },
+    "unstripped_sha256": "1851d0f4c59a006e24a4af7c34a8fbe9c03fc81c024f1dde0f9ae2cf8b62de52",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793573518.3341792
+  },
+  "baseline_c91": "PASS Contents opens tree and reading pane\nPASS mouse tree selects exact topic\nPASS mouse first tree row selects Basics not next topic\nPASS scrolled tree click retains valid reading pane\nPASS Next button with no query explains action\nPASS Search button executes actual query\nPASS Next button advances actual match\nPASS wheel scroll stays within topic bounds\nFAIL Help export does not follow symlink into existing notes\nPASS Close returns unchanged dirty source\nTOTAL 9 PASS 1 FAIL; evidence /tmp/hbide-source-run-x2pjkzjn\n",
+  "focal_c92": {
+    "c92-directory-correct-fixture.log": "PASS Nonregular export refused clearly\nPASS Nonregular destination unchanged\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-hzsc1_ua\n",
+    "c92-regular-correct-fixture.log": "PASS New regular export succeeds\nPASS Regular overwrite still allowed and complete\nPASS Regular export preserves mode\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-i0rb85z9\n",
+    "c92-regular.log": "FAIL Nonregular export refused clearly\nFAIL Nonregular destination unchanged\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 2 PASS 2 FAIL; evidence /tmp/hbide-source-run-q53q7c9o\n",
+    "c92-fifo.log": "PASS Nonregular export refused clearly\nPASS Nonregular destination unchanged\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-m82cn8m5\n",
+    "c92-dangling-correct-fixture.log": "PASS Dangling link refused clearly\nPASS Dangling link untouched and no target created\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-_rcyv460\n",
+    "c92-directory.log": "PASS Nonregular export refused clearly\nFAIL Nonregular destination unchanged\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 3 PASS 1 FAIL; evidence /tmp/hbide-source-run-hok8gvr7\n",
+    "c92-fifo-correct-fixture.log": "PASS Nonregular export refused clearly\nPASS Nonregular destination unchanged\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-7lz64xut\n",
+    "c92-dangling.log": "FAIL Nonregular export refused clearly\nFAIL Nonregular destination unchanged\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 2 PASS 2 FAIL; evidence /tmp/hbide-source-run-w1635vz7\n",
+    "c92-symlink.log": "PASS Export reports symlink refusal\nPASS Help export does not follow symlink into existing notes\nPASS Close returns unchanged dirty source\nTOTAL 3 PASS 0 FAIL; evidence /tmp/hbide-source-run-ttxukdxd\n"
+  },
+  "fixture_correction": "destination kind overwritten by inherited for kind autorun loop; rename run_kind corrected all expected branches, no product fix. Initial failures retained.",
+  "tests": {
+    "test_help_export_symlink_pty.py": "74f32188a66f2deffe112243585eeded3bd249fa4f0fbd9b6ff8359c690d0d0e",
+    "test_help_export_destinations_pty.py": "2c786903c7a54803d3dbc70e5d3340a8b6200edbaf3a8d564f989d4d9806df49"
+  },
+  "pixels": "Native1202x762 beforeC91 reports Wrote and isolated target overwritten; afterC92 clear Refused symlink error and target exact. Entire browser/lowerborder/status inspected. Screenshots parentattached.",
+  "api_evidence": "hb_vfAttrGet POSIX stat follows links, hb_vfLinkRead classification precheck not race lock. HBIDE_AtomicWriteFile writes exclusive sibling, final FRename does not open/truncate target. Observed regular behavior maintained, mode preserved; symlink/dangling/directory/FIFO refused. Concurrent parent directory replacement / alias race not guaranteed.",
+  "limits": "No adversarial race guarantee, all OS filetypes/network paths/Windows/fullmatrix/install/license. Existingregularoverwrite policy unchanged. Helper help-browser compiled only, no runtime acceptance claimed."
+}
