@@ -114,7 +114,7 @@ try:
     pump(2)
     send(b'\x1bf');send(b'o');send(str(target).encode()+b'\r',1)
     send(b'\x1bOH');send(b'\x1b[20~')
-    send(b'\x1b[19~');send(b'\x1b[B');send(b'\x1bOH');send(b'\x7f' if os.environ.get('SELECTION_DELETE_ACTION')=='bs' else b'\x1b[3~')
+    send(b'\x1b[19~');send(b'\x1b[B');send(b'\x1bOH');send(b'\x14' if os.environ.get('SELECTION_DELETE_ACTION')=='ctrl-t' else (b'\x7f' if os.environ.get('SELECTION_DELETE_ACTION')=='bs' else b'\x1b[3~'))
     check('Selected Delete complete first identical instruction drops its BP',scr.gutter_bg(1)!=1 and scr.gutter_bg(2)!=1)
     menu(b'n')
     check('Undo selected Delete does not resurrect removed instruction BP',scr.gutter_bg(1)!=1 and scr.gutter_bg(2)!=1)

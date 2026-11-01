@@ -76,7 +76,8 @@ class Scr:
 work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 (work/'home').mkdir(); (work/'rec').mkdir()
 target = work/'source.prg'
-original = b'alpha beta gamma'
+prefix = 'café ' if os.environ.get('HBIDE_UTF8')=='1' else ('\t' if os.environ.get('WORD_RANGE_CASE')=='tab' else 'alpha ')
+original = (prefix+'beta gamma').encode()
 target.write_bytes(original)
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
 pid, fd = pty.fork()
@@ -113,8 +114,14 @@ def delete_line():
 try:
     pump(2)
     send(b'\x1bf');send(b'o');send(str(target).encode()+b'\r',1)
-    send(b'\x1bOH');send(b'\x1b[19~')
-    for _ in range(6): send(b'\x1b[C',.1)
+    send(b'\x1bOH')
+    if os.environ.get('WORD_RANGE_CASE')=='reverse':
+        for _ in range(len(prefix)): send(b'\x1b[C',.1)
+        send(b'\x1b[19~')
+        for _ in range(len(prefix)): send(b'\x1b[D',.1)
+    else:
+        send(b'\x1b[19~')
+        for _ in range(len(prefix)): send(b'\x1b[C',.1)
     send(b'\x14')
     saved('CtrlT on active range deletes selected bytes only',b'beta gamma')
     menu(b'n');saved('Undo marked CtrlT restores exact original',original)

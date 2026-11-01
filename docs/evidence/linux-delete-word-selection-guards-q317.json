@@ -1,0 +1,27 @@
+{
+  "source": "a9b21dc9e0846a00825afe2fdf4f67e5134c07f1",
+  "binary_sha256": "4d537aeb46c86053a443c2311b53716762756d42131dc1d75caf2011c1d41584",
+  "tests": {
+    "reverse": {
+      "exit": 0,
+      "test_sha256": "eae712c0cfd7136d967a83931a6ffa4a4e1fa37eac55f27b57f497f0e0dfdb32",
+      "log": "PASS CtrlT on active range deletes selected bytes only\nPASS Undo marked CtrlT restores exact original\nPASS Redo marked CtrlT exact\nPASS Typing after marked CtrlT inserts without stale range\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-cpf24ae7\n"
+    },
+    "tab": {
+      "exit": 0,
+      "test_sha256": "eae712c0cfd7136d967a83931a6ffa4a4e1fa37eac55f27b57f497f0e0dfdb32",
+      "log": "PASS CtrlT on active range deletes selected bytes only\nPASS Undo marked CtrlT restores exact original\nPASS Redo marked CtrlT exact\nPASS Typing after marked CtrlT inserts without stale range\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-388lfvhi\n"
+    },
+    "utf8": {
+      "exit": 0,
+      "test_sha256": "eae712c0cfd7136d967a83931a6ffa4a4e1fa37eac55f27b57f497f0e0dfdb32",
+      "log": "PASS CtrlT on active range deletes selected bytes only\nPASS Undo marked CtrlT restores exact original\nPASS Redo marked CtrlT exact\nPASS Typing after marked CtrlT inserts without stale range\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-xlsd9b0a\n"
+    },
+    "ctrl-t-bp": {
+      "exit": 0,
+      "test_sha256": "25ac3d9d495dda119f536919dd3ed4b4a40d989e9856d6d29eba8198e07f37a1",
+      "log": "PASS Selected Delete complete first identical instruction drops its BP\nPASS Undo selected Delete does not resurrect removed instruction BP\nPASS Redo selected Delete leaves BP absent\nPASS Selected Delete selected complete line saves exact bytes\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-luwgnfi4\n"
+    }
+  },
+  "scope": "Postexport harness against unchanged C62. Reverse/TAB/UTF8 selectedCtrlT andwholelineBP16checks. No newproduct/build/pixels/matrix/Windows/hito."
+}
