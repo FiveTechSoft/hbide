@@ -5328,3 +5328,14 @@ editable. Tests propios hashados/binario inalterado, sin fallo/reintento
 en estos11.166 escenarios distintos cotejados con plan353, normalizaciónQ223.
 No toggles M3/producto nuevo/píxeles/modelos/Windows/matriz completa/hitos.
 Evidencia: docs/evidence/linux-c30-debug-structures-blocks3742-q230.json.
+
+### Q231 (1 noviembre 2026): C30 entrada/foco debugger
+
+8 escenarios adicionales PASS mismo C30 96d77549/export049b533: scroll
+ratón monitor, frame con variable sombreada, stack mouse/general mouse,
+modales valor/números, ayuda por temas y cursor con popup. Fixtures PTY
+acotadas, no certificación visual/tearing ni todas las geometrías. Tests
+propios hashados/binario inalterado, sin fallo/reintento en estos8.174
+escenarios distintos cotejados con plan353, normalizaciónQ223 aplicada.
+No M3toggles/producto nuevo/píxeles/modelos/Windows/matriz completa/hitos.
+Evidencia: docs/evidence/linux-c30-debug-input-blocks4346-q231.json.

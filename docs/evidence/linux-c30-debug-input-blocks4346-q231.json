@@ -1,0 +1,140 @@
+{
+  "scope": "Frozen C30 debugger mouse/value/help.8additional scenarios;174distinct across blocks1..46 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-monitor-mouse-scroll",
+          "command": [
+            "test_debug_monitor_mouse_scroll_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 10.198247194290161,
+          "test_sha256": "a7df21171e780a50a07f0d7e24b4220b203c1b54500a8c99b442a4752f53faa9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-monitor-mouse-scroll.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-shadowed-frame",
+          "command": [
+            "test_debug_shadowed_frame_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 11.627154111862183,
+          "test_sha256": "c3b68c97ddf948536c82fbccdc68cc7e437bf4e4030bbc4be02a92a6ce72602f",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-shadowed-frame.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-stack-mouse",
+          "command": [
+            "test_debug_stack_mouse_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 9.432279348373413,
+          "test_sha256": "c1d3f60be21d25df55fa6aebb0c71cf4c63174480347355f409d6d798dfe1cc9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-stack-mouse.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-mouse",
+          "command": [
+            "test_debug_mouse_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 10.098992347717285,
+          "test_sha256": "dfa6f54b1e8767372ad9f806288b3a4d4dd62d12436fcdd2979ab9bac5430c75",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-mouse.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-value-modal",
+          "command": [
+            "test_debug_value_modal_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 14.411350727081299,
+          "test_sha256": "11a5a8d194be3a41a5ff4a2bc2166808926c0a423522cd8ea2664e8655827c10",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-value-modal.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-numeric-modal",
+          "command": [
+            "test_debug_numeric_modal_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 25.88402009010315,
+          "test_sha256": "ba30a1b8fe84ffe8df872046f92808ac43a2c259f7a78e79bd20faf858f43183",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-numeric-modal.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-help-topics",
+          "command": [
+            "test_debug_help_topics_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 14.813052415847778,
+          "test_sha256": "efd5a8ba6a455ed3cdf2a9f7814498950a396ef1898fc5d57e3b07d03e96c833",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-help-topics.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-cursor-popup",
+          "command": [
+            "test_debug_cursor_popup_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 15.382841110229492,
+          "test_sha256": "7755dd63c12dc29766c40cb35163514b6aa7d5c067d9b94f9d870cd062254307",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-cursor-popup.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 174,
+  "logs": {
+    "debug-monitor-mouse-scroll.log": "PASS debugger stopped before increment\nPASS Monitor PageDown exposes later locals\nPASS doubleclick scrolled Monitor edits exact visible local\nPASS PageUp returns first Monitor locals\nPASS click after PageUp edits correct second local\nPASS scrolled Monitor edit reaches exact debuggee slot\nPASS scrolled Monitor leaves source bytes unchanged\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-pomrk4g1\n",
+    "debug-shadowed-frame.log": "PASS callee shadowed local starts202\nPASS caller shadowed local starts101\nPASS caller edit displays707\nPASS caller edit does not change callee202\nPASS callee edit displays808\nPASS callee edit leaves caller707\nPASS callee edited slot retained808\nPASS Resume proves distinct caller707 and incremented callee809\nPASS frame edits leave source bytes exact\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-63pacgv_\n",
+    "debug-stack-mouse.log": "PASS child local visible at nested stop\nPASS click caller frame switches Monitor locals\nPASS right border click preserves selected MAIN frame\nPASS title border click preserves selected MAIN frame\nPASS click callee frame restores child locals\nPASS stack clicks allow debuggee completion\nPASS stack clicks leave source bytes exact\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-p9wtxtwl\n",
+    "debug-mouse.log": "PASS debugger stopped before increment\nPASS three locals visible\nPASS single click selects exact local for Enter edit\nPASS doubleclick edits clicked C not prior B\nPASS doubleclick typed Cancel preserves A\nPASS mouse values execute exact debuggee state\nPASS mouse debugger never modifies source bytes\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-9xdej6rq\n",
+    "debug-value-modal.log": "PASS debugger stopped before increment\nPASS readonly scalar inspector opens\nPASS readonly inspector refuses typed edit\nPASS edited Monitor scalar shows41\nPASS typed Esc keeps accepted41\nPASS invalid expression shows error\nPASS invalid then Esc keeps41\nPASS readonly after edit refuses mutation\nPASS edited value executes in debuggee\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-x534cjpc\n",
+    "debug-numeric-modal.log": "PASS debugger opens\nPASS default exact persisted state\nPASS tab modal opens\nPASS accept tab12 exact persisted state\nPASS tab modal opens\nPASS typed Cancel tab exact persisted state\nPASS tab modal opens\nPASS tab low clamps1 exact persisted state\nPASS tab modal opens\nPASS tab high clamps16 exact persisted state\nPASS tab modal opens\nPASS tab nonnumeric validation rejects\nPASS invalid tab preserves exact persisted state\nPASS speed modal opens\nPASS accept speed5 exact persisted state\nPASS speed modal opens\nPASS typed Cancel speed exact persisted state\nPASS speed modal opens\nPASS speed low clamps0 exact persisted state\nPASS speed modal opens\nPASS speed high clamps65534 exact persisted state\nPASS speed modal opens\nPASS speed nonnumeric validation rejects\nPASS invalid speed preserves exact persisted state\nPASS tab modal opens\nPASS speed modal opens\nPASS restored exact persisted state\nTOTAL 27 PASS 0 FAIL; evidence /tmp/hbide-source-run-satsouwa\n",
+    "debug-help-topics.log": "PASS debugger stopped before increment\nPASS Help a dialog opens exact body\nPASS Help k dialog opens exact body\nPASS Help w dialog opens exact body\nPASS Help m dialog opens exact body\nPASS Help c dialog opens exact body\nPASS Keys topic exact initial body\nPASS body click does not change selected Keys topic\nPASS outside click leaves Keys selected\nPASS topic column click still selects next Function body\nPASS Help leaves exact debuggee values unchanged\nPASS Help leaves source bytes unchanged\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-l25tyzr3\n",
+    "debug-cursor-popup.log": "PASS debugger stopped before increment\nPASS Run to Cursor stops before line6 mutation\nPASS Point Breakpoint adds cursor line8\nPASS second to Cursor stops before line7 mutation\nPASS Run Go stops at popup breakpoint before write\nPASS second Point Breakpoint removes cursor line8\nPASS File Resume does not execute debuggee\nPASS File Resume restores viewing cursor to paused execution line8\nPASS Go after removing BP writes exact final result\nPASS Resume returns to IDE editor\nPASS cursor and breakpoint leave source bytes unchanged\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-rvlut2oh\n"
+  }
+}
