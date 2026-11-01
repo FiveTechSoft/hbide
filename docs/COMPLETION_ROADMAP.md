@@ -607,3 +607,11 @@ All-skipped deuncontrolWHEN.F.inline,F10,F9,runtime retorna sinteclas
 en6tipos:6PTY41checks63guardas34docsPASS. No multicontrol/re-enable/
 Windows/global/M4,nuevosmodelos/pixeles. Evidencia
 `docs/evidence/linux-designer-inline-all-skipped-runtime-q157.json`.
+
+
+### Seguimiento Q158 (1 noviembre 2026)
+
+IDErealDisplay25x80->designerCombo->deseleccion:3PTY22checks63guardas
+34docsPASS,nativepaircompletoinspeccionadosinrestos. No startup25x80,
+todostipos/gestos/layouts/Windows/cierreM4niarreglo. Evidencia
+`docs/evidence/linux-designer-inspector-ide-small-q158.json`.

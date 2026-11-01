@@ -1,0 +1,155 @@
+{
+  "scope": "Actual IDE Display25x80 then designer load/selection/deselection, bounded Linux, no product fix",
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "653840bc8d18fac1e324f2d16f423f557752b5e4",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "cfc6ac61e01c2b2df5fc7a353430de34a597e41fdbb4161c54d475adffab0f0e",
+      "binary_sha256": "406c20bb0fa3898a9404644fe818d1d782ca0ccdce295624324d0d9be9531a91",
+      "build_receipt": "/tmp/hbide-q158-final2/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "935f409411eee78133f99ae3ba7d5e34a7bfd2faff020cbb50e1313c9710564a",
+      "case": "designer-inspector-shrink-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_shrink_pty.py",
+        "--small"
+      ],
+      "started": 1793510180.3796852,
+      "seconds": 6.03,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c48a484a86ae4f88c757ecb1ff3ba44e357d6547b624e5d7e3ba3c141e2461f1",
+      "log": "/tmp/hbide-q158-final2/designer-inspector-shrink-small-1793510180379681161.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "653840bc8d18fac1e324f2d16f423f557752b5e4",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "cfc6ac61e01c2b2df5fc7a353430de34a597e41fdbb4161c54d475adffab0f0e",
+      "binary_sha256": "406c20bb0fa3898a9404644fe818d1d782ca0ccdce295624324d0d9be9531a91",
+      "build_receipt": "/tmp/hbide-q158-final2/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "935f409411eee78133f99ae3ba7d5e34a7bfd2faff020cbb50e1313c9710564a",
+      "case": "designer-inspector-shrink",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_shrink_pty.py"
+      ],
+      "started": 1793510186.4103615,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c48a484a86ae4f88c757ecb1ff3ba44e357d6547b624e5d7e3ba3c141e2461f1",
+      "log": "/tmp/hbide-q158-final2/designer-inspector-shrink-1793510186410356589.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "653840bc8d18fac1e324f2d16f423f557752b5e4",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "cfc6ac61e01c2b2df5fc7a353430de34a597e41fdbb4161c54d475adffab0f0e",
+      "binary_sha256": "406c20bb0fa3898a9404644fe818d1d782ca0ccdce295624324d0d9be9531a91",
+      "build_receipt": "/tmp/hbide-q158-final2/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "935f409411eee78133f99ae3ba7d5e34a7bfd2faff020cbb50e1313c9710564a",
+      "case": "display-multidoc",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_display_multidoc_pty.py"
+      ],
+      "started": 1793510191.0810728,
+      "seconds": 23.76,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a271dd0ebc380a06a1c14f4cf512e9ab605c2b71bd374878e0f637e10b803dea",
+      "log": "/tmp/hbide-q158-final2/display-multidoc-1793510191081069609.log"
+    }
+  ],
+  "logs": {
+    "designer-inspector-shrink-small": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS dialog inspector selected\nPASS shorter inspector clears old State row\nPASS shorter inspector clears old Focus row\nPASS Combo inspector restored\nPASS selection only preserves JSON\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-nogvl6y7\n",
+    "designer-inspector-shrink": "PASS combobox inspector visible\nPASS dialog inspector selected\nPASS shorter inspector clears old State row\nPASS shorter inspector clears old Focus row\nPASS Combo inspector restored\nPASS selection only preserves JSON\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-5sm259wv\n",
+    "display-multidoc": "PASS Display Cancel leaves grid unchanged\nPASS Display explicit Cancel leaves grid unchanged\nPASS Display applies 25x80\nPASS inactive document cursor fits resized desktop\nPASS inactive document last line visible\nPASS Display restores 40x120\nPASS other document uses expanded rows\nPASS second undo/save preserves original bytes\nPASS first undo/save preserves original bytes\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-ld8vlc0h\n"
+  },
+  "checks": 22,
+  "modes": 3,
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "653840bc8d18fac1e324f2d16f423f557752b5e4",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "9a33a5ac3bcf8eb64d9f332b0becfd9afc40cabc9b09b5b7b3f97aa79ee00769",
+    "started": 1793510215.0108056,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q158-final2-guards/test_completion_guards.py.log",
+        "seconds": 0.201
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q158-final2-guards/test_build_receipt.py.log",
+        "seconds": 0.201
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "177c22d6bedd8cba16d90be576a51a233e9006716e4a06b67abadd25f6d9ee87",
+        "log": "/tmp/hbide-q158-final2-guards/test_completion_inventory.py.log",
+        "seconds": 0.701
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q158-final2-guards/test_distribution_notices.py.log",
+        "seconds": 0.202
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q158-final2-guards/test_embed_help_docs.py.log",
+        "seconds": 0.2
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q158-final2-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.351
+      }
+    },
+    "ok": true,
+    "finished": 1793510216.8667812
+  },
+  "initial_failed_run": "Initial small case failed CLI parsing because --small not registered in inherited parser; added arg, fresh final2 all3modes, not mixed results.",
+  "native": "Same final2 binary actual IDE Options/Display selects25x80, xfce window802x477 verified; load60x20Combo fixture, inspector10->7 via mouse deselection. Full pair inspected: no stalefields/border/handle. Panel overlays rightdialog portion, lower outer/panelborders readable.",
+  "captures": {
+    "hbide-q158-native-25-deselected.png": "6680a1b0b21d00add20b7d27a97a6f1d0673d76691749de998dd99e028d6596f",
+    "hbide-q158-native-25-selected.png": "96bee6cd6f63b16633dbc440fff5720db8c0cf1ad22fe4e214e1a3d8e4695475"
+  },
+  "limits": "Actual resized IDE, not startup25x80. Not all types/gestures/layouts/terminal encodings/Windows/global/M4. PTY text checks not proof of pixels."
+}

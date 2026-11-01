@@ -4337,3 +4337,15 @@ teclas antesde1.5s,bindingigual,FOCUSGUIausente.6PTY41checks63guardas
 errores/excepciones/orden/cuentas/arbitrarycode,nuevosmodelos/pixeles/
 Windows/global/cierreM4. Evidencia
 `docs/evidence/linux-designer-inline-all-skipped-runtime-q157.json`.
+
+
+## 1 noviembre 2026: Q158 IDE real en25x80
+
+Options/Display aplica25x80antesdeldesigner,cargaCombo60x20,
+seleccion/deseleccionconraton10->7campos.3PTY22checks63guardas34docs
+PASSen653840b,incluyeregresiones40x120yDisplaymultidoc. Nativepair
+completoinspeccionado,mismobinfinal:ventana802x477,sinrestos
+FocusState/borde/tirador. Overlaytapapartederechadialogo,marcoscompletos.
+Primerasmallfalloparser(--smallnoregistrado),corregido,nuevapassfinal2
+separada. No startup25x80/todostipos/gestos/layouts/Windows/cierreM4niarreglo.
+Evidencia `docs/evidence/linux-designer-inspector-ide-small-q158.json`.
