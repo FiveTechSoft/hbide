@@ -130,7 +130,7 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-005: Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive. Conflict Cancel keeps dirty buffer; Reload skips writing/backup and reports reload separately from save. Recovered baseline after edit+Undo remains eligible for SaveAll in Q249 mode. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_saveall_fail_pty.py](../tests/test_saveall_fail_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py), [test_saveall_conflict_cancel_pty.py](../tests/test_saveall_conflict_cancel_pty.py), [test_saveall_conflict_reload_pty.py](../tests/test_saveall_conflict_reload_pty.py), [test_recovered_undo_dirty_pty.py](../tests/test_recovered_undo_dirty_pty.py)
 - IDE-006: Save/Discard/Cancel reviews the correct document; Cancel keeps it open and unchanged. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-007: All dirty documents reviewed; Cancel keeps IDE alive; clean exit after decisions. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
-- IDE-019: Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated; raw ENDDUMP with trailing comments resumes Harbour declarations. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor. Closing bracket inside real named/function-result array-index comment does not become a bracket literal; RETURN bracket literal stays masked in bounded lexical fixtures. Completed comments preserve preceding index-value context; closed strings remain values and RETURN remains an introducer in bounded fixtures. Declaration-looking semicolon continuations join masked physical lines and navigate to the first line; not arbitrary statement preprocessing. hbclass.ch CREATE CLASS alias is indexed, including bounded continuation; other CREATE commands and class members are excluded. Explicit ACCESS/ASSIGN implementation aliases with CLASS are methods, ASSIGN uses underscore-prefixed actual method name; member declarations without explicit CLASS stay excluded. Backward-compatible PROCEDURE name CLASS cls alias is a qualified method; ordinary procedures remain unqualified. Explicit DESTRUCTOR name CLASS cls implementation alias is a method; member declarations and external DESTRUCTOR FUNCTION binding are not implementations. Physical-line NOTE comment cannot open block state; NOTE-prefixed identifiers remain code, not full statement-separator handling. INIT/EXIT procedure labels retain lifecycle kind, not static; first line preserved across bounded continuations. Compact closing-parenthesis/CLASS boundary is recognized; CLASS inside the parameter list is not the owner qualifier, and a member declaration with that parameter stays excluded. Bounded compiler-valid fixtures and first-line jump only, not full syntax coverage. Bare standard TEXT/ENDTEXT payload declarations and comment markers are isolated from navigation; not custom macros or stream pragmas. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py), [test_nav_literal_comment_pty.py](../tests/test_nav_literal_comment_pty.py), [test_nav_lexical.prg](../tests/test_nav_lexical.prg), [test_nav_typed_methods_pty.py](../tests/test_nav_typed_methods_pty.py), [test_nav_selection_pty.py](../tests/test_nav_selection_pty.py), [test_nav_array_comment_pty.py](../tests/test_nav_array_comment_pty.py), [test_nav_pragma_macro_pty.py](../tests/test_nav_pragma_macro_pty.py), [test_nav_enddump_comment_pty.py](../tests/test_nav_enddump_comment_pty.py), [test_nav_array_bracket_comment_pty.py](../tests/test_nav_array_bracket_comment_pty.py), [test_nav_array_gap_comment_pty.py](../tests/test_nav_array_gap_comment_pty.py), [test_nav_declaration_continuation_pty.py](../tests/test_nav_declaration_continuation_pty.py), [test_nav_create_class_pty.py](../tests/test_nav_create_class_pty.py), [test_nav_access_assign_pty.py](../tests/test_nav_access_assign_pty.py), [test_nav_procedure_class_pty.py](../tests/test_nav_procedure_class_pty.py), [test_nav_destructor_pty.py](../tests/test_nav_destructor_pty.py), [test_nav_note_comment_pty.py](../tests/test_nav_note_comment_pty.py), [test_nav_init_exit_pty.py](../tests/test_nav_init_exit_pty.py), [test_nav_compact_method_pty.py](../tests/test_nav_compact_method_pty.py), [test_nav_text_block_pty.py](../tests/test_nav_text_block_pty.py)
+- IDE-019: Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated; raw ENDDUMP with trailing comments resumes Harbour declarations. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor. Closing bracket inside real named/function-result array-index comment does not become a bracket literal; RETURN bracket literal stays masked in bounded lexical fixtures. Completed comments preserve preceding index-value context; closed strings remain values and RETURN remains an introducer in bounded fixtures. Declaration-looking semicolon continuations join masked physical lines and navigate to the first line; not arbitrary statement preprocessing. hbclass.ch CREATE CLASS alias is indexed, including bounded continuation; other CREATE commands and class members are excluded. Explicit ACCESS/ASSIGN implementation aliases with CLASS are methods, ASSIGN uses underscore-prefixed actual method name; member declarations without explicit CLASS stay excluded. Backward-compatible PROCEDURE name CLASS cls alias is a qualified method; ordinary procedures remain unqualified. Explicit DESTRUCTOR name CLASS cls implementation alias is a method; member declarations and external DESTRUCTOR FUNCTION binding are not implementations. Physical-line NOTE comment cannot open block state; NOTE-prefixed identifiers remain code, not full statement-separator handling. INIT/EXIT procedure labels retain lifecycle kind, not static; first line preserved across bounded continuations. Compact closing-parenthesis/CLASS boundary is recognized; CLASS inside the parameter list is not the owner qualifier, and a member declaration with that parameter stays excluded. Bounded compiler-valid fixtures and first-line jump only, not full syntax coverage. Bare standard TEXT/ENDTEXT payload declarations and comment markers are isolated from navigation; not custom macros or stream pragmas. Initial raw UTF8 BOM is ignored in analysis only; embedded signatures stay untouched. Compiler-valid DECLARED METHOD FUNCTION/PROCEDURE implementations and END CLASS/continued class terminators retain implementation ownership and first-line jumps. Standard TEXT TO FILE and TEXT TO PRINTER, PRINTER abbreviations of at least four letters and bounded semicolon continuations exclude raw payload until exact ENDTEXT. No custom stream/macros, malformed command or complete preprocessor coverage. These links are not current runtime PASS; exact candidate ledgers own evidence. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py), [test_nav_literal_comment_pty.py](../tests/test_nav_literal_comment_pty.py), [test_nav_lexical.prg](../tests/test_nav_lexical.prg), [test_nav_typed_methods_pty.py](../tests/test_nav_typed_methods_pty.py), [test_nav_selection_pty.py](../tests/test_nav_selection_pty.py), [test_nav_array_comment_pty.py](../tests/test_nav_array_comment_pty.py), [test_nav_pragma_macro_pty.py](../tests/test_nav_pragma_macro_pty.py), [test_nav_enddump_comment_pty.py](../tests/test_nav_enddump_comment_pty.py), [test_nav_array_bracket_comment_pty.py](../tests/test_nav_array_bracket_comment_pty.py), [test_nav_array_gap_comment_pty.py](../tests/test_nav_array_gap_comment_pty.py), [test_nav_declaration_continuation_pty.py](../tests/test_nav_declaration_continuation_pty.py), [test_nav_create_class_pty.py](../tests/test_nav_create_class_pty.py), [test_nav_access_assign_pty.py](../tests/test_nav_access_assign_pty.py), [test_nav_procedure_class_pty.py](../tests/test_nav_procedure_class_pty.py), [test_nav_destructor_pty.py](../tests/test_nav_destructor_pty.py), [test_nav_note_comment_pty.py](../tests/test_nav_note_comment_pty.py), [test_nav_init_exit_pty.py](../tests/test_nav_init_exit_pty.py), [test_nav_compact_method_pty.py](../tests/test_nav_compact_method_pty.py), [test_nav_text_block_pty.py](../tests/test_nav_text_block_pty.py), [test_nav_raw_bom_pty.py](../tests/test_nav_raw_bom_pty.py), [test_nav_declared_method_pty.py](../tests/test_nav_declared_method_pty.py), [test_nav_declared_contexts.py](../tests/test_nav_declared_contexts.py), [test_nav_end_class_pty.py](../tests/test_nav_end_class_pty.py), [test_nav_end_class_contexts.py](../tests/test_nav_end_class_contexts.py), [test_nav_text_file_pty.py](../tests/test_nav_text_file_pty.py), [test_nav_text_contexts.py](../tests/test_nav_text_contexts.py)
 - IDE-020: HBP parsed and preserved; opening never executes build hooks. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Unreadable HBP rejected distinctly from valid empty HBP; host retains active editor and does not select rejected project. Literal source inventory strips leading UTF-8 BOM and one final DOS EOF only in its parse copy, preserving exact original bytes. Existing .cc/.cxx/.cx aliases join .cpp; missing aliases stay visible. Real hbmk2 fixtures establish BOM/EOF and PRG+cc builds, not all encodings or compiler modes. Literal .hpp header is listed/opened byte-exact; missing .hpp remains visible. No compiler mode, C++ bridge or all extension acceptance. Pruebas: [test_project_desktop_pty.py](../tests/test_project_desktop_pty.py), [test_project.prg](../tests/test_project.prg), [test_project_read.py](../tests/test_project_read.py), [test_project_read.prg](../tests/test_project_read.prg), [test_open_unreadable_pty.py](../tests/test_open_unreadable_pty.py), [test_project_bom_pty.py](../tests/test_project_bom_pty.py), [test_project_eof_pty.py](../tests/test_project_eof_pty.py), [test_project_cxx_source_pty.py](../tests/test_project_cxx_source_pty.py), [test_project_hpp_pty.py](../tests/test_project_hpp_pty.py)
 - IDE-021: Source desktop and build act on selected project; diagnostics target correct file. Harbour error paths may contain parentheses, including numeric names; the jump retains full path and exact source line. Sources refreshes member existence after external creation/deletion when the view redraws; no stale Open-time missing marker. Shared Harbour parser preserves leading source whitespace; exact Enter jump/edit/save with existing no-space neighbor tested through project messages, not every navigation entry independently. F6 output Left/Right reveals long diagnostic tails; Esc returns to the same project failure state. Real GCC colored output is normalized only for CSI m/K location/severity/caret parsing; raw output remains unchanged. Exact ASCII source+unique caret can map tested TAB widths; absent/ambiguous/non-ASCII/cropped evidence keeps reported column, not a semantic-correctness claim. GCC wrapper acceptance does not certify hbmk2 colon-path builds or Output viewer ANSI handling. Literal source inventory strips leading UTF-8 BOM and one final DOS EOF only in its parse copy, preserving exact original bytes. Existing .cc/.cxx/.cx aliases join .cpp; missing aliases stay visible. Real hbmk2 fixtures establish BOM/EOF and PRG+cc builds, not all encodings or compiler modes. Literal .hpp header is listed/opened byte-exact; missing .hpp remains visible. No compiler mode, C++ bridge or all extension acceptance. Pruebas: [test_project_desktop_pty.py](../tests/test_project_desktop_pty.py), [test_project_messages_pty.py](../tests/test_project_messages_pty.py), [test_project_leading_pty.py](../tests/test_project_leading_pty.py), [test_project_output.prg](../tests/test_project_output.prg), [test_project_output_pty.py](../tests/test_project_output_pty.py), [test_project_colon_diagnostic_pty.py](../tests/test_project_colon_diagnostic_pty.py), [test_message_selection_pty.py](../tests/test_message_selection_pty.py), [test_gcc_caret_column_pty.py](../tests/test_gcc_caret_column_pty.py), [test_project_bom_pty.py](../tests/test_project_bom_pty.py), [test_project_eof_pty.py](../tests/test_project_eof_pty.py), [test_project_cxx_source_pty.py](../tests/test_project_cxx_source_pty.py), [test_project_hpp_pty.py](../tests/test_project_hpp_pty.py)
 - IDE-026: List marks dirty and switches selected buffer without crossing state. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
@@ -539,12 +539,12 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | --- | --- | --- | --- | --- |
 | MOUSE-hbide-Activate-1 | METHOD Activate() CLASS HBIde | `if nKeyStd == K_LBUTTONDOWN` | hbide.prg:712 | Pendiente gesto |
 | MOUSE-hbide-Activate-2 | METHOD Activate() CLASS HBIde | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | hbide.prg:733 | Pendiente gesto |
-| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:530 | Pendiente gesto |
-| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:535 | Pendiente gesto |
-| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:540 | Pendiente gesto |
-| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:543 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2162 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2163 | Pendiente gesto |
+| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:554 | Pendiente gesto |
+| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:559 | Pendiente gesto |
+| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:564 | Pendiente gesto |
+| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:567 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2189 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2190 | Pendiente gesto |
 | MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:437 | Pendiente gesto |
 | MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:440 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
@@ -1087,105 +1087,105 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:881 | `CASE nKey == K_END` | Pendiente vinculo |
 | help.prg:884 | `IF nTarget > 0 .AND. nTarget != nTopic` | Pendiente vinculo |
 | help.prg:886 | `IF Len( aHistory ) > 100` | Pendiente vinculo |
-| editor.prg:502 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
-| editor.prg:508 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. hb_bitAnd( nKeyMod, hb_bitOr( HB_KF_SHIFT, HB_KF_CTRL, HB_KF_ALT ) ) == HB_KF_SHIFT` | Pendiente vinculo |
-| editor.prg:510 | `if ! ::lMark` | Pendiente vinculo |
-| editor.prg:514 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
-| editor.prg:515 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
-| editor.prg:516 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
-| editor.prg:517 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` | Pendiente vinculo |
-| editor.prg:518 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` | Pendiente vinculo |
-| editor.prg:519 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` | Pendiente vinculo |
-| editor.prg:522 | `case nKeyStd == K_CTRL_Z` | Pendiente vinculo |
-| editor.prg:526 | `case nKeyStd == K_CTRL_U` | Pendiente vinculo |
-| editor.prg:530 | `case nKeyStd == K_LDBLCLK` | Pendiente vinculo |
-| editor.prg:535 | `case nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
-| editor.prg:540 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:543 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:546 | `case nKeyStd == K_BS` | Pendiente vinculo |
-| editor.prg:547 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:551 | `IF ::nCol > 5` | Pendiente vinculo |
-| editor.prg:554 | `if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:561 | `if ::BlkCmtState(::nRow+1) != lBlkBefore .or. (::nRow < Len(::aText) .and. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore))` | Pendiente vinculo |
-| editor.prg:567 | `ELSEIF ::nRow > 1` | Pendiente vinculo |
-| editor.prg:579 | `case nKeyStd == K_DEL` | Pendiente vinculo |
-| editor.prg:580 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:589 | `if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:596 | `case nKeyStd == K_ENTER` | Pendiente vinculo |
-| editor.prg:597 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:606 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
-| editor.prg:607 | `if ::nCol - 4 > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:608 | `if ::nRow < Len( ::aText )` | Pendiente vinculo |
-| editor.prg:615 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
-| editor.prg:616 | `if ::nCol <= 5` | Pendiente vinculo |
-| editor.prg:617 | `if ::nRow > 1` | Pendiente vinculo |
-| editor.prg:624 | `case nKeyStd == K_HOME` | Pendiente vinculo |
-| editor.prg:627 | `case nKeyStd == K_END` | Pendiente vinculo |
-| editor.prg:630 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
-| editor.prg:634 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
-| editor.prg:642 | `case nKeyStd == K_CTRL_T` | EDIT-KEY-DELETE-WORD-CTRL-T |
-| editor.prg:643 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:657 | `if nWordEnd > nPos` | Pendiente vinculo |
-| editor.prg:665 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
-| editor.prg:668 | `case nKeyStd == K_F2` | Pendiente vinculo |
-| editor.prg:674 | `case nKeyStd == K_F8` | Pendiente vinculo |
-| editor.prg:678 | `case nKeyStd == K_F9` | Pendiente vinculo |
-| editor.prg:681 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
-| editor.prg:686 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:693 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
-| editor.prg:701 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
-| editor.prg:704 | `if lHotPath` | Pendiente vinculo |
-| editor.prg:712 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
-| editor.prg:716 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
-| editor.prg:718 | `ELSEIF lHotPath` | Pendiente vinculo |
-| editor.prg:719 | `if ! ::lWordWrap` | Pendiente vinculo |
-| editor.prg:725 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )` | Pendiente vinculo |
-| editor.prg:749 | `if ::lMark .and. Abs( ::Row() - nOldScrRow ) > 1` | Pendiente vinculo |
-| editor.prg:754 | `if ! lSkipTail` | Pendiente vinculo |
-| editor.prg:755 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
-| editor.prg:762 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
-| editor.prg:766 | `if ::Row() > ::nTop` | Pendiente vinculo |
-| editor.prg:772 | `if ::Row() < ::nBottom` | Pendiente vinculo |
-| editor.prg:782 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
-| editor.prg:2039 | `if nKey == K_LEFT` | Pendiente vinculo |
-| editor.prg:2040 | `if Col() > 5` | Pendiente vinculo |
-| editor.prg:2043 | `if ::nFirstCol > 1` | Pendiente vinculo |
-| editor.prg:2068 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
-| editor.prg:2088 | `if nB < 0x80` | Pendiente vinculo |
-| editor.prg:2091 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
-| editor.prg:2093 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
-| editor.prg:2095 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
-| editor.prg:2100 | `if nI + nNeed > nLen` | Pendiente vinculo |
-| editor.prg:2106 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
-| editor.prg:2114 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
-| editor.prg:2131 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
-| editor.prg:2135 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
-| editor.prg:2154 | `case K_UP` | Pendiente vinculo |
-| editor.prg:2155 | `case K_DOWN` | Pendiente vinculo |
-| editor.prg:2156 | `case K_LEFT` | Pendiente vinculo |
-| editor.prg:2157 | `case K_RIGHT` | Pendiente vinculo |
-| editor.prg:2158 | `case K_HOME` | Pendiente vinculo |
-| editor.prg:2159 | `case K_END` | Pendiente vinculo |
-| editor.prg:2160 | `case K_PGUP` | Pendiente vinculo |
-| editor.prg:2161 | `case K_PGDN` | Pendiente vinculo |
-| editor.prg:2162 | `case K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:2163 | `case K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:2175 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
-| editor.prg:2181 | `CASE lBlock` | Pendiente vinculo |
-| editor.prg:2182 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
-| editor.prg:2187 | `CASE !Empty(q)` | Pendiente vinculo |
-| editor.prg:2188 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
-| editor.prg:2190 | `ELSEIF c == q` | Pendiente vinculo |
-| editor.prg:2194 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
-| editor.prg:2197 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
-| editor.prg:2226 | `if Upper(Left(c,7)) != "ENDTEXT"` | Pendiente vinculo |
-| editor.prg:2236 | `if hb_defaultValue(lIn,.F.)` | Pendiente vinculo |
-| editor.prg:2238 | `if n==0` | Pendiente vinculo |
-| editor.prg:2245 | `if n==0` | Pendiente vinculo |
-| editor.prg:2250 | `if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"` | Pendiente vinculo |
-| editor.prg:2255 | `if Left(c,2)=="//" .or. Left(c,2)=="&&"` | Pendiente vinculo |
-| editor.prg:2257 | `elseif Left(c,2)=="/*"` | Pendiente vinculo |
-| editor.prg:2259 | `if n==0` | Pendiente vinculo |
+| editor.prg:526 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
+| editor.prg:532 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. hb_bitAnd( nKeyMod, hb_bitOr( HB_KF_SHIFT, HB_KF_CTRL, HB_KF_ALT ) ) == HB_KF_SHIFT` | Pendiente vinculo |
+| editor.prg:534 | `if ! ::lMark` | Pendiente vinculo |
+| editor.prg:538 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
+| editor.prg:539 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
+| editor.prg:540 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
+| editor.prg:541 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` | Pendiente vinculo |
+| editor.prg:542 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` | Pendiente vinculo |
+| editor.prg:543 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` | Pendiente vinculo |
+| editor.prg:546 | `case nKeyStd == K_CTRL_Z` | Pendiente vinculo |
+| editor.prg:550 | `case nKeyStd == K_CTRL_U` | Pendiente vinculo |
+| editor.prg:554 | `case nKeyStd == K_LDBLCLK` | EDIT-MOUSE-WORD-DOUBLECLICK |
+| editor.prg:559 | `case nKeyStd == K_LBUTTONDOWN` | EDIT-MOUSE-POSITION-CLICK |
+| editor.prg:564 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:567 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:570 | `case nKeyStd == K_BS` | EDIT-KEY-BACKSPACE-BOUNDARY |
+| editor.prg:571 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:575 | `IF ::nCol > 5` | Pendiente vinculo |
+| editor.prg:578 | `if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:585 | `if ::BlkCmtState(::nRow+1) != lBlkBefore .or. (::nRow < Len(::aText) .and. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore))` | Pendiente vinculo |
+| editor.prg:591 | `ELSEIF ::nRow > 1` | Pendiente vinculo |
+| editor.prg:603 | `case nKeyStd == K_DEL` | EDIT-KEY-DELETE-BOUNDARY |
+| editor.prg:604 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:613 | `if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:620 | `case nKeyStd == K_ENTER` | EDIT-KEY-ENTER-BOUNDARY |
+| editor.prg:621 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:630 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
+| editor.prg:631 | `if ::nCol - 4 > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:632 | `if ::nRow < Len( ::aText )` | Pendiente vinculo |
+| editor.prg:639 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
+| editor.prg:640 | `if ::nCol <= 5` | Pendiente vinculo |
+| editor.prg:641 | `if ::nRow > 1` | Pendiente vinculo |
+| editor.prg:648 | `case nKeyStd == K_HOME` | Pendiente vinculo |
+| editor.prg:651 | `case nKeyStd == K_END` | Pendiente vinculo |
+| editor.prg:654 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
+| editor.prg:658 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
+| editor.prg:666 | `case nKeyStd == K_CTRL_T` | EDIT-KEY-DELETE-WORD-CTRL-T |
+| editor.prg:667 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:681 | `if nWordEnd > nPos` | Pendiente vinculo |
+| editor.prg:689 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
+| editor.prg:692 | `case nKeyStd == K_F2` | Pendiente vinculo |
+| editor.prg:698 | `case nKeyStd == K_F8` | Pendiente vinculo |
+| editor.prg:702 | `case nKeyStd == K_F9` | Pendiente vinculo |
+| editor.prg:705 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
+| editor.prg:710 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:717 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
+| editor.prg:725 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
+| editor.prg:728 | `if lHotPath` | Pendiente vinculo |
+| editor.prg:736 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
+| editor.prg:740 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
+| editor.prg:742 | `ELSEIF lHotPath` | Pendiente vinculo |
+| editor.prg:743 | `if ! ::lWordWrap` | Pendiente vinculo |
+| editor.prg:749 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )` | Pendiente vinculo |
+| editor.prg:773 | `if ::lMark .and. Abs( ::Row() - nOldScrRow ) > 1` | Pendiente vinculo |
+| editor.prg:778 | `if ! lSkipTail` | Pendiente vinculo |
+| editor.prg:779 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
+| editor.prg:786 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
+| editor.prg:790 | `if ::Row() > ::nTop` | Pendiente vinculo |
+| editor.prg:796 | `if ::Row() < ::nBottom` | Pendiente vinculo |
+| editor.prg:806 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
+| editor.prg:2066 | `if nKey == K_LEFT` | Pendiente vinculo |
+| editor.prg:2067 | `if Col() > 5` | Pendiente vinculo |
+| editor.prg:2070 | `if ::nFirstCol > 1` | Pendiente vinculo |
+| editor.prg:2095 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
+| editor.prg:2115 | `if nB < 0x80` | Pendiente vinculo |
+| editor.prg:2118 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
+| editor.prg:2120 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
+| editor.prg:2122 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
+| editor.prg:2127 | `if nI + nNeed > nLen` | Pendiente vinculo |
+| editor.prg:2133 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
+| editor.prg:2141 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
+| editor.prg:2158 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
+| editor.prg:2162 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
+| editor.prg:2181 | `case K_UP` | Pendiente vinculo |
+| editor.prg:2182 | `case K_DOWN` | Pendiente vinculo |
+| editor.prg:2183 | `case K_LEFT` | Pendiente vinculo |
+| editor.prg:2184 | `case K_RIGHT` | Pendiente vinculo |
+| editor.prg:2185 | `case K_HOME` | Pendiente vinculo |
+| editor.prg:2186 | `case K_END` | Pendiente vinculo |
+| editor.prg:2187 | `case K_PGUP` | Pendiente vinculo |
+| editor.prg:2188 | `case K_PGDN` | Pendiente vinculo |
+| editor.prg:2189 | `case K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:2190 | `case K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:2202 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
+| editor.prg:2208 | `CASE lBlock` | Pendiente vinculo |
+| editor.prg:2209 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
+| editor.prg:2214 | `CASE !Empty(q)` | Pendiente vinculo |
+| editor.prg:2215 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
+| editor.prg:2217 | `ELSEIF c == q` | Pendiente vinculo |
+| editor.prg:2221 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
+| editor.prg:2224 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
+| editor.prg:2253 | `if Upper(Left(c,7)) != "ENDTEXT"` | Pendiente vinculo |
+| editor.prg:2263 | `if hb_defaultValue(lIn,.F.)` | Pendiente vinculo |
+| editor.prg:2265 | `if n==0` | Pendiente vinculo |
+| editor.prg:2272 | `if n==0` | Pendiente vinculo |
+| editor.prg:2277 | `if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"` | Pendiente vinculo |
+| editor.prg:2282 | `if Left(c,2)=="//" .or. Left(c,2)=="&&"` | Pendiente vinculo |
+| editor.prg:2284 | `elseif Left(c,2)=="/*"` | Pendiente vinculo |
+| editor.prg:2286 | `if n==0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1563 | `IF ::lAnimate` | Pendiente vinculo |
 | hbdebug/debugger.prg:1564 | `IF ::nSpeed != 0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1567 | `IF __dbgInvokeDebug()  // NextKey() == K_ALT_D` | Pendiente vinculo |
@@ -1305,6 +1305,11 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 - IDE-KEY-NEXTDOC-CTRL-F6: Actual Ctrl+F6 cycles active buffers in bounded multi-document PTY: per-document text/undo/selection, SaveAs journals and close decisions remain isolated. Complete multiline dispatch condition retained; parent menu-closed/multiple-doc guard remains separate, not inferred coverage. No Ctrl+Shift+F6 acceptance, all terminal encodings, all navigation states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-KEY-PREVDOC-CTRL-SHIFT-F6: Actual xterm Ctrl+Shift+F6 sequence ESC[17;6~ switches third/second/first with first-to-third wrap, subsequent typing/F2 and Undo stay on second, CtrlF6 forward reaches third. New startup mapping preserves extended Ctrl/Shift/F6 identity in gttrm. Bounded three opened files, not other terminals/native Windows/all keys/menus-open states. Parent CtrlF6 dispatch guard separate; link is not PASS without exact source/hash ledger. Pruebas: [test_prevdoc_shortcut_pty.py](../tests/test_prevdoc_shortcut_pty.py)
 - IDE-KEY-REPEAT-FIND-F3: Actual F3 repeat and wrapped repeat clear old selected range before following typing, Undo restores exact original after F2 save. Initial Find in fixture uses Edit menu, not F5 key. Bounded repeated selection fixture, not all search options/menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_find_repeat_selection_pty.py](../tests/test_find_repeat_selection_pty.py)
+- EDIT-MOUSE-WORD-DOUBLECLICK: Actual xterm mouse UTF8 terminal fixture doubleclick after TAB selects accented words; typing/Delete/Enter/Backspace/Copy/Cut and Undo preserve BOM/TAB/mixedEOL exact bytes. PTY byte/cell semantics, not pixel proof, every coordinate/scroll/encoding/terminal/Windows; link is not current runtime PASS. Pruebas: [test_editor_mouse_utf8_pty.py](../tests/test_editor_mouse_utf8_pty.py)
+- EDIT-MOUSE-POSITION-CLICK: Actual xterm UTF8 terminal click after accented word maps to exact source byte; insertion and Undo preserve fixture bytes including BOM/TAB/mixedEOL. Bounded position only, not every coordinate/scroll/terminal/Windows; link is not current runtime PASS. Pruebas: [test_editor_mouse_utf8_pty.py](../tests/test_editor_mouse_utf8_pty.py)
+- EDIT-KEY-BACKSPACE-BOUNDARY: Actual blank-line Backspace joins preserve untouched breakpoint identity with LF/explicit --crlf, Undo/Redo exact bytes. Continued-line join/Undo/Redo updates lexical state; UTF8 selected-word Backspace preserves BOM/TAB/mixedEOL. Not all virtual column or selection cases/terminals/Windows; link is not current runtime PASS. Pruebas: [test_backspace_identical_blank_bp_pty.py](../tests/test_backspace_identical_blank_bp_pty.py), [test_editor_continuation_join_pty.py](../tests/test_editor_continuation_join_pty.py), [test_editor_mouse_utf8_pty.py](../tests/test_editor_mouse_utf8_pty.py)
+- EDIT-KEY-DELETE-BOUNDARY: Actual --delete-join continuation boundary updates lexical state and Undo/Redo exact bytes; UTF8 selected-word Delete and Undo preserve fixture bytes. Not every Delete/selection/terminal/Windows; PTY cells not pixel proof; link is not current runtime PASS. Pruebas: [test_editor_continuation_join_pty.py](../tests/test_editor_continuation_join_pty.py), [test_editor_mouse_utf8_pty.py](../tests/test_editor_mouse_utf8_pty.py)
+- EDIT-KEY-ENTER-BOUNDARY: Actual Enter on identical blank lines preserves breakpoint identity and byte-exact LF/explicit --crlf fixtures through Undo/Redo. Continuation split invalidates lexical state and UTF8 selected-word Enter preserves BOM/TAB/CRLF fixture. Not all Enter contexts/selection/terminals/Windows; PTY color cells are not pixels; link is not current runtime PASS. Pruebas: [test_enter_identical_blank_bp_pty.py](../tests/test_enter_identical_blank_bp_pty.py), [test_editor_continuation_join_pty.py](../tests/test_editor_continuation_join_pty.py), [test_editor_mouse_utf8_pty.py](../tests/test_editor_mouse_utf8_pty.py)
 - EDIT-KEY-DELETE-WORD-CTRL-T: Inherited CtrlT deletes from text position, not four-cell gutter; preserves separator-space semantics. Start/midword/EOL and Undo checked in ASCII/UTF8host PTY, TAB and lexical state in fresh model. Bounded contracts, not all selection states/platforms; source/hash ledgers Q265-Q267 own results. Pruebas: [test_delete_word_columns.prg](../tests/test_delete_word_columns.prg), [test_delete_word_columns_pty.py](../tests/test_delete_word_columns_pty.py)
 
 ## Gate de cierre

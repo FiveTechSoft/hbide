@@ -373,4 +373,22 @@ class InspectorInventory(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Missing inspector runtime test'):
             audit.link_inspector_contracts(self.rows,{'DSN-INSP-get-valid':dict(entry,runtime=dict(runtime,tests=['missing-runtime.py']))})
 
+class RecentBoundaryContracts(unittest.TestCase):
+    def test_exact_editor_boundary_route_bindings(self):
+        specs=json.loads((ROOT/'tests/completion_acceptance.json').read_text())
+        _,routes=audit.inventory()
+        linked=audit.link_dispatch_contracts(routes,specs['dispatch_acceptance'])
+        ids=['EDIT-MOUSE-WORD-DOUBLECLICK','EDIT-MOUSE-POSITION-CLICK','EDIT-KEY-ENTER-BOUNDARY','EDIT-KEY-BACKSPACE-BOUNDARY','EDIT-KEY-DELETE-BOUNDARY']
+        for ident in ids:
+            row=next(r for r in linked if r.get('acceptance_id')==ident)
+            self.assertEqual(row['source'],'editor.prg')
+            self.assertEqual(row['context'],'METHOD EditKey(')
+            self.assertIn('not current runtime PASS',row['acceptance']['contract'])
+    def test_standard_stream_and_class_navigation_links(self):
+        row=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['menus']['IDE-019']
+        for name in ['test_nav_raw_bom_pty.py','test_nav_declared_contexts.py','test_nav_end_class_contexts.py','test_nav_text_contexts.py']:
+            self.assertIn(name,row['tests'])
+        for text in ['at least four letters','exact ENDTEXT','not current runtime PASS']:
+            self.assertIn(text,row['contract'])
+
 if __name__=='__main__':unittest.main()

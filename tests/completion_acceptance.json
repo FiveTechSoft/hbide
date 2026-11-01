@@ -48,9 +48,16 @@
         "test_nav_note_comment_pty.py",
         "test_nav_init_exit_pty.py",
         "test_nav_compact_method_pty.py",
-        "test_nav_text_block_pty.py"
+        "test_nav_text_block_pty.py",
+        "test_nav_raw_bom_pty.py",
+        "test_nav_declared_method_pty.py",
+        "test_nav_declared_contexts.py",
+        "test_nav_end_class_pty.py",
+        "test_nav_end_class_contexts.py",
+        "test_nav_text_file_pty.py",
+        "test_nav_text_contexts.py"
       ],
-      "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated; raw ENDDUMP with trailing comments resumes Harbour declarations. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor. Closing bracket inside real named/function-result array-index comment does not become a bracket literal; RETURN bracket literal stays masked in bounded lexical fixtures. Completed comments preserve preceding index-value context; closed strings remain values and RETURN remains an introducer in bounded fixtures. Declaration-looking semicolon continuations join masked physical lines and navigate to the first line; not arbitrary statement preprocessing. hbclass.ch CREATE CLASS alias is indexed, including bounded continuation; other CREATE commands and class members are excluded. Explicit ACCESS/ASSIGN implementation aliases with CLASS are methods, ASSIGN uses underscore-prefixed actual method name; member declarations without explicit CLASS stay excluded. Backward-compatible PROCEDURE name CLASS cls alias is a qualified method; ordinary procedures remain unqualified. Explicit DESTRUCTOR name CLASS cls implementation alias is a method; member declarations and external DESTRUCTOR FUNCTION binding are not implementations. Physical-line NOTE comment cannot open block state; NOTE-prefixed identifiers remain code, not full statement-separator handling. INIT/EXIT procedure labels retain lifecycle kind, not static; first line preserved across bounded continuations. Compact closing-parenthesis/CLASS boundary is recognized; CLASS inside the parameter list is not the owner qualifier, and a member declaration with that parameter stays excluded. Bounded compiler-valid fixtures and first-line jump only, not full syntax coverage. Bare standard TEXT/ENDTEXT payload declarations and comment markers are isolated from navigation; not custom macros or stream pragmas.",
+      "contract": "Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated; raw ENDDUMP with trailing comments resumes Harbour declarations. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor. Closing bracket inside real named/function-result array-index comment does not become a bracket literal; RETURN bracket literal stays masked in bounded lexical fixtures. Completed comments preserve preceding index-value context; closed strings remain values and RETURN remains an introducer in bounded fixtures. Declaration-looking semicolon continuations join masked physical lines and navigate to the first line; not arbitrary statement preprocessing. hbclass.ch CREATE CLASS alias is indexed, including bounded continuation; other CREATE commands and class members are excluded. Explicit ACCESS/ASSIGN implementation aliases with CLASS are methods, ASSIGN uses underscore-prefixed actual method name; member declarations without explicit CLASS stay excluded. Backward-compatible PROCEDURE name CLASS cls alias is a qualified method; ordinary procedures remain unqualified. Explicit DESTRUCTOR name CLASS cls implementation alias is a method; member declarations and external DESTRUCTOR FUNCTION binding are not implementations. Physical-line NOTE comment cannot open block state; NOTE-prefixed identifiers remain code, not full statement-separator handling. INIT/EXIT procedure labels retain lifecycle kind, not static; first line preserved across bounded continuations. Compact closing-parenthesis/CLASS boundary is recognized; CLASS inside the parameter list is not the owner qualifier, and a member declaration with that parameter stays excluded. Bounded compiler-valid fixtures and first-line jump only, not full syntax coverage. Bare standard TEXT/ENDTEXT payload declarations and comment markers are isolated from navigation; not custom macros or stream pragmas. Initial raw UTF8 BOM is ignored in analysis only; embedded signatures stay untouched. Compiler-valid DECLARED METHOD FUNCTION/PROCEDURE implementations and END CLASS/continued class terminators retain implementation ownership and first-line jumps. Standard TEXT TO FILE and TEXT TO PRINTER, PRINTER abbreviations of at least four letters and bounded semicolon continuations exclude raw payload until exact ENDTEXT. No custom stream/macros, malformed command or complete preprocessor coverage. These links are not current runtime PASS; exact candidate ledgers own evidence.",
       "expected_label": "Go to Function... Ctrl+G"
     },
     "IDE-020": {
@@ -2111,6 +2118,56 @@
         "test_delete_word_columns_pty.py"
       ],
       "contract": "Inherited CtrlT deletes from text position, not four-cell gutter; preserves separator-space semantics. Start/midword/EOL and Undo checked in ASCII/UTF8host PTY, TAB and lexical state in fresh model. Bounded contracts, not all selection states/platforms; source/hash ledgers Q265-Q267 own results."
+    },
+    "EDIT-MOUSE-WORD-DOUBLECLICK": {
+      "source": "editor.prg",
+      "context": "METHOD EditKey(",
+      "condition": "case nKeyStd == K_LDBLCLK",
+      "tests": [
+        "test_editor_mouse_utf8_pty.py"
+      ],
+      "contract": "Actual xterm mouse UTF8 terminal fixture doubleclick after TAB selects accented words; typing/Delete/Enter/Backspace/Copy/Cut and Undo preserve BOM/TAB/mixedEOL exact bytes. PTY byte/cell semantics, not pixel proof, every coordinate/scroll/encoding/terminal/Windows; link is not current runtime PASS."
+    },
+    "EDIT-MOUSE-POSITION-CLICK": {
+      "source": "editor.prg",
+      "context": "METHOD EditKey(",
+      "condition": "case nKeyStd == K_LBUTTONDOWN",
+      "tests": [
+        "test_editor_mouse_utf8_pty.py"
+      ],
+      "contract": "Actual xterm UTF8 terminal click after accented word maps to exact source byte; insertion and Undo preserve fixture bytes including BOM/TAB/mixedEOL. Bounded position only, not every coordinate/scroll/terminal/Windows; link is not current runtime PASS."
+    },
+    "EDIT-KEY-ENTER-BOUNDARY": {
+      "source": "editor.prg",
+      "context": "METHOD EditKey(",
+      "condition": "case nKeyStd == K_ENTER",
+      "tests": [
+        "test_enter_identical_blank_bp_pty.py",
+        "test_editor_continuation_join_pty.py",
+        "test_editor_mouse_utf8_pty.py"
+      ],
+      "contract": "Actual Enter on identical blank lines preserves breakpoint identity and byte-exact LF/explicit --crlf fixtures through Undo/Redo. Continuation split invalidates lexical state and UTF8 selected-word Enter preserves BOM/TAB/CRLF fixture. Not all Enter contexts/selection/terminals/Windows; PTY color cells are not pixels; link is not current runtime PASS."
+    },
+    "EDIT-KEY-BACKSPACE-BOUNDARY": {
+      "source": "editor.prg",
+      "context": "METHOD EditKey(",
+      "condition": "case nKeyStd == K_BS",
+      "tests": [
+        "test_backspace_identical_blank_bp_pty.py",
+        "test_editor_continuation_join_pty.py",
+        "test_editor_mouse_utf8_pty.py"
+      ],
+      "contract": "Actual blank-line Backspace joins preserve untouched breakpoint identity with LF/explicit --crlf, Undo/Redo exact bytes. Continued-line join/Undo/Redo updates lexical state; UTF8 selected-word Backspace preserves BOM/TAB/mixedEOL. Not all virtual column or selection cases/terminals/Windows; link is not current runtime PASS."
+    },
+    "EDIT-KEY-DELETE-BOUNDARY": {
+      "source": "editor.prg",
+      "context": "METHOD EditKey(",
+      "condition": "case nKeyStd == K_DEL",
+      "tests": [
+        "test_editor_continuation_join_pty.py",
+        "test_editor_mouse_utf8_pty.py"
+      ],
+      "contract": "Actual --delete-join continuation boundary updates lexical state and Undo/Redo exact bytes; UTF8 selected-word Delete and Undo preserve fixture bytes. Not every Delete/selection/terminal/Windows; PTY cells not pixel proof; link is not current runtime PASS."
     }
   },
   "inspector_field_acceptance": {
