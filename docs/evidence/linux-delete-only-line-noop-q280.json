@@ -1,0 +1,19 @@
+{
+  "source": "93fc047ce560bfc91fda38e36c1217707fe71154",
+  "binary_sha256": "8658732bcbd7b02285aa876bd7857515e3109bb04f11dcd4853658f64cab492c",
+  "scope": "Q280 postexport harness expansion on C44, ASCII and UTF8/TAB sole-line delete plus empty no-op preserves redo/clipboard, no false journal/save prompt. Two modes16 checks, not new product/build/model/pixels/fullmatrix/Windows/milestone.",
+  "tests": {
+    "ascii": {
+      "exit": 0,
+      "test_sha256": "abc16869e343d1a9bef83f444f53e0ea0369ee2385fe570fecff029a901f30a5",
+      "seconds": 18.922005653381348,
+      "log": "PASS Delete Line clears sole physical line\nPASS Undo sole-line deletion restores exact bytes\nPASS Redo sole-line deletion clears bytes\nPASS Delete empty clean baseline creates no journal\nPASS Delete empty no-op preserves earlier Redo\nPASS Paste retains deleted sole line after empty no-op\nPASS Undo paste returns empty exact\nPASS Delete empty closes without false save prompt\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-7r5v3ush\n"
+    },
+    "utf8": {
+      "exit": 0,
+      "test_sha256": "abc16869e343d1a9bef83f444f53e0ea0369ee2385fe570fecff029a901f30a5",
+      "seconds": 18.923068523406982,
+      "log": "PASS Delete Line clears sole physical line\nPASS Undo sole-line deletion restores exact bytes\nPASS Redo sole-line deletion clears bytes\nPASS Delete empty clean baseline creates no journal\nPASS Delete empty no-op preserves earlier Redo\nPASS Paste retains deleted sole line after empty no-op\nPASS Undo paste returns empty exact\nPASS Delete empty closes without false save prompt\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ql8ex307\n"
+    }
+  }
+}

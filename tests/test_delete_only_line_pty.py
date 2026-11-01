@@ -78,9 +78,10 @@ class Scr:
 work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 (work/'home').mkdir(); (work/'rec').mkdir()
 target = work/'source.prg'
-original = b'alpha beta'
+utf8 = os.environ.get('ONLY_LINE_UTF8') == '1'
+original = 'café\t beta'.encode() if utf8 else b'alpha beta'
 target.write_bytes(original)
-env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
+env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm', HBIDE_UTF8='1' if utf8 else '0')
 pid, fd = pty.fork()
 if pid == 0:
     os.execve(BIN, [BIN], env)
@@ -116,7 +117,17 @@ try:
     saved('Delete Line clears sole physical line',b'')
     menu(b'n');saved('Undo sole-line deletion restores exact bytes',original)
     menu(b'e');saved('Redo sole-line deletion clears bytes',b'')
-    menu(b'p');saved('Paste retains deleted sole line in clipboard',b'\nalpha beta')
+    send(b'X');menu(b'n')
+    menu(b'd')
+    pump(2.5)
+    check('Delete empty clean baseline creates no journal',not list((work/'rec').glob('*.journal')))
+    menu(b'e');saved('Delete empty no-op preserves earlier Redo',b'X')
+    menu(b'n')
+    menu(b'p');saved('Paste retains deleted sole line after empty no-op',b'\n'+original)
+    menu(b'n');saved('Undo paste returns empty exact',b'')
+    menu(b'd')
+    send(b'\x1bf');send(b'c')
+    check('Delete empty closes without false save prompt','noname.prg' in scr.text() and 'Save changes' not in scr.text())
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
