@@ -714,3 +714,15 @@ IDE25x80 State edit/UndoRedo/deseleccion revisado sin restos, JSON exacto,
 handle previsto seleccionado y bordes completos. No release/install/
 licencias/Windows/matriz309heredada/cierreM4M5. Evidencia
 `docs/evidence/linux-candidate-c26.json`.
+
+
+### Seguimiento Q165 (1 noviembre 2026)
+
+Cadena de seis parejas GET->Radio->Checkbox->List->Combo->Button->GET:
+ambos WHEN falsos evaluados, vuelta sin teclas1,5s, valores conservados
+y sin foco GUI. Primer WHEN editado inline/F10/F9, peer preloaded, PRG
+generado compilado y ejecutado. Seis modos64checks mas tres regresiones27:
+9PTY91checks66guardas34docsPASS. Fuente 03a7a2a3157aba75294459a1cf13698bb7564061
+binario 3878b9fa0db4762304912b8c3ff5eddfb06261f19b5cab35599850154f869627.
+No arreglo, las30parejas, reactivacion, nuevos modelos/pixeles/Windows/
+herenciaQ164/cierreM4. Evidencia `docs/evidence/linux-designer-inline-mixed-skipped-q165.json`.
