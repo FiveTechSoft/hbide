@@ -11,7 +11,7 @@
 // (//, *, &&, /* */) and #pragma begindump C blocks are skipped.
 FUNCTION HBIDE_ScanProcs( cText )
    LOCAL aOut := {}, aLines, cLine, cL, nLine := 0, lBlock := .F., lDump := .F., lText := .F., cBlockContext := ""
-   LOCAL aTok, cT1, cT2, cName, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine, cModifier, cLastClass := "", lClassBody := .F.
+   LOCAL aTok, cT1, cT2, cName, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine, cModifier, cLastClass := "", lClassBody := .F., lDeclared
 
    cText := StrTran( StrTran( cText, Chr( 13 ) + Chr( 10 ), Chr( 10 ) ), Chr( 13 ), Chr( 10 ) )
    aLines := hb_ATokens( cText, Chr( 10 ) )
@@ -85,6 +85,17 @@ FUNCTION HBIDE_ScanProcs( cText )
       IF Len( aTok ) < 2
          LOOP
       ENDIF
+      // hbclass.ch exposes DECLARED METHOD FUNCTION/PROCEDURE as a
+      // direct implementation command with an explicit owner qualifier.
+      lDeclared := Upper(aTok[1]) == "DECLARED"
+      IF lDeclared
+         IF Len(aTok) < 6 .OR. Upper(aTok[2]) != "METHOD" .OR. ;
+            !(Upper(aTok[3]) == "FUNCTION" .OR. Upper(aTok[3]) == "PROCEDURE")
+            LOOP
+         ENDIF
+         ADel(aTok,1)
+         ASize(aTok,Len(aTok)-1)
+      ENDIF
       cT1 := Upper( aTok[ 1 ] )
       cT2 := Upper( aTok[ 2 ] )
       IF HBIDE_IsKw( cT1, "STATIC" ) .OR. cT1 == "INIT" .OR. cT1 == "EXIT"
@@ -113,7 +124,7 @@ FUNCTION HBIDE_ScanProcs( cText )
          // only the implementation form names its class: "METHOD x() CLASS c"
          cCls := HBIDE_NavMethodClass( aTok, ;
             iif( cT2 == "FUNCTION" .OR. cT2 == "PROCEDURE", 4, 3 ) )
-         IF Empty(cCls) .AND. cT1 == "METHOD" .AND. ! lClassBody
+         IF Empty(cCls) .AND. cT1 == "METHOD" .AND. ! lClassBody .AND. ! lDeclared
             cCls := cLastClass
          ENDIF
          IF Empty( cCls )
@@ -176,7 +187,7 @@ STATIC FUNCTION HBIDE_NavDeclStart( cLine )
    ENDIF
    c := Upper( a[1] )
    RETURN HBIDE_IsKw(c,"FUNCTION") .OR. HBIDE_IsKw(c,"PROCEDURE") .OR. ;
-      HBIDE_IsKw(c,"STATIC") .OR. c == "INIT" .OR. c == "EXIT" .OR. c == "METHOD" .OR. c == "ACCESS" .OR. c == "ASSIGN" .OR. c == "DESTRUCTOR" .OR. c == "CLASS" .OR. c == "CREATE"
+      HBIDE_IsKw(c,"STATIC") .OR. c == "INIT" .OR. c == "EXIT" .OR. c == "METHOD" .OR. c == "ACCESS" .OR. c == "ASSIGN" .OR. c == "DESTRUCTOR" .OR. c == "DECLARED" .OR. c == "CLASS" .OR. c == "CREATE"
 
 // Match the raw C-dump terminator without running Harbour comment state.
 // hb_pp_hasCommand accepts trailing comments or a command separator.

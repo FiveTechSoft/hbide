@@ -155,6 +155,16 @@ procedure Main()
  Check(Len(a)==1,'commented ENDCLASS cannot turn members into implementations',@nPass,@nFail)
  a:=HBIDE_ScanProcs('CLASS Demo'+hb_eol()+'ENDCLASS'+hb_eol()+'METHOD Ping() CLASS Other')
  Check(Len(a)==2.and.a[2,1]=='Other:Ping','explicit owner overrides remembered class',@nPass,@nFail)
+ for each c in { 'FUNCTION', 'PROCEDURE' }
+ a:=HBIDE_ScanProcs('DECLARED METHOD '+c+' Ping() CLASS Demo')
+ Check(Len(a)==1.and.a[1,1]=='Demo:Ping'.and.a[1,3]==1,'DECLARED METHOD explicit owner: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('DECLARED METHOD FUNCTION ;'+hb_eol()+'Ping(CLASS)CLASS Demo')
+ Check(Len(a)==1.and.a[1,1]=='Demo:Ping'.and.a[1,3]==1,'continued DECLARED METHOD retains first line and skips CLASS parameter',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('CLASS Demo'+hb_eol()+'ENDCLASS'+hb_eol()+'DECLARED METHOD FUNCTION Ping()')
+ Check(Len(a)==1,'DECLARED METHOD requires explicit owner',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('DECLARED FUNCTION Ping() CLASS Demo'+hb_eol()+'DECLARED METHOD Ping() CLASS Demo')
+ Check(Empty(a),'unsupported DECLARED forms stay excluded',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return
