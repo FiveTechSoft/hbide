@@ -66,20 +66,20 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre16:37 Q296: candidato focal C51,
-source9eba1d3d1a3c035f9b77f6c3599a21db43134077,
-bin20cd03fdb845b6309fbf6116adce0382edc16a4d7543538af3d85c1f53befe2c.
-Q295editor admite bareTEXT con comentario cerrado o fin de línea bien separado.
-BaselineC49:4PASS6FAIL; C51cincoPTY41checksPASS, modelos separados25TEXT/
-210repaint/141EOL PASS; par nativo1202x762 completo inspeccionado. Compiler
-rechazó TEXT&&adyacente; C50provisional se corrigió antes de C51. No ocultar
-ese rechazo ni tratarlo como candidato final. Q29637modelos GTSTD fresh del
-source0771c54504ef94cde6bad9ad4dfc55faf7a02d13 limpio PASS; no son37modosIDE
-ni certificados del binarioC51. GlobalVM/inputhook caracterizan límites, no soporte.
-Q291navTEXT, Q287BP y Q284Undo mantienen ledgers separados. C45 conserva
-About/catálogoQ282/8smokes/5modos35checks, no heredados aC51. Q297docs
-posteriores no embebidos en C51. No sumar fuentes/binarios como matriz.
-Sin TEXT TO/custommacros/streampragmas/preprocesadorcompleto/Windows/release/hitos.
+Corte 1 noviembre16:54 Q301: candidato focal C54,
+sourcea023971aae2a345af95ff0c08f33165d3f8e683b,
+binf526696a9663f0b397294445ba255c082c045ef91d479b49d539e6036eb83023.
+Q299TEXT identificador continuado no abre stream; Q300comentario prefijo cerrado
+permite bareTEXT. C53baseline3PASS3FAIL; C54seisPTY47checksPASS, modelos
+separados36TEXT/210repaint/141EOL PASS y par nativo1202x762 inspeccionado.
+Q30137modelos GTSTD fresh del sourcebc48cac5922b6a0c4f815a244cdaa81bfc9b55f7
+limpio PASS. No37modosIDE ni certificados del binarioC54; globalVM/inputhook
+siguen caracterizando límites, no implementación.
+C52identificado fuente90e6d102c19227322accc16d58af294162e0fa17,
+bin01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696:
+About/catálogoQ297/ldd/8smokes/5PTY34checks PASS, no heredados aC54.
+Q302docs posteriores no embebidos en C54 ni C52. No sumar fuentes/binarios
+como matriz. Sin fullpreprocessor/customstream/navcontinuation/Windows/release/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
 bin96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29.
@@ -1020,3 +1020,18 @@ Recibo linux-editor-text-comment-q295.json. Q29637modelos GTSTD recompilados
 source0771c54 limpio PASS, recibo linux-model-baseline-q296.json; globalVM/
 inputhook siguen caracterizando límites. Q297aceptación/inventario/catálogo
 actualizados, no nuevo build por documentación ni herencia de matriz/Windows.
+
+### Seguimiento Q298-Q302 (1 noviembre 2026)
+
+Q298C52 limpio identificado: fuente90e6d10, bin01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696,
+8smokes y5PTY34checksPASS; catálogo34byteexact/ldd/About de la misma exportación.
+No distribución despejada ni herenciaC30. Q299variableTEXT continuada no es
+opener: baseline3PASS3FAIL, C53cincoPTY41checksPASS, modelos29TEXT/210repaint/
+141EOL; primer modelo erró coordenadaBackspace27PASS2FAIL, corregido29PASS,
+fallo preservado. Q300comentario prefijo cerrado permiteTEXT: dosfixtures
+compiler-valid, baseline3PASS3FAIL, C54seisPTY47checksPASS, modelos36TEXT/
+210repaint/141EOL. Ambos pares nativos completos inspeccionados. Recibos
+linux-clean-candidate-q298.json, linux-editor-text-continuation-q299.json,
+linux-editor-text-prefix-comment-q300.json. Q30137modelosfresh sourcebc48cac
+limpioPASS, recibo linux-model-baseline-q301.json. Q302reconcilia aceptación/
+inventario/catálogo. No rebuild sólo docs ni matriz nueva/Windows/hito.

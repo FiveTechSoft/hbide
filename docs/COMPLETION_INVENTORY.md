@@ -1177,10 +1177,13 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:2163 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
 | editor.prg:2166 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
 | editor.prg:2195 | `if Upper(Left(c,7)) != "ENDTEXT"` | Pendiente vinculo |
-| editor.prg:2205 | `if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"` | Pendiente vinculo |
-| editor.prg:2210 | `if Left(c,2)=="//" .or. Left(c,2)=="&&"` | Pendiente vinculo |
-| editor.prg:2212 | `elseif Left(c,2)=="/*"` | Pendiente vinculo |
+| editor.prg:2205 | `if hb_defaultValue(lIn,.F.)` | Pendiente vinculo |
+| editor.prg:2207 | `if n==0` | Pendiente vinculo |
 | editor.prg:2214 | `if n==0` | Pendiente vinculo |
+| editor.prg:2219 | `if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"` | Pendiente vinculo |
+| editor.prg:2224 | `if Left(c,2)=="//" .or. Left(c,2)=="&&"` | Pendiente vinculo |
+| editor.prg:2226 | `elseif Left(c,2)=="/*"` | Pendiente vinculo |
+| editor.prg:2228 | `if n==0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1563 | `IF ::lAnimate` | Pendiente vinculo |
 | hbdebug/debugger.prg:1564 | `IF ::nSpeed != 0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1567 | `IF __dbgInvokeDebug()  // NextKey() == K_ALT_D` | Pendiente vinculo |

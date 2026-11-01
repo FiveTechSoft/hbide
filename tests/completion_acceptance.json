@@ -2846,8 +2846,10 @@
     "tests": [
       "test_editor_text_block.prg",
       "test_editor_text_block_pty.py",
-      "test_editor_text_comment_pty.py"
+      "test_editor_text_comment_pty.py",
+      "test_editor_text_continuation_pty.py",
+      "test_editor_text_prefix_comment_pty.py"
     ],
-    "contract": "Bare TEXT with closed block comments or properly bounded line comments carries literal payload context/color until raw ENDTEXT; edits to opener and terminator propagate repaint through Undo/Redo. TEXT-prefixed identifiers, TEXT TO, adjacent TEXT&& and code following a closed comment are not stream openers. Not custom macros, stream pragmas or a full preprocessor."
+    "contract": "Bare TEXT with closed block comments or properly bounded line comments carries literal payload context/color until raw ENDTEXT; edits to opener and terminator propagate repaint through Undo/Redo. TEXT-prefixed identifiers, TEXT TO, adjacent TEXT&& and code following a closed comment are not stream openers. Not custom macros, stream pragmas or a full preprocessor. Leading closed block comments, including a multiline close before bare TEXT, permit a stream. TEXT identifier on a continued expression does not activate stream. Opener edits propagate context through Undo/Redo in bounded fixtures."
   }
 }
