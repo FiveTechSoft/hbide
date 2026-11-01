@@ -66,10 +66,19 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-C30es elcandidatointernoactual(export049b533,bin96d77549):8smokes+
-3modos16checksreportadossobrebinexacto ydosnativas802x477inspeccionadas.
-Incluyecierrecentrado/regularliteral fixes,NOrelease/licencias/Windows/
-instalador/matriz353. C29permanecehistorico,nosumarsusPASS.
+Corte 1 noviembre 13:22, Q243: C30 es el candidato interno actual,
+export049b5332628bbb8faa4458863405bc20438320ca,
+bin96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29.
+Plan353 reconciliado sin faltantes ni extras:352PTY y1guardafuente.
+352scripts originales congelados +1navigation adaptado al viewer EscQ242.
+About necesita EXPECT_REV12charsQ241. Fallos/reintentos/interrupciones
+conservados, no afirmar ejecucion global sin fallos. Tres --create inertes
+Q222 excluidos del conteo. No sumar smokes/focales solapados. No release,
+licencias, Windows, instalacion limpia ni cierre de hitos. Evidencias
+linux-c30-plan-reconciliation-q243.json y linux-c30-final-blocks117131-q243.json.
+Siguiente brecha M0: mantener docs y contratos de teclado consistentes;
+Q244 reconcilia seleccion/copia y elimina nota historica contradictoria.
+No habilita WordStar/Ctrl+C ni cambia politica/teclas del producto.
 
 Corte1Nov10:39: Q211metadatosliteral(TimeGet/Size) yrecreacionchecks
 literales,31modelosfreshsobre6f45c00/2PTY10checks,87guardas. Q212titulo
@@ -113,9 +122,11 @@ inspeccionadas: comillasUTF8U y retorno al error fila2col9.
   asignar licencia. El gate de avisos sigue abierto, no es clearance legal.
 - **M6:** no repetir una matriz de horas por cada cambio documental.
   Q164 acredita 309 modos sobre su fuente, anterior al arreglo Q169. El
-  registro actual contiene 353 modos; ese numero es un plan, no 353 PASS.
-  La proxima consolidacion debe congelar una fuente que incluya el arreglo
-  y reconciliar las pruebas nuevas sin heredar los PASS de Q164.
+  registro contiene353variantes. Q243 ya reconcilia C30 sobre binario
+  unico:352scripts originales +1navigation adaptadoEsc,352PTY+1guardafuente.
+  No son353funciones ni353scriptsoriginalesPASS; no hereda Q164 ni cierraM6.
+  Siguientes puertas: modelos de la fuente actual, revision visual y
+  distribucion/licencias/Windows, sin repetir horas por cambio documental.
 - **M2:** Q176-Q178 comprueban compilador ausente, restauracion sin reiniciar,
   exito sin output y error tras crearlo. Conservacion del binario anterior
   y ausencia de lanzamiento obsoleto. Q179 corrige el salto al primer error

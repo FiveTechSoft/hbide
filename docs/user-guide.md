@@ -39,6 +39,20 @@ behaviour is not yet validated, the text says so.
 Copy, Cut and Paste act on the selected range when one is active, and on
 the current line otherwise.
 
+To copy a text block, put the cursor at its start, press F8 once and move
+with the arrows/Home/End to its end. Then use Edit > Copy (Alt+E, C).
+Do not press F8 again before copying: it switches the mark off. Copy clears
+the mark after putting the range in the editor's internal clipboard.
+Shift+arrows/Home/End can also extend a range when the terminal backend
+reports extended key codes. This is not a guarantee for every terminal or
+Windows backend. Double-click selects a word.
+
+The editor does not implement the WordStar Ctrl+K,B / Ctrl+K,K block
+protocol or a Ctrl+C Copy binding. Use the Edit menu instead. The internal
+clipboard is shared between hbide documents, not the system clipboard.
+Edit > Paste (Alt+E, P) inserts the copied lines below the current line;
+it does not paste at the cursor position.
+
 ## Keyboard shortcuts
 
 | Key | Action |

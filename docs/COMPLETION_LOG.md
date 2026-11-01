@@ -5486,3 +5486,13 @@ global sin fallos/reintentos ni353scriptsoriginalesPASS. No sumar extras
 C30/smokes solapados. No release/hbide100%/Windows/modelos/píxeles/hitos.
 Evidencia: docs/evidence/linux-c30-final-blocks117131-q243.json y
 docs/evidence/linux-c30-plan-reconciliation-q243.json.
+
+### Q244 (1 noviembre 2026): docs selección/teclado y roadmap vigente
+
+Se elimina contradicción histórica sobre HB_INKEY_EXT ya activo. Guía
+explica F8+movimiento+EditCopy, segunda F8 desactiva, clipboard interno y
+Paste debajo de línea; no WordStar/CtrlC, Shift depende backend. Código
+no cambia. Roadmap enlaza C30/Q243 reconciliado con sus límites, no353
+scriptsoriginalesPASS/hitos. Ocho suites de guardas PASS,34docs embebidos
+exactos. Sin nuevo binario/PTY/modelos/píxeles/Windows.
+Evidencia: docs/evidence/linux-doc-keyboard-reconciliation-q244.json.

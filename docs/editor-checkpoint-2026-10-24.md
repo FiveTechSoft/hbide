@@ -325,6 +325,7 @@
   con la tecla base - el resaltado de rango y Copy/Cut ya consumian
   SelRange(). Verificado en vivo: Shift+Left x3 marca el rango (indicador
   MARK en status) con resaltado N/W visible sobre "XYZ".
-- Cambiar cualquiera de los dos comportamientos requiere activar
-  HB_INKEY_EXT a nivel global de la app, decision descartada de momento por
-  su alcance transversal (menus, GETs, designer, commander).
+- Nota historica reconciliada (1 noviembre): el parrafo anterior que decia
+  que activar HB_INKEY_EXT estaba descartado quedo obsoleto. Activate() ya
+  lo solicita; la distincion depende de los codigos que entrega cada GT.
+  Esto no acredita todos los terminales ni Windows/GTWVT.
