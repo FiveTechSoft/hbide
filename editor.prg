@@ -705,6 +705,13 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
            ::Super:Edit( nKey )
    endcase
 
+   // A marked jump without scrolling changes every row between endpoints,
+   // not only the three-line cursor tail (Ctrl+Home/End, PgUp/PgDn).
+   if ::lMark .and. HBIDE_IsNavKey( nKey ) .and. Abs( ::Row() - nOldScrRow ) > 1
+      ::Display()
+      lSkipTail := .T.
+   endif
+
    if ! lSkipTail
       if HBIDE_IsNavKey( nKey ) .and. ! ::lMark
          // Pure cursor move: only the current-row highlight (LineColor)
