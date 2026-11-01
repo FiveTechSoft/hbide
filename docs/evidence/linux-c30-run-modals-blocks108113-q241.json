@@ -1,0 +1,261 @@
+{
+  "scope": "Frozen C30 file modals/run/script.12final PASS command variants;335distinct across blocks1..113 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "about_failure": "Initial About expected unrecorded without HBIDE_EXPECT_REV, failed3PASS1FAIL. First correction full40char revision still failed because UI intentionally displays12characters. Final environment HBIDE_EXPECT_REV=049b5332628b passes4/4, no product/test change. Initial receipt and fullrev retry retained. Initial log later overwritten, its printed3PASS1FAIL preserved here.",
+  "initial_block110": {
+    "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+    "source": "049b5332628bbb8faa4458863405bc20438320ca",
+    "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+    "cases": [
+      {
+        "name": "about-build",
+        "command": [
+          "test_about_build_pty.py"
+        ],
+        "exit": 1,
+        "seconds": 5.905401229858398,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_unchanged": true,
+        "log": "/tmp/hbide-c30/matrix-blocks/about-build.log",
+        "printed_failure": true
+      },
+      {
+        "name": "run-arguments-modal",
+        "command": [
+          "test_run_arguments_modal_pty.py"
+        ],
+        "exit": 0,
+        "seconds": 22.767831563949585,
+        "test_sha256": "ce24ee133541f28a8720bc4c8df8aab24da86d308699f6a71c070b36b202fc81",
+        "binary_unchanged": true,
+        "log": "/tmp/hbide-c30/matrix-blocks/run-arguments-modal.log",
+        "printed_failure": false
+      }
+    ]
+  },
+  "fullrev_retry": {
+    "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+    "source": "049b5332628bbb8faa4458863405bc20438320ca",
+    "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+    "cases": [
+      {
+        "name": "about-build",
+        "command": [
+          "test_about_build_pty.py"
+        ],
+        "exit": 1,
+        "seconds": 5.906285047531128,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_unchanged": true,
+        "log": "/tmp/hbide-c30/matrix-blocks/about-build.log",
+        "printed_failure": true
+      }
+    ]
+  },
+  "fullrev_log": "PASS About retains version1.0\nFAIL About shows actual build revision or honest fallback\nPASS About OK returns same dirty document\nPASS About cycle Undo preserves original bytes\nTOTAL 3 PASS 1 FAIL; evidence /tmp/hbide-source-run-qel49xw3\n",
+  "final_env": {
+    "HBIDE_EXPECT_REV": "049b5332628b"
+  },
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "close-routes",
+          "command": [
+            "test_close_routes_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 11.84554409980774,
+          "test_sha256": "f85b7e37254c3c9c039a896dcfe05698b953419539ddf57ed6dc5fce3cc3f280",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/close-routes.log",
+          "printed_failure": false
+        },
+        {
+          "name": "file-modal-long-list",
+          "command": [
+            "test_file_modal_long_list_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 7.087541580200195,
+          "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/file-modal-long-list.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "file-modal-mouse",
+          "command": [
+            "test_file_modal_mouse_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 17.039295196533203,
+          "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/file-modal-mouse.log",
+          "printed_failure": false
+        },
+        {
+          "name": "file-modal-buttons",
+          "command": [
+            "test_file_modal_buttons_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 15.771790504455566,
+          "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/file-modal-buttons.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "about-build",
+          "command": [
+            "test_about_build_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.9073474407196045,
+          "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/about-build.log",
+          "printed_failure": false
+        },
+        {
+          "name": "run-arguments-modal",
+          "command": [
+            "test_run_arguments_modal_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 22.767831563949585,
+          "test_sha256": "ce24ee133541f28a8720bc4c8df8aab24da86d308699f6a71c070b36b202fc81",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/run-arguments-modal.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "run-empty-args",
+          "command": [
+            "test_run_empty_args_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 20.109438180923462,
+          "test_sha256": "38110f01457b6b707a630e32a0c4a44189e5a676c637209a9e3960f44a33c520",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/run-empty-args.log",
+          "printed_failure": false
+        },
+        {
+          "name": "script-screen",
+          "command": [
+            "test_script_screen_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 6.974275588989258,
+          "test_sha256": "f2a410361f5490a93d8b9980cb600d2ab2c6de20ba8ba7f52ca1fc73eee96614",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/script-screen.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "source-includes",
+          "command": [
+            "test_source_includes_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 13.893235445022583,
+          "test_sha256": "117954e588fb44629ce8a521e003d39570913841af16b5a2168f35018821be57",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/source-includes.log",
+          "printed_failure": false
+        },
+        {
+          "name": "script-errors",
+          "command": [
+            "test_script_errors_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 18.139761686325073,
+          "test_sha256": "5fa2c6ad9066943a72eda04e3a43b84dde2393ec9cc9a37a3ffa2e48c1a9d90f",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/script-errors.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "start-paths",
+          "command": [
+            "test_start_paths_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 15.769402980804443,
+          "test_sha256": "5d6480733df1778be1a3303b97c4d02b4915eeb8c8247b158a14445f6c45075d",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/start-paths.log",
+          "printed_failure": false
+        },
+        {
+          "name": "run-source",
+          "command": [
+            "test_run_source_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 13.891942024230957,
+          "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/run-source.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 335,
+  "logs": {
+    "close-routes.log": "PASS About opens actual dialog\nPASS About returns edited document\nPASS Window Close asks about active dirty source\nPASS Window Close Cancel retains dirty text\nPASS Window Close Discard replaces last document with starter\nPASS Discard never writes edited source\nPASS Project opens Sources\nPASS Close Project keeps edited source open\nPASS Sources after Close Project gives no-project notice\nPASS no-project notice returns dirty document\nPASS Close Project never writes source or HBP\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-r1q2e24j\n",
+    "file-modal-long-list.log": "PASS Open long list name rejected not truncated\nPASS typed short path wins despite long initial item\nPASS Project long initial name rejected not truncated\nPASS long name rejection retains correct current document\nPASS long names never alter any source or project\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-t3mfphek\n",
+    "file-modal-mouse.log": "PASS Open mouse OK exact file\nPASS Open mouse Cancel preserves dirty source\nPASS SaveAs mouse Cancel no new file\nPASS SaveAs mouse Cancel retains source identity\nPASS SaveAs mouse OK writes exact mixed EOL\nPASS SaveAs mouse OK changes identity\nPASS SaveAs mouse keeps original\nPASS Project mouse Cancel retains exact editor\nPASS Project mouse OK opens exact project\nPASS Open mouse list selects exact second file\nPASS mouse opened exact list file saved only selected bytes\nPASS Open mouse first list item selects exact original\nPASS Project mouse list chooses exact second project\nPASS Project mouse operations preserve all file bytes\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-sl6su48b\n",
+    "file-modal-buttons.log": "PASS Open explicit OK preserves manually typed name after list focus\nPASS Open explicit Cancel retains dirty document\nPASS SaveAs explicit Cancel creates no destination\nPASS SaveAs explicit Cancel retains name and dirty buffer\nPASS SaveAs explicit OK saves exact mixed EOL bytes\nPASS SaveAs changes identity only on OK\nPASS SaveAs retains original file\nPASS Open list sync produces a known filename\nPASS Open list selection opens exact selected file\nPASS Project explicit Cancel keeps editor\nPASS Project explicit OK opens manually typed project\nPASS Project list sync produces known filename\nPASS Project list selection opens selected project\nPASS source bytes untouched by project navigation\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-hvmkavz4\n",
+    "about-build.log": "PASS About retains version1.0\nPASS About shows actual build revision or honest fallback\nPASS About OK returns same dirty document\nPASS About cycle Undo preserves original bytes\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-c1nqi8aa\n",
+    "run-arguments-modal.log": "PASS arguments modal opens\nPASS explicit-ok exact Script argv\nPASS arguments modal opens\nPASS explicit-cancel exact Script argv\nPASS arguments modal opens\nPASS esc-preserve exact Script argv\nPASS arguments modal opens\nPASS invalid quote rejected\nPASS invalid-preserve exact Script argv\nPASS arguments modal opens\nPASS explicit-clear exact Script argv\nPASS arguments modal opens\nPASS enter-accept exact Script argv\nPASS editor remains usable\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-5be4uo0g\n",
+    "run-empty-args.log": "PASS start run1 retains empty argument positions\nPASS start editor remains usable\nPASS script run1 retains empty argument positions\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 retains empty argument positions\nPASS debug editor remains usable\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-_ixgf6yo\n",
+    "script-screen.log": "PASS script owns status row while awaiting input\nPASS script run1 preserves source literal\nPASS script return repaints app output\nPASS script owns status row while awaiting input\nPASS script run2 preserves source literal\nPASS script return repaints app output\nPASS script editor remains usable\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-f7j1475a\n",
+    "source-includes.log": "PASS script run1 preserves source literal\nPASS script run2 preserves source literal\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 preserves source literal\nPASS debug source retains main declaration\nPASS debug run2 preserves source literal\nPASS debug editor remains usable\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-9w6d8rtz\n",
+    "script-errors.log": "PASS script run1 preserves source literal\nPASS script run2 preserves source literal\nPASS script editor remains usable\nPASS runtime error is visible\nPASS runtime error dismiss returns to editor\nPASS valid script works after error\nPASS script compile error is reported\nPASS compile error leaves editor usable\nPASS valid script works after compile error\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-e0od691_\n",
+    "start-paths.log": "PASS start run1 preserves source literal\nPASS start run2 preserves source literal\nPASS start editor remains usable\nPASS failed build reports old executable not run\nPASS failed build preserves old executable bytes\nPASS failed build never runs stale binary\nPASS quiet compiler failure never claims Build OK\nPASS quiet compiler failure is visible\nPASS quiet failure leaves editor usable\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-gbmpz5hh\n",
+    "run-source.log": "PASS script run1 preserves source literal\nPASS script run2 preserves source literal\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 preserves source literal\nPASS debug source retains main declaration\nPASS debug run2 preserves source literal\nPASS debug editor remains usable\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-hf9cfdqw\n"
+  }
+}

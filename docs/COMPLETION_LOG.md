@@ -5445,3 +5445,16 @@ acotadas, no fsync/powerloss ni todos fallos I/O.323 variantes distintas
 cotejadas con plan353/normalizaciónQ223; no producto nuevo/píxeles/modelos/
 Windows/matriz completa/cierre hitos.
 Evidencia: docs/evidence/linux-c30-recovery-blocks100107-q240.json.
+
+### Q241 (1 noviembre 2026): C30 modales/ejecución/scripts
+
+12 variantes finales PASS mismo C30 96d77549/export049b533: close routes,
+file modal long-list/mouse/buttons, About, argumentos modal/vacíos, script
+screen, source includes/errors/paths/run. About falló por omitir
+HBIDE_EXPECT_REV (esperaba unrecorded) y otra vez con40chars completos; UI
+muestra12chars intencionalmente. Env correcto049b5332628b pasa4/4 sin
+cambio producto/test; recibos inicial/retry conservados y explicación del
+primer log sobrescrito. No afirmar global sin fallos/reintentos. Tests
+propios hashados/binario inalterado.335 variantes distintas cotejadas con
+plan353/normalizaciónQ223; no producto/píxeles/modelos/Windows/matriz completa/hitos.
+Evidencia: docs/evidence/linux-c30-run-modals-blocks108113-q241.json.
