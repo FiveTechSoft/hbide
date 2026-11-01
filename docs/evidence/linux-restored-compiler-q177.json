@@ -1,0 +1,137 @@
+{
+  "scope": "Q177 missingcompiler then restored sameIDE session, no productfix.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "30a268db94e9f2c2a41db135e9b98c910d11621e",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "982f5f59775efd6d508f062cc489e46416da8b39734afa074c50d2e89c1079a0",
+    "binary_sha256": "f35ca99fa0df6567f62de7aeedc35a8a2ee4fda1e3db42bc4441e38810919bb2",
+    "built_at": 1793518273.14634
+  },
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "30a268db94e9f2c2a41db135e9b98c910d11621e",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "982f5f59775efd6d508f062cc489e46416da8b39734afa074c50d2e89c1079a0",
+      "binary_sha256": "f35ca99fa0df6567f62de7aeedc35a8a2ee4fda1e3db42bc4441e38810919bb2",
+      "build_receipt": "/tmp/hbide-q177-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "469d6d962bc03e4841ee1654fd14a28040cfdfa83a24603c292bb4fba559c065",
+      "case": "restored-compiler-same-session",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_missing_compiler_pty.py",
+        "--restore"
+      ],
+      "started": 1793518273.1466525,
+      "seconds": 9.2,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "71a9cf20f21efb40ffc7a918dd09c1dbe5d93e00b8f7acc1f77e78959e01ab5e",
+      "log": "/tmp/hbide-q177-final/restored-compiler-same-session-1793518273146648845.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "30a268db94e9f2c2a41db135e9b98c910d11621e",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "982f5f59775efd6d508f062cc489e46416da8b39734afa074c50d2e89c1079a0",
+      "binary_sha256": "f35ca99fa0df6567f62de7aeedc35a8a2ee4fda1e3db42bc4441e38810919bb2",
+      "build_receipt": "/tmp/hbide-q177-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "469d6d962bc03e4841ee1654fd14a28040cfdfa83a24603c292bb4fba559c065",
+      "case": "missing-compiler-preserves-executable",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_missing_compiler_pty.py"
+      ],
+      "started": 1793518282.3423953,
+      "seconds": 6.54,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "71a9cf20f21efb40ffc7a918dd09c1dbe5d93e00b8f7acc1f77e78959e01ab5e",
+      "log": "/tmp/hbide-q177-final/missing-compiler-preserves-executable-1793518282342391682.log"
+    }
+  ],
+  "logs": {
+    "restored-compiler-same-session-1793518273146648845.log": "PASS missing compiler gives clear failed build message\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS missing compiler gives clear failed build message\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS restored compiler produces successful output\nPASS same session launches fresh executable only\nPASS fresh executable replaces old bytes\nPASS rebuild keeps source exact\nPASS successful retry clears old failure diagnostics\nPASS editor remains usable after repeated failure\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-clupstvi\n",
+    "missing-compiler-preserves-executable-1793518282342391682.log": "PASS missing compiler gives clear failed build message\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS missing compiler gives clear failed build message\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-760jihii\n"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "30a268db94e9f2c2a41db135e9b98c910d11621e",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "f51f62c196809e77119ef056bd88466af01f84a8b6989295940b53b90a40f12a",
+    "started": 1793518289.0710707,
+    "runner_sha256": "d8e1b33008b126ce28f71722967a5ba136d9a3c979a0ce5732d5c3a00027d71f",
+    "tests": {
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q177-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.268
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q177-guards/test_completion_guards.py.log",
+        "seconds": 0.216
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q177-guards/test_build_receipt.py.log",
+        "seconds": 0.218
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "5c178c60879f6f854039d24bc71bf0cbea3a01c22d29963770bd60d7bae50905",
+        "log": "/tmp/hbide-q177-guards/test_completion_inventory.py.log",
+        "seconds": 0.769
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q177-guards/test_distribution_notices.py.log",
+        "seconds": 0.217
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q177-guards/test_embed_help_docs.py.log",
+        "seconds": 0.217
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q177-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.368
+      }
+    },
+    "ok": true,
+    "finished": 1793518291.3446114
+  },
+  "limits": "2PTY27checks:twofailedRunStarts preserveoldbinary/nolaunch; PATHdirectorygetsrealcompilerwrapperwhileIDEalive,successfulbuildpromotesdifferentbinary/runfreshmarker/sourceexact/oldfailuremessagescleared. NoCancel/responsiveness/Windows/allfailures/fullmatrix/M2closure."
+}

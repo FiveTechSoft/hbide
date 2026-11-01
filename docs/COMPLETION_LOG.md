@@ -4610,3 +4610,17 @@ Primer probe corrigio solo la expectativa de mensaje partido en dos
 lineas. No arreglo de producto ni prueba de Cancel, respuesta de UI,
 Windows, matriz global o cierre M2.
 Evidencia `docs/evidence/linux-missing-compiler-q176.json`.
+
+
+### Q177 (1 noviembre 2026): recuperar el compilador sin reiniciar
+
+Dos builds fallan con compilador ausente y conservan el ejecutable previo.
+Se restaura el compilador en el PATH de la misma sesion: se compila un
+binario distinto, se lanza solo el resultado nuevo y desaparecen los
+diagnosticos del fallo anterior. Fuente byte-exacta y editor usable.
+Dos modos PTY27checks73guardas34docsPASS en
+30a268db94e9f2c2a41db135e9b98c910d11621e, binario
+f35ca99fa0df6567f62de7aeedc35a8a2ee4fda1e3db42bc4441e38810919bb2.
+Sin arreglo de producto, Cancel, respuesta UI, Windows, todas las
+variantes de fallo, matriz global ni cierre M2.
+Evidencia `docs/evidence/linux-restored-compiler-q177.json`.
