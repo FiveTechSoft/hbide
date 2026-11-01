@@ -447,7 +447,10 @@ METHOD Activate() CLASS HbDesigner
             else
                nInspHit = ::InspHit( MRow(), MCol() )
                if ::lInspector .and. nInspHit != 0
-                  if nInspHit == -1
+                  if nInspHit == -2
+                     ::ToggleInspector()
+                     ::ShowHint( HINT_CANVAS )
+                  elseif nInspHit == -1
                      ::DragInspector( MRow(), MCol() )
                   else
                      ::lInspFocus = .T.
@@ -1934,7 +1937,8 @@ METHOD DrawInspector() CLASS HbDesigner
    hb_Scroll( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ],,, CLR_INSP )
    DispBox( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ], 2, CLR_INSP )
    DrawShadow( aRect[ 1 ], aRect[ 2 ], aRect[ 3 ], aRect[ 4 ] )
-   hb_DispOutAt( aRect[ 1 ], aRect[ 2 ] + 2, " Inspector ", CLR_INSP )
+   hb_DispOutAt( aRect[ 1 ], aRect[ 2 ] + 1, "[x]", CLR_INSP )
+   hb_DispOutAt( aRect[ 1 ], aRect[ 2 ] + 5, " Inspector ", CLR_INSP )
 
    for n = 1 to Len( aFields )
       cLabel = " " + PadR( aFields[ n ][ 1 ] + ":", 9 )
@@ -2263,6 +2267,9 @@ METHOD InspHit( nMRow, nMCol ) CLASS HbDesigner
       return 0
    endif
    if nMRow == aRect[ 1 ]
+      if nMCol >= aRect[ 2 ] + 1 .and. nMCol <= aRect[ 2 ] + 3
+         return -2 // Close target is separate from the draggable title.
+      endif
       return -1
    endif
    if nMRow >= aRect[ 1 ] + 1 .and. nMRow <= aRect[ 1 ] + nFields

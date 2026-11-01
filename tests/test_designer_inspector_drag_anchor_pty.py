@@ -57,7 +57,7 @@ for kind in [args.kind or ('listbox' if args.listbox else ('get' if args.get els
   if args.vertical:
    for _ in range(50):send(b'\x1b[1;5B',.01)
   startrow,start=title_pos()
-  check('inspector initially clamped to right',start==49 if small else start==89)
+  check('inspector initially clamped to right',start==52 if small else start==92)
   if args.vertical:check('inspector initially clamped to bottom',startrow==10 if small else startrow==25)
   send(b'\x1b[17~') # leave inspector focus so the main mouse dispatcher owns drag
   def mouse(code,col,row):send(b'\x1b[M'+bytes([code+32,col+33,row+33]),.2)
