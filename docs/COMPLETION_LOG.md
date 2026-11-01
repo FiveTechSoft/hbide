@@ -5316,3 +5316,15 @@ inalterado, sin fallo/reintento en estos9.155 escenarios distintos
 cotejados con plan353 y normalizaciónQ223. No implementación toggles M3,
 producto nuevo/píxeles/modelos/Windows/matriz completa/cierre hitos.
 Evidencia: docs/evidence/linux-c30-debug-modal-blocks3336-q229.json.
+
+### Q230 (1 noviembre 2026): C30 estructuras debugger
+
+11 escenarios adicionales PASS con C30 96d77549/export049b533: miembro
+objeto largo, array-path/hash-key largos, hijo vacío objeto, navegación
+hash/array, cambio tipo propiedad, estructuras vacías, readonly depth,
+structured depth/modal. Fixtures acotadas con valores finales exactos
+según caso; no profundidad/tipos/expresiones arbitrarios ni cambio política
+editable. Tests propios hashados/binario inalterado, sin fallo/reintento
+en estos11.166 escenarios distintos cotejados con plan353, normalizaciónQ223.
+No toggles M3/producto nuevo/píxeles/modelos/Windows/matriz completa/hitos.
+Evidencia: docs/evidence/linux-c30-debug-structures-blocks3742-q230.json.

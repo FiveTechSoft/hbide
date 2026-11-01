@@ -1,0 +1,195 @@
+{
+  "scope": "Frozen C30 debugger structured values.11additional scenarios;166distinct across blocks1..42 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-long-object-member",
+          "command": [
+            "test_debug_long_object_member_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 12.304754495620728,
+          "test_sha256": "4d20a3f3da7d98cc596a7e45df756d6ab9ab7e3d9f2a68f6d44e98df75bfa562",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-long-object-member.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-long-array-path",
+          "command": [
+            "test_debug_long_hash_key_pty.py",
+            "--array-child"
+          ],
+          "exit": 0,
+          "seconds": 13.156205892562866,
+          "test_sha256": "485351bd030044458d22b71b17cbb009fe6be4e0ffb4f7460256f41932a0f279",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-long-array-path.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-long-hash-key",
+          "command": [
+            "test_debug_long_hash_key_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 13.118771076202393,
+          "test_sha256": "485351bd030044458d22b71b17cbb009fe6be4e0ffb4f7460256f41932a0f279",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-long-hash-key.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-object-empty-child",
+          "command": [
+            "test_debug_object_empty_child_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 21.340877532958984,
+          "test_sha256": "8899a00a408b6dcb597ff6e5a4e731bcb21c945a2037e710b7155a922c880eb9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-object-empty-child.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-hash-navigation",
+          "command": [
+            "test_debug_hash_navigation_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 13.67598843574524,
+          "test_sha256": "0059100de87d93409d17efabba428b4b656f9231e5e7a9c0d3ceadbe32750de7",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-hash-navigation.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-array-navigation",
+          "command": [
+            "test_debug_hash_navigation_pty.py",
+            "--array"
+          ],
+          "exit": 0,
+          "seconds": 13.672844886779785,
+          "test_sha256": "0059100de87d93409d17efabba428b4b656f9231e5e7a9c0d3ceadbe32750de7",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-array-navigation.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-object-type-change",
+          "command": [
+            "test_debug_object_type_change_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 44.19485354423523,
+          "test_sha256": "3449f5b8342002ed0f84a8269c33afc3cf4636a6d6eda6d2b4f77b92808a4010",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-object-type-change.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-empty-structures",
+          "command": [
+            "test_debug_empty_structures_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 19.81933283805847,
+          "test_sha256": "6492c985e07b8d2efabf752312266712db98fc43315cb78870d613bcae142b26",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-empty-structures.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-readonly-depth",
+          "command": [
+            "test_debug_readonly_depth_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 47.95703601837158,
+          "test_sha256": "18a9f8cd52dd4dc15bd53ccb7d616152ed2f5254c712eda5d63e0588d5d78341",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-readonly-depth.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-structured-depth",
+          "command": [
+            "test_debug_structured_depth_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 39.34890580177307,
+          "test_sha256": "fff969a153f355f9a0b9a311d991fca98e85d9fb749e7f9d6f2a896f6a05f4b8",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-structured-depth.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-structured-modal",
+          "command": [
+            "test_debug_structured_modal_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 37.22106409072876,
+          "test_sha256": "d7c5010c483588e1ca5d1d25ddf368a4f442d92822a07f4e748ef5ccb4d5857b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-structured-modal.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 166,
+  "logs": {
+    "debug-long-object-member.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS valid long member numeric value visible\nPASS long member edited value visible\nPASS long member Cancel99 keeps edited value visible\nPASS long member invalid expression rejected\nPASS long member edit persists in resumed debuggee\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-atzcd1i_\n",
+    "debug-long-array-path.log": "PASS hash debugger stopped\nPASS hash structured top inspector opens\nPASS hash top inspector refuses replacement\nPASS hash nested first scalar shows41\nPASS hash nested typed Esc keeps41\nPASS hash nested invalid expression rejected\nhash actual '{\"long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_\"=>{41, 2}}'\nPASS hash nested edit affects resumed debuggee exact value\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-zmc47d0_\n",
+    "debug-long-hash-key.log": "PASS hash debugger stopped\nPASS hash structured top inspector opens\nPASS hash top inspector refuses replacement\nPASS hash nested first scalar shows41\nPASS hash nested typed Esc keeps41\nPASS hash nested invalid expression rejected\nhash actual '{\"long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_long_key_\"=>{\"one\"=>41, \"two\"=>2}}'\nPASS hash nested edit affects resumed debuggee exact value\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-j1et8twq\n",
+    "debug-object-empty-child.log": "PASS array debugger stopped\nPASS array structured top inspector opens\nPASS array top inspector refuses replacement\nPASS array empty inspector explains no elements\nPASS array dismissal returns Monitor\nPASS array empty value remains exact after Resume\nPASS hash debugger stopped\nPASS hash structured top inspector opens\nPASS hash top inspector refuses replacement\nPASS hash empty inspector explains no elements\nPASS hash dismissal returns Monitor\nPASS hash empty value remains exact after Resume\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-1m9iaqfa\n",
+    "debug-hash-navigation.log": "PASS hash debugger stopped\nPASS hash structured top inspector opens\nPASS hash top inspector refuses replacement\nPASS End selects last hash record\nPASS last record edit visible\nPASS PageDown at end stays at last record\nPASS Home selects first hash record\nPASS PageUp at first stays at first record\nPASS PageDown caption follows selected record\nPASS PageUp returns first record\nPASS Resume container has exactly the three intended edits\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-pyiavxoz\n",
+    "debug-array-navigation.log": "PASS hash debugger stopped\nPASS hash structured top inspector opens\nPASS hash top inspector refuses replacement\nPASS End selects last hash record\nPASS last record edit visible\nPASS PageDown at end stays at last record\nPASS Home selects first hash record\nPASS PageUp at first stays at first record\nPASS PageDown caption follows selected record\nPASS PageUp returns first record\nPASS Resume container has exactly the three intended edits\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-z5jhncbn\n",
+    "debug-object-type-change.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS array scalar property displays changed type\nPASS array Enter opens matching browser\nPASS array resumed property exact\nPASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS hash scalar property displays changed type\nPASS hash Enter opens matching browser\nPASS hash resumed property exact\nPASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS empty-array scalar property displays changed type\nPASS empty-array Enter explains empty structure\nPASS empty-array resumed property exact\nPASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS empty-hash scalar property displays changed type\nPASS empty-hash Enter explains empty structure\nPASS empty-hash resumed property exact\nTOTAL 24 PASS 0 FAIL; evidence /tmp/hbide-source-run-x88voxv4\n",
+    "debug-empty-structures.log": "PASS array debugger stopped\nPASS array structured top inspector opens\nPASS array top inspector refuses replacement\nPASS array empty inspector explains no elements\nPASS array dismissal returns Monitor\nPASS array empty value remains exact after Resume\nPASS hash debugger stopped\nPASS hash structured top inspector opens\nPASS hash top inspector refuses replacement\nPASS hash empty inspector explains no elements\nPASS hash dismissal returns Monitor\nPASS hash empty value remains exact after Resume\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-ynrfus1y\n",
+    "debug-readonly-depth.log": "PASS array debugger stopped\nPASS array explicit readonly container opens\nPASS array readonly nested scalar rejects Enter\nPASS array readonly fixture remains exact\nPASS hash debugger stopped\nPASS hash explicit readonly container opens\nPASS hash readonly nested scalar rejects Enter\nPASS hash readonly fixture remains exact\nPASS object debugger stopped\nPASS object explicit readonly container opens\nPASS object readonly nested scalar rejects Enter\nPASS object readonly fixture remains exact\nPASS objecthash debugger stopped\nPASS objecthash explicit readonly container opens\nPASS objecthash readonly nested scalar rejects Enter\nPASS objecthash readonly fixture remains exact\nPASS objectobject debugger stopped\nPASS objectobject explicit readonly container opens\nPASS objectobject readonly nested scalar rejects Enter\nPASS objectobject readonly fixture remains exact\nTOTAL 20 PASS 0 FAIL; evidence /tmp/hbide-source-run-ou29x41i\n",
+    "debug-structured-depth.log": "PASS array debugger stopped\nPASS array structured top inspector opens\nPASS array top inspector refuses replacement\nPASS array inner container opens\nPASS array nested first scalar shows41\nPASS array nested typed Esc keeps41\nPASS array nested invalid expression rejected\narray actual '{{41, 2}}'\nPASS array nested edit affects resumed debuggee exact value\nPASS hash debugger stopped\nPASS hash structured top inspector opens\nPASS hash top inspector refuses replacement\nPASS hash inner container opens\nPASS hash nested first scalar shows41\nPASS hash nested typed Esc keeps41\nPASS hash nested invalid expression rejected\nhash actual '{\"nest\"=>{\"one\"=>41, \"two\"=>2}}'\nPASS hash nested edit affects resumed debuggee exact value\nPASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS object inner container opens\nPASS object nested first scalar shows41\nPASS object nested typed Esc keeps41\nPASS object nested invalid expression rejected\nobject actual '{41, 2}'\nPASS object nested edit affects resumed debuggee exact value\nTOTAL 24 PASS 0 FAIL; evidence /tmp/hbide-source-run-ugdar6tx\n",
+    "debug-structured-modal.log": "PASS array debugger stopped\nPASS array structured top inspector opens\nPASS array top inspector refuses replacement\nPASS array nested first scalar shows41\nPASS array nested typed Esc keeps41\nPASS array nested invalid expression rejected\narray actual '{41, 2}'\nPASS array nested edit affects resumed debuggee exact value\nPASS hash debugger stopped\nPASS hash structured top inspector opens\nPASS hash top inspector refuses replacement\nPASS hash nested first scalar shows41\nPASS hash nested typed Esc keeps41\nPASS hash nested invalid expression rejected\nhash actual '{\"one\"=>41, \"two\"=>2}'\nPASS hash nested edit affects resumed debuggee exact value\nPASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS object nested first scalar shows41\nPASS object nested typed Esc keeps41\nPASS object nested invalid expression rejected\nobject actual '41'\nPASS object nested edit affects resumed debuggee exact value\nTOTAL 21 PASS 0 FAIL; evidence /tmp/hbide-source-run-wrowhkjn\n"
+  }
+}
