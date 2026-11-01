@@ -437,7 +437,9 @@ FUNCTION HBIDE_ListPick( cTitle, aLabels, nInit, cHint )
          ENDIF
       CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK
          nClick := MRow() - ( nT + 2 ) + nTop
-         IF MRow() >= nT + 2 .AND. MRow() < nT + 2 + nVis .AND. nClick >= 1 .AND. nClick <= Len( aIdx )
+         IF MRow() >= nT + 2 .AND. MRow() < nT + 2 + nVis .AND. ;
+            MCol() > nL .AND. MCol() < nL + nW - 1 .AND. ;
+            nClick >= 1 .AND. nClick <= Len( aIdx )
             nPick := nClick
             IF nKey == K_LDBLCLK
                nRet := aIdx[ nPick ]
