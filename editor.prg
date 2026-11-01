@@ -1013,6 +1013,16 @@ METHOD ScanBlkLine( cText, lIn, cCarry ) CLASS HBSrcEdit
    hb_default(@cCarry, "")
    cLead := cCarry
 
+   // Keep literal stream state in the existing carry cache. Hot-path
+   // comparisons already repaint following rows when this context changes.
+   if cCarry == "@TEXT"
+      cCarry := iif( HBIDE_EditorEndText(cText), "", "@TEXT" )
+      return .F.
+   elseif ! lIn .and. Upper(AllTrim(cText)) == "TEXT"
+      cCarry := "@TEXT"
+      return .F.
+   endif
+
    if ! lIn .and. ( Left( LTrim( StrTran( cText, Chr( 9 ), " " ) ), 1 ) == "*" .or. HBIDE_EditorNoteLine(cText) )
       cCarry := ""
       return .F.
@@ -1571,6 +1581,12 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
 
    nCodeStart := hb_ULen( cLine ) - hb_ULen( LTrim( cLine ) ) + 1
    n = 1
+   if cLead == "@TEXT" .and. ! HBIDE_EditorEndText(cLine)
+      hb_DispOutAt( nLine, ::nLeft + 4, ;
+         SubStrPad(cLine,nVisualFirst,::nRight-::nLeft-4+1), ;
+         ::cClrString + SubStr(::LineColor(nLine),At("/",::LineColor(nLine))) )
+      n := hb_ULen(cLine) + 1
+   endif
    while n <= hb_ULen( cLine )
       while hb_USubStr( cLine, n, 1 ) == " " .and. n <= hb_ULen( cLine )
          n++
@@ -2171,3 +2187,13 @@ static function HBIDE_EditorNoteLine( cLine )
    local c := LTrim( StrTran(cLine,Chr(9)," ") ), next := SubStr(c,5,1)
 return Upper(Left(c,4)) == "NOTE" .and. ;
    ( Empty(next) .or. !(next $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_") )
+
+// Bare standard TEXT block terminator, inspected before Harbour comments.
+// Custom stream macros/pragmas are outside this bounded coloring contract.
+STATIC FUNCTION HBIDE_EditorEndText(cText)
+   local c:=AllTrim(StrTran(cText,Chr(9)," "))
+   if Upper(Left(c,7)) != "ENDTEXT"
+      return .F.
+   endif
+   c:=LTrim(SubStr(c,8))
+return Empty(c).or.Left(c,1)==";".or.Left(c,2)=="//".or.Left(c,2)=="&&".or.Left(c,2)=="/*"
