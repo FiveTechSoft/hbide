@@ -1,0 +1,67 @@
+{
+  "candidate": {
+    "source": "75de83c52a94c60c374769eddad556fd7235594b",
+    "removed": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "scope": "C48bareTEXTnavigation focal, no completepreprocessor/fullmatrix/Windows/release",
+    "binary_sha256": "f2928b6c5f0116b116b5efa64cfa88509351f665a9f1331d354df7a51aadf482",
+    "build_exit": 0
+  },
+  "compiler": {
+    "fixture": "procedure Main()\nTEXT\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+    "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q291/text.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_y9fuji.dir/text.c'... Done.\n"
+  },
+  "baseline": {
+    "source": "f0347c888fe876c078b83661b0db8e842a97b7df",
+    "initial_log": "PASS Open requested fixture\nFAIL Picker excludes TEXT phantom and includes real declaration\nFAIL Picker jumps after raw TEXT block\nTOTAL 1 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-59q03zwl\n",
+    "corrected_log": "PASS Open requested fixture\nFAIL Picker excludes TEXT phantom and includes real declaration\nFAIL Picker jumps after raw TEXT block\nTOTAL 1 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-6umt4tn2\n"
+  },
+  "model_log": "\nPASS: multiline gap carries value index context\nPASS: multiline gap carries literal introducer\nPASS: closed block carry resets on next physical line\nPASS: literal or linecomment does not startblock: local c := `/* literal'\nPASS: literal or linecomment does not startblock: local c := \"/*\"\nPASS: literal or linecomment does not startblock: local c := '/*'\nPASS: literal or linecomment does not startblock: local c := [/*]\nPASS: literal or linecomment does not startblock: // /*\nPASS: literal or linecomment does not startblock: && /*\nPASS: literal or linecomment does not startblock: * /*\nPASS: literal or linecomment does not startblock: local c := \"//\" // /*\nPASS: literal or linecomment does not startblock: local c := \"&&\" && /*\nPASS: realblock and declaration after closing marker\nPASS: trailinglinecomment opener ignored\nPASS: C dump excluded\nPASS: dump comment state stays outside Harbour lexer\nPASS: class members are not class declarations\nPASS: typed function method name and line\nPASS: typed procedure method name and line\nPASS: array index multiline block excludes hidden declaration\nPASS: macro body is not an active dump directive\nPASS: commented/separated raw enddump resumes Harbour: #pragma enddump // done\nPASS: commented/separated raw enddump resumes Harbour: # pragma enddump && done\nPASS: commented/separated raw enddump resumes Harbour: #pragma.enddump /* done *\n/\nPASS: commented/separated raw enddump resumes Harbour: #pragma enddump;\nPASS: nonterminator does not leak C text: #pragma enddumpExtra\nPASS: nonterminator does not leak C text: #pragmaenddump\nPASS: nonterminator does not leak C text: // #pragma enddump\nPASS: nonterminator does not leak C text: #pragma enddump bad\nPASS: index comment with closing bracket is not literal: local n := a[1 /* ] mar\nker\nPASS: index comment with closing bracket is not literal: local n := a [1 /* ] ma\nrker\nPASS: index comment with closing bracket is not literal: local n := GetArray()[1\n /* ] marker\nPASS: RETURN bracket literal remains masked\nPASS: completed comment preserves preceding index value: local n := a /* gap */\n[1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := a /* first *\n/ /* next */ [1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := GetArray() /\n* gap */ [1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := \"array value\n\" /* gap */ [1 /* ] marker\nPASS: RETURN with completed comment still introduces bracket literal\nPASS: continued declaration preserves first physical line\nPASS: multiple declaration continuations preserve first line\nPASS: line comment between declaration parts ignored\nPASS: literal semicolon not declaration continuation\nPASS: directive drops pending incomplete declaration\nPASS: compact function continuation\nPASS: compact modifier and function continuations\nPASS: compact method continuation\nPASS: static abbreviation continuation starts at modifier: STAT\nPASS: static abbreviation continuation starts at modifier: STATI\nPASS: static abbreviation continuation starts at modifier: STATIC\nPASS: single-line static abbreviation remains recognized\nPASS: modifier substring is not a keyword\nPASS: CREATE CLASS alias indexed\nPASS: continued CREATE CLASS alias indexed at first line\nPASS: other CREATE commands not class declarations\nPASS: class members remain excluded with CREATE alias\nPASS: ACCESS explicit class implementation indexed\nPASS: ASSIGN implementation uses actual underscore method name\nPASS: member ACCESS ASSIGN declarations not implementations\nPASS: ACCESS continuation preserves first line\nPASS: commented accessor excluded\nPASS: PROCEDURE CLASS alias qualified as method\nPASS: ordinary procedure remains unqualified\nPASS: continued procedure method starts at first line\nPASS: commented CLASS not method qualifier\nPASS: explicit destructor implementation indexed\nPASS: member destructor declaration not implementation\nPASS: external function destructor binding not declaration\nPASS: destructor continuation retains first line\nPASS: NOTE line does not start block: NOTE /* ignored\nPASS: NOTE line does not start block: note/* ignored\nPASS: NOTE line does not start block: .NoTe /* ignored\nPASS: NOTE identifier prefix is not comment\nPASS: modifier kind retained: INIT\nPASS: modifier kind retained: EXIT\nPASS: modifier kind retained: STATIC\nPASS: modifier kind retained: STAT\nPASS: continued lifecycle modifiers keep kind and start line\nPASS: compact argument/class boundary: METHOD Ping()CLASS Demo\nPASS: compact argument/class boundary: METHOD FUNCTION Ping()CLASS Demo\nPASS: compact argument/class boundary: METHOD PROCEDURE Ping()CLASS Demo\nPASS: compact argument/class boundary: PROCEDURE Ping()CLASS Demo\nPASS: compact argument/class boundary: ACCESS Ping()CLASS Demo\nPASS: compact argument/class boundary: DESTRUCTOR Ping()CLASS Demo\nPASS: compact assign retains underscore method name\nPASS: compact qualifier continuation retains declaration line\nPASS: CLASS parameter is not owner qualifier: METHOD Ping( CLASS )CLASS Demo\nPASS: CLASS parameter is not owner qualifier: METHOD FUNCTION Ping(CLASS)CLASS D\nemo\nPASS: CLASS parameter is not owner qualifier: PROCEDURE Ping(CLASS)CLASS Demo\nPASS: CLASS parameter is not owner qualifier: ACCESS Ping(CLASS)CLASS Demo\nPASS: member CLASS parameter is not implementation\nPASS: TEXT payload isolated until raw terminator: ENDTEXT\nPASS: TEXT payload isolated until raw terminator:  endtext // done\nPASS: TEXT payload isolated until raw terminator: .ENDTEXT && done\nPASS: TEXT payload isolated until raw terminator: ENDTEXT /* done */\nPASS: nonterminator remains TEXT payload: ENDTEXTextra\nPASS: nonterminator remains TEXT payload: // ENDTEXT\nPASS: nonterminator remains TEXT payload: ENDTEXT bad\nPASS: TEXT identifier assignment does not start literal block\nPASS: commented TEXT is inert\nTOTAL         99 PASS          0 FAIL",
+  "initial_focused_tests": {
+    "test_nav_text_block_pty.py": {
+      "exit": 1,
+      "sha256": "d43522f44ec872eeb9f422b66e30d8f7ce9be5ee6bac6f58d858faae14b787d7",
+      "seconds": 5.973016023635864,
+      "log": "PASS Open requested fixture\nFAIL Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 2 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-peyzz1av\n"
+    },
+    "test_nav_note_comment_pty.py": {
+      "exit": 0,
+      "sha256": "def0ac21faae1dbad837c5cd1199dd61bc61e25a37b546cb196b33b200d66264",
+      "seconds": 5.975621223449707,
+      "log": "PASS Open requested fixture\nPASS Picker includes declaration after NOTE comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-55icb4je\n"
+    },
+    "test_nav_enddump_comment_pty.py": {
+      "exit": 0,
+      "sha256": "c924157d0d48860bdf3abf1dfeb2aba6a116e92892076af54fe61bf173e519f6",
+      "seconds": 5.972578763961792,
+      "log": "PASS Open requested fixture\nPASS Commented enddump resumes Harbour navigation\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-4h48t79w\n"
+    },
+    "test_nav_compact_method_pty.py": {
+      "exit": 0,
+      "sha256": "2b8e9e105e7cc6e1033a20a4bf1aec9409afe2a1f10d5b608dd6a928ca6d3d87",
+      "seconds": 5.972803115844727,
+      "log": "PASS Open requested fixture\nPASS Picker includes compact method implementation\nPASS Picker jumps to compact method implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-y7zbj1g1\n"
+    }
+  },
+  "corrected_text_test": {
+    "sha256": "2ed5ea5f1658fe15c8d47e3aaef9c93bfbb5a82fa32641481f60b4feb41ebe67",
+    "log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-fzd72ek4\n",
+    "caveat": "Initial absence assertion searched full screen, so it saw Phantom in underlying source. Corrected assertion distinguishes picker rows by kind/name/line; product unchanged."
+  },
+  "visual": {
+    "images": [
+      "hbide-q291-text-before.png",
+      "hbide-q291-text-c48.png"
+    ],
+    "inspection": "Full1202x762 inspected. Baseline picker Phantom line3 and no Real; fixed Real line7/no phantom picker row. Borders complete. Editor syntax coloring still treats literal /* as comment, separate uncorrected limitation."
+  },
+  "scope": "Bare standard TEXT/ENDTEXT only; four focused scripts12checks after harness correction plus separate99-check navigation model. Not custom macros/stream pragmas/fullpreprocessor/editorhighlighting/fullmatrix/Windows/hito."
+}

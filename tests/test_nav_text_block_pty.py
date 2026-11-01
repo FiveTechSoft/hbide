@@ -112,7 +112,7 @@ try:
     send(b'\x1bf');send(b'o');send(str(target).encode()+b'\r',1)
     check('Open requested fixture','procedure Main()' in scr.text())
     menu(b'u')
-    check('Picker excludes TEXT phantom and includes real declaration','Real' in scr.text() and 'Phantom' not in scr.text())
+    check('Picker excludes TEXT phantom and includes real declaration',any('function' in line and 'Real' in line and 'line 7' in line for line in scr.text().splitlines()) and not any('function' in line and 'Phantom' in line and 'line 3' in line for line in scr.text().splitlines()))
     send(b'Real\r');send(b'X')
     saved('Picker jumps after raw TEXT block',original.replace(b'function Real()',b'Xfunction Real()'))
 
