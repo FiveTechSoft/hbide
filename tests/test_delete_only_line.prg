@@ -5,6 +5,7 @@ static nPass:=0,nFail:=0
 procedure Main()
  local o:=HBSrcEdit():New('',2,1,20,79,.T.),c
  hb_cdpSelect('UTF8')
+ Set(_SET_INSERT,.T.)
  for each c in {'alpha beta','café',Chr(9)+'x','   '}
  o:LoadText(c)
  o:GoTo(1,7)

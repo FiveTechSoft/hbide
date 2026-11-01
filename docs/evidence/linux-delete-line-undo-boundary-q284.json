@@ -1,0 +1,69 @@
+{
+  "candidate": {
+    "source": "bc8e8ef84a901f00a798653377a9097de96882f2",
+    "removed": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "scope": "C46 line deletion Undo boundary focal only, no release/Windows/fullmatrix",
+    "binary_sha256": "0e0fb165c31dc512e9812ecc8c94109a6152bf6333236edf546db12093f3af55",
+    "build_exit": 0
+  },
+  "baseline": {
+    "source": "41905b4868f5903cb1ec5adacba00efadd34d4ab",
+    "log": "PASS Open requested fixture\nFAIL Undo line command alone preserves earlier typing\nPASS Redo line command exact\nPASS Undo later typing keeps line command\nFAIL next Undo restores pre-command typing\nPASS third Undo removes earlier typing\nTOTAL 4 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-9b56ohfk\n"
+  },
+  "model": {
+    "source": "bc8e8ef84a901f00a798653377a9097de96882f2",
+    "test_postexport_change": "Set(_SET_INSERT,.T.) added to make typing fixture explicit; initial standalone model inherited overstrike and two expected Xalpha checks failed as Xlpha. Product not changed by this correction.",
+    "initial_log": "\n\n    1\n    2\n    3\n    4\n    5\n    6\n    7\n    8\n    9\n   10\n   11\n   12\n   13\n   14\n   15\n   16\n   17\n   18\n   19\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1alpha beta\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1caf\u00e9\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1    x\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\nP   2\nP   3\nPASS Undo restores sole line clean\nP   2\nPASS Redo clears sole line dirty\nPASS empty buffer delete no-opty\nPASS empty no-op preserves clipboard\n    1alpha\nP   2\nP   3\n    1\nPASS sole-line command consumes old mark\n    1alpha\nP   2\nPASS Undo sole marked line exact\n    1Xlpha\n    1\nP   2\n    1Xlpha\nFAIL Undo DeleteLine preserves prior typing\n    1\nF   2\nPASS Redo DeleteLine clears typed line\n    1Y\n    1\nP   2\nPASS Undo subsequent typing preserves DeleteLine\n    1Xlpha\nP   2\nFAIL next Undo restores typed line\n    1alpha\nF   2\nPASS third Undo returns clean original\nTOTAL         23 PASS          2 FAIL",
+    "corrected_test_sha256": "9c731406f53c45846f268fe05ca6d6467fc0220940d65b3dfbfc39e148a65d74",
+    "corrected_log": "\n\n    1\n    2\n    3\n    4\n    5\n    6\n    7\n    8\n    9\n   10\n   11\n   12\n   13\n   14\n   15\n   16\n   17\n   18\n   19\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1alpha beta\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1caf\u00e9\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1    x\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\nP   2\nP   3\nPASS Undo restores sole line clean\nP   2\nPASS Redo clears sole line dirty\nPASS empty buffer delete no-opty\nPASS empty no-op preserves clipboard\n    1alpha\nP   2\nP   3\n    1\nPASS sole-line command consumes old mark\n    1alpha\nP   2\nPASS Undo sole marked line exact\n    1Xalpha\n    1\nP   2\n    1Xalpha\nPASS Undo DeleteLine preserves prior typing\n    1\nP   2\nPASS Redo DeleteLine clears typed line\n    1Y\n    1\nP   2\nPASS Undo subsequent typing preserves DeleteLine\n    1Xalpha\nP   2\nPASS next Undo restores typed line\n    1alpha\nP   2\nPASS third Undo returns clean original\nTOTAL         25 PASS          0 FAIL"
+  },
+  "tests": {
+    "test_delete_line_undo_boundary_pty.py:menu": {
+      "exit": 0,
+      "sha256": "b9d381a167800728378aed55b6056043db1d5f365b2937252a3b542b2922bced",
+      "seconds": 12.434266090393066,
+      "log": "PASS Open requested fixture\nPASS Undo line command alone preserves earlier typing\nPASS Redo line command exact\nPASS Undo later typing keeps line command\nPASS next Undo restores pre-command typing\nPASS third Undo removes earlier typing\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ist53ea3\n"
+    },
+    "test_delete_line_undo_boundary_pty.py:ctrl-y": {
+      "exit": 0,
+      "sha256": "b9d381a167800728378aed55b6056043db1d5f365b2937252a3b542b2922bced",
+      "seconds": 12.051648139953613,
+      "log": "PASS Open requested fixture\nPASS Undo line command alone preserves earlier typing\nPASS Redo line command exact\nPASS Undo later typing keeps line command\nPASS next Undo restores pre-command typing\nPASS third Undo removes earlier typing\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-7mb0paxo\n"
+    },
+    "test_delete_line_undo_boundary_pty.py:cut": {
+      "exit": 0,
+      "sha256": "b9d381a167800728378aed55b6056043db1d5f365b2937252a3b542b2922bced",
+      "seconds": 12.437239170074463,
+      "log": "PASS Open requested fixture\nPASS Undo line command alone preserves earlier typing\nPASS Redo line command exact\nPASS Undo later typing keeps line command\nPASS next Undo restores pre-command typing\nPASS third Undo removes earlier typing\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-v8bzzsfg\n"
+    },
+    "test_delete_only_line_pty.py:utf8": {
+      "exit": 0,
+      "sha256": "abc16869e343d1a9bef83f444f53e0ea0369ee2385fe570fecff029a901f30a5",
+      "seconds": 18.915004014968872,
+      "log": "PASS Delete Line clears sole physical line\nPASS Undo sole-line deletion restores exact bytes\nPASS Redo sole-line deletion clears bytes\nPASS Delete empty clean baseline creates no journal\nPASS Delete empty no-op preserves earlier Redo\nPASS Paste retains deleted sole line after empty no-op\nPASS Undo paste returns empty exact\nPASS Delete empty closes without false save prompt\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-p4ngxb1p\n"
+    },
+    "test_cut_undo_boundary_pty.py:": {
+      "exit": 0,
+      "sha256": "830d07057e62128a03aef60216c819fde4baf768d5eefeac4b6ff89ac8abd733",
+      "seconds": 14.968395471572876,
+      "log": "PASS Open requested fixture\nPASS Cut selected al keeps earlier typed X\nPASS Undo Cut alone preserves earlier typing\nPASS Redo Cut alone exact\nPASS Undo later typing keeps Cut\nPASS next Undo restores pre-Cut typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-vd_tiymx\n"
+    }
+  },
+  "visual": {
+    "images": [
+      "hbide-q284-undoline-before.png",
+      "hbide-q284-undoline-c46.png"
+    ],
+    "inspection": "Full1202x762 inspected: baseline Undo returns alpha losing prior X; C46 returns Xalpha. Complete borders/no stale paint."
+  },
+  "scope": "DeleteLine records separate undo operation, also unmarked Cut and CtrlY. Five PTY modes33checks PASS and separate corrected25-check model. No selection policy/new buildtoolchain/fullmatrix/Windows/milestone."
+}
