@@ -216,7 +216,7 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertNotIn('acceptance',self.routes[0])
     def test_ctrl_g_delete_identity_route_linked(self):
         linked=[r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance' in r]
-        self.assertEqual(len(linked),13)
+        self.assertEqual(len(linked),18)
         row=next(r for r in linked if r['acceptance_id']=='IDE-KEY-GOTOFUNCTION-CTRL-G')
         self.assertEqual(row['source'],'hbide.prg')
         self.assertIn('hb_keyExt( nKey ) != HB_KX_DEL',row['condition'])
