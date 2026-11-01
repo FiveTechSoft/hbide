@@ -5218,10 +5218,27 @@ Evidencia: docs/evidence/linux-c30-designer-blocks89-q221.json.
 ### Q222 (1 noviembre 2026): C30 portapapeles/runtime
 
 9 modos adicionales PASS con binario C30 congelado 96d77549 y export 049b533.
-Checkbox/GET/ComboBox en modos cargado y creado; PushButton/ListBox/RadioGroup.
+Checkbox/GET/ComboBox cargados; PushButton/ListBox/RadioGroup.
+Corrección Q223: --create no se consume en los tres harnesses. Nueve ejecuciones
+pero seis escenarios distintos; no aceptación de controles creados.
 Las pruebas pasan por copiar/pegar y runtime generado para comprobar independencia
 de bindings o acción/acelerador según fixture. Tests propios del export hashados,
 binario sin cambios, sin fallos/reintentos en estos nueve modos.
-46 modos distintos documentados entre Q217 y Q222, no 353 ni funciones certificadas.
+43 escenarios distintos documentados entre Q217 y Q222 (corregido desde46), no353 ni funciones certificadas.
 Sin nuevo producto, modelos, píxeles, Windows o cierre de hitos.
 Evidencia: docs/evidence/linux-c30-clipboard-blocks1011-q222.json.
+
+### Q223 (1 noviembre 2026): C30 eventos/WHEN/VALID inline y auditoría cobertura
+
+24 modos adicionales PASS con C30 96d77549/export 049b533: seis tipos
+GET/RadioGroup/Checkbox/ListBox/ComboBox/Button en cuatro familias: eventos
+expuestos con retorno true, VALID que bloquea hasta aceptar, WHEN que salta
+el control y WHEN que permite reentrada tras habilitarlo desde sentinel.
+Fixtures acotadas de edición inline/F10/F9 y runtime generado, no todos los
+valores ni expresiones. Tests propios hashados/binario inalterado, sin fallos
+ni reintentos en estos 24. Auditoría detectó tres --create inertes Q222 y
+normalizó orden de flags: 67 escenarios distintos entre bloques1..15, cada
+escenario cotejado contra plan congelado de353. Fallo inicial del auditor
+por comparación literal de argumentos y variantes inertes, no fallo IDE.
+No matriz completa, píxeles, modelos nuevos, Windows, cambio producto o hitos.
+Evidencia: docs/evidence/linux-c30-inline-blocks1215-q223.json.

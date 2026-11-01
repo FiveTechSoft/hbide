@@ -1,0 +1,398 @@
+{
+  "scope": "Frozen C30 inline generated runtime.24additional modes;67distinct scenarios across blocks1..15, matched frozen353plan after normalizing flag order and excluding inert --create repetitions. Not full353/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "inline-all_events-get",
+          "command": [
+            "test_designer_inline_all_events_runtime_pty.py",
+            "--kind",
+            "get"
+          ],
+          "exit": 0,
+          "seconds": 8.641273260116577,
+          "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-get.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-all_events-radiogroup",
+          "command": [
+            "test_designer_inline_all_events_runtime_pty.py",
+            "--kind",
+            "radiogroup"
+          ],
+          "exit": 0,
+          "seconds": 9.870798587799072,
+          "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-radiogroup.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-all_events-checkbox",
+          "command": [
+            "test_designer_inline_all_events_runtime_pty.py",
+            "--kind",
+            "checkbox"
+          ],
+          "exit": 0,
+          "seconds": 10.021472930908203,
+          "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-checkbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-all_events-listbox",
+          "command": [
+            "test_designer_inline_all_events_runtime_pty.py",
+            "--kind",
+            "listbox"
+          ],
+          "exit": 0,
+          "seconds": 10.346637487411499,
+          "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-listbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-all_events-combobox",
+          "command": [
+            "test_designer_inline_all_events_runtime_pty.py",
+            "--kind",
+            "combobox"
+          ],
+          "exit": 0,
+          "seconds": 10.326220512390137,
+          "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-combobox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-all_events-button",
+          "command": [
+            "test_designer_inline_all_events_runtime_pty.py",
+            "--kind",
+            "button"
+          ],
+          "exit": 0,
+          "seconds": 8.626821279525757,
+          "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-all_events-button.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "inline-valid_veto-get",
+          "command": [
+            "test_designer_inline_valid_veto_runtime_pty.py",
+            "--kind",
+            "get"
+          ],
+          "exit": 0,
+          "seconds": 6.214555740356445,
+          "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-get.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-valid_veto-radiogroup",
+          "command": [
+            "test_designer_inline_valid_veto_runtime_pty.py",
+            "--kind",
+            "radiogroup"
+          ],
+          "exit": 0,
+          "seconds": 6.154493808746338,
+          "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-radiogroup.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-valid_veto-checkbox",
+          "command": [
+            "test_designer_inline_valid_veto_runtime_pty.py",
+            "--kind",
+            "checkbox"
+          ],
+          "exit": 0,
+          "seconds": 6.153726577758789,
+          "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-checkbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-valid_veto-listbox",
+          "command": [
+            "test_designer_inline_valid_veto_runtime_pty.py",
+            "--kind",
+            "listbox"
+          ],
+          "exit": 0,
+          "seconds": 6.275464773178101,
+          "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-listbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-valid_veto-combobox",
+          "command": [
+            "test_designer_inline_valid_veto_runtime_pty.py",
+            "--kind",
+            "combobox"
+          ],
+          "exit": 0,
+          "seconds": 6.2782886028289795,
+          "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-combobox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-valid_veto-button",
+          "command": [
+            "test_designer_inline_valid_veto_runtime_pty.py",
+            "--kind",
+            "button"
+          ],
+          "exit": 0,
+          "seconds": 6.2737438678741455,
+          "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-valid_veto-button.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "inline-when_veto-get",
+          "command": [
+            "test_designer_inline_when_veto_runtime_pty.py",
+            "--kind",
+            "get"
+          ],
+          "exit": 0,
+          "seconds": 5.9309892654418945,
+          "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-get.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-when_veto-radiogroup",
+          "command": [
+            "test_designer_inline_when_veto_runtime_pty.py",
+            "--kind",
+            "radiogroup"
+          ],
+          "exit": 0,
+          "seconds": 5.940622568130493,
+          "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-radiogroup.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-when_veto-checkbox",
+          "command": [
+            "test_designer_inline_when_veto_runtime_pty.py",
+            "--kind",
+            "checkbox"
+          ],
+          "exit": 0,
+          "seconds": 5.965360879898071,
+          "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-checkbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-when_veto-listbox",
+          "command": [
+            "test_designer_inline_when_veto_runtime_pty.py",
+            "--kind",
+            "listbox"
+          ],
+          "exit": 0,
+          "seconds": 6.079381227493286,
+          "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-listbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-when_veto-combobox",
+          "command": [
+            "test_designer_inline_when_veto_runtime_pty.py",
+            "--kind",
+            "combobox"
+          ],
+          "exit": 0,
+          "seconds": 6.060293436050415,
+          "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-combobox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-when_veto-button",
+          "command": [
+            "test_designer_inline_when_veto_runtime_pty.py",
+            "--kind",
+            "button"
+          ],
+          "exit": 0,
+          "seconds": 6.0567498207092285,
+          "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_veto-button.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "inline-when_reenable-get",
+          "command": [
+            "test_designer_inline_when_reenable_runtime_pty.py",
+            "--kind",
+            "get"
+          ],
+          "exit": 0,
+          "seconds": 6.726942539215088,
+          "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-get.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-when_reenable-radiogroup",
+          "command": [
+            "test_designer_inline_when_reenable_runtime_pty.py",
+            "--kind",
+            "radiogroup"
+          ],
+          "exit": 0,
+          "seconds": 6.530738592147827,
+          "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-radiogroup.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-when_reenable-checkbox",
+          "command": [
+            "test_designer_inline_when_reenable_runtime_pty.py",
+            "--kind",
+            "checkbox"
+          ],
+          "exit": 0,
+          "seconds": 6.530534029006958,
+          "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-checkbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-when_reenable-listbox",
+          "command": [
+            "test_designer_inline_when_reenable_runtime_pty.py",
+            "--kind",
+            "listbox"
+          ],
+          "exit": 0,
+          "seconds": 6.64124870300293,
+          "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-listbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-when_reenable-combobox",
+          "command": [
+            "test_designer_inline_when_reenable_runtime_pty.py",
+            "--kind",
+            "combobox"
+          ],
+          "exit": 0,
+          "seconds": 6.658108234405518,
+          "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-combobox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inline-when_reenable-button",
+          "command": [
+            "test_designer_inline_when_reenable_runtime_pty.py",
+            "--kind",
+            "button"
+          ],
+          "exit": 0,
+          "seconds": 6.65645432472229,
+          "test_sha256": "c6696899622d1420408ea5c3b33746687c7f6a1b1baeee308c3f25c484a6dab8",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inline-when_reenable-button.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 67,
+  "frozen_plan_modes": 353,
+  "coverage_correction": "Q222 has9successful executions but6distinct scenarios; --create variable is never consumed by its3harnesses. Earlier46 corrected43; plus24 now67. Logs retained.",
+  "logs": {
+    "inline-all_events-get.log": "PASS get all inline events exact persisted\nPASS get actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS alpha control selection updates exact bound value\nPASS get alpha inline when executes\nPASS get alpha inline valid executes\nPASS beta control selection updates exact bound value\nPASS get beta inline when executes\nPASS get beta inline valid executes\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-28b2ktv2\n",
+    "inline-all_events-radiogroup.log": "PASS radiogroup all inline events exact persisted\nPASS radiogroup actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS down control selection updates exact bound value\nPASS radiogroup down inline when executes\nPASS radiogroup down inline valid executes\nPASS radiogroup down inline focus executes\nPASS two-down control selection updates exact bound value\nPASS radiogroup two-down inline when executes\nPASS radiogroup two-down inline valid executes\nPASS radiogroup two-down inline focus executes\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-y_024p21\n",
+    "inline-all_events-checkbox.log": "PASS checkbox all inline events exact persisted\nPASS checkbox actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS toggle control selection updates exact bound value\nPASS checkbox toggle inline when executes\nPASS checkbox toggle inline valid executes\nPASS checkbox toggle inline focus executes\nPASS checkbox toggle inline state executes\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-wy97k3ql\n",
+    "inline-all_events-listbox.log": "PASS listbox all inline events exact persisted\nPASS listbox actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS down control selection updates exact bound value\nPASS listbox down inline when executes\nPASS listbox down inline valid executes\nPASS listbox down inline focus executes\nPASS listbox down inline state executes\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-d7q8z7oe\n",
+    "inline-all_events-combobox.log": "PASS combobox all inline events exact persisted\nPASS combobox actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS down control selection updates exact bound value\nPASS combobox down inline when executes\nPASS combobox down inline valid executes\nPASS combobox down inline focus executes\nPASS combobox down inline state executes\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-p499azob\n",
+    "inline-all_events-button.log": "PASS button all inline events exact persisted\nPASS button actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS enter control selection updates exact bound value\nPASS button enter inline when executes\nPASS button enter inline valid executes\nPASS button enter inline focus executes\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-vg7ejhy8\n",
+    "inline-valid_veto-get.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS get sentinel initially not entered\nPASS get first VALID returns false\nPASS get false VALID prevents sentinel entry\nPASS get false VALID keeps runtime active\nPASS get second VALID returns true\nPASS get true VALID enters sentinel\nPASS get true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-3wfivgx7\n",
+    "inline-valid_veto-radiogroup.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS radiogroup sentinel initially not entered\nPASS radiogroup first VALID returns false\nPASS radiogroup false VALID prevents sentinel entry\nPASS radiogroup false VALID keeps runtime active\nPASS radiogroup second VALID returns true\nPASS radiogroup true VALID enters sentinel\nPASS radiogroup true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-2alk8bht\n",
+    "inline-valid_veto-checkbox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS checkbox sentinel initially not entered\nPASS checkbox first VALID returns false\nPASS checkbox false VALID prevents sentinel entry\nPASS checkbox false VALID keeps runtime active\nPASS checkbox second VALID returns true\nPASS checkbox true VALID enters sentinel\nPASS checkbox true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-c4cbssun\n",
+    "inline-valid_veto-listbox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS listbox sentinel initially not entered\nPASS listbox first VALID returns false\nPASS listbox false VALID prevents sentinel entry\nPASS listbox false VALID keeps runtime active\nPASS listbox second VALID returns true\nPASS listbox true VALID enters sentinel\nPASS listbox true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-oyvu092g\n",
+    "inline-valid_veto-combobox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS combobox sentinel initially not entered\nPASS combobox first VALID returns false\nPASS combobox false VALID prevents sentinel entry\nPASS combobox false VALID keeps runtime active\nPASS combobox second VALID returns true\nPASS combobox true VALID enters sentinel\nPASS combobox true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-1yuz_6zh\n",
+    "inline-valid_veto-button.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS button sentinel initially not entered\nPASS button first VALID returns false\nPASS button false VALID prevents sentinel entry\nPASS button false VALID keeps runtime active\nPASS button second VALID returns true\nPASS button true VALID enters sentinel\nPASS button true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-6c4nfxjr\n",
+    "inline-when_veto-get.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS get false WHEN evaluated\nPASS get false WHEN skips to sentinel\nPASS get sentinel receives exact typing\nPASS get rejected binding unchanged\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-i7j6oo5q\n",
+    "inline-when_veto-radiogroup.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS radiogroup false WHEN evaluated\nPASS radiogroup false WHEN skips to sentinel\nPASS radiogroup rejected control focus not entered\nPASS radiogroup sentinel receives exact typing\nPASS radiogroup rejected binding unchanged\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-1rk23w2w\n",
+    "inline-when_veto-checkbox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS checkbox false WHEN evaluated\nPASS checkbox false WHEN skips to sentinel\nPASS checkbox rejected control focus not entered\nPASS checkbox sentinel receives exact typing\nPASS checkbox rejected binding unchanged\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-jq3j0ai_\n",
+    "inline-when_veto-listbox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS listbox false WHEN evaluated\nPASS listbox false WHEN skips to sentinel\nPASS listbox rejected control focus not entered\nPASS listbox sentinel receives exact typing\nPASS listbox rejected binding unchanged\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-tb9v9f72\n",
+    "inline-when_veto-combobox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS combobox false WHEN evaluated\nPASS combobox false WHEN skips to sentinel\nPASS combobox rejected control focus not entered\nPASS combobox sentinel receives exact typing\nPASS combobox rejected binding unchanged\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-di3ckwlh\n",
+    "inline-when_veto-button.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS button false WHEN evaluated\nPASS button false WHEN skips to sentinel\nPASS button rejected control focus not entered\nPASS button sentinel receives exact typing\nPASS button rejected binding unchanged\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-fmwedlfp\n",
+    "inline-when_reenable-get.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS get false WHEN evaluated\nPASS get false WHEN skips to sentinel\nPASS get WHEN reevaluated after sentinel enables\nPASS get reenabled route preserves exact expected bindings\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-kutgy1y7\n",
+    "inline-when_reenable-radiogroup.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS radiogroup false WHEN evaluated\nPASS radiogroup false WHEN skips to sentinel\nPASS radiogroup rejected control focus not entered\nPASS radiogroup WHEN reevaluated after sentinel enables\nPASS radiogroup reenabled GUI focus entered\nPASS radiogroup reenabled route preserves exact expected bindings\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-y6nchdp1\n",
+    "inline-when_reenable-checkbox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS checkbox false WHEN evaluated\nPASS checkbox false WHEN skips to sentinel\nPASS checkbox rejected control focus not entered\nPASS checkbox WHEN reevaluated after sentinel enables\nPASS checkbox reenabled GUI focus entered\nPASS checkbox reenabled route preserves exact expected bindings\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-mqul7w51\n",
+    "inline-when_reenable-listbox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS listbox false WHEN evaluated\nPASS listbox false WHEN skips to sentinel\nPASS listbox rejected control focus not entered\nPASS listbox WHEN reevaluated after sentinel enables\nPASS listbox reenabled GUI focus entered\nPASS listbox reenabled route preserves exact expected bindings\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-px_aertf\n",
+    "inline-when_reenable-combobox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS combobox false WHEN evaluated\nPASS combobox false WHEN skips to sentinel\nPASS combobox rejected control focus not entered\nPASS combobox WHEN reevaluated after sentinel enables\nPASS combobox reenabled GUI focus entered\nPASS combobox reenabled route preserves exact expected bindings\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-a9ltxwyo\n",
+    "inline-when_reenable-button.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS button false WHEN evaluated\nPASS button false WHEN skips to sentinel\nPASS button rejected control focus not entered\nPASS button WHEN reevaluated after sentinel enables\nPASS button reenabled GUI focus entered\nPASS button reenabled route preserves exact expected bindings\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-iudmdt75\n"
+  }
+}

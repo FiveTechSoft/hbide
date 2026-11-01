@@ -1,5 +1,5 @@
 {
-  "scope": "Frozen C30 clipboard generated runtime nine modes.46distinctQ217..222. Not full353/Windows/pixels/models/milestone closure.",
+  "scope": "Frozen C30 clipboard generated runtime nine executions, six distinct loaded scenarios.43distinctQ217..222, not46. --create is unused by harnesses. Not full353/Windows/pixels/models/milestone closure.",
   "blocks": [
     {
       "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
@@ -127,7 +127,7 @@
       ]
     }
   ],
-  "distinct_modes_all_blocks": 46,
+  "distinct_modes_all_blocks": 43,
   "logs": {
     "clipboard-checkbox.log": "PASS pasted checkbox binding case-insensitively distinct\nPASS pasted checkbox state handler retained\nPASS actual F9 generates two separate logical bindings\nPASS actual F9 emits both state handlers\nPASS generated pasted-checkbox artifact compiles\nPASS first checkbox toggle affects only its bound value\nPASS first preserved state handler executes in generated runtime\nPASS second checkbox toggle affects only its bound value\nPASS second preserved state handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-yc7vw5dk\n",
     "clipboard-checkbox-create.log": "PASS pasted checkbox binding case-insensitively distinct\nPASS pasted checkbox state handler retained\nPASS actual F9 generates two separate logical bindings\nPASS actual F9 emits both state handlers\nPASS generated pasted-checkbox artifact compiles\nPASS first checkbox toggle affects only its bound value\nPASS first preserved state handler executes in generated runtime\nPASS second checkbox toggle affects only its bound value\nPASS second preserved state handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-g1r0aqru\n",
@@ -138,5 +138,6 @@
     "clipboard-button.log": "PASS paste creates two buttons\nPASS pasted button custom action and focus retained\nPASS pasted button accelerator and style retained\nPASS actual F9 emits both custom actions\nPASS actual F9 emits both focus handlers and accelerators\nPASS generated pasted-button artifact compiles\nPASS first-enter generated button accepts dialog true\nPASS first-enter preserved custom action executes\nPASS first-enter preserved focus handler executes\nPASS second-enter generated button accepts dialog true\nPASS second-enter preserved custom action executes\nPASS second-enter preserved focus handler executes\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-8bnmj30v\n",
     "clipboard-list.log": "PASS pasted ListBox binding case-insensitively distinct\nPASS pasted ListBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ListBox artifact compiles\nPASS first ListBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ListBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-fnlvu_y3\n",
     "clipboard-radio.log": "PASS pasted RadioGroup binding case-insensitively distinct\nPASS pasted RadioGroup VALID handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both VALID handlers\nPASS generated pasted-RadioGroup artifact compiles\nPASS first RadioGroup selection affects only its bound value\nPASS first preserved VALID handler executes in generated runtime\nPASS second RadioGroup selection affects only its bound value\nPASS second preserved VALID handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-hnrw9nqx\n"
-  }
+  },
+  "correction": "Q223 audit: three --create runs repeat loaded fixtures; retain original receipts, do not count as created coverage."
 }
