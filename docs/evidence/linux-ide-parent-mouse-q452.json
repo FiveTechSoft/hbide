@@ -1,0 +1,13 @@
+{
+  "scope": "Q452 C87 parent IDE left mouse dispatch bounded behavioral acceptance, not pixels",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "test_sha256": "22a8e546583f91f0798f5cc7aa2493a2739692e4ca1944d9743817fe52632b48",
+  "runtime_log": "PASS Top-row File click opens menu\nPASS Outside click dismisses open File menu\nPASS Visible-editor parent click routes insertion to exact byte\nPASS Undo parent-routed insertion exact\nPASS Code close-glyph click hides editor\nPASS Click and typing while editor hidden do not reveal source\nPASS File menu remains usable with editor hidden\nPASS Reopen hidden document restores original source\nPASS Hidden click and typing did not change source bytes\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-_uzbvn_7\n",
+  "source_checkout": "52971ced10ccb62ba3389685ce82d309a24d9b7e",
+  "product_files_unchanged_since_candidate": [
+    "hbide.prg",
+    "editor.prg"
+  ],
+  "limits": "40x120xterm/Filemenu/outside/codeclose/oneASCIIinsertion only; not every menu/hit region/terminal/modal/pixel/Windows. Hidden editor no new dirty/write proof beyond tested reopen/byte flow."
+}

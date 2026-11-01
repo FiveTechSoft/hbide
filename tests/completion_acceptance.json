@@ -3146,6 +3146,15 @@
         "test_debug_app_screen_mouse_pty.py"
       ],
       "contract": "Stopped C87 debuggee: View/App Screen menu left press closes debugger, paired release leaves it hidden, next key restores it; F4/next-key path also returns. Resume exact values and unchanged source. One xterm40x120 menu only, PTY state not restored pixels/all mouse drivers/movement filtering/Windows; source branch is not a feature count; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-IDE-LEFT-PARENT-ROUTE": {
+      "source": "hbide.prg",
+      "context": "METHOD Activate() CLASS HBIde",
+      "condition": "if nKeyStd == K_LBUTTONDOWN",
+      "tests": [
+        "test_ide_parent_mouse_pty.py"
+      ],
+      "contract": "C87 xterm40x120 File top-row click opens menu, outside click dismisses, visible-editor click routes insertion exact byte and Undo, code close-glyph hides editor, hidden click/typing leaves source absent, File/reopen restores original and F2 exact bytes. Not every menu/coordinate/modal/terminal/pixels/Windows; link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }
