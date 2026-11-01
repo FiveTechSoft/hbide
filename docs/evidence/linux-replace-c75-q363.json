@@ -1,0 +1,38 @@
+{
+  "scope": "Q363 Replace regressions exact C75, no new product fix",
+  "source": "93d3876480c5217e4eadddc2f88a4400c321146a",
+  "binary_sha256": "e78652a51a586d67550d526c05a1ac54278d7b62459d26a23beace1afca024ef",
+  "results": {
+    "test_replace_spaces_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Replace one-space search reports4\nPASS Replace space changes exact fixture spaces\nPASS Undo space replacement restores exact bytes\nPASS Redo space replacement restores exact changed bytes\nPASS Undo again restores exact source\nPASS Replace two-space search reports1\nPASS Replace pair touches only adjacent spaces\nPASS Undo pair replacement restores exact bytes\nPASS Cancel all-space replace preserves exact bytes\nTOTAL 10 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ey5o79n1\n",
+      "binary_unchanged": true
+    },
+    "test_replace_identity_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS identity replacement still reports one match\nPASS identity replacement of clean buffer closes without save prompt\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-shc66gec\n",
+      "binary_unchanged": true
+    },
+    "test_replace_nochange_selection_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS cancel retains original selection for typing\nPASS cancel Undo restores original exact\nPASS identity correct replacement count\nPASS identity retains original selection for typing\nPASS identity Undo restores original exact\nPASS missing correct replacement count\nPASS missing retains original selection for typing\nPASS missing Undo restores original exact\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-o6txy_6i\n",
+      "binary_unchanged": true
+    },
+    "test_replace_selection_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Replace applies with prior marked range\nPASS typing after Replace inserts without deleting stale selection\nPASS Undo typing keeps Replace\nPASS Undo Replace restores original\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-3i5i30r4\n",
+      "binary_unchanged": true
+    },
+    "test_replace_undo_boundary_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS one Undo reverts Replace but preserves earlier typed X\nPASS Redo reapplies only replacement\nPASS Undo later typing preserves replacement\nPASS next Undo restores text before Replace\nPASS third Undo removes earlier typing alone\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-tmp9gtja\n",
+      "binary_unchanged": true
+    }
+  },
+  "notes": [
+    "Five scripts33checksPASS; all-space and trailing spaces, identity clean/nochange selection, replacement selection cleanup and isolated Undo boundaries",
+    "Exploratory model U+0131+x unchanged Upper byte length and normal ASCII x Replace/Find succeeded; no offset defect found",
+    "UTF8-host model accented case pair not folded by current Harbour UTF8 Upper; not changed without supported requirement and terminal input grounding",
+    "No new build/model acceptance/pixels/global matrix/Windows/release closure"
+  ]
+}
