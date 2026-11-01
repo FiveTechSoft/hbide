@@ -566,3 +566,12 @@ VALIDinline.F. bloqueaTab a sentinel y.T. siguiente permite entrada
 enGET/Radio/Checkbox/List/Combo:5PTY50checks63guardas34docsPASS.
 Sin Buttonveto/WHENfalse/todasteclas/pixeles/Windows/cierreM4.
 Evidencia `docs/evidence/linux-designer-inline-valid-veto-runtime-q152.json`.
+
+
+### Seguimiento Q153 (1 noviembre 2026)
+
+WHEN.F. editadoinline omite seis tipos existentes;sentinelrecibe
+escritura+Tabcommit,bindingrechazadoigual,FOCUSGUIausente.6PTY47checks
+63guardas34docsPASS.Sin all-skipped/re-enable/otrasteclas/Windows/
+cierreM4,nuevosmodelos/pixeles. Evidencia
+`docs/evidence/linux-designer-inline-when-veto-runtime-q153.json`.

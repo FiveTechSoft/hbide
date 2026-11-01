@@ -4279,3 +4279,16 @@ Esc sale.5PTY50checks63guardas34docsPASS,fuente0826881,sin arreglo.
 Evidencia `docs/evidence/linux-designer-inline-valid-veto-runtime-q152.json`.
 Sin Buttonveto/WHENfalse/todasteclas/efectos/codigoarbitrario,nuevos
 modelos/pixeles/Windows/global/cierreM4.
+
+
+## 1 noviembre 2026: Q153 WHEN false omite control
+
+GET/Radio/Checkbox/List/Combo/Button WHEN editadoinline,F10,F9,
+compilarartefactoreal. WHEN.F. omitecontrol yentraGETsentinel;noFOCUS
+delcontrolGUIrechazado. Sentinelrecibeescritura+Tabcommit;binding
+rechazadoquedaigual. GETsinFOCUSexpuesto.6PTY47checks63guardas34docs
+PASS en45c8b65,sin arreglo. Primeraasercion trasEsc abortabaGETsin
+commit;TabcommitantesEsc corrige harness,nocambiasemanticaabort.
+Evidencia `docs/evidence/linux-designer-inline-when-veto-runtime-q153.json`.
+Sin todoscontrolesomitidos/re-enable/otrasteclas/mouse/cuentas/orden/
+excepciones/codigoarbitrario,nuevosmodelos/pixeles/Windows/cierreM4.
