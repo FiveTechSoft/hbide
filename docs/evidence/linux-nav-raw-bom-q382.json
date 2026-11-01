@@ -1,0 +1,42 @@
+{
+  "scope": "Q382 raw UTF8BOM analysis-only navigation fix",
+  "candidate": {
+    "source": "7c1189c4db5e8c9dd7b9433ac9ad9b5d219d6308",
+    "build_exit": 0,
+    "scope": "C78focal only not official builder/globalmatrix/Windows",
+    "binary_sha256": "83bf209402c5cca1ccaeba6bd033c603ae71f7e812f50e4677573d84eb372c88"
+  },
+  "compiler_fixture_exit": 0,
+  "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q382/raw.prg'...\n\nLines 3, Functions/Procedures 1\nGenerating C source output to '/tmp/hbmk_md1xxj.dir/raw.c'... Done.\n",
+  "baseline_c77": "PASS Raw UTF8 warning\nFAIL Picker includes first declaration behind raw BOM\nTOTAL 1 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-prfppane\n",
+  "fixed_c78": "PASS Raw UTF8 warning\nPASS Picker includes first declaration behind raw BOM\nPASS Navigation preserves raw UTF8 BOM file\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-1xamh0yw\n",
+  "regressions": {
+    "test_nav_implicit_method_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-byoa1tqs\n"
+    },
+    "test_nav_declared_method_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes DECLARED implementation, excludes member\nPASS Picker jumps to DECLARED implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ctcq75lz\n"
+    },
+    "test_nav_text_block_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-u4hckaqe\n"
+    },
+    "test_nav_declaration_continuation_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes continued Target declaration\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-5_u87jl3\n"
+    }
+  },
+  "model": "113PASS0FAIL lexical GTSTD separate source7c1189c; initial BOM recognized, embedded signature not removed",
+  "visual": {
+    "before": "/downloads/hbide-q382-nav-before.png",
+    "after": "/downloads/hbide-q382-nav-c78.png",
+    "inspection": "Complete1202x762 pixels inspected including lower borders/status. Before no declaration alert; after procedureMain line1/1of1 picker. Raw source glyphs remain intentionally raw, no encoding rendering fix claimed."
+  },
+  "limitations": [
+    "Only leading signature in scanner copy removed, no editor bytes/CP/toolchain/policy mutation",
+    "C78focal direct build only; C77 remains last official source-identified builder candidate",
+    "No fullmatrix inherited/Windows/install/license/milestone closure"
+  ]
+}
