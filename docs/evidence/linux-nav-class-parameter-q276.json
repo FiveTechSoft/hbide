@@ -1,0 +1,98 @@
+{
+  "candidate": {
+    "source": "929f08dcb2300736ee213a67d1ab9547255558ed",
+    "removed": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "scope": "C42 focal qualifier scan outside method parameters, no fullmatrix/release/Windows",
+    "binary_sha256": "320852bc1e11f8a65bf824be0f239423c9eebb76851787c168684da294143927",
+    "build_exit": 0
+  },
+  "baseline": {
+    "source": "e15ea242b8a8798288716d904e49eb437dac8d88",
+    "model_log": "\nPASS: multiline gap carries value index context\nPASS: multiline gap carries literal introducer\nPASS: closed block carry resets on next physical line\nPASS: literal or linecomment does not startblock: local c := `/* literal'\nPASS: literal or linecomment does not startblock: local c := \"/*\"\nPASS: literal or linecomment does not startblock: local c := '/*'\nPASS: literal or linecomment does not startblock: local c := [/*]\nPASS: literal or linecomment does not startblock: // /*\nPASS: literal or linecomment does not startblock: && /*\nPASS: literal or linecomment does not startblock: * /*\nPASS: literal or linecomment does not startblock: local c := \"//\" // /*\nPASS: literal or linecomment does not startblock: local c := \"&&\" && /*\nPASS: realblock and declaration after closing marker\nPASS: trailinglinecomment opener ignored\nPASS: C dump excluded\nPASS: dump comment state stays outside Harbour lexer\nPASS: class members are not class declarations\nPASS: typed function method name and line\nPASS: typed procedure method name and line\nPASS: array index multiline block excludes hidden declaration\nPASS: macro body is not an active dump directive\nPASS: commented/separated raw enddump resumes Harbour: #pragma enddump // done\nPASS: commented/separated raw enddump resumes Harbour: # pragma enddump && done\nPASS: commented/separated raw enddump resumes Harbour: #pragma.enddump /* done *\n/\nPASS: commented/separated raw enddump resumes Harbour: #pragma enddump;\nPASS: nonterminator does not leak C text: #pragma enddumpExtra\nPASS: nonterminator does not leak C text: #pragmaenddump\nPASS: nonterminator does not leak C text: // #pragma enddump\nPASS: nonterminator does not leak C text: #pragma enddump bad\nPASS: index comment with closing bracket is not literal: local n := a[1 /* ] mar\nker\nPASS: index comment with closing bracket is not literal: local n := a [1 /* ] ma\nrker\nPASS: index comment with closing bracket is not literal: local n := GetArray()[1\n /* ] marker\nPASS: RETURN bracket literal remains masked\nPASS: completed comment preserves preceding index value: local n := a /* gap */\n[1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := a /* first *\n/ /* next */ [1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := GetArray() /\n* gap */ [1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := \"array value\n\" /* gap */ [1 /* ] marker\nPASS: RETURN with completed comment still introduces bracket literal\nPASS: continued declaration preserves first physical line\nPASS: multiple declaration continuations preserve first line\nPASS: line comment between declaration parts ignored\nPASS: literal semicolon not declaration continuation\nPASS: directive drops pending incomplete declaration\nPASS: compact function continuation\nPASS: compact modifier and function continuations\nPASS: compact method continuation\nPASS: static abbreviation continuation starts at modifier: STAT\nPASS: static abbreviation continuation starts at modifier: STATI\nPASS: static abbreviation continuation starts at modifier: STATIC\nPASS: single-line static abbreviation remains recognized\nPASS: modifier substring is not a keyword\nPASS: CREATE CLASS alias indexed\nPASS: continued CREATE CLASS alias indexed at first line\nPASS: other CREATE commands not class declarations\nPASS: class members remain excluded with CREATE alias\nPASS: ACCESS explicit class implementation indexed\nPASS: ASSIGN implementation uses actual underscore method name\nPASS: member ACCESS ASSIGN declarations not implementations\nPASS: ACCESS continuation preserves first line\nPASS: commented accessor excluded\nPASS: PROCEDURE CLASS alias qualified as method\nPASS: ordinary procedure remains unqualified\nPASS: continued procedure method starts at first line\nPASS: commented CLASS not method qualifier\nPASS: explicit destructor implementation indexed\nPASS: member destructor declaration not implementation\nPASS: external function destructor binding not declaration\nPASS: destructor continuation retains first line\nPASS: NOTE line does not start block: NOTE /* ignored\nPASS: NOTE line does not start block: note/* ignored\nPASS: NOTE line does not start block: .NoTe /* ignored\nPASS: NOTE identifier prefix is not comment\nPASS: modifier kind retained: INIT\nPASS: modifier kind retained: EXIT\nPASS: modifier kind retained: STATIC\nPASS: modifier kind retained: STAT\nPASS: continued lifecycle modifiers keep kind and start line\nPASS: compact argument/class boundary: METHOD Ping()CLASS Demo\nPASS: compact argument/class boundary: METHOD FUNCTION Ping()CLASS Demo\nPASS: compact argument/class boundary: METHOD PROCEDURE Ping()CLASS Demo\nPASS: compact argument/class boundary: PROCEDURE Ping()CLASS Demo\nPASS: compact argument/class boundary: ACCESS Ping()CLASS Demo\nPASS: compact argument/class boundary: DESTRUCTOR Ping()CLASS Demo\nPASS: compact assign retains underscore method name\nPASS: compact qualifier continuation retains declaration line\nFAIL: CLASS parameter is not owner qualifier: METHOD Ping( CLASS )CLASS Demo\nPASS: CLASS parameter is not owner qualifier: METHOD FUNCTION Ping(CLASS)CLASS D\nemo\nPASS: CLASS parameter is not owner qualifier: PROCEDURE Ping(CLASS)CLASS Demo\nPASS: CLASS parameter is not owner qualifier: ACCESS Ping(CLASS)CLASS Demo\nFAIL: member CLASS parameter is not implementation\nTOTAL         88 PASS          2 FAIL",
+    "pty_log": "PASS Open requested fixture\nFAIL Picker includes compact method implementation\nFAIL Picker jumps to compact method implementation\nTOTAL 1 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-injyoynr\n"
+  },
+  "compiler_variants": {
+    "METHOD Ping()CLASS Demo": {
+      "exit": 0,
+      "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q276/variant-0.prg'...\n\r100\r\r100\r\r200\r\r300\r\r400\r\r500\r\rLines 722, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_hsoaja.dir/variant-0.c'... Done.\n"
+    },
+    "METHOD FUNCTION Ping()CLASS Demo": {
+      "exit": 0,
+      "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q276/variant-1.prg'...\n\r100\r\r100\r\r200\r\r300\r\r400\r\r500\r\rLines 722, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_95sa61.dir/variant-1.c'... Done.\n"
+    },
+    "METHOD PROCEDURE Ping()CLASS Demo": {
+      "exit": 0,
+      "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q276/variant-2.prg'...\n\r100\r\r100\r\r200\r\r300\r\r400\r\r500\r\rLines 722, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_kvr8f5.dir/variant-2.c'... Done.\n"
+    },
+    "PROCEDURE Ping()CLASS Demo": {
+      "exit": 0,
+      "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q276/variant-3.prg'...\n\r100\r\r100\r\r200\r\r300\r\r400\r\r500\r\rLines 722, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_s0vvsa.dir/variant-3.c'... Done.\n"
+    },
+    "ACCESS Ping()CLASS Demo": {
+      "exit": 0,
+      "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q276/variant-4.prg'...\n\r100\r\r100\r\r200\r\r300\r\r400\r\r500\r\rLines 722, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_wdlsfp.dir/variant-4.c'... Done.\n"
+    },
+    "DESTRUCTOR Ping()CLASS Demo": {
+      "exit": 0,
+      "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q276/variant-5.prg'...\n\r100\r\r100\r\r200\r\r300\r\r400\r\r500\r\rLines 722, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_3ewztj.dir/variant-5.c'... Done.\n"
+    },
+    "METHOD Ping( CLASS )CLASS Demo": {
+      "exit": 0,
+      "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q276/variant-6.prg'...\n\r100\r\r100\r\r200\r\r300\r\r400\r\r500\r\rLines 722, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_fvvx9v.dir/variant-6.c'... Done.\n"
+    }
+  },
+  "model": {
+    "source": "929f08dcb2300736ee213a67d1ab9547255558ed",
+    "binary_sha256": "a3fbdddb6d5552595b4ccd270f0c138934d7f018accd3f64d9e68821b7b974b7",
+    "log": "\nPASS: multiline gap carries value index context\nPASS: multiline gap carries literal introducer\nPASS: closed block carry resets on next physical line\nPASS: literal or linecomment does not startblock: local c := `/* literal'\nPASS: literal or linecomment does not startblock: local c := \"/*\"\nPASS: literal or linecomment does not startblock: local c := '/*'\nPASS: literal or linecomment does not startblock: local c := [/*]\nPASS: literal or linecomment does not startblock: // /*\nPASS: literal or linecomment does not startblock: && /*\nPASS: literal or linecomment does not startblock: * /*\nPASS: literal or linecomment does not startblock: local c := \"//\" // /*\nPASS: literal or linecomment does not startblock: local c := \"&&\" && /*\nPASS: realblock and declaration after closing marker\nPASS: trailinglinecomment opener ignored\nPASS: C dump excluded\nPASS: dump comment state stays outside Harbour lexer\nPASS: class members are not class declarations\nPASS: typed function method name and line\nPASS: typed procedure method name and line\nPASS: array index multiline block excludes hidden declaration\nPASS: macro body is not an active dump directive\nPASS: commented/separated raw enddump resumes Harbour: #pragma enddump // done\nPASS: commented/separated raw enddump resumes Harbour: # pragma enddump && done\nPASS: commented/separated raw enddump resumes Harbour: #pragma.enddump /* done *\n/\nPASS: commented/separated raw enddump resumes Harbour: #pragma enddump;\nPASS: nonterminator does not leak C text: #pragma enddumpExtra\nPASS: nonterminator does not leak C text: #pragmaenddump\nPASS: nonterminator does not leak C text: // #pragma enddump\nPASS: nonterminator does not leak C text: #pragma enddump bad\nPASS: index comment with closing bracket is not literal: local n := a[1 /* ] mar\nker\nPASS: index comment with closing bracket is not literal: local n := a [1 /* ] ma\nrker\nPASS: index comment with closing bracket is not literal: local n := GetArray()[1\n /* ] marker\nPASS: RETURN bracket literal remains masked\nPASS: completed comment preserves preceding index value: local n := a /* gap */\n[1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := a /* first *\n/ /* next */ [1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := GetArray() /\n* gap */ [1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := \"array value\n\" /* gap */ [1 /* ] marker\nPASS: RETURN with completed comment still introduces bracket literal\nPASS: continued declaration preserves first physical line\nPASS: multiple declaration continuations preserve first line\nPASS: line comment between declaration parts ignored\nPASS: literal semicolon not declaration continuation\nPASS: directive drops pending incomplete declaration\nPASS: compact function continuation\nPASS: compact modifier and function continuations\nPASS: compact method continuation\nPASS: static abbreviation continuation starts at modifier: STAT\nPASS: static abbreviation continuation starts at modifier: STATI\nPASS: static abbreviation continuation starts at modifier: STATIC\nPASS: single-line static abbreviation remains recognized\nPASS: modifier substring is not a keyword\nPASS: CREATE CLASS alias indexed\nPASS: continued CREATE CLASS alias indexed at first line\nPASS: other CREATE commands not class declarations\nPASS: class members remain excluded with CREATE alias\nPASS: ACCESS explicit class implementation indexed\nPASS: ASSIGN implementation uses actual underscore method name\nPASS: member ACCESS ASSIGN declarations not implementations\nPASS: ACCESS continuation preserves first line\nPASS: commented accessor excluded\nPASS: PROCEDURE CLASS alias qualified as method\nPASS: ordinary procedure remains unqualified\nPASS: continued procedure method starts at first line\nPASS: commented CLASS not method qualifier\nPASS: explicit destructor implementation indexed\nPASS: member destructor declaration not implementation\nPASS: external function destructor binding not declaration\nPASS: destructor continuation retains first line\nPASS: NOTE line does not start block: NOTE /* ignored\nPASS: NOTE line does not start block: note/* ignored\nPASS: NOTE line does not start block: .NoTe /* ignored\nPASS: NOTE identifier prefix is not comment\nPASS: modifier kind retained: INIT\nPASS: modifier kind retained: EXIT\nPASS: modifier kind retained: STATIC\nPASS: modifier kind retained: STAT\nPASS: continued lifecycle modifiers keep kind and start line\nPASS: compact argument/class boundary: METHOD Ping()CLASS Demo\nPASS: compact argument/class boundary: METHOD FUNCTION Ping()CLASS Demo\nPASS: compact argument/class boundary: METHOD PROCEDURE Ping()CLASS Demo\nPASS: compact argument/class boundary: PROCEDURE Ping()CLASS Demo\nPASS: compact argument/class boundary: ACCESS Ping()CLASS Demo\nPASS: compact argument/class boundary: DESTRUCTOR Ping()CLASS Demo\nPASS: compact assign retains underscore method name\nPASS: compact qualifier continuation retains declaration line\nPASS: CLASS parameter is not owner qualifier: METHOD Ping( CLASS )CLASS Demo\nPASS: CLASS parameter is not owner qualifier: METHOD FUNCTION Ping(CLASS)CLASS D\nemo\nPASS: CLASS parameter is not owner qualifier: PROCEDURE Ping(CLASS)CLASS Demo\nPASS: CLASS parameter is not owner qualifier: ACCESS Ping(CLASS)CLASS Demo\nPASS: member CLASS parameter is not implementation\nTOTAL         90 PASS          0 FAIL"
+  },
+  "tests": {
+    "test_nav_compact_method_pty.py:param": {
+      "exit": 0,
+      "sha256": "2b8e9e105e7cc6e1033a20a4bf1aec9409afe2a1f10d5b608dd6a928ca6d3d87",
+      "seconds": 5.976987361907959,
+      "log": "PASS Open requested fixture\nPASS Picker includes compact method implementation\nPASS Picker jumps to compact method implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-at98qush\n"
+    },
+    "test_nav_compact_method_pty.py:plain": {
+      "exit": 0,
+      "sha256": "2b8e9e105e7cc6e1033a20a4bf1aec9409afe2a1f10d5b608dd6a928ca6d3d87",
+      "seconds": 5.975156545639038,
+      "log": "PASS Open requested fixture\nPASS Picker includes compact method implementation\nPASS Picker jumps to compact method implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-_pk4rbv7\n"
+    },
+    "test_nav_typed_methods_pty.py:plain": {
+      "exit": 0,
+      "sha256": "c52ceee10a4080b3a17b052287a699c7cc40526fd4312c9b7153b6e0fe7df7e7",
+      "seconds": 5.981785535812378,
+      "log": "PASS Open requested fixture\nPASS Picker uses real method names rather than type keyword\nPASS Picker jumps to typed method implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-lh9n4of6\n"
+    },
+    "test_nav_procedure_class_pty.py:plain": {
+      "exit": 0,
+      "sha256": "94bd13bf4d3bdf0cff4d8132a22b54bd3aa997e863ef7803ad5c25ec8d613bc1",
+      "seconds": 5.976972579956055,
+      "log": "PASS Open requested fixture\nPASS Picker qualifies PROCEDURE CLASS alias\nPASS Picker jumps to PROCEDURE CLASS implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-a740uso0\n"
+    },
+    "test_nav_declaration_continuation_pty.py:plain": {
+      "exit": 0,
+      "sha256": "fbb2af9f793b9277504764bda1f6bbafda1e05e70c82af03b3beb4a6fdf8967a",
+      "seconds": 5.973194122314453,
+      "log": "PASS Open requested fixture\nPASS Picker includes continued Target declaration\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-9uct8cej\n"
+    }
+  },
+  "visual": {
+    "images": [
+      "hbide-q276-param-before.png",
+      "hbide-q276-param-c42.png"
+    ],
+    "inspection": "Full1202x762 inspected: C41 incorrectly lists ):Ping, C42 Demo:Ping line8; full editor/modal borders intact."
+  },
+  "scope": "One method qualifier parsing fix. Five focused PTY modes15 checks plus separate90-check model. Seven compiler-accepted declaration variants, only original plain variant executed in Q275. No complete parser/matrix/Windows/release/milestone closure."
+}
