@@ -1,0 +1,31 @@
+{
+  "source": "c4222674473cfeb524f5bde126bae7db1b07ef28",
+  "binary_sha256": "284dc4769e99fd167434c42de7708ea6163cb97fd3a80b4d504ad429f7bb5115",
+  "scope": "C38four frozen scripts39checks selected destructive/typing history, TAB and virtual range guards. No new product/model/pixels/fullmatrixWindows or milestone.",
+  "tests": {
+    "test_selection_destructive_boundary_pty.py": {
+      "exit": 0,
+      "sha256": "12379682ea24bcc6fac3fad6464b80bda4a44119975c1e41b401e48d4ea4d46c",
+      "seconds": 37.21611404418945,
+      "log": "PASS Open requested fixture\nPASS Delete selected edit exact\nPASS Delete Undo preserves prior typing\nPASS Delete Redo selected edit exact\nPASS Delete Undo later typing preserves selected edit\nPASS Delete next Undo preserves prior typing\nPASS Delete final Undo original exact\nPASS Backspace selected edit exact\nPASS Backspace Undo preserves prior typing\nPASS Backspace Redo selected edit exact\nPASS Backspace Undo later typing preserves selected edit\nPASS Backspace next Undo preserves prior typing\nPASS Backspace final Undo original exact\nPASS Enter selected edit exact\nPASS Enter Undo preserves prior typing\nPASS Enter Redo selected edit exact\nPASS Enter Undo later typing preserves selected edit\nPASS Enter next Undo preserves prior typing\nPASS Enter final Undo original exact\nTOTAL 19 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-cdoo4sdf\n"
+    },
+    "test_selection_undo_boundary_pty.py": {
+      "exit": 0,
+      "sha256": "49d4c846fb5c901bf8025681dfa7a470021cabde305736b196f9a870db455ea8",
+      "seconds": 14.590378046035767,
+      "log": "PASS Open requested fixture\nPASS Typing replaces selected al but preserves earlier X\nPASS Undo selected replacement alone preserves earlier typing\nPASS Redo selected replacement exact\nPASS Undo later typing keeps selection replacement\nPASS next Undo restores pre-replacement typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-b1pmp_l5\n"
+    },
+    "test_selection_tab_pty.py": {
+      "exit": 0,
+      "sha256": "05969c31e08a955f584548a5ee20a551689fa7b608e2d5524cdf4aea2110aaa0",
+      "seconds": 16.745404481887817,
+      "log": "PASS Open requested fixture\nPASS forward selected Tab expands from replacement start\nPASS Undo selected Tab restores exact\nPASS Redo selected Tab exact\nPASS reverse selected Tab expands from replacement start\nPASS Undo selected Tab restores exact\nPASS Redo selected Tab exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-vbo_e_vf\n"
+    },
+    "test_virtual_selection_pty.py": {
+      "exit": 0,
+      "sha256": "dc383490bb249481865369ca35c9d744d761151e67810e010f24735921186381",
+      "seconds": 26.103976249694824,
+      "log": "PASS Open requested fixture\nPASS Cut wholly past EOL closes without false prompt\nPASS Delete wholly past EOL closes without false prompt\nPASS Backspace wholly past EOL closes without false prompt\nPASS Virtual Cut preserves earlier redo\nPASS Undo earlier edit exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ncosmo7i\n"
+    }
+  }
+}
