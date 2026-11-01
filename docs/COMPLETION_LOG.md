@@ -5052,3 +5052,13 @@ bin969a8b3527c28720dd4a4350d09cfaa458d586791604b43856211955d5c2a0d7.
 arrastreclamp40x120y25x80. Capturaactual802x477con12controles inspeccionada
 completa, cierreizquierdo visible. SinWindows/cierreM4/matrizglobal.
 Evidencia: docs/evidence/linux-designer-inspector-close-q206.json.
+
+### Q207 (1 noviembre 2026): idle/filter evita doble espera, deja pantalla
+
+AlternativaaisladaHarbour: hookinicio muestraapp, idlebombeatecladovisible
+aGTNUL y filterrestauradepuradoral obtenertecla.16checksPTYcaracterizan
+resultadoreal: .05seg=>60ms, no dobleespera; pero timeout0noinvocafilter
+y dejaappvisible. LastKeytras timeoutnaturalpermanece122: expectativa
+corregida,falloinicialconservado. No se integra ni se anunciaSwapresuelto.
+Sin producto/pixeles/Windows/M3closure.
+Evidencia: docs/evidence/linux-debug-input-idle-frame-q207.json.

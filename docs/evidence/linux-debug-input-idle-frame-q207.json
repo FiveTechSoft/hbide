@@ -1,0 +1,57 @@
+{
+  "source": "33b3be12a354904996e16694ad156cc090d5162f",
+  "scope": "Harbour idle+filter alternative research only; timeout leaves wrong visible screen, NOT safe production integration.",
+  "source_hashes": {
+    "tests/probes/debug_input_idle_frame.prg": "4e728f6921e5be1a8f536c266a3b3c8407154b6bf7149eabe3fd9e346a268b7a",
+    "tests/probes/check_input_idle_frame.py": "66b35f1e4ba342bd0fc04a149287a305f381058760255d650280f1809b684378"
+  },
+  "binary_sha256": "206386567ca632cf8f229f270960f2590560409875bf04ef4cc6b3bd7e432bc8",
+  "results": {
+    "checks": {
+      "poll": true,
+      "shows_after_poll": true,
+      "real_key": true,
+      "last_key": true,
+      "timeout_key": true,
+      "last_after_timeout": true,
+      "hidden_buffer_preserved": true,
+      "shows": true,
+      "debugger_buffer_restored": true,
+      "app_remains_after_timeout": true,
+      "extra_key": true,
+      "process_exit": true,
+      "real_key_sent": true,
+      "app_marker_in_terminal": true,
+      "debugger_marker_in_terminal": true,
+      "timeout_no_longer_waits_twice": true
+    },
+    "results": {
+      "hidden_contains_marker": true,
+      "hidden_screen_bytes": 4000,
+      "poll": 0,
+      "shows_after_poll": 0,
+      "real_key": 122,
+      "last_key": 122,
+      "timeout_key": 0,
+      "timeout_elapsed_ms": 60,
+      "last_after_timeout": 122,
+      "hidden_buffer_preserved": true,
+      "shows": 2,
+      "debugger_buffer_restored": false,
+      "app_remains_after_timeout": true,
+      "extra_key": 0,
+      "process_exit": 0,
+      "real_key_sent": true,
+      "app_marker_in_terminal": true,
+      "debugger_marker_in_terminal": true
+    },
+    "scope": "Idle pump avoids doubled timeout but no final-timeout hook leaves app screen visible: not production acceptance."
+  },
+  "first_failure": "{\n  \"checks\": {\n    \"poll\": true,\n    \"shows_after_poll\": true,\n    \"real_key\": true,\n    \"last_key\": true,\n    \"timeout_key\": true,\n    \"last_after_timeout\": false,\n    \"hidden_buffer_preserved\": true,\n    \"shows\": true,\n    \"debugger_buffer_restored\": true,\n    \"app_remains_after_timeout\": true,\n    \"extra_key\": true,\n    \"process_exit\": true,\n    \"real_key_sent\": true,\n    \"app_marker_in_terminal\": true,\n    \"debugger_marker_in_terminal\": true,\n    \"timeout_no_longer_waits_twice\": true\n  },\n  \"results\": {\n    \"hidden_contains_marker\": true,\n    \"hidden_screen_bytes\": 4000,\n    \"poll\": 0,\n    \"shows_after_poll\": 0,\n    \"real_key\": 122,\n    \"last_key\": 122,\n    \"timeout_key\": 0,\n    \"timeout_elapsed_ms\": 60,\n    \"last_after_timeout\": 122,\n    \"hidden_buffer_preserved\": true,\n    \"shows\": 2,\n    \"debugger_buffer_restored\": false,\n    \"app_remains_after_timeout\": true,\n    \"extra_key\": 0,\n    \"process_exit\": 0,\n    \"real_key_sent\": true,\n    \"app_marker_in_terminal\": true,\n    \"debugger_marker_in_terminal\": true\n  },\n  \"scope\": \"Idle pump avoids doubled timeout but no final-timeout hook leaves app screen visible: not production acceptance.\"\n}\n",
+  "findings": [
+    "INKEYREADstart+idlekeyboardpump+INKEYFILTERendkey removes doubledtimeout: .05s =>60ms.",
+    "INKEYFILTER only for actual popped key; zero timeout has no completioncallback; app screen left visible.",
+    "LastKey after natural timeout remains122, unlike injectedzero/KeySetLast0 in Q205; expectation corrected, product unchanged.",
+    "No visual inspection or IDE integration performed for this probe."
+  ]
+}
