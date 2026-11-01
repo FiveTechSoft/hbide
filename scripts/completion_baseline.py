@@ -53,8 +53,8 @@ cases = {
     'recovery': ['tests/test_recovery.prg', 'recovery.prg'],
     'project': ['tests/test_project.prg', 'project.prg', 'recovery.prg'],
     'project-ui': ['tests/test_project_ui.prg', 'project.prg', 'projectui.prg', 'recovery.prg'],
-    'help-browser': ['tests/test_help_browser.prg', 'help.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
-    'help': ['tests/test_help.prg', 'help.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
+    'help-browser': ['tests/test_help_browser.prg', 'help.prg', 'safeio.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
+    'help': ['tests/test_help.prg', 'help.prg', 'safeio.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
 }
 # Existing debugger model probes need the full vendored debugger, not stubs.
 debug_sources = [str(p.relative_to(ROOT)) for p in sorted((ROOT/'hbdebug').glob('*.prg'))]

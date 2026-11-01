@@ -1,5 +1,6 @@
 #include "inkey.ch"
 #include "setcurs.ch"
+#include "fileio.ch"
 // hbide help topics: single source for Help>Contents and Help>Index.
 // Each topic: { keyword list, title, body }
 
@@ -331,8 +332,27 @@ FUNCTION HBIDEHelpMatches( aTopics, nW, cQuery )
 RETURN a
 
 // Full help as one Markdown document, in tree order. Returns .T. on success.
-FUNCTION HBIDEHelpExport( aTopics, cFile )
-   LOCAL c := "# hbide - Help" + hb_eol() + hb_eol(), aRow
+FUNCTION HBIDEHelpExport( aTopics, cFile, cFailInfo )
+   LOCAL c := "# hbide - Help" + hb_eol() + hb_eol(), aRow, nAttr := 0
+   cFailInfo := ""
+   // This classifies the observed path, not a lock against concurrent changes.
+   // The shared writer promotes a verified sibling instead of opening/truncating
+   // this path, so final symlinks are not followed. Parent-directory races and
+   // alias replacement after classification are not claimed to be prevented.
+   IF ! Empty( hb_vfLinkRead( cFile ) )
+      cFailInfo := "Refused symlink; link and destination untouched."
+      RETURN .F.
+   ENDIF
+   IF hb_vfAttrGet( cFile, @nAttr )
+#ifdef __PLATFORM__UNIX
+      IF hb_bitAnd( nAttr, HB_FA_ARCHIVE ) == 0
+#else
+      IF hb_bitAnd( nAttr, HB_FA_DIRECTORY + HB_FA_DEVICE + HB_FA_REPARSE ) != 0
+#endif
+         cFailInfo := "Refused non-regular destination; destination untouched."
+         RETURN .F.
+      ENDIF
+   ENDIF
    FOR EACH aRow IN HBIDEHelpTree( aTopics )
       IF aRow[ 1 ] == "S"
          c += "## " + aRow[ 3 ] + hb_eol() + hb_eol()
@@ -340,7 +360,7 @@ FUNCTION HBIDEHelpExport( aTopics, cFile )
          c += "### " + aRow[ 3 ] + hb_eol() + hb_eol() + aTopics[ aRow[ 2 ], 3 ] + hb_eol() + hb_eol()
       ENDIF
    NEXT
-RETURN hb_MemoWrit( cFile, c )
+RETURN HBIDE_AtomicWriteFile( cFile, c, @cFailInfo )
 
 // Modal geometry, all coordinates absolute.
 FUNCTION HBHelpGeo()
@@ -450,16 +470,17 @@ FUNCTION HBHelpSearchCommit( h, aTopics, g )
 RETURN NIL
 
 FUNCTION HBHelpButton( h, aTopics, g, nBtn )
+   LOCAL cFailInfo := ""
    DO CASE
    CASE nBtn == 1
       h[ "mode" ] := "search"
    CASE nBtn == 2
       HBHelpNext( h, aTopics, g )
    CASE nBtn == 3
-      IF HBIDEHelpExport( aTopics, "hbide-help.md" )
+      IF HBIDEHelpExport( aTopics, "hbide-help.md", @cFailInfo )
          h[ "msg" ] := "Wrote hbide-help.md (" + hb_ntos( Len( h[ "rows" ] ) ) + " entries)."
       ELSE
-         h[ "msg" ] := "Could not write hbide-help.md in this directory."
+         h[ "msg" ] := "Export failed: " + cFailInfo
       ENDIF
    CASE nBtn == 4
       h[ "done" ] := .T.
