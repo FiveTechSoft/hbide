@@ -5562,3 +5562,12 @@ EOLmixto, UTF8conBOM y TAB. Cada una kill/recover/edit/Undo mantiene dirty,
 conserva journal y guarda bytes exactos. Sin cambio producto/build/modelos,
 no sumar como funciones ni heredar matriz completa. Sin píxeles/Windows/hito.
 Evidencia: docs/evidence/linux-recovered-undo-encoding-q250.json.
+
+### Q251 (1 noviembre 2026): modelo historial saved/branch/cap
+
+Modelo nuevo20checks PASS desde export limpio: no fusionar typing sobre
+save, Undo/Redo de frontera, rama tras Undo invalida save, cap300 mueve
+marcador hasta expulsarlo, Undo agotado no falso clean y nuevo save lo
+restablece. No se encontró defecto ni cambió producto. Binario GTSTD
+propio, no modo de C32 ni PTY/píxeles/Windows/matriz/hito.
+Evidencia: docs/evidence/linux-saved-history-model-q251.json.
