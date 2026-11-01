@@ -1,0 +1,32 @@
+{
+  "candidate": "C91",
+  "source": "a0e87553d3a05138583d6831c3a49a34ff652d58",
+  "binary_sha256": "2bd8ffa509e6fec8589b338e9683193d9ef811ee285c01020af175217f0fe9b8",
+  "fresh_results": {
+    "test_find_mouse_selection_pty.py": {
+      "test_sha256": "db1b1137d09b3b339c13e47c9047176c64a6f4618504c74d927b7cb73be076aa",
+      "log": "PASS Open requested fixture\nPASS Direct mouse Cancel exits Find free-form input\nPASS Mouse Cancel retains selected range\nPASS Undo exact original after free-input Cancel probe\nPASS Direct mouse OK exits Find input\nPASS Find mouse OK clears old selection and inserts at match\nPASS Undo after Find mouse OK exact mixed EOL\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-crc2sv5t\n"
+    },
+    "test_replace_mouse_selection_pty.py": {
+      "test_sha256": "c2ec4500e96010fb233e5f8e5a94b6a30ddf90879079098c0e5c7a36dedb5c1e",
+      "log": "PASS Open requested fixture\nPASS Replace first-field direct Cancel retains selected range\nPASS Undo first-field Cancel exact\nPASS Replace second-field direct Cancel retains selected range\nPASS Undo second-field Cancel exact\nPASS Replace mouse OK reports actual count\nPASS Replace second-field direct OK applies exact text\nPASS Undo direct Replace exact mixed EOL\nPASS Replace first-field mouse OK reports actual count\nPASS Replace first-field OK uses empty replacement\nPASS Undo first-field Replace exact mixed EOL\nTOTAL 11 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-flx4vtcs\n"
+    },
+    "test_run_arguments_mouse_pty.py": {
+      "test_sha256": "93adc06d4c6fc77c6e41aeda8cec390e844014f70bd8d9eb49c73f2e598ffc8b",
+      "log": "PASS arguments modal opens\nPASS explicit-ok exact Script argv\nPASS arguments modal opens\nPASS explicit-cancel exact Script argv\nPASS arguments modal opens\nPASS esc-preserve exact Script argv\nPASS arguments modal opens\nPASS invalid quote rejected\nPASS invalid-preserve exact Script argv\nPASS arguments modal opens\nPASS explicit-clear exact Script argv\nPASS arguments modal opens\nPASS enter-accept exact Script argv\nPASS editor remains usable\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-fbt946p4\n"
+    },
+    "test_freeinput_mouse_pairs_pty.py": {
+      "test_sha256": "5dea61cf95063ba690453120e62b5b0a0055f7755893e0a5632efe51f1ffa536",
+      "log": "PASS Open requested fixture\nPASS Button press alone keeps Find active\nPASS Button press outside release does not activate\nPASS Outside press button release does not activate\nPASS OK press Cancel release does not activate\nPASS Unpaired Cancel release does not activate\nPASS Same-button pair finally closes Find\nPASS Cross-boundary events leave source exact\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-2aynok5y\n"
+    },
+    "test_find_mouse_utf8_pty.py": {
+      "test_sha256": "a31bb8afe633e82f642ade3e6fa233c9d82fc8f0faacd3879adfaf67ab77aa6c",
+      "log": "PASS Open requested fixture\nPASS Direct mouse Cancel exits Find free-form input\nPASS Mouse Cancel retains selected range\nPASS Undo exact original after free-input Cancel probe\nPASS Direct mouse OK exits Find input\nPASS Find mouse OK clears old selection and inserts at match\nPASS Undo after Find mouse OK exact mixed EOL\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ur02tp19\n"
+    },
+    "test_freeinput_utf8_scroll_pty.py": {
+      "test_sha256": "6151fcf4001905722d0d928c44361c14bdb2534123782aa1a8f2cea537d855ed",
+      "log": "PASS Open long accented fixture\nPASS Input suffix scrolled into viewport\nPASS Home scrolls to start\nPASS End restores UTF8 suffix\nPASS Enter confirms edited long input\nPASS UTF8 scroll edit finds exact long string\nPASS Undo restores original BOM mixed EOL\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-31ra715f\n"
+    }
+  },
+  "limits": "Fresh official C91 execution, not inherited C90. Six bounded freeinput routes 54assertions total, no DBL instrumented/graphemes/wideUnicode/nativepixels/fullmatrix/Windows/license closure."
+}
