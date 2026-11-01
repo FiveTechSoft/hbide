@@ -4769,3 +4769,17 @@ Nativa exactbin25x80/802x477 revisada: cola completa trasRight, bordes
 completos; la ruta izquierda vuelve conLeft, no toda la linea a la vez.
 No ANSI/encoding general, Windows, Cancel, respuestaUI, matriz o cierreM2.
 Evidencia `docs/evidence/linux-start-output-horizontal-q186.json`.
+
+
+### Q187 (1 noviembre 2026): build exitoso tras cerrar salida larga
+
+Wrapper antepone60lineas y ejecuta hbmk2 real. En25x80 y40x120, el
+visor no promueve ni lanza antes de cerrarlo, conserva binario anterior
+exacto; End muestra Done y Esc permite promover binario distinto y
+ejecutar marcador fresco. Fuente exacta, sin temporales ni alerta falsa.
+Tres modos PTY43checks74guardas34docsPASS en
+a8329cb37eddf84d0c01d43b854ec65cd9bacc09, binario
+29b103ecae744e08e935702b813d258549679e8809b83d0ab96a103db94c6437.
+Sin arreglo nuevo ni nueva nativa; no todos outputs, Windows, Cancel,
+respuestaUI, matriz global ni cierreM2.
+Evidencia `docs/evidence/linux-start-long-output-success-q187.json`.
