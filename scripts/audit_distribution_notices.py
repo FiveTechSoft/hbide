@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Inventory in-source notices. Not legal advice or a license determination."""
-import argparse,hashlib,json,pathlib,stat,subprocess,sys
+import argparse,hashlib,json,pathlib,re,stat,subprocess,sys
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 def referenced_license(root):
  # Do not follow symlinks: an external file would not accompany this package.
@@ -17,7 +17,7 @@ def referenced_license(root):
  except OSError as e:record.update(status='unreadable',error=type(e).__name__)
  return record
 
-def audit(root=ROOT):
+def audit(root=ROOT,source=None):
  rows=[]
  for line in (root/'hbide.hbp').read_text().splitlines():
   rel=line.strip()
@@ -33,9 +33,11 @@ def audit(root=ROOT):
  missing=[r['path'] for r in rows if r['license_file_reference'] and license_record['status']!='present_unreviewed']
  unspecified=[r['path'] for r in rows if not r['gpl_notice']]
  return {'scope':'Local HBP source notice inventory only. Absence of a detected header is not proof of no license or ownership. Does not clear redistribution.',
-  'source':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+  'source':source or subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
   'referenced_license':license_record,'root_notice_files':notices,'sources':rows,'missing_referenced_license':missing,
   'without_detected_gpl_header':unspecified,'release_review_required':bool(missing or unspecified)}
 def main():
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--check-release',action='store_true');a=p.parse_args();d=audit();print(json.dumps(d,indent=2));return 1 if a.check_release and d['release_review_required'] else 0
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--check-release',action='store_true');p.add_argument('--source-revision',help='40-hex frozen export revision, avoids git lookup');a=p.parse_args();
+ if a.source_revision and not re.fullmatch('[0-9a-f]{40}',a.source_revision):p.error('source revision must be 40 lowercase hex characters')
+ d=audit(source=a.source_revision);print(json.dumps(d,indent=2));return 1 if a.check_release and d['release_review_required'] else 0
 if __name__=='__main__':raise SystemExit(main())

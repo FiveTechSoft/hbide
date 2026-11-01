@@ -43,6 +43,15 @@ def main():
   (out/'document-check.log').write_bytes(r.stdout)
   manifest['document_check']={'exit':r.returncode,'paths_sha256':sha(docfile),'count':len(docpaths)}
   if r.returncode:raise RuntimeError('export embedded documents stale; see document-check.log')
+  # Preserve the notice review on this exact frozen export. A candidate is
+  # allowed for internal tests, never declared redistribution-cleared here.
+  r=command([sys.executable,str(src/'scripts/audit_distribution_notices.py'),'--source-revision',revision],src,env)
+  (out/'source-notices.json').write_bytes(r.stdout)
+  if r.returncode:raise RuntimeError('export source notice inventory failed')
+  notices=json.loads(r.stdout)
+  if notices.get('source')!=revision:raise RuntimeError('source notice inventory revision mismatch')
+  manifest['source_notice_inventory']={'path':'source-notices.json','sha256':sha(out/'source-notices.json'),
+   'release_review_required':notices['release_review_required'],'does_not_clear_redistribution':True}
   r=command([compiler,'hbide.hbp','-quiet','-o'+str(binpath/'hbide')],src,env)
   (out/'build.log').write_bytes(r.stdout);manifest['build_exit']=r.returncode
   if r.returncode:raise RuntimeError('build failed, see build.log')
