@@ -5433,3 +5433,15 @@ binario inalterado, sin fallo/reintento en estas16.308 variantes distintas
 cotejadas con plan353/normalizaciónQ223. No producto nuevo/píxeles/modelos/
 Windows/matriz completa/hitos.
 Evidencia: docs/evidence/linux-c30-clipboard-editor-blocks9299-q239.json.
+
+### Q240 (1 noviembre 2026): C30 backup/start/recovery
+
+15 variantes adicionales PASS mismo C30 96d77549/export049b533: backupF2,
+Start collision source/relative/other-document, target con espacios,
+recovery target/flags inválidos, Compare normal/large, open/reload unreadable,
+codepage desconocido, envelope malformado/recovery unreadable. Tests propios
+hashados/binario inalterado, sin fallo/reintento en estas15. Fixtures
+acotadas, no fsync/powerloss ni todos fallos I/O.323 variantes distintas
+cotejadas con plan353/normalizaciónQ223; no producto nuevo/píxeles/modelos/
+Windows/matriz completa/cierre hitos.
+Evidencia: docs/evidence/linux-c30-recovery-blocks100107-q240.json.

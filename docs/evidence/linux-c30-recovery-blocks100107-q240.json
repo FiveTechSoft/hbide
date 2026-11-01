@@ -1,0 +1,268 @@
+{
+  "scope": "Frozen C30 backup/start collisions/recovery refusals.15additional command variants;323distinct across blocks1..107 after Q223 normalization. Not full353/Windows/power-loss/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "backup-f2",
+          "command": [
+            "test_backup_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 7.116902589797974,
+          "test_sha256": "1124cc08ac894a736bb078a171e85cf62d7a099fa1ec51133fcd4b639ebbc599",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/backup-f2.log",
+          "printed_failure": false
+        },
+        {
+          "name": "start-open-document-collision",
+          "command": [
+            "test_start_collision_pty.py",
+            "--other-document"
+          ],
+          "exit": 0,
+          "seconds": 7.092347621917725,
+          "test_sha256": "39d68596ee0c599fb9657eef3bfe66d890bbf4c4ae6efabeea22dbeeb74be408",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/start-open-document-collision.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "start-source-collision-relative",
+          "command": [
+            "test_start_collision_pty.py",
+            "--relative"
+          ],
+          "exit": 0,
+          "seconds": 5.661599636077881,
+          "test_sha256": "39d68596ee0c599fb9657eef3bfe66d890bbf4c4ae6efabeea22dbeeb74be408",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/start-source-collision-relative.log",
+          "printed_failure": false
+        },
+        {
+          "name": "start-source-collision",
+          "command": [
+            "test_start_collision_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.661462068557739,
+          "test_sha256": "39d68596ee0c599fb9657eef3bfe66d890bbf4c4ae6efabeea22dbeeb74be408",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/start-source-collision.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "start-target-space",
+          "command": [
+            "test_recovery_unreadable_pty.py",
+            "--start-target-space"
+          ],
+          "exit": 0,
+          "seconds": 5.4742112159729,
+          "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/start-target-space.log",
+          "printed_failure": false
+        },
+        {
+          "name": "recovery-invalid-target",
+          "command": [
+            "test_recovery_unreadable_pty.py",
+            "--invalid-target"
+          ],
+          "exit": 0,
+          "seconds": 4.253500461578369,
+          "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-invalid-target.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-invalid-flags",
+          "command": [
+            "test_recovery_unreadable_pty.py",
+            "--invalid-flags"
+          ],
+          "exit": 0,
+          "seconds": 4.256376504898071,
+          "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-invalid-flags.log",
+          "printed_failure": false
+        },
+        {
+          "name": "recovery-compare-large",
+          "command": [
+            "test_recovery_compare_pty.py",
+            "--large"
+          ],
+          "exit": 0,
+          "seconds": 4.982656955718994,
+          "test_sha256": "c5163ac5b4a8807c4bf258cd75b2ea48237cd1457d67249093cc5fc9023ed01d",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-compare-large.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-compare",
+          "command": [
+            "test_recovery_compare_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 7.939841985702515,
+          "test_sha256": "c5163ac5b4a8807c4bf258cd75b2ea48237cd1457d67249093cc5fc9023ed01d",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-compare.log",
+          "printed_failure": false
+        },
+        {
+          "name": "reload-unreadable",
+          "command": [
+            "test_reload_unreadable_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 8.722631216049194,
+          "test_sha256": "a9f421134abb38618b301595634e33cfcb7838c8ee98fbca7b46ec42003f86a1",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/reload-unreadable.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "open-unreadable",
+          "command": [
+            "test_open_unreadable_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.724586009979248,
+          "test_sha256": "a024e5a06cf25a0cd104f216e037419a0431e730ffbf12d7560156dc361b79d6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/open-unreadable.log",
+          "printed_failure": false
+        },
+        {
+          "name": "recovery-target-space",
+          "command": [
+            "test_recovery_unreadable_pty.py",
+            "--target-space"
+          ],
+          "exit": 0,
+          "seconds": 4.4515180587768555,
+          "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-target-space.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-unknown-codepage",
+          "command": [
+            "test_recovery_unreadable_pty.py",
+            "--unknown-codepage"
+          ],
+          "exit": 0,
+          "seconds": 4.253196477890015,
+          "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-unknown-codepage.log",
+          "printed_failure": false
+        },
+        {
+          "name": "recovery-malformed",
+          "command": [
+            "test_recovery_unreadable_pty.py",
+            "--malformed-envelope"
+          ],
+          "exit": 0,
+          "seconds": 4.2536022663116455,
+          "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-malformed.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "recovery-unreadable",
+          "command": [
+            "test_recovery_unreadable_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.253248929977417,
+          "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/recovery-unreadable.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 323,
+  "logs": {
+    "backup-f2.log": "PASS F2 exact backup; failed backup promotion keeps old child and complete recovery while source saves\n",
+    "start-open-document-collision.log": "PASS extensionless source/output collision refused, source untouched\n",
+    "start-source-collision-relative.log": "PASS extensionless source/output collision refused, source untouched\n",
+    "start-source-collision.log": "PASS extensionless source/output collision refused, source untouched\n",
+    "start-target-space.log": "PASS recovery/save preserves trailing-space target and neighboring file\nPASS Start passes exact trailing-space source to compiler; failure never runs neighbor\n",
+    "recovery-invalid-target.log": "PASS unreadable journal reports error and preserves disk journal and current document\n",
+    "recovery-invalid-flags.log": "PASS unreadable journal reports error and preserves disk journal and current document\n",
+    "recovery-compare-large.log": "PASS Compare is read-only; open snapshots stay stable; reopening refreshes disk; Later keeps bytes and current document\n",
+    "recovery-compare.log": "PASS Compare is read-only; open snapshots stay stable; reopening refreshes disk; Later keeps bytes and current document\n",
+    "reload-unreadable.log": "PASS failed reload reports read failure; restored readability reloads exact disk bytes\n",
+    "open-unreadable.log": "PASS unreadable source open preserves active text untitled identity and disk bytes\n",
+    "recovery-target-space.log": "PASS recovery/save preserves trailing-space target and neighboring file\n",
+    "recovery-unknown-codepage.log": "PASS unknown codepage reports error and preserves disk journal and current document\n",
+    "recovery-malformed.log": "PASS malformed envelope reports error and preserves disk journal and current document\n",
+    "recovery-unreadable.log": "PASS unreadable journal reports error and preserves disk journal and current document\n"
+  }
+}
