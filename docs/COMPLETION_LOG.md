@@ -4691,3 +4691,18 @@ original y output retenido visibles, bordes completos. No todos los
 fallos de promotion, validacion de ejecutable real, Cancel, respuestaUI,
 Windows, matriz global ni cierreM2.
 Evidencia `docs/evidence/linux-build-promotion-recovery-q181.json`.
+
+
+### Q182 (1 noviembre 2026): lectura del aviso de recuperacion
+
+Se separan encabezado, destino, causa y ruta conservada mediante saltos
+de linea locales a Start, sin cambiar el wrapper global de MsgAlert.
+La ruta del fixture queda en una linea entera y desaparece el punto y
+coma suelto. Dos modos PTY26checks74guardas34docsPASS en
+9d4704262e8aff7ed244cc7ab68f00f880bbfef7, binario
+cc90920a04f41469d3355b174748882caca941d4a9dd86195ebc9e95b4cc447f.
+Nativa exactbin40x120/1202x762 inspeccionada: etiquetas/rutas legibles,
+modal/borde inferior completos. Rutas mas largas aun pueden partirse
+segun el wrapper global de60columnas; no todas longitudes/terminales,
+Windows, matriz, Cancel, respuestaUI ni cierreM2.
+Evidencia `docs/evidence/linux-build-recovery-layout-q182.json`.
