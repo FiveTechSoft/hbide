@@ -127,7 +127,9 @@ def execution_line():
     return None
 try:
     assert wait_for('noname.prg')
-    target=os.path.join(work,'conflict.prg')
+    literal='--literal' in sys.argv
+    target=os.path.join(work,'literal*.prg' if literal else 'conflict.prg')
+    if literal:open(os.path.join(work,'literal-other.prg'),'wb').write(b'X'*(8*1024*1024+1))
     original=b'procedure Main()\nreturn\n'
     open(target,'wb').write(original)
     send(b'\x1bf');pump(.3);send(b'o');assert wait_for('Open a file')

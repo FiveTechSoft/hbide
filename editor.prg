@@ -1243,19 +1243,23 @@ return xRet
 // 2-second check, 32 MB would be a visible 60 ms hitch.
 METHOD DiskStamp( cFile ) CLASS HBSrcEdit
 
-   local aDir, cStamp
+   local cStamp, dDate, cTime, nSize
 
    if Empty( cFile ) .or. ! File( cFile )
       return ""
    endif
 
-   aDir := Directory( cFile )
-   if Len( aDir ) == 0
+   // Directory takes a pattern: legal POSIX * and ? filenames must not
+   // borrow a matching sibling's time/size or bypass the small-file hash.
+   if ! hb_vfTimeGet( cFile, @dDate, @cTime )
       return ""
    endif
-
-   cStamp := DToS( aDir[ 1, 3 ] ) + "|" + aDir[ 1, 4 ] + "|" + hb_ntos( aDir[ 1, 2 ] )
-   if aDir[ 1, 2 ] <= 8 * 1024 * 1024
+   nSize := hb_vfSize( cFile )
+   if nSize < 0
+      return ""
+   endif
+   cStamp := DToS( dDate ) + "|" + cTime + "|" + hb_ntos( nSize )
+   if nSize <= 8 * 1024 * 1024
       cStamp += "|" + hb_MD5( hb_MemoRead( cFile ) )
    endif
 
