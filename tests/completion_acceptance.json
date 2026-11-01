@@ -3046,6 +3046,24 @@
         "test_editor_wheel_pty.py"
       ],
       "contract": "Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-HELP-LINK-VIEWER-WHEEL-UP": {
+      "source": "help.prg",
+      "context": "FUNCTION HBIDEHelpOpen( cTitle, aTopics )",
+      "condition": "CASE nKey == K_UP .OR. nKey == K_MWFORWARD",
+      "tests": [
+        "test_help_link_wheel_pty.py"
+      ],
+      "contract": "Actual Index exact Doc: COMPLETION_ROADMAP link-viewer xterm40x120: initial1/max>3, wheel down1to2, up2to1/upclamp, Endmax/downclamp/upmax-1, Esc returns same dirty source and Undo saves exact bytes. Wheel only in combined keyboard/wheel branches, no new Up/Down key coverage. Not Contents pane/search/alltopics/otherterminals/Windows; counters not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-HELP-LINK-VIEWER-WHEEL-DOWN": {
+      "source": "help.prg",
+      "context": "FUNCTION HBIDEHelpOpen( cTitle, aTopics )",
+      "condition": "CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD",
+      "tests": [
+        "test_help_link_wheel_pty.py"
+      ],
+      "contract": "Actual Index exact Doc: COMPLETION_ROADMAP link-viewer xterm40x120: initial1/max>3, wheel down1to2, up2to1/upclamp, Endmax/downclamp/upmax-1, Esc returns same dirty source and Undo saves exact bytes. Wheel only in combined keyboard/wheel branches, no new Up/Down key coverage. Not Contents pane/search/alltopics/otherterminals/Windows; counters not pixels; link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }

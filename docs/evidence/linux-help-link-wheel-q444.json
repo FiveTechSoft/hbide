@@ -1,0 +1,7 @@
+{
+  "scope": "Q444 separate related-link viewer wheel acceptance, not product fix",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "pty_log": "PASS Exact long manual opens link viewer at first line\nPASS Link viewer wheel down moves one line\nPASS Link viewer wheel up restores first line\nPASS Link viewer wheel up clamps at first line\nPASS Link viewer End reaches last readable top\nPASS Link viewer wheel down clamps at end\nPASS Link viewer wheel up from end moves one line\nPASS Link viewer returns same dirty source\nPASS Undo after link viewer wheel restores exact bytes\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-769pc689\n",
+  "limits": "9PASS;14/27boundedmousebranchlinks13pending; combinedkeyboard/wheelbranches only wheel fixture not keyacceptance, no pixels/model/fullmatrix/Windows/license/hitoclosure"
+}
