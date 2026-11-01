@@ -3825,3 +3825,13 @@ Source21036f1clean6modes38PTYchecks22models187repaint33inventory34docsPASS
 nofailure/retry. Native120x40fourliteralsyellow/nextreturnsfunctioncyan/
 fullborders/F2exact inspected. linux-editor-bracket-logical.json.
 No generallexer/runtimechange/Windows/global/hitoclosed.
+
+## Q117 - codeblock bracket literal lexical context
+
+Compileraccepts{||[/*literal]}/{|x|[...]}/commentgap. Before2PASS2FAIL
+falseblockcontaminatesfollowingcode. Addpipeexpressionstartcontext;four
+modelguardsincludingEvalvalueindex. Sourcefbe33dfclean6modes32PTYchecks
+22models191repaint33inventory34docsPASS,nofailure/retry. Actualnative120x40
+threebracketstringsyellow/realgapmagenta/nextkeywords cyan/fullborders/F2exact
+inspected. linux-editor-bracket-codeblock.json. No runtimecodeblockchange/
+generallexer/Windows/globalmatrix/milestoneclosed.

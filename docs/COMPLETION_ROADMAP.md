@@ -368,3 +368,10 @@ Clic en cuerpo de Help cambiaba topic segun fila aunque fuera del browser.
 Antes9/10; restringir coordenadas a columna topics conserva Keys tras
 body/outside y clicizquierdocolumna abreFunction. Native120x40ambas capturas
 inspeccionadas; no paginas/geometrias/Windows global. Ledger por revision.
+
+### Q117 - codeblock bracket literal context
+
+Expression-start pipe now preserves bracket strings for empty/argument blocks
+and comment gaps. 32 Linux PTY checks in six modes, 22 models and native120x40
+inspected; evidence linux-editor-bracket-codeblock.json. Bounded lexical fix,
+not full lexer/runtime/Windows/global milestone acceptance.
