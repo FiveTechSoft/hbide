@@ -6,6 +6,21 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'designer-dialog-inline-colors-small': ('test_designer_dialog_colors_pty.py', ['--small'], 120),
+    'designer-inline-say-numeric-small': ('test_designer_inline_numeric_pty.py', ['--kind', 'say', '--small'], 120),
+    'designer-inline-get-numeric-small': ('test_designer_inline_numeric_pty.py', ['--kind', 'get', '--small'], 120),
+    'designer-inline-button-numeric-small': ('test_designer_inline_numeric_pty.py', ['--kind', 'button', '--small'], 120),
+    'designer-inline-checkbox-numeric-small': ('test_designer_inline_numeric_pty.py', ['--kind', 'checkbox', '--small'], 120),
+    'designer-inline-radiogroup-numeric-small': ('test_designer_inline_numeric_pty.py', ['--kind', 'radiogroup', '--small'], 120),
+    'designer-inline-combobox-numeric-small': ('test_designer_inline_numeric_pty.py', ['--kind', 'combobox', '--small'], 120),
+    'designer-inline-listbox-numeric-small': ('test_designer_inline_numeric_pty.py', ['--listbox', '--small'], 120),
+    'designer-inline-say-text-small': ('test_designer_inline_text_pty.py', ['--kind', 'say', '--small'], 120),
+    'designer-inline-get-text-small': ('test_designer_inline_text_pty.py', ['--kind', 'get', '--small'], 120),
+    'designer-inline-button-text-small': ('test_designer_inline_text_pty.py', ['--kind', 'button', '--small'], 120),
+    'designer-inline-checkbox-text-small': ('test_designer_inline_text_pty.py', ['--kind', 'checkbox', '--small'], 120),
+    'designer-inline-radiogroup-text-small': ('test_designer_inline_text_pty.py', ['--kind', 'radiogroup', '--small'], 120),
+    'designer-inline-combobox-text-small': ('test_designer_inline_text_pty.py', ['--kind', 'combobox', '--small'], 120),
+    'designer-inline-listbox-text-small': ('test_designer_inline_text_pty.py', ['--listbox', '--small'], 120),
     'designer-inline-get-pair-all-skipped-runtime': ('test_designer_inline_all_skipped_runtime_pty.py', ['--kind','get','--pair'], 120),
     'designer-inline-radiogroup-pair-all-skipped-runtime': ('test_designer_inline_all_skipped_runtime_pty.py', ['--kind','radiogroup','--pair'], 120),
     'designer-inline-checkbox-pair-all-skipped-runtime': ('test_designer_inline_all_skipped_runtime_pty.py', ['--kind','checkbox','--pair'], 120),

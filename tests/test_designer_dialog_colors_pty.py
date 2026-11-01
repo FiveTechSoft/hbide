@@ -5,6 +5,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
+small='--small' in sys.argv
 for kind in ['button']:
  modelpath=work/'fixture.json'
  pid,fd=pty.fork()
@@ -21,6 +22,7 @@ for kind in ['button']:
    b+=d
    if b'\x1b[6n' in d:os.write(fd,b'\x1b[40;1R')
    if b'\x1b[18t' in d:os.write(fd,b'\x1b[8;40;120t')
+  for rr,cc in re.findall(rb'\x1b\[8;(\d+);(\d+)t',b):fcntl.ioctl(fd,termios.TIOCSWINSZ,struct.pack('HHHH',int(rr),int(cc),0,0))
   screen.feed(b)
  def send(b,wait=.15):os.write(fd,b);pump(wait)
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
@@ -35,7 +37,11 @@ for kind in ['button']:
   if kind!='say':
    for key in ['when','valid','focus','state']:control[key]="Handler_"+key+"( 'quoted' )"
   modelpath.write_text(json.dumps({'name':'Fixture','caption':'Fixture','width':60,'height':20,'controls':[control]}))
-  pump(.8);send(b'\x1bo');send(b's',.3);send(b'\x1b[24~',.3)
+  pump(.8)
+  if small:
+   send(b'\x1bo');send(b'd');send(b'\x1b[B');send(b'\x1b[B');send(b'\t');send(b'\r',.5)
+   check('actual Display applies25x80',struct.unpack('HHHH',fcntl.ioctl(fd,termios.TIOCGWINSZ,b'\0'*8))[:2]==(25,80))
+  send(b'\x1bo');send(b's',.3);send(b'\x1b[24~',.3)
   send(b'\x19'+str(modelpath).encode());send(b'\r');send(b'\r',.3)
   def model():
    send(b'\x1b[21~',.25)
