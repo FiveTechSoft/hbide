@@ -1,0 +1,146 @@
+{
+  "scope": "FrozenC30 nine inspector/mixed modes.37distinctQ217..221. Not full353/Windows/newpixels/models/M4closure; accelerator launcher declaresSetCancel(.F.),defaultAltC not fixed.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "inspector-close",
+          "command": [
+            "test_designer_inspector_close_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.025399923324585,
+          "test_sha256": "927131481c688e8009f6bf6c74054f78b01c613ecb4ff792521f307bc7575eee",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inspector-close.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inspector-close-small",
+          "command": [
+            "test_designer_inspector_close_pty.py",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 6.353672504425049,
+          "test_sha256": "927131481c688e8009f6bf6c74054f78b01c613ecb4ff792521f307bc7575eee",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inspector-close-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inspector-drag",
+          "command": [
+            "test_designer_inspector_drag_anchor_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.045684337615967,
+          "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inspector-drag.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inspector-drag-small",
+          "command": [
+            "test_designer_inspector_drag_anchor_pty.py",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 5.3921308517456055,
+          "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inspector-drag-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inspector-drag-vertical",
+          "command": [
+            "test_designer_inspector_drag_anchor_pty.py",
+            "--vertical"
+          ],
+          "exit": 0,
+          "seconds": 5.872826099395752,
+          "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inspector-drag-vertical.log",
+          "printed_failure": false
+        },
+        {
+          "name": "inspector-drag-vertical-small",
+          "command": [
+            "test_designer_inspector_drag_anchor_pty.py",
+            "--vertical",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 7.641233682632446,
+          "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/inspector-drag-vertical-small.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "mixed-runtime",
+          "command": [
+            "test_designer_mixed_fixture_runtime_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.21439790725708,
+          "test_sha256": "3155aba992e0e9a2e6e2237c74c5065f04b1f715499d17320ef88bb8a6278a4c",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/mixed-runtime.log",
+          "printed_failure": false
+        },
+        {
+          "name": "mixed-actions",
+          "command": [
+            "test_designer_mixed_fixture_runtime_pty.py",
+            "--actions"
+          ],
+          "exit": 0,
+          "seconds": 12.385322570800781,
+          "test_sha256": "3155aba992e0e9a2e6e2237c74c5065f04b1f715499d17320ef88bb8a6278a4c",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/mixed-actions.log",
+          "printed_failure": false
+        },
+        {
+          "name": "mixed-accelerators",
+          "command": [
+            "test_designer_mixed_fixture_runtime_pty.py",
+            "--actions",
+            "--accelerators"
+          ],
+          "exit": 0,
+          "seconds": 12.381347894668579,
+          "test_sha256": "3155aba992e0e9a2e6e2237c74c5065f04b1f715499d17320ef88bb8a6278a4c",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/mixed-accelerators.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "logs": {
+    "inspector-close.log": "PASS combobox inspector visible\nPASS title centered in 31-column panel\nPASS left header close hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-o9v97ouc\n",
+    "inspector-close-small.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS title centered in 31-column panel\nPASS left header close hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-qnvdregs\n",
+    "inspector-drag.log": "PASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-cl95xo7b\n",
+    "inspector-drag-small.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-w15mf5fu\n",
+    "inspector-drag-vertical.log": "PASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS inspector initially clamped to bottom\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-7bf_9rny\n",
+    "inspector-drag-vertical-small.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS inspector initially clamped to bottom\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-rdxsdgk1\n",
+    "mixed-runtime.log": "PASS F9 generates committed mixed-control fixture\nPASS designer load preserves all twelve controls\nPASS actual mixed generated PRG compiles\nPASS escape runtime mixed dialog visible\nPASS escape runtime returns and writes bound values\nPASS escape mixed GET fields retain independent input\nPASS escape checkbox state independent\nPASS escape unvisited selectors keep defaults\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-bqs45umm\n",
+    "mixed-actions.log": "PASS F9 generates committed mixed-control fixture\nPASS designer load preserves all twelve controls\nPASS actual mixed generated PRG compiles\nPASS escape runtime mixed dialog visible\nPASS escape runtime returns and writes bound values\nPASS escape mixed GET fields retain independent input\nPASS escape checkbox state independent\nPASS escape unvisited selectors keep defaults\nPASS save runtime mixed dialog visible\nPASS save runtime returns and writes bound values\nPASS save mixed GET fields retain independent input\nPASS save checkbox state independent\nPASS save unvisited selectors keep defaults\nPASS save actual button action returns expected flag\nPASS cancel runtime mixed dialog visible\nPASS cancel runtime returns and writes bound values\nPASS cancel mixed GET fields retain independent input\nPASS cancel checkbox state independent\nPASS cancel unvisited selectors keep defaults\nPASS cancel actual button action returns expected flag\nPASS selectors runtime mixed dialog visible\nPASS selectors runtime returns and writes bound values\nPASS combo radio and list change independent bindings\nTOTAL 23 PASS 0 FAIL; evidence /tmp/hbide-source-run-1pllsfzq\n",
+    "mixed-accelerators.log": "PASS F9 generates committed mixed-control fixture\nPASS designer load preserves all twelve controls\nPASS actual mixed generated PRG compiles\nPASS escape runtime mixed dialog visible\nPASS escape runtime returns and writes bound values\nPASS escape mixed GET fields retain independent input\nPASS escape checkbox state independent\nPASS escape unvisited selectors keep defaults\nPASS save runtime mixed dialog visible\nPASS save runtime returns and writes bound values\nPASS save mixed GET fields retain independent input\nPASS save checkbox state independent\nPASS save unvisited selectors keep defaults\nPASS save actual button action returns expected flag\nPASS cancel runtime mixed dialog visible\nPASS cancel runtime returns and writes bound values\nPASS cancel mixed GET fields retain independent input\nPASS cancel checkbox state independent\nPASS cancel unvisited selectors keep defaults\nPASS cancel actual button action returns expected flag\nPASS selectors runtime mixed dialog visible\nPASS selectors runtime returns and writes bound values\nPASS combo radio and list change independent bindings\nTOTAL 23 PASS 0 FAIL; evidence /tmp/hbide-source-run-61ilcz25\n"
+  }
+}

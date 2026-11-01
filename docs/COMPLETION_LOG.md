@@ -5204,3 +5204,13 @@ Testspropioexporthashed/binsincambios. 28modosdistintosconQ217..219,
 no sumarosextrasduplicados. Sinfallos/reintentosdelconductor en5/6/7.
 No fixproducto/pixeles/modelos/Windows/Cancel/bloqueoUI/matriz353/hitos.
 Evidencia: docs/evidence/linux-c30-build-blocks567-q220.json.
+
+### Q221 (1 noviembre 2026): C30inspector/fixturemixta
+
+9modosmasPASSmismobinC3096d77549/export049b533:centrocierre2dims,drag
+horizontal/vertical2dims,fixturemixtaF9PRGcompile/runtime,acciones,
+aceleradores. UltimolauncherSetCancel(.F.)explicito,no AltCdefaultfix.
+37modosdistintosconQ217..220,noextrasduplicados. Sinfallosconductorestos9.
+Testsdelpropioexporthashed/binsincambios. No nuevopixeles/modelos/producto,
+Windows/matriz353/M4closure.
+Evidencia: docs/evidence/linux-c30-designer-blocks89-q221.json.
