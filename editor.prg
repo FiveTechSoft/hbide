@@ -2096,7 +2096,7 @@ RETURN ( !Empty(cBefore) .AND. Right(cBefore,1) $ "=<>#$*/%^!" .AND. Right(cBefo
    ( Right(cBefore,1) == "-" .AND. Right(cBefore,2) != "--" ) .OR. ;
    Right(Upper(cBefore),5) == ".AND." .OR. Right(Upper(cBefore),4) == ".OR." .OR. ;
    Right(Upper(cBefore),5) == ".NOT." .OR. ;
-   ( ! Empty(cBefore) .AND. Right(cBefore,1) $ "({,|" )
+   ( ! Empty(cBefore) .AND. Right(cBefore,1) $ "({,|?" )
 
 // NOTE is a physical-line comment. Keep identifier prefixes as code.
 static function HBIDE_EditorNoteLine( cLine )
