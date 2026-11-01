@@ -66,15 +66,20 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre20:58 Q398-Q400 agrega aceptaciónfocalM2/recovery/designer
-sobreC83exacto, detallada al final, no suma a matrizglobal ni píxeles nuevos.
-Q401docs posteriores no embebidos en el candidato.
+Corte 1 noviembre21:10 Q405: último candidato identificado C85,
+fuente fbca0b71789b6d5dd3589587cf138ac91cbc90ba,
+bin 351bd50074b28c6fdfc5b029382c891ac6974ec799a828fc536f86628ba85f34.
+8smokes oficiales/cinco modos TEXT15checksPASS; integra Q403streamestándar.
+No hereda matriz/modelos/píxeles ni aceptación posterior de C83.
+Q406docs posteriores no embebidos C85, sin rebuild por docs. Detalle al final.
 
-Actualización 1 noviembre20:49 Q395: último candidato identificado C83,
-fuentec245e8c3047f97a8674f75bb0f1ae33123defe1e,
-bin92504b3338a3e2f24a14615d54d8ad4fd14b12f9901fd53cd8c1f8aa157309a5.
-8smokes/cincofocal17checksPASS, integra ENDcontinuadoQ394. Sin matriz/modelos/
-píxeles heredados; Q396docs posteriores no embebidos. Detalle al final.
+Histórico anterior, no evidencia heredada por C85:
+
+Actualización 1 noviembre20:49 Q395: candidato anterior C83,
+fuente c245e8c3047f97a8674f75bb0f1ae33123defe1e,
+bin 92504b3338a3e2f24a14615d54d8ad4fd14b12f9901fd53cd8c1f8aa157309a5.
+8smokes/cincofocal17checksPASS y aceptación posterior Q398-Q402 limitada
+a ese binario, no evidencia del candidato C85.
 
 Histórico anterior, no evidencia heredada por C83:
 
@@ -1413,3 +1418,27 @@ Q401docs/catálogo posteriores no embebidosC83, sin rebuild por receipts.
 C30 sigue único planhistóricocompleto. Receipts linux-model-baseline-q397,
 linux-build-run-c83-q398, linux-recovery-c83-q399 y linux-designer-c83-q400
 (JSON en docs/evidence).
+
+### Q402-Q406 (1 noviembre 2026): TEXT estándar y candidato C85
+
+Q402cinco modos editor C83exacto52checksPASS: EnterCRLF6/BackspaceCRLF5/
+continuationBackspace12/Delete12/mouseUTF8terminal17. No herencia a C85.
+Q403defecto reproducido con TEXT TO FILE válido en std.ch: C83listaba una
+función dentro del payload y ocultaba la real tras comentario literal.
+Baseline1PASS2FAIL; scanner reconoce TEXT TO FILE y TEXT TO PRINTER como
+bloques raw estándar hasta ENDTEXT. No ejecuta payload ni evalúa macros.
+C84focal fuente6d855540cdff2c85335f69ad38ee9ecb2f8e8a3f,
+bin584878460045dae3e8c13a1c2604006b025f47b9ba57c1f67e2e1055a1456be3:
+focal3PASS/cuatroregresiones12checksPASS. ModeloGTSTD131PASS separado.
+Píxeles completos C83/C84 inspeccionados: Phantomline3 sustituido por RealLine7;
+no corrección de colores de sintaxis. Q404cuatro contextos compilador exit0
+(PRINTER/FILEtabs/bare/expresión) y12checksPTY C84PASS, sin nuevos píxeles.
+Q405C85oficial fuente fbca0b71789b6d5dd3589587cf138ac91cbc90ba,
+bin351bd50074b28c6fdfc5b029382c891ac6974ec799a828fc536f86628ba85f34:
+stripdebug/Aboutrev/docs34byteexact/ldd/8smokesPASS, cincoTEXT15checksPASS.
+Receipts linux-nav-text-stream-q403.json, linux-nav-text-contexts-q404.json y
+linux-candidate-c85-q405.json. Compactación reversible C81-C84source.tar
+verificada con SHA original/manifest cuando existe/decomprimido; árboles,
+binarios, logs y evidencia conservados,741523760bytes liberados.
+Q406docs/catálogo posteriores no embebidos C85. No matriz completa,
+herencia de modelos/píxeles, Windows/install/licencias ni cierre de hito.

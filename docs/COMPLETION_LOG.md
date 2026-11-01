@@ -5889,3 +5889,27 @@ Q401docs/catálogo posteriores no embebidosC83, sin rebuild por receipts.
 C30 sigue único planhistóricocompleto. Receipts linux-model-baseline-q397,
 linux-build-run-c83-q398, linux-recovery-c83-q399 y linux-designer-c83-q400
 (JSON en docs/evidence).
+
+### Q402-Q406 (1 noviembre 2026): TEXT estándar y candidato C85
+
+Q402cinco modos editor C83exacto52checksPASS: EnterCRLF6/BackspaceCRLF5/
+continuationBackspace12/Delete12/mouseUTF8terminal17. No herencia a C85.
+Q403defecto reproducido con TEXT TO FILE válido en std.ch: C83listaba una
+función dentro del payload y ocultaba la real tras comentario literal.
+Baseline1PASS2FAIL; scanner reconoce TEXT TO FILE y TEXT TO PRINTER como
+bloques raw estándar hasta ENDTEXT. No ejecuta payload ni evalúa macros.
+C84focal fuente6d855540cdff2c85335f69ad38ee9ecb2f8e8a3f,
+bin584878460045dae3e8c13a1c2604006b025f47b9ba57c1f67e2e1055a1456be3:
+focal3PASS/cuatroregresiones12checksPASS. ModeloGTSTD131PASS separado.
+Píxeles completos C83/C84 inspeccionados: Phantomline3 sustituido por RealLine7;
+no corrección de colores de sintaxis. Q404cuatro contextos compilador exit0
+(PRINTER/FILEtabs/bare/expresión) y12checksPTY C84PASS, sin nuevos píxeles.
+Q405C85oficial fuente fbca0b71789b6d5dd3589587cf138ac91cbc90ba,
+bin351bd50074b28c6fdfc5b029382c891ac6974ec799a828fc536f86628ba85f34:
+stripdebug/Aboutrev/docs34byteexact/ldd/8smokesPASS, cincoTEXT15checksPASS.
+Receipts linux-nav-text-stream-q403.json, linux-nav-text-contexts-q404.json y
+linux-candidate-c85-q405.json. Compactación reversible C81-C84source.tar
+verificada con SHA original/manifest cuando existe/decomprimido; árboles,
+binarios, logs y evidencia conservados,741523760bytes liberados.
+Q406docs/catálogo posteriores no embebidos C85. No matriz completa,
+herencia de modelos/píxeles, Windows/install/licencias ni cierre de hito.
