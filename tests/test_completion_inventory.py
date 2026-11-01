@@ -404,7 +404,7 @@ class GestureContractLinks(unittest.TestCase):
         for row in selected:
             self.assertIn(row['context'],['METHOD EditKey( nKey ) CLASS HBSrcEdit','METHOD Activate() CLASS HbDesigner'])
             self.assertIn('not current runtime PASS',row['acceptance']['contract'])
-            self.assertIn('branch',row['acceptance']['contract'])
+            self.assertIn('Event branch is not a unique feature',row['acceptance']['contract'])
         self.assertTrue(all(isinstance(r['acceptance'],str) for r in self.rows))
     def test_wrong_context_rejected(self):
         ident=next(iter(self.specs));spec=dict(self.specs[ident],context='METHOD Other(')

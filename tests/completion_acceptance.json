@@ -2964,7 +2964,7 @@
         "test_designer_inspector_close_pty.py",
         "test_designer_inspector_drag_anchor_pty.py"
       ],
-      "contract": "Inspector-visible, non-placing main dispatcher only: close glyph hides panel preserving full control JSON and F4 reopens same position; header drag from clamped visible origin follows immediately horizontally, vertically and after outward edge reversal. Bounded 40x120/--small25x80 ComboBox fixtures and xterm mouse, not placement/control drag/all hit-tests, inspector-focused loop, every terminal or Windows. PTY cells/JSON not pixel proof; link is not current runtime PASS; event branch not unique feature."
+      "contract": "Inspector-visible, non-placing main dispatcher only: close glyph hides panel preserving full control JSON and F4 reopens same position; header drag from clamped visible origin follows immediately horizontally, vertically and after outward edge reversal. Bounded 40x120/--small25x80 ComboBox fixtures and xterm mouse, not placement/control drag/all hit-tests, inspector-focused loop, every terminal or Windows. PTY cells/JSON not pixel proof; link is not current runtime PASS; Event branch is not a unique feature."
     }
   }
 }
