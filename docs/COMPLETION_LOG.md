@@ -4360,3 +4360,12 @@ No vetoantesdeAction/accionterminante niotrasteclas/mouse/sideeffects/
 orden/cuentas/parametros/excepciones/codigoarbitrario,nuevosmodelos/
 pixeles/Windows/global/cierreM4. Evidencia
 `docs/evidence/linux-designer-inline-valid-six-types-q159.json`.
+
+## 1 noviembre 2026: Q160 enlaces runtime separados por par
+
+21enlaces(runtime20eventos+ButtonAction) aparte delcontratopersistencia.
+Incluyen.T.,WHEN.F./all-skippeddeuncontrol,VALIDTab.F./.T.exactoporpar.
+Guarda identidadcontrol/clave,tipodecampo admitido y testexistente;
+rechaza falsoenlacenumerico,identidadcruzadaytestausente. LinknoesPASS
+actual,nialcancecompleto. NoActionvetoasumido. Sinarreglo/nuevoPTY/modelo/
+visual/Windows/M4. Inventario ahora distingue persistencia de ejecución.

@@ -103,25 +103,25 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-056 | Help | Windows | hbdebug/dbgmenu.prg:213 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-057 | Help | Menus | hbdebug/dbgmenu.prg:214 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-058 | Help | Commands | hbdebug/dbgmenu.prg:215 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-001 | Palette | Label (SAY) | designer.prg:517 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-002 | Palette | Input (GET) | designer.prg:518 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-003 | Palette | CheckBox | designer.prg:519 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-004 | Palette | PushButton | designer.prg:520 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-005 | Palette | RadioGroup | designer.prg:521 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-006 | Palette | ListBox | designer.prg:522 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-007 | Palette | ComboBox | designer.prg:523 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-008 | Palette | Dialog properties... | designer.prg:525 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-009 | Palette | Undo        Ctrl+Z | designer.prg:526 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-010 | Palette | Redo        Ctrl+Y | designer.prg:527 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-011 | Palette | Copy        Ctrl+C | designer.prg:529 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-012 | Palette | Cut         Ctrl+X | designer.prg:530 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-013 | Palette | Paste       Ctrl+V | designer.prg:531 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-014 | Palette | Snap to grid  F7 | designer.prg:532 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-015 | Palette | Save JSON    F10 | designer.prg:534 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-016 | Palette | Save JSON as...  F11 | designer.prg:535 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-017 | Palette | Open JSON    F12 | designer.prg:536 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-018 | Palette | Generate PRG  F9 | designer.prg:537 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-019 | Palette | Generate and open | designer.prg:538 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-001 | Palette | Label (SAY) | designer.prg:519 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-002 | Palette | Input (GET) | designer.prg:520 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-003 | Palette | CheckBox | designer.prg:521 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-004 | Palette | PushButton | designer.prg:522 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-005 | Palette | RadioGroup | designer.prg:523 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-006 | Palette | ListBox | designer.prg:524 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-007 | Palette | ComboBox | designer.prg:525 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-008 | Palette | Dialog properties... | designer.prg:527 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-009 | Palette | Undo        Ctrl+Z | designer.prg:528 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-010 | Palette | Redo        Ctrl+Y | designer.prg:529 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-011 | Palette | Copy        Ctrl+C | designer.prg:531 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-012 | Palette | Cut         Ctrl+X | designer.prg:532 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-013 | Palette | Paste       Ctrl+V | designer.prg:533 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-014 | Palette | Snap to grid  F7 | designer.prg:534 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-015 | Palette | Save JSON    F10 | designer.prg:536 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-016 | Palette | Save JSON as...  F11 | designer.prg:537 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-017 | Palette | Open JSON    F12 | designer.prg:538 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-018 | Palette | Generate PRG  F9 | designer.prg:539 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-019 | Palette | Generate and open | designer.prg:540 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 
 ## Contratos y pruebas vinculadas
 
@@ -255,36 +255,36 @@ Extraidas de EditProperties/DlgProperties/SelectFileName. Condiciones literales,
 
 | ID | Etiqueta | Tipo / picture | Condiciones fuente | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- | --- |
-| DSN-FIELD-EditProperties-nRow-1 | Row: | value 999 | Siempre | designer.prg:1328 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nCol-1 | Col: | value 999 | Siempre | designer.prg:1329 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cCaption-1 | Caption: | value @S40 | oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX | designer.prg:1334 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cVariable-1 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX | designer.prg:1339 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nWidth-1 | Width: | value 999 | oCtrl[ "type" ] == DSN_GET | designer.prg:1344 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cAccel-1 | Accel: | value  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1349 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cAction-1 | Action: | value @S40 | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1351 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lBrackets-1 | B&rackets look (uncheck for 3D shadow) | checkbox  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1353 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cVariable-2 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1359 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cItems-1 | Items: | value @S40 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1361 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nWidth-2 | Width: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1366 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nHeight-1 | Height: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1368 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cWhen-1 | When: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1373 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cValid-1 | Valid: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1375 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cFocus-1 | Focus: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1378 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cState-1 | State: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1382 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1387 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1391 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cCaption-1 | Caption: | value @S40 | Siempre | designer.prg:1475 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cName-1 | Name: | value  | Siempre | designer.prg:1478 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-nWidth-1 | Width: | value 999 | Siempre | designer.prg:1481 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-nHeight-1 | Height: | value 999 | Siempre | designer.prg:1484 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrBack-1 | Back: | value @S20 | Siempre | designer.prg:1487 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrText-1 | Text: | value @S20 | Siempre | designer.prg:1490 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrFocus-1 | Focus: | value @S20 | Siempre | designer.prg:1493 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1496 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1500 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-cFile-1 | File: | value @S35 | Siempre | designer.prg:1601 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-lDummy-1 | &OK | button  | Siempre | designer.prg:1604 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1608 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nRow-1 | Row: | value 999 | Siempre | designer.prg:1331 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nCol-1 | Col: | value 999 | Siempre | designer.prg:1332 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cCaption-1 | Caption: | value @S40 | oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX | designer.prg:1337 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cVariable-1 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX | designer.prg:1342 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nWidth-1 | Width: | value 999 | oCtrl[ "type" ] == DSN_GET | designer.prg:1347 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cAccel-1 | Accel: | value  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1352 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cAction-1 | Action: | value @S40 | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1354 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lBrackets-1 | B&rackets look (uncheck for 3D shadow) | checkbox  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1356 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cVariable-2 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1362 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cItems-1 | Items: | value @S40 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1364 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nWidth-2 | Width: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1369 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nHeight-1 | Height: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1371 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cWhen-1 | When: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1376 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cValid-1 | Valid: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1378 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cFocus-1 | Focus: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1381 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cState-1 | State: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1385 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1390 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1394 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cCaption-1 | Caption: | value @S40 | Siempre | designer.prg:1478 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cName-1 | Name: | value  | Siempre | designer.prg:1481 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-nWidth-1 | Width: | value 999 | Siempre | designer.prg:1484 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-nHeight-1 | Height: | value 999 | Siempre | designer.prg:1487 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrBack-1 | Back: | value @S20 | Siempre | designer.prg:1490 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrText-1 | Text: | value @S20 | Siempre | designer.prg:1493 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrFocus-1 | Focus: | value @S20 | Siempre | designer.prg:1496 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1499 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1503 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-cFile-1 | File: | value @S35 | Siempre | designer.prg:1604 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-lDummy-1 | &OK | button  | Siempre | designer.prg:1607 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1611 | Pendiente por campo; contratos de superficie separados |
 
 ## Pares control/campo modal
 
@@ -545,8 +545,8 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:525 | Pendiente gesto |
 | MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2071 | Pendiente gesto |
 | MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2072 | Pendiente gesto |
-| MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:435 | Pendiente gesto |
-| MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:438 | Pendiente gesto |
+| MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:436 | Pendiente gesto |
+| MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:439 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-2 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWBACKWARD` | help.prg:560 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-3 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_LBUTTONDOWN` | help.prg:562 | Pendiente gesto |
@@ -571,66 +571,66 @@ Pares tipo/campo expandidos de guardas de InspFields. Vinculo no es PASS actual,
 
 | Control | Campo | Clave | Tipo | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- | --- |
-| say | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
-| get | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
-| checkbox | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
-| button | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
-| radiogroup | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
-| listbox | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
-| combobox | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
-| say | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
-| get | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
-| checkbox | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
-| button | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
-| radiogroup | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
-| listbox | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
-| combobox | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
-| say | Caption | caption | text | designer.prg:1798 | Vinculo focal; ver alcance |
-| checkbox | Caption | caption | text | designer.prg:1798 | Vinculo focal; ver alcance |
-| button | Caption | caption | text | designer.prg:1798 | Vinculo focal; ver alcance |
-| get | Variable | variable | text | designer.prg:1801 | Vinculo focal; ver alcance |
-| checkbox | Variable | variable | text | designer.prg:1801 | Vinculo focal; ver alcance |
-| get | Width | width | num | designer.prg:1804 | Vinculo focal; ver alcance |
-| button | Accel | accelerator | text | designer.prg:1807 | Vinculo focal; ver alcance |
-| button | Action | action | text | designer.prg:1808 | Vinculo focal; ver alcance |
-| button | Style | style | choice | designer.prg:1809 | Vinculo focal; ver alcance |
-| radiogroup | Variable | variable | text | designer.prg:1812 | Vinculo focal; ver alcance |
-| listbox | Variable | variable | text | designer.prg:1812 | Vinculo focal; ver alcance |
-| combobox | Variable | variable | text | designer.prg:1812 | Vinculo focal; ver alcance |
-| radiogroup | Items | items | text | designer.prg:1813 | Vinculo focal; ver alcance |
-| listbox | Items | items | text | designer.prg:1813 | Vinculo focal; ver alcance |
-| combobox | Items | items | text | designer.prg:1813 | Vinculo focal; ver alcance |
-| listbox | Width | width | num | designer.prg:1816 | Vinculo focal; ver alcance |
-| combobox | Width | width | num | designer.prg:1816 | Vinculo focal; ver alcance |
-| listbox | Height | height | num | designer.prg:1817 | Vinculo focal; ver alcance |
-| combobox | Height | height | num | designer.prg:1817 | Vinculo focal; ver alcance |
-| get | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
-| checkbox | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
-| button | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
-| radiogroup | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
-| listbox | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
-| combobox | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
-| get | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
-| checkbox | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
-| button | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
-| radiogroup | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
-| listbox | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
-| combobox | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
-| checkbox | Focus | focus | text | designer.prg:1823 | Vinculo focal; ver alcance |
-| button | Focus | focus | text | designer.prg:1823 | Vinculo focal; ver alcance |
-| radiogroup | Focus | focus | text | designer.prg:1823 | Vinculo focal; ver alcance |
-| listbox | Focus | focus | text | designer.prg:1823 | Vinculo focal; ver alcance |
-| combobox | Focus | focus | text | designer.prg:1823 | Vinculo focal; ver alcance |
-| checkbox | State | state | text | designer.prg:1826 | Vinculo focal; ver alcance |
-| listbox | State | state | text | designer.prg:1826 | Vinculo focal; ver alcance |
-| combobox | State | state | text | designer.prg:1826 | Vinculo focal; ver alcance |
-| dialog | Name | dlgname | text | designer.prg:1830 | Vinculo focal; ver alcance |
-| dialog | Caption | dlgcaption | text | designer.prg:1831 | Vinculo focal; ver alcance |
-| dialog | Width | dlgwidth | num | designer.prg:1832 | Vinculo focal; ver alcance |
-| dialog | Height | dlgheight | num | designer.prg:1833 | Vinculo focal; ver alcance |
-| dialog | Back | dlgback | color | designer.prg:1834 | Vinculo focal; ver alcance |
-| dialog | Text | dlgtext | color | designer.prg:1835 | Vinculo focal; ver alcance |
-| dialog | Focus | dlgfocus | color | designer.prg:1836 | Vinculo focal; ver alcance |
+| say | Row | row | num | designer.prg:1798 | Vinculo focal; ver alcance |
+| get | Row | row | num | designer.prg:1798 | Vinculo focal; ver alcance |
+| checkbox | Row | row | num | designer.prg:1798 | Vinculo focal; ver alcance |
+| button | Row | row | num | designer.prg:1798 | Vinculo focal; ver alcance |
+| radiogroup | Row | row | num | designer.prg:1798 | Vinculo focal; ver alcance |
+| listbox | Row | row | num | designer.prg:1798 | Vinculo focal; ver alcance |
+| combobox | Row | row | num | designer.prg:1798 | Vinculo focal; ver alcance |
+| say | Col | col | num | designer.prg:1799 | Vinculo focal; ver alcance |
+| get | Col | col | num | designer.prg:1799 | Vinculo focal; ver alcance |
+| checkbox | Col | col | num | designer.prg:1799 | Vinculo focal; ver alcance |
+| button | Col | col | num | designer.prg:1799 | Vinculo focal; ver alcance |
+| radiogroup | Col | col | num | designer.prg:1799 | Vinculo focal; ver alcance |
+| listbox | Col | col | num | designer.prg:1799 | Vinculo focal; ver alcance |
+| combobox | Col | col | num | designer.prg:1799 | Vinculo focal; ver alcance |
+| say | Caption | caption | text | designer.prg:1801 | Vinculo focal; ver alcance |
+| checkbox | Caption | caption | text | designer.prg:1801 | Vinculo focal; ver alcance |
+| button | Caption | caption | text | designer.prg:1801 | Vinculo focal; ver alcance |
+| get | Variable | variable | text | designer.prg:1804 | Vinculo focal; ver alcance |
+| checkbox | Variable | variable | text | designer.prg:1804 | Vinculo focal; ver alcance |
+| get | Width | width | num | designer.prg:1807 | Vinculo focal; ver alcance |
+| button | Accel | accelerator | text | designer.prg:1810 | Vinculo focal; ver alcance |
+| button | Action | action | text | designer.prg:1811 | Vinculo focal; ver alcance |
+| button | Style | style | choice | designer.prg:1812 | Vinculo focal; ver alcance |
+| radiogroup | Variable | variable | text | designer.prg:1815 | Vinculo focal; ver alcance |
+| listbox | Variable | variable | text | designer.prg:1815 | Vinculo focal; ver alcance |
+| combobox | Variable | variable | text | designer.prg:1815 | Vinculo focal; ver alcance |
+| radiogroup | Items | items | text | designer.prg:1816 | Vinculo focal; ver alcance |
+| listbox | Items | items | text | designer.prg:1816 | Vinculo focal; ver alcance |
+| combobox | Items | items | text | designer.prg:1816 | Vinculo focal; ver alcance |
+| listbox | Width | width | num | designer.prg:1819 | Vinculo focal; ver alcance |
+| combobox | Width | width | num | designer.prg:1819 | Vinculo focal; ver alcance |
+| listbox | Height | height | num | designer.prg:1820 | Vinculo focal; ver alcance |
+| combobox | Height | height | num | designer.prg:1820 | Vinculo focal; ver alcance |
+| get | When | when | text | designer.prg:1823 | Vinculo focal; ver alcance |
+| checkbox | When | when | text | designer.prg:1823 | Vinculo focal; ver alcance |
+| button | When | when | text | designer.prg:1823 | Vinculo focal; ver alcance |
+| radiogroup | When | when | text | designer.prg:1823 | Vinculo focal; ver alcance |
+| listbox | When | when | text | designer.prg:1823 | Vinculo focal; ver alcance |
+| combobox | When | when | text | designer.prg:1823 | Vinculo focal; ver alcance |
+| get | Valid | valid | text | designer.prg:1824 | Vinculo focal; ver alcance |
+| checkbox | Valid | valid | text | designer.prg:1824 | Vinculo focal; ver alcance |
+| button | Valid | valid | text | designer.prg:1824 | Vinculo focal; ver alcance |
+| radiogroup | Valid | valid | text | designer.prg:1824 | Vinculo focal; ver alcance |
+| listbox | Valid | valid | text | designer.prg:1824 | Vinculo focal; ver alcance |
+| combobox | Valid | valid | text | designer.prg:1824 | Vinculo focal; ver alcance |
+| checkbox | Focus | focus | text | designer.prg:1826 | Vinculo focal; ver alcance |
+| button | Focus | focus | text | designer.prg:1826 | Vinculo focal; ver alcance |
+| radiogroup | Focus | focus | text | designer.prg:1826 | Vinculo focal; ver alcance |
+| listbox | Focus | focus | text | designer.prg:1826 | Vinculo focal; ver alcance |
+| combobox | Focus | focus | text | designer.prg:1826 | Vinculo focal; ver alcance |
+| checkbox | State | state | text | designer.prg:1829 | Vinculo focal; ver alcance |
+| listbox | State | state | text | designer.prg:1829 | Vinculo focal; ver alcance |
+| combobox | State | state | text | designer.prg:1829 | Vinculo focal; ver alcance |
+| dialog | Name | dlgname | text | designer.prg:1833 | Vinculo focal; ver alcance |
+| dialog | Caption | dlgcaption | text | designer.prg:1834 | Vinculo focal; ver alcance |
+| dialog | Width | dlgwidth | num | designer.prg:1835 | Vinculo focal; ver alcance |
+| dialog | Height | dlgheight | num | designer.prg:1836 | Vinculo focal; ver alcance |
+| dialog | Back | dlgback | color | designer.prg:1837 | Vinculo focal; ver alcance |
+| dialog | Text | dlgtext | color | designer.prg:1838 | Vinculo focal; ver alcance |
+| dialog | Focus | dlgfocus | color | designer.prg:1839 | Vinculo focal; ver alcance |
 - DSN-INSP-say-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for say/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
 - DSN-INSP-get-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for get/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
 - DSN-INSP-checkbox-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for checkbox/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
@@ -653,6 +653,7 @@ Pares tipo/campo expandidos de guardas de InspFields. Vinculo no es PASS actual,
 - DSN-INSP-get-width: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for get/width. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
 - DSN-INSP-button-accelerator: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/accelerator. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
 - DSN-INSP-button-action: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/action. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q148/Q150 edited ButtonAction executes via Enter/Space in generated artifact after inline edit,F10,F9 and compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_button_runtime_pty.py](../tests/test_designer_inline_button_runtime_pty.py)
 - DSN-INSP-button-style: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for button/style. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
 - DSN-INSP-radiogroup-variable: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
 - DSN-INSP-listbox-variable: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
@@ -665,25 +666,45 @@ Pares tipo/campo expandidos de guardas de InspFields. Vinculo no es PASS actual,
 - DSN-INSP-listbox-height: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for listbox/height. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
 - DSN-INSP-combobox-height: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for combobox/height. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
 - DSN-INSP-get-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited get/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_when_veto_runtime_pty.py](../tests/test_designer_inline_when_veto_runtime_pty.py), [test_designer_inline_all_skipped_runtime_pty.py](../tests/test_designer_inline_all_skipped_runtime_pty.py)
 - DSN-INSP-checkbox-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited checkbox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_when_veto_runtime_pty.py](../tests/test_designer_inline_when_veto_runtime_pty.py), [test_designer_inline_all_skipped_runtime_pty.py](../tests/test_designer_inline_all_skipped_runtime_pty.py)
 - DSN-INSP-button-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited button/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_when_veto_runtime_pty.py](../tests/test_designer_inline_when_veto_runtime_pty.py), [test_designer_inline_all_skipped_runtime_pty.py](../tests/test_designer_inline_all_skipped_runtime_pty.py)
 - DSN-INSP-radiogroup-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited radiogroup/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_when_veto_runtime_pty.py](../tests/test_designer_inline_when_veto_runtime_pty.py), [test_designer_inline_all_skipped_runtime_pty.py](../tests/test_designer_inline_all_skipped_runtime_pty.py)
 - DSN-INSP-listbox-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited listbox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_when_veto_runtime_pty.py](../tests/test_designer_inline_when_veto_runtime_pty.py), [test_designer_inline_all_skipped_runtime_pty.py](../tests/test_designer_inline_all_skipped_runtime_pty.py)
 - DSN-INSP-combobox-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited combobox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_when_veto_runtime_pty.py](../tests/test_designer_inline_when_veto_runtime_pty.py), [test_designer_inline_all_skipped_runtime_pty.py](../tests/test_designer_inline_all_skipped_runtime_pty.py)
 - DSN-INSP-get-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited get/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_valid_veto_runtime_pty.py](../tests/test_designer_inline_valid_veto_runtime_pty.py)
 - DSN-INSP-checkbox-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited checkbox/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_valid_veto_runtime_pty.py](../tests/test_designer_inline_valid_veto_runtime_pty.py)
 - DSN-INSP-button-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited button/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_valid_veto_runtime_pty.py](../tests/test_designer_inline_valid_veto_runtime_pty.py)
 - DSN-INSP-radiogroup-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited radiogroup/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_valid_veto_runtime_pty.py](../tests/test_designer_inline_valid_veto_runtime_pty.py)
 - DSN-INSP-listbox-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited listbox/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_valid_veto_runtime_pty.py](../tests/test_designer_inline_valid_veto_runtime_pty.py)
 - DSN-INSP-combobox-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited combobox/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py), [test_designer_inline_valid_veto_runtime_pty.py](../tests/test_designer_inline_valid_veto_runtime_pty.py)
 - DSN-INSP-checkbox-focus: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited checkbox/focus expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py)
 - DSN-INSP-button-focus: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited button/focus expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py)
 - DSN-INSP-radiogroup-focus: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited radiogroup/focus expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py)
 - DSN-INSP-listbox-focus: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited listbox/focus expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py)
 - DSN-INSP-combobox-focus: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited combobox/focus expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py)
 - DSN-INSP-checkbox-state: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited checkbox/state expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py)
 - DSN-INSP-listbox-state: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited listbox/state expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py)
 - DSN-INSP-combobox-state: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+  - Runtime separado: Q151 positive true-returning edited combobox/state expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Pruebas: [test_designer_inline_all_events_runtime_pty.py](../tests/test_designer_inline_all_events_runtime_pty.py)
 - DSN-INSP-dialog-dlgname: Q143 actual dialog Name/Caption typing, Width/Height two-arrow adjustments, F10, Undo/Redo and text Esc. Bounded Linux fixture for dialog/dlgname. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_dialog_inline_pty.py](../tests/test_designer_dialog_inline_pty.py)
 - DSN-INSP-dialog-dlgcaption: Q143 actual dialog Name/Caption typing, Width/Height two-arrow adjustments, F10, Undo/Redo and text Esc. Bounded Linux fixture for dialog/dlgcaption. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_dialog_inline_pty.py](../tests/test_designer_dialog_inline_pty.py)
 - DSN-INSP-dialog-dlgwidth: Q143 actual dialog Name/Caption typing, Width/Height two-arrow adjustments, F10, Undo/Redo and text Esc. Bounded Linux fixture for dialog/dlgwidth. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_dialog_inline_pty.py](../tests/test_designer_dialog_inline_pty.py)
@@ -850,79 +871,79 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:1362 | `CASE cCommand == "WP"` | Pendiente vinculo |
 | hbdebug/debugger.prg:1372 | `IF ::lActive .AND. ::lDebuggerWindowIsOpen` | Pendiente vinculo |
 | hbdebug/debugger.prg:1377 | `IF ! Empty( cResult )` | Pendiente vinculo |
-| designer.prg:226 | `if nKey != K_UP .and. nKey != K_DOWN .and. nKey != K_LEFT .and. nKey != K_RIGHT` | Pendiente vinculo |
-| designer.prg:230 | `if ::lInspector .and. ::lInspFocus .and. ::InspectorKey( nKey )` | Pendiente vinculo |
-| designer.prg:235 | `case nKey == K_F4` | Pendiente vinculo |
-| designer.prg:238 | `case nKey == K_F6` | Pendiente vinculo |
-| designer.prg:239 | `if ::lInspector` | Pendiente vinculo |
-| designer.prg:241 | `if ::lInspFocus` | Pendiente vinculo |
-| designer.prg:249 | `case nKey == K_ESC` | Pendiente vinculo |
-| designer.prg:251 | `if cEsc == "placing"` | Pendiente vinculo |
-| designer.prg:253 | `elseif cEsc == "inspector"` | Pendiente vinculo |
-| designer.prg:256 | `elseif cEsc == "codeview"` | Pendiente vinculo |
-| designer.prg:261 | `elseif cEsc == "dirty"` | Pendiente vinculo |
-| designer.prg:265 | `if nChoice == 1` | Pendiente vinculo |
-| designer.prg:272 | `case nKey == K_F2` | Pendiente vinculo |
-| designer.prg:275 | `case nKey == K_F3` | Pendiente vinculo |
-| designer.prg:278 | `case nKey == K_F9` | Pendiente vinculo |
-| designer.prg:281 | `case nKey == K_F10` | Pendiente vinculo |
-| designer.prg:284 | `case nKey == K_F11` | Pendiente vinculo |
-| designer.prg:287 | `case nKey == K_F12` | Pendiente vinculo |
-| designer.prg:290 | `case nKey == K_ENTER` | Pendiente vinculo |
-| designer.prg:291 | `if ::lPlacing` | Pendiente vinculo |
-| designer.prg:293 | `elseif ::nSelected > 0` | Pendiente vinculo |
-| designer.prg:297 | `case nKey == K_DEL` | Pendiente vinculo |
-| designer.prg:298 | `if ! ::lPlacing` | Pendiente vinculo |
-| designer.prg:302 | `case nKey == DSNK_CTRL_Z .or. nKey == K_CTRL_Z` | Pendiente vinculo |
-| designer.prg:303 | `if ! ::lPlacing` | Pendiente vinculo |
-| designer.prg:307 | `case nKey == DSNK_CTRL_Y .or. nKey == K_CTRL_Y` | Pendiente vinculo |
-| designer.prg:308 | `if ! ::lPlacing` | Pendiente vinculo |
-| designer.prg:312 | `case nKey == DSNK_CTRL_C .or. nKey == K_CTRL_C` | Pendiente vinculo |
-| designer.prg:313 | `if ! ::lPlacing` | Pendiente vinculo |
-| designer.prg:317 | `case nKey == DSNK_CTRL_X   // EXT only: classic 24 aliases K_DOWN; the arrow case below claims it (move wins over cut without EXT)` | Pendiente vinculo |
-| designer.prg:318 | `if ! ::lPlacing` | Pendiente vinculo |
-| designer.prg:322 | `case nKey == DSNK_CTRL_V .or. nKey == K_CTRL_V` | Pendiente vinculo |
-| designer.prg:323 | `if ! ::lPlacing` | Pendiente vinculo |
-| designer.prg:327 | `case nKey == K_F7` | Pendiente vinculo |
-| designer.prg:330 | `case nKey == K_F5` | DSN-KEY-LIVEPRG-F5 |
-| designer.prg:331 | `if ! ::lPlacing` | Pendiente vinculo |
-| designer.prg:333 | `if ::lCodeView` | Pendiente vinculo |
-| designer.prg:342 | `case nKey == K_PGUP .or. ( ::lCodeView .and. nKey == Asc( "-" ) )` | Pendiente vinculo |
-| designer.prg:343 | `if ::lCodeView` | Pendiente vinculo |
-| designer.prg:348 | `case ::lCodeView .and. nKey == Asc( "," )` | Pendiente vinculo |
-| designer.prg:351 | `case ::lCodeView .and. nKey == Asc( "." )` | Pendiente vinculo |
-| designer.prg:354 | `case nKey == K_PGDN .or. ( ::lCodeView .and. nKey == Asc( "+" ) )` | Pendiente vinculo |
-| designer.prg:355 | `if ::lCodeView` | Pendiente vinculo |
-| designer.prg:361 | `case nKey == K_UP` | Pendiente vinculo |
-| designer.prg:362 | `if ::lPlacing` | Pendiente vinculo |
-| designer.prg:370 | `case nKey == K_DOWN` | Pendiente vinculo |
-| designer.prg:371 | `if ::lPlacing` | Pendiente vinculo |
-| designer.prg:379 | `case nKey == K_LEFT` | Pendiente vinculo |
-| designer.prg:380 | `if ::lPlacing` | Pendiente vinculo |
-| designer.prg:388 | `case nKey == K_RIGHT` | Pendiente vinculo |
-| designer.prg:389 | `if ::lPlacing` | Pendiente vinculo |
-| designer.prg:397 | `case nKey == K_CTRL_UP` | Pendiente vinculo |
-| designer.prg:398 | `if ! ::lPlacing` | Pendiente vinculo |
-| designer.prg:402 | `case nKey == K_CTRL_DOWN` | Pendiente vinculo |
-| designer.prg:403 | `if ! ::lPlacing` | Pendiente vinculo |
-| designer.prg:407 | `case nKey == DSNK_CTRLLEFT   // classic 26 aliases K_CTRL_Z; the undo case above claims it (non-destructive)` | Pendiente vinculo |
-| designer.prg:408 | `if ! ::lPlacing` | Pendiente vinculo |
-| designer.prg:412 | `case nKey == DSNK_CTRLRIGHT   // classic 2 aliases K_CTRL_B; unreachable without EXT (safe no-op)` | Pendiente vinculo |
-| designer.prg:413 | `if ! ::lPlacing` | Pendiente vinculo |
-| designer.prg:417 | `case nKey == K_TAB` | Pendiente vinculo |
-| designer.prg:418 | `if ! Empty( ::aControls )` | Pendiente vinculo |
-| designer.prg:426 | `case nKey == K_SH_TAB` | Pendiente vinculo |
-| designer.prg:427 | `if ! Empty( ::aControls )` | Pendiente vinculo |
-| designer.prg:435 | `case nKey == K_LBUTTONUP` | Pendiente vinculo |
-| designer.prg:438 | `case nKey == K_LBUTTONDOWN` | Pendiente vinculo |
-| designer.prg:439 | `if ::lPlacing` | Pendiente vinculo |
-| designer.prg:440 | `if ::HitClient( MRow(), MCol() )` | Pendiente vinculo |
-| designer.prg:447 | `if ::lInspector .and. nInspHit != 0` | Pendiente vinculo |
-| designer.prg:448 | `if nInspHit == -1` | Pendiente vinculo |
-| designer.prg:457 | `if ::lInspFocus` | Pendiente vinculo |
-| designer.prg:470 | `if nIndex > 0` | Pendiente vinculo |
-| designer.prg:473 | `if ::HandleHit( MRow(), MCol() )` | Pendiente vinculo |
-| designer.prg:488 | `if ::nIdleDraw != nil` | Pendiente vinculo |
+| designer.prg:227 | `if nKey != K_UP .and. nKey != K_DOWN .and. nKey != K_LEFT .and. nKey != K_RIGHT` | Pendiente vinculo |
+| designer.prg:231 | `if ::lInspector .and. ::lInspFocus .and. ::InspectorKey( nKey )` | Pendiente vinculo |
+| designer.prg:236 | `case nKey == K_F4` | Pendiente vinculo |
+| designer.prg:239 | `case nKey == K_F6` | Pendiente vinculo |
+| designer.prg:240 | `if ::lInspector` | Pendiente vinculo |
+| designer.prg:242 | `if ::lInspFocus` | Pendiente vinculo |
+| designer.prg:250 | `case nKey == K_ESC` | Pendiente vinculo |
+| designer.prg:252 | `if cEsc == "placing"` | Pendiente vinculo |
+| designer.prg:254 | `elseif cEsc == "inspector"` | Pendiente vinculo |
+| designer.prg:257 | `elseif cEsc == "codeview"` | Pendiente vinculo |
+| designer.prg:262 | `elseif cEsc == "dirty"` | Pendiente vinculo |
+| designer.prg:266 | `if nChoice == 1` | Pendiente vinculo |
+| designer.prg:273 | `case nKey == K_F2` | Pendiente vinculo |
+| designer.prg:276 | `case nKey == K_F3` | Pendiente vinculo |
+| designer.prg:279 | `case nKey == K_F9` | Pendiente vinculo |
+| designer.prg:282 | `case nKey == K_F10` | Pendiente vinculo |
+| designer.prg:285 | `case nKey == K_F11` | Pendiente vinculo |
+| designer.prg:288 | `case nKey == K_F12` | Pendiente vinculo |
+| designer.prg:291 | `case nKey == K_ENTER` | Pendiente vinculo |
+| designer.prg:292 | `if ::lPlacing` | Pendiente vinculo |
+| designer.prg:294 | `elseif ::nSelected > 0` | Pendiente vinculo |
+| designer.prg:298 | `case nKey == K_DEL` | Pendiente vinculo |
+| designer.prg:299 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:303 | `case nKey == DSNK_CTRL_Z .or. nKey == K_CTRL_Z` | Pendiente vinculo |
+| designer.prg:304 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:308 | `case nKey == DSNK_CTRL_Y .or. nKey == K_CTRL_Y` | Pendiente vinculo |
+| designer.prg:309 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:313 | `case nKey == DSNK_CTRL_C .or. nKey == K_CTRL_C` | Pendiente vinculo |
+| designer.prg:314 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:318 | `case nKey == DSNK_CTRL_X   // EXT only: classic 24 aliases K_DOWN; the arrow case below claims it (move wins over cut without EXT)` | Pendiente vinculo |
+| designer.prg:319 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:323 | `case nKey == DSNK_CTRL_V .or. nKey == K_CTRL_V` | Pendiente vinculo |
+| designer.prg:324 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:328 | `case nKey == K_F7` | Pendiente vinculo |
+| designer.prg:331 | `case nKey == K_F5` | DSN-KEY-LIVEPRG-F5 |
+| designer.prg:332 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:334 | `if ::lCodeView` | Pendiente vinculo |
+| designer.prg:343 | `case nKey == K_PGUP .or. ( ::lCodeView .and. nKey == Asc( "-" ) )` | Pendiente vinculo |
+| designer.prg:344 | `if ::lCodeView` | Pendiente vinculo |
+| designer.prg:349 | `case ::lCodeView .and. nKey == Asc( "," )` | Pendiente vinculo |
+| designer.prg:352 | `case ::lCodeView .and. nKey == Asc( "." )` | Pendiente vinculo |
+| designer.prg:355 | `case nKey == K_PGDN .or. ( ::lCodeView .and. nKey == Asc( "+" ) )` | Pendiente vinculo |
+| designer.prg:356 | `if ::lCodeView` | Pendiente vinculo |
+| designer.prg:362 | `case nKey == K_UP` | Pendiente vinculo |
+| designer.prg:363 | `if ::lPlacing` | Pendiente vinculo |
+| designer.prg:371 | `case nKey == K_DOWN` | Pendiente vinculo |
+| designer.prg:372 | `if ::lPlacing` | Pendiente vinculo |
+| designer.prg:380 | `case nKey == K_LEFT` | Pendiente vinculo |
+| designer.prg:381 | `if ::lPlacing` | Pendiente vinculo |
+| designer.prg:389 | `case nKey == K_RIGHT` | Pendiente vinculo |
+| designer.prg:390 | `if ::lPlacing` | Pendiente vinculo |
+| designer.prg:398 | `case nKey == K_CTRL_UP` | Pendiente vinculo |
+| designer.prg:399 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:403 | `case nKey == K_CTRL_DOWN` | Pendiente vinculo |
+| designer.prg:404 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:408 | `case nKey == DSNK_CTRLLEFT   // classic 26 aliases K_CTRL_Z; the undo case above claims it (non-destructive)` | Pendiente vinculo |
+| designer.prg:409 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:413 | `case nKey == DSNK_CTRLRIGHT   // classic 2 aliases K_CTRL_B; unreachable without EXT (safe no-op)` | Pendiente vinculo |
+| designer.prg:414 | `if ! ::lPlacing` | Pendiente vinculo |
+| designer.prg:418 | `case nKey == K_TAB` | Pendiente vinculo |
+| designer.prg:419 | `if ! Empty( ::aControls )` | Pendiente vinculo |
+| designer.prg:427 | `case nKey == K_SH_TAB` | Pendiente vinculo |
+| designer.prg:428 | `if ! Empty( ::aControls )` | Pendiente vinculo |
+| designer.prg:436 | `case nKey == K_LBUTTONUP` | Pendiente vinculo |
+| designer.prg:439 | `case nKey == K_LBUTTONDOWN` | Pendiente vinculo |
+| designer.prg:440 | `if ::lPlacing` | Pendiente vinculo |
+| designer.prg:441 | `if ::HitClient( MRow(), MCol() )` | Pendiente vinculo |
+| designer.prg:448 | `if ::lInspector .and. nInspHit != 0` | Pendiente vinculo |
+| designer.prg:449 | `if nInspHit == -1` | Pendiente vinculo |
+| designer.prg:458 | `if ::lInspFocus` | Pendiente vinculo |
+| designer.prg:471 | `if nIndex > 0` | Pendiente vinculo |
+| designer.prg:474 | `if ::HandleHit( MRow(), MCol() )` | Pendiente vinculo |
+| designer.prg:490 | `if ::nIdleDraw != nil` | Pendiente vinculo |
 | projectui.prg:14 | `IF nPick >= nTop + nVisible` | Pendiente vinculo |
 | projectui.prg:20 | `CASE nKey == K_ESC` | Pendiente vinculo |
 | projectui.prg:22 | `CASE nKey == K_UP` | Pendiente vinculo |
@@ -939,37 +960,37 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | projectui.prg:46 | `IF nKey == K_LDBLCLK` | Pendiente vinculo |
 | projectui.prg:51 | `IF nKey == K_ENTER .AND. Len( aRows ) > 0` | Pendiente vinculo |
 | projectui.prg:53 | `IF ! Empty( h[ "path" ] )` | Pendiente vinculo |
-| designer.prg:2286 | `case nKey == K_ESC .or. nKey == K_F6` | Pendiente vinculo |
-| designer.prg:2291 | `case nKey == K_F4` | Pendiente vinculo |
-| designer.prg:2294 | `case nKey == K_UP` | Pendiente vinculo |
-| designer.prg:2298 | `case nKey == K_DOWN` | Pendiente vinculo |
-| designer.prg:2302 | `case nKey == K_LEFT` | Pendiente vinculo |
-| designer.prg:2305 | `case nKey == K_RIGHT` | Pendiente vinculo |
-| designer.prg:2308 | `case nKey == K_ENTER` | Pendiente vinculo |
-| designer.prg:2311 | `case nKey == K_CTRL_UP` | Pendiente vinculo |
-| designer.prg:2315 | `case nKey == K_CTRL_DOWN` | Pendiente vinculo |
-| designer.prg:2319 | `case nKey == K_CTRL_LEFT` | Pendiente vinculo |
-| designer.prg:2323 | `case nKey == K_CTRL_RIGHT` | Pendiente vinculo |
-| designer.prg:2097 | `if ::nInspField < 1 .or. ::nInspField > Len( aFields )` | Pendiente vinculo |
-| designer.prg:2100 | `if aFields[ ::nInspField ][ 3 ] == "choice"` | Pendiente vinculo |
-| designer.prg:2104 | `if aFields[ ::nInspField ][ 3 ] == "color"` | Pendiente vinculo |
-| designer.prg:2108 | `if aFields[ ::nInspField ][ 3 ] != "text"` | Pendiente vinculo |
-| designer.prg:2133 | `if nPos - 1 - nOff > nWidth - 1` | Pendiente vinculo |
-| designer.prg:2135 | `elseif nPos - 1 - nOff < 0` | Pendiente vinculo |
-| designer.prg:2142 | `case nKey == K_ENTER` | Pendiente vinculo |
-| designer.prg:2145 | `case nKey == K_ESC` | Pendiente vinculo |
-| designer.prg:2147 | `case nKey == K_LEFT` | Pendiente vinculo |
-| designer.prg:2149 | `case nKey == K_RIGHT` | Pendiente vinculo |
-| designer.prg:2151 | `case nKey == K_HOME` | Pendiente vinculo |
-| designer.prg:2153 | `case nKey == K_END` | Pendiente vinculo |
-| designer.prg:2155 | `case nKey == K_BS` | Pendiente vinculo |
-| designer.prg:2156 | `if nPos > 1` | Pendiente vinculo |
-| designer.prg:2160 | `case nKey == K_DEL` | Pendiente vinculo |
-| designer.prg:2161 | `if nPos <= Len( cVal )` | Pendiente vinculo |
-| designer.prg:2164 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` | Pendiente vinculo |
-| designer.prg:2168 | `case nKey >= 32 .and. nKey <= 255` | Pendiente vinculo |
-| designer.prg:2169 | `if Len( cVal ) < 200` | Pendiente vinculo |
-| designer.prg:2181 | `if lApply` | Pendiente vinculo |
+| designer.prg:2298 | `case nKey == K_ESC .or. nKey == K_F6` | Pendiente vinculo |
+| designer.prg:2303 | `case nKey == K_F4` | Pendiente vinculo |
+| designer.prg:2306 | `case nKey == K_UP` | Pendiente vinculo |
+| designer.prg:2310 | `case nKey == K_DOWN` | Pendiente vinculo |
+| designer.prg:2314 | `case nKey == K_LEFT` | Pendiente vinculo |
+| designer.prg:2317 | `case nKey == K_RIGHT` | Pendiente vinculo |
+| designer.prg:2320 | `case nKey == K_ENTER` | Pendiente vinculo |
+| designer.prg:2323 | `case nKey == K_CTRL_UP` | Pendiente vinculo |
+| designer.prg:2327 | `case nKey == K_CTRL_DOWN` | Pendiente vinculo |
+| designer.prg:2331 | `case nKey == K_CTRL_LEFT` | Pendiente vinculo |
+| designer.prg:2335 | `case nKey == K_CTRL_RIGHT` | Pendiente vinculo |
+| designer.prg:2109 | `if ::nInspField < 1 .or. ::nInspField > Len( aFields )` | Pendiente vinculo |
+| designer.prg:2112 | `if aFields[ ::nInspField ][ 3 ] == "choice"` | Pendiente vinculo |
+| designer.prg:2116 | `if aFields[ ::nInspField ][ 3 ] == "color"` | Pendiente vinculo |
+| designer.prg:2120 | `if aFields[ ::nInspField ][ 3 ] != "text"` | Pendiente vinculo |
+| designer.prg:2145 | `if nPos - 1 - nOff > nWidth - 1` | Pendiente vinculo |
+| designer.prg:2147 | `elseif nPos - 1 - nOff < 0` | Pendiente vinculo |
+| designer.prg:2154 | `case nKey == K_ENTER` | Pendiente vinculo |
+| designer.prg:2157 | `case nKey == K_ESC` | Pendiente vinculo |
+| designer.prg:2159 | `case nKey == K_LEFT` | Pendiente vinculo |
+| designer.prg:2161 | `case nKey == K_RIGHT` | Pendiente vinculo |
+| designer.prg:2163 | `case nKey == K_HOME` | Pendiente vinculo |
+| designer.prg:2165 | `case nKey == K_END` | Pendiente vinculo |
+| designer.prg:2167 | `case nKey == K_BS` | Pendiente vinculo |
+| designer.prg:2168 | `if nPos > 1` | Pendiente vinculo |
+| designer.prg:2172 | `case nKey == K_DEL` | Pendiente vinculo |
+| designer.prg:2173 | `if nPos <= Len( cVal )` | Pendiente vinculo |
+| designer.prg:2176 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` | Pendiente vinculo |
+| designer.prg:2180 | `case nKey >= 32 .and. nKey <= 255` | Pendiente vinculo |
+| designer.prg:2181 | `if Len( cVal ) < 200` | Pendiente vinculo |
+| designer.prg:2193 | `if lApply` | Pendiente vinculo |
 | hbide.prg:626 | `if nKeyStd == K_ESC .and. ! ::oMenu:IsOpen()` | Pendiente vinculo |
 | hbide.prg:627 | `if ::CheckUnsavedAll()` | Pendiente vinculo |
 | hbide.prg:634 | `if nKeyStd >= K_ALT_Q .and. nKeyStd <= K_ALT_M` | Pendiente vinculo |
@@ -1230,35 +1251,35 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:741 | `CASE K_DOWN` | Pendiente vinculo |
 | hbdebug/debugger.prg:745 | `CASE K_PGUP` | Pendiente vinculo |
 | hbdebug/debugger.prg:749 | `CASE K_PGDN` | Pendiente vinculo |
-| designer.prg:1299 | `if ::nSelected < 1 .or. ::nSelected > Len( ::aControls )` | Pendiente vinculo |
-| designer.prg:1333 | `if oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX` | Pendiente vinculo |
-| designer.prg:1338 | `if oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX` | Pendiente vinculo |
-| designer.prg:1343 | `if oCtrl[ "type" ] == DSN_GET` | Pendiente vinculo |
-| designer.prg:1348 | `if oCtrl[ "type" ] == DSN_BUTTON` | Pendiente vinculo |
-| designer.prg:1358 | `if oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
-| designer.prg:1365 | `if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )` | Pendiente vinculo |
-| designer.prg:1372 | `if oCtrl[ "type" ] != DSN_SAY` | Pendiente vinculo |
-| designer.prg:1377 | `if oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
-| designer.prg:1381 | `if oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
-| designer.prg:1400 | `if ! lOk .and. ! lCancel .and. LastKey() != K_ESC` | Pendiente vinculo |
-| designer.prg:1404 | `if lOk` | Pendiente vinculo |
-| designer.prg:1408 | `if "caption" $ oCtrl` | Pendiente vinculo |
-| designer.prg:1411 | `if "variable" $ oCtrl` | Pendiente vinculo |
-| designer.prg:1417 | `if "width" $ oCtrl` | Pendiente vinculo |
-| designer.prg:1420 | `if "items" $ oCtrl` | Pendiente vinculo |
-| designer.prg:1423 | `if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )` | Pendiente vinculo |
-| designer.prg:1426 | `if oCtrl[ "type" ] == DSN_BUTTON` | Pendiente vinculo |
-| designer.prg:1431 | `if oCtrl[ "type" ] != DSN_SAY` | Pendiente vinculo |
-| designer.prg:1448 | `if lOk .and. DsnListSBarHidden( oCtrl )` | Pendiente vinculo |
-| designer.prg:1509 | `if ! lOk .and. ! lCancel .and. LastKey() != K_ESC` | Pendiente vinculo |
-| designer.prg:1513 | `if lOk` | Pendiente vinculo |
-| designer.prg:1516 | `if nWidth < aMin[ 1 ] .or. nHeight < aMin[ 2 ]` | Pendiente vinculo |
-| designer.prg:1525 | `if ! Empty( AllTrim( cClrBack ) )` | Pendiente vinculo |
-| designer.prg:1526 | `if ! DsnValidColor( AllTrim( cClrBack ) )` | Pendiente vinculo |
-| designer.prg:1532 | `if ! Empty( AllTrim( cClrText ) )` | Pendiente vinculo |
-| designer.prg:1533 | `if ! DsnValidColor( AllTrim( cClrText ) )` | Pendiente vinculo |
-| designer.prg:1539 | `if ! Empty( AllTrim( cClrFocus ) )` | Pendiente vinculo |
-| designer.prg:1540 | `if ! DsnValidColor( AllTrim( cClrFocus ) )` | Pendiente vinculo |
+| designer.prg:1302 | `if ::nSelected < 1 .or. ::nSelected > Len( ::aControls )` | Pendiente vinculo |
+| designer.prg:1336 | `if oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX` | Pendiente vinculo |
+| designer.prg:1341 | `if oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX` | Pendiente vinculo |
+| designer.prg:1346 | `if oCtrl[ "type" ] == DSN_GET` | Pendiente vinculo |
+| designer.prg:1351 | `if oCtrl[ "type" ] == DSN_BUTTON` | Pendiente vinculo |
+| designer.prg:1361 | `if oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
+| designer.prg:1368 | `if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )` | Pendiente vinculo |
+| designer.prg:1375 | `if oCtrl[ "type" ] != DSN_SAY` | Pendiente vinculo |
+| designer.prg:1380 | `if oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
+| designer.prg:1384 | `if oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
+| designer.prg:1403 | `if ! lOk .and. ! lCancel .and. LastKey() != K_ESC` | Pendiente vinculo |
+| designer.prg:1407 | `if lOk` | Pendiente vinculo |
+| designer.prg:1411 | `if "caption" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1414 | `if "variable" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1420 | `if "width" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1423 | `if "items" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1426 | `if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )` | Pendiente vinculo |
+| designer.prg:1429 | `if oCtrl[ "type" ] == DSN_BUTTON` | Pendiente vinculo |
+| designer.prg:1434 | `if oCtrl[ "type" ] != DSN_SAY` | Pendiente vinculo |
+| designer.prg:1451 | `if lOk .and. DsnListSBarHidden( oCtrl )` | Pendiente vinculo |
+| designer.prg:1512 | `if ! lOk .and. ! lCancel .and. LastKey() != K_ESC` | Pendiente vinculo |
+| designer.prg:1516 | `if lOk` | Pendiente vinculo |
+| designer.prg:1519 | `if nWidth < aMin[ 1 ] .or. nHeight < aMin[ 2 ]` | Pendiente vinculo |
+| designer.prg:1528 | `if ! Empty( AllTrim( cClrBack ) )` | Pendiente vinculo |
+| designer.prg:1529 | `if ! DsnValidColor( AllTrim( cClrBack ) )` | Pendiente vinculo |
+| designer.prg:1535 | `if ! Empty( AllTrim( cClrText ) )` | Pendiente vinculo |
+| designer.prg:1536 | `if ! DsnValidColor( AllTrim( cClrText ) )` | Pendiente vinculo |
+| designer.prg:1542 | `if ! Empty( AllTrim( cClrFocus ) )` | Pendiente vinculo |
+| designer.prg:1543 | `if ! DsnValidColor( AllTrim( cClrFocus ) )` | Pendiente vinculo |
 - DSN-KEY-LIVEPRG-F5: Actual F5 LivePRG anchor fixtures: quoted SAY caption, accelerator-transformed button, caption equal to dialog title, reserved generated GET binding and duplicate SAY captions. Default, --button, --dialog-caption, --reserved-binding, --duplicate-caption modes check exact highlighted declaration. Generator model guards cover emitted index anchors, unchanged code and skipped empty item controls. Not all controls/properties/bindings, all F5 states, pixels or Windows; links are not PASS, consult source-identified ledgers Q68-Q75. Pruebas: [test_designer_quote_anchor_pty.py](../tests/test_designer_quote_anchor_pty.py), [test_designer.prg](../tests/test_designer.prg)
 - IDE-KEY-CONTEXTHELP-F1: Actual F1 without menu opens Welcome; File and Edit menus open matching help topics without executing menu actions. Close returns dirty source, later Undo and F2 preserve exact bytes. Bounded 80x25 xterm fixture, not all menu commands/terminal encodings/help topics/editor selection states/Windows. F1 intentionally handles open menus; no menu-closed guard inferred. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_help_pty.py](../tests/test_help_pty.py)
 - IDE-KEY-NEXT-MESSAGE-ALT-F8: Actual Alt+F8 navigates forward through diagnostic entries and wraps on bounded three-diagnostic fixture. Alt+F8 same-buffer jump consumes old selected range before typing; Undo and F2 restore exact bytes with real GCC colon-bearing source fixture. Exact source/context/condition link; parent menu-closed guard remains separate. Not all diagnostic kinds/files, all terminal encodings, menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_message_selection_pty.py](../tests/test_message_selection_pty.py)

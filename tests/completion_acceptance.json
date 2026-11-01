@@ -2265,7 +2265,15 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/action. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/action. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "button",
+        "key": "action",
+        "tests": [
+          "test_designer_inline_button_runtime_pty.py"
+        ],
+        "contract": "Q148/Q150 edited ButtonAction executes via Enter/Space in generated artifact after inline edit,F10,F9 and compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-button-style": {
       "control": "button",
@@ -2373,7 +2381,17 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "get",
+        "key": "when",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_when_veto_runtime_pty.py",
+          "test_designer_inline_all_skipped_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited get/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-checkbox-when": {
       "control": "checkbox",
@@ -2382,7 +2400,17 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "checkbox",
+        "key": "when",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_when_veto_runtime_pty.py",
+          "test_designer_inline_all_skipped_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited checkbox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-button-when": {
       "control": "button",
@@ -2391,7 +2419,17 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "button",
+        "key": "when",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_when_veto_runtime_pty.py",
+          "test_designer_inline_all_skipped_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited button/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-radiogroup-when": {
       "control": "radiogroup",
@@ -2400,7 +2438,17 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "radiogroup",
+        "key": "when",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_when_veto_runtime_pty.py",
+          "test_designer_inline_all_skipped_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited radiogroup/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-listbox-when": {
       "control": "listbox",
@@ -2409,7 +2457,17 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "listbox",
+        "key": "when",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_when_veto_runtime_pty.py",
+          "test_designer_inline_all_skipped_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited listbox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-combobox-when": {
       "control": "combobox",
@@ -2418,7 +2476,17 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "combobox",
+        "key": "when",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_when_veto_runtime_pty.py",
+          "test_designer_inline_all_skipped_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited combobox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-get-valid": {
       "control": "get",
@@ -2427,7 +2495,16 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "get",
+        "key": "valid",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_valid_veto_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited get/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-checkbox-valid": {
       "control": "checkbox",
@@ -2436,7 +2513,16 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "checkbox",
+        "key": "valid",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_valid_veto_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited checkbox/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-button-valid": {
       "control": "button",
@@ -2445,7 +2531,16 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "button",
+        "key": "valid",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_valid_veto_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited button/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-radiogroup-valid": {
       "control": "radiogroup",
@@ -2454,7 +2549,16 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "radiogroup",
+        "key": "valid",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_valid_veto_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited radiogroup/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-listbox-valid": {
       "control": "listbox",
@@ -2463,7 +2567,16 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "listbox",
+        "key": "valid",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_valid_veto_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited listbox/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-combobox-valid": {
       "control": "combobox",
@@ -2472,7 +2585,16 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "combobox",
+        "key": "valid",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py",
+          "test_designer_inline_valid_veto_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited combobox/valid expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q159 first Tab false blocks sentinel transfer, next true permits. Button uses inert ActionNIL; not veto before Action or terminating action. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-checkbox-focus": {
       "control": "checkbox",
@@ -2481,7 +2603,15 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "checkbox",
+        "key": "focus",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited checkbox/focus expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-button-focus": {
       "control": "button",
@@ -2490,7 +2620,15 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "button",
+        "key": "focus",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited button/focus expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-radiogroup-focus": {
       "control": "radiogroup",
@@ -2499,7 +2637,15 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "radiogroup",
+        "key": "focus",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited radiogroup/focus expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-listbox-focus": {
       "control": "listbox",
@@ -2508,7 +2654,15 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "listbox",
+        "key": "focus",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited listbox/focus expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-combobox-focus": {
       "control": "combobox",
@@ -2517,7 +2671,15 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "combobox",
+        "key": "focus",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited combobox/focus expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-checkbox-state": {
       "control": "checkbox",
@@ -2526,7 +2688,15 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "checkbox",
+        "key": "state",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited checkbox/state expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-listbox-state": {
       "control": "listbox",
@@ -2535,7 +2705,15 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "listbox",
+        "key": "state",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited listbox/state expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-combobox-state": {
       "control": "combobox",
@@ -2544,7 +2722,15 @@
       "tests": [
         "test_designer_inline_text_pty.py"
       ],
-      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance.",
+      "runtime": {
+        "control": "combobox",
+        "key": "state",
+        "tests": [
+          "test_designer_inline_all_events_runtime_pty.py"
+        ],
+        "contract": "Q151 positive true-returning edited combobox/state expression executes after inline edit,F10,F9 and actual generated artifact compilation. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+      }
     },
     "DSN-INSP-dialog-dlgname": {
       "control": "dialog",

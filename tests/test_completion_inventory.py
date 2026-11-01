@@ -315,4 +315,24 @@ class InspectorInventory(unittest.TestCase):
             audit.link_inspector_contracts(self.rows,{'DSN-INSP-get-row':dict(self.specs['DSN-INSP-get-row'],tests=['missing-inspector.py'])})
         self.assertTrue(all(r['acceptance'] is None for r in audit.link_inspector_contracts(self.rows,{})))
 
+    def test_runtime_links_separate_from_persistence(self):
+        rows=audit.link_inspector_contracts(self.rows,self.specs)
+        linked=[r for r in rows if r['acceptance'].get('runtime')]
+        self.assertEqual(len(linked),21) # 20 event pairs plus ButtonAction.
+        for r in linked:
+            self.assertEqual(r['key'],r['acceptance']['runtime']['key'])
+            self.assertIn('Link is not current runtime PASS',r['acceptance']['runtime']['contract'])
+        self.assertIn('not veto before Action',self.specs['DSN-INSP-button-valid']['runtime']['contract'])
+    def test_runtime_wrong_identity_rejected(self):
+        entry=self.specs['DSN-INSP-get-valid']
+        with self.assertRaisesRegex(ValueError,'runtime identity mismatch'):
+            audit.link_inspector_contracts(self.rows,{'DSN-INSP-get-valid':dict(entry,runtime=dict(entry['runtime'],control='button'))})
+    def test_runtime_non_event_and_missing_test_rejected(self):
+        runtime=self.specs['DSN-INSP-get-valid']['runtime']
+        with self.assertRaisesRegex(ValueError,'Not an inspector runtime event'):
+            audit.link_inspector_contracts(self.rows,{'DSN-INSP-get-row':dict(self.specs['DSN-INSP-get-row'],runtime=runtime)})
+        entry=self.specs['DSN-INSP-get-valid']
+        with self.assertRaisesRegex(ValueError,'Missing inspector runtime test'):
+            audit.link_inspector_contracts(self.rows,{'DSN-INSP-get-valid':dict(entry,runtime=dict(runtime,tests=['missing-runtime.py']))})
+
 if __name__=='__main__':unittest.main()

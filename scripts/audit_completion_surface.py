@@ -173,6 +173,15 @@ def link_inspector_contracts(rows,specs):
         if any(row[k]!=spec[k] for k in ['control','key','kind']):raise ValueError('Inspector acceptance mismatch: '+ident)
         for test in spec['tests']:
             if not (ROOT/'tests'/test).is_file():raise ValueError('Missing inspector test: '+test)
+        runtime=spec.get('runtime')
+        if runtime:
+            if row['control']=='dialog' or row['key'] not in ['when','valid','focus','state','action']:
+                raise ValueError('Not an inspector runtime event: '+ident)
+            if runtime['control']!=row['control'] or runtime['key']!=row['key']:
+                raise ValueError('Inspector runtime identity mismatch: '+ident)
+            for test in runtime['tests']:
+                if not (ROOT/'tests'/test).is_file():raise ValueError('Missing inspector runtime test: '+test)
+
     return [dict(r,acceptance=specs.get(r['id'])) for r in rows]
 
 def ide_modal_fields():
@@ -409,6 +418,9 @@ def main():
             if field['acceptance']:
                 spec=field['acceptance']; links=', '.join('['+t+'](../tests/'+t+')' for t in spec['tests'])
                 print(f"- {field['id']}: {spec['contract']} Pruebas: {links}")
+                if spec.get('runtime'):
+                    runtime=spec['runtime']; links=', '.join('['+t+'](../tests/'+t+')' for t in runtime['tests'])
+                    print(f"  - Runtime separado: {runtime['contract']} Pruebas: {links}")
         print('\n## Rutas de teclado y comandos\n')
         print('Estas condiciones amplian el inventario fuera del menu. No se suman como funciones independientes.\n')
         print('| Fuente:linea | Condicion | Aceptacion |')
