@@ -68,6 +68,8 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q118 | M0 AltF8/AltF7 exactdispatchlinked. | Sourcebe3610c/44PTY2modes34inventory34docsPASS;linux-inventory-alt-diagnostic-dispatch.json.No productfix/pixels/models/Windows/global. |
+| Q117 | Codeblockbracketliteral preservesfollowingcode. | Sourcefbe33df/32PTY6modes22models191repaint33inventory34docsPASS;nativeinspected;linux-editor-bracket-codeblock.json.No runtimecodeblock/generallexer/Windows/global. |
 | Q116 | Bracketliteraltrasoperadoreslógicosnoconfundecomentario. | Antes2PASS2FAIL7guards38PTY22models33inventory34docsPASSsource21036f1;nativeinspeccionado;linux-editor-bracket-logical.json. No runtime/type/generallexer/Windows. |
 | Q115 | M0 CtrlF2SaveAllexactolink/conflictos/fallos. | 4modos40checks+2scenarios33inventory34docsPASSsource4eeb0cd;linux-inventory-saveall-ctrlf2.json. No productfix/pixels/models/global. |
 | Q114 | M5 guardasfailclosedauditoravisos,gatepermaneceabierto. | Source0ad7d31/5guards32inventory34docsPASS;28fuentes14LICENSEreferenciasausentes14sinheaderdetectado;gate1expected;linux-distribution-notice-gate.json. No licenseclearance/release/Windows. |

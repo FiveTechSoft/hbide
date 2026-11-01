@@ -1,0 +1,62 @@
+{
+  "scope": "Q118 M0 exact AltF8/AltF7 dispatch acceptance links only. No new product fix, model rerun, pixels, all terminals, Windows or global milestone.",
+  "source": "be3610cde547f43b1988fdf209a854aaa7fcd36f",
+  "binary_sha256": "35cfbe139c5b08051fa155bcd0dfd73581cbde6e3da4883a10109b8b0b6c2707",
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "be3610cde547f43b1988fdf209a854aaa7fcd36f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "65be7cd3dae4add6d81514c6c90ce69b36c6a543dce127abfc8e267032c739c0",
+      "binary_sha256": "35cfbe139c5b08051fa155bcd0dfd73581cbde6e3da4883a10109b8b0b6c2707",
+      "build_receipt": "/tmp/hbide-altmessage-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "navigation",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_nav_pty.py"
+      ],
+      "started": 1793491773.676317,
+      "seconds": 66.98,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1a4bc70d1b37cd6915c6e39d48ad819421db5e759926bd00d834c57e4c11a04b",
+      "log": "/tmp/hbide-altmessage-clean/navigation-1793491773676312771.log",
+      "log_text": "PASS boot\nPASS good.prg opened\nPASS function list opens with real entries\nPASS commented and block-commented names are not listed\nPASS static procedure labelled\nPASS filter narrows list (Helper kept, Main gone)\nPASS Enter jumps to Helper line 11\nPASS Esc leaves the cursor where it was\nPASS failed build shows compiler output\nPASS failed build lands on the first error line (3)\nPASS status row shows message 1/3\nPASS Alt+F8 goes to the second error (line 7)\nPASS status row shows message 2/3\nPASS Alt+F8 reaches the warning (3/3, line 9)\nPASS Alt+F8 wraps to the first error\nPASS Alt+F7 goes back (wraps to last, line 9)\nPASS message list opens\nPASS Enter in the list jumps to the picked message\nPASS window list shows documents\nPASS window list marks modified document\nPASS window list switches document\nPASS Save All reports in the status row\nPASS bad.prg saved to disk\nPASS other.prg saved to disk\nPASS Save All with nothing modified says so\nPASS arguments dialog opens\nPASS arguments confirmed in status row\nPASS Start passes the arguments to the program\nPASS shell metacharacters stay literal (no extra command ran)\nPASS Script passes the arguments to Main()\nPASS Debug passes the arguments to Main()\nPASS Save All reports failure and untitled skipped\nPASS no misleading global success message\nPASS named file saved, untitled not written anywhere\nPASS untitled buffer stays marked modified\n35/35 passed\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "be3610cde547f43b1988fdf209a854aaa7fcd36f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "65be7cd3dae4add6d81514c6c90ce69b36c6a543dce127abfc8e267032c739c0",
+      "binary_sha256": "35cfbe139c5b08051fa155bcd0dfd73581cbde6e3da4883a10109b8b0b6c2707",
+      "build_receipt": "/tmp/hbide-altmessage-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "message-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_message_selection_pty.py"
+      ],
+      "started": 1793491840.6548193,
+      "seconds": 19.05,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "436211836297857137a75b47370987bcd768914c7cdd859362a214bbdf88a49d",
+      "log": "/tmp/hbide-altmessage-clean/message-selection-1793491840654815606.log",
+      "log_text": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump lands at real GCC row2 column9\nPASS Next diagnostic on same buffer consumes stale range\nPASS Undo diagnostic insertion exact\nPASS Project source jump on same buffer consumes stale range\nPASS Undo project source insertion exact\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-xtjxr8zp\n"
+    }
+  ],
+  "inventory_log": "..................................\n----------------------------------------------------------------------\nRan 34 tests in 0.323s\n\nOK\n",
+  "docs": "34 embedded documents byte-exact PASS",
+  "execution": "44 numbered checks in two clean PTY modes PASS; no test failure or retry. Initial runner invocation used nonexistent case nav and exited argument validation before build/tests; corrected case navigation."
+}

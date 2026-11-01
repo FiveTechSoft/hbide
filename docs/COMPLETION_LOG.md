@@ -3835,3 +3835,12 @@ modelguardsincludingEvalvalueindex. Sourcefbe33dfclean6modes32PTYchecks
 threebracketstringsyellow/realgapmagenta/nextkeywords cyan/fullborders/F2exact
 inspected. linux-editor-bracket-codeblock.json. No runtimecodeblockchange/
 generallexer/Windows/globalmatrix/milestoneclosed.
+
+## Q118 - exact Alt diagnostic dispatch acceptance
+
+M0 links AltF8/AltF7 source/context/condition to actual navigation tests.
+Parent menuclosed guard separate; nextmessage selection/Undo/F2 linked too.
+Sourcebe3610c clean two modes 44 numberedchecks PASS,34inventory34docs.
+Initial runner invalid case nav rejected before build/tests; corrected
+navigation. No testfail/retry. linux-inventory-alt-diagnostic-dispatch.json.
+No productfix/models/pixels/allterminals/Windows/globalmilestone.
