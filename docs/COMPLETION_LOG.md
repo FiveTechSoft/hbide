@@ -5554,3 +5554,11 @@ ni build nuevo. Test extendido posterior al export, no suite congeladaC32.
 Primer modoSaveAll usó mnemonicv incorrecto y produjo4fallos de arnés;
 corregidol PASS y original conservado. Sin píxeles/Windows/matriz/hito.
 Evidencia: docs/evidence/linux-recovered-review-q249.json.
+
+### Q250 (1 noviembre 2026): recoveredUndo EOL/encoding
+
+C32exacto pasa4variantes del arnés extendido posterior al export: CRLF,
+EOLmixto, UTF8conBOM y TAB. Cada una kill/recover/edit/Undo mantiene dirty,
+conserva journal y guarda bytes exactos. Sin cambio producto/build/modelos,
+no sumar como funciones ni heredar matriz completa. Sin píxeles/Windows/hito.
+Evidencia: docs/evidence/linux-recovered-undo-encoding-q250.json.
