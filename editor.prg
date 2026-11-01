@@ -95,7 +95,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD Edit( nKey )
    METHOD EditKey( nKey )
    METHOD LinesSnapshot()
-   METHOD RecordEdit( aBefore, lSeparate )
+   METHOD RecordEdit( aBefore, lSeparate, nMaxPrefix )
    METHOD PushOp( nRow, aOld, aNew, lSeparate )
    METHOD ApplyOp( aOp, lInverse )
    METHOD Undo()
@@ -256,7 +256,7 @@ METHOD DuplicateLine() CLASS HBSrcEdit
    ::ClearSelection()
    // Insert a copy below current line; independent of insert/overstrike mode
    ::InsertLine( ::aText[ ::nRow ]:cText, .F., ::nRow + 1 )
-   ::RecordEdit( aBefore )
+   ::RecordEdit( aBefore, .T., ::nRow )
    ::lDirty := .T.
    ::GoTo( ::nRow + 1, 5 )
    ::Display()
@@ -787,7 +787,7 @@ return aLines
 STATIC FUNCTION HBIDE_StrEq( cA, cB )
 return Len( cA ) == Len( cB ) .and. cA == cB
 
-METHOD RecordEdit( aBefore, lSeparate ) CLASS HBSrcEdit
+METHOD RecordEdit( aBefore, lSeparate, nMaxPrefix ) CLASS HBSrcEdit
 
    local aAfter := ::LinesSnapshot()
    local nB := Len( aBefore ), nA := Len( aAfter )
@@ -797,7 +797,9 @@ METHOD RecordEdit( aBefore, lSeparate ) CLASS HBSrcEdit
    // Exact compare without a function call per line: SET EXACT ON makes
    // == exact for strings (see HBIDE_StrEq); restored right after.
    lExact := Set( _SET_EXACT, .T. )
-   nMin := Min( nB, nA )
+   // Explicit insertion commands know which identical line is new.
+   // Do not let a greedy equal prefix move the operation below its anchor.
+   nMin := Min( Min(nB,nA), hb_defaultValue(nMaxPrefix,Max(nB,nA)) )
    while nPre < nMin .and. aBefore[ nPre + 1 ] == aAfter[ nPre + 1 ]
       nPre++
    end

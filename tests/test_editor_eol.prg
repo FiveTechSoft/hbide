@@ -47,6 +47,15 @@ PROCEDURE Main()
       nFail += iif( lOk, 0, 1 )
       ? iif( lOk, 'PASS:', 'FAIL:' ), aCase[ 1 ], 'split, undo, redo and journal reload'
    NEXT
+   o:LoadText('same'+cLF+'same'+cLF+'tail')
+   o:aBPs := {2}
+   o:GoTo(1,5)
+   o:DuplicateLine()
+   Check(o:GetText()=='same'+cLF+'same'+cLF+'same'+cLF+'tail'.and.Len(o:aBPs)==1.and.o:aBPs[1]==3,'duplicate identical keeps original BP identity',@nPass,@nFail)
+   o:Undo()
+   Check(Len(o:aBPs)==1.and.o:aBPs[1]==2,'Undo identical duplicate BP',@nPass,@nFail)
+   o:Redo()
+   Check(Len(o:aBPs)==1.and.o:aBPs[1]==3,'Redo identical duplicate BP',@nPass,@nFail)
    // Every edit is checked in both directions, including adjacent metadata.
    cText := 'abc' + cCRLF + 'def' + cLF + 'ghi' + Chr( 13 ) + 'tail'
    o:LoadText( cText )
