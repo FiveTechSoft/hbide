@@ -66,6 +66,11 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+C30es elcandidatointernoactual(export049b533,bin96d77549):8smokes+
+3modos16checksreportadossobrebinexacto ydosnativas802x477inspeccionadas.
+Incluyecierrecentrado/regularliteral fixes,NOrelease/licencias/Windows/
+instalador/matriz353. C29permanecehistorico,nosumarsusPASS.
+
 Corte1Nov10:39: Q211metadatosliteral(TimeGet/Size) yrecreacionchecks
 literales,31modelosfreshsobre6f45c00/2PTY10checks,87guardas. Q212titulo
 inspectorcentrado y[■]arribaizquierda,4PTY28checkssobre0676a5a,dos

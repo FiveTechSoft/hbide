@@ -5156,3 +5156,14 @@ bin14e90537070120f172379dc2278d51c8e95c8d8c7a01a3546ec62444aff89cc7.
 87guardas34docsPASS. Nativa1202x762inspeccionadaidentidadliteralguardada.
 SinWindows/raceproof/matrizglobal/cierreM1.
 Evidencia: docs/evidence/linux-atomic-literal-regular-q216.json.
+
+### C30 (1 noviembre 2026): candidato con inspector y protecciones literales
+
+Export049b5332628bbb8faa4458863405bc20438320ca
+strippedbin96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29.
+8smokesconstructorPASS+3modosfocales16checksreportados:centrocierre25x80,
+regularliteralantehermanoenlace yexternalchangesliteralrecreate.
+Dosnativasreales802x477inspeccionadas:titulo centrado,[■]izquierda,click
+restaurafondo/12controles. C29historicoanterior. Inventarioavisosexacto
+conservado,no licenciaclearance/release/instalador/Windows/matriz353/hitos.
+Evidencia: docs/evidence/linux-candidate-c30.json.
