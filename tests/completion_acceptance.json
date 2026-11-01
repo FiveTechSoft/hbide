@@ -302,9 +302,10 @@
         "test_editor_eol.prg",
         "test_edit_menu_pty.py",
         "test_clipboard_spaces_pty.py",
-        "test_clipboard_multidoc_pty.py"
+        "test_clipboard_multidoc_pty.py",
+        "test_paste_identical_bp_pty.py"
       ],
-      "contract": "Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes. A copied line containing only spaces is real clipboard data; Paste inserts it with exact disk bytes and Undo/Redo. Editor clipboard is shared across document instances; Paste changes only destination history and bytes, source stays unchanged. Not OS clipboard.",
+      "contract": "Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes. A copied line containing only spaces is real clipboard data; Paste inserts it with exact disk bytes and Undo/Redo. Editor clipboard is shared across document instances; Paste changes only destination history and bytes, source stays unchanged. Not OS clipboard. Explicit insertion is anchored before identical existing instructions; their breakpoints shift with the original instruction through Undo/Redo, not onto the new copy. Bounded identical-line fixture only.",
       "expected_label": "Paste"
     },
     "IDE-013": {
@@ -325,9 +326,10 @@
       "tests": [
         "test_editor_eol.prg",
         "test_edit_menu_pty.py",
-        "test_duplicate_selection_pty.py"
+        "test_duplicate_selection_pty.py",
+        "test_duplicate_identical_bp_pty.py"
       ],
-      "contract": "Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. Real Edit-menu dispatch now checks exact saved bytes. Duplicate Line clears old marked range before moving the cursor. Subsequent typing cannot silently replace that stale block; exact Undo typing/duplicate and Redo verified.",
+      "contract": "Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. Real Edit-menu dispatch now checks exact saved bytes. Duplicate Line clears old marked range before moving the cursor. Subsequent typing cannot silently replace that stale block; exact Undo typing/duplicate and Redo verified. Explicit insertion is anchored before identical existing instructions; their breakpoints shift with the original instruction through Undo/Redo, not onto the new copy. Bounded identical-line fixture only.",
       "expected_label": "Duplicate Line"
     },
     "IDE-017": {
