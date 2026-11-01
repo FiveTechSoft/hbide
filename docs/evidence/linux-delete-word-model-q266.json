@@ -1,0 +1,13 @@
+{
+  "source": "3f480e667e2f9a417cd7b3858a989cb321e6614a",
+  "binary_sha256": "7c1166ba204e0e65e1fe9c8b8d940d86692b609761e53b89e7021d70072ff883",
+  "scope": "Fresh GTSTD word-delete model9checks, UTF8 scalar/TAB text positions/lexical invalidation/UndoRedo. Not C39 IDE mode, PTY, pixels, fullmatrix or Windows. No product fix.",
+  "sources": {
+    "tests/test_delete_word_columns.prg": "574ddcd8de0f4e62eadf366e20eb1b0c3d2d2175e3f36f840634958e77ce7ee5",
+    "editor.prg": "7cf76b594fe2b28b3c3976300a1697ff38109065984dabce47e22ee66f14694a",
+    "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+    "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+  },
+  "log": "\n\n    1 beta\n    2\n    3\n    4\n    5\n    6\n    7\n    8\n    9\n   10\n   11\n   12\n   13\n   14\n   15\n   16\n   17\n   18\n   19\nPASS UTF8 word removes whole accented word\n    1caf\u00e9 beta\nP   2\nPASS UTF8 Undo restores exact\n    1caf beta\nP   2\nPASS UTF8 midword deletes one scalar not byte\n    1caf\u00e9 beta\nP   2\n    1     beta\nPASS TAB is one model column, not display width\n    1    alpha beta\nP   2\nPASS TAB Undo exact\nPASS initial block comment reaches next row\n    1 comment\nP   2return nil\nPASS word deletion invalidates block state\n    1/* comment\nP   2return nil\nPASS Undo restores block state\n    1 comment\nP   2return nil\nPASS Redo clears block state\nTOTAL          9 PASS          0 FAIL",
+  "exit": 0
+}
