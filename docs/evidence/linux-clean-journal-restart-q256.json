@@ -1,0 +1,10 @@
+{
+  "scope": "C34 exact binary, extended postexport harness Undo/Redo clean kill/restart. No product/new build/full matrix/pixels/Windows.",
+  "source": "fdda695af4cb57394b02a68988a8232bcf0de573",
+  "binary_sha256": "051785b8a669a256e790943f6ed85235f7073405e24e4cf0b812c9192d858f5b",
+  "test_sha256": "b1275b06febcaa535dabed628373057eba790d10ae0694adf33c6ef26d92f969",
+  "undo": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS Undo to disk baseline retires stale journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n",
+  "redo": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS Undo to disk baseline retires stale journal\nPASS saved Redo writes edited bytes\nPASS Undo away from saved creates journal\nPASS Redo to saved retires journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n",
+  "initial_wrong_redo_mnemonic": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS Undo to disk baseline retires stale journal\nFAIL saved Redo writes edited bytes\nFAIL Undo away from saved creates journal\nPASS Redo to saved retires journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n",
+  "caveat": "First Redo mode used r not actual e, leading2spurious failures. Corrected run retained separately. Harness extension after export, not frozen C34 script."
+}

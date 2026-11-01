@@ -164,9 +164,26 @@ try:
     check('journal encoding generation stored', jbytes.startswith(b'\x00HBIDE-J1\n')) if utf8 or raw_utf8 or refuse_cp or utf8_host else check('journal retains original EOL', jbytes == b'ZZ' + orig.encode())
     os.write(fd,b'\x1be');pump(.3,fd);os.write(fd,b'n');pump(3.2,fd)
     check('Undo to disk baseline retires stale journal',not journals())
+    if os.environ.get('JOURNAL_CLEAN_MODE') == 'redo':
+        os.write(fd,b'\x1be');pump(.3,fd);os.write(fd,b'e');pump(.5,fd)
+        os.write(fd,b'\x1bOQ');pump(.7,fd)
+        check('saved Redo writes edited bytes',pathlib.Path(deep).read_bytes()==b'ZZ'+orig.encode())
+        os.write(fd,b'\x1be');pump(.3,fd);os.write(fd,b'n');pump(3.0,fd)
+        check('Undo away from saved creates journal',bool(journals()))
+        os.write(fd,b'\x1be');pump(.3,fd);os.write(fd,b'e');pump(.6,fd)
+        check('Redo to saved retires journal',not journals())
 
 finally:
     os.kill(pid, signal.SIGKILL); os.waitpid(pid, 0); os.close(fd)
+
+scr=Scr()
+pid,fd=boot()
+try:
+    pump(1.5,fd)
+    check('restart does not offer obsolete recovery','interruptedsession' not in scr.text().replace(' ',''))
+    check('restart enters clean IDE','noname.prg' in scr.text())
+finally:
+    os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
 
 for n,ok in results:print(('PASS' if ok else 'FAIL'),n)
 raise SystemExit(int(not all(ok for _,ok in results)))
