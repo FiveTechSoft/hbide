@@ -6,6 +6,12 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'designer-inline-get-when-veto-runtime': ('test_designer_inline_when_veto_runtime_pty.py', ['--kind','get'], 120),
+    'designer-inline-radiogroup-when-veto-runtime': ('test_designer_inline_when_veto_runtime_pty.py', ['--kind','radiogroup'], 120),
+    'designer-inline-checkbox-when-veto-runtime': ('test_designer_inline_when_veto_runtime_pty.py', ['--kind','checkbox'], 120),
+    'designer-inline-listbox-when-veto-runtime': ('test_designer_inline_when_veto_runtime_pty.py', ['--kind','listbox'], 120),
+    'designer-inline-combobox-when-veto-runtime': ('test_designer_inline_when_veto_runtime_pty.py', ['--kind','combobox'], 120),
+    'designer-inline-button-when-veto-runtime': ('test_designer_inline_when_veto_runtime_pty.py', ['--kind','button'], 120),
     'designer-inline-get-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','get'], 120),
     'designer-inline-radiogroup-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','radiogroup'], 120),
     'designer-inline-checkbox-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','checkbox'], 120),
