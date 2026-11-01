@@ -1,5 +1,5 @@
 """Real IDE Edit-menu dispatch. Linux PTY, not visual certification."""
-import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
+import sys, os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
 ROWS, COLS = 40, 120
 BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
 class Scr:
@@ -125,7 +125,13 @@ try:
         row=next(r for r,g in enumerate(scr.g) if 'return nil' in ''.join(g))
         col=''.join(scr.g[row]).index('return')
         return ok and scr.at[row][col][0]==keyword
-    send(b'\x1b[B');send(b'\x1bOF');send(b'\x7f')
+    send(b'\x1b[B');send(b'\x1bOF')
+    if '--delete' in sys.argv:
+        send(b'\x1b[D');send(b'\x1b[3~')
+    elif '--selection' in sys.argv:
+        send(b'\x1b[19~');send(b'\x1b[D');send(b'\x1b[3~')
+    else:
+        send(b'\x7f')
     check('Removing continuation recolors following literal and return as real comment',colors(13,13))
     saved('Removed semicolon saves exact bytes',original.replace(b':= ;',b':= '))
     send(b';')

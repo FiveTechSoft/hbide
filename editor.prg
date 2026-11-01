@@ -563,6 +563,9 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
               ::SelDelete( ::SelRange() )
            else
            ::ClearSelection()
+           // HBEditor may repaint inside Super:Edit. Its next-line lexical
+           // state must be stale before the mutation, not after RecordEdit.
+           ::nBlkDirty := Min( ::nBlkDirty, ::nRow )
            nPos = ::nCol
            ::nCol = Max( ::nCol - 4, 1 )
            if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )
@@ -1882,6 +1885,8 @@ METHOD SelDelete( aSel ) CLASS HBSrcEdit
    for n = aSel[ 1 ] + 1 to aSel[ 3 ]
       ::RemoveLine( aSel[ 1 ] + 1 )
    next
+   // ClearSelection and GoTo can repaint before the caller records undo.
+   ::nBlkDirty := Min( ::nBlkDirty, aSel[ 1 ] )
    ::ClearSelection()
    // A range entirely in virtual space removes no bytes or boundaries.
    // Keep prior dirty/history state instead of creating a false save prompt.
