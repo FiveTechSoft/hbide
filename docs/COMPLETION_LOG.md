@@ -4097,3 +4097,15 @@ Fixture inicial olvido reenfocar tras Undo/Redo (restablece campo a1);
 corregido harness, no producto. Conteo esperado14 corregido a13 calculados.
 No arreglo ni aceptacion visual/PTY/Windows/todos campos ni cierreM4.
 Evidencia `docs/evidence/linux-designer-inline-fields-q138.json`.
+
+
+## 1 noviembre 2026: Q139 texto inline por PTY real
+
+Fuente `df68dd7`, tres modos PTY/30checks PASS, 57guardas PASS. Seis
+pares control/campo: ButtonCaption/Accel/Action, GETvariable, ListBox
+variable/items. F4/F6/Down/Enter editan texto real, F10 persiste y
+Undo/Redo/Esc comparan modelo exacto. Terminal nativo120x40 inspeccionado
+con Action de argumento entre comillas y bordes completos tras F10.
+Evidencia `docs/evidence/linux-designer-inline-text-q139.json`. No arreglo,
+handler ejecutado, todoscampos, Windows ni matriz global heredada.
+Sin nueva corrida de modelos en este lote.

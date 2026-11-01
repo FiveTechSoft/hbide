@@ -1,0 +1,151 @@
+{
+  "scope": "Q139 real Linux PTY inline text editing, not product fix/all fields/handler execution/Windows or full matrix acceptance",
+  "source": "df68dd7d7a7b2ed64626569e2ab398fdf93514f7",
+  "binary_sha256": "1ee7d75c062ba498c0577bd3117b622ead6fd8e8af70750fb463b4f8c37ef521",
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "df68dd7d7a7b2ed64626569e2ab398fdf93514f7",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e4eb3d9e230351cc362d4083121047fdc38d907af7977809677c57e8bdcc410c",
+      "binary_sha256": "1ee7d75c062ba498c0577bd3117b622ead6fd8e8af70750fb463b4f8c37ef521",
+      "build_receipt": "/tmp/hbide-q139-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3a010ead1d1742dd09997bd781bce7abf8ae7aee83565e06c33571a2e60f3b22",
+      "case": "designer-inline-button-text",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_text_pty.py"
+      ],
+      "started": 1793506132.1205807,
+      "seconds": 15.0,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1c8b9c901ff3e37375c69c79fe9c79c50adfb68eaae1caa4ab5a836db901a4cc",
+      "log": "/tmp/hbide-q139-final/designer-inline-button-text-1793506132120576657.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "df68dd7d7a7b2ed64626569e2ab398fdf93514f7",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e4eb3d9e230351cc362d4083121047fdc38d907af7977809677c57e8bdcc410c",
+      "binary_sha256": "1ee7d75c062ba498c0577bd3117b622ead6fd8e8af70750fb463b4f8c37ef521",
+      "build_receipt": "/tmp/hbide-q139-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3a010ead1d1742dd09997bd781bce7abf8ae7aee83565e06c33571a2e60f3b22",
+      "case": "designer-inline-get-binding",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_text_pty.py",
+        "--get"
+      ],
+      "started": 1793506147.1178744,
+      "seconds": 7.02,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1c8b9c901ff3e37375c69c79fe9c79c50adfb68eaae1caa4ab5a836db901a4cc",
+      "log": "/tmp/hbide-q139-final/designer-inline-get-binding-1793506147117870910.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "df68dd7d7a7b2ed64626569e2ab398fdf93514f7",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e4eb3d9e230351cc362d4083121047fdc38d907af7977809677c57e8bdcc410c",
+      "binary_sha256": "1ee7d75c062ba498c0577bd3117b622ead6fd8e8af70750fb463b4f8c37ef521",
+      "build_receipt": "/tmp/hbide-q139-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3a010ead1d1742dd09997bd781bce7abf8ae7aee83565e06c33571a2e60f3b22",
+      "case": "designer-inline-listbox-text",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_text_pty.py",
+        "--listbox"
+      ],
+      "started": 1793506154.1419387,
+      "seconds": 10.94,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1c8b9c901ff3e37375c69c79fe9c79c50adfb68eaae1caa4ab5a836db901a4cc",
+      "log": "/tmp/hbide-q139-final/designer-inline-listbox-text-1793506154141934898.log"
+    }
+  ],
+  "logs": {
+    "designer-inline-button-text": "PASS button inspector visible\nPASS button inline caption typed and F10 persisted\nPASS button inline caption Undo exact\nPASS button inline caption Redo exact\nPASS button inline caption Esc exact\nPASS button inline accelerator typed and F10 persisted\nPASS button inline accelerator Undo exact\nPASS button inline accelerator Redo exact\nPASS button inline accelerator Esc exact\nPASS button inline action typed and F10 persisted\nPASS button inline action Undo exact\nPASS button inline action Redo exact\nPASS button inline action Esc exact\nPASS button no other controls introduced\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-n052bn6a\n",
+    "designer-inline-get-binding": "PASS get inspector visible\nPASS get inline variable typed and F10 persisted\nPASS get inline variable Undo exact\nPASS get inline variable Redo exact\nPASS get inline variable Esc exact\nPASS get no other controls introduced\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-mguq6f5d\n",
+    "designer-inline-listbox-text": "PASS listbox inspector visible\nPASS listbox inline variable typed and F10 persisted\nPASS listbox inline variable Undo exact\nPASS listbox inline variable Redo exact\nPASS listbox inline variable Esc exact\nPASS listbox inline items typed and F10 persisted\nPASS listbox inline items Undo exact\nPASS listbox inline items Redo exact\nPASS listbox inline items Esc exact\nPASS listbox no other controls introduced\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-ldg6y1z2\n"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "df68dd7d7a7b2ed64626569e2ab398fdf93514f7",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "31618a534ae24150cdac731459ad74a9fc6fdd16ee3aff44fc1ffca4e47616c7",
+    "started": 1793506165.2801294,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q139-guards/test_completion_guards.py.log",
+        "seconds": 0.254
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q139-guards/test_build_receipt.py.log",
+        "seconds": 0.203
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "b4c03d198ec9ac6e952c19abaf776f9e58cbc5e8807cafbd24038987216c9ab1",
+        "log": "/tmp/hbide-q139-guards/test_completion_inventory.py.log",
+        "seconds": 0.554
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q139-guards/test_distribution_notices.py.log",
+        "seconds": 0.201
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q139-guards/test_embed_help_docs.py.log",
+        "seconds": 0.204
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q139-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.353
+      }
+    },
+    "ok": true,
+    "finished": 1793506167.0507433
+  },
+  "visual": "Native120x40 inspected: Action row shows exact quoted expression after actual typing and F10; dialog/inspector/IDE lower borders complete. Persisted JSON exact.",
+  "coverage": "Six control-field pairs across ButtonCaption/Accel/Action, GETvariable, ListBoxvariable/items; typed/F10/Undo/Redo/Esc with persisted model comparison. 30checks. No new model run claimed."
+}

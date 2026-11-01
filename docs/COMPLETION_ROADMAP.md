@@ -453,3 +453,11 @@ ni cierre M3/global, continúan áreas independientes.
 Modelo InspEdit13pares texto no-evento/79checks PASS;baseline28modelos/
 57guardas PASS. Sin arreglo producto ni visual/PTY/Windows ni cierreM4.
 Evidencia `docs/evidence/linux-designer-inline-fields-q138.json`.
+
+
+### Seguimiento Q139 (1 noviembre 2026)
+
+Seis pares texto inline en tres modos PTY/30checks y57guardas PASS,
+visualAction/F10 inspeccionada. Evidencia
+`docs/evidence/linux-designer-inline-text-q139.json`; no arreglo ni
+aceptacion todoscampos/handlerexecution/Windows/cierreM4.
