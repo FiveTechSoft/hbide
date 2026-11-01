@@ -429,3 +429,11 @@ historico reportado tras reset, no heredado. Q136 incluye una interrupcion
 externa de navigation y repeticion explicita PASS, documentadas. Evidencia
 `docs/evidence/linux-full-matrix-q136.json`. No equivale a100%ni cierre
 de Windows/licencias/instalacion/hitos.
+
+
+### Seguimiento C24 (1 noviembre 2026)
+
+Candidato exportado3d109f8/binarioa05367ba:8smokes+5modosrecientes60checks
+PASS,34docpreflight,ldd y visual nativa exactbinary. Evidencia
+`docs/evidence/linux-candidate-c24.json`. No release/licencias/Windows/
+instalacion ni herencia de matrizQ136.

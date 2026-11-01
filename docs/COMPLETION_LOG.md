@@ -4057,3 +4057,17 @@ de fallo de producto ni se oculta como corrida sin interrupciones.
 Checkpoints adjuntos al seguimiento conservan ejecutable y registros.
 Evidencia `docs/evidence/linux-full-matrix-q136.json`. No certifica
 Windows/instalacion/licencias, todos los comportamientos ni cierre de hitos.
+
+
+## 1 noviembre 2026: C24 candidato Linux exportado
+
+Exportado de `3d109f8f5567523ab183c2a8a013db94dbb12193`, ejecutable
+strip-debug `a05367ba7c4c19e0c67d4a913a92f162788ca9aefedfccf0cd316d2e8b95baea`.
+Ocho smokes estandar PASS y cinco modos recientes/60 checks PASS
+(continuacion Backspace/Delete/seleccion, Enter y joins). Cada prueba usa
+el ejecutable distribuido exacto; hash posterior sin cambios, dependencias
+resueltas, preflight34documentos PASS en exportacion sin.git. Terminal
+nativo inspeccionado con candidato exacto: quitar/reponer ; repinta sin
+redraw forzado, F2 byte-exacto y bordes completos. Sin fallos/reintentos.
+Evidencia `docs/evidence/linux-candidate-c24.json`. Candidato temporal,
+no release, instalacion limpia, licencias, Windows ni herencia de matrizQ136.
