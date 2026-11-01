@@ -1,0 +1,11 @@
+{
+  "scope": "Q457 C87 wheel movement extends/contracts active marked word range; characterization of existing behavior, not policy change",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "test_sha256": "3f2ddc0159a813d9bac155fa584eb3cb39471f3aefaa2c3871469db5a365b596",
+  "modes": {
+    "down": "PASS Wheel down with selected word moves cursor to second row\nPASS Typing replaces exact marked wheel range\nPASS Undo marked wheel replacement restores exact CRLF original\nPASS Redo marked wheel replacement exact\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-7d5l1phk\n",
+    "up": "PASS Wheel down with selected word moves cursor to second row\nPASS Wheel up returns selected cursor to first row\nPASS Typing replaces exact marked wheel range\nPASS Undo marked wheel replacement restores exact CRLF original\nPASS Redo marked wheel replacement exact\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-0lpmy_m2\n"
+  },
+  "limits": "ASCII three-row CRLF/xterm40x120 doubleclick word anchor only. Down extends through end of second line at same column; up contracts original word. No general desired-policy assertion, F8-key path, all selection states, Unicode, viewport, pixels or Windows."
+}
