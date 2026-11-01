@@ -549,3 +549,12 @@ Checkbox/Combo/List STATE,ButtonAction/Focus.6PTY47checks63guardas34docs
 PASS. Sin todos pares evento/tipo,WHEN/otros handlers, nuevos pixeles,
 Windows/global/cierreM4. Evidencia
 `docs/evidence/linux-designer-inline-events-runtime-q150.json`.
+
+
+### Seguimiento Q151 (1 noviembre 2026)
+
+20pares evento/tipo inspector editadosinline,F10,F9,compilacion y
+runtimeconmarcadores.T.:6PTY51checks63guardas34docsPASS. Solo ejecucion
+focal.T.,no vetos.F./orden/cuentas/parametros/excepciones/nuevos pixels/
+Windows/global/cierreM4. Evidencia
+`docs/evidence/linux-designer-inline-all-events-runtime-q151.json`.

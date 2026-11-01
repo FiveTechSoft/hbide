@@ -1,0 +1,240 @@
+{
+  "scope": "All20 exposed inspector event/type pairs with true-returning marker handlers, bounded Linux fixtures, no product fix",
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c4748583cf0dc3b785491f7103b30d8894673515",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "0bc03784852a9c6254dcdee8ee0624b66bb6294e43d623dd84ac60bd8f4028c2",
+      "binary_sha256": "97d8ea982f1e2ebbd5796c02f4314b207d89c0d7d5cec2396e9e17bb48552184",
+      "build_receipt": "/tmp/hbide-q151-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3bf5ac8a871a771dca4fdded8d44eea54a64f4cbe87895a49f1e572dd8a534f4",
+      "case": "designer-inline-all-get-events-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "get"
+      ],
+      "started": 1793508466.6206892,
+      "seconds": 8.83,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "log": "/tmp/hbide-q151-final/designer-inline-all-get-events-runtime-1793508466620684641.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c4748583cf0dc3b785491f7103b30d8894673515",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "0bc03784852a9c6254dcdee8ee0624b66bb6294e43d623dd84ac60bd8f4028c2",
+      "binary_sha256": "97d8ea982f1e2ebbd5796c02f4314b207d89c0d7d5cec2396e9e17bb48552184",
+      "build_receipt": "/tmp/hbide-q151-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3bf5ac8a871a771dca4fdded8d44eea54a64f4cbe87895a49f1e572dd8a534f4",
+      "case": "designer-inline-all-radiogroup-events-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "radiogroup"
+      ],
+      "started": 1793508475.45433,
+      "seconds": 10.03,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "log": "/tmp/hbide-q151-final/designer-inline-all-radiogroup-events-runtime-1793508475454326032.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c4748583cf0dc3b785491f7103b30d8894673515",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "0bc03784852a9c6254dcdee8ee0624b66bb6294e43d623dd84ac60bd8f4028c2",
+      "binary_sha256": "97d8ea982f1e2ebbd5796c02f4314b207d89c0d7d5cec2396e9e17bb48552184",
+      "build_receipt": "/tmp/hbide-q151-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3bf5ac8a871a771dca4fdded8d44eea54a64f4cbe87895a49f1e572dd8a534f4",
+      "case": "designer-inline-all-checkbox-events-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "checkbox"
+      ],
+      "started": 1793508485.4856021,
+      "seconds": 10.23,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "log": "/tmp/hbide-q151-final/designer-inline-all-checkbox-events-runtime-1793508485485598935.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c4748583cf0dc3b785491f7103b30d8894673515",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "0bc03784852a9c6254dcdee8ee0624b66bb6294e43d623dd84ac60bd8f4028c2",
+      "binary_sha256": "97d8ea982f1e2ebbd5796c02f4314b207d89c0d7d5cec2396e9e17bb48552184",
+      "build_receipt": "/tmp/hbide-q151-final/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3bf5ac8a871a771dca4fdded8d44eea54a64f4cbe87895a49f1e572dd8a534f4",
+      "case": "designer-inline-all-listbox-events-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "listbox"
+      ],
+      "started": 1793508496.039557,
+      "seconds": 10.54,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "log": "/tmp/hbide-q151-final/designer-inline-all-listbox-events-runtime-1793508496039552618.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c4748583cf0dc3b785491f7103b30d8894673515",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "0bc03784852a9c6254dcdee8ee0624b66bb6294e43d623dd84ac60bd8f4028c2",
+      "binary_sha256": "97d8ea982f1e2ebbd5796c02f4314b207d89c0d7d5cec2396e9e17bb48552184",
+      "build_receipt": "/tmp/hbide-q151-final/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3bf5ac8a871a771dca4fdded8d44eea54a64f4cbe87895a49f1e572dd8a534f4",
+      "case": "designer-inline-all-combobox-events-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "combobox"
+      ],
+      "started": 1793508506.5767074,
+      "seconds": 10.53,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "log": "/tmp/hbide-q151-final/designer-inline-all-combobox-events-runtime-1793508506576703537.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c4748583cf0dc3b785491f7103b30d8894673515",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "0bc03784852a9c6254dcdee8ee0624b66bb6294e43d623dd84ac60bd8f4028c2",
+      "binary_sha256": "97d8ea982f1e2ebbd5796c02f4314b207d89c0d7d5cec2396e9e17bb48552184",
+      "build_receipt": "/tmp/hbide-q151-final/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "3bf5ac8a871a771dca4fdded8d44eea54a64f4cbe87895a49f1e572dd8a534f4",
+      "case": "designer-inline-all-button-events-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_all_events_runtime_pty.py",
+        "--kind",
+        "button"
+      ],
+      "started": 1793508517.1099632,
+      "seconds": 8.83,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "log": "/tmp/hbide-q151-final/designer-inline-all-button-events-runtime-1793508517109959742.log"
+    }
+  ],
+  "logs": {
+    "designer-inline-all-get-events-runtime": "PASS get all inline events exact persisted\nPASS get actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS alpha control selection updates exact bound value\nPASS get alpha inline when executes\nPASS get alpha inline valid executes\nPASS beta control selection updates exact bound value\nPASS get beta inline when executes\nPASS get beta inline valid executes\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-3w91__l6\n",
+    "designer-inline-all-radiogroup-events-runtime": "PASS radiogroup all inline events exact persisted\nPASS radiogroup actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS down control selection updates exact bound value\nPASS radiogroup down inline when executes\nPASS radiogroup down inline valid executes\nPASS radiogroup down inline focus executes\nPASS two-down control selection updates exact bound value\nPASS radiogroup two-down inline when executes\nPASS radiogroup two-down inline valid executes\nPASS radiogroup two-down inline focus executes\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-6va1qwx5\n",
+    "designer-inline-all-checkbox-events-runtime": "PASS checkbox all inline events exact persisted\nPASS checkbox actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS toggle control selection updates exact bound value\nPASS checkbox toggle inline when executes\nPASS checkbox toggle inline valid executes\nPASS checkbox toggle inline focus executes\nPASS checkbox toggle inline state executes\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-w3vso4x2\n",
+    "designer-inline-all-listbox-events-runtime": "PASS listbox all inline events exact persisted\nPASS listbox actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS down control selection updates exact bound value\nPASS listbox down inline when executes\nPASS listbox down inline valid executes\nPASS listbox down inline focus executes\nPASS listbox down inline state executes\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-qcnq6t6j\n",
+    "designer-inline-all-combobox-events-runtime": "PASS combobox all inline events exact persisted\nPASS combobox actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS down control selection updates exact bound value\nPASS combobox down inline when executes\nPASS combobox down inline valid executes\nPASS combobox down inline focus executes\nPASS combobox down inline state executes\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-hweqajrf\n",
+    "designer-inline-all-button-events-runtime": "PASS button all inline events exact persisted\nPASS button actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS enter control selection updates exact bound value\nPASS button enter inline when executes\nPASS button enter inline valid executes\nPASS button enter inline focus executes\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-1nzdyi7w\n"
+  },
+  "checks": 51,
+  "modes": 6,
+  "pairs": 20,
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "c4748583cf0dc3b785491f7103b30d8894673515",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "0877317ef93a2e2556e9642e6dd19bc94176745c5efd63e930ac901c037a2ff7",
+    "started": 1793508526.1138334,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q151-guards/test_completion_guards.py.log",
+        "seconds": 0.202
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q151-guards/test_build_receipt.py.log",
+        "seconds": 0.201
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "177c22d6bedd8cba16d90be576a51a233e9006716e4a06b67abadd25f6d9ee87",
+        "log": "/tmp/hbide-q151-guards/test_completion_inventory.py.log",
+        "seconds": 0.651
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q151-guards/test_distribution_notices.py.log",
+        "seconds": 0.198
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q151-guards/test_embed_help_docs.py.log",
+        "seconds": 0.198
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q151-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.349
+      }
+    },
+    "ok": true,
+    "finished": 1793508527.9137058
+  },
+  "covered": "GET when/valid2; Radio when/valid/focus3; Checkbox/List/Combo eachwhen/valid/focus/state4; Buttonwhen/valid/focus3. Actual inline edit all expressions, F10, F9, compile generated artifact, real runtime changes/tab/Enter, exact bound values and per-handler markers.",
+  "limits": "Only true-returning handlers. No false veto/validation failure, evaluation order/count or parameters, exception handling, arbitrary code, ButtonAction (separate Q148/Q150), mouse/native visual/model/Windows/global/M4 acceptance."
+}

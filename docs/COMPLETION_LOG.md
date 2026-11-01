@@ -4256,3 +4256,15 @@ Evidencia `docs/evidence/linux-designer-inline-events-runtime-q150.json`.
 No todos pares evento/tipo: WHEN y otros focus/valid/state siguen sin
 aceptacion runtime por esta prueba. Sin nuevos modelos/pixeles,Windows
 global ni cierreM4.
+
+
+## 1 noviembre 2026: Q151 veinte pares evento/tipo al runtime
+
+20pares expuestos:GETwhen/valid2,Radio3,Checkbox/List/Combo4cadauno,
+Buttonwhen/valid/focus3. Se editan todas las expresiones inline,F10,F9,
+compila artefacto real;runtimecambio/Tab/Enter verifica valores exactos
+y marcador separado por handler.6modos51checks63guardas34docsPASS,
+fuente c474858;sin arreglo. Solo handlers que retornan.T., no veto.F.,
+orden/cuentas/parametros/excepciones/codigoarbitrario,ActiondeButton
+(separadoQ148/Q150),mouse,nuevos modelos/pixeles/Windows/global/cierreM4.
+Evidencia `docs/evidence/linux-designer-inline-all-events-runtime-q151.json`.
