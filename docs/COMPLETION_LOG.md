@@ -6306,3 +6306,26 @@ matriz/píxeles nuevos/Windows/install/license ni cierre basado en conteos.
 C92bind507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb intacto.
 Q501docs/catálogo posteriores no embebidosC92; no build sólo docs. Espacio75MiB,
 no nuevas retiradas autorizadas; restricciones/políticas pendientes igual.
+
+
+### Q502-Q504 (2 noviembre 2026): panel ProjectDesktop y reserva reversible
+
+Q502 C92ProjectDesktop valida fila sin columna. Clickcol0fuera panel alineado
+s02+Enter abre s02 en vez s01; baseline2PASS1FAIL, fuentes intactas. Ruta propia
+projectui.prg, no helperListPick. C93source2fb1b433c789f37ffcd45da4bc8cc3cd96627e61,
+bin4139216fcc8dc49e1c8492f651250c6418addc0ebab55da5b948b391a61f37ee.
+Boundinterior2<MCol<MaxCol-2 compartidoDown/DBL sin cambiar activación.
+Own8smokes/About/ldd/docs34PASS,horizontal4PASS/existingProjectmouse11PASS.
+Native1202x762beforeC92s02MARKER02/afterC93s01MARKER01 con mismos eventos,
+inspeccionadosfuente/bordesinferiores/status. No todos tamaños/DBL interno/
+Windows/matriz/install/licencia; C92 conservado, sin aceptación heredada.
+C81independentarchive10,910,639bytes1470entries totalmente restauradosporarchivo
+enmemoriaSHA/size/mode/metadatadirslinks/inventario+originalrecheck antes retirar
+sólo expandido. Sourceoriginal/bin/manifiestos/log/evidencia intactos.
+Capacidad~28MiB tras C93, diagnóstico unoarchivoporbuildpierde~37MiB/ciclo.
+Q503loteautorizadoC72-C74 uno por uno independiente, sin hardlinks/mezcla:
+10,826,589/10,833,178/10,858,581bytes1423/1427/1440entries, mismas verificaciones
+íntegras antes retirar únicamente copiasourceexpandida. Detenido al alcanzar
+576,757,760bytes=550MiB libres. C93 y candidatos recientes intactos. Ningún
+coste/destinatario/publicación/distribución ni política nueva. No más retiradas.
+Q504docs posteriores no embebidosC93; no build sólo docs/reserva disponible.

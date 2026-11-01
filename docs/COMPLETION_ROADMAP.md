@@ -66,6 +66,26 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 2 noviembre00:11 Q504: último candidato aceptado en alcance focal **C93**,
+fuente `2fb1b433c789f37ffcd45da4bc8cc3cd96627e61`,
+bin `4139216fcc8dc49e1c8492f651250c6418addc0ebab55da5b948b391a61f37ee`.
+Q502 reproduce C92 ProjectDesktop con clickcol0 fuera del panel alineado s02:
+Enter abre s02 en vez s01 originalmente seleccionado. Es ruta independiente
+de ListPick, no helper compartido. C93 limita MCol al interior del panel sin
+cambiar activación. Own8smokes/About/ldd/docs34, horizontal4 y ProjectMouse11
+PASS. Native1202x762beforeC92s02MARKER02/afterC93s01MARKER01, mismos eventos,
+bordes inferiores/status completos inspeccionados. C92 conservado; no hereda
+matriz/DBL interno/todos tamaños/Windows/install/licencia ni cierra hitos.
+Docs posteriores no embebidosC93, no build sólo por docs. C81 árbol preservado
+reversible íntegro antes retirar sólo expandido. Q503loteautorizadoC72-C74 uno
+por uno preservado íntegro igual, detenido al alcanzar reserva550MiB; binarios,
+fuentes originales/manifiestos/logs/evidencia intactos. No más retiradas.
+Builds ligados a defectos concretos, no a consumir reserva. Próximo regresión
+identificada y hueco funcional distinto, sin variantes equivalentes. Políticas
+pendientes y gates anteriores permanecen abiertos.
+
+Histórico anterior, no evidencia heredada por C93:
+
 Corte 2 noviembre00:05 Q501: último candidato aceptado en alcance focal **C92**,
 fuente `cdac56d54fd36c416678734e5ca94ba2595607a4`,
 bin `d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb`.
