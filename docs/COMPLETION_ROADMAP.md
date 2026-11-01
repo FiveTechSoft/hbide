@@ -469,3 +469,11 @@ aceptacion todoscampos/handlerexecution/Windows/cierreM4.
 arreglo ni cierreM4; capturaItems tiene recorte horizontal y celda
 cursorgris anotados, no aceptacion pixelglobal. Evidencia
 `docs/evidence/linux-designer-inline-text-q140.json`.
+
+
+### Seguimiento Q141 (1 noviembre 2026)
+
+20pares evento inline en6modosPTY92checks57guardasPASS. Edicion y
+persistencia, no ejecucion de handlers ni cierreM4. Celda gris Q140
+pendiente de causa; no se considera arreglada. Evidencia
+`docs/evidence/linux-designer-inline-events-q141.json`.

@@ -4123,3 +4123,16 @@ completo verificado. Celda gris con forma de cursor en canvas, sin afirmar
 limpieza de todos los pixeles. No nueva corrida modelos ni todoscampos/
 eventos/handlers/Windows/matrizglobal. Evidencia
 `docs/evidence/linux-designer-inline-text-q140.json`.
+
+
+## 1 noviembre 2026: Q141 texto de eventos inline por PTY
+
+Fuente `012665c982649ebc425ac503684e392599db0acf`, binario
+`6871f02de2bfc873136ff0ea8194ff2cf2680fe8627d0ee455a0ff56bee6519c`.
+20pares control/evento expuestos,6modos/92checks y57guardas PASS. Entrada
+real/F10/Undo/Redo/Esc comparan JSON exacto; no ejecutan handlers. Captura
+nativa Focus inspeccionada con bordes completos y recorte horizontal
+conocido, texto completo en JSON. Celda gris Q140 persiste al mover
+puntero; trazaPTY oculta cursor tras editar, causa pendiente, no corregida.
+Sin arreglo producto/nueva corrida modelos/matrizglobal/Windows/cierreM4.
+Evidencia `docs/evidence/linux-designer-inline-events-q141.json`.
