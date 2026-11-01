@@ -1,0 +1,18 @@
+{
+  "scope": "FreshC95 fiveexistingM2Projecthorizontal4/Projectmouse11/promotionfailure9/retry15/missingoutput17PASS noinheritance",
+  "source": "1cdedd93da118bcdb33866d574943a784a00c0f6",
+  "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845",
+  "tests": {
+    "test_project_horizontal_bounds_pty.py": "7fa1f7456c43a8e61bc4b7f20622ecd44508062b42a5149980dc28bc4c19e8d6",
+    "test_project_mouse_pty.py": "a58401a72f385a263687341e336abc4fd7a87969ff7e8d98e52400234fd43f9d",
+    "test_missing_compiler_pty.py": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4"
+  },
+  "logs": {
+    "test_project_mouse_pty.py.log": "PASS Project opens Sources\nPASS doubleclick header does not open source\nPASS single click selects without opening\nPASS Enter opens clicked exact file\nPASS doubleclick scrolled source opens exact file\nPASS doubleclick missing source stays desktop\nPASS Messages empty has no diagnostics\nPASS doubleclick empty Messages does not open file\nPASS real failed build parsed bad source\nPASS doubleclick diagnostic opens correct file row\nPASS all source bytes unchanged\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-nnmgpk1k\n",
+    "test_project_horizontal_bounds_pty.py.log": "PASS Project opens Sources\nPASS Outside horizontal Project click leaves first source selected\nPASS Interior panel edge selects intended second source\nPASS All source bytes unchanged\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-ywayyxh3\n",
+    "promotion-failure.log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS editor remains usable after repeated failure\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-nwospyu7\n",
+    "missing-output-diagnostic.log": "PASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-mg9nmy8w\n",
+    "promotion-retry.log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS retry with unblocked destination builds\nPASS retry launches fresh real compiler result\nPASS retry promotes new executable\nPASS retained first output stays exact\nPASS retry preserves source\nPASS retry has no unnamed temporary outputs\nPASS editor remains usable after repeated failure\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-bjqkyyj5\n"
+  },
+  "limits": "No newCancel/policy/DBLinternal/allgeometry/newpixels/Windows/matrix/install/license"
+}
