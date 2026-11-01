@@ -1,7 +1,7 @@
 """Real IDE Edit-menu dispatch. Linux PTY, not visual certification."""
 import shlex, shutil, argparse
 import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
-parser=argparse.ArgumentParser();parser.add_argument('--utf8-viewer',action='store_true');parser.add_argument('--output-viewer',action='store_true');parser.add_argument('--column-mode',choices=['default','byte','tab4','tab16','no-caret','color'],default='default');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--utf8-scroll',action='store_true');parser.add_argument('--utf8-viewer',action='store_true');parser.add_argument('--output-viewer',action='store_true');parser.add_argument('--column-mode',choices=['default','byte','tab4','tab16','no-caret','color'],default='default');args=parser.parse_args()
 flags={'default':[], 'color':['-fdiagnostics-color=always'], 'byte':['-fdiagnostics-column-unit=byte'], 'tab4':['-ftabstop=4'], 'tab16':['-ftabstop=16'], 'no-caret':['-fno-diagnostics-show-caret']}[args.column_mode]
 ROWS, COLS = 40, 120
 BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
@@ -85,6 +85,8 @@ target.write_bytes(original)
 project=work/'test.hbp';project.write_text('"folder:12:part/bad.c"\n')
 gcc=shutil.which('gcc');assert gcc
 compiler=work/'tools/hbmk2';compiler.write_text('#!/bin/sh\nexec '+shlex.quote(gcc)+' -fsyntax-only '+shlex.join(flags)+' '+shlex.quote(str(target))+'\n');compiler.chmod(0o700)
+if args.utf8_scroll:
+    compiler.write_text('#!/bin/sh\n'+shlex.quote(gcc)+' -fsyntax-only '+shlex.join(flags)+' '+shlex.quote(str(target))+'\nrc=$?\nprintf \'%s\\n\' '+shlex.quote('BEGIN '+('é'*140)+' UTF8 TAIL')+'\nexit $rc\n')
 env = dict(os.environ, LANG='C.UTF-8',LC_ALL='C.UTF-8',HBIDE_UTF8='0',HARBOUR='//GTTRM:UTF8', HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm',PATH=str(work/'tools')+':'+os.environ['PATH'])
 pid, fd = pty.fork()
 if pid == 0:
@@ -130,9 +132,15 @@ try:
             send(b'u');pump(.3)
             (work/'gcc-output-utf8.screen').write_text(scr.text())
             check('Explicit UTF8 view renders real GCC quotes','‘unknown_name’' in scr.text())
+            if args.utf8_scroll:
+                for _ in range(24): send(b'\x1b[C'*8,.03)
+                check('UTF8 horizontal tail accessible','UTF8 TAIL' in scr.text())
+                for _ in range(24): send(b'\x1b[D'*8,.03)
+                check('UTF8 left clamp restores complete multibyte start',('BEGIN '+('é'*20)) in scr.text() and '\ufffd' not in scr.text())
             send(b'l');pump(.3)
             check('Legacy view remains selectable','‘unknown_name’' not in scr.text())
             send(b'u');pump(.3)
+            if args.utf8_scroll: check('UTF8 repeated selection preserves original display copy',('BEGIN '+('é'*20)) in scr.text())
         send(b'\x1b');pump(.4)
         check('Esc restores project diagnostics','1 diagnostics' in scr.text())
     send(b'\r',1)

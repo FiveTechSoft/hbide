@@ -1,7 +1,7 @@
 #include "inkey.ch"
 #include "set.ch"
 PROCEDURE Main()
-   LOCAL i, cLine := Replicate( "x", 120 ) + "DIAGNOSTIC TAIL", cShown
+   LOCAL i, cLine := Replicate( "x", 120 ) + "DIAGNOSTIC TAIL", cShown, cOriginal, cCP
    SetMode( 25, 80 )
    Set( _SET_TYPEAHEAD, 512 )
    FOR i := 1 TO 120
@@ -25,6 +25,17 @@ PROCEDURE Main()
    Check( Left( ScreenText( 3, 4, 3, 76 ), 10 ) == "Error tail", "GCC color notation removed from display copy" )
    Check( HBIDEProjectDiagnosticText( Chr(27) + "[2J" ) == Chr(27) + "[2J", "unknown CSI stays data" )
    Check( HBIDEProjectDiagnosticText( Chr(27) + "[31" ) == Chr(27) + "[31", "incomplete CSI stays data" )
+   cOriginal := "raw " + Chr(195) + Chr(169) + Chr(27) + "[31m"
+   cCP := hb_cdpSelect( "EN" )
+   hb_keyPut( Asc("u") ); hb_keyPut( K_ESC )
+   HBIDEProjectOutput( cOriginal )
+   Check( hb_cdpSelect() == "EN", "viewer restores legacy host codepage" )
+   Check( cOriginal == "raw " + Chr(195) + Chr(169) + Chr(27) + "[31m", "UTF8 view leaves caller raw bytes exact" )
+   hb_cdpSelect( "UTF8" )
+   hb_keyPut( Asc("u") ); hb_keyPut( K_ESC )
+   HBIDEProjectOutput( cOriginal )
+   Check( hb_cdpSelect() == "UTF8", "viewer restores UTF8 host codepage" )
+   hb_cdpSelect( cCP )
    ? "PASS output horizontal navigation and boundaries"
    RETURN
 STATIC PROCEDURE Check( lOk, cText )
