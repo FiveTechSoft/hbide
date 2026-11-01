@@ -1808,7 +1808,7 @@ METHOD DoSave() CLASS HbIde
    endif
 
    // A backup failure is visible but does not block saving the live buffer.
-   if ! Empty( ::oEditor:cFile ) .and. File( ::oEditor:cFile )
+   if ! Empty( ::oEditor:cFile ) .and. hb_FileExists( ::oEditor:cFile )
       if ! HBIDE_BackupFile( ::oEditor:cFile, @cFailInfo )
          HBIDE_MsgAlert( "Could not update .bak: " + cFailInfo + ". Saving anyway" )
       endif
