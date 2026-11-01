@@ -220,9 +220,11 @@
         "test_editor_eol.prg",
         "test_utf8_valid.prg",
         "test_atomic.prg",
-        "test_recovery_deep_path.py"
+        "test_recovery_deep_path.py",
+        "test_diskstamp_literal.prg",
+        "test_external_changes_pty.py"
       ],
-      "contract": "F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified. Symlink refusal only promises a recovery temp after verified complete write; failed copy preserves buffer/link/destination and reports no complete recovery copy. Exclusive temp creation/full write/close precede replacement. Complete recovery bytes are checked after symlink/promotion refusal; partial write promises no complete temp. Not after-close third-party replacement, fsync/power-loss or native Windows certification.",
+      "contract": "F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified. Symlink refusal only promises a recovery temp after verified complete write; failed copy preserves buffer/link/destination and reports no complete recovery copy. Exclusive temp creation/full write/close precede replacement. Complete recovery bytes are checked after symlink/promotion refusal; partial write promises no complete temp. Not after-close third-party replacement, fsync/power-loss or native Windows certification. Literal POSIX wildcard filenames use their own metadata, not a matching sibling, for external edits/deletion/recreate; tested 8MB hash threshold remains unchanged. Not concurrent path replacement.",
       "expected_label": "Save           F2"
     },
     "IDE-004": {
@@ -231,9 +233,11 @@
         "test_saveas_refusal_recovery_pty.py",
         "test_saveas_failure_identity_pty.py",
         "test_saveas_overwrite_accept_pty.py",
-        "test_saveas_overwrite_cancel_pty.py"
+        "test_saveas_overwrite_cancel_pty.py",
+        "test_saveas_literal_new_pty.py",
+        "test_saveas_literal_symlink_pty.py"
       ],
-      "contract": "Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Failed Save As retains old name/stamps/journal for initially clean and dirty buffers; later F2 still writes original. Accepted overwrite preserves destination as exact .bak, keeps old source unchanged, clears source journal and subsequent F2 targets new name.",
+      "contract": "Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Failed Save As retains old name/stamps/journal for initially clean and dirty buffers; later F2 still writes original. Accepted overwrite preserves destination as exact .bak, keeps old source unchanged, clears source journal and subsequent F2 targets new name. Literal POSIX wildcard absent target does not get a phantom overwrite prompt; symlink target is refused with complete named recovery, target/link/sibling/journal/old identity intact. Linux only.",
       "expected_label": "Save As..."
     },
     "IDE-008": {

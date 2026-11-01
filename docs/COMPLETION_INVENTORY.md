@@ -103,25 +103,25 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 | DBG-056 | Help | Windows | hbdebug/dbgmenu.prg:213 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-057 | Help | Menus | hbdebug/dbgmenu.prg:214 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-058 | Help | Commands | hbdebug/dbgmenu.prg:215 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-001 | Palette | Label (SAY) | designer.prg:520 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-002 | Palette | Input (GET) | designer.prg:521 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-003 | Palette | CheckBox | designer.prg:522 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-004 | Palette | PushButton | designer.prg:523 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-005 | Palette | RadioGroup | designer.prg:524 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-006 | Palette | ListBox | designer.prg:525 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-007 | Palette | ComboBox | designer.prg:526 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-008 | Palette | Dialog properties... | designer.prg:528 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-009 | Palette | Undo        Ctrl+Z | designer.prg:529 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-010 | Palette | Redo        Ctrl+Y | designer.prg:530 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-011 | Palette | Copy        Ctrl+C | designer.prg:532 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-012 | Palette | Cut         Ctrl+X | designer.prg:533 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-013 | Palette | Paste       Ctrl+V | designer.prg:534 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-014 | Palette | Snap to grid  F7 | designer.prg:535 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-015 | Palette | Save JSON    F10 | designer.prg:537 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-016 | Palette | Save JSON as...  F11 | designer.prg:538 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-017 | Palette | Open JSON    F12 | designer.prg:539 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-018 | Palette | Generate PRG  F9 | designer.prg:540 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| DSN-019 | Palette | Generate and open | designer.prg:541 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-001 | Palette | Label (SAY) | designer.prg:523 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-002 | Palette | Input (GET) | designer.prg:524 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-003 | Palette | CheckBox | designer.prg:525 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-004 | Palette | PushButton | designer.prg:526 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-005 | Palette | RadioGroup | designer.prg:527 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-006 | Palette | ListBox | designer.prg:528 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-007 | Palette | ComboBox | designer.prg:529 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-008 | Palette | Dialog properties... | designer.prg:531 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-009 | Palette | Undo        Ctrl+Z | designer.prg:532 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-010 | Palette | Redo        Ctrl+Y | designer.prg:533 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-011 | Palette | Copy        Ctrl+C | designer.prg:535 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-012 | Palette | Cut         Ctrl+X | designer.prg:536 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-013 | Palette | Paste       Ctrl+V | designer.prg:537 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-014 | Palette | Snap to grid  F7 | designer.prg:538 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-015 | Palette | Save JSON    F10 | designer.prg:540 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-016 | Palette | Save JSON as...  F11 | designer.prg:541 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-017 | Palette | Open JSON    F12 | designer.prg:542 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-018 | Palette | Generate PRG  F9 | designer.prg:543 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| DSN-019 | Palette | Generate and open | designer.prg:544 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 
 ## Contratos y pruebas vinculadas
 
@@ -148,8 +148,8 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-016: Repeat visits adjacent and overlapping matches without double increment, then wraps. Successful Find/Repeat clears old selection, including multirow and wrapped matches, before subsequent typing; exact saved bytes and Undo checked. Cancel/missing Find keep old range. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg), [test_find_selection_pty.py](../tests/test_find_selection_pty.py), [test_find_repeat_selection_pty.py](../tests/test_find_repeat_selection_pty.py)
 - IDE-001: File New creates an independent live buffer; text, cursor, selection, undo, breakpoints and journals stay with their document. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-002: Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. LoadText clears selection anchors belonging to the old buffer. External short reload with anchor on old row3 permits typing without out-of-bounds selection deletion. Parenthesized bracket literal stays string-colored without leaking /* state to following declaration; bounded := or left-parenthesis context, not every bracket-expression context. Array literal bracket strings after left brace and comma keep string color and following code state; bounded context, indices remain code. Bracket strings after binary + (not ++) and == preserve color/state; bounded operators only, not all expressions. Complete comment gap before bracket literal preserves bounded introducer context; previous string values/index names do not become introducers. No full preprocessor acceptance. Bounded introducer/value state survives a block comment across lines before bracket literal; cached edit/DeleteLine/Undo/Redo and array index guards, not full preprocessing. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py), [test_reload_selection_pty.py](../tests/test_reload_selection_pty.py), [test_editor_paren_bracket_pty.py](../tests/test_editor_paren_bracket_pty.py), [test_editor_bracket_list_pty.py](../tests/test_editor_bracket_list_pty.py), [test_editor_bracket_operator_pty.py](../tests/test_editor_bracket_operator_pty.py), [test_editor_bracket_gap_pty.py](../tests/test_editor_bracket_gap_pty.py), [test_editor_bracket_multiline_pty.py](../tests/test_editor_bracket_multiline_pty.py)
-- IDE-003: F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified. Symlink refusal only promises a recovery temp after verified complete write; failed copy preserves buffer/link/destination and reports no complete recovery copy. Exclusive temp creation/full write/close precede replacement. Complete recovery bytes are checked after symlink/promotion refusal; partial write promises no complete temp. Not after-close third-party replacement, fsync/power-loss or native Windows certification. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_utf8_valid.prg](../tests/test_utf8_valid.prg), [test_atomic.prg](../tests/test_atomic.prg), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py)
-- IDE-004: Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Failed Save As retains old name/stamps/journal for initially clean and dirty buffers; later F2 still writes original. Accepted overwrite preserves destination as exact .bak, keeps old source unchanged, clears source journal and subsequent F2 targets new name. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py), [test_saveas_failure_identity_pty.py](../tests/test_saveas_failure_identity_pty.py), [test_saveas_overwrite_accept_pty.py](../tests/test_saveas_overwrite_accept_pty.py), [test_saveas_overwrite_cancel_pty.py](../tests/test_saveas_overwrite_cancel_pty.py)
+- IDE-003: F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified. Symlink refusal only promises a recovery temp after verified complete write; failed copy preserves buffer/link/destination and reports no complete recovery copy. Exclusive temp creation/full write/close precede replacement. Complete recovery bytes are checked after symlink/promotion refusal; partial write promises no complete temp. Not after-close third-party replacement, fsync/power-loss or native Windows certification. Literal POSIX wildcard filenames use their own metadata, not a matching sibling, for external edits/deletion/recreate; tested 8MB hash threshold remains unchanged. Not concurrent path replacement. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_utf8_valid.prg](../tests/test_utf8_valid.prg), [test_atomic.prg](../tests/test_atomic.prg), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py), [test_diskstamp_literal.prg](../tests/test_diskstamp_literal.prg), [test_external_changes_pty.py](../tests/test_external_changes_pty.py)
+- IDE-004: Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Failed Save As retains old name/stamps/journal for initially clean and dirty buffers; later F2 still writes original. Accepted overwrite preserves destination as exact .bak, keeps old source unchanged, clears source journal and subsequent F2 targets new name. Literal POSIX wildcard absent target does not get a phantom overwrite prompt; symlink target is refused with complete named recovery, target/link/sibling/journal/old identity intact. Linux only. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py), [test_saveas_failure_identity_pty.py](../tests/test_saveas_failure_identity_pty.py), [test_saveas_overwrite_accept_pty.py](../tests/test_saveas_overwrite_accept_pty.py), [test_saveas_overwrite_cancel_pty.py](../tests/test_saveas_overwrite_cancel_pty.py), [test_saveas_literal_new_pty.py](../tests/test_saveas_literal_new_pty.py), [test_saveas_literal_symlink_pty.py](../tests/test_saveas_literal_symlink_pty.py)
 - IDE-008: Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py), [test_selection_identity_pty.py](../tests/test_selection_identity_pty.py)
 - IDE-009: Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py), [test_selection_identity_pty.py](../tests/test_selection_identity_pty.py)
 - IDE-011: Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes. Explicit Cut records a separate undo command from typing before or after it; Undo Cut preserves earlier unsaved typing. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_cut_undo_boundary_pty.py](../tests/test_cut_undo_boundary_pty.py)
@@ -255,36 +255,36 @@ Extraidas de EditProperties/DlgProperties/SelectFileName. Condiciones literales,
 
 | ID | Etiqueta | Tipo / picture | Condiciones fuente | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- | --- |
-| DSN-FIELD-EditProperties-nRow-1 | Row: | value 999 | Siempre | designer.prg:1332 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nCol-1 | Col: | value 999 | Siempre | designer.prg:1333 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cCaption-1 | Caption: | value @S40 | oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX | designer.prg:1338 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cVariable-1 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX | designer.prg:1343 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nWidth-1 | Width: | value 999 | oCtrl[ "type" ] == DSN_GET | designer.prg:1348 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cAccel-1 | Accel: | value  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1353 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cAction-1 | Action: | value @S40 | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1355 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lBrackets-1 | B&rackets look (uncheck for 3D shadow) | checkbox  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1357 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cVariable-2 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1363 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cItems-1 | Items: | value @S40 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1365 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nWidth-2 | Width: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1370 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-nHeight-1 | Height: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1372 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cWhen-1 | When: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1377 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cValid-1 | Valid: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1379 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cFocus-1 | Focus: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1382 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-cState-1 | State: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1386 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1391 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-EditProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1395 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cCaption-1 | Caption: | value @S40 | Siempre | designer.prg:1479 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cName-1 | Name: | value  | Siempre | designer.prg:1482 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-nWidth-1 | Width: | value 999 | Siempre | designer.prg:1485 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-nHeight-1 | Height: | value 999 | Siempre | designer.prg:1488 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrBack-1 | Back: | value @S20 | Siempre | designer.prg:1491 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrText-1 | Text: | value @S20 | Siempre | designer.prg:1494 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-cClrFocus-1 | Focus: | value @S20 | Siempre | designer.prg:1497 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1500 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-DlgProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1504 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-cFile-1 | File: | value @S35 | Siempre | designer.prg:1605 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-lDummy-1 | &OK | button  | Siempre | designer.prg:1608 | Pendiente por campo; contratos de superficie separados |
-| DSN-FIELD-SelectFileName-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1612 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nRow-1 | Row: | value 999 | Siempre | designer.prg:1335 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nCol-1 | Col: | value 999 | Siempre | designer.prg:1336 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cCaption-1 | Caption: | value @S40 | oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX | designer.prg:1341 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cVariable-1 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX | designer.prg:1346 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nWidth-1 | Width: | value 999 | oCtrl[ "type" ] == DSN_GET | designer.prg:1351 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cAccel-1 | Accel: | value  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1356 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cAction-1 | Action: | value @S40 | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1358 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lBrackets-1 | B&rackets look (uncheck for 3D shadow) | checkbox  | oCtrl[ "type" ] == DSN_BUTTON | designer.prg:1360 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cVariable-2 | Variable: | value @S20 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1366 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cItems-1 | Items: | value @S40 | oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1368 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nWidth-2 | Width: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1373 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-nHeight-1 | Height: | value 999 | ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX ) | designer.prg:1375 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cWhen-1 | When: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1380 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cValid-1 | Valid: | value @S40 | oCtrl[ "type" ] != DSN_SAY | designer.prg:1382 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cFocus-1 | Focus: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1385 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-cState-1 | State: | value @S40 | oCtrl[ "type" ] != DSN_SAY AND oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX | designer.prg:1389 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1394 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-EditProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1398 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cCaption-1 | Caption: | value @S40 | Siempre | designer.prg:1482 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cName-1 | Name: | value  | Siempre | designer.prg:1485 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-nWidth-1 | Width: | value 999 | Siempre | designer.prg:1488 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-nHeight-1 | Height: | value 999 | Siempre | designer.prg:1491 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrBack-1 | Back: | value @S20 | Siempre | designer.prg:1494 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrText-1 | Text: | value @S20 | Siempre | designer.prg:1497 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-cClrFocus-1 | Focus: | value @S20 | Siempre | designer.prg:1500 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-lDummy-1 | &OK | button  | Siempre | designer.prg:1503 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-DlgProperties-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1507 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-cFile-1 | File: | value @S35 | Siempre | designer.prg:1608 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-lDummy-1 | &OK | button  | Siempre | designer.prg:1611 | Pendiente por campo; contratos de superficie separados |
+| DSN-FIELD-SelectFileName-lDummy-2 | &Cancel | button  | Siempre | designer.prg:1615 | Pendiente por campo; contratos de superficie separados |
 
 ## Pares control/campo modal
 
@@ -390,46 +390,46 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display/ProjectOpen/OpenFile/Sa
 | IDE-FIELD-GotoLine-nLine-1 | number: | value | hbide.prg:345 | Vinculo focal; ver alcance |
 | IDE-FIELD-GotoLine-lDummy-1 | &OK | pushbutton | hbide.prg:348 | Vinculo focal; ver alcance |
 | IDE-FIELD-GotoLine-lDummy-2 | &Cancel | pushbutton | hbide.prg:351 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-cCompiler-1 | cCompiler | radiogroup | hbide.prg:1871 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lWarnings-1 | &Warnings | checkbox | hbide.prg:1880 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDebug-1 | &Debug info | checkbox | hbide.prg:1886 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lStrict-1 | S&trict types | checkbox | hbide.prg:1892 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lIncremental-1 | &Incremental | checkbox | hbide.prg:1898 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lOptimize-1 | O&ptimize code | checkbox | hbide.prg:1905 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1911 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1918 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1922 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1926 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2066 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2069 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-cFind-1 | cFind | freeform_input | hbide.prg:2072 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-cReplace-1 | cReplace | freeform_input | hbide.prg:2079 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2123 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2126 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-cText-1 | cText | freeform_input | hbide.prg:2129 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-lDummy-1 | &OK | pushbutton | hbide.prg:2462 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-lDummy-2 | &Cancel | pushbutton | hbide.prg:2465 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2468 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:2983 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:2991 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:2995 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-cFileName-1 | cFileName | value | hbide.prg:1034 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1048 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-lDummy-1 | &OK | pushbutton | hbide.prg:1073 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-lDummy-2 | &Cancel | pushbutton | hbide.prg:1080 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-cFileName-1 | cFileName | value | hbide.prg:1229 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1243 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-lDummy-1 | &OK | pushbutton | hbide.prg:1268 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-lDummy-2 | &Cancel | pushbutton | hbide.prg:1275 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-cFileName-1 | cFileName | value | hbide.prg:1726 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-lDummy-1 | &OK | pushbutton | hbide.prg:1736 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-lDummy-2 | &Cancel | pushbutton | hbide.prg:1740 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-cPick-1 | cPick | listbox | hbide.prg:2756 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-lDummy-1 | &OK | pushbutton | hbide.prg:2762 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-lDummy-2 | &Cancel | pushbutton | hbide.prg:2766 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-cFilter-1 | cFilter | value | hbide.prg:2798 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-lDummy-1 | &OK | pushbutton | hbide.prg:2808 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-lDummy-2 | &Cancel | pushbutton | hbide.prg:2812 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-cCompiler-1 | cCompiler | radiogroup | hbide.prg:1882 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lWarnings-1 | &Warnings | checkbox | hbide.prg:1891 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDebug-1 | &Debug info | checkbox | hbide.prg:1897 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lStrict-1 | S&trict types | checkbox | hbide.prg:1903 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lIncremental-1 | &Incremental | checkbox | hbide.prg:1909 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lOptimize-1 | O&ptimize code | checkbox | hbide.prg:1916 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1922 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1929 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1933 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1937 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2077 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2080 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-cFind-1 | cFind | freeform_input | hbide.prg:2083 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-cReplace-1 | cReplace | freeform_input | hbide.prg:2090 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2134 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2137 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-cText-1 | cText | freeform_input | hbide.prg:2140 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-lDummy-1 | &OK | pushbutton | hbide.prg:2473 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-lDummy-2 | &Cancel | pushbutton | hbide.prg:2476 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2479 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:2994 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:3002 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:3006 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-cFileName-1 | cFileName | value | hbide.prg:1045 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1059 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-lDummy-1 | &OK | pushbutton | hbide.prg:1084 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-lDummy-2 | &Cancel | pushbutton | hbide.prg:1091 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-cFileName-1 | cFileName | value | hbide.prg:1240 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1254 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-lDummy-1 | &OK | pushbutton | hbide.prg:1279 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-lDummy-2 | &Cancel | pushbutton | hbide.prg:1286 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-cFileName-1 | cFileName | value | hbide.prg:1737 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-lDummy-1 | &OK | pushbutton | hbide.prg:1747 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-lDummy-2 | &Cancel | pushbutton | hbide.prg:1751 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-cPick-1 | cPick | listbox | hbide.prg:2767 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-lDummy-1 | &OK | pushbutton | hbide.prg:2773 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-lDummy-2 | &Cancel | pushbutton | hbide.prg:2777 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-cFilter-1 | cFilter | value | hbide.prg:2809 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-lDummy-1 | &OK | pushbutton | hbide.prg:2819 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-lDummy-2 | &Cancel | pushbutton | hbide.prg:2823 | Vinculo focal; ver alcance |
 - IDE-FIELD-GotoLine-nLine-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-GotoLine-lDummy-1: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-GotoLine-lDummy-2: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
@@ -543,8 +543,8 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:517 | Pendiente gesto |
 | MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:522 | Pendiente gesto |
 | MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:525 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2071 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2072 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2075 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2076 | Pendiente gesto |
 | MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:437 | Pendiente gesto |
 | MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:440 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
@@ -571,66 +571,66 @@ Pares tipo/campo expandidos de guardas de InspFields. Vinculo no es PASS actual,
 
 | Control | Campo | Clave | Tipo | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- | --- |
-| say | Row | row | num | designer.prg:1799 | Vinculo focal; ver alcance |
-| get | Row | row | num | designer.prg:1799 | Vinculo focal; ver alcance |
-| checkbox | Row | row | num | designer.prg:1799 | Vinculo focal; ver alcance |
-| button | Row | row | num | designer.prg:1799 | Vinculo focal; ver alcance |
-| radiogroup | Row | row | num | designer.prg:1799 | Vinculo focal; ver alcance |
-| listbox | Row | row | num | designer.prg:1799 | Vinculo focal; ver alcance |
-| combobox | Row | row | num | designer.prg:1799 | Vinculo focal; ver alcance |
-| say | Col | col | num | designer.prg:1800 | Vinculo focal; ver alcance |
-| get | Col | col | num | designer.prg:1800 | Vinculo focal; ver alcance |
-| checkbox | Col | col | num | designer.prg:1800 | Vinculo focal; ver alcance |
-| button | Col | col | num | designer.prg:1800 | Vinculo focal; ver alcance |
-| radiogroup | Col | col | num | designer.prg:1800 | Vinculo focal; ver alcance |
-| listbox | Col | col | num | designer.prg:1800 | Vinculo focal; ver alcance |
-| combobox | Col | col | num | designer.prg:1800 | Vinculo focal; ver alcance |
-| say | Caption | caption | text | designer.prg:1802 | Vinculo focal; ver alcance |
-| checkbox | Caption | caption | text | designer.prg:1802 | Vinculo focal; ver alcance |
-| button | Caption | caption | text | designer.prg:1802 | Vinculo focal; ver alcance |
-| get | Variable | variable | text | designer.prg:1805 | Vinculo focal; ver alcance |
-| checkbox | Variable | variable | text | designer.prg:1805 | Vinculo focal; ver alcance |
-| get | Width | width | num | designer.prg:1808 | Vinculo focal; ver alcance |
-| button | Accel | accelerator | text | designer.prg:1811 | Vinculo focal; ver alcance |
-| button | Action | action | text | designer.prg:1812 | Vinculo focal; ver alcance |
-| button | Style | style | choice | designer.prg:1813 | Vinculo focal; ver alcance |
-| radiogroup | Variable | variable | text | designer.prg:1816 | Vinculo focal; ver alcance |
-| listbox | Variable | variable | text | designer.prg:1816 | Vinculo focal; ver alcance |
-| combobox | Variable | variable | text | designer.prg:1816 | Vinculo focal; ver alcance |
-| radiogroup | Items | items | text | designer.prg:1817 | Vinculo focal; ver alcance |
-| listbox | Items | items | text | designer.prg:1817 | Vinculo focal; ver alcance |
-| combobox | Items | items | text | designer.prg:1817 | Vinculo focal; ver alcance |
-| listbox | Width | width | num | designer.prg:1820 | Vinculo focal; ver alcance |
-| combobox | Width | width | num | designer.prg:1820 | Vinculo focal; ver alcance |
-| listbox | Height | height | num | designer.prg:1821 | Vinculo focal; ver alcance |
-| combobox | Height | height | num | designer.prg:1821 | Vinculo focal; ver alcance |
-| get | When | when | text | designer.prg:1824 | Vinculo focal; ver alcance |
-| checkbox | When | when | text | designer.prg:1824 | Vinculo focal; ver alcance |
-| button | When | when | text | designer.prg:1824 | Vinculo focal; ver alcance |
-| radiogroup | When | when | text | designer.prg:1824 | Vinculo focal; ver alcance |
-| listbox | When | when | text | designer.prg:1824 | Vinculo focal; ver alcance |
-| combobox | When | when | text | designer.prg:1824 | Vinculo focal; ver alcance |
-| get | Valid | valid | text | designer.prg:1825 | Vinculo focal; ver alcance |
-| checkbox | Valid | valid | text | designer.prg:1825 | Vinculo focal; ver alcance |
-| button | Valid | valid | text | designer.prg:1825 | Vinculo focal; ver alcance |
-| radiogroup | Valid | valid | text | designer.prg:1825 | Vinculo focal; ver alcance |
-| listbox | Valid | valid | text | designer.prg:1825 | Vinculo focal; ver alcance |
-| combobox | Valid | valid | text | designer.prg:1825 | Vinculo focal; ver alcance |
-| checkbox | Focus | focus | text | designer.prg:1827 | Vinculo focal; ver alcance |
-| button | Focus | focus | text | designer.prg:1827 | Vinculo focal; ver alcance |
-| radiogroup | Focus | focus | text | designer.prg:1827 | Vinculo focal; ver alcance |
-| listbox | Focus | focus | text | designer.prg:1827 | Vinculo focal; ver alcance |
-| combobox | Focus | focus | text | designer.prg:1827 | Vinculo focal; ver alcance |
-| checkbox | State | state | text | designer.prg:1830 | Vinculo focal; ver alcance |
-| listbox | State | state | text | designer.prg:1830 | Vinculo focal; ver alcance |
-| combobox | State | state | text | designer.prg:1830 | Vinculo focal; ver alcance |
-| dialog | Name | dlgname | text | designer.prg:1834 | Vinculo focal; ver alcance |
-| dialog | Caption | dlgcaption | text | designer.prg:1835 | Vinculo focal; ver alcance |
-| dialog | Width | dlgwidth | num | designer.prg:1836 | Vinculo focal; ver alcance |
-| dialog | Height | dlgheight | num | designer.prg:1837 | Vinculo focal; ver alcance |
-| dialog | Back | dlgback | color | designer.prg:1838 | Vinculo focal; ver alcance |
-| dialog | Text | dlgtext | color | designer.prg:1839 | Vinculo focal; ver alcance |
-| dialog | Focus | dlgfocus | color | designer.prg:1840 | Vinculo focal; ver alcance |
+| say | Row | row | num | designer.prg:1802 | Vinculo focal; ver alcance |
+| get | Row | row | num | designer.prg:1802 | Vinculo focal; ver alcance |
+| checkbox | Row | row | num | designer.prg:1802 | Vinculo focal; ver alcance |
+| button | Row | row | num | designer.prg:1802 | Vinculo focal; ver alcance |
+| radiogroup | Row | row | num | designer.prg:1802 | Vinculo focal; ver alcance |
+| listbox | Row | row | num | designer.prg:1802 | Vinculo focal; ver alcance |
+| combobox | Row | row | num | designer.prg:1802 | Vinculo focal; ver alcance |
+| say | Col | col | num | designer.prg:1803 | Vinculo focal; ver alcance |
+| get | Col | col | num | designer.prg:1803 | Vinculo focal; ver alcance |
+| checkbox | Col | col | num | designer.prg:1803 | Vinculo focal; ver alcance |
+| button | Col | col | num | designer.prg:1803 | Vinculo focal; ver alcance |
+| radiogroup | Col | col | num | designer.prg:1803 | Vinculo focal; ver alcance |
+| listbox | Col | col | num | designer.prg:1803 | Vinculo focal; ver alcance |
+| combobox | Col | col | num | designer.prg:1803 | Vinculo focal; ver alcance |
+| say | Caption | caption | text | designer.prg:1805 | Vinculo focal; ver alcance |
+| checkbox | Caption | caption | text | designer.prg:1805 | Vinculo focal; ver alcance |
+| button | Caption | caption | text | designer.prg:1805 | Vinculo focal; ver alcance |
+| get | Variable | variable | text | designer.prg:1808 | Vinculo focal; ver alcance |
+| checkbox | Variable | variable | text | designer.prg:1808 | Vinculo focal; ver alcance |
+| get | Width | width | num | designer.prg:1811 | Vinculo focal; ver alcance |
+| button | Accel | accelerator | text | designer.prg:1814 | Vinculo focal; ver alcance |
+| button | Action | action | text | designer.prg:1815 | Vinculo focal; ver alcance |
+| button | Style | style | choice | designer.prg:1816 | Vinculo focal; ver alcance |
+| radiogroup | Variable | variable | text | designer.prg:1819 | Vinculo focal; ver alcance |
+| listbox | Variable | variable | text | designer.prg:1819 | Vinculo focal; ver alcance |
+| combobox | Variable | variable | text | designer.prg:1819 | Vinculo focal; ver alcance |
+| radiogroup | Items | items | text | designer.prg:1820 | Vinculo focal; ver alcance |
+| listbox | Items | items | text | designer.prg:1820 | Vinculo focal; ver alcance |
+| combobox | Items | items | text | designer.prg:1820 | Vinculo focal; ver alcance |
+| listbox | Width | width | num | designer.prg:1823 | Vinculo focal; ver alcance |
+| combobox | Width | width | num | designer.prg:1823 | Vinculo focal; ver alcance |
+| listbox | Height | height | num | designer.prg:1824 | Vinculo focal; ver alcance |
+| combobox | Height | height | num | designer.prg:1824 | Vinculo focal; ver alcance |
+| get | When | when | text | designer.prg:1827 | Vinculo focal; ver alcance |
+| checkbox | When | when | text | designer.prg:1827 | Vinculo focal; ver alcance |
+| button | When | when | text | designer.prg:1827 | Vinculo focal; ver alcance |
+| radiogroup | When | when | text | designer.prg:1827 | Vinculo focal; ver alcance |
+| listbox | When | when | text | designer.prg:1827 | Vinculo focal; ver alcance |
+| combobox | When | when | text | designer.prg:1827 | Vinculo focal; ver alcance |
+| get | Valid | valid | text | designer.prg:1828 | Vinculo focal; ver alcance |
+| checkbox | Valid | valid | text | designer.prg:1828 | Vinculo focal; ver alcance |
+| button | Valid | valid | text | designer.prg:1828 | Vinculo focal; ver alcance |
+| radiogroup | Valid | valid | text | designer.prg:1828 | Vinculo focal; ver alcance |
+| listbox | Valid | valid | text | designer.prg:1828 | Vinculo focal; ver alcance |
+| combobox | Valid | valid | text | designer.prg:1828 | Vinculo focal; ver alcance |
+| checkbox | Focus | focus | text | designer.prg:1830 | Vinculo focal; ver alcance |
+| button | Focus | focus | text | designer.prg:1830 | Vinculo focal; ver alcance |
+| radiogroup | Focus | focus | text | designer.prg:1830 | Vinculo focal; ver alcance |
+| listbox | Focus | focus | text | designer.prg:1830 | Vinculo focal; ver alcance |
+| combobox | Focus | focus | text | designer.prg:1830 | Vinculo focal; ver alcance |
+| checkbox | State | state | text | designer.prg:1833 | Vinculo focal; ver alcance |
+| listbox | State | state | text | designer.prg:1833 | Vinculo focal; ver alcance |
+| combobox | State | state | text | designer.prg:1833 | Vinculo focal; ver alcance |
+| dialog | Name | dlgname | text | designer.prg:1837 | Vinculo focal; ver alcance |
+| dialog | Caption | dlgcaption | text | designer.prg:1838 | Vinculo focal; ver alcance |
+| dialog | Width | dlgwidth | num | designer.prg:1839 | Vinculo focal; ver alcance |
+| dialog | Height | dlgheight | num | designer.prg:1840 | Vinculo focal; ver alcance |
+| dialog | Back | dlgback | color | designer.prg:1841 | Vinculo focal; ver alcance |
+| dialog | Text | dlgtext | color | designer.prg:1842 | Vinculo focal; ver alcance |
+| dialog | Focus | dlgfocus | color | designer.prg:1843 | Vinculo focal; ver alcance |
 - DSN-INSP-say-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for say/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
 - DSN-INSP-get-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for get/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
 - DSN-INSP-checkbox-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for checkbox/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
@@ -939,11 +939,12 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | designer.prg:441 | `if ::lPlacing` | Pendiente vinculo |
 | designer.prg:442 | `if ::HitClient( MRow(), MCol() )` | Pendiente vinculo |
 | designer.prg:449 | `if ::lInspector .and. nInspHit != 0` | Pendiente vinculo |
-| designer.prg:450 | `if nInspHit == -1` | Pendiente vinculo |
-| designer.prg:459 | `if ::lInspFocus` | Pendiente vinculo |
-| designer.prg:472 | `if nIndex > 0` | Pendiente vinculo |
-| designer.prg:475 | `if ::HandleHit( MRow(), MCol() )` | Pendiente vinculo |
-| designer.prg:491 | `if ::nIdleDraw != nil` | Pendiente vinculo |
+| designer.prg:450 | `if nInspHit == -2` | Pendiente vinculo |
+| designer.prg:453 | `elseif nInspHit == -1` | Pendiente vinculo |
+| designer.prg:462 | `if ::lInspFocus` | Pendiente vinculo |
+| designer.prg:475 | `if nIndex > 0` | Pendiente vinculo |
+| designer.prg:478 | `if ::HandleHit( MRow(), MCol() )` | Pendiente vinculo |
+| designer.prg:494 | `if ::nIdleDraw != nil` | Pendiente vinculo |
 | projectui.prg:14 | `IF nPick >= nTop + nVisible` | Pendiente vinculo |
 | projectui.prg:20 | `CASE nKey == K_ESC` | Pendiente vinculo |
 | projectui.prg:22 | `CASE nKey == K_UP` | Pendiente vinculo |
@@ -960,37 +961,37 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | projectui.prg:46 | `IF nKey == K_LDBLCLK` | Pendiente vinculo |
 | projectui.prg:51 | `IF nKey == K_ENTER .AND. Len( aRows ) > 0` | Pendiente vinculo |
 | projectui.prg:53 | `IF ! Empty( h[ "path" ] )` | Pendiente vinculo |
-| designer.prg:2311 | `case nKey == K_ESC .or. nKey == K_F6` | Pendiente vinculo |
-| designer.prg:2316 | `case nKey == K_F4` | Pendiente vinculo |
-| designer.prg:2319 | `case nKey == K_UP` | Pendiente vinculo |
-| designer.prg:2323 | `case nKey == K_DOWN` | Pendiente vinculo |
-| designer.prg:2327 | `case nKey == K_LEFT` | Pendiente vinculo |
-| designer.prg:2330 | `case nKey == K_RIGHT` | Pendiente vinculo |
-| designer.prg:2333 | `case nKey == K_ENTER` | Pendiente vinculo |
-| designer.prg:2336 | `case nKey == K_CTRL_UP` | Pendiente vinculo |
-| designer.prg:2340 | `case nKey == K_CTRL_DOWN` | Pendiente vinculo |
-| designer.prg:2344 | `case nKey == K_CTRL_LEFT` | Pendiente vinculo |
-| designer.prg:2348 | `case nKey == K_CTRL_RIGHT` | Pendiente vinculo |
-| designer.prg:2110 | `if ::nInspField < 1 .or. ::nInspField > Len( aFields )` | Pendiente vinculo |
-| designer.prg:2113 | `if aFields[ ::nInspField ][ 3 ] == "choice"` | Pendiente vinculo |
-| designer.prg:2117 | `if aFields[ ::nInspField ][ 3 ] == "color"` | Pendiente vinculo |
-| designer.prg:2121 | `if aFields[ ::nInspField ][ 3 ] != "text"` | Pendiente vinculo |
-| designer.prg:2146 | `if nPos - 1 - nOff > nWidth - 1` | Pendiente vinculo |
-| designer.prg:2148 | `elseif nPos - 1 - nOff < 0` | Pendiente vinculo |
-| designer.prg:2155 | `case nKey == K_ENTER` | Pendiente vinculo |
-| designer.prg:2158 | `case nKey == K_ESC` | Pendiente vinculo |
-| designer.prg:2160 | `case nKey == K_LEFT` | Pendiente vinculo |
-| designer.prg:2162 | `case nKey == K_RIGHT` | Pendiente vinculo |
-| designer.prg:2164 | `case nKey == K_HOME` | Pendiente vinculo |
-| designer.prg:2166 | `case nKey == K_END` | Pendiente vinculo |
-| designer.prg:2168 | `case nKey == K_BS` | Pendiente vinculo |
-| designer.prg:2169 | `if nPos > 1` | Pendiente vinculo |
-| designer.prg:2173 | `case nKey == K_DEL` | Pendiente vinculo |
-| designer.prg:2174 | `if nPos <= Len( cVal )` | Pendiente vinculo |
-| designer.prg:2177 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` | Pendiente vinculo |
-| designer.prg:2181 | `case nKey >= 32 .and. nKey <= 255` | Pendiente vinculo |
-| designer.prg:2182 | `if Len( cVal ) < 200` | Pendiente vinculo |
-| designer.prg:2194 | `if lApply` | Pendiente vinculo |
+| designer.prg:2319 | `case nKey == K_ESC .or. nKey == K_F6` | Pendiente vinculo |
+| designer.prg:2324 | `case nKey == K_F4` | Pendiente vinculo |
+| designer.prg:2327 | `case nKey == K_UP` | Pendiente vinculo |
+| designer.prg:2331 | `case nKey == K_DOWN` | Pendiente vinculo |
+| designer.prg:2335 | `case nKey == K_LEFT` | Pendiente vinculo |
+| designer.prg:2338 | `case nKey == K_RIGHT` | Pendiente vinculo |
+| designer.prg:2341 | `case nKey == K_ENTER` | Pendiente vinculo |
+| designer.prg:2344 | `case nKey == K_CTRL_UP` | Pendiente vinculo |
+| designer.prg:2348 | `case nKey == K_CTRL_DOWN` | Pendiente vinculo |
+| designer.prg:2352 | `case nKey == K_CTRL_LEFT` | Pendiente vinculo |
+| designer.prg:2356 | `case nKey == K_CTRL_RIGHT` | Pendiente vinculo |
+| designer.prg:2115 | `if ::nInspField < 1 .or. ::nInspField > Len( aFields )` | Pendiente vinculo |
+| designer.prg:2118 | `if aFields[ ::nInspField ][ 3 ] == "choice"` | Pendiente vinculo |
+| designer.prg:2122 | `if aFields[ ::nInspField ][ 3 ] == "color"` | Pendiente vinculo |
+| designer.prg:2126 | `if aFields[ ::nInspField ][ 3 ] != "text"` | Pendiente vinculo |
+| designer.prg:2151 | `if nPos - 1 - nOff > nWidth - 1` | Pendiente vinculo |
+| designer.prg:2153 | `elseif nPos - 1 - nOff < 0` | Pendiente vinculo |
+| designer.prg:2160 | `case nKey == K_ENTER` | Pendiente vinculo |
+| designer.prg:2163 | `case nKey == K_ESC` | Pendiente vinculo |
+| designer.prg:2165 | `case nKey == K_LEFT` | Pendiente vinculo |
+| designer.prg:2167 | `case nKey == K_RIGHT` | Pendiente vinculo |
+| designer.prg:2169 | `case nKey == K_HOME` | Pendiente vinculo |
+| designer.prg:2171 | `case nKey == K_END` | Pendiente vinculo |
+| designer.prg:2173 | `case nKey == K_BS` | Pendiente vinculo |
+| designer.prg:2174 | `if nPos > 1` | Pendiente vinculo |
+| designer.prg:2178 | `case nKey == K_DEL` | Pendiente vinculo |
+| designer.prg:2179 | `if nPos <= Len( cVal )` | Pendiente vinculo |
+| designer.prg:2182 | `case nKey == K_CTRL_Y .or. nKey == DSNK_CTRL_Y` | Pendiente vinculo |
+| designer.prg:2186 | `case nKey >= 32 .and. nKey <= 255` | Pendiente vinculo |
+| designer.prg:2187 | `if Len( cVal ) < 200` | Pendiente vinculo |
+| designer.prg:2199 | `if lApply` | Pendiente vinculo |
 | hbide.prg:626 | `if nKeyStd == K_ESC .and. ! ::oMenu:IsOpen()` | Pendiente vinculo |
 | hbide.prg:627 | `if ::CheckUnsavedAll()` | Pendiente vinculo |
 | hbide.prg:634 | `if nKeyStd >= K_ALT_Q .and. nKeyStd <= K_ALT_M` | Pendiente vinculo |
@@ -1142,37 +1143,37 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:718 | `if ::Row() > ::nTop` | Pendiente vinculo |
 | editor.prg:724 | `if ::Row() < ::nBottom` | Pendiente vinculo |
 | editor.prg:734 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
-| editor.prg:1948 | `if nKey == K_LEFT` | Pendiente vinculo |
-| editor.prg:1949 | `if Col() > 5` | Pendiente vinculo |
-| editor.prg:1952 | `if ::nFirstCol > 1` | Pendiente vinculo |
-| editor.prg:1977 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
-| editor.prg:1997 | `if nB < 0x80` | Pendiente vinculo |
-| editor.prg:2000 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
-| editor.prg:2002 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
-| editor.prg:2004 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
-| editor.prg:2009 | `if nI + nNeed > nLen` | Pendiente vinculo |
-| editor.prg:2015 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
-| editor.prg:2023 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
-| editor.prg:2040 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
-| editor.prg:2044 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
-| editor.prg:2063 | `case K_UP` | Pendiente vinculo |
-| editor.prg:2064 | `case K_DOWN` | Pendiente vinculo |
-| editor.prg:2065 | `case K_LEFT` | Pendiente vinculo |
-| editor.prg:2066 | `case K_RIGHT` | Pendiente vinculo |
-| editor.prg:2067 | `case K_HOME` | Pendiente vinculo |
-| editor.prg:2068 | `case K_END` | Pendiente vinculo |
-| editor.prg:2069 | `case K_PGUP` | Pendiente vinculo |
-| editor.prg:2070 | `case K_PGDN` | Pendiente vinculo |
-| editor.prg:2071 | `case K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:2072 | `case K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:2084 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
-| editor.prg:2090 | `CASE lBlock` | Pendiente vinculo |
-| editor.prg:2091 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
-| editor.prg:2096 | `CASE !Empty(q)` | Pendiente vinculo |
-| editor.prg:2097 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
-| editor.prg:2099 | `ELSEIF c == q` | Pendiente vinculo |
-| editor.prg:2103 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
-| editor.prg:2106 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
+| editor.prg:1952 | `if nKey == K_LEFT` | Pendiente vinculo |
+| editor.prg:1953 | `if Col() > 5` | Pendiente vinculo |
+| editor.prg:1956 | `if ::nFirstCol > 1` | Pendiente vinculo |
+| editor.prg:1981 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
+| editor.prg:2001 | `if nB < 0x80` | Pendiente vinculo |
+| editor.prg:2004 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
+| editor.prg:2006 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
+| editor.prg:2008 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
+| editor.prg:2013 | `if nI + nNeed > nLen` | Pendiente vinculo |
+| editor.prg:2019 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
+| editor.prg:2027 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
+| editor.prg:2044 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
+| editor.prg:2048 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
+| editor.prg:2067 | `case K_UP` | Pendiente vinculo |
+| editor.prg:2068 | `case K_DOWN` | Pendiente vinculo |
+| editor.prg:2069 | `case K_LEFT` | Pendiente vinculo |
+| editor.prg:2070 | `case K_RIGHT` | Pendiente vinculo |
+| editor.prg:2071 | `case K_HOME` | Pendiente vinculo |
+| editor.prg:2072 | `case K_END` | Pendiente vinculo |
+| editor.prg:2073 | `case K_PGUP` | Pendiente vinculo |
+| editor.prg:2074 | `case K_PGDN` | Pendiente vinculo |
+| editor.prg:2075 | `case K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:2076 | `case K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:2088 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
+| editor.prg:2094 | `CASE lBlock` | Pendiente vinculo |
+| editor.prg:2095 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
+| editor.prg:2100 | `CASE !Empty(q)` | Pendiente vinculo |
+| editor.prg:2101 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
+| editor.prg:2103 | `ELSEIF c == q` | Pendiente vinculo |
+| editor.prg:2107 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
+| editor.prg:2110 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
 | hbdebug/debugger.prg:1563 | `IF ::lAnimate` | Pendiente vinculo |
 | hbdebug/debugger.prg:1564 | `IF ::nSpeed != 0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1567 | `IF __dbgInvokeDebug()  // NextKey() == K_ALT_D` | Pendiente vinculo |
@@ -1251,35 +1252,35 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbdebug/debugger.prg:741 | `CASE K_DOWN` | Pendiente vinculo |
 | hbdebug/debugger.prg:745 | `CASE K_PGUP` | Pendiente vinculo |
 | hbdebug/debugger.prg:749 | `CASE K_PGDN` | Pendiente vinculo |
-| designer.prg:1303 | `if ::nSelected < 1 .or. ::nSelected > Len( ::aControls )` | Pendiente vinculo |
-| designer.prg:1337 | `if oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX` | Pendiente vinculo |
-| designer.prg:1342 | `if oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX` | Pendiente vinculo |
-| designer.prg:1347 | `if oCtrl[ "type" ] == DSN_GET` | Pendiente vinculo |
-| designer.prg:1352 | `if oCtrl[ "type" ] == DSN_BUTTON` | Pendiente vinculo |
-| designer.prg:1362 | `if oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
-| designer.prg:1369 | `if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )` | Pendiente vinculo |
-| designer.prg:1376 | `if oCtrl[ "type" ] != DSN_SAY` | Pendiente vinculo |
-| designer.prg:1381 | `if oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
-| designer.prg:1385 | `if oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
-| designer.prg:1404 | `if ! lOk .and. ! lCancel .and. LastKey() != K_ESC` | Pendiente vinculo |
-| designer.prg:1408 | `if lOk` | Pendiente vinculo |
-| designer.prg:1412 | `if "caption" $ oCtrl` | Pendiente vinculo |
-| designer.prg:1415 | `if "variable" $ oCtrl` | Pendiente vinculo |
-| designer.prg:1421 | `if "width" $ oCtrl` | Pendiente vinculo |
-| designer.prg:1424 | `if "items" $ oCtrl` | Pendiente vinculo |
-| designer.prg:1427 | `if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )` | Pendiente vinculo |
-| designer.prg:1430 | `if oCtrl[ "type" ] == DSN_BUTTON` | Pendiente vinculo |
-| designer.prg:1435 | `if oCtrl[ "type" ] != DSN_SAY` | Pendiente vinculo |
-| designer.prg:1452 | `if lOk .and. DsnListSBarHidden( oCtrl )` | Pendiente vinculo |
-| designer.prg:1513 | `if ! lOk .and. ! lCancel .and. LastKey() != K_ESC` | Pendiente vinculo |
-| designer.prg:1517 | `if lOk` | Pendiente vinculo |
-| designer.prg:1520 | `if nWidth < aMin[ 1 ] .or. nHeight < aMin[ 2 ]` | Pendiente vinculo |
-| designer.prg:1529 | `if ! Empty( AllTrim( cClrBack ) )` | Pendiente vinculo |
-| designer.prg:1530 | `if ! DsnValidColor( AllTrim( cClrBack ) )` | Pendiente vinculo |
-| designer.prg:1536 | `if ! Empty( AllTrim( cClrText ) )` | Pendiente vinculo |
-| designer.prg:1537 | `if ! DsnValidColor( AllTrim( cClrText ) )` | Pendiente vinculo |
-| designer.prg:1543 | `if ! Empty( AllTrim( cClrFocus ) )` | Pendiente vinculo |
-| designer.prg:1544 | `if ! DsnValidColor( AllTrim( cClrFocus ) )` | Pendiente vinculo |
+| designer.prg:1306 | `if ::nSelected < 1 .or. ::nSelected > Len( ::aControls )` | Pendiente vinculo |
+| designer.prg:1340 | `if oCtrl[ "type" ] $ DSN_SAY + "&#124;" + DSN_BUTTON + "&#124;" + DSN_CHECKBOX` | Pendiente vinculo |
+| designer.prg:1345 | `if oCtrl[ "type" ] $ DSN_GET + "&#124;" + DSN_CHECKBOX` | Pendiente vinculo |
+| designer.prg:1350 | `if oCtrl[ "type" ] == DSN_GET` | Pendiente vinculo |
+| designer.prg:1355 | `if oCtrl[ "type" ] == DSN_BUTTON` | Pendiente vinculo |
+| designer.prg:1365 | `if oCtrl[ "type" ] $ DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
+| designer.prg:1372 | `if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )` | Pendiente vinculo |
+| designer.prg:1379 | `if oCtrl[ "type" ] != DSN_SAY` | Pendiente vinculo |
+| designer.prg:1384 | `if oCtrl[ "type" ] $ DSN_BUTTON + "&#124;" + DSN_CHECKBOX + "&#124;" + DSN_RADIO + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
+| designer.prg:1388 | `if oCtrl[ "type" ] $ DSN_CHECKBOX + "&#124;" + DSN_LISTBOX + "&#124;" + DSN_COMBOBOX` | Pendiente vinculo |
+| designer.prg:1407 | `if ! lOk .and. ! lCancel .and. LastKey() != K_ESC` | Pendiente vinculo |
+| designer.prg:1411 | `if lOk` | Pendiente vinculo |
+| designer.prg:1415 | `if "caption" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1418 | `if "variable" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1424 | `if "width" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1427 | `if "items" $ oCtrl` | Pendiente vinculo |
+| designer.prg:1430 | `if ( oCtrl[ "type" ] == DSN_LISTBOX .or. oCtrl[ "type" ] == DSN_COMBOBOX )` | Pendiente vinculo |
+| designer.prg:1433 | `if oCtrl[ "type" ] == DSN_BUTTON` | Pendiente vinculo |
+| designer.prg:1438 | `if oCtrl[ "type" ] != DSN_SAY` | Pendiente vinculo |
+| designer.prg:1455 | `if lOk .and. DsnListSBarHidden( oCtrl )` | Pendiente vinculo |
+| designer.prg:1516 | `if ! lOk .and. ! lCancel .and. LastKey() != K_ESC` | Pendiente vinculo |
+| designer.prg:1520 | `if lOk` | Pendiente vinculo |
+| designer.prg:1523 | `if nWidth < aMin[ 1 ] .or. nHeight < aMin[ 2 ]` | Pendiente vinculo |
+| designer.prg:1532 | `if ! Empty( AllTrim( cClrBack ) )` | Pendiente vinculo |
+| designer.prg:1533 | `if ! DsnValidColor( AllTrim( cClrBack ) )` | Pendiente vinculo |
+| designer.prg:1539 | `if ! Empty( AllTrim( cClrText ) )` | Pendiente vinculo |
+| designer.prg:1540 | `if ! DsnValidColor( AllTrim( cClrText ) )` | Pendiente vinculo |
+| designer.prg:1546 | `if ! Empty( AllTrim( cClrFocus ) )` | Pendiente vinculo |
+| designer.prg:1547 | `if ! DsnValidColor( AllTrim( cClrFocus ) )` | Pendiente vinculo |
 - DSN-KEY-LIVEPRG-F5: Actual F5 LivePRG anchor fixtures: quoted SAY caption, accelerator-transformed button, caption equal to dialog title, reserved generated GET binding and duplicate SAY captions. Default, --button, --dialog-caption, --reserved-binding, --duplicate-caption modes check exact highlighted declaration. Generator model guards cover emitted index anchors, unchanged code and skipped empty item controls. Not all controls/properties/bindings, all F5 states, pixels or Windows; links are not PASS, consult source-identified ledgers Q68-Q75. Pruebas: [test_designer_quote_anchor_pty.py](../tests/test_designer_quote_anchor_pty.py), [test_designer.prg](../tests/test_designer.prg)
 - IDE-KEY-CONTEXTHELP-F1: Actual F1 without menu opens Welcome; File and Edit menus open matching help topics without executing menu actions. Close returns dirty source, later Undo and F2 preserve exact bytes. Bounded 80x25 xterm fixture, not all menu commands/terminal encodings/help topics/editor selection states/Windows. F1 intentionally handles open menus; no menu-closed guard inferred. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_help_pty.py](../tests/test_help_pty.py)
 - IDE-KEY-NEXT-MESSAGE-ALT-F8: Actual Alt+F8 navigates forward through diagnostic entries and wraps on bounded three-diagnostic fixture. Alt+F8 same-buffer jump consumes old selected range before typing; Undo and F2 restore exact bytes with real GCC colon-bearing source fixture. Exact source/context/condition link; parent menu-closed guard remains separate. Not all diagnostic kinds/files, all terminal encodings, menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_message_selection_pty.py](../tests/test_message_selection_pty.py)

@@ -108,7 +108,7 @@ inspeccionadas: comillasUTF8U y retorno al error fila2col9.
   asignar licencia. El gate de avisos sigue abierto, no es clearance legal.
 - **M6:** no repetir una matriz de horas por cada cambio documental.
   Q164 acredita 309 modos sobre su fuente, anterior al arreglo Q169. El
-  registro actual contiene 346 modos; ese numero es un plan, no 346 PASS.
+  registro actual contiene 352 modos; ese numero es un plan, no 352 PASS.
   La proxima consolidacion debe congelar una fuente que incluya el arreglo
   y reconciliar las pruebas nuevas sin heredar los PASS de Q164.
 - **M2:** Q176-Q178 comprueban compilador ausente, restauracion sin reiniciar,
