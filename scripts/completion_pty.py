@@ -6,6 +6,12 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'designer-inline-get-events-small': ('test_designer_inline_text_pty.py', ['--kind', 'get', '--events', '--small'], 120),
+    'designer-inline-button-events-small': ('test_designer_inline_text_pty.py', ['--kind', 'button', '--events', '--small'], 120),
+    'designer-inline-checkbox-events-small': ('test_designer_inline_text_pty.py', ['--kind', 'checkbox', '--events', '--small'], 120),
+    'designer-inline-radiogroup-events-small': ('test_designer_inline_text_pty.py', ['--kind', 'radiogroup', '--events', '--small'], 120),
+    'designer-inline-combobox-events-small': ('test_designer_inline_text_pty.py', ['--kind', 'combobox', '--events', '--small'], 120),
+    'designer-inline-listbox-events-small': ('test_designer_inline_text_pty.py', ['--listbox', '--events', '--small'], 120),
     'designer-dialog-inline-colors-small': ('test_designer_dialog_colors_pty.py', ['--small'], 120),
     'designer-inline-say-numeric-small': ('test_designer_inline_numeric_pty.py', ['--kind', 'say', '--small'], 120),
     'designer-inline-get-numeric-small': ('test_designer_inline_numeric_pty.py', ['--kind', 'get', '--small'], 120),
