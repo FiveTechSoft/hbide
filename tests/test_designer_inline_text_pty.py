@@ -5,7 +5,7 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
-parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['say','checkbox','radiogroup','combobox']);parser.add_argument('--get',action='store_true');parser.add_argument('--listbox',action='store_true');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['say','get','button','checkbox','radiogroup','combobox']);parser.add_argument('--events',action='store_true');parser.add_argument('--get',action='store_true');parser.add_argument('--listbox',action='store_true');args=parser.parse_args()
 for kind in [args.kind or ('listbox' if args.listbox else ('get' if args.get else 'button'))]:
  modelpath=work/'fixture.json'
  pid,fd=pty.fork()
@@ -46,6 +46,10 @@ for kind in [args.kind or ('listbox' if args.listbox else ('get' if args.get els
   send(b'\x1bOS');send(b'\x1b[17~')
   check(kind+' inspector visible','Inspector' in screen.text())
   fields={'button':[(2,'caption',"Inline 'caption'"),(3,'accelerator','Z'),(4,'action',"Action( 'quoted' )")], 'say':[(2,'caption',"Inline 'caption'")], 'checkbox':[(2,'caption',"Inline 'caption'"),(3,'variable','lInline')], 'radiogroup':[(2,'variable','nInline'),(3,'items',"One 'quoted',Two,Three")], 'combobox':[(2,'variable','nInline'),(3,'items',"One 'quoted',Two,Three")], 'get':[(2,'variable','cInline')], 'listbox':[(2,'variable','nInline'),(3,'items',"One 'quoted',Two,Three")]}[kind]
+  if args.events:
+   initial={'get':4,'checkbox':4,'button':6,'radiogroup':4,'listbox':6,'combobox':6}[kind]
+   keys=['when','valid']+([] if kind=='get' else ['focus'])+(['state'] if kind in ['checkbox','listbox','combobox'] else [])
+   fields=[(initial+i,key,"Event_"+key+"( 'quoted' )") for i,key in enumerate(keys)]
   expected=baseline
   for offset,key,value in fields:
    for _ in range(12):send(b'\x1b[A',.02)
