@@ -1,0 +1,11 @@
+{
+  "candidate": "C91",
+  "source": "a0e87553d3a05138583d6831c3a49a34ff652d58",
+  "binary_sha256": "2bd8ffa509e6fec8589b338e9683193d9ef811ee285c01020af175217f0fe9b8",
+  "test_sha256": "e2501961a7c67b46c694db439fdb998ef1169ceff970e167607a03c7be373553",
+  "scope": "WindowList shared ListPick outside/border ignored, inside edge switching, two dirty documents save/independent Undo/filter",
+  "initial": "PASS Open first document\nPASS Two dirty documents listed\nPASS Outside aligned row leaves active other document\nPASS Outside click writes only current other document\nPASS Interior edge switches to retained dirty source\nPASS Switch preserves exact source dirty state\nPASS Source undo remains independent\nPASS Typed filter remains functional after bounded clicks\nFAIL Other undo removes only last typing independently\nTOTAL 8 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-ci48txny\n",
+  "correction": "Y then Z typing coalesces as one transaction without intervening edit. Observed original other bytes after Undo; expected full transaction removal, not only Z. No product fix.",
+  "final": "PASS Open first document\nPASS Two dirty documents listed\nPASS Outside aligned row leaves active other document\nPASS Outside click writes only current other document\nPASS Interior edge switches to retained dirty source\nPASS Switch preserves exact source dirty state\nPASS Source undo remains independent\nPASS Typed filter remains functional after bounded clicks\nPASS Other typing transaction undo remains independent\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-whpehgcv\n",
+  "limits": "120x40 two documents only, no MessageList/allcallers/DBL/fullmatrix/nativepixels/Windows/license"
+}
