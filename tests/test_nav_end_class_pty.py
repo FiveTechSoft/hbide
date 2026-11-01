@@ -81,6 +81,7 @@ if os.environ.get('HBIDE_NAV_FIXTURE'):
     original = pathlib.Path(os.environ['HBIDE_NAV_FIXTURE']).read_bytes()
 nav_count = os.environ.get('HBIDE_NAV_COUNT', '2')
 nav_decl = os.environ.get('HBIDE_NAV_DECL', 'METHOD Ping()').encode()
+end_marker = os.environ.get('HBIDE_NAV_END_MARKER', 'END CLASS').encode()
 target.write_bytes(original)
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
 pid, fd = pty.fork()
@@ -118,7 +119,7 @@ try:
     menu(b'u')
     check('Picker includes implicit implementation, excludes member','Demo:Ping' in scr.text() and (nav_count+'/'+nav_count) in scr.text())
     send(b'Demo:Ping\r');send(b'X')
-    saved('Picker jumps to implicit implementation after END CLASS',original.replace(b'END CLASS\n'+nav_decl,b'END CLASS\nX'+nav_decl))
+    saved('Picker jumps to implicit implementation after END CLASS',original.replace(end_marker+b'\n'+nav_decl,end_marker+b'\nX'+nav_decl))
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
