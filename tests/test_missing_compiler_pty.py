@@ -6,6 +6,9 @@ text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
 restore='--restore' in sys.argv
+missing_output='--missing-output' in sys.argv
+failed_output='--failed-output' in sys.argv
+fake=missing_output or failed_output
 for kind in ['autorun']:
  target=work/'missing.prg';value=work/'stale-launched.txt'
  target.write_text('procedure main()\n hb_MemoWrit("'+str(value)+'", "stale")\nreturn\n')
@@ -15,6 +18,10 @@ for kind in ['autorun']:
  if restore:target.write_text(target.read_text().replace('"stale"','"fresh"'))
  original=target.read_bytes()
  (work/'empty-path').mkdir()
+ if fake:
+  launcher=work/'empty-path/hbmk2'
+  launcher.write_text('#!/bin/sh\nfor arg do case "$arg" in -o*) out=${arg#-o};; esac; done\nprintf \"%s\\n\" "$out" >> '+shlex.quote(str(work/'invocations'))+'\n'+('printf \"broken output\" > "$out"\nexit 7\n' if failed_output else 'exit 0\n'))
+  launcher.chmod(0o700)
  pid,fd=pty.fork()
  if pid==0:
   os.chdir(work);os.execve(exe,[exe],dict(os.environ,TERM='xterm',HOME=str(work/'home'),HBIDE_RECOVERY_DIR=str(work/'rec'),PATH=str(work/'empty-path')))
@@ -37,7 +44,10 @@ for kind in ['autorun']:
   for attempt in range(2):
    send(b'\x1br');send(b's',.7)
    (work/('failure-'+str(attempt)+'.screen')).write_text(screen.text())
-   check('missing compiler gives clear failed build message','hbmk2 not on PATH' in screen.text() and 'previous' in screen.text() and 'executable left untouched' in screen.text())
+   check('failed build reports preserved executable','Build failed (status '+('7' if failed_output else '0' if missing_output else '-1')+')' in screen.text() and 'previous' in screen.text() and 'executable left untouched' in screen.text())
+   if fake:
+    calls=(work/'invocations').read_text().splitlines() if (work/'invocations').exists() else []
+    check('compiler actually invoked once per attempt',len(calls)==attempt+1 and all(str(work) in c for c in calls))
    send(b'\r',.4)
    check('previous executable byte exact',(work/'missing').read_bytes()==previous)
    check('stale executable never launched',not value.exists())
