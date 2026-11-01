@@ -1,0 +1,31 @@
+{
+  "source": "3a2424ffecb2f95e7a14d68c23f969739cfcb928",
+  "binary_sha256": "c954b10402947d1daa4c3e32c081e6dd7c52bf9e95d9ecece520b9cd6aa57b54",
+  "scope": "C40 four frozen M2 runtime scripts46checks: run arguments modal, empty argv, compilerflags, missingcompiler stale-output guards. No new product/policy/cancel contract, fullmatrix, model, pixels orWindows/hito.",
+  "tests": {
+    "test_run_arguments_modal_pty.py": {
+      "exit": 0,
+      "sha256": "ce24ee133541f28a8720bc4c8df8aab24da86d308699f6a71c070b36b202fc81",
+      "seconds": 22.784451007843018,
+      "log": "PASS arguments modal opens\nPASS explicit-ok exact Script argv\nPASS arguments modal opens\nPASS explicit-cancel exact Script argv\nPASS arguments modal opens\nPASS esc-preserve exact Script argv\nPASS arguments modal opens\nPASS invalid quote rejected\nPASS invalid-preserve exact Script argv\nPASS arguments modal opens\nPASS explicit-clear exact Script argv\nPASS arguments modal opens\nPASS enter-accept exact Script argv\nPASS editor remains usable\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-q4gm9nat\n"
+    },
+    "test_run_empty_args_pty.py": {
+      "exit": 0,
+      "sha256": "38110f01457b6b707a630e32a0c4a44189e5a676c637209a9e3960f44a33c520",
+      "seconds": 20.06080460548401,
+      "log": "PASS start run1 retains empty argument positions\nPASS start editor remains usable\nPASS script run1 retains empty argument positions\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 retains empty argument positions\nPASS debug editor remains usable\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-g2rjarjv\n"
+    },
+    "test_compiler_flags_pty.py": {
+      "exit": 0,
+      "sha256": "bc07e3c06a6b1112295a3552128947baa935e22cf92c51b9f64b1a5956091501",
+      "seconds": 33.67064809799194,
+      "log": "PASS build failure visible\nPASS default GCC warnings strict flags\nPASS compiler flags opens\nPASS build failure visible\nPASS Cancel preserves old flags\nPASS build failure visible\nPASS explicit Cancel preserves old flags\nPASS nested Help opens compiler topic\nPASS nested Help restores options controls\nPASS build failure visible\nPASS OK applies flags to actual process argv\nPASS build failure visible\nPASS selected compiler reaches process argv\nPASS editor returns after repeated option changes\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-8ucjteb3\n"
+    },
+    "test_missing_compiler_pty.py": {
+      "exit": 0,
+      "sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "seconds": 6.3505988121032715,
+      "log": "PASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-qq79aec2\n"
+    }
+  }
+}
