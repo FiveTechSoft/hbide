@@ -66,7 +66,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre23:22 Q481: último candidato aceptado en alcance focal **C90**,
+Corte 1 noviembre23:28 Q486: último candidato aceptado en alcance focal **C90**,
 fuente `6678e43385060fb018065ec0b842f00e604e44d2`,
 bin `28e836faac4040ac64737a9cccfd9d5a8d3de60cbdfe9a0d4a3a23f5757ccb7d`.
 Find/Replace/RunArguments free-form ignoran botones directos en C88; fix consume
@@ -76,7 +76,10 @@ sin include: rechazado/conservado, no sustituto aceptado. C90includecorregido,
 PASS; tecladoEditMenu37/Args14 separado. Píxeles completos beforeC88/afterC90
 inspeccionados: Cancel cierra y restaura fuente/bordes/status. No hereda C88.
 Catálogo posterior34byteexact no embebidoC90. Inventario detecta30ramas mouse,
-27linksacotados; nuevas3 pendientes de link. No funciones/porcentaje/cierreM0.
+29linksacotados; DBL sigue sin enlace instrumentado. Q483 secuencia rápida
+5PASS no prueba el evento DBL interno. Q484 Find con café UTF8/BOM/mixedEOL
+7PASS: Cancel conserva selección, OK busca fé y limpia rango, Undo exacto;
+no grafemas/caracteres anchos ni todos los consumidores Unicode. No funciones/porcentaje/cierreM0.
 Próximo: aceptación focal restante y documentación; no nuevos builds por docs.
 Todos los gates/políticas/plataformas abiertos del bloque histórico permanecen.
 

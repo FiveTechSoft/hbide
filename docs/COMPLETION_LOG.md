@@ -6209,3 +6209,25 @@ descomprimido=manifest antesretirar redundante, testedbinintacto. No hardlinks.
 Q480tooling7groupsPASS/inventory2countfails: nuevas3ramas hacen30,27linked;
 expectativasactualizadas56unitsPASS. Initialfailretained. Q481docs/catalog
 posterioresnoembebidosC90. No cierre basado en conteo de ramas.
+
+
+### Q482-Q486 (1 noviembre 2026): enlaces acotados, Unicode y conservación
+
+Inventario mouse30 ramas/29 enlaces acotados; DBL permanece pendiente.
+Q483 C90secuencia rápida5PASS sin instrumentar eventoDBL. Q484 C90Find7PASS:
+UTF8 café con BOM/mixedEOL, selecciónca, entradafé; Cancel conserva rango,
+OK busca acento y limpia rango, Undo bytes exactos. No grafemas/anchoUnicode,
+resto consumidores, matriz/Windows/píxeles nuevos ni cierre de hitos.
+
+Q485 almacenamiento interno reversible autorizado: C89/C86/C87unstripped
+independientes gzip SHAoriginal/descomprimido=manifiesto, testedbin/logsintactos.
+C84árbol exportado1481entradas en archivo independiente10,935,541bytes;
+restauración íntegra por archivo en memoria SHA/size/mode e inventario,
+dirs/symlinks metadata, original rechecado inmutable antes retirar expandido.
+Estimación previa10,935,506difirió35bytes por cabecera gzip: se paró antes
+verificar/retirar; sólo tras autorización de verificar archivo existente se
+comprobó íntegro y retiró copia redundante. Margen antes3,506,176bytes>=3MiB;
+después197,902,336bytes. No hardlinks, ninguna fuente original/bin/manifiesto/
+log/evidencia retirada; archivo persistente y record de recuperación conservados.
+C90 intacto. No autoridad nueva de publicación/distribución ni licencia.
+Q486docs/catálogo posteriores no embebidos en C90; no nuevo build por docs.
