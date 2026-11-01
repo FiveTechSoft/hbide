@@ -162,14 +162,16 @@ ENDCLASS
 METHOD ClearSelection() CLASS HBSrcEdit
 
    local nOldSelRow := ::nSelRow
+   local lOldMark := ::lMark
 
    ::nSelRow   = 0
    ::nSelStart = 0
    ::nSelEnd   = 0
    ::lMark     = .F.
 
-   // Refresh the line that had the selection
-   if nOldSelRow > 0
+   // Persistent F8 ranges use lMark, not the legacy word-selection row.
+   // Copy clears the range without moving the cursor, so repaint it now.
+   if nOldSelRow > 0 .or. lOldMark
       ::Display()
    endif
 
