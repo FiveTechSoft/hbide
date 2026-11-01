@@ -1,0 +1,23 @@
+{
+  "scope": "Three bounded C87 Find selection modes",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "results": {
+    "test_find_selection_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Typing after Find inserts at match without old range\nPASS Undo Find-following typing exact\nPASS Cancelled Find retains old range\nPASS Undo after cancelled Find exact\nPASS Missing Find retains old range\nPASS Undo after missing Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-bj_igaa8\n",
+      "binary_unchanged": true
+    },
+    "test_find_f5_selection_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Typing after Find inserts at match without old range\nPASS Undo Find-following typing exact\nPASS Cancelled Find retains old range\nPASS Undo after cancelled Find exact\nPASS Missing Find retains old range\nPASS Undo after missing Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ylynjw2c\n",
+      "binary_unchanged": true
+    },
+    "test_find_repeat_selection_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Find consumes old multirow range at second match\nPASS Undo after multirow selected Find exact\nPASS Repeat Last Find clears old range\nPASS Undo after repeated Find exact\nPASS Wrapped Repeat Find clears old range on other row\nPASS Undo after wrapped Repeat Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-5y9oikh3\n",
+      "binary_unchanged": true
+    }
+  },
+  "limits": "No CP/casefold/product/build/model/pixel/fullmatrix/Windows/install/license/hitoclosure claims"
+}
