@@ -3155,6 +3155,26 @@
         "test_ide_parent_mouse_pty.py"
       ],
       "contract": "C87 xterm40x120 File top-row click opens menu, outside click dismisses, visible-editor click routes insertion exact byte and Undo, code close-glyph hides editor, hidden click/typing leaves source absent, File/reopen restores original and F2 exact bytes. Not every menu/coordinate/modal/terminal/pixels/Windows; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-INTERNAL-NAV-WHEEL-FORWARD": {
+      "source": "editor.prg",
+      "context": "static function HBIDE_IsNavKey( nKey )",
+      "condition": "case K_MWFORWARD",
+      "tests": [
+        "test_editor_wheel_undo_pty.py",
+        "test_editor_wheel_pty.py"
+      ],
+      "contract": "Internal pure-nav classification, not additional user gesture: C87 xterm40x120 100CRLFrows wheel down crosses viewport and up moves one row; first Undo removes prior typing without wheel Undo entry; Redo exact, later-row typing has separate Undo/Redo boundaries. Existing wheel fixture checks clean/byte preservation. Behavioral consequence only, no internal instrumentation/performance/allnavkeys/selection/markstates/pixels/Windows; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-INTERNAL-NAV-WHEEL-BACKWARD": {
+      "source": "editor.prg",
+      "context": "static function HBIDE_IsNavKey( nKey )",
+      "condition": "case K_MWBACKWARD",
+      "tests": [
+        "test_editor_wheel_undo_pty.py",
+        "test_editor_wheel_pty.py"
+      ],
+      "contract": "Internal pure-nav classification, not additional user gesture: C87 xterm40x120 100CRLFrows wheel down crosses viewport and up moves one row; first Undo removes prior typing without wheel Undo entry; Redo exact, later-row typing has separate Undo/Redo boundaries. Existing wheel fixture checks clean/byte preservation. Behavioral consequence only, no internal instrumentation/performance/allnavkeys/selection/markstates/pixels/Windows; link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }

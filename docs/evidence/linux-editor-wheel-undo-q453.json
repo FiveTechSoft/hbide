@@ -1,0 +1,8 @@
+{
+  "scope": "Q453 C87 wheel edits Undo boundaries, classification contract not new gesture feature",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "test_sha256": "14063301f20b13056a05234afe152b77155334773e90c111df924931449090ca",
+  "runtime_log": "PASS Open requested 100-line CRLF fixture\nPASS Earlier typing exact before wheel\nPASS Wheel down after typing crosses viewport\nPASS Wheel up after typing moves one row\nPASS First Undo after wheel removes earlier typing, no wheel entry\nPASS Redo after wheel restores earlier typing exact\nPASS Wheel after Redo moves from restored row one to two\nPASS Later typing after wheel exact separate row\nPASS Undo later typing leaves earlier typing\nPASS Next Undo removes earlier typing without wheel entry\nPASS First Redo restores earlier typing only\nPASS Second Redo restores later typing\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6khok0q0\n",
+  "limits": "xterm40x120/100CRLFrows/insertASCII/no selection only; no performance claim, screenshot, all navkeys, all mark states, redo invalidation, Windows. Internal helper classification links are behavioral consequences, not path instrumentation."
+}
