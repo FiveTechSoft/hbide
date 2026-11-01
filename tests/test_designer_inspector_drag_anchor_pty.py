@@ -6,7 +6,7 @@ text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 small='--small' in sys.argv
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
-parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['say','get','button','checkbox','radiogroup','combobox']);parser.add_argument('--events',action='store_true');parser.add_argument('--get',action='store_true');parser.add_argument('--listbox',action='store_true');parser.add_argument('--small',action='store_true');args=parser.parse_args();args.kind='combobox'
+parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['say','get','button','checkbox','radiogroup','combobox']);parser.add_argument('--events',action='store_true');parser.add_argument('--get',action='store_true');parser.add_argument('--listbox',action='store_true');parser.add_argument('--small',action='store_true');parser.add_argument('--vertical',action='store_true');args=parser.parse_args();args.kind='combobox'
 for kind in [args.kind or ('listbox' if args.listbox else ('get' if args.get else 'button'))]:
  modelpath=work/'fixture.json'
  pid,fd=pty.fork()
@@ -51,17 +51,20 @@ for kind in [args.kind or ('listbox' if args.listbox else ('get' if args.get els
   baseline=model()['controls']
   send(b'\x1bOS');send(b'\x1b[17~')
   check(kind+' inspector visible','Inspector' in screen.text())
-  def title_col():
+  def title_pos():
    lines=screen.text().splitlines()
-   return next((line.index('Inspector') for line in lines if 'Inspector' in line),-1)
-  start=title_col()
+   return next(((row,line.index('Inspector')) for row,line in enumerate(lines) if 'Inspector' in line),(-1,-1))
+  if args.vertical:
+   for _ in range(50):send(b'\x1b[1;5B',.01)
+  startrow,start=title_pos()
   check('inspector initially clamped to right',start==49 if small else start==89)
+  if args.vertical:check('inspector initially clamped to bottom',startrow==10 if small else startrow==25)
   send(b'\x1b[17~') # leave inspector focus so the main mouse dispatcher owns drag
   def mouse(code,col,row):send(b'\x1b[M'+bytes([code+32,col+33,row+33]),.2)
-  mouse(0,start+5,2)
-  mouse(32,start-5,2)
-  mouse(3,start-5,2)
-  check('ten cell drag immediately follows visible origin',title_col()==start-10)
+  mouse(0,start+5,startrow)
+  mouse(32,start+5 if args.vertical else start-5,startrow-5 if args.vertical else startrow)
+  mouse(3,start+5 if args.vertical else start-5,startrow-5 if args.vertical else startrow)
+  check('drag immediately follows visible origin',title_pos()==(startrow-5,start) if args.vertical else title_pos()==(startrow,start-10))
   check('drag preserves full control JSON',model()['controls']==baseline)
 
  finally:
