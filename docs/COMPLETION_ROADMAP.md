@@ -401,3 +401,12 @@ en Backspace y contexto lexical comparado exacto. Seis modos PTY, 37 checks,
 26 modelos, 206 controles repaint y 57 guardas PASS sobre fuente `46aeb904`.
 Evidencia en `docs/evidence/linux-editor-continuation-edit-q132.json`;
 no hereda matriz Q121 ni cierra hitos abiertos.
+
+
+### Seguimiento Q133 (1 noviembre 2026)
+
+Delete y seleccion de ; invalidan contexto antes del repaint; ambos fallos
+reproducidos antes y corregidos. Seis modos PTY/50 checks, 26 modelos,
+210 controles repaint y 57 guardas PASS en fuente `c4dfe153`. Evidencia
+`docs/evidence/linux-editor-continuation-delete-q133.json`. Matriz completa
+y hitos pendientes conservan sus limites.

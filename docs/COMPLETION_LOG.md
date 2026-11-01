@@ -4006,3 +4006,21 @@ Backspace, F2, ;, F2, Undo, F2, Redo, F2: bytes exactos y colores sin
 redraw forzado. Terminal nativo Linux inspeccionado en ambos estados,
 bordes inferiores completos. No es nueva matriz completa ni cierre Windows.
 Evidencia: `docs/evidence/linux-editor-continuation-edit-q132.json`.
+
+
+## 1 noviembre 2026: Q133 Delete y seleccion de continuacion
+
+Fuente `c4dfe1537cf00a1057a2108d90cade230ca2b33c`, binario Linux
+`6c65e1c40c659940429c78bce1521664ffcca1a336e24836d3405572ed2a967a`.
+Delete y F8+Left+Delete de ; dieron ambos 11/12 antes: bytes correctos,
+colores de contexto obsoletos. Se invalida antes de Super:Edit y antes
+de ClearSelection/GoTo en SelDelete, sin alterar el contrato Undo.
+
+Lote final nuevo: seis modos, 50 checks PTY PASS, 26 modelos PASS,
+210 controles repaint PASS y 57 guardas PASS. Un lote anterior fue
+interrumpido por el limite del comando tras cinco modos completos;
+se conserva separado y no cuenta como el lote final. Backspace/Delete/
+seleccion tienen 12/12 cada uno con F2/Undo/Redo exactos. Terminal
+nativo de seleccion inspeccionado en ambos estados con bordes completos.
+Evidencia: `docs/evidence/linux-editor-continuation-delete-q133.json`.
+No hereda matriz completa Q121 ni cierra Windows, licencias o hitos.
