@@ -5111,3 +5111,14 @@ bin5295fd2a3222bdeac0495d7f42591c4e1d914334f3379f28e458c275e8bcb4f1.
 31modelosfresh87guardas34docsPASS. Fallospreviosconservados.
 Sinpixelesnuevos/Windows/carreraconcurrente/matrizglobal/cierreM1.
 Evidencia: docs/evidence/linux-literal-diskstamp-q211.json.
+
+### Q212 (1 noviembre 2026): tituloinspectorcentrado
+
+Pedidooriginal10:34:22:centrartituloinspector. Titulo11celdasconespacios
+centrado enmarco31celdas,margenes10/10. Boton[■]arribaizquierdainalterado.
+Fuente0676a5ac41e38cc399dba2f39cb87cb6ec50c4b0
+bin9563d004bbf6815715859bae391b90b47b8a90717ebb0d95fa2a648bdd48fc3b.
+4PTY28checksPASS incluyen centrado,cierre/F4/JSON/drag25x80y40x120.
+Dosnativas802x477inspeccionadascentradoycierrelimpio,12controlesintactos.
+34docsPASS. NoWindows/M4closure/matrizglobal.
+Evidencia: docs/evidence/linux-designer-inspector-centered-q212.json.

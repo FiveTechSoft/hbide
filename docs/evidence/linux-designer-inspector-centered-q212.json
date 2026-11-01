@@ -1,0 +1,122 @@
+{
+  "scope": "User1Nov10:34:22centerInspectorTitle,closeleftsharedglyphpreserved. Linux4PTY28checks+twoactual802x477inspected,notWindows/M4/fullmatrix.",
+  "build": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "0676a5ac41e38cc399dba2f39cb87cb6ec50c4b0",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "bd1cb7685bd5ccc38eef52dbc8eb98df959ee2b507ad967d610873e2c594884c",
+    "binary_sha256": "9563d004bbf6815715859bae391b90b47b8a90717ebb0d95fa2a648bdd48fc3b",
+    "built_at": 1793525711.2710364
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0676a5ac41e38cc399dba2f39cb87cb6ec50c4b0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "bd1cb7685bd5ccc38eef52dbc8eb98df959ee2b507ad967d610873e2c594884c",
+      "binary_sha256": "9563d004bbf6815715859bae391b90b47b8a90717ebb0d95fa2a648bdd48fc3b",
+      "build_receipt": "/tmp/hbide-q212/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "c0acb2ea10ca1d52072a411b1a99584a6dcd0aadf248ab74937e9a8dcd0a6ad3",
+      "case": "designer-inspector-close",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_close_pty.py"
+      ],
+      "started": 1793525711.2713127,
+      "seconds": 5.2,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "927131481c688e8009f6bf6c74054f78b01c613ecb4ff792521f307bc7575eee",
+      "log": "/tmp/hbide-q212/designer-inspector-close-1793525711271308622.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0676a5ac41e38cc399dba2f39cb87cb6ec50c4b0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "bd1cb7685bd5ccc38eef52dbc8eb98df959ee2b507ad967d610873e2c594884c",
+      "binary_sha256": "9563d004bbf6815715859bae391b90b47b8a90717ebb0d95fa2a648bdd48fc3b",
+      "build_receipt": "/tmp/hbide-q212/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "c0acb2ea10ca1d52072a411b1a99584a6dcd0aadf248ab74937e9a8dcd0a6ad3",
+      "case": "designer-inspector-close-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_close_pty.py",
+        "--small"
+      ],
+      "started": 1793525716.4730222,
+      "seconds": 6.55,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "927131481c688e8009f6bf6c74054f78b01c613ecb4ff792521f307bc7575eee",
+      "log": "/tmp/hbide-q212/designer-inspector-close-small-1793525716473018488.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0676a5ac41e38cc399dba2f39cb87cb6ec50c4b0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "bd1cb7685bd5ccc38eef52dbc8eb98df959ee2b507ad967d610873e2c594884c",
+      "binary_sha256": "9563d004bbf6815715859bae391b90b47b8a90717ebb0d95fa2a648bdd48fc3b",
+      "build_receipt": "/tmp/hbide-q212/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "c0acb2ea10ca1d52072a411b1a99584a6dcd0aadf248ab74937e9a8dcd0a6ad3",
+      "case": "designer-inspector-drag-anchor",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py"
+      ],
+      "started": 1793525723.0255961,
+      "seconds": 4.25,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+      "log": "/tmp/hbide-q212/designer-inspector-drag-anchor-1793525723025592398.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0676a5ac41e38cc399dba2f39cb87cb6ec50c4b0",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "bd1cb7685bd5ccc38eef52dbc8eb98df959ee2b507ad967d610873e2c594884c",
+      "binary_sha256": "9563d004bbf6815715859bae391b90b47b8a90717ebb0d95fa2a648bdd48fc3b",
+      "build_receipt": "/tmp/hbide-q212/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "c0acb2ea10ca1d52072a411b1a99584a6dcd0aadf248ab74937e9a8dcd0a6ad3",
+      "case": "designer-inspector-drag-anchor-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py",
+        "--small"
+      ],
+      "started": 1793525727.278084,
+      "seconds": 5.6,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+      "log": "/tmp/hbide-q212/designer-inspector-drag-anchor-small-1793525727278080809.log"
+    }
+  ],
+  "logs": {
+    "designer-inspector-close-1793525711271308622.log": "PASS combobox inspector visible\nPASS title centered in 31-column panel\nPASS left header close hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-ldsgwy8r\n",
+    "designer-inspector-drag-anchor-1793525723025592398.log": "PASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-m6kmotq2\n",
+    "designer-inspector-close-small-1793525716473018488.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS title centered in 31-column panel\nPASS left header close hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-ivaj2gdx\n",
+    "designer-inspector-drag-anchor-small-1793525727278080809.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-qaq__03x\n"
+  },
+  "centering": "31columnborder,spacedtitle11columns,offset10,titlewordleft+11;equal10-cellmargins."
+}
