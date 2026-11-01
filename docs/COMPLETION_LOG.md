@@ -4783,3 +4783,21 @@ a8329cb37eddf84d0c01d43b854ec65cd9bacc09, binario
 Sin arreglo nuevo ni nueva nativa; no todos outputs, Windows, Cancel,
 respuestaUI, matriz global ni cierreM2.
 Evidencia `docs/evidence/linux-start-long-output-success-q187.json`.
+
+
+### Q188 (1 noviembre 2026): notation de color GCC en Output
+
+Arreglo del visor compartido Output (Start y proyecto): reutiliza el
+filtro acotado CSI m/K del parser sobre copia de visualizacion. Antes
+se veian controles literales entre Error y E0030; antes18PASS3FAIL,
+despues21PASS. No se altera output bruto ni raw de diagnosticos, y
+se conservan secuencias desconocidas/incompletas como datos.
+Cuatro modos PTY52checks,29modelos,74guardas34docsPASS en
+e7bd0d4ad30cadc15a101afe091d4dd2a8934482, binario
+a7a851c68b94c366b53c4fdb87562a8f759aad01c42e1b31122e8de5e50ab04a.
+Modelo Output prueba copia limpia, CSI desconocido e incompleto; modelo
+Project conserva raw coloreado. Nativa exactbin40x120/1202x762 revisada:
+ErrorE0030 legible sin notation literal, bordes completos. No renderiza
+colores ni emula terminal/ANSI/OSC generales; no Windows, Cancel,
+respuestaUI, matriz global ni cierreM2.
+Evidencia `docs/evidence/linux-output-color-display-q188.json`.
