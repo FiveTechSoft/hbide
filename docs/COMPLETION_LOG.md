@@ -4399,3 +4399,17 @@ pixeles, Windows, matriz global ni cierre M4. Button comparte lDummy.
 El primer probe tuvo un fallo en el separador esperado del array; se
 corrigio la prueba, no el producto. Evidencia: 
 `docs/evidence/linux-designer-inline-pair-all-skipped-q161.json`.
+
+
+## 1 noviembre 2026: Q162, edicion inline en IDE25x80
+
+OptionsDisplay25x80 real antes del diseñador: siete tipos con ajustes
+numericos/estilo e historial84checks, texto/Undo/Redo/Esc73, picker de
+colores del dialogo18 y shrink7. Dieciseis modos pequeños182checks mas
+tres regresiones40x120/41checks:19PTY223checks,66guardas34docsPASS,
+sin fallos/reintentos/interrupciones en lote final. Fuente
+9260c97b30704c0d1488c816845172be68f64920, binario
+909296d23925c65b328a8226239b5b8878119153c2c6011b03b53465156ead64.
+No arreglo de producto, startup25x80, nuevos pixeles/modelos, campos de
+eventos pequeños, runtime generado, todosgestos/layouts/Windows/global
+ni cierreM4. Evidencia `docs/evidence/linux-designer-inline-ide-small-q162.json`.
