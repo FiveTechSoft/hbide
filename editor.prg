@@ -456,7 +456,7 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
    lDirtyBefore := ::lDirty
    aSelection := ::SelRange()
    lSelectionEdit := aSelection != NIL
-   if lSelectionEdit .and. (hb_keyStd(nKey)==K_DEL.or.hb_keyStd(nKey)==K_BS)
+   if lSelectionEdit .and. (hb_keyStd(nKey)==K_DEL.or.hb_keyStd(nKey)==K_BS.or.hb_keyStd(nKey)==K_CTRL_T)
       if aSelection[1] < aSelection[3] .and. aSelection[2] <= 5 .and. aSelection[4] <= 5
          nMaxPrefix := aSelection[1]-1
       endif
@@ -640,12 +640,16 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
       // them apart; elsewhere Ctrl+Left keeps arriving as Undo, as before.
 
       case nKeyStd == K_CTRL_T
+           if ::SelRange() != NIL
+              ::SelDelete(::SelRange())
+           else
            // HBEditor word deletion expects text columns, not our gutter.
            nPos := Max( ::nCol - 4, 1 )
            ::nCol := nPos
            ::nBlkDirty := Min( ::nBlkDirty, ::nRow )
            ::Super:Edit( nKey )
            ::GoTo( ::nRow, nPos + 4, _REFRESH_ALL )
+           endif
 
       case nKeyStd == K_CTRL_Y
            ::DeleteLine()
