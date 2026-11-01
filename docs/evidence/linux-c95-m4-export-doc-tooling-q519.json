@@ -1,0 +1,14 @@
+{
+  "scope": "C95 post-binary documentation and tooling only, not runtime acceptance",
+  "catalogue": "34 byte-exact",
+  "logs": {
+    "tool-build_receipt.log": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "tool-candidate_doc_preflight.log": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.331s\n\nOK\n{\n  \"ok\": false,\n  \"source\": \"3d3b4e4da11215fd78283595079dd32290b8cba9\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmprac12har/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"cc3642f010e0cf60f134c33f511aa8b61904dafe\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpaahus1cl/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"5d0bd593173d794516f4844f3ecb0c5d8f71e98d\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpc29hx9c4/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"0f74e680de8d18d4372041357efbb58631b321e7\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp6n4w5o18/candidate/manifest.json\"\n}\n",
+    "tool-completion_guards.log": "probe.py FAIL\n.Results: /tmp/tmpo86hi5la/out/results.json\nprobe.py PASS\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.Results: /tmp/tmp7rhk63a9/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmp5qia8g_c/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmp8283i_d0/out/results.json\nprobe.py FAIL\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\nResults: /tmp/tmpfzawekou/out/results.json\n",
+    "tool-completion_inventory.log": "........................................................\n----------------------------------------------------------------------\nRan 56 tests in 0.651s\n\nOK\n",
+    "tool-distribution_notices.log": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.018s\n\nOK\n",
+    "tool-embed_help_docs.log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n",
+    "tool-foreign_root_guard.log": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.005s\n\nOK\n",
+    "tool-linux_rebuild_guard.log": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.011s\n\nOK\n"
+  }
+}

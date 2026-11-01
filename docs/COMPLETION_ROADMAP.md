@@ -1,6 +1,6 @@
 # hbide: roadmap de cierre
 
-Actualizado: 1 de noviembre de 2026. Rama: `designer-robustness`.
+Actualizado: 2 de noviembre de 2026. Rama: `designer-robustness`.
 Base inicial auditada: `f91fa20`. Cambios posteriores y su evidencia en COMPLETION_LOG.md.
 No es una certificacion del IDE completo.
 
@@ -1849,3 +1849,21 @@ C88 fuentee32c6ece0a8d461f04f7244eb451e378211c7f14,
 bin e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38 intacto.
 Q474 consolida docs/catálogo34byteexact posteriores noembebidosC88; sin build
 por docs. No modelos nuevos/fullmatrix/Windows/install/licencia/cierre M0-M6.
+
+
+### Q517-Q519 (2 noviembre 2026): M4 y HelpExport frescos C95
+
+Q517 cuatro modos M4, 52 checks PASS: mixed actions23/GET VALID veto10/
+ComboClipboard9/Inspector25x80 close10. Runtime helpers separados del IDE;
+cuatro fuentes coinciden byte a byte con el candidato, no todos los controles.
+Q518 hipotesis FIFO en ReadFileChecked no confirmada: Open/Project rechazan
+FIFO antes del reader. Dos probes esperaban otra alerta y fallaron por esa
+expectativa; logs retenidos. No bloqueo demostrado, defecto ni parche nuevo.
+Se detienen variantes equivalentes. Q519 cinco modos HelpExport, 20 checks PASS:
+symlink3/regular5/directory4/FIFO4/dangling4. Alias y destinos conservados;
+regular overwrite y mode preservados. Sin garantia concurrente TOCTOU de
+alias/parent directory. Cada receipt identifica fuente/binario y logs propios.
+C95 source1cdedd93da118bcdb33866d574943a784a00c0f6,
+bin112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845 intacto.
+Docs posteriores no embebidos en C95; sin build por docs ni retiradas nuevas.
+No nuevos pixeles/fullmatrix/models/Windows/install/license/cierre de hitos.
