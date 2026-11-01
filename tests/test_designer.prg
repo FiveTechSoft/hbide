@@ -295,7 +295,8 @@ procedure Main()
    oD:nInspRow = 2
    oD:nInspCol = 20
    aRect = oD:InspRect()
-   Check( "insp hit title", oD:InspHit( aRect[ 1 ], aRect[ 2 ] + 2 ) == -1 )
+   Check( "insp hit close", oD:InspHit( aRect[ 1 ], aRect[ 2 ] + 2 ) == -2 )
+   Check( "insp hit title drag", oD:InspHit( aRect[ 1 ], aRect[ 2 ] + 6 ) == -1 )
    Check( "insp hit field", oD:InspHit( aRect[ 1 ] + 1, aRect[ 2 ] + 2 ) == 1 )
    Check( "insp hit outside", oD:InspHit( 0, 0 ) == 0 )
 
