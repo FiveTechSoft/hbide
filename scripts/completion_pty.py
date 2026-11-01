@@ -35,6 +35,7 @@ CASES = {
     'designer-inline-combo-runtime': ('test_designer_inline_combo_runtime_pty.py', [], 120),
     'designer-inline-list-runtime': ('test_designer_inline_combo_runtime_pty.py', ['--listbox'], 120),
     'designer-inline-button-runtime': ('test_designer_inline_button_runtime_pty.py', [], 120),
+    'designer-inspector-shrink-small': ('test_designer_inspector_shrink_pty.py', ['--small'], 120),
     'designer-inspector-shrink': ('test_designer_inspector_shrink_pty.py', [], 120),
     'designer-dialog-inline-colors': ('test_designer_dialog_colors_pty.py', [], 120),
     'designer-dialog-inline': ('test_designer_dialog_inline_pty.py', [], 120),
