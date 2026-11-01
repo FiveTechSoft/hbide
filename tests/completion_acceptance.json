@@ -235,9 +235,10 @@
         "test_saveas_overwrite_accept_pty.py",
         "test_saveas_overwrite_cancel_pty.py",
         "test_saveas_literal_new_pty.py",
-        "test_saveas_literal_symlink_pty.py"
+        "test_saveas_literal_symlink_pty.py",
+        "test_saveas_literal_regular_pty.py"
       ],
-      "contract": "Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Failed Save As retains old name/stamps/journal for initially clean and dirty buffers; later F2 still writes original. Accepted overwrite preserves destination as exact .bak, keeps old source unchanged, clears source journal and subsequent F2 targets new name. Literal POSIX wildcard absent target does not get a phantom overwrite prompt; symlink target is refused with complete named recovery, target/link/sibling/journal/old identity intact. Linux only.",
+      "contract": "Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Failed Save As retains old name/stamps/journal for initially clean and dirty buffers; later F2 still writes original. Accepted overwrite preserves destination as exact .bak, keeps old source unchanged, clears source journal and subsequent F2 targets new name. Literal POSIX wildcard absent target does not get a phantom overwrite prompt; symlink target is refused with complete named recovery, target/link/sibling/journal/old identity intact. Linux only. A regular literal target is not confused with a different matching symlink sibling.",
       "expected_label": "Save As..."
     },
     "IDE-008": {

@@ -5143,3 +5143,16 @@ LiteralSaveAsnuevo,symlinkclean/dirty,externalnormal/literalrecreate;
 inspectorcentro/cierre/dragdosdimensiones. No nuevoproducto/pixeles/modelos,
 Windows/matrizregistradacompleta/cierrehitos. Nohereda309modos/31modelos.
 Evidencia: docs/evidence/linux-file-inspector-joint-q214.json.
+
+### Q216 (1 noviembre 2026): archivo literal regular no confundido con enlace
+
+FallbackDirectoryprimerhermanoenlacehacia rechazarregularliteral*.prg.
+AhoraatributosfallbacksoloaplicansibasenameEXACTOcoincide;lecturaliteral
+linkrealconservadadeQ210. Fixtureaisladoantes60/62despues62/62atomic;
+primerafixturecompartidasinrepro(62/62)conservada,ordendirectorioimporta.
+3PTYPASSregularliteralSaveAs+linkrealclean/dirty,sibling/backup/identidad/
+journal/recoverycorrectos. Fuentea015eb11540431ade514f98fe717d72456983627
+bin14e90537070120f172379dc2278d51c8e95c8d8c7a01a3546ec62444aff89cc7.
+87guardas34docsPASS. Nativa1202x762inspeccionadaidentidadliteralguardada.
+SinWindows/raceproof/matrizglobal/cierreM1.
+Evidencia: docs/evidence/linux-atomic-literal-regular-q216.json.
