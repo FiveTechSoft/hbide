@@ -1,0 +1,31 @@
+{
+  "source": "f3ccfba18df4ef32e1770e787a266dfde4b06739",
+  "binary_sha256": "c0f313141a222f5a51a26915d56a1bc4b8caba9ff95021fa19bc97c2310009e2",
+  "scope": "C33 four frozen PTY selection-consumption guards27checks, not full C30 matrix, pixels, model, Windows or milestone. No new defect found or product change.",
+  "tests": {
+    "test_find_selection_pty.py": {
+      "exit": 0,
+      "sha256": "3ce3425dc070bc83240929b1d47c820118db1385a119c8ff909ddc3b2835ceb7",
+      "seconds": 19.686017274856567,
+      "log": "PASS Open requested fixture\nPASS Typing after Find inserts at match without old range\nPASS Undo Find-following typing exact\nPASS Cancelled Find retains old range\nPASS Undo after cancelled Find exact\nPASS Missing Find retains old range\nPASS Undo after missing Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-7j8l6mot\n"
+    },
+    "test_find_repeat_selection_pty.py": {
+      "exit": 0,
+      "sha256": "969ec83aeb61d954572e7bb9844b3ba426963a2eb6ef3fc2f5bdce4a7ee4b17c",
+      "seconds": 18.51537561416626,
+      "log": "PASS Open requested fixture\nPASS Find consumes old multirow range at second match\nPASS Undo after multirow selected Find exact\nPASS Repeat Last Find clears old range\nPASS Undo after repeated Find exact\nPASS Wrapped Repeat Find clears old range on other row\nPASS Undo after wrapped Repeat Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-_9pkog7h\n"
+    },
+    "test_reload_selection_pty.py": {
+      "exit": 0,
+      "sha256": "0985cef9fa5ff6653a857d303fcec659c7652055b1adc37bd28f284ff274d8bc",
+      "seconds": 10.505537986755371,
+      "log": "PASS Open requested fixture\nPASS clean selected buffer auto reloads shorter disk file\nPASS typing after reload inserts without stale range deletion\nPASS editor remains alive after typing\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-oehqa_5a\n"
+    },
+    "test_replace_nochange_selection_pty.py": {
+      "exit": 0,
+      "sha256": "7b55b73f4e93d173b99f07c7bcd9db45ae633d40a95ba6c7ca54a0fa6470586d",
+      "seconds": 20.410223722457886,
+      "log": "PASS Open requested fixture\nPASS cancel retains original selection for typing\nPASS cancel Undo restores original exact\nPASS identity correct replacement count\nPASS identity retains original selection for typing\nPASS identity Undo restores original exact\nPASS missing correct replacement count\nPASS missing retains original selection for typing\nPASS missing Undo restores original exact\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-j_o6v084\n"
+    }
+  }
+}
