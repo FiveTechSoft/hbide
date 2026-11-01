@@ -1,0 +1,31 @@
+{
+  "source": "3a2424ffecb2f95e7a14d68c23f969739cfcb928",
+  "binary_sha256": "c954b10402947d1daa4c3e32c081e6dd7c52bf9e95d9ecece520b9cd6aa57b54",
+  "scope": "C40four frozen M2 navigation scripts15checks, procedureCLASS/typedmethods/declarationcontinuation/colonGCCdiagnostic. No new product/fullmatrix/pixel/model/Windows or milestone.",
+  "tests": {
+    "test_nav_procedure_class_pty.py": {
+      "exit": 0,
+      "sha256": "94bd13bf4d3bdf0cff4d8132a22b54bd3aa997e863ef7803ad5c25ec8d613bc1",
+      "seconds": 5.978383302688599,
+      "log": "PASS Open requested fixture\nPASS Picker qualifies PROCEDURE CLASS alias\nPASS Picker jumps to PROCEDURE CLASS implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-xh0n7b7d\n"
+    },
+    "test_nav_typed_methods_pty.py": {
+      "exit": 0,
+      "sha256": "c52ceee10a4080b3a17b052287a699c7cc40526fd4312c9b7153b6e0fe7df7e7",
+      "seconds": 5.978322982788086,
+      "log": "PASS Open requested fixture\nPASS Picker uses real method names rather than type keyword\nPASS Picker jumps to typed method implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-92nbim10\n"
+    },
+    "test_nav_declaration_continuation_pty.py": {
+      "exit": 0,
+      "sha256": "fbb2af9f793b9277504764bda1f6bbafda1e05e70c82af03b3beb4a6fdf8967a",
+      "seconds": 5.977571249008179,
+      "log": "PASS Open requested fixture\nPASS Picker includes continued Target declaration\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-4jvo7en7\n"
+    },
+    "test_project_colon_diagnostic_pty.py": {
+      "exit": 0,
+      "sha256": "f58ed6b74c3effb3cade8efbf1f15764e2b1980c598382364342e4a154f02b04",
+      "seconds": 6.874667167663574,
+      "log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump lands at real GCC row2 column9\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-jud7ps09\n"
+    }
+  }
+}
