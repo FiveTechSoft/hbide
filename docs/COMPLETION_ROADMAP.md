@@ -974,3 +974,11 @@ f35ca99fa0df6567f62de7aeedc35a8a2ee4fda1e3db42bc4441e38810919bb2.
 Sin arreglo de producto, Cancel, respuesta UI, Windows, todas las
 variantes de fallo, matriz global ni cierre M2.
 Evidencia `docs/evidence/linux-restored-compiler-q177.json`.
+
+#### Actualización Q247: C31 focal, no sustitución global de C30
+
+Copy de rango F8 ya repinta al retirar marca: C31 export93e45a4 pasa
+7scripts/77checks de selección. Dos modelos editor repaint/EOL fresh
+separados y píxeles completos antes/después inspeccionados. La matriz353
+de Q243 sigue perteneciendo exclusivamente a C30, no se hereda a C31.
+Detalles/fallos de arnés/interrupción: evidence/linux-copy-selection-repaint-q247.json.

@@ -5516,3 +5516,18 @@ sin ancla se aplica línea y Paste inserta debajo. No convertir Cut cero
 ancho en borrar línea sin decisión. Fuente/producto sin cambios; no matriz
 extra/píxeles/modelos/Windows/hitos.
 Evidencia: docs/evidence/linux-zero-width-copy-q246.json.
+
+### Q247 (1 noviembre 2026): Copy elimina resaltado residual F8
+
+ClearSelection solo repintaba nSelRow legacy; la marca persistente F8
+se desactivaba sin quitar el inverso visual. Se repinta también cuando
+lMark estaba activo. No cambia semántica de ancla vacía, clipboard ni
+atajos. Nuevo test: C30 falla los tres repintados forward/reverse/multilínea;
+C31 export93e45a4, binarioaa1e30275c13b894e0bfac5cc2edc110cdc199d09df6cf680fc69b7c13bcf36a,
+pasa7scriptsfocales/77checks. Dos modelos fresh editor repaint/EOL PASS
+con binarios propios, no modos de C31. Capturas completas antes y C31
+inspeccionadas: desaparece inverso residual sin mover cursor, borde inferior
+incluido. Driver interrumpido por límite después de5scripts,2restantes
+separados; primer borrador fixture produjo2fallos espurios preservados.
+No matriz353heredada, Windows, release ni cierreM1.
+Evidencia: docs/evidence/linux-copy-selection-repaint-q247.json.
