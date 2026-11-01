@@ -4831,3 +4831,16 @@ fuente e7bd0d4ad30cadc15a101afe091d4dd2a8934482. Librerias sin cambios.
 No nuevo producto ni integridad de raiz completa, VM, instalador,
 licencias, Windows, matriz global o cierreM5.
 Evidencia `docs/evidence/linux-foreign-root-guards-q190.json`.
+
+
+### Q191 (1 noviembre 2026): pixeles con userspace Debian12
+
+Tres nativas del binario Q188 dentro de raiz Debian12: gesto continuo
+600->790borde->700retorno queda clampado;500 mueve panel100px izquierda.
+25x80/802x477 completos revisados: bordes y underlay restaurado limpios;
+tirador gris de control presente en ambos estados, no residuo.
+Hash de loader/libc/libm sin cambios respecto Q190. Terminal/Xvfb
+quedan fuera de la raiz; mismo kernel/dispositivos. No nuevo producto,
+PTY, instalacion de desktop Debian, VM, todos gestos, tearing, Windows,
+maquina limpia, licencias, matriz global ni cierreM5.
+Evidencia `docs/evidence/linux-debian12-visual-q191.json`.

@@ -1,0 +1,24 @@
+{
+  "scope": "Q191 visual foreign Debian12 userspace review only; no new product or PTY run",
+  "binary_sha256": "a7a851c68b94c366b53c4fdb87562a8f759aad01c42e1b31122e8de5e50ab04a",
+  "binary_source": "e7bd0d4ad30cadc15a101afe091d4dd2a8934482",
+  "root_library_sha256": {
+    "lib/x86_64-linux-gnu/libc.so.6": "6b4a45352fd0c540a9c7c718f35ce8c8e46a4e482f9d3885a910c32d1a0e1421",
+    "lib/x86_64-linux-gnu/libm.so.6": "7f2ca87f652f56b094462474b076749e90e689d0ecb9cb63c7679820b271b4e7",
+    "lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": "02bcda52c1a5dfc236f94d9e5255b4a0e26347d8a372a5223b650e31f291ce3c"
+  },
+  "root_libraries_after": {
+    "lib/x86_64-linux-gnu/libc.so.6": "6b4a45352fd0c540a9c7c718f35ce8c8e46a4e482f9d3885a910c32d1a0e1421",
+    "lib/x86_64-linux-gnu/libm.so.6": "7f2ca87f652f56b094462474b076749e90e689d0ecb9cb63c7679820b271b4e7",
+    "lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": "02bcda52c1a5dfc236f94d9e5255b4a0e26347d8a372a5223b650e31f291ce3c"
+  },
+  "visual": {
+    "inspection": "Actual25x80full802x477. Same-heldpointer600->790edge->700reverse remainsclamped,500movespanel100pxleft. Threefullimagesinspected, panelborders/underlayrestorecomplete. Greycontrolresizehandlepresentbothstatesnotartifact.",
+    "screenshots": {
+      "hbide-q191-edge.png": "96bee6cd6f63b16633dbc440fff5720db8c0cf1ad22fe4e214e1a3d8e4695475",
+      "hbide-q191-reverse.png": "96bee6cd6f63b16633dbc440fff5720db8c0cf1ad22fe4e214e1a3d8e4695475",
+      "hbide-q191-inside.png": "298410023d74f19ddbb5df151fc07151fdc0e3ab9c9fd40e98a4aeea7d4a1309"
+    }
+  },
+  "limits": "AppownDebianloader/libc/libm,hostterminalXvfboutsideforeignroot,samekernel/devices. NotDebiandesktopinstall/VM/nativeWindows/allgestures/tearing/cleanmachine/licensing/fullmatrix/M5closure."
+}
