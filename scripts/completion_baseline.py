@@ -20,6 +20,7 @@ def run(name, args, cwd=ROOT, timeout=120):
             return 124
 
 cases = {
+    'editor-text-block': ['tests/test_editor_text_block.prg', 'editor.prg', 'safeio.prg', 'recovery.prg'],
     'delete-only-line': ['tests/test_delete_only_line.prg', 'editor.prg', 'safeio.prg', 'recovery.prg'],
     'delete-word-columns': ['tests/test_delete_word_columns.prg', 'editor.prg', 'safeio.prg', 'recovery.prg'],
     'saved-history': ['tests/test_editor_saved_history.prg', 'editor.prg', 'safeio.prg', 'recovery.prg'],

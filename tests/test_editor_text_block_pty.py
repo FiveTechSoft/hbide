@@ -122,6 +122,14 @@ try:
     menu(b'e')
     check('Redo restores ordinary comment colors',color('/* literal')==13 and color('return')==13)
     menu(b'n');saved('Undo and save retain TEXT bytes',original)
+    send(b'\x1bOH');send(b'\x1b[B');send(b'\x1b[B');send(b'\x1b[3~')
+    check('Breaking ENDTEXT keeps following return literal',color('return')==11)
+    menu(b'n')
+    check('Undo ENDTEXT edit restores following keyword',color('return')==10)
+    menu(b'e')
+    check('Redo ENDTEXT edit restores following literal',color('return')==11)
+    menu(b'n');saved('Undo terminator and save retain TEXT bytes',original)
+
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
