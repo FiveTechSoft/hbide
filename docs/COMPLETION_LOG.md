@@ -4369,3 +4369,6 @@ Guarda identidadcontrol/clave,tipodecampo admitido y testexistente;
 rechaza falsoenlacenumerico,identidadcruzadaytestausente. LinknoesPASS
 actual,nialcancecompleto. NoActionvetoasumido. Sinarreglo/nuevoPTY/modelo/
 visual/Windows/M4. Inventario ahora distingue persistencia de ejecución.
+
+Q160 final66guardasPASS(45inventario),34docs.
+Evidencia `docs/evidence/linux-designer-inspector-runtime-links-q160.json`.

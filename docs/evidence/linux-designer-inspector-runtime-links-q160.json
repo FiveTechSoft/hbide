@@ -1,0 +1,74 @@
+{
+  "scope": "Contract traceability only, not new product/runtime certification",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "d71bcd07c798a5998d99715bc355a3f7384b9bc4",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "f3cd81fcb2681c89389d83c75e96c959c1bf3c20fc1e9fce6647c5b862b9a275",
+    "started": 1793510504.0882244,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q160-guards/test_completion_guards.py.log",
+        "seconds": 0.202
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q160-guards/test_build_receipt.py.log",
+        "seconds": 0.202
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "ccacfe870dd735c368895cc1d89d1d211ed333525c453e739dd411267f4584d1",
+        "log": "/tmp/hbide-q160-guards/test_completion_inventory.py.log",
+        "seconds": 0.754
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q160-guards/test_distribution_notices.py.log",
+        "seconds": 0.2
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q160-guards/test_embed_help_docs.py.log",
+        "seconds": 0.2
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q160-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.35
+      }
+    },
+    "ok": true,
+    "finished": 1793510505.9969952
+  },
+  "logs": {
+    "test_completion_guards.py": "probe.py FAIL\nResults: /tmp/tmpd69vza5m/out/results.json\n.probe.py PASS\nResults: /tmp/tmpeum29r9l/out/results.json\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.probe.py FAIL\nResults: /tmp/tmph89tnw3h/out/results.json\n.probe.py FAIL\nResults: /tmp/tmpl0cqsczh/out/results.json\n.probe.py FAIL\nResults: /tmp/tmpd14xkjez/out/results.json\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.007s\n\nOK\n",
+    "test_build_receipt.py": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "test_completion_inventory.py": ".............................................\n----------------------------------------------------------------------\nRan 45 tests in 0.539s\n\nOK\n",
+    "test_distribution_notices.py": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.010s\n\nOK\n",
+    "test_embed_help_docs.py": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+    "test_candidate_doc_preflight.py": "{\n  \"ok\": false,\n  \"source\": \"87611359f1aef3b30fc72805a70672e6ac11b52d\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpkmgysc_5/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"07c2454a740452caeacb9940b7e1e085b83f9326\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp8s78hbe1/candidate/manifest.json\"\n}\n.\n----------------------------------------------------------------------\nRan 2 tests in 0.140s\n\nOK\n"
+  },
+  "total_guard_tests": 66,
+  "runtime_pairs": 21,
+  "limits": "Persistence and runtime links separate;no current runtime PASS/percentage/M4/Windows. No new PTY/model/native or product fix."
+}
