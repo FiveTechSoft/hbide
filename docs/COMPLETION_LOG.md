@@ -4202,3 +4202,20 @@ ruta focal ejecutada en esta fuente, no60funciones ni cobertura completa.
 Evidencia `docs/evidence/linux-inspector-matrix-q146.json`. No hereda
 matrizglobalQ136 ni pixelesanteriores. Sin nuevos modelos/visual/handlers,
 todos valores/colores, edgeclamp/oversized/mouse/Windows/cierreM4.
+
+
+## 1 noviembre 2026: Q147 restauracion del inspector y tirador
+
+La celda gris Q140 es el tirador resize, presente antes de editar y que
+baja una fila al Height6->7. La primera afirmacion de desaparicion al
+deseleccionar era incorrecta: quedaba residual, junto a Focus/State/borde
+al reducir inspector10->7campos. Seleccion por raton ahora repinta canvas
+y panel; DrawInspector detecta cambio de rectangulo y restaura underlay.
+Modelo limpio falla en788afff y pasa7e1817a;29modelosPASS.3modosPTY
+32checks,63guardas34docsPASS. PTY comprueba ruta, no pixels (tambien pasa
+antes); native antes/despues completos inspeccionados acreditan limpieza
+en fixture40x120. Tirador seleccionado sigue previsto. Fuente7e1817a,
+bin a50266a6fd6544e4372a8dd147a17b6f291c61d6cdc89a551c71927f5dc3336a.
+Evidencia `docs/evidence/linux-designer-inspector-repaint-q147.json`.
+Sin todosgestos/geometrias/terminales, handlers, oversized, Windows ni
+cierreM4. Los intentos de harness corregidos constan separados.

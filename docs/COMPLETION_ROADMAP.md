@@ -514,3 +514,14 @@ Matriz focal actual de inspector:22/22modos268checksPTY63guardasPASS
 en fuente b820b25, sin reintentos.60pares con rutas focales, no porcentaje
 ni aceptacion completa. Sin nuevos pixeles/modelos/handlers/Windows ni
 cierreM4; evidencia `docs/evidence/linux-inspector-matrix-q146.json`.
+
+
+### Seguimiento Q147 (1 noviembre 2026)
+
+Corregida restauracion al deseleccionar Combo: restos de inspector
+10->7campos y tirador resize. Modelo oldFAIL/newPASS,29modelos,3PTY32checks,
+63guardas34docsPASS. Native antes/despues completos40x120 inspeccionados.
+CeldaQ140 identificada como tirador, residual al deseleccionar antes del
+arreglo; no cursor ni arreglo de tirador seleccionado previsto.
+Evidencia `docs/evidence/linux-designer-inspector-repaint-q147.json`.
+Sin aceptacion de todosgestos/geometrias/Windows ni cierreM4.
