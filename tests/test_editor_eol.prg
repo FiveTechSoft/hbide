@@ -27,6 +27,15 @@ PROCEDURE Main()
       "unreadable load preserves prior text name and dirty state", @nPass, @nFail )
    hb_Run( "chmod 600 " + cFile )
    Set( _SET_INSERT, .T. )
+   o:LoadText(cLF+cLF+'tail')
+   o:aBPs := {1,2}
+   o:GoTo(1,5)
+   o:Edit(K_ENTER)
+   Check(o:GetText()==cLF+cLF+cLF+'tail'.and.Len(o:aBPs)==2.and.o:aBPs[1]==1.and.o:aBPs[2]==3,'Enter empty line keeps current BP and shifts next identical original',@nPass,@nFail)
+   o:Undo()
+   Check(Len(o:aBPs)==2.and.o:aBPs[1]==1.and.o:aBPs[2]==2,'Undo empty split restores original BP positions',@nPass,@nFail)
+   o:Redo()
+   Check(Len(o:aBPs)==2.and.o:aBPs[1]==1.and.o:aBPs[2]==3,'Redo empty split shifts next original BP',@nPass,@nFail)
    // Fresh edits, undo/redo and journal reload use the same terminator.
    FOR EACH aCase IN { { 'CRLF', cCRLF }, { 'LF', cLF } }
       cText := 'abc' + aCase[ 2 ] + 'def' + aCase[ 2 ]
