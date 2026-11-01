@@ -36,6 +36,22 @@ PROCEDURE Main()
    Check(Len(o:aBPs)==2.and.o:aBPs[1]==1.and.o:aBPs[2]==2,'Undo empty split restores original BP positions',@nPass,@nFail)
    o:Redo()
    Check(Len(o:aBPs)==2.and.o:aBPs[1]==1.and.o:aBPs[2]==3,'Redo empty split shifts next original BP',@nPass,@nFail)
+   FOR EACH aCase IN { { 'CRLF', cCRLF }, { 'LF', cLF } }
+      o:LoadText('head'+aCase[2]+aCase[2])
+      o:aBPs := {2,3}
+      o:GoTo(2,5)
+      o:Edit(K_ENTER)
+      Check(o:GetText()=='head'+aCase[2]+aCase[2]+aCase[2].and.Len(o:aBPs)==2.and.o:aBPs[1]==2.and.o:aBPs[2]==4,'Enter before final empty line preserves current and shifts final BP '+aCase[1],@nPass,@nFail)
+      o:Undo()
+      Check(o:GetText()=='head'+aCase[2]+aCase[2].and.o:aBPs[1]==2.and.o:aBPs[2]==3,'Undo final empty line split exact '+aCase[1],@nPass,@nFail)
+      o:Redo()
+      Check(o:GetText()=='head'+aCase[2]+aCase[2]+aCase[2].and.o:aBPs[2]==4,'Redo final empty line split exact '+aCase[1],@nPass,@nFail)
+      o:LoadText('tail'+aCase[2]+'tail')
+      o:aBPs := {1,2}
+      o:GoTo(1,5)
+      o:Edit(K_ENTER)
+      Check(o:GetText()==aCase[2]+'tail'+aCase[2]+'tail'.and.o:aBPs[1]==2.and.o:aBPs[2]==3,'Enter beginning follows surviving full instruction '+aCase[1],@nPass,@nFail)
+   NEXT
    // Fresh edits, undo/redo and journal reload use the same terminator.
    FOR EACH aCase IN { { 'CRLF', cCRLF }, { 'LF', cLF } }
       cText := 'abc' + aCase[ 2 ] + 'def' + aCase[ 2 ]

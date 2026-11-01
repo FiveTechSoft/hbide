@@ -76,7 +76,8 @@ class Scr:
 work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 (work/'home').mkdir(); (work/'rec').mkdir()
 target = work/'source.prg'
-original = b'\n\ntail'
+eol = b'\r\n' if '--crlf' in __import__('sys').argv else b'\n'
+original = eol+eol+b'tail'
 target.write_bytes(original)
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
 pid, fd = pty.fork()
@@ -119,7 +120,7 @@ try:
     check('Undo blank split returns original breakpoint second',scr.gutter_bg(2)==1 and scr.gutter_bg(3)!=1)
     menu(b'e')
     check('Redo blank split moves original breakpoint third',scr.gutter_bg(3)==1 and scr.gutter_bg(2)!=1)
-    saved('Enter blank split saves exact bytes',b'\n\n\ntail')
+    saved('Enter blank split saves exact bytes',eol+eol+eol+b'tail')
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
