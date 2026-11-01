@@ -665,3 +665,18 @@ sin fallos/reintentos/interrupciones en lote final. Fuente
 No arreglo de producto, startup25x80, nuevos pixeles/modelos, campos de
 eventos pequeños, runtime generado, todosgestos/layouts/Windows/global
 ni cierreM4. Evidencia `docs/evidence/linux-designer-inline-ide-small-q162.json`.
+
+
+### Seguimiento Q163 (1 noviembre 2026)
+
+Veinte pares evento/tipo expuestos: texto/F10/Undo/Redo/Esc en IDE real
+OptionsDisplay25x80. Seis modos98checksPTY,66guardas34docsPASS. Fuente
+198434df00480c49da610be84d06232bcf5c1c53, binario
+b9cbfbec71e137666703c724c633a7ff9b8d10174b89461304a809395dfb812e.
+Capturas nativas802x477 de State Combo editado/Redo/deseleccion revisadas: valor
+largo recortado visualmente pero JSON exacto; handle previsto seleccionado,
+deseleccion limpia y marcos inferiores completos. Primer harness nativo
+asumio clave vacia existente tras Undo; ausencia es baseline valido. Se
+corrigio solo el harness y se repitio completo. No arreglo, ejecucion de
+handlers, startup25x80, modelos, todosgestos/layouts/Windows/global/M4.
+Evidencia `docs/evidence/linux-designer-inline-events-small-q163.json`.

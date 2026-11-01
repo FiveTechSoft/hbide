@@ -1,0 +1,267 @@
+{
+  "scope": "Q163 six actual IDE Display25x80 eventfield persistence/history routes, plus native ComboState editing/UndoRedo/deselection. No product fix/runtime execution.",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "198434df00480c49da610be84d06232bcf5c1c53",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "8fdbd3083e9d3ff75b66f79a5d5709aaea6559b542df111b2645ade1b10f589c",
+    "binary_sha256": "b9cbfbec71e137666703c724c633a7ff9b8d10174b89461304a809395dfb812e",
+    "built_at": 1793511317.7678094
+  },
+  "modes": 6,
+  "checks": 98,
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "198434df00480c49da610be84d06232bcf5c1c53",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8fdbd3083e9d3ff75b66f79a5d5709aaea6559b542df111b2645ade1b10f589c",
+      "binary_sha256": "b9cbfbec71e137666703c724c633a7ff9b8d10174b89461304a809395dfb812e",
+      "build_receipt": "/tmp/hbide-q163-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ba9009431b4955e1750db6e4b5f7f156da15894e759ac244fdf171a7c2418c2d",
+      "case": "designer-inline-get-events-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_text_pty.py",
+        "--kind",
+        "get",
+        "--events",
+        "--small"
+      ],
+      "started": 1793511317.7680976,
+      "seconds": 12.79,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "log": "/tmp/hbide-q163-final/designer-inline-get-events-small-1793511317768093844.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "198434df00480c49da610be84d06232bcf5c1c53",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8fdbd3083e9d3ff75b66f79a5d5709aaea6559b542df111b2645ade1b10f589c",
+      "binary_sha256": "b9cbfbec71e137666703c724c633a7ff9b8d10174b89461304a809395dfb812e",
+      "build_receipt": "/tmp/hbide-q163-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ba9009431b4955e1750db6e4b5f7f156da15894e759ac244fdf171a7c2418c2d",
+      "case": "designer-inline-button-events-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_text_pty.py",
+        "--kind",
+        "button",
+        "--events",
+        "--small"
+      ],
+      "started": 1793511330.556938,
+      "seconds": 17.85,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "log": "/tmp/hbide-q163-final/designer-inline-button-events-small-1793511330556934545.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "198434df00480c49da610be84d06232bcf5c1c53",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8fdbd3083e9d3ff75b66f79a5d5709aaea6559b542df111b2645ade1b10f589c",
+      "binary_sha256": "b9cbfbec71e137666703c724c633a7ff9b8d10174b89461304a809395dfb812e",
+      "build_receipt": "/tmp/hbide-q163-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ba9009431b4955e1750db6e4b5f7f156da15894e759ac244fdf171a7c2418c2d",
+      "case": "designer-inline-checkbox-events-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_text_pty.py",
+        "--kind",
+        "checkbox",
+        "--events",
+        "--small"
+      ],
+      "started": 1793511348.4031892,
+      "seconds": 21.5,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "log": "/tmp/hbide-q163-final/designer-inline-checkbox-events-small-1793511348403184694.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "198434df00480c49da610be84d06232bcf5c1c53",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8fdbd3083e9d3ff75b66f79a5d5709aaea6559b542df111b2645ade1b10f589c",
+      "binary_sha256": "b9cbfbec71e137666703c724c633a7ff9b8d10174b89461304a809395dfb812e",
+      "build_receipt": "/tmp/hbide-q163-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ba9009431b4955e1750db6e4b5f7f156da15894e759ac244fdf171a7c2418c2d",
+      "case": "designer-inline-radiogroup-events-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_text_pty.py",
+        "--kind",
+        "radiogroup",
+        "--events",
+        "--small"
+      ],
+      "started": 1793511369.9060996,
+      "seconds": 17.1,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "log": "/tmp/hbide-q163-final/designer-inline-radiogroup-events-small-1793511369906096280.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "198434df00480c49da610be84d06232bcf5c1c53",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8fdbd3083e9d3ff75b66f79a5d5709aaea6559b542df111b2645ade1b10f589c",
+      "binary_sha256": "b9cbfbec71e137666703c724c633a7ff9b8d10174b89461304a809395dfb812e",
+      "build_receipt": "/tmp/hbide-q163-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ba9009431b4955e1750db6e4b5f7f156da15894e759ac244fdf171a7c2418c2d",
+      "case": "designer-inline-combobox-events-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_text_pty.py",
+        "--kind",
+        "combobox",
+        "--events",
+        "--small"
+      ],
+      "started": 1793511387.0014653,
+      "seconds": 22.56,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "log": "/tmp/hbide-q163-final/designer-inline-combobox-events-small-1793511387001462210.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "198434df00480c49da610be84d06232bcf5c1c53",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8fdbd3083e9d3ff75b66f79a5d5709aaea6559b542df111b2645ade1b10f589c",
+      "binary_sha256": "b9cbfbec71e137666703c724c633a7ff9b8d10174b89461304a809395dfb812e",
+      "build_receipt": "/tmp/hbide-q163-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ba9009431b4955e1750db6e4b5f7f156da15894e759ac244fdf171a7c2418c2d",
+      "case": "designer-inline-listbox-events-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_text_pty.py",
+        "--listbox",
+        "--events",
+        "--small"
+      ],
+      "started": 1793511409.5567331,
+      "seconds": 22.56,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "log": "/tmp/hbide-q163-final/designer-inline-listbox-events-small-1793511409556730040.log"
+    }
+  ],
+  "logs": {
+    "designer-inline-get-events-small-1793511317768093844.log": "PASS actual Display applies25x80\nPASS get inspector visible\nPASS get inline when typed and F10 persisted\nPASS get inline when Undo exact\nPASS get inline when Redo exact\nPASS get inline when Esc exact\nPASS get inline valid typed and F10 persisted\nPASS get inline valid Undo exact\nPASS get inline valid Redo exact\nPASS get inline valid Esc exact\nPASS get no other controls introduced\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-57o8njfi\n",
+    "designer-inline-button-events-small-1793511330556934545.log": "PASS actual Display applies25x80\nPASS button inspector visible\nPASS button inline when typed and F10 persisted\nPASS button inline when Undo exact\nPASS button inline when Redo exact\nPASS button inline when Esc exact\nPASS button inline valid typed and F10 persisted\nPASS button inline valid Undo exact\nPASS button inline valid Redo exact\nPASS button inline valid Esc exact\nPASS button inline focus typed and F10 persisted\nPASS button inline focus Undo exact\nPASS button inline focus Redo exact\nPASS button inline focus Esc exact\nPASS button no other controls introduced\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-3u_2zoqe\n",
+    "designer-inline-checkbox-events-small-1793511348403184694.log": "PASS actual Display applies25x80\nPASS checkbox inspector visible\nPASS checkbox inline when typed and F10 persisted\nPASS checkbox inline when Undo exact\nPASS checkbox inline when Redo exact\nPASS checkbox inline when Esc exact\nPASS checkbox inline valid typed and F10 persisted\nPASS checkbox inline valid Undo exact\nPASS checkbox inline valid Redo exact\nPASS checkbox inline valid Esc exact\nPASS checkbox inline focus typed and F10 persisted\nPASS checkbox inline focus Undo exact\nPASS checkbox inline focus Redo exact\nPASS checkbox inline focus Esc exact\nPASS checkbox inline state typed and F10 persisted\nPASS checkbox inline state Undo exact\nPASS checkbox inline state Redo exact\nPASS checkbox inline state Esc exact\nPASS checkbox no other controls introduced\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-5dcpy2uo\n",
+    "designer-inline-radiogroup-events-small-1793511369906096280.log": "PASS actual Display applies25x80\nPASS radiogroup inspector visible\nPASS radiogroup inline when typed and F10 persisted\nPASS radiogroup inline when Undo exact\nPASS radiogroup inline when Redo exact\nPASS radiogroup inline when Esc exact\nPASS radiogroup inline valid typed and F10 persisted\nPASS radiogroup inline valid Undo exact\nPASS radiogroup inline valid Redo exact\nPASS radiogroup inline valid Esc exact\nPASS radiogroup inline focus typed and F10 persisted\nPASS radiogroup inline focus Undo exact\nPASS radiogroup inline focus Redo exact\nPASS radiogroup inline focus Esc exact\nPASS radiogroup no other controls introduced\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-2u3rco1_\n",
+    "designer-inline-combobox-events-small-1793511387001462210.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS combobox inline when typed and F10 persisted\nPASS combobox inline when Undo exact\nPASS combobox inline when Redo exact\nPASS combobox inline when Esc exact\nPASS combobox inline valid typed and F10 persisted\nPASS combobox inline valid Undo exact\nPASS combobox inline valid Redo exact\nPASS combobox inline valid Esc exact\nPASS combobox inline focus typed and F10 persisted\nPASS combobox inline focus Undo exact\nPASS combobox inline focus Redo exact\nPASS combobox inline focus Esc exact\nPASS combobox inline state typed and F10 persisted\nPASS combobox inline state Undo exact\nPASS combobox inline state Redo exact\nPASS combobox inline state Esc exact\nPASS combobox no other controls introduced\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-1n2j_ha3\n",
+    "designer-inline-listbox-events-small-1793511409556730040.log": "PASS actual Display applies25x80\nPASS listbox inspector visible\nPASS listbox inline when typed and F10 persisted\nPASS listbox inline when Undo exact\nPASS listbox inline when Redo exact\nPASS listbox inline when Esc exact\nPASS listbox inline valid typed and F10 persisted\nPASS listbox inline valid Undo exact\nPASS listbox inline valid Redo exact\nPASS listbox inline valid Esc exact\nPASS listbox inline focus typed and F10 persisted\nPASS listbox inline focus Undo exact\nPASS listbox inline focus Redo exact\nPASS listbox inline focus Esc exact\nPASS listbox inline state typed and F10 persisted\nPASS listbox inline state Undo exact\nPASS listbox inline state Redo exact\nPASS listbox inline state Esc exact\nPASS listbox no other controls introduced\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-jarzsrh8\n"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "198434df00480c49da610be84d06232bcf5c1c53",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "329e53cd015c12dc88ae2cbef3f383c05ae6560e0485b63f356b399ec8586905",
+    "started": 1793511458.0723054,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q163-guards/test_completion_guards.py.log",
+        "seconds": 0.203
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q163-guards/test_build_receipt.py.log",
+        "seconds": 0.204
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "ccacfe870dd735c368895cc1d89d1d211ed333525c453e739dd411267f4584d1",
+        "log": "/tmp/hbide-q163-guards/test_completion_inventory.py.log",
+        "seconds": 0.756
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q163-guards/test_distribution_notices.py.log",
+        "seconds": 0.202
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q163-guards/test_embed_help_docs.py.log",
+        "seconds": 0.201
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q163-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.354
+      }
+    },
+    "ok": true,
+    "finished": 1793511459.9931948
+  },
+  "native": {
+    "log": "/tmp/hbide-c24-visual-8kvqu987\nWINDOW=2097155\nX=0\nY=0\nWIDTH=802\nHEIGHT=477\nSCREEN=0\n\n",
+    "files": {
+      "hbide-q163-native-25-deselected.png": "6680a1b0b21d00add20b7d27a97a6f1d0673d76691749de998dd99e028d6596f",
+      "hbide-q163-native-25-state.png": "66ba29a0e8980cf300d964dbe45546bf4790d2c781580537be0812e54288d8f9",
+      "hbide-q163-native-25-redo.png": "96921509696bcf1ea0959583f0e5112b7dd93ca2d16550b43836731ae98fdd73"
+    },
+    "inspection": "Actual full802x477 pixels inspected. State field after edit and Redo visible, stored full quoted expression exact via JSON; narrow display clips long value intentionally. Selected handle present; deselection clears handle/State/old border, full outer lower borders. Redo resets row selection as shown, not lost state.",
+    "initial_attempt": "Native harness asserted empty state key must exist after Undo; key absent is valid baseline. Corrected to .get(default empty); second native run complete. No product fix."
+  },
+  "limits": "20exposed event/typepairs WHEN/VALID/FOCUS/STATE text persistence with UndoRedoEsc. No handler execution/current runtime inheritance,25x80startup,allgestures/layouts,models,Windows/fullIDE/M4 closure."
+}
