@@ -6,6 +6,11 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'designer-inline-get-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','get'], 120),
+    'designer-inline-radiogroup-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','radiogroup'], 120),
+    'designer-inline-checkbox-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','checkbox'], 120),
+    'designer-inline-listbox-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','listbox'], 120),
+    'designer-inline-combobox-valid-veto-runtime': ('test_designer_inline_valid_veto_runtime_pty.py', ['--kind','combobox'], 120),
     'designer-inline-all-get-events-runtime': ('test_designer_inline_all_events_runtime_pty.py', ['--kind','get'], 120),
     'designer-inline-all-radiogroup-events-runtime': ('test_designer_inline_all_events_runtime_pty.py', ['--kind','radiogroup'], 120),
     'designer-inline-all-checkbox-events-runtime': ('test_designer_inline_all_events_runtime_pty.py', ['--kind','checkbox'], 120),
