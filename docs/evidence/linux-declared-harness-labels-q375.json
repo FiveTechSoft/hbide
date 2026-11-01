@@ -1,0 +1,9 @@
+{
+  "scope": "Q375 harness report labels only, no assertions or fixture/product changes",
+  "binary_sha256": "b0ad4e6bb4ad5f5d87eef67111995dfdce3963c59745e2b101f543ea323beaeb",
+  "candidate_source": "74db43fe4e4bc5dae5f54e4663a4ffb8e9d0abd9",
+  "test_log": "PASS Open requested fixture\nPASS Picker includes DECLARED implementation, excludes member\nPASS Picker jumps to DECLARED implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-1mooz41s\n",
+  "limitations": [
+    "ThreePTYchecksPASS C77, no build/models/pixels/new product/Windows/hitoclosure"
+  ]
+}
