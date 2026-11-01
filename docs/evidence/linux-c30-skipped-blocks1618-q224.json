@@ -1,0 +1,323 @@
+{
+  "scope": "Frozen C30 all skipped WHEN.18additional scenarios;85distinct across blocks1..18 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "all-skipped-16-get",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "get"
+          ],
+          "exit": 0,
+          "seconds": 4.448156356811523,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-get.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-16-radiogroup",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "radiogroup"
+          ],
+          "exit": 0,
+          "seconds": 4.451102018356323,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-radiogroup.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-16-checkbox",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "checkbox"
+          ],
+          "exit": 0,
+          "seconds": 4.468245506286621,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-checkbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-16-listbox",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "listbox"
+          ],
+          "exit": 0,
+          "seconds": 4.568671226501465,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-listbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-16-combobox",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "combobox"
+          ],
+          "exit": 0,
+          "seconds": 4.569505929946899,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-combobox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-16-button",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "button"
+          ],
+          "exit": 0,
+          "seconds": 4.567712783813477,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-16-button.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "all-skipped-17-get",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "get",
+            "--pair"
+          ],
+          "exit": 0,
+          "seconds": 4.4485955238342285,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-get.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-17-radiogroup",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "radiogroup",
+            "--pair"
+          ],
+          "exit": 0,
+          "seconds": 4.4506402015686035,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-radiogroup.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-17-checkbox",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "checkbox",
+            "--pair"
+          ],
+          "exit": 0,
+          "seconds": 4.451634645462036,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-checkbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-17-listbox",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "listbox",
+            "--pair"
+          ],
+          "exit": 0,
+          "seconds": 4.590542316436768,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-listbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-17-combobox",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "combobox",
+            "--pair"
+          ],
+          "exit": 0,
+          "seconds": 4.587211608886719,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-combobox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-17-button",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "button",
+            "--pair"
+          ],
+          "exit": 0,
+          "seconds": 4.568081617355347,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-17-button.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "all-skipped-18-get",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "get",
+            "--pair",
+            "--peer-kind",
+            "radiogroup"
+          ],
+          "exit": 0,
+          "seconds": 4.450364112854004,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-get.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-18-radiogroup",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "radiogroup",
+            "--pair",
+            "--peer-kind",
+            "checkbox"
+          ],
+          "exit": 0,
+          "seconds": 4.449833631515503,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-radiogroup.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-18-checkbox",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "checkbox",
+            "--pair",
+            "--peer-kind",
+            "listbox"
+          ],
+          "exit": 0,
+          "seconds": 4.446888208389282,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-checkbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-18-listbox",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "listbox",
+            "--pair",
+            "--peer-kind",
+            "combobox"
+          ],
+          "exit": 0,
+          "seconds": 4.568420886993408,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-listbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-18-combobox",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "combobox",
+            "--pair",
+            "--peer-kind",
+            "button"
+          ],
+          "exit": 0,
+          "seconds": 4.566318988800049,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-combobox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "all-skipped-18-button",
+          "command": [
+            "test_designer_inline_all_skipped_runtime_pty.py",
+            "--kind",
+            "button",
+            "--pair",
+            "--peer-kind",
+            "get"
+          ],
+          "exit": 0,
+          "seconds": 4.567821264266968,
+          "test_sha256": "52a7014443334cfbfc849ba8ec36e54997e63ba1cd0dc09e41f72c4ff1657e87",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/all-skipped-18-button.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 85,
+  "logs": {
+    "all-skipped-16-get.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS get false WHEN evaluated\nPASS get all skipped form returns without input\nPASS get all skipped binding unchanged\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-2xdi07pq\n",
+    "all-skipped-16-radiogroup.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS radiogroup false WHEN evaluated\nPASS radiogroup all skipped form returns without input\nPASS radiogroup all skipped binding unchanged\nPASS radiogroup all skipped GUI focus never entered\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-xa2dkh5h\n",
+    "all-skipped-16-checkbox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS checkbox false WHEN evaluated\nPASS checkbox all skipped form returns without input\nPASS checkbox all skipped binding unchanged\nPASS checkbox all skipped GUI focus never entered\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-k6vew3l0\n",
+    "all-skipped-16-listbox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS listbox false WHEN evaluated\nPASS listbox all skipped form returns without input\nPASS listbox all skipped binding unchanged\nPASS listbox all skipped GUI focus never entered\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-h8v614ad\n",
+    "all-skipped-16-combobox.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS combobox false WHEN evaluated\nPASS combobox all skipped form returns without input\nPASS combobox all skipped binding unchanged\nPASS combobox all skipped GUI focus never entered\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-2h7ar5tl\n",
+    "all-skipped-16-button.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS button false WHEN evaluated\nPASS button all skipped form returns without input\nPASS button all skipped binding unchanged\nPASS button all skipped GUI focus never entered\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-9lmw3ewh\n",
+    "all-skipped-17-get.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS get false WHEN evaluated\nPASS get all skipped form returns without input\nPASS get peer false WHEN evaluated\nPASS get all skipped binding unchanged\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-_pf9mysp\n",
+    "all-skipped-17-radiogroup.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS radiogroup false WHEN evaluated\nPASS radiogroup all skipped form returns without input\nPASS radiogroup peer false WHEN evaluated\nPASS radiogroup peer GUI focus never entered\nPASS radiogroup all skipped binding unchanged\nPASS radiogroup all skipped GUI focus never entered\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-6o1dm98w\n",
+    "all-skipped-17-checkbox.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS checkbox false WHEN evaluated\nPASS checkbox all skipped form returns without input\nPASS checkbox peer false WHEN evaluated\nPASS checkbox peer GUI focus never entered\nPASS checkbox all skipped binding unchanged\nPASS checkbox all skipped GUI focus never entered\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-mbzezpe7\n",
+    "all-skipped-17-listbox.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS listbox false WHEN evaluated\nPASS listbox all skipped form returns without input\nPASS listbox peer false WHEN evaluated\nPASS listbox peer GUI focus never entered\nPASS listbox all skipped binding unchanged\nPASS listbox all skipped GUI focus never entered\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-xuvfvfp7\n",
+    "all-skipped-17-combobox.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS combobox false WHEN evaluated\nPASS combobox all skipped form returns without input\nPASS combobox peer false WHEN evaluated\nPASS combobox peer GUI focus never entered\nPASS combobox all skipped binding unchanged\nPASS combobox all skipped GUI focus never entered\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-ozdnaeo8\n",
+    "all-skipped-17-button.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS button false WHEN evaluated\nPASS button all skipped form returns without input\nPASS button peer false WHEN evaluated\nPASS button peer GUI focus never entered\nPASS button all skipped binding unchanged\nPASS button all skipped GUI focus never entered\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-z2snzqlj\n",
+    "all-skipped-18-get.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS get false WHEN evaluated\nPASS get all skipped form returns without input\nPASS get peer false WHEN evaluated\nPASS radiogroup peer GUI focus never entered\nPASS get all skipped binding unchanged\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-g52r5v7u\n",
+    "all-skipped-18-radiogroup.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS radiogroup false WHEN evaluated\nPASS radiogroup all skipped form returns without input\nPASS radiogroup peer false WHEN evaluated\nPASS checkbox peer GUI focus never entered\nPASS radiogroup all skipped binding unchanged\nPASS radiogroup all skipped GUI focus never entered\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-pfp6gyni\n",
+    "all-skipped-18-checkbox.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS checkbox false WHEN evaluated\nPASS checkbox all skipped form returns without input\nPASS checkbox peer false WHEN evaluated\nPASS listbox peer GUI focus never entered\nPASS checkbox all skipped binding unchanged\nPASS checkbox all skipped GUI focus never entered\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-spd4gm9c\n",
+    "all-skipped-18-listbox.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS listbox false WHEN evaluated\nPASS listbox all skipped form returns without input\nPASS listbox peer false WHEN evaluated\nPASS combobox peer GUI focus never entered\nPASS listbox all skipped binding unchanged\nPASS listbox all skipped GUI focus never entered\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-g37rx60m\n",
+    "all-skipped-18-combobox.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS combobox false WHEN evaluated\nPASS combobox all skipped form returns without input\nPASS combobox peer false WHEN evaluated\nPASS button peer GUI focus never entered\nPASS combobox all skipped binding unchanged\nPASS combobox all skipped GUI focus never entered\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-4gidarl8\n",
+    "all-skipped-18-button.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS button false WHEN evaluated\nPASS button all skipped form returns without input\nPASS button peer false WHEN evaluated\nPASS button all skipped binding unchanged\nPASS button all skipped GUI focus never entered\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-gf29k6cj\n"
+  }
+}

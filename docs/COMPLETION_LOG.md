@@ -5242,3 +5242,16 @@ escenario cotejado contra plan congelado de353. Fallo inicial del auditor
 por comparación literal de argumentos y variantes inertes, no fallo IDE.
 No matriz completa, píxeles, modelos nuevos, Windows, cambio producto o hitos.
 Evidencia: docs/evidence/linux-c30-inline-blocks1215-q223.json.
+
+### Q224 (1 noviembre 2026): C30 todos los WHEN omitidos
+
+18 escenarios adicionales PASS con mismo C30/export congelado: seis tipos
+GET/RadioGroup/Checkbox/ListBox/ComboBox/Button, cada uno solo, pareja del
+mismo tipo y pareja mixta siguiendo ciclo GET/Radio/Check/List/Combo/Button.
+WHEN false se evalúa, formulario retorna sin entrada, bindings exactos
+intactos y foco GUI no entra según contrato de cada fixture.
+Tests propios hashados/binario inalterado; sin fallos/reintentos en estos18.
+85 escenarios distintos documentados y cotejados con plan congelado353,
+con normalización Q223; no sumar tres repeticiones --create.
+No producto nuevo/píxeles/modelos/Windows/matriz completa ni cierre hitos.
+Evidencia: docs/evidence/linux-c30-skipped-blocks1618-q224.json.
