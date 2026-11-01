@@ -31,7 +31,7 @@
   },
   "limitations": [
     "Five scriptsPASS; no global fullmatrix or inherited model/pixel/Windows acceptance",
-    "Leading-space diagnostic uses real compiler; colon diagnostic harness injects bounded compiler output, not a real GCC run with colon source",
+    "Both leading-space and colon-bearing source diagnostics use real compilers; colon harness substitutes hbmk2 with a wrapper executing real gcc -fsyntax-only on the fixture, not invented output or full hbmk2 C build",
     "No product/build/pixels/hitoclosure"
   ]
 }
