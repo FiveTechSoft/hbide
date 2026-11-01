@@ -66,19 +66,21 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre16:14 Q289: candidato focal C47,
-sourcef0347c888fe876c078b83661b0db8e842a97b7df,
-bin0bfcfd3ef106a1f743d4e7c6053cb678a44fb2d13818a4b876434db4947a0afc.
-Q287DeleteLine única instrucción retiraBP/noUndoResurrection según política
-existente. Tres scriptsPTY PASS, modelo29separado y nativas1202x762
-inspeccionadas. Q288CtrlY/Cut16checks son arnés postexport, no-op vacío
-conserva BP deliberado. Q28936modelos fresh de sourceb24b952 no son36modosIDE
-ni del binarioC47. Q284fronteraUndo conserva su ledger separado.
-C45source41905b4868f5903cb1ec5adacba00efadd34d4ab,
-bin5cb92c95b5e859ff6bcaa2acf07a31fae9bfefe1a8b21ad7ff27054cbcc72ef4
-conserva About/catálogoQ282/8smokes y5modos35checks, no heredados aC47.
-Q290docs posteriores todavía no embebidos en C47. No sumar fuentes/binarios
-como matriz ni funciones. Sin Windows/release/licencias/hitos.
+Corte 1 noviembre16:28 Q293: candidato focal C49,
+source3c6696f42bb66bc5b2211fd37c014a375a49b391,
+bin92201a927fe67bf065fb659a905d885a0d38c1a87b1c997221922566dabb6192.
+Q291nav bareTEXT omite payload y conserva funciones posteriores. Q292editor
+literal no contamina comentarios después de ENDTEXT, 4PTY27checks y modelos
+separados12TEXT/210repaint/141EOL PASS; nativas completas inspeccionadas.
+Q293arnés posterior verifica editar terminador y Undo/Redo:10PTYchecks,
+15modeloTEXT PASS, sin cambio de producto ni nueva inspección visual.
+Q29337modelos GTSTD fresh del sourced325a9ce9300240735965d41a990a886a9d20cf7
+limpio PASS; no son37modosIDE ni certificados del binarioC49. GlobalVM/inputhook
+siguen siendo contratos que caracterizan límites, no implementación.
+BareTEXT exacto, no TEXT TO/custommacros/streampragmas/preprocesadorcompleto.
+Q287BP y Q284Undo mantienen ledgers separados. C45 conserva About/catálogoQ282,
+8smokes y5modos35checks, no heredados aC49. Q294docs posteriores no embebidos
+en C49. No sumar fuentes/binarios como matriz. Sin Windows/release/licencias/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
 bin96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29.
@@ -995,3 +997,16 @@ Copy de rango F8 ya repinta al retirar marca: C31 export93e45a4 pasa
 separados y píxeles completos antes/después inspeccionados. La matriz353
 de Q243 sigue perteneciendo exclusivamente a C30, no se hereda a C31.
 Detalles/fallos de arnés/interrupción: evidence/linux-copy-selection-repaint-q247.json.
+
+### Seguimiento Q291-Q294 (1 noviembre 2026)
+
+Q291 navegación bareTEXT: baseline1PASS2FAIL, C48cuatro scripts12PASS y
+modelo99PASS, capturas completas inspeccionadas. Primer arnés buscaba nombre
+fantasma en toda pantalla y lo veía en fuente bajo modal; se corrigió a filas
+del selector, sin esconder el fallo. Q292color/cache separa payload literal de
+comentarios reales, baseline3PASS3FAIL y C49cuatro scripts27checksPASS. Modelos
+12TEXT/210repaint/141EOL independientes. Q293 amplía TEXT a15modelo y10PTYchecks
+para edición del terminador sin producto nuevo, integra modelo37fresh todosPASS.
+Recibos: linux-nav-text-block-q291.json, linux-editor-text-block-q292.json y
+linux-model-baseline-q293.json. Q294 enlaza aceptación y actualiza catálogo.
+No nueva matriz IDE, Windows, release ni cierre de hito.
