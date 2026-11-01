@@ -1,0 +1,69 @@
+{
+  "source": "0965bf30ed960be73290d0af479b15bd683bb90c",
+  "removed": [
+    {
+      "path": "hbide.exe",
+      "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+    },
+    {
+      "path": "tests/hbide",
+      "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+    }
+  ],
+  "scope": "C36 clean Linux source export with current docs/injected build identity. Not full matrix or release/Windows.",
+  "binary_sha256": "6be409bd9f4661079bde5cf70ab2fe0acf32b8f86a650487e93c7ab76b6accab",
+  "archive_sha256": "eff6c15d8fb7104898861c70c74211260d8d1c465ecd7718e51f3eafcda1f7be",
+  "document_check": "PASS: 34 complete documents embedded byte-for-byte\n",
+  "tests": {
+    "about": {
+      "script": "test_about_build_pty.py",
+      "mode": null,
+      "sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+      "log": "PASS About retains version1.0\nPASS About shows actual build revision or honest fallback\nPASS About OK returns same dirty document\nPASS About cycle Undo preserves original bytes\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-y4x3g6og\n",
+      "exit": 0
+    },
+    "help": {
+      "script": "test_help_mouse_pty.py",
+      "mode": null,
+      "sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+      "log": "PASS Contents opens tree and reading pane\nPASS mouse tree selects exact topic\nPASS mouse first tree row selects Basics not next topic\nPASS scrolled tree click retains valid reading pane\nPASS Next button with no query explains action\nPASS Search button executes actual query\nPASS Next button advances actual match\nPASS wheel scroll stays within topic bounds\nPASS Export button writes actual catalogue\nPASS Close button returns dirty document\nPASS Index exact Quickstart opens link view\nPASS first related-topic click opens exact target\nPASS Backspace returns clicked topic history\nPASS last related-topic click opens exact target\nPASS AltRight restores clicked forward topic\nPASS nested related-topic click opens exact body\nPASS link-view Close returns unchanged dirty source\nPASS Undo after mouse Help restores exact original bytes\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-qddd4zal\n",
+      "exit": 0
+    },
+    "undo-clean": {
+      "script": "test_undo_journal_cleanup_pty.py",
+      "mode": "undo",
+      "sha256": "b1275b06febcaa535dabed628373057eba790d10ae0694adf33c6ef26d92f969",
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS Undo to disk baseline retires stale journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n",
+      "exit": 0
+    },
+    "redo-clean": {
+      "script": "test_undo_journal_cleanup_pty.py",
+      "mode": "redo",
+      "sha256": "b1275b06febcaa535dabed628373057eba790d10ae0694adf33c6ef26d92f969",
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS Undo to disk baseline retires stale journal\nPASS saved Redo writes edited bytes\nPASS Undo away from saved creates journal\nPASS Redo to saved retires journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n",
+      "exit": 0
+    },
+    "reload-success": {
+      "script": "test_recovered_reload_journal_pty.py",
+      "mode": "success",
+      "sha256": "6d52a1734c9b51da9d2e33b880ea4e5a8d6989d06ff3e1266f461661ed9cdf27",
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS old recovery generation present\nPASS recovered dirty disk change offers Reload\nPASS Reload shows external bytes\nPASS Reload retires recovered generation\nPASS Reload retires all associated journals\nPASS restart recovery matches successful or failed Reload\nPASS recovered Reload generation lifetime and restart\n",
+      "exit": 0
+    },
+    "reload-failure": {
+      "script": "test_recovered_reload_journal_pty.py",
+      "mode": "failure",
+      "sha256": "6d52a1734c9b51da9d2e33b880ea4e5a8d6989d06ff3e1266f461661ed9cdf27",
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS old recovery generation present\nPASS recovered dirty disk change offers Reload\nPASS failed Reload reports unreadable file\nPASS failed Reload keeps recovered text\nPASS failed Reload keeps old recovery generation\nPASS failed Reload keeps dirty journal\nPASS restart recovery matches successful or failed Reload\nPASS recovered Reload generation lifetime and restart\n",
+      "exit": 0
+    },
+    "recovered-exit": {
+      "script": "test_recovered_undo_dirty_pty.py",
+      "mode": "exit",
+      "sha256": "0687cc2491ba527e7f3cca3bc94f7c49f2f2ebb0bd24a391d98f23d7260ae955",
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS Undo returns recovered bytes still not on disk\nPASS recovered document remains dirty after Undo\nPASS recovery journal survives Undo to recovered baseline\nPASS Exit reviews unsaved recovered baseline\nPASS Exit Cancel retains recovered buffer\nPASS Exit Cancel leaves disk untouched\nPASS Exit Cancel leaves recovery journal\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+      "exit": 0
+    }
+  },
+  "caveat": "7focused variants5scripts, no full C30 matrix inheritance, models or pixels. Generated buildinfo sets source revision. No Windows/release/license/milestone clearance. JSON receipt only added after build."
+}
