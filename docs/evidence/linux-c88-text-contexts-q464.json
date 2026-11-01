@@ -1,0 +1,101 @@
+{
+  "scope": "Q464 fresh C88 compiler-valid standard TEXT contexts13/39PTYchecks, not full parser or inherited acceptance",
+  "source": "e32c6ece0a8d461f04f7244eb451e378211c7f14",
+  "binary_sha256": "e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38",
+  "test_sha256": "a5a5b62c31eedc40bc57294daa26b2237b449f6598fda5360ee3191a1384e777",
+  "log": "file_literal 0\nprinter 0\nprinter_abbrev4 0\nprinter_abbrev5 0\nprinter_abbrev6 0\nprinter_abbrev_continued 0\ncontinued_text 0\ncontinued_to 0\ncontinued_printer 0\ncontinued_twice 0\nfile_tab 0\nfile_bare 0\nfile_expression 0\nResults: /tmp/hbide-text-contexts-hx20vqa4/results.json\n",
+  "results": {
+    "file_literal": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/file_literal.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_mdtr9f.dir/file_literal.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO FILE \"out.txt\"\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ui_jcxas\n"
+    },
+    "printer": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/printer.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_9vr731.dir/printer.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO PRINTER\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-pguvlru9\n"
+    },
+    "printer_abbrev4": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/printer_abbrev4.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_wm0tev.dir/printer_abbrev4.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO PRIN\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-3tsfcz5f\n"
+    },
+    "printer_abbrev5": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/printer_abbrev5.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_cfaedy.dir/printer_abbrev5.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO PRINT\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-z2ayx9qj\n"
+    },
+    "printer_abbrev6": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/printer_abbrev6.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_mpf39e.dir/printer_abbrev6.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO PRINTE\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-40x5h0e_\n"
+    },
+    "printer_abbrev_continued": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/printer_abbrev_continued.prg'...\n\nLines 9, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_wilnal.dir/printer_abbrev_continued.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO ;\nPRIN\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-kiwjhtm9\n"
+    },
+    "continued_text": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/continued_text.prg'...\n\nLines 9, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_1cxcoc.dir/continued_text.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT ;\nTO FILE \"out.txt\"\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-affjme3z\n"
+    },
+    "continued_to": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/continued_to.prg'...\n\nLines 9, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_3ic97b.dir/continued_to.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO ;\nFILE \"out.txt\"\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-kfisr1vz\n"
+    },
+    "continued_printer": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/continued_printer.prg'...\n\nLines 9, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_6nygmj.dir/continued_printer.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO ;\nPRINTER\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-htd5xnvq\n"
+    },
+    "continued_twice": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/continued_twice.prg'...\n\nLines 10, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_uzyzmn.dir/continued_twice.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT ; // join\nTO ;\nFILE \"out.txt\"\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-xrc0zlqq\n"
+    },
+    "file_tab": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/file_tab.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_xuoshg.dir/file_tab.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT\tTO\tFILE\t\"out.txt\"\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-91ivbobs\n"
+    },
+    "file_bare": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/file_bare.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_elfrzj.dir/file_bare.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO FILE out.txt\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-kbdz6ac6\n"
+    },
+    "file_expression": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-hx20vqa4/file_expression.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_tdgrpz.dir/file_expression.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO FILE (\"out\" + \".txt\")\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-l9fdca5i\n"
+    }
+  },
+  "limits": "No model/lexical141 rerun, pixels, all TEXT macros/custom streams, Windows/fullmatrix/license."
+}
