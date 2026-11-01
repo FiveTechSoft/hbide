@@ -78,9 +78,10 @@ class Scr:
 work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 (work/'home').mkdir(); (work/'rec').mkdir()
 target = work/'source.prg'
-original = b'alpha beta\nsecond line\n'
+utf8 = os.environ.get('WORD_DELETE_UTF8') == '1'
+original = ('café beta\nsecond line\n'.encode() if utf8 else b'alpha beta\nsecond line\n')
 target.write_bytes(original)
-env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
+env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm', HBIDE_UTF8='1' if utf8 else '0')
 pid, fd = pty.fork()
 if pid == 0:
     os.execve(BIN, [BIN], env)
@@ -116,7 +117,7 @@ try:
     saved('CtrlT deletes word from text column1',b' beta\nsecond line\n')
     menu(b'n');saved('Undo CtrlT restores bytes',original)
     send(b'\x1bOH');send(b'\x1b[C');send(b'\x1b[C');send(b'\x14')
-    saved('CtrlT midword uses text offset',b'al beta\nsecond line\n')
+    saved('CtrlT midword uses text offset',b'ca beta\nsecond line\n' if utf8 else b'al beta\nsecond line\n')
     menu(b'n');saved('midword Undo exact',original)
     send(b'\x1bOH');send(b'\x1bOF');send(b'\x14')
     saved('CtrlT at EOL leaves bytes unchanged',original)

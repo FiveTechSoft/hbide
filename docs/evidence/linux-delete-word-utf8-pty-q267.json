@@ -1,0 +1,9 @@
+{
+  "source": "41f3478d3d638421642a086f68f13ead6a2049ee",
+  "binary_sha256": "f265f805fee0d98b8d474ce9ac1f51315fb84c9940690c9cd49ee25b1db8a2f0",
+  "scope": "C39 exactbinary2postexport CtrlT modesASCII/UTF8,5checks each. No product/build/model/pixel/fullmatrixWindows/hito.",
+  "test_sha256": "3e5e81573448daa037c9d1032548eea819089e09896e0b32080a2ad76789ccc3",
+  "ascii": "PASS CtrlT deletes word from text column1\nPASS Undo CtrlT restores bytes\nPASS CtrlT midword uses text offset\nPASS midword Undo exact\nPASS CtrlT at EOL leaves bytes unchanged\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ypafp7wv\n",
+  "utf8": "PASS CtrlT deletes word from text column1\nPASS Undo CtrlT restores bytes\nPASS CtrlT midword uses text offset\nPASS midword Undo exact\nPASS CtrlT at EOL leaves bytes unchanged\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-aqcb2rg8\n",
+  "notes": "UTF8host word with accented scalar and midword exact bytes/Undo, EOLnoop. ASCII mode rerun as extended harness regression; not10newfeatures."
+}
