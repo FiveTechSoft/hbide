@@ -265,3 +265,8 @@ the text, and the section tree is always expanded. Details in
 - Debugger Animate has known visual defects.
 - The full plan and honest per-area status live in
   [ROADMAP.md](ROADMAP.md).
+
+Compiler output: U explicitly selects UTF-8 display, L restores legacy bytes.
+The default remains legacy; the IDE does not guess the compiler encoding.
+This changes only the viewer copy, not raw output or source paths.
+Use a UTF-8 terminal for U; wide/combining character cell widths are not certified.

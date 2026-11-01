@@ -79,3 +79,8 @@ The test uses a temporary two-source project with a CH include. It verifies:
 These tests have no visual UI; no UI screenshot is offered as proof of a
 project manager or Messages panel that does not yet exist.
 The F6 output viewer scrolls vertically with Up/Down, PageUp/PageDown and Home/End. Left/Right reveal long compiler lines beyond the visible width. Esc returns to the project desktop.
+
+Compiler output: U explicitly selects UTF-8 display, L restores legacy bytes.
+The default remains legacy; the IDE does not guess the compiler encoding.
+This changes only the viewer copy, not raw output or source paths.
+Use a UTF-8 terminal for U; wide/combining character cell widths are not certified.

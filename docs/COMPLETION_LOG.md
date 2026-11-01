@@ -4910,3 +4910,18 @@ al fuente fila2col9 sin restos. Limite observado: comillas UTF-8 de GCC
 se ven como mojibake con HBIDE_UTF8=0 y compilador C.UTF-8. No se declara
 encoding limpio; investigar. No release, instalacion, Windows ni matriz341.
 Evidencia: docs/evidence/linux-candidate-c28.json.
+
+### Q196 (1 noviembre 2026): lectura UTF-8 explicita en salida
+
+Fuente ce2a12dbc258cb3e4619292b19d7b0ad1a46d454, binario
+993e3799211989c5c33d4c6eddaf82431d49ba83a2bd51252f6ae89b91eb426e.
+U selecciona vista UTF-8 y L vuelve legacy sin adivinar encoding ni tocar
+raw/rutas/locale. Default legacy conservado; offset UTF8 por caracteres.
+Mismo fixture con terminal UTF8 declarado: C28 antes10PASS1FAIL, nuevo11PASS.
+4PTY43checks/87guardasPASS. Dos capturas nativas completas revisadas:
+comillas GCC legibles, Esc vuelve y salto fila2col9, bordes sin restos.
+Pruebas iniciales corregidas: cursor simulado declaraba terminal no-Unicode;
+no eran fallo de producto UTF8. Un experimento no compilaba por nombre de
+DispBegin, corregido antes de fuente final. No anchoUnicode general,
+malformedUTF8,Windows,matriz342 ni cierreM2. C28 no incluye este cambio.
+Evidencia: docs/evidence/linux-output-explicit-utf8-q196.json.

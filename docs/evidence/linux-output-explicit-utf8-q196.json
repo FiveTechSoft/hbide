@@ -1,0 +1,201 @@
+{
+  "scope": "Explicit UTF8 view only, default legacy unchanged, raw bytes unchanged. Not all Unicode widths, malformed UTF8, Windows, full matrix or milestone closure.",
+  "source": "ce2a12dbc258cb3e4619292b19d7b0ad1a46d454",
+  "binary_sha256": "993e3799211989c5c33d4c6eddaf82431d49ba83a2bd51252f6ae89b91eb426e",
+  "before": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Real colored GCC output viewer opens\nPASS Real GCC diagnostic readable without color notation\nFAIL Explicit UTF8 view renders real GCC quotes\nPASS Legacy view remains selectable\nPASS Esc restores project diagnostics\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column color\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 10 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-078wi_6b\n",
+  "rows": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ce2a12dbc258cb3e4619292b19d7b0ad1a46d454",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8d601fc298321a683ba9445df07752a621a944e5b32f418d3afa3ebf33f7fe6a",
+      "binary_sha256": "993e3799211989c5c33d4c6eddaf82431d49ba83a2bd51252f6ae89b91eb426e",
+      "build_receipt": "/tmp/hbide-q196-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "502b9659f36d60420791569dcf1b0eaf028e3352380db149a965f4368838873c",
+      "case": "gcc-utf8-output-viewer",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "color",
+        "--output-viewer",
+        "--utf8-viewer"
+      ],
+      "started": 1793522554.6804955,
+      "seconds": 10.79,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a1babb6c7893c84bd82d91ffcb1e16a7debf3bb47c7e8c547169b6ea12bcf9af",
+      "log": "/tmp/hbide-q196-final/gcc-utf8-output-viewer-1793522554680492191.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ce2a12dbc258cb3e4619292b19d7b0ad1a46d454",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8d601fc298321a683ba9445df07752a621a944e5b32f418d3afa3ebf33f7fe6a",
+      "binary_sha256": "993e3799211989c5c33d4c6eddaf82431d49ba83a2bd51252f6ae89b91eb426e",
+      "build_receipt": "/tmp/hbide-q196-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "502b9659f36d60420791569dcf1b0eaf028e3352380db149a965f4368838873c",
+      "case": "gcc-color-output-viewer",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py",
+        "--column-mode",
+        "color",
+        "--output-viewer"
+      ],
+      "started": 1793522565.4728875,
+      "seconds": 8.79,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a1babb6c7893c84bd82d91ffcb1e16a7debf3bb47c7e8c547169b6ea12bcf9af",
+      "log": "/tmp/hbide-q196-final/gcc-color-output-viewer-1793522565472883315.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ce2a12dbc258cb3e4619292b19d7b0ad1a46d454",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8d601fc298321a683ba9445df07752a621a944e5b32f418d3afa3ebf33f7fe6a",
+      "binary_sha256": "993e3799211989c5c33d4c6eddaf82431d49ba83a2bd51252f6ae89b91eb426e",
+      "build_receipt": "/tmp/hbide-q196-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "502b9659f36d60420791569dcf1b0eaf028e3352380db149a965f4368838873c",
+      "case": "project-output-scroll",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_project_output_pty.py"
+      ],
+      "started": 1793522574.260905,
+      "seconds": 11.99,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "da7836afe1085933995ded88f46a19c405b320399a4561182b72a5d375a0dec0",
+      "log": "/tmp/hbide-q196-final/project-output-scroll-1793522574260901709.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "ce2a12dbc258cb3e4619292b19d7b0ad1a46d454",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "8d601fc298321a683ba9445df07752a621a944e5b32f418d3afa3ebf33f7fe6a",
+      "binary_sha256": "993e3799211989c5c33d4c6eddaf82431d49ba83a2bd51252f6ae89b91eb426e",
+      "build_receipt": "/tmp/hbide-q196-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "502b9659f36d60420791569dcf1b0eaf028e3352380db149a965f4368838873c",
+      "case": "compiler-long-output-color",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_missing_compiler_pty.py",
+        "--long-output",
+        "--color-output"
+      ],
+      "started": 1793522586.2544954,
+      "seconds": 8.29,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "log": "/tmp/hbide-q196-final/compiler-long-output-color-1793522586254491570.log"
+    }
+  ],
+  "logs": {
+    "gcc-utf8-output-viewer": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Real colored GCC output viewer opens\nPASS Real GCC diagnostic readable without color notation\nPASS Explicit UTF8 view renders real GCC quotes\nPASS Legacy view remains selectable\nPASS Esc restores project diagnostics\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column color\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 11 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-_09rarez\n",
+    "gcc-color-output-viewer": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Real colored GCC output viewer opens\nPASS Real GCC diagnostic readable without color notation\nPASS Esc restores project diagnostics\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column color\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-f3amrs3s\n",
+    "project-output-scroll": "PASS F6 opens full output and horizontal scrolling reveals diagnostic tail\nPASS Esc returns to same project failure state\n",
+    "compiler-long-output-color": "PASS long build output opens scrollable viewer\nPASS viewer hides GCC color control notation\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS long build output opens scrollable viewer\nPASS viewer hides GCC color control notation\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 21 PASS 0 FAIL; evidence /tmp/hbide-source-run-oivkg23b\n"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "ce2a12dbc258cb3e4619292b19d7b0ad1a46d454",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "da8953758b20a7e47b91f0fd1416d986833054653bddde860e4e605dd42931b4",
+    "started": 1793522594.722002,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "test_foreign_root_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "1e97d47fd21cd837401080f0cff716b3666d9706771eddb62f437bd34870f41a",
+        "log": "/tmp/hbide-q196-guards/test_foreign_root_guard.py.log",
+        "seconds": 0.211
+      },
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q196-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.21
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q196-guards/test_completion_guards.py.log",
+        "seconds": 0.208
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q196-guards/test_build_receipt.py.log",
+        "seconds": 0.208
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "e6f79e6fa0af285676b2ab2be7e585568186ed37e369759008f959635c3f6a81",
+        "log": "/tmp/hbide-q196-guards/test_completion_inventory.py.log",
+        "seconds": 0.764
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "62951fcdcd3c708f1bbf433cd97d6d160c8736d1fe628e89e24284b9dadc33a3",
+        "log": "/tmp/hbide-q196-guards/test_distribution_notices.py.log",
+        "seconds": 0.218
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q196-guards/test_embed_help_docs.py.log",
+        "seconds": 0.208
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "748bdd859802a6cb51418e98e9ffac879a94892690e9ea7500791cc691a9f08a",
+        "log": "/tmp/hbide-q196-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.578
+      }
+    },
+    "ok": true,
+    "finished": 1793522597.3270788
+  },
+  "visual": "Two complete1202x762 captures inspected: quotes readable in explicit U mode; Esc+Enter row2col9 clean borders.",
+  "test_fixture_correction": "Initial PTY terminal claimed non-Unicode via fixed cursor response. HARBOUR //GTTRM:UTF8 explicitly declares UTF8 terminal; same corrected test fails old C28 10PASS1FAIL and passes new11PASS."
+}
