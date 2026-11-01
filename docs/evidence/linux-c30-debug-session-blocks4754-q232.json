@@ -1,0 +1,234 @@
+{
+  "scope": "Frozen C30 debugger session paths.13additional scenarios;187distinct across blocks1..54 after Q223 normalization. Not full353/Windows/pixels/tearing/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-workareas",
+          "command": [
+            "test_debug_workareas_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 11.77991509437561,
+          "test_sha256": "60dc3e118fb3cb83889113fe8d2f52cecee2bd896138e0a00400502ba7622713",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-workareas.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-monitor-scopes",
+          "command": [
+            "test_debug_monitor_scopes_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 15.936971664428711,
+          "test_sha256": "875ff87539eb0ecb7e3c40311cfa08de7414eeefe76b8cfcf1a228a17d9d18ef",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-monitor-scopes.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-window-layout",
+          "command": [
+            "test_debug_window_layout_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 17.476865530014038,
+          "test_sha256": "587d3dcc133ec66e11a53b46555ba306387a8b583e23e794309682c450cb83be",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-window-layout.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-commands",
+          "command": [
+            "test_debug_commands_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 79.97251868247986,
+          "test_sha256": "a773230ce8d1b867f7581ae8de0928d40828baacb3ebc7ec846fb1b6713bc753",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-commands.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-functions",
+          "command": [
+            "test_debug_functions_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 114.18578815460205,
+          "test_sha256": "efe4c25a8904447ffc3da7cca79fab6eb3aa1d55bca2acaa24dcb7d8c8001dfa",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-functions.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-functions-idle",
+          "command": [
+            "test_debug_functions_pty.py",
+            "--idle-settle"
+          ],
+          "exit": 0,
+          "seconds": 53.310821294784546,
+          "test_sha256": "efe4c25a8904447ffc3da7cca79fab6eb3aa1d55bca2acaa24dcb7d8c8001dfa",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-functions-idle.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-session",
+          "command": [
+            "test_debug_session_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 25.544443607330322,
+          "test_sha256": "20f0276c19f993c911ff4cee2d824de8f3ebf0ce897a4bdbaaa0194dd52616a7",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-session.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-startup",
+          "command": [
+            "test_debug_startup_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 14.277028799057007,
+          "test_sha256": "8cb2433919c705abbbf7dc29ae41276a50c60733ab4dcddfa287ae8c5ce3e1c6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-startup.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-monitor",
+          "command": [
+            "test_debug_monitor_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 28.54452085494995,
+          "test_sha256": "01bf62b9a0b3f6c7bb8bf64c784b43a63c8a73f2c2f7d9e986d91fdafd82358e",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-monitor.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-callstack",
+          "command": [
+            "test_debug_callstack_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 55.65342330932617,
+          "test_sha256": "6ce6a21f1fdaddbae3cfe4c8668db271eb76eb40138e464842b8b67d4bb114d2",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-callstack.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-codeblock",
+          "command": [
+            "test_debug_codeblock_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 23.97059679031372,
+          "test_sha256": "889369c427ebafb2ec679b9364f98a77a887ff72160d7dc9d0b8a0bf89c24bf7",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-codeblock.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-animate",
+          "command": [
+            "test_debug_animate_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 7.54410982131958,
+          "test_sha256": "20b56116fb9ff1e6f749fed80b202fb7e95e01873c9dfdb3bb62b99cac2822b7",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-animate.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-exits",
+          "command": [
+            "test_debug_exit_paths_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 32.26489973068237,
+          "test_sha256": "78e8e426e968fc1fc6e0238bbe2e029ee8459fafeba1ec0a829892937c6cf685",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-exits.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 187,
+  "logs": {
+    "debug-workareas.log": "PASS debugger stopped before increment\nPASS View WorkAreas opens actual three browser dialog\nPASS ALPHA actual field structure shown\nPASS switching alias updates exact BETA structure\nPASS switching alias updates Alias status\nPASS cycling panes and returning alias restores ALPHA fields\nPASS Esc closes WorkAreas to debugger\nPASS F6 reopens WorkAreas with original alias\nPASS Resume retains original workarea record and exact fields\nPASS WorkAreas inspection leaves source bytes unchanged\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-4qaqf__m\n",
+    "debug-monitor-scopes.log": "PASS debugger stopped before increment\nPASS Local menu displays both exact scalar values\nPASS unsorted locals retain declaration order\nPASS Sort menu orders actual local names\nPASS Public menu adds actual memvar value\nPASS Private menu adds actual memvar value\nPASS Static menu adds actual static value\nPASS Sort remains active across scope additions\nPASS Public toggle removes only public fixture variable\nPASS Private toggle removes only private fixture variable\nPASS Static toggle removes only static fixture variable\nPASS All menu exposes fixture scopes with exact values\nPASS second All hides all fixture variables\nPASS editing sorted first row targets QA\nPASS scope toggles and sorted edit reach exact debuggee slots\nPASS scope test leaves source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-a_rgy0kb\n",
+    "debug-window-layout.log": "PASS debugger stopped before increment\nPASS code caption begins inside requested rect\nPASS Move menu opens arrow edit\nPASS Move arrows change caption row and col\nPASS Move Esc restores caption position\nPASS Move Enter keeps changed position\nPASS Size menu opens arrow edit\nPASS Size Esc restores complete painted character grid\nPASS Size Enter changes painted grid\nPASS Zoom moves code caption to desktop top\nPASS second Zoom restores resized grid\nPASS Iconize hides selected source text\nPASS Tile restores iconized source browser\nPASS Tile retains source caption after focus cycle\nPASS layout changes preserve exact debuggee values\nPASS layout changes leave source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-2sjbsdy1\n",
+    "debug-commands.log": "PASS IDE starts\nPASS Debugger enters\nPASS GOTO 3 scrolls target to first source row\nPASS GOTO 70 scrolls distant target to first source row\nPASS FIND selects matching line after distant GOTO\nPASS FIND first partial match selects line 10\nPASS NEXT selects following match 11\nPASS PREVIOUS selects earlier match 10\nPASS INPUT executes Num Off and GOTO from script\nPASS NUM ON restores source numbers\nPASS Mono Display changes source palette\nPASS Mono Display restores color palette\nPASS Path For Files resolves source outside CWD by basename\nPASS Window Iconize collapses the code window content\nPASS Window Iconize restores the code window content\nPASS Window Iconize preserves the code window viewport\nPASS INPUT script applied TabWidth 12\nPASS MenuBar OFF blanks menu row\nPASS Alt+O reveals hidden bar and Options popup\nPASS Esc hides temporary menu again\nPASS Alt+O M restores persistent bar\nPASS Hidden MenuBar is saved explicitly\nPASS Restore settings reinstates hidden bar\nPASS Numeric Window Move clamps negatives below menu\nPASS Numeric Window Move keeps status row free\nPASS Numeric Window Size rejects malformed extent\nPASS Numeric window commands leave debugger usable\nPASS FIND includes first source line\nPASS failed FIND preserves source cursor and view\nPASS Locate Find opens search input\nPASS Locate Find selects match\nPASS Locate Next preserves match when no later match\nPASS Locate Goto opens line input\nPASS Locate Goto selects actual source line\nPASS Locate Goto Cancel preserves selected line\nPASS Locate Find Cancel preserves selected line\nPASS Locate Find Cancel preserves previous search string\nPASS Locate Next menu advances to later match\nPASS Locate Previous menu returns to earlier match\nPASS Locate Case sensitive rejects uppercase mismatch\nPASS Locate Case insensitive finds uppercase mismatch\nPASS Restore saved mono settings preserves current monochrome palette\nPASS Restore saved mono settings is repeatable\nPASS Saved mono settings use explicit ON\nPASS Saved color settings use explicit OFF\nPASS Explicit Mono ON changes color palette\nPASS Restore saved color switches monochrome OFF\nPASS Mono rejects invalid state without changing palette\nPASS Save explicitly records speed zero\nPASS Save explicitly records default tab four\nPASS Save explicitly records startup ON\nPASS Restore saved default resets changed speed\nPASS Restore saved default resets changed tab width\nPASS Restore saved startup ON resets changed OFF\nPASS Restore saved Num ON restores visible source line numbers\nPASS Restore saved case-insensitive state matches uppercase text\nPASS Repeated restore saved Case ON rejects mismatch\nPASS Invalid Case state rejected\nPASS Save records explicit Case ON and OFF\nPASS Restore saved empty source path clears changed directory\nPASS Save records explicit empty source path\nPASS Empty restored path does not resolve removed directory\nPASS Missing source with empty path warns visibly\nPASS Nonempty restored path resolves actual external source\nPASS Restore saved breakpoint keeps the same breakpoint set\nPASS Repeated restore preserves breakpoint set\nPASS Restore repeated watches tracepoints and function breakpoint is exact\nPASS Restore empty point set clears later breakpoints and watches\nPASS Debugger exits back to IDE\nTOTAL 69 PASS 0 FAIL\n",
+    "debug-functions.log": "PASS boot caption noname\nPASS fn.prg open\nPASS debugger UI up\nPASS Tracepoint dialog opens\nPASS tracepoint stops after change (line 3)\nPASS Point Delete dialog opens\nPASS deleted point hides window (Delete now no-op)\nPASS Ctrl-F5 enters next routine (bump line 7)\nPASS Calls window opens\nPASS Calls lists bump\nPASS Trace F10 steps over to line 8\nPASS Step F8 back in Main (line 4)\nPASS WorkAreas F6 alerts when no areas\nPASS Sets view opens\nPASS Speed dialog opens\nPASS Command NUM removes line numbers\nPASS Command NUM restores line numbers\nPASS session 1 closed to IDE\nPASS session 2 debugger up\nPASS session 2 stops at BP line 3\nPASS Monitor Local shows typed var\nPASS Monitor Sort keeps the view\nPASS Window Next moves the cursor to another window\nPASS Window Prev moves it back\nPASS Cascade rearranges windows\nPASS Window Next cycles after Cascade (z-order, no loss)\nPASS Options Line Numbers off\nPASS Options Line Numbers on\nPASS Options mono Display changes colors\nPASS Options path for Files dialog\nPASS File Open dialog opens\nPASS OS Shell banner\nPASS exit returns to the debugger\nPASS Command ? evaluates\nPASS Run at startup checked by default (Clipper compatible)\nPASS Run at startup unchecks after toggle\nPASS codeBlock Trace checked by default\nPASS codeBlock Trace unchecks after toggle\nPASS Show all Globals unchecked by default\nPASS Show all Globals checks after toggle\nPASS session prg name parsed for PPO\nPASS PPO shows preprocessed view\nPASS PPO toggles back to source\nPASS Command window focused (echo)\nPASS Command bp 7 + list bp shows the breakpoint\nPASS Command bp 7 toggles off (not listed anymore)\nPASS Command help opens the Help window\nPASS Help window closes with ESC\nPASS Code window brought to front\nPASS Settings: line numbers off before save\nPASS Save Settings writes init.cld with Num Off\nPASS Settings: line numbers on before restore\nPASS Restore Settings reapplies Num Off\nPASS Tab Width 12 reindents the tabbed line live\nPASS Tab Width restored to 4\nPASS Colors dialog opens\nPASS Colors dialog closes with ESC\nPASS Alt+X returns to the IDE\nTOTAL 58 PASS 0 FAIL\n",
+    "debug-functions-idle.log": "PASS boot caption noname\nPASS fn.prg open\nPASS debugger UI up\nPASS Tracepoint dialog opens\nPASS tracepoint stops after change (line 3)\nPASS Point Delete dialog opens\nPASS deleted point hides window (Delete now no-op)\nPASS Ctrl-F5 enters next routine (bump line 7)\nPASS Calls window opens\nPASS Calls lists bump\nPASS Trace F10 steps over to line 8\nPASS Step F8 back in Main (line 4)\nPASS WorkAreas F6 alerts when no areas\nPASS Sets view opens\nPASS Speed dialog opens\nPASS Command NUM removes line numbers\nPASS Command NUM restores line numbers\nPASS session 1 closed to IDE\nPASS session 2 debugger up\nPASS session 2 stops at BP line 3\nPASS Monitor Local shows typed var\nPASS Monitor Sort keeps the view\nPASS Window Next moves the cursor to another window\nPASS Window Prev moves it back\nPASS Cascade rearranges windows\nPASS Window Next cycles after Cascade (z-order, no loss)\nPASS Options Line Numbers off\nPASS Options Line Numbers on\nPASS Options mono Display changes colors\nPASS Options path for Files dialog\nPASS File Open dialog opens\nPASS OS Shell banner\nPASS exit returns to the debugger\nPASS Command ? evaluates\nPASS Run at startup checked by default (Clipper compatible)\nPASS Run at startup unchecks after toggle\nPASS codeBlock Trace checked by default\nPASS codeBlock Trace unchecks after toggle\nPASS Show all Globals unchecked by default\nPASS Show all Globals checks after toggle\nPASS session prg name parsed for PPO\nPASS PPO shows preprocessed view\nPASS PPO toggles back to source\nPASS Command window focused (echo)\nPASS Command bp 7 + list bp shows the breakpoint\nPASS Command bp 7 toggles off (not listed anymore)\nPASS Command help opens the Help window\nPASS Help window closes with ESC\nPASS Code window brought to front\nPASS Settings: line numbers off before save\nPASS Save Settings writes init.cld with Num Off\nPASS Settings: line numbers on before restore\nPASS Restore Settings reapplies Num Off\nPASS Tab Width 12 reindents the tabbed line live\nPASS Tab Width restored to 4\nPASS Colors dialog opens\nPASS Colors dialog closes with ESC\nPASS Alt+X returns to the IDE\nTOTAL 58 PASS 0 FAIL\n",
+    "debug-session.log": "PASS boot caption noname\nPASS sentinel user file in place\nPASS dbg2 open\nPASS F9 marks BP on line 4 (gutter attr)\nPASS debugger UI appears (own menu + Command window)\nPASS debug module uses a unique temp name\nPASS debugger shows the buffer source\nPASS F5 stops at preset BP line 4 (exec bar color)\nPASS Alt+X returns to the IDE editor\nPASS no temp files leaked after session\nPASS sentinel untouched after debug session\nPASS stmt.prg open as second doc\nPASS compile failure is a visible alert\nPASS debugger not entered on failed compile\nPASS no temp files leaked on failed compile\nPASS sentinel still untouched\nPASS err3.prg open as third doc\nPASS debugger entered for err3\nPASS debuggee runtime error shows an alert\nPASS error path returns to the IDE editor\nPASS no temp files leaked on the error path\nPASS sentinel untouched after error path\nPASS IDE exits clean\nTOTAL 23 PASS 0 FAIL\n",
+    "debug-startup.log": "PASS RunAtStartup=on: execution stops on return\nPASS RunAtStartup=off: execution stops on __dbgInvokeDebug\n",
+    "debug-monitor.log": "PASS IDE starts\nPASS STATIC+PRIVATE fixture enters debugger without symbol error/9001\nPASS Local values loaded in declaration order\nPASS Sort reorders actual variables alphabetically\nPASS Restore unsorted state returns declaration order\nPASS Explicit sort OFF returns declaration order\nPASS Restore sorted ON repeatedly retains alphabetic order\nPASS Invalid sort state preserves order\nPASS Public value and type\nPASS Private value and type\nPASS Static value and type\nPASS All includes all declared kinds\nPASS All off hides variable contents\nPASS Restore saved Local ON does not toggle it OFF\nPASS Repeated restore preserves Local ON\nPASS Saved monitor scopes have explicit states\nPASS Explicit Public ON exposes actual value\nPASS Restore saved Public OFF hides changed scope\nPASS Invalid monitor state rejected without hiding locals\nPASS Restore all enabled scopes retains real Local Public Private Static values\nPASS Restore disabled scopes leaves only saved locals\nPASS Local OFF hides monitor before layout restore\nPASS Restore hidden Monitor reopens values and saved geometry\nPASS Debugger returns to IDE\nTOTAL 24 PASS 0 FAIL\n",
+    "debug-callstack.log": "PASS saved CallStack ON restores repeatedly without toggling\nPASS manual layout restores same named window geometry from non-default focus\nPASS saved iconized stack remains iconized and restores original content\nPASS saved zoom restores and unzooms to original layout\nPASS saved CallStack OFF hides changed visible stack\nPASS restore recreates missing Calls window with saved geometry\nPASS cascade restores exact window geometry repeatedly\nPASS new Points in Cascade has usable viewport\nPASS Window Select puts Points in front Cascade slot\nPASS restore reopens hidden Points with exact geometry and contents\nPASS twice-restored iconized Points expands with original contents\nPASS hidden iconized Points restores exact layout and expands browser\nPASS hidden zoomed Points restores twice and unzooms to original layout\nPASS reopening Calls in TILE keeps all panels disjoint\nPASS CallStack on: routine listed; next routine adds bump; off hides\n",
+    "debug-codeblock.log": "PASS CodeBlockTrace=on: F8 enters extended block at line 4\nPASS CodeBlockTrace=off: F8 enters extended block at line 5\n",
+    "debug-animate.log": "PASS nested application display count=2 then balanced=0\nPASS Animate completes sum=6 without manual steps and returns to IDE\n",
+    "debug-exits.log": "PASS normal: debugger entered \nPASS normal: back in IDE with menu \nPASS normal: editor text repainted \nPASS normal: editor body colour restored \nPASS normal: menu still works after session \nPASS altx: debugger entered \nPASS altx: debugger back after app screen \nPASS altx: back in IDE with menu \nPASS altx: editor text repainted \nPASS altx: editor body colour restored \nPASS altx: menu still works after session \nPASS error: debugger entered \nPASS error: back in IDE with menu \nPASS error: editor text repainted \nPASS error: editor body colour restored \nPASS error: menu still works after session \n---\nTOTAL 16 PASS 0 FAIL\n"
+  }
+}

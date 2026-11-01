@@ -5339,3 +5339,16 @@ propios hashados/binario inalterado, sin fallo/reintento en estos8.174
 escenarios distintos cotejados con plan353, normalizaciónQ223 aplicada.
 No M3toggles/producto nuevo/píxeles/modelos/Windows/matriz completa/hitos.
 Evidencia: docs/evidence/linux-c30-debug-input-blocks4346-q231.json.
+
+### Q232 (1 noviembre 2026): C30 sesiones debugger
+
+13 escenarios adicionales PASS mismo C30 96d77549/export049b533: workareas,
+monitor scopes, layout, comandos, funciones normal/idle-settle, sesión,
+startup, monitor, callstack, codeblock, animate y salidas. Tests propios
+hashados/binario inalterado, sin fallo/reintento en estos13; funciones
+normal114s, ejecutado solo dentro presupuesto120s. Fixtures acotadas,
+Animate PTY no certifica ausencia tearing ni buffers visuales.187 escenarios
+distintos cotejados con plan353 y normalizaciónQ223. No implementación
+ExchangeScreens/SwapOnInput, producto nuevo/modelos/píxeles/Windows/hitos
+o matriz completa.
+Evidencia: docs/evidence/linux-c30-debug-session-blocks4754-q232.json.
