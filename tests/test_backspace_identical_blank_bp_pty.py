@@ -77,6 +77,7 @@ work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 (work/'home').mkdir(); (work/'rec').mkdir()
 target = work/'source.prg'
 eol = b'\r\n' if '--crlf' in __import__('sys').argv else b'\n'
+use_delete = '--delete' in __import__('sys').argv
 original = eol+eol+eol+b'tail'
 target.write_bytes(original)
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
@@ -113,7 +114,8 @@ try:
     send(b'\x1bf');send(b'o');send(str(target).encode()+b'\r',1)
     send(b'\x1bOH');send(b'\x1b[B');send(b'\x1b[B');send(b'\x1b[20~')
     check('Breakpoint on third blank line',scr.gutter_bg(3)==1)
-    send(b'\x1b[A');send(b'\x7f')
+    send(b'\x1b[A');send(b'\x1b[A') if use_delete else None
+    send(b'\x1b[3~' if use_delete else b'\x7f')
     check('Backspace join shifts untouched third blank BP to second',scr.gutter_bg(2)==1 and scr.gutter_bg(3)!=1)
     menu(b'n')
     check('Undo blank join restores untouched BP third',scr.gutter_bg(3)==1 and scr.gutter_bg(2)!=1)

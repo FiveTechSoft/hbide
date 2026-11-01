@@ -472,6 +472,11 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
          // Joining the previous/current pair must not let an identical
          // following blank masquerade as the line removed by Backspace.
          nMaxPrefix := ::nRow - 1
+      case hb_keyStd(nKey) == K_DEL .and. ::nRow < Len(::aText) .and. ;
+           ::nCol - 4 > hb_ULen(::aText[::nRow]:cText)
+         // Forward EOL join removes the next boundary, not a later
+         // identical blank found by the diff's greedy common prefix.
+         nMaxPrefix := ::nRow
       endcase
    endif
    ::lOpRecorded := .F.

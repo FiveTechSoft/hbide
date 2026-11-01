@@ -63,6 +63,17 @@ PROCEDURE Main()
       o:Redo()
       Check(Len(o:aBPs)==1.and.o:aBPs[1]==2,'Redo blank Backspace preserves survivor BP '+aCase[1],@nPass,@nFail)
    NEXT
+   FOR EACH aCase IN { { 'CRLF', cCRLF }, { 'LF', cLF } }
+      o:LoadText(aCase[2]+aCase[2]+aCase[2]+'tail')
+      o:aBPs := {3}
+      o:GoTo(1,5)
+      o:Edit(K_DEL)
+      Check(o:GetText()==aCase[2]+aCase[2]+'tail'.and.Len(o:aBPs)==1.and.o:aBPs[1]==2,'Delete EOL blank join keeps untouched following BP '+aCase[1],@nPass,@nFail)
+      o:Undo()
+      Check(Len(o:aBPs)==1.and.o:aBPs[1]==3,'Undo blank Delete returns survivor BP '+aCase[1],@nPass,@nFail)
+      o:Redo()
+      Check(Len(o:aBPs)==1.and.o:aBPs[1]==2,'Redo blank Delete preserves survivor BP '+aCase[1],@nPass,@nFail)
+   NEXT
    // Fresh edits, undo/redo and journal reload use the same terminator.
    FOR EACH aCase IN { { 'CRLF', cCRLF }, { 'LF', cLF } }
       cText := 'abc' + aCase[ 2 ] + 'def' + aCase[ 2 ]
