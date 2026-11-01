@@ -50,6 +50,12 @@ class ModalInventory(unittest.TestCase):
         for phrase in ['same IDE session','exit0 without output','exit7 with output','Synthetic line3','not Cancel']:
             self.assertIn(phrase,entry['contract'])
 
+    def test_compact_method_navigation_link(self):
+        entry=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['menus']['IDE-019']
+        self.assertIn('test_nav_compact_method_pty.py',entry['tests'])
+        self.assertIn('CLASS inside the parameter list',entry['contract'])
+        self.assertIn('not full syntax coverage',entry['contract'])
+
     def test_generation_deterministic(self):
         self.assertEqual(self.rows,audit.modal_fields())
 

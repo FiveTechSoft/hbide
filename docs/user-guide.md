@@ -296,3 +296,11 @@ Compiler output: U explicitly selects UTF-8 display, L restores legacy bytes.
 The default remains legacy; the IDE does not guess the compiler encoding.
 This changes only the viewer copy, not raw output or source paths.
 Use a UTF-8 terminal for U; wide/combining character cell widths are not certified.
+
+### Navigation declaration bounds
+
+Go to Function recognizes compact method implementations such as
+`METHOD Ping()CLASS Demo`. A parameter named `CLASS` inside parentheses
+is not the owning class qualifier. The picker keeps the declaration's
+first physical line for supported continuations. This is a bounded source
+scanner, not a full Harbour preprocessor or a guarantee for every macro.

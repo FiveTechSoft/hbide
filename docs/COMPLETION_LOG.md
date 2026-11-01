@@ -5598,3 +5598,25 @@ con líneas actuales y roadmap separa C39focal/C36identificado/C30plan353
 y modelosQ268. Catálogo34docs regenerado;8guardas y check exacto en
 linux-ctrl-t-inventory-docs-q269.json. Sin producto/build/PTY/modelo/píxeles
 Windows/hito nuevo.
+
+### Q275-Q276 (1 noviembre 2026): navegación de métodos compactos
+
+Harbour real acepta METHOD Ping()CLASS Demo, pero C40 lo omitía del picker.
+Q275 separa frontera tras paréntesis; C41 pasa4scripts12checks y modelo85.
+Fixture adicional CLASS como parámetro revela nombre ):Ping en C41 y falsa
+implementación de miembro. Q276 busca dueño fuera de paréntesis: C42
+source929f08dcb2300736ee213a67d1ab9547255558ed,
+bin320852bc1e11f8a65bf824be0f239423c9eebb76851787c168684da294143927.
+Cinco modosPTY15checks y modelo90 separado PASS. Baselines fallidos
+conservados; siete variantes compiladas, no todas ejecutadas. Dos parejas
+nativas1202x762 inspeccionadas con bordes completos. No parser completo,
+matriz heredada, Windows, release ni cierre de hito. Evidencias
+linux-nav-compact-method-q275.json y linux-nav-class-parameter-q276.json.
+
+### Q277 (1 noviembre 2026): enlaces de navegación y catálogo
+
+Inventario enlaza método compacto y modo CLASS parámetro, sin convertir
+vínculo en ejecución actual. Roadmap separa C42focal de C40identificado y
+C30plan353. Catálogo34Markdown regenerado; guardas y check exacto en
+linux-nav-compact-docs-q277.json. No nuevo producto/build/PTY/píxeles/modelo,
+Windows o hito.

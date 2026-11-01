@@ -1,0 +1,100 @@
+{
+  "scope": "Q277 docs/inventory/catalogue only, no new product/build/PTY/pixels/models/Windows/milestone closure. C42 remains old embedded docs snapshot, C40/C30 evidence not inherited.",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "2025ebc3e4ef69770834ba13f908d58fe512126c",
+    "tracked_changes": " M docs/COMPLETION_INVENTORY.md\n M docs/COMPLETION_LOG.md\n M docs/COMPLETION_ROADMAP.md\n M docs/user-guide.md\n M helpdocs.ch\n M tests/completion_acceptance.json\n M tests/test_completion_inventory.py\n",
+    "tracked_snapshot_sha256": "a8ee8c1de4e2486b9fb06b940bcfc2ce9815ea78bcf3992bd6901f0c06833873",
+    "started": 1793543366.4486897,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "test_foreign_root_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "1e97d47fd21cd837401080f0cff716b3666d9706771eddb62f437bd34870f41a",
+        "log": "/tmp/hbide-q277-guards/test_foreign_root_guard.py.log",
+        "seconds": 0.224
+      },
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q277-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.221
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q277-guards/test_completion_guards.py.log",
+        "seconds": 0.22
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q277-guards/test_build_receipt.py.log",
+        "seconds": 0.221
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "01349de35839233f29e7c2fcdf0257f57447e49379a63ad074263bd8b3d72380",
+        "log": "/tmp/hbide-q277-guards/test_completion_inventory.py.log",
+        "seconds": 0.774
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "62951fcdcd3c708f1bbf433cd97d6d160c8736d1fe628e89e24284b9dadc33a3",
+        "log": "/tmp/hbide-q277-guards/test_distribution_notices.py.log",
+        "seconds": 0.221
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q277-guards/test_embed_help_docs.py.log",
+        "seconds": 0.221
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "748bdd859802a6cb51418e98e9ffac879a94892690e9ea7500791cc691a9f08a",
+        "log": "/tmp/hbide-q277-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.58
+      }
+    },
+    "ok": true,
+    "finished": 1793543369.1309822
+  },
+  "document_check": "PASS34 complete documents byte-exact",
+  "inventory_assertions": 49,
+  "logs": {
+    "test_foreign_root_guard.py": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n",
+    "test_linux_rebuild_guard.py": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.007s\n\nOK\n",
+    "test_completion_guards.py": "probe.py FAIL\nResults: /tmp/tmpsmgkgwtu/out/results.json\n.probe.py PASS\nResults: /tmp/tmpi3j1cm0b/out/results.json\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.probe.py FAIL\nResults: /tmp/tmp7qh7ll0z/out/results.json\n.probe.py FAIL\nResults: /tmp/tmpi9zflzsp/out/results.json\n.probe.py FAIL\nResults: /tmp/tmp5wy62hkz/out/results.json\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n",
+    "test_build_receipt.py": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "test_completion_inventory.py": ".................................................\n----------------------------------------------------------------------\nRan 49 tests in 0.571s\n\nOK\n",
+    "test_distribution_notices.py": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.018s\n\nOK\n",
+    "test_embed_help_docs.py": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+    "test_candidate_doc_preflight.py": "{\n  \"ok\": false,\n  \"source\": \"79b47ab2b6d1b8ce2977d0e2c225d18d128547fe\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp11wb_86p/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"2fe4438987cc0c81111084dba963a5718fba4827\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp8atnoyef/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"f0d02dfb04d08f7d96438e882e278ab5fb6d00e6\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpcn_4sdsu/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"b71115b6a6c93a3c01c4423b1a4dc86800f25945\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpx59diwct/candidate/manifest.json\"\n}\n.\n----------------------------------------------------------------------\nRan 4 tests in 0.321s\n\nOK\n"
+  },
+  "changed_file_sha256": {
+    "docs/COMPLETION_INVENTORY.md": "b1176ff999c52ac890aaeed93264578e166f3567e62d55ecb977092142ec09ac",
+    "docs/COMPLETION_LOG.md": "6462cf30dd74d9c43be960caa88c4b07e6df1888b7a220782b618cb5ffb99643",
+    "docs/COMPLETION_ROADMAP.md": "a35eea4c5f8f07bea27145ce43bf36b611dbaac72e9247d3ded3e223e2f7059b",
+    "docs/user-guide.md": "7fec3cb092720ec0ffa3dbb19cfbe2a1df01018b9cff5eb5684256f1291ddc7c",
+    "helpdocs.ch": "c443d3c2edaa7075c9475e067d2efde633db8b5972f50974596f712b00ff5383",
+    "tests/completion_acceptance.json": "7fea110e3d4a25e2da2d0c2a034b3b9db6807926df8bd3360b45a459dbbbb791",
+    "tests/test_completion_inventory.py": "01349de35839233f29e7c2fcdf0257f57447e49379a63ad074263bd8b3d72380"
+  }
+}

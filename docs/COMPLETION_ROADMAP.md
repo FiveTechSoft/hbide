@@ -66,17 +66,20 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre 15:00, Q268: candidato focal C39,
-export41f3478d3d638421642a086f68f13ead6a2049ee,
-binf265f805fee0d98b8d474ce9ac1f51315fb84c9940690c9cd49ee25b1db8a2f0.
-Q265 CtrlT gutter/texto corregido:3scripts50checks. Q267 UTF8/ASCII es
-arnés postexport; Q266 modelo fresh separado. Q262 salto marcado pinta
-intermedios, primerC37fallido conservado; C38focal3scripts52checks y
-modelo210, Q263 extiende reverse/page sin cambiar producto. Q26835modelos
-fresh de sourced8791a2, no35modosIDE ni heredados al binarioC39.
-C36export0965bf3 conserva About/catálogo verificados y7variantesfocales;
-los binariosC38/C39 no inyectan nueva identidadAbout. No se agregan
-fuentes/binarios distintos como matriz ni funciones. Sin Windows/hitos.
+Corte 1 noviembre15:29 Q276: candidato focal C42,
+source929f08dcb2300736ee213a67d1ab9547255558ed,
+bin320852bc1e11f8a65bf824be0f239423c9eebb76851787c168684da294143927.
+Q275-Q276 corrigen método compacto ')CLASS' y parámetro legal CLASS
+confundido con dueño. C42cinco modosPTY15checks PASS, modelo90 separado;
+dos parejas nativas1202x762 antes/después inspeccionadas. No parser completo.
+C40source3a2424ffecb2f95e7a14d68c23f969739cfcb928,
+binc954b10402947d1daa4c3e32c081e6dd7c52bf9e95d9ecece520b9cd6aa57b54
+conserva identidadAbout/catálogo34docs y focalesQ270-Q274, no heredados aC42.
+Q26835modelos fresh de sourced8791a2 no son35modosIDE ni del binarioC42.
+Q277actualiza documentación posterior, todavía no embebida en C42.
+No se agregan fuentes/binarios distintos como matriz ni funciones.
+Sin Windows/release/licencias/hitos. Evidencias Q275/Q276 con fallos
+baseline conservados y scope exacto por candidato.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
 bin96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29.
