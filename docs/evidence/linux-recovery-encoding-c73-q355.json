@@ -1,0 +1,69 @@
+{
+  "source": "87222cbcada24332b0088889b1f34b59585b54f0",
+  "binary_sha256": "18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be",
+  "results": {
+    "invalid_conflicting_fixture": {
+      "exit": 1,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nFAIL journal encoding generation stored\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nFAIL saved bytes retain original encoding and EOL\nPASS saved is original plus edit\n",
+      "args": [
+        "/tmp/hbide-c73/bin/hbide",
+        "--mixed-eol",
+        "--utf8-bom"
+      ],
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "seconds": 5.430050373077393,
+      "binary_unchanged": true
+    },
+    "test_recovery_deep_path.py/tmp/hbide-c73/bin/hbide --mixed-eol": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+      "args": [
+        "/tmp/hbide-c73/bin/hbide",
+        "--mixed-eol"
+      ],
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "seconds": 5.425066709518433,
+      "binary_unchanged": true
+    },
+    "test_recovery_deep_path.py/tmp/hbide-c73/bin/hbide --utf8-bom": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal encoding generation stored\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+      "args": [
+        "/tmp/hbide-c73/bin/hbide",
+        "--utf8-bom"
+      ],
+      "test_sha256": "6178cc903988427f9a6d7264c63fcab358a3d15cfd7c94103a0d88dbf70572e6",
+      "seconds": 5.4256720542907715,
+      "binary_unchanged": true
+    },
+    "test_recovery_compare_pty.py": {
+      "exit": 0,
+      "log": "PASS Compare is read-only; open snapshots stay stable; reopening refreshes disk; Later keeps bytes and current document\n",
+      "args": [],
+      "test_sha256": "c5163ac5b4a8807c4bf258cd75b2ea48237cd1457d67249093cc5fc9023ed01d",
+      "seconds": 7.9192352294921875,
+      "binary_unchanged": true
+    },
+    "test_recovery_unreadable_pty.py--malformed-envelope": {
+      "exit": 0,
+      "log": "PASS malformed envelope reports error and preserves disk journal and current document\n",
+      "args": [
+        "--malformed-envelope"
+      ],
+      "test_sha256": "765112d7559e01ac1429c07ababf006d322913304ef219c6b221fe43b66d5ef9",
+      "seconds": 4.2543699741363525,
+      "binary_unchanged": true
+    },
+    "test_clipboard_utf8_multidoc_pty.py--utf8-terminal": {
+      "exit": 0,
+      "log": "PASS Open source fixture\nPASS UTF8 terminal decodes accented source text\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 10 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-22oqhebz\n",
+      "args": [
+        "--utf8-terminal"
+      ],
+      "test_sha256": "f850dc526d634f483cf4b6194c109f77ae970ebd8816cb48eac4d93199098368",
+      "seconds": 19.635329961776733,
+      "binary_unchanged": true
+    }
+  },
+  "scope": "Five distinct recovery/encoding modes passed on exactC73. Invalid combinedmixedEOL+UTF8BOM overwroteBOM fixture but retainedencodingexpectations; retainednotproductfailure. Separate real fixtures passed. No pixels/fullmatrix/Windows/install/license/hito."
+}
