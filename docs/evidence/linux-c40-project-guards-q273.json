@@ -1,0 +1,31 @@
+{
+  "source": "3a2424ffecb2f95e7a14d68c23f969739cfcb928",
+  "binary_sha256": "c954b10402947d1daa4c3e32c081e6dd7c52bf9e95d9ecece520b9cd6aa57b54",
+  "scope": "C40four frozen project desktop scripts: BOM/DOS EOF/C++source listing and full-output viewer horizontal scroll/return. No C++bridge use, newproduct/fullmatrix/model/pixel/Windows/hito.",
+  "tests": {
+    "test_project_bom_pty.py": {
+      "exit": 0,
+      "sha256": "0b1c7ceb749cb783695fdd92557779a16f3a79f7f987d988119b1fb056036faa",
+      "seconds": 4.541061878204346,
+      "log": "PASS BOM project source is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP BOM and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-pdzaekb8\n"
+    },
+    "test_project_eof_pty.py": {
+      "exit": 0,
+      "sha256": "b64182ac6bbef28e4c686ba45c79dc29d7d3e2f84405fd204d7b3354ef025365",
+      "seconds": 4.541002988815308,
+      "log": "PASS EOF project source is listed\nPASS Enter opens actual first source\nPASS HBP EOF and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-l1t2xkm5\n"
+    },
+    "test_project_cxx_source_pty.py": {
+      "exit": 0,
+      "sha256": "3b9122e9d06e05ab1d436e7a573f4b9bf4b25e366038cc75fb11efbe812b441b",
+      "seconds": 4.5382981300354,
+      "log": "PASS C++ .cc project source is listed\nPASS Enter opens actual first source\nPASS HBP and C++ source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-gx3kwdg8\n"
+    },
+    "test_project_output_pty.py": {
+      "exit": 0,
+      "sha256": "da7836afe1085933995ded88f46a19c405b320399a4561182b72a5d375a0dec0",
+      "seconds": 11.793691873550415,
+      "log": "PASS F6 opens full output and horizontal scrolling reveals diagnostic tail\nPASS Esc returns to same project failure state\n"
+    }
+  }
+}
