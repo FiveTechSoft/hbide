@@ -1,0 +1,67 @@
+{
+  "rebuild": {
+    "scope": "Compare two independent strip-debug rebuilds of an existing Linux candidate.\nBounded same-host/compiler comparison only. Does not clear release or install.\n",
+    "source": "87222cbcada24332b0088889b1f34b59585b54f0",
+    "candidate_sha256": "18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be",
+    "archive_sha256": "c745fa39d2dd3d124de6a6fb81d7d9e2eaf861ec5f30d4c420029e3065f32441",
+    "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+    "strip_sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7",
+    "started": 1793556792.282228,
+    "builds": [
+      {
+        "name": "a",
+        "build_exit": 0,
+        "log": "/tmp/hbide-q352-rebuild/a-build.log",
+        "strip_exit": 0,
+        "binary_sha256": "18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be",
+        "binary": "/tmp/hbide-q352-rebuild/a-hbide",
+        "matches_candidate": true
+      },
+      {
+        "name": "b",
+        "build_exit": 0,
+        "log": "/tmp/hbide-q352-rebuild/b-build.log",
+        "strip_exit": 0,
+        "binary_sha256": "18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be",
+        "binary": "/tmp/hbide-q352-rebuild/b-hbide",
+        "matches_candidate": true
+      }
+    ],
+    "ok": true,
+    "finished": 1793556798.8911097
+  },
+  "minimal_root": {
+    "scope": "Bounded same-host Linux minimal-root smoke, not a clean-machine installation.\nOnly the tested binary, system libraries and each test workdir are mounted.\nThe test driver stays outside; the application sees no checkout or compiler.\n",
+    "source": "87222cbcada24332b0088889b1f34b59585b54f0",
+    "binary_sha256": "18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be",
+    "bwrap_sha256": "d78807229d616606e339c5988392b9e0ab4a6a6998fa51e4590837f426a12fca",
+    "wrapper_sha256": "92509adc535c3e5006242275cab6da211bc5460198e580f7dfe56b4de7ec6a47",
+    "started": 1793556802.386126,
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "log": "/tmp/hbide-q352-isolation/test_about_build_pty.py.log",
+        "log_text": "PASS About retains version1.0\nPASS About shows actual build revision or honest fallback\nPASS About OK returns same dirty document\nPASS About cycle Undo preserves original bytes\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-jh0u0iw1\n"
+      },
+      "test_help_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b5ed2c4ad9bb94e7a2f5c3291958f7818fb362a5224acad3a3e328c992454ddf",
+        "log": "/tmp/hbide-q352-isolation/test_help_pty.py.log",
+        "log_text": "PASS F1 without menu opens welcome topic\nPASS F1 welcome returns unchanged dirty document\nPASS F1 Edit menu opens Edit topic without Undo\nPASS F1 Edit close keeps pending insertion\nPASS Index opens requested topic\nPASS updated search contract is readable\nPASS Help close returns same document\nPASS Debugger summary shows implemented Iconize and Menu Bar recovery\nPASS Debugger summary lists only two unsupported options\nPASS unknown keyword gives a clear message\nPASS unknown keyword returns to source\nPASS Contents opens navigation\nPASS context help opens without executing File action\nPASS context help preserves current document\nPASS Index explicit OK opens filtered topic\nPASS Index explicit Cancel returns source\nPASS multiple matches open picker\nPASS picker explicit OK opens selected topic\nPASS picker explicit Cancel returns source\nPASS picker changed selection opens exact second topic\nPASS undo after Help and save preserves source bytes\nTOTAL 21 PASS 0 FAIL; evidence /tmp/hbide-source-run-6np0sel5\n"
+      },
+      "test_designer_inspector_drag_anchor_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+        "log": "/tmp/hbide-q352-isolation/test_designer_inspector_drag_anchor_pty.py.log",
+        "log_text": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-gae3mf4t\n"
+      }
+    },
+    "ok": true,
+    "finished": 1793556840.8253527
+  },
+  "scope": "C73 same-host/compiler two independent stripdebug builds match exactcandidate; samehostminimalroot threePTYsmokes PASS without checkout/compiler visible. Not clean-machine install, VM, foreignOS/nativeWindows or licenseclearance; no newvisualinspection."
+}
