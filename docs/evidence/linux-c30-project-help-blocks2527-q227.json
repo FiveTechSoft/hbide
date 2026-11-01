@@ -1,0 +1,213 @@
+{
+  "scope": "Frozen C30 bounded project/help/options.14additional scenarios;132distinct across blocks1..27 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "interruption": "Block27 shell budget120seconds interrupted after4saved PASS receipts. Resumed skipping4 completed and reran potentially interrupted compiler-flags. No IDE failure recorded. Not retry-free.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "project-hh",
+          "command": [
+            "test_project_hh_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.535681962966919,
+          "test_sha256": "175b53643aa4563a43438d4e634227998017f3801a030acad7ef58fe8ccad59e",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-hh.log",
+          "printed_failure": false
+        },
+        {
+          "name": "project-hpp",
+          "command": [
+            "test_project_hpp_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.536055564880371,
+          "test_sha256": "b2aa7602389bc48c1f2878bad9552910c967a5bfba3aaa589cf2cda2c41f4360",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-hpp.log",
+          "printed_failure": false
+        },
+        {
+          "name": "project-cxx-source",
+          "command": [
+            "test_project_cxx_source_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.535040616989136,
+          "test_sha256": "3b9122e9d06e05ab1d436e7a573f4b9bf4b25e366038cc75fb11efbe812b441b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-cxx-source.log",
+          "printed_failure": false
+        },
+        {
+          "name": "project-eof",
+          "command": [
+            "test_project_eof_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.53593373298645,
+          "test_sha256": "b64182ac6bbef28e4c686ba45c79dc29d7d3e2f84405fd204d7b3354ef025365",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-eof.log",
+          "printed_failure": false
+        },
+        {
+          "name": "project-bom",
+          "command": [
+            "test_project_bom_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.5344929695129395,
+          "test_sha256": "0b1c7ceb749cb783695fdd92557779a16f3a79f7f987d988119b1fb056036faa",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-bom.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "project-colon-diagnostic",
+          "command": [
+            "test_project_colon_diagnostic_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 6.871986150741577,
+          "test_sha256": "f58ed6b74c3effb3cade8efbf1f15764e2b1980c598382364342e4a154f02b04",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-colon-diagnostic.log",
+          "printed_failure": false
+        },
+        {
+          "name": "project-output-scroll",
+          "command": [
+            "test_project_output_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 11.80675983428955,
+          "test_sha256": "da7836afe1085933995ded88f46a19c405b320399a4561182b72a5d375a0dec0",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-output-scroll.log",
+          "printed_failure": false
+        },
+        {
+          "name": "project-leading-source",
+          "command": [
+            "test_project_leading_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 7.515254020690918,
+          "test_sha256": "5ffeb982925d27aff6b064e6b2f10267d10ee276fb22cb32a3736f16fa6f2d0a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-leading-source.log",
+          "printed_failure": false
+        },
+        {
+          "name": "project-unreadable",
+          "command": [
+            "test_open_unreadable_pty.py",
+            "--project"
+          ],
+          "exit": 0,
+          "seconds": 7.132725238800049,
+          "test_sha256": "a024e5a06cf25a0cd104f216e037419a0431e730ffbf12d7560156dc361b79d6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-unreadable.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "help-mouse",
+          "command": [
+            "test_help_mouse_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 13.266883373260498,
+          "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/help-mouse.log",
+          "printed_failure": false
+        },
+        {
+          "name": "help",
+          "command": [
+            "test_help_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 27.117051124572754,
+          "test_sha256": "b5ed2c4ad9bb94e7a2f5c3291958f7818fb362a5224acad3a3e328c992454ddf",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/help.log",
+          "printed_failure": false
+        },
+        {
+          "name": "display-multidoc",
+          "command": [
+            "test_display_multidoc_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 23.59936547279358,
+          "test_sha256": "a271dd0ebc380a06a1c14f4cf512e9ab605c2b71bd374878e0f637e10b803dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/display-multidoc.log",
+          "printed_failure": false
+        },
+        {
+          "name": "compiler-autorun",
+          "command": [
+            "test_compiler_autorun_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 25.655040740966797,
+          "test_sha256": "efb0c99f2d69f6896caccd476d358a06accbc8924e4eaf9c6c87784b789cef27",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/compiler-autorun.log",
+          "printed_failure": false
+        },
+        {
+          "name": "compiler-flags",
+          "command": [
+            "test_compiler_flags_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 33.69749140739441,
+          "test_sha256": "bc07e3c06a6b1112295a3552128947baa935e22cf92c51b9f64b1a5956091501",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/compiler-flags.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 132,
+  "logs": {
+    "project-hh.log": "PASS C++ header is listed\nPASS Enter opens actual first source\nPASS HBP and header bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-34klfyvr\n",
+    "project-hpp.log": "PASS C++ header is listed\nPASS Enter opens actual first source\nPASS HBP and header bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-3k76xcxb\n",
+    "project-cxx-source.log": "PASS C++ .cc project source is listed\nPASS Enter opens actual first source\nPASS HBP and C++ source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-nbyspu7o\n",
+    "project-eof.log": "PASS EOF project source is listed\nPASS Enter opens actual first source\nPASS HBP EOF and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-wedtsa96\n",
+    "project-bom.log": "PASS BOM project source is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP BOM and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-x40kmdge\n",
+    "project-colon-diagnostic.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump lands at real GCC row2 column9\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-wrv1sfvq\n",
+    "project-output-scroll.log": "PASS F6 opens full output and horizontal scrolling reveals diagnostic tail\nPASS Esc returns to same project failure state\n",
+    "project-leading-source.log": "PASS real leading-space diagnostic jumps/edits/saves exact source, neighbor untouched\n",
+    "project-unreadable.log": "PASS unreadable project open preserves active text untitled identity and disk bytes\n",
+    "help-mouse.log": "PASS Contents opens tree and reading pane\nPASS mouse tree selects exact topic\nPASS mouse first tree row selects Basics not next topic\nPASS scrolled tree click retains valid reading pane\nPASS Next button with no query explains action\nPASS Search button executes actual query\nPASS Next button advances actual match\nPASS wheel scroll stays within topic bounds\nPASS Export button writes actual catalogue\nPASS Close button returns dirty document\nPASS Index exact Quickstart opens link view\nPASS first related-topic click opens exact target\nPASS Backspace returns clicked topic history\nPASS last related-topic click opens exact target\nPASS AltRight restores clicked forward topic\nPASS nested related-topic click opens exact body\nPASS link-view Close returns unchanged dirty source\nPASS Undo after mouse Help restores exact original bytes\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-18rjy9y2\n",
+    "help.log": "PASS F1 without menu opens welcome topic\nPASS F1 welcome returns unchanged dirty document\nPASS F1 Edit menu opens Edit topic without Undo\nPASS F1 Edit close keeps pending insertion\nPASS Index opens requested topic\nPASS updated search contract is readable\nPASS Help close returns same document\nPASS Debugger summary shows implemented Iconize and Menu Bar recovery\nPASS Debugger summary lists only two unsupported options\nPASS unknown keyword gives a clear message\nPASS unknown keyword returns to source\nPASS Contents opens navigation\nPASS context help opens without executing File action\nPASS context help preserves current document\nPASS Index explicit OK opens filtered topic\nPASS Index explicit Cancel returns source\nPASS multiple matches open picker\nPASS picker explicit OK opens selected topic\nPASS picker explicit Cancel returns source\nPASS picker changed selection opens exact second topic\nPASS undo after Help and save preserves source bytes\nTOTAL 21 PASS 0 FAIL; evidence /tmp/hbide-source-run-_xx7hnpr\n",
+    "display-multidoc.log": "PASS Display Cancel leaves grid unchanged\nPASS Display explicit Cancel leaves grid unchanged\nPASS Display applies 25x80\nPASS inactive document cursor fits resized desktop\nPASS inactive document last line visible\nPASS Display restores 40x120\nPASS other document uses expanded rows\nPASS second undo/save preserves original bytes\nPASS first undo/save preserves original bytes\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-ny5meyp8\n",
+    "compiler-autorun.log": "PASS default-on actual compiler output\nPASS default-on launch matches committed choice\nPASS default-on launched artifact exact args\nPASS default-on fresh executable promoted\nPASS default-on editor restored\nPASS accepted-off actual compiler output\nPASS accepted-off auto-run off message\nPASS accepted-off launch matches committed choice\nPASS accepted-off fresh executable promoted\nPASS accepted-off editor restored\nPASS cancelled-on-remains-off actual compiler output\nPASS cancelled-on-remains-off auto-run off message\nPASS cancelled-on-remains-off launch matches committed choice\nPASS cancelled-on-remains-off fresh executable promoted\nPASS cancelled-on-remains-off editor restored\nPASS accepted-on actual compiler output\nPASS accepted-on launch matches committed choice\nPASS accepted-on launched artifact exact args\nPASS accepted-on fresh executable promoted\nPASS accepted-on editor restored\nTOTAL 20 PASS 0 FAIL; evidence /tmp/hbide-source-run-8203sgmj\n",
+    "compiler-flags.log": "PASS build failure visible\nPASS default GCC warnings strict flags\nPASS compiler flags opens\nPASS build failure visible\nPASS Cancel preserves old flags\nPASS build failure visible\nPASS explicit Cancel preserves old flags\nPASS nested Help opens compiler topic\nPASS nested Help restores options controls\nPASS build failure visible\nPASS OK applies flags to actual process argv\nPASS build failure visible\nPASS selected compiler reaches process argv\nPASS editor returns after repeated option changes\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-y0o43ert\n"
+  }
+}

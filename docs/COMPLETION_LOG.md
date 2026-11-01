@@ -5280,3 +5280,16 @@ el posible caso destructivo interrumpido. No fallo IDE registrado ni
 afirma ejecución global sin reintentos.118 escenarios distintos cotejados
 con plan353, normalizaciónQ223; no matriz completa/producto/píxeles/modelos/Windows/hitos.
 Evidencia: docs/evidence/linux-c30-selection-blocks2224-q226.json.
+
+### Q227 (1 noviembre 2026): C30 proyectos/ayuda/opciones
+
+14 escenarios finales PASS con C30 96d77549/export049b533: hh/hpp/cxx,
+BOM/EOF de HBP, diagnóstico con dos puntos, output/leading source/unreadable,
+ayuda teclado/ratón, display multidocumento, autorun y compiler flags.
+Fixtures acotadas; no aceptación de todos los formatos/compiladores. Tests
+propios hashados/binario inalterado. Bloque27 agotó presupuesto120s después
+de4 recibos PASS; reanudó omitiendo esos cuatro y reinició compiler-flags
+posiblemente interrumpido. No fallo IDE registrado; no ejecución sin reintentos.
+132 escenarios distintos cotejados con plan353, normalizaciónQ223 aplicada.
+No producto nuevo/píxeles/modelos/Windows/matriz completa/cierre hitos.
+Evidencia: docs/evidence/linux-c30-project-help-blocks2527-q227.json.
