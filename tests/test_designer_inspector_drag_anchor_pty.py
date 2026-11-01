@@ -6,7 +6,7 @@ text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 small='--small' in sys.argv
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
-parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['say','get','button','checkbox','radiogroup','combobox']);parser.add_argument('--events',action='store_true');parser.add_argument('--get',action='store_true');parser.add_argument('--listbox',action='store_true');parser.add_argument('--small',action='store_true');parser.add_argument('--vertical',action='store_true');args=parser.parse_args();args.kind='combobox'
+parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['say','get','button','checkbox','radiogroup','combobox']);parser.add_argument('--events',action='store_true');parser.add_argument('--get',action='store_true');parser.add_argument('--listbox',action='store_true');parser.add_argument('--small',action='store_true');parser.add_argument('--vertical',action='store_true');parser.add_argument('--edge-return',action='store_true');args=parser.parse_args();args.kind='combobox'
 for kind in [args.kind or ('listbox' if args.listbox else ('get' if args.get else 'button'))]:
  modelpath=work/'fixture.json'
  pid,fd=pty.fork()
@@ -62,6 +62,11 @@ for kind in [args.kind or ('listbox' if args.listbox else ('get' if args.get els
   send(b'\x1b[17~') # leave inspector focus so the main mouse dispatcher owns drag
   def mouse(code,col,row):send(b'\x1b[M'+bytes([code+32,col+33,row+33]),.2)
   mouse(0,start+5,startrow)
+  if args.edge_return:
+   mouse(32,start+20,startrow)
+   check('outward drag remains visibly clamped',title_pos()==(startrow,start))
+   mouse(32,start+10,startrow)
+   check('reversal outside grab-point range retains clamp',title_pos()==(startrow,start))
   mouse(32,start+5 if args.vertical else start-5,startrow-5 if args.vertical else startrow)
   mouse(3,start+5 if args.vertical else start-5,startrow-5 if args.vertical else startrow)
   check('drag immediately follows visible origin',title_pos()==(startrow-5,start) if args.vertical else title_pos()==(startrow,start-10))

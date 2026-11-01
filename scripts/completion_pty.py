@@ -6,6 +6,8 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'designer-inspector-drag-edge-return-small': ('test_designer_inspector_drag_anchor_pty.py', ['--small','--edge-return'], 120),
+    'designer-inspector-drag-edge-return': ('test_designer_inspector_drag_anchor_pty.py', ['--edge-return'], 120),
     'designer-inspector-drag-anchor-vertical-small': ('test_designer_inspector_drag_anchor_pty.py', ['--small','--vertical'], 120),
     'designer-inspector-drag-anchor-vertical': ('test_designer_inspector_drag_anchor_pty.py', ['--vertical'], 120),
     'designer-inspector-drag-anchor-small': ('test_designer_inspector_drag_anchor_pty.py', ['--small'], 120),
