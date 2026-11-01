@@ -492,3 +492,10 @@ DialogoName/Caption/Width/Height:2modosPTY30checks57guardasPASS con
 regresionButton,visualcaption inspeccionada. Evidencia
 `docs/evidence/linux-designer-dialog-inline-q143.json`;sin arreglo ni
 aceptacioncolores/oversized/Windows/cierreM4.
+
+
+### Seguimiento Q144 (1 noviembre 2026)
+
+Back/Text/Focus con pickerreal:2modosPTY33checks57guardasPASS,
+visualPicker/resultadoN/G inspeccionada. Sin arreglo/runtime/Windows/
+cierreM4. Evidencia `docs/evidence/linux-designer-dialog-colors-q144.json`.

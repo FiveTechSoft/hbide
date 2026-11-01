@@ -4160,3 +4160,14 @@ Captura nativa con captioncomillado en ventana e inspector y bordes
 completos, JSONexacto. Evidencia
 `docs/evidence/linux-designer-dialog-inline-q143.json`. Sin arreglo,
 modelos nuevos,colores/minimos/oversized/todoscampos/Windows/cierreM4.
+
+
+## 1 noviembre 2026: Q144 colores de dialogo por picker real
+
+Fuente `af4ab15`: Back/Text/Focus con pickerflechas/Enter,F10,Undo/Redo/
+Esc exactos y controlesintactos.17checks+regresiondialogo16=33checks en
+2modosPTY,57guardasPASS. Capturas nativas PreviewN/G y FocusN/G tras
+aceptar inspeccionadas,bordes completos y restauracionmodal limpia en
+esta ruta. Evidencia `docs/evidence/linux-designer-dialog-colors-q144.json`.
+Sin arreglo/modelosnuevos/todostokens/blink/mouse/runtime/Windows/
+matrizglobal/cierreM4.

@@ -1,0 +1,124 @@
+{
+  "scope": "Q144 real Linux dialog color picker persistence/history, no product fix/runtime/all colors/Windows/global",
+  "source": "af4ab15c164339a3b0f09fc1e7a11f2698513650",
+  "binary_sha256": "5c421925df910f02a18cb25076ce2ba1a50d922f96653ab89c22d9cce7808346",
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "af4ab15c164339a3b0f09fc1e7a11f2698513650",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f53e70eb98e9f15bf5c95589a968c85df2decd3b691232c8e66e3330a07b5547",
+      "binary_sha256": "5c421925df910f02a18cb25076ce2ba1a50d922f96653ab89c22d9cce7808346",
+      "build_receipt": "/tmp/hbide-q144-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6b0edc6e8000a1b5d520af825e5ee0b810e600e9c98ef55059335f6d7feeda31",
+      "case": "designer-dialog-inline-colors",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_dialog_colors_pty.py"
+      ],
+      "started": 1793506869.1646261,
+      "seconds": 15.89,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "77022ca740ae51279a048695a713873715cf381093aaf0031e5aa5bcc0a55cf2",
+      "log": "/tmp/hbide-q144-final/designer-dialog-inline-colors-1793506869164622086.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "af4ab15c164339a3b0f09fc1e7a11f2698513650",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f53e70eb98e9f15bf5c95589a968c85df2decd3b691232c8e66e3330a07b5547",
+      "binary_sha256": "5c421925df910f02a18cb25076ce2ba1a50d922f96653ab89c22d9cce7808346",
+      "build_receipt": "/tmp/hbide-q144-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6b0edc6e8000a1b5d520af825e5ee0b810e600e9c98ef55059335f6d7feeda31",
+      "case": "designer-dialog-inline",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_dialog_inline_pty.py"
+      ],
+      "started": 1793506885.0569284,
+      "seconds": 14.59,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8fcf2f7d3649bd91f30c47feb1338543739425763e51452eeac158e386232a44",
+      "log": "/tmp/hbide-q144-final/designer-dialog-inline-1793506885056924913.log"
+    }
+  ],
+  "logs": {
+    "designer-dialog-inline-colors": "PASS dialog inspector visible\nPASS dialog colorback picker visible\nPASS dialog colorback picked F10 exact\nPASS dialog colorback Undo exact\nPASS dialog colorback Redo exact\nPASS dialog colorback Esc exact\nPASS dialog colortext picker visible\nPASS dialog colortext picked F10 exact\nPASS dialog colortext Undo exact\nPASS dialog colortext Redo exact\nPASS dialog colortext Esc exact\nPASS dialog colorfocus picker visible\nPASS dialog colorfocus picked F10 exact\nPASS dialog colorfocus Undo exact\nPASS dialog colorfocus Redo exact\nPASS dialog colorfocus Esc exact\nPASS dialog colors preserve every control\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-c3ypmsyv\n",
+    "designer-dialog-inline": "PASS dialog inspector visible\nPASS dialog inline name F10 exact\nPASS dialog inline name Undo exact\nPASS dialog inline name Redo exact\nPASS dialog inline name Esc exact\nPASS dialog inline caption F10 exact\nPASS dialog inline caption Undo exact\nPASS dialog inline caption Redo exact\nPASS dialog inline caption Esc exact\nPASS dialog inline width two adjustments exact\nPASS dialog inline width burst Undo exact\nPASS dialog inline width burst Redo exact\nPASS dialog inline height two adjustments exact\nPASS dialog inline height burst Undo exact\nPASS dialog inline height burst Redo exact\nPASS dialog edits preserve every control\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-31ftuh24\n"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "af4ab15c164339a3b0f09fc1e7a11f2698513650",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "6b877be32eb88b6f63bc78887c0a73f19221413247b8d063bd3d9c9ae46ec2b2",
+    "started": 1793506899.8140693,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q144-guards/test_completion_guards.py.log",
+        "seconds": 0.199
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q144-guards/test_build_receipt.py.log",
+        "seconds": 0.198
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "b4c03d198ec9ac6e952c19abaf776f9e58cbc5e8807cafbd24038987216c9ab1",
+        "log": "/tmp/hbide-q144-guards/test_completion_inventory.py.log",
+        "seconds": 0.548
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q144-guards/test_distribution_notices.py.log",
+        "seconds": 0.196
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q144-guards/test_embed_help_docs.py.log",
+        "seconds": 0.197
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q144-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.346
+      }
+    },
+    "ok": true,
+    "finished": 1793506901.4981737
+  },
+  "coverage": "Back/Text/Focus picker arrows/Enter,F10,Undo/Redo/Esc exact model and controls unchanged.17checks+dialog regression16=33.",
+  "visual": "Native pair picker foregroundN/backgroundG and PreviewN/G inspected; resultFocusN/G and clean modal restoration, full borders, JSON exact.",
+  "limits": "No model rerun, all color tokens/blink/mouse/runtime/Windows/fullmatrix or M4 closure."
+}
