@@ -1,0 +1,11 @@
+{
+  "candidate_source": "a40862b43a362095202a85bdfc590f1d54ff8cee",
+  "binary_sha256": "53d7a97a94793a1f946bb16005eba613cbce6f38d5ceef6fdf6d872a9a6d9937",
+  "spaced_pty": "PASS Extensionless project source is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-apq2btqx\n",
+  "project_model_receipt": "PASS hbp inventory/info/build/diagnostics/failedbuild/noautorun/bytepreservation/cwd/quotes/filters",
+  "test_hashes": {
+    "tests/test_project.prg": "2db6def87528b4d4991067b924b7b42ccd61eed8be821d09e98bc4e14a1e45e2",
+    "tests/test_project_extensionless_pty.py": "fe07a4fb6c86f6205d82393297be47f9fadeadb3f7cc54550dc3576e09582ba1"
+  },
+  "scope": "Postexport harness guards only. Quoted spaced extensionless source3PTYchecks onC72; projectmodel duplicatepath/missing/empty/flags/unresolved/provenance PASS, originalbytes unchanged. No productbuild/pixels/fullmatrix/Windows/hito."
+}

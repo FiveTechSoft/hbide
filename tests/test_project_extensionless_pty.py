@@ -75,10 +75,12 @@ class Scr:
 
 work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 (work/'home').mkdir(); (work/'rec').mkdir()
-target = work/'source.prg'
+spaced = '--space' in __import__('sys').argv
+name = 'source file' if spaced else 'source'
+target = work/(name+'.prg')
 original = b'procedure Main()\nreturn\n'
 target.write_bytes(original)
-project=work/'plain.hbp';hbp=b'source\n-gtstd\n';project.write_bytes(hbp)
+project=work/'plain.hbp';hbp=('\"'+name+'\"\n-gtstd\n').encode();project.write_bytes(hbp)
 
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
 pid, fd = pty.fork()
@@ -114,7 +116,7 @@ try:
     send(b'\x1bp');send(b'o');send(str(project).encode()+b'\r',1)
     check('Extensionless project source is listed without missing marker','SOURCES' in scr.text() and '[missing]' not in scr.text())
     send(b'\r',.7)
-    check('Enter opens actual first source','procedure Main()' in scr.text() and 'source.prg' in scr.text())
+    check('Enter opens actual first source','procedure Main()' in scr.text() and (name+'.prg') in scr.text())
     check('HBP literal and source bytes unchanged',project.read_bytes()==hbp and target.read_bytes()==original)
 
 finally:
