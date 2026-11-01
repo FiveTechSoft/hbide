@@ -5719,3 +5719,10 @@ inicio y Q339Delete EOL eran defectos independientes: baseline2/3 cada uno;
 C70/C71LF5CRLF5checks y3regresiones PASS, EOL178/184 y parejas nativas completas.
 Q34037modelosfresh25b3585limpioPASS. Q341docs/catálogo. Sin política nueva ni
 Windows/matrizglobal/hito.
+
+### Q342-Q345 (1 noviembre 2026): HBP sin extensión
+
+Q342C72default.prg literal compiler-valid; C71baseline2/1,3checksPTY y4regresiones
+Project/modelProject PASS, par nativo completo. Q343quotedspace3checks/modelguards
+PASS; Q34437modelosfresh95bacc5limpioPASS; Q345docs/catálogo. No evaluación de
+flags/macros/filtros al abrir, Windows/matrizglobal/hito pendientes.

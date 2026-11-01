@@ -66,8 +66,15 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre18:41 Q338-Q340: candidato focal C71,
-source2ad2f5cc0096523d2fa1d0cbd2cd28de2be544b2,
+Corte 1 noviembre18:48 Q342-Q344: candidato focal C72,
+sourcea40862b43a362095202a85bdfc590f1d54ff8cee,
+bin53d7a97a94793a1f946bb16005eba613cbce6f38d5ceef6fdf6d872a9a6d9937.
+Q342tokens HBP literales sin extensión resuelven .prg como hbmk2, conservando
+token/originalbytes. Compilerfixture exit0, C71baseline2/1, C72focal3checks y
+4projectregresiones/modelProject PASS, par nativo1202x762 completo inspeccionado.
+Q343quotedspace3checksPTY/modelProjectguards PASS; Q34437modelos GTSTD fresh
+source95bacc5limpioPASS. No37modosIDE ni certificación del binarioC72.
+C71focal previo fuente2ad2f5cc0096523d2fa1d0cbd2cd28de2be544b2,
 bin632ba2ac1afd6cdd3cf1220820e9c5f0fcac5b4570acc7931c4fcba2457f905d.
 Q339Delete EOL sin selección ancla join para preservar BP intactos tras
 vacías idénticas. C70baseline2PASS3FAIL; C71LF5/CRLF5checksPTY y tres
@@ -99,7 +106,7 @@ Q320cincomodosPTY23checksPASS; Q32122modelo/6PTYchecks postexport PASS.
 C61identificado fuentef63e189288ae03122f892e0edccefc4129452503,
 bine0399cb224f06c707b228d5d3291e3957a81bccd22278de355ac02f00e325c43:
 About/catálogoQ314/ldd/8smokes/6BPmodos32checks PASS, no heredados aC63.
-Q341docs posteriores no embebidos en C71, C70 ni C69. No sumar fuentes/binarios
+Q345docs posteriores no embebidos en C72, C71, C70 ni C69. No sumar fuentes/binarios
 como matriz. Sin fullpreprocessor/customstream/navcontinuation/Windows/release/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
@@ -1158,3 +1165,13 @@ Q34037modelos fresh25b3585limpioPASS. Q341docs/catálogo sin rebuild sólo docs.
 Receipts linux-clean-candidate-q337.json, linux-backspace-identical-blank-bp-q338.json,
 linux-delete-eol-blank-bp-q339.json y linux-model-baseline-q340.json.
 No nueva política BP/matrizglobal/Windows/install/licencias/hito.
+
+### Seguimiento Q342-Q345 (1 noviembre 2026)
+
+Q342default .prg para tokens HBP literales sin extensión: compilerfixture
+exit0/C71baseline2/1/C72focal3checks y4regresionesProject/modelProject PASS,
+par nativo completo inspeccionado. Q343quotedspace3checksPTY/modelguards PASS.
+Q34437modelosfresh95bacc5limpioPASS. Q345docs/catálogo sin rebuild sólo docs.
+Receipts linux-project-extensionless-q342.json,
+linux-project-extensionless-guards-q343.json y linux-model-baseline-q344.json.
+Flags/macros/filtros/wildcards no evaluados al abrir. No Windows/hito/matrizglobal.

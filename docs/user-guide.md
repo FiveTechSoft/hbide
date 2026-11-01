@@ -335,3 +335,9 @@ Backspace at the beginning of a line and Delete at its end also preserve
 breakpoints on untouched following lines when identical empty lines make
 the join ambiguous. Undo and Redo keep those surviving marks on their
 original lines. The existing policy for a deleted instruction is unchanged.
+
+The project source list resolves literal inputs without an extension using
+hbmk2's `.prg` default, including quoted names with spaces. It keeps the
+original token and project bytes. Missing files remain visible; explicit
+and default names for the same path share one source row. Flags, filters,
+macros, wildcards and response files are not evaluated when opening a project.
