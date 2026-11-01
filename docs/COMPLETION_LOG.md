@@ -3952,3 +3952,11 @@ changedtest/timeout/existingresultnonoverwrite. Mockfailure/timeoutreports
 areexpectedfixtures,notproductfailures. Includedinrunner:6suites57unittests
 34docsPASScleannofailure/retry. linux-tooling-guards-negative-q128.json.
 No productbinary/PTY/models/pixels/Windows/globalmilestone.
+
+## Q129 - debugger layout and tab-width models registered
+
+Source54ed845 includes twoexistingmodelprobeswithfullvendoreddebugger
+andVMglue,nostubs. Clean24modelsPASS(including324geometrycases+runtime
+layoutcommands,7tabwidthchecks).6guardsuites57unittests34docsPASS,no
+fail/retry. linux-debug-extra-models-q129.json. GTSTDnotpixelcertification/
+PTY/nativeWindows/globalmilestone.Noearlier22modelreceiptpromotedto24.

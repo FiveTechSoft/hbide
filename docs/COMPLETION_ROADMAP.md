@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q129 | M0 registerexistingdebuglayout/tabwidthmodels. | Source54ed845/24models57guardtests34docsPASS;linux-debug-extra-models-q129.json.GTSTDnotpixels/PTY/Windows/global.Prior22modelsremainhistorical. |
 | Q128 | M0 failclosedguardrunnernegativefixtures. | Sourcefd6d538/6suites57unittests34docsPASS;linux-tooling-guards-negative-q128.json.No productbinary/PTY/models/pixels/Windows/global. |
 | Q127 | M0 sourcetrackedtoolingguardrunner. | Source6be9a2b/5suites51unittests34docsPASS;linux-tooling-guards-q127.json.No productfix/PTY/models/pixels/Windows/global. |
 | Q126 | ?/??bracketliteralnotfalsecomment. | Sourced130b52/before2PASS2FAIL/34PTY6modes22models195repaint36inventory34docsPASS/nativeinspected;linux-editor-bracket-output.json.No runtime/generallexer/Windows/global. |
