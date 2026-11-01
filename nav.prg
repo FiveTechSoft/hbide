@@ -431,7 +431,7 @@ FUNCTION HBIDE_ListPick( cTitle, aLabels, nInit, cHint )
          nPick += 3
       CASE nKey == K_BS
          IF Len( cFilter ) > 0
-            cFilter := Left( cFilter, Len( cFilter ) - 1 )
+            cFilter := Left( cFilter, GetUPrev( cFilter, Len( cFilter ) + 1 ) - 1 )
             aIdx := HBIDE_ListFilter( aLabels, cFilter )
             nPick := 1; nTop := 1
          ENDIF
