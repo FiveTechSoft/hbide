@@ -4510,3 +4510,17 @@ y16movimientos previos se mantienen.29modelos67guardas34docsPASS
 en a604c24f0613860946a4f19310cab992b4934890. No producto/arreglo/PTY/
 pixelesnativos/todoslayouts/gestos/Windows/herenciamatriz/cierreM4.
 Evidencia `docs/evidence/linux-designer-inspector-edge-model-q168.json`.
+
+
+## 1 noviembre 2026: Q169, arrastre del inspector clampado
+
+Corregido offset de arrastre contra posicion solicitada fuera de pantalla:
+se ancla al InspRect visible. Antes100px de arrastre en25x80 no movian
+el panel; ahora sigue los100px. Before4PASS1FAIL, after7PTY74checksPASS,
+29modelos67guardas34docsPASS;96draganchors ademas de104height/480edge/
+16moves. Fuente d32e91e0c5555a3585b4e296d63b13960b879e58, binario
+7e7b1c6b85f1b5f1b9d2564240d60966976a5edb424003cf6d1768ae9419d05d.
+Nativas completas antes/despues inspeccionadas, underlay limpio y bordes
+inferiores completos. Primer harness titulo corregido48->49 antes de
+comparacion final. No todasgestos/vertical/Windows/herenciamatriz/M4/100%.
+Evidencia `docs/evidence/linux-designer-inspector-drag-anchor-q169.json`.
