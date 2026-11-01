@@ -862,7 +862,7 @@ return oMenu
 METHOD Start() CLASS HbIde
 
    local cFile := ::oEditor:cFile, cExe, cOut, cBase, cExeTmp, cErr := "", nRc, cRecovery := "", cCommand, oError
-   local aDiag, nFirstErr, oOpenEd, lBuildReady := .F.
+   local aDiag, nFirstErr, oOpenEd, lBuildReady := .F., cBuildScreen, nBuildCursor
 
    if HBIDEProjectTokens( ::cRunArgs ) == nil
       HBIDE_MsgAlert( "Run > Arguments has an unbalanced quote; fix it first" )
@@ -964,7 +964,17 @@ METHOD Start() CLASS HbIde
    ::SetMessages( aDiag )
    // No compiler output is not proof of success (missing executable can be quiet).
    if ! Empty( cOut )
-      HBIDE_MsgAlert( cOut )
+      if MLCount( cOut, 60 ) + 5 > MaxRow()
+         ::SuspendStatus()
+         cBuildScreen := SaveScreen( 0, 0, MaxRow(), MaxCol() )
+         nBuildCursor := SetCursor( SC_NONE )
+         HBIDEProjectOutput( cOut )
+         RestScreen( 0, 0, MaxRow(), MaxCol(), cBuildScreen )
+         SetCursor( nBuildCursor )
+         ::ResumeStatus()
+      else
+         HBIDE_MsgAlert( cOut )
+      endif
    elseif nRc == 0 .and. File( cExeTmp )
       HBIDE_MsgAlert( "Build OK: " + cExe )
    endif

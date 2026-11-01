@@ -8,7 +8,8 @@ exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
 recover_promotion='--promotion-retry' in sys.argv
 promotion='--promotion-failure' in sys.argv or recover_promotion
 restore='--restore' in sys.argv
-diagnostic='--missing-output-diagnostic' in sys.argv
+long_output='--long-output' in sys.argv
+diagnostic='--missing-output-diagnostic' in sys.argv or long_output
 missing_output='--missing-output' in sys.argv or diagnostic
 failed_output='--failed-output' in sys.argv
 fake=missing_output or failed_output or promotion
@@ -32,6 +33,8 @@ for kind in ['autorun']:
    launcher.write_text('#!/bin/sh\nfor arg do case "$arg" in -o*) out=${arg#-o};; esac; done\nprintf "%s\\n" "$out" >> '+shlex.quote(str(work/'invocations'))+'\nPATH='+shlex.quote(os.environ['PATH'])+'; export PATH\nexec '+shlex.quote(compiler)+' "$@"\n')
   if diagnostic:
    launcher.write_text(launcher.read_text().replace('exit 0\n', 'printf \"%s(3) Error E0030 simulated fixture error\\n\" '+shlex.quote(str(target))+'\nexit 0\n'))
+  if long_output:
+   launcher.write_text(launcher.read_text().replace('printf \"%s(3)', 'i=0; while [ "$i" -lt 60 ]; do printf "compiler progress %s\\n" "$i"; i=$((i+1)); done\n'+ 'printf \"%s(3)'))
   launcher.chmod(0o700)
  pid,fd=pty.fork()
  if pid==0:
@@ -80,7 +83,12 @@ for kind in ['autorun']:
      check('retry preserves source',target.read_bytes()==original)
      check('retry has no unnamed temporary outputs',len([p for p in work.iterdir() if p.name.startswith('missing.') and p!=target])==1)
     break
-   if diagnostic:
+   if long_output:
+    check('long build output opens scrollable viewer','Output - arrows scroll' in screen.text())
+    send(b'\x1b[F',.4)
+    check('End reveals last compiler diagnostic','Error E0030' in screen.text())
+    send(b'\x1b',.4)
+   elif diagnostic:
     check('compiler diagnostic output visible','Error E0030' in screen.text())
     send(b'\r',.4)
    (work/('failure-'+str(attempt)+'.screen')).write_text(screen.text())
