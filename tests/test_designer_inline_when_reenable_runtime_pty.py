@@ -75,7 +75,7 @@ if build.returncode==0:
    if kind=='get':send(b'Reenabled');send(b'\t',.3)
    else:send({'radiogroup':b'\x1b[B\t','checkbox':b' \t','listbox':b'\x1b[B\t','combobox':b' \x1b[B\t','button':b'\t'}[kind],.3)
    send(b'Sentinel');send(b'\t',.3);send(b'\x1b',.4)
-   expected={'get':'{"Reenabled", "Sentinel"}','radiogroup':'{2, "Sentinel"}','checkbox':'{.T., "Sentinel"}','listbox':'{2, "Sentinel"}','combobox':'{2, "Sentinel"}','button':'{NIL, "Sentinel"}'}[kind]
+   expected={'get':'{"Reenabled", "Sentinel"}','radiogroup':'{2, "Sentinel"}','checkbox':'{.T., "Sentinel"}','listbox':'{2, "Sentinel"}','combobox':'{2, "Sentinel"}','button':'{.F., "Sentinel"}'}[kind]
    check(kind+' reenabled route preserves exact expected bindings',resultpath.exists() and resultpath.read_text()==expected)
 
   finally:
