@@ -536,8 +536,16 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
               if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )
                  ::lDirty := .T.
               endif
+              lBlkBefore := ::BlkCmtState( ::nRow + 1 )
+              cCtxBefore := iif(::nRow < Len(::aText),hb_defaultValue(::aBlkCtx[::nRow+1],""),"")
               ::aText[ ::nRow ]:cText := hb_UStuff( ::aText[ ::nRow ]:cText, --::nCol - 4, 1, "" )
-              ::GoTo( ::nRow, ::nCol, _REFRESH_LINE )
+              ::nBlkDirty := Min(::nBlkDirty,::nRow)
+              if ::BlkCmtState(::nRow+1) != lBlkBefore .or. ;
+                 (::nRow < Len(::aText) .and. hb_defaultValue(::aBlkCtx[::nRow+1],"") != cCtxBefore)
+                 ::GoTo( ::nRow, ::nCol, _REFRESH_ALL )
+              else
+                 ::GoTo( ::nRow, ::nCol, _REFRESH_LINE )
+              endif
            ELSEIF ::nRow > 1
               // Join with previous line
               ::lDirty := .T.

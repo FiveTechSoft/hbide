@@ -118,6 +118,26 @@ try:
     col=''.join(scr.g[row]).index('/*')
     check('Bracket literal marker stays string color',scr.at[row][col][0]==11)
     saved('F2 bracket source byte exact',original)
+    def colors(literal, keyword):
+        row=next(r for r,g in enumerate(scr.g) if '[/* literal]' in ''.join(g))
+        col=''.join(scr.g[row]).index('/*')
+        ok=scr.at[row][col][0]==literal
+        row=next(r for r,g in enumerate(scr.g) if 'return nil' in ''.join(g))
+        col=''.join(scr.g[row]).index('return')
+        return ok and scr.at[row][col][0]==keyword
+    send(b'\x1b[B');send(b'\x1bOF');send(b'\x7f')
+    check('Removing continuation recolors following literal and return as real comment',colors(13,13))
+    saved('Removed semicolon saves exact bytes',original.replace(b':= ;',b':= '))
+    send(b';')
+    check('Typing semicolon repaints following literal and return without forced redraw',colors(11,10))
+    saved('Retyped semicolon restores exact bytes',original)
+    menu(b'n')
+    check('Undo semicolon restores real comment colors',colors(13,13))
+    saved('Undo semicolon saves exact bytes',original.replace(b':= ;',b':= '))
+    menu(b'e')
+    check('Redo semicolon restores literal and keyword colors',colors(11,10))
+    saved('Redo semicolon restores original bytes',original)
+
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
