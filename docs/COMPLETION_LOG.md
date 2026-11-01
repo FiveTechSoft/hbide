@@ -3907,3 +3907,12 @@ noaccidentalUndo,dirtyreturn/laterUndoF2exact. Exactsource/context/condition
 linked;noinventedmenuclosedguard. Twomodes39checks36inventory34docsPASS,
 cleannofail/retry. linux-inventory-context-help-f1.json.No newproductfix/
 models/pixels/alltopics/menucommands/Windows/fullmatrix/globalmilestone.
+
+## Q124 - literal hh header project inventory
+
+Realhbmk2C+hhfixturebuildPASS;before1PASS2FAIL Sourcesomits.hh.
+Source3565f64adds.hhonlyliteralalias.Threeguards:existingexact/
+missingvisible/HBPbytespreserved.15PTY5modes22models36inventory34docsPASS
+cleannofail/retry.Actualnative120x40Sources+Enterheader/fullborders/F2exact
+inspected.linux-project-hh-header.json.No compiler/bridge/macros/allextensions/
+Windows/globalmatrix/hitoclosure.Q121/C22historicalseparate.
