@@ -1,0 +1,46 @@
+{
+  "candidate_source": "92949b344380ae3d6bd73364b7894c2a31e65cd5",
+  "binary_sha256": "17169a76081a72c66609d72493effbefb67c5f1ed69ec7c47af5cc6d270f4625",
+  "contexts": {
+    "typed-function": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-contexts-zldeqg3j/typed-function.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 719, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_yeh9zo.dir/typed-function.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCLASS Demo\nMETHOD Ping()\nENDCLASS\nMETHOD FUNCTION Ping()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-djbzlmx3\n"
+    },
+    "typed-procedure": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-contexts-zldeqg3j/typed-procedure.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 719, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_es3uhr.dir/typed-procedure.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCLASS Demo\nMETHOD Ping()\nENDCLASS\nMETHOD PROCEDURE Ping()\nreturn\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-47w7hbrr\n"
+    },
+    "create-class": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-contexts-zldeqg3j/create-class.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 719, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_g114uc.dir/create-class.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCREATE CLASS Demo\nMETHOD Ping()\nENDCLASS\nMETHOD Ping()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-1knmzmy0\n"
+    },
+    "continued": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-contexts-zldeqg3j/continued.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 720, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_fk067u.dir/continued.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCLASS Demo\nMETHOD Ping()\nENDCLASS\nMETHOD ;\nFUNCTION Ping()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-2ll_yrx_\n"
+    },
+    "latest-class": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-contexts-zldeqg3j/latest-class.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 721, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_mm79pq.dir/latest-class.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCLASS One\nENDCLASS\nCLASS Demo\nMETHOD Ping()\nENDCLASS\nMETHOD Ping()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-l8_kqli6\n"
+    }
+  },
+  "harness_sha256": {
+    "tests/test_nav_implicit_contexts.py": "46bc8e63596a2dc233ca0b2f4bb6b7010d89263df10b7fe90896a0f9e4c69a3a",
+    "tests/test_nav_implicit_method_pty.py": "026f5fc04495cabcd94cda4166716321ab4a95aabb1d808650f3d90e6039f762"
+  },
+  "scope": "Five compiler-valid postexport fixtures, 15 real picker/jump PTY checks. Unchanged C64 product/binary; no new pixels, full matrix, Windows or milestone claim."
+}

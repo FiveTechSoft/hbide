@@ -77,6 +77,10 @@ work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 (work/'home').mkdir(); (work/'rec').mkdir()
 target = work/'source.prg'
 original = b'#include "hbclass.ch"\nCLASS Demo\nMETHOD Ping()\nENDCLASS\nMETHOD Ping()\nreturn 42\n'
+if os.environ.get('HBIDE_NAV_FIXTURE'):
+    original = pathlib.Path(os.environ['HBIDE_NAV_FIXTURE']).read_bytes()
+nav_count = os.environ.get('HBIDE_NAV_COUNT', '2')
+nav_decl = os.environ.get('HBIDE_NAV_DECL', 'METHOD Ping()').encode()
 target.write_bytes(original)
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
 pid, fd = pty.fork()
@@ -112,9 +116,9 @@ try:
     send(b'\x1bf');send(b'o');send(str(target).encode()+b'\r',1)
     check('Open requested fixture','CLASS Demo' in scr.text())
     menu(b'u')
-    check('Picker includes implicit implementation, excludes member','Demo:Ping' in scr.text() and '2/2' in scr.text())
+    check('Picker includes implicit implementation, excludes member','Demo:Ping' in scr.text() and (nav_count+'/'+nav_count) in scr.text())
     send(b'Demo:Ping\r');send(b'X')
-    saved('Picker jumps to implicit implementation after ENDCLASS',original.replace(b'ENDCLASS\nMETHOD Ping()',b'ENDCLASS\nXMETHOD Ping()'))
+    saved('Picker jumps to implicit implementation after ENDCLASS',original.replace(b'ENDCLASS\n'+nav_decl,b'ENDCLASS\nX'+nav_decl))
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
