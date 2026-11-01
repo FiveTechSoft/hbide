@@ -1,0 +1,33 @@
+{
+  "scope": "Five bounded C86 recovery modes; mixedEOL and BOM separate",
+  "source": "81c06602b621616005bc9b2e45195fd9184f51a9",
+  "binary_sha256": "c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27",
+  "results": {
+    "deep-mixed": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+      "binary_unchanged": true
+    },
+    "deep-bom": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal encoding generation stored\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+      "binary_unchanged": true
+    },
+    "compare": {
+      "exit": 0,
+      "log": "PASS Compare is read-only; open snapshots stay stable; reopening refreshes disk; Later keeps bytes and current document\n",
+      "binary_unchanged": true
+    },
+    "undo-cleanup": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS Undo to disk baseline retires stale journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n",
+      "binary_unchanged": true
+    },
+    "reload-cleanup": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS dirty disk change offers Reload\nPASS Reload shows external bytes\nPASS Reload retires discarded dirty journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n",
+      "binary_unchanged": true
+    }
+  },
+  "limits": "No pixel/model/fullmatrix/Windows/install/license/hitoclosure inherited or established"
+}
