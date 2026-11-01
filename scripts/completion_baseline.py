@@ -20,6 +20,7 @@ def run(name, args, cwd=ROOT, timeout=120):
             return 124
 
 cases = {
+    'debug-global-vm-contract': ['tests/test_debug_global_vm.prg'],
     'designer-inspector-repaint': ['tests/test_designer_inspector_repaint.prg', 'designer.prg', 'safeio.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'designer-inline-fields': ['tests/test_designer_inline_fields.prg', 'designer.prg', 'safeio.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'debug-input-hook-contract': ['tests/test_debug_input_hook.prg'],
