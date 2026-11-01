@@ -4182,3 +4182,6 @@ No sumar pares como funciones ni porcentaje. Validacion de IDs/tipo/clave/contro
 y existencia del test falla ante desajuste; vinculo ausente queda pendiente.
 Seis nuevas pruebas de inventario cubren expansion y rechazos negativos.
 Cambio de trazabilidad, no arreglo de producto ni nuevo resultado PTY/visual.
+
+Q145 final: 57 guardas PASS (inventario 42 tests internos),34 docs byte-for-byte.
+Fuente `e03e0d5`; evidencia `docs/evidence/linux-inspector-contract-links-q145.json`.
