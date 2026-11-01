@@ -66,8 +66,21 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre18:48 Q342-Q344: candidato focal C72,
-sourcea40862b43a362095202a85bdfc590f1d54ff8cee,
+Corte 1 noviembre19:10 Q347-Q350: candidato identificado C73,
+source87222cbcada24332b0088889b1f34b59585b54f0,
+bin18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be.
+Q347builder oficial strip-debug:8smokes/Aboutrevision/docs34byteexact/ldd PASS;
+5modos focales22checksPTY PASS. Q348siete scripts críticos independientes PASS:
+SaveAllparcial, SaveAsidentidad/colisión+killrestart, Replace/SelectionUndo,
+Runemptyargs y ProjectMessages. Q349cinco modos48checks PASS: compilador ausente,
+fallo conoutput, éxito sinoutput, conflictos externos literales y clipboardmultidoc.
+Q350cuatro modos diseñador52checks PASS: mixedruntime, GETVALIDveto, ComboClipboard
+handlers, Inspectorclose25x80. Runtime generado instrumentado acotado, no stock.
+Q348primera invocación recuperación sin binario posicional inválida; Q350primer
+GET sin --kind inválido. Corregidas y PASS; intentos retenidos, no retry-free.
+Estos bloques son evidencia del MISMO C73, no matriz completa ni nuevos píxeles.
+Q351docs posteriores no embebidos en C73; no rebuild por receipts/docs.
+C72focal anterior sourcea40862b43a362095202a85bdfc590f1d54ff8cee,
 bin53d7a97a94793a1f946bb16005eba613cbce6f38d5ceef6fdf6d872a9a6d9937.
 Q342tokens HBP literales sin extensión resuelven .prg como hbmk2, conservando
 token/originalbytes. Compilerfixture exit0, C71baseline2/1, C72focal3checks y
@@ -84,7 +97,7 @@ C70sourcea489844f48553e65d0629cbae915e5f2a3195a98,
 bind822794b7f21dafc10d789a03ad818572e12bf80a813264b3da8bcdc5e976155,
 LF5/CRLF5checksPTY y tresregresiones/EOL178 PASS, par nativo inspeccionado.
 Q34037modelos GTSTD fresh del source25b3585 limpioPASS, no37modosIDE.
-C69último identificado: fuente81671a06363b92386d77ce540a1d528c88f66340,
+C69identificado anterior: fuente81671a06363b92386d77ce540a1d528c88f66340,
 bin742396e08064b4692ff96a064e019d8a7f02c698a69deea0ceebc1c9b7f2b8e9:
 About/catálogo34/ldd/8smokes y21checksPTY PASS. C68export parcial por disco
 lleno nunca fue candidato; reintento C69 documentado, no ocultado.
@@ -1175,3 +1188,14 @@ Q34437modelosfresh95bacc5limpioPASS. Q345docs/catálogo sin rebuild sólo docs.
 Receipts linux-project-extensionless-q342.json,
 linux-project-extensionless-guards-q343.json y linux-model-baseline-q344.json.
 Flags/macros/filtros/wildcards no evaluados al abrir. No Windows/hito/matrizglobal.
+
+### Seguimiento Q346-Q351 (1 noviembre 2026)
+
+Q346ocho gruposguardas PASS sobre5e06df1. Q347C73 identificado87222cb con
+8smokes y22checks focales. Q348siete scripts críticos, Q349cinco modos48checks,
+Q350cuatro modos52checks PASS en el mismo binarioC73. Dos invocaciones inválidas
+previas retenidas, corregidas PASS; no ejecución sin reintentos. Q351reconcilia
+estado/docs/catálogo sin producto/build nuevo. Receipts linux-tooling-guards-q346.json,
+linux-clean-candidate-q347.json, linux-critical-paths-c73-q348.json,
+linux-critical-build-isolation-c73-q349.json y linux-designer-critical-c73-q350.json.
+No suma de checks como porcentaje/matriz, nuevos píxeles, Windows o hito.

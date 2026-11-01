@@ -5726,3 +5726,11 @@ Q342C72default.prg literal compiler-valid; C71baseline2/1,3checksPTY y4regresion
 Project/modelProject PASS, par nativo completo. Q343quotedspace3checks/modelguards
 PASS; Q34437modelosfresh95bacc5limpioPASS; Q345docs/catálogo. No evaluación de
 flags/macros/filtros al abrir, Windows/matrizglobal/hito pendientes.
+
+### Q346-Q351 (1 noviembre 2026): aceptación C73
+
+Q346ocho gruposguardas5e06df1PASS. Q347C73 identificado87222cb,8smokes/22checks.
+Q348siete scripts críticos, Q349cinco modos48checks, Q350cuatro modos52checks
+PASS sobre mismo binario18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be.
+Q348/Q350invocaciones inválidas retenidas y corregidasPASS, no retry-free.
+Q351estado/docs/catálogo sin rebuild/producto. Sin matrizglobal/píxeles/Windows/hito.
