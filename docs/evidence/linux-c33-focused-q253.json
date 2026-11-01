@@ -1,0 +1,62 @@
+{
+  "source": "f3ccfba18df4ef32e1770e787a266dfde4b06739",
+  "removed": [
+    {
+      "path": "hbide.exe",
+      "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+    },
+    {
+      "path": "tests/hbide",
+      "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+    }
+  ],
+  "scope": "C33 clean Linux export with current offline catalogue; focused smokes, not release/full matrix/Windows",
+  "binary_sha256": "c0f313141a222f5a51a26915d56a1bc4b8caba9ff95021fa19bc97c2310009e2",
+  "archive_sha256": "704fb71c4ffacf77b409c040d29b6606a1def6ee557501ca1f61680c8c478ffe",
+  "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+  "document_check": "PASS: 34 complete documents embedded byte-for-byte\n",
+  "build_exit": 0,
+  "tests": {
+    "about": {
+      "script": "test_about_build_pty.py",
+      "mode": null,
+      "script_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+      "log": "PASS About retains version1.0\nPASS About shows actual build revision or honest fallback\nPASS About OK returns same dirty document\nPASS About cycle Undo preserves original bytes\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-htok3lnv\n",
+      "exit": 0
+    },
+    "help": {
+      "script": "test_help_mouse_pty.py",
+      "mode": null,
+      "script_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+      "log": "PASS Contents opens tree and reading pane\nPASS mouse tree selects exact topic\nPASS mouse first tree row selects Basics not next topic\nPASS scrolled tree click retains valid reading pane\nPASS Next button with no query explains action\nPASS Search button executes actual query\nPASS Next button advances actual match\nPASS wheel scroll stays within topic bounds\nPASS Export button writes actual catalogue\nPASS Close button returns dirty document\nPASS Index exact Quickstart opens link view\nPASS first related-topic click opens exact target\nPASS Backspace returns clicked topic history\nPASS last related-topic click opens exact target\nPASS AltRight restores clicked forward topic\nPASS nested related-topic click opens exact body\nPASS link-view Close returns unchanged dirty source\nPASS Undo after mouse Help restores exact original bytes\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-riglck26\n",
+      "exit": 0
+    },
+    "copy": {
+      "script": "test_copy_selection_repaint_pty.py",
+      "mode": null,
+      "script_sha256": "01ef7f933353f892e8ba8b18af2489a2dfb628d397d340996ced81b2d7512139",
+      "log": "PASS forward has highlighted range\nPASS forward clears MARK\nPASS forward clears inverse cells immediately\nPASS copy leaves file clean\nPASS clipboard still contains selected text\nPASS reverse has highlighted range\nPASS reverse clears MARK\nPASS reverse clears inverse cells immediately\nPASS multiline has highlighted range\nPASS multiline clears MARK\nPASS multiline clears inverse cells immediately\nTOTAL 11 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-hn10e0iq\n",
+      "exit": 0
+    },
+    "recovery-exit": {
+      "script": "test_recovered_undo_dirty_pty.py",
+      "mode": "exit",
+      "script_sha256": "0687cc2491ba527e7f3cca3bc94f7c49f2f2ebb0bd24a391d98f23d7260ae955",
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS Undo returns recovered bytes still not on disk\nPASS recovered document remains dirty after Undo\nPASS recovery journal survives Undo to recovered baseline\nPASS Exit reviews unsaved recovered baseline\nPASS Exit Cancel retains recovered buffer\nPASS Exit Cancel leaves disk untouched\nPASS Exit Cancel leaves recovery journal\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+      "exit": 0
+    },
+    "recovery-saveall": {
+      "script": "test_recovered_undo_dirty_pty.py",
+      "mode": "saveall",
+      "script_sha256": "0687cc2491ba527e7f3cca3bc94f7c49f2f2ebb0bd24a391d98f23d7260ae955",
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS Undo returns recovered bytes still not on disk\nPASS recovered document remains dirty after Undo\nPASS recovery journal survives Undo to recovered baseline\nPASS SaveAll includes recovered baseline\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+      "exit": 0
+    }
+  },
+  "visual": {
+    "path": "hbide-q247-copy-c33.png",
+    "sha256": "de20fdf225eefa984a4fae878a522d7fbe89280d65467a28a5f76fe6a3f95fbb",
+    "inspected": "Full1202x762 terminal, Copy no residual inverse after F8 range, bottom border visible."
+  },
+  "caveat": "Only5focused PTY variants (4scripts), no full matrix353 inherited from C30. No fresh model or Windows/license/release clearance. Receipt JSON added after build, no embeddedMarkdown changes. Buildinfo generated from frozen revision."
+}
