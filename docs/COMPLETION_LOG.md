@@ -5496,3 +5496,13 @@ no cambia. Roadmap enlaza C30/Q243 reconciliado con sus límites, no353
 scriptsoriginalesPASS/hitos. Ocho suites de guardas PASS,34docs embebidos
 exactos. Sin nuevo binario/PTY/modelos/píxeles/Windows.
 Evidencia: docs/evidence/linux-doc-keyboard-reconciliation-q244.json.
+
+### Q245 (1 noviembre 2026): modelos fresh tras C30
+
+31 modelos GTSTD compilados y ejecutados PASS fuente limpia b0a5be0, cada
+uno con hash binario propio y fuentes hashadas, sin fallo/reintento/cambio
+durante ejecución. Incluye editor/atomic/diskstamp/recovery/diseñador/GUI/
+proyecto/ayuda/debug layout. Global/input hook son caracterización del
+contrato actual, no implementación de funciones pendientes. No son31modos
+IDE ni se heredan al binario C30; sin PTY/píxeles/Windows/hitos nuevos.
+Evidencia: docs/evidence/linux-current-models-q245.json.
