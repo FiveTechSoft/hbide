@@ -1,0 +1,149 @@
+{
+  "scope": "Actual inline Action/Focus edits -> F10/F9 -> generated runtime Enter/Space; no product fix",
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "8153515f85a3cbe58bc1d498f6c58a9d3ba5b764",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "4978d4f8a58d1be8d7a92c08cad6007fc36c41e6873391f335c2f5b48fe2df45",
+      "binary_sha256": "4c6b0f1762581317dcd677b816a3ddce215c631d7d06287ed13b43713c75e1a9",
+      "build_receipt": "/tmp/hbide-q148-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "1a0debd34acb20278210eccd6f5c8ffd5775afbfff7fd83ae9b45d582b2a8acd",
+      "case": "designer-inline-button-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_button_runtime_pty.py"
+      ],
+      "started": 1793507958.5194023,
+      "seconds": 9.28,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "878375e81662477a0f1b42e6b13ef0c55f26f76b65a4a15fb2e770ca0f3ccd1b",
+      "log": "/tmp/hbide-q148-final/designer-inline-button-runtime-1793507958519398519.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "8153515f85a3cbe58bc1d498f6c58a9d3ba5b764",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "4978d4f8a58d1be8d7a92c08cad6007fc36c41e6873391f335c2f5b48fe2df45",
+      "binary_sha256": "4c6b0f1762581317dcd677b816a3ddce215c631d7d06287ed13b43713c75e1a9",
+      "build_receipt": "/tmp/hbide-q148-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "1a0debd34acb20278210eccd6f5c8ffd5775afbfff7fd83ae9b45d582b2a8acd",
+      "case": "designer-clipboard-button-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_clipboard_button_runtime_pty.py"
+      ],
+      "started": 1793507967.8035223,
+      "seconds": 5.52,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "e54f54199b70a453ac8659f4fb6ecfd72489a7290e8a3483d09d0265dcba40c8",
+      "log": "/tmp/hbide-q148-final/designer-clipboard-button-runtime-1793507967803518594.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "8153515f85a3cbe58bc1d498f6c58a9d3ba5b764",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "4978d4f8a58d1be8d7a92c08cad6007fc36c41e6873391f335c2f5b48fe2df45",
+      "binary_sha256": "4c6b0f1762581317dcd677b816a3ddce215c631d7d06287ed13b43713c75e1a9",
+      "build_receipt": "/tmp/hbide-q148-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "1a0debd34acb20278210eccd6f5c8ffd5775afbfff7fd83ae9b45d582b2a8acd",
+      "case": "designer-inspector-shrink",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_shrink_pty.py"
+      ],
+      "started": 1793507973.3242867,
+      "seconds": 4.62,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c8e728630ed16783d4a1ca1df0bfe7a0f16cf1f9ea398a1861337db1a1b92249",
+      "log": "/tmp/hbide-q148-final/designer-inspector-shrink-1793507973324283680.log"
+    }
+  ],
+  "logs": {
+    "designer-inline-button-runtime": "PASS edited action persisted exact\nPASS edited focus persisted exact\nPASS actual F9 emits edited action and focus\nPASS generated inline-edited-button artifact compiles\nPASS enter runtime caption retains double quotes\nPASS enter generated button accepts dialog true\nPASS enter inline-edited custom action executes\nPASS enter inline-edited focus handler executes\nPASS space runtime caption retains double quotes\nPASS space generated button accepts dialog true\nPASS space inline-edited custom action executes\nPASS space inline-edited focus handler executes\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-rkwir7cz\n",
+    "designer-clipboard-button-runtime": "PASS paste creates two buttons\nPASS pasted button custom action and focus retained\nPASS pasted button accelerator and style retained\nPASS actual F9 emits both custom actions\nPASS actual F9 emits both focus handlers and accelerators\nPASS generated pasted-button artifact compiles\nPASS first-enter generated button accepts dialog true\nPASS first-enter preserved custom action executes\nPASS first-enter preserved focus handler executes\nPASS second-enter generated button accepts dialog true\nPASS second-enter preserved custom action executes\nPASS second-enter preserved focus handler executes\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-e4nk2gdr\n",
+    "designer-inspector-shrink": "PASS combobox inspector visible\nPASS dialog inspector selected\nPASS shorter inspector clears old State row\nPASS shorter inspector clears old Focus row\nPASS Combo inspector restored\nPASS selection only preserves JSON\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-aaz42esx\n"
+  },
+  "modes": 3,
+  "checks": 30,
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "8153515f85a3cbe58bc1d498f6c58a9d3ba5b764",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "20bf52f4bdc0650168097f9b63dcdf0afe48d3d28c367451fff6ed36de8747e2",
+    "started": 1793507978.1170993,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q148-guards/test_completion_guards.py.log",
+        "seconds": 0.2
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q148-guards/test_build_receipt.py.log",
+        "seconds": 0.198
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "177c22d6bedd8cba16d90be576a51a233e9006716e4a06b67abadd25f6d9ee87",
+        "log": "/tmp/hbide-q148-guards/test_completion_inventory.py.log",
+        "seconds": 0.702
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q148-guards/test_distribution_notices.py.log",
+        "seconds": 0.202
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q148-guards/test_embed_help_docs.py.log",
+        "seconds": 0.21
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q148-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.353
+      }
+    },
+    "ok": true,
+    "finished": 1793507979.9821033
+  },
+  "exploration": "Enter passed immediately. Space assertions at .5 seconds failed during deliberate .4+.1 animation; 1.2 wait passes. Plainq/Altq did not activate action; not accepted as accelerator activation, no product defect claimed. Source HBGetList Accelerator routes GE_SHORTCUT/focus, independent action semantics not changed.",
+  "limits": "Bounded Button Action/Focus runtime only. Not other events/types, all gestures, accelerator activation, Windows/global/M4. No new native visual acceptance."
+}

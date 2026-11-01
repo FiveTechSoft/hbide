@@ -4219,3 +4219,16 @@ bin a50266a6fd6544e4372a8dd147a17b6f291c61d6cdc89a551c71927f5dc3336a.
 Evidencia `docs/evidence/linux-designer-inspector-repaint-q147.json`.
 Sin todosgestos/geometrias/terminales, handlers, oversized, Windows ni
 cierreM4. Los intentos de harness corregidos constan separados.
+
+
+## 1 noviembre 2026: Q148 handlers editados inline al runtime
+
+Action/Focus de Button se cambian mediante inspector real, F10 persiste,
+F9 emite y el artefacto generado compila. Enter y Space ejecutan ambos
+handlers y devuelven.T. (12checks). Regresion pastedButton11 y
+selection6:3modos29checks63guardas34docsPASS en8153515. Sin arreglo.
+Space a.5s se media antes de terminar animacion.4+.1; espera1.2 pasa.
+q/Altq no aceptados como activacion; no fallo producto inferido.
+Evidencia `docs/evidence/linux-designer-inline-button-runtime-q148.json`.
+Sin otros eventos/tipos, todosgestos/aceleradores/Windows/global/cierreM4
+ni nueva aceptacion visual.

@@ -525,3 +525,10 @@ CeldaQ140 identificada como tirador, residual al deseleccionar antes del
 arreglo; no cursor ni arreglo de tirador seleccionado previsto.
 Evidencia `docs/evidence/linux-designer-inspector-repaint-q147.json`.
 Sin aceptacion de todosgestos/geometrias/Windows ni cierreM4.
+
+
+### Seguimiento Q148 (1 noviembre 2026)
+
+Button Action/Focus editados inline,F10,F9,compilacion y runtime
+Enter/Space:12checks,regresiones en evidencia Q148. No todos handlers
+ni aceleradores/Windows/cierreM4;sin arreglo de producto ni nuevos pixels.
