@@ -1,0 +1,206 @@
+{
+  "scope": "Parent approved reversible old temporary unstripped compaction only. Tested bins/manifests/logs/evidence/trees intact. C86-C87 raw retained.",
+  "items": [
+    {
+      "original": "/tmp/hbide-c28/hbide.unstripped",
+      "original_bytes": 5724648,
+      "original_sha256": "0259ee38ef525c4e310848ced30f16901a542584aa9e793bf76771533fb74d31",
+      "manifest_sha256": "0259ee38ef525c4e310848ced30f16901a542584aa9e793bf76771533fb74d31",
+      "gzip": "/tmp/hbide-c28/hbide.unstripped.gz",
+      "gzip_bytes": 1713386,
+      "decompressed_sha256": "0259ee38ef525c4e310848ced30f16901a542584aa9e793bf76771533fb74d31",
+      "restore": "gzip -dk /tmp/hbide-c28/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c29/hbide.unstripped",
+      "original_bytes": 5741192,
+      "original_sha256": "1f28508ac453de6174dcb1a350fb2a864afa60b3bef990f64b2c61322a1b2ec5",
+      "manifest_sha256": "1f28508ac453de6174dcb1a350fb2a864afa60b3bef990f64b2c61322a1b2ec5",
+      "gzip": "/tmp/hbide-c29/hbide.unstripped.gz",
+      "gzip_bytes": 1717780,
+      "decompressed_sha256": "1f28508ac453de6174dcb1a350fb2a864afa60b3bef990f64b2c61322a1b2ec5",
+      "restore": "gzip -dk /tmp/hbide-c29/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c30/hbide.unstripped",
+      "original_bytes": 5765928,
+      "original_sha256": "d7a143c33802c4b2ceedb9d0b51a97a31e9c816dc463d1e517bdf804b98abf19",
+      "manifest_sha256": "d7a143c33802c4b2ceedb9d0b51a97a31e9c816dc463d1e517bdf804b98abf19",
+      "gzip": "/tmp/hbide-c30/hbide.unstripped.gz",
+      "gzip_bytes": 1722975,
+      "decompressed_sha256": "d7a143c33802c4b2ceedb9d0b51a97a31e9c816dc463d1e517bdf804b98abf19",
+      "restore": "gzip -dk /tmp/hbide-c30/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c43/hbide.unstripped",
+      "original_bytes": 5835704,
+      "original_sha256": "50117b255b9e824013d3e88b4e4dfbeed967315be29df4ddcdcc882f248ab469",
+      "manifest_sha256": "50117b255b9e824013d3e88b4e4dfbeed967315be29df4ddcdcc882f248ab469",
+      "gzip": "/tmp/hbide-c43/hbide.unstripped.gz",
+      "gzip_bytes": 1737076,
+      "decompressed_sha256": "50117b255b9e824013d3e88b4e4dfbeed967315be29df4ddcdcc882f248ab469",
+      "restore": "gzip -dk /tmp/hbide-c43/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c45/hbide.unstripped",
+      "original_bytes": 5839800,
+      "original_sha256": "ecd7f820553dfac2997b684415077b5d8525851a0da210caa166791423ddd948",
+      "manifest_sha256": "ecd7f820553dfac2997b684415077b5d8525851a0da210caa166791423ddd948",
+      "gzip": "/tmp/hbide-c45/hbide.unstripped.gz",
+      "gzip_bytes": 1738063,
+      "decompressed_sha256": "ecd7f820553dfac2997b684415077b5d8525851a0da210caa166791423ddd948",
+      "restore": "gzip -dk /tmp/hbide-c45/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c52/hbide.unstripped",
+      "original_bytes": 5856536,
+      "original_sha256": "67d9f03ce3a94d1221c09938f6ca9eeeb34165216abd4a4656c33db784871297",
+      "manifest_sha256": "67d9f03ce3a94d1221c09938f6ca9eeeb34165216abd4a4656c33db784871297",
+      "gzip": "/tmp/hbide-c52/hbide.unstripped.gz",
+      "gzip_bytes": 1740537,
+      "decompressed_sha256": "67d9f03ce3a94d1221c09938f6ca9eeeb34165216abd4a4656c33db784871297",
+      "restore": "gzip -dk /tmp/hbide-c52/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c61/hbide.unstripped",
+      "original_bytes": 5864728,
+      "original_sha256": "4c43b6bb42b79fd2650c15e2857014fa7a4993faca00528473a277093b908ca0",
+      "manifest_sha256": "4c43b6bb42b79fd2650c15e2857014fa7a4993faca00528473a277093b908ca0",
+      "gzip": "/tmp/hbide-c61/hbide.unstripped.gz",
+      "gzip_bytes": 1742446,
+      "decompressed_sha256": "4c43b6bb42b79fd2650c15e2857014fa7a4993faca00528473a277093b908ca0",
+      "restore": "gzip -dk /tmp/hbide-c61/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c65/hbide.unstripped",
+      "original_bytes": 5872920,
+      "original_sha256": "bce5530c515c876a993defd6d8eea015458fdd1839ef2a4c2138ab5b7e40c5d1",
+      "manifest_sha256": "bce5530c515c876a993defd6d8eea015458fdd1839ef2a4c2138ab5b7e40c5d1",
+      "gzip": "/tmp/hbide-c65/hbide.unstripped.gz",
+      "gzip_bytes": 1744181,
+      "decompressed_sha256": "bce5530c515c876a993defd6d8eea015458fdd1839ef2a4c2138ab5b7e40c5d1",
+      "restore": "gzip -dk /tmp/hbide-c65/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c69/hbide.unstripped",
+      "original_bytes": 5881176,
+      "original_sha256": "ed91c626670b8939e9c0e3144d0f8a8b50f742d9b5d86d6e35c744f3361c2342",
+      "manifest_sha256": "ed91c626670b8939e9c0e3144d0f8a8b50f742d9b5d86d6e35c744f3361c2342",
+      "gzip": "/tmp/hbide-c69/hbide.unstripped.gz",
+      "gzip_bytes": 1745678,
+      "decompressed_sha256": "ed91c626670b8939e9c0e3144d0f8a8b50f742d9b5d86d6e35c744f3361c2342",
+      "restore": "gzip -dk /tmp/hbide-c69/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c73/hbide.unstripped",
+      "original_bytes": 5889400,
+      "original_sha256": "2e09eb110da03fdc80310472b9667d11d8f8595b95e66a5da459c9f71554fb99",
+      "manifest_sha256": "2e09eb110da03fdc80310472b9667d11d8f8595b95e66a5da459c9f71554fb99",
+      "gzip": "/tmp/hbide-c73/hbide.unstripped.gz",
+      "gzip_bytes": 1747841,
+      "decompressed_sha256": "2e09eb110da03fdc80310472b9667d11d8f8595b95e66a5da459c9f71554fb99",
+      "restore": "gzip -dk /tmp/hbide-c73/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c75/hbide.unstripped",
+      "original_bytes": 5897656,
+      "original_sha256": "eb66dc166bf921297f89780f71f7a6e9841338cfdfc75091363182c15a96fee7",
+      "manifest_sha256": "eb66dc166bf921297f89780f71f7a6e9841338cfdfc75091363182c15a96fee7",
+      "gzip": "/tmp/hbide-c75/hbide.unstripped.gz",
+      "gzip_bytes": 1750152,
+      "decompressed_sha256": "eb66dc166bf921297f89780f71f7a6e9841338cfdfc75091363182c15a96fee7",
+      "restore": "gzip -dk /tmp/hbide-c75/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c77/hbide.unstripped",
+      "original_bytes": 5905848,
+      "original_sha256": "e098c5efcde0787b2fb3c0b215c35a6b4d2e6e945472df18c0176d7747a1bbc5",
+      "manifest_sha256": "e098c5efcde0787b2fb3c0b215c35a6b4d2e6e945472df18c0176d7747a1bbc5",
+      "gzip": "/tmp/hbide-c77/hbide.unstripped.gz",
+      "gzip_bytes": 1751844,
+      "decompressed_sha256": "e098c5efcde0787b2fb3c0b215c35a6b4d2e6e945472df18c0176d7747a1bbc5",
+      "restore": "gzip -dk /tmp/hbide-c77/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c79/hbide.unstripped",
+      "original_bytes": 5922232,
+      "original_sha256": "7f9f0a6b638d38dfe1810b853f5ae0fe4e121fee42d160cd4538051b59787da3",
+      "manifest_sha256": "7f9f0a6b638d38dfe1810b853f5ae0fe4e121fee42d160cd4538051b59787da3",
+      "gzip": "/tmp/hbide-c79/hbide.unstripped.gz",
+      "gzip_bytes": 1755048,
+      "decompressed_sha256": "7f9f0a6b638d38dfe1810b853f5ae0fe4e121fee42d160cd4538051b59787da3",
+      "restore": "gzip -dk /tmp/hbide-c79/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c81/hbide.unstripped",
+      "original_bytes": 5926328,
+      "original_sha256": "d1015f98143210c3a4b6b47a72913a3af68136d3ec9f3bc3f2b3ddefd53eaa96",
+      "manifest_sha256": "d1015f98143210c3a4b6b47a72913a3af68136d3ec9f3bc3f2b3ddefd53eaa96",
+      "gzip": "/tmp/hbide-c81/hbide.unstripped.gz",
+      "gzip_bytes": 1755672,
+      "decompressed_sha256": "d1015f98143210c3a4b6b47a72913a3af68136d3ec9f3bc3f2b3ddefd53eaa96",
+      "restore": "gzip -dk /tmp/hbide-c81/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c83/hbide.unstripped",
+      "original_bytes": 5934520,
+      "original_sha256": "58d68d4aeab9ff43f383a87ee644aa26cfa1bcf529fff41bc86e7e0d8f63e0fc",
+      "manifest_sha256": "58d68d4aeab9ff43f383a87ee644aa26cfa1bcf529fff41bc86e7e0d8f63e0fc",
+      "gzip": "/tmp/hbide-c83/hbide.unstripped.gz",
+      "gzip_bytes": 1756241,
+      "decompressed_sha256": "58d68d4aeab9ff43f383a87ee644aa26cfa1bcf529fff41bc86e7e0d8f63e0fc",
+      "restore": "gzip -dk /tmp/hbide-c83/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-c85/hbide.unstripped",
+      "original_bytes": 5942816,
+      "original_sha256": "9180eccb9a09a4ffe0ac972ab0891c49676b289428c72eb8decdfc83c82dbc38",
+      "manifest_sha256": "9180eccb9a09a4ffe0ac972ab0891c49676b289428c72eb8decdfc83c82dbc38",
+      "gzip": "/tmp/hbide-c85/hbide.unstripped.gz",
+      "gzip_bytes": 1758349,
+      "decompressed_sha256": "9180eccb9a09a4ffe0ac972ab0891c49676b289428c72eb8decdfc83c82dbc38",
+      "restore": "gzip -dk /tmp/hbide-c85/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-candidate-c24/hbide.unstripped",
+      "original_bytes": 5499032,
+      "original_sha256": "e9e00c491e5b283137781c453b4d50ed6308af930c5e647b5a914a7379c781fa",
+      "manifest_sha256": "e9e00c491e5b283137781c453b4d50ed6308af930c5e647b5a914a7379c781fa",
+      "gzip": "/tmp/hbide-candidate-c24/hbide.unstripped.gz",
+      "gzip_bytes": 1680291,
+      "decompressed_sha256": "e9e00c491e5b283137781c453b4d50ed6308af930c5e647b5a914a7379c781fa",
+      "restore": "gzip -dk /tmp/hbide-candidate-c24/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-candidate-c25/hbide.unstripped",
+      "original_bytes": 5630200,
+      "original_sha256": "20baa4f3af096c7f239d301243f1aad1a57b7893b4b21c27626390cdaeb105a8",
+      "manifest_sha256": "20baa4f3af096c7f239d301243f1aad1a57b7893b4b21c27626390cdaeb105a8",
+      "gzip": "/tmp/hbide-candidate-c25/hbide.unstripped.gz",
+      "gzip_bytes": 1693064,
+      "decompressed_sha256": "20baa4f3af096c7f239d301243f1aad1a57b7893b4b21c27626390cdaeb105a8",
+      "restore": "gzip -dk /tmp/hbide-candidate-c25/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-candidate-c26/hbide.unstripped",
+      "original_bytes": 5646584,
+      "original_sha256": "db5157c1a3bcc4b82045830c0ba96618bc37c8878f5266d682b5db16c61e54a5",
+      "manifest_sha256": "db5157c1a3bcc4b82045830c0ba96618bc37c8878f5266d682b5db16c61e54a5",
+      "gzip": "/tmp/hbide-candidate-c26/hbide.unstripped.gz",
+      "gzip_bytes": 1697300,
+      "decompressed_sha256": "db5157c1a3bcc4b82045830c0ba96618bc37c8878f5266d682b5db16c61e54a5",
+      "restore": "gzip -dk /tmp/hbide-candidate-c26/hbide.unstripped.gz"
+    },
+    {
+      "original": "/tmp/hbide-candidate-c27/hbide.unstripped",
+      "original_bytes": 5667208,
+      "original_sha256": "6b7224ca8ff867106f0859a8e9b97c304ee2aad26f97531089349e542e7c42c2",
+      "manifest_sha256": "6b7224ca8ff867106f0859a8e9b97c304ee2aad26f97531089349e542e7c42c2",
+      "gzip": "/tmp/hbide-candidate-c27/hbide.unstripped.gz",
+      "gzip_bytes": 1701246,
+      "decompressed_sha256": "6b7224ca8ff867106f0859a8e9b97c304ee2aad26f97531089349e542e7c42c2",
+      "restore": "gzip -dk /tmp/hbide-candidate-c27/hbide.unstripped.gz"
+    }
+  ],
+  "bytes_freed": 81595286
+}
