@@ -189,6 +189,12 @@ procedure Main()
  next
  a:=HBIDE_ScanProcs('CREATE CLASS Demo'+hb_eol()+'END ;'+hb_eol()+'IF'+hb_eol()+'METHOD Hidden()')
  Check(Len(a)==1,'continued END IF does not close class context',@nPass,@nFail)
+ for each c in {'TEXT TO FILE "out.txt"','TEXT TO PRINTER','TEXT'+Chr(9)+'TO'+Chr(9)+'FILE "out.txt"'}
+ a:=HBIDE_ScanProcs('procedure Main()'+hb_eol()+c+hb_eol()+'function Phantom()'+hb_eol()+'/* literal'+hb_eol()+'ENDTEXT'+hb_eol()+'function Real()')
+ Check(Len(a)==2.and.a[2,1]=='Real'.and.a[2,3]==6,'standard text stream excludes raw payload: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('TEXTCUSTOM'+hb_eol()+'function Real()')
+ Check(Len(a)==1.and.a[1,1]=='Real','custom TEXT prefix does not start raw stream',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

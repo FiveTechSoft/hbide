@@ -46,7 +46,7 @@ FUNCTION HBIDE_ScanProcs( cText )
       IF Empty( cL )
          LOOP
       ENDIF
-      IF Upper( cL ) == "TEXT"
+      IF HBIDE_NavTextStart( cL )
          cPending := ""
          lText := .T.
          LOOP
@@ -214,6 +214,18 @@ STATIC FUNCTION HBIDE_NavEndDump( cLine )
    c := LTrim( SubStr( c, 8 ) )
    RETURN Empty( c ) .OR. Left( c, 1 ) == ";" .OR. ;
       Left( c, 2 ) == "//" .OR. Left( c, 2 ) == "&&" .OR. Left( c, 2 ) == "/*"
+
+// Standard std.ch text streams only. String payload/target was masked
+// by NavCode; no macro evaluation or output side effect belongs here.
+STATIC FUNCTION HBIDE_NavTextStart( cLine )
+   LOCAL a := HBIDE_Compact( hb_ATokens( Upper(cLine), " " ) )
+   IF Len(a) == 1 .AND. a[1] == "TEXT"
+      RETURN .T.
+   ENDIF
+   IF Len(a) >= 3 .AND. a[1] == "TEXT" .AND. a[2] == "TO"
+      RETURN a[3] == "FILE" .OR. ( Len(a) == 3 .AND. a[3] == "PRINTER" )
+   ENDIF
+   RETURN .F.
 
 // Same bounded raw command boundary as ENDDUMP. Macro-defined TEXT
 // commands and custom stream pragmas remain outside this scanner's scope.
