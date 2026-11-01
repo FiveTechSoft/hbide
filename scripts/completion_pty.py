@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'saveas-literal-regular': ('test_saveas_literal_regular_pty.py', [], 40),
     'saveas-literal-new': ('test_saveas_literal_new_pty.py', [], 40),
     'external-changes-literal': ('test_external_changes_pty.py', ['--literal'], 60),
     'saveas-literal-symlink': ('test_saveas_literal_symlink_pty.py', [], 40),

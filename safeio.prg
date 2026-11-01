@@ -36,7 +36,7 @@ return ""
 // recoverable temp.
 function HBIDE_AtomicWriteFile( cFile, cContent, cFailInfo )
 
-   local cTmp, lOk := .F., nAttr := 0, aDir, nHandle, nTry := 0, lWritten
+   local cTmp, lOk := .F., nAttr := 0, aDir, aEntry, nHandle, nTry := 0, lWritten, lLink
 
    cFailInfo := ""
 
@@ -65,9 +65,17 @@ function HBIDE_AtomicWriteFile( cFile, cContent, cFailInfo )
       return .F.
    endif
 
+   lLink := ! Empty( hb_vfLinkRead( cFile ) )
+   // Directory accepts a wildcard pattern. Its fallback attributes belong
+   // to this path only when the returned basename matches it exactly.
    aDir := Directory( cFile )
-   if ! Empty( hb_vfLinkRead( cFile ) ) .or. ;
-      ( Len( aDir ) > 0 .and. "L" $ aDir[ 1 ][ F_ATTR ] )
+   for each aEntry in aDir
+      if aEntry[ F_NAME ] == hb_FNameNameExt( cFile ) .and. "L" $ aEntry[ F_ATTR ]
+         lLink := .T.
+         exit
+      endif
+   next
+   if lLink
       cFailInfo := cFile + " is a symlink: saving there is not safe yet. " + ;
                    "Destination untouched; your content is recoverable at " + cTmp
       return .F.

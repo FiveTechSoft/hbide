@@ -120,6 +120,15 @@ proc Main()
    Check( "wildcard complete recovery named", "recoverable at " $ cInfo .and. hb_MemoRead( cRecover ) == "WILD-NEW" )
 #endif
 
+#ifndef __PLATFORM__WINDOWS
+   MakeDir( cDir + "/wild-regular" )
+   hb_Run( "ln -s ../real.txt '" + cDir + "/wild-regular/literal-other.prg'" )
+   hb_MemoWrit( cDir + "/wild-regular/literal*.prg", "REGULAR" )
+   Check( "regular literal wildcard not mistaken for symlink sibling", HBIDE_AtomicWriteFile( cDir + "/wild-regular/literal*.prg", "REGULAR-NEW", @cInfo ) )
+   Check( "regular literal content saved", hb_MemoRead( cDir + "/wild-regular/literal*.prg" ) == "REGULAR-NEW" )
+   Check( "matching symlink sibling preserved", hb_vfLinkRead( cDir + "/wild-regular/literal-other.prg" ) == "../real.txt" )
+#endif
+
    // Symlink refusal must not promise a recovery file that could not be written.
    hb_Run( "ln -s ../real.txt " + cDir + "/ro/link.txt" )
    hb_Run( "chmod 0555 " + cDir + "/ro" )
