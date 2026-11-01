@@ -39,6 +39,15 @@ procedure Main()
  o:LoadText(c+hb_eol()+'/* real'+hb_eol()+'return 42')
  Check('non-bare or unclosed opener not literal: '+c,o:BlkCmtState(3).and.o:aBlkCtx[2]!='@TEXT')
  next
+ o:LoadText('local TEXT := 1'+hb_eol()+'local x := ;'+hb_eol()+'TEXT'+hb_eol()+'/* real */'+hb_eol()+'return x')
+ Check('continued TEXT identifier is ordinary expression',!o:BlkCmtState(5).and.o:aBlkCtx[4]=='')
+ o:GoTo(2,5+Len('local x := ;'))
+ o:Edit(K_BS)
+ Check('deleting continuation enables TEXT stream',!o:BlkCmtState(5).and.o:aBlkCtx[4]=='@TEXT')
+ o:Undo()
+ Check('Undo continuation edit restores expression',!o:BlkCmtState(5).and.o:aBlkCtx[4]=='')
+ o:Redo()
+ Check('Redo continuation edit restores stream',!o:BlkCmtState(5).and.o:aBlkCtx[4]=='@TEXT')
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

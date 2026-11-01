@@ -1018,7 +1018,7 @@ METHOD ScanBlkLine( cText, lIn, cCarry ) CLASS HBSrcEdit
    if cCarry == "@TEXT"
       cCarry := iif( HBIDE_EditorEndText(cText), "", "@TEXT" )
       return .F.
-   elseif ! lIn .and. HBIDE_EditorTextStart(cText)
+   elseif ! lIn .and. Empty(cCarry) .and. HBIDE_EditorTextStart(cText)
       cCarry := "@TEXT"
       return .F.
    endif
