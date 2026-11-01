@@ -12,13 +12,17 @@ def main():
  m=json.loads((c/'manifest.json').read_text());compiler=shutil.which('hbmk2');strip=shutil.which('strip')
  if sys.platform!='linux' or not compiler or not strip:p.error('Linux,hbmk2 and strip required')
  if not m.get('ok') or not m.get('strip_tool'):p.error('successful strip-debug candidate required')
- if sha(c/'source.tar')!=m['archive_sha256'] or sha(c/'bin/hbide')!=m['binary_sha256']:p.error('candidate archive or binary changed')
+ archive_name=m.get('archive_file','source.tar')
+ if archive_name not in ('source.tar','source.tar.gz'):p.error('unsupported candidate archive filename')
+ archive=c/archive_name
+ if not archive.is_file():p.error('candidate archive missing')
+ if sha(archive)!=m['archive_sha256'] or sha(c/'bin/hbide')!=m['binary_sha256']:p.error('candidate archive or binary changed')
  if sha(pathlib.Path(compiler))!=m['compiler_sha256'] or sha(pathlib.Path(strip))!=m['strip_tool']['sha256']:p.error('compiler or strip differs from candidate')
  out.mkdir(parents=True);report=dict(scope=__doc__,source=m['source'],candidate_sha256=m['binary_sha256'],archive_sha256=m['archive_sha256'],compiler_sha256=m['compiler_sha256'],strip_sha256=m['strip_tool']['sha256'],started=time.time(),builds=[],ok=False)
  try:
   for name in ['a','b']:
    src=out/name;src.mkdir()
-   with tarfile.open(c/'source.tar') as t:
+   with tarfile.open(archive) as t:
     for member in t.getmembers():
      target=(src/member.name).resolve()
      if not target.is_relative_to(src):raise ValueError('archive traversal')

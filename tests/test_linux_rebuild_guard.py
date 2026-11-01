@@ -13,6 +13,12 @@ class RebuildGuard(unittest.TestCase):
   run.assert_not_called()
  def test_changed_archive_rejected(self):
   (self.c/'source.tar').write_bytes(b'changed');self.rejected();self.assertFalse(self.out.exists())
+ def test_compressed_archive_tamper_rejected(self):
+  (self.c/'source.tar.gz').write_bytes(b'compressed');self.m['archive_file']='source.tar.gz';self.m['archive_sha256']=sha(self.c/'source.tar.gz');self.save();(self.c/'source.tar.gz').write_bytes(b'changed');self.rejected();self.assertFalse(self.out.exists())
+ def test_archive_path_escape_rejected(self):
+  self.m['archive_file']='../source.tar';self.save();self.rejected();self.assertFalse(self.out.exists())
+ def test_missing_named_archive_rejected(self):
+  self.m['archive_file']='source.tar.gz';self.save();self.rejected();self.assertFalse(self.out.exists())
  def test_changed_binary_rejected(self):
   (self.c/'bin/hbide').write_bytes(b'changed');self.rejected();self.assertFalse(self.out.exists())
  def test_changed_compiler_rejected(self):

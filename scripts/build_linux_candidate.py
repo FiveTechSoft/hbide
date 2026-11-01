@@ -17,8 +17,8 @@ def main():
  if not compiler:p.error('hbmk2 must be on PATH')
  revision=command(['git','rev-parse','HEAD'],ROOT).stdout.decode().strip()
  out.mkdir(parents=True);src=out/'source';src.mkdir();binpath=out/'bin';binpath.mkdir()
- archive=out/'source.tar'
- with archive.open('wb') as f:subprocess.run(['git','archive','--format=tar',revision],cwd=ROOT,stdout=f,check=True)
+ archive=out/'source.tar.gz'
+ with archive.open('wb') as f:subprocess.run(['git','archive','--format=tar.gz',revision],cwd=ROOT,stdout=f,check=True)
  # Archive contains only trusted committed repo paths, not outside tar input.
  with tarfile.open(archive) as f:f.extractall(src,filter='data')
  # Never promote or test the inherited Windows EXE/prebuilt probes as a candidate.
@@ -29,7 +29,7 @@ def main():
  (src/'buildinfo.ch').write_text('#define HBIDE_BUILD_REV '+json.dumps(revision)+'\n')
  env=dict(os.environ);env['HBIDE_BIN']=str(binpath/'hbide');env['HBIDE_EXPECT_REV']=revision[:12]
  manifest={'scope':'Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.',
-  'source':revision,'archive_sha256':sha(archive),'dirty':False,'started':time.time(),
+  'source':revision,'archive_sha256':sha(archive),'archive_file':archive.name,'archive_format':'tar.gz','dirty':False,'started':time.time(),
   'compiler_path':compiler,'compiler_sha256':sha(pathlib.Path(compiler)),
   'compiler_version':command([compiler,'-version'],src).stdout.decode(errors='replace'),
   'removed_inherited_binaries':inherited,'tests':{},'build_exit':None,
