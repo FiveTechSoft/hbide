@@ -3815,3 +3815,13 @@ Namedbuffersindependent,untitledskipped,failedwritekeepsdirty;conflictCancel
 keepseditedbuffer/externaldiskwhileothersaves;Reloadpreservesexternalbytes/
 priorbackupandisnotcountedassave. linux-inventory-saveall-ctrlf2.json.
 No newproductfix/pixels/modelrerun/allterminals/menus-open/Windows/global.
+
+## Q116 - logical bracket literal lexical context
+
+Compileraccepts.and./.or./.not./! followedbracketstrings,notruntimeoperand
+typeclaim. Before2PASS2FAILfalseblock. Boundedexplicitlogicalcontexts,7new
+guards4operators/uppercasegap/logicalconstantvalueindex/identifierindex.
+Source21036f1clean6modes38PTYchecks22models187repaint33inventory34docsPASS
+nofailure/retry. Native120x40fourliteralsyellow/nextreturnsfunctioncyan/
+fullborders/F2exact inspected. linux-editor-bracket-logical.json.
+No generallexer/runtimechange/Windows/global/hitoclosed.
