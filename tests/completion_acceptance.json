@@ -2871,5 +2871,13 @@
       "test_selection_delete_identical_bp_pty.py"
     ],
     "contract": "CtrlT with active selection deletes only selected range, clears mark, retains Undo/Redo and allows following typing at start. Reverse/TAB/UTF8 ranges and whole-line deleted BP guards verified separately. No-selection word deletion unchanged."
+  },
+  "delete_word_boundaries": {
+    "tests": [
+      "test_delete_word_tab_boundary_pty.py",
+      "test_delete_word_noop_pty.py",
+      "test_delete_word_columns.prg"
+    ],
+    "contract": "CtrlT treats raw TAB as word separator like space, keeps source offsets scalar-based and preserves following word. Virtual/actual EOL no-op keeps redo/clipboard, no dirty/journal or false save prompt. Empty-buffer model guard separate."
   }
 }

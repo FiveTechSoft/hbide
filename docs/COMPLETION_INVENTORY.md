@@ -543,8 +543,8 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:535 | Pendiente gesto |
 | MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:540 | Pendiente gesto |
 | MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:543 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2151 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2152 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2162 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2163 | Pendiente gesto |
 | MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:437 | Pendiente gesto |
 | MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:440 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
@@ -1125,66 +1125,67 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:634 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
 | editor.prg:642 | `case nKeyStd == K_CTRL_T` | EDIT-KEY-DELETE-WORD-CTRL-T |
 | editor.prg:643 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:654 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
-| editor.prg:657 | `case nKeyStd == K_F2` | Pendiente vinculo |
-| editor.prg:663 | `case nKeyStd == K_F8` | Pendiente vinculo |
-| editor.prg:667 | `case nKeyStd == K_F9` | Pendiente vinculo |
-| editor.prg:670 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
-| editor.prg:675 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:682 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
-| editor.prg:690 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
-| editor.prg:693 | `if lHotPath` | Pendiente vinculo |
-| editor.prg:701 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
-| editor.prg:705 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
-| editor.prg:707 | `ELSEIF lHotPath` | Pendiente vinculo |
-| editor.prg:708 | `if ! ::lWordWrap` | Pendiente vinculo |
-| editor.prg:714 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )` | Pendiente vinculo |
-| editor.prg:738 | `if ::lMark .and. Abs( ::Row() - nOldScrRow ) > 1` | Pendiente vinculo |
-| editor.prg:743 | `if ! lSkipTail` | Pendiente vinculo |
-| editor.prg:744 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
-| editor.prg:751 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
-| editor.prg:755 | `if ::Row() > ::nTop` | Pendiente vinculo |
-| editor.prg:761 | `if ::Row() < ::nBottom` | Pendiente vinculo |
-| editor.prg:771 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
-| editor.prg:2028 | `if nKey == K_LEFT` | Pendiente vinculo |
-| editor.prg:2029 | `if Col() > 5` | Pendiente vinculo |
-| editor.prg:2032 | `if ::nFirstCol > 1` | Pendiente vinculo |
-| editor.prg:2057 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
-| editor.prg:2077 | `if nB < 0x80` | Pendiente vinculo |
-| editor.prg:2080 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
-| editor.prg:2082 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
-| editor.prg:2084 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
-| editor.prg:2089 | `if nI + nNeed > nLen` | Pendiente vinculo |
-| editor.prg:2095 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
-| editor.prg:2103 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
-| editor.prg:2120 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
-| editor.prg:2124 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
-| editor.prg:2143 | `case K_UP` | Pendiente vinculo |
-| editor.prg:2144 | `case K_DOWN` | Pendiente vinculo |
-| editor.prg:2145 | `case K_LEFT` | Pendiente vinculo |
-| editor.prg:2146 | `case K_RIGHT` | Pendiente vinculo |
-| editor.prg:2147 | `case K_HOME` | Pendiente vinculo |
-| editor.prg:2148 | `case K_END` | Pendiente vinculo |
-| editor.prg:2149 | `case K_PGUP` | Pendiente vinculo |
-| editor.prg:2150 | `case K_PGDN` | Pendiente vinculo |
-| editor.prg:2151 | `case K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:2152 | `case K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:2164 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
-| editor.prg:2170 | `CASE lBlock` | Pendiente vinculo |
-| editor.prg:2171 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
-| editor.prg:2176 | `CASE !Empty(q)` | Pendiente vinculo |
-| editor.prg:2177 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
-| editor.prg:2179 | `ELSEIF c == q` | Pendiente vinculo |
-| editor.prg:2183 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
-| editor.prg:2186 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
-| editor.prg:2215 | `if Upper(Left(c,7)) != "ENDTEXT"` | Pendiente vinculo |
-| editor.prg:2225 | `if hb_defaultValue(lIn,.F.)` | Pendiente vinculo |
-| editor.prg:2227 | `if n==0` | Pendiente vinculo |
-| editor.prg:2234 | `if n==0` | Pendiente vinculo |
-| editor.prg:2239 | `if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"` | Pendiente vinculo |
-| editor.prg:2244 | `if Left(c,2)=="//" .or. Left(c,2)=="&&"` | Pendiente vinculo |
-| editor.prg:2246 | `elseif Left(c,2)=="/*"` | Pendiente vinculo |
-| editor.prg:2248 | `if n==0` | Pendiente vinculo |
+| editor.prg:657 | `if nWordEnd > nPos` | Pendiente vinculo |
+| editor.prg:665 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
+| editor.prg:668 | `case nKeyStd == K_F2` | Pendiente vinculo |
+| editor.prg:674 | `case nKeyStd == K_F8` | Pendiente vinculo |
+| editor.prg:678 | `case nKeyStd == K_F9` | Pendiente vinculo |
+| editor.prg:681 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
+| editor.prg:686 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:693 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
+| editor.prg:701 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
+| editor.prg:704 | `if lHotPath` | Pendiente vinculo |
+| editor.prg:712 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
+| editor.prg:716 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
+| editor.prg:718 | `ELSEIF lHotPath` | Pendiente vinculo |
+| editor.prg:719 | `if ! ::lWordWrap` | Pendiente vinculo |
+| editor.prg:725 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )` | Pendiente vinculo |
+| editor.prg:749 | `if ::lMark .and. Abs( ::Row() - nOldScrRow ) > 1` | Pendiente vinculo |
+| editor.prg:754 | `if ! lSkipTail` | Pendiente vinculo |
+| editor.prg:755 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
+| editor.prg:762 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
+| editor.prg:766 | `if ::Row() > ::nTop` | Pendiente vinculo |
+| editor.prg:772 | `if ::Row() < ::nBottom` | Pendiente vinculo |
+| editor.prg:782 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
+| editor.prg:2039 | `if nKey == K_LEFT` | Pendiente vinculo |
+| editor.prg:2040 | `if Col() > 5` | Pendiente vinculo |
+| editor.prg:2043 | `if ::nFirstCol > 1` | Pendiente vinculo |
+| editor.prg:2068 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
+| editor.prg:2088 | `if nB < 0x80` | Pendiente vinculo |
+| editor.prg:2091 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
+| editor.prg:2093 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
+| editor.prg:2095 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
+| editor.prg:2100 | `if nI + nNeed > nLen` | Pendiente vinculo |
+| editor.prg:2106 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
+| editor.prg:2114 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
+| editor.prg:2131 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
+| editor.prg:2135 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
+| editor.prg:2154 | `case K_UP` | Pendiente vinculo |
+| editor.prg:2155 | `case K_DOWN` | Pendiente vinculo |
+| editor.prg:2156 | `case K_LEFT` | Pendiente vinculo |
+| editor.prg:2157 | `case K_RIGHT` | Pendiente vinculo |
+| editor.prg:2158 | `case K_HOME` | Pendiente vinculo |
+| editor.prg:2159 | `case K_END` | Pendiente vinculo |
+| editor.prg:2160 | `case K_PGUP` | Pendiente vinculo |
+| editor.prg:2161 | `case K_PGDN` | Pendiente vinculo |
+| editor.prg:2162 | `case K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:2163 | `case K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:2175 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
+| editor.prg:2181 | `CASE lBlock` | Pendiente vinculo |
+| editor.prg:2182 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
+| editor.prg:2187 | `CASE !Empty(q)` | Pendiente vinculo |
+| editor.prg:2188 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
+| editor.prg:2190 | `ELSEIF c == q` | Pendiente vinculo |
+| editor.prg:2194 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
+| editor.prg:2197 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
+| editor.prg:2226 | `if Upper(Left(c,7)) != "ENDTEXT"` | Pendiente vinculo |
+| editor.prg:2236 | `if hb_defaultValue(lIn,.F.)` | Pendiente vinculo |
+| editor.prg:2238 | `if n==0` | Pendiente vinculo |
+| editor.prg:2245 | `if n==0` | Pendiente vinculo |
+| editor.prg:2250 | `if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"` | Pendiente vinculo |
+| editor.prg:2255 | `if Left(c,2)=="//" .or. Left(c,2)=="&&"` | Pendiente vinculo |
+| editor.prg:2257 | `elseif Left(c,2)=="/*"` | Pendiente vinculo |
+| editor.prg:2259 | `if n==0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1563 | `IF ::lAnimate` | Pendiente vinculo |
 | hbdebug/debugger.prg:1564 | `IF ::nSpeed != 0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1567 | `IF __dbgInvokeDebug()  // NextKey() == K_ALT_D` | Pendiente vinculo |

@@ -66,20 +66,19 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre17:43 Q318: candidato focal C62,
-sourcea9b21dc9e0846a00825afe2fdf4f67e5134c07f1,
-bin4d537aeb46c86053a443c2311b53716762756d42131dc1d75caf2011c1d41584.
-Q316CtrlT con rango activo elimina sólo selección y no palabra tras cursor;
-limpiaMARK y conserva Undo/Redo/typingposterior. C61baseline1PASS3FAIL;
-C62cincoPTY29checks y modelo13PASS, par nativo1202x762 inspeccionado. Modelo
-inicial12PASS1FAIL por overstrikefixture, corregidoinsertmode y retenido.
-Q317arnés postexport16checksreverse/TAB/UTF8/wholelineBP PASS, sin producto nuevo.
-Q31837modelos GTSTD fresh del sourcedd9b373 limpioPASS. No37modosIDE ni
-certificados del binarioC62; globalVM/inputhook caracterizan límites.
+Corte 1 noviembre17:51 Q322: candidato focal C63,
+source89f6eb5bbd335c2ca37ed1e1f8718b55290210de,
+bin9b49b783fe8176f915825a8b4570b0b7cc82d5231e62576835e7b8f9c1816d6a.
+Q320CtrlT reconoceTABraw como separador, no borra palabra siguiente. C62baseline
+1PASS2FAIL; C63cincomodosPTY23checksPASS, modelos18DeleteWord/161EOL/210repaint,
+par nativo1202x762 inspeccionado. Q321arnés postexport22modelo/6PTYchecksPASS:
+virtualEOL/actualEOL/empty/redo/clipboard/nojournal/nofalseprompt sin producto nuevo.
+Q32237modelos GTSTD fresh del source584c00b limpioPASS. No37modosIDE ni
+certificados del binarioC63; globalVM/inputhook caracterizan límites.
 C61identificado fuentef63e189288ae03122f892e0edccefc4129452503,
 bine0399cb224f06c707b228d5d3291e3957a81bccd22278de355ac02f00e325c43:
-About/catálogoQ314/ldd/8smokes/6BPmodos32checks PASS, no heredados aC62.
-Q319docs posteriores no embebidos en C62 ni C61. No sumar fuentes/binarios
+About/catálogoQ314/ldd/8smokes/6BPmodos32checks PASS, no heredados aC63.
+Q323docs posteriores no embebidos en C63 ni C61. No sumar fuentes/binarios
 como matriz. Sin fullpreprocessor/customstream/navcontinuation/Windows/release/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
@@ -1084,3 +1083,13 @@ insertmodecorrige. Q317postexportreverse/TAB/UTF8/wholelineBP16checksPASS.
 Recibos linux-delete-word-selection-q316.json y linux-delete-word-selection-guards-q317.json.
 Q31837modelosGTSTD sourcedd9b373 limpioPASS, recibo linux-model-baseline-q318.json.
 Q319aceptación/inventario/catálogo reconciliados, no rebuild sólo docs ni Windows/hito.
+
+### Seguimiento Q320-Q323 (1 noviembre 2026)
+
+Q320CtrlT tomabaTAB como parte de palabra y borraba siguiente palabra hastaespacio.
+Baseline1PASS2FAIL; C63cincomodosPTY23checksPASS, modelos18DeleteWord/161EOL/
+210repaint y par nativo completo inspeccionado. Recibo linux-delete-word-tab-boundary-q320.json.
+Q321postexport22modelo/6PTYchecksPASS no-op virtualEOL/actualEOL/empty/redo/
+clipboard/nojournal/nofalseprompt, recibo linux-delete-word-noop-q321.json.
+Q32237modelosGTSTD source584c00b limpioPASS, recibo linux-model-baseline-q322.json.
+Q323aceptación/inventario/catálogo actualizados, no rebuild sólo docs ni Windows/hito.
