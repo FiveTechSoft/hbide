@@ -1,0 +1,43 @@
+{
+  "scope": "C92 fresh four boundedM4 modes, generated runtime helper distinct from official IDE. Mixed23/GetValidVeto10/ComboClipboard9/InspectorSmall10 expected; read logs authoritative",
+  "source": "cdac56d54fd36c416678734e5ca94ba2595607a4",
+  "binary_sha256": "d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb",
+  "helper_sources": {
+    "hbwindow.prg": {
+      "checkout_sha256": "0809fc6d7ab10372e7db9333601c7e701976144f875853c5b81482bd9f8fd9b2",
+      "candidate_sha256": "0809fc6d7ab10372e7db9333601c7e701976144f875853c5b81482bd9f8fd9b2"
+    },
+    "hbmenu.prg": {
+      "checkout_sha256": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+      "candidate_sha256": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b"
+    },
+    "hbbutton.prg": {
+      "checkout_sha256": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+      "candidate_sha256": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708"
+    },
+    "hbgetu.prg": {
+      "checkout_sha256": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9",
+      "candidate_sha256": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+    }
+  },
+  "harness_checkout": "029041126e58fa1b9f49751386586e44191ed2e8",
+  "results": {
+    "mixed": {
+      "test_sha256": "3155aba992e0e9a2e6e2237c74c5065f04b1f715499d17320ef88bb8a6278a4c",
+      "log": "PASS F9 generates committed mixed-control fixture\nPASS designer load preserves all twelve controls\nPASS actual mixed generated PRG compiles\nPASS escape runtime mixed dialog visible\nPASS escape runtime returns and writes bound values\nPASS escape mixed GET fields retain independent input\nPASS escape checkbox state independent\nPASS escape unvisited selectors keep defaults\nPASS save runtime mixed dialog visible\nPASS save runtime returns and writes bound values\nPASS save mixed GET fields retain independent input\nPASS save checkbox state independent\nPASS save unvisited selectors keep defaults\nPASS save actual button action returns expected flag\nPASS cancel runtime mixed dialog visible\nPASS cancel runtime returns and writes bound values\nPASS cancel mixed GET fields retain independent input\nPASS cancel checkbox state independent\nPASS cancel unvisited selectors keep defaults\nPASS cancel actual button action returns expected flag\nPASS selectors runtime mixed dialog visible\nPASS selectors runtime returns and writes bound values\nPASS combo radio and list change independent bindings\nTOTAL 23 PASS 0 FAIL; evidence /tmp/hbide-source-run-eviby5ct\n"
+    },
+    "valid-veto": {
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS get sentinel initially not entered\nPASS get first VALID returns false\nPASS get false VALID prevents sentinel entry\nPASS get false VALID keeps runtime active\nPASS get second VALID returns true\nPASS get true VALID enters sentinel\nPASS get true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-9h6f3dnp\n"
+    },
+    "test_designer_clipboard_combo_runtime_pty.py": {
+      "test_sha256": "f7545a0827f8646d3a3dafab2dc0836186b04620c599cd9283e07937bb064c98",
+      "log": "PASS pasted ComboBox binding case-insensitively distinct\nPASS pasted ComboBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ComboBox artifact compiles\nPASS first ComboBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ComboBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-sbwt6jxw\n"
+    },
+    "test_designer_inspector_close_pty.py": {
+      "test_sha256": "927131481c688e8009f6bf6c74054f78b01c613ecb4ff792521f307bc7575eee",
+      "log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS title centered in 31-column panel\nPASS left header close hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-1k_hbfzk\n"
+    }
+  },
+  "limits": "No fullmatrix/models/allcontrols/nativepixels/Windows/install/license or inherited prioracceptance"
+}
