@@ -6105,3 +6105,37 @@ bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48 intacto.
 Nuevos documentos/catálogo no están embebidos en C87; no build por docs.
 Q455 consolida esta evidencia y catálogo34byteexact, sin nuevos píxeles,
 fullmatrix o cierre. Cada receipt Q450-Q454 conserva alcance y fallos previos.
+
+### Q457-Q462 (1 noviembre 2026): selección y corrección RadioGroup
+
+Q457 C87wheel con palabra marcada: down extiende endpoint a segunda fila;
+down/up contrae palabra, typing/Undo/Redo CRLFexactos, dosmodos9checksPASS.
+Q458 añade UTF8host/terminal, café tras TAB, BOM/mixedEOL, dosmodos9PASS.
+InitialCPR40;1 del harness anunciaba terminal sin avanceUTF8 y pintaba caf?;
+CPR1;2 como suiteUTF8 existente corrige fixture, no producto. Logs retenidos.
+Q459 actualF8key forward/reverse across short EOL: virtualcol11, typing elimina
+frontera física sin padding; Undo/Redoexact,7PASS. Caracterización de comportamiento
+existente, no cambio de política. No se siguen variantes wheel equivalentes.
+
+Q460 sí reproduce defecto: Compiler Options caption y bullet MSVC no cambian GCC
+en C87, checkboxes sí. HitGetAt RADIOGROUP buscaba borde nativo aunque Options
+oculta ese box y pinta grupo titulado aparte. Fix usa hitTest positivo de item y
+value públicos1based, evita inferir geometría o marcador desde píxeles. Incluye
+primer item aunque nR-row-1 sea negativo. No cambia ListBox ni toolchain.
+C88oficial nuevo, fuentee32c6ece0a8d461f04f7244eb451e378211c7f14,
+bin e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38.
+Ocho smokesfresh/About/ldd/docs34PASS; CompilerMouse9 vsbaselinefallo,
+CompilerKeyboard14,Display9,generatedRadio9PASS. No hereda aceptación C87.
+Native1202x762before/afterinspeccionados: mismoclickMSVCantesGCC/ahoraMSVC,
+status/lowerborders completos. Initialvisualy294 seleccionó Borland en C88
+(correcto para esacoordenada); recaptura y277 sobre MSVC, no defecto adicional.
+Probe Helpmenubar y fallos previos quedan en receiptsQ460.
+
+Para compilar sin mezclar copias independientes se usa gitarchive tar.gz con
+archive_file/archive_format/hash en manifiesto, rebuild acepta formatolegacy
+source.tar o nuevocomprimido y rechaza traversal/nombre desconocido/falta/tamper.
+Nueve rebuildguards y cuatro preflightguardsPASS; no revisión de redistribución.
+Q461 último MinGW64 a primeroGCC por mouse llega argvexacto:13checksPASS,
+incluye9checks repetidosQ460 y4adicionales, no13featuresnuevas. Q462docs/catalog
+posteriores no embebidosC88. Matrizcompleta/modelos/Windows/install/licencias,
+políticas pendientes y cierreM0-M6 siguen abiertos.
