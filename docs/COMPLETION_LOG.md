@@ -6393,3 +6393,22 @@ C95 source1cdedd93da118bcdb33866d574943a784a00c0f6,
 bin112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845 intacto.
 Docs posteriores no embebidos en C95; sin build por docs ni retiradas nuevas.
 No nuevos pixeles/fullmatrix/models/Windows/install/license/cierre de hitos.
+
+
+### Q521-Q522 (2 noviembre 2026): miembro literal HBP portable, C96 propio
+
+C95 no resuelve sub\source.prg que hbmk2 real compila exit0 (producto source,
+no plain). Baseline1PASS2FAIL, bytes exactos. Fix Open usa hb_DirSepToOS solo
+sobre cResolved al resolver miembro literal; token/HBP y diagnosticos intactos.
+C96sourceea630625ac5cab04a30a1f17fae3ee5016e0d7e2,
+bin861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9.
+Own8smokes/About/ldd/docs34/portable3-space3-native3-horizontal4-ProjectMouse11
+PASS; modelo project recompilado exit0/sentinelPASS separado. Primer mouse sin
+PATH no hallo compilador; corregido, fallo inicial retenido. Capturas nativas
+1202x762 C95 !missing/C96 resolved y editorPORTABLE_MEMBER inspeccionadas,
+bordes/status enteros. No herencia C95/fullmatrix/Windows/license/hito cerrado.
+C75-C77 lote autorizado preservado independiente reversible SHA-size-mode-
+mtime-uid-gid-inventory/full decompression/originalrecheck antes de retirar
+solo expandido, sin hardlinks/mezcla. Archivos10871314/10882040/10883825bytes,
+1442/1451/1452entries. Paro613MiB, tras build391MiB; no mas retiradas.
+Q522docs posteriores no embebidos C96, no build solo docs, politicas intactas.

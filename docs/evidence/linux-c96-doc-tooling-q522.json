@@ -1,0 +1,14 @@
+{
+  "scope": "C96 post-binary documentation/tooling only; no inherited runtime",
+  "catalogue": "34 byte-exact",
+  "logs": {
+    "build_receipt.log": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "candidate_doc_preflight.log": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.331s\n\nOK\n{\n  \"ok\": false,\n  \"source\": \"fa8aa5bd981305172fb741ee32bb87f56f30d2aa\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpgj4y0ez9/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"03e04e7c92e026655a77d976552fc225570f0c40\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpwp7kejob/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"7d785d5701240228a07e6af780a68e341ea3810f\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpdhnq443t/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"4d4b5c91ee0b8aa3f00d83d2f7a289d80e393ad7\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpmu01l1xr/candidate/manifest.json\"\n}\n",
+    "completion_guards.log": "probe.py FAIL\n.Results: /tmp/tmp_np99u1o/out/results.json\nprobe.py PASS\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.Results: /tmp/tmpy6qomgwb/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmplxdowtqt/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmpv0avbt99/out/results.json\nprobe.py FAIL\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\nResults: /tmp/tmp0xvsibjz/out/results.json\n",
+    "completion_inventory.log": "........................................................\n----------------------------------------------------------------------\nRan 56 tests in 0.652s\n\nOK\n",
+    "distribution_notices.log": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.017s\n\nOK\n",
+    "embed_help_docs.log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n",
+    "foreign_root_guard.log": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.005s\n\nOK\n",
+    "linux_rebuild_guard.log": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.010s\n\nOK\n"
+  }
+}

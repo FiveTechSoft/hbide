@@ -66,6 +66,30 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 2 noviembre00:52 Q521: ultimo candidato aceptado en alcance focal **C96**,
+fuente `ea630625ac5cab04a30a1f17fae3ee5016e0d7e2`,
+bin `861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9`.
+HBP valido con miembro sub\source.prg compila en hbmk2 real, pero C95 lo
+marcaba missing y Enter no abria sub/source.prg existente (baseline1PASS2FAIL).
+C96 normaliza separadores solo al resolver miembros literales de Open con
+hb_DirSepToOS: conserva token y bytes HBP, no cambia parser de diagnosticos.
+Own8smokes/About/ldd/docs34 PASS; portable3/spaces3/native3/horizontal4/
+ProjectMouse11 PASS. Modelo project recompilado exit0/sentinelPASS separado
+ del IDE. Visual nativa1202x762 antes !missing/despues ruta resuelta y editor
+PORTABLE_MEMBER inspeccionada con bordes/status completos. Primer ls esperaba
+nombre plain pero hbmk2 produce source; primer ProjectMouse sin PATH compilador
+fallo y se repitio con PATH correcto, logs iniciales conservados.
+No hereda matriz C95/Windows/install/license ni cierra hitos o politicas.
+C95 conservado. C75-C77 preservados reversiblemente uno por uno con SHA/size/
+mode/mtime/uid/gid/inventario y recheck original completos antes de retirar
+solo copias expandidas redundantes; originales/binarios/logs intactos.
+Lote detenido al alcanzar613MiB; tras C96 reserva391MiB. No mas retiradas.
+Q522 docs posteriores no embebidos C96; no build por docs. Siguiente regresion
+C96 identificada o hueco funcional distinto, sin variantes equivalentes.
+Gates y politicas pendientes intactos.
+
+Historico anterior, no evidencia heredada por C96:
+
 Corte 2 noviembre00:39 Q516: último candidato aceptado en alcance focal **C95**,
 fuente `1cdedd93da118bcdb33866d574943a784a00c0f6`,
 bin `112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845`.
