@@ -116,9 +116,9 @@ try:
     send(b'\x1bf');send(b'o');send(str(target).encode()+b'\r',1)
     check('Open requested fixture','CLASS Demo' in scr.text())
     menu(b'u')
-    check('Picker includes implicit implementation, excludes member','Demo:Ping' in scr.text() and (nav_count+'/'+nav_count) in scr.text())
+    check('Picker includes DECLARED implementation, excludes member','Demo:Ping' in scr.text() and (nav_count+'/'+nav_count) in scr.text())
     send(b'Demo:Ping\r');send(b'X')
-    saved('Picker jumps to implicit implementation after ENDCLASS',original.replace(b'ENDCLASS\n'+nav_decl,b'ENDCLASS\nX'+nav_decl))
+    saved('Picker jumps to DECLARED implementation after ENDCLASS',original.replace(b'ENDCLASS\n'+nav_decl,b'ENDCLASS\nX'+nav_decl))
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
