@@ -187,7 +187,7 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertNotIn('acceptance',self.routes[0])
     def test_ctrl_g_delete_identity_route_linked(self):
         linked=[r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance' in r]
-        self.assertEqual(len(linked),8)
+        self.assertEqual(len(linked),10)
         row=next(r for r in linked if r['acceptance_id']=='IDE-KEY-GOTOFUNCTION-CTRL-G')
         self.assertEqual(row['source'],'hbide.prg')
         self.assertIn('hb_keyExt( nKey ) != HB_KX_DEL',row['condition'])
@@ -237,6 +237,17 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertEqual(row['condition'],'case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )')
         self.assertIn('test_saveall_conflict_reload_pty.py',row['acceptance']['tests'])
         self.assertIn('reloaded separately',row['acceptance']['contract'])
+    def test_alt_diagnostic_routes_are_exact_and_bounded(self):
+        linked={r['acceptance_id']:r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance_id' in r}
+        for key,action in [('F8','NEXT'),('F7','PREVIOUS')]:
+            row=linked['IDE-KEY-'+action+'-MESSAGE-ALT-'+key]
+            self.assertEqual(row['source'],'hbide.prg')
+            self.assertEqual(row['condition'],f'case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_{key}, HB_KF_ALT, K_ALT_{key} )')
+            self.assertIn('test_nav_pty.py',row['acceptance']['tests'])
+            self.assertIn('parent menu-closed guard remains separate',row['acceptance']['contract'])
+            self.assertIn('Not all diagnostic kinds/files',row['acceptance']['contract'])
+        self.assertIn('test_message_selection_pty.py',linked['IDE-KEY-NEXT-MESSAGE-ALT-F8']['acceptance']['tests'])
+
     def test_missing_route_fails_closed(self):
         broken={k:dict(v,condition='case nKey == K_NONEXISTENT') for k,v in self.specs.items()}
         with self.assertRaisesRegex(ValueError,'exactly one route'):audit.link_dispatch_contracts(self.routes,broken)
