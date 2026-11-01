@@ -1,0 +1,53 @@
+{
+  "source": "87222cbcada24332b0088889b1f34b59585b54f0",
+  "binary_sha256": "18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be",
+  "results": {
+    "test_missing_compiler_pty.py": {
+      "exit": 0,
+      "log": "PASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-yc_2hct0\n",
+      "args": [],
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "seconds": 6.327258586883545,
+      "binary_unchanged": true
+    },
+    "test_missing_compiler_pty.py--failed-output": {
+      "exit": 0,
+      "log": "PASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 13 PASS 0 FAIL; evidence /tmp/hbide-source-run-kvo1j0tb\n",
+      "args": [
+        "--failed-output"
+      ],
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "seconds": 6.3203418254852295,
+      "binary_unchanged": true
+    },
+    "test_missing_compiler_pty.py--missing-output": {
+      "exit": 0,
+      "log": "PASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 13 PASS 0 FAIL; evidence /tmp/hbide-source-run-jau31rcm\n",
+      "args": [
+        "--missing-output"
+      ],
+      "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+      "seconds": 6.32430362701416,
+      "binary_unchanged": true
+    },
+    "test_external_changes_pty.py--literal": {
+      "exit": 0,
+      "log": "PASS clean external change reloads actual disk content\nPASS Keep mine still asks before overwrite; Cancel preserves disk and buffer\nPASS explicit overwrite saves buffer and backs up external version byte-exact\nPASS deleted file Cancel does not recreate or discard buffer\nPASS explicit Recreate restores buffer and preserves last external backup\n",
+      "args": [
+        "--literal"
+      ],
+      "test_sha256": "f3c5115b2aa248e1f37a655aba7f3258a8eb5b8dac5ca0c7d3fe2a18001979ac",
+      "seconds": 15.613400220870972,
+      "binary_unchanged": true
+    },
+    "test_clipboard_multidoc_pty.py": {
+      "exit": 0,
+      "log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste uses source clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores pasted bytes\nPASS source document remained unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-atkf78av\n",
+      "args": [],
+      "test_sha256": "37c53b88e21c615212a8f158592175b73b27f3b1b23539b5533dd62b973233b1",
+      "seconds": 11.66825819015503,
+      "binary_unchanged": true
+    }
+  },
+  "scope": "Five independent critical modes on exact C73 binary, missingcompiler/failedoutput/successwithoutoutput plus literalexternalchange and clipboardmultidoc. No productbuild/pixels/fullmatrix/Windows/install/license/hito."
+}
