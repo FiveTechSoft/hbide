@@ -10,13 +10,22 @@
 // CLASS cls (implementation form only), and CLASS name. Commented-out lines
 // (//, *, &&, /* */) and #pragma begindump C blocks are skipped.
 FUNCTION HBIDE_ScanProcs( cText )
-   LOCAL aOut := {}, aLines, cLine, cL, nLine := 0, lBlock := .F., lDump := .F., cBlockContext := ""
+   LOCAL aOut := {}, aLines, cLine, cL, nLine := 0, lBlock := .F., lDump := .F., lText := .F., cBlockContext := ""
    LOCAL aTok, cT1, cT2, cName, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine, cModifier
 
    cText := StrTran( StrTran( cText, Chr( 13 ) + Chr( 10 ), Chr( 10 ) ), Chr( 13 ), Chr( 10 ) )
    aLines := hb_ATokens( cText, Chr( 10 ) )
    FOR EACH cLine IN aLines
       nLine++
+      // Standard bare TEXT/ENDTEXT contents are literal physical lines,
+      // not Harbour comments or declarations. Inspect its raw terminator
+      // before letting any payload affect the normal lexical state.
+      IF lText
+         IF HBIDE_NavEndText( cLine )
+            lText := .F.
+         ENDIF
+         LOOP
+      ENDIF
       // C dump contents have their own lexical rules. Do not let an
       // embedded C comment leak into the Harbour scanner after enddump.
       IF lDump
@@ -30,6 +39,11 @@ FUNCTION HBIDE_ScanProcs( cText )
       cL := HBIDE_NavCode( cLine, @lBlock, @cBlockContext )
       cL := AllTrim( StrTran( cL, Chr( 9 ), " " ) )
       IF Empty( cL )
+         LOOP
+      ENDIF
+      IF Upper( cL ) == "TEXT"
+         cPending := ""
+         lText := .T.
          LOOP
       ENDIF
       IF Left( cL, 1 ) == "#"
@@ -171,6 +185,17 @@ STATIC FUNCTION HBIDE_NavEndDump( cLine )
    c := LTrim( SubStr( c, 8 ) )
    RETURN Empty( c ) .OR. Left( c, 1 ) == ";" .OR. ;
       Left( c, 2 ) == "//" .OR. Left( c, 2 ) == "&&" .OR. Left( c, 2 ) == "/*"
+
+// Same bounded raw command boundary as ENDDUMP. Macro-defined TEXT
+// commands and custom stream pragmas remain outside this scanner's scope.
+STATIC FUNCTION HBIDE_NavEndText( cLine )
+   LOCAL c := AllTrim( StrTran(cLine,Chr(9)," ") )
+   IF Upper(Left(c,7)) != "ENDTEXT"
+      RETURN .F.
+   ENDIF
+   c := LTrim(SubStr(c,8))
+   RETURN Empty(c) .OR. Left(c,1) == ";" .OR. ;
+      Left(c,2) == "//" .OR. Left(c,2) == "&&" .OR. Left(c,2) == "/*"
 
 // Physical-line NOTE comment only, not a NOTE-prefixed identifier.
 STATIC FUNCTION HBIDE_NavNoteLine( cLine )

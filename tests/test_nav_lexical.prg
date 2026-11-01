@@ -129,6 +129,18 @@ procedure Main()
  next
  a:=HBIDE_ScanProcs('CLASS Demo'+hb_eol()+'METHOD Ping( CLASS )'+hb_eol()+'ENDCLASS')
  Check(Len(a)==1.and.a[1,1]=='Demo','member CLASS parameter is not implementation',@nPass,@nFail)
+ for each c in { 'ENDTEXT', ' endtext // done', Chr(9)+'ENDTEXT && done', 'ENDTEXT /* done */' }
+ a:=HBIDE_ScanProcs('procedure Main()'+hb_eol()+'TEXT'+hb_eol()+'function Phantom()'+hb_eol()+'/* raw'+hb_eol()+c+hb_eol()+'return'+hb_eol()+'function Real()')
+ Check(Len(a)==2.and.a[2,1]=='Real'.and.a[2,3]==7,'TEXT payload isolated until raw terminator: '+c,@nPass,@nFail)
+ next
+ for each c in { 'ENDTEXTextra', '// ENDTEXT', 'ENDTEXT bad' }
+ a:=HBIDE_ScanProcs('TEXT'+hb_eol()+c+hb_eol()+'function Phantom()'+hb_eol()+'ENDTEXT'+hb_eol()+'function Real()')
+ Check(Len(a)==1.and.a[1,1]=='Real'.and.a[1,3]==5,'nonterminator remains TEXT payload: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('TEXT := 1'+hb_eol()+'function Real()')
+ Check(Len(a)==1.and.a[1,1]=='Real','TEXT identifier assignment does not start literal block',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('// TEXT'+hb_eol()+'function Real()')
+ Check(Len(a)==1.and.a[1,1]=='Real','commented TEXT is inert',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return
