@@ -6363,3 +6363,15 @@ modelos. Revisiónclipboard no halló defecto nuevo confirmado, se paran variant
 C95bin112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845 intacto.
 Q512docs posteriores no embebidosC95; no build sólo docs. No píxeles nuevos,
 matriz/Windows/install/license/Unicodegeneral ni cierre de hitos/políticas.
+
+
+### Q513-Q516 (2 noviembre 2026): M1/M2 frescos C95 acotados
+
+Q513SaveAllpartialfail5/refusedSaveAscrashrecover21/conflictCancel/ReloadPASS.
+Q514deepmixedEOL/deepUTF8hostBOM/Compare25x80PASS; snapshots read-only/reopen
+refresh/Laterconservabytesdocumento. Q515Projecthorizontal4/Projectmouse11/
+promotionfailure9/explicitretry15/missingoutputdiagnostic17PASS. Cada receipt
+con hashes/logs y binario oficial C95 intacto, no herencia candidatos previos.
+No allfilesystems/recovery/DBLinternal/geometry/Cancelpolicy/pixels nuevos/
+fullmatrix/Windows/install/license ni cierre de hitos. Q516docs posteriores no
+embebidosC95, no build sólo docs. No nuevas retiradas/consumo de reserva por build.
