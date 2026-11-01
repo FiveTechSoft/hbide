@@ -1,0 +1,181 @@
+{
+  "scope": "C25 temporary Linux candidate, not release/install/license/Windows/fullmatrix acceptance",
+  "manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "48ec271ca033947b80d21b5e27319700840aef25",
+    "archive_sha256": "58a3e52a410616e0425e53670ed164cf8aeed124acd9edc1b59e6fef548d2696",
+    "dirty": false,
+    "started": 1793510604.197983,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "c7f969663e6fc86524071e802336088a8ccfcc85fca7b0a07cbb3d880d0f1baa",
+    "release_status": "not cleared; source notice review required",
+    "document_check": {
+      "exit": 0,
+      "paths_sha256": "a9ad0b3a5c47771afa608f0f9b419e12fb6491c24b00f1af4ebba47cff6c1e1b",
+      "count": 34
+    },
+    "unstripped_sha256": "20baa4f3af096c7f239d301243f1aad1a57b7893b4b21c27626390cdaeb105a8",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793510701.86179
+  },
+  "recent": [
+    {
+      "test": "test_designer_inspector_shrink_pty.py",
+      "args": [
+        "--small"
+      ],
+      "exit": 0,
+      "checks": 7,
+      "failures": 0,
+      "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc",
+      "test_sha256": "c48a484a86ae4f88c757ecb1ff3ba44e357d6547b624e5d7e3ba3c141e2461f1",
+      "log": "/tmp/hbide-candidate-c25/recent-0.log"
+    },
+    {
+      "test": "test_designer_inline_all_events_runtime_pty.py",
+      "args": [
+        "--kind",
+        "button"
+      ],
+      "exit": 0,
+      "checks": 7,
+      "failures": 0,
+      "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc",
+      "test_sha256": "e7dbe916034d09d55e77dc282893e953a6b425d72a3033e05d70315571464a07",
+      "log": "/tmp/hbide-candidate-c25/recent-1.log"
+    },
+    {
+      "test": "test_designer_inline_valid_veto_runtime_pty.py",
+      "args": [
+        "--kind",
+        "button"
+      ],
+      "exit": 0,
+      "checks": 10,
+      "failures": 0,
+      "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc",
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "log": "/tmp/hbide-candidate-c25/recent-2.log"
+    },
+    {
+      "test": "test_designer_inline_when_veto_runtime_pty.py",
+      "args": [
+        "--kind",
+        "combobox"
+      ],
+      "exit": 0,
+      "checks": 8,
+      "failures": 0,
+      "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc",
+      "test_sha256": "358c6864329b349fda4d51a1f5e7482ae7fded9a1bdcab48e5d770bcdc3e216e",
+      "log": "/tmp/hbide-candidate-c25/recent-3.log"
+    },
+    {
+      "test": "test_designer_inline_all_skipped_runtime_pty.py",
+      "args": [
+        "--kind",
+        "get"
+      ],
+      "exit": 0,
+      "checks": 6,
+      "failures": 0,
+      "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc",
+      "test_sha256": "691c0eeaa076340821317e56f8cdbc9b0e6829173ebb825ed27070a3318d05a8",
+      "log": "/tmp/hbide-candidate-c25/recent-4.log"
+    },
+    {
+      "test": "test_designer_dialog_colors_pty.py",
+      "args": [],
+      "exit": 0,
+      "checks": 17,
+      "failures": 0,
+      "binary_sha256": "e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc",
+      "test_sha256": "77022ca740ae51279a048695a713873715cf381093aaf0031e5aa5bcc0a55cf2",
+      "log": "/tmp/hbide-candidate-c25/recent-5.log"
+    }
+  ],
+  "recent_checks": 55,
+  "recent_logs": {
+    "test_designer_inspector_shrink_pty.py--small": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS dialog inspector selected\nPASS shorter inspector clears old State row\nPASS shorter inspector clears old Focus row\nPASS Combo inspector restored\nPASS selection only preserves JSON\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-zkea44l6\n",
+    "test_designer_inline_all_events_runtime_pty.py--kind button": "PASS button all inline events exact persisted\nPASS button actual F9 emits all inline events\nPASS generated inline-edited-control artifact compiles\nPASS enter control selection updates exact bound value\nPASS button enter inline when executes\nPASS button enter inline valid executes\nPASS button enter inline focus executes\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-1hedpp9u\n",
+    "test_designer_inline_valid_veto_runtime_pty.py--kind button": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS button sentinel initially not entered\nPASS button first VALID returns false\nPASS button false VALID prevents sentinel entry\nPASS button false VALID keeps runtime active\nPASS button second VALID returns true\nPASS button true VALID enters sentinel\nPASS button true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-x8ymafa1\n",
+    "test_designer_inline_when_veto_runtime_pty.py--kind combobox": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS combobox false WHEN evaluated\nPASS combobox false WHEN skips to sentinel\nPASS combobox rejected control focus not entered\nPASS combobox sentinel receives exact typing\nPASS combobox rejected binding unchanged\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-sen93v05\n",
+    "test_designer_inline_all_skipped_runtime_pty.py--kind get": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS get false WHEN evaluated\nPASS get all skipped form returns without input\nPASS get all skipped binding unchanged\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-gkcy3m6f\n",
+    "test_designer_dialog_colors_pty.py": "PASS dialog inspector visible\nPASS dialog colorback picker visible\nPASS dialog colorback picked F10 exact\nPASS dialog colorback Undo exact\nPASS dialog colorback Redo exact\nPASS dialog colorback Esc exact\nPASS dialog colortext picker visible\nPASS dialog colortext picked F10 exact\nPASS dialog colortext Undo exact\nPASS dialog colortext Redo exact\nPASS dialog colortext Esc exact\nPASS dialog colorfocus picker visible\nPASS dialog colorfocus picked F10 exact\nPASS dialog colorfocus Undo exact\nPASS dialog colorfocus Redo exact\nPASS dialog colorfocus Esc exact\nPASS dialog colors preserve every control\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-4hul_l6t\n"
+  },
+  "native": "Exact stripped candidate, actual IDE Display25x80 then Combo select/deselect10->7. Full pair inspected, no old field/border/handle residue, intended selected handle. Overlay rightdialog expected, outer lower borders complete.",
+  "captures": {
+    "hbide-c25-native-25-selected.png": "96bee6cd6f63b16633dbc440fff5720db8c0cf1ad22fe4e214e1a3d8e4695475",
+    "hbide-c25-native-25-deselected.png": "6680a1b0b21d00add20b7d27a97a6f1d0673d76691749de998dd99e028d6596f"
+  },
+  "limits": "8standard smokes plus6recent55checks. Not Q15541/fullIDE matrix inheritance, clean installation, Windows, license clearance, all layouts/gestures or M4/M5 closure."
+}

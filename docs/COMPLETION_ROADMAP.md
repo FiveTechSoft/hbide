@@ -627,3 +627,11 @@ Evidencia `docs/evidence/linux-designer-inline-valid-six-types-q159.json`.
 
 21enlacesruntimeporpar aparte depersistencia,con guardasidentidad/tipo/
 pruebaexistente. NoPASSactualniporcentaje,cierreM4/Windows niarreglo.
+
+
+### Seguimiento C25 (1 noviembre 2026)
+
+TemporalLinux48ec271/bine3298a29:8smokes+6recent55checks,ldd/preflight
+34docsPASS,nativepairactualIDE25x80inspeccionadosinrestos. No release/
+install/licencias/Windows/globalheredado/cierreM4M5. Evidencia
+`docs/evidence/linux-candidate-c25.json`.

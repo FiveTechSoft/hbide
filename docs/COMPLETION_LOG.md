@@ -4372,3 +4372,14 @@ visual/Windows/M4. Inventario ahora distingue persistencia de ejecución.
 
 Q160 final66guardasPASS(45inventario),34docs.
 Evidencia `docs/evidence/linux-designer-inspector-runtime-links-q160.json`.
+
+
+## 1 noviembre 2026: C25 candidato Linux temporal
+
+Export48ec271ca033947b80d21b5e27319700840aef25,binstripped
+e3298a299f703e470b189734eab178ad6b4d714bb7ad722e93d59e94576bc9fc.
+8smokesestandar+6recent55checksPASS enbinexacto,lddsinmissing,preflight
+34docsexportfuera.git. NativepairactualIDE25x80seleccion/deseleccion
+Comboinspeccionado,sinrestos,handleprevistoselected,marcoscompletos.
+Evidencia `docs/evidence/linux-candidate-c25.json`. No release/install/
+licencias/Windows/matrizglobalheredada/alllayouts/gestos/cierreM4M5.
