@@ -1705,3 +1705,21 @@ omitieron binaryarg y fallaron antesIDE; corregidas/repetidasPASS, iniciales
 retenidas y receiptintermedio544eb0e visible. No defectoproductoenestosruns.
 Q468 consolida docs/catálogo34byteexact, posterioresnoembebidosC88. No matriz
 completa/modelos/píxeles nuevos/Windows/install/licencias/cierre de hito.
+
+### Q470-Q474 (1 noviembre 2026): campos mouse y regresiones C88
+
+Q470 enlaza CompilerOptions mouse sólo campos probados y botones; guard nuevo
+excluye Strict/AutoRunmouseclaims,56inventoryunitsPASS. Q471 Displaymouse6PASS:
+Cancelpreserva40x120, third25x80/middle30x100/first40x120 caption+OK negocia
+dimensiones exactas, dosdocumentosUndo/savebytesexactos. No píxeles nuevos.
+Q472 freshC88M2fourmodes55PASS: promotionfailure9/retry15/missingoutputdiag17/
+RunArgumentsmodal14. Compilerfixturecontrolado y escenario retryexplícito,
+no promesa sinretry. Retainedoutput/path/backup/source/nooldlaunch y Scriptargv
+exactos. Q473 freshC88designerfourmodes52PASS: mixed--actions23/GETvalidveto10/
+ComboClipboard9/Inspector25x8010. Runtimehelpers checkoutaf9c552 idénticos a
+candidatefuente; identidad separada de IDE. Initialnombrevalidruntimeincorrecto
+falló antesIDE; listadoactualvalid_veto ejecutadoPASS, nota retenida.
+C88 fuentee32c6ece0a8d461f04f7244eb451e378211c7f14,
+bin e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38 intacto.
+Q474 consolida docs/catálogo34byteexact posteriores noembebidosC88; sin build
+por docs. No modelos nuevos/fullmatrix/Windows/install/licencia/cierre M0-M6.
