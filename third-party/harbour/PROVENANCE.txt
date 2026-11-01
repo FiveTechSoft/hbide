@@ -1,0 +1,24 @@
+Harbour upstream notice reference, not an hbide license declaration
+
+Source repository observed: https://github.com/harbour/core.git
+Source commit: 694428e1c12f726675b19324d62167fa77d68185
+Upstream path: LICENSE.txt
+Exact copy: LICENSE.upstream.txt
+SHA256: a9fe6deb24f0d29dfee442b6b6864d0ca30e7fefdffce331a0c1522d4b2c3095
+
+This file records the upstream text only. It does not select a license for
+hbide's own code or modifications, grant rights from their holders, or clear
+redistribution of any source or binary package. The upstream text contains
+separate compiler and library sections and other notices; it must not be
+presented as a blanket license for this repository.
+
+Fourteen vendored hbdebug sources refer to LICENSE.txt. That root reference
+remains missing. All fourteen first comment notices match the identified
+upstream files exactly. Four complete files are byte-identical; ten differ
+outside those notices. Those differences are not reviewed for ownership or
+licensing here. See docs/evidence/harbour-notice-provenance-q353.json for
+per-file hashes, paths, exact comparisons and committed-upstream checks.
+
+Open decisions: holders' terms for original code and modifications, correct
+scope and location of required notices, dependency and package review.
+No redistribution clearance follows from this reference copy.
