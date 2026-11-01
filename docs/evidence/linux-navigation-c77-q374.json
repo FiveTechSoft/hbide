@@ -1,0 +1,37 @@
+{
+  "scope": "Q374 C77 navigation focal acceptance only",
+  "source": "74db43fe4e4bc5dae5f54e4663a4ffb8e9d0abd9",
+  "binary_sha256": "b0ad4e6bb4ad5f5d87eef67111995dfdce3963c59745e2b101f543ea323beaeb",
+  "results": {
+    "test_nav_implicit_method_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-l2hf7ooc\n",
+      "binary_unchanged": true
+    },
+    "test_nav_declared_method_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-cm0vmb77\n",
+      "binary_unchanged": true
+    },
+    "test_nav_text_block_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-54ej_rav\n",
+      "binary_unchanged": true
+    },
+    "test_nav_declaration_continuation_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker includes continued Target declaration\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-60ntzcuf\n",
+      "binary_unchanged": true
+    },
+    "test_nav_procedure_class_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Picker qualifies PROCEDURE CLASS alias\nPASS Picker jumps to PROCEDURE CLASS implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-oalq0f46\n",
+      "binary_unchanged": true
+    }
+  },
+  "limitations": [
+    "Five scripts15checksPASS; no full matrix inherited",
+    "Declared-method legacy harness labels say implicit while fixture contains DECLARED METHOD; fixture/source inspection controls meaning",
+    "No product/buildIDE/models/pixels/Windows/install/license or milestone claim"
+  ]
+}
