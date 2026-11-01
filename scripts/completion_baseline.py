@@ -20,6 +20,10 @@ def run(name, args, cwd=ROOT, timeout=120):
             return 124
 
 cases = {
+    'delete-word-columns': ['tests/test_delete_word_columns.prg', 'editor.prg', 'safeio.prg', 'recovery.prg'],
+    'saved-history': ['tests/test_editor_saved_history.prg', 'editor.prg', 'safeio.prg', 'recovery.prg'],
+    'recovered-undo-dirty': ['tests/test_recovered_undo_dirty.prg', 'editor.prg', 'safeio.prg', 'recovery.prg'],
+    'undo-journal-cleanup': ['tests/test_undo_journal_cleanup.prg', 'editor.prg', 'safeio.prg', 'recovery.prg'],
     'diskstamp-literal': ['tests/test_diskstamp_literal.prg', 'editor.prg', 'safeio.prg', 'recovery.prg'],
     'debug-global-vm-contract': ['tests/test_debug_global_vm.prg'],
     'designer-inspector-repaint': ['tests/test_designer_inspector_repaint.prg', 'designer.prg', 'safeio.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
