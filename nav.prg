@@ -239,7 +239,7 @@ STATIC FUNCTION HBIDE_NavTextStart( cLine )
       RETURN .T.
    ENDIF
    IF Len(a) >= 3 .AND. a[1] == "TEXT" .AND. a[2] == "TO"
-      RETURN a[3] == "FILE" .OR. ( Len(a) == 3 .AND. a[3] == "PRINTER" )
+      RETURN a[3] == "FILE" .OR. ( Len(a) == 3 .AND. HBIDE_IsKw(a[3],"PRINTER") )
    ENDIF
    RETURN .F.
 

@@ -201,6 +201,14 @@ procedure Main()
  next
  a:=HBIDE_ScanProcs('TEXTCUSTOM ;'+hb_eol()+'function Real()')
  Check(Len(a)==1.and.a[1,1]=='Real','continued custom prefix does not absorb declaration',@nPass,@nFail)
+ for each c in {'PRIN','PRINT','PRINTE'}
+ a:=HBIDE_ScanProcs('procedure Main()'+hb_eol()+'TEXT TO '+c+hb_eol()+'function Phantom()'+hb_eol()+'/* literal'+hb_eol()+'ENDTEXT'+hb_eol()+'function Real()')
+ Check(Len(a)==2.and.a[2,1]=='Real','standard PRINTER abbreviation excludes payload: '+c,@nPass,@nFail)
+ next
+ for each c in {'PRI','PRINTERCUSTOM'}
+ a:=HBIDE_ScanProcs('TEXT TO '+c+hb_eol()+'function Real()')
+ Check(Len(a)==1.and.a[1,1]=='Real','nonstandard PRINTER token stays outside stream: '+c,@nPass,@nFail)
+ next
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return
