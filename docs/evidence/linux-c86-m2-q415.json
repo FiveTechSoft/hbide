@@ -1,0 +1,34 @@
+{
+  "scope": "Five bounded C86 M2 modes62checks",
+  "source": "81c06602b621616005bc9b2e45195fd9184f51a9",
+  "binary_sha256": "c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27",
+  "results": {
+    "missing": {
+      "exit": 0,
+      "log": "PASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-3gec3ffc\n",
+      "binary_unchanged": true
+    },
+    "failed-output": {
+      "exit": 0,
+      "log": "PASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 13 PASS 0 FAIL; evidence /tmp/hbide-source-run-9moaqgwe\n",
+      "binary_unchanged": true
+    },
+    "missing-output": {
+      "exit": 0,
+      "log": "PASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 13 PASS 0 FAIL; evidence /tmp/hbide-source-run-o21m9ndq\n",
+      "binary_unchanged": true
+    },
+    "empty-args": {
+      "exit": 0,
+      "log": "PASS start run1 retains empty argument positions\nPASS start editor remains usable\nPASS script run1 retains empty argument positions\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 retains empty argument positions\nPASS debug editor remains usable\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-tzp1mw7n\n",
+      "binary_unchanged": true
+    },
+    "project-messages": {
+      "exit": 0,
+      "log": "PASS boot caption noname\nPASS desktop opens after project open (no dirty docs)\nPASS real build fails (exit shown)\nPASS Messages lists parsed diagnostic bad1.prg:3\nPASS diagnostic jump opens bad1.prg\nPASS cursor lands on line 3\nPASS cursor lands on column 1\nPASS desktop closed after jump\nPASS buffer loaded clean from disk\nPASS cursor moved to line 1\nPASS buffer now dirty with z edit visible\nPASS jump returns to the already-open bad1.prg\nPASS dirty buffer preserved (z edit survives)\nPASS cursor back on line 3\nPASS disk file untouched (no silent save)\nPASS second source opens as its own doc\nPASS exactly two docs cycle (no duplicate)\nPASS IDE exits clean\nTOTAL 18 PASS 0 FAIL\n",
+      "binary_unchanged": true
+    }
+  },
+  "initial_invocation_error": "Initial missing harness setup had no hbmk2 in PATH, TypeError before IDE launch; log retained /tmp/hbide-q415/missing.log; rerun explicit compiler PATH",
+  "limits": "Controlled failure compilerfixtures in failed/missingoutput modes. No retry-free/fullmatrix/model/pixel/Windows/install/license/hitoclosure claims"
+}
