@@ -1,0 +1,68 @@
+{
+  "scope": "Q128 tooling guards only; mocked negative fixture outcomes expected, not real product failures. No product binary/PTY/models/pixels/Windows/global milestone.",
+  "source": "fd6d538818d38a58c16937549fd3279cefd20d56",
+  "tracked_changes": "",
+  "tracked_snapshot_sha256": "6c4af08bf81d4dde3a34690784600bea6284cd52f02c15a4edeeddd4a4b894d2",
+  "started": 1793497514.1634488,
+  "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+  "tests": {
+    "test_completion_guards.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "source_or_test_changed": false,
+      "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+      "log": "/tmp/hbide-guards-q128-clean/test_completion_guards.py.log",
+      "seconds": 0.203,
+      "log_text": "probe.py FAIL\nResults: /tmp/tmpb4ktor2o/out/results.json\n.probe.py PASS\nResults: /tmp/tmp55et4y8h/out/results.json\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.probe.py FAIL\nResults: /tmp/tmpnsplx3br/out/results.json\n.probe.py FAIL\nResults: /tmp/tmpj0qxiw6f/out/results.json\n.probe.py FAIL\nResults: /tmp/tmp0vtgio3_/out/results.json\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.008s\n\nOK\n"
+    },
+    "test_build_receipt.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "source_or_test_changed": false,
+      "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+      "log": "/tmp/hbide-guards-q128-clean/test_build_receipt.py.log",
+      "seconds": 0.203,
+      "log_text": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+    },
+    "test_completion_inventory.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "source_or_test_changed": false,
+      "test_sha256": "b4c03d198ec9ac6e952c19abaf776f9e58cbc5e8807cafbd24038987216c9ab1",
+      "log": "/tmp/hbide-guards-q128-clean/test_completion_inventory.py.log",
+      "seconds": 0.552,
+      "log_text": "....................................\n----------------------------------------------------------------------\nRan 36 tests in 0.350s\n\nOK\n"
+    },
+    "test_distribution_notices.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "source_or_test_changed": false,
+      "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+      "log": "/tmp/hbide-guards-q128-clean/test_distribution_notices.py.log",
+      "seconds": 0.202,
+      "log_text": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.009s\n\nOK\n"
+    },
+    "test_embed_help_docs.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "source_or_test_changed": false,
+      "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+      "log": "/tmp/hbide-guards-q128-clean/test_embed_help_docs.py.log",
+      "seconds": 0.202,
+      "log_text": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n"
+    },
+    "test_candidate_doc_preflight.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "source_or_test_changed": false,
+      "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+      "log": "/tmp/hbide-guards-q128-clean/test_candidate_doc_preflight.py.log",
+      "seconds": 0.352,
+      "log_text": "{\n  \"ok\": false,\n  \"source\": \"6d8e540b39c82c51d371ecd213763215ac39c580\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp_b8hliy2/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"54e9dbf1c4390b10485ca06190d82a58765b2f91\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp71wkwg6t/candidate/manifest.json\"\n}\n.\n----------------------------------------------------------------------\nRan 2 tests in 0.135s\n\nOK\n"
+    }
+  },
+  "ok": true,
+  "finished": 1793497515.8774488,
+  "numbered_unittests": 57,
+  "docs": "34byte-exactPASS"
+}

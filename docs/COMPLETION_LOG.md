@@ -3944,3 +3944,11 @@ trackedsnapshot,exits/failures/changechecks.Nonoverwriteoutput/60stimeout.
 Clean5suites51unittests(3+36+5+5+2)34docsPASSnofail/retry.
 linux-tooling-guards-q127.json.No productfix/PTY/models/pixels/candidate/
 Windows/globalmilestone.Notallpythonharnesses;doesnotclaimuntrackedcoverage.
+
+## Q128 - guard-runner negative outcomes
+
+Sourcefd6d538 adds6isolatedguards:cleanpass/nonzeroexit/printedfailure/
+changedtest/timeout/existingresultnonoverwrite. Mockfailure/timeoutreports
+areexpectedfixtures,notproductfailures. Includedinrunner:6suites57unittests
+34docsPASScleannofailure/retry. linux-tooling-guards-negative-q128.json.
+No productbinary/PTY/models/pixels/Windows/globalmilestone.
