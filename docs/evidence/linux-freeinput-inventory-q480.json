@@ -1,0 +1,80 @@
+{
+  "scope": "Q480 initial tooling:7groupsPASS inventory54PASS2FAIL because new freeinputmouseadds3branches (30,27linked) not old27. Updated denominator only, no removed assertions;56inventoryPASS final.",
+  "initial_results": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "4bde0914ff7169163b073dd0fe434a44a7c3bb16",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "12b2635d3d08c5d07b4954bd4bbc72cf29c3a819a4c7ee98ca412514da10d47c",
+    "started": 1793571624.680068,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "test_foreign_root_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "1e97d47fd21cd837401080f0cff716b3666d9706771eddb62f437bd34870f41a",
+        "log": "/tmp/hbide-q480-guards/test_foreign_root_guard.py.log",
+        "seconds": 0.227
+      },
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "abf3f8dfbedf96c021b141371ca5d58fe725269c0acc4b05dcb39fcc10e074bc",
+        "log": "/tmp/hbide-q480-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.275
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q480-guards/test_completion_guards.py.log",
+        "seconds": 0.225
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q480-guards/test_build_receipt.py.log",
+        "seconds": 0.224
+      },
+      "test_completion_inventory.py": {
+        "exit": 1,
+        "reported_failure": true,
+        "source_or_test_changed": false,
+        "test_sha256": "4fbe69aa114d1623d386cf07ce136311a904fb651da7554f8ca8f8a62a998ca6",
+        "log": "/tmp/hbide-q480-guards/test_completion_inventory.py.log",
+        "seconds": 0.882
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "62951fcdcd3c708f1bbf433cd97d6d160c8736d1fe628e89e24284b9dadc33a3",
+        "log": "/tmp/hbide-q480-guards/test_distribution_notices.py.log",
+        "seconds": 0.225
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q480-guards/test_embed_help_docs.py.log",
+        "seconds": 0.225
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "748bdd859802a6cb51418e98e9ffac879a94892690e9ea7500791cc691a9f08a",
+        "log": "/tmp/hbide-q480-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.575
+      }
+    },
+    "ok": false,
+    "finished": 1793571627.5391726
+  },
+  "initial_inventory_log": "..................F...........................F.........\n======================================================================\nFAIL: test_27_branch_links_are_not_exhaustive_gesture_acceptance (__main__.GestureContractLinks)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/sandbox/hbide/tests/test_completion_inventory.py\", line 408, in test_27_branch_links_are_not_exhaustive_gesture_acceptance\n    self.assertEqual(len(linked),27)\nAssertionError: 30 != 27\n\n======================================================================\nFAIL: test_bounded_event_branch_counts_and_identity (__main__.MouseRouteInventory)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/home/sandbox/hbide/tests/test_completion_inventory.py\", line 149, in test_bounded_event_branch_counts_and_identity\n    self.assertEqual(len(rows),27)\nAssertionError: 30 != 27\n\n----------------------------------------------------------------------\nRan 56 tests in 0.656s\n\nFAILED (failures=2)\n"
+}

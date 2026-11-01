@@ -6,45 +6,45 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 
 | ID | Menu | Accion | Fuente:linea | Conexion | Linux | Windows |
 | --- | --- | --- | --- | --- | --- | --- |
-| IDE-001 | File | New | hbide.prg:784 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-002 | File | Open... | hbide.prg:785 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-003 | File | Save           F2 | hbide.prg:786 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-004 | File | Save As... | hbide.prg:787 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-005 | File | Save All   Ctrl+F2 | hbide.prg:788 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-006 | File | Close | hbide.prg:789 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-007 | File | Exit | hbide.prg:791 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-008 | Edit | Undo           Ctrl+Z | hbide.prg:796 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-009 | Edit | Redo           Ctrl+U | hbide.prg:797 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-010 | Edit | Copy | hbide.prg:799 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-011 | Edit | Cut | hbide.prg:800 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-012 | Edit | Paste | hbide.prg:801 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-013 | Edit | Delete Line  Ctrl+Y | hbide.prg:803 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-014 | Edit | Duplicate Line | hbide.prg:804 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-015 | Edit | Find...         F5 | hbide.prg:806 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-016 | Edit | Repeat Last Find F3 | hbide.prg:807 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-017 | Edit | Replace... | hbide.prg:808 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-018 | Edit | Goto Line... | hbide.prg:810 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-019 | Edit | Go to Function... Ctrl+G | hbide.prg:811 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-020 | Project | Open .hbp... | hbide.prg:816 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-021 | Project | Sources / Build... | hbide.prg:817 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-022 | Project | Close project | hbide.prg:818 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-023 | Window | Next          Ctrl+F6 | hbide.prg:823 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-024 | Window | Previous  Ctrl+Shift+F6 | hbide.prg:824 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-025 | Window | Close | hbide.prg:825 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-026 | Window | List...           Alt+0 | hbide.prg:827 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-027 | Window | Messages... | hbide.prg:828 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-028 | Window | Next Message     Alt+F8 | hbide.prg:829 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-029 | Window | Previous Message Alt+F7 | hbide.prg:830 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-030 | Run | Start | hbide.prg:834 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-031 | Run | Script | hbide.prg:835 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-032 | Run | Debug | hbide.prg:836 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-033 | Run | Arguments... | hbide.prg:838 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-034 | Options | Compiler Flags... | hbide.prg:843 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-035 | Options | Display... | hbide.prg:844 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-036 | Options | Designer... | hbide.prg:846 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-037 | Help | Index | hbide.prg:851 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-038 | Help | Contents | hbide.prg:852 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
-| IDE-039 | Help | About... | hbide.prg:854 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-001 | File | New | hbide.prg:785 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-002 | File | Open... | hbide.prg:786 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-003 | File | Save           F2 | hbide.prg:787 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-004 | File | Save As... | hbide.prg:788 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-005 | File | Save All   Ctrl+F2 | hbide.prg:789 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-006 | File | Close | hbide.prg:790 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-007 | File | Exit | hbide.prg:792 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-008 | Edit | Undo           Ctrl+Z | hbide.prg:797 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-009 | Edit | Redo           Ctrl+U | hbide.prg:798 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-010 | Edit | Copy | hbide.prg:800 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-011 | Edit | Cut | hbide.prg:801 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-012 | Edit | Paste | hbide.prg:802 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-013 | Edit | Delete Line  Ctrl+Y | hbide.prg:804 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-014 | Edit | Duplicate Line | hbide.prg:805 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-015 | Edit | Find...         F5 | hbide.prg:807 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-016 | Edit | Repeat Last Find F3 | hbide.prg:808 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-017 | Edit | Replace... | hbide.prg:809 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-018 | Edit | Goto Line... | hbide.prg:811 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-019 | Edit | Go to Function... Ctrl+G | hbide.prg:812 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-020 | Project | Open .hbp... | hbide.prg:817 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-021 | Project | Sources / Build... | hbide.prg:818 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-022 | Project | Close project | hbide.prg:819 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-023 | Window | Next          Ctrl+F6 | hbide.prg:824 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-024 | Window | Previous  Ctrl+Shift+F6 | hbide.prg:825 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-025 | Window | Close | hbide.prg:826 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-026 | Window | List...           Alt+0 | hbide.prg:828 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-027 | Window | Messages... | hbide.prg:829 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-028 | Window | Next Message     Alt+F8 | hbide.prg:830 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-029 | Window | Previous Message Alt+F7 | hbide.prg:831 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-030 | Run | Start | hbide.prg:835 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-031 | Run | Script | hbide.prg:836 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-032 | Run | Debug | hbide.prg:837 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-033 | Run | Arguments... | hbide.prg:839 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-034 | Options | Compiler Flags... | hbide.prg:844 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-035 | Options | Display... | hbide.prg:845 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-036 | Options | Designer... | hbide.prg:847 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-037 | Help | Index | hbide.prg:852 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-038 | Help | Contents | hbide.prg:853 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
+| IDE-039 | Help | About... | hbide.prg:855 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-001 | File | Open... | hbdebug/dbgmenu.prg:78 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-002 | File | Resume | hbdebug/dbgmenu.prg:79 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
 | DBG-003 | File | OS Shell | hbdebug/dbgmenu.prg:80 | wired | Pruebas vinculadas; ver ledger | Fuente actual sin validar |
@@ -387,49 +387,49 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display/ProjectOpen/OpenFile/Sa
 
 | ID | Etiqueta / variable | Tipo | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- |
-| IDE-FIELD-GotoLine-nLine-1 | number: | value | hbide.prg:345 | Vinculo focal; ver alcance |
-| IDE-FIELD-GotoLine-lDummy-1 | &OK | pushbutton | hbide.prg:348 | Vinculo focal; ver alcance |
-| IDE-FIELD-GotoLine-lDummy-2 | &Cancel | pushbutton | hbide.prg:351 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-cCompiler-1 | cCompiler | radiogroup | hbide.prg:1885 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lWarnings-1 | &Warnings | checkbox | hbide.prg:1894 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDebug-1 | &Debug info | checkbox | hbide.prg:1900 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lStrict-1 | S&trict types | checkbox | hbide.prg:1906 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lIncremental-1 | &Incremental | checkbox | hbide.prg:1912 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lOptimize-1 | O&ptimize code | checkbox | hbide.prg:1919 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1925 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1932 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1936 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1940 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2080 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2083 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-cFind-1 | cFind | freeform_input | hbide.prg:2086 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-cReplace-1 | cReplace | freeform_input | hbide.prg:2093 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2137 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2140 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-cText-1 | cText | freeform_input | hbide.prg:2143 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-lDummy-1 | &OK | pushbutton | hbide.prg:2476 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-lDummy-2 | &Cancel | pushbutton | hbide.prg:2479 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2482 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:2997 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:3005 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:3009 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-cFileName-1 | cFileName | value | hbide.prg:1045 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1059 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-lDummy-1 | &OK | pushbutton | hbide.prg:1084 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-lDummy-2 | &Cancel | pushbutton | hbide.prg:1091 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-cFileName-1 | cFileName | value | hbide.prg:1240 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1254 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-lDummy-1 | &OK | pushbutton | hbide.prg:1279 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-lDummy-2 | &Cancel | pushbutton | hbide.prg:1286 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-cFileName-1 | cFileName | value | hbide.prg:1740 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-lDummy-1 | &OK | pushbutton | hbide.prg:1750 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-lDummy-2 | &Cancel | pushbutton | hbide.prg:1754 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-cPick-1 | cPick | listbox | hbide.prg:2770 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-lDummy-1 | &OK | pushbutton | hbide.prg:2776 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-lDummy-2 | &Cancel | pushbutton | hbide.prg:2780 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-cFilter-1 | cFilter | value | hbide.prg:2812 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-lDummy-1 | &OK | pushbutton | hbide.prg:2822 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-lDummy-2 | &Cancel | pushbutton | hbide.prg:2826 | Vinculo focal; ver alcance |
+| IDE-FIELD-GotoLine-nLine-1 | number: | value | hbide.prg:346 | Vinculo focal; ver alcance |
+| IDE-FIELD-GotoLine-lDummy-1 | &OK | pushbutton | hbide.prg:349 | Vinculo focal; ver alcance |
+| IDE-FIELD-GotoLine-lDummy-2 | &Cancel | pushbutton | hbide.prg:352 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-cCompiler-1 | cCompiler | radiogroup | hbide.prg:1886 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lWarnings-1 | &Warnings | checkbox | hbide.prg:1895 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDebug-1 | &Debug info | checkbox | hbide.prg:1901 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lStrict-1 | S&trict types | checkbox | hbide.prg:1907 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lIncremental-1 | &Incremental | checkbox | hbide.prg:1913 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lOptimize-1 | O&ptimize code | checkbox | hbide.prg:1920 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1926 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1933 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1937 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1941 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2107 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2110 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-cFind-1 | cFind | freeform_input | hbide.prg:2113 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-cReplace-1 | cReplace | freeform_input | hbide.prg:2120 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2164 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2167 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-cText-1 | cText | freeform_input | hbide.prg:2170 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-lDummy-1 | &OK | pushbutton | hbide.prg:2503 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-lDummy-2 | &Cancel | pushbutton | hbide.prg:2506 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2509 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:3024 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:3032 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:3036 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-cFileName-1 | cFileName | value | hbide.prg:1046 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1060 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-lDummy-1 | &OK | pushbutton | hbide.prg:1085 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-lDummy-2 | &Cancel | pushbutton | hbide.prg:1092 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-cFileName-1 | cFileName | value | hbide.prg:1241 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1255 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-lDummy-1 | &OK | pushbutton | hbide.prg:1280 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-lDummy-2 | &Cancel | pushbutton | hbide.prg:1287 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-cFileName-1 | cFileName | value | hbide.prg:1741 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-lDummy-1 | &OK | pushbutton | hbide.prg:1751 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-lDummy-2 | &Cancel | pushbutton | hbide.prg:1755 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-cPick-1 | cPick | listbox | hbide.prg:2797 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-lDummy-1 | &OK | pushbutton | hbide.prg:2803 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-lDummy-2 | &Cancel | pushbutton | hbide.prg:2807 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-cFilter-1 | cFilter | value | hbide.prg:2839 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-lDummy-1 | &OK | pushbutton | hbide.prg:2849 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-lDummy-2 | &Cancel | pushbutton | hbide.prg:2853 | Vinculo focal; ver alcance |
 - IDE-FIELD-GotoLine-nLine-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Q477 C88 mouse Cancel preserves selected al range; mouse OK goes third row preserving column3 and clears stale range before typing, Undo mixedEOL exact. Bounded only, not all clamps/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_goto_mouse_selection_pty.py](../tests/test_goto_mouse_selection_pty.py)
 - IDE-FIELD-GotoLine-lDummy-1: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Q477 C88 mouse Cancel preserves selected al range; mouse OK goes third row preserving column3 and clears stale range before typing, Undo mixedEOL exact. Bounded only, not all clamps/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_goto_mouse_selection_pty.py](../tests/test_goto_mouse_selection_pty.py)
 - IDE-FIELD-GotoLine-lDummy-2: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Q477 C88 mouse Cancel preserves selected al range; mouse OK goes third row preserving column3 and clears stale range before typing, Undo mixedEOL exact. Bounded only, not all clamps/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_goto_mouse_selection_pty.py](../tests/test_goto_mouse_selection_pty.py)
@@ -537,8 +537,11 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 
 | ID | Contexto | Condicion | Fuente:linea | Aceptacion |
 | --- | --- | --- | --- | --- |
-| MOUSE-hbide-Activate-1 | METHOD Activate() CLASS HBIde | `if nKeyStd == K_LBUTTONDOWN` | hbide.prg:712 | Vinculo focal; no PASS actual |
-| MOUSE-hbide-Activate-2 | METHOD Activate() CLASS HBIde | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | hbide.prg:733 | Vinculo focal; no PASS actual |
+| MOUSE-hbide-Activate-1 | METHOD Activate() CLASS HBIde | `if nKeyStd == K_LBUTTONDOWN` | hbide.prg:713 | Vinculo focal; no PASS actual |
+| MOUSE-hbide-Activate-2 | METHOD Activate() CLASS HBIde | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | hbide.prg:734 | Vinculo focal; no PASS actual |
+| MOUSE-hbide-HBIDE_DlgInput-1 | static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons ) | `if nMouse == K_LBUTTONDOWN .or. nMouse == K_LBUTTONUP .or. nMouse == K_LDBLCLK` | hbide.prg:2022 | Pendiente gesto |
+| MOUSE-hbide-HBIDE_DlgInput-2 | static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons ) | `case nMouse == K_LBUTTONDOWN` | hbide.prg:2033 | Pendiente gesto |
+| MOUSE-hbide-HBIDE_DlgInput-3 | static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons ) | `case nMouse == K_LDBLCLK` | hbide.prg:2035 | Pendiente gesto |
 | MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:554 | Vinculo focal; no PASS actual |
 | MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:559 | Vinculo focal; no PASS actual |
 | MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:564 | Vinculo focal; no PASS actual |
@@ -1019,40 +1022,40 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | designer.prg:2186 | `case nKey >= 32 .and. nKey <= 255` | Pendiente vinculo |
 | designer.prg:2187 | `if Len( cVal ) < 200` | Pendiente vinculo |
 | designer.prg:2199 | `if lApply` | Pendiente vinculo |
-| hbide.prg:626 | `if nKeyStd == K_ESC .and. ! ::oMenu:IsOpen()` | Pendiente vinculo |
-| hbide.prg:627 | `if ::CheckUnsavedAll()` | Pendiente vinculo |
-| hbide.prg:634 | `if nKeyStd >= K_ALT_Q .and. nKeyStd <= K_ALT_M` | Pendiente vinculo |
-| hbide.prg:637 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
-| hbide.prg:638 | `if ::oWndCode:lVisible` | Pendiente vinculo |
-| hbide.prg:645 | `if nKeyStd == K_F1` | IDE-KEY-CONTEXTHELP-F1 |
-| hbide.prg:651 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
-| hbide.prg:653 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F8, HB_KF_ALT, K_ALT_F8 )` | IDE-KEY-NEXT-MESSAGE-ALT-F8 |
-| hbide.prg:656 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )` | IDE-KEY-PREVIOUS-MESSAGE-ALT-F7 |
-| hbide.prg:659 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )` | IDE-KEY-SAVEALL-CTRL-F2 |
-| hbide.prg:662 | `case nKeyStd == K_ALT_0` | IDE-KEY-WINDOWLIST-ALT-0 |
-| hbide.prg:666 | `case nKeyStd == K_CTRL_G .and. hb_keyExt( nKey ) != HB_KX_DEL` | IDE-KEY-GOTOFUNCTION-CTRL-G |
-| hbide.prg:670 | `if nKey != 0 .and. ! Empty( ::cMsgBar )` | Pendiente vinculo |
-| hbide.prg:677 | `if nKeyStd == K_F5 .and. ! ::oMenu:IsOpen()` | IDE-KEY-FIND-F5 |
-| hbide.prg:683 | `if nKeyStd == K_F2 .and. ! ::oMenu:IsOpen()` | IDE-KEY-SAVE-F2 |
-| hbide.prg:689 | `if ! ::oMenu:IsOpen() .and. Len( ::aEditors ) > 1` | Pendiente vinculo |
-| hbide.prg:690 | `if nKeyStd == K_CTRL_F6 .or. ( hb_keyExt( nKey ) == HB_KX_F6 .and. hb_bitAnd( hb_keyMod( nKey ), HB_KF_CTRL ) != 0 )` | IDE-KEY-NEXTDOC-CTRL-F6 |
-| hbide.prg:692 | `if hb_bitAnd( hb_keyMod( nKey ), HB_KF_SHIFT ) != 0` | IDE-KEY-PREVDOC-CTRL-SHIFT-F6 |
-| hbide.prg:705 | `if nKeyStd == K_F3 .and. ! ::oMenu:IsOpen()` | IDE-KEY-REPEAT-FIND-F3 |
-| hbide.prg:712 | `if nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
-| hbide.prg:713 | `if MRow() == 0 .or. ::oMenu:IsOpen()` | Pendiente vinculo |
-| hbide.prg:716 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
-| hbide.prg:717 | `if ::oWndCode:lVisible` | Pendiente vinculo |
-| hbide.prg:722 | `if MRow() == 1 .and. MCol() == 2` | Pendiente vinculo |
-| hbide.prg:726 | `if ::oWndCode:lVisible` | Pendiente vinculo |
-| hbide.prg:733 | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
-| hbide.prg:734 | `if ::oMenu:IsOpen()` | Pendiente vinculo |
-| hbide.prg:737 | `if ::oWndCode:lVisible` | Pendiente vinculo |
-| hbide.prg:744 | `if ::oMenu:IsOpen()` | Pendiente vinculo |
-| hbide.prg:746 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
-| hbide.prg:747 | `if ::oWndCode:lVisible` | Pendiente vinculo |
-| hbide.prg:752 | `if ::oWndCode:lVisible` | Pendiente vinculo |
-| hbide.prg:760 | `if Seconds() - ::nLastDiskCheck >= 2 .or. Seconds() < ::nLastDiskCheck` | Pendiente vinculo |
-| hbide.prg:769 | `if "xterm" $ Lower( GetEnv( "TERM" ) )` | Pendiente vinculo |
+| hbide.prg:627 | `if nKeyStd == K_ESC .and. ! ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:628 | `if ::CheckUnsavedAll()` | Pendiente vinculo |
+| hbide.prg:635 | `if nKeyStd >= K_ALT_Q .and. nKeyStd <= K_ALT_M` | Pendiente vinculo |
+| hbide.prg:638 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:639 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:646 | `if nKeyStd == K_F1` | IDE-KEY-CONTEXTHELP-F1 |
+| hbide.prg:652 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:654 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F8, HB_KF_ALT, K_ALT_F8 )` | IDE-KEY-NEXT-MESSAGE-ALT-F8 |
+| hbide.prg:657 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F7, HB_KF_ALT, K_ALT_F7 )` | IDE-KEY-PREVIOUS-MESSAGE-ALT-F7 |
+| hbide.prg:660 | `case HBIDE_KeyIs( nKey, nKeyStd, HB_KX_F2, HB_KF_CTRL, K_CTRL_F2 )` | IDE-KEY-SAVEALL-CTRL-F2 |
+| hbide.prg:663 | `case nKeyStd == K_ALT_0` | IDE-KEY-WINDOWLIST-ALT-0 |
+| hbide.prg:667 | `case nKeyStd == K_CTRL_G .and. hb_keyExt( nKey ) != HB_KX_DEL` | IDE-KEY-GOTOFUNCTION-CTRL-G |
+| hbide.prg:671 | `if nKey != 0 .and. ! Empty( ::cMsgBar )` | Pendiente vinculo |
+| hbide.prg:678 | `if nKeyStd == K_F5 .and. ! ::oMenu:IsOpen()` | IDE-KEY-FIND-F5 |
+| hbide.prg:684 | `if nKeyStd == K_F2 .and. ! ::oMenu:IsOpen()` | IDE-KEY-SAVE-F2 |
+| hbide.prg:690 | `if ! ::oMenu:IsOpen() .and. Len( ::aEditors ) > 1` | Pendiente vinculo |
+| hbide.prg:691 | `if nKeyStd == K_CTRL_F6 .or. ( hb_keyExt( nKey ) == HB_KX_F6 .and. hb_bitAnd( hb_keyMod( nKey ), HB_KF_CTRL ) != 0 )` | IDE-KEY-NEXTDOC-CTRL-F6 |
+| hbide.prg:693 | `if hb_bitAnd( hb_keyMod( nKey ), HB_KF_SHIFT ) != 0` | IDE-KEY-PREVDOC-CTRL-SHIFT-F6 |
+| hbide.prg:706 | `if nKeyStd == K_F3 .and. ! ::oMenu:IsOpen()` | IDE-KEY-REPEAT-FIND-F3 |
+| hbide.prg:713 | `if nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
+| hbide.prg:714 | `if MRow() == 0 .or. ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:717 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:718 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:723 | `if MRow() == 1 .and. MCol() == 2` | Pendiente vinculo |
+| hbide.prg:727 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:734 | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
+| hbide.prg:735 | `if ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:738 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:745 | `if ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:747 | `if ! ::oMenu:IsOpen()` | Pendiente vinculo |
+| hbide.prg:748 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:753 | `if ::oWndCode:lVisible` | Pendiente vinculo |
+| hbide.prg:761 | `if Seconds() - ::nLastDiskCheck >= 2 .or. Seconds() < ::nLastDiskCheck` | Pendiente vinculo |
+| hbide.prg:770 | `if "xterm" $ Lower( GetEnv( "TERM" ) )` | Pendiente vinculo |
 | help.prg:533 | `IF h[ "mode" ] == "search"` | Pendiente vinculo |
 | help.prg:535 | `CASE nKey == K_ESC` | Pendiente vinculo |
 | help.prg:538 | `CASE nKey == K_ENTER` | Pendiente vinculo |
