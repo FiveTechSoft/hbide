@@ -1,0 +1,33 @@
+{
+  "scope": "Q380 C77 recovery encoding and UTF8 mouse byte effects only",
+  "source": "74db43fe4e4bc5dae5f54e4663a4ffb8e9d0abd9",
+  "binary_sha256": "b0ad4e6bb4ad5f5d87eef67111995dfdce3963c59745e2b101f543ea323beaeb",
+  "results": {
+    "deep-mixed": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+      "binary_unchanged": true
+    },
+    "deep-bom": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal encoding generation stored\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+      "binary_unchanged": true
+    },
+    "compare": {
+      "exit": 0,
+      "log": "PASS Compare is read-only; open snapshots stay stable; reopening refreshes disk; Later keeps bytes and current document\n",
+      "binary_unchanged": true
+    },
+    "mouse-utf8": {
+      "exit": 0,
+      "log": "PASS explicit terminal locale paints expected word labels\nPASS UTF8 doubleclick replaces whole accented word after TAB\nPASS Undo UTF8 word exact BOM TAB mixed EOL\nPASS UTF8 click after accented word maps exact byte\nPASS Undo UTF8 byte insertion exact\nPASS UTF8 doubleclick Delete exact accented word\nPASS Undo UTF8 Delete exact\nPASS UTF8 doubleclick final accented word exact\nPASS Undo UTF8 final word exact\nPASS UTF8 word Enter exact BOM TAB CRLF\nPASS Undo UTF8 Enter exact\nPASS UTF8 word Backspace exact BOM TAB mixed EOL\nPASS Undo UTF8 Backspace exact\nPASS UTF8 word Copy Paste exact bytes and line contract\nPASS Undo UTF8 Copy Paste exact\nPASS UTF8 word Cut exact BOM TAB mixed EOL\nPASS Undo UTF8 Cut exact\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-oo555srw\n",
+      "binary_unchanged": true
+    }
+  },
+  "limitations": [
+    "Deep mixedEOL and UTF8BOM intentionally separate noncontradictory fixtures; kill/recover/save exact each",
+    "UTF8mouse17checks uses PTY normalized cells and saved BOM/TAB/mixedEOL bytes, not actual pixel inspection",
+    "Compare snapshots readonly/Later no mutation; no full matrix/Windows/install/license/milestone claim",
+    "No new product/buildIDE/CP/toolchain policy"
+  ]
+}
