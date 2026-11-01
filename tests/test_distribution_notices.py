@@ -24,6 +24,35 @@ class Notices(unittest.TestCase):
     def test_body_literal_is_not_header_notice(self):
         (self.root/'main.prg').write_text('#include "inkey.ch"\n? "GNU General Public License"\n')
         self.assertTrue(audit.audit(self.root)['release_review_required'])
+    def test_empty_license_blocks(self):
+        (self.root/'LICENSE.txt').write_bytes(b'')
+        d=audit.audit(self.root)
+        self.assertTrue(d['release_review_required'])
+        self.assertEqual(d['referenced_license']['status'],'empty')
+    def test_whitespace_license_blocks(self):
+        (self.root/'LICENSE.txt').write_text(' \n\t')
+        self.assertTrue(audit.audit(self.root)['release_review_required'])
+    def test_external_symlink_license_blocks(self):
+        outside=self.root.parent/(self.root.name+'-license')
+        outside.write_text('fixture only');self.addCleanup(outside.unlink)
+        (self.root/'LICENSE.txt').symlink_to(outside)
+        d=audit.audit(self.root)
+        self.assertTrue(d['release_review_required'])
+        self.assertEqual(d['referenced_license']['status'],'symlink')
+    def test_directory_license_blocks(self):
+        (self.root/'LICENSE.txt').mkdir()
+        d=audit.audit(self.root)
+        self.assertTrue(d['release_review_required'])
+        self.assertEqual(d['referenced_license']['status'],'not_regular')
+    def test_present_license_has_content_identity_not_clearance(self):
+        import hashlib
+        data=b'fixture only'
+        (self.root/'LICENSE.txt').write_bytes(data)
+        d=audit.audit(self.root)
+        self.assertEqual(d['referenced_license']['sha256'],hashlib.sha256(data).hexdigest())
+        self.assertEqual(d['referenced_license']['bytes'],len(data))
+        self.assertEqual(d['referenced_license']['status'],'present_unreviewed')
+        self.assertIn('Does not clear redistribution',d['scope'])
     def test_current_source_missing_license_not_silently_cleared(self):
         d=audit.audit()
         self.assertTrue(d['release_review_required']);self.assertTrue(d['missing_referenced_license'])
