@@ -4225,8 +4225,8 @@ cierreM4. Los intentos de harness corregidos constan separados.
 
 Action/Focus de Button se cambian mediante inspector real, F10 persiste,
 F9 emite y el artefacto generado compila. Enter y Space ejecutan ambos
-handlers y devuelven.T. (12checks). Regresion pastedButton11 y
-selection6:3modos29checks63guardas34docsPASS en8153515. Sin arreglo.
+handlers y devuelven.T. (12checks). Regresion pastedButton12 y
+selection6:3modos30checks63guardas34docsPASS en8153515. Sin arreglo.
 Space a.5s se media antes de terminar animacion.4+.1; espera1.2 pasa.
 q/Altq no aceptados como activacion; no fallo producto inferido.
 Evidencia `docs/evidence/linux-designer-inline-button-runtime-q148.json`.
