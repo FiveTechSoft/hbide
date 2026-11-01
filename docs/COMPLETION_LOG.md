@@ -4672,3 +4672,22 @@ inventario con lineas actuales.74guardas (47inventario) y34docsPASS en
 modelo, nativa, binario, Windows, matriz global ni hito. Q179 mantiene su
 propia fuente/hash y alcance.
 Evidencia `docs/evidence/linux-start-contract-index-q180.json`.
+
+
+### Q181 (1 noviembre 2026): localizar el build que no se pudo promover
+
+Arreglo: si el nuevo build no sustituye al destino, el aviso ahora nombra
+el output completo conservado. Antes conservaba los bytes pero omitia
+su ruta. Destino bloqueado por directorio real con miembro testigo,
+compiler fixture exit0: antes7PASS1FAIL, despues8PASS. Destino/fuente
+intactos, output recuperable byte-exacto, sin lanzamiento. La primera
+asercion del probe nuevo no contemplaba word-wrap; corregida y aplicada
+tambien al binario viejo, que sigue fallando.
+Seis modos PTY87checks74guardas34docsPASS en
+21f91a30bac4dce367db19c39476884c56032458, binario
+b69003d669c751734d859c405d51fbe22ac6cd357695601dfba204f11b17fe5f.
+Nativa exactbin40x120/1202x762 inspeccionada: mensaje entero, rutas de
+original y output retenido visibles, bordes completos. No todos los
+fallos de promotion, validacion de ejecutable real, Cancel, respuestaUI,
+Windows, matriz global ni cierreM2.
+Evidencia `docs/evidence/linux-build-promotion-recovery-q181.json`.
