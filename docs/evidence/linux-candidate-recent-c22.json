@@ -1,0 +1,208 @@
+{
+  "scope": "C22 temporary Linux candidate; no release/license clearance/Windows/install/determinism/global matrix inheritance.",
+  "manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "4e15503abadb2c3c778b17c76383f21b9d4979d5",
+    "archive_sha256": "04474e970b0ab667e38a116810c49290d641c82e8b0de222bb33b01cdbb9b999",
+    "dirty": false,
+    "started": 1793492405.9136543,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "1f80870fad008ea485760492816c739fd873a3a4a5392afda3cb5346c9f712f3",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "3d56e7aad8191b5b18daecc5628e5ce66284a35b377881e16d631af8bbf782a6",
+    "release_status": "not cleared; source notice review required",
+    "unstripped_sha256": "3b272abd92a03831c01e16dc7bdb73e01de34f82996e79ff4ceb889a880608f1",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793492503.2280865
+  },
+  "recent": [
+    {
+      "case": "test_editor_bracket_codeblock_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf",
+      "test_sha256": "2564546fe0c87027741be0270a3b14f0888834e261ceefa7c8094095c4c12897",
+      "source": "4e15503abadb2c3c778b17c76383f21b9d4979d5",
+      "seconds_finished": 1793492510.8032758,
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Codeblock literal bracket literal stays string\nPASS Codeblock argument bracket literal stays string\nPASS Codeblock gapliteral bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ythfdapg\n"
+    },
+    {
+      "case": "test_editor_bracket_logical_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf",
+      "test_sha256": "44eb04d83bc8e48e96241bdaed354ac04b36e79d3dbcdfcba936e4227f69424b",
+      "source": "4e15503abadb2c3c778b17c76383f21b9d4979d5",
+      "seconds_finished": 1793492515.325483,
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Logical and bracket literal stays string\nPASS Logical or bracket literal stays string\nPASS Logical not bracket literal stays string\nPASS Logical bang bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-nb12nooj\n"
+    },
+    {
+      "case": "test_editor_bracket_arithmetic_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf",
+      "test_sha256": "a36ed3e8be8e739459ac925d10e1df3806d53e97d792725dfce633514d0bf374",
+      "source": "4e15503abadb2c3c778b17c76383f21b9d4979d5",
+      "seconds_finished": 1793492519.8461988,
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Arithmetic multiply bracket literal stays string\nPASS Arithmetic divide bracket literal stays string\nPASS Arithmetic modulo bracket literal stays string\nPASS Arithmetic power bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-x6wnt9og\n"
+    },
+    {
+      "case": "test_editor_bracket_tabs_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf",
+      "test_sha256": "1313ab9b195c98399350ae355fa04cdb74d17a141378da203618cf2ccf3ad94a",
+      "source": "4e15503abadb2c3c778b17c76383f21b9d4979d5",
+      "seconds_finished": 1793492524.3662372,
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-sxrzivyp\n"
+    },
+    {
+      "case": "test_nav_multiline_gap_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf",
+      "test_sha256": "89cbce90e88a3387095608b75441709b2dad47ea601a45bfa33d15766d0b93b8",
+      "source": "4e15503abadb2c3c778b17c76383f21b9d4979d5",
+      "seconds_finished": 1793492530.3478906,
+      "log_text": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-2rx38a37\n"
+    },
+    {
+      "case": "test_prevdoc_shortcut_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf",
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "source": "4e15503abadb2c3c778b17c76383f21b9d4979d5",
+      "seconds_finished": 1793492540.7051046,
+      "log_text": "PASS Third of three opened files active\nPASS CtrlShiftF6 goes third to second, not forward\nPASS Typing F2 saves exact second destination\nPASS Previous second to first\nPASS Previous first wraps to third\nPASS Return to second retains modified text\nPASS Undo remains second-only exact\nPASS CtrlF6 forward returns third\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-4m3yl4d4\n"
+    },
+    {
+      "case": "test_prevdoc_shortcut_pty.py",
+      "args": [
+        "--single"
+      ],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf",
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "source": "4e15503abadb2c3c778b17c76383f21b9d4979d5",
+      "seconds_finished": 1793492547.4133415,
+      "log_text": "PASS Single file opened\nPASS Previous shortcut single buffer byte inert\nPASS No dirty caption after inert shortcut\nPASS Following typing saves at unchanged cursor\nPASS Undo following inert shortcut exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-r52aoxj1\n"
+    },
+    {
+      "case": "test_prevdoc_shortcut_pty.py",
+      "args": [
+        "--compact-256"
+      ],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf",
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "source": "4e15503abadb2c3c778b17c76383f21b9d4979d5",
+      "seconds_finished": 1793492557.7140613,
+      "log_text": "PASS Third of three opened files active\nPASS CtrlShiftF6 goes third to second, not forward\nPASS Typing F2 saves exact second destination\nPASS Previous second to first\nPASS Previous first wraps to third\nPASS Return to second retains modified text\nPASS Undo remains second-only exact\nPASS CtrlF6 forward returns third\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-rsjruf8b\n"
+    },
+    {
+      "case": "test_find_f5_selection_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf",
+      "test_sha256": "31dc55106d51b9955c82934a9c5e8a2977fec02e4472d4c57cc3402bde20eb07",
+      "source": "4e15503abadb2c3c778b17c76383f21b9d4979d5",
+      "seconds_finished": 1793492576.31452,
+      "log_text": "PASS Open requested fixture\nPASS Typing after Find inserts at match without old range\nPASS Undo Find-following typing exact\nPASS Cancelled Find retains old range\nPASS Undo after cancelled Find exact\nPASS Missing Find retains old range\nPASS Undo after missing Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-2o4f1njq\n"
+    },
+    {
+      "case": "test_message_selection_pty.py",
+      "args": [],
+      "exit": 0,
+      "reported_failure": false,
+      "binary_sha256": "46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf",
+      "test_sha256": "436211836297857137a75b47370987bcd768914c7cdd859362a214bbdf88a49d",
+      "source": "4e15503abadb2c3c778b17c76383f21b9d4979d5",
+      "seconds_finished": 1793492595.2146766,
+      "log_text": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump lands at real GCC row2 column9\nPASS Next diagnostic on same buffer consumes stale range\nPASS Undo diagnostic insertion exact\nPASS Project source jump on same buffer consumes stale range\nPASS Undo project source insertion exact\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-y18mqxrw\n"
+    }
+  ],
+  "checks": 64,
+  "docs": "PASS 34 complete documents byte-exact; pathlist from git ls-tree frozen export 4e15503abadb2c3c778b17c76383f21b9d4979d5. Original --check cannot run without .git in archive; checked same generator with explicit frozen tracked pathlist, no export changes.\n",
+  "visual": {
+    "file": "hbide-c22-native-picker.png",
+    "sha256": "128bcfd843f05055b843846686c621c1830b58c413a8a2b1437c77e516a17617",
+    "inspection": "Actual stripped candidate120x40 threecodeblockstringsyellow/realgapcommentmagenta/nextkeywordscyan/fullborders.F2exact."
+  }
+}

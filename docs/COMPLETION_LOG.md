@@ -3860,3 +3860,13 @@ Source1070624,binaryc83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573
 cleannofailure/retry/interruption.Evidence linux-joint-editor-input-q119.json.
 No newproductfix/pixels/candidate/fullregisteredmatrix/Windows/hitoclosed.
 Finalpublicationregenerateshelpafterthisentry;runtimeevidenceboundtosourceabove.
+
+## C22 - temporary Linux candidate after Q119
+
+Cleanexport4e15503abadb2c3c778b17c76383f21b9d4979d5;strippedSHA46292e4c17193516db2a2c876ffc6702b38c8504d4052148b585606803590ecf.
+Eightstandardsmokes+tenrecentmodes64checksPASSexactunchangedbinary/ldd.
+Actualnative120x40threecodeblockstringsyellow/nextkeywordscyan/fullborders/
+F2exactinspected. linux-candidate-recent-c22.json. Exportdoc--checkrequiresgit
+andfailedwithout.git;frozenpathlistfromgitls-tree+samegeneratorverified34
+byteexactdocswithoutchangingexport. No testfailure/retry.NoQ119matrixinherit/
+release/licenses/nativeWindows/install/determinism/hitoclosure.C21historical.
