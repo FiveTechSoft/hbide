@@ -3925,3 +3925,13 @@ gate0/fakecompilerinvoked/intentionalexit19reportednotok. Bothok:falseexpected
 fixtures,notproductfailures. Fivepathguards36inventory34docsPASS.
 linux-candidate-document-preflight-integration.json.No realproductbuild/
 newcandidate/PTY/models/pixels/licenses/Windows/globalmilestone.
+
+## Q126 - output-command bracket literal lexical context
+
+Compileraccepts?/??bracketstringsandcommentgap.Before2PASS2FAILfalseblock
+contaminatesfollowingcode.Sourced130b52addsquestionintroducer,
+fourguardssingle/doublequestion/gap/valueindex.34PTY6modes22models195repaint
+36inventory34docsPASScleannofail/retry.Actualnative120x40threestringsyellow/
+realgapmagenta/nextkeywordscyan/fullborders/F2exactinspected.
+linux-editor-bracket-output.json.No commandruntime/generallexer/Windows/
+fullmatrix/globalmilestone.Q121/C22historicalseparate.
