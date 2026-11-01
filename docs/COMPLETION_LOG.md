@@ -4755,3 +4755,17 @@ se afirma toda la cola visible. Primer intento nativo recupero display
 No todos tamanos, ANSI/encodings, salida exitosa, Windows, Cancel,
 respuestaUI, matriz global ni cierreM2.
 Evidencia `docs/evidence/linux-start-long-output-small-q185.json`.
+
+
+### Q186 (1 noviembre 2026): cola horizontal accesible en25x80
+
+El visor existente ya permite Left/Right. Se prueba en Start: End llega
+al error final, Right expone cola exacta y Left recupera ruta fuente,
+dos intentos. No nuevo arreglo ni cambio de otros visores.
+Dos modos PTY42checks74guardas34docsPASS en
+7246d51dc57fc61405bcb285bf19bea0fe7f4d26, binario
+3c67950f4d0bdd6b141f6201b2f7de3bb1abb74ced3163769a3cbc6cb843043e.
+Nativa exactbin25x80/802x477 revisada: cola completa trasRight, bordes
+completos; la ruta izquierda vuelve conLeft, no toda la linea a la vez.
+No ANSI/encoding general, Windows, Cancel, respuestaUI, matriz o cierreM2.
+Evidencia `docs/evidence/linux-start-output-horizontal-q186.json`.

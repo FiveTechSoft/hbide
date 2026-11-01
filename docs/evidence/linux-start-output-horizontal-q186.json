@@ -1,0 +1,146 @@
+{
+  "scope": "Q186 existing Left/Right reads cropped diagnostic tail in compact Start viewer; no product fix",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "7246d51dc57fc61405bcb285bf19bea0fe7f4d26",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "9b8a7e4908d3a0d4d6f58781e1fb2d7dece4f4bfbbd343ff2f73a41802805c9e",
+    "binary_sha256": "3c67950f4d0bdd6b141f6201b2f7de3bb1abb74ced3163769a3cbc6cb843043e",
+    "built_at": 1793520167.8023841
+  },
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "7246d51dc57fc61405bcb285bf19bea0fe7f4d26",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9b8a7e4908d3a0d4d6f58781e1fb2d7dece4f4bfbbd343ff2f73a41802805c9e",
+      "binary_sha256": "3c67950f4d0bdd6b141f6201b2f7de3bb1abb74ced3163769a3cbc6cb843043e",
+      "build_receipt": "/tmp/hbide-q186-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "fb75ed9b41c89cb3dc1e28163843bd3b27b47fa803e90ead68dae2f72419443c",
+      "case": "compiler-long-output-horizontal-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_missing_compiler_pty.py",
+        "--long-output",
+        "--small",
+        "--horizontal"
+      ],
+      "started": 1793520167.802654,
+      "seconds": 11.15,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "93baba1a74515b7c68d30497b5a3aa464ec5b7c583bbebe8214db74c95b824d9",
+      "log": "/tmp/hbide-q186-final/compiler-long-output-horizontal-small-1793520167802650499.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "7246d51dc57fc61405bcb285bf19bea0fe7f4d26",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "9b8a7e4908d3a0d4d6f58781e1fb2d7dece4f4bfbbd343ff2f73a41802805c9e",
+      "binary_sha256": "3c67950f4d0bdd6b141f6201b2f7de3bb1abb74ced3163769a3cbc6cb843043e",
+      "build_receipt": "/tmp/hbide-q186-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "fb75ed9b41c89cb3dc1e28163843bd3b27b47fa803e90ead68dae2f72419443c",
+      "case": "compiler-long-output-scroll-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_missing_compiler_pty.py",
+        "--long-output",
+        "--small"
+      ],
+      "started": 1793520178.9518335,
+      "seconds": 8.19,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "93baba1a74515b7c68d30497b5a3aa464ec5b7c583bbebe8214db74c95b824d9",
+      "log": "/tmp/hbide-q186-final/compiler-long-output-scroll-small-1793520178951829702.log"
+    }
+  ],
+  "logs": {
+    "compiler-long-output-horizontal-small-1793520167802650499.log": "PASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS Right reveals exact diagnostic tail\nPASS Left restores diagnostic source path\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS Right reveals exact diagnostic tail\nPASS Left restores diagnostic source path\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 23 PASS 0 FAIL; evidence /tmp/hbide-source-run-lpvgkmyh\n",
+    "compiler-long-output-scroll-small-1793520178951829702.log": "PASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-kc4v324q\n"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "7246d51dc57fc61405bcb285bf19bea0fe7f4d26",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "8cd1f12903f5d6819aa8ecea8b50d59f42455e67f9ad1357cbb95a0f3ae4dac6",
+    "started": 1793520187.324945,
+    "runner_sha256": "d8e1b33008b126ce28f71722967a5ba136d9a3c979a0ce5732d5c3a00027d71f",
+    "tests": {
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q186-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.215
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q186-guards/test_completion_guards.py.log",
+        "seconds": 0.212
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q186-guards/test_build_receipt.py.log",
+        "seconds": 0.212
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "e6f79e6fa0af285676b2ab2be7e585568186ed37e369759008f959635c3f6a81",
+        "log": "/tmp/hbide-q186-guards/test_completion_inventory.py.log",
+        "seconds": 0.767
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q186-guards/test_distribution_notices.py.log",
+        "seconds": 0.213
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q186-guards/test_embed_help_docs.py.log",
+        "seconds": 0.213
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q186-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.364
+      }
+    },
+    "ok": true,
+    "finished": 1793520189.5197988
+  },
+  "visual": {
+    "file": "hbide-q186-tail.png",
+    "sha256": "50e7a30d3835d97aae0865bd4666f7ff09f0536631732f4b161eff48aac0c955",
+    "inspection": "exact3c67950f bin25x80full802x477,afterRight final simulated fixture error complete,no truncationatright; leftpathportionnotvisibleuntilLeft;fullborders"
+  },
+  "limits": "2PTY42checks74guards34docsPASS. Two attempts Right exacttail thenLeft exactpath; not entire longline simultaneously, no new scrolling implementation/globalviewerchange/ANSI/encoding/Windows/Cancel/UI/fullmatrix/M2closure."
+}
