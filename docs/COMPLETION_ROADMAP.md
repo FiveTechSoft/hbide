@@ -97,7 +97,9 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 - **M2/M3:** Cancel sigue abierto sin helper C ni contrato rebajado a
   process-group. Exchange Screens y swap on Input siguen siendo stubs;
   el hook INKEYREAD probado no distingue espera y poll. Global/reinicio
-  necesitan contrato y soporte VM, no toggles decorativos.
+  necesitan contrato y soporte VM, no toggles decorativos. Q199 caracteriza
+  GLOBAL como no soportado en toolchain694428e1 (compilerE0030 y VM
+  count0/listvacia), sin quitar el requisito ni cerrar M3.
 
 | Evidencia | Alcance que si acredita | Lo que no acredita |
 | --- | --- | --- |

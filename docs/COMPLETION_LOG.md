@@ -4949,3 +4949,14 @@ La fixture12controles pedida por captura queda en
 demos/designer/fixture-mas-controles.json; captura real entregada, no
 se afirma ejecucion funcional de ese formulario.
 Evidencia: docs/evidence/linux-model-joint-q198.json.
+
+### Q199 (1 noviembre 2026): contrato GLOBAL de VM actual
+
+Fuentec59add4,30modelos frescos PASS/87guardas. Modelo nuevo caracteriza
+__dbgVMVarGList vacio y Get sin valor (3checks), no implementa Global.
+Toolchain694428e1: GLOBAL nShared:=7 falla E0030exit6; hvm.c indica
+explicitamente compatibilidad debuggerxHarbour, Harbour no soporta
+GLOBALS; count0/getNULL/listvacia. No sustituir por PUBLIC/STATIC.
+M3 sigue abierto: otra VM/compilador requeriria decision de alcance,
+no autorizacion inferida. Sin nuevo producto/PTY/pixeles/Windows/reinicio.
+Evidencia: docs/evidence/linux-debug-global-vm-q199.json.
