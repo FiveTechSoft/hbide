@@ -903,6 +903,11 @@ METHOD Undo() CLASS HBSrcEdit
    ::ApplyOp( aOp, .T. )
    AAdd( ::aRedo, aOp )
    ::lDirty := ( Len( ::aUndo ) != ::nSavedUndoLen )
+   if ! ::lDirty
+      // A journal may still hold edits now undone back to the disk state.
+      // Idle writes only dirty buffers, so retire this session generation.
+      HBIDE_RecoveryDelete( ::JournalKey() )
+   endif
    ::ClearSelection()
    ::GoTo( Min( aOp[ 1 ], ::LineCount() ), 5, _REFRESH_ALL )
 
@@ -923,6 +928,11 @@ METHOD Redo() CLASS HBSrcEdit
    ::ApplyOp( aOp, .F. )
    AAdd( ::aUndo, aOp )
    ::lDirty := ( Len( ::aUndo ) != ::nSavedUndoLen )
+   if ! ::lDirty
+      // A journal may still hold edits now undone back to the disk state.
+      // Idle writes only dirty buffers, so retire this session generation.
+      HBIDE_RecoveryDelete( ::JournalKey() )
+   endif
    ::ClearSelection()
    ::GoTo( Min( aOp[ 1 ], ::LineCount() ), 5, _REFRESH_ALL )
 
