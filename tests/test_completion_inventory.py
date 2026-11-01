@@ -44,6 +44,12 @@ class ModalInventory(unittest.TestCase):
         for row in self.rows:
             if row['variable']=='nRow':self.assertEqual(row['picture'],'999')
             if row['variable']=='cAction':self.assertEqual(row['picture'],'@S40')
+    def test_start_current_output_contract_link(self):
+        entry=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['menus']['IDE-030']
+        self.assertIn('test_missing_compiler_pty.py',entry['tests'])
+        for phrase in ['same IDE session','exit0 without output','exit7 with output','Synthetic line3','not Cancel']:
+            self.assertIn(phrase,entry['contract'])
+
     def test_generation_deterministic(self):
         self.assertEqual(self.rows,audit.modal_fields())
 
