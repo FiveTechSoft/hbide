@@ -66,22 +66,27 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre18:03 Q324-Q326: candidato focal C64,
-source92949b344380ae3d6bd73364b7894c2a31e65cd5,
+Corte 1 noviembre18:16 Q329-Q331: candidato focal C66,
+sourcefa41c0a1afdb65ace575cb00174f4afbce63ca47,
+bind981da58befdee0cecdec71232f6bbb921d6073267802757ec02e0873d1d112a.
+Q329navegación reconoce DECLARED METHOD FUNCTION/PROCEDURE con CLASS explícito.
+C65baseline1PASS2FAIL; C66cuatroPTY12checksPASS y modelo léxico111/0.
+Par nativo1202x762 completo inspeccionado. Q330cuatrofixtures compiladas y
+12checksPTY postexport PASS: FUNCTION/PROCEDURE, compacta, continuación.
+Q33137modelos GTSTD fresh del source7d7f996 limpioPASS; no37modosIDE.
+C65último identificado limpio: fuente59dd2ceb3755359aa9ca3b0bda5f61b4d5b620de,
+bin86a0e16aec7151c495319069deb197542d4697f358c34802041c8ac7195f604b,
+About/catálogo34/ldd/8smokes y navegación/editor27checksPTY PASS. No heredados aC66.
+C64focal METHOD implícito source92949b344380ae3d6bd73364b7894c2a31e65cd5,
 bin17169a76081a72c66609d72493effbefb67c5f1ed69ec7c47af5cc6d270f4625.
-Q324navegación reconoce METHOD implícito tras ENDCLASS y excluye miembros.
-C63baseline1PASS2FAIL; C64cincoPTY15checksPASS y modelo léxico106/0.
-Par nativo1202x762 completo inspeccionado. Q325cincofixtures compiladas y
-15checksPTY postexport PASS: FUNCTION/PROCEDURE, CREATE CLASS, continuación,
-última clase. Q32637modelos GTSTD fresh del source7f7b581 limpioPASS.
-No37modosIDE ni certificados del binarioC64; globalVM/inputhook caracterizan límites.
+Q32415checksPTY/106modelo PASS; Q325otros15checks compiler-valid PASS.
 C63focal previoCtrlT TAB: source89f6eb5bbd335c2ca37ed1e1f8718b55290210de,
 bin9b49b783fe8176f915825a8b4570b0b7cc82d5231e62576835e7b8f9c1816d6a.
 Q320cincomodosPTY23checksPASS; Q32122modelo/6PTYchecks postexport PASS.
 C61identificado fuentef63e189288ae03122f892e0edccefc4129452503,
 bine0399cb224f06c707b228d5d3291e3957a81bccd22278de355ac02f00e325c43:
 About/catálogoQ314/ldd/8smokes/6BPmodos32checks PASS, no heredados aC63.
-Q327docs posteriores no embebidos en C64, C63 ni C61. No sumar fuentes/binarios
+Q332docs posteriores no embebidos en C66 ni C65. No sumar fuentes/binarios
 como matriz. Sin fullpreprocessor/customstream/navcontinuation/Windows/release/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
@@ -1106,3 +1111,15 @@ Q325otros15checksPTY con cincofixtures compiler-valid PASS. Q32637modelos
 fresh sobre7f7b581 PASS. Receipts linux-nav-implicit-method-q324.json,
 linux-nav-implicit-contexts-q325.json y linux-model-baseline-q326.json.
 Q327docs/catálogo actualizados; no rebuild sólo docs ni matriz/Windows/hito.
+
+### Seguimiento Q328-Q332 (1 noviembre 2026)
+
+Q328C65 candidato limpio identificado de59dd2ce con8smokes y27checksPTY
+navegación/editor. No matriz completa/install/licencias. Q329DECLARED METHOD
+explícito omitido en picker: C65baseline1/2, fixfa41c0a/C66,12checksPTY y
+111modeloPASS, pareja nativa completa inspeccionada. Q330cuatrofixtures
+compiler-valid12checksPTY PASS; Q33137modelosfresh7d7f996 PASS. Q332docs y
+catálogo, sin rebuild sólo docs. Evidencias linux-clean-candidate-q328.json,
+linux-nav-declared-method-q329.json, linux-nav-declared-contexts-q330.json,
+linux-model-baseline-q331.json. No Windows/hito; no soporte de DESTRUCTOR
+implícito rechazado por compilador ni de preprocesador arbitrario.

@@ -320,3 +320,8 @@ Plain and typed `METHOD` implementations after a closed `CLASS` or
 bounded hbclass.ch form tested here. Member declarations before ENDCLASS
 stay out of the implementation list. An explicit CLASS qualifier wins.
 Custom macro state and arbitrary preprocessor redefinitions are not tracked.
+
+`DECLARED METHOD FUNCTION` and `DECLARED METHOD PROCEDURE` implementations
+with an explicit `CLASS` owner also appear in Go to Function. Supported
+continuations retain their first source line. This form does not inherit
+an implicit owner.

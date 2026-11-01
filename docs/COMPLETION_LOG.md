@@ -5697,3 +5697,10 @@ C64hash17169a76081a72c66609d72493effbefb67c5f1ed69ec7c47af5cc6d270f4625.
 15checksPTY/106modelo y pareja nativa completa PASS. Q325cincofixtures
 compiler-valid/15checksPTY postexportPASS. Q32637modelos fresh7f7b581PASS.
 Q327guía/roadmap/catálogo, sin reconstrucción docs ni hito/Windows.
+
+### Q328-Q332 (1 noviembre 2026): candidato y DECLARED METHOD
+
+Q328C65 identificado59dd2ce,8smokes/27checksPTY PASS. Q329fixfa41c0a enC66
+para DECLARED METHOD explícito, C65baseline1/2,12checksPTY/111modelo y par
+nativoPASS. Q330cuatrofixturescompiler-valid12checksPTY PASS. Q33137modelos
+fresh7d7f996 PASS. Q332docs/catálogo; no Windows/matrizglobal/hito.

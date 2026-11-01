@@ -1,0 +1,36 @@
+{
+  "candidate_source": "fa41c0a1afdb65ace575cb00174f4afbce63ca47",
+  "binary_sha256": "d981da58befdee0cecdec71232f6bbb921d6073267802757ec02e0873d1d112a",
+  "contexts": {
+    "function": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-declared-s3v40o6m/function.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 719, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_c4dj79.dir/function.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCLASS Demo\nMETHOD Ping()\nENDCLASS\nDECLARED METHOD FUNCTION Ping() CLASS Demo\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-k4jl4n4t\n"
+    },
+    "procedure": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-declared-s3v40o6m/procedure.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 719, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_757539.dir/procedure.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCLASS Demo\nMETHOD Ping()\nENDCLASS\nDECLARED METHOD PROCEDURE Ping() CLASS Demo\nreturn\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-np4rpgk6\n"
+    },
+    "compact": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-declared-s3v40o6m/compact.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 719, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_jkmln9.dir/compact.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCLASS Demo\nMETHOD Ping()\nENDCLASS\nDECLARED METHOD FUNCTION Ping()CLASS Demo\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-fb2k7hnn\n"
+    },
+    "continued": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-nav-declared-s3v40o6m/continued.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 720, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_5ukf0w.dir/continued.c'... Done.\n",
+      "fixture": "#include \"hbclass.ch\"\nCLASS Demo\nMETHOD Ping()\nENDCLASS\nDECLARED METHOD FUNCTION ;\nPing() CLASS Demo\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker includes implicit implementation, excludes member\nPASS Picker jumps to implicit implementation after ENDCLASS\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-g4mo5ong\n"
+    }
+  },
+  "harness_sha256": "399e0fe75f1c4b8c6b82663b3a3e2891bc7bc775b7417f1416c1cc2871e89370",
+  "scope": "Four compiler-valid explicit DECLARED METHOD variants,12 realPTY checks. Unchanged C66binary/product. No newpixels/fullmatrix/Windows/hito."
+}
