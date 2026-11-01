@@ -66,21 +66,20 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre16:28 Q293: candidato focal C49,
-source3c6696f42bb66bc5b2211fd37c014a375a49b391,
-bin92201a927fe67bf065fb659a905d885a0d38c1a87b1c997221922566dabb6192.
-Q291nav bareTEXT omite payload y conserva funciones posteriores. Q292editor
-literal no contamina comentarios después de ENDTEXT, 4PTY27checks y modelos
-separados12TEXT/210repaint/141EOL PASS; nativas completas inspeccionadas.
-Q293arnés posterior verifica editar terminador y Undo/Redo:10PTYchecks,
-15modeloTEXT PASS, sin cambio de producto ni nueva inspección visual.
-Q29337modelos GTSTD fresh del sourced325a9ce9300240735965d41a990a886a9d20cf7
-limpio PASS; no son37modosIDE ni certificados del binarioC49. GlobalVM/inputhook
-siguen siendo contratos que caracterizan límites, no implementación.
-BareTEXT exacto, no TEXT TO/custommacros/streampragmas/preprocesadorcompleto.
-Q287BP y Q284Undo mantienen ledgers separados. C45 conserva About/catálogoQ282,
-8smokes y5modos35checks, no heredados aC49. Q294docs posteriores no embebidos
-en C49. No sumar fuentes/binarios como matriz. Sin Windows/release/licencias/hitos.
+Corte 1 noviembre16:37 Q296: candidato focal C51,
+source9eba1d3d1a3c035f9b77f6c3599a21db43134077,
+bin20cd03fdb845b6309fbf6116adce0382edc16a4d7543538af3d85c1f53befe2c.
+Q295editor admite bareTEXT con comentario cerrado o fin de línea bien separado.
+BaselineC49:4PASS6FAIL; C51cincoPTY41checksPASS, modelos separados25TEXT/
+210repaint/141EOL PASS; par nativo1202x762 completo inspeccionado. Compiler
+rechazó TEXT&&adyacente; C50provisional se corrigió antes de C51. No ocultar
+ese rechazo ni tratarlo como candidato final. Q29637modelos GTSTD fresh del
+source0771c54504ef94cde6bad9ad4dfc55faf7a02d13 limpio PASS; no son37modosIDE
+ni certificados del binarioC51. GlobalVM/inputhook caracterizan límites, no soporte.
+Q291navTEXT, Q287BP y Q284Undo mantienen ledgers separados. C45 conserva
+About/catálogoQ282/8smokes/5modos35checks, no heredados aC51. Q297docs
+posteriores no embebidos en C51. No sumar fuentes/binarios como matriz.
+Sin TEXT TO/custommacros/streampragmas/preprocesadorcompleto/Windows/release/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
 bin96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29.
@@ -1010,3 +1009,14 @@ para edición del terminador sin producto nuevo, integra modelo37fresh todosPASS
 Recibos: linux-nav-text-block-q291.json, linux-editor-text-block-q292.json y
 linux-model-baseline-q293.json. Q294 enlaza aceptación y actualiza catálogo.
 No nueva matriz IDE, Windows, release ni cierre de hito.
+
+### Seguimiento Q295-Q297 (1 noviembre 2026)
+
+Q295comentarios tras bareTEXT: compiler-valid slash/ampersand espaciado,
+comentarios bloque cerrados consecutivos y lowercase. Rechazo TEXT&&adyacente
+preservado; límite corregido antes de C51. Cinco scriptsPTY41checksPASS,
+modelos25TEXT/210repaint/141EOLPASS y par nativo completo inspeccionado.
+Recibo linux-editor-text-comment-q295.json. Q29637modelos GTSTD recompilados
+source0771c54 limpio PASS, recibo linux-model-baseline-q296.json; globalVM/
+inputhook siguen caracterizando límites. Q297aceptación/inventario/catálogo
+actualizados, no nuevo build por documentación ni herencia de matriz/Windows.

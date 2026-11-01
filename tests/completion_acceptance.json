@@ -2845,8 +2845,9 @@
   "editor_text_stream": {
     "tests": [
       "test_editor_text_block.prg",
-      "test_editor_text_block_pty.py"
+      "test_editor_text_block_pty.py",
+      "test_editor_text_comment_pty.py"
     ],
-    "contract": "Bare exact TEXT carries literal payload context/color until bounded raw ENDTEXT, ignoring payload comment markers; edits to opener and terminator propagate normal repaint through Undo/Redo. Not TEXT TO/custom macros/stream pragmas/full preprocessor."
+    "contract": "Bare TEXT with closed block comments or properly bounded line comments carries literal payload context/color until raw ENDTEXT; edits to opener and terminator propagate repaint through Undo/Redo. TEXT-prefixed identifiers, TEXT TO, adjacent TEXT&& and code following a closed comment are not stream openers. Not custom macros, stream pragmas or a full preprocessor."
   }
 }
