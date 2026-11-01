@@ -4349,3 +4349,14 @@ FocusState/borde/tirador. Overlaytapapartederechadialogo,marcoscompletos.
 Primerasmallfalloparser(--smallnoregistrado),corregido,nuevapassfinal2
 separada. No startup25x80/todostipos/gestos/layouts/Windows/cierreM4niarreglo.
 Evidencia `docs/evidence/linux-designer-inspector-ide-small-q158.json`.
+
+
+## 1 noviembre 2026: Q159 VALID Tab veto en seis tipos
+
+ButtonconActionNIL añade VALIDinline,F10,F9,compileartefactoreal:Tab.F.
+bloqueasentinel,Tab.T.siguienteentra,Escsale. RegresionGET/Radio/Checkbox/
+List/Combo:6PTY60checks63guardas34docsPASSen0e4860d,sinarreglo.
+No vetoantesdeAction/accionterminante niotrasteclas/mouse/sideeffects/
+orden/cuentas/parametros/excepciones/codigoarbitrario,nuevosmodelos/
+pixeles/Windows/global/cierreM4. Evidencia
+`docs/evidence/linux-designer-inline-valid-six-types-q159.json`.

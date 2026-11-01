@@ -1,0 +1,239 @@
+{
+  "scope": "Inline VALID false/true Tab focus transfer for six existing control types; no product fix",
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0e4860d1cbbab46fd8352c5902494b3342ebb2bf",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "a6cca888d9889845f9637cfc3202b50935ae42fff2ff2f425e7bb2a195d97bcf",
+      "binary_sha256": "5dc1d24daf54ee1e146870f2421d7d7229b1b2728c72568c8a9b80f458110847",
+      "build_receipt": "/tmp/hbide-q159-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "67ef3c10179807ba858a388a20cb5bc8d4231f25a6c4c58f1ba603f353d31d8c",
+      "case": "designer-inline-button-valid-veto-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "button"
+      ],
+      "started": 1793510347.8731356,
+      "seconds": 6.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "log": "/tmp/hbide-q159-final/designer-inline-button-valid-veto-runtime-1793510347873131691.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0e4860d1cbbab46fd8352c5902494b3342ebb2bf",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "a6cca888d9889845f9637cfc3202b50935ae42fff2ff2f425e7bb2a195d97bcf",
+      "binary_sha256": "5dc1d24daf54ee1e146870f2421d7d7229b1b2728c72568c8a9b80f458110847",
+      "build_receipt": "/tmp/hbide-q159-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "67ef3c10179807ba858a388a20cb5bc8d4231f25a6c4c58f1ba603f353d31d8c",
+      "case": "designer-inline-get-valid-veto-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "get"
+      ],
+      "started": 1793510354.3500967,
+      "seconds": 6.38,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "log": "/tmp/hbide-q159-final/designer-inline-get-valid-veto-runtime-1793510354350092860.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0e4860d1cbbab46fd8352c5902494b3342ebb2bf",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "a6cca888d9889845f9637cfc3202b50935ae42fff2ff2f425e7bb2a195d97bcf",
+      "binary_sha256": "5dc1d24daf54ee1e146870f2421d7d7229b1b2728c72568c8a9b80f458110847",
+      "build_receipt": "/tmp/hbide-q159-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "67ef3c10179807ba858a388a20cb5bc8d4231f25a6c4c58f1ba603f353d31d8c",
+      "case": "designer-inline-radiogroup-valid-veto-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "radiogroup"
+      ],
+      "started": 1793510360.7261167,
+      "seconds": 6.32,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "log": "/tmp/hbide-q159-final/designer-inline-radiogroup-valid-veto-runtime-1793510360726113194.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0e4860d1cbbab46fd8352c5902494b3342ebb2bf",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "a6cca888d9889845f9637cfc3202b50935ae42fff2ff2f425e7bb2a195d97bcf",
+      "binary_sha256": "5dc1d24daf54ee1e146870f2421d7d7229b1b2728c72568c8a9b80f458110847",
+      "build_receipt": "/tmp/hbide-q159-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "67ef3c10179807ba858a388a20cb5bc8d4231f25a6c4c58f1ba603f353d31d8c",
+      "case": "designer-inline-checkbox-valid-veto-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "checkbox"
+      ],
+      "started": 1793510367.0497887,
+      "seconds": 6.32,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "log": "/tmp/hbide-q159-final/designer-inline-checkbox-valid-veto-runtime-1793510367049785022.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0e4860d1cbbab46fd8352c5902494b3342ebb2bf",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "a6cca888d9889845f9637cfc3202b50935ae42fff2ff2f425e7bb2a195d97bcf",
+      "binary_sha256": "5dc1d24daf54ee1e146870f2421d7d7229b1b2728c72568c8a9b80f458110847",
+      "build_receipt": "/tmp/hbide-q159-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "67ef3c10179807ba858a388a20cb5bc8d4231f25a6c4c58f1ba603f353d31d8c",
+      "case": "designer-inline-listbox-valid-veto-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "listbox"
+      ],
+      "started": 1793510373.3726108,
+      "seconds": 6.47,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "log": "/tmp/hbide-q159-final/designer-inline-listbox-valid-veto-runtime-1793510373372607409.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0e4860d1cbbab46fd8352c5902494b3342ebb2bf",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "a6cca888d9889845f9637cfc3202b50935ae42fff2ff2f425e7bb2a195d97bcf",
+      "binary_sha256": "5dc1d24daf54ee1e146870f2421d7d7229b1b2728c72568c8a9b80f458110847",
+      "build_receipt": "/tmp/hbide-q159-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "67ef3c10179807ba858a388a20cb5bc8d4231f25a6c4c58f1ba603f353d31d8c",
+      "case": "designer-inline-combobox-valid-veto-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "combobox"
+      ],
+      "started": 1793510379.8456526,
+      "seconds": 6.47,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "log": "/tmp/hbide-q159-final/designer-inline-combobox-valid-veto-runtime-1793510379845648675.log"
+    }
+  ],
+  "logs": {
+    "designer-inline-button-valid-veto-runtime": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS button sentinel initially not entered\nPASS button first VALID returns false\nPASS button false VALID prevents sentinel entry\nPASS button false VALID keeps runtime active\nPASS button second VALID returns true\nPASS button true VALID enters sentinel\nPASS button true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-6ps2hqdq\n",
+    "designer-inline-get-valid-veto-runtime": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS get sentinel initially not entered\nPASS get first VALID returns false\nPASS get false VALID prevents sentinel entry\nPASS get false VALID keeps runtime active\nPASS get second VALID returns true\nPASS get true VALID enters sentinel\nPASS get true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-p31q3qy6\n",
+    "designer-inline-radiogroup-valid-veto-runtime": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS radiogroup sentinel initially not entered\nPASS radiogroup first VALID returns false\nPASS radiogroup false VALID prevents sentinel entry\nPASS radiogroup false VALID keeps runtime active\nPASS radiogroup second VALID returns true\nPASS radiogroup true VALID enters sentinel\nPASS radiogroup true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-euwhwehf\n",
+    "designer-inline-checkbox-valid-veto-runtime": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS checkbox sentinel initially not entered\nPASS checkbox first VALID returns false\nPASS checkbox false VALID prevents sentinel entry\nPASS checkbox false VALID keeps runtime active\nPASS checkbox second VALID returns true\nPASS checkbox true VALID enters sentinel\nPASS checkbox true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-bysabcn0\n",
+    "designer-inline-listbox-valid-veto-runtime": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS listbox sentinel initially not entered\nPASS listbox first VALID returns false\nPASS listbox false VALID prevents sentinel entry\nPASS listbox false VALID keeps runtime active\nPASS listbox second VALID returns true\nPASS listbox true VALID enters sentinel\nPASS listbox true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-aa0j0vvr\n",
+    "designer-inline-combobox-valid-veto-runtime": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS combobox sentinel initially not entered\nPASS combobox first VALID returns false\nPASS combobox false VALID prevents sentinel entry\nPASS combobox false VALID keeps runtime active\nPASS combobox second VALID returns true\nPASS combobox true VALID enters sentinel\nPASS combobox true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-l0aezgy4\n"
+  },
+  "checks": 60,
+  "modes": 6,
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "0e4860d1cbbab46fd8352c5902494b3342ebb2bf",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "b88c577afcce2abe0f3a8f6b54927f97bbd2ca954dc6555cbddd252012e9372e",
+    "started": 1793510386.4913766,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q159-guards/test_completion_guards.py.log",
+        "seconds": 0.201
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q159-guards/test_build_receipt.py.log",
+        "seconds": 0.198
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "177c22d6bedd8cba16d90be576a51a233e9006716e4a06b67abadd25f6d9ee87",
+        "log": "/tmp/hbide-q159-guards/test_completion_inventory.py.log",
+        "seconds": 0.649
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q159-guards/test_distribution_notices.py.log",
+        "seconds": 0.197
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q159-guards/test_embed_help_docs.py.log",
+        "seconds": 0.199
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q159-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.349
+      }
+    },
+    "ok": true,
+    "finished": 1793510388.2842138
+  },
+  "coverage": "Adds Button with inertActionNIL. FirstTab false keeps sentinel unentered/runtime active; secondTab true enters sentinel,Esc returns. GET/Radio/Checkbox/List/Combo same fixture regression.",
+  "limits": "ButtonTab transfer only, not veto before Action or terminating action. No other keys/mouse/sideeffects/order/count/params/exceptions/arbitrarycode/new models/pixels/Windows/global/M4."
+}

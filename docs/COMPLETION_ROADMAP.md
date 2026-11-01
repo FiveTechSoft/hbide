@@ -615,3 +615,10 @@ IDErealDisplay25x80->designerCombo->deseleccion:3PTY22checks63guardas
 34docsPASS,nativepaircompletoinspeccionadosinrestos. No startup25x80,
 todostipos/gestos/layouts/Windows/cierreM4niarreglo. Evidencia
 `docs/evidence/linux-designer-inspector-ide-small-q158.json`.
+
+
+### Seguimiento Q159 (1 noviembre 2026)
+
+VALIDTab.F./.T.veto incluyeButtonActionNIL:6PTY60checks63guardas34docs
+PASS. No vetodeAction,otrasteclas/mouse/Windows/cierreM4niarreglo.
+Evidencia `docs/evidence/linux-designer-inline-valid-six-types-q159.json`.
