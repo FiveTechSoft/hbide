@@ -1,0 +1,279 @@
+{
+  "scope": "Frozen C30 bounded source navigation.19additional scenarios;104distinct across blocks1..21 after Q223 normalization. Not full353/Harbour-preprocessor/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "nav-init-exit",
+          "command": [
+            "test_nav_init_exit_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.984953165054321,
+          "test_sha256": "3d903da461f1dcc8482619f286052ac87c701d7577ea6e4b8771489da9421f82",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-init-exit.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-note-comment",
+          "command": [
+            "test_nav_note_comment_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.962447881698608,
+          "test_sha256": "def0ac21faae1dbad837c5cd1199dd61bc61e25a37b546cb196b33b200d66264",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-note-comment.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-destructor",
+          "command": [
+            "test_nav_destructor_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.975683212280273,
+          "test_sha256": "813d39fefdbd8095e35d607a30cbdc189c8b641f8fab1165fc63fbfce5992ea5",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-destructor.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-assign-jump",
+          "command": [
+            "test_nav_access_assign_pty.py",
+            "--assign"
+          ],
+          "exit": 0,
+          "seconds": 5.972479581832886,
+          "test_sha256": "307d86563d66554fc3443b07baee29b9850a35a62ed497d76ba2b6ae04b2d12c",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-assign-jump.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-procedure-class",
+          "command": [
+            "test_nav_procedure_class_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.9730141162872314,
+          "test_sha256": "94bd13bf4d3bdf0cff4d8132a22b54bd3aa997e863ef7803ad5c25ec8d613bc1",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-procedure-class.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-access-assign",
+          "command": [
+            "test_nav_access_assign_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.974342346191406,
+          "test_sha256": "307d86563d66554fc3443b07baee29b9850a35a62ed497d76ba2b6ae04b2d12c",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-access-assign.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "nav-create-class",
+          "command": [
+            "test_nav_create_class_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.973918676376343,
+          "test_sha256": "9c713b228d151c52aeea510a24478f222396765273c43dcd8b5368728ed0e700",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-create-class.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-declaration-static-abbrev",
+          "command": [
+            "test_nav_declaration_continuation_pty.py",
+            "--static-abbrev"
+          ],
+          "exit": 0,
+          "seconds": 5.973158121109009,
+          "test_sha256": "fbb2af9f793b9277504764bda1f6bbafda1e05e70c82af03b3beb4a6fdf8967a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-declaration-static-abbrev.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-declaration-compact",
+          "command": [
+            "test_nav_declaration_continuation_pty.py",
+            "--compact"
+          ],
+          "exit": 0,
+          "seconds": 5.972596645355225,
+          "test_sha256": "fbb2af9f793b9277504764bda1f6bbafda1e05e70c82af03b3beb4a6fdf8967a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-declaration-compact.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-declaration-continuation",
+          "command": [
+            "test_nav_declaration_continuation_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.971729040145874,
+          "test_sha256": "fbb2af9f793b9277504764bda1f6bbafda1e05e70c82af03b3beb4a6fdf8967a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-declaration-continuation.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-multiline-gap",
+          "command": [
+            "test_nav_multiline_gap_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.972679615020752,
+          "test_sha256": "89cbce90e88a3387095608b75441709b2dad47ea601a45bfa33d15766d0b93b8",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-multiline-gap.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "nav-array-gap-comment",
+          "command": [
+            "test_nav_array_gap_comment_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.9744908809661865,
+          "test_sha256": "a8f657ca3f16a763a0d90fe830d89862cf6fce0337368242e46ae3d8d9f031b7",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-array-gap-comment.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-array-bracket-comment",
+          "command": [
+            "test_nav_array_bracket_comment_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.972699880599976,
+          "test_sha256": "cd0726fa837e13c1696dd61ea5a27be2f44aeb71a3f7df25d411bcf937960b65",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-array-bracket-comment.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-enddump-comment",
+          "command": [
+            "test_nav_enddump_comment_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.972994804382324,
+          "test_sha256": "c924157d0d48860bdf3abf1dfeb2aba6a116e92892076af54fe61bf173e519f6",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-enddump-comment.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-pragma-macro",
+          "command": [
+            "test_nav_pragma_macro_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.973059177398682,
+          "test_sha256": "c17d3dd07856dc2aafbb3dc9f6cc257f8f260c2a81964390b2af0fd6dbd04b06",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-pragma-macro.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-array-comment",
+          "command": [
+            "test_nav_array_comment_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.97102427482605,
+          "test_sha256": "16a9b3e8023c8f750b77b71d504bfd6e3805fefe6d534225c6d9d28b01ae6a42",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-array-comment.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-selection",
+          "command": [
+            "test_nav_selection_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 19.382415294647217,
+          "test_sha256": "793438e504bcd6500158ce880928c5b1b0450c58ae8e50dadcb4e66025c45490",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-selection.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-typed-methods",
+          "command": [
+            "test_nav_typed_methods_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.973400592803955,
+          "test_sha256": "c52ceee10a4080b3a17b052287a699c7cc40526fd4312c9b7153b6e0fe7df7e7",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-typed-methods.log",
+          "printed_failure": false
+        },
+        {
+          "name": "nav-literal-comment",
+          "command": [
+            "test_nav_literal_comment_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.97115421295166,
+          "test_sha256": "aabd081894aea0b749d97926854d43afd5f3ff54d863f4dee892abf8ddd491f1",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/nav-literal-comment.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 104,
+  "logs": {
+    "nav-init-exit.log": "PASS Open requested fixture\nPASS Picker distinguishes init and exit modifiers\nPASS Picker jumps to actual EXIT declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-py7yani8\n",
+    "nav-note-comment.log": "PASS Open requested fixture\nPASS Picker includes declaration after NOTE comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-e4ldhtgv\n",
+    "nav-destructor.log": "PASS Open requested fixture\nPASS Picker qualifies DESTRUCTOR CLASS alias\nPASS Picker jumps to DESTRUCTOR CLASS implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-tv5hal5u\n",
+    "nav-assign-jump.log": "PASS Open requested fixture\nPASS Picker indexes ACCESS and ASSIGN implementation aliases\nPASS Picker jumps to exact ASSIGN implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-o7ipov_2\n",
+    "nav-procedure-class.log": "PASS Open requested fixture\nPASS Picker qualifies PROCEDURE CLASS alias\nPASS Picker jumps to PROCEDURE CLASS implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-vfxawr6f\n",
+    "nav-access-assign.log": "PASS Open requested fixture\nPASS Picker indexes ACCESS and ASSIGN implementation aliases\nPASS Picker jumps to exact ACCESS implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-vk39l345\n",
+    "nav-create-class.log": "PASS Open requested fixture\nPASS Picker includes CREATE CLASS alias\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-3qzw9bbf\n",
+    "nav-declaration-static-abbrev.log": "PASS Open requested fixture\nPASS Picker includes continued Target declaration\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-bf1sddcp\n",
+    "nav-declaration-compact.log": "PASS Open requested fixture\nPASS Picker includes continued Target declaration\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-f_r5y_j1\n",
+    "nav-declaration-continuation.log": "PASS Open requested fixture\nPASS Picker includes continued Target declaration\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-rde6jrb1\n",
+    "nav-multiline-gap.log": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-tof0sv4h\n",
+    "nav-array-gap-comment.log": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-8b_gkec0\n",
+    "nav-array-bracket-comment.log": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-lz4ct5w7\n",
+    "nav-enddump-comment.log": "PASS Open requested fixture\nPASS Commented enddump resumes Harbour navigation\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-cy9fuhfj\n",
+    "nav-pragma-macro.log": "PASS Open requested fixture\nPASS Macro text is not an active begindump directive\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-aksotwhg\n",
+    "nav-array-comment.log": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-wci79sdc\n",
+    "nav-selection.log": "PASS Open requested fixture\nPASS Picker lists target while old range exists\nPASS Function jump consumes old range before typing\nPASS Undo restores only target insertion\nPASS Picker Cancel retains old selected range\nPASS Undo cancelled-picker replacement\nPASS Goto Line consumes old range before typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-239_qhvo\n",
+    "nav-typed-methods.log": "PASS Open requested fixture\nPASS Picker uses real method names rather than type keyword\nPASS Picker jumps to typed method implementation\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-dtvx1ns4\n",
+    "nav-literal-comment.log": "PASS Open requested fixture\nPASS Function picker lists Target after literal comment opener\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-0rdjelht\n"
+  }
+}

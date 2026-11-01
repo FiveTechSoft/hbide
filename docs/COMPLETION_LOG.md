@@ -5255,3 +5255,15 @@ Tests propios hashados/binario inalterado; sin fallos/reintentos en estos18.
 con normalización Q223; no sumar tres repeticiones --create.
 No producto nuevo/píxeles/modelos/Windows/matriz completa ni cierre hitos.
 Evidencia: docs/evidence/linux-c30-skipped-blocks1618-q224.json.
+
+### Q225 (1 noviembre 2026): C30 navegación de declaraciones
+
+19 escenarios adicionales PASS con C30 96d77549/export049b533: INIT/EXIT,
+NOTE, DESTRUCTOR, ACCESS/ASSIGN, PROCEDURE CLASS, CREATE CLASS, continuaciones
+normal/compact/static-abbrev, comentarios entre líneas, arrays y brackets,
+ENDDUMP, pragmas en macros, selección/métodos tipados/literales.
+Fixtures léxicas acotadas con navegación real; no preprocesador completo.
+Tests propios hashados/binario inalterado; sin fallos/reintentos en estos19.
+104 escenarios distintos documentados/cotejados con plan353, normalización
+Q223 aplicada; no matriz completa ni producto/píxeles/modelos/Windows/hitos.
+Evidencia: docs/evidence/linux-c30-navigation-blocks1921-q225.json.
