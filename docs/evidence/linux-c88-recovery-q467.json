@@ -13,6 +13,16 @@
       "test_sha256": "9b24c3e619fcde8e021136980c9bffcb598c9191ea1b1f9a1e5509bddc646639",
       "binary_unchanged": true
     },
+    "deep-bom": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal encoding generation stored\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
+      "args": [
+        "/tmp/hbide-c88/bin/hbide",
+        "--utf8-bom"
+      ],
+      "test_sha256": "9b24c3e619fcde8e021136980c9bffcb598c9191ea1b1f9a1e5509bddc646639",
+      "binary_unchanged": true
+    },
     "compare": {
       "exit": 0,
       "log": "PASS Compare is read-only; open snapshots stay stable; reopening refreshes disk; Later keeps bytes and current document\n",
@@ -20,6 +30,27 @@
       "test_sha256": "c5163ac5b4a8807c4bf258cd75b2ea48237cd1457d67249093cc5fc9023ed01d",
       "binary_unchanged": true
     },
+    "undo-cleanup": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS Undo to disk baseline retires stale journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n",
+      "args": [
+        "/tmp/hbide-c88/bin/hbide"
+      ],
+      "test_sha256": "e33f36fa2f87947762953efe949017443fa94cad67854388de38a42d0f9da7cc",
+      "binary_unchanged": true
+    },
+    "reload-cleanup": {
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS dirty disk change offers Reload\nPASS Reload shows external bytes\nPASS Reload retires discarded dirty journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n",
+      "args": [
+        "/tmp/hbide-c88/bin/hbide"
+      ],
+      "test_sha256": "683a251320ad6dfde7ff0ccb7ec2a117dab9f35d1f57c62a69f22ffae4f7436f",
+      "binary_unchanged": true
+    }
+  },
+  "limits": "No actual pixels/new models/fullmatrix/Windows/install/license/hitoclosure.",
+  "initial_invocation_errors": {
     "undo-cleanup": {
       "exit": 1,
       "log": "Traceback (most recent call last):\n  File \"/home/sandbox/hbide/tests/test_undo_journal_cleanup_pty.py\", line 19, in <module>\n    BIN = os.path.abspath(sys.argv[1])\nIndexError: list index out of range\n",
@@ -33,17 +64,7 @@
       "args": [],
       "test_sha256": "683a251320ad6dfde7ff0ccb7ec2a117dab9f35d1f57c62a69f22ffae4f7436f",
       "binary_unchanged": true
-    },
-    "deep-bom": {
-      "exit": 0,
-      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal encoding generation stored\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n",
-      "args": [
-        "/tmp/hbide-c88/bin/hbide",
-        "--utf8-bom"
-      ],
-      "test_sha256": "9b24c3e619fcde8e021136980c9bffcb598c9191ea1b1f9a1e5509bddc646639",
-      "binary_unchanged": true
     }
   },
-  "limits": "No actual pixels/new models/fullmatrix/Windows/install/license/hitoclosure."
+  "correction": "Initial cleanup invocations omitted mandatory binary positional arg and failed before IDE. Corrected actual argv, rerun bothPASS; initial errors retained.544eb0e intermediate receipt records errors, not allPASS."
 }
