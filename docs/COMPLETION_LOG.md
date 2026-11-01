@@ -4660,3 +4660,15 @@ se cuenta el log parcial ni se afirma pasada continua. Diagnostico
 sintetico: no nueva certificacion del parser/compilador general, Cancel,
 respuestaUI, Windows, matriz global ni cierreM2.
 Evidencia `docs/evidence/linux-build-error-navigation-q179.json`.
+
+
+### Q180 (1 noviembre 2026): contrato de Start vinculado al inventario
+
+IDE-030 incorpora las pruebas Q176-Q179: compilador ausente, recuperacion
+sin reiniciar, status/output discordantes y salto al error sintetico
+aunque exista binario previo. Guarda de contrato y regeneracion del
+inventario con lineas actuales.74guardas (47inventario) y34docsPASS en
+8002662. Solo reconciliacion de fuente/contrato, no nuevo runtime, PTY,
+modelo, nativa, binario, Windows, matriz global ni hito. Q179 mantiene su
+propia fuente/hash y alcance.
+Evidencia `docs/evidence/linux-start-contract-index-q180.json`.

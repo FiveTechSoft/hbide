@@ -1,0 +1,74 @@
+{
+  "scope": "Q180 source contract index reconciliation only, not new product/runtime acceptance",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "80026622ff0b80aea84e926473bb897efa5d27be",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "d7720c0312d27904f6f8e9cd6342a0ab1bd75491d96a75a09edd847b0874870f",
+    "started": 1793518957.8625233,
+    "runner_sha256": "d8e1b33008b126ce28f71722967a5ba136d9a3c979a0ce5732d5c3a00027d71f",
+    "tests": {
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q180-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.273
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q180-guards/test_completion_guards.py.log",
+        "seconds": 0.218
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q180-guards/test_build_receipt.py.log",
+        "seconds": 0.218
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "e6f79e6fa0af285676b2ab2be7e585568186ed37e369759008f959635c3f6a81",
+        "log": "/tmp/hbide-q180-guards/test_completion_inventory.py.log",
+        "seconds": 0.769
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q180-guards/test_distribution_notices.py.log",
+        "seconds": 0.218
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q180-guards/test_embed_help_docs.py.log",
+        "seconds": 0.218
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q180-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.368
+      }
+    },
+    "ok": true,
+    "finished": 1793518960.1455128
+  },
+  "counts": "74guards including47inventory;34docsPASS",
+  "change": "IDE030 links missing compiler, same-session recovery, output-status fixtures and Q179 synthetic diagnostic navigation; generated inventory reflects current source line numbers",
+  "limits": "No new PTY/model/native/binary/Windows/fullmatrix/hito claims. Q179 remains identified runtime evidence on its own source/hash."
+}
