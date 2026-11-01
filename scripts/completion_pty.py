@@ -6,6 +6,9 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'designer-inline-get-runtime': ('test_designer_inline_other_runtime_pty.py', ['--kind','get'], 120),
+    'designer-inline-radio-runtime': ('test_designer_inline_other_runtime_pty.py', ['--kind','radiogroup'], 120),
+    'designer-inline-checkbox-runtime': ('test_designer_inline_other_runtime_pty.py', ['--kind','checkbox'], 120),
     'designer-inline-combo-runtime': ('test_designer_inline_combo_runtime_pty.py', [], 120),
     'designer-inline-list-runtime': ('test_designer_inline_combo_runtime_pty.py', ['--listbox'], 120),
     'designer-inline-button-runtime': ('test_designer_inline_button_runtime_pty.py', [], 120),
