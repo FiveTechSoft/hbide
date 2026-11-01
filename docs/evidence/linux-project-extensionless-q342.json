@@ -1,0 +1,54 @@
+{
+  "source": "a40862b43a362095202a85bdfc590f1d54ff8cee",
+  "build_exit": 0,
+  "removed": [
+    {
+      "path": "hbide.exe",
+      "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+    },
+    {
+      "path": "tests/hbide",
+      "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+    }
+  ],
+  "scope": "Literal extensionless HBP tokens default to.prg, original token/bytes retained, flags/macros/wildcards not evaluated. Focal3checks/fourprojectregression scripts/projectmodelPASS. No fullmatrix/Windows/install/license/hito.",
+  "binary_sha256": "53d7a97a94793a1f946bb16005eba613cbce6f38d5ceef6fdf6d872a9a6d9937",
+  "baseline": "PASS Extensionless project source is listed without missing marker\nFAIL Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 2 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-xklfq2xn\n",
+  "fixed": "PASS Extensionless project source is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-x1depgg4\n",
+  "compiler": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling 'source.prg'...\n\nLines 2, Functions/Procedures 1\nGenerating C source output to '/tmp/hbmk_5sosjn.dir/source.c'... Done.\n",
+  "project_model": {
+    "exit": 0,
+    "receipt": "PASS hbp inventory/info/build/diagnostics/failedbuild/noautorun/bytepreservation/cwd/quotes/filters",
+    "source_sha256": "e3f76dd0d71e71f7cf6503ffd67bb21e9a277e19be7a41b045ca3f9b0f5ec8bf"
+  },
+  "regressions": {
+    "test_project_bom_pty.py": {
+      "exit": 0,
+      "log": "PASS BOM project source is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP BOM and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ikh27e04\n"
+    },
+    "test_project_eof_pty.py": {
+      "exit": 0,
+      "log": "PASS EOF project source is listed\nPASS Enter opens actual first source\nPASS HBP EOF and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6nrsf85l\n"
+    },
+    "test_project_hpp_pty.py": {
+      "exit": 0,
+      "log": "PASS C++ header is listed\nPASS Enter opens actual first source\nPASS HBP and header bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6tcq1sqo\n"
+    },
+    "test_project_cxx_source_pty.py": {
+      "exit": 0,
+      "log": "PASS C++ .cc project source is listed\nPASS Enter opens actual first source\nPASS HBP and C++ source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-nt_6jaxd\n"
+    }
+  },
+  "pixels": [
+    {
+      "name": "hbide-q342-project-before.png",
+      "sha256": "bcac86b48faa97049cdcf3bf9a1e2a8b30e97b00ee34c433c52ab1dec3cdb37a",
+      "inspection": "Complete1202x762 native terminal, lower borders/status. Before No literal sources listed; C72source row plus exact source.prg resolved path, Not built in this session retained."
+    },
+    {
+      "name": "hbide-q342-project-c72.png",
+      "sha256": "eacee018cc334954bdc7b381aff0158e95cd4f84ecc6258e69f303627ea43f2f",
+      "inspection": "Complete1202x762 native terminal, lower borders/status. Before No literal sources listed; C72source row plus exact source.prg resolved path, Not built in this session retained."
+    }
+  ]
+}
