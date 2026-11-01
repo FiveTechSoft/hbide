@@ -4884,3 +4884,16 @@ no cuenta. Ningun modo duplicado ni fuente/binario cambiados.
 85 guardas y34 documentos PASS. No arreglo nuevo, pixeles nuevos,
 matriz341 completa, Windows, Cancel, ni cierre M2/M6. No hereda Q164.
 Evidencia: docs/evidence/linux-project-joint-q194.json.
+
+### Q195 (1 noviembre 2026): inventario de avisos del export exacto
+
+Fuente 35d7a64. El constructor de candidatos ahora conserva source-notices.json
+del export sin .git, su hash y revision en el manifiesto antes de compilar.
+Fallo de auditoria o revision discordante detienen build. No se confunde
+ese inventario con clearance: release_status sigue sin autorizar release,
+y un candidato interno se puede construir con la revision legal pendiente.
+Cuatro pruebas aisladas de preflight y87 guardas totales PASS. Export real
+sin .git de esta fuente auditado: exit1 esperado,14referencias ausentes,
+14fuentes sin header detectado,34docsPASS. No candidato/binario nuevo,
+PTY, pixeles, Windows ni cierre M5.
+Evidencia: docs/evidence/linux-candidate-notice-export-q195.json.
