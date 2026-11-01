@@ -958,12 +958,13 @@ return ::aBlkCmt[ nLine ]
 // UTF-8 continuation bytes can never alias them.
 METHOD ScanBlkLine( cText, lIn, cCarry ) CLASS HBSrcEdit
 
-   local n := 1, nLen := Len( cText ), c, q, cLead
+   local n := 1, nLen := Len( cText ), c, q, cLead, nSemi := 0
 
    hb_default(@cCarry, "")
-   cLead := iif(lIn,cCarry,"")
+   cLead := cCarry
 
    if ! lIn .and. ( Left( LTrim( StrTran( cText, Chr( 9 ), " " ) ), 1 ) == "*" .or. HBIDE_EditorNoteLine(cText) )
+      cCarry := ""
       return .F.
    endif
    while n <= nLen
@@ -974,11 +975,13 @@ METHOD ScanBlkLine( cText, lIn, cCarry ) CLASS HBSrcEdit
             n++
          endif
       elseif c == "[" .and. HBIDE_BracketAssignment( cLead+cText, hb_ULen(cLead+Left(cText,n-1))+1 )
+         nSemi := 0
          n++
          while n <= nLen .and. SubStr( cText, n, 1 ) != "]"
             n++
          end
       elseif Lower( SubStr( cText, n, 2 ) ) == 'e"'
+         nSemi := 0
          n += 2
          while n <= nLen
             if SubStr( cText, n, 1 ) == Chr( 92 )
@@ -990,6 +993,7 @@ METHOD ScanBlkLine( cText, lIn, cCarry ) CLASS HBSrcEdit
             endif
          end
       elseif c == '"' .or. c == "'" .or. c == "`"
+         nSemi := 0
          q := iif( c == "`", "'", c )
          n++
          while n <= nLen .and. SubStr( cText, n, 1 ) != q
@@ -1001,12 +1005,17 @@ METHOD ScanBlkLine( cText, lIn, cCarry ) CLASS HBSrcEdit
          n++
       elseif SubStr( cText, n, 2 ) == "//" .or. SubStr( cText, n, 2 ) == "&&"
          exit
+      elseif c == ";"
+         nSemi := n
+      elseif !( c $ ( " " + Chr(9) ) )
+         nSemi := 0
       endif
       n++
    end
 
    if !lIn
-      cCarry := ""
+      cCarry := iif(nSemi > 0, ;
+         iif(HBIDE_BracketAssignment(cLead+cText,hb_ULen(cLead+Left(cText,nSemi-1))+1),":=", ")"), "")
    endif
 return lIn
 
