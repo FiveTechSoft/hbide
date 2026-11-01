@@ -1,0 +1,68 @@
+{
+  "candidate": {
+    "source": "93fc047ce560bfc91fda38e36c1217707fe71154",
+    "removed": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "scope": "C44 sole-line delete focal only, not fullmatrix/Windows/release",
+    "binary_sha256": "8658732bcbd7b02285aa876bd7857515e3109bb04f11dcd4853658f64cab492c",
+    "build_exit": 0
+  },
+  "baseline": {
+    "source": "0e3fe103b7d9b43c32989e91b80ada16fe0814b9",
+    "binary_sha256": "b7ea16b82cdcf091e53cf208d7ba45cfc2e4dab1cd377d178853f923f53e65b3",
+    "log": "FAIL Delete Line clears sole physical line\nPASS Undo sole-line deletion restores exact bytes\nFAIL Redo sole-line deletion clears bytes\nFAIL Paste retains deleted sole line in clipboard\nTOTAL 1 PASS 3 FAIL\nArtifacts /tmp/hbide-edit-menu-55d4z2q4\n"
+  },
+  "model": {
+    "source": "93fc047ce560bfc91fda38e36c1217707fe71154",
+    "binary_sha256": "524281bfcee8bbad75d906eb958ab60b898f33842051b15934bb234b2855654c",
+    "log": "\n\n    1\n    2\n    3\n    4\n    5\n    6\n    7\n    8\n    9\n   10\n   11\n   12\n   13\n   14\n   15\n   16\n   17\n   18\n   19\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1alpha beta\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1caf\u00e9\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1    x\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\nP   2\nP   3\nPASS Undo restores sole line clean\nP   2\nPASS Redo clears sole line dirty\nPASS empty buffer delete no-opty\nPASS empty no-op preserves clipboard\n    1alpha\nP   2\nP   3\n    1\nPASS sole-line command consumes old mark\n    1alpha\nP   2\nPASS Undo sole marked line exact\nTOTAL         20 PASS          0 FAIL"
+  },
+  "tests": {
+    "test_delete_only_line_pty.py:menu": {
+      "exit": 0,
+      "sha256": "d305e63fca74f1de6edf645e80acd4aa2283f555dbdfe1b29e1ab66632e25527",
+      "seconds": 9.535075902938843,
+      "log": "PASS Delete Line clears sole physical line\nPASS Undo sole-line deletion restores exact bytes\nPASS Redo sole-line deletion clears bytes\nPASS Paste retains deleted sole line in clipboard\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-1iax4_2f\n"
+    },
+    "test_delete_only_line_pty.py:ctrl-y": {
+      "exit": 0,
+      "sha256": "d305e63fca74f1de6edf645e80acd4aa2283f555dbdfe1b29e1ab66632e25527",
+      "seconds": 9.17547607421875,
+      "log": "PASS Delete Line clears sole physical line\nPASS Undo sole-line deletion restores exact bytes\nPASS Redo sole-line deletion clears bytes\nPASS Paste retains deleted sole line in clipboard\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-b21of2vk\n"
+    },
+    "test_delete_only_line_pty.py:cut": {
+      "exit": 0,
+      "sha256": "d305e63fca74f1de6edf645e80acd4aa2283f555dbdfe1b29e1ab66632e25527",
+      "seconds": 9.537366151809692,
+      "log": "PASS Delete Line clears sole physical line\nPASS Undo sole-line deletion restores exact bytes\nPASS Redo sole-line deletion clears bytes\nPASS Paste retains deleted sole line in clipboard\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-igjse512\n"
+    },
+    "test_delete_selection_pty.py:": {
+      "exit": 0,
+      "sha256": "2c229972d3976e8193309e4258c7fbb39767acd3732a41b550c00868ecd0843e",
+      "seconds": 12.17115306854248,
+      "log": "PASS Open requested fixture\nPASS typing after Delete Line has no stale out-of-range mark\nPASS editor remains alive after Delete Line and typing\nPASS Undo typing preserves line deletion\nPASS Undo Delete Line restores exact original\nPASS Redo Delete Line exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-o9ztcnbr\n"
+    },
+    "test_edit_menu_pty.py:": {
+      "exit": 0,
+      "sha256": "8b0ba8629bfc47543f1f318474ddb7f20c9d754db34993fb43da7d0790125a0a",
+      "seconds": 54.302555561065674,
+      "log": "PASS Open requested fixture\nPASS Edit Undo restores original exact bytes\nPASS Edit Redo reapplies insertion exact bytes\nPASS Edit Duplicate Line inserts local CRLF boundary\nPASS Edit Delete Line removes selected duplicate\nPASS Edit Copy then Paste inserts copied line\nPASS Edit Cut line removes pasted line\nPASS Edit Undo restores cut line\nPASS Edit Redo reapplies cut\nPASS Replace modal opened\nPASS Replace reports count\nPASS Replace modal applies text without changing EOL/TAB\nPASS Undo modal replace exact\nPASS Replace Esc cancels without text mutation\nPASS Find modal opened\nPASS Find modal navigates real second line\nPASS Goto modal opened\nPASS Goto modal navigates third line\nPASS Goto Esc preserves current row\nPASS Find Esc leaves source bytes untouched\nPASS Replace retains trailing spaces in free-form field\nPASS Undo trailing-space replace restores exact bytes\nPASS Goto zero clamps to first source line\nPASS Goto oversized clamps to final source line\nPASS Goto negative clamps to first source line\nPASS Replace empty replacement deletes matching bytes only\nPASS Undo deletion replace restores exact original\nPASS Replace missing text reports zero\nPASS Replace missing text preserves bytes\nPASS Goto explicit OK navigates first row\nPASS Goto explicit Cancel preserves first row\nPASS Find explicit OK navigates second row\nPASS Find explicit Cancel preserves second row\nPASS Replace explicit OK reports count\nPASS Replace explicit OK applies exact bytes\nPASS Undo explicit replace exact\nPASS Replace explicit Cancel leaves exact bytes\nTOTAL 37 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-uwed1mzv\n"
+    }
+  },
+  "visual": {
+    "images": [
+      "hbide-q279-onlyline-before.png",
+      "hbide-q279-onlyline-c44.png"
+    ],
+    "inspection": "Full1202x762 inspected; baseline keeps alpha beta, fixed clears row1 with full borders and no stale text. No layout change."
+  },
+  "scope": "Sole nonempty physical line deletion now clears it, retaining one editable line, clipboard and Undo/Redo. Empty buffer no-op preserves prior clipboard/history. Five focused PTY modes55 checks plus separate20-check model. No selection policy change/fullmatrix/Windows/release/milestone closure."
+}
