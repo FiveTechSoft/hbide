@@ -1,0 +1,392 @@
+{
+  "candidate": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "90e6d102c19227322accc16d58af294162e0fa17",
+    "archive_sha256": "8e8f857289dfdf99503d4e31cb4d6f677f9cc8885259288a737821d3afd8c875",
+    "dirty": false,
+    "started": 1793547567.669165,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "32eb87b9febad4411dfe192a1f047dec5f1c0c48557ea046897c34126ec69569",
+    "release_status": "not cleared; source notice review required",
+    "document_check": {
+      "exit": 0,
+      "paths_sha256": "a9ad0b3a5c47771afa608f0f9b419e12fb6491c24b00f1af4ebba47cff6c1e1b",
+      "count": 34
+    },
+    "source_notice_inventory": {
+      "path": "source-notices.json",
+      "sha256": "7fc9a39709e1c25afe6a4eb09b78e50ed9f92f1e66c16f8d3a475c8c60fba38c",
+      "release_review_required": true,
+      "does_not_clear_redistribution": true
+    },
+    "unstripped_sha256": "67d9f03ce3a94d1221c09938f6ca9eeeb34165216abd4a4656c33db784871297",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793547665.3788965
+  },
+  "focused_tests": {
+    "test_nav_text_block_pty.py": {
+      "exit": 0,
+      "sha256": "2ed5ea5f1658fe15c8d47e3aaef9c93bfbb5a82fa32641481f60b4feb41ebe67",
+      "log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-uyle9mke\n"
+    },
+    "test_editor_text_comment_pty.py": {
+      "exit": 0,
+      "sha256": "b0853c164214584c37588b09a8c855b641d60a81ff201e5f91d93d9c45e2aa77",
+      "log": "PASS TEXT payload uses string color\nPASS Return after ENDTEXT uses keyword color\nPASS Breaking TEXT repaints following comment state\nPASS Undo restores literal and following keyword colors\nPASS Redo restores ordinary comment colors\nPASS Undo and save retain TEXT bytes\nPASS Breaking ENDTEXT keeps following return literal\nPASS Undo ENDTEXT edit restores following keyword\nPASS Redo ENDTEXT edit restores following literal\nPASS Undo terminator and save retain TEXT bytes\nTOTAL 10 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-muggdz3o\n"
+    },
+    "test_delete_only_line_bp_pty.py": {
+      "exit": 0,
+      "sha256": "a9e0eb091deaf2ccf73880a185566922877f024c2a3ab0cec046e7a33b147c6f",
+      "log": "PASS F9 marks sole source line\nPASS Delete sole instruction drops breakpoint\nPASS Undo text does not resurrect deleted breakpoint\nPASS Redo keeps breakpoint absent\nPASS Redo saves empty sole-line buffer\nPASS User can deliberately mark empty row\nPASS Empty Delete no-op preserves deliberate breakpoint\nPASS Empty no-op BP closes without false save prompt\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6eak9k_g\n"
+    },
+    "test_delete_line_undo_boundary_pty.py": {
+      "exit": 0,
+      "sha256": "b9d381a167800728378aed55b6056043db1d5f365b2937252a3b542b2922bced",
+      "log": "PASS Open requested fixture\nPASS Undo line command alone preserves earlier typing\nPASS Redo line command exact\nPASS Undo later typing keeps line command\nPASS next Undo restores pre-command typing\nPASS third Undo removes earlier typing\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-gmp_av8e\n"
+    },
+    "test_cut_undo_boundary_pty.py": {
+      "exit": 0,
+      "sha256": "830d07057e62128a03aef60216c819fde4baf768d5eefeac4b6ff89ac8abd733",
+      "log": "PASS Open requested fixture\nPASS Cut selected al keeps earlier typed X\nPASS Undo Cut alone preserves earlier typing\nPASS Redo Cut alone exact\nPASS Undo later typing keeps Cut\nPASS next Undo restores pre-Cut typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-x5j760hm\n"
+    }
+  },
+  "dependencies": "\tlinux-vdso.so.1 (0x00007fffa44ae000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fb2ca3b1000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fb2c9a00000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007fb2ca4a9000)\n",
+  "source_notice_inventory": {
+    "scope": "Local HBP source notice inventory only. Absence of a detected header is not proof of no license or ownership. Does not clear redistribution.",
+    "source": "90e6d102c19227322accc16d58af294162e0fa17",
+    "referenced_license": {
+      "path": "LICENSE.txt",
+      "status": "missing"
+    },
+    "root_notice_files": [],
+    "sources": [
+      {
+        "path": "hbide.prg",
+        "sha256": "dc9d08431e4ee2482704011310d9315fd69c907c99898da0d91a9c55df3e1e51",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "editor.prg",
+        "sha256": "ca8ab33ac974369f5b22f52a9ea5dde0adfa3f8fda79c1702da22dff5655c74a",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "safeio.prg",
+        "sha256": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbmenu.prg",
+        "sha256": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbwindow.prg",
+        "sha256": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "designer.prg",
+        "sha256": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbbutton.prg",
+        "sha256": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbgetu.prg",
+        "sha256": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "help.prg",
+        "sha256": "4d00294fd70317df9c0ee6129852f7fd824c3c191ffaf56c8b5342c851e29e0b",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "project.prg",
+        "sha256": "1f7ef0d684a5ec6fd9cc2327b3a85db8c2451ace08a11803c2b0424216007198",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "projectui.prg",
+        "sha256": "b6b1e2254805825b32c7d983c308cb1caaf8e9c000db55b3ca90100f16a910d1",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "nav.prg",
+        "sha256": "6679a5bcc1f29df857d01fba864901a8ed732b079f612f9cd226293fb22a3dc3",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "recovery.prg",
+        "sha256": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbdebug/dbgbrwsr.prg",
+        "sha256": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbghelp.prg",
+        "sha256": "49e63db24a757fb8f8771c5b629a822dc6617970ab9bb93171050e0a1746f27a",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgmenu.prg",
+        "sha256": "30fb330448e0af889dc7e3688c520498afd14dffac8870d0bb687f647a846598",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtarr.prg",
+        "sha256": "281578e4ee39be97da081eba31335a4e4bb2aabc6789c1f769855a5c2591630f",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgthsh.prg",
+        "sha256": "660c9f94b84fbbba74859908843c20c1a19307f6b3ee3443ecaca4c1a58f4d21",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtinp.prg",
+        "sha256": "b7fd0a70fbe1af58600917c4eff1357ee7bf4ac8987faa497a9ce6fe98b28ec7",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtmenu.prg",
+        "sha256": "5e88fd251bc5bc69da09c5a3b9c27009aa897aa72a72ae51f10fae2aa5251d06",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtmitm.prg",
+        "sha256": "9b5d72a1ef05356b7eb91060fd1701f078055dce6b8e771a8e0834d3df822c17",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtobj.prg",
+        "sha256": "3f97ea1f3a58f361a3e30d1c7d37495a7a532528b5419deb25c75cde3a4b7b58",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgtwin.prg",
+        "sha256": "0b0389ee7c0a26be8a10995f28eb30be10a5b8c772e99bf610d7458f7f953efa",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgwa.prg",
+        "sha256": "8b2a033818ecffa3e322eb0d7dab00dd3c26fd79823eee2f5f7f330dbaa1f147",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/tbrwtext.prg",
+        "sha256": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgscript.prg",
+        "sha256": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18",
+        "gpl_notice": false,
+        "harbour_exception": false,
+        "copyright_notice": false,
+        "license_file_reference": false
+      },
+      {
+        "path": "hbdebug/debugger.prg",
+        "sha256": "9816ba356782f9d4b818ef93d136d1590d2e1e30b23ebd7f6ce78431428b8b15",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      },
+      {
+        "path": "hbdebug/dbgentry.c",
+        "sha256": "2bbab7508c0fb685aceb020a249917830db38e6e50f3c8da62552b0625537d2c",
+        "gpl_notice": true,
+        "harbour_exception": true,
+        "copyright_notice": true,
+        "license_file_reference": true
+      }
+    ],
+    "missing_referenced_license": [
+      "hbdebug/dbgbrwsr.prg",
+      "hbdebug/dbghelp.prg",
+      "hbdebug/dbgmenu.prg",
+      "hbdebug/dbgtarr.prg",
+      "hbdebug/dbgthsh.prg",
+      "hbdebug/dbgtinp.prg",
+      "hbdebug/dbgtmenu.prg",
+      "hbdebug/dbgtmitm.prg",
+      "hbdebug/dbgtobj.prg",
+      "hbdebug/dbgtwin.prg",
+      "hbdebug/dbgwa.prg",
+      "hbdebug/tbrwtext.prg",
+      "hbdebug/debugger.prg",
+      "hbdebug/dbgentry.c"
+    ],
+    "without_detected_gpl_header": [
+      "hbide.prg",
+      "editor.prg",
+      "safeio.prg",
+      "hbmenu.prg",
+      "hbwindow.prg",
+      "designer.prg",
+      "hbbutton.prg",
+      "hbgetu.prg",
+      "help.prg",
+      "project.prg",
+      "projectui.prg",
+      "nav.prg",
+      "recovery.prg",
+      "hbdebug/dbgscript.prg"
+    ],
+    "release_review_required": true
+  },
+  "scope": "C52source-identified clean export:8builder smokes and5focusedPTYscripts34checks. Same stripped binary across tests, runtimeAbout revision/docs and ldd checked. No new native screenshot inspection, no fullmatrix inheritance fromC30, no Windows/install/release/license clearance."
+}
