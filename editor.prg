@@ -2091,9 +2091,11 @@ STATIC FUNCTION HBIDE_BracketAssignment( cLine, nAt )
    RETURN !lBlock .AND. Empty(q) .AND. HBIDE_BracketContext(RTrim(cContext))
 
 STATIC FUNCTION HBIDE_BracketContext( cBefore )
-RETURN ( !Empty(cBefore) .AND. Right(cBefore,1) $ "=<>#$*/%^" .AND. Right(cBefore,2) != "->" ) .OR. ;
+RETURN ( !Empty(cBefore) .AND. Right(cBefore,1) $ "=<>#$*/%^!" .AND. Right(cBefore,2) != "->" ) .OR. ;
    ( Right(cBefore,1) == "+" .AND. Right(cBefore,2) != "++" ) .OR. ;
    ( Right(cBefore,1) == "-" .AND. Right(cBefore,2) != "--" ) .OR. ;
+   Right(Upper(cBefore),5) == ".AND." .OR. Right(Upper(cBefore),4) == ".OR." .OR. ;
+   Right(Upper(cBefore),5) == ".NOT." .OR. ;
    ( ! Empty(cBefore) .AND. Right(cBefore,1) $ "({," )
 
 // NOTE is a physical-line comment. Keep identifier prefixes as code.
