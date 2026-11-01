@@ -1,0 +1,33 @@
+{
+  "scope": "Five bounded C87 editor boundary modes52checks",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "results": {
+    "enter-crlf": {
+      "exit": 0,
+      "log": "PASS Breakpoint on second identical line\nPASS Enter blank split inserted bytes\nPASS Breakpoint follows original second line to third\nPASS Undo blank split returns original breakpoint second\nPASS Redo blank split moves original breakpoint third\nPASS Enter blank split saves exact bytes\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-b7iug4je\n",
+      "binary_unchanged": true
+    },
+    "backspace-crlf": {
+      "exit": 0,
+      "log": "PASS Breakpoint on third blank line\nPASS Backspace join shifts untouched third blank BP to second\nPASS Undo blank join restores untouched BP third\nPASS Redo blank join shifts untouched BP second\nPASS Blank join saves exact bytes\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6yg467fg\n",
+      "binary_unchanged": true
+    },
+    "join-backspace": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Enter blank line ends continuation and shows real comment\nPASS Split continuation saves exact bytes\nPASS Line join keeps literal and keyword colors\nPASS Backspace join restores original bytes\nPASS Undo join restores real comment after blank line\nPASS Undo join restores split bytes\nPASS Redo join keeps literal and keyword colors\nPASS Redo join restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-1h46lzp_\n",
+      "binary_unchanged": true
+    },
+    "join-delete": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Enter blank line ends continuation and shows real comment\nPASS Split continuation saves exact bytes\nPASS Line join keeps literal and keyword colors\nPASS Backspace join restores original bytes\nPASS Undo join restores real comment after blank line\nPASS Undo join restores split bytes\nPASS Redo join keeps literal and keyword colors\nPASS Redo join restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6ota7ze_\n",
+      "binary_unchanged": true
+    },
+    "utf8-mouse": {
+      "exit": 0,
+      "log": "PASS explicit terminal locale paints expected word labels\nPASS UTF8 doubleclick replaces whole accented word after TAB\nPASS Undo UTF8 word exact BOM TAB mixed EOL\nPASS UTF8 click after accented word maps exact byte\nPASS Undo UTF8 byte insertion exact\nPASS UTF8 doubleclick Delete exact accented word\nPASS Undo UTF8 Delete exact\nPASS UTF8 doubleclick final accented word exact\nPASS Undo UTF8 final word exact\nPASS UTF8 word Enter exact BOM TAB CRLF\nPASS Undo UTF8 Enter exact\nPASS UTF8 word Backspace exact BOM TAB mixed EOL\nPASS Undo UTF8 Backspace exact\nPASS UTF8 word Copy Paste exact bytes and line contract\nPASS Undo UTF8 Copy Paste exact\nPASS UTF8 word Cut exact BOM TAB mixed EOL\nPASS Undo UTF8 Cut exact\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-2bq1owsi\n",
+      "binary_unchanged": true
+    }
+  },
+  "limits": "Color from normalized PTY cells not pixels. No new model/fullmatrix/Windows/install/license/hitoclosure claims"
+}
