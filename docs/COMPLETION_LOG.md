@@ -5098,3 +5098,16 @@ sibling,identidaddoc/journalintactos,recoverycompletoexacto,F2original.
 87guardas34docsPASS. Nativa1202x762inspeccionadaaviso/rutarecovery/bordes
 legibles. SinWindows/carreraconcurrente/matrizglobal/cierreM1.
 Evidencia: docs/evidence/linux-atomic-literal-symlink-q210.json.
+
+### Q211 (1 noviembre 2026): metadatos literales y recreacion
+
+DiskStampusabaDirectorypatron:archivo4bytesliteral*.prg conotrosibling>8MB
+recibiametadatosdelsiblingyomitiasupropioMD5. CambioAAAAaBBBBinvisible.
+hb_vfTimeGet/hb_vfSize literales restaurancontrato8MB. Modeloantes1PASS4FAIL
+despues5PASS. PTYrevelo2fallosadicionalesdeFilepatronalrecrear:backup
+intentabaleerfileausente yatomicintentabaatributos; checks literales ahora.
+2PTY10comprobacionesPASSsobrec39..corregido6f45c00ded0b63c47d36d517493c3233f75baa2e,
+bin5295fd2a3222bdeac0495d7f42591c4e1d914334f3379f28e458c275e8bcb4f1.
+31modelosfresh87guardas34docsPASS. Fallospreviosconservados.
+Sinpixelesnuevos/Windows/carreraconcurrente/matrizglobal/cierreM1.
+Evidencia: docs/evidence/linux-literal-diskstamp-q211.json.
