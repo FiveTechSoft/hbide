@@ -4994,3 +4994,14 @@ escenario aceleradores declara SetCancel(.F.); con eso AltC+Enter retornaF.
 La politica no se inyecta en codigo generado ni producto. Evidencia conserva
 el aborto previo. Sin fixproducto/nuevos pixeles finales/Windows/cierreM4.
 Evidencia: docs/evidence/linux-mixed-accelerator-policy-q202.json.
+
+### C29 (1 noviembre 2026): candidato con selector UTF8 y fixturemixta
+
+Export7760ab215e95946ca893f1c2247eaa53f33de891, strippedbin
+edbe67567c29e7b3dbcb484d336a2a5621da57c660d8ca0be8ac520c922e464c.
+8smokesconstructor y2modosrecientes37checksPASS sobrebinarioexacto:Output
+UTF8scroll y fixturemixtaF9generacion/runtimeaccionesTabEnter. Dos nativas
+completas1202x762 inspeccionadas:UcomillasGCClegibles y retornofila2col9
+sinrestos/bordescompletos. Inventarioavisos exacto sigue revisionpendiente.
+Sinrelease/licencias/instalacion/Windows/matriz346/cierrehitos.
+Evidencia: docs/evidence/linux-candidate-c29.json.
