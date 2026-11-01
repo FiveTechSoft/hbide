@@ -4706,3 +4706,18 @@ modal/borde inferior completos. Rutas mas largas aun pueden partirse
 segun el wrapper global de60columnas; no todas longitudes/terminales,
 Windows, matriz, Cancel, respuestaUI ni cierreM2.
 Evidencia `docs/evidence/linux-build-recovery-layout-q182.json`.
+
+
+### Q183 (1 noviembre 2026): build real y reintento tras desbloquear destino
+
+Compilador hbmk2 real con destino directorio bloqueante. El primer
+output completo se conserva y se nombra; no se ejecuta, fuente y miembro
+del directorio intactos. Se retira solo el directorio del fixture con IDE
+vivo: el segundo build promueve y ejecuta marcador nuevo; output retenido
+del primer intento sigue byte-exacto, sin temporales adicionales.
+Tres modos PTY40checks74guardas34docsPASS en
+518d1345994671c1ed627446ce42c799f1a165f7, binario
+0143ed0222a6f1259937c419a99d9a14ec4a090b3a2f464898401f6ab539e77d.
+No arreglo de producto nuevo ni todas las fallas de promotion, nativas,
+Windows, Cancel, respuestaUI, matriz global o cierreM2.
+Evidencia `docs/evidence/linux-real-build-promotion-retry-q183.json`.

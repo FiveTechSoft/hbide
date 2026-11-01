@@ -78,7 +78,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
   host y toolchain.
 - **M6:** no repetir una matriz de horas por cada cambio documental.
   Q164 acredita 309 modos sobre su fuente, anterior al arreglo Q169. El
-  registro actual contiene 333 modos; ese numero es un plan, no 329 PASS.
+  registro actual contiene 334 modos; ese numero es un plan, no 329 PASS.
   La proxima consolidacion debe congelar una fuente que incluya el arreglo
   y reconciliar las pruebas nuevas sin heredar los PASS de Q164.
 - **M2:** Q176-Q178 comprueban compilador ausente, restauracion sin reiniciar,
@@ -87,6 +87,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
   si status0 no produce output y existe binario antiguo. No resuelven
   Cancel ni bloqueo de UI. Q181 nombra el output conservado si falla
   la sustitucion del destino; prueba con directorio bloqueante real.
+  Q183 lo comprueba con hbmk2 real y reintento exitoso sin reiniciar.
 - **M2/M3:** Cancel sigue abierto sin helper C ni contrato rebajado a
   process-group. Exchange Screens y swap on Input siguen siendo stubs;
   el hook INKEYREAD probado no distingue espera y poll. Global/reinicio
