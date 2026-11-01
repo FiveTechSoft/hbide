@@ -152,7 +152,7 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-004: Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Failed Save As retains old name/stamps/journal for initially clean and dirty buffers; later F2 still writes original. Accepted overwrite preserves destination as exact .bak, keeps old source unchanged, clears source journal and subsequent F2 targets new name. Literal POSIX wildcard absent target does not get a phantom overwrite prompt; symlink target is refused with complete named recovery, target/link/sibling/journal/old identity intact. Linux only. A regular literal target is not confused with a different matching symlink sibling. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py), [test_saveas_failure_identity_pty.py](../tests/test_saveas_failure_identity_pty.py), [test_saveas_overwrite_accept_pty.py](../tests/test_saveas_overwrite_accept_pty.py), [test_saveas_overwrite_cancel_pty.py](../tests/test_saveas_overwrite_cancel_pty.py), [test_saveas_literal_new_pty.py](../tests/test_saveas_literal_new_pty.py), [test_saveas_literal_symlink_pty.py](../tests/test_saveas_literal_symlink_pty.py), [test_saveas_literal_regular_pty.py](../tests/test_saveas_literal_regular_pty.py)
 - IDE-008: Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged. Q248 recovered unsaved baseline stays dirty after edit+Undo; Exit Cancel preserves it and SaveAll includes it. Q251 model checks saved typing boundary, history branch and300-op cap. Links describe bounded contracts, not all-history or current-build acceptance. Q255 current-session stale journal is retired when history reaches saved disk state; other sessions and unsaved recovered baseline are preserved. Q256 Undo/Redo kill/restart modes cover no obsolete recovery offer. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py), [test_selection_identity_pty.py](../tests/test_selection_identity_pty.py), [test_editor_saved_history.prg](../tests/test_editor_saved_history.prg), [test_recovered_undo_dirty.prg](../tests/test_recovered_undo_dirty.prg), [test_recovered_undo_dirty_pty.py](../tests/test_recovered_undo_dirty_pty.py), [test_undo_journal_cleanup.prg](../tests/test_undo_journal_cleanup.prg), [test_undo_journal_cleanup_pty.py](../tests/test_undo_journal_cleanup_pty.py)
 - IDE-009: Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged. Q248 recovered unsaved baseline stays dirty after edit+Undo; Exit Cancel preserves it and SaveAll includes it. Q251 model checks saved typing boundary, history branch and300-op cap. Links describe bounded contracts, not all-history or current-build acceptance. Q255 current-session stale journal is retired when history reaches saved disk state; other sessions and unsaved recovered baseline are preserved. Q256 Undo/Redo kill/restart modes cover no obsolete recovery offer. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py), [test_selection_identity_pty.py](../tests/test_selection_identity_pty.py), [test_editor_saved_history.prg](../tests/test_editor_saved_history.prg), [test_recovered_undo_dirty.prg](../tests/test_recovered_undo_dirty.prg), [test_recovered_undo_dirty_pty.py](../tests/test_recovered_undo_dirty_pty.py), [test_undo_journal_cleanup.prg](../tests/test_undo_journal_cleanup.prg), [test_undo_journal_cleanup_pty.py](../tests/test_undo_journal_cleanup_pty.py)
-- IDE-011: Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes. Explicit Cut records a separate undo command from typing before or after it; Undo Cut preserves earlier unsaved typing. Sole nonempty physical line clears to one editable empty line with clipboard and exact Undo/Redo; CtrlY and unmarked Cut share this route. Empty buffer is a no-op preserving clipboard/redo and does not create a journal or false save prompt. Q280 ASCII/UTF8-TAB expansion is postexport, not frozen C44 test coverage. Q284 line deletion is a separate Undo operation from typing before or after it, including unmarked Cut and CtrlY; first Undo restores prior typed text, further Undo can remove that typing. Explicit sole instruction deletion also drops its breakpoint although line count stays one; text Undo/Redo does not restore that mark. An already empty buffer no-op preserves a breakpoint deliberately created there. Q288 CtrlY/Cut routes use a postexport harness. Line deletion before an identical surviving instruction keeps its BP attached and shifts it through Undo/Redo. Deleting the marked instruction drops its BP without Undo resurrection, including Delete/CtrlY/unmarkedCut bounded fixtures. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_cut_undo_boundary_pty.py](../tests/test_cut_undo_boundary_pty.py), [test_delete_only_line.prg](../tests/test_delete_only_line.prg), [test_delete_only_line_pty.py](../tests/test_delete_only_line_pty.py), [test_delete_line_undo_boundary_pty.py](../tests/test_delete_line_undo_boundary_pty.py), [test_delete_only_line_bp_pty.py](../tests/test_delete_only_line_bp_pty.py), [test_delete_identical_bp_pty.py](../tests/test_delete_identical_bp_pty.py)
+- IDE-011: Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes. Explicit Cut records a separate undo command from typing before or after it; Undo Cut preserves earlier unsaved typing. Sole nonempty physical line clears to one editable empty line with clipboard and exact Undo/Redo; CtrlY and unmarked Cut share this route. Empty buffer is a no-op preserving clipboard/redo and does not create a journal or false save prompt. Q280 ASCII/UTF8-TAB expansion is postexport, not frozen C44 test coverage. Q284 line deletion is a separate Undo operation from typing before or after it, including unmarked Cut and CtrlY; first Undo restores prior typed text, further Undo can remove that typing. Explicit sole instruction deletion also drops its breakpoint although line count stays one; text Undo/Redo does not restore that mark. An already empty buffer no-op preserves a breakpoint deliberately created there. Q288 CtrlY/Cut routes use a postexport harness. Line deletion before an identical surviving instruction keeps its BP attached and shifts it through Undo/Redo. Deleting the marked instruction drops its BP without Undo resurrection, including Delete/CtrlY/unmarkedCut bounded fixtures. Whole-line selected Cut anchors deleted instructions before an identical surviving endpoint, drops removed BP without Undo resurrection and repaints gutter immediately. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_cut_undo_boundary_pty.py](../tests/test_cut_undo_boundary_pty.py), [test_delete_only_line.prg](../tests/test_delete_only_line.prg), [test_delete_only_line_pty.py](../tests/test_delete_only_line_pty.py), [test_delete_line_undo_boundary_pty.py](../tests/test_delete_line_undo_boundary_pty.py), [test_delete_only_line_bp_pty.py](../tests/test_delete_only_line_bp_pty.py), [test_delete_identical_bp_pty.py](../tests/test_delete_identical_bp_pty.py), [test_cut_identical_bp_pty.py](../tests/test_cut_identical_bp_pty.py)
 - IDE-012: Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes. A copied line containing only spaces is real clipboard data; Paste inserts it with exact disk bytes and Undo/Redo. Editor clipboard is shared across document instances; Paste changes only destination history and bytes, source stays unchanged. Not OS clipboard. Explicit insertion is anchored before identical existing instructions; their breakpoints shift with the original instruction through Undo/Redo, not onto the new copy. Bounded identical-line fixture only. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_clipboard_spaces_pty.py](../tests/test_clipboard_spaces_pty.py), [test_clipboard_multidoc_pty.py](../tests/test_clipboard_multidoc_pty.py), [test_paste_identical_bp_pty.py](../tests/test_paste_identical_bp_pty.py)
 - IDE-013: Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial. Delete Line clears prior range selection so an old row3 anchor cannot access beyond the shorter line array when typing. Undo typing, Undo deletion and Redo preserve exact bytes. Sole nonempty physical line clears to one editable empty line with clipboard and exact Undo/Redo; CtrlY and unmarked Cut share this route. Empty buffer is a no-op preserving clipboard/redo and does not create a journal or false save prompt. Q280 ASCII/UTF8-TAB expansion is postexport, not frozen C44 test coverage. Q284 line deletion is a separate Undo operation from typing before or after it, including unmarked Cut and CtrlY; first Undo restores prior typed text, further Undo can remove that typing. Explicit sole instruction deletion also drops its breakpoint although line count stays one; text Undo/Redo does not restore that mark. An already empty buffer no-op preserves a breakpoint deliberately created there. Q288 CtrlY/Cut routes use a postexport harness. Line deletion before an identical surviving instruction keeps its BP attached and shifts it through Undo/Redo. Deleting the marked instruction drops its BP without Undo resurrection, including Delete/CtrlY/unmarkedCut bounded fixtures. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_delete_selection_pty.py](../tests/test_delete_selection_pty.py), [test_delete_only_line.prg](../tests/test_delete_only_line.prg), [test_delete_only_line_pty.py](../tests/test_delete_only_line_pty.py), [test_delete_line_undo_boundary_pty.py](../tests/test_delete_line_undo_boundary_pty.py), [test_delete_only_line_bp_pty.py](../tests/test_delete_only_line_bp_pty.py), [test_delete_identical_bp_pty.py](../tests/test_delete_identical_bp_pty.py)
 - IDE-014: Model Duplicate Line at unterminated EOF creates preferred boundary; undo/redo restore original bytes. Real Edit-menu dispatch now checks exact saved bytes. Duplicate Line clears old marked range before moving the cursor. Subsequent typing cannot silently replace that stale block; exact Undo typing/duplicate and Redo verified. Explicit insertion is anchored before identical existing instructions; their breakpoints shift with the original instruction through Undo/Redo, not onto the new copy. Bounded identical-line fixture only. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_duplicate_selection_pty.py](../tests/test_duplicate_selection_pty.py), [test_duplicate_identical_bp_pty.py](../tests/test_duplicate_identical_bp_pty.py)
@@ -539,12 +539,12 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | --- | --- | --- | --- | --- |
 | MOUSE-hbide-Activate-1 | METHOD Activate() CLASS HBIde | `if nKeyStd == K_LBUTTONDOWN` | hbide.prg:712 | Pendiente gesto |
 | MOUSE-hbide-Activate-2 | METHOD Activate() CLASS HBIde | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | hbide.prg:733 | Pendiente gesto |
-| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:524 | Pendiente gesto |
-| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:529 | Pendiente gesto |
-| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:534 | Pendiente gesto |
-| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:537 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2133 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2134 | Pendiente gesto |
+| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:530 | Pendiente gesto |
+| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:535 | Pendiente gesto |
+| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:540 | Pendiente gesto |
+| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:543 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2147 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2148 | Pendiente gesto |
 | MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:437 | Pendiente gesto |
 | MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:440 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
@@ -1087,103 +1087,103 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:881 | `CASE nKey == K_END` | Pendiente vinculo |
 | help.prg:884 | `IF nTarget > 0 .AND. nTarget != nTopic` | Pendiente vinculo |
 | help.prg:886 | `IF Len( aHistory ) > 100` | Pendiente vinculo |
-| editor.prg:496 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
-| editor.prg:502 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. hb_bitAnd( nKeyMod, hb_bitOr( HB_KF_SHIFT, HB_KF_CTRL, HB_KF_ALT ) ) == HB_KF_SHIFT` | Pendiente vinculo |
-| editor.prg:504 | `if ! ::lMark` | Pendiente vinculo |
-| editor.prg:508 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
-| editor.prg:509 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
-| editor.prg:510 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
-| editor.prg:511 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` | Pendiente vinculo |
-| editor.prg:512 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` | Pendiente vinculo |
-| editor.prg:513 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` | Pendiente vinculo |
-| editor.prg:516 | `case nKeyStd == K_CTRL_Z` | Pendiente vinculo |
-| editor.prg:520 | `case nKeyStd == K_CTRL_U` | Pendiente vinculo |
-| editor.prg:524 | `case nKeyStd == K_LDBLCLK` | Pendiente vinculo |
-| editor.prg:529 | `case nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
-| editor.prg:534 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:537 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:540 | `case nKeyStd == K_BS` | Pendiente vinculo |
-| editor.prg:541 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:545 | `IF ::nCol > 5` | Pendiente vinculo |
-| editor.prg:548 | `if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:555 | `if ::BlkCmtState(::nRow+1) != lBlkBefore .or. (::nRow < Len(::aText) .and. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore))` | Pendiente vinculo |
-| editor.prg:561 | `ELSEIF ::nRow > 1` | Pendiente vinculo |
-| editor.prg:573 | `case nKeyStd == K_DEL` | Pendiente vinculo |
-| editor.prg:574 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:583 | `if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:590 | `case nKeyStd == K_ENTER` | Pendiente vinculo |
-| editor.prg:591 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:600 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
-| editor.prg:601 | `if ::nCol - 4 > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:602 | `if ::nRow < Len( ::aText )` | Pendiente vinculo |
-| editor.prg:609 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
-| editor.prg:610 | `if ::nCol <= 5` | Pendiente vinculo |
-| editor.prg:611 | `if ::nRow > 1` | Pendiente vinculo |
-| editor.prg:618 | `case nKeyStd == K_HOME` | Pendiente vinculo |
-| editor.prg:621 | `case nKeyStd == K_END` | Pendiente vinculo |
-| editor.prg:624 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
-| editor.prg:628 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
-| editor.prg:636 | `case nKeyStd == K_CTRL_T` | EDIT-KEY-DELETE-WORD-CTRL-T |
-| editor.prg:644 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
-| editor.prg:647 | `case nKeyStd == K_F2` | Pendiente vinculo |
-| editor.prg:653 | `case nKeyStd == K_F8` | Pendiente vinculo |
-| editor.prg:657 | `case nKeyStd == K_F9` | Pendiente vinculo |
-| editor.prg:660 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
-| editor.prg:665 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:672 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
-| editor.prg:680 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
-| editor.prg:683 | `if lHotPath` | Pendiente vinculo |
-| editor.prg:691 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
-| editor.prg:695 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
-| editor.prg:697 | `ELSEIF lHotPath` | Pendiente vinculo |
-| editor.prg:698 | `if ! ::lWordWrap` | Pendiente vinculo |
-| editor.prg:704 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )` | Pendiente vinculo |
-| editor.prg:728 | `if ::lMark .and. Abs( ::Row() - nOldScrRow ) > 1` | Pendiente vinculo |
-| editor.prg:733 | `if ! lSkipTail` | Pendiente vinculo |
-| editor.prg:734 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
-| editor.prg:741 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
-| editor.prg:745 | `if ::Row() > ::nTop` | Pendiente vinculo |
-| editor.prg:751 | `if ::Row() < ::nBottom` | Pendiente vinculo |
-| editor.prg:761 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
-| editor.prg:2010 | `if nKey == K_LEFT` | Pendiente vinculo |
-| editor.prg:2011 | `if Col() > 5` | Pendiente vinculo |
-| editor.prg:2014 | `if ::nFirstCol > 1` | Pendiente vinculo |
-| editor.prg:2039 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
-| editor.prg:2059 | `if nB < 0x80` | Pendiente vinculo |
-| editor.prg:2062 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
-| editor.prg:2064 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
-| editor.prg:2066 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
-| editor.prg:2071 | `if nI + nNeed > nLen` | Pendiente vinculo |
-| editor.prg:2077 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
-| editor.prg:2085 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
-| editor.prg:2102 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
-| editor.prg:2106 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
-| editor.prg:2125 | `case K_UP` | Pendiente vinculo |
-| editor.prg:2126 | `case K_DOWN` | Pendiente vinculo |
-| editor.prg:2127 | `case K_LEFT` | Pendiente vinculo |
-| editor.prg:2128 | `case K_RIGHT` | Pendiente vinculo |
-| editor.prg:2129 | `case K_HOME` | Pendiente vinculo |
-| editor.prg:2130 | `case K_END` | Pendiente vinculo |
-| editor.prg:2131 | `case K_PGUP` | Pendiente vinculo |
-| editor.prg:2132 | `case K_PGDN` | Pendiente vinculo |
-| editor.prg:2133 | `case K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:2134 | `case K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:2146 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
-| editor.prg:2152 | `CASE lBlock` | Pendiente vinculo |
-| editor.prg:2153 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
-| editor.prg:2158 | `CASE !Empty(q)` | Pendiente vinculo |
-| editor.prg:2159 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
-| editor.prg:2161 | `ELSEIF c == q` | Pendiente vinculo |
-| editor.prg:2165 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
-| editor.prg:2168 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
-| editor.prg:2197 | `if Upper(Left(c,7)) != "ENDTEXT"` | Pendiente vinculo |
-| editor.prg:2207 | `if hb_defaultValue(lIn,.F.)` | Pendiente vinculo |
-| editor.prg:2209 | `if n==0` | Pendiente vinculo |
-| editor.prg:2216 | `if n==0` | Pendiente vinculo |
-| editor.prg:2221 | `if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"` | Pendiente vinculo |
-| editor.prg:2226 | `if Left(c,2)=="//" .or. Left(c,2)=="&&"` | Pendiente vinculo |
-| editor.prg:2228 | `elseif Left(c,2)=="/*"` | Pendiente vinculo |
+| editor.prg:502 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
+| editor.prg:508 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. hb_bitAnd( nKeyMod, hb_bitOr( HB_KF_SHIFT, HB_KF_CTRL, HB_KF_ALT ) ) == HB_KF_SHIFT` | Pendiente vinculo |
+| editor.prg:510 | `if ! ::lMark` | Pendiente vinculo |
+| editor.prg:514 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
+| editor.prg:515 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
+| editor.prg:516 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
+| editor.prg:517 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` | Pendiente vinculo |
+| editor.prg:518 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` | Pendiente vinculo |
+| editor.prg:519 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` | Pendiente vinculo |
+| editor.prg:522 | `case nKeyStd == K_CTRL_Z` | Pendiente vinculo |
+| editor.prg:526 | `case nKeyStd == K_CTRL_U` | Pendiente vinculo |
+| editor.prg:530 | `case nKeyStd == K_LDBLCLK` | Pendiente vinculo |
+| editor.prg:535 | `case nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
+| editor.prg:540 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:543 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:546 | `case nKeyStd == K_BS` | Pendiente vinculo |
+| editor.prg:547 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:551 | `IF ::nCol > 5` | Pendiente vinculo |
+| editor.prg:554 | `if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:561 | `if ::BlkCmtState(::nRow+1) != lBlkBefore .or. (::nRow < Len(::aText) .and. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore))` | Pendiente vinculo |
+| editor.prg:567 | `ELSEIF ::nRow > 1` | Pendiente vinculo |
+| editor.prg:579 | `case nKeyStd == K_DEL` | Pendiente vinculo |
+| editor.prg:580 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:589 | `if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:596 | `case nKeyStd == K_ENTER` | Pendiente vinculo |
+| editor.prg:597 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:606 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
+| editor.prg:607 | `if ::nCol - 4 > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:608 | `if ::nRow < Len( ::aText )` | Pendiente vinculo |
+| editor.prg:615 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
+| editor.prg:616 | `if ::nCol <= 5` | Pendiente vinculo |
+| editor.prg:617 | `if ::nRow > 1` | Pendiente vinculo |
+| editor.prg:624 | `case nKeyStd == K_HOME` | Pendiente vinculo |
+| editor.prg:627 | `case nKeyStd == K_END` | Pendiente vinculo |
+| editor.prg:630 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
+| editor.prg:634 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
+| editor.prg:642 | `case nKeyStd == K_CTRL_T` | EDIT-KEY-DELETE-WORD-CTRL-T |
+| editor.prg:650 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
+| editor.prg:653 | `case nKeyStd == K_F2` | Pendiente vinculo |
+| editor.prg:659 | `case nKeyStd == K_F8` | Pendiente vinculo |
+| editor.prg:663 | `case nKeyStd == K_F9` | Pendiente vinculo |
+| editor.prg:666 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
+| editor.prg:671 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:678 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
+| editor.prg:686 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
+| editor.prg:689 | `if lHotPath` | Pendiente vinculo |
+| editor.prg:697 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
+| editor.prg:701 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
+| editor.prg:703 | `ELSEIF lHotPath` | Pendiente vinculo |
+| editor.prg:704 | `if ! ::lWordWrap` | Pendiente vinculo |
+| editor.prg:710 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )` | Pendiente vinculo |
+| editor.prg:734 | `if ::lMark .and. Abs( ::Row() - nOldScrRow ) > 1` | Pendiente vinculo |
+| editor.prg:739 | `if ! lSkipTail` | Pendiente vinculo |
+| editor.prg:740 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
+| editor.prg:747 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
+| editor.prg:751 | `if ::Row() > ::nTop` | Pendiente vinculo |
+| editor.prg:757 | `if ::Row() < ::nBottom` | Pendiente vinculo |
+| editor.prg:767 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
+| editor.prg:2024 | `if nKey == K_LEFT` | Pendiente vinculo |
+| editor.prg:2025 | `if Col() > 5` | Pendiente vinculo |
+| editor.prg:2028 | `if ::nFirstCol > 1` | Pendiente vinculo |
+| editor.prg:2053 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
+| editor.prg:2073 | `if nB < 0x80` | Pendiente vinculo |
+| editor.prg:2076 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
+| editor.prg:2078 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
+| editor.prg:2080 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
+| editor.prg:2085 | `if nI + nNeed > nLen` | Pendiente vinculo |
+| editor.prg:2091 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
+| editor.prg:2099 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
+| editor.prg:2116 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
+| editor.prg:2120 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
+| editor.prg:2139 | `case K_UP` | Pendiente vinculo |
+| editor.prg:2140 | `case K_DOWN` | Pendiente vinculo |
+| editor.prg:2141 | `case K_LEFT` | Pendiente vinculo |
+| editor.prg:2142 | `case K_RIGHT` | Pendiente vinculo |
+| editor.prg:2143 | `case K_HOME` | Pendiente vinculo |
+| editor.prg:2144 | `case K_END` | Pendiente vinculo |
+| editor.prg:2145 | `case K_PGUP` | Pendiente vinculo |
+| editor.prg:2146 | `case K_PGDN` | Pendiente vinculo |
+| editor.prg:2147 | `case K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:2148 | `case K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:2160 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
+| editor.prg:2166 | `CASE lBlock` | Pendiente vinculo |
+| editor.prg:2167 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
+| editor.prg:2172 | `CASE !Empty(q)` | Pendiente vinculo |
+| editor.prg:2173 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
+| editor.prg:2175 | `ELSEIF c == q` | Pendiente vinculo |
+| editor.prg:2179 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
+| editor.prg:2182 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
+| editor.prg:2211 | `if Upper(Left(c,7)) != "ENDTEXT"` | Pendiente vinculo |
+| editor.prg:2221 | `if hb_defaultValue(lIn,.F.)` | Pendiente vinculo |
+| editor.prg:2223 | `if n==0` | Pendiente vinculo |
 | editor.prg:2230 | `if n==0` | Pendiente vinculo |
+| editor.prg:2235 | `if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"` | Pendiente vinculo |
+| editor.prg:2240 | `if Left(c,2)=="//" .or. Left(c,2)=="&&"` | Pendiente vinculo |
+| editor.prg:2242 | `elseif Left(c,2)=="/*"` | Pendiente vinculo |
+| editor.prg:2244 | `if n==0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1563 | `IF ::lAnimate` | Pendiente vinculo |
 | hbdebug/debugger.prg:1564 | `IF ::nSpeed != 0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1567 | `IF __dbgInvokeDebug()  // NextKey() == K_ALT_D` | Pendiente vinculo |

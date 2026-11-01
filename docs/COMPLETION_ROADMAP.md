@@ -66,20 +66,21 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre17:15 Q309: candidato focal C57,
-source9eba255aa42bff90a87117c5d432cb750be26a59,
-binf7e77f10ca8fe81ef3d4c073b4c044e3c9785b200c65999f983b692e52abdd4c.
-Q307DeleteLine ancla diff antes de línea retirada, no eliminaBP de instrucción
-idéntica superviviente. C56baseline2PASS3FAIL; C57cincoPTY31checks+BPpolicyprobe
-PASS, modelos152EOL/210repaint y par nativo1202x762 inspeccionado. Q308arnés
-postexport24checksPASS Delete/CtrlY/Cut, conserva política drop/noUndoResurrection.
-Q30937modelos GTSTD fresh del source247cd40 limpio PASS. No37modosIDE ni
-certificados del binarioC57; globalVM/inputhook caracterizan límites, no soporte.
-Q303Duplicate/Q304Paste anclaBP y Q299/Q300TEXT conservan ledgers separados.
+Corte 1 noviembre17:29 Q313: candidato focal C60,
+source3152ffc3b1ac0b4f2008c7c36ab35119773e616f,
+bin1a58f4d1ee249fa29aef560810ed1a1ba66b7f52280ac5bd8ae5e92005e72908.
+Q311Cut y Q312Delete/Backspace seleccionando líneas completas idénticas eliminan
+BPretirado y conservan endpoint superviviente con Undo/Redo. C59baseline1PASS3FAIL;
+C60cincomodosPTY27checks+BPpolicyprobe PASS, modelos161EOL/210repaint y par
+nativo1202x762 inspeccionado. C58intermedio arregló modelo pero dejó gutterstale,
+3PASS1FAIL retenido y corregidoDisplay antes de C59finalCut. Enter/typeover intactos.
+Q31337modelos GTSTD fresh del sourcee61606bad8173457b8d6a5141cd0ce2cc61b8fa1
+limpio PASS. No37modosIDE ni certificados del binarioC60; globalVM/inputhook
+caracterizan límites. Q303/Q304/Q307anclas y Q299/Q300TEXT conservan ledgers.
 C52identificado fuente90e6d102c19227322accc16d58af294162e0fa17,
 bin01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696:
-About/catálogoQ297/ldd/8smokes/5PTY34checks PASS, no heredados aC57.
-Q310docs posteriores no embebidos en C57 ni C52. No sumar fuentes/binarios
+About/catálogoQ297/ldd/8smokes/5PTY34checks PASS, no heredados aC60.
+Q314docs posteriores no embebidos en C60 ni C52. No sumar fuentes/binarios
 como matriz. Sin fullpreprocessor/customstream/navcontinuation/Windows/release/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
@@ -1060,3 +1061,15 @@ no resucitaBP conUndo. Recibos linux-delete-identical-bp-q307.json y
 linux-delete-identical-bp-dispatch-q308.json. Q30937modelosGTSTD source247cd40
 limpioPASS, recibo linux-model-baseline-q309.json. Q310aceptación/inventario/
 catálogo actualizados, no nuevo producto/build por docs/matriz/Windows/hito.
+
+### Seguimiento Q311-Q314 (1 noviembre 2026)
+
+Q311Cut rango de iniciofila1 a iniciofila2 conservabaBP de instrucción borrada
+cuando endpoint era idéntico. Baseline1PASS3FAIL; C58modelo correcto/gutterstale
+3PASS1FAIL retenido, C59Display explícito corrige. CincoPTY34checks+BPpolicyprobe,
+155EOL/210repaintPASS. Q312Delete/BS misma selección con baseline propio1PASS3FAIL;
+C60cincomodos27checks+BPpolicyprobe, 161EOL/210repaintPASS. Pares nativos completos
+inspeccionados. Recibos linux-cut-identical-bp-q311.json y
+linux-selection-delete-identical-bp-q312.json. Enter/typeover no modificados.
+Q31337modelosGTSTD fuentee61606b limpioPASS, recibo linux-model-baseline-q313.json.
+Q314aceptación/inventario/catálogo actualizados. No rebuild sólo docs/matriz/Windows/hito.
