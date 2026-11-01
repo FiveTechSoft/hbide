@@ -1,0 +1,22 @@
+{
+  "candidate_source": "9eba255aa42bff90a87117c5d432cb750be26a59",
+  "binary_sha256": "f7e77f10ca8fe81ef3d4c073b4c044e3c9785b200c65999f983b692e52abdd4c",
+  "tests": {
+    "delete": {
+      "exit": 0,
+      "test_sha256": "db4524e494de5cac23de328227520cbfeb4398ca84fe527d422172be69ec6adf",
+      "log": "PASS Breakpoint on second identical line\nPASS Deleting preceding identical line keeps original breakpoint row1\nPASS Undo deletion moves surviving original breakpoint row2\nPASS Redo deletion keeps surviving original breakpoint row1\nPASS Delete saves exact bytes\nPASS Deleting marked identical instruction drops its own BP\nPASS Undo does not restore removed identical instruction BP\nPASS Redo keeps removed identical instruction BP absent\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-dhxhgfup\n"
+    },
+    "ctrl-y": {
+      "exit": 0,
+      "test_sha256": "db4524e494de5cac23de328227520cbfeb4398ca84fe527d422172be69ec6adf",
+      "log": "PASS Breakpoint on second identical line\nPASS Deleting preceding identical line keeps original breakpoint row1\nPASS Undo deletion moves surviving original breakpoint row2\nPASS Redo deletion keeps surviving original breakpoint row1\nPASS Delete saves exact bytes\nPASS Deleting marked identical instruction drops its own BP\nPASS Undo does not restore removed identical instruction BP\nPASS Redo keeps removed identical instruction BP absent\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-w2i2h424\n"
+    },
+    "cut": {
+      "exit": 0,
+      "test_sha256": "db4524e494de5cac23de328227520cbfeb4398ca84fe527d422172be69ec6adf",
+      "log": "PASS Breakpoint on second identical line\nPASS Deleting preceding identical line keeps original breakpoint row1\nPASS Undo deletion moves surviving original breakpoint row2\nPASS Redo deletion keeps surviving original breakpoint row1\nPASS Delete saves exact bytes\nPASS Deleting marked identical instruction drops its own BP\nPASS Undo does not restore removed identical instruction BP\nPASS Redo keeps removed identical instruction BP absent\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-vnu2d5yq\n"
+    }
+  },
+  "scope": "Postexport harness only; same C57binary, no product change. Delete/CtrlY/unmarkedCut24checks. Existing deletedBP/noUndoResurrection policy unchanged. No pixels/newmatrix/Windows/release/hito."
+}

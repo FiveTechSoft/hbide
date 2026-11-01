@@ -107,18 +107,30 @@ def check(name, ok):
 def saved(name, expected):
     send(b'\x1bOQ', .7)
     check(name, target.read_bytes()==expected)
+def delete_line():
+    if os.environ.get('IDENTICAL_DELETE_ACTION')=='ctrl-y': send(b'\x19')
+    else: menu(b't' if os.environ.get('IDENTICAL_DELETE_ACTION')=='cut' else b'd')
 try:
     pump(2)
     send(b'\x1bf');send(b'o');send(str(target).encode()+b'\r',1)
     send(b'\x1bOH');send(b'\x1b[B');send(b'\x1b[20~')
     check('Breakpoint on second identical line',scr.gutter_bg(2)==1)
-    send(b'\x1b[A');menu(b'd')
+    send(b'\x1b[A');delete_line()
     check('Deleting preceding identical line keeps original breakpoint row1',scr.gutter_bg(1)==1 and scr.gutter_bg(2)!=1)
     menu(b'n')
     check('Undo deletion moves surviving original breakpoint row2',scr.gutter_bg(2)==1 and scr.gutter_bg(1)!=1)
     menu(b'e')
     check('Redo deletion keeps surviving original breakpoint row1',scr.gutter_bg(1)==1 and scr.gutter_bg(2)!=1)
     saved('Delete saves exact bytes',b'same\ntail')
+    menu(b'n')
+    send(b'\x1bOH');send(b'\x1b[B');send(b'\x1b[20~');send(b'\x1b[A');send(b'\x1b[20~')
+    delete_line()
+    check('Deleting marked identical instruction drops its own BP',scr.gutter_bg(1)!=1 and scr.gutter_bg(2)!=1)
+    menu(b'n')
+    check('Undo does not restore removed identical instruction BP',scr.gutter_bg(1)!=1 and scr.gutter_bg(2)!=1)
+    menu(b'e')
+    check('Redo keeps removed identical instruction BP absent',scr.gutter_bg(1)!=1 and scr.gutter_bg(2)!=1)
+
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)
