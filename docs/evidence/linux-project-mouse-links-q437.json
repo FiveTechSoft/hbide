@@ -1,0 +1,7 @@
+{
+  "scope": "Q437 C87 project mouse navigation only; two exact M0links, not current PASS from links",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "pty_log": "PASS Project opens Sources\nPASS doubleclick header does not open source\nPASS single click selects without opening\nPASS Enter opens clicked exact file\nPASS doubleclick scrolled source opens exact file\nPASS doubleclick missing source stays desktop\nPASS Messages empty has no diagnostics\nPASS doubleclick empty Messages does not open file\nPASS real failed build parsed bad source\nPASS doubleclick diagnostic opens correct file row\nPASS all source bytes unchanged\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-_06rabvi\n",
+  "limits": "No new pixels/models/fullmatrix/Windows/install/license/hitoclosure;5/27mousebrancheslinked22pending"
+}
