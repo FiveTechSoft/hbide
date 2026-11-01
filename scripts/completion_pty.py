@@ -6,6 +6,14 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'designer-inline-say-numeric': ('test_designer_inline_numeric_pty.py', ['--kind','say'], 120),
+    'designer-inline-get-numeric': ('test_designer_inline_numeric_pty.py', ['--kind','get'], 120),
+    'designer-inline-checkbox-numeric': ('test_designer_inline_numeric_pty.py', ['--kind','checkbox'], 120),
+    'designer-inline-button-numeric': ('test_designer_inline_numeric_pty.py', ['--kind','button'], 120),
+    'designer-inline-radiogroup-numeric': ('test_designer_inline_numeric_pty.py', ['--kind','radiogroup'], 120),
+    'designer-inline-listbox-numeric': ('test_designer_inline_numeric_pty.py', ['--listbox'], 120),
+    'designer-inline-combobox-numeric': ('test_designer_inline_numeric_pty.py', ['--kind','combobox'], 120),
+
     'designer-inline-get-events': ('test_designer_inline_text_pty.py', ['--kind','get','--events'], 120),
     'designer-inline-checkbox-events': ('test_designer_inline_text_pty.py', ['--kind','checkbox','--events'], 120),
     'designer-inline-button-events': ('test_designer_inline_text_pty.py', ['--kind','button','--events'], 120),
