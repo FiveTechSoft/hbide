@@ -3880,3 +3880,14 @@ Candidatebuildernowfailsprebuildonstalecatalogue.Record linux-export-document-
 preflight.json (actualfilename linux-export-document-preflight.json).
 34inventory34docsPASS.No productbinary/PTY/models/pixels/newcandidate/release/
 Windows/globalmilestone.C22manualverificationhistoricalunchanged.
+
+## Q121 - complete registered Linux matrix after Q120
+
+221/221distinctentries=220PTY+1sourceguardPASS.Source8305ef043e1ea3910905989e3d9b485bd0ae1df1,
+SHA256a5d54a694d75d6836c26df7b6bc4e3dd250d166a05708abda8b5e66fd6c2272d.
+22models34inventory5exportdocguards5distributionnoticeguards34docsPASS.
+Foregroundcompletedbatcheswithpausesbetweenruns;sameidentity;nofailedtests/
+retry/interruptedtests.No inheritanceQ104/Q119/C22.Evidence linux-full-matrix-q121.json.
+No newfix/pixels/candidate/nativeWindows/licenseclearance/install/determinism/
+Cancelcontract/globalmilestoneclosure.Finaldocpublicationregenerateshelp;
+runtimeevidenceboundtofrozen8305ef0ratherthanlaterdocumentationcommit.

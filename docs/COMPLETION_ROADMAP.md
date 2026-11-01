@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q121 | MatrizLinuxregistradacompletahastaQ120. | 221/221=220PTY+1guardPASSsource8305ef0/bina5d54a69;22models34inventory5exportdoc5noticeguards34docsPASS;linux-full-matrix-q121.json.No newfix/pixels/candidate/Windows/licenses/hitos. |
 | Q120 | M5 documentpreflightworkswithout.git. | Sourcedf5af1d/5guards+actualexport34docsPASS/stalemutationreject;linux-export-document-preflight.json.34inventory.No productbinary/newcandidate/release/Windows/global. |
 | C22 | CandidatoLinux temporalhastaQ119. | Export4e15503/bin46292e4c,8smokes10recent64checksPASSexactbinary/nativenueva;linux-candidate-recent-c22.json.No release/licenses/Windows/install/fullmatrixinherit.C21historical. |
 | Q119 | Regresiónconjuntaeditor/nav/inputconayudasincronizada. | Source1070624/109PTY20modos22models34inventory34docsPASS;linux-joint-editor-input-q119.json.Priorhelpdriftdisclosed.Nofullmatrix/newpixels/candidate/Windows/global. |
