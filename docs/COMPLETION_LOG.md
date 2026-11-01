@@ -5062,3 +5062,14 @@ y dejaappvisible. LastKeytras timeoutnaturalpermanece122: expectativa
 corregida,falloinicialconservado. No se integra ni se anunciaSwapresuelto.
 Sin producto/pixeles/Windows/M3closure.
 Evidencia: docs/evidence/linux-debug-input-idle-frame-q207.json.
+
+### Q208 (1 noviembre 2026): modelos tras cierre izquierda
+
+Primeraregresion30modelos:29PASS,designer448PASS1FAIL porque eltestantiguo
+esperaba drag enleft+2,ahoratargetcierre. Se corrigeSOLOtestparaseparar
+cierre-2 ydrag-1 fuera[x]. Repetidos30modelosfreshPASSsobrebed1eab,
+cadaunosubinario/hash.87guardasPASSsobrefuentepreviaconmismoproducto.
+No son30PASSsobreunIDE ni nuevamatrizPTY/Windows. Falloinicialconservado.
+Core694428e1solohookreadinicio/filtertrastecla,no callbackal timeout.
+Q207limitepermanece,noimplementaromutarlosparamsapp.
+Evidencia: docs/evidence/linux-post-inspector-models-q208.json.
