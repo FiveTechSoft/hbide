@@ -1,0 +1,62 @@
+{
+  "scope": "Q123 actual direct/menu F1 context-help acceptance link only. No new product fix/models/pixels/all topics or menu commands/Windows/global matrix.",
+  "source": "afb457688400f1fbf0108bfbe20d383ebcfd6c17",
+  "binary_sha256": "7954cfdac2e64ffa68e3660ad1d7b48a02c168a05298b4a19ae1f62407bf37c8",
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "afb457688400f1fbf0108bfbe20d383ebcfd6c17",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "69a613391295b9a1a677278fe064cc753d4cd27107ec013a95e6e8ecb37c5f14",
+      "binary_sha256": "7954cfdac2e64ffa68e3660ad1d7b48a02c168a05298b4a19ae1f62407bf37c8",
+      "build_receipt": "/tmp/hbide-f1-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "help",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_help_pty.py"
+      ],
+      "started": 1793496679.9648411,
+      "seconds": 27.27,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b5ed2c4ad9bb94e7a2f5c3291958f7818fb362a5224acad3a3e328c992454ddf",
+      "log": "/tmp/hbide-f1-clean/help-1793496679964836528.log",
+      "log_text": "PASS F1 without menu opens welcome topic\nPASS F1 welcome returns unchanged dirty document\nPASS F1 Edit menu opens Edit topic without Undo\nPASS F1 Edit close keeps pending insertion\nPASS Index opens requested topic\nPASS updated search contract is readable\nPASS Help close returns same document\nPASS Debugger summary shows implemented Iconize and Menu Bar recovery\nPASS Debugger summary lists only two unsupported options\nPASS unknown keyword gives a clear message\nPASS unknown keyword returns to source\nPASS Contents opens navigation\nPASS context help opens without executing File action\nPASS context help preserves current document\nPASS Index explicit OK opens filtered topic\nPASS Index explicit Cancel returns source\nPASS multiple matches open picker\nPASS picker explicit OK opens selected topic\nPASS picker explicit Cancel returns source\nPASS picker changed selection opens exact second topic\nPASS undo after Help and save preserves source bytes\nTOTAL 21 PASS 0 FAIL; evidence /tmp/hbide-source-run-bk90sq1t\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "afb457688400f1fbf0108bfbe20d383ebcfd6c17",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "69a613391295b9a1a677278fe064cc753d4cd27107ec013a95e6e8ecb37c5f14",
+      "binary_sha256": "7954cfdac2e64ffa68e3660ad1d7b48a02c168a05298b4a19ae1f62407bf37c8",
+      "build_receipt": "/tmp/hbide-f1-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "help-mouse",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_help_mouse_pty.py"
+      ],
+      "started": 1793496707.2336884,
+      "seconds": 13.44,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+      "log": "/tmp/hbide-f1-clean/help-mouse-1793496707233684196.log",
+      "log_text": "PASS Contents opens tree and reading pane\nPASS mouse tree selects exact topic\nPASS mouse first tree row selects Basics not next topic\nPASS scrolled tree click retains valid reading pane\nPASS Next button with no query explains action\nPASS Search button executes actual query\nPASS Next button advances actual match\nPASS wheel scroll stays within topic bounds\nPASS Export button writes actual catalogue\nPASS Close button returns dirty document\nPASS Index exact Quickstart opens link view\nPASS first related-topic click opens exact target\nPASS Backspace returns clicked topic history\nPASS last related-topic click opens exact target\nPASS AltRight restores clicked forward topic\nPASS nested related-topic click opens exact body\nPASS link-view Close returns unchanged dirty source\nPASS Undo after mouse Help restores exact original bytes\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-wqns7zc_\n"
+    }
+  ],
+  "inventory_log": "....................................\n----------------------------------------------------------------------\nRan 36 tests in 0.351s\n\nOK\n",
+  "docs": "34 complete documents byte-exact PASS",
+  "execution": "39checks2modesPASSnofail/retry."
+}

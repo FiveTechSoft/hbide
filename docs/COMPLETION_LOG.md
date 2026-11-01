@@ -3899,3 +3899,11 @@ dirtylisting/filter/select and multidocisolation. Parentmenuclosedguard
 separate.Twomodes72checks(35+37)35inventory34docsPASSsamebinary,nofail/retry.
 linux-inventory-windowlist-altzero.json.No productfix/models/pixels/Windows/
 fullmatrixinheritance/globalmilestone.
+
+## Q123 - actual F1 context-help dispatch
+
+Sourceafb4576 tests F1withoutmenuWelcome/Filemenu/Editmenu,
+noaccidentalUndo,dirtyreturn/laterUndoF2exact. Exactsource/context/condition
+linked;noinventedmenuclosedguard. Twomodes39checks36inventory34docsPASS,
+cleannofail/retry. linux-inventory-context-help-f1.json.No newproductfix/
+models/pixels/alltopics/menucommands/Windows/fullmatrix/globalmilestone.
