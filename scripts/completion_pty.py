@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'gcc-color-output-viewer': ('test_gcc_caret_column_pty.py', ['--column-mode','color','--output-viewer'], 120),
     'compiler-long-output-color': ('test_missing_compiler_pty.py', ['--long-output','--color-output'], 120),
     'compiler-long-output-real-success-small': ('test_missing_compiler_pty.py', ['--success-long-output','--small'], 120),
     'compiler-long-output-real-success': ('test_missing_compiler_pty.py', ['--success-long-output'], 120),

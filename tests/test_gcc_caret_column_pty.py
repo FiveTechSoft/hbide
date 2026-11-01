@@ -1,7 +1,7 @@
 """Real IDE Edit-menu dispatch. Linux PTY, not visual certification."""
 import shlex, shutil, argparse
 import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
-parser=argparse.ArgumentParser();parser.add_argument('--column-mode',choices=['default','byte','tab4','tab16','no-caret','color'],default='default');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--output-viewer',action='store_true');parser.add_argument('--column-mode',choices=['default','byte','tab4','tab16','no-caret','color'],default='default');args=parser.parse_args()
 flags={'default':[], 'color':['-fdiagnostics-color=always'], 'byte':['-fdiagnostics-column-unit=byte'], 'tab4':['-ftabstop=4'], 'tab16':['-ftabstop=16'], 'no-caret':['-fno-diagnostics-show-caret']}[args.column_mode]
 ROWS, COLS = 40, 120
 BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
@@ -121,6 +121,13 @@ try:
     send(b'\x1b[20~',2)
     check('Real GCC error lists correct file and line','ERROR bad.c:2' in scr.text())
     check('Only actual error counted, not GCC context/note','1 diagnostics' in scr.text())
+    if args.output_viewer:
+        send(b'\x1b[17~');pump(.6)
+        (work/'gcc-output.screen').write_text(scr.text())
+        check('Real colored GCC output viewer opens','Output - arrows scroll' in scr.text())
+        check('Real GCC diagnostic readable without color notation','error:' in scr.text() and 'unknown_name' in scr.text() and not any(s in scr.text() for s in ['[01m','[31m','[m','[K']))
+        send(b'\x1b');pump(.4)
+        check('Esc restores project diagnostics','1 diagnostics' in scr.text())
     send(b'\r',1)
     check('Jump opens exact colon-bearing source','bad.c' in scr.text() and 'return unknown_name;' in scr.text())
     expected_col=16 if args.column_mode=='no-caret' else 9
