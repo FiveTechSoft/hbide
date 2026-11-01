@@ -1,0 +1,8 @@
+{
+  "scope": "Q439 strengthen wheel behavior acceptance, not product fix",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "pty_log": "PASS Contents opens tree and reading pane\nPASS mouse tree selects exact topic\nPASS mouse first tree row selects Basics not next topic\nPASS scrolled tree click retains valid reading pane\nPASS Next button with no query explains action\nPASS Search button executes actual query\nPASS Next button advances actual match\nPASS long topic starts at first readable line\nPASS wheel down advances exactly one reading line\nPASS wheel up restores first reading line\nPASS wheel up at first line stays clamped\nPASS End reaches last readable top\nPASS wheel down at end stays clamped\nPASS wheel up from end moves exactly one reading line\nPASS Export button writes actual catalogue\nPASS Close button returns dirty document\nPASS Index exact Quickstart opens link view\nPASS first related-topic click opens exact target\nPASS Backspace returns clicked topic history\nPASS last related-topic click opens exact target\nPASS AltRight restores clicked forward topic\nPASS nested related-topic click opens exact body\nPASS link-view Close returns unchanged dirty source\nPASS Undo after mouse Help restores exact original bytes\nTOTAL 24 PASS 0 FAIL; evidence /tmp/hbide-source-run-9jdhct9v\n",
+  "result": "24PASS including7new wheel movement/edge checks, rest inherited click fixture workflow kept to verify source preservation",
+  "limits": "No new pixels/models/fullmatrix/Windows/install/license/hitoclosure.9/27mousebranchlinks18pending"
+}
