@@ -5305,3 +5305,14 @@ hashados/binario inalterado, sin fallos/reintentos en estos14.146 escenarios
 distintos cotejados con plan353 y normalizaciónQ223. No nuevos píxeles,
 producto/modelos/Windows/matriz completa ni cierre hitos.
 Evidencia: docs/evidence/linux-c30-debug-source-blocks2832-q228.json.
+
+### Q229 (1 noviembre 2026): C30 modales debugger/objetos
+
+9 escenarios adicionales PASS con C30 96d77549/export049b533: puntos
+restaurados, breakpoint/color-set/input-paths/tracepoint/watch modales,
+fallos de setter/getter y objeto con solo métodos. Fixtures acotadas,
+no todos los objetos/expresiones/fallos. Tests propios hashados/binario
+inalterado, sin fallo/reintento en estos9.155 escenarios distintos
+cotejados con plan353 y normalizaciónQ223. No implementación toggles M3,
+producto nuevo/píxeles/modelos/Windows/matriz completa/cierre hitos.
+Evidencia: docs/evidence/linux-c30-debug-modal-blocks3336-q229.json.

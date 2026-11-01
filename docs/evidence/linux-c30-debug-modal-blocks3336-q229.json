@@ -1,0 +1,153 @@
+{
+  "scope": "Frozen C30 debugger modal and object failures.9additional scenarios;155distinct across blocks1..36 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-restored-points",
+          "command": [
+            "test_debug_restored_points_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 82.45176482200623,
+          "test_sha256": "861fe40f835e1ccda7fb386352a8a80b313bcdda7a03ac8ec3b26fd8aa9b0eb0",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-restored-points.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-bp-modal",
+          "command": [
+            "test_debug_bp_modal_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 12.662814378738403,
+          "test_sha256": "cc30bf0ad202ca5a64c3e8669e8b078763242b5d5c17d93346efc18f53efd2dd",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-bp-modal.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-color-set-modal",
+          "command": [
+            "test_debug_color_set_modal_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 20.513041973114014,
+          "test_sha256": "c2a4f87b9c330852c444ae82ef1e66f2307a2e6b6c68f6f68badf51027d2c9a1",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-color-set-modal.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-input-paths-modal",
+          "command": [
+            "test_debug_input_paths_modal_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 14.76543927192688,
+          "test_sha256": "3047f232dfa89928131a8bd1fe00456ff3fe701788a10c51dd7aacc32842e0d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-input-paths-modal.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-tracepoint-modal",
+          "command": [
+            "test_debug_tracepoint_modal_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 23.28014039993286,
+          "test_sha256": "79906cbf71d099d5153c2e3e51b3475d936e39dc3a6ef872419ab1006251a2a4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-tracepoint-modal.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-watch-modal",
+          "command": [
+            "test_debug_watch_modal_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 21.38263702392578,
+          "test_sha256": "ef1782232e17a0007a43482280e2dc8bb442bdd0ff7d560e96d8683aa7f76203",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-watch-modal.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-setter-failure",
+          "command": [
+            "test_debug_setter_failure_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 11.294375896453857,
+          "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-setter-failure.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-getter-failure",
+          "command": [
+            "test_debug_getter_failure_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 10.375874280929565,
+          "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-getter-failure.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-method-only-object",
+          "command": [
+            "test_debug_method_only_object_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 10.653484344482422,
+          "test_sha256": "bf0004da6dca9c77c9b815d29b586363ea0f8cefb407440410795ce0562ffcbb",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-method-only-object.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 155,
+  "logs": {
+    "debug-restored-points.log": "PASS missing source open with empty search path preserves prior source\nPASS source search path and file names with spaces open correctly\nPASS missing PRG preserves PPO and later toggle returns directly to source\nPASS missing PPO leaves source identity and breakpoint module intact\nPASS twice-restored line breakpoint actually stops VM at line4\nPASS editing tracepoint expression preserves TP type\nPASS twice-restored tracepoint stops on real value change\nPASS failed settings write is visible and debugger remains usable\nPASS symlink settings save preserves link and original bytes\nPASS settings replacement preserves mode and leaves no success temp\nPASS missing settings restore is visible and debugger stays usable\nPASS Speed dialog does not store negative delay\nPASS Speed dialog bounds high delay and Cancel preserves prior value\nPASS Tab Width dialog does not store negative width\nPASS Tab Width bounds dialog and command consistently; Cancel preserves four\nPASS Path For Files dialog Cancel preserves prior path\nPASS incomplete Colors command preserves complete palette\nPASS invalid count, color token and missing braces preserve palette with error\nPASS complete Colors palette applies and saved original restores\nPASS malformed Delete TP index leaves points unchanged\nPASS Delete TP zero removes the tracepoint\nPASS malformed BP line leaves existing breakpoint unchanged\nPASS malformed BP indexes preserve points and integer zero deletes\nPASS malformed WP indexes preserve points and integer zero deletes\nPASS Save/Restore dialog Cancel preserves default filename and file bytes\n",
+    "debug-bp-modal.log": "PASS debugger opens\nPASS two function breakpoints fixture\nPASS DELETE BP opens actual index input\nPASS typed Cancel preserves exact breakpoints\nPASS DELETE BP opens actual index input\nPASS invalid index -1 preserves exact breakpoints\nPASS DELETE BP opens actual index input\nPASS invalid index 999999999999999999 preserves exact breakpoints\nPASS DELETE BP opens actual index input\nPASS invalid index 0x preserves exact breakpoints\nPASS DELETE BP opens actual index input\nPASS invalid index 1.5 preserves exact breakpoints\nPASS DELETE BP opens actual index input\nPASS index0 deletes first VM breakpoint\nPASS DELETE BP opens actual index input\nPASS ALL clears exact VM breakpoint list\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-rnr273kl\n",
+    "debug-color-set-modal.log": "PASS debugger opens\nPASS actual color inline applies first palette entry\nPASS typed Cancel preserves palette\nPASS wrong color type rejected\nPASS invalid color then Esc preserves palette\nPASS SET inline accepted Decimals5\nPASS SET typed Cancel preserves Decimals5\nPASS SET wrong type rejected\nPASS invalid SET then Esc preserves Decimals5\nPASS actual SET state observable from debugger\nPASS restored SET state\nPASS restored full palette\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-0wlzavan\n",
+    "debug-input-paths-modal.log": "PASS debugger opens\nPASS INPUT filename modal executes chosen script\nPASS INPUT invalid filename shows unavailable\nPASS INPUT invalid then Esc keeps state\nPASS INPUT typed Cancel keeps state\nPASS Path modal persists accepted value\nPASS Path typed Cancel preserves prior value\nPASS Open another-file input opens\nPASS Custom filename resolves accepted source path\nPASS Custom filename typed Esc preserves source\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-9rvddej8\n",
+    "debug-tracepoint-modal.log": "PASS stopped before first increment\nPASS cancel add exact saved point expressions\nPASS invalid tracepoint add rejected\nPASS invalid add exact saved point expressions\nPASS tracepoint n evaluates initial exact value\nPASS add exact saved point expressions\nPASS editing tracepoint evaluates3\nPASS edit preserves tracepoint type exact saved point expressions\nPASS cancel edit exact saved point expressions\nPASS invalid tracepoint edit rejected\nPASS invalid edit exact saved point expressions\nPASS cancel Delete exact saved point expressions\nPASS Go stops on real tracepoint change before output\nPASS delete exact saved point expressions\nPASS after Delete Go completes exact debuggee value\nPASS point operations leave source bytes unchanged\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-2jur9g7g\n",
+    "debug-watch-modal.log": "PASS watch n evaluated\nPASS add exact saved watch expressions\nPASS cancel add exact saved watch expressions\nPASS invalid add rejected\nPASS invalid add exact saved watch expressions\nPASS edited watch evaluates3\nPASS edit exact saved watch expressions\nPASS cancel edit exact saved watch expressions\nPASS invalid edit rejected\nPASS invalid edit exact saved watch expressions\nPASS watch readonly inspector shows3\nPASS watch readonly inspector refuses edit\nPASS inspect leaves expression exact saved watch expressions\nPASS watch operations leave debuggee value unchanged\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-fmb39v9k\n",
+    "debug-setter-failure.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS readable getter shows backing1\nPASS failed setter error reported\nPASS failed setter refresh preserves backing1\nPASS cancel after setter error preserves backing1\nPASS setter failure leaves debuggee backing1\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-t5g8usy8\n",
+    "debug-getter-failure.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS failing getter displays captured error\nPASS failing getter rejects edit before setter\nPASS failed getter leaves backing value exact\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-oe6zu2my\n",
+    "debug-method-only-object.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS object with no data exposes method rows\nPASS opening method browser never invokes method\nPASS method row Enter refuses editing\nPASS Enter on method never invokes side effect\nPASS object dismissal returns Monitor\nPASS Resume after method browsing never invoked method\nPASS object empty value remains exact after Resume\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-0p1qgi0k\n"
+  }
+}
