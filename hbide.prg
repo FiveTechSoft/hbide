@@ -1767,7 +1767,7 @@ METHOD SaveAs() CLASS HbIde
          ::Repaint()
          return nil
       endif
-      if File( cName )
+      if hb_FileExists( cName )
          if HBIDE_MsgAlert( "File exists: " + cName, { "Overwrite", "Cancel" } ) != 1
             ::Repaint()
             return nil
