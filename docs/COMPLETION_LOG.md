@@ -4474,3 +4474,18 @@ generado compilado y ejecutado. Seis modos64checks mas tres regresiones27:
 binario 3878b9fa0db4762304912b8c3ff5eddfb06261f19b5cab35599850154f869627.
 No arreglo, las30parejas, reactivacion, nuevos modelos/pixeles/Windows/
 herenciaQ164/cierreM4. Evidencia `docs/evidence/linux-designer-inline-mixed-skipped-q165.json`.
+
+
+## 1 noviembre 2026: Q166, reactivacion WHEN
+
+WHEN falso salta al sentinel, que habilita el control. ShiftTab vuelve
+a evaluar WHEN y entra al control: typing GET, Down Radio/List/Combo,
+toggle Checkbox y Tab Button. Valores finales exactos.6PTY52checks,
+66guardas34docsPASS. Fuente 679c848d42cf4cfaa5ea1eac4801337f45f118e6,
+binario 9012194518fe40df0dac09aaddcf70bb8e9abaa055d60eac132285e103593d77.
+Primer lote fallo solo Button esperado NIL; tras foco/Tab GuiReader
+escribe buffer.F. sin pulsacion. Codigo Harbour PushButton y hbgetu
+confirman contrato: corregida prueba, nuevo lote completo PASS. No
+arreglo de producto, prueba Action, reactivacion arbitraria, modelos/
+pixeles/Windows/herencia matriz/cierreM4. Evidencia
+`docs/evidence/linux-designer-inline-when-reenable-q166.json`.
