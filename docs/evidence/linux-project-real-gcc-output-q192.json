@@ -1,0 +1,129 @@
+{
+  "scope": "Linux PTY real GCC output viewer, no product change, no new pixels, Windows or milestone closure",
+  "source": "f96037a766240c3ab0e11b60753795051f5b22da",
+  "binary_sha256": "5d7100e01a42564c951dc1492311acda2abaa15db50e7dcaec5bed013a75d854",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "f96037a766240c3ab0e11b60753795051f5b22da",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "9f7943f37583b9464c824a74bd19612fb8e06c79f7d0a5c36a842a470cb27c70",
+    "binary_sha256": "5d7100e01a42564c951dc1492311acda2abaa15db50e7dcaec5bed013a75d854",
+    "built_at": 1793521571.7152379
+  },
+  "pty": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "f96037a766240c3ab0e11b60753795051f5b22da",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "9f7943f37583b9464c824a74bd19612fb8e06c79f7d0a5c36a842a470cb27c70",
+    "binary_sha256": "5d7100e01a42564c951dc1492311acda2abaa15db50e7dcaec5bed013a75d854",
+    "build_receipt": "/tmp/hbide-q192-final/build-identity.json",
+    "platform": "linux",
+    "build": "fresh",
+    "scope": "Linux PTY only; not full visual/Windows acceptance",
+    "runner_sha256": "9cb93efd74a698ed77cf2636f95dc9f555bc216a96942b539c26d633d6d9601f",
+    "case": "gcc-color-output-viewer",
+    "command": [
+      "/usr/bin/python3",
+      "-u",
+      "/home/sandbox/hbide/tests/test_gcc_caret_column_pty.py",
+      "--column-mode",
+      "color",
+      "--output-viewer"
+    ],
+    "started": 1793521571.7155037,
+    "seconds": 8.79,
+    "exit_code": 0,
+    "printed_failure": false,
+    "source_or_binary_changed": false,
+    "test_sha256": "0cc37a75402020a1428bd8d89530238d07b11733142082ec74b4e0316d4fd350",
+    "log": "/tmp/hbide-q192-final/gcc-color-output-viewer-1793521571715499781.log"
+  },
+  "log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Real colored GCC output viewer opens\nPASS Real GCC diagnostic readable without color notation\nPASS Esc restores project diagnostics\nPASS Jump opens exact colon-bearing source\nPASS Jump honors grounded caret or preserves absent-evidence column color\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-9mtq6q11\n",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "f96037a766240c3ab0e11b60753795051f5b22da",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "2286696660bf04eca60be7b396b6905fea8220952a521c67e78c4f7e1a1f3be1",
+    "started": 1793521580.6897066,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "test_foreign_root_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "1e97d47fd21cd837401080f0cff716b3666d9706771eddb62f437bd34870f41a",
+        "log": "/tmp/hbide-q192-guards/test_foreign_root_guard.py.log",
+        "seconds": 0.212
+      },
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q192-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.215
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q192-guards/test_completion_guards.py.log",
+        "seconds": 0.212
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q192-guards/test_build_receipt.py.log",
+        "seconds": 0.213
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "e6f79e6fa0af285676b2ab2be7e585568186ed37e369759008f959635c3f6a81",
+        "log": "/tmp/hbide-q192-guards/test_completion_inventory.py.log",
+        "seconds": 0.768
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q192-guards/test_distribution_notices.py.log",
+        "seconds": 0.215
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q192-guards/test_embed_help_docs.py.log",
+        "seconds": 0.214
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q192-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.366
+      }
+    },
+    "ok": true,
+    "finished": 1793521583.1045315
+  },
+  "guard_logs": {
+    "test_candidate_doc_preflight.py.log": "{\n  \"ok\": false,\n  \"source\": \"c0e165d604ce137e5fb64605257e78ed689d619b\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpixmik4rk/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"fef5c707d783ab5b58276c1081100015f2ab1393\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpx9vjoen_/candidate/manifest.json\"\n}\n.\n----------------------------------------------------------------------\nRan 2 tests in 0.142s\n\nOK\n",
+    "test_embed_help_docs.py.log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n",
+    "test_foreign_root_guard.py.log": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n",
+    "test_completion_inventory.py.log": "...............................................\n----------------------------------------------------------------------\nRan 47 tests in 0.559s\n\nOK\n",
+    "test_linux_rebuild_guard.py.log": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.007s\n\nOK\n",
+    "test_completion_guards.py.log": "probe.py FAIL\nResults: /tmp/tmpanvdtdmm/out/results.json\n.probe.py PASS\nResults: /tmp/tmpgfzeaf30/out/results.json\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.probe.py FAIL\nResults: /tmp/tmp9czyrhbk/out/results.json\n.probe.py FAIL\nResults: /tmp/tmp6xl54bf8/out/results.json\n.probe.py FAIL\nResults: /tmp/tmpyre1eca7/out/results.json\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n",
+    "test_build_receipt.py.log": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "test_distribution_notices.py.log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.011s\n\nOK\n"
+  },
+  "docs": "34 complete documents embedded byte-for-byte PASS"
+}

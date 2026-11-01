@@ -4844,3 +4844,14 @@ quedan fuera de la raiz; mismo kernel/dispositivos. No nuevo producto,
 PTY, instalacion de desktop Debian, VM, todos gestos, tearing, Windows,
 maquina limpia, licencias, matriz global ni cierreM5.
 Evidencia `docs/evidence/linux-debian12-visual-q191.json`.
+
+### Q192 (1 noviembre 2026): visor de proyecto con GCC real y color
+
+Fuente f96037a766240c3ab0e11b60753795051f5b22da, binario
+5d7100e01a42564c951dc1492311acda2abaa15db50e7dcaec5bed013a75d854.
+Una ruta PTY nueva, 9/9 checks: GCC real con color forzado, diagnostico
+legible sin CSI m/K literales, Esc vuelve a la lista y Enter abre el fuente
+con dos puntos en la ruta y columna sustentada por caret. Bytes intactos.
+80 guardas y 34 documentos PASS. Sin cambio de producto, nuevos pixeles,
+Windows, matriz global ni cierre M2. 341 modos registrados son plan, no PASS.
+Evidencia: docs/evidence/linux-project-real-gcc-output-q192.json.
