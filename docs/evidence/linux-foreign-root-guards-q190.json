@@ -1,0 +1,133 @@
+{
+  "scope": "Q190 foreign root tooling guards and current Debian12 smoke, no product change",
+  "guard_source": "e4d0243",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "e4d024334df14a33ee5989e23183f79e80e22fb5",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "2acd7f435c3b1fb4f9003107ad14f24a337bf56f19bd2373a69748908e31bd9a",
+    "started": 1793521179.0889215,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "test_foreign_root_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "1e97d47fd21cd837401080f0cff716b3666d9706771eddb62f437bd34870f41a",
+        "log": "/tmp/hbide-q190-guards/test_foreign_root_guard.py.log",
+        "seconds": 0.212
+      },
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q190-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.211
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q190-guards/test_completion_guards.py.log",
+        "seconds": 0.214
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q190-guards/test_build_receipt.py.log",
+        "seconds": 0.212
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "e6f79e6fa0af285676b2ab2be7e585568186ed37e369759008f959635c3f6a81",
+        "log": "/tmp/hbide-q190-guards/test_completion_inventory.py.log",
+        "seconds": 0.765
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q190-guards/test_distribution_notices.py.log",
+        "seconds": 0.215
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q190-guards/test_embed_help_docs.py.log",
+        "seconds": 0.211
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q190-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.363
+      }
+    },
+    "ok": true,
+    "finished": 1793521181.493163
+  },
+  "run": {
+    "scope": "Bounded Linux foreign-root smoke with its own loader/libc; not a VM or installer.",
+    "receipt": {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "e7bd0d4ad30cadc15a101afe091d4dd2a8934482",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "f478f73c07727701c76f3e7f33f49682adfb3a1207c4b062248b300586d4826e",
+      "binary_sha256": "a7a851c68b94c366b53c4fdb87562a8f759aad01c42e1b31122e8de5e50ab04a",
+      "built_at": 1793520601.4079244
+    },
+    "root_os_release": "PRETTY_NAME=\"Debian GNU/Linux 12 (bookworm)\"\nNAME=\"Debian GNU/Linux\"\nVERSION_ID=\"12\"\nVERSION=\"12 (bookworm)\"\nVERSION_CODENAME=bookworm\nID=debian\nHOME_URL=\"https://www.debian.org/\"\nSUPPORT_URL=\"https://www.debian.org/support\"\nBUG_REPORT_URL=\"https://bugs.debian.org/\"\n",
+    "root_library_sha256": {
+      "lib/x86_64-linux-gnu/libc.so.6": "6b4a45352fd0c540a9c7c718f35ce8c8e46a4e482f9d3885a910c32d1a0e1421",
+      "lib/x86_64-linux-gnu/libm.so.6": "7f2ca87f652f56b094462474b076749e90e689d0ecb9cb63c7679820b271b4e7",
+      "lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": "02bcda52c1a5dfc236f94d9e5255b4a0e26347d8a372a5223b650e31f291ce3c"
+    },
+    "host_os_release": "PRETTY_NAME=\"Ubuntu 22.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.5 LTS (Jammy Jellyfish)\"\nVERSION_CODENAME=jammy\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=jammy\n",
+    "runner_sha256": "adbf003aab92e223d3a90c81405e1806b0e7131f0423aad454425064f868de7f",
+    "started": 1793521181.5289793,
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "log": "/tmp/hbide-q190-final/test_about_build_pty.py.log"
+      },
+      "test_help_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b5ed2c4ad9bb94e7a2f5c3291958f7818fb362a5224acad3a3e328c992454ddf",
+        "log": "/tmp/hbide-q190-final/test_help_pty.py.log"
+      },
+      "test_designer_inspector_drag_anchor_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "9a7674d8ecece26483a70c09f3912f7256dfa138c66afff6fa3ecefee236f070",
+        "log": "/tmp/hbide-q190-final/test_designer_inspector_drag_anchor_pty.py.log"
+      }
+    },
+    "ok": true,
+    "loader": {
+      "exit": 0,
+      "output": "\tlinux-vdso.so.1 (0x00007ffd0e284000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f73227b8000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f732201e000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f732289c000)\n"
+    },
+    "root_libraries_changed": false,
+    "finished": 1793521220.0307016
+  },
+  "logs": {
+    "test_about_build_pty.py.log": "PASS About retains version1.0\nPASS About shows actual build revision or honest fallback\nPASS About OK returns same dirty document\nPASS About cycle Undo preserves original bytes\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-0u9m8sac\n",
+    "test_designer_inspector_drag_anchor_pty.py.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-vyjviuya\n",
+    "test_help_pty.py.log": "PASS F1 without menu opens welcome topic\nPASS F1 welcome returns unchanged dirty document\nPASS F1 Edit menu opens Edit topic without Undo\nPASS F1 Edit close keeps pending insertion\nPASS Index opens requested topic\nPASS updated search contract is readable\nPASS Help close returns same document\nPASS Debugger summary shows implemented Iconize and Menu Bar recovery\nPASS Debugger summary lists only two unsupported options\nPASS unknown keyword gives a clear message\nPASS unknown keyword returns to source\nPASS Contents opens navigation\nPASS context help opens without executing File action\nPASS context help preserves current document\nPASS Index explicit OK opens filtered topic\nPASS Index explicit Cancel returns source\nPASS multiple matches open picker\nPASS picker explicit OK opens selected topic\nPASS picker explicit Cancel returns source\nPASS picker changed selection opens exact second topic\nPASS undo after Help and save preserves source bytes\nTOTAL 21 PASS 0 FAIL; evidence /tmp/hbide-source-run-_2nfd84b\n"
+  },
+  "limits": "6newguards total80,34docsPASS;3PTY30sameQ188binDebian12, libc/libm/loader hashes unchanged duringrun. Not fullrootintegrity/versionauthentication/VM/install/licensing/Windows/global/M5closure. Expected embeddedrevision parameter explicit, defaultunrecorded forplainbuild."
+}

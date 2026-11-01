@@ -4817,3 +4817,17 @@ Pasada final limpia tras esas correcciones de harness. No arreglo nuevo.
 Sigue mismo kernel/dispositivos y driver externo: no VM, instalador,
 maquina fisica limpia, licencias, release, Windows, matriz ni cierreM5.
 Evidencia `docs/evidence/linux-debian12-root-q189.json`.
+
+
+### Q190 (1 noviembre 2026): guardas del smoke en raiz ajena
+
+Se rechazan antes de lanzar procesos: binario alterado, recibo dirty,
+fuente ausente, mountpoint ausente y output existente (conservado).
+Sexta guarda detecta cambio de hash de libreria. Runner comprueba
+libc/libm/loader al terminar y recibe revision embebida esperada explicita.
+80guardas34docsPASS en e4d0243; smoke Debian12 repetido3PTY30checks
+con mismo Q188bin a7a851c68b94c366b53c4fdb87562a8f759aad01c42e1b31122e8de5e50ab04a,
+fuente e7bd0d4ad30cadc15a101afe091d4dd2a8934482. Librerias sin cambios.
+No nuevo producto ni integridad de raiz completa, VM, instalador,
+licencias, Windows, matriz global o cierreM5.
+Evidencia `docs/evidence/linux-foreign-root-guards-q190.json`.
