@@ -1,0 +1,8 @@
+{
+  "scope": "Q461 fresh C88 Compiler Options radio last-to-first edge selection, not separate feature count",
+  "source": "e32c6ece0a8d461f04f7244eb451e378211c7f14",
+  "binary_sha256": "e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38",
+  "test_sha256": "59cb7028508988e013238bd2067faeb8320dcab4f5058f0bc70112ec8b52b0a5",
+  "runtime_log": "PASS build failure visible\nPASS default GCC warnings strict flags\nPASS build failure visible\nPASS Mouse Cancel discards radio and checkbox changes\nPASS Mouse Help opens exact compiler topic\nPASS Help return retains clicked option controls\nPASS build failure visible\nPASS Mouse OK applies radio and checkbox values to actual argv\nPASS build failure visible\nPASS Mouse item MinGW64 reaches exact compiler argv\nPASS build failure visible\nPASS Mouse item GCC reaches exact compiler argv\nPASS Repeated modal mouse workflow preserves source bytes\nTOTAL 13 PASS 0 FAIL; evidence /tmp/hbide-source-run-kpqie67n\n",
+  "limits": "13 checks include 9 repeated Q460 workflow checks and4 additional build/edge checks, not13newcases. Last MinGW64 then first GCC via captions actual argv;25x80xterm, no all controls/hit boundaries/Windows/pixels/fullmatrix."
+}
