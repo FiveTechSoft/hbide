@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q131 | Explicitcontinuationbracketcontext/repaint. | Source9dcf9a3/before2PASS2FAIL/28PTY6modes26models203repaint57guardtests34docsPASS/nativeinspected;linux-editor-bracket-continuation.json.No generallexer/Windows/global. |
 | C23 | TemporaryLinuxcandidatehastaQ130. | Exportcdc0de1/bin207a589e,8smokes10recent74checksPASSexactbinary,34docpreflight/nativenueva;linux-candidate-recent-c23.json.No release/Windows/licenses/fullmatrixinherit. |
 | Q130 | M0 registerhelpbrowser/projectUImodels. | Source1258a6f/26models57guardtests34docsPASS;linux-help-project-extra-models-q130.json.GTSTDnotpixels/PTY/Windows/global. |
 | Q129 | M0 registerexistingdebuglayout/tabwidthmodels. | Source54ed845/24models57guardtests34docsPASS;linux-debug-extra-models-q129.json.GTSTDnotpixels/PTY/Windows/global.Prior22modelsremainhistorical. |

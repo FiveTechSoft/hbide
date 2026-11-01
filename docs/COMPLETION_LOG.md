@@ -3977,3 +3977,14 @@ smokes+tendistinctrecentmodes74checksPASSexactunchangedbinary/ldd,nofail/retry.
 Actualnative120x40outputstringsyellow/gapmagenta/nextkeywordscyan/fullborders/
 F2exactinspected. linux-candidate-recent-c23.json.C22historical.NoQ121matrix
 inheritance/release/licenses/Windows/install/determinism/globalmilestone.
+
+## Q131 - explicit continuation bracket context
+
+Compiler-validcontinuedassignmentbracketstring;before2PASS2FAIL. Bounded
+intro/valuecarryonexplicitsemicolonandcache/hotpathrepaintwhencontextchanges.
+Source9dcf9a3/28PTY6modes26models203repaint57guardtests34docsPASS
+cleannofail/retry.Firstmodelguardfailedbecausewordwrapfixturelongcomment,
+shortened;initial5e109c8passnotinheritedafterrepaintfix.Actualnative120x40
+literalyellow/nextkeywordscyan/fullborders/F2exactinspected.
+linux-editor-bracket-continuation.json.No generalpreprocessor/lexer/runtime/
+Windows/globalmatrix/hitoclosure.C23/Q121historicalseparate.
