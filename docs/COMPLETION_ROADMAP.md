@@ -66,6 +66,10 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 1 noviembre20:58 Q398-Q400 agrega aceptaciónfocalM2/recovery/designer
+sobreC83exacto, detallada al final, no suma a matrizglobal ni píxeles nuevos.
+Q401docs posteriores no embebidos en el candidato.
+
 Actualización 1 noviembre20:49 Q395: último candidato identificado C83,
 fuentec245e8c3047f97a8674f75bb0f1ae33123defe1e,
 bin92504b3338a3e2f24a14615d54d8ad4fd14b12f9901fd53cd8c1f8aa157309a5.
@@ -1391,3 +1395,21 @@ completo. Q396docs/catálogo posteriores no embebidosC83, no rebuild por docs.
 Windows/install/licencias/M5/M6 y políticas pendientes intactos. Evidencia:
 linux-clipboard-save-c81-q393.json, linux-nav-continued-end-q394.json,
 linux-clean-candidate-q395.json.
+
+### Q397-Q401 (1 noviembre 2026): aceptación focal actual C83
+
+Q39737modelosGTSTDfresh c7d0adePASS separados del IDE. Q398cincoC83modosM2
+62checksPASS: compiladorausente/fallatrasoutput/éxitosinoutput/emptyargv/
+ProjectMessages; fixturescompilercontrolados acotados para fallos.
+Q399cincoC83modosrecoveryPASS: deepmixedEOL y UTF8BOM separados kill/recover/
+saveexactos, Comparereadonly/snapshots/Later, journalUndoalbaseline y Reload
+retiran recuperaciónobsoleta y reinicianlimpio. Q400cuatrodesigner52checksPASS:
+mixedruntime23/GETVALIDveto10/ComboClipboardSTATE9/Inspectorclose25x80JSON10.
+Generatedruntimeinstrumentado para valores/salida, no stockdistribución.
+Cada modo verificó binC83intacto92504b3338a3e2f24a14615d54d8ad4fd14b12f9901fd53cd8c1f8aa157309a5,
+fuentec245e8c3047f97a8674f75bb0f1ae33123defe1e. No es matrizcompleta ni nuevo
+píxel/Windows/install/licencias/M5/M6; no cambia políticaspendientes.
+Q401docs/catálogo posteriores no embebidosC83, sin rebuild por receipts.
+C30 sigue único planhistóricocompleto. Receipts linux-model-baseline-q397,
+linux-build-run-c83-q398, linux-recovery-c83-q399 y linux-designer-c83-q400
+(JSON en docs/evidence).
