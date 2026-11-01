@@ -41,7 +41,8 @@ FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 )
          lMessages := .T.; nPick := 1; nTop := 1
       CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK
          nClick := MRow() - 6 + nTop
-         IF MRow() >= 6 .AND. MRow() < 6 + nVisible .AND. nClick <= Len( aRows )
+         IF MRow() >= 6 .AND. MRow() < 6 + nVisible .AND. ;
+            MCol() > 2 .AND. MCol() < MaxCol() - 2 .AND. nClick <= Len( aRows )
             nPick := Max( 1, nClick )
             IF nKey == K_LDBLCLK
                nKey := K_ENTER
