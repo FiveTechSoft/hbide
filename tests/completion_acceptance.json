@@ -3175,6 +3175,15 @@
         "test_editor_wheel_pty.py"
       ],
       "contract": "Internal pure-nav classification, not additional user gesture: C87 xterm40x120 100CRLFrows wheel down crosses viewport and up moves one row; first Undo removes prior typing without wheel Undo entry; Redo exact, later-row typing has separate Undo/Redo boundaries. Existing wheel fixture checks clean/byte preservation. Behavioral consequence only, no internal instrumentation/performance/allnavkeys/selection/markstates/pixels/Windows; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-DESIGNER-RELEASE-DIAGNOSTIC": {
+      "source": "designer.prg",
+      "context": "METHOD Activate() CLASS HbDesigner",
+      "condition": "case nKey == K_LBUTTONUP",
+      "tests": [
+        "test_designer_release_noop_pty.py"
+      ],
+      "contract": "Trace-only main-loop branch with DSN_TRACE disabled: C87 xterm40x120 ComboBox model, canvas-focused unpaired release on canvas/title/close glyph leaves complete normalized grid and full controls JSON unchanged; close glyph release alone does not close inspector. Not paired drag completion/inspector loop/log enabled/alltypes/allcoords/pixels/Windows; link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }

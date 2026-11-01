@@ -1,0 +1,10 @@
+{
+  "scope": "Q454 C87 designer main-loop release no-op with DSN_TRACE disabled. Not drag completion or diagnostics-enabled logging acceptance.",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "test_sha256": "8278ec0db0e8ca2ec69cebcd69ed676faca5c8b7eacdb6c31306ba0b43e0524c",
+  "runtime_log": "PASS combobox inspector visible\nPASS title centered in 31-column panel\nPASS Unpaired release on canvas leaves normalized character grid unchanged\nPASS Unpaired canvas release preserves full control JSON\nPASS Unpaired release on inspector title leaves grid unchanged\nPASS Unpaired title release preserves full control JSON\nPASS Unpaired release on close glyph does not hide inspector\nPASS Unpaired close release preserves full control JSON\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-wjcl_s54\n",
+  "initial_harness_syntax_failure": "  File \"/home/sandbox/hbide/tests/test_designer_release_noop_pty.py\", line 14\n    os.chdir(work);os.execve(exe,[exe],dict(os.environ,TERM='xterm',HOME=str(work/'home'),HBIDE_RECOVERY_DIR=str(work/'rec'),DSN_TRACE='')))\n                                                                                                                                           ^\nSyntaxError: unmatched ')'\n",
+  "product_source_unchanged_since_candidate": true,
+  "limits": "Unpaired xterm release only on 3 bounded coordinates, ComboBox fixture, canvas-focused main loop, DSN_TRACE empty. Normalized character grid/full controls JSON, not pixels/alltypes/inspector loop/drag/release ordering/Windows.27linkedbranches is neither exhaustive inventory nor feature completion."
+}
