@@ -1,0 +1,83 @@
+{
+  "scope": "Q404 compiler-valid standard TEXT forms, C84 focal not official; no matrix inheritance",
+  "source": "6d855540cdff2c85335f69ad38ee9ecb2f8e8a3f",
+  "binary_sha256": "584878460045dae3e8c13a1c2604006b025f47b9ba57c1f67e2e1055a1456be3",
+  "results": [
+    {
+      "name": "printer",
+      "compiler_exit": 0,
+      "pty_exit": 0,
+      "output": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-nqptxqbe\n"
+    },
+    {
+      "name": "file_tab",
+      "compiler_exit": 0,
+      "pty_exit": 0,
+      "output": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-1h2fln5_\n"
+    },
+    {
+      "name": "file_bare",
+      "compiler_exit": 0,
+      "pty_exit": 0,
+      "output": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-o95cqq7d\n"
+    },
+    {
+      "name": "file_expr",
+      "compiler_exit": 0,
+      "pty_exit": 0,
+      "output": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-_j8ofnhv\n"
+    }
+  ],
+  "storage": {
+    "scope": "Reversible temporary redundant archive compaction approved by parent. All trees/bins/logs/manifests/evidence retained.",
+    "initial_error": "hashlib.file_digest unavailable; original retained; resumed chunked hash verified before removal",
+    "items": [
+      {
+        "original": "/tmp/hbide-c81/source.tar",
+        "original_bytes": 199239680,
+        "original_sha256": "344b6e37f105f9136428baca9db17b46fc0c6a430359e941471e7a710f102e1d",
+        "manifest_sha256": "344b6e37f105f9136428baca9db17b46fc0c6a430359e941471e7a710f102e1d",
+        "gzip": "/tmp/hbide-c81/source.tar.gz",
+        "gzip_bytes": 13907634,
+        "decompressed_sha256": "344b6e37f105f9136428baca9db17b46fc0c6a430359e941471e7a710f102e1d",
+        "restore": "gzip -dk /tmp/hbide-c81/source.tar.gz",
+        "status": "verified redundant tar removed"
+      },
+      {
+        "original": "/tmp/hbide-c82/source.tar",
+        "original_bytes": 199290880,
+        "original_sha256": "100ff0ce99a4bda52a27ce038c16db27d844717542d3cba513b1530f8fb3b459",
+        "manifest_sha256": null,
+        "gzip": "/tmp/hbide-c82/source.tar.gz",
+        "gzip_bytes": 13917692,
+        "decompressed_sha256": "100ff0ce99a4bda52a27ce038c16db27d844717542d3cba513b1530f8fb3b459",
+        "restore": "gzip -dk /tmp/hbide-c82/source.tar.gz",
+        "status": "verified redundant tar removed"
+      },
+      {
+        "original": "/tmp/hbide-c83/source.tar",
+        "original_bytes": 199290880,
+        "original_sha256": "a897a22a395a9bc138aa237005472745171bac379078a87653a4ac3971e77102",
+        "manifest_sha256": "a897a22a395a9bc138aa237005472745171bac379078a87653a4ac3971e77102",
+        "gzip": "/tmp/hbide-c83/source.tar.gz",
+        "gzip_bytes": 13917392,
+        "decompressed_sha256": "a897a22a395a9bc138aa237005472745171bac379078a87653a4ac3971e77102",
+        "restore": "gzip -dk /tmp/hbide-c83/source.tar.gz",
+        "status": "verified redundant tar removed"
+      },
+      {
+        "original": "/tmp/hbide-c84/source.tar",
+        "original_bytes": 199372800,
+        "original_sha256": "44e629d46d481698a51037cb7855430e7d7d0db24a5489f9d9c643af738c86bf",
+        "manifest_sha256": null,
+        "gzip": "/tmp/hbide-c84/source.tar.gz",
+        "gzip_bytes": 13927762,
+        "decompressed_sha256": "44e629d46d481698a51037cb7855430e7d7d0db24a5489f9d9c643af738c86bf",
+        "restore": "gzip -dk /tmp/hbide-c84/source.tar.gz",
+        "status": "verified redundant tar removed"
+      }
+    ],
+    "bytes_freed": 741523760
+  },
+  "limitations": "Scanner navigation, no payload execution/output files, no customstreams/macros/CP/toolchain change. No new pixels asserted for these contexts."
+}
