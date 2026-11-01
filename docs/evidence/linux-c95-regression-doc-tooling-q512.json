@@ -1,0 +1,14 @@
+{
+  "scope": "C95postbinarydocs/tooling only no runtime inherited",
+  "catalogue": "34byteexact",
+  "logs": {
+    "test_candidate_doc_preflight.py.log": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.329s\n\nOK\n{\n  \"ok\": false,\n  \"source\": \"ef54ab4a5ced425e3d2d1cf64bc1e7f8063e5a58\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpzv130y4r/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"5ac2a13b5988ea79a6be81a15f432d9f2df873c0\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmphlmz8o8h/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"6a41c4282ccbfb80e686838d3dc7148938192c1b\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpj8nxzkkn/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"3585e504d527dd122f734244727b2e7ff2c8fc79\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpxsvgw6uf/candidate/manifest.json\"\n}\n",
+    "test_embed_help_docs.py.log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n",
+    "test_foreign_root_guard.py.log": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.005s\n\nOK\n",
+    "test_completion_inventory.py.log": "........................................................\n----------------------------------------------------------------------\nRan 56 tests in 0.648s\n\nOK\n",
+    "test_linux_rebuild_guard.py.log": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.011s\n\nOK\n",
+    "test_completion_guards.py.log": "probe.py FAIL\n.Results: /tmp/tmpek9o1_gf/out/results.json\nprobe.py PASS\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.Results: /tmp/tmpoihuj5ky/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmpztz29tld/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmpofqq77yf/out/results.json\nprobe.py FAIL\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\nResults: /tmp/tmp5y21falp/out/results.json\n",
+    "test_build_receipt.py.log": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "test_distribution_notices.py.log": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.018s\n\nOK\n"
+  }
+}

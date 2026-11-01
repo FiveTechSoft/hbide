@@ -6350,3 +6350,16 @@ source/borders/status. SinherenciaC94,graphemes/wideUnicode/casefold/picturedGET
 Windows/fullmatrix/install/license ni cambio UTF8hostexperimentaloptin.
 C93/C94conservados. Reserva109MiB tras dos builds, no nuevas retiradas.
 Q508docs posteriores no embebidosC95, no build sólo por docs/reserva.
+
+
+### Q509-Q512 (2 noviembre 2026): regresión C95 sin ampliar contrato
+
+Q509freshMessageList8PASSGCCreal/sharedcaller, no accentedMessageListclaim.
+LecturasconfirmanOpen@S37 frente GetUIsText sóloCsinpicture;aperturaaccented
+picturedGETexperimental fueraacceptanceactual, no ampliación implícita/general.
+Q510FindUTF8mouse7/horizUTF8scroll7/Replace11/paired8freshPASS. Q511clipboard
+blockmultidoc9/UTF8multidocdefault9/virtualempty4freshPASS, no todos flagsUTF8 ni
+modelos. Revisiónclipboard no halló defecto nuevo confirmado, se paran variantes.
+C95bin112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845 intacto.
+Q512docs posteriores no embebidosC95; no build sólo docs. No píxeles nuevos,
+matriz/Windows/install/license/Unicodegeneral ni cierre de hitos/políticas.

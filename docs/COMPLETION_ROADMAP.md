@@ -66,7 +66,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 2 noviembre00:23 Q508: último candidato aceptado en alcance focal **C95**,
+Corte 2 noviembre00:31 Q512: último candidato aceptado en alcance focal **C95**,
 fuente `1cdedd93da118bcdb33866d574943a784a00c0f6`,
 bin `112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845`.
 Q507 reproduce C93 ListPick filtro WindowListcafé: Backspace corta un byte y
@@ -80,7 +80,9 @@ C95 usa API nativa y tiene aceptación propia. C93/C94conservados. No hereda
 matriz ni soporte picturedGET/Unicode general/graphemes/casefold/Windows/licencia.
 Fixture inicial apertura picturedGETaccentpath falló antes de filtro; privatecwd
 Tablistbox abre café exacto. Ese límite experimental sigue sin corregir.
-Docs posteriores no embebidosC95; no build por docs. Reserva actual~109MiB, no
+Q509MessageList8/Q510freeinput33/Q511clipboard22 fresh PASS acotados, no
+herencia de candidatos anteriores ni modelos completos. Docs posteriores no
+embebidosC95; no build por docs. Reserva actual~109MiB, no
 más retiradas autorizadas. Próximo regresión identificada/hueco distinto sin
 variantes equivalentes ni builds para consumir reserva. Gates/políticas siguen.
 
