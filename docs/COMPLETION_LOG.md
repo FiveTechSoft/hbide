@@ -3935,3 +3935,12 @@ fourguardssingle/doublequestion/gap/valueindex.34PTY6modes22models195repaint
 realgapmagenta/nextkeywordscyan/fullborders/F2exactinspected.
 linux-editor-bracket-output.json.No commandruntime/generallexer/Windows/
 fullmatrix/globalmilestone.Q121/C22historicalseparate.
+
+## Q127 - source-identified tooling guard runner
+
+Source6be9a2b,scripts/completion_guards.py runs receipt/inventory/
+notice/exportdocs/candidatepreflightguardsandrecords testhashes,logs,source/
+trackedsnapshot,exits/failures/changechecks.Nonoverwriteoutput/60stimeout.
+Clean5suites51unittests(3+36+5+5+2)34docsPASSnofail/retry.
+linux-tooling-guards-q127.json.No productfix/PTY/models/pixels/candidate/
+Windows/globalmilestone.Notallpythonharnesses;doesnotclaimuntrackedcoverage.

@@ -1,0 +1,59 @@
+{
+  "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+  "source": "6be9a2bc578d113a45ec634541779c5f52a1c75a",
+  "tracked_changes": "",
+  "tracked_snapshot_sha256": "c4df0bde69a14da9d5730c79264b45578916d15948556e48251c036c329dd388",
+  "started": 1793497417.9812253,
+  "runner_sha256": "51afd9c287719b246ff48a6bd213a441a6f7aabf0389118fe23fb8372f0d225f",
+  "tests": {
+    "test_build_receipt.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "source_or_test_changed": false,
+      "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+      "log": "/tmp/hbide-guards-q127-clean/test_build_receipt.py.log",
+      "seconds": 0.215,
+      "log_text": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n"
+    },
+    "test_completion_inventory.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "source_or_test_changed": false,
+      "test_sha256": "b4c03d198ec9ac6e952c19abaf776f9e58cbc5e8807cafbd24038987216c9ab1",
+      "log": "/tmp/hbide-guards-q127-clean/test_completion_inventory.py.log",
+      "seconds": 0.612,
+      "log_text": "....................................\n----------------------------------------------------------------------\nRan 36 tests in 0.377s\n\nOK\n"
+    },
+    "test_distribution_notices.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "source_or_test_changed": false,
+      "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+      "log": "/tmp/hbide-guards-q127-clean/test_distribution_notices.py.log",
+      "seconds": 0.211,
+      "log_text": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.011s\n\nOK\n"
+    },
+    "test_embed_help_docs.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "source_or_test_changed": false,
+      "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+      "log": "/tmp/hbide-guards-q127-clean/test_embed_help_docs.py.log",
+      "seconds": 0.206,
+      "log_text": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.003s\n\nOK\n"
+    },
+    "test_candidate_doc_preflight.py": {
+      "exit": 0,
+      "reported_failure": false,
+      "source_or_test_changed": false,
+      "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+      "log": "/tmp/hbide-guards-q127-clean/test_candidate_doc_preflight.py.log",
+      "seconds": 0.356,
+      "log_text": "{\n  \"ok\": false,\n  \"source\": \"41f30aa61b74c37b38086db56aec537acba078dc\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpio4lu8lo/candidate/manifest.json\"\n}\n.{\n  \"ok\": false,\n  \"source\": \"2b7fa7a17f1e6fbbd3fee63ef44abb541443db94\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpmgrijofh/candidate/manifest.json\"\n}\n.\n----------------------------------------------------------------------\nRan 2 tests in 0.137s\n\nOK\n"
+    }
+  },
+  "ok": true,
+  "finished": 1793497419.581453,
+  "numbered_unittests": 51,
+  "docs": "34byte-exactPASS"
+}

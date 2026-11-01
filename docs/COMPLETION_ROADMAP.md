@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q127 | M0 sourcetrackedtoolingguardrunner. | Source6be9a2b/5suites51unittests34docsPASS;linux-tooling-guards-q127.json.No productfix/PTY/models/pixels/Windows/global. |
 | Q126 | ?/??bracketliteralnotfalsecomment. | Sourced130b52/before2PASS2FAIL/34PTY6modes22models195repaint36inventory34docsPASS/nativeinspected;linux-editor-bracket-output.json.No runtime/generallexer/Windows/global. |
 | Q125 | M5 builderstalecataloguebarrierexecuted. | Source073cd3e/2isolatedintegration5docguards36inventory34docsPASS;linux-candidate-document-preflight-integration.json.No realbinary/candidate/Windows/global. |
 | Q124 | Literal.hhheaderlisted/openedexact. | Source3565f64/before1PASS2FAIL/15PTY5modes22models36inventory34docsPASS,nativeinspected;linux-project-hh-header.json.No compiler/bridge/Windows/global. |
