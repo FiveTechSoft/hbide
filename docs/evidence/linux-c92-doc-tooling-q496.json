@@ -1,0 +1,15 @@
+{
+  "scope": "Q496 post C92 docs and tooling only, not embedded in official C92",
+  "groups": {
+    "test_build_receipt.py.log": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "test_candidate_doc_preflight.py.log": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.345s\n\nOK\n{\n  \"ok\": false,\n  \"source\": \"f860b1c9a752dbe9aca1d86c1d2b2311a35dbc8b\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmprxwuc1bj/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"0a95545f2f47c115eae1e826ea359c4734c17506\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmp8hcva3ft/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"a138e658534e153788a736bde49f3a40ba835b53\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpf3b3z_tn/candidate/manifest.json\"\n}\n{\n  \"ok\": false,\n  \"source\": \"1c1aef6b60b6358fc76a911e4e076934e5c378ac\",\n  \"binary_sha256\": null,\n  \"manifest\": \"/tmp/tmpkbwjn109/candidate/manifest.json\"\n}\n",
+    "test_completion_guards.py.log": "probe.py FAIL\n.Results: /tmp/tmp5r8et_ef/out/results.json\nprobe.py PASS\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.Results: /tmp/tmpnaz4900l/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmp9_51qnbu/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmpkeuzeaph/out/results.json\nprobe.py FAIL\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\nResults: /tmp/tmpt91f_c_j/out/results.json\n",
+    "test_completion_inventory.py.log": "........................................................\n----------------------------------------------------------------------\nRan 56 tests in 0.658s\n\nOK\n",
+    "test_distribution_notices.py.log": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.018s\n\nOK\n",
+    "test_embed_help_docs.py.log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+    "test_foreign_root_guard.py.log": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.005s\n\nOK\n",
+    "test_linux_rebuild_guard.py.log": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.010s\n\nOK\n"
+  },
+  "catalogue": "34 byte-exact",
+  "source_candidate": "cdac56d54fd36c416678734e5ca94ba2595607a4"
+}

@@ -6263,3 +6263,29 @@ Fuente original/bin/manifiesto/log/evidencia conservados; no hardlinks.
 C90 intacto. DespuésC91~150MiB libres. Sin otras retiradas autorizadas.
 Q491docs/catálogo posterior no embebidoC91, no build sólo docs. No matriz,
 Windows/install/license/hitos/porcentaje; límites y políticas no cambian.
+
+
+### Q492-Q496 (1 noviembre 2026): regresión C91 y export seguro acotado C92
+
+Q492 C91freshFind7/Replace11/Args14/paired8/FindUTF8BOM7/horizUTF8scroll7PASS,
+no herencia C90. Q493SaveAllpartialfail5/refusedSaveAscrashrecovery21/conflict
+Cancel/ReloadPASS. Q494deepmixedEOL/deepBOMhost/Compare25x80freshPASS. No matriz.
+
+Q495 C91HelpExport sigue symlink sobre notas de fixture:9PASS1FAIL. C92source
+cdac56d54fd36c416678734e5ca94ba2595607a4,
+bind507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb.
+HelpExport rechaza symlink/nonregular observados, usa AtomicWriteFile compartido
+sibling exclusivo verificado/promoción; no truncación directa del destino.
+Own8smokes/About/ldd/docs34PASS +symlink3/regularnew+reexport+mode5/directory4/
+FIFO4/dangling4PASS. Initialdestfixturekindshadowedporloopautorun produjofallos;
+rename run_kind/rerun todosPASS, retenidos iniciales sin cambio producto.
+Native1202x762C91Wrote+targetfixturetruncado/C92Refusedsymlink+targetexact,
+inspeccionados browser/bordesinferiores/status. Regularoverwrite sin cambio.
+APIhb_vfAttrGetPOSIXstat sigue links;linkRead clasificaciónNOlock. Promoción
+rename no abre finalsymlink; carreras de alias/directorio padre no garantizadas.
+No protecciónadversarialTOCTOU ni allOSfiletypes/Windows/matriz/licencia.
+Helpbrowserhelpercompilado sólo, NO runtimePASS ni equivalente binariooficial.
+C82unárbol preservado independiente10,912,391bytes1473entradas, cada archivo
+fullydecompressedmemory SHA/size/mode/inventario y dirs/linkmetadata/original
+recheck antes retirar sólo expandido; original/bin/manifiesto/log/evidencia
+intactos. C91 conservado. Q496docs posteriores no embebidosC92, no build por docs.

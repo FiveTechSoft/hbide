@@ -272,7 +272,12 @@ opens the browser:
   screen map, menus, documents, saving, crash recovery, build, debugger,
   projects, options, designer, terminal notes and platform status.
 - Export .md writes the whole manual as `hbide-help.md` in the current
-  directory.
+  directory. Existing regular files are still replaced. Observed symbolic
+  links (including dangling links) and non-regular destinations are refused
+  with an error; the link and destination remain unchanged. Export uses a
+  verified sibling file and promotion instead of truncating the destination.
+  Path classification is not a lock against concurrent path changes; no
+  protection against parent-directory replacement races is promised.
 - In contextual F1 help, Backspace returns to the previous topic and
   Alt+Right goes forward again. The two-pane browser uses Left/Right.
 - Sections 6-8 contain every complete Markdown document from the repository,

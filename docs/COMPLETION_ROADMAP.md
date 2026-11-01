@@ -66,6 +66,25 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 1 noviembre23:55 Q496: último candidato aceptado en alcance focal **C92**,
+fuente `cdac56d54fd36c416678734e5ca94ba2595607a4`,
+bin `d507d5446402cebf36dbd2692a549b76c5b5928753599f826351525085ebfcfb`.
+Q495 reproduce HelpExport C91 siguiendo symlink y truncando notas de fixture.
+C92 usa escritor compartido sibling exclusivo/verificado y promoción, rechaza
+symlink/dangling/directory/FIFO observados con error claro. Regular overwrite
+sigue permitido, sin nueva política. 8smokes oficiales/About/ldd/docs34 PASS;
+symlink3/regular5/directory4/FIFO4/dangling4 fresh PASS. Native1202x762 beforeC91
+Wrote+targetfixture alterado /afterC92 error+target intacto, bordes completos
+inspeccionados. Clasificación previa NO es lock; no garantía TOCTOU ante cambios
+concurrentes de alias/directorio padre. C91 conservado, sin herencia de matriz.
+C82exportado preservado íntegro en archivo independiente antes retirar sólo
+expandido; bin/manifiestos/logs/fuente original/evidencia intactos. Espacio~87MiB,
+no más retiradas autorizadas. Docs posteriores no embebidosC92, no build por docs.
+Windows/install/license/gates/políticas siguen abiertos. Próximo regresión
+identificada y hueco funcional distinto, no variantes equivalentes.
+
+Histórico anterior, no evidencia heredada por C92:
+
 Corte 1 noviembre23:40 Q491: último candidato aceptado en alcance focal **C91**,
 fuente `a0e87553d3a05138583d6831c3a49a34ff652d58`,
 bin `2bd8ffa509e6fec8589b338e9683193d9ef811ee285c01020af175217f0fe9b8`.
