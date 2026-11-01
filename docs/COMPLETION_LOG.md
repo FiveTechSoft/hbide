@@ -3968,3 +3968,12 @@ dependencies;projectUIreceivesactualhbmk2argument.Clean26models6suites
 57guardtests34docsPASSnofail/retry.ExploratoryHelplinkmissinghbgetufailed,
 correctedbeforecleanpass. linux-help-project-extra-models-q130.json.
 GTSTDnotpixels/PTY/nativeWindows/globalmilestone.Prior24/22receiptshistorical.
+
+## C23 - temporary Linux candidate after Q130
+
+Cleanexportcdc0de1b999758b3354ac0661866c9150b4393c6;strippedSHA207a589e203e278ea4ea27c182cb1422c023a2f8a20bb55b381f6e3315b1e950.
+Automaticprebuilddocumentgate34byteexactPASSwithout.git. Eightstandard
+smokes+tendistinctrecentmodes74checksPASSexactunchangedbinary/ldd,nofail/retry.
+Actualnative120x40outputstringsyellow/gapmagenta/nextkeywordscyan/fullborders/
+F2exactinspected. linux-candidate-recent-c23.json.C22historical.NoQ121matrix
+inheritance/release/licenses/Windows/install/determinism/globalmilestone.

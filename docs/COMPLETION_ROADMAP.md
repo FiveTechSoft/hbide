@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| C23 | TemporaryLinuxcandidatehastaQ130. | Exportcdc0de1/bin207a589e,8smokes10recent74checksPASSexactbinary,34docpreflight/nativenueva;linux-candidate-recent-c23.json.No release/Windows/licenses/fullmatrixinherit. |
 | Q130 | M0 registerhelpbrowser/projectUImodels. | Source1258a6f/26models57guardtests34docsPASS;linux-help-project-extra-models-q130.json.GTSTDnotpixels/PTY/Windows/global. |
 | Q129 | M0 registerexistingdebuglayout/tabwidthmodels. | Source54ed845/24models57guardtests34docsPASS;linux-debug-extra-models-q129.json.GTSTDnotpixels/PTY/Windows/global.Prior22modelsremainhistorical. |
 | Q128 | M0 failclosedguardrunnernegativefixtures. | Sourcefd6d538/6suites57unittests34docsPASS;linux-tooling-guards-negative-q128.json.No productbinary/PTY/models/pixels/Windows/global. |
