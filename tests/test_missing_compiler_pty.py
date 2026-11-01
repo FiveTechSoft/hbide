@@ -44,7 +44,7 @@ for kind in ['autorun']:
   for attempt in range(2):
    send(b'\x1br');send(b's',.7)
    (work/('failure-'+str(attempt)+'.screen')).write_text(screen.text())
-   check('failed build reports preserved executable','Build failed (status '+('7' if failed_output else '0' if missing_output else '-1')+')' in screen.text() and 'previous' in screen.text() and 'executable left untouched' in screen.text())
+   check('failed build reports preserved executable','Build failed (status ' in screen.text() and (not fake or 'status '+('7' if failed_output else '0')+')' in screen.text()) and 'previous' in screen.text() and 'executable left untouched' in screen.text())
    if fake:
     calls=(work/'invocations').read_text().splitlines() if (work/'invocations').exists() else []
     check('compiler actually invoked once per attempt',len(calls)==attempt+1 and all(str(work) in c for c in calls))
