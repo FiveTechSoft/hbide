@@ -31,6 +31,14 @@ procedure Main()
  Check('prefix is not terminator',!o:BlkCmtState(5).and.o:aBlkCtx[4]=='@TEXT'.and.o:aBlkCtx[5]=='')
  o:LoadText('TEXT := 1'+hb_eol()+'/* real'+hb_eol()+'return 42')
  Check('TEXT assignment not stream',o:BlkCmtState(3))
+ for each c in {'TEXT // done','text&& done','TEXT/* done */','TEXT /* a */ /* b */','TEXT'+Chr(9)+'// done'}
+ o:LoadText(c+hb_eol()+'/* literal'+hb_eol()+'ENDTEXT'+hb_eol()+'return 42')
+ Check('commented bare opener isolates payload: '+c,!o:BlkCmtState(4).and.o:aBlkCtx[2]=='@TEXT'.and.o:aBlkCtx[4]=='')
+ next
+ for each c in {'TEXTBOOK','TEXT TO c','TEXT /* gap */ := 1','TEXT /* unclosed'}
+ o:LoadText(c+hb_eol()+'/* real'+hb_eol()+'return 42')
+ Check('non-bare or unclosed opener not literal: '+c,o:BlkCmtState(3).and.o:aBlkCtx[2]!='@TEXT')
+ next
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return
