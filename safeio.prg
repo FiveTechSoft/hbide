@@ -75,13 +75,13 @@ function HBIDE_AtomicWriteFile( cFile, cContent, cFailInfo )
 
    do while .T.   // single-exit block; the temp is kept on every failure
       // read the original's permissions BEFORE touching anything
-      if File( cFile ) .and. ! hb_vfAttrGet( cFile, @nAttr )
+      if hb_FileExists( cFile ) .and. ! hb_vfAttrGet( cFile, @nAttr )
          cFailInfo := "could not read attributes of " + cFile + "; destination untouched"
          exit
       endif
       // stamp the original's permissions on the replacement (aborts above
       // when impossible, so the destination is never silently demoted)
-      if File( cFile ) .and. ! hb_vfAttrSet( cTmp, nAttr )
+      if hb_FileExists( cFile ) .and. ! hb_vfAttrSet( cTmp, nAttr )
          cFailInfo := "could not preserve the permissions of " + cFile + "; destination untouched"
          exit
       endif
