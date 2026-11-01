@@ -451,3 +451,9 @@ The design stays open and dirty state is not cleared on failure. Symlinked
 destinations are refused under the same policy as editor saves. This is
 Linux-tested behavior, not native Windows acceptance or a power-loss fsync
 guarantee. Standalone designer builds must include `safeio.prg`.
+
+Button accelerators focus the button; Enter activates it. In a standalone
+Harbour launcher, Alt+C can invoke the VM's default SET CANCEL rather than
+focus a Cancel button. The caller owns that policy; the generator does not
+silently disable it. The mixed fixture test declares SetCancel(.F.) only
+for its accelerator scenario and preserves default policy for Tab/Enter.

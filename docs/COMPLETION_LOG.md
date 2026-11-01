@@ -4982,3 +4982,15 @@ combo/radio/lista cambian bindings separados a2.87guardas34docsPASS.
 Sin cambio producto/nuevos pixeles/Windows/cierreM4. Exploracion AltG/C
 no retorna, pendiente investigar nativo; no son aceleradores aceptados.
 Evidencia: docs/evidence/linux-designer-mixed-actions-q201.json.
+
+### Q202 (1 noviembre 2026): aceleradores enfocan, Enter ejecuta
+
+Fuentee8a52af169fc5d834168efd96e82d32db8ed9350/binario
+fdd6fbfadaa3be9111ec349843c3f35c833810f56d86a24792914c2df80c9318.
+AltG enfoca Guardar; Enter ejecuta. AltC con SET CANCEL default aborta
+en INKEY, no es boton roto ni acelerador resuelto. Solo el launcher del
+escenario aceleradores declara SetCancel(.F.); con eso AltC+Enter retornaF.
+2PTY46checks87guardas34docsPASS, incluyendo TabEnter con launcherdefault.
+La politica no se inyecta en codigo generado ni producto. Evidencia conserva
+el aborto previo. Sin fixproducto/nuevos pixeles finales/Windows/cierreM4.
+Evidencia: docs/evidence/linux-mixed-accelerator-policy-q202.json.

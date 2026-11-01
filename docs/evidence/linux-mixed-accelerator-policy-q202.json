@@ -1,0 +1,140 @@
+{
+  "scope": "Accelerator focus plus Enter under explicit test launcher SET CANCEL OFF. Does not fix/default-disable AltC cancellation in generated apps. No product change, new final pixels, Windows or milestone closure.",
+  "rows": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "e8a52af169fc5d834168efd96e82d32db8ed9350",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "2e95652d8668f7ff3f7ddec391892b116b226828c3011096bb270298c7afee29",
+      "binary_sha256": "fdd6fbfadaa3be9111ec349843c3f35c833810f56d86a24792914c2df80c9318",
+      "build_receipt": "/tmp/hbide-q202-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "641d872f98ab2108edcf5479476f4c117f0bb85e58bc3c131bbaa2be44dea3ab",
+      "case": "designer-mixed-fixture-accelerators",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_mixed_fixture_runtime_pty.py",
+        "--actions",
+        "--accelerators"
+      ],
+      "started": 1793523600.3138604,
+      "seconds": 12.6,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "3155aba992e0e9a2e6e2237c74c5065f04b1f715499d17320ef88bb8a6278a4c",
+      "log": "/tmp/hbide-q202-final/designer-mixed-fixture-accelerators-1793523600313855979.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "e8a52af169fc5d834168efd96e82d32db8ed9350",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "2e95652d8668f7ff3f7ddec391892b116b226828c3011096bb270298c7afee29",
+      "binary_sha256": "fdd6fbfadaa3be9111ec349843c3f35c833810f56d86a24792914c2df80c9318",
+      "build_receipt": "/tmp/hbide-q202-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "641d872f98ab2108edcf5479476f4c117f0bb85e58bc3c131bbaa2be44dea3ab",
+      "case": "designer-mixed-fixture-actions",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_mixed_fixture_runtime_pty.py",
+        "--actions"
+      ],
+      "started": 1793523612.9172032,
+      "seconds": 12.55,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "3155aba992e0e9a2e6e2237c74c5065f04b1f715499d17320ef88bb8a6278a4c",
+      "log": "/tmp/hbide-q202-final/designer-mixed-fixture-actions-1793523612917199127.log"
+    }
+  ],
+  "logs": {
+    "designer-mixed-fixture-accelerators": "PASS F9 generates committed mixed-control fixture\nPASS designer load preserves all twelve controls\nPASS actual mixed generated PRG compiles\nPASS escape runtime mixed dialog visible\nPASS escape runtime returns and writes bound values\nPASS escape mixed GET fields retain independent input\nPASS escape checkbox state independent\nPASS escape unvisited selectors keep defaults\nPASS save runtime mixed dialog visible\nPASS save runtime returns and writes bound values\nPASS save mixed GET fields retain independent input\nPASS save checkbox state independent\nPASS save unvisited selectors keep defaults\nPASS save actual button action returns expected flag\nPASS cancel runtime mixed dialog visible\nPASS cancel runtime returns and writes bound values\nPASS cancel mixed GET fields retain independent input\nPASS cancel checkbox state independent\nPASS cancel unvisited selectors keep defaults\nPASS cancel actual button action returns expected flag\nPASS selectors runtime mixed dialog visible\nPASS selectors runtime returns and writes bound values\nPASS combo radio and list change independent bindings\nTOTAL 23 PASS 0 FAIL; evidence /tmp/hbide-source-run-9038fvy0\n",
+    "designer-mixed-fixture-actions": "PASS F9 generates committed mixed-control fixture\nPASS designer load preserves all twelve controls\nPASS actual mixed generated PRG compiles\nPASS escape runtime mixed dialog visible\nPASS escape runtime returns and writes bound values\nPASS escape mixed GET fields retain independent input\nPASS escape checkbox state independent\nPASS escape unvisited selectors keep defaults\nPASS save runtime mixed dialog visible\nPASS save runtime returns and writes bound values\nPASS save mixed GET fields retain independent input\nPASS save checkbox state independent\nPASS save unvisited selectors keep defaults\nPASS save actual button action returns expected flag\nPASS cancel runtime mixed dialog visible\nPASS cancel runtime returns and writes bound values\nPASS cancel mixed GET fields retain independent input\nPASS cancel checkbox state independent\nPASS cancel unvisited selectors keep defaults\nPASS cancel actual button action returns expected flag\nPASS selectors runtime mixed dialog visible\nPASS selectors runtime returns and writes bound values\nPASS combo radio and list change independent bindings\nTOTAL 23 PASS 0 FAIL; evidence /tmp/hbide-source-run-1zt51nz2\n"
+  },
+  "earlier_default_cancel_failure": "\n\n\n\n\n\n\n\n\n                             l[\ufffd]qqqqqqqqqqqqqqqqqqqqq Fixture qqqqqqqqqqqqqqqqqqqqqqqqqqk\n                             x                                                           x\n                             x  Before             v                                     x\n                             x                                                           x\n                             x  Nombre:   Ana                                            x\n                             x                                                           x\n                             x  Correo:   ana@example.test                               x\nCancelled at: INKEY (0)      x                                                           x\nGETUGUIREADERIMPL (752) in /home/sandbox/hbide/hbgetu.prg     Proyectos:                 x\nHBGETLIST:GUIREADER (688) in /home/sandbox/hbide/hbgetu.prg   lqqqqqqqqqqqqqqqqqqqqk     x\nGUIREADER (0) in ../../../getsys53.prgcibir avisos            xIDE Harbour         x     x\n(b)DLG_FIXTURE (37) in /tmp/hbide-source-run-mltue84m/runtime.prgsenador           x     x\nHBGETLIST:READMODAL (0) in ../../../tgetlist.prg              xDepurador           x     x\nREADMODAL (0) in ../../../getsys.prg) Personal x              xDocumentacion       x     x\nHBWINDOW:ACTIVATE (125) in /home/sandbox/hbide/hbwindow.prg   mqqqqqqqqqqqqqqqqqqqqj     x\nDLG_FIXTURE (47) in /tmp/hbide-source-run-mltue84m/runtime.prg                           x\nMAIN (66) in /tmp/hbide-source-run-mltue84m/runtime.prg                                  x\n                             x              Guardar \ufffd             Cancelar \ufffd             x\n                             x              \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd             \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd             x\n                             x                                                           x\n                             mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj\n\n\n\n\n\n\n\n\n\n",
+  "interpretation": "AltG alone focuses, Enter activates. AltC default VM SET CANCEL interrupts at INKEY. Launcher SET CANCEL OFF only for accelerator scenario allows AltC focus + Enter. Tab/Enter default launcher remains unchanged.",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "e8a52af169fc5d834168efd96e82d32db8ed9350",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "6d1dbd8677b36bfb529ba7f752861e7ebcceb8bd8ca9f3bb611a0d8435eac51a",
+    "started": 1793523625.6536677,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "test_foreign_root_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "1e97d47fd21cd837401080f0cff716b3666d9706771eddb62f437bd34870f41a",
+        "log": "/tmp/hbide-q202-guards/test_foreign_root_guard.py.log",
+        "seconds": 0.214
+      },
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q202-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.214
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q202-guards/test_completion_guards.py.log",
+        "seconds": 0.216
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q202-guards/test_build_receipt.py.log",
+        "seconds": 0.216
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "e6f79e6fa0af285676b2ab2be7e585568186ed37e369759008f959635c3f6a81",
+        "log": "/tmp/hbide-q202-guards/test_completion_inventory.py.log",
+        "seconds": 0.768
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "62951fcdcd3c708f1bbf433cd97d6d160c8736d1fe628e89e24284b9dadc33a3",
+        "log": "/tmp/hbide-q202-guards/test_distribution_notices.py.log",
+        "seconds": 0.214
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q202-guards/test_embed_help_docs.py.log",
+        "seconds": 0.215
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "748bdd859802a6cb51418e98e9ffac879a94892690e9ea7500791cc691a9f08a",
+        "log": "/tmp/hbide-q202-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.568
+      }
+    },
+    "ok": true,
+    "finished": 1793523628.279739
+  }
+}
