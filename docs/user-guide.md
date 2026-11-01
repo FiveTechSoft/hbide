@@ -325,3 +325,8 @@ Custom macro state and arbitrary preprocessor redefinitions are not tracked.
 with an explicit `CLASS` owner also appear in Go to Function. Supported
 continuations retain their first source line. This form does not inherit
 an implicit owner.
+
+When Enter inserts an empty line before another identical empty line,
+breakpoints on following original lines move with those lines, including
+Undo and Redo. This keeps the existing breakpoint identity policy; it does
+not recreate breakpoints on deleted instructions.

@@ -5704,3 +5704,10 @@ Q328C65 identificado59dd2ce,8smokes/27checksPTY PASS. Q329fixfa41c0a enC66
 para DECLARED METHOD explícito, C65baseline1/2,12checksPTY/111modelo y par
 nativoPASS. Q330cuatrofixturescompiler-valid12checksPTY PASS. Q33137modelos
 fresh7d7f996 PASS. Q332docs/catálogo; no Windows/matrizglobal/hito.
+
+### Q333-Q336 (1 noviembre 2026): Enter y BP en vacías
+
+C66baseline4/2, fixfa2d571/C67 ancla Enter sin selección,6checksPTY y4scriptsBP
+PASS/164EOL. Par nativo inspeccionado. Q334CRLF6checks/EOL172PASS; Q33537modelos
+fresh7ba77e7limpioPASS, no baseline limpio del preliminar dirty. Q336docs y
+catálogo. Sin política BP nueva ni Windows/matrizglobal/hito.

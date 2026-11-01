@@ -66,14 +66,18 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre18:16 Q329-Q331: candidato focal C66,
-sourcefa41c0a1afdb65ace575cb00174f4afbce63ca47,
-bind981da58befdee0cecdec71232f6bbb921d6073267802757ec02e0873d1d112a.
-Q329navegación reconoce DECLARED METHOD FUNCTION/PROCEDURE con CLASS explícito.
-C65baseline1PASS2FAIL; C66cuatroPTY12checksPASS y modelo léxico111/0.
-Par nativo1202x762 completo inspeccionado. Q330cuatrofixtures compiladas y
-12checksPTY postexport PASS: FUNCTION/PROCEDURE, compacta, continuación.
-Q33137modelos GTSTD fresh del source7d7f996 limpioPASS; no37modosIDE.
+Corte 1 noviembre18:25 Q333-Q335: candidato focal C67,
+sourcefa2d571b2164e44230d228332a091c9a3ec5d608,
+bin57a059065dc2f736bd53c91c5781c1c9b3004a7aad505c492936bcaeb303886f.
+Q333Enter sin selección ancla inserción de línea vacía al cursor para
+mantener identidad BP de líneas vacías siguientes. C66baseline4PASS2FAIL;
+C67focal6checksPTY/4scriptsregresiónBP PASS y modeloEOL164/0.
+Par nativo1202x762 completo inspeccionado. Q334CRLF6checksPTY y modeloEOL172/0
+postexport PASS, finalesvacíos/BPactual/LF/CRLF/iniciolínea. Q33537modelos GTSTD
+fresh del source7ba77e7 limpioPASS; no37modosIDE ni certificación del binarioC67.
+C66focal DECLARED METHOD sourcefa41c0a1afdb65ace575cb00174f4afbce63ca47,
+bind981da58befdee0cecdec71232f6bbb921d6073267802757ec02e0873d1d112a;
+Q32912checksPTY/111modelo PASS; Q330otros12checks compiler-valid PASS.
 C65último identificado limpio: fuente59dd2ceb3755359aa9ca3b0bda5f61b4d5b620de,
 bin86a0e16aec7151c495319069deb197542d4697f358c34802041c8ac7195f604b,
 About/catálogo34/ldd/8smokes y navegación/editor27checksPTY PASS. No heredados aC66.
@@ -86,7 +90,7 @@ Q320cincomodosPTY23checksPASS; Q32122modelo/6PTYchecks postexport PASS.
 C61identificado fuentef63e189288ae03122f892e0edccefc4129452503,
 bine0399cb224f06c707b228d5d3291e3957a81bccd22278de355ac02f00e325c43:
 About/catálogoQ314/ldd/8smokes/6BPmodos32checks PASS, no heredados aC63.
-Q332docs posteriores no embebidos en C66 ni C65. No sumar fuentes/binarios
+Q336docs posteriores no embebidos en C67, C66 ni C65. No sumar fuentes/binarios
 como matriz. Sin fullpreprocessor/customstream/navcontinuation/Windows/release/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
@@ -1123,3 +1127,13 @@ catálogo, sin rebuild sólo docs. Evidencias linux-clean-candidate-q328.json,
 linux-nav-declared-method-q329.json, linux-nav-declared-contexts-q330.json,
 linux-model-baseline-q331.json. No Windows/hito; no soporte de DESTRUCTOR
 implícito rechazado por compilador ni de preprocesador arbitrario.
+
+### Seguimiento Q333-Q336 (1 noviembre 2026)
+
+Q333Enter en vacía antes de idéntica dejaba BP sobre línea nueva: C66baseline
+4/2; fixfa2d571/C67,6checksPTY/4scriptsBP y164modelo PASS, par nativo completo.
+Q334CRLF6checksPTY/EOL172checks PASS; modelo cubre final vacío y BPactual.
+Q33537modelosfresh7ba77e7limpio PASS; ejecución preliminar con tests modificados
+no se usa como baseline limpio. Receipts linux-enter-identical-blank-bp-q333.json,
+linux-enter-blank-guards-q334.json y linux-model-baseline-q335.json. Q336docs y
+catálogo, sin rebuild sólo docs. No política BP nueva/matrizglobal/Windows/hito.
