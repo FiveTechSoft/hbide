@@ -477,3 +477,10 @@ cursorgris anotados, no aceptacion pixelglobal. Evidencia
 persistencia, no ejecucion de handlers ni cierreM4. Celda gris Q140
 pendiente de causa; no se considera arreglada. Evidencia
 `docs/evidence/linux-designer-inline-events-q141.json`.
+
+
+### Seguimiento Q142 (1 noviembre 2026)
+
+Ajustes numericos/Style en7modosPTY77checks57guardasPASS,rafagaUndo/Redo
+y persistencia exactas. Sin decision oversized ni nueva UI/arreglo/
+cierreM4. Evidencia `docs/evidence/linux-designer-inline-numeric-q142.json`.

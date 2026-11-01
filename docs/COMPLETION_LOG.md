@@ -4136,3 +4136,16 @@ conocido, texto completo en JSON. Celda gris Q140 persiste al mover
 puntero; trazaPTY oculta cursor tras editar, causa pendiente, no corregida.
 Sin arreglo producto/nueva corrida modelos/matrizglobal/Windows/cierreM4.
 Evidencia `docs/evidence/linux-designer-inline-events-q141.json`.
+
+
+## 1 noviembre 2026: Q142 ajustes numericos y estilo inline
+
+Fuente `e948575c540e3fedc169dc46c0ddb8aa1cbd398e`, binario
+`4f8675d6697ba83fc6b093efcef4586eef456922cd403d3e308ea21399564098`.
+7modosPTY/77checks y57guardas PASS. Row/Col en siete tipos, Width GET/
+List/Combo,Height List/Combo,StyleButton. Dos Right persisten y un Undo/
+Redo restaura rafaga exacta; Enter cicla estilo con Undo/Redo exactos.
+Control normal dentro de limites, no politica oversized/edge clamps.
+Captura nativa StyleShadow y sombra real inspeccionada, bordes completos.
+Sin arreglo/nueva corrida modelos/Windows/matrizglobal/cierreM4. Evidencia
+`docs/evidence/linux-designer-inline-numeric-q142.json`.
