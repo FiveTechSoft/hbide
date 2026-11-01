@@ -1,0 +1,190 @@
+{
+  "scope": "C26 temporary exported Linux candidate, no release/install/licenseclearance/Windows/fullmatrix inheritance.",
+  "manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "db19100e183a3a2ed4363b267010c9a2349a2262",
+    "archive_sha256": "093919913e61aed2ee6ad5462c70f2fa2abe76a218365f2c4d82b95bc3025510",
+    "dirty": false,
+    "started": 1793516140.8529742,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "f05dc865bd6535b34a9622e3ff0e60387defb1ed126c26b11b5e7cc398ca5cd5",
+    "release_status": "not cleared; source notice review required",
+    "document_check": {
+      "exit": 0,
+      "paths_sha256": "a9ad0b3a5c47771afa608f0f9b419e12fb6491c24b00f1af4ebba47cff6c1e1b",
+      "count": 34
+    },
+    "unstripped_sha256": "db5157c1a3bcc4b82045830c0ba96618bc37c8878f5266d682b5db16c61e54a5",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793516238.7182784
+  },
+  "recent": [
+    {
+      "test": "test_designer_inline_numeric_pty.py",
+      "args": [
+        "--kind",
+        "combobox",
+        "--small"
+      ],
+      "exit": 0,
+      "checks": 15,
+      "failures": 0,
+      "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4",
+      "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+      "log": "/tmp/hbide-candidate-c26/recent-0.log"
+    },
+    {
+      "test": "test_designer_inline_text_pty.py",
+      "args": [
+        "--kind",
+        "combobox",
+        "--events",
+        "--small"
+      ],
+      "exit": 0,
+      "checks": 19,
+      "failures": 0,
+      "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4",
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "log": "/tmp/hbide-candidate-c26/recent-1.log"
+    },
+    {
+      "test": "test_designer_inline_text_pty.py",
+      "args": [
+        "--kind",
+        "button",
+        "--small"
+      ],
+      "exit": 0,
+      "checks": 15,
+      "failures": 0,
+      "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4",
+      "test_sha256": "5c296fa0b805415beac2c2cf00be7bd2648cdfc54be6c6d359118886f6ad2b56",
+      "log": "/tmp/hbide-candidate-c26/recent-2.log"
+    },
+    {
+      "test": "test_designer_inline_all_skipped_runtime_pty.py",
+      "args": [
+        "--kind",
+        "combobox",
+        "--pair"
+      ],
+      "exit": 0,
+      "checks": 11,
+      "failures": 0,
+      "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4",
+      "test_sha256": "886943e2ab598908f5da37eea612969b7f9c5318f82dc33678924620f59d8cca",
+      "log": "/tmp/hbide-candidate-c26/recent-3.log"
+    },
+    {
+      "test": "test_designer_inspector_shrink_pty.py",
+      "args": [
+        "--small"
+      ],
+      "exit": 0,
+      "checks": 7,
+      "failures": 0,
+      "binary_sha256": "2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4",
+      "test_sha256": "c48a484a86ae4f88c757ecb1ff3ba44e357d6547b624e5d7e3ba3c141e2461f1",
+      "log": "/tmp/hbide-candidate-c26/recent-4.log"
+    }
+  ],
+  "recent_checks": 67,
+  "logs": {
+    "test_run_source_pty.py.log": "PASS script run1 preserves source literal\nPASS script run2 preserves source literal\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 preserves source literal\nPASS debug source retains main declaration\nPASS debug run2 preserves source literal\nPASS debug editor remains usable\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-d9w9g5ki\n",
+    "recent-1.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS combobox inline when typed and F10 persisted\nPASS combobox inline when Undo exact\nPASS combobox inline when Redo exact\nPASS combobox inline when Esc exact\nPASS combobox inline valid typed and F10 persisted\nPASS combobox inline valid Undo exact\nPASS combobox inline valid Redo exact\nPASS combobox inline valid Esc exact\nPASS combobox inline focus typed and F10 persisted\nPASS combobox inline focus Undo exact\nPASS combobox inline focus Redo exact\nPASS combobox inline focus Esc exact\nPASS combobox inline state typed and F10 persisted\nPASS combobox inline state Undo exact\nPASS combobox inline state Redo exact\nPASS combobox inline state Esc exact\nPASS combobox no other controls introduced\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-v8h5stol\n",
+    "test_about_build_pty.py.log": "PASS About retains version1.0\nPASS About shows actual build revision or honest fallback\nPASS About OK returns same dirty document\nPASS About cycle Undo preserves original bytes\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-_anijng4\n",
+    "test_debug_getter_failure_pty.py.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS failing getter displays captured error\nPASS failing getter rejects edit before setter\nPASS failed getter leaves backing value exact\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-wzakop2z\n",
+    "test_file_modal_long_list_pty.py.log": "PASS Open long list name rejected not truncated\nPASS typed short path wins despite long initial item\nPASS Project long initial name rejected not truncated\nPASS long name rejection retains correct current document\nPASS long names never alter any source or project\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-s0apim4g\n",
+    "test_file_modal_buttons_pty.py.log": "PASS Open explicit OK preserves manually typed name after list focus\nPASS Open explicit Cancel retains dirty document\nPASS SaveAs explicit Cancel creates no destination\nPASS SaveAs explicit Cancel retains name and dirty buffer\nPASS SaveAs explicit OK saves exact mixed EOL bytes\nPASS SaveAs changes identity only on OK\nPASS SaveAs retains original file\nPASS Open list sync produces a known filename\nPASS Open list selection opens exact selected file\nPASS Project explicit Cancel keeps editor\nPASS Project explicit OK opens manually typed project\nPASS Project list sync produces known filename\nPASS Project list selection opens selected project\nPASS source bytes untouched by project navigation\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-wlya1nzt\n",
+    "document-check.log": "PASS: 34 complete documents embedded byte-for-byte\n",
+    "strip.log": "",
+    "test_help_mouse_pty.py.log": "PASS Contents opens tree and reading pane\nPASS mouse tree selects exact topic\nPASS mouse first tree row selects Basics not next topic\nPASS scrolled tree click retains valid reading pane\nPASS Next button with no query explains action\nPASS Search button executes actual query\nPASS Next button advances actual match\nPASS wheel scroll stays within topic bounds\nPASS Export button writes actual catalogue\nPASS Close button returns dirty document\nPASS Index exact Quickstart opens link view\nPASS first related-topic click opens exact target\nPASS Backspace returns clicked topic history\nPASS last related-topic click opens exact target\nPASS AltRight restores clicked forward topic\nPASS nested related-topic click opens exact body\nPASS link-view Close returns unchanged dirty source\nPASS Undo after mouse Help restores exact original bytes\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-hbre70ov\n",
+    "test_file_modal_mouse_pty.py.log": "PASS Open mouse OK exact file\nPASS Open mouse Cancel preserves dirty source\nPASS SaveAs mouse Cancel no new file\nPASS SaveAs mouse Cancel retains source identity\nPASS SaveAs mouse OK writes exact mixed EOL\nPASS SaveAs mouse OK changes identity\nPASS SaveAs mouse keeps original\nPASS Project mouse Cancel retains exact editor\nPASS Project mouse OK opens exact project\nPASS Open mouse list selects exact second file\nPASS mouse opened exact list file saved only selected bytes\nPASS Open mouse first list item selects exact original\nPASS Project mouse list chooses exact second project\nPASS Project mouse operations preserve all file bytes\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-j5_v_d4g\n",
+    "recent-4.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS dialog inspector selected\nPASS shorter inspector clears old State row\nPASS shorter inspector clears old Focus row\nPASS Combo inspector restored\nPASS selection only preserves JSON\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-udgeescn\n",
+    "recent-0.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS combobox inline row two adjustments persisted\nPASS combobox inline row burst Undo exact\nPASS combobox inline row burst Redo exact\nPASS combobox inline col two adjustments persisted\nPASS combobox inline col burst Undo exact\nPASS combobox inline col burst Redo exact\nPASS combobox inline width two adjustments persisted\nPASS combobox inline width burst Undo exact\nPASS combobox inline width burst Redo exact\nPASS combobox inline height two adjustments persisted\nPASS combobox inline height burst Undo exact\nPASS combobox inline height burst Redo exact\nPASS combobox no other controls introduced\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-723m1exq\n",
+    "recent-2.log": "PASS actual Display applies25x80\nPASS button inspector visible\nPASS button inline caption typed and F10 persisted\nPASS button inline caption Undo exact\nPASS button inline caption Redo exact\nPASS button inline caption Esc exact\nPASS button inline accelerator typed and F10 persisted\nPASS button inline accelerator Undo exact\nPASS button inline accelerator Redo exact\nPASS button inline accelerator Esc exact\nPASS button inline action typed and F10 persisted\nPASS button inline action Undo exact\nPASS button inline action Redo exact\nPASS button inline action Esc exact\nPASS button no other controls introduced\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-zd4hfqry\n",
+    "build.log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling 'hbide.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n100\n\n200\n\n100\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\nLines 4717, Functions/Procedures 80\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/hbide.c'... Done.\nCompiling 'editor.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\nLines 3491, Functions/Procedures 70\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/editor.c'... Done.\nCompiling 'safeio.prg'...\n\n100\n\n100\n\nLines 379, Functions/Procedures 4\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/safeio.c'... Done.\nCompiling 'hbmenu.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\nLines 1561, Functions/Procedures 12\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/hbmenu.c'... Done.\nCompiling 'hbwindow.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\nLines 2485, Functions/Procedures 33\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/hbwindow.c'... Done.\nCompiling 'designer.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\n3100\n\n3200\n\n3300\n\n3400\n\n3500\n\n3600\n\n3700\n\n3800\n\n3900\n\n4000\n\n4100\n\n4200\n\n4300\n\n4400\n\nLines 5598, Functions/Procedures 127\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/designer.c'... Done.\nCompiling 'hbbutton.prg'...\n\n100\n\nLines 182, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/hbbutton.c'... Done.\nCompiling 'hbgetu.prg'...\n\n100\n\n200\n\n300\n\n100\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\nLines 1695, Functions/Procedures 24\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/hbgetu.c'... Done.\nCompiling 'help.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\nLines 2224, Functions/Procedures 27\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/help.c'... Done.\nCompiling 'project.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\nLines 1092, Functions/Procedures 14\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/project.c'... Done.\nCompiling 'projectui.prg'...\n\n100\n\n200\n\n300\n\n100\n\nLines 583, Functions/Procedures 4\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/projectui.c'... Done.\nCompiling 'nav.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 804, Functions/Procedures 11\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/nav.c'... Done.\nCompiling 'recovery.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\nLines 675, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/recovery.c'... Done.\nCompiling 'hbdebug/dbgbrwsr.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\nLines 1011, Functions/Procedures 13\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbgbrwsr.c'... Done.\nCompiling 'hbdebug/dbghelp.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 705, Functions/Procedures 6\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbghelp.c'... Done.\nCompiling 'hbdebug/dbgmenu.prg'...\n\n100\n\n200\n\nLines 222, Functions/Procedures 1\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbgmenu.c'... Done.\nCompiling 'hbdebug/dbgtarr.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1399, Functions/Procedures 9\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbgtarr.c'... Done.\nCompiling 'hbdebug/dbgthsh.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1409, Functions/Procedures 10\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbgthsh.c'... Done.\nCompiling 'hbdebug/dbgtinp.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\nLines 1413, Functions/Procedures 9\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbgtinp.c'... Done.\nCompiling 'hbdebug/dbgtmenu.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 1784, Functions/Procedures 21\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbgtmenu.c'... Done.\nCompiling 'hbdebug/dbgtmitm.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\nLines 810, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbgtmitm.c'... Done.\nCompiling 'hbdebug/dbgtobj.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 1458, Functions/Procedures 8\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbgtobj.c'... Done.\nCompiling 'hbdebug/dbgtwin.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\nLines 1677, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbgtwin.c'... Done.\nCompiling 'hbdebug/dbgwa.prg'...\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\nLines 946, Functions/Procedures 7\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbgwa.c'... Done.\nCompiling 'hbdebug/tbrwtext.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n200\n\n300\n\nLines 1063, Functions/Procedures 18\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/tbrwtext.c'... Done.\nCompiling 'hbdebug/dbgscript.prg'...\n\n100\n\nLines 196, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/dbgscript.c'... Done.\nCompiling 'hbdebug/debugger.prg'...\n\n100\n\n100\n\n200\n\n300\n\n400\n\n500\n\n100\n\n100\n\n200\n\n100\n\n200\n\n300\n\n100\n\n200\n\n300\n\n400\n\n500\n\n600\n\n700\n\n800\n\n900\n\n1000\n\n1100\n\n1200\n\n1300\n\n1400\n\n1500\n\n1600\n\n1700\n\n1800\n\n1900\n\n2000\n\n2100\n\n2200\n\n2300\n\n2400\n\n2500\n\n2600\n\n2700\n\n2800\n\n2900\n\n3000\n\n3100\n\n3200\n\n3300\n\n3400\n\n3500\n\n3600\n\n3700\n\n3800\n\n3900\n\n4000\n\n4100\n\n4200\n\n4300\n\n4400\n\nLines 6143, Functions/Procedures 133\nGenerating C source output to '/tmp/hbmk_bcdllh.dir/debugger.c'... Done.\n",
+    "test_debug_setter_failure_pty.py.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS readable getter shows backing1\nPASS failed setter error reported\nPASS failed setter refresh preserves backing1\nPASS cancel after setter error preserves backing1\nPASS setter failure leaves debuggee backing1\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-5gy1x6xk\n",
+    "recent-3.log": "PASS inline event exact persisted\nPASS peer exact persisted\nPASS actual F9 emits inline event\nPASS actual F9 emits peer false WHEN\nPASS generated inline-edited-control artifact compiles\nPASS combobox false WHEN evaluated\nPASS combobox all skipped form returns without input\nPASS combobox peer false WHEN evaluated\nPASS combobox peer GUI focus never entered\nPASS combobox all skipped binding unchanged\nPASS combobox all skipped GUI focus never entered\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-vpddijdv\n"
+  },
+  "native": {
+    "log": "/tmp/hbide-c24-visual-py5onaof\nWINDOW=2097155\nX=0\nY=0\nWIDTH=802\nHEIGHT=477\nSCREEN=0\n\n",
+    "files": {
+      "hbide-c26-native-25-state.png": "09fe956266d4e714ec339b82246f9ba64b49067f06cd5c55555e84a5b4993f8a",
+      "hbide-c26-native-25-deselected.png": "6680a1b0b21d00add20b7d27a97a6f1d0673d76691749de998dd99e028d6596f",
+      "hbide-c26-native-25-redo.png": "ec3898ede6d65cecdee109d3583090ecbd1346c61afb8f3d834b30eca489aa44"
+    },
+    "inspection": "Exact stripped candidate actualIDE Display25x80 ComboState typed/F10/UndoRedo/deselection,802x477 full pixels inspected. JSON exact, long value clipped in narrow field, selected handle expected, deselection clean State/border/handle, lower borders complete."
+  },
+  "limits": "8standard+5recent67checks,lddresolved,34docpreflightoutsidegit. Not309matrixonthisstrippedcandidate,Q164inheritance,cleaninstall,licenseclearance,Windows/alllayouts/gestures/globalmilestoneclosure."
+}

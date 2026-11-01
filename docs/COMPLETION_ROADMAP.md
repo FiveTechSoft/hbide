@@ -701,3 +701,16 @@ Checkpoint conserva ejecutable exacto, plan, receipt, ledger y logs.
 No arreglo de producto, release, instalacion limpia, licencias, Windows,
 todos los comportamientos, porcentaje global ni cierre de hitos.
 Evidencia: `docs/evidence/linux-full-matrix-q164.json`.
+
+
+### Seguimiento C26 (1 noviembre 2026)
+
+Export `db19100e183a3a2ed4363b267010c9a2349a2262`, binario stripped
+`2842ec0f8975bc3a58abea96116fa1d12f2d4776ef96088e79948ab33a0f76d4`.
+8 smokes estandar mas 5 recientes67checks PASS exact binary. Dependencias
+ldd resueltas y preflight34docs en export fuera.git. Combo numeric15,
+Combo eventos19, Button texto15, Combo pairWHEN11, shrink7. Native actual
+IDE25x80 State edit/UndoRedo/deseleccion revisado sin restos, JSON exacto,
+handle previsto seleccionado y bordes completos. No release/install/
+licencias/Windows/matriz309heredada/cierreM4M5. Evidencia
+`docs/evidence/linux-candidate-c26.json`.
