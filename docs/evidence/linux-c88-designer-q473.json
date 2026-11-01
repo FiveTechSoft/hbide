@@ -1,0 +1,46 @@
+{
+  "scope": "Q473 four bounded fresh C88 designer modes52checks, generated runtime helper source separate",
+  "source": "e32c6ece0a8d461f04f7244eb451e378211c7f14",
+  "binary_sha256": "e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38",
+  "runtime_helper_checkout": "af9c55288de9e91f966e041f542ac999bedcc344",
+  "helper_sources_identical_candidate": true,
+  "results": {
+    "mixed": {
+      "exit": 0,
+      "log": "PASS F9 generates committed mixed-control fixture\nPASS designer load preserves all twelve controls\nPASS actual mixed generated PRG compiles\nPASS escape runtime mixed dialog visible\nPASS escape runtime returns and writes bound values\nPASS escape mixed GET fields retain independent input\nPASS escape checkbox state independent\nPASS escape unvisited selectors keep defaults\nPASS save runtime mixed dialog visible\nPASS save runtime returns and writes bound values\nPASS save mixed GET fields retain independent input\nPASS save checkbox state independent\nPASS save unvisited selectors keep defaults\nPASS save actual button action returns expected flag\nPASS cancel runtime mixed dialog visible\nPASS cancel runtime returns and writes bound values\nPASS cancel mixed GET fields retain independent input\nPASS cancel checkbox state independent\nPASS cancel unvisited selectors keep defaults\nPASS cancel actual button action returns expected flag\nPASS selectors runtime mixed dialog visible\nPASS selectors runtime returns and writes bound values\nPASS combo radio and list change independent bindings\nTOTAL 23 PASS 0 FAIL; evidence /tmp/hbide-source-run-rhmptjkv\n",
+      "args": [
+        "--actions"
+      ],
+      "test_sha256": "3155aba992e0e9a2e6e2237c74c5065f04b1f715499d17320ef88bb8a6278a4c",
+      "binary_unchanged": true
+    },
+    "combo-clipboard": {
+      "exit": 0,
+      "log": "PASS pasted ComboBox binding case-insensitively distinct\nPASS pasted ComboBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ComboBox artifact compiles\nPASS first ComboBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ComboBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-bq3yyeoy\n",
+      "args": [],
+      "test_sha256": "f7545a0827f8646d3a3dafab2dc0836186b04620c599cd9283e07937bb064c98",
+      "binary_unchanged": true
+    },
+    "inspector-small": {
+      "exit": 0,
+      "log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS title centered in 31-column panel\nPASS left header close hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-1ud7es7s\n",
+      "args": [
+        "--small"
+      ],
+      "test_sha256": "927131481c688e8009f6bf6c74054f78b01c613ecb4ff792521f307bc7575eee",
+      "binary_unchanged": true
+    },
+    "get-valid": {
+      "exit": 0,
+      "log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS get sentinel initially not entered\nPASS get first VALID returns false\nPASS get false VALID prevents sentinel entry\nPASS get false VALID keeps runtime active\nPASS get second VALID returns true\nPASS get true VALID enters sentinel\nPASS get true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-7dxghe7w\n",
+      "args": [
+        "--kind",
+        "get"
+      ],
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "binary_unchanged": true
+    }
+  },
+  "initial_invocation_error": "Guessed valid_runtime filename absent. Python execution failed before IDE, runner hash-read raised FileNotFoundError. Correct listed valid_veto_runtime invoked and passed.",
+  "limits": "Runtime values instrumented, PTY/JSON not pixels; no model/newcontrols/oversizedpolicy/fullmatrix/Windows/install/license/hito."
+}
