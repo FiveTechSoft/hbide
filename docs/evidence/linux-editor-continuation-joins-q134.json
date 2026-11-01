@@ -1,0 +1,183 @@
+{
+  "scope": "Q134 additional line-boundary tests, no product fix, Linux only",
+  "source": "6adec13d70b1bd1565704b844e20e8ecc317eaf1",
+  "binary_sha256": "6d2d2e911cb86b4c0cb1e105e973df5b84648412075f5e008653c62d2257b6c4",
+  "expectation_correction": "Initial harness incorrectly expected blank inserted line to preserve continuation. Compiler rejects split fixture as incomplete; editor correctly ends carry at blank line. Expected colors corrected, no product change.",
+  "compiler_exit": 1,
+  "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\n\n/tmp/q134-split.prg(3) Error E0020  Incomplete statement or unbalanced delimiters\n\n/tmp/q134-split.prg(4) Error E0020  Incomplete statement or unbalanced delimiters\n\n2 errors\n\nNo code generated.\n",
+  "initial_harness": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nFAIL Enter after continuation keeps literal and keyword colors\nPASS Split continuation saves exact bytes\nPASS Backspace join keeps literal and keyword colors\nPASS Backspace join restores original bytes\nFAIL Undo join keeps literal and keyword colors\nPASS Undo join restores split bytes\nPASS Redo join keeps literal and keyword colors\nPASS Redo join restores original bytes\nTOTAL 10 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-q_7wbyhf\n",
+  "corrected_before": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Enter blank line ends continuation and shows real comment\nPASS Split continuation saves exact bytes\nPASS Backspace join keeps literal and keyword colors\nPASS Backspace join restores original bytes\nPASS Undo join restores real comment after blank line\nPASS Undo join restores split bytes\nPASS Redo join keeps literal and keyword colors\nPASS Redo join restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-jnlyjkp0\n",
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "6adec13d70b1bd1565704b844e20e8ecc317eaf1",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ecfcae678fe5cbbd0ec9373c640bfe9b84dcc91cfd69fd303423635a5b74ccfa",
+      "binary_sha256": "6d2d2e911cb86b4c0cb1e105e973df5b84648412075f5e008653c62d2257b6c4",
+      "build_receipt": "/tmp/hbide-q134-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6e257f90ffeb93291ca8f8561fe952e570ceeab25ec80bf0c0463566de2947ec",
+      "case": "editor-continuation-backspace-join",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_continuation_join_pty.py"
+      ],
+      "started": 1793499539.730656,
+      "seconds": 10.43,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b6c6e46f6bbb9774be009d9ed9d1361c0020071b492e792e552ea6c599c6f078",
+      "log": "/tmp/hbide-q134-final/editor-continuation-backspace-join-1793499539730651909.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "6adec13d70b1bd1565704b844e20e8ecc317eaf1",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ecfcae678fe5cbbd0ec9373c640bfe9b84dcc91cfd69fd303423635a5b74ccfa",
+      "binary_sha256": "6d2d2e911cb86b4c0cb1e105e973df5b84648412075f5e008653c62d2257b6c4",
+      "build_receipt": "/tmp/hbide-q134-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6e257f90ffeb93291ca8f8561fe952e570ceeab25ec80bf0c0463566de2947ec",
+      "case": "editor-continuation-delete-join",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_continuation_join_pty.py",
+        "--delete-join"
+      ],
+      "started": 1793499550.1657374,
+      "seconds": 11.13,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b6c6e46f6bbb9774be009d9ed9d1361c0020071b492e792e552ea6c599c6f078",
+      "log": "/tmp/hbide-q134-final/editor-continuation-delete-join-1793499550165733554.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "6adec13d70b1bd1565704b844e20e8ecc317eaf1",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ecfcae678fe5cbbd0ec9373c640bfe9b84dcc91cfd69fd303423635a5b74ccfa",
+      "binary_sha256": "6d2d2e911cb86b4c0cb1e105e973df5b84648412075f5e008653c62d2257b6c4",
+      "build_receipt": "/tmp/hbide-q134-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6e257f90ffeb93291ca8f8561fe952e570ceeab25ec80bf0c0463566de2947ec",
+      "case": "editor-bracket-continuation-delete",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_continuation_pty.py",
+        "--delete"
+      ],
+      "started": 1793499561.3003027,
+      "seconds": 10.78,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b330bb40c7fb9c4e58a4fc1d20e195bdcf4489261bf77de79da582bd384e0084",
+      "log": "/tmp/hbide-q134-final/editor-bracket-continuation-delete-1793499561300299903.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "6adec13d70b1bd1565704b844e20e8ecc317eaf1",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "ecfcae678fe5cbbd0ec9373c640bfe9b84dcc91cfd69fd303423635a5b74ccfa",
+      "binary_sha256": "6d2d2e911cb86b4c0cb1e105e973df5b84648412075f5e008653c62d2257b6c4",
+      "build_receipt": "/tmp/hbide-q134-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "6e257f90ffeb93291ca8f8561fe952e570ceeab25ec80bf0c0463566de2947ec",
+      "case": "editor-bracket-continuation-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_continuation_pty.py",
+        "--selection"
+      ],
+      "started": 1793499572.0851958,
+      "seconds": 11.14,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b330bb40c7fb9c4e58a4fc1d20e195bdcf4489261bf77de79da582bd384e0084",
+      "log": "/tmp/hbide-q134-final/editor-bracket-continuation-selection-1793499572085192241.log"
+    }
+  ],
+  "logs": {
+    "editor-continuation-backspace-join": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Enter blank line ends continuation and shows real comment\nPASS Split continuation saves exact bytes\nPASS Line join keeps literal and keyword colors\nPASS Backspace join restores original bytes\nPASS Undo join restores real comment after blank line\nPASS Undo join restores split bytes\nPASS Redo join keeps literal and keyword colors\nPASS Redo join restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6p7p39cn\n",
+    "editor-continuation-delete-join": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Enter blank line ends continuation and shows real comment\nPASS Split continuation saves exact bytes\nPASS Line join keeps literal and keyword colors\nPASS Backspace join restores original bytes\nPASS Undo join restores real comment after blank line\nPASS Undo join restores split bytes\nPASS Redo join keeps literal and keyword colors\nPASS Redo join restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-aqznebj2\n",
+    "editor-bracket-continuation-delete": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Removing continuation recolors following literal and return as real comment\nPASS Removed semicolon saves exact bytes\nPASS Typing semicolon repaints following literal and return without forced redraw\nPASS Retyped semicolon restores exact bytes\nPASS Undo semicolon restores real comment colors\nPASS Undo semicolon saves exact bytes\nPASS Redo semicolon restores literal and keyword colors\nPASS Redo semicolon restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-uu7zmcu7\n",
+    "editor-bracket-continuation-selection": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Removing continuation recolors following literal and return as real comment\nPASS Removed semicolon saves exact bytes\nPASS Typing semicolon repaints following literal and return without forced redraw\nPASS Retyped semicolon restores exact bytes\nPASS Undo semicolon restores real comment colors\nPASS Undo semicolon saves exact bytes\nPASS Redo semicolon restores literal and keyword colors\nPASS Redo semicolon restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ddup2fns\n"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "6adec13d70b1bd1565704b844e20e8ecc317eaf1",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "9a1f47857e413bf75e594579ad393d0450267f968b75a5e5c66094bf1446fa41",
+    "started": 1793499583.3967292,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q134-guards/test_completion_guards.py.log",
+        "seconds": 0.204
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q134-guards/test_build_receipt.py.log",
+        "seconds": 0.202
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "b4c03d198ec9ac6e952c19abaf776f9e58cbc5e8807cafbd24038987216c9ab1",
+        "log": "/tmp/hbide-q134-guards/test_completion_inventory.py.log",
+        "seconds": 0.554
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q134-guards/test_distribution_notices.py.log",
+        "seconds": 0.202
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q134-guards/test_embed_help_docs.py.log",
+        "seconds": 0.199
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q134-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.349
+      }
+    },
+    "ok": true,
+    "finished": 1793499585.1078732
+  },
+  "visual": "Linux native terminal Enter then Backspace join inspected; split gives magenta comment, join restores yellow string and cyan keywords; F2 exact; full borders.",
+  "limits": "No new model run claimed, no full matrix inheritance, no Windows or milestone closure."
+}

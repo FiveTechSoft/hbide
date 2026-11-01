@@ -4024,3 +4024,16 @@ seleccion tienen 12/12 cada uno con F2/Undo/Redo exactos. Terminal
 nativo de seleccion inspeccionado en ambos estados con bordes completos.
 Evidencia: `docs/evidence/linux-editor-continuation-delete-q133.json`.
 No hereda matriz completa Q121 ni cierra Windows, licencias o hitos.
+
+
+## 1 noviembre 2026: Q134 cobertura Enter y joins, sin cambio de producto
+
+Fuente de pruebas `6adec13`, cuatro modos PTY y 48 checks PASS, 57
+guardas PASS. Enter tras ; inserta linea vacia y termina la continuacion:
+comentario real magenta; Backspace o Delete para unir restablece literal
+y keywords. Undo/Redo y cada F2 son byte-exactos. La expectativa inicial
+del harness era incorrecta (10/12); Harbour rechazo el fuente partido
+por sentencia incompleta, y se corrigio el test, no el editor. Terminal
+nativo inspeccionado antes/despues del join, bordes completos.
+Evidencia `docs/evidence/linux-editor-continuation-joins-q134.json`.
+Sin nueva corrida de modelos ni matriz completa ni cierre de hitos.

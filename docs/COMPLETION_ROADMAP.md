@@ -410,3 +410,12 @@ reproducidos antes y corregidos. Seis modos PTY/50 checks, 26 modelos,
 210 controles repaint y 57 guardas PASS en fuente `c4dfe153`. Evidencia
 `docs/evidence/linux-editor-continuation-delete-q133.json`. Matriz completa
 y hitos pendientes conservan sus limites.
+
+
+### Seguimiento Q134 (1 noviembre 2026)
+
+Cobertura nueva sin arreglo de producto: Enter/joins de continuacion,
+Undo/Redo/F2 en cuatro modos PTY, 48 checks y 57 guardas PASS. Expectativa
+inicial corregida tras contraste con Harbour; la linea vacia termina
+continuacion. Evidencia `docs/evidence/linux-editor-continuation-joins-q134.json`.
+No nueva matriz global ni cierre de hitos.
