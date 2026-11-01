@@ -1,0 +1,144 @@
+{
+  "scope": "C96 own portable HBP literal member acceptance; not release",
+  "source": "ea630625ac5cab04a30a1f17fae3ee5016e0d7e2",
+  "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9",
+  "baseline_C95": "portable backslash member missing, Enter cannot open; 1 PASS 2 FAIL; native separator 3 PASS",
+  "fix": "hb_DirSepToOS only on resolved literal HBP member before HBIDEProjectPath; original token/HBP untouched; diagnostic parser untouched",
+  "official_manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "ea630625ac5cab04a30a1f17fae3ee5016e0d7e2",
+    "archive_sha256": "21a3158c39cd143c05437d809703a654be3ee0f0166233bfc3d698cecf810548",
+    "archive_file": "source.tar.gz",
+    "archive_format": "tar.gz",
+    "dirty": false,
+    "started": 1793576922.3472903,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "72bed61b131d5cb44d6dffec0e8d09d9f640a4ee6cca636224b9d172f8c775dd",
+    "release_status": "not cleared; source notice review required",
+    "document_check": {
+      "exit": 0,
+      "paths_sha256": "a9ad0b3a5c47771afa608f0f9b419e12fb6491c24b00f1af4ebba47cff6c1e1b",
+      "count": 34
+    },
+    "source_notice_inventory": {
+      "path": "source-notices.json",
+      "sha256": "203f18ca5acd9d99bf2ff388c974198099348fdb201279b49c6ca4facd042907",
+      "release_review_required": true,
+      "does_not_clear_redistribution": true
+    },
+    "unstripped_sha256": "1852a74d938d71f26892042be7f29ca6919f55a3198424657e46ccfc882b5c78",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793577020.3981326
+  },
+  "tests": {
+    "test_project_portable_separator_pty.py": "2ae495fd347f9f71d341f618fbd41e9529c1d43037cef70dc707333c8ef80695",
+    "test_project_horizontal_bounds_pty.py": "7fa1f7456c43a8e61bc4b7f20622ecd44508062b42a5149980dc28bc4c19e8d6",
+    "test_project_mouse_pty.py": "a58401a72f385a263687341e336abc4fd7a87969ff7e8d98e52400234fd43f9d",
+    "test_project.prg": "70b9f53435e86c20ae3e57c382bc9ec360505a7a898c79961cbd4499aac5085a"
+  },
+  "logs": {
+    "c95-baseline.log": "FAIL Portable-separator project source is listed without missing marker\nFAIL Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 1 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-_7zl45uv\n",
+    "c95-native.log": "PASS Portable HBP member is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-eo_ed_62\n",
+    "c95-portable.log": "FAIL Portable HBP member is listed without missing marker\nFAIL Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 1 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-r5xkja5o\n",
+    "c96-driver.log": "{\n  \"ok\": true,\n  \"source\": \"ea630625ac5cab04a30a1f17fae3ee5016e0d7e2\",\n  \"binary_sha256\": \"861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9\",\n  \"manifest\": \"/tmp/hbide-c96/manifest.json\"\n}\n",
+    "c96-horizontal.log": "PASS Project opens Sources\nPASS Outside horizontal Project click leaves first source selected\nPASS Interior panel edge selects intended second source\nPASS All source bytes unchanged\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-x7ldlmq2\n",
+    "c96-portable.log": "PASS Portable HBP member is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-9fw6m9nz\n",
+    "c96-portablenative.log": "PASS Portable HBP member is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-afqpsl5e\n",
+    "c96-portablespace.log": "PASS Portable HBP member is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-j33lpdw7\n",
+    "c96-project-mouse-path.log": "PASS Project opens Sources\nPASS doubleclick header does not open source\nPASS single click selects without opening\nPASS Enter opens clicked exact file\nPASS doubleclick scrolled source opens exact file\nPASS doubleclick missing source stays desktop\nPASS Messages empty has no diagnostics\nPASS doubleclick empty Messages does not open file\nPASS real failed build parsed bad source\nPASS doubleclick diagnostic opens correct file row\nPASS all source bytes unchanged\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-jcbjfr95\n",
+    "c96-project-mouse.log": "PASS Project opens Sources\nPASS doubleclick header does not open source\nPASS single click selects without opening\nPASS Enter opens clicked exact file\nPASS doubleclick scrolled source opens exact file\nPASS doubleclick missing source stays desktop\nPASS Messages empty has no diagnostics\nPASS doubleclick empty Messages does not open file\nFAIL real failed build parsed bad source\nTraceback (most recent call last):\n  File \"/home/sandbox/hbide/tests/test_project_mouse_pty.py\", line 63, in <module>\n    double(*locate('ERROR bad.prg:3'))\n  File \"/home/sandbox/hbide/tests/test_project_mouse_pty.py\", line 40, in locate\n    raise AssertionError('No painted label '+label)\nAssertionError: No painted label ERROR bad.prg:3\n",
+    "hbmk2-repeat.log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\n",
+    "hbmk2.log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\n"
+  },
+  "real_hbmk2": {
+    "exit": 0,
+    "fixture": "/tmp/hbide-edit-menu-_7zl45uv",
+    "product": "source",
+    "sha256": "f2a10e7aa33e295f1cda6224cdd95c64601300a949fda8e8b0bc798e5af7703e",
+    "note": "hbmk2 defaults product name to first source, not project name; initial ls plain failure is probe expectation only"
+  },
+  "model": {
+    "runtime_exit": 0,
+    "result_file": "PASS hbp inventory/info/build/diagnostics/failedbuild/noautorun/bytepreservation/cwd/quotes/filters",
+    "helper_separate_from_official_IDE": true
+  },
+  "visual": {
+    "size": "1202x762",
+    "inspected": [
+      "/downloads/hbide-q521-project-c95.png",
+      "/downloads/hbide-q521-project-c96.png",
+      "/downloads/hbide-q521-editor-c96.png"
+    ],
+    "result": "C95 ! and [missing] with backslash; C96 original label retained, resolved slash path without missing; Enter opens PORTABLE_MEMBER source; full borders/status inspected"
+  },
+  "limits": "No inherited C95 full acceptance; no Windows/matrix/install/license/TOCTOU/Cancel/policy closure. Initial ProjectMouse omitted hbmk2 PATH, failed before real diagnostic; corrected PATH run 11 PASS, initial log retained. No further removals."
+}
