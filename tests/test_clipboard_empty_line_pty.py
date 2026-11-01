@@ -76,7 +76,11 @@ class Scr:
 work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-edit-menu-'))
 (work/'home').mkdir(); (work/'rec').mkdir()
 target = work/'source.prg'
-original = b'\r\nanchor'
+mode = os.environ.get('HBIDE_EMPTY_CLIP_MODE', 'copy')
+if mode not in ('copy', 'absent', 'delete', 'cut'):
+    raise SystemExit('HBIDE_EMPTY_CLIP_MODE must be copy, absent, delete or cut')
+eol = b'\n' if os.environ.get('HBIDE_EMPTY_CLIP_LF') else b'\r\n'
+original = eol + b'anchor'
 target.write_bytes(original)
 env = dict(os.environ, HOME=str(work/'home'), HBIDE_RECOVERY_DIR=str(work/'rec'), TERM='xterm')
 pid, fd = pty.fork()
@@ -111,12 +115,34 @@ try:
     pump(2)
     send(b'\x1bf');send(b'o');send(str(target).encode()+b'\r',1)
     check('Open requested fixture', 'anchor' in scr.text() and 'source.prg' in scr.text())
-    menu(b'c')
-    send(b'\x1b[B')
-    menu(b'p')
-    saved('Paste copied empty line as a real third line',b'\r\nanchor\r\n')
-    menu(b'n');saved('Undo empty-line paste exact',original)
-    menu(b'e');saved('Redo empty-line paste exact',b'\r\nanchor\r\n')
+    if mode == 'absent':
+        menu(b'p');saved('Absent initial Paste preserves exact original', original)
+        menu(b'n');saved('No-op Paste added no destructive Undo', original)
+    elif mode == 'delete':
+        menu(b'd');saved('Delete blank line removes only boundary', b'anchor')
+        menu(b'p');saved('Deleted blank line is pasteable', b'anchor'+eol)
+        menu(b'n');saved('Undo deleted blank-line paste exact', b'anchor')
+        menu(b'e');saved('Redo deleted blank-line paste exact', b'anchor'+eol)
+    elif mode == 'cut':
+        send(b'\x1b[19~');send(b'\x1b[B');menu(b't')
+        saved('Cut empty line removes selected boundary', b'anchor')
+        menu(b'n');saved('Undo Cut restores original EOL', original)
+        other = work/'destination.prg';other.write_bytes(b'target')
+        send(b'\x1bf');send(b'o');send(str(other).encode()+b'\r',1)
+        menu(b'p');send(b'\x1bOQ',.7)
+        check('Cut boundary clipboard retains two empty fragments across documents',other.read_bytes()==b'target\n\n')
+        menu(b'n');send(b'\x1bOQ',.7)
+        check('Destination Undo exact after empty Cut paste',other.read_bytes()==b'target')
+        menu(b'e');send(b'\x1bOQ',.7)
+        check('Destination Redo exact after empty Cut paste',other.read_bytes()==b'target\n\n')
+        check('Source unchanged by destination Paste',target.read_bytes()==original)
+    else:
+        menu(b'c')
+        send(b'\x1b[B')
+        menu(b'p')
+        saved('Paste copied empty line as a real third line',eol+b'anchor'+eol)
+        menu(b'n');saved('Undo empty-line paste exact',original)
+        menu(b'e');saved('Redo empty-line paste exact',eol+b'anchor'+eol)
 
 finally:
     os.kill(pid,signal.SIGKILL);os.waitpid(pid,0);os.close(fd)

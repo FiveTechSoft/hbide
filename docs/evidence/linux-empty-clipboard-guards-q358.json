@@ -1,0 +1,37 @@
+{
+  "scope": "Q358 clipboard guard modes only, existing exact C74 focal binary",
+  "source": "8fe95b2b5b95938d8d56642dd2e2df02f110cba0",
+  "binary_sha256": "a27dbd51b1dc2805eae8d49337a03c694994abec59e4f6760f97e1d88cf9df85",
+  "results": {
+    "absent-crlf": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Absent initial Paste preserves exact original\nPASS No-op Paste added no destructive Undo\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-74kakw4r\n"
+    },
+    "delete-crlf": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Delete blank line removes only boundary\nPASS Deleted blank line is pasteable\nPASS Undo deleted blank-line paste exact\nPASS Redo deleted blank-line paste exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-picrwd10\n"
+    },
+    "cut-crlf": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Cut empty line removes selected boundary\nPASS Undo Cut restores original EOL\nPASS Cut boundary clipboard retains two empty fragments across documents\nPASS Destination Undo exact after empty Cut paste\nPASS Destination Redo exact after empty Cut paste\nPASS Source unchanged by destination Paste\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-b_o_3nll\n"
+    },
+    "copy-lf": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Paste copied empty line as a real third line\nPASS Undo empty-line paste exact\nPASS Redo empty-line paste exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ts_fsa3i\n"
+    },
+    "delete-lf": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Delete blank line removes only boundary\nPASS Deleted blank line is pasteable\nPASS Undo deleted blank-line paste exact\nPASS Redo deleted blank-line paste exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-oa3q5sq3\n"
+    },
+    "cut-lf": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Cut empty line removes selected boundary\nPASS Undo Cut restores original EOL\nPASS Cut boundary clipboard retains two empty fragments across documents\nPASS Destination Undo exact after empty Cut paste\nPASS Destination Redo exact after empty Cut paste\nPASS Source unchanged by destination Paste\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-d_dgje8n\n"
+    }
+  },
+  "notes": [
+    "Six PTY modes31checksPASS; Cut selected boundary produces EOL clipboard and thus two empty fragments, retaining existing block semantics; not collapsed to one line",
+    "Absent Paste remains no-op; Delete empty line clipboard remains valid; shared Cut survives source Undo and destination UndoRedo",
+    "Editor source changes here are comment/format only, not embedded in C74; no new build or pixels",
+    "C73 remains official clean builder candidate until a later identified build; no inherited matrices/Windows/release"
+  ]
+}

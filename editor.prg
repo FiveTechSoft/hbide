@@ -68,6 +68,7 @@ CLASS HBSrcEdit FROM HBEditor
 
    // One editor clipboard across documents; undo/history stay per buffer.
    CLASSDATA cClipboard INIT ""
+   // Empty text is valid data after Copy/Delete; initial Paste stays a no-op.
    CLASSDATA lClipboardSet INIT .F.
    DATA   cFindText    INIT ""
    DATA   nSelRow      INIT 0
@@ -193,13 +194,14 @@ METHOD PasteLine() CLASS HBSrcEdit
 
    local aLines, n, aBefore
 
-   // Whitespace-only copied lines contain data, not an absent clipboard.
+   // Copied empty/whitespace-only lines contain data, not an absent clipboard.
    if ::lClipboardSet .or. Len( ::cClipboard ) > 0
       ::ClearSelection()   // same stale-mark guard as CopySelection
       // A copied/cut block carries hb_eol() between its lines: split it back
       // into real lines (hb_ATokens with lAll=.T. keeps empty ones) instead
       // of embedding the eol bytes inside a single model line.
-      aLines := iif(Len(::cClipboard)==0,{""},hb_ATokens( ::cClipboard, hb_eol(), .T. ))
+      aLines := iif( Len( ::cClipboard ) == 0, { "" }, ;
+                     hb_ATokens( ::cClipboard, hb_eol(), .T. ) )
       // Insert below current line; independent of insert/overstrike mode
       aBefore := ::LinesSnapshot()
       for n := 1 to Len( aLines )
@@ -1943,7 +1945,7 @@ METHOD CopySelection() CLASS HBSrcEdit
 
    if aSel != NIL
       ::cClipboard := ::SelectionText()
-   ::lClipboardSet := .T.
+      ::lClipboardSet := .T.
       // Exit extend mode after copying: with the F8 persistent-anchor model
       // the mark otherwise survives and a later typing burst or Cut would
       // silently operate on a stale, still-extended range.
