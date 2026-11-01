@@ -1,0 +1,55 @@
+{
+  "source": "87222cbcada24332b0088889b1f34b59585b54f0",
+  "binary_sha256": "18b791540ace75694a01f6774a80b09860bb656d7e7b4fde7e09b89d034973be",
+  "results": {
+    "test_designer_mixed_fixture_runtime_pty.py--actions --accelerators": {
+      "exit": 0,
+      "log": "PASS F9 generates committed mixed-control fixture\nPASS designer load preserves all twelve controls\nPASS actual mixed generated PRG compiles\nPASS escape runtime mixed dialog visible\nPASS escape runtime returns and writes bound values\nPASS escape mixed GET fields retain independent input\nPASS escape checkbox state independent\nPASS escape unvisited selectors keep defaults\nPASS save runtime mixed dialog visible\nPASS save runtime returns and writes bound values\nPASS save mixed GET fields retain independent input\nPASS save checkbox state independent\nPASS save unvisited selectors keep defaults\nPASS save actual button action returns expected flag\nPASS cancel runtime mixed dialog visible\nPASS cancel runtime returns and writes bound values\nPASS cancel mixed GET fields retain independent input\nPASS cancel checkbox state independent\nPASS cancel unvisited selectors keep defaults\nPASS cancel actual button action returns expected flag\nPASS selectors runtime mixed dialog visible\nPASS selectors runtime returns and writes bound values\nPASS combo radio and list change independent bindings\nTOTAL 23 PASS 0 FAIL; evidence /tmp/hbide-source-run-z_0nwlsk\n",
+      "args": [
+        "--actions",
+        "--accelerators"
+      ],
+      "test_sha256": "3155aba992e0e9a2e6e2237c74c5065f04b1f715499d17320ef88bb8a6278a4c",
+      "seconds": 12.379888772964478,
+      "binary_unchanged": true
+    },
+    "invalid_missing_kind": {
+      "exit": 2,
+      "log": "usage: test_designer_inline_valid_veto_runtime_pty.py [-h] --kind\n                                                      {get,radiogroup,checkbox,listbox,combobox,button}\ntest_designer_inline_valid_veto_runtime_pty.py: error: the following arguments are required: --kind\n",
+      "args": [],
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "seconds": 0.025145769119262695,
+      "binary_unchanged": true
+    },
+    "test_designer_inline_valid_veto_runtime_pty.py--kind get": {
+      "exit": 0,
+      "log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS get sentinel initially not entered\nPASS get first VALID returns false\nPASS get false VALID prevents sentinel entry\nPASS get false VALID keeps runtime active\nPASS get second VALID returns true\nPASS get true VALID enters sentinel\nPASS get true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-w3iknjxd\n",
+      "args": [
+        "--kind",
+        "get"
+      ],
+      "test_sha256": "c1909f157a7793a999da79ce1e65091ac4a6ffb13d855379005583862d7362cd",
+      "seconds": 6.19724178314209,
+      "binary_unchanged": true
+    },
+    "test_designer_clipboard_combo_runtime_pty.py": {
+      "exit": 0,
+      "log": "PASS pasted ComboBox binding case-insensitively distinct\nPASS pasted ComboBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ComboBox artifact compiles\nPASS first ComboBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ComboBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-qds7zn2i\n",
+      "args": [],
+      "test_sha256": "f7545a0827f8646d3a3dafab2dc0836186b04620c599cd9283e07937bb064c98",
+      "seconds": 5.983231544494629,
+      "binary_unchanged": true
+    },
+    "test_designer_inspector_close_pty.py--small": {
+      "exit": 0,
+      "log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS title centered in 31-column panel\nPASS left header close hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-74quii3k\n",
+      "args": [
+        "--small"
+      ],
+      "test_sha256": "927131481c688e8009f6bf6c74054f78b01c613ecb4ff792521f307bc7575eee",
+      "seconds": 6.354884624481201,
+      "binary_unchanged": true
+    }
+  },
+  "scope": "Four designer acceptance modes on exactC73. Generated PRG build/runtime instrumented bounded tests, not stock distribution runtime certification or actual pixel review. Invalid missingkind invocation retained separately; correctedGETpass. No globalmatrix/Windows/install/license/hito."
+}
