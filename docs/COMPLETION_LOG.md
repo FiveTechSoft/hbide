@@ -5005,3 +5005,14 @@ completas1202x762 inspeccionadas:UcomillasGCClegibles y retornofila2col9
 sinrestos/bordescompletos. Inventarioavisos exacto sigue revisionpendiente.
 Sinrelease/licencias/instalacion/Windows/matriz346/cierrehitos.
 Evidencia: docs/evidence/linux-candidate-c29.json.
+
+### Q203 (1 noviembre 2026): C29 en userspace Debian12
+
+Binario C29 edbe67567c29e7b3dbcb484d336a2a5621da57c660d8ca0be8ac520c922e464c
+del export7760ab215e95946ca893f1c2247eaa53f33de891 ejecutado con loader,
+libc y libm propios de Debian12; bibliotecas hash antes/despues iguales.
+3modos30checksPASS:About4,ayuda21,inspectorclamp25x80/5.
+Sin checkout ni compilador visibles; red aislada. Este repite alcanceQ189
+sobre candidato posteriorQ196, no hereda sus PASS. Kernel/dispositivoshost,
+no VM/instalador/maquinalimpia/Windows/licencias/nuevos pixeles/hitos.
+Evidencia: docs/evidence/linux-candidate-debian12-q203.json.

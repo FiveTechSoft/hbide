@@ -66,6 +66,19 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte operativo C29/Q203 (1 noviembre, 10:10): candidato export7760ab2,
+strippededbe6756 incluye selectorUTF8Q196 y fixturemixta. Ocho smokes y
+dos modos37checks sobre binario exacto; tres modos30checks mas con
+loader/libc/libm Debian12 (Q203), no VM/instalacion limpia. Q198/Q199
+registran30modelos sobre sus fuentes, no herencia al candidato. Q200/Q201
+acreditan generacion/compilacion/runtime mixto y accionesTabEnter; Q202
+separa AltCconSETCANCELdefault (aborto) del launcher explicitoSetCancel(.F.).
+No se modifica politica del generado. Consulta sobre cierre del inspector:
+causa verificada es dibujo/hitarea ausentes; [x] visible solo propuesto,
+no implementado ni decision del usuario. Ultimas capturas C29 completas
+inspeccionadas: comillasUTF8U y retorno al error fila2col9.
+
+
 - **M4:** Q175 revisa alcanzar el borde y volver dentro del mismo gesto.
   Se conserva el punto de agarre: el panel permanece clampado hasta que
   ese punto vuelve al rango visible. No se confunde con el offset inicial
