@@ -4973,3 +4973,12 @@ bordes completos.87guardas34docsPASS. Sin arregloproducto ni prueba
 de cada interaccion/botones/Windows/cierreM4. Capturas del disenador
 entregadas antes conservan su alcance propio.
 Evidencia: docs/evidence/linux-designer-mixed-runtime-q200.json.
+
+### Q201 (1 noviembre 2026): acciones del formulario mixto
+
+23checksPTY PASS: cuatro ejecuciones del PRG F9 generado. Guardar y
+Cancelar mediante Tab+Enter devuelvenT/F y conservan campos/checkbox;
+combo/radio/lista cambian bindings separados a2.87guardas34docsPASS.
+Sin cambio producto/nuevos pixeles/Windows/cierreM4. Exploracion AltG/C
+no retorna, pendiente investigar nativo; no son aceleradores aceptados.
+Evidencia: docs/evidence/linux-designer-mixed-actions-q201.json.

@@ -1,0 +1,159 @@
+{
+  "scope": "Mixed fixture actions via focus Tab+Enter, not accelerators or every control event, no product fix/new pixels/Windows/M4closure.",
+  "row": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "0d21b99ab5dee82b77454877589d28c535317c86",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "8e6ec73d0118410fbf58509c3b1af69e6e6e687fdcc28a1287a1044faab12591",
+    "binary_sha256": "824fea1e5f532d00fad6e9fa3a7e84fcd3a9a245edb937053a4482094169f262",
+    "build_receipt": "/tmp/hbide-q201-final/build-identity.json",
+    "platform": "linux",
+    "build": "fresh",
+    "scope": "Linux PTY only; not full visual/Windows acceptance",
+    "runner_sha256": "2c8d6ac62e836c97ba877b0d5cb5dd30f1012f7a7fcb06d3c472cc528b433475",
+    "case": "designer-mixed-fixture-actions",
+    "command": [
+      "/usr/bin/python3",
+      "-u",
+      "/home/sandbox/hbide/tests/test_designer_mixed_fixture_runtime_pty.py",
+      "--actions"
+    ],
+    "started": 1793523477.546324,
+    "seconds": 12.55,
+    "exit_code": 0,
+    "printed_failure": false,
+    "source_or_binary_changed": false,
+    "test_sha256": "c32da5f1ad7098afbd96795c3aeb89cc07ae479584c4b605bd679b755ad955b9",
+    "log": "/tmp/hbide-q201-final/designer-mixed-fixture-actions-1793523477546320359.log"
+  },
+  "log": "PASS F9 generates committed mixed-control fixture\nPASS designer load preserves all twelve controls\nPASS actual mixed generated PRG compiles\nPASS escape runtime mixed dialog visible\nPASS escape runtime returns and writes bound values\nPASS escape mixed GET fields retain independent input\nPASS escape checkbox state independent\nPASS escape unvisited selectors keep defaults\nPASS save runtime mixed dialog visible\nPASS save runtime returns and writes bound values\nPASS save mixed GET fields retain independent input\nPASS save checkbox state independent\nPASS save unvisited selectors keep defaults\nPASS save actual button action returns expected flag\nPASS cancel runtime mixed dialog visible\nPASS cancel runtime returns and writes bound values\nPASS cancel mixed GET fields retain independent input\nPASS cancel checkbox state independent\nPASS cancel unvisited selectors keep defaults\nPASS cancel actual button action returns expected flag\nPASS selectors runtime mixed dialog visible\nPASS selectors runtime returns and writes bound values\nPASS combo radio and list change independent bindings\nTOTAL 23 PASS 0 FAIL; evidence /tmp/hbide-source-run-w1zn6g23\n",
+  "scenario_values": {
+    "selectors-values": [
+      "",
+      "",
+      false,
+      false,
+      2,
+      2,
+      2,
+      false
+    ],
+    "save-values": [
+      "Ana",
+      "ana@example.test",
+      true,
+      false,
+      1,
+      1,
+      1,
+      true
+    ],
+    "cancel-values": [
+      "Ana",
+      "ana@example.test",
+      true,
+      false,
+      1,
+      1,
+      1,
+      false
+    ],
+    "escape-values": [
+      "Ana",
+      "ana@example.test",
+      true,
+      false,
+      1,
+      1,
+      1,
+      false
+    ],
+    "runtime-values": [
+      "",
+      "",
+      false,
+      false,
+      2,
+      2,
+      2,
+      false
+    ]
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "0d21b99ab5dee82b77454877589d28c535317c86",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "8daf84bb34d52fe97df01a6cf7efb3ac2779f575782cc2769399bbab7b67e0af",
+    "started": 1793523490.2789178,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "test_foreign_root_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "1e97d47fd21cd837401080f0cff716b3666d9706771eddb62f437bd34870f41a",
+        "log": "/tmp/hbide-q201-guards/test_foreign_root_guard.py.log",
+        "seconds": 0.214
+      },
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q201-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.211
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q201-guards/test_completion_guards.py.log",
+        "seconds": 0.211
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q201-guards/test_build_receipt.py.log",
+        "seconds": 0.212
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "e6f79e6fa0af285676b2ab2be7e585568186ed37e369759008f959635c3f6a81",
+        "log": "/tmp/hbide-q201-guards/test_completion_inventory.py.log",
+        "seconds": 0.765
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "62951fcdcd3c708f1bbf433cd97d6d160c8736d1fe628e89e24284b9dadc33a3",
+        "log": "/tmp/hbide-q201-guards/test_distribution_notices.py.log",
+        "seconds": 0.213
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q201-guards/test_embed_help_docs.py.log",
+        "seconds": 0.212
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "748bdd859802a6cb51418e98e9ffac879a94892690e9ea7500791cc691a9f08a",
+        "log": "/tmp/hbide-q201-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.562
+      }
+    },
+    "ok": true,
+    "finished": 1793523492.8804169
+  },
+  "open_investigation": "Initial Alt+G/C scenario did not return; Tab+Enter does. Need native accelerator investigation, no fixed-product claim."
+}
