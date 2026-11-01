@@ -1,0 +1,37 @@
+{
+  "scope": "Q366 M2 exact C75 project parsing and source diagnostic jumps only",
+  "source": "93d3876480c5217e4eadddc2f88a4400c321146a",
+  "binary_sha256": "e78652a51a586d67550d526c05a1ac54278d7b62459d26a23beace1afca024ef",
+  "results": {
+    "test_project_bom_pty.py": {
+      "exit": 0,
+      "log": "PASS BOM project source is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP BOM and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-82ol2n3k\n",
+      "binary_unchanged": true
+    },
+    "test_project_eof_pty.py": {
+      "exit": 0,
+      "log": "PASS EOF project source is listed\nPASS Enter opens actual first source\nPASS HBP EOF and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ujha8d3c\n",
+      "binary_unchanged": true
+    },
+    "test_project_leading_pty.py": {
+      "exit": 0,
+      "log": "PASS real leading-space diagnostic jumps/edits/saves exact source, neighbor untouched\n",
+      "binary_unchanged": true
+    },
+    "test_project_extensionless_pty.py": {
+      "exit": 0,
+      "log": "PASS Extensionless project source is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-y_raji8g\n",
+      "binary_unchanged": true
+    },
+    "test_project_colon_diagnostic_pty.py": {
+      "exit": 0,
+      "log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump lands at real GCC row2 column9\nPASS Diagnostic jump leaves source bytes unchanged\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-8gi4s0c0\n",
+      "binary_unchanged": true
+    }
+  },
+  "limitations": [
+    "Five scriptsPASS; no global fullmatrix or inherited model/pixel/Windows acceptance",
+    "Leading-space diagnostic uses real compiler; colon diagnostic harness injects bounded compiler output, not a real GCC run with colon source",
+    "No product/build/pixels/hitoclosure"
+  ]
+}
