@@ -4171,3 +4171,14 @@ aceptar inspeccionadas,bordes completos y restauracionmodal limpia en
 esta ruta. Evidencia `docs/evidence/linux-designer-dialog-colors-q144.json`.
 Sin arreglo/modelosnuevos/todostokens/blink/mouse/runtime/Windows/
 matrizglobal/cierreM4.
+
+## 1 noviembre 2026: Q145 vinculos de campos de inspector
+
+El inventario expande InspFields en 60 pares control/campo (53 de controles
+existentes y 7 de dialogo), conservando guardas, declaracion y linea fuente.
+Cada par tiene un contrato focal ligado a Q139-Q144: no certifica PASS actual,
+ejecucion de handlers, todos los valores/colores, mouse, oversized ni Windows.
+No sumar pares como funciones ni porcentaje. Validacion de IDs/tipo/clave/control
+y existencia del test falla ante desajuste; vinculo ausente queda pendiente.
+Seis nuevas pruebas de inventario cubren expansion y rechazos negativos.
+Cambio de trazabilidad, no arreglo de producto ni nuevo resultado PTY/visual.

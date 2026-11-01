@@ -2067,5 +2067,547 @@
       ],
       "contract": "Actual F1 without menu opens Welcome; File and Edit menus open matching help topics without executing menu actions. Close returns dirty source, later Undo and F2 preserve exact bytes. Bounded 80x25 xterm fixture, not all menu commands/terminal encodings/help topics/editor selection states/Windows. F1 intentionally handles open menus; no menu-closed guard inferred. Link is not runtime PASS; inspect exact source/hash ledger."
     }
+  },
+  "inspector_field_acceptance": {
+    "DSN-INSP-say-row": {
+      "control": "say",
+      "key": "row",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for say/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-get-row": {
+      "control": "get",
+      "key": "row",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for get/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-checkbox-row": {
+      "control": "checkbox",
+      "key": "row",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for checkbox/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-button-row": {
+      "control": "button",
+      "key": "row",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for button/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-radiogroup-row": {
+      "control": "radiogroup",
+      "key": "row",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for radiogroup/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-listbox-row": {
+      "control": "listbox",
+      "key": "row",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for listbox/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-combobox-row": {
+      "control": "combobox",
+      "key": "row",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for combobox/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-say-col": {
+      "control": "say",
+      "key": "col",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for say/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-get-col": {
+      "control": "get",
+      "key": "col",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for get/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-checkbox-col": {
+      "control": "checkbox",
+      "key": "col",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for checkbox/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-button-col": {
+      "control": "button",
+      "key": "col",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for button/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-radiogroup-col": {
+      "control": "radiogroup",
+      "key": "col",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for radiogroup/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-listbox-col": {
+      "control": "listbox",
+      "key": "col",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for listbox/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-combobox-col": {
+      "control": "combobox",
+      "key": "col",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for combobox/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-say-caption": {
+      "control": "say",
+      "key": "caption",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for say/caption. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-checkbox-caption": {
+      "control": "checkbox",
+      "key": "caption",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/caption. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-button-caption": {
+      "control": "button",
+      "key": "caption",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/caption. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-get-variable": {
+      "control": "get",
+      "key": "variable",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-checkbox-variable": {
+      "control": "checkbox",
+      "key": "variable",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-get-width": {
+      "control": "get",
+      "key": "width",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for get/width. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-button-accelerator": {
+      "control": "button",
+      "key": "accelerator",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/accelerator. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-button-action": {
+      "control": "button",
+      "key": "action",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/action. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-button-style": {
+      "control": "button",
+      "key": "style",
+      "kind": "choice",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for button/style. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-radiogroup-variable": {
+      "control": "radiogroup",
+      "key": "variable",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-listbox-variable": {
+      "control": "listbox",
+      "key": "variable",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-combobox-variable": {
+      "control": "combobox",
+      "key": "variable",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-radiogroup-items": {
+      "control": "radiogroup",
+      "key": "items",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/items. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-listbox-items": {
+      "control": "listbox",
+      "key": "items",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/items. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-combobox-items": {
+      "control": "combobox",
+      "key": "items",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/items. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-listbox-width": {
+      "control": "listbox",
+      "key": "width",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for listbox/width. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-combobox-width": {
+      "control": "combobox",
+      "key": "width",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for combobox/width. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-listbox-height": {
+      "control": "listbox",
+      "key": "height",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for listbox/height. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-combobox-height": {
+      "control": "combobox",
+      "key": "height",
+      "kind": "num",
+      "tests": [
+        "test_designer_inline_numeric_pty.py"
+      ],
+      "contract": "Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for combobox/height. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-get-when": {
+      "control": "get",
+      "key": "when",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-checkbox-when": {
+      "control": "checkbox",
+      "key": "when",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-button-when": {
+      "control": "button",
+      "key": "when",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-radiogroup-when": {
+      "control": "radiogroup",
+      "key": "when",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-listbox-when": {
+      "control": "listbox",
+      "key": "when",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-combobox-when": {
+      "control": "combobox",
+      "key": "when",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-get-valid": {
+      "control": "get",
+      "key": "valid",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-checkbox-valid": {
+      "control": "checkbox",
+      "key": "valid",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-button-valid": {
+      "control": "button",
+      "key": "valid",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-radiogroup-valid": {
+      "control": "radiogroup",
+      "key": "valid",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-listbox-valid": {
+      "control": "listbox",
+      "key": "valid",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-combobox-valid": {
+      "control": "combobox",
+      "key": "valid",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-checkbox-focus": {
+      "control": "checkbox",
+      "key": "focus",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-button-focus": {
+      "control": "button",
+      "key": "focus",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-radiogroup-focus": {
+      "control": "radiogroup",
+      "key": "focus",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-listbox-focus": {
+      "control": "listbox",
+      "key": "focus",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-combobox-focus": {
+      "control": "combobox",
+      "key": "focus",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-checkbox-state": {
+      "control": "checkbox",
+      "key": "state",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-listbox-state": {
+      "control": "listbox",
+      "key": "state",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-combobox-state": {
+      "control": "combobox",
+      "key": "state",
+      "kind": "text",
+      "tests": [
+        "test_designer_inline_text_pty.py"
+      ],
+      "contract": "Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-dialog-dlgname": {
+      "control": "dialog",
+      "key": "dlgname",
+      "kind": "text",
+      "tests": [
+        "test_designer_dialog_inline_pty.py"
+      ],
+      "contract": "Q143 actual dialog Name/Caption typing, Width/Height two-arrow adjustments, F10, Undo/Redo and text Esc. Bounded Linux fixture for dialog/dlgname. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-dialog-dlgcaption": {
+      "control": "dialog",
+      "key": "dlgcaption",
+      "kind": "text",
+      "tests": [
+        "test_designer_dialog_inline_pty.py"
+      ],
+      "contract": "Q143 actual dialog Name/Caption typing, Width/Height two-arrow adjustments, F10, Undo/Redo and text Esc. Bounded Linux fixture for dialog/dlgcaption. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-dialog-dlgwidth": {
+      "control": "dialog",
+      "key": "dlgwidth",
+      "kind": "num",
+      "tests": [
+        "test_designer_dialog_inline_pty.py"
+      ],
+      "contract": "Q143 actual dialog Name/Caption typing, Width/Height two-arrow adjustments, F10, Undo/Redo and text Esc. Bounded Linux fixture for dialog/dlgwidth. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-dialog-dlgheight": {
+      "control": "dialog",
+      "key": "dlgheight",
+      "kind": "num",
+      "tests": [
+        "test_designer_dialog_inline_pty.py"
+      ],
+      "contract": "Q143 actual dialog Name/Caption typing, Width/Height two-arrow adjustments, F10, Undo/Redo and text Esc. Bounded Linux fixture for dialog/dlgheight. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-dialog-dlgback": {
+      "control": "dialog",
+      "key": "dlgback",
+      "kind": "color",
+      "tests": [
+        "test_designer_dialog_colors_pty.py"
+      ],
+      "contract": "Q144 actual color picker Back/Text/Focus arrows/Enter,F10,Undo/Redo/Esc. Bounded Linux fixture for dialog/dlgback. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-dialog-dlgtext": {
+      "control": "dialog",
+      "key": "dlgtext",
+      "kind": "color",
+      "tests": [
+        "test_designer_dialog_colors_pty.py"
+      ],
+      "contract": "Q144 actual color picker Back/Text/Focus arrows/Enter,F10,Undo/Redo/Esc. Bounded Linux fixture for dialog/dlgtext. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    },
+    "DSN-INSP-dialog-dlgfocus": {
+      "control": "dialog",
+      "key": "dlgfocus",
+      "kind": "color",
+      "tests": [
+        "test_designer_dialog_colors_pty.py"
+      ],
+      "contract": "Q144 actual color picker Back/Text/Focus arrows/Enter,F10,Undo/Redo/Esc. Bounded Linux fixture for dialog/dlgfocus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance."
+    }
   }
 }

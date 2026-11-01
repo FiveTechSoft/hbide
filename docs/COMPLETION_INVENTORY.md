@@ -543,8 +543,8 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:517 | Pendiente gesto |
 | MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:522 | Pendiente gesto |
 | MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:525 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2047 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2048 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2071 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2072 | Pendiente gesto |
 | MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:435 | Pendiente gesto |
 | MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:438 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
@@ -567,31 +567,130 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 
 ## Campos de inspector
 
-| Campo | Clave | Tipo | Fuente:linea | Aceptacion |
-| --- | --- | --- | --- | --- |
-| Row | row | num | designer.prg:1795 | Pendiente vincular prueba especifica |
-| Col | col | num | designer.prg:1796 | Pendiente vincular prueba especifica |
-| Caption | caption | text | designer.prg:1798 | Pendiente vincular prueba especifica |
-| Variable | variable | text | designer.prg:1801 | Pendiente vincular prueba especifica |
-| Width | width | num | designer.prg:1804 | Pendiente vincular prueba especifica |
-| Accel | accelerator | text | designer.prg:1807 | Pendiente vincular prueba especifica |
-| Action | action | text | designer.prg:1808 | Pendiente vincular prueba especifica |
-| Style | style | choice | designer.prg:1809 | Pendiente vincular prueba especifica |
-| Variable | variable | text | designer.prg:1812 | Pendiente vincular prueba especifica |
-| Items | items | text | designer.prg:1813 | Pendiente vincular prueba especifica |
-| Width | width | num | designer.prg:1816 | Pendiente vincular prueba especifica |
-| Height | height | num | designer.prg:1817 | Pendiente vincular prueba especifica |
-| When | when | text | designer.prg:1820 | Pendiente vincular prueba especifica |
-| Valid | valid | text | designer.prg:1821 | Pendiente vincular prueba especifica |
-| Focus | focus | text | designer.prg:1823 | Pendiente vincular prueba especifica |
-| State | state | text | designer.prg:1826 | Pendiente vincular prueba especifica |
-| Name | dlgname | text | designer.prg:1830 | Pendiente vincular prueba especifica |
-| Caption | dlgcaption | text | designer.prg:1831 | Pendiente vincular prueba especifica |
-| Width | dlgwidth | num | designer.prg:1832 | Pendiente vincular prueba especifica |
-| Height | dlgheight | num | designer.prg:1833 | Pendiente vincular prueba especifica |
-| Back | dlgback | color | designer.prg:1834 | Pendiente vincular prueba especifica |
-| Text | dlgtext | color | designer.prg:1835 | Pendiente vincular prueba especifica |
-| Focus | dlgfocus | color | designer.prg:1836 | Pendiente vincular prueba especifica |
+Pares tipo/campo expandidos de guardas de InspFields. Vinculo no es PASS actual, ejecucion de handlers, todos los valores o Windows. Ver ledger fuente/hash.
+
+| Control | Campo | Clave | Tipo | Fuente:linea | Aceptacion |
+| --- | --- | --- | --- | --- | --- |
+| say | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
+| get | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
+| checkbox | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
+| button | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
+| radiogroup | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
+| listbox | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
+| combobox | Row | row | num | designer.prg:1795 | Vinculo focal; ver alcance |
+| say | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
+| get | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
+| checkbox | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
+| button | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
+| radiogroup | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
+| listbox | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
+| combobox | Col | col | num | designer.prg:1796 | Vinculo focal; ver alcance |
+| say | Caption | caption | text | designer.prg:1798 | Vinculo focal; ver alcance |
+| checkbox | Caption | caption | text | designer.prg:1798 | Vinculo focal; ver alcance |
+| button | Caption | caption | text | designer.prg:1798 | Vinculo focal; ver alcance |
+| get | Variable | variable | text | designer.prg:1801 | Vinculo focal; ver alcance |
+| checkbox | Variable | variable | text | designer.prg:1801 | Vinculo focal; ver alcance |
+| get | Width | width | num | designer.prg:1804 | Vinculo focal; ver alcance |
+| button | Accel | accelerator | text | designer.prg:1807 | Vinculo focal; ver alcance |
+| button | Action | action | text | designer.prg:1808 | Vinculo focal; ver alcance |
+| button | Style | style | choice | designer.prg:1809 | Vinculo focal; ver alcance |
+| radiogroup | Variable | variable | text | designer.prg:1812 | Vinculo focal; ver alcance |
+| listbox | Variable | variable | text | designer.prg:1812 | Vinculo focal; ver alcance |
+| combobox | Variable | variable | text | designer.prg:1812 | Vinculo focal; ver alcance |
+| radiogroup | Items | items | text | designer.prg:1813 | Vinculo focal; ver alcance |
+| listbox | Items | items | text | designer.prg:1813 | Vinculo focal; ver alcance |
+| combobox | Items | items | text | designer.prg:1813 | Vinculo focal; ver alcance |
+| listbox | Width | width | num | designer.prg:1816 | Vinculo focal; ver alcance |
+| combobox | Width | width | num | designer.prg:1816 | Vinculo focal; ver alcance |
+| listbox | Height | height | num | designer.prg:1817 | Vinculo focal; ver alcance |
+| combobox | Height | height | num | designer.prg:1817 | Vinculo focal; ver alcance |
+| get | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
+| checkbox | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
+| button | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
+| radiogroup | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
+| listbox | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
+| combobox | When | when | text | designer.prg:1820 | Vinculo focal; ver alcance |
+| get | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
+| checkbox | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
+| button | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
+| radiogroup | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
+| listbox | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
+| combobox | Valid | valid | text | designer.prg:1821 | Vinculo focal; ver alcance |
+| checkbox | Focus | focus | text | designer.prg:1823 | Vinculo focal; ver alcance |
+| button | Focus | focus | text | designer.prg:1823 | Vinculo focal; ver alcance |
+| radiogroup | Focus | focus | text | designer.prg:1823 | Vinculo focal; ver alcance |
+| listbox | Focus | focus | text | designer.prg:1823 | Vinculo focal; ver alcance |
+| combobox | Focus | focus | text | designer.prg:1823 | Vinculo focal; ver alcance |
+| checkbox | State | state | text | designer.prg:1826 | Vinculo focal; ver alcance |
+| listbox | State | state | text | designer.prg:1826 | Vinculo focal; ver alcance |
+| combobox | State | state | text | designer.prg:1826 | Vinculo focal; ver alcance |
+| dialog | Name | dlgname | text | designer.prg:1830 | Vinculo focal; ver alcance |
+| dialog | Caption | dlgcaption | text | designer.prg:1831 | Vinculo focal; ver alcance |
+| dialog | Width | dlgwidth | num | designer.prg:1832 | Vinculo focal; ver alcance |
+| dialog | Height | dlgheight | num | designer.prg:1833 | Vinculo focal; ver alcance |
+| dialog | Back | dlgback | color | designer.prg:1834 | Vinculo focal; ver alcance |
+| dialog | Text | dlgtext | color | designer.prg:1835 | Vinculo focal; ver alcance |
+| dialog | Focus | dlgfocus | color | designer.prg:1836 | Vinculo focal; ver alcance |
+- DSN-INSP-say-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for say/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-get-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for get/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-checkbox-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for checkbox/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-button-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for button/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-radiogroup-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for radiogroup/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-listbox-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for listbox/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-combobox-row: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for combobox/row. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-say-col: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for say/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-get-col: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for get/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-checkbox-col: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for checkbox/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-button-col: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for button/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-radiogroup-col: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for radiogroup/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-listbox-col: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for listbox/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-combobox-col: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for combobox/col. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-say-caption: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for say/caption. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-checkbox-caption: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/caption. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-button-caption: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/caption. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-get-variable: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-checkbox-variable: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-get-width: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for get/width. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-button-accelerator: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/accelerator. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-button-action: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/action. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-button-style: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for button/style. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-radiogroup-variable: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-listbox-variable: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-combobox-variable: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/variable. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-radiogroup-items: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/items. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-listbox-items: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/items. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-combobox-items: Q139/Q140 actual non-event text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/items. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-listbox-width: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for listbox/width. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-combobox-width: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for combobox/width. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-listbox-height: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for listbox/height. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-combobox-height: Q142 actual two-arrow adjustment burst, F10 and Undo/Redo; Button Style Enter cycle. Bounded Linux fixture for combobox/height. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_numeric_pty.py](../tests/test_designer_inline_numeric_pty.py)
+- DSN-INSP-get-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-checkbox-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-button-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-radiogroup-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-listbox-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-combobox-when: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/when. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-get-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for get/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-checkbox-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-button-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-radiogroup-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-listbox-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-combobox-valid: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/valid. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-checkbox-focus: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-button-focus: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for button/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-radiogroup-focus: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for radiogroup/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-listbox-focus: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-combobox-focus: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/focus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-checkbox-state: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for checkbox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-listbox-state: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for listbox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-combobox-state: Q141 --events actual event-expression text editing, F10, Undo/Redo/Esc. Bounded Linux fixture for combobox/state. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_inline_text_pty.py](../tests/test_designer_inline_text_pty.py)
+- DSN-INSP-dialog-dlgname: Q143 actual dialog Name/Caption typing, Width/Height two-arrow adjustments, F10, Undo/Redo and text Esc. Bounded Linux fixture for dialog/dlgname. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_dialog_inline_pty.py](../tests/test_designer_dialog_inline_pty.py)
+- DSN-INSP-dialog-dlgcaption: Q143 actual dialog Name/Caption typing, Width/Height two-arrow adjustments, F10, Undo/Redo and text Esc. Bounded Linux fixture for dialog/dlgcaption. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_dialog_inline_pty.py](../tests/test_designer_dialog_inline_pty.py)
+- DSN-INSP-dialog-dlgwidth: Q143 actual dialog Name/Caption typing, Width/Height two-arrow adjustments, F10, Undo/Redo and text Esc. Bounded Linux fixture for dialog/dlgwidth. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_dialog_inline_pty.py](../tests/test_designer_dialog_inline_pty.py)
+- DSN-INSP-dialog-dlgheight: Q143 actual dialog Name/Caption typing, Width/Height two-arrow adjustments, F10, Undo/Redo and text Esc. Bounded Linux fixture for dialog/dlgheight. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_dialog_inline_pty.py](../tests/test_designer_dialog_inline_pty.py)
+- DSN-INSP-dialog-dlgback: Q144 actual color picker Back/Text/Focus arrows/Enter,F10,Undo/Redo/Esc. Bounded Linux fixture for dialog/dlgback. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_dialog_colors_pty.py](../tests/test_designer_dialog_colors_pty.py)
+- DSN-INSP-dialog-dlgtext: Q144 actual color picker Back/Text/Focus arrows/Enter,F10,Undo/Redo/Esc. Bounded Linux fixture for dialog/dlgtext. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_dialog_colors_pty.py](../tests/test_designer_dialog_colors_pty.py)
+- DSN-INSP-dialog-dlgfocus: Q144 actual color picker Back/Text/Focus arrows/Enter,F10,Undo/Redo/Esc. Bounded Linux fixture for dialog/dlgfocus. Link is not current runtime PASS; inspect exact source/hash ledger. No handler execution, all values/colors, oversized policy, mouse, every terminal or Windows acceptance. Pruebas: [test_designer_dialog_colors_pty.py](../tests/test_designer_dialog_colors_pty.py)
 
 ## Rutas de teclado y comandos
 
@@ -985,73 +1084,74 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | editor.prg:529 | `if ::SelRange() != NIL` | Pendiente vinculo |
 | editor.prg:533 | `IF ::nCol > 5` | Pendiente vinculo |
 | editor.prg:536 | `if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:541 | `ELSEIF ::nRow > 1` | Pendiente vinculo |
-| editor.prg:553 | `case nKeyStd == K_DEL` | Pendiente vinculo |
-| editor.prg:554 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:560 | `if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:567 | `case nKeyStd == K_ENTER` | Pendiente vinculo |
-| editor.prg:568 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:577 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
-| editor.prg:578 | `if ::nCol - 4 > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:579 | `if ::nRow < Len( ::aText )` | Pendiente vinculo |
-| editor.prg:586 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
-| editor.prg:587 | `if ::nCol <= 5` | Pendiente vinculo |
-| editor.prg:588 | `if ::nRow > 1` | Pendiente vinculo |
-| editor.prg:595 | `case nKeyStd == K_HOME` | Pendiente vinculo |
-| editor.prg:598 | `case nKeyStd == K_END` | Pendiente vinculo |
-| editor.prg:601 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
-| editor.prg:605 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
-| editor.prg:613 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
-| editor.prg:616 | `case nKeyStd == K_F2` | Pendiente vinculo |
-| editor.prg:622 | `case nKeyStd == K_F8` | Pendiente vinculo |
-| editor.prg:626 | `case nKeyStd == K_F9` | Pendiente vinculo |
-| editor.prg:629 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
-| editor.prg:634 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:641 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
-| editor.prg:649 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
-| editor.prg:652 | `if lHotPath` | Pendiente vinculo |
-| editor.prg:659 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
-| editor.prg:663 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
-| editor.prg:665 | `ELSEIF lHotPath` | Pendiente vinculo |
-| editor.prg:666 | `if ! ::lWordWrap` | Pendiente vinculo |
-| editor.prg:672 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore` | Pendiente vinculo |
-| editor.prg:693 | `if ! lSkipTail` | Pendiente vinculo |
-| editor.prg:694 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
-| editor.prg:701 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
-| editor.prg:705 | `if ::Row() > ::nTop` | Pendiente vinculo |
-| editor.prg:711 | `if ::Row() < ::nBottom` | Pendiente vinculo |
-| editor.prg:721 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
-| editor.prg:1924 | `if nKey == K_LEFT` | Pendiente vinculo |
-| editor.prg:1925 | `if Col() > 5` | Pendiente vinculo |
-| editor.prg:1928 | `if ::nFirstCol > 1` | Pendiente vinculo |
-| editor.prg:1953 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
-| editor.prg:1973 | `if nB < 0x80` | Pendiente vinculo |
-| editor.prg:1976 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
-| editor.prg:1978 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
-| editor.prg:1980 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
-| editor.prg:1985 | `if nI + nNeed > nLen` | Pendiente vinculo |
-| editor.prg:1991 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
-| editor.prg:1999 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
-| editor.prg:2016 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
-| editor.prg:2020 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
-| editor.prg:2039 | `case K_UP` | Pendiente vinculo |
-| editor.prg:2040 | `case K_DOWN` | Pendiente vinculo |
-| editor.prg:2041 | `case K_LEFT` | Pendiente vinculo |
-| editor.prg:2042 | `case K_RIGHT` | Pendiente vinculo |
-| editor.prg:2043 | `case K_HOME` | Pendiente vinculo |
-| editor.prg:2044 | `case K_END` | Pendiente vinculo |
-| editor.prg:2045 | `case K_PGUP` | Pendiente vinculo |
-| editor.prg:2046 | `case K_PGDN` | Pendiente vinculo |
-| editor.prg:2047 | `case K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:2048 | `case K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:2060 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
-| editor.prg:2066 | `CASE lBlock` | Pendiente vinculo |
-| editor.prg:2067 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
-| editor.prg:2072 | `CASE !Empty(q)` | Pendiente vinculo |
-| editor.prg:2073 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
-| editor.prg:2075 | `ELSEIF c == q` | Pendiente vinculo |
-| editor.prg:2079 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
-| editor.prg:2082 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
+| editor.prg:543 | `if ::BlkCmtState(::nRow+1) != lBlkBefore .or. (::nRow < Len(::aText) .and. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore))` | Pendiente vinculo |
+| editor.prg:549 | `ELSEIF ::nRow > 1` | Pendiente vinculo |
+| editor.prg:561 | `case nKeyStd == K_DEL` | Pendiente vinculo |
+| editor.prg:562 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:571 | `if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:578 | `case nKeyStd == K_ENTER` | Pendiente vinculo |
+| editor.prg:579 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:588 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
+| editor.prg:589 | `if ::nCol - 4 > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:590 | `if ::nRow < Len( ::aText )` | Pendiente vinculo |
+| editor.prg:597 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
+| editor.prg:598 | `if ::nCol <= 5` | Pendiente vinculo |
+| editor.prg:599 | `if ::nRow > 1` | Pendiente vinculo |
+| editor.prg:606 | `case nKeyStd == K_HOME` | Pendiente vinculo |
+| editor.prg:609 | `case nKeyStd == K_END` | Pendiente vinculo |
+| editor.prg:612 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
+| editor.prg:616 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
+| editor.prg:624 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
+| editor.prg:627 | `case nKeyStd == K_F2` | Pendiente vinculo |
+| editor.prg:633 | `case nKeyStd == K_F8` | Pendiente vinculo |
+| editor.prg:637 | `case nKeyStd == K_F9` | Pendiente vinculo |
+| editor.prg:640 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
+| editor.prg:645 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:652 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
+| editor.prg:660 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
+| editor.prg:663 | `if lHotPath` | Pendiente vinculo |
+| editor.prg:671 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
+| editor.prg:675 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
+| editor.prg:677 | `ELSEIF lHotPath` | Pendiente vinculo |
+| editor.prg:678 | `if ! ::lWordWrap` | Pendiente vinculo |
+| editor.prg:684 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )` | Pendiente vinculo |
+| editor.prg:706 | `if ! lSkipTail` | Pendiente vinculo |
+| editor.prg:707 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
+| editor.prg:714 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
+| editor.prg:718 | `if ::Row() > ::nTop` | Pendiente vinculo |
+| editor.prg:724 | `if ::Row() < ::nBottom` | Pendiente vinculo |
+| editor.prg:734 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
+| editor.prg:1948 | `if nKey == K_LEFT` | Pendiente vinculo |
+| editor.prg:1949 | `if Col() > 5` | Pendiente vinculo |
+| editor.prg:1952 | `if ::nFirstCol > 1` | Pendiente vinculo |
+| editor.prg:1977 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
+| editor.prg:1997 | `if nB < 0x80` | Pendiente vinculo |
+| editor.prg:2000 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
+| editor.prg:2002 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
+| editor.prg:2004 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
+| editor.prg:2009 | `if nI + nNeed > nLen` | Pendiente vinculo |
+| editor.prg:2015 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
+| editor.prg:2023 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
+| editor.prg:2040 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
+| editor.prg:2044 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
+| editor.prg:2063 | `case K_UP` | Pendiente vinculo |
+| editor.prg:2064 | `case K_DOWN` | Pendiente vinculo |
+| editor.prg:2065 | `case K_LEFT` | Pendiente vinculo |
+| editor.prg:2066 | `case K_RIGHT` | Pendiente vinculo |
+| editor.prg:2067 | `case K_HOME` | Pendiente vinculo |
+| editor.prg:2068 | `case K_END` | Pendiente vinculo |
+| editor.prg:2069 | `case K_PGUP` | Pendiente vinculo |
+| editor.prg:2070 | `case K_PGDN` | Pendiente vinculo |
+| editor.prg:2071 | `case K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:2072 | `case K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:2084 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
+| editor.prg:2090 | `CASE lBlock` | Pendiente vinculo |
+| editor.prg:2091 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
+| editor.prg:2096 | `CASE !Empty(q)` | Pendiente vinculo |
+| editor.prg:2097 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
+| editor.prg:2099 | `ELSEIF c == q` | Pendiente vinculo |
+| editor.prg:2103 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
+| editor.prg:2106 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
 | hbdebug/debugger.prg:1563 | `IF ::lAnimate` | Pendiente vinculo |
 | hbdebug/debugger.prg:1564 | `IF ::nSpeed != 0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1567 | `IF __dbgInvokeDebug()  // NextKey() == K_ALT_D` | Pendiente vinculo |

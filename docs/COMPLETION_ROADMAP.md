@@ -499,3 +499,10 @@ aceptacioncolores/oversized/Windows/cierreM4.
 Back/Text/Focus con pickerreal:2modosPTY33checks57guardasPASS,
 visualPicker/resultadoN/G inspeccionada. Sin arreglo/runtime/Windows/
 cierreM4. Evidencia `docs/evidence/linux-designer-dialog-colors-q144.json`.
+
+### Seguimiento Q145 (1 noviembre 2026)
+
+Inventario de inspector por par control/campo: 60 pares fuente (53+7 dialogo),
+con contratos focales Q139-Q144, no aceptacion global. Guardas negativas de
+identidad/tipo/clave/control/prueba impiden vincular silenciosamente otra ruta.
+Sin ejecucion de handlers, nueva aceptacion PTY/visual o cierreM4.

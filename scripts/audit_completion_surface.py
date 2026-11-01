@@ -133,6 +133,48 @@ def modal_control_pairs(fields):
                     acceptance='Pending field-specific acceptance; source condition expansion only'))
     return pairs
 
+def inspector_fields():
+    """Expand only InspFields type guards, keeping dialog separate from selection."""
+    lines=(ROOT/'designer.prg').read_text().splitlines()
+    start=next(i for i,l in enumerate(lines) if l.startswith('METHOD InspFields('))
+    end=next(i for i in range(start+1,len(lines)) if lines[i].startswith('METHOD '))
+    selected='::nSelected >= 1 .and. ::nSelected <= Len( ::aControls )'
+    stack=[];dialog=False;rows=[];seen={}
+    for i in range(start+1,end):
+        text=lines[i].strip()
+        if text.startswith('if '):
+            condition=text[3:]
+            if not stack and condition!=selected:raise ValueError('Unknown inspector selection guard: '+condition)
+            stack.append(condition)
+        elif text=='else':
+            if stack!=[selected]:raise ValueError('Unknown inspector else guard')
+            dialog=True
+        elif text=='endif':
+            if not stack:raise ValueError('Unbalanced inspector endif')
+            stack.pop()
+        match=re.search(r'AAdd\( aFields, \{ "([^"]+)",\s*"([^"]+)",\s*"([^"]+)"',text)
+        if not match:continue
+        if not stack or stack[0]!=selected:raise ValueError('Missing inspector selection guard')
+        label,key,kind=match.groups();seen[key]=seen.get(key,0)+1
+        field=dict(id='DSN-INSP-'+key+'-'+str(seen[key]),surface='DlgProperties' if dialog else 'EditProperties',
+                   variable=key,conditions=stack[1:])
+        for pair in modal_control_pairs([field]):
+            rows.append(dict(id='DSN-INSP-'+pair['control']+'-'+key,control=pair['control'],
+                declaration_id=field['id'],label=label,key=key,kind=kind,conditions=list(stack),
+                source='designer.prg',line=i+1,acceptance=None))
+    if len({r['id'] for r in rows})!=len(rows):raise ValueError('Duplicate inspector pair')
+    return rows
+
+def link_inspector_contracts(rows,specs):
+    known={r['id']:r for r in rows}
+    for ident,spec in specs.items():
+        if ident not in known:raise ValueError('Unknown inspector acceptance ID: '+ident)
+        row=known[ident]
+        if any(row[k]!=spec[k] for k in ['control','key','kind']):raise ValueError('Inspector acceptance mismatch: '+ident)
+        for test in spec['tests']:
+            if not (ROOT/'tests'/test).is_file():raise ValueError('Missing inspector test: '+test)
+    return [dict(r,acceptance=specs.get(r['id'])) for r in rows]
+
 def ide_modal_fields():
     """Bounded IDE modal declarations, including free-form non-GET inputs."""
     lines=(ROOT/'hbide.prg').read_text().splitlines();rows=[]
@@ -262,9 +304,7 @@ def main():
         m['acceptance']=acceptance.get(m['id'])
     report={'scope':'Source inventory only. No runtime or platform certification.',
             'mouse_routes':mouse_routes(),'debugger_inputs':debugger_inputs(),'menus':menus,'ide_modal_fields':ide_modal_fields(),'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),'modal_control_pairs':modal_control_pairs(modal_fields()),
-            'inspector_fields': [dict(line=i+1, label=m.group(1), key=m.group(2), kind=m.group(3))
-                for i,line in enumerate((ROOT/'designer.prg').read_text().splitlines())
-                if (m := re.search(r'AAdd\( aFields, \{ \"([^\"]+)\",\s*\"([^\"]+)\",\s*\"([^\"]+)\"',line))],
+            'inspector_fields': link_inspector_contracts(inspector_fields(),specs.get('inspector_field_acceptance',{})),
             'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields()),'modal_control_pairs':len(modal_control_pairs(modal_fields())),'ide_modal_declarations':len(ide_modal_fields()),'debugger_input_calls':len(debugger_inputs()),'mouse_event_branches':len(mouse_routes())}}
     field_specs=specs.get('modal_field_acceptance',{})
     pair_ids={r['id'] for r in report['modal_control_pairs']}
@@ -360,10 +400,15 @@ def main():
             condition=route['condition'].replace('|','&#124;')
             print(f"| {route['id']} | {route['context']} | `{condition}` | {route['source']}:{route['line']} | Pendiente gesto |")
         print('\n## Campos de inspector\n')
-        print('| Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
-        print('| --- | --- | --- | --- | --- |')
+        print('Pares tipo/campo expandidos de guardas de InspFields. Vinculo no es PASS actual, ejecucion de handlers, todos los valores o Windows. Ver ledger fuente/hash.\n')
+        print('| Control | Campo | Clave | Tipo | Fuente:linea | Aceptacion |')
+        print('| --- | --- | --- | --- | --- | --- |')
         for field in report['inspector_fields']:
-            print(f"| {field['label']} | {field['key']} | {field['kind']} | designer.prg:{field['line']} | Pendiente vincular prueba especifica |")
+            print(f"| {field['control']} | {field['label']} | {field['key']} | {field['kind']} | designer.prg:{field['line']} | {'Vinculo focal; ver alcance' if field['acceptance'] else 'Pendiente'} |")
+        for field in report['inspector_fields']:
+            if field['acceptance']:
+                spec=field['acceptance']; links=', '.join('['+t+'](../tests/'+t+')' for t in spec['tests'])
+                print(f"- {field['id']}: {spec['contract']} Pruebas: {links}")
         print('\n## Rutas de teclado y comandos\n')
         print('Estas condiciones amplian el inventario fuera del menu. No se suman como funciones independientes.\n')
         print('| Fuente:linea | Condicion | Aceptacion |')

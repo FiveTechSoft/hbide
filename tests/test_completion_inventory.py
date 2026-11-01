@@ -277,3 +277,41 @@ class DispatchAcceptance(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Duplicate dispatch contract'):audit.link_dispatch_contracts(self.routes,broken)
 
 if __name__=='__main__':unittest.main()
+
+class InspectorInventory(unittest.TestCase):
+    def setUp(self):
+        self.rows=audit.inspector_fields()
+        self.specs=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['inspector_field_acceptance']
+    def test_exact_guard_expansion(self):
+        from collections import Counter
+        self.assertEqual(Counter(r['control'] for r in self.rows),dict(say=3,get=6,button=9,checkbox=8,radiogroup=7,listbox=10,combobox=10,dialog=7))
+        self.assertEqual(len({r['id'] for r in self.rows}),60)
+        keys=lambda c:{r['key'] for r in self.rows if r['control']==c}
+        self.assertNotIn('focus',keys('get'))
+        self.assertNotIn('state',keys('radiogroup'))
+        self.assertEqual(keys('say'),{'row','col','caption'})
+        self.assertEqual(keys('dialog'),{'dlgname','dlgcaption','dlgwidth','dlgheight','dlgback','dlgtext','dlgfocus'})
+    def test_source_lines_and_determinism(self):
+        lines=(ROOT/'designer.prg').read_text().splitlines()
+        for r in self.rows:
+            self.assertIn('"'+r['key']+'"',lines[r['line']-1])
+        self.assertEqual(self.rows,audit.inspector_fields())
+    def test_bound_links_do_not_certify_execution(self):
+        rows=audit.link_inspector_contracts(self.rows,self.specs)
+        self.assertEqual(len(rows),60)
+        for r in rows:
+            self.assertEqual(r['key'],r['acceptance']['key'])
+            self.assertIn('Link is not current runtime PASS',r['acceptance']['contract'])
+            self.assertIn('No handler execution',r['acceptance']['contract'])
+        self.assertEqual(next(r for r in rows if r['id']=='DSN-INSP-dialog-dlgfocus')['acceptance']['tests'],['test_designer_dialog_colors_pty.py'])
+    def test_unknown_identity_rejected(self):
+        with self.assertRaisesRegex(ValueError,'Unknown inspector acceptance'):
+            audit.link_inspector_contracts(self.rows,{'DSN-INSP-get-focus':next(iter(self.specs.values()))})
+    def test_wrong_kind_or_control_rejected(self):
+        for key,value in [('kind','color'),('control','say'),('key','action')]:
+            with self.subTest(key=key),self.assertRaisesRegex(ValueError,'Inspector acceptance mismatch'):
+                audit.link_inspector_contracts(self.rows,{'DSN-INSP-get-row':dict(self.specs['DSN-INSP-get-row'],**{key:value})})
+    def test_missing_test_rejected_and_unlinked_stays_pending(self):
+        with self.assertRaisesRegex(ValueError,'Missing inspector test'):
+            audit.link_inspector_contracts(self.rows,{'DSN-INSP-get-row':dict(self.specs['DSN-INSP-get-row'],tests=['missing-inspector.py'])})
+        self.assertTrue(all(r['acceptance'] is None for r in audit.link_inspector_contracts(self.rows,{})))
