@@ -1,0 +1,208 @@
+{
+  "manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "1cdedd93da118bcdb33866d574943a784a00c0f6",
+    "archive_sha256": "75751d6b5e2ab04208929fb64586dbd8e5868482eedf5e7025a0b2430d203f74",
+    "archive_file": "source.tar.gz",
+    "archive_format": "tar.gz",
+    "dirty": false,
+    "started": 1793575123.1760569,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "b69d7f24638eff4904d22c29fc9917fbe0320f95332cb27d72b7eb9a2e7f9276",
+    "release_status": "not cleared; source notice review required",
+    "document_check": {
+      "exit": 0,
+      "paths_sha256": "a9ad0b3a5c47771afa608f0f9b419e12fb6491c24b00f1af4ebba47cff6c1e1b",
+      "count": 34
+    },
+    "source_notice_inventory": {
+      "path": "source-notices.json",
+      "sha256": "5be873c8cd17eae4e003c11d1c7944946a115f016f24708b59df4a18b3194aa7",
+      "release_review_required": true,
+      "does_not_clear_redistribution": true
+    },
+    "unstripped_sha256": "3df416a84e1113f5f3b6fd1ccc0c395ea201334674b5ca9c16b60e26cdf5ea50",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793575221.2692814
+  },
+  "intermediate_c94": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "8d36e987fce134675d82f154de35a69abe0bdd46",
+    "archive_sha256": "5da3946834d2616b6c91c3fb99a346fb5827558534ab0fedf162b39cb3c223c7",
+    "archive_file": "source.tar.gz",
+    "archive_format": "tar.gz",
+    "dirty": false,
+    "started": 1793575002.181246,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "e5f749e386f62d35b156859e3412f8013cd0532fe30de8bbdf365dc2e512bff6"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "e5f749e386f62d35b156859e3412f8013cd0532fe30de8bbdf365dc2e512bff6"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "e5f749e386f62d35b156859e3412f8013cd0532fe30de8bbdf365dc2e512bff6"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "e5f749e386f62d35b156859e3412f8013cd0532fe30de8bbdf365dc2e512bff6"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "e5f749e386f62d35b156859e3412f8013cd0532fe30de8bbdf365dc2e512bff6"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "e5f749e386f62d35b156859e3412f8013cd0532fe30de8bbdf365dc2e512bff6"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "e5f749e386f62d35b156859e3412f8013cd0532fe30de8bbdf365dc2e512bff6"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "e5f749e386f62d35b156859e3412f8013cd0532fe30de8bbdf365dc2e512bff6"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "c35c996e9a0322046e8630e4ce5b8e1f49740d82a389fb4b0196f70c124047d5",
+    "release_status": "not cleared; source notice review required",
+    "document_check": {
+      "exit": 0,
+      "paths_sha256": "a9ad0b3a5c47771afa608f0f9b419e12fb6491c24b00f1af4ebba47cff6c1e1b",
+      "count": 34
+    },
+    "source_notice_inventory": {
+      "path": "source-notices.json",
+      "sha256": "3bc6937e3d53f343dd7b62ba8b1c519bfc4b5b465dc76ff93cf56bd03e35de8d",
+      "release_review_required": true,
+      "does_not_clear_redistribution": true
+    },
+    "unstripped_sha256": "fca1de982b31ac3daae2cbf20049db568a610240b64d5e3942583751985d96b8",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "e5f749e386f62d35b156859e3412f8013cd0532fe30de8bbdf365dc2e512bff6",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793575100.3119552
+  },
+  "intermediate_status": "not finalaccepted: GetUPrev new dependency would break nav-only helper. Replaced native hb_ULeft/hb_ULen. C95ownacceptance required, C94preserved.",
+  "logs": {
+    "c95-test_windowlist_horizontal_bounds_pty.py.log": "PASS Open first document\nPASS Two dirty documents listed\nPASS Outside aligned row leaves active other document\nPASS Outside click writes only current other document\nPASS Interior edge switches to retained dirty source\nPASS Switch preserves exact source dirty state\nPASS Source undo remains independent\nPASS Typed filter remains functional after bounded clicks\nPASS Other typing transaction undo remains independent\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-8uy8s_fz\n",
+    "baseline.log": "FAIL Open accented document\nFAIL Accented WindowList filter matches accented filename\nFAIL Backspace removes entire accented character\nFAIL Filtered Enter returns same source\nPASS Filter does not modify BOM mixed EOL\nTOTAL 1 PASS 4 FAIL\nArtifacts /tmp/hbide-edit-menu-6gu9zhr6\n",
+    "c94-focal.log": "PASS Open accented document\nPASS Accented WindowList filter matches accented filename\nPASS Backspace removes entire accented character\nPASS Filtered Enter returns same source\nPASS Filter does not modify BOM mixed EOL\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-jgg5450v\n",
+    "c94-driver.log": "{\n  \"ok\": true,\n  \"source\": \"8d36e987fce134675d82f154de35a69abe0bdd46\",\n  \"binary_sha256\": \"e5f749e386f62d35b156859e3412f8013cd0532fe30de8bbdf365dc2e512bff6\",\n  \"manifest\": \"/tmp/hbide-c94/manifest.json\"\n}\n",
+    "baseline-list-open.log": "PASS Open accented document\nPASS Accented WindowList filter matches accented filename\nFAIL Backspace removes entire accented character\nPASS Filtered Enter returns same source\nPASS Filter does not modify BOM mixed EOL\nTOTAL 4 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-jjy0pkw4\n",
+    "c95-driver.log": "{\n  \"ok\": true,\n  \"source\": \"1cdedd93da118bcdb33866d574943a784a00c0f6\",\n  \"binary_sha256\": \"112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845\",\n  \"manifest\": \"/tmp/hbide-c95/manifest.json\"\n}\n",
+    "c95-test_picker_horizontal_bounds_pty.py.log": "PASS Open requested fixture\nPASS Picker starts on first declaration\nPASS Outside and border clicks do not select another row\nPASS Undo exact after outside picker clicks\nPASS Interior edge click selects intended implementation\nPASS Undo exact after interior picker click\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-i4wmiks0\n",
+    "c95-test_windowlist_utf8_filter_pty.py.log": "PASS Open accented document\nPASS Accented WindowList filter matches accented filename\nPASS Backspace removes entire accented character\nPASS Filtered Enter returns same source\nPASS Filter does not modify BOM mixed EOL\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-dqtll2kz\n",
+    "lexical-runtime.log": "\nPASS: multiline gap carries value index context\nPASS: multiline gap carries literal introducer\nPASS: closed block carry resets on next physical line\nPASS: literal or linecomment does not startblock: local c := `/* literal'\nPASS: literal or linecomment does not startblock: local c := \"/*\"\nPASS: literal or linecomment does not startblock: local c := '/*'\nPASS: literal or linecomment does not startblock: local c := [/*]\nPASS: literal or linecomment does not startblock: // /*\nPASS: literal or linecomment does not startblock: && /*\nPASS: literal or linecomment does not startblock: * /*\nPASS: literal or linecomment does not startblock: local c := \"//\" // /*\nPASS: literal or linecomment does not startblock: local c := \"&&\" && /*\nPASS: realblock and declaration after closing marker\nPASS: trailinglinecomment opener ignored\nPASS: C dump excluded\nPASS: dump comment state stays outside Harbour lexer\nPASS: class members are not class declarations\nPASS: typed function method name and line\nPASS: typed procedure method name and line\nPASS: array index multiline block excludes hidden declaration\nPASS: macro body is not an active dump directive\nPASS: commented/separated raw enddump resumes Harbour: #pragma enddump // done\nPASS: commented/separated raw enddump resumes Harbour: # pragma enddump && done\nPASS: commented/separated raw enddump resumes Harbour: #pragma.enddump /* done *\n/\nPASS: commented/separated raw enddump resumes Harbour: #pragma enddump;\nPASS: nonterminator does not leak C text: #pragma enddumpExtra\nPASS: nonterminator does not leak C text: #pragmaenddump\nPASS: nonterminator does not leak C text: // #pragma enddump\nPASS: nonterminator does not leak C text: #pragma enddump bad\nPASS: index comment with closing bracket is not literal: local n := a[1 /* ] mar\nker\nPASS: index comment with closing bracket is not literal: local n := a [1 /* ] ma\nrker\nPASS: index comment with closing bracket is not literal: local n := GetArray()[1\n /* ] marker\nPASS: RETURN bracket literal remains masked\nPASS: completed comment preserves preceding index value: local n := a /* gap */\n[1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := a /* first *\n/ /* next */ [1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := GetArray() /\n* gap */ [1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := \"array value\n\" /* gap */ [1 /* ] marker\nPASS: RETURN with completed comment still introduces bracket literal\nPASS: continued declaration preserves first physical line\nPASS: multiple declaration continuations preserve first line\nPASS: line comment between declaration parts ignored\nPASS: literal semicolon not declaration continuation\nPASS: directive drops pending incomplete declaration\nPASS: compact function continuation\nPASS: compact modifier and function continuations\nPASS: compact method continuation\nPASS: static abbreviation continuation starts at modifier: STAT\nPASS: static abbreviation continuation starts at modifier: STATI\nPASS: static abbreviation continuation starts at modifier: STATIC\nPASS: single-line static abbreviation remains recognized\nPASS: modifier substring is not a keyword\nPASS: CREATE CLASS alias indexed\nPASS: continued CREATE CLASS alias indexed at first line\nPASS: other CREATE commands not class declarations\nPASS: class members remain excluded with CREATE alias\nPASS: ACCESS explicit class implementation indexed\nPASS: ASSIGN implementation uses actual underscore method name\nPASS: member ACCESS ASSIGN declarations not implementations\nPASS: ACCESS continuation preserves first line\nPASS: commented accessor excluded\nPASS: PROCEDURE CLASS alias qualified as method\nPASS: ordinary procedure remains unqualified\nPASS: continued procedure method starts at first line\nPASS: commented CLASS not method qualifier\nPASS: explicit destructor implementation indexed\nPASS: member destructor declaration not implementation\nPASS: external function destructor binding not declaration\nPASS: destructor continuation retains first line\nPASS: NOTE line does not start block: NOTE /* ignored\nPASS: NOTE line does not start block: note/* ignored\nPASS: NOTE line does not start block: .NoTe /* ignored\nPASS: NOTE identifier prefix is not comment\nPASS: modifier kind retained: INIT\nPASS: modifier kind retained: EXIT\nPASS: modifier kind retained: STATIC\nPASS: modifier kind retained: STAT\nPASS: continued lifecycle modifiers keep kind and start line\nPASS: compact argument/class boundary: METHOD Ping()CLASS Demo\nPASS: compact argument/class boundary: METHOD FUNCTION Ping()CLASS Demo\nPASS: compact argument/class boundary: METHOD PROCEDURE Ping()CLASS Demo\nPASS: compact argument/class boundary: PROCEDURE Ping()CLASS Demo\nPASS: compact argument/class boundary: ACCESS Ping()CLASS Demo\nPASS: compact argument/class boundary: DESTRUCTOR Ping()CLASS Demo\nPASS: compact assign retains underscore method name\nPASS: compact qualifier continuation retains declaration line\nPASS: CLASS parameter is not owner qualifier: METHOD Ping( CLASS )CLASS Demo\nPASS: CLASS parameter is not owner qualifier: METHOD FUNCTION Ping(CLASS)CLASS D\nemo\nPASS: CLASS parameter is not owner qualifier: PROCEDURE Ping(CLASS)CLASS Demo\nPASS: CLASS parameter is not owner qualifier: ACCESS Ping(CLASS)CLASS Demo\nPASS: member CLASS parameter is not implementation\nPASS: TEXT payload isolated until raw terminator: ENDTEXT\nPASS: TEXT payload isolated until raw terminator:  endtext // done\nPASS: TEXT payload isolated until raw terminator: .ENDTEXT && done\nPASS: TEXT payload isolated until raw terminator: ENDTEXT /* done */\nPASS: nonterminator remains TEXT payload: ENDTEXTextra\nPASS: nonterminator remains TEXT payload: // ENDTEXT\nPASS: nonterminator remains TEXT payload: ENDTEXT bad\nPASS: TEXT identifier assignment does not start literal block\nPASS: commented TEXT is inert\nPASS: implicit implementation follows closed class, member excluded\nPASS: typed implicit implementation qualified\nPASS: implicit method with no class context stays excluded\nPASS: latest closed CREATE CLASS owns implicit method, member excluded\nPASS: implicit continuation keeps first source line\nPASS: commented ENDCLASS cannot turn members into implementations\nPASS: explicit owner overrides remembered class\nPASS: DECLARED METHOD explicit owner: FUNCTION\nPASS: DECLARED METHOD explicit owner: PROCEDURE\nPASS: continued DECLARED METHOD retains first line and skips CLASS parameter\nPASS: DECLARED METHOD requires explicit owner\nPASS: unsupported DECLARED forms stay excluded\nPASS: initial raw UTF8 BOM ignored only for navigation\nPASS: embedded BOM not silently removed from source\nPASS: initial BOM before comment/directive retains line: // comment\nPASS: initial BOM before comment/directive retains line: * comment\nPASS: initial BOM before comment/directive retains line: NOTE comment\nPASS: initial BOM before comment/directive retains line: #include \"hbclass.ch\"\nPASS: BOM before TEXT keeps phantom excluded\nPASS: BOM before C dump keeps phantom excluded\nPASS: END CLASS alias resumes implicit implementation: END CLASS\nPASS: END CLASS alias resumes implicit implementation: END.CLASS\nPASS: END CLASS alias resumes implicit implementation: END CLASS LOCKED // done\nPASS: END CLASSNAME is not END CLASS\nPASS: continued class terminator resumes implementation: END ;\nCLASS\nPASS: continued class terminator resumes implementation: ENDCLASS ;\nLOCKED\nPASS: continued class terminator resumes implementation: END ; // continuation\nCLASS LOCKED\nPASS: continued END IF does not close class context\nPASS: standard text stream excludes raw payload: TEXT TO FILE \"out.txt\"\nPASS: standard text stream excludes raw payload: TEXT TO PRINTER\nPASS: standard text stream excludes raw payload: TEXT.TO.FILE \"out.txt\"\nPASS: custom TEXT prefix does not start raw stream\nPASS: continued standard TEXT excludes raw payload: TEXT ;\nTO FILE \"out.txt\"\nPASS: continued standard TEXT excludes raw payload: TEXT TO ;\nFILE \"out.txt\"\nPASS: continued standard TEXT excludes raw payload: TEXT TO ;\nPRINTER\nPASS: continued standard TEXT excludes raw payload: TEXT ; // join\nTO ;\nFILE \"out.txt\"\nPASS: continued custom prefix does not absorb declaration\nPASS: standard PRINTER abbreviation excludes payload: PRIN\nPASS: standard PRINTER abbreviation excludes payload: PRINT\nPASS: standard PRINTER abbreviation excludes payload: PRINTE\nPASS: nonstandard PRINTER token stays outside stream: PRI\nPASS: nonstandard PRINTER token stays outside stream: PRINTERCUSTOM\nTOTAL        141 PASS          0 FAIL"
+  },
+  "focal_test_sha256": "60cba7ab217f841069bcd831b053631d08693ac847f143439cc919fb792a312c",
+  "pixels": "Actual1202x762 C93Find caf replacementglyph afterBS, C95caf_ valid; complete borders/status inspected. Parentattached.",
+  "initial_fixture": "PicturedOpenGET typed accentedpath failed before filter; changed privatecwd Tablistbox opens caf\u00e9. Remains experimental picturedUTF8 limit, no lateral fix.",
+  "limits": "width1accent UTF8host optin, no allgraphemes/casefold/wideUnicode/picturedGET/Windows/fullmatrix/license. Lexicalhelper141PASS separate, official8smokes/focal5+WindowList9+Goto6ownPASS."
+}
