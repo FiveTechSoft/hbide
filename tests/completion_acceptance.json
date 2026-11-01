@@ -3064,6 +3064,34 @@
         "test_help_link_wheel_pty.py"
       ],
       "contract": "Actual Index exact Doc: COMPLETION_ROADMAP link-viewer xterm40x120: initial1/max>3, wheel down1to2, up2to1/upclamp, Endmax/downclamp/upmax-1, Esc returns same dirty source and Undo saves exact bytes. Wheel only in combined keyboard/wheel branches, no new Up/Down key coverage. Not Contents pane/search/alltopics/otherterminals/Windows; counters not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-DEBUGGER-LEFT-FOCUS": {
+      "source": "hbdebug/debugger.prg",
+      "context": "METHOD PROCEDURE HandleEvent() CLASS HBDebugger",
+      "condition": "CASE K_LBUTTONDOWN",
+      "tests": [
+        "test_debug_mouse_pty.py",
+        "test_debug_stack_mouse_pty.py"
+      ],
+      "contract": "Actual xterm left click focuses exact Monitor local before Enter edit, selects caller/callee stack frame and preserves selected frame on tested title/right borders. Nested debuggee completes with actual expected values, source bytes exact. Not menu-bar click/allwindows/allhit-tests/drag/layout/Windows; PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-DEBUGGER-DOUBLECLICK-LOCAL": {
+      "source": "hbdebug/debugger.prg",
+      "context": "METHOD PROCEDURE HandleEvent() CLASS HBDebugger",
+      "condition": "CASE K_LDBLCLK",
+      "tests": [
+        "test_debug_mouse_pty.py"
+      ],
+      "contract": "Actual xterm Monitor doubleclick edits clicked C rather than previously selected B; typed Cancel preserves A, resumed debuggee writes expected three values, source bytes exact. Not doubleclick every window/type/readonly/gettererror/terminal/Windows; PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-DEBUGGER-CALLSTACK-ROW": {
+      "source": "hbdebug/debugger.prg",
+      "context": "METHOD PROCEDURE CallStackProcessKey( nKey ) CLASS HBDebugger",
+      "condition": "CASE K_LBUTTONDOWN",
+      "tests": [
+        "test_debug_stack_mouse_pty.py"
+      ],
+      "contract": "Actual caller/callee stack clicks switch visible locals MAINVAR101/CHILDVAR202; tested title/right border clicks keep caller selection, debuggee completes, source unchanged. Bounded nested frames, not every scroll depth/recursion/column/terminal/Windows; PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }
