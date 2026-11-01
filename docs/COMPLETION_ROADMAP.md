@@ -66,7 +66,27 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre21:34 Q418: último candidato identificado C87,
+Corte 1 noviembre23:04 Q476: último candidato identificado **C88**,
+fuente `e32c6ece0a8d461f04f7244eb451e378211c7f14`,
+bin `e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38`.
+Q460 corrige RadioGroup mouse de Compiler Options con hit-test nativo;
+8smokes oficiales/About/ldd/docs34PASS, mouse9/keyboard14/Display9/generatedRadio9
+PASS y píxeles before/after completos inspeccionados. Q461last-firstradio,
+Q463-Q467nav/TEXT/editor/SaveConflict/recovery, Q471Displaymouse y Q472-Q473M2/
+designer añaden aceptación focal fresca de C88 con receipts propios.
+No hereda matriz/modelos/píxeles de C87. Docs posteriores al build no están
+embebidos C88; catálogo actual34byteexact, tooling posterior separado.
+
+M0:27ramas sintácticas mouse con contratos acotados incluyen clasificadores y
+no-ops; no son27funciones completas ni inventario exhaustivo. No cierre M0.
+Siguiente: validar huecos de modales concretos y mantener regresión identificada;
+no seguir variantes equivalentes sólo para subir conteos. Políticas M2Cancel,
+M3ExchangeScreens/SwapOnInput/restart, oversizededit/filenameUndoLoad y revisión
+Windows/install/licencias siguen abiertas. No porcentaje global ni hito cerrado.
+
+Histórico anterior, no evidencia heredada por C88:
+
+Corte 1 noviembre21:34 Q418: candidato anterior C87,
 fuente e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe,
 bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48.
 8smokes oficiales/13TEXTcompilerfixtures39checksPASS; PRINTERabreviaciónfix.

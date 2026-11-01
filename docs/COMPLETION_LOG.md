@@ -6177,3 +6177,9 @@ C88 fuentee32c6ece0a8d461f04f7244eb451e378211c7f14,
 bin e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38 intacto.
 Q474 consolida docs/catálogo34byteexact posteriores noembebidosC88; sin build
 por docs. No modelos nuevos/fullmatrix/Windows/install/licencia/cierre M0-M6.
+
+### Q476 (1 noviembre 2026): resumen vigente sin herencia
+
+Cabecera roadmap actualizada a C88/source/hash y receipts focales. Bloque C87
+conservado como histórico, sin presentarlo como último candidato. No build ni
+pruebas producto nuevas; docs/catálogo posteriores no embebidosC88.
