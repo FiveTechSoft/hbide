@@ -1,0 +1,36 @@
+{
+  "scope": "Q373 C77 save close conflicts and refusal recovery only",
+  "source": "74db43fe4e4bc5dae5f54e4663a4ffb8e9d0abd9",
+  "binary_sha256": "b0ad4e6bb4ad5f5d87eef67111995dfdce3963c59745e2b101f543ea323beaeb",
+  "results": {
+    "test_saveall_fail_pty.py": {
+      "exit": 0,
+      "log": "PASS boot\nPASS summary says 1 saved and 1 could not be saved\nPASS failed file content on disk untouched\nPASS ok file saved with its edit\nPASS failed doc still marked modified, ok doc clean\n5/5 passed\n",
+      "binary_unchanged": true
+    },
+    "test_close_routes_pty.py": {
+      "exit": 0,
+      "log": "PASS About opens actual dialog\nPASS About returns edited document\nPASS Window Close asks about active dirty source\nPASS Window Close Cancel retains dirty text\nPASS Window Close Discard replaces last document with starter\nPASS Discard never writes edited source\nPASS Project opens Sources\nPASS Close Project keeps edited source open\nPASS Sources after Close Project gives no-project notice\nPASS no-project notice returns dirty document\nPASS Close Project never writes source or HBP\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-_0olbhac\n",
+      "binary_unchanged": true
+    },
+    "test_saveall_conflict_cancel_pty.py": {
+      "exit": 0,
+      "log": "PASS SaveAll cancelled conflict leaves external bytes and dirty edit, other document saves\n",
+      "binary_unchanged": true
+    },
+    "test_saveall_conflict_reload_pty.py": {
+      "exit": 0,
+      "log": "PASS SaveAll reload keeps external bytes and prior backup, not counted as saved\n",
+      "binary_unchanged": true
+    },
+    "test_saveas_refusal_recovery_pty.py": {
+      "exit": 0,
+      "log": "PASS boot caption noname\nPASS doc2 saved as dup.prg\nPASS dup.prg written\nPASS dup.prg holds doc2 text only\nPASS doc1 shows aa1\nPASS SaveAs collision refused\nPASS refusal left dup.prg byte-identical\nPASS refusal created no other file\nPASS doc1 still unsaved noname\nPASS dup.prg edit visible\nPASS two base journals (noname doc + dup.prg)\nPASS dup.prg still unchanged on disk before kill\nPASS recovery prompt on restart\nPASS recovery dialogs cleared\nPASS prompts named dup.prg\nPASS noname buffer recovered (aa1)\nPASS dup.prg buffer recovered (bb2 and q7k)\nPASS recovered into separate docs\nPASS disk dup.prg still the pre-crash save\nPASS F2 saved recovered dup.prg with q7k\nPASS saved file is old bytes plus the lost edit only\nTOTAL 21 PASS 0 FAIL\n",
+      "binary_unchanged": true
+    }
+  },
+  "limitations": [
+    "Five bounded scriptsPASS not fullmatrix/no new pixel inspection",
+    "No new product/buildIDE/models/Windows/install/license or milestone closure"
+  ]
+}
