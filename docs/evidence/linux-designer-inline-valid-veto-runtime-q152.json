@@ -1,0 +1,211 @@
+{
+  "scope": "Inline VALID first false blocks Tab to second sentinel, next true permits transfer, bounded Linux fixtures, no product fix",
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0826881e00245249a7995e68517c25ed78324a96",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "eabf1438c7e58d3dd8964631ea93f38d8c8f64b5cffe84c3f70e431ac74912e2",
+      "binary_sha256": "49651757a854e145cb346c24c78cc793fddedb48267df6a04b9f97c1d118c458",
+      "build_receipt": "/tmp/hbide-q152-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "c6e8d31809edb6e7bb1ea5abb8dd349e985c190a9da26bc5d9b357f48fe8a90f",
+      "case": "designer-inline-get-valid-veto-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "get"
+      ],
+      "started": 1793508683.166834,
+      "seconds": 6.38,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "4db4cad5bd1507af0b2dd14f5a998cdd7948545d1c2517a189b55e11940675a7",
+      "log": "/tmp/hbide-q152-final/designer-inline-get-valid-veto-runtime-1793508683166830278.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0826881e00245249a7995e68517c25ed78324a96",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "eabf1438c7e58d3dd8964631ea93f38d8c8f64b5cffe84c3f70e431ac74912e2",
+      "binary_sha256": "49651757a854e145cb346c24c78cc793fddedb48267df6a04b9f97c1d118c458",
+      "build_receipt": "/tmp/hbide-q152-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "c6e8d31809edb6e7bb1ea5abb8dd349e985c190a9da26bc5d9b357f48fe8a90f",
+      "case": "designer-inline-radiogroup-valid-veto-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "radiogroup"
+      ],
+      "started": 1793508689.5471373,
+      "seconds": 6.33,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "4db4cad5bd1507af0b2dd14f5a998cdd7948545d1c2517a189b55e11940675a7",
+      "log": "/tmp/hbide-q152-final/designer-inline-radiogroup-valid-veto-runtime-1793508689547133967.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0826881e00245249a7995e68517c25ed78324a96",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "eabf1438c7e58d3dd8964631ea93f38d8c8f64b5cffe84c3f70e431ac74912e2",
+      "binary_sha256": "49651757a854e145cb346c24c78cc793fddedb48267df6a04b9f97c1d118c458",
+      "build_receipt": "/tmp/hbide-q152-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "c6e8d31809edb6e7bb1ea5abb8dd349e985c190a9da26bc5d9b357f48fe8a90f",
+      "case": "designer-inline-checkbox-valid-veto-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "checkbox"
+      ],
+      "started": 1793508695.876105,
+      "seconds": 6.38,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "4db4cad5bd1507af0b2dd14f5a998cdd7948545d1c2517a189b55e11940675a7",
+      "log": "/tmp/hbide-q152-final/designer-inline-checkbox-valid-veto-runtime-1793508695876101079.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0826881e00245249a7995e68517c25ed78324a96",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "eabf1438c7e58d3dd8964631ea93f38d8c8f64b5cffe84c3f70e431ac74912e2",
+      "binary_sha256": "49651757a854e145cb346c24c78cc793fddedb48267df6a04b9f97c1d118c458",
+      "build_receipt": "/tmp/hbide-q152-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "c6e8d31809edb6e7bb1ea5abb8dd349e985c190a9da26bc5d9b357f48fe8a90f",
+      "case": "designer-inline-listbox-valid-veto-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "listbox"
+      ],
+      "started": 1793508702.2520444,
+      "seconds": 6.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "4db4cad5bd1507af0b2dd14f5a998cdd7948545d1c2517a189b55e11940675a7",
+      "log": "/tmp/hbide-q152-final/designer-inline-listbox-valid-veto-runtime-1793508702252040930.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "0826881e00245249a7995e68517c25ed78324a96",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "eabf1438c7e58d3dd8964631ea93f38d8c8f64b5cffe84c3f70e431ac74912e2",
+      "binary_sha256": "49651757a854e145cb346c24c78cc793fddedb48267df6a04b9f97c1d118c458",
+      "build_receipt": "/tmp/hbide-q152-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "c6e8d31809edb6e7bb1ea5abb8dd349e985c190a9da26bc5d9b357f48fe8a90f",
+      "case": "designer-inline-combobox-valid-veto-runtime",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inline_valid_veto_runtime_pty.py",
+        "--kind",
+        "combobox"
+      ],
+      "started": 1793508708.7295563,
+      "seconds": 6.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "4db4cad5bd1507af0b2dd14f5a998cdd7948545d1c2517a189b55e11940675a7",
+      "log": "/tmp/hbide-q152-final/designer-inline-combobox-valid-veto-runtime-1793508708729552545.log"
+    }
+  ],
+  "logs": {
+    "designer-inline-get-valid-veto-runtime": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS get sentinel initially not entered\nPASS get first VALID returns false\nPASS get false VALID prevents sentinel entry\nPASS get false VALID keeps runtime active\nPASS get second VALID returns true\nPASS get true VALID enters sentinel\nPASS get true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-e7iwdx18\n",
+    "designer-inline-radiogroup-valid-veto-runtime": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS radiogroup sentinel initially not entered\nPASS radiogroup first VALID returns false\nPASS radiogroup false VALID prevents sentinel entry\nPASS radiogroup false VALID keeps runtime active\nPASS radiogroup second VALID returns true\nPASS radiogroup true VALID enters sentinel\nPASS radiogroup true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-1vo6zcu0\n",
+    "designer-inline-checkbox-valid-veto-runtime": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS checkbox sentinel initially not entered\nPASS checkbox first VALID returns false\nPASS checkbox false VALID prevents sentinel entry\nPASS checkbox false VALID keeps runtime active\nPASS checkbox second VALID returns true\nPASS checkbox true VALID enters sentinel\nPASS checkbox true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-5m1ufvj9\n",
+    "designer-inline-listbox-valid-veto-runtime": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS listbox sentinel initially not entered\nPASS listbox first VALID returns false\nPASS listbox false VALID prevents sentinel entry\nPASS listbox false VALID keeps runtime active\nPASS listbox second VALID returns true\nPASS listbox true VALID enters sentinel\nPASS listbox true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-ogouiaus\n",
+    "designer-inline-combobox-valid-veto-runtime": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS combobox sentinel initially not entered\nPASS combobox first VALID returns false\nPASS combobox false VALID prevents sentinel entry\nPASS combobox false VALID keeps runtime active\nPASS combobox second VALID returns true\nPASS combobox true VALID enters sentinel\nPASS combobox true VALID permits later exit\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-t65ahtrr\n"
+  },
+  "checks": 50,
+  "modes": 5,
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "0826881e00245249a7995e68517c25ed78324a96",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "5caf1b1a8fd5921a728e0e4acbdd4bac9414e05bee7fb793713f4d02e4c9eda1",
+    "started": 1793508715.3896334,
+    "runner_sha256": "e480623bdd7bd46531de8cd2eefcf8760a124767c121c4143b76ff55707da06c",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q152-guards/test_completion_guards.py.log",
+        "seconds": 0.205
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q152-guards/test_build_receipt.py.log",
+        "seconds": 0.202
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "177c22d6bedd8cba16d90be576a51a233e9006716e4a06b67abadd25f6d9ee87",
+        "log": "/tmp/hbide-q152-guards/test_completion_inventory.py.log",
+        "seconds": 0.715
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q152-guards/test_distribution_notices.py.log",
+        "seconds": 0.207
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q152-guards/test_embed_help_docs.py.log",
+        "seconds": 0.216
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q152-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.412
+      }
+    },
+    "ok": true,
+    "finished": 1793508717.3465376
+  },
+  "covered": "GET/Radio/Checkbox/List/Combo VALID edited inline -> F10 -> F9 -> actual generated artifact compilation. Separate second sentinel GET WHEN writes marker. First Tab VALID count1 returnsfalse, sentinel untouched/runtime active; second Tab returns true, sentinel marker present; Esc exits.",
+  "limits": "No Button veto/WHEN false/all keys/input combinations/count semantics beyond fixture/side effects/arbitrary code/native pixels/model/Windows/global/M4 acceptance."
+}

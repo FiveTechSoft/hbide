@@ -558,3 +558,11 @@ runtimeconmarcadores.T.:6PTY51checks63guardas34docsPASS. Solo ejecucion
 focal.T.,no vetos.F./orden/cuentas/parametros/excepciones/nuevos pixels/
 Windows/global/cierreM4. Evidencia
 `docs/evidence/linux-designer-inline-all-events-runtime-q151.json`.
+
+
+### Seguimiento Q152 (1 noviembre 2026)
+
+VALIDinline.F. bloqueaTab a sentinel y.T. siguiente permite entrada
+enGET/Radio/Checkbox/List/Combo:5PTY50checks63guardas34docsPASS.
+Sin Buttonveto/WHENfalse/todasteclas/pixeles/Windows/cierreM4.
+Evidencia `docs/evidence/linux-designer-inline-valid-veto-runtime-q152.json`.

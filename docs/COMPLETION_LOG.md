@@ -4268,3 +4268,14 @@ fuente c474858;sin arreglo. Solo handlers que retornan.T., no veto.F.,
 orden/cuentas/parametros/excepciones/codigoarbitrario,ActiondeButton
 (separadoQ148/Q150),mouse,nuevos modelos/pixeles/Windows/global/cierreM4.
 Evidencia `docs/evidence/linux-designer-inline-all-events-runtime-q151.json`.
+
+
+## 1 noviembre 2026: Q152 VALID false/true y transferencia de foco
+
+GET/Radio/Checkbox/List/Combo:VALIDeditadoinline,F10,F9,compilar
+artefactoreal. PrimerTabretorna.F.(count1),noentraGETsentinelconWHEN
+marcador separado;runtime sigue activo. SegundoTab.T. entra sentinel;
+Esc sale.5PTY50checks63guardas34docsPASS,fuente0826881,sin arreglo.
+Evidencia `docs/evidence/linux-designer-inline-valid-veto-runtime-q152.json`.
+Sin Buttonveto/WHENfalse/todasteclas/efectos/codigoarbitrario,nuevos
+modelos/pixeles/Windows/global/cierreM4.
