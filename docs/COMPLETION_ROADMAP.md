@@ -75,7 +75,8 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
   limpia en otro sistema. Q173 oculta checkout y compilador, pero usa las
   bibliotecas del mismo host. Windows nativo, instalador y licencias siguen
   pendientes. Q171 solo acredita dos rebuilds byte-identicos con el mismo
-  host y toolchain.
+  host y toolchain. Q189 añade userspace Debian12 con librerias propias,
+  pero sigue kernel/dispositivos del host y no es instalador ni VM.
 - **M6:** no repetir una matriz de horas por cada cambio documental.
   Q164 acredita 309 modos sobre su fuente, anterior al arreglo Q169. El
   registro actual contiene 340 modos; ese numero es un plan, no 340 PASS.

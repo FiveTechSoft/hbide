@@ -4801,3 +4801,19 @@ ErrorE0030 legible sin notation literal, bordes completos. No renderiza
 colores ni emula terminal/ANSI/OSC generales; no Windows, Cancel,
 respuestaUI, matriz global ni cierreM2.
 Evidencia `docs/evidence/linux-output-color-display-q188.json`.
+
+
+### Q189 (1 noviembre 2026): userspace Debian12 separado
+
+Binario Q188 corre en raiz Debian12/bookworm-slim oficial identificada
+por digest, con loader/libc/libm propios, no bibliotecas del hostUbuntu22.04.
+Sin checkout ni compiler visibles, red aislada; solo binario y fixture
+montados. About4, ayuda21, drag25x80/5:3PTY30checks74guardas34docsPASS.
+Binario a7a851c68b94c366b53c4fdb87562a8f759aad01c42e1b31122e8de5e50ab04a
+de fuente e7bd0d4ad30cadc15a101afe091d4dd2a8934482; runner0971ea0.
+Primer wrapper alteraba rutas absolutas del fixture; corregido. About
+espera unrecorded porque ese binario es plainbuild, no revision embebida.
+Pasada final limpia tras esas correcciones de harness. No arreglo nuevo.
+Sigue mismo kernel/dispositivos y driver externo: no VM, instalador,
+maquina fisica limpia, licencias, release, Windows, matriz ni cierreM5.
+Evidencia `docs/evidence/linux-debian12-root-q189.json`.
