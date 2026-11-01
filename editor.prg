@@ -476,7 +476,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
    local nKeyExt := hb_keyExt( nKey )   // HB_KX_* when an extended special key, else 0
    local nKeyMod := hb_keyMod( nKey )   // HB_KF_* flags of the extended code
    local nOldScrRow := ::Row()
-   local cKey, oLine, nPos, lHotPath, lBlkBefore, lSkipTail := .F., cOldLine
+   local cKey, oLine, nPos, lHotPath, lBlkBefore, cCtxBefore, lSkipTail := .F., cOldLine
 
    do case
       // Distinct only under HB_INKEY_EXT: the classic set delivers Ctrl+Left
@@ -653,6 +653,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
               // state entering the next line before this char: a char that
               // toggles /* or */ recolors everything below
               lBlkBefore := ::BlkCmtState( ::nRow + 1 )
+              cCtxBefore := iif(::nRow < Len(::aText),hb_defaultValue(::aBlkCtx[::nRow+1],""),"")
            endif
            oLine:cText := hb_UStuff( oLine:cText, ::nCol - 4, ;
                                      iif( Set( _SET_INSERT ), 0, 1 ), cKey )
@@ -669,7 +670,8 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
                  ::PushOp( ::nRow, { HBIDE_LinePack( oLine, cOldLine ) }, { HBIDE_LinePack( oLine ) } )
               endif
               ::nBlkDirty := Min( ::nBlkDirty, ::nRow )
-              IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore
+              IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ;
+                 ( ::nRow < Len(::aText) .AND. hb_defaultValue(::aBlkCtx[::nRow+1],"") != cCtxBefore )
                  ::GoTo( ::nRow, ::nCol, _REFRESH_ALL )
               ELSE
                  // hot path: single-line edit, no coloring context change.

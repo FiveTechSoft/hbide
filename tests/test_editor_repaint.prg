@@ -515,6 +515,12 @@ procedure Main()
    Check('multiple explicit continuation lines keep intro',!o:BlkCmtState(4))
    o:LoadText('local c := ;'+Chr(10)+' // gap'+Chr(10)+' a[1 /* real'+Chr(10)+'function Hidden()')
    Check('standalone comment ends bounded carry',o:BlkCmtState(4))
+   o:LoadText('local c := '+Chr(10)+' [/* literal]'+Chr(10)+'return c')
+   o:GoTo(1,5+Len('local c := '))
+   o:nLines := o:nFull := 0
+   o:Edit(Asc(';'))
+   Check('adding continuation repaints following context even before blockstate changes',o:nFull>=1)
+   Check('adding continuation removes false block after string',!o:BlkCmtState(3))
    hb_MemoWrit( '/tmp/hbide-repaint-tests.txt', 'PASS ' + hb_ntos( nPass ) + ' FAIL ' + hb_ntos( nFail ) )
    if nFail > 0
       ErrorLevel( 1 )
