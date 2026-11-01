@@ -1,0 +1,19 @@
+{
+  "source": "f0347c888fe876c078b83661b0db8e842a97b7df",
+  "binary_sha256": "0bfcfd3ef106a1f743d4e7c6053cb678a44fb2d13818a4b876434db4947a0afc",
+  "scope": "Q288postexport BP harness expansion only, CtrlY/unmarkedCut deletion, UndoRedo BP absence and deliberate empty BP survives Delete no-op/no false save prompt. Two modes16checks. No product/build/model/pixels/fullmatrix/Windows/hito.",
+  "tests": {
+    "ctrl-y": {
+      "exit": 0,
+      "test_sha256": "a9e0eb091deaf2ccf73880a185566922877f024c2a3ab0cec046e7a33b147c6f",
+      "seconds": 8.502572059631348,
+      "log": "PASS F9 marks sole source line\nPASS Delete sole instruction drops breakpoint\nPASS Undo text does not resurrect deleted breakpoint\nPASS Redo keeps breakpoint absent\nPASS Redo saves empty sole-line buffer\nPASS User can deliberately mark empty row\nPASS Empty Delete no-op preserves deliberate breakpoint\nPASS Empty no-op BP closes without false save prompt\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-q80th5gn\n"
+    },
+    "cut": {
+      "exit": 0,
+      "test_sha256": "a9e0eb091deaf2ccf73880a185566922877f024c2a3ab0cec046e7a33b147c6f",
+      "seconds": 8.861249208450317,
+      "log": "PASS F9 marks sole source line\nPASS Delete sole instruction drops breakpoint\nPASS Undo text does not resurrect deleted breakpoint\nPASS Redo keeps breakpoint absent\nPASS Redo saves empty sole-line buffer\nPASS User can deliberately mark empty row\nPASS Empty Delete no-op preserves deliberate breakpoint\nPASS Empty no-op BP closes without false save prompt\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-98uvoyrb\n"
+    }
+  }
+}
