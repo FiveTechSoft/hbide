@@ -113,6 +113,10 @@ inspeccionadas: comillasUTF8U y retorno al error fila2col9.
   necesitan contrato y soporte VM, no toggles decorativos. Q199 caracteriza
   GLOBAL como no soportado en toolchain694428e1 (compilerE0030 y VM
   count0/listvacia), sin quitar el requisito ni cerrar M3.
+  Q204 recupera argumentos del frameINKEY desde Harbour con sentinelVM;
+  llamadasC__ACCEPT quedan unknown. Q205 prueba puenteGTNUL/visible y
+  tecla real, pero timeout .05se duplica a121ms al devolver0alhook.
+  No se integra asi ni se declaran toggles implementados.
 
 | Evidencia | Alcance que si acredita | Lo que no acredita |
 | --- | --- | --- |

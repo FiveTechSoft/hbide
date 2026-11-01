@@ -1,0 +1,57 @@
+{
+  "source": "9ee25fe6e3c73f76da2fff609519eacf6a90a2fb",
+  "scope": "Isolated Harbour bridge research, NOT IDE implementation or SwapOnInput acceptance.",
+  "sources": {
+    "tests/probes/debug_input_frame_bridge.prg": "0fd59aa0a5d782adad24ee7bcbb060b45a61e90c8fac3f3bd2f44a19dfb621c3",
+    "tests/probes/check_input_frame_bridge.py": "688447ac55a5012b9a3f6561ca311ac8a1dde81656fdba62f36732f1a55ee651"
+  },
+  "binary_sha256": "8f7783d7c7f6788e95127e50c8f18591c00050d62ecd473d7e246b68799b39eb",
+  "build_log": "hbmk2: Processing local make script: hbmk.hbm\nHarbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling 'tests/probes/debug_input_frame_bridge.prg'...\n\n100\n\n200\n\nLines 279, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_7r4751.dir/debug_input_frame_bridge.c'... Done.\n",
+  "results": {
+    "checks": {
+      "poll": true,
+      "shows_after_poll": true,
+      "real_key": true,
+      "last_key": true,
+      "timeout_key": true,
+      "last_after_timeout": true,
+      "hidden_buffer_preserved": true,
+      "shows": true,
+      "debugger_buffer_restored": true,
+      "extra_key": true,
+      "process_exit": true,
+      "real_key_sent": true,
+      "app_marker_in_terminal": true,
+      "debugger_marker_in_terminal": true,
+      "timeout_waits_twice": true
+    },
+    "results": {
+      "hidden_contains_marker": true,
+      "hidden_screen_bytes": 4000,
+      "poll": 0,
+      "shows_after_poll": 0,
+      "real_key": 122,
+      "last_key": 122,
+      "timeout_key": 0,
+      "timeout_elapsed_ms": 121,
+      "last_after_timeout": 0,
+      "hidden_buffer_preserved": true,
+      "shows": 2,
+      "debugger_buffer_restored": true,
+      "extra_key": 0,
+      "process_exit": 0,
+      "real_key_sent": true,
+      "app_marker_in_terminal": true,
+      "debugger_marker_in_terminal": true
+    },
+    "scope": "Actual PTY key, not visual inspection, full debugger integration, arbitrary masks or policy acceptance."
+  },
+  "first_failure": "{\n  \"checks\": {\n    \"poll\": true,\n    \"shows_after_poll\": true,\n    \"real_key\": true,\n    \"last_key\": true,\n    \"timeout_key\": true,\n    \"last_after_timeout\": false,\n    \"hidden_buffer_preserved\": true,\n    \"shows\": true,\n    \"debugger_buffer_restored\": true,\n    \"extra_key\": true,\n    \"process_exit\": true,\n    \"real_key_sent\": true,\n    \"app_marker_in_terminal\": false,\n    \"debugger_marker_in_terminal\": true\n  },\n  \"results\": {\n    \"poll\": 0,\n    \"shows_after_poll\": 0,\n    \"real_key\": 122,\n    \"last_key\": 122,\n    \"timeout_key\": 0,\n    \"last_after_timeout\": 0,\n    \"hidden_buffer_preserved\": true,\n    \"shows\": 2,\n    \"debugger_buffer_restored\": true,\n    \"extra_key\": 0,\n    \"process_exit\": 0,\n    \"real_key_sent\": true,\n    \"app_marker_in_terminal\": false,\n    \"debugger_marker_in_terminal\": true\n  },\n  \"scope\": \"Actual PTY key, not visual inspection, full debugger integration, arbitrary masks or policy acceptance.\"\n}\n",
+  "visual": "Actual isolated native802x477 APP-RESEARCH-WAIT legible. Not IDE capture.",
+  "limitations": [
+    "Returning0 from hook after timeout causes hidden GT original wait too: .05seconds measured121ms. Not safe to integrate as implemented.",
+    "Raw SaveScreen between NUL/TRM generated corrupt glyphs due formats; GETWIN/SETWIN used instead. Initial failure retained.",
+    "Unknown native C callers and internals guards remain separate Q204 findings.",
+    "No full debugger, multithread, dimensionsresize, arbitrary masks/mouse/VM/Windows acceptance."
+  ]
+}

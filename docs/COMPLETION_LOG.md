@@ -5028,3 +5028,16 @@ unavailable en amboscasos. ENTER sintetico acota lasesperas, no teclado
 real ni screenswap. Q137siguecierto sobre APIhook, no agota alternativas.
 No cambio de producto/C/ExchangeScreens/SwapOnInput/Windows/cierreM3.
 Evidencia: docs/evidence/linux-debug-input-frame-q204.json.
+
+### Q205 (1 noviembre 2026): puente aislado con tecla real y limite timeout
+
+GTNUL para app y GTvisible para entrada:15checksPTY caracterizan que poll
+no muestra app, espera conocida muestra snapshotGETWIN y recibe tecla z
+una vez; LastKey122, buffersapp/depurador restaurados. Screenshotnativo
+802x477 inspeccionado APP-RESEARCH-WAITlegible, solo prototipo no IDE.
+Fallo inicial conservado: SaveScreenbinario entreGTs dio glifosincorrectos;
+GETWIN/SETWIN evita formato incompatible. LastKeytras timeout es0.
+Limite decisivo: hookretorna0al timeout y GTesperaotra vez: .05segmedidos121ms.
+Esto NOesSwapOnInput implementado; no se integra con timeoutdoblado.
+Sin producto/inspector/Windows/VMgeneral/cierreM3.
+Evidencia: docs/evidence/linux-debug-input-frame-bridge-q205.json.
