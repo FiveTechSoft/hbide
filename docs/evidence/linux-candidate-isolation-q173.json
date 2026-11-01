@@ -1,0 +1,108 @@
+{
+  "scope": "Q173 minimal-root same-host C27 smoke. Not clean-machine install.",
+  "result": {
+    "scope": "Bounded same-host Linux minimal-root smoke, not a clean-machine installation.\nOnly the tested binary, system libraries and each test workdir are mounted.\nThe test driver stays outside; the application sees no checkout or compiler.\n",
+    "source": "4f9c681c605e8386b56cef228eeb3f21f1162031",
+    "binary_sha256": "851540d50a7451ba5b200a1cb9bf1c3e9bf3d40851ee7cc1f12493c359fe8d93",
+    "bwrap_sha256": "d78807229d616606e339c5988392b9e0ab4a6a6998fa51e4590837f426a12fca",
+    "wrapper_sha256": "e273c35d340370a207dd18d5f47499617a858f9a073f467a76aee993b4613544",
+    "started": 1793517799.5175307,
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "log": "/tmp/hbide-q173-final/test_about_build_pty.py.log"
+      },
+      "test_help_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b5ed2c4ad9bb94e7a2f5c3291958f7818fb362a5224acad3a3e328c992454ddf",
+        "log": "/tmp/hbide-q173-final/test_help_pty.py.log"
+      },
+      "test_designer_inspector_drag_anchor_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "8b2d31b7d4e4807c653d9b51d7b8ea6ca70141ea1b376700c409b71b453814ee",
+        "log": "/tmp/hbide-q173-final/test_designer_inspector_drag_anchor_pty.py.log"
+      }
+    },
+    "ok": true,
+    "finished": 1793517837.9655344
+  },
+  "logs": {
+    "test_about_build_pty.py.log": "PASS About retains version1.0\nPASS About shows actual build revision or honest fallback\nPASS About OK returns same dirty document\nPASS About cycle Undo preserves original bytes\nTOTAL 4 PASS 0 FAIL; evidence /tmp/hbide-source-run-ncljlnja\n",
+    "test_designer_inspector_drag_anchor_pty.py.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-08sjagtb\n",
+    "test_help_pty.py.log": "PASS F1 without menu opens welcome topic\nPASS F1 welcome returns unchanged dirty document\nPASS F1 Edit menu opens Edit topic without Undo\nPASS F1 Edit close keeps pending insertion\nPASS Index opens requested topic\nPASS updated search contract is readable\nPASS Help close returns same document\nPASS Debugger summary shows implemented Iconize and Menu Bar recovery\nPASS Debugger summary lists only two unsupported options\nPASS unknown keyword gives a clear message\nPASS unknown keyword returns to source\nPASS Contents opens navigation\nPASS context help opens without executing File action\nPASS context help preserves current document\nPASS Index explicit OK opens filtered topic\nPASS Index explicit Cancel returns source\nPASS multiple matches open picker\nPASS picker explicit OK opens selected topic\nPASS picker explicit Cancel returns source\nPASS picker changed selection opens exact second topic\nPASS undo after Help and save preserves source bytes\nTOTAL 21 PASS 0 FAIL; evidence /tmp/hbide-source-run-2ws2fzay\n"
+  },
+  "wrapper": "#!/bin/sh\nexec /usr/bin/bwrap --unshare-user --unshare-net --die-with-parent --tmpfs / --ro-bind /lib /lib --ro-bind /lib64 /lib64 --dir /app --ro-bind /tmp/hbide-candidate-c27/bin/hbide /app/hbide --bind \"$PWD\" \"$PWD\" --chdir \"$PWD\" --dev /dev --proc /proc --setenv PATH /no-tools /app/hbide\n",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "bfcdb3cb72d1c4e8e4987ea62d77c20c1ae6be4f",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "a0e5597ee681be6091cc2533e13e1db29eb267f4f1172a2fe35ad5d8e14d20dd",
+    "started": 1793517838.161399,
+    "runner_sha256": "d8e1b33008b126ce28f71722967a5ba136d9a3c979a0ce5732d5c3a00027d71f",
+    "tests": {
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q173-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.218
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q173-guards/test_completion_guards.py.log",
+        "seconds": 0.218
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q173-guards/test_build_receipt.py.log",
+        "seconds": 0.218
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "5c178c60879f6f854039d24bc71bf0cbea3a01c22d29963770bd60d7bae50905",
+        "log": "/tmp/hbide-q173-guards/test_completion_inventory.py.log",
+        "seconds": 0.771
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q173-guards/test_distribution_notices.py.log",
+        "seconds": 0.218
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q173-guards/test_embed_help_docs.py.log",
+        "seconds": 0.219
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q173-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.368
+      }
+    },
+    "ok": true,
+    "finished": 1793517840.3907666
+  },
+  "limits": "3PTY30checks:About4/embeddedhelp21/actualDisplay25x80drag5. Onlybinary/systemlibslib64/devproc/testworkdirvisible,PATH/no-tools,networkisolated. Driveroutsideapplicationroot. Samehostsystemlibraries,notdifferentdistribution/installer/licenseclearance/Windows/fullmatrix/allruntimebehaviors/newnative or M5closure."
+}

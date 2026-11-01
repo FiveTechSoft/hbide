@@ -821,3 +821,18 @@ compilador; output previo conservado.73guardas34docsPASS en
 49fea792bcbc70df930c8660e73d496dca1f2493. No nuevo build/runtime real,
 PTY/modelos/pixeles/Windows/licencias/release/global/cierreM5. Evidencia
 `docs/evidence/linux-rebuild-input-guards-q172.json`.
+
+
+### Q173 (1 noviembre 2026): Linux con raiz reducida
+
+C27 ejecutado sin checkout ni compilador visibles: solo binario,
+bibliotecas del sistema, dispositivos y carpeta de trabajo de la prueba.
+Red aislada y PATH sin herramientas. El conductor de las pruebas queda
+fuera de la raiz de la aplicacion. About4, ayuda embebida21 y arrastre
+Display25x80/5: tres modos PTY,30checks PASS;73guardas34docsPASS.
+Fuente del candidato4f9c681c605e8386b56cef228eeb3f21f1162031, binario
+851540d50a7451ba5b200a1cb9bf1c3e9bf3d40851ee7cc1f12493c359fe8d93.
+Runner bfcdb3c. Usa las bibliotecas del mismo host: no es una instalacion
+limpia en otra maquina/distribucion, instalador, licencias, Windows,
+matriz completa, nuevos pixeles ni cierre M5.
+Evidencia `docs/evidence/linux-candidate-isolation-q173.json`.
