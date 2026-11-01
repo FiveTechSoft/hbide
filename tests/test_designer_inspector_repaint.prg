@@ -2,7 +2,7 @@
 PROCEDURE Main()
    LOCAL o,cIncremental,cFresh,aOld,aNew,aMode,cFrom,cTo,nFrom,nTo
    LOCAL aTypes:={"say","get","button","checkbox","radiogroup","listbox","combobox"}
-   LOCAL nTransitions:=0,nMoves:=0,nEdges:=0,aFrom,aTo
+   LOCAL nTransitions:=0,nMoves:=0,nEdges:=0,aFrom,aTo,aOffset,nAnchors:=0
    LOCAL aPositions:={{0,0},{0,1000},{1000,0},{1000,1000},{6,5},{2,86}}
    FOR EACH aMode IN {{40,120},{25,80}}
       SetMode(aMode[1],aMode[2])
@@ -51,6 +51,19 @@ PROCEDURE Main()
       FOR nFrom:=0 TO Len(aTypes)
          o:nSelected:=nFrom
          FOR EACH aFrom IN aPositions
+            o:nInspRow:=aFrom[1]
+            o:nInspCol:=aFrom[2]
+            aOld:=o:InspRect()
+            aOffset:=o:BeginInspectorDrag(aOld[1],aOld[2]+5)
+            Check(o:nInspRow==aOld[1].and.o:nInspCol==aOld[2],"drag normalizes to visible clamped origin")
+            Check(aOffset[1]==0.and.aOffset[2]==5,"drag offset uses visible header cell")
+            Check(aOld[2]+4-aOffset[2]==o:nInspCol-1,"one cell drag has no hidden dead zone")
+            nAnchors++
+         NEXT
+      NEXT
+      FOR nFrom:=0 TO Len(aTypes)
+         o:nSelected:=nFrom
+         FOR EACH aFrom IN aPositions
             FOR EACH aTo IN aPositions
                o:nInspRow:=aFrom[1]
                o:nInspCol:=aFrom[2]
@@ -76,7 +89,7 @@ PROCEDURE Main()
          NEXT
       NEXT
    NEXT
-   ? "PASS inspector repaint",nTransitions,"height transitions",nMoves,"panel moves",nEdges,"edge moves"
+   ? "PASS inspector repaint",nTransitions,"height transitions",nMoves,"panel moves",nEdges,"edge moves",nAnchors,"drag anchors"
    RETURN
 STATIC PROCEDURE Check(lOk,cText)
    IF !lOk

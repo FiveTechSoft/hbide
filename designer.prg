@@ -160,6 +160,7 @@ CLASS HbDesigner
    METHOD InspEdit()
    METHOD InspPickColor()
    METHOD InspHit( nMRow, nMCol )
+   METHOD BeginInspectorDrag( nMRow, nMCol )
    METHOD DragInspector( nMRow, nMCol )
    METHOD InspectorKey( nKey )
    METHOD GeneratePrg()
@@ -2272,10 +2273,22 @@ return -1
 
 //-----------------------------------------------------------------------------------------//
 
+// Anchor a drag to the visible clamped panel, not a previously requested
+// off-screen position. Otherwise the first movement has a hidden dead zone.
+METHOD BeginInspectorDrag( nMRow, nMCol ) CLASS HbDesigner
+
+   local aRect := ::InspRect()
+
+   ::nInspRow = aRect[ 1 ]
+   ::nInspCol = aRect[ 2 ]
+
+return { nMRow - ::nInspRow, nMCol - ::nInspCol }
+
 METHOD DragInspector( nMRow, nMCol ) CLASS HbDesigner
 
-   local nOffR := nMRow - ::nInspRow
-   local nOffC := nMCol - ::nInspCol
+   local aOffset := ::BeginInspectorDrag( nMRow, nMCol )
+   local nOffR := aOffset[ 1 ]
+   local nOffC := aOffset[ 2 ]
 
    while MLeftDown()
       if MRow() - nOffR != ::nInspRow .or. MCol() - nOffC != ::nInspCol
