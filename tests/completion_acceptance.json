@@ -3145,7 +3145,7 @@
       "tests": [
         "test_debug_app_screen_mouse_pty.py"
       ],
-      "contract": "Stopped C87 debuggee: View/App Screen menu left press closes debugger, paired release leaves it hidden, next key restores it; F4/next-key path also returns. Resume exact values and unchanged source. One xterm40x120 menu only, PTY state not restored pixels/all mouse drivers/movement filtering/Windows; source branch is not a feature count or current runtime PASS."
+      "contract": "Stopped C87 debuggee: View/App Screen menu left press closes debugger, paired release leaves it hidden, next key restores it; F4/next-key path also returns. Resume exact values and unchanged source. One xterm40x120 menu only, PTY state not restored pixels/all mouse drivers/movement filtering/Windows; source branch is not a feature count; link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }

@@ -10,5 +10,7 @@
   "probe_log": "PASS debugger stopped before increment\nFAIL Help leaves exact debuggee values unchanged\nPASS Help leaves source bytes unchanged\nTOTAL 2 PASS 1 FAIL; evidence /tmp/hbide-source-run-pk89c0ih\n",
   "probe_limit": "Menu coordinate scouting probe left menu open and intentionally did not complete debuggee; its inherited value check failed, not product defect. Final dedicated fixture completed program.",
   "limits": "One xterm 40x120 View/App Screen press/release plus F4; PTY Command absence/presence and exact program effects, not pixel restoration, all mouse drivers, movement filtering or Windows.",
-  "inventory_initial_failure": "54PASS1FAIL: added context omitted from unit expectation allowlist; corrected expectation, not product behavior."
+  "inventory_initial_failure": "54PASS1FAIL: added context omitted from unit expectation allowlist; corrected expectation, not product behavior.",
+  "inventory_second_failure": "54PASS1FAIL at aaa575b: contract had semantically equivalent but noncanonical disclaimer; replaced with exact not current runtime PASS required by unit.",
+  "inventory_third_failure": "54PASS1FAIL: missing exact Event branch is not a unique feature wording; added canonical wording. No product changes."
 }
