@@ -1,0 +1,41 @@
+{
+  "scope": "Q393 C81 bounded clipboard and saveclose acceptance only",
+  "source": "299a1047a050517342b0aa4ebfb9170095e0388b",
+  "binary_sha256": "2309304ec2ed54d6f005ef5afb6cbc0649d03cdaeec3f7322e6e9592303d059a",
+  "results": {
+    "virtual-copy": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Copy virtual range has no source bytes\nPASS Copy virtual empty range Paste remains no-op\nPASS Undo after virtual Copy Paste remains no-op\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-xewdyhk8\n",
+      "binary_unchanged": true
+    },
+    "virtual-cut": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Cut virtual range has no source bytes\nPASS Cut virtual empty range Paste remains no-op\nPASS Undo after virtual Cut Paste remains no-op\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-gpvcqxfh\n",
+      "binary_unchanged": true
+    },
+    "physical-empty": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Paste copied empty line as a real third line\nPASS Undo empty-line paste exact\nPASS Redo empty-line paste exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-92wf2m2j\n",
+      "binary_unchanged": true
+    },
+    "clipboard-block": {
+      "exit": 0,
+      "log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-1cdj99mt\n",
+      "binary_unchanged": true
+    },
+    "saveall-partial": {
+      "exit": 0,
+      "log": "PASS boot\nPASS summary says 1 saved and 1 could not be saved\nPASS failed file content on disk untouched\nPASS ok file saved with its edit\nPASS failed doc still marked modified, ok doc clean\n5/5 passed\n",
+      "binary_unchanged": true
+    },
+    "close-routes": {
+      "exit": 0,
+      "log": "PASS About opens actual dialog\nPASS About returns edited document\nPASS Window Close asks about active dirty source\nPASS Window Close Cancel retains dirty text\nPASS Window Close Discard replaces last document with starter\nPASS Discard never writes edited source\nPASS Project opens Sources\nPASS Close Project keeps edited source open\nPASS Sources after Close Project gives no-project notice\nPASS no-project notice returns dirty document\nPASS Close Project never writes source or HBP\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-kv38ceip\n",
+      "binary_unchanged": true
+    }
+  },
+  "limitations": [
+    "Six modes37checksPASS exactbinary, no fullmatrix/model/pixel/Windows/install/license/milestone claim",
+    "No new product or buildIDE; latest docs not embedded"
+  ]
+}
