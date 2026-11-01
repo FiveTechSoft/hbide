@@ -194,7 +194,7 @@ STATIC FUNCTION HBIDE_NavDeclStart( cLine )
    ENDIF
    c := Upper( a[1] )
    RETURN HBIDE_IsKw(c,"FUNCTION") .OR. HBIDE_IsKw(c,"PROCEDURE") .OR. ;
-      HBIDE_IsKw(c,"STATIC") .OR. c == "INIT" .OR. c == "EXIT" .OR. c == "METHOD" .OR. c == "ACCESS" .OR. c == "ASSIGN" .OR. c == "DESTRUCTOR" .OR. c == "DECLARED" .OR. c == "CLASS" .OR. c == "CREATE"
+      HBIDE_IsKw(c,"STATIC") .OR. c == "INIT" .OR. c == "EXIT" .OR. c == "METHOD" .OR. c == "ACCESS" .OR. c == "ASSIGN" .OR. c == "DESTRUCTOR" .OR. c == "DECLARED" .OR. c == "CLASS" .OR. c == "CREATE" .OR. c == "END" .OR. c == "ENDCLASS"
 
 // Match the raw C-dump terminator without running Harbour comment state.
 // hb_pp_hasCommand accepts trailing comments or a command separator.

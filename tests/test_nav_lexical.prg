@@ -183,6 +183,12 @@ procedure Main()
  next
  a:=HBIDE_ScanProcs('CREATE CLASS Demo'+hb_eol()+'END CLASSNAME'+hb_eol()+'METHOD Hidden()')
  Check(Len(a)==1,'END CLASSNAME is not END CLASS',@nPass,@nFail)
+ for each c in {'END ;'+hb_eol()+'CLASS','ENDCLASS ;'+hb_eol()+'LOCKED','END ; // continuation'+hb_eol()+'CLASS LOCKED'}
+ a:=HBIDE_ScanProcs('CREATE CLASS Demo'+hb_eol()+'METHOD Ping()'+hb_eol()+c+hb_eol()+'METHOD Ping()')
+ Check(Len(a)==2.and.a[2,1]=='Demo:Ping'.and.a[2,3]==5,'continued class terminator resumes implementation: '+c,@nPass,@nFail)
+ next
+ a:=HBIDE_ScanProcs('CREATE CLASS Demo'+hb_eol()+'END ;'+hb_eol()+'IF'+hb_eol()+'METHOD Hidden()')
+ Check(Len(a)==1,'continued END IF does not close class context',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

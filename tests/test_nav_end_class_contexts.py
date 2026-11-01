@@ -4,6 +4,7 @@ root = pathlib.Path(__file__).resolve().parents[1]
 work = pathlib.Path(tempfile.mkdtemp(prefix='hbide-nav-contexts-'))
 compiler = os.environ.get('HBMK2', 'hbmk2')
 cases = {
+    'continued': ('CREATE CLASS Demo\nMETHOD Ping()\nEND ;\nCLASS\nMETHOD Ping()\nreturn 42\n', 2, 'METHOD Ping()', 'CLASS'),
     'locked': ('CREATE CLASS Demo\nMETHOD Ping()\nEND CLASS LOCKED\nMETHOD Ping()\nreturn 42\n', 2, 'METHOD Ping()', 'END CLASS LOCKED'),
     'tab': ('CREATE CLASS Demo\nMETHOD Ping()\nEND\tCLASS\nMETHOD Ping()\nreturn 42\n', 2, 'METHOD Ping()', 'END\tCLASS'),
     'typed': ('CREATE CLASS Demo\nMETHOD Ping()\nEND CLASS\nMETHOD FUNCTION Ping()\nreturn 42\n', 2, 'METHOD FUNCTION Ping()', 'END CLASS'),
