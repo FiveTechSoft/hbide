@@ -1685,3 +1685,23 @@ Q461 último MinGW64 a primeroGCC por mouse llega argvexacto:13checksPASS,
 incluye9checks repetidosQ460 y4adicionales, no13featuresnuevas. Q462docs/catalog
 posteriores no embebidosC88. Matrizcompleta/modelos/Windows/install/licencias,
 políticas pendientes y cierreM0-M6 siguen abiertos.
+
+### Q463-Q468 (1 noviembre 2026): regresiones frescas C88
+
+Sobre C88fuentee32c6ece0a8d461f04f7244eb451e378211c7f14,
+bin e85c0951c2310b4c103188bafacc0852a9906fc3c7b6873f06276246d6ae0b38,
+sin heredar aceptación de C87: Q463 cinco modos navegación15checksPASS
+(rawBOM/ENDCLASS/DECLARED METHOD/TEXTblock/arraycomment). Q464 trececontextos
+TEXT compiler-valid y39PTYchecksPASS: FILEliteral/bare/expression/tab y
+PRINTERabbrev4/5/6/continuations. No lexical141/modelos nuevos.
+Q465 cinco modos SaveConflictPASS: SaveAllpartial/SaveAsfailedidentity/
+refusalrecovery21checks/conflictCancel/conflictReload. Filenameplaneadoinexistente
+se corrigió al listado failure_identity; no se omitió modo.
+Q466 siete modos editor63checksPASS: continuationBS/Delete12+12, UTF8mouse17,
+EnterblankBP LF/--crlf6+6, BackspaceblankBP LF/--crlf5+5. PTYcolors no píxeles.
+Q467 cinco modos recoveryPASS: deepmixedEOL/deepBOMseparados, Compare read-only,
+Undo/Reload retiranjournals y restart no ofreceobsoletos. Dos invocacionescleanup
+omitieron binaryarg y fallaron antesIDE; corregidas/repetidasPASS, iniciales
+retenidas y receiptintermedio544eb0e visible. No defectoproductoenestosruns.
+Q468 consolida docs/catálogo34byteexact, posterioresnoembebidosC88. No matriz
+completa/modelos/píxeles nuevos/Windows/install/licencias/cierre de hito.
