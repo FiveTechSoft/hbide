@@ -1,0 +1,8 @@
+{
+  "scope": "Q484 C90 direct Find mouse buttons with UTF8 accented search text, BOM/mixedEOL exact",
+  "source": "6678e43385060fb018065ec0b842f00e604e44d2",
+  "binary_sha256": "28e836faac4040ac64737a9cccfd9d5a8d3de60cbdfe9a0d4a3a23f5757ccb7d",
+  "test_sha256": "a31bb8afe633e82f642ade3e6fa233c9d82fc8f0faacd3879adfaf67ab77aa6c",
+  "runtime_log": "PASS Open requested fixture\nPASS Direct mouse Cancel exits Find free-form input\nPASS Mouse Cancel retains selected range\nPASS Undo exact original after free-input Cancel probe\nPASS Direct mouse OK exits Find input\nPASS Find mouse OK clears old selection and inserts at match\nPASS Undo after Find mouse OK exact mixed EOL\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-3h8yef7x\n",
+  "limits": "Explicit UTF8 host/terminal CPR1;2, selected ca seeded then typed f\u00e9, Cancel preserves range/OK finds accent and clears range, Undo exact BOM/mixedEOL. One width1accent, not graphemes/wideUnicode/all consumers/pixels/Windows/fullmatrix."
+}
