@@ -464,8 +464,15 @@ METHOD Edit( nKey ) CLASS HBSrcEdit
    // Enter inserts a physical line at the cursor, even when adjacent
    // empty lines make a greedy equal-prefix diff ambiguous. Keep the
    // current line identity and shift breakpoints on following originals.
-   if ! lSelectionEdit .and. hb_keyStd(nKey) == K_ENTER
-      nMaxPrefix := ::nRow
+   if ! lSelectionEdit
+      do case
+      case hb_keyStd(nKey) == K_ENTER
+         nMaxPrefix := ::nRow
+      case hb_keyStd(nKey) == K_BS .and. ::nCol <= 5 .and. ::nRow > 1
+         // Joining the previous/current pair must not let an identical
+         // following blank masquerade as the line removed by Backspace.
+         nMaxPrefix := ::nRow - 1
+      endcase
    endif
    ::lOpRecorded := .F.
    ::EditKey( nKey )
