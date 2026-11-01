@@ -73,9 +73,8 @@ loader/libc/libm Debian12 (Q203), no VM/instalacion limpia. Q198/Q199
 registran30modelos sobre sus fuentes, no herencia al candidato. Q200/Q201
 acreditan generacion/compilacion/runtime mixto y accionesTabEnter; Q202
 separa AltCconSETCANCELdefault (aborto) del launcher explicitoSetCancel(.F.).
-No se modifica politica del generado. Consulta sobre cierre del inspector:
-causa verificada es dibujo/hitarea ausentes; [x] visible solo propuesto,
-no implementado ni decision del usuario. Ultimas capturas C29 completas
+No se modifica politica del generado. Q206: usuario pidio boton arriba izquierda10:16:27; implementado[x]
+conclick/F4/JSONpreservado y regresiondrag,4PTY26checks sobre48de499. Ultimas capturas C29 completas
 inspeccionadas: comillasUTF8U y retorno al error fila2col9.
 
 

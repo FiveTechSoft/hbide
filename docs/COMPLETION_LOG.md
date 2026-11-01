@@ -5041,3 +5041,14 @@ Limite decisivo: hookretorna0al timeout y GTesperaotra vez: .05segmedidos121ms.
 Esto NOesSwapOnInput implementado; no se integra con timeoutdoblado.
 Sin producto/inspector/Windows/VMgeneral/cierreM3.
 Evidencia: docs/evidence/linux-debug-input-frame-bridge-q205.json.
+
+### Q206 (1 noviembre 2026): cierre del inspector arriba a la izquierda
+
+Pedido usuario10:16:27: botonarribaizquierda comootrasventanas. [x]visible,
+clickocultapanelusandoToggleInspector; no descarta dialogo/controles.
+Tituloarrastrable fuera del target;F4reabre. Fuente48de49910cd7ff6f6782a65fe1d1778de9eadae4
+bin969a8b3527c28720dd4a4350d09cfaa458d586791604b43856211955d5c2a0d7.
+4PTY26checksPASS: cierre desdecanvas/foco, JSONintacto,posicion/F4,
+arrastreclamp40x120y25x80. Capturaactual802x477con12controles inspeccionada
+completa, cierreizquierdo visible. SinWindows/cierreM4/matrizglobal.
+Evidencia: docs/evidence/linux-designer-inspector-close-q206.json.

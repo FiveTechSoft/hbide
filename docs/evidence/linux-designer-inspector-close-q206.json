@@ -1,0 +1,72 @@
+{
+  "scope": "Inspector close top-left user request1Nov10:16, Linux only. No M4closure/Windows/global.",
+  "build": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "48de49910cd7ff6f6782a65fe1d1778de9eadae4",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "32ead4b3274bbe12b0bf02578cac2472b2c8e157737649ced2c69ca96fa452d5",
+    "binary_sha256": "969a8b3527c28720dd4a4350d09cfaa458d586791604b43856211955d5c2a0d7",
+    "built_at": 1793524622.0787525
+  },
+  "pty_records": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "48de49910cd7ff6f6782a65fe1d1778de9eadae4",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "32ead4b3274bbe12b0bf02578cac2472b2c8e157737649ced2c69ca96fa452d5",
+      "binary_sha256": "969a8b3527c28720dd4a4350d09cfaa458d586791604b43856211955d5c2a0d7",
+      "build_receipt": "/tmp/hbide-q206/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "641d872f98ab2108edcf5479476f4c117f0bb85e58bc3c131bbaa2be44dea3ab",
+      "case": "designer-inspector-drag-anchor",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py"
+      ],
+      "started": 1793524622.0790224,
+      "seconds": 4.23,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "9af3832445682e12f0f20c4192580a4b6548ab52b470afae03492f41d9fe1288",
+      "log": "/tmp/hbide-q206/designer-inspector-drag-anchor-1793524622079018540.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "48de49910cd7ff6f6782a65fe1d1778de9eadae4",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "32ead4b3274bbe12b0bf02578cac2472b2c8e157737649ced2c69ca96fa452d5",
+      "binary_sha256": "969a8b3527c28720dd4a4350d09cfaa458d586791604b43856211955d5c2a0d7",
+      "build_receipt": "/tmp/hbide-q206/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "641d872f98ab2108edcf5479476f4c117f0bb85e58bc3c131bbaa2be44dea3ab",
+      "case": "designer-inspector-drag-anchor-small",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_designer_inspector_drag_anchor_pty.py",
+        "--small"
+      ],
+      "started": 1793524626.3142292,
+      "seconds": 5.59,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "9af3832445682e12f0f20c4192580a4b6548ab52b470afae03492f41d9fe1288",
+      "log": "/tmp/hbide-q206/designer-inspector-drag-anchor-small-1793524626314226019.log"
+    }
+  ],
+  "close_logs": {
+    "close-small.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS left header x hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-1iq1giqi\n",
+    "close.log": "PASS combobox inspector visible\nPASS left header x hides inspector\nPASS close preserves full control JSON\nPASS F4 reopens inspector\nPASS reopened at same position\nPASS click closes from inspector focus\nPASS F4 still hides inspector\nPASS toggle cycle preserves full JSON\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-ihe8zwmz\n"
+  },
+  "visual": "Actual native802x477 mixed12controls inspector [x] at top-left; complete borders inspected.",
+  "authority": "WhatsApp original wamid.HBgLMzQ2MTMzNzg0NTIVAgASGBYzRUIwNEZGNThERjE2OTVBQjlDN0M3AA==,1Nov2026 10:16:27CET: boton arriba a la izquierda como en las otras ventanas",
+  "details": "Hit=-2 for left+1..3, title textshifted3cells, remainingheaderdrag=-1. ToggleInspector reused, F4unchanged. Two close modes17checks+two drag modes9checks.",
+  "binary_sha256_checked_after_tests": "969a8b3527c28720dd4a4350d09cfaa458d586791604b43856211955d5c2a0d7"
+}
