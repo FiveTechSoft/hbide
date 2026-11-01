@@ -137,6 +137,9 @@ leave the current document and journal untouched.
   must be on PATH) next to the source. The new executable replaces the old
   one only after a verified success; a failed build keeps the previous
   binary untouched and never runs it.
+- Long compiler output from Start opens the scrollable Output viewer.
+  Use arrows, PgUp/PgDn, Home/End to read it and Esc to return. Short
+  output keeps the normal message dialog. This does not cancel a build.
 - Run > Script compiles the current buffer in memory and runs it inside
   the IDE process, without saving.
 - Options > Compiler Flags... sets Warnings, Debug info, Strict types,
