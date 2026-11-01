@@ -1,0 +1,142 @@
+{
+  "scope": "Frozen C30 clipboard generated runtime nine modes.46distinctQ217..222. Not full353/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "clipboard-checkbox",
+          "command": [
+            "test_designer_clipboard_runtime_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 6.008421897888184,
+          "test_sha256": "27076b5bbd5185042c2f3c2e4bf0ece0dd9ea7272c7a29dce93ac61d4c532443",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-checkbox.log",
+          "printed_failure": false
+        },
+        {
+          "name": "clipboard-checkbox-create",
+          "command": [
+            "test_designer_clipboard_runtime_pty.py",
+            "--create"
+          ],
+          "exit": 0,
+          "seconds": 5.984723329544067,
+          "test_sha256": "27076b5bbd5185042c2f3c2e4bf0ece0dd9ea7272c7a29dce93ac61d4c532443",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-checkbox-create.log",
+          "printed_failure": false
+        },
+        {
+          "name": "clipboard-get",
+          "command": [
+            "test_designer_clipboard_get_runtime_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 6.076779842376709,
+          "test_sha256": "7d5402ccd1aad77be845cd0084c6c6da52e0d3064836444733d4d5765a4d2d86",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-get.log",
+          "printed_failure": false
+        },
+        {
+          "name": "clipboard-get-create",
+          "command": [
+            "test_designer_clipboard_get_runtime_pty.py",
+            "--create"
+          ],
+          "exit": 0,
+          "seconds": 6.084369897842407,
+          "test_sha256": "7d5402ccd1aad77be845cd0084c6c6da52e0d3064836444733d4d5765a4d2d86",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-get-create.log",
+          "printed_failure": false
+        },
+        {
+          "name": "clipboard-combo",
+          "command": [
+            "test_designer_clipboard_combo_runtime_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 6.009605884552002,
+          "test_sha256": "f7545a0827f8646d3a3dafab2dc0836186b04620c599cd9283e07937bb064c98",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-combo.log",
+          "printed_failure": false
+        },
+        {
+          "name": "clipboard-combo-create",
+          "command": [
+            "test_designer_clipboard_combo_runtime_pty.py",
+            "--create"
+          ],
+          "exit": 0,
+          "seconds": 5.99446964263916,
+          "test_sha256": "f7545a0827f8646d3a3dafab2dc0836186b04620c599cd9283e07937bb064c98",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-combo-create.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "clipboard-button",
+          "command": [
+            "test_designer_clipboard_button_runtime_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.3541364669799805,
+          "test_sha256": "e54f54199b70a453ac8659f4fb6ecfd72489a7290e8a3483d09d0265dcba40c8",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-button.log",
+          "printed_failure": false
+        },
+        {
+          "name": "clipboard-list",
+          "command": [
+            "test_designer_clipboard_list_runtime_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 6.0074241161346436,
+          "test_sha256": "2a7fb50417b2f4e67114fac79c7537bd478d4822c943fb772e7faec8c1c44574",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-list.log",
+          "printed_failure": false
+        },
+        {
+          "name": "clipboard-radio",
+          "command": [
+            "test_designer_clipboard_radio_runtime_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 5.989841461181641,
+          "test_sha256": "b657f07d733fd3cfc2cdc94dc10c31cc5e70d49e1f1d307a7d79b0717294459b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/clipboard-radio.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_modes_all_blocks": 46,
+  "logs": {
+    "clipboard-checkbox.log": "PASS pasted checkbox binding case-insensitively distinct\nPASS pasted checkbox state handler retained\nPASS actual F9 generates two separate logical bindings\nPASS actual F9 emits both state handlers\nPASS generated pasted-checkbox artifact compiles\nPASS first checkbox toggle affects only its bound value\nPASS first preserved state handler executes in generated runtime\nPASS second checkbox toggle affects only its bound value\nPASS second preserved state handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-yc7vw5dk\n",
+    "clipboard-checkbox-create.log": "PASS pasted checkbox binding case-insensitively distinct\nPASS pasted checkbox state handler retained\nPASS actual F9 generates two separate logical bindings\nPASS actual F9 emits both state handlers\nPASS generated pasted-checkbox artifact compiles\nPASS first checkbox toggle affects only its bound value\nPASS first preserved state handler executes in generated runtime\nPASS second checkbox toggle affects only its bound value\nPASS second preserved state handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-g1r0aqru\n",
+    "clipboard-get.log": "PASS pasted GET binding case-insensitively distinct\nPASS pasted GET VALID handler retained\nPASS actual F9 generates two separate text bindings\nPASS actual F9 emits both VALID handlers\nPASS generated pasted-GET artifact compiles\nPASS first GET text edit affects only its bound value\nPASS first preserved VALID handler executes in generated runtime\nPASS second GET text edit affects only its bound value\nPASS second preserved VALID handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-uvqnobdz\n",
+    "clipboard-get-create.log": "PASS pasted GET binding case-insensitively distinct\nPASS pasted GET VALID handler retained\nPASS actual F9 generates two separate text bindings\nPASS actual F9 emits both VALID handlers\nPASS generated pasted-GET artifact compiles\nPASS first GET text edit affects only its bound value\nPASS first preserved VALID handler executes in generated runtime\nPASS second GET text edit affects only its bound value\nPASS second preserved VALID handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-z3jxk8e2\n",
+    "clipboard-combo.log": "PASS pasted ComboBox binding case-insensitively distinct\nPASS pasted ComboBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ComboBox artifact compiles\nPASS first ComboBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ComboBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-o7g7ftt1\n",
+    "clipboard-combo-create.log": "PASS pasted ComboBox binding case-insensitively distinct\nPASS pasted ComboBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ComboBox artifact compiles\nPASS first ComboBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ComboBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-bs255k0j\n",
+    "clipboard-button.log": "PASS paste creates two buttons\nPASS pasted button custom action and focus retained\nPASS pasted button accelerator and style retained\nPASS actual F9 emits both custom actions\nPASS actual F9 emits both focus handlers and accelerators\nPASS generated pasted-button artifact compiles\nPASS first-enter generated button accepts dialog true\nPASS first-enter preserved custom action executes\nPASS first-enter preserved focus handler executes\nPASS second-enter generated button accepts dialog true\nPASS second-enter preserved custom action executes\nPASS second-enter preserved focus handler executes\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-8bnmj30v\n",
+    "clipboard-list.log": "PASS pasted ListBox binding case-insensitively distinct\nPASS pasted ListBox STATE handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both STATE handlers\nPASS generated pasted-ListBox artifact compiles\nPASS first ListBox selection affects only its bound value\nPASS first preserved STATE handler executes in generated runtime\nPASS second ListBox selection affects only its bound value\nPASS second preserved STATE handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-fnlvu_y3\n",
+    "clipboard-radio.log": "PASS pasted RadioGroup binding case-insensitively distinct\nPASS pasted RadioGroup VALID handler retained\nPASS actual F9 generates two separate numeric bindings\nPASS actual F9 emits both VALID handlers\nPASS generated pasted-RadioGroup artifact compiles\nPASS first RadioGroup selection affects only its bound value\nPASS first preserved VALID handler executes in generated runtime\nPASS second RadioGroup selection affects only its bound value\nPASS second preserved VALID handler executes in generated runtime\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-hnrw9nqx\n"
+  }
+}

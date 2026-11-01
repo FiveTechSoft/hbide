@@ -5214,3 +5214,14 @@ aceleradores. UltimolauncherSetCancel(.F.)explicito,no AltCdefaultfix.
 Testsdelpropioexporthashed/binsincambios. No nuevopixeles/modelos/producto,
 Windows/matriz353/M4closure.
 Evidencia: docs/evidence/linux-c30-designer-blocks89-q221.json.
+
+### Q222 (1 noviembre 2026): C30 portapapeles/runtime
+
+9 modos adicionales PASS con binario C30 congelado 96d77549 y export 049b533.
+Checkbox/GET/ComboBox en modos cargado y creado; PushButton/ListBox/RadioGroup.
+Las pruebas pasan por copiar/pegar y runtime generado para comprobar independencia
+de bindings o acción/acelerador según fixture. Tests propios del export hashados,
+binario sin cambios, sin fallos/reintentos en estos nueve modos.
+46 modos distintos documentados entre Q217 y Q222, no 353 ni funciones certificadas.
+Sin nuevo producto, modelos, píxeles, Windows o cierre de hitos.
+Evidencia: docs/evidence/linux-c30-clipboard-blocks1011-q222.json.
