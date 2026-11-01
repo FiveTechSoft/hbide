@@ -2388,9 +2388,10 @@
         "tests": [
           "test_designer_inline_all_events_runtime_pty.py",
           "test_designer_inline_when_veto_runtime_pty.py",
-          "test_designer_inline_all_skipped_runtime_pty.py"
+          "test_designer_inline_all_skipped_runtime_pty.py",
+          "test_designer_inline_when_reenable_runtime_pty.py"
         ],
-        "contract": "Q151 positive true-returning edited get/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+        "contract": "Q151 positive true-returning edited get/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Q161 same-type pairs and Q165 six directed mixed pairs also return without input; not all30pairs. Q166 sentinel enables then ShiftTab reenters, GUIFocus and exact binding checks; Button unpressed buffer.F. after focus, not Action activation. No arbitrary reactivation."
       }
     },
     "DSN-INSP-checkbox-when": {
@@ -2407,9 +2408,10 @@
         "tests": [
           "test_designer_inline_all_events_runtime_pty.py",
           "test_designer_inline_when_veto_runtime_pty.py",
-          "test_designer_inline_all_skipped_runtime_pty.py"
+          "test_designer_inline_all_skipped_runtime_pty.py",
+          "test_designer_inline_when_reenable_runtime_pty.py"
         ],
-        "contract": "Q151 positive true-returning edited checkbox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+        "contract": "Q151 positive true-returning edited checkbox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Q161 same-type pairs and Q165 six directed mixed pairs also return without input; not all30pairs. Q166 sentinel enables then ShiftTab reenters, GUIFocus and exact binding checks; Button unpressed buffer.F. after focus, not Action activation. No arbitrary reactivation."
       }
     },
     "DSN-INSP-button-when": {
@@ -2426,9 +2428,10 @@
         "tests": [
           "test_designer_inline_all_events_runtime_pty.py",
           "test_designer_inline_when_veto_runtime_pty.py",
-          "test_designer_inline_all_skipped_runtime_pty.py"
+          "test_designer_inline_all_skipped_runtime_pty.py",
+          "test_designer_inline_when_reenable_runtime_pty.py"
         ],
-        "contract": "Q151 positive true-returning edited button/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+        "contract": "Q151 positive true-returning edited button/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Q161 same-type pairs and Q165 six directed mixed pairs also return without input; not all30pairs. Q166 sentinel enables then ShiftTab reenters, GUIFocus and exact binding checks; Button unpressed buffer.F. after focus, not Action activation. No arbitrary reactivation."
       }
     },
     "DSN-INSP-radiogroup-when": {
@@ -2445,9 +2448,10 @@
         "tests": [
           "test_designer_inline_all_events_runtime_pty.py",
           "test_designer_inline_when_veto_runtime_pty.py",
-          "test_designer_inline_all_skipped_runtime_pty.py"
+          "test_designer_inline_all_skipped_runtime_pty.py",
+          "test_designer_inline_when_reenable_runtime_pty.py"
         ],
-        "contract": "Q151 positive true-returning edited radiogroup/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+        "contract": "Q151 positive true-returning edited radiogroup/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Q161 same-type pairs and Q165 six directed mixed pairs also return without input; not all30pairs. Q166 sentinel enables then ShiftTab reenters, GUIFocus and exact binding checks; Button unpressed buffer.F. after focus, not Action activation. No arbitrary reactivation."
       }
     },
     "DSN-INSP-listbox-when": {
@@ -2464,9 +2468,10 @@
         "tests": [
           "test_designer_inline_all_events_runtime_pty.py",
           "test_designer_inline_when_veto_runtime_pty.py",
-          "test_designer_inline_all_skipped_runtime_pty.py"
+          "test_designer_inline_all_skipped_runtime_pty.py",
+          "test_designer_inline_when_reenable_runtime_pty.py"
         ],
-        "contract": "Q151 positive true-returning edited listbox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+        "contract": "Q151 positive true-returning edited listbox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Q161 same-type pairs and Q165 six directed mixed pairs also return without input; not all30pairs. Q166 sentinel enables then ShiftTab reenters, GUIFocus and exact binding checks; Button unpressed buffer.F. after focus, not Action activation. No arbitrary reactivation."
       }
     },
     "DSN-INSP-combobox-when": {
@@ -2483,9 +2488,10 @@
         "tests": [
           "test_designer_inline_all_events_runtime_pty.py",
           "test_designer_inline_when_veto_runtime_pty.py",
-          "test_designer_inline_all_skipped_runtime_pty.py"
+          "test_designer_inline_all_skipped_runtime_pty.py",
+          "test_designer_inline_when_reenable_runtime_pty.py"
         ],
-        "contract": "Q151 positive true-returning edited combobox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure."
+        "contract": "Q151 positive true-returning edited combobox/when expression executes after inline edit,F10,F9 and actual generated artifact compilation. Q153 false skips to sentinel, rejected binding unchanged and GUI focus absent; Q157 single-control all-skipped returns without input. Bounded Linux fixtures only. Link is not current runtime PASS; use exact source/hash ledger. No all keys/values/count/order/parameters/exceptions/arbitrary code/mouse/Windows or M4 closure. Q161 same-type pairs and Q165 six directed mixed pairs also return without input; not all30pairs. Q166 sentinel enables then ShiftTab reenters, GUIFocus and exact binding checks; Button unpressed buffer.F. after focus, not Action activation. No arbitrary reactivation."
       }
     },
     "DSN-INSP-get-valid": {

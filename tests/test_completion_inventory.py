@@ -323,6 +323,15 @@ class InspectorInventory(unittest.TestCase):
             self.assertEqual(r['key'],r['acceptance']['runtime']['key'])
             self.assertIn('Link is not current runtime PASS',r['acceptance']['runtime']['contract'])
         self.assertIn('not veto before Action',self.specs['DSN-INSP-button-valid']['runtime']['contract'])
+    def test_when_extended_contracts_keep_runtime_separate(self):
+        for kind in ['get','radiogroup','checkbox','listbox','combobox','button']:
+            entry=self.specs['DSN-INSP-'+kind+'-when']
+            self.assertIn('No handler execution',entry['contract'])
+            self.assertIn('test_designer_inline_when_reenable_runtime_pty.py',entry['runtime']['tests'])
+            self.assertIn('not all30pairs',entry['runtime']['contract'])
+            self.assertIn('No arbitrary reactivation',entry['runtime']['contract'])
+        self.assertIn('not Action activation',self.specs['DSN-INSP-button-when']['runtime']['contract'])
+
     def test_runtime_wrong_identity_rejected(self):
         entry=self.specs['DSN-INSP-get-valid']
         with self.assertRaisesRegex(ValueError,'runtime identity mismatch'):
