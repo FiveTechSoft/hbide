@@ -101,6 +101,7 @@ CLASS HbDesigner
    DATA lInspFocus   INIT .F.         // inspector has keyboard focus
    DATA nInspRow     INIT 2           // inspector screen position
    DATA nInspCol     INIT 86
+   DATA aInspPaintRect INIT nil       // last painted extent, including geometry changes
    DATA nInspField   INIT 1           // focused field in the inspector
    DATA nIdleDraw                     // idle handler: redraw controls
    DATA nOldCursor
@@ -478,7 +479,8 @@ METHOD Activate() CLASS HbDesigner
                   else
                      ::nSelected = 0
                   endif
-                  ::DrawInspector()
+                  // Selection changes remove the old resize handle and panel extent.
+                  ::Redraw()
                endif
             endif
       endcase
@@ -1040,6 +1042,7 @@ METHOD Redraw() CLASS HbDesigner
    endif
 
    DispBegin()
+   ::aInspPaintRect = nil
    ::oIde:Repaint()
    ::oWnd:Refresh()
    DrawShadow( ::oWnd:nTop, ::oWnd:nLeft, ::oWnd:nBottom, ::oWnd:nRight )
@@ -1915,6 +1918,15 @@ METHOD DrawInspector() CLASS HbDesigner
    aFields   = ::InspFields()
    ::nInspField = Max( 1, Min( Len( aFields ), ::nInspField ) )
    aRect     = ::InspRect()
+   if ::aInspPaintRect != nil .and. ;
+      ( ::aInspPaintRect[ 1 ] != aRect[ 1 ] .or. ::aInspPaintRect[ 2 ] != aRect[ 2 ] .or. ;
+        ::aInspPaintRect[ 3 ] != aRect[ 3 ] .or. ::aInspPaintRect[ 4 ] != aRect[ 4 ] )
+      // The panel may shrink outside the dialog canvas. Repaint its underlay,
+      // not just the new rectangle. Redraw resets this cache before recursion.
+      ::Redraw()
+      return nil
+   endif
+   ::aInspPaintRect = AClone( aRect )
    nValWidth = aRect[ 4 ] - aRect[ 2 ] - 12
 
    DispBegin()

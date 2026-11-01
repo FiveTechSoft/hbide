@@ -20,6 +20,7 @@ def run(name, args, cwd=ROOT, timeout=120):
             return 124
 
 cases = {
+    'designer-inspector-repaint': ['tests/test_designer_inspector_repaint.prg', 'designer.prg', 'safeio.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'designer-inline-fields': ['tests/test_designer_inline_fields.prg', 'designer.prg', 'safeio.prg', 'hbwindow.prg', 'hbmenu.prg', 'hbbutton.prg', 'hbgetu.prg'],
     'debug-input-hook-contract': ['tests/test_debug_input_hook.prg'],
     'navigation-lexical': ['tests/test_nav_lexical.prg', 'nav.prg'],
