@@ -3101,6 +3101,15 @@
         "test_debug_right_mouse_pty.py"
       ],
       "contract": "Actual xterm right press/release on visible Monitor B local leaves complete normalized character grid unchanged; later left/Enter/double edits and Cancel still work, debuggee writes expected values, source unchanged. Characterizes intentional ignored event, not context menu feature/all coordinates/allwindows/terminal/Windows; PTY grid not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-DEBUGGER-MODAL-HELP-CLOSE": {
+      "source": "hbdebug/dbgtwin.prg",
+      "context": "METHOD PROCEDURE ShowModal() CLASS HBDbWindow",
+      "condition": "CASE K_LBUTTONDOWN",
+      "tests": [
+        "test_debug_help_close_mouse_pty.py"
+      ],
+      "contract": "Actual debugger modal Help at2,2: body/outside/titlecol8 clicks keep dialog open, topic column still selects Function, top-left close span col3 closes and right edgecol5 closes after exact Keys reopen. Resume writes expected locals and source bytes unchanged. Bounded Help dialog only, not every modal/caller/close coordinate/allwindows/terminal/Windows; PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }
