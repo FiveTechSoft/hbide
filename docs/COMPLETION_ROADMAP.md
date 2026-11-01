@@ -66,21 +66,20 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre17:29 Q313: candidato focal C60,
-source3152ffc3b1ac0b4f2008c7c36ab35119773e616f,
-bin1a58f4d1ee249fa29aef560810ed1a1ba66b7f52280ac5bd8ae5e92005e72908.
-Q311Cut y Q312Delete/Backspace seleccionando líneas completas idénticas eliminan
-BPretirado y conservan endpoint superviviente con Undo/Redo. C59baseline1PASS3FAIL;
-C60cincomodosPTY27checks+BPpolicyprobe PASS, modelos161EOL/210repaint y par
-nativo1202x762 inspeccionado. C58intermedio arregló modelo pero dejó gutterstale,
-3PASS1FAIL retenido y corregidoDisplay antes de C59finalCut. Enter/typeover intactos.
-Q31337modelos GTSTD fresh del sourcee61606bad8173457b8d6a5141cd0ce2cc61b8fa1
-limpio PASS. No37modosIDE ni certificados del binarioC60; globalVM/inputhook
-caracterizan límites. Q303/Q304/Q307anclas y Q299/Q300TEXT conservan ledgers.
-C52identificado fuente90e6d102c19227322accc16d58af294162e0fa17,
-bin01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696:
-About/catálogoQ297/ldd/8smokes/5PTY34checks PASS, no heredados aC60.
-Q314docs posteriores no embebidos en C60 ni C52. No sumar fuentes/binarios
+Corte 1 noviembre17:43 Q318: candidato focal C62,
+sourcea9b21dc9e0846a00825afe2fdf4f67e5134c07f1,
+bin4d537aeb46c86053a443c2311b53716762756d42131dc1d75caf2011c1d41584.
+Q316CtrlT con rango activo elimina sólo selección y no palabra tras cursor;
+limpiaMARK y conserva Undo/Redo/typingposterior. C61baseline1PASS3FAIL;
+C62cincoPTY29checks y modelo13PASS, par nativo1202x762 inspeccionado. Modelo
+inicial12PASS1FAIL por overstrikefixture, corregidoinsertmode y retenido.
+Q317arnés postexport16checksreverse/TAB/UTF8/wholelineBP PASS, sin producto nuevo.
+Q31837modelos GTSTD fresh del sourcedd9b373 limpioPASS. No37modosIDE ni
+certificados del binarioC62; globalVM/inputhook caracterizan límites.
+C61identificado fuentef63e189288ae03122f892e0edccefc4129452503,
+bine0399cb224f06c707b228d5d3291e3957a81bccd22278de355ac02f00e325c43:
+About/catálogoQ314/ldd/8smokes/6BPmodos32checks PASS, no heredados aC62.
+Q319docs posteriores no embebidos en C62 ni C61. No sumar fuentes/binarios
 como matriz. Sin fullpreprocessor/customstream/navcontinuation/Windows/release/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
@@ -1073,3 +1072,15 @@ inspeccionados. Recibos linux-cut-identical-bp-q311.json y
 linux-selection-delete-identical-bp-q312.json. Enter/typeover no modificados.
 Q31337modelosGTSTD fuentee61606b limpioPASS, recibo linux-model-baseline-q313.json.
 Q314aceptación/inventario/catálogo actualizados. No rebuild sólo docs/matriz/Windows/hito.
+
+### Seguimiento Q315-Q319 (1 noviembre 2026)
+
+Q315C61 exportf63e189/bin e0399cb224f06c707b228d5d3291e3957a81bccd22278de355ac02f00e325c43,
+8smokes/6modosBP32checksPASS, About/docs34/ldd mismoexport, sin nueva matriz.
+Recibo linux-clean-candidate-q315.json, avisos/licencias pendientes. Q316CtrlT
+con rango borraba otra palabra y dejabaMARK; baseline1PASS3FAIL, C62cincoPTY29checks,
+modelo13PASS/par nativo completo. Fixturemodelooverstrike12PASS1FAIL conservada,
+insertmodecorrige. Q317postexportreverse/TAB/UTF8/wholelineBP16checksPASS.
+Recibos linux-delete-word-selection-q316.json y linux-delete-word-selection-guards-q317.json.
+Q31837modelosGTSTD sourcedd9b373 limpioPASS, recibo linux-model-baseline-q318.json.
+Q319aceptación/inventario/catálogo reconciliados, no rebuild sólo docs ni Windows/hito.

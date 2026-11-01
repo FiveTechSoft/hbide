@@ -2863,5 +2863,13 @@
       "test_editor_eol.prg"
     ],
     "contract": "Whole-line selected Delete/Backspace, endpoints at text column1, drops removed instruction BP and retains surviving endpoint identity through Undo/Redo. Existing drop/noUndoResurrection policy unchanged; Enter/typeover not covered."
+  },
+  "delete_word_selection": {
+    "tests": [
+      "test_delete_word_selection_pty.py",
+      "test_delete_word_columns.prg",
+      "test_selection_delete_identical_bp_pty.py"
+    ],
+    "contract": "CtrlT with active selection deletes only selected range, clears mark, retains Undo/Redo and allows following typing at start. Reverse/TAB/UTF8 ranges and whole-line deleted BP guards verified separately. No-selection word deletion unchanged."
   }
 }
