@@ -1,0 +1,18 @@
+{
+  "scope": "Q480 C90 paired freeinput mouse boundaries and actual native before-after pixels",
+  "source": "6678e43385060fb018065ec0b842f00e604e44d2",
+  "binary_sha256": "28e836faac4040ac64737a9cccfd9d5a8d3de60cbdfe9a0d4a3a23f5757ccb7d",
+  "pairs_log": "PASS Open requested fixture\nPASS Button press alone keeps Find active\nPASS Button press outside release does not activate\nPASS Outside press button release does not activate\nPASS OK press Cancel release does not activate\nPASS Unpaired Cancel release does not activate\nPASS Same-button pair finally closes Find\nPASS Cross-boundary events leave source exact\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-dz6w3tra\n",
+  "visual": {
+    "paths": [
+      "/downloads/hbide-q478-find-cancel-c88.png",
+      "/downloads/hbide-q478-find-cancel-c90.png"
+    ],
+    "inspected": "Actual1202x762 native screenshots: same direct Cancel click while Find input active leaves modal C88; C90 closes cleanly restoring source, complete lowerborders/status.",
+    "hashes": {
+      "hbide-q478-find-cancel-c88.png": "9a667e70e219403eb3d92169b3371a8a623735f275f51fc9f92752a8fd07d222",
+      "hbide-q478-find-cancel-c90.png": "3812e435a2eaa78e43cb7a6bbb3328688c11b38b979b1c67c69a7e784ebda018"
+    }
+  },
+  "limits": "Find8pairededges only, no arbitrary mouse/UTF8/pixels allconsumers/Windows/fullmatrix/license/hito."
+}
