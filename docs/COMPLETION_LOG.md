@@ -6002,3 +6002,27 @@ PTYsemántica/JSON no píxeles. Cada modo confirmó binC87intacto
 fuentee84d41e1d57f35aa1b42fe538b4ab11aa598f6fe. Receipts por Q420-Q425.
 Q426docs/catálogo posteriores no embebidos C87, sin rebuild por docs.
 No nuevos píxeles/modelos/matrizcompleta/Windows/install/licencias/hito.
+
+### Q427-Q433 (1 noviembre 2026): procedencia factual y editor C87
+
+Q427comparación local Harbour694428e limpio:14compiledvendored,4idénticos/
+10difieren fuera de avisos iniciales idénticos, sin cambios desdeQ353.
+en.txt idéntico; dbgscript.prg helper local sin mismo nombre upstream. Copia
+LICENSE.upstream.txt exacta; inventarioHBP28fuentes:14referencias LICENSE raíz
+faltantes/14sinheaderGPLdetectado. Esto no decide derechos ni licencia.
+Q428READMEhbdebug corrige afirmación obsoleta de sólo2archivosmodificados/
+restobyteexact. Commitcomparación no se presenta como revisiónoriginalimport.
+Licencia de código propio/modificaciones, excepción y paquete siguen abiertos.
+Q429ocho toolingguardgroups858582dPASS separados del producto.
+Q430cincoSave/ConflictmodesC87PASS: SaveAllparcial, SaveAsfailureidentity/F2,
+colisiónSaveAsrechazada+killrestartdosdocsseparadosbyteexact, SaveAllCancel/
+Reloadpreservanexterno/backupysinfalsecount. Q431cincoReplace33checksPASS:
+spaces/trailing/cancel, identitycleanclose, nochange selección preservada,
+replace limpia staleSelection, historia aislada antes/después.
+Q432tresFind21checksPASS: menú/F5/Repeat/wrap consumen selección al éxito,
+Cancel/notfound conservan selección y Undo exacto.
+Cada modo producto confirmó C87fuentee84d41e1d57f35aa1b42fe538b4ab11aa598f6fe,
+bin a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48
+intacto. Receipts por Q427/Q429-Q432. Sin nuevos modelos/píxeles/matrizcompleta/
+Windows/install/licencias/hito. Q433docs/catálogo posteriores no embebidosC87,
+sin rebuild por docs; no cambiosCP/casefold/toolchain/políticas pendientes.
