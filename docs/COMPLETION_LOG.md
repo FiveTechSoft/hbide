@@ -5571,3 +5571,12 @@ marcador hasta expulsarlo, Undo agotado no falso clean y nuevo save lo
 restablece. No se encontró defecto ni cambió producto. Binario GTSTD
 propio, no modo de C32 ni PTY/píxeles/Windows/matriz/hito.
 Evidencia: docs/evidence/linux-saved-history-model-q251.json.
+
+### Q252 (1 noviembre 2026): catálogo offline y enlaces de aceptación
+
+Detectado --check stale tras nuevas notasQ247-Q251: se regenera ayuda
+embebida desde34Markdown y se enlazan tests Undo/Redo/SaveAll nuevos.
+Los binariosC31/C32 anteriores no incorporan estas notas nuevas; no se
+reescribe su evidencia ni se les atribuye catálogo actualizado. Guardas
+y comprobación exacta registradas en linux-offline-catalogue-q252.json.
+Sin producto/PTY/modelo/píxeles/Windows/hito nuevo.
