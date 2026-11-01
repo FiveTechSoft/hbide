@@ -1,0 +1,9 @@
+{
+  "candidate": "C91",
+  "source": "a0e87553d3a05138583d6831c3a49a34ff652d58",
+  "binary_sha256": "2bd8ffa509e6fec8589b338e9683193d9ef811ee285c01020af175217f0fe9b8",
+  "test_sha256": "d5db171099cf57b6d2ba9c81ebad6b18e4a871724a7cd50cfa02e63b21993a7e",
+  "final": "PASS Project opens source desktop\nPASS Real GCC error and warning list exact file lines\nPASS Two real diagnostics counted\nPASS Jump opens exact colon-bearing source\nPASS Window Messages opens actual compiler picker\nPASS Outside Messages clicks keep first diagnostic target\nPASS Interior Messages click jumps exact second diagnostic\nPASS Diagnostic picker leaves source bytes unchanged\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-fe08xzul\n",
+  "scope": "Real GCC -fsyntax-only emits warning line2/error line3 from colon-bearing file; project Enter first warning then Window Messages shared ListPick outside/borders ignore row3, interior edge selects exact error row3; source bytes unchanged",
+  "limits": "Not all diagnostics/columns/MessageList sizes/DBL/fullmatrix/pixels/Windows/license"
+}
