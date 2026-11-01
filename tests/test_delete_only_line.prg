@@ -45,6 +45,17 @@ procedure Main()
  Check('next Undo restores typed line',o:GetText()=='Xalpha')
  o:Undo()
  Check('third Undo returns clean original',o:GetText()=='alpha'.and.!o:Changed())
+ o:LoadText('instruction')
+ o:aBPs:={1}
+ o:DeleteLine()
+ Check('sole instruction delete drops BP',Empty(o:aBPs))
+ o:Undo()
+ Check('text Undo cannot restore removed BP',Empty(o:aBPs).and.o:GetText()=='instruction')
+ o:Redo()
+ Check('text Redo keeps BP absent',Empty(o:aBPs).and.o:GetText()=='')
+ o:aBPs:={1}
+ o:DeleteLine()
+ Check('empty no-op keeps deliberate empty-line BP',Len(o:aBPs)==1)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

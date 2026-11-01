@@ -232,6 +232,10 @@ METHOD DeleteLine() CLASS HBSrcEdit
          // Keep one editable line, as HBEditor does for its final line.
          ::aText[ 1 ]:cText := ""
          ::aText[ 1 ]:lSoftCR := .F.
+         // Net line count stays one, so AdjustBPs cannot see this explicit
+         // instruction deletion. Keep the existing DeleteLine policy:
+         // drop its breakpoint, including across later text Undo/Redo.
+         ::aBPs := {}
       endif
       ATail( ::aText ):cEol := ""
       ::RecordEdit( aBefore, .T. )
