@@ -187,7 +187,7 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertNotIn('acceptance',self.routes[0])
     def test_ctrl_g_delete_identity_route_linked(self):
         linked=[r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance' in r]
-        self.assertEqual(len(linked),10)
+        self.assertEqual(len(linked),11)
         row=next(r for r in linked if r['acceptance_id']=='IDE-KEY-GOTOFUNCTION-CTRL-G')
         self.assertEqual(row['source'],'hbide.prg')
         self.assertIn('hb_keyExt( nKey ) != HB_KX_DEL',row['condition'])
@@ -247,6 +247,14 @@ class DispatchAcceptance(unittest.TestCase):
             self.assertIn('parent menu-closed guard remains separate',row['acceptance']['contract'])
             self.assertIn('Not all diagnostic kinds/files',row['acceptance']['contract'])
         self.assertIn('test_message_selection_pty.py',linked['IDE-KEY-NEXT-MESSAGE-ALT-F8']['acceptance']['tests'])
+
+    def test_alt_zero_windowlist_route_bounded(self):
+        row=next(r for r in audit.link_dispatch_contracts(self.routes,self.specs) if r.get('acceptance_id')=='IDE-KEY-WINDOWLIST-ALT-0')
+        self.assertEqual(row['source'],'hbide.prg')
+        self.assertEqual(row['condition'],'case nKeyStd == K_ALT_0')
+        self.assertEqual(row['acceptance']['tests'],['test_nav_pty.py','test_multidoc_pty.py'])
+        self.assertIn('Parent menu-closed guard remains separate',row['acceptance']['contract'])
+        self.assertIn('not all filter inputs/empty or huge lists',row['acceptance']['contract'])
 
     def test_missing_route_fails_closed(self):
         broken={k:dict(v,condition='case nKey == K_NONEXISTENT') for k,v in self.specs.items()}

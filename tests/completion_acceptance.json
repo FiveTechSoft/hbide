@@ -2047,6 +2047,16 @@
         "test_nav_pty.py"
       ],
       "contract": "Actual Alt+F7 navigates backward through diagnostic entries and wraps on bounded three-diagnostic fixture. Exact source/context/condition link; parent menu-closed guard remains separate. Not all diagnostic kinds/files, all terminal encodings, menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger."
+    },
+    "IDE-KEY-WINDOWLIST-ALT-0": {
+      "source": "hbide.prg",
+      "context": "METHOD Activate(",
+      "condition": "case nKeyStd == K_ALT_0",
+      "tests": [
+        "test_nav_pty.py",
+        "test_multidoc_pty.py"
+      ],
+      "contract": "Actual Alt+0 lists named open documents, marks dirty buffer, filters and selects another document. Multi-document PTY checks text/selection/Undo and SaveAs identity isolation across document switches. Parent menu-closed guard remains separate; bounded fixtures, not all filter inputs/empty or huge lists/terminal encodings/menus-open states/Windows. Link is not runtime PASS; inspect exact source/hash ledger."
     }
   }
 }
