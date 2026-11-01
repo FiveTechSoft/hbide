@@ -165,6 +165,10 @@ procedure Main()
  Check(Len(a)==1,'DECLARED METHOD requires explicit owner',@nPass,@nFail)
  a:=HBIDE_ScanProcs('DECLARED FUNCTION Ping() CLASS Demo'+hb_eol()+'DECLARED METHOD Ping() CLASS Demo')
  Check(Empty(a),'unsupported DECLARED forms stay excluded',@nPass,@nFail)
+ a:=HBIDE_ScanProcs(Chr(239)+Chr(187)+Chr(191)+'procedure Main()'+Chr(13)+Chr(10)+'return')
+ Check(Len(a)==1.and.a[1,1]=='Main'.and.a[1,3]==1,'initial raw UTF8 BOM ignored only for navigation',@nPass,@nFail)
+ a:=HBIDE_ScanProcs('procedure First()'+hb_eol()+Chr(239)+Chr(187)+Chr(191)+'procedure Hidden()')
+ Check(Len(a)==1.and.a[1,1]=='First','embedded BOM not silently removed from source',@nPass,@nFail)
  ? 'TOTAL',nPass,'PASS',nFail,'FAIL'
  ErrorLevel(iif(nFail==0,0,1))
 return

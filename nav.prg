@@ -13,6 +13,11 @@ FUNCTION HBIDE_ScanProcs( cText )
    LOCAL aOut := {}, aLines, cLine, cL, nLine := 0, lBlock := .F., lDump := .F., lText := .F., cBlockContext := ""
    LOCAL aTok, cT1, cT2, cName, cKind, cCls, cPending := "", nDeclLine := 0, nSourceLine, cModifier, cLastClass := "", lClassBody := .F., lDeclared
 
+   // Raw lossless UTF-8 view can retain its BOM in the editor buffer.
+   // Ignore only the initial signature in this analysis copy, never source bytes.
+   IF Left( cText, 3 ) == Chr(239) + Chr(187) + Chr(191)
+      cText := SubStr( cText, 4 )
+   ENDIF
    cText := StrTran( StrTran( cText, Chr( 13 ) + Chr( 10 ), Chr( 10 ) ), Chr( 13 ), Chr( 10 ) )
    aLines := hb_ATokens( cText, Chr( 10 ) )
    FOR EACH cLine IN aLines
