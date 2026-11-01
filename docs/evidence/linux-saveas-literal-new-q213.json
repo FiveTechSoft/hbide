@@ -1,0 +1,172 @@
+{
+  "scope": "Linux literal absent SaveAs existence check, no phantom overwrite. Not Windows/fullmatrix/M1closure.",
+  "build": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "c87004f3c7927f0a85afaf72ea972db835b9f3b4",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "c2354b0c72dad204b96eb0edc6795ac7ab47d506a78820cba64cf3a4cf9dd3db",
+    "binary_sha256": "bf0093a4029eb8aac4aa51d26f68c437d5445205c6dbc3e55d6b55d1720d103e",
+    "built_at": 1793525902.5318146
+  },
+  "runs": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c87004f3c7927f0a85afaf72ea972db835b9f3b4",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "c2354b0c72dad204b96eb0edc6795ac7ab47d506a78820cba64cf3a4cf9dd3db",
+      "binary_sha256": "bf0093a4029eb8aac4aa51d26f68c437d5445205c6dbc3e55d6b55d1720d103e",
+      "build_receipt": "/tmp/hbide-q213/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5b72f0ba805e59362383afbe8daba86be654294ac06850ae80b09cc8a4dade0f",
+      "case": "saveas-literal-new",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_saveas_literal_new_pty.py"
+      ],
+      "started": 1793525902.5320845,
+      "seconds": 9.94,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8b1a92b1ba059d27dcbf5510950c593c2ecc3e65c2c5c712a6f82c0ee34672cb",
+      "log": "/tmp/hbide-q213/saveas-literal-new-1793525902532080809.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c87004f3c7927f0a85afaf72ea972db835b9f3b4",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "c2354b0c72dad204b96eb0edc6795ac7ab47d506a78820cba64cf3a4cf9dd3db",
+      "binary_sha256": "bf0093a4029eb8aac4aa51d26f68c437d5445205c6dbc3e55d6b55d1720d103e",
+      "build_receipt": "/tmp/hbide-q213/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5b72f0ba805e59362383afbe8daba86be654294ac06850ae80b09cc8a4dade0f",
+      "case": "saveas-overwrite-accept",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_saveas_overwrite_accept_pty.py"
+      ],
+      "started": 1793525912.4759698,
+      "seconds": 10.14,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "8e4c7d3ae75239cdccf2b4ede8ee7b5603b4599fd579f06444062fb7030eae36",
+      "log": "/tmp/hbide-q213/saveas-overwrite-accept-1793525912475966374.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "c87004f3c7927f0a85afaf72ea972db835b9f3b4",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "c2354b0c72dad204b96eb0edc6795ac7ab47d506a78820cba64cf3a4cf9dd3db",
+      "binary_sha256": "bf0093a4029eb8aac4aa51d26f68c437d5445205c6dbc3e55d6b55d1720d103e",
+      "build_receipt": "/tmp/hbide-q213/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "5b72f0ba805e59362383afbe8daba86be654294ac06850ae80b09cc8a4dade0f",
+      "case": "saveas-overwrite-cancel",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_saveas_overwrite_cancel_pty.py",
+        "--dirty"
+      ],
+      "started": 1793525922.6195533,
+      "seconds": 12.4,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "20fa50534fd6bed9040b6ba913567658ce797d15f95bf3a3ed7ffc044a43d1f1",
+      "log": "/tmp/hbide-q213/saveas-overwrite-cancel-1793525922619550355.log"
+    }
+  ],
+  "logs": {
+    "saveas-literal-new-1793525902532080809.log": "PASS absent literal wildcard target saves without phantom overwrite prompt; sibling/backup/journal/identity exact\n",
+    "saveas-overwrite-cancel-1793525922619550355.log": "PASS SaveAs overwrite Cancel retains source identity/journal and destination bytes\n",
+    "saveas-overwrite-accept-1793525912475966374.log": "PASS accepted SaveAs backs up destination bytes, retires journal, F2 uses new identity\n"
+  },
+  "before_failure": "Traceback (most recent call last):\n  File \"/home/sandbox/hbide/tests/test_saveas_literal_new_pty.py\", line 151, in <module>\n    assert 'File exists:' not in scr.text(),scr.text()\nAssertionError:  File  Edit  Project  Window  Run  Options  Help\nl[\ufffd]qqqqqqqqqqqqqqqqq /tmp/hbide-df-work-3dejys_x/fn.prg qqqqqqqqqqqqqqqqqqqqqqk\nx   1DIRTYprocedure Main()                                                     x\nx   2   local n := 1                                                           x\nx   3   n := n + 3                                                             x\nx   4   n := n + 4                                                             x\nx   5   n := n + 5                                                             x\nx   6   n := n + 6                                                             x\nx   7   n := n + 7                                                             x\nx   8   n l[\ufffd]qqqqqqqqqqqqqqqqqqqqq Message qqqqqqqqqqqqqqqqqqqqqqqqqk         x\nx   9   n x                                                          x         x\nx  10   n x  File exists: /tmp/hbide-df-work-3dejys_x/literal*.prg   x         x\nx  11   n x                                                          x         x\nx  12   n x                   Overwrite  \ufffd   Cancel  \ufffd               x         x\nx  13   n x                  \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd  \ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd\ufffd               x         x\nx  14   n mqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj         x\nx  15   n := n + 15                                                            x\nx  16   n := n + 16                                                            x\nx  17   n := n + 17                                                            x\nx  18   n := n + 18                                                            x\nx  19   n := n + 19                                                            x\nx  20   n := n + 20                                                            x\nx  21   n := n + 21                                                            x\nmqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqj\n  INS                                                         row: 1, col: 6\n",
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "c87004f3c7927f0a85afaf72ea972db835b9f3b4",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "43182af0c52fd32bd770bc55018d76e5c36730aa0b248150dc09f6f7fb348d08",
+    "started": 1793525953.872489,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "test_foreign_root_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "1e97d47fd21cd837401080f0cff716b3666d9706771eddb62f437bd34870f41a",
+        "log": "/tmp/hbide-guards-we5x4d5u/test_foreign_root_guard.py.log",
+        "seconds": 0.22
+      },
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-guards-we5x4d5u/test_linux_rebuild_guard.py.log",
+        "seconds": 0.217
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-guards-we5x4d5u/test_completion_guards.py.log",
+        "seconds": 0.215
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-guards-we5x4d5u/test_build_receipt.py.log",
+        "seconds": 0.215
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "e6f79e6fa0af285676b2ab2be7e585568186ed37e369759008f959635c3f6a81",
+        "log": "/tmp/hbide-guards-we5x4d5u/test_completion_inventory.py.log",
+        "seconds": 0.768
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "62951fcdcd3c708f1bbf433cd97d6d160c8736d1fe628e89e24284b9dadc33a3",
+        "log": "/tmp/hbide-guards-we5x4d5u/test_distribution_notices.py.log",
+        "seconds": 0.215
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-guards-we5x4d5u/test_embed_help_docs.py.log",
+        "seconds": 0.215
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "748bdd859802a6cb51418e98e9ffac879a94892690e9ea7500791cc691a9f08a",
+        "log": "/tmp/hbide-guards-we5x4d5u/test_candidate_doc_preflight.py.log",
+        "seconds": 0.567
+      }
+    },
+    "ok": true,
+    "finished": 1793525956.505017
+  },
+  "visual": "Actual1202x762 literal*.prg saved editor identity correct, no phantom overwrite modal, complete borders inspected."
+}

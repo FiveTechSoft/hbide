@@ -66,6 +66,13 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte1Nov10:39: Q211metadatosliteral(TimeGet/Size) yrecreacionchecks
+literales,31modelosfreshsobre6f45c00/2PTY10checks,87guardas. Q212titulo
+inspectorcentrado y[■]arribaizquierda,4PTY28checkssobre0676a5a,dos
+capturas802x477inspeccionadas. Q213SaveAsliteralnuevo sin falsoOverwrite,
+3PTYsobre c87004f y87guardas,nativa1202x762inspeccionada. Las fuentes
+sondistintas:noheredar31modelos alultimobin ni actualizaresasclaimsC29.
+
 Q210 corrige M1: nombresPOSIXliteral* no eluden rechazoenlaces.
 Atomic56/59antes59/59despues,4PTYsobrefuente6d686ed,binarioexacto;
 no raceproof/Windows/cierreM1. M3se detienen variantes equivalentes:

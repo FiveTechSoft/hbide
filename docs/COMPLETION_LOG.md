@@ -5122,3 +5122,15 @@ bin9563d004bbf6815715859bae391b90b47b8a90717ebb0d95fa2a648bdd48fc3b.
 Dosnativas802x477inspeccionadascentradoycierrelimpio,12controlesintactos.
 34docsPASS. NoWindows/M4closure/matrizglobal.
 Evidencia: docs/evidence/linux-designer-inspector-centered-q212.json.
+
+### Q213 (1 noviembre 2026): SaveAsno pide sobrescribirarchivoausente
+
+File(cName)trataba literal*.prgausentecomopatronymostrabaFileexists
+porhermanocoincidente. AntesPTYfalla,despuescheckhb_FileExistsliteral.
+3PTYPASS:literalnuevo/siblingintacto/backupcorrecto/F2identidad/journal
+yoverwriteaceptado/canceladorealesconservados.
+Fuentec87004f3c7927f0a85afaf72ea972db835b9f3b4
+binbf0093a4029eb8aac4aa51d26f68c437d5445205c6dbc3e55d6b55d1720d103e.
+87guardas34docsPASS. Nativa1202x762inspeccionadaidentidadliteralguardada
+sinmodalfantasma,bordescompletos. SinWindows/raceproof/cierreM1/global.
+Evidencia: docs/evidence/linux-saveas-literal-new-q213.json.
