@@ -5016,3 +5016,15 @@ Sin checkout ni compilador visibles; red aislada. Este repite alcanceQ189
 sobre candidato posteriorQ196, no hereda sus PASS. Kernel/dispositivoshost,
 no VM/instalador/maquinalimpia/Windows/licencias/nuevos pixeles/hitos.
 Evidencia: docs/evidence/linux-candidate-debian12-q203.json.
+
+### Q204 (1 noviembre 2026): alternativa Harbour al hook sin argumentos
+
+Probe aislado Harbour+13checks: __dbgVMParLList recupera parametros del
+frameINKEY aunque INKEYREAD recibe0args. Distingue poll/wait/mask/NIL/
+Inkey0/argumentono numerico/Eval/GETREAD con semantica exacta delcore.
+__ACCEPTentraGTdesdeC sinframeINKEY: unknown,no se inventa poll.
+__vmNoInternals hace parametros vacios; guardasentinel propio detecta
+unavailable en amboscasos. ENTER sintetico acota lasesperas, no teclado
+real ni screenswap. Q137siguecierto sobre APIhook, no agota alternativas.
+No cambio de producto/C/ExchangeScreens/SwapOnInput/Windows/cierreM3.
+Evidencia: docs/evidence/linux-debug-input-frame-q204.json.

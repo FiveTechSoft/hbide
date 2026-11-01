@@ -1,0 +1,176 @@
+{
+  "scope": "Harbour-only frame research. Not ExchangeScreens or SwapOnInput implementation/PTY/visual/VM-wide compatibility.",
+  "source": "447621ee295aacc5dc0fc2b05c662d623e6b28c6",
+  "harbour_source": "694428e1c12f726675b19324d62167fa77d68185",
+  "sources": {
+    "tests/probes/debug_input_frame.prg": "57581efc7e3d0bb9f6e5aa5f009dbf97e89bd7c2363152b11de77aaba9c5cea3",
+    "tests/probes/check_input_frame.py": "bf26101624ebf2744c9fc1648132ae6881ca84a2dab89a8b1f47b71a0737d2a8"
+  },
+  "binary_sha256": "37339f04702d98a2acb9360286866cf78a9c22ede6f3fd3fa3b3a385d2c4adf8",
+  "build_log": "hbmk2: Processing local make script: hbmk.hbm\nHarbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling 'tests/probes/debug_input_frame.prg'...\n\n100\n\n200\n\nLines 266, Functions/Procedures 3\nGenerating C source output to '/tmp/hbmk_s39c5x.dir/debug_input_frame.c'... Done.\n",
+  "check_log": "PASS process_exit\nPASS nine_normal_two_nointernals_calls\nPASS plain_inkey_poll\nPASS timed_inkey_wait\nPASS masked_wait\nPASS nil_mask_poll\nPASS zero_arg_wait\nPASS nonnumeric_single_wait_core_semantics\nPASS eval_inkey_wait\nPASS read_get_wait\nPASS accept_C_entry_no_inkey_frame_unknown\nPASS nointernals_poll_guarded_unavailable\nPASS nointernals_wait_guarded_unavailable\n{\n  \"checks\": {\n    \"process_exit\": true,\n    \"nine_normal_two_nointernals_calls\": true,\n    \"plain_inkey_poll\": true,\n    \"timed_inkey_wait\": true,\n    \"masked_wait\": true,\n    \"nil_mask_poll\": true,\n    \"zero_arg_wait\": true,\n    \"nonnumeric_single_wait_core_semantics\": true,\n    \"eval_inkey_wait\": true,\n    \"read_get_wait\": true,\n    \"accept_C_entry_no_inkey_frame_unknown\": true,\n    \"nointernals_poll_guarded_unavailable\": true,\n    \"nointernals_wait_guarded_unavailable\": true\n  },\n  \"calls\": [\n    [\n      \"poll\",\n      [],\n      [\n        [\n          1,\n          \"(b)MAIN\"\n        ],\n        [\n          2,\n          \"INKEY\"\n        ]\n      ]\n    ],\n    [\n      \"wait\",\n      [\n        0.01\n      ],\n      [\n        [\n          1,\n          \"(b)MAIN\"\n        ],\n        [\n          2,\n          \"INKEY\"\n        ]\n      ]\n    ],\n    [\n      \"wait\",\n      [\n        0.01,\n        128\n      ],\n      [\n        [\n          1,\n          \"(b)MAIN\"\n        ],\n        [\n          2,\n          \"INKEY\"\n        ]\n      ]\n    ],\n    [\n      \"poll\",\n      [\n        null,\n        128\n      ],\n      [\n        [\n          1,\n          \"(b)MAIN\"\n        ],\n        [\n          2,\n          \"INKEY\"\n        ]\n      ]\n    ],\n    [\n      \"wait\",\n      [\n        0\n      ],\n      [\n        [\n          1,\n          \"(b)MAIN\"\n        ],\n        [\n          2,\n          \"INKEY\"\n        ]\n      ]\n    ],\n    [\n      \"wait\",\n      [\n        \"bad\"\n      ],\n      [\n        [\n          1,\n          \"(b)MAIN\"\n        ],\n        [\n          2,\n          \"INKEY\"\n        ]\n      ]\n    ],\n    [\n      \"wait\",\n      [\n        0.01\n      ],\n      [\n        [\n          1,\n          \"(b)MAIN\"\n        ],\n        [\n          2,\n          \"INKEY\"\n        ]\n      ]\n    ],\n    [\n      \"wait\",\n      [\n        0\n      ],\n      [\n        [\n          1,\n          \"(b)MAIN\"\n        ],\n        [\n          2,\n          \"INKEY\"\n        ]\n      ]\n    ],\n    [\n      \"unknown\",\n      [],\n      [\n        [\n          1,\n          \"(b)MAIN\"\n        ],\n        [\n          2,\n          \"__ACCEPT\"\n        ],\n        [\n          3,\n          \"MAIN\"\n        ]\n      ]\n    ],\n    [\n      \"unavailable\",\n      [],\n      []\n    ],\n    [\n      \"unavailable\",\n      [],\n      []\n    ]\n  ],\n  \"scope\": \"Frame research only. no screen swap; sentinel guard marks no-internals unavailable, not a poll.\"\n}\n",
+  "calls": [
+    [
+      "poll",
+      [],
+      [
+        [
+          1,
+          "(b)MAIN"
+        ],
+        [
+          2,
+          "INKEY"
+        ]
+      ]
+    ],
+    [
+      "wait",
+      [
+        0.01
+      ],
+      [
+        [
+          1,
+          "(b)MAIN"
+        ],
+        [
+          2,
+          "INKEY"
+        ]
+      ]
+    ],
+    [
+      "wait",
+      [
+        0.01,
+        128
+      ],
+      [
+        [
+          1,
+          "(b)MAIN"
+        ],
+        [
+          2,
+          "INKEY"
+        ]
+      ]
+    ],
+    [
+      "poll",
+      [
+        null,
+        128
+      ],
+      [
+        [
+          1,
+          "(b)MAIN"
+        ],
+        [
+          2,
+          "INKEY"
+        ]
+      ]
+    ],
+    [
+      "wait",
+      [
+        0
+      ],
+      [
+        [
+          1,
+          "(b)MAIN"
+        ],
+        [
+          2,
+          "INKEY"
+        ]
+      ]
+    ],
+    [
+      "wait",
+      [
+        "bad"
+      ],
+      [
+        [
+          1,
+          "(b)MAIN"
+        ],
+        [
+          2,
+          "INKEY"
+        ]
+      ]
+    ],
+    [
+      "wait",
+      [
+        0.01
+      ],
+      [
+        [
+          1,
+          "(b)MAIN"
+        ],
+        [
+          2,
+          "INKEY"
+        ]
+      ]
+    ],
+    [
+      "wait",
+      [
+        0
+      ],
+      [
+        [
+          1,
+          "(b)MAIN"
+        ],
+        [
+          2,
+          "INKEY"
+        ]
+      ]
+    ],
+    [
+      "unknown",
+      [],
+      [
+        [
+          1,
+          "(b)MAIN"
+        ],
+        [
+          2,
+          "__ACCEPT"
+        ],
+        [
+          3,
+          "MAIN"
+        ]
+      ]
+    ],
+    [
+      "unavailable",
+      [],
+      []
+    ],
+    [
+      "unavailable",
+      [],
+      []
+    ]
+  ],
+  "limitations": [
+    "__ACCEPT enters GT from C without INKEY frame: unknown not poll.",
+    "__vmNoInternals destroys params; sentinel self-check marks unavailable.",
+    "Hook injects ENTER to bound READ and __ACCEPT. Does not test real input forwarding.",
+    "Screen isolation and mutation of debugger windows remain separate."
+  ]
+}
