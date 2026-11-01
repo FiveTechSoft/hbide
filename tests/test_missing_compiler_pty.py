@@ -1,7 +1,7 @@
 """Missing compiler never launches or replaces an existing executable. Linux PTY."""
 import subprocess,hashlib,shlex
 import os,pty,sys,struct,fcntl,termios,select,time,signal,tempfile,pathlib,re
-ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
+ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=(25,80) if '--small' in sys.argv else (40,120)
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
@@ -48,8 +48,8 @@ for kind in ['autorun']:
    try:d=os.read(fd,65536)
    except OSError:break
    b+=d
-   if b'\x1b[6n' in d:os.write(fd,b'\x1b[40;1R')
-   if b'\x1b[18t' in d:os.write(fd,b'\x1b[8;40;120t')
+   if b'\x1b[6n' in d:os.write(fd,('[%d;1R'%ROWS).encode())
+   if b'\x1b[18t' in d:os.write(fd,('[8;%d;%dt'%(ROWS,COLS)).encode())
   screen.feed(b)
  def send(b,wait=.35):os.write(fd,b);pump(wait)
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
