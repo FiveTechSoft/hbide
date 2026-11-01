@@ -221,12 +221,18 @@ METHOD DeleteLine() CLASS HBSrcEdit
 
    local aBefore := ::LinesSnapshot()
 
-   if Len( ::aText ) > 1
+   if Len( ::aText ) > 1 .or. Len( ::aText[ 1 ]:cText ) > 0
       // Delete Line acts on the current line, not the marked range.
       // Old anchors may point past the line array after the deletion.
       ::ClearSelection()
       ::cClipboard = ::aText[ ::nRow ]:cText
-      ::RemoveLine( ::nRow )
+      if Len( ::aText ) > 1
+         ::RemoveLine( ::nRow )
+      else
+         // Keep one editable line, as HBEditor does for its final line.
+         ::aText[ 1 ]:cText := ""
+         ::aText[ 1 ]:lSoftCR := .F.
+      endif
       ATail( ::aText ):cEol := ""
       ::RecordEdit( aBefore )
       ::lDirty := .T.
