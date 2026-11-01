@@ -56,6 +56,7 @@ for kind in ['autorun']:
     (work/'promotion.screen').write_text(screen.text())
     check('replacement failure visible','could not replace' in screen.text())
     check('replacement failure names retained output','new executable kept at' in screen.text() and (work/'invocations').read_text().strip() in ''.join(line[29:91].strip() for line in screen.text().splitlines()))
+    check('retained output path has its own complete line',any((work/'invocations').read_text().strip() in line for line in screen.text().splitlines()))
     send(b'\r',.4)
     check('blocked destination directory untouched',(work/'missing/keep').read_bytes()==b'original directory member')
     tmp=pathlib.Path((work/'invocations').read_text().strip())
