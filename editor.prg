@@ -207,7 +207,7 @@ METHOD PasteLine() CLASS HBSrcEdit
             ::InsertLine( aLines[ n ], .F., ::nRow + n )
          endif
       next
-      ::RecordEdit( aBefore )
+      ::RecordEdit( aBefore, .T., ::nRow )
       ::lDirty := .T.
       ::GoTo( ::nRow + 1, 5 )
       ::Display()
