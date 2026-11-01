@@ -5293,3 +5293,15 @@ posiblemente interrumpido. No fallo IDE registrado; no ejecución sin reintentos
 132 escenarios distintos cotejados con plan353, normalizaciónQ223 aplicada.
 No producto nuevo/píxeles/modelos/Windows/matriz completa/cierre hitos.
 Evidencia: docs/evidence/linux-c30-project-help-blocks2527-q227.json.
+
+### Q228 (1 noviembre 2026): C30 proyectos y fuentes debugger
+
+14 escenarios adicionales PASS con C30 96d77549/export049b533: desktop
+proyecto/ratón/mensajes/selección, debugger auto/manual source read, path
+Cancel, source parcial, cleanup compilación, module/temp failures, lookup
+y lectura scripts, fuente ausente. Fixtures acotadas de rechazo/recuperación;
+no todos los fallos I/O ni implementación de toggles M3. Tests propios
+hashados/binario inalterado, sin fallos/reintentos en estos14.146 escenarios
+distintos cotejados con plan353 y normalizaciónQ223. No nuevos píxeles,
+producto/modelos/Windows/matriz completa ni cierre hitos.
+Evidencia: docs/evidence/linux-c30-debug-source-blocks2832-q228.json.

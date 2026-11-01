@@ -1,0 +1,227 @@
+{
+  "scope": "Frozen C30 bounded project and debugger source/failure paths.14additional scenarios;146distinct across blocks1..32 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "project-desktop",
+          "command": [
+            "test_project_desktop_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 29.751365900039673,
+          "test_sha256": "fb625386e5645a45fa30f022965c7c0f14689140be527b751e2469086644e65f",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-desktop.log",
+          "printed_failure": false
+        },
+        {
+          "name": "project-mouse",
+          "command": [
+            "test_project_mouse_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 11.766063928604126,
+          "test_sha256": "a58401a72f385a263687341e336abc4fd7a87969ff7e8d98e52400234fd43f9d",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-mouse.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "project-messages",
+          "command": [
+            "test_project_messages_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 23.06011176109314,
+          "test_sha256": "fb54d7fe3bb7b29ebab71979954ec63c7b57f4308a472576a7b5b8363dae0b98",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/project-messages.log",
+          "printed_failure": false
+        },
+        {
+          "name": "message-selection",
+          "command": [
+            "test_message_selection_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 18.89715552330017,
+          "test_sha256": "436211836297857137a75b47370987bcd768914c7cdd859362a214bbdf88a49d",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/message-selection.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-auto-source-read",
+          "command": [
+            "test_debug_auto_source_read_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 23.013715982437134,
+          "test_sha256": "5557a656ec9b7c8cf8ba88809c8d7d198129aa1a59023df15601ac720a2fa289",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-auto-source-read.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-source-read",
+          "command": [
+            "test_debug_source_read_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 6.953559160232544,
+          "test_sha256": "6a1b561de70cee9b9656186a17e3917cfb18d0edc3e03356826e8f7a1c6c5c50",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-source-read.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-source-path",
+          "command": [
+            "test_debug_path_cancel_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 10.200187921524048,
+          "test_sha256": "d5dcb63d6b61c2003b21e5a65d51153348776987217bfbc21fa38c691879b611",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-source-path.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-source-partial",
+          "command": [
+            "test_debug_module_failure_pty.py",
+            "source"
+          ],
+          "exit": 0,
+          "seconds": 6.3075408935546875,
+          "test_sha256": "0e872ae3bf7e13980b426d91339ae915cb174974456c8ee8f54d7d162f0a4d51",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-source-partial.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-compile-cleanup",
+          "command": [
+            "test_debug_module_failure_pty.py",
+            "compile"
+          ],
+          "exit": 0,
+          "seconds": 6.308714389801025,
+          "test_sha256": "0e872ae3bf7e13980b426d91339ae915cb174974456c8ee8f54d7d162f0a4d51",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-compile-cleanup.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-module-failure",
+          "command": [
+            "test_debug_module_failure_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 6.287461042404175,
+          "test_sha256": "0e872ae3bf7e13980b426d91339ae915cb174974456c8ee8f54d7d162f0a4d51",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-module-failure.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "debug-temp-failure",
+          "command": [
+            "test_debug_temp_failure_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 6.905815839767456,
+          "test_sha256": "99e883ea4603d60aa95f72bf38f67c847ad9952a0920a29782e5d321f8fc718e",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-temp-failure.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-script-lookup",
+          "command": [
+            "test_debug_script_lookup_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 9.154723644256592,
+          "test_sha256": "0d592a81f13d56593378107301d59c8d36e885eff16309d9b2c7579f455dd79a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-script-lookup.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-script-read",
+          "command": [
+            "test_debug_script_read_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 8.746974229812622,
+          "test_sha256": "98fa6beab15b425743b78d2ef5f05af4a8d1d90188943df8a7c9371cfa9e395b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-script-read.log",
+          "printed_failure": false
+        },
+        {
+          "name": "debug-missing-source",
+          "command": [
+            "test_debug_missing_source_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 23.010310649871826,
+          "test_sha256": "2b7d687e2d0a046f7dc3edb45a50fcf02150ec220b67daf2a298335aa248eb9f",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/debug-missing-source.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 146,
+  "logs": {
+    "project-desktop.log": "PASS boot caption noname\nPASS demo1 open (caption)\nPASS project dialog opened\nPASS dirty named buffer prompts before desktop\nPASS cancel keeps editor (no desktop)\nPASS prompt again via menu\nPASS desktop opens after Save\nPASS Save wrote the dirty buffer to disk\nPASS missing project source marked\nPASS externally created source becomes available\nPASS externally removed source marked missing again\nPASS Enter jumps to source doc\nPASS desktop closed after jump\nPASS desktop reopens clean (no prompt)\nPASS second source opens as its own doc\nPASS Ctrl+F6 back to demo1\nPASS messages view shows no-diagnostics state\nPASS new noname doc current\nPASS noname dirty content visible\nPASS desktop opens directly with only a dirty noname (exclusion)\nPASS no dirty prompt for noname\nPASS build really runs with dirty noname in memory\nPASS noname buffer intact after desktop+build\nPASS IDE exits clean\nTOTAL 24 PASS 0 FAIL\n",
+    "project-mouse.log": "PASS Project opens Sources\nPASS doubleclick header does not open source\nPASS single click selects without opening\nPASS Enter opens clicked exact file\nPASS doubleclick scrolled source opens exact file\nPASS doubleclick missing source stays desktop\nPASS Messages empty has no diagnostics\nPASS doubleclick empty Messages does not open file\nPASS real failed build parsed bad source\nPASS doubleclick diagnostic opens correct file row\nPASS all source bytes unchanged\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-mbigb5x6\n",
+    "project-messages.log": "PASS boot caption noname\nPASS desktop opens after project open (no dirty docs)\nPASS real build fails (exit shown)\nPASS Messages lists parsed diagnostic bad1.prg:3\nPASS diagnostic jump opens bad1.prg\nPASS cursor lands on line 3\nPASS cursor lands on column 1\nPASS desktop closed after jump\nPASS buffer loaded clean from disk\nPASS cursor moved to line 1\nPASS buffer now dirty with z edit visible\nPASS jump returns to the already-open bad1.prg\nPASS dirty buffer preserved (z edit survives)\nPASS cursor back on line 3\nPASS disk file untouched (no silent save)\nPASS second source opens as its own doc\nPASS exactly two docs cycle (no duplicate)\nPASS IDE exits clean\nTOTAL 18 PASS 0 FAIL\n",
+    "message-selection.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump lands at real GCC row2 column9\nPASS Next diagnostic on same buffer consumes stale range\nPASS Undo diagnostic insertion exact\nPASS Project source jump on same buffer consumes stale range\nPASS Undo project source insertion exact\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-qu7bm_dr\n",
+    "debug-auto-source-read.log": "PASS F9 and F7 with unreadable source preserve debugger and evaluator\nPASS navigation display and explicit BP commands with unreadable source remain usable\nPASS source reopens directly without intermediate file and valid breakpoint stops VM\nPASS debugger exits to IDE\n",
+    "debug-source-read.log": "PASS unreadable explicit source keeps prior source visible and reports failure\nPASS unreadable PPO keeps prior code identity and view\nPASS readable PPO switch still works\n",
+    "debug-source-path.log": "PASS cancelling source path edit keeps original setting\nPASS source lookup uses accepted directory with spaces\nPASS accepting source path edit persists new setting\n",
+    "debug-source-partial.log": "PASS debug failure mode source: notice, no debugger, source intact, temp cleanup, usable editor\n",
+    "debug-compile-cleanup.log": "PASS debug failure mode compile: notice, no debugger, source intact, temp cleanup, usable editor\n",
+    "debug-module-failure.log": "PASS debug failure mode module: notice, no debugger, source intact, temp cleanup, usable editor\n",
+    "debug-temp-failure.log": "PASS failed debug temp source creation visible, source intact, later debug usable\n",
+    "debug-script-lookup.log": "PASS unreadable cwd does not fall through; PATH init, INPUT default extension, Restore PATH, cwd precedence effects\n",
+    "debug-script-read.log": "PASS unreadable INPUT/Restore report failure; readable script still executes\n",
+    "debug-missing-source.log": "PASS F9 and F7 without source preserve debugger and evaluator\nPASS navigation display and explicit BP commands without source remain usable\nPASS source reopens directly without intermediate file and valid breakpoint stops VM\nPASS debugger exits to IDE\n"
+  }
+}
