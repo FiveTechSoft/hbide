@@ -1,0 +1,55 @@
+{
+  "scope": "Q368 virtual empty selection regression fix, not clipboard policy change",
+  "candidate": {
+    "source": "528bbd2d4df6cf6468cd7a8e38c2fde389a02dbb",
+    "build_exit": 0,
+    "scope": "C76 focal only, not official builder/fullmatrix/Windows",
+    "binary_sha256": "2946f5215a2ba37e186ea2da468333f8bdad09b72a8c4616a8b01e74fc383b39"
+  },
+  "baseline": {
+    "Copy": "PASS Open requested fixture\nPASS Copy virtual range has no source bytes\nFAIL Copy virtual empty range Paste remains no-op\nPASS Undo after virtual Copy Paste remains no-op\nTOTAL 3 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-6i959mwg\n",
+    "Cut": "PASS Open requested fixture\nPASS Cut virtual range has no source bytes\nFAIL Cut virtual empty range Paste remains no-op\nPASS Undo after virtual Cut Paste remains no-op\nTOTAL 3 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-ebvvuyep\n"
+  },
+  "fixed": {
+    "Copy": "PASS Open requested fixture\nPASS Copy virtual range has no source bytes\nPASS Copy virtual empty range Paste remains no-op\nPASS Undo after virtual Copy Paste remains no-op\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-t9524xvj\n",
+    "Cut": "PASS Open requested fixture\nPASS Cut virtual range has no source bytes\nPASS Cut virtual empty range Paste remains no-op\nPASS Undo after virtual Cut Paste remains no-op\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ac9hcwyg\n"
+  },
+  "regressions": {
+    "copy": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Paste copied empty line as a real third line\nPASS Undo empty-line paste exact\nPASS Redo empty-line paste exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-9gsol2h2\n"
+    },
+    "delete": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Delete blank line removes only boundary\nPASS Deleted blank line is pasteable\nPASS Undo deleted blank-line paste exact\nPASS Redo deleted blank-line paste exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-yqsy4p98\n"
+    },
+    "cut": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Cut empty line removes selected boundary\nPASS Undo Cut restores original EOL\nPASS Cut boundary clipboard retains two empty fragments across documents\nPASS Destination Undo exact after empty Cut paste\nPASS Destination Redo exact after empty Cut paste\nPASS Source unchanged by destination Paste\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-x5jrj85l\n"
+    },
+    "absent": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Absent initial Paste preserves exact original\nPASS No-op Paste added no destructive Undo\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-0bz2wyot\n"
+    },
+    "test_clipboard_block_multidoc_pty.py": {
+      "exit": 0,
+      "log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-yhu_9i7g\n"
+    },
+    "test_virtual_selection_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Cut wholly past EOL closes without false prompt\nPASS Delete wholly past EOL closes without false prompt\nPASS Backspace wholly past EOL closes without false prompt\nPASS Virtual Cut preserves earlier redo\nPASS Undo earlier edit exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ck1j0lqy\n"
+    }
+  },
+  "model": "204PASS0FAIL separate GTSTD source528bbd2; not IDE certification",
+  "fixture_attempt": "Initial combined Copy/Cut fixture polluted second scenario after source Undo cursor change; retained baseline.log, independent action invocations used for diagnosis",
+  "visual": {
+    "before": "/downloads/hbide-q368-virtual-before.png",
+    "after": "/downloads/hbide-q368-virtual-c76.png",
+    "inspection": "Complete1202x762 frames including lower border/status inspected; C75spurious line3 reachable after Copyvirtual/Paste; C76 remains row2col9 without inserted line. Byte save/Undo checked by independent PTY."
+  },
+  "limitations": [
+    "C76 focal direct build only; C75 remains latest official clean builder candidate",
+    "No full matrix inherited/Windows/install/license/milestone closure",
+    "No change to empty CopyLine/DeleteLine or Cut physical boundary semantics"
+  ]
+}
