@@ -5833,3 +5833,23 @@ Builderstrip-debug/Aboutrevision/docs34byteexact/ldd/8smokes y cuatro modosnav
 C77/C78; C30único planhistóricocompleto. Q385docs/catálogo posteriores no embebidos,
 no nuevo producto/buildIDE ni cierreWindows/install/licencias/M5/M6/políticas.
 Receipts linux-nav-raw-bom-q382.json y linux-clean-candidate-q384.json.
+
+### Q386-Q391 (1 noviembre 2026): END CLASS y candidato C81
+
+Q38637modelosGTSTD fresh724da0cPASS separados. Q387fixture compiler-valid
+CREATE CLASS/END CLASS omitía METHODimplícito: C79baseline1PASS2FAIL.
+Equivalencia terminador END CLASS/ENDCLASS restaura contexto; C80focal3/0,
+cuatro navregresiones12checks y lexical123/0separado. Par nativo1202x762
+completo inspeccionado: Demo:Pingline5 aparece sin listar miembrodeclarante.
+Q388cuatrocontextosLOCKED/TAB/typed/latestclass hblibexit0+12PTYchecksC80PASS.
+Q389C81 limpio identificado fuente299a1047a050517342b0aa4ebfb9170095e0388b,
+bin2309304ec2ed54d6f005ef5afb6cbc0649d03cdaeec3f7322e6e9592303d059a.
+Builderstrip-debug/Aboutrevision/docs34byteexact/ldd/8smokes y cuatro navmodos
+12checksPASS binintacto. Último candidato identificado, sin heredar matrices,
+modelos/píxeles; C30único planhistóricocompleto. Q390compactación temporal
+reversible de8archives con SHAdecomprimido verificado, sin perder árboles,
+binarios/logs/manifests/evidencia. No cambio de producto ni distribución.
+Q391docs/catálogo posteriores no embebidos en C81, sin rebuild por docs.
+M5/M6/Windows/install/licencias y políticas pendientes intactos.
+Receipts linux-nav-end-class-q387.json, linux-nav-end-class-contexts-q388.json,
+linux-clean-candidate-q389.json.
