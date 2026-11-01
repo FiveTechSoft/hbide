@@ -1566,6 +1566,9 @@ METHOD ReloadFromDisk() CLASS HbIde
    if ::oEditor:LoadFile( ::oEditor:cFile ) == NIL
       return .F.
    endif
+   // Successful Reload explicitly drops unsaved text, including any
+   // associated old-session recovery generation. Failed reads keep both.
+   ::oEditor:JournalDiscard()
    nRow := Min( nRow, ::oEditor:LineCount() )
    nCol := Min( nCol, ::oEditor:LineLen( nRow ) + 5 )   // gutter-based coords (K_END lands on len+5)
    ::oEditor:Goto( nRow, nCol )
