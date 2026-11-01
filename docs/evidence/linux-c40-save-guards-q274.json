@@ -1,0 +1,31 @@
+{
+  "source": "3a2424ffecb2f95e7a14d68c23f969739cfcb928",
+  "binary_sha256": "c954b10402947d1daa4c3e32c081e6dd7c52bf9e95d9ecece520b9cd6aa57b54",
+  "scope": "C40 four frozen SaveAs/SaveAll guards. Failed retarget preserves identity; collision refusal plus kill/recovery preserves two buffers; SaveAll conflict cancel and reload retain external bytes. Not full matrix, visual acceptance, Windows or milestone closure. Separate exploratory UTF8 uppercase/replacement probe found no confirmed defect and is not acceptance evidence.",
+  "tests": {
+    "test_saveas_failure_identity_pty.py": {
+      "exit": 0,
+      "sha256": "36159f33a1687bee72ffb1b8618a6d73036076195561e4697c6b20eb3fb55568",
+      "seconds": 9.570076942443848,
+      "log": "PASS failed Save As retains old name and subsequent F2 writes original document\n"
+    },
+    "test_saveas_refusal_recovery_pty.py": {
+      "exit": 0,
+      "sha256": "ec10d6e7bb4251cdd2e7ae6ca891f520b314bbe2ed99b38f57cd96229eddbc59",
+      "seconds": 31.2189884185791,
+      "log": "PASS boot caption noname\nPASS doc2 saved as dup.prg\nPASS dup.prg written\nPASS dup.prg holds doc2 text only\nPASS doc1 shows aa1\nPASS SaveAs collision refused\nPASS refusal left dup.prg byte-identical\nPASS refusal created no other file\nPASS doc1 still unsaved noname\nPASS dup.prg edit visible\nPASS two base journals (noname doc + dup.prg)\nPASS dup.prg still unchanged on disk before kill\nPASS recovery prompt on restart\nPASS recovery dialogs cleared\nPASS prompts named dup.prg\nPASS noname buffer recovered (aa1)\nPASS dup.prg buffer recovered (bb2 and q7k)\nPASS recovered into separate docs\nPASS disk dup.prg still the pre-crash save\nPASS F2 saved recovered dup.prg with q7k\nPASS saved file is old bytes plus the lost edit only\nTOTAL 21 PASS 0 FAIL\n"
+    },
+    "test_saveall_conflict_cancel_pty.py": {
+      "exit": 0,
+      "sha256": "ab77a9370a252d66eee86a3ff627ab5a02268e74aab41e77018b46a8de15d187",
+      "seconds": 8.608076095581055,
+      "log": "PASS SaveAll cancelled conflict leaves external bytes and dirty edit, other document saves\n"
+    },
+    "test_saveall_conflict_reload_pty.py": {
+      "exit": 0,
+      "sha256": "bd78388572be73377d44c64d53627ea3ed4f0b4d8ba4a4a09d2b8f3e24e265e0",
+      "seconds": 7.382320165634155,
+      "log": "PASS SaveAll reload keeps external bytes and prior backup, not counted as saved\n"
+    }
+  }
+}
