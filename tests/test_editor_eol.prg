@@ -43,6 +43,19 @@ PROCEDURE Main()
       o:Undo()
       Check(o:GetText()=='anchor','Undo empty deleted-line paste '+aCase[1],@nPass,@nFail)
    NEXT
+   FOR EACH aCase IN {'Copy','Cut'}
+      o:LoadText('abcdef'+cLF+'x')
+      o:GoTo(2,12)
+      o:ToggleMark()
+      o:GoTo(2,10)
+      IF aCase=='Copy'
+         o:CopySelection()
+      ELSE
+         o:CutSelection()
+      ENDIF
+      o:PasteLine()
+      Check(o:GetText()=='abcdef'+cLF+'x'.and.!o:Changed().and.Empty(o:aUndo),'Virtual '+aCase+' clipboard Paste no-op',@nPass,@nFail)
+   NEXT
    o:cFile := "previous.prg"
    o:LoadText( "PRECIOUS BUFFER" )
    o:SetDirty( .T. )

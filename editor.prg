@@ -421,7 +421,7 @@ METHOD SelectWord( nRow, nTextCol ) CLASS HBSrcEdit
    ::lMark := .T.
    ::GoTo( nRow, nEnd + 5, _REFRESH_ALL )
    ::cClipboard := ::SelectionText()
-   ::lClipboardSet := .T.
+   ::lClipboardSet := Len( ::cClipboard ) > 0
 
    ::Display()
 
@@ -1945,7 +1945,8 @@ METHOD CopySelection() CLASS HBSrcEdit
 
    if aSel != NIL
       ::cClipboard := ::SelectionText()
-      ::lClipboardSet := .T.
+      // A wholly virtual range has no source bytes or physical boundary.
+      ::lClipboardSet := Len( ::cClipboard ) > 0
       // Exit extend mode after copying: with the F8 persistent-anchor model
       // the mark otherwise survives and a later typing burst or Cut would
       // silently operate on a stale, still-extended range.
@@ -1966,7 +1967,7 @@ METHOD CutSelection() CLASS HBSrcEdit
       return nil
    endif
    ::cClipboard = ::SelectionText()
-   ::lClipboardSet := .T.
+   ::lClipboardSet := Len( ::cClipboard ) > 0
    aBefore := ::LinesSnapshot()
    aOld = ::SelDelete( aSel )
    if aSel[1] < aSel[3] .and. aSel[2] <= 5 .and. aSel[4] <= 5
