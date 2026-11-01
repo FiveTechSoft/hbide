@@ -1,0 +1,12 @@
+{
+  "scope": "Fresh C93 three existingM2modes9+15+17PASS not inheritedC92, noCancelpolicychange orfullmatrix",
+  "source": "2fb1b433c789f37ffcd45da4bc8cc3cd96627e61",
+  "binary_sha256": "4139216fcc8dc49e1c8492f651250c6418addc0ebab55da5b948b391a61f37ee",
+  "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+  "logs": {
+    "promotion-failure.log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS editor remains usable after repeated failure\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-4zjipnce\n",
+    "missing-output-diagnostic.log": "PASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-24621pvw\n",
+    "promotion-retry.log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS retry with unblocked destination builds\nPASS retry launches fresh real compiler result\nPASS retry promotes new executable\nPASS retained first output stays exact\nPASS retry preserves source\nPASS retry has no unnamed temporary outputs\nPASS editor remains usable after repeated failure\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-fb_nlkuw\n"
+  },
+  "limits": "No new nativepixels/Windows/install/license/allcompiler/outputtype/raceguarantee"
+}
