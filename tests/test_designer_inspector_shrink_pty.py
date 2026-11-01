@@ -6,7 +6,7 @@ text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 small='--small' in sys.argv
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
-parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['say','get','button','checkbox','radiogroup','combobox']);parser.add_argument('--events',action='store_true');parser.add_argument('--get',action='store_true');parser.add_argument('--listbox',action='store_true');args=parser.parse_args();args.kind='combobox'
+parser=argparse.ArgumentParser();parser.add_argument('--kind',choices=['say','get','button','checkbox','radiogroup','combobox']);parser.add_argument('--events',action='store_true');parser.add_argument('--get',action='store_true');parser.add_argument('--listbox',action='store_true');parser.add_argument('--small',action='store_true');args=parser.parse_args();args.kind='combobox'
 for kind in [args.kind or ('listbox' if args.listbox else ('get' if args.get else 'button'))]:
  modelpath=work/'fixture.json'
  pid,fd=pty.fork()
