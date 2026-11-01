@@ -541,7 +541,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
               ::aText[ ::nRow ]:cText := hb_UStuff( ::aText[ ::nRow ]:cText, --::nCol - 4, 1, "" )
               ::nBlkDirty := Min(::nBlkDirty,::nRow)
               if ::BlkCmtState(::nRow+1) != lBlkBefore .or. ;
-                 (::nRow < Len(::aText) .and. hb_defaultValue(::aBlkCtx[::nRow+1],"") != cCtxBefore)
+                 (::nRow < Len(::aText) .and. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore))
                  ::GoTo( ::nRow, ::nCol, _REFRESH_ALL )
               else
                  ::GoTo( ::nRow, ::nCol, _REFRESH_LINE )
@@ -679,7 +679,7 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
               endif
               ::nBlkDirty := Min( ::nBlkDirty, ::nRow )
               IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ;
-                 ( ::nRow < Len(::aText) .AND. hb_defaultValue(::aBlkCtx[::nRow+1],"") != cCtxBefore )
+                 ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )
                  ::GoTo( ::nRow, ::nCol, _REFRESH_ALL )
               ELSE
                  // hot path: single-line edit, no coloring context change.

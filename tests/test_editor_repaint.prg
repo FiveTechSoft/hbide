@@ -526,7 +526,9 @@ procedure Main()
    o:nLines := o:nFull := 0
    o:Edit(K_BS)
    Check('backspace continuation invalidates before repaint',o:nFull>=1.and.o:BlkCmtState(3))
+   o:nLines := o:nFull := 0
    o:Edit(Asc(';'))
+   Check('typing continuation after backspace forces repaint',o:nFull>=1)
    Check('typing continuation after backspace restores literal state',!o:BlkCmtState(3))
    hb_MemoWrit( '/tmp/hbide-repaint-tests.txt', 'PASS ' + hb_ntos( nPass ) + ' FAIL ' + hb_ntos( nFail ) )
    if nFail > 0
