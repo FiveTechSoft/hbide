@@ -66,16 +66,17 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre 14:23, Q258: candidato focal C35,
-exporta83cd74b25dd7e405a39c3bd48150d714c49bd3c,
-bin080cd8f006e59034f5de3d5b7650e37bd098adc77c63f38916c5614a014a26b5.
-Q257 cuatro scripts congelados PASS; Q258 arnés postexport dos modos
-RecoveredReload exitoso/fallido PASS, con kill/restart. Q255 C34 corrige
-journals obsoletos Undo/Redo clean, Q256 extiende reinicio. Q248 mantiene
-baseline recuperado dirty; Q247 Copy repinta al retirar marca. Cada recibo
-conserva su fuente/binario, no se agregan como matriz ni funciones nuevas.
-C35 no inyecta nueva identidadAbout; C33 sí la verifica y34docs exactos
-con su catálogo anterior a esta actualización. Sin Windows/release/hitos.
+Corte 1 noviembre 15:00, Q268: candidato focal C39,
+export41f3478d3d638421642a086f68f13ead6a2049ee,
+binf265f805fee0d98b8d474ce9ac1f51315fb84c9940690c9cd49ee25b1db8a2f0.
+Q265 CtrlT gutter/texto corregido:3scripts50checks. Q267 UTF8/ASCII es
+arnés postexport; Q266 modelo fresh separado. Q262 salto marcado pinta
+intermedios, primerC37fallido conservado; C38focal3scripts52checks y
+modelo210, Q263 extiende reverse/page sin cambiar producto. Q26835modelos
+fresh de sourced8791a2, no35modosIDE ni heredados al binarioC39.
+C36export0965bf3 conserva About/catálogo verificados y7variantesfocales;
+los binariosC38/C39 no inyectan nueva identidadAbout. No se agregan
+fuentes/binarios distintos como matriz ni funciones. Sin Windows/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
 bin96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29.

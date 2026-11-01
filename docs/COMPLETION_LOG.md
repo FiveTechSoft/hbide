@@ -5589,3 +5589,12 @@ journals y fallido los conserva. Enlaces aceptación Q247/Q255-Q258, no
 resultados nuevos ni cobertura global. Catálogo offline regenerado34docs.
 Ocho guardas y check exacto en linux-roadmap-recovery-docs-q259.json.
 Sin producto/build/PTY/píxeles/modelos/Windows/hito nuevo.
+
+### Q269 (1 noviembre 2026): inventario CtrlT y estado editor vigente
+
+Se enlaza ruta CtrlT a contrato acotado/tests Q265-Q267 y guía documenta
+comando heredado, sin binding ni política nueva. Inventario regenerado
+con líneas actuales y roadmap separa C39focal/C36identificado/C30plan353
+y modelosQ268. Catálogo34docs regenerado;8guardas y check exacto en
+linux-ctrl-t-inventory-docs-q269.json. Sin producto/build/PTY/modelo/píxeles
+Windows/hito nuevo.

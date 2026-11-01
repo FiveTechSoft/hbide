@@ -183,6 +183,12 @@ class DispatchAcceptance(unittest.TestCase):
     def setUp(self):
         self.routes=audit.inventory()[1]
         self.specs=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['dispatch_acceptance']
+    def test_ctrl_t_text_column_contract_linked(self):
+        row=next(r for r in audit.link_dispatch_contracts(self.routes,self.specs) if r.get('acceptance_id')=='EDIT-KEY-DELETE-WORD-CTRL-T')
+        self.assertEqual(row['condition'],'case nKeyStd == K_CTRL_T')
+        self.assertEqual(row['acceptance']['tests'],['test_delete_word_columns.prg','test_delete_word_columns_pty.py'])
+        self.assertIn('not four-cell gutter',row['acceptance']['contract'])
+        self.assertIn('not all selection states',row['acceptance']['contract'])
     def test_f5_exact_route_and_scope(self):
         rows=audit.link_dispatch_contracts(self.routes,self.specs)
         linked=[r for r in rows if r.get('acceptance_id')=='DSN-KEY-LIVEPRG-F5']
@@ -193,7 +199,7 @@ class DispatchAcceptance(unittest.TestCase):
         self.assertNotIn('acceptance',self.routes[0])
     def test_ctrl_g_delete_identity_route_linked(self):
         linked=[r for r in audit.link_dispatch_contracts(self.routes,self.specs) if 'acceptance' in r]
-        self.assertEqual(len(linked),12)
+        self.assertEqual(len(linked),13)
         row=next(r for r in linked if r['acceptance_id']=='IDE-KEY-GOTOFUNCTION-CTRL-G')
         self.assertEqual(row['source'],'hbide.prg')
         self.assertIn('hb_keyExt( nKey ) != HB_KX_DEL',row['condition'])

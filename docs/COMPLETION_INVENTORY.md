@@ -127,7 +127,7 @@ No convertir este numero en porcentaje: varias rutas pueden ejecutar la misma fu
 
 Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/hash exactos.
 
-- IDE-005: Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive. Conflict Cancel keeps dirty buffer; Reload skips writing/backup and reports reload separately from save. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_saveall_fail_pty.py](../tests/test_saveall_fail_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py), [test_saveall_conflict_cancel_pty.py](../tests/test_saveall_conflict_cancel_pty.py), [test_saveall_conflict_reload_pty.py](../tests/test_saveall_conflict_reload_pty.py)
+- IDE-005: Named dirty buffers saved independently; untitled skipped and reported; write failure never reports global success; recoverable changes survive. Conflict Cancel keeps dirty buffer; Reload skips writing/backup and reports reload separately from save. Recovered baseline after edit+Undo remains eligible for SaveAll in Q249 mode. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_saveall_fail_pty.py](../tests/test_saveall_fail_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py), [test_saveall_conflict_cancel_pty.py](../tests/test_saveall_conflict_cancel_pty.py), [test_saveall_conflict_reload_pty.py](../tests/test_saveall_conflict_reload_pty.py), [test_recovered_undo_dirty_pty.py](../tests/test_recovered_undo_dirty_pty.py)
 - IDE-006: Save/Discard/Cancel reviews the correct document; Cancel keeps it open and unchanged. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-007: All dirty documents reviewed; Cancel keeps IDE alive; clean exit after decisions. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-019: Real entries only; filter, Enter jump, Esc retains cursor; Delete does not invoke Ctrl+G. Literal/comment markers do not hide later real declarations; C dump lexical state is isolated; raw ENDDUMP with trailing comments resumes Harbour declarations. Array-index multiline block comments exclude false entries; macro-body pragma text does not activate C dump isolation. Backtick/apostrophe literals are masked. Bounded fixtures only, not a full Harbour preprocessor. Closing bracket inside real named/function-result array-index comment does not become a bracket literal; RETURN bracket literal stays masked in bounded lexical fixtures. Completed comments preserve preceding index-value context; closed strings remain values and RETURN remains an introducer in bounded fixtures. Declaration-looking semicolon continuations join masked physical lines and navigate to the first line; not arbitrary statement preprocessing. hbclass.ch CREATE CLASS alias is indexed, including bounded continuation; other CREATE commands and class members are excluded. Explicit ACCESS/ASSIGN implementation aliases with CLASS are methods, ASSIGN uses underscore-prefixed actual method name; member declarations without explicit CLASS stay excluded. Backward-compatible PROCEDURE name CLASS cls alias is a qualified method; ordinary procedures remain unqualified. Explicit DESTRUCTOR name CLASS cls implementation alias is a method; member declarations and external DESTRUCTOR FUNCTION binding are not implementations. Physical-line NOTE comment cannot open block state; NOTE-prefixed identifiers remain code, not full statement-separator handling. INIT/EXIT procedure labels retain lifecycle kind, not static; first line preserved across bounded continuations. Pruebas: [test_nav_pty.py](../tests/test_nav_pty.py), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py), [test_nav_literal_comment_pty.py](../tests/test_nav_literal_comment_pty.py), [test_nav_lexical.prg](../tests/test_nav_lexical.prg), [test_nav_typed_methods_pty.py](../tests/test_nav_typed_methods_pty.py), [test_nav_selection_pty.py](../tests/test_nav_selection_pty.py), [test_nav_array_comment_pty.py](../tests/test_nav_array_comment_pty.py), [test_nav_pragma_macro_pty.py](../tests/test_nav_pragma_macro_pty.py), [test_nav_enddump_comment_pty.py](../tests/test_nav_enddump_comment_pty.py), [test_nav_array_bracket_comment_pty.py](../tests/test_nav_array_bracket_comment_pty.py), [test_nav_array_gap_comment_pty.py](../tests/test_nav_array_gap_comment_pty.py), [test_nav_declaration_continuation_pty.py](../tests/test_nav_declaration_continuation_pty.py), [test_nav_create_class_pty.py](../tests/test_nav_create_class_pty.py), [test_nav_access_assign_pty.py](../tests/test_nav_access_assign_pty.py), [test_nav_procedure_class_pty.py](../tests/test_nav_procedure_class_pty.py), [test_nav_destructor_pty.py](../tests/test_nav_destructor_pty.py), [test_nav_note_comment_pty.py](../tests/test_nav_note_comment_pty.py), [test_nav_init_exit_pty.py](../tests/test_nav_init_exit_pty.py)
@@ -147,11 +147,11 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-015: Search next position case-insensitively; wrap within current and other lines; missing match retains cursor. Real Find modal navigates requested text; Esc leaves source bytes untouched. Successful Find/Repeat clears old selection, including multirow and wrapped matches, before subsequent typing; exact saved bytes and Undo checked. Cancel/missing Find keep old range. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_find_selection_pty.py](../tests/test_find_selection_pty.py), [test_find_repeat_selection_pty.py](../tests/test_find_repeat_selection_pty.py)
 - IDE-016: Repeat visits adjacent and overlapping matches without double increment, then wraps. Successful Find/Repeat clears old selection, including multirow and wrapped matches, before subsequent typing; exact saved bytes and Undo checked. Cancel/missing Find keep old range. Pruebas: [test_editor_find.prg](../tests/test_editor_find.prg), [test_find_selection_pty.py](../tests/test_find_selection_pty.py), [test_find_repeat_selection_pty.py](../tests/test_find_repeat_selection_pty.py)
 - IDE-001: File New creates an independent live buffer; text, cursor, selection, undo, breakpoints and journals stay with their document. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
-- IDE-002: Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. LoadText clears selection anchors belonging to the old buffer. External short reload with anchor on old row3 permits typing without out-of-bounds selection deletion. Parenthesized bracket literal stays string-colored without leaking /* state to following declaration; bounded := or left-parenthesis context, not every bracket-expression context. Array literal bracket strings after left brace and comma keep string color and following code state; bounded context, indices remain code. Bracket strings after binary + (not ++) and == preserve color/state; bounded operators only, not all expressions. Complete comment gap before bracket literal preserves bounded introducer context; previous string values/index names do not become introducers. No full preprocessor acceptance. Bounded introducer/value state survives a block comment across lines before bracket literal; cached edit/DeleteLine/Undo/Redo and array index guards, not full preprocessing. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py), [test_reload_selection_pty.py](../tests/test_reload_selection_pty.py), [test_editor_paren_bracket_pty.py](../tests/test_editor_paren_bracket_pty.py), [test_editor_bracket_list_pty.py](../tests/test_editor_bracket_list_pty.py), [test_editor_bracket_operator_pty.py](../tests/test_editor_bracket_operator_pty.py), [test_editor_bracket_gap_pty.py](../tests/test_editor_bracket_gap_pty.py), [test_editor_bracket_multiline_pty.py](../tests/test_editor_bracket_multiline_pty.py)
+- IDE-002: Open dialog loads requested file as its own buffer; deep paths and byte-preserving reload covered. Not every dialog input is covered. LoadText clears selection anchors belonging to the old buffer. External short reload with anchor on old row3 permits typing without out-of-bounds selection deletion. Parenthesized bracket literal stays string-colored without leaking /* state to following declaration; bounded := or left-parenthesis context, not every bracket-expression context. Array literal bracket strings after left brace and comma keep string color and following code state; bounded context, indices remain code. Bracket strings after binary + (not ++) and == preserve color/state; bounded operators only, not all expressions. Complete comment gap before bracket literal preserves bounded introducer context; previous string values/index names do not become introducers. No full preprocessor acceptance. Bounded introducer/value state survives a block comment across lines before bracket literal; cached edit/DeleteLine/Undo/Redo and array index guards, not full preprocessing. Q257/Q258 successful disk Reload retires discarded current/recovered journal generations; failed Reload retains text/journals and restart offer. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py), [test_reload_selection_pty.py](../tests/test_reload_selection_pty.py), [test_editor_paren_bracket_pty.py](../tests/test_editor_paren_bracket_pty.py), [test_editor_bracket_list_pty.py](../tests/test_editor_bracket_list_pty.py), [test_editor_bracket_operator_pty.py](../tests/test_editor_bracket_operator_pty.py), [test_editor_bracket_gap_pty.py](../tests/test_editor_bracket_gap_pty.py), [test_editor_bracket_multiline_pty.py](../tests/test_editor_bracket_multiline_pty.py), [test_reload_journal_cleanup_pty.py](../tests/test_reload_journal_cleanup_pty.py), [test_recovered_reload_journal_pty.py](../tests/test_recovered_reload_journal_pty.py)
 - IDE-003: F2/save retains tested EOL, tabs, encoding and BOM; failed atomic writes do not replace original; recovery generation removed only after save. Not all file types certified. Symlink refusal only promises a recovery temp after verified complete write; failed copy preserves buffer/link/destination and reports no complete recovery copy. Exclusive temp creation/full write/close precede replacement. Complete recovery bytes are checked after symlink/promotion refusal; partial write promises no complete temp. Not after-close third-party replacement, fsync/power-loss or native Windows certification. Literal POSIX wildcard filenames use their own metadata, not a matching sibling, for external edits/deletion/recreate; tested 8MB hash threshold remains unchanged. Not concurrent path replacement. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_utf8_valid.prg](../tests/test_utf8_valid.prg), [test_atomic.prg](../tests/test_atomic.prg), [test_recovery_deep_path.py](../tests/test_recovery_deep_path.py), [test_diskstamp_literal.prg](../tests/test_diskstamp_literal.prg), [test_external_changes_pty.py](../tests/test_external_changes_pty.py)
 - IDE-004: Save As creates named target and refuses a route already owned by another live document; refusal and crash retain recovery. Failed Save As retains old name/stamps/journal for initially clean and dirty buffers; later F2 still writes original. Accepted overwrite preserves destination as exact .bak, keeps old source unchanged, clears source journal and subsequent F2 targets new name. Literal POSIX wildcard absent target does not get a phantom overwrite prompt; symlink target is refused with complete named recovery, target/link/sibling/journal/old identity intact. Linux only. A regular literal target is not confused with a different matching symlink sibling. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_saveas_refusal_recovery_pty.py](../tests/test_saveas_refusal_recovery_pty.py), [test_saveas_failure_identity_pty.py](../tests/test_saveas_failure_identity_pty.py), [test_saveas_overwrite_accept_pty.py](../tests/test_saveas_overwrite_accept_pty.py), [test_saveas_overwrite_cancel_pty.py](../tests/test_saveas_overwrite_cancel_pty.py), [test_saveas_literal_new_pty.py](../tests/test_saveas_literal_new_pty.py), [test_saveas_literal_symlink_pty.py](../tests/test_saveas_literal_symlink_pty.py), [test_saveas_literal_regular_pty.py](../tests/test_saveas_literal_regular_pty.py)
-- IDE-008: Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py), [test_selection_identity_pty.py](../tests/test_selection_identity_pty.py)
-- IDE-009: Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py), [test_selection_identity_pty.py](../tests/test_selection_identity_pty.py)
+- IDE-008: Undo restores tested character/structural edits, terminators and soft-wrap metadata; saved-state and document isolation covered. Not every edit sequence certified. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged. Q248 recovered unsaved baseline stays dirty after edit+Undo; Exit Cancel preserves it and SaveAll includes it. Q251 model checks saved typing boundary, history branch and300-op cap. Links describe bounded contracts, not all-history or current-build acceptance. Q255 current-session stale journal is retired when history reaches saved disk state; other sessions and unsaved recovered baseline are preserved. Q256 Undo/Redo kill/restart modes cover no obsolete recovery offer. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py), [test_selection_identity_pty.py](../tests/test_selection_identity_pty.py), [test_editor_saved_history.prg](../tests/test_editor_saved_history.prg), [test_recovered_undo_dirty.prg](../tests/test_recovered_undo_dirty.prg), [test_recovered_undo_dirty_pty.py](../tests/test_recovered_undo_dirty_pty.py), [test_undo_journal_cleanup.prg](../tests/test_undo_journal_cleanup.prg), [test_undo_journal_cleanup_pty.py](../tests/test_undo_journal_cleanup_pty.py)
+- IDE-009: Redo reapplies tested edits without losing EOL, TAB or soft-wrap state, within the correct document. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Selected typing/Delete/Backspace/Enter edits remain separate from prior and later typing; exact disk Undo/Redo checked through Edit menu. Selected delete+typing that recreates identical bytes leaves previous dirty/history/redo state unchanged. Q248 recovered unsaved baseline stays dirty after edit+Undo; Exit Cancel preserves it and SaveAll includes it. Q251 model checks saved typing boundary, history branch and300-op cap. Links describe bounded contracts, not all-history or current-build acceptance. Q255 current-session stale journal is retired when history reaches saved disk state; other sessions and unsaved recovered baseline are preserved. Q256 Undo/Redo kill/restart modes cover no obsolete recovery offer. Pruebas: [test_editor_repaint.prg](../tests/test_editor_repaint.prg), [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_multidoc_pty.py](../tests/test_multidoc_pty.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_selection_undo_boundary_pty.py](../tests/test_selection_undo_boundary_pty.py), [test_selection_destructive_boundary_pty.py](../tests/test_selection_destructive_boundary_pty.py), [test_selection_identity_pty.py](../tests/test_selection_identity_pty.py), [test_editor_saved_history.prg](../tests/test_editor_saved_history.prg), [test_recovered_undo_dirty.prg](../tests/test_recovered_undo_dirty.prg), [test_recovered_undo_dirty_pty.py](../tests/test_recovered_undo_dirty_pty.py), [test_undo_journal_cleanup.prg](../tests/test_undo_journal_cleanup.prg), [test_undo_journal_cleanup_pty.py](../tests/test_undo_journal_cleanup_pty.py)
 - IDE-011: Model Cut removes selected span as one undoable operation, preserving final fragment terminator; TAB is one source byte. Real Edit-menu dispatch now checks exact saved bytes. Explicit Cut records a separate undo command from typing before or after it; Undo Cut preserves earlier unsaved typing. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_cut_undo_boundary_pty.py](../tests/test_cut_undo_boundary_pty.py)
 - IDE-012: Model Paste inserts multiline clipboard at EOF and restores exact original boundaries on undo. Real Edit-menu dispatch now checks exact saved bytes. A copied line containing only spaces is real clipboard data; Paste inserts it with exact disk bytes and Undo/Redo. Editor clipboard is shared across document instances; Paste changes only destination history and bytes, source stays unchanged. Not OS clipboard. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_clipboard_spaces_pty.py](../tests/test_clipboard_spaces_pty.py), [test_clipboard_multidoc_pty.py](../tests/test_clipboard_multidoc_pty.py)
 - IDE-013: Model Delete Line and undo preserve final-line boundary; real deletion keeps breakpoint marks attached to surviving instructions. Real Edit-menu dispatch checks exact saved bytes; coverage is partial. Delete Line clears prior range selection so an old row3 anchor cannot access beyond the shorter line array when typing. Undo typing, Undo deletion and Redo preserve exact bytes. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_bp_delete_policy.py](../tests/test_bp_delete_policy.py), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_delete_selection_pty.py](../tests/test_delete_selection_pty.py)
@@ -159,7 +159,7 @@ Vinculo no significa PASS ni cobertura completa. Revisar ledger con revision/has
 - IDE-017: Model Replace All changes text while preserving mixed boundaries and undo; real Replace modal input/dispatch and undo also check exact saved bytes. Esc cancels; trailing replacement spaces survive; Undo restores exact bytes. Empty replacement deletes only matches; missing text reports zero and preserves bytes. One-space and two-space search strings are real data: exact counts4/1, disk bytes retain TAB/mixed EOL and trailing replacement, single Undo/Redo exact, Cancel unchanged. No Unicode expansion or multiline replacement claim. One-line Replace is a separate history entry from prior unsaved typing and later typing. Undo Replace keeps earlier X; Redo replacement exact; later typing Undo keeps replacement. Model also retains ordinary typing burst fusion. Identity replacement counts matches but leaves clean state and history/redo unchanged; clean buffer closes without save prompt. Case-insensitive matching that changes case is still a real edit. A changed Replace clears the old range before typing; stale selected text cannot be deleted from the new result. No-change/Cancel retain their prior semantics. Pruebas: [test_editor_eol.prg](../tests/test_editor_eol.prg), [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_replace_spaces_pty.py](../tests/test_replace_spaces_pty.py), [test_replace_undo_boundary_pty.py](../tests/test_replace_undo_boundary_pty.py), [test_replace_identity_pty.py](../tests/test_replace_identity_pty.py), [test_replace_selection_pty.py](../tests/test_replace_selection_pty.py), [test_replace_nochange_selection_pty.py](../tests/test_replace_nochange_selection_pty.py)
 - IDE-023: Ctrl+F6 switches live documents, preserving editor state and isolation. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-024: Ctrl+Shift+F6 returns to the prior live document with cursor, undo and breakpoint state preserved. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
-- IDE-010: Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
+- IDE-010: Real Edit Copy then Paste duplicates the intended current line; saved EOL/TAB bytes and Cut/Undo are checked. Range Copy has separate model coverage, not all clipboard paths. Q247 nonempty F8 Copy clears persistent mark and inverse paint immediately in forward/reverse/multiline ranges; internal clipboard retained. Zero-width anchor is characterized, not a new copy-line policy. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_copy_selection_repaint_pty.py](../tests/test_copy_selection_repaint_pty.py)
 - IDE-018: Real Goto Line modal navigates source line; Esc preserves row. Zero/negative clamp first line and oversized input clamps final line. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_nav_selection_pty.py](../tests/test_nav_selection_pty.py)
 - DSN-006: Real F2 ListBox placement, inspector width/height edits, JSON save/load, generated PRG open. Runtime selection has separate GUI coverage, not certified by this test. Runtime roundtrip also covers eight items, keyboard scrolling then mouse selecting visible itemSixth; ComboBox opens when another GET has focus. Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing. Actual F9 clipboard ListBox/RadioGroup fixtures separately compile and execute: first/second selection changes only its independent uppercase-derived numeric binding, preserved ListBox STATE and RadioGroup VALID handlers execute. Return instrumentation only; no all-handler or pixel/Windows claim. Pruebas: [test_designer_pty.py](../tests/test_designer_pty.py), [gui_roundtrip_fixture.prg](../tests/gui_roundtrip_fixture.prg), [test_gui_roundtrip_pty.py](../tests/test_gui_roundtrip_pty.py), [test_designer_clipboard_loaded_types_pty.py](../tests/test_designer_clipboard_loaded_types_pty.py), [test_designer_clipboard_list_runtime_pty.py](../tests/test_designer_clipboard_list_runtime_pty.py), [test_designer_clipboard_radio_runtime_pty.py](../tests/test_designer_clipboard_radio_runtime_pty.py)
 - DSN-007: Real F2 ComboBox placement; inspector resize with minimum popup height; JSON save/load; PRG generate/open/compile/execute. Space/arrow/Tab and mouse open/select/close update numeric bound variable. Selection only, not editable text. Runtime roundtrip also covers eight items, keyboard scrolling then mouse selecting visible itemSixth; ComboBox opens when another GET has focus. Separate --create mode now exercises actual F2 creation of this type, clipboard/history and F10 default model persistence. Loaded mode is separate nondefault JSON fixture coverage, not all-field inspector editing. Pruebas: [test_combobox_pty.py](../tests/test_combobox_pty.py), [test_designer.prg](../tests/test_designer.prg), [gui_roundtrip_fixture.prg](../tests/gui_roundtrip_fixture.prg), [test_gui_roundtrip_pty.py](../tests/test_gui_roundtrip_pty.py), [test_designer_clipboard_loaded_types_pty.py](../tests/test_designer_clipboard_loaded_types_pty.py)
@@ -390,29 +390,29 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display/ProjectOpen/OpenFile/Sa
 | IDE-FIELD-GotoLine-nLine-1 | number: | value | hbide.prg:345 | Vinculo focal; ver alcance |
 | IDE-FIELD-GotoLine-lDummy-1 | &OK | pushbutton | hbide.prg:348 | Vinculo focal; ver alcance |
 | IDE-FIELD-GotoLine-lDummy-2 | &Cancel | pushbutton | hbide.prg:351 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-cCompiler-1 | cCompiler | radiogroup | hbide.prg:1882 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lWarnings-1 | &Warnings | checkbox | hbide.prg:1891 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDebug-1 | &Debug info | checkbox | hbide.prg:1897 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lStrict-1 | S&trict types | checkbox | hbide.prg:1903 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lIncremental-1 | &Incremental | checkbox | hbide.prg:1909 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lOptimize-1 | O&ptimize code | checkbox | hbide.prg:1916 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1922 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1929 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1933 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1937 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2077 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2080 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-cFind-1 | cFind | freeform_input | hbide.prg:2083 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-cReplace-1 | cReplace | freeform_input | hbide.prg:2090 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2134 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2137 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-cText-1 | cText | freeform_input | hbide.prg:2140 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-lDummy-1 | &OK | pushbutton | hbide.prg:2473 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-lDummy-2 | &Cancel | pushbutton | hbide.prg:2476 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2479 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:2994 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:3002 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:3006 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-cCompiler-1 | cCompiler | radiogroup | hbide.prg:1885 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lWarnings-1 | &Warnings | checkbox | hbide.prg:1894 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDebug-1 | &Debug info | checkbox | hbide.prg:1900 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lStrict-1 | S&trict types | checkbox | hbide.prg:1906 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lIncremental-1 | &Incremental | checkbox | hbide.prg:1912 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lOptimize-1 | O&ptimize code | checkbox | hbide.prg:1919 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1925 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1932 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1936 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1940 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2080 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2083 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-cFind-1 | cFind | freeform_input | hbide.prg:2086 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-cReplace-1 | cReplace | freeform_input | hbide.prg:2093 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2137 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2140 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-cText-1 | cText | freeform_input | hbide.prg:2143 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-lDummy-1 | &OK | pushbutton | hbide.prg:2476 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-lDummy-2 | &Cancel | pushbutton | hbide.prg:2479 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2482 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:2997 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:3005 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:3009 | Vinculo focal; ver alcance |
 | IDE-FIELD-ProjectOpen-cFileName-1 | cFileName | value | hbide.prg:1045 | Vinculo focal; ver alcance |
 | IDE-FIELD-ProjectOpen-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1059 | Vinculo focal; ver alcance |
 | IDE-FIELD-ProjectOpen-lDummy-1 | &OK | pushbutton | hbide.prg:1084 | Vinculo focal; ver alcance |
@@ -421,15 +421,15 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display/ProjectOpen/OpenFile/Sa
 | IDE-FIELD-OpenFile-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1254 | Vinculo focal; ver alcance |
 | IDE-FIELD-OpenFile-lDummy-1 | &OK | pushbutton | hbide.prg:1279 | Vinculo focal; ver alcance |
 | IDE-FIELD-OpenFile-lDummy-2 | &Cancel | pushbutton | hbide.prg:1286 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-cFileName-1 | cFileName | value | hbide.prg:1737 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-lDummy-1 | &OK | pushbutton | hbide.prg:1747 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-lDummy-2 | &Cancel | pushbutton | hbide.prg:1751 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-cPick-1 | cPick | listbox | hbide.prg:2767 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-lDummy-1 | &OK | pushbutton | hbide.prg:2773 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-lDummy-2 | &Cancel | pushbutton | hbide.prg:2777 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-cFilter-1 | cFilter | value | hbide.prg:2809 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-lDummy-1 | &OK | pushbutton | hbide.prg:2819 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-lDummy-2 | &Cancel | pushbutton | hbide.prg:2823 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-cFileName-1 | cFileName | value | hbide.prg:1740 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-lDummy-1 | &OK | pushbutton | hbide.prg:1750 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-lDummy-2 | &Cancel | pushbutton | hbide.prg:1754 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-cPick-1 | cPick | listbox | hbide.prg:2770 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-lDummy-1 | &OK | pushbutton | hbide.prg:2776 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-lDummy-2 | &Cancel | pushbutton | hbide.prg:2780 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-cFilter-1 | cFilter | value | hbide.prg:2812 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-lDummy-1 | &OK | pushbutton | hbide.prg:2822 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-lDummy-2 | &Cancel | pushbutton | hbide.prg:2826 | Vinculo focal; ver alcance |
 - IDE-FIELD-GotoLine-nLine-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-GotoLine-lDummy-1: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
 - IDE-FIELD-GotoLine-lDummy-2: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py)
@@ -539,12 +539,12 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | --- | --- | --- | --- | --- |
 | MOUSE-hbide-Activate-1 | METHOD Activate() CLASS HBIde | `if nKeyStd == K_LBUTTONDOWN` | hbide.prg:712 | Pendiente gesto |
 | MOUSE-hbide-Activate-2 | METHOD Activate() CLASS HBIde | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | hbide.prg:733 | Pendiente gesto |
-| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:512 | Pendiente gesto |
-| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:517 | Pendiente gesto |
-| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:522 | Pendiente gesto |
-| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:525 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2075 | Pendiente gesto |
-| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2076 | Pendiente gesto |
+| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:514 | Pendiente gesto |
+| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:519 | Pendiente gesto |
+| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:524 | Pendiente gesto |
+| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:527 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2105 | Pendiente gesto |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2106 | Pendiente gesto |
 | MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:437 | Pendiente gesto |
 | MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:440 | Pendiente gesto |
 | MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Pendiente gesto |
@@ -1087,93 +1087,95 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | help.prg:881 | `CASE nKey == K_END` | Pendiente vinculo |
 | help.prg:884 | `IF nTarget > 0 .AND. nTarget != nTopic` | Pendiente vinculo |
 | help.prg:886 | `IF Len( aHistory ) > 100` | Pendiente vinculo |
-| editor.prg:484 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
-| editor.prg:490 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. hb_bitAnd( nKeyMod, hb_bitOr( HB_KF_SHIFT, HB_KF_CTRL, HB_KF_ALT ) ) == HB_KF_SHIFT` | Pendiente vinculo |
-| editor.prg:492 | `if ! ::lMark` | Pendiente vinculo |
-| editor.prg:496 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
-| editor.prg:497 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
-| editor.prg:498 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
-| editor.prg:499 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` | Pendiente vinculo |
-| editor.prg:500 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` | Pendiente vinculo |
-| editor.prg:501 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` | Pendiente vinculo |
-| editor.prg:504 | `case nKeyStd == K_CTRL_Z` | Pendiente vinculo |
-| editor.prg:508 | `case nKeyStd == K_CTRL_U` | Pendiente vinculo |
-| editor.prg:512 | `case nKeyStd == K_LDBLCLK` | Pendiente vinculo |
-| editor.prg:517 | `case nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
-| editor.prg:522 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:525 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:528 | `case nKeyStd == K_BS` | Pendiente vinculo |
-| editor.prg:529 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:533 | `IF ::nCol > 5` | Pendiente vinculo |
-| editor.prg:536 | `if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:543 | `if ::BlkCmtState(::nRow+1) != lBlkBefore .or. (::nRow < Len(::aText) .and. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore))` | Pendiente vinculo |
-| editor.prg:549 | `ELSEIF ::nRow > 1` | Pendiente vinculo |
-| editor.prg:561 | `case nKeyStd == K_DEL` | Pendiente vinculo |
-| editor.prg:562 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:571 | `if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:578 | `case nKeyStd == K_ENTER` | Pendiente vinculo |
-| editor.prg:579 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:588 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
-| editor.prg:589 | `if ::nCol - 4 > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:590 | `if ::nRow < Len( ::aText )` | Pendiente vinculo |
-| editor.prg:597 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
-| editor.prg:598 | `if ::nCol <= 5` | Pendiente vinculo |
-| editor.prg:599 | `if ::nRow > 1` | Pendiente vinculo |
-| editor.prg:606 | `case nKeyStd == K_HOME` | Pendiente vinculo |
-| editor.prg:609 | `case nKeyStd == K_END` | Pendiente vinculo |
-| editor.prg:612 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
-| editor.prg:616 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
-| editor.prg:624 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
-| editor.prg:627 | `case nKeyStd == K_F2` | Pendiente vinculo |
-| editor.prg:633 | `case nKeyStd == K_F8` | Pendiente vinculo |
-| editor.prg:637 | `case nKeyStd == K_F9` | Pendiente vinculo |
-| editor.prg:640 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
-| editor.prg:645 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:652 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
-| editor.prg:660 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
-| editor.prg:663 | `if lHotPath` | Pendiente vinculo |
-| editor.prg:671 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
-| editor.prg:675 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
-| editor.prg:677 | `ELSEIF lHotPath` | Pendiente vinculo |
-| editor.prg:678 | `if ! ::lWordWrap` | Pendiente vinculo |
-| editor.prg:684 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )` | Pendiente vinculo |
-| editor.prg:706 | `if ! lSkipTail` | Pendiente vinculo |
-| editor.prg:707 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
-| editor.prg:714 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
-| editor.prg:718 | `if ::Row() > ::nTop` | Pendiente vinculo |
-| editor.prg:724 | `if ::Row() < ::nBottom` | Pendiente vinculo |
-| editor.prg:734 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
-| editor.prg:1952 | `if nKey == K_LEFT` | Pendiente vinculo |
-| editor.prg:1953 | `if Col() > 5` | Pendiente vinculo |
-| editor.prg:1956 | `if ::nFirstCol > 1` | Pendiente vinculo |
-| editor.prg:1981 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
-| editor.prg:2001 | `if nB < 0x80` | Pendiente vinculo |
-| editor.prg:2004 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
-| editor.prg:2006 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
-| editor.prg:2008 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
-| editor.prg:2013 | `if nI + nNeed > nLen` | Pendiente vinculo |
-| editor.prg:2019 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
-| editor.prg:2027 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
-| editor.prg:2044 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
-| editor.prg:2048 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
-| editor.prg:2067 | `case K_UP` | Pendiente vinculo |
-| editor.prg:2068 | `case K_DOWN` | Pendiente vinculo |
-| editor.prg:2069 | `case K_LEFT` | Pendiente vinculo |
-| editor.prg:2070 | `case K_RIGHT` | Pendiente vinculo |
-| editor.prg:2071 | `case K_HOME` | Pendiente vinculo |
-| editor.prg:2072 | `case K_END` | Pendiente vinculo |
-| editor.prg:2073 | `case K_PGUP` | Pendiente vinculo |
-| editor.prg:2074 | `case K_PGDN` | Pendiente vinculo |
-| editor.prg:2075 | `case K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:2076 | `case K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:2088 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
-| editor.prg:2094 | `CASE lBlock` | Pendiente vinculo |
-| editor.prg:2095 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
-| editor.prg:2100 | `CASE !Empty(q)` | Pendiente vinculo |
-| editor.prg:2101 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
-| editor.prg:2103 | `ELSEIF c == q` | Pendiente vinculo |
-| editor.prg:2107 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
-| editor.prg:2110 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
+| editor.prg:486 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
+| editor.prg:492 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. hb_bitAnd( nKeyMod, hb_bitOr( HB_KF_SHIFT, HB_KF_CTRL, HB_KF_ALT ) ) == HB_KF_SHIFT` | Pendiente vinculo |
+| editor.prg:494 | `if ! ::lMark` | Pendiente vinculo |
+| editor.prg:498 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
+| editor.prg:499 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
+| editor.prg:500 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
+| editor.prg:501 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` | Pendiente vinculo |
+| editor.prg:502 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` | Pendiente vinculo |
+| editor.prg:503 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` | Pendiente vinculo |
+| editor.prg:506 | `case nKeyStd == K_CTRL_Z` | Pendiente vinculo |
+| editor.prg:510 | `case nKeyStd == K_CTRL_U` | Pendiente vinculo |
+| editor.prg:514 | `case nKeyStd == K_LDBLCLK` | Pendiente vinculo |
+| editor.prg:519 | `case nKeyStd == K_LBUTTONDOWN` | Pendiente vinculo |
+| editor.prg:524 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:527 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:530 | `case nKeyStd == K_BS` | Pendiente vinculo |
+| editor.prg:531 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:535 | `IF ::nCol > 5` | Pendiente vinculo |
+| editor.prg:538 | `if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:545 | `if ::BlkCmtState(::nRow+1) != lBlkBefore .or. (::nRow < Len(::aText) .and. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore))` | Pendiente vinculo |
+| editor.prg:551 | `ELSEIF ::nRow > 1` | Pendiente vinculo |
+| editor.prg:563 | `case nKeyStd == K_DEL` | Pendiente vinculo |
+| editor.prg:564 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:573 | `if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:580 | `case nKeyStd == K_ENTER` | Pendiente vinculo |
+| editor.prg:581 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:590 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
+| editor.prg:591 | `if ::nCol - 4 > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:592 | `if ::nRow < Len( ::aText )` | Pendiente vinculo |
+| editor.prg:599 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
+| editor.prg:600 | `if ::nCol <= 5` | Pendiente vinculo |
+| editor.prg:601 | `if ::nRow > 1` | Pendiente vinculo |
+| editor.prg:608 | `case nKeyStd == K_HOME` | Pendiente vinculo |
+| editor.prg:611 | `case nKeyStd == K_END` | Pendiente vinculo |
+| editor.prg:614 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
+| editor.prg:618 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
+| editor.prg:626 | `case nKeyStd == K_CTRL_T` | EDIT-KEY-DELETE-WORD-CTRL-T |
+| editor.prg:634 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
+| editor.prg:637 | `case nKeyStd == K_F2` | Pendiente vinculo |
+| editor.prg:643 | `case nKeyStd == K_F8` | Pendiente vinculo |
+| editor.prg:647 | `case nKeyStd == K_F9` | Pendiente vinculo |
+| editor.prg:650 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
+| editor.prg:655 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:662 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
+| editor.prg:670 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
+| editor.prg:673 | `if lHotPath` | Pendiente vinculo |
+| editor.prg:681 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
+| editor.prg:685 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
+| editor.prg:687 | `ELSEIF lHotPath` | Pendiente vinculo |
+| editor.prg:688 | `if ! ::lWordWrap` | Pendiente vinculo |
+| editor.prg:694 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )` | Pendiente vinculo |
+| editor.prg:718 | `if ::lMark .and. Abs( ::Row() - nOldScrRow ) > 1` | Pendiente vinculo |
+| editor.prg:723 | `if ! lSkipTail` | Pendiente vinculo |
+| editor.prg:724 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
+| editor.prg:731 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
+| editor.prg:735 | `if ::Row() > ::nTop` | Pendiente vinculo |
+| editor.prg:741 | `if ::Row() < ::nBottom` | Pendiente vinculo |
+| editor.prg:751 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
+| editor.prg:1982 | `if nKey == K_LEFT` | Pendiente vinculo |
+| editor.prg:1983 | `if Col() > 5` | Pendiente vinculo |
+| editor.prg:1986 | `if ::nFirstCol > 1` | Pendiente vinculo |
+| editor.prg:2011 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
+| editor.prg:2031 | `if nB < 0x80` | Pendiente vinculo |
+| editor.prg:2034 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
+| editor.prg:2036 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
+| editor.prg:2038 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
+| editor.prg:2043 | `if nI + nNeed > nLen` | Pendiente vinculo |
+| editor.prg:2049 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
+| editor.prg:2057 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
+| editor.prg:2074 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
+| editor.prg:2078 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
+| editor.prg:2097 | `case K_UP` | Pendiente vinculo |
+| editor.prg:2098 | `case K_DOWN` | Pendiente vinculo |
+| editor.prg:2099 | `case K_LEFT` | Pendiente vinculo |
+| editor.prg:2100 | `case K_RIGHT` | Pendiente vinculo |
+| editor.prg:2101 | `case K_HOME` | Pendiente vinculo |
+| editor.prg:2102 | `case K_END` | Pendiente vinculo |
+| editor.prg:2103 | `case K_PGUP` | Pendiente vinculo |
+| editor.prg:2104 | `case K_PGDN` | Pendiente vinculo |
+| editor.prg:2105 | `case K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:2106 | `case K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:2118 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
+| editor.prg:2124 | `CASE lBlock` | Pendiente vinculo |
+| editor.prg:2125 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
+| editor.prg:2130 | `CASE !Empty(q)` | Pendiente vinculo |
+| editor.prg:2131 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
+| editor.prg:2133 | `ELSEIF c == q` | Pendiente vinculo |
+| editor.prg:2137 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
+| editor.prg:2140 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
 | hbdebug/debugger.prg:1563 | `IF ::lAnimate` | Pendiente vinculo |
 | hbdebug/debugger.prg:1564 | `IF ::nSpeed != 0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1567 | `IF __dbgInvokeDebug()  // NextKey() == K_ALT_D` | Pendiente vinculo |
@@ -1293,6 +1295,7 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 - IDE-KEY-NEXTDOC-CTRL-F6: Actual Ctrl+F6 cycles active buffers in bounded multi-document PTY: per-document text/undo/selection, SaveAs journals and close decisions remain isolated. Complete multiline dispatch condition retained; parent menu-closed/multiple-doc guard remains separate, not inferred coverage. No Ctrl+Shift+F6 acceptance, all terminal encodings, all navigation states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_multidoc_pty.py](../tests/test_multidoc_pty.py)
 - IDE-KEY-PREVDOC-CTRL-SHIFT-F6: Actual xterm Ctrl+Shift+F6 sequence ESC[17;6~ switches third/second/first with first-to-third wrap, subsequent typing/F2 and Undo stay on second, CtrlF6 forward reaches third. New startup mapping preserves extended Ctrl/Shift/F6 identity in gttrm. Bounded three opened files, not other terminals/native Windows/all keys/menus-open states. Parent CtrlF6 dispatch guard separate; link is not PASS without exact source/hash ledger. Pruebas: [test_prevdoc_shortcut_pty.py](../tests/test_prevdoc_shortcut_pty.py)
 - IDE-KEY-REPEAT-FIND-F3: Actual F3 repeat and wrapped repeat clear old selected range before following typing, Undo restores exact original after F2 save. Initial Find in fixture uses Edit menu, not F5 key. Bounded repeated selection fixture, not all search options/menus-open states or Windows. Link is not runtime PASS; inspect exact source/hash ledger. Pruebas: [test_find_repeat_selection_pty.py](../tests/test_find_repeat_selection_pty.py)
+- EDIT-KEY-DELETE-WORD-CTRL-T: Inherited CtrlT deletes from text position, not four-cell gutter; preserves separator-space semantics. Start/midword/EOL and Undo checked in ASCII/UTF8host PTY, TAB and lexical state in fresh model. Bounded contracts, not all selection states/platforms; source/hash ledgers Q265-Q267 own results. Pruebas: [test_delete_word_columns.prg](../tests/test_delete_word_columns.prg), [test_delete_word_columns_pty.py](../tests/test_delete_word_columns_pty.py)
 
 ## Gate de cierre
 

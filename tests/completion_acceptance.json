@@ -2086,6 +2086,16 @@
         "test_help_pty.py"
       ],
       "contract": "Actual F1 without menu opens Welcome; File and Edit menus open matching help topics without executing menu actions. Close returns dirty source, later Undo and F2 preserve exact bytes. Bounded 80x25 xterm fixture, not all menu commands/terminal encodings/help topics/editor selection states/Windows. F1 intentionally handles open menus; no menu-closed guard inferred. Link is not runtime PASS; inspect exact source/hash ledger."
+    },
+    "EDIT-KEY-DELETE-WORD-CTRL-T": {
+      "source": "editor.prg",
+      "context": "METHOD EditKey(",
+      "condition": "case nKeyStd == K_CTRL_T",
+      "tests": [
+        "test_delete_word_columns.prg",
+        "test_delete_word_columns_pty.py"
+      ],
+      "contract": "Inherited CtrlT deletes from text position, not four-cell gutter; preserves separator-space semantics. Start/midword/EOL and Undo checked in ASCII/UTF8host PTY, TAB and lexical state in fresh model. Bounded contracts, not all selection states/platforms; source/hash ledgers Q265-Q267 own results."
     }
   },
   "inspector_field_acceptance": {

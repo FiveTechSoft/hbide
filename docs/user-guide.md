@@ -71,6 +71,7 @@ it does not paste at the cursor position.
 | Ins | Insert / overwrite mode |
 | Ctrl+Z / Ctrl+U | Undo / redo (typing coalesces per line) |
 | Ctrl+Y | Delete line |
+| Ctrl+T | Delete from cursor to next space, keeping that separator (inherited word-delete command) |
 | Ctrl+Right / Alt+Left | Move by word forward / back (Ctrl+Left also jumps back on terminals that deliver extended key codes; otherwise it arrives as Undo) |
 | Ctrl+F6 / Ctrl+Shift+F6 | Next / previous document |
 | Alt+0 / Ctrl+F2 | Window list / Save All |
