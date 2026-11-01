@@ -5506,3 +5506,13 @@ proyecto/ayuda/debug layout. Global/input hook son caracterización del
 contrato actual, no implementación de funciones pendientes. No son31modos
 IDE ni se heredan al binario C30; sin PTY/píxeles/Windows/hitos nuevos.
 Evidencia: docs/evidence/linux-current-models-q245.json.
+
+### Q246 (1 noviembre 2026): ancla selección cero-ancho
+
+C30exacto dos comprobaciones PTY: F8 sin mover y EditCopy mantieneMARK y
+clipboard anterior, no copia línea. Es caracterización, no aceptación de
+semántica nueva ni arreglo. Guía deja explícito extender rango antesCopy;
+sin ancla se aplica línea y Paste inserta debajo. No convertir Cut cero
+ancho en borrar línea sin decisión. Fuente/producto sin cambios; no matriz
+extra/píxeles/modelos/Windows/hitos.
+Evidencia: docs/evidence/linux-zero-width-copy-q246.json.

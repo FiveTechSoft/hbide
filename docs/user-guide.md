@@ -36,13 +36,18 @@ behaviour is not yet validated, the text says so.
 | Options | Compiler Flags..., Display..., Designer... |
 | Help | Index, Contents, About... |
 
-Copy, Cut and Paste act on the selected range when one is active, and on
-the current line otherwise.
+Copy and Cut act on a non-empty marked range. Without an active mark,
+Copy copies the current line and Cut removes the current line. Paste
+inserts clipboard lines below the current line.
 
 To copy a text block, put the cursor at its start, press F8 once and move
 with the arrows/Home/End to its end. Then use Edit > Copy (Alt+E, C).
 Do not press F8 again before copying: it switches the mark off. Copy clears
-the mark after putting the range in the editor's internal clipboard.
+the mark after putting the range in the editor's internal clipboard. If
+F8 has just anchored the cursor and you have not moved, the range has zero
+width: Copy/Cut do nothing, keep the mark and keep the previous clipboard.
+Move to extend the range before copying, or press F8 to turn the mark off
+before using the current-line command.
 Shift+arrows/Home/End can also extend a range when the terminal backend
 reports extended key codes. This is not a guarantee for every terminal or
 Windows backend. Double-click selects a word.
