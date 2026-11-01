@@ -5352,3 +5352,13 @@ distintos cotejados con plan353 y normalizaciónQ223. No implementación
 ExchangeScreens/SwapOnInput, producto nuevo/modelos/píxeles/Windows/hitos
 o matriz completa.
 Evidencia: docs/evidence/linux-c30-debug-session-blocks4754-q232.json.
+
+### Q233 (1 noviembre 2026): C30 runtime inline y límites inspector
+
+10 escenarios adicionales PASS mismo C30 96d77549/export049b533: eventos
+inline/runtime GET/Radio/Check/Combo/List/Button, arrastre inspector hasta
+borde y vuelta y shrink en25x80/40x120. Tests propios hashados/binario
+inalterado, sin fallo/reintento en estos10.197 escenarios distintos
+cotejados con plan353 y normalizaciónQ223. Casos acotados, sin nueva
+política oversized, producto/píxeles/modelos/Windows/matriz completa/hitos.
+Evidencia: docs/evidence/linux-c30-designer-extra-blocks5557-q233.json.

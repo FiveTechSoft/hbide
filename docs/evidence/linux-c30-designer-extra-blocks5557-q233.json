@@ -1,0 +1,170 @@
+{
+  "scope": "Frozen C30 designer inline runtime and inspector boundaries.10additional scenarios;197distinct across blocks1..57 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-get-runtime",
+          "command": [
+            "test_designer_inline_other_runtime_pty.py",
+            "--kind",
+            "get"
+          ],
+          "exit": 0,
+          "seconds": 6.869871377944946,
+          "test_sha256": "1beffe86b233223941eac5e3160fc60f01c262cef3a9454116ca0be96b69184a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-runtime.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-radio-runtime",
+          "command": [
+            "test_designer_inline_other_runtime_pty.py",
+            "--kind",
+            "radiogroup"
+          ],
+          "exit": 0,
+          "seconds": 6.772923231124878,
+          "test_sha256": "1beffe86b233223941eac5e3160fc60f01c262cef3a9454116ca0be96b69184a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radio-runtime.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-checkbox-runtime",
+          "command": [
+            "test_designer_inline_other_runtime_pty.py",
+            "--kind",
+            "checkbox"
+          ],
+          "exit": 0,
+          "seconds": 6.910597324371338,
+          "test_sha256": "1beffe86b233223941eac5e3160fc60f01c262cef3a9454116ca0be96b69184a",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-runtime.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-combo-runtime",
+          "command": [
+            "test_designer_inline_combo_runtime_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 7.016864061355591,
+          "test_sha256": "31e175cc4dcf46b63e860c4cb6b4b7235f2c205a882aa6f1c2a2c6b7a533ade2",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combo-runtime.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-list-runtime",
+          "command": [
+            "test_designer_inline_combo_runtime_pty.py",
+            "--listbox"
+          ],
+          "exit": 0,
+          "seconds": 7.017261505126953,
+          "test_sha256": "31e175cc4dcf46b63e860c4cb6b4b7235f2c205a882aa6f1c2a2c6b7a533ade2",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-list-runtime.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-button-runtime",
+          "command": [
+            "test_designer_inline_button_runtime_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 9.101132869720459,
+          "test_sha256": "878375e81662477a0f1b42e6b13ef0c55f26f76b65a4a15fb2e770ca0f3ccd1b",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-runtime.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inspector-drag-edge-return-small",
+          "command": [
+            "test_designer_inspector_drag_anchor_pty.py",
+            "--small",
+            "--edge-return"
+          ],
+          "exit": 0,
+          "seconds": 5.792430400848389,
+          "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inspector-drag-edge-return-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inspector-drag-edge-return",
+          "command": [
+            "test_designer_inspector_drag_anchor_pty.py",
+            "--edge-return"
+          ],
+          "exit": 0,
+          "seconds": 4.448553085327148,
+          "test_sha256": "cfb369a544866a235effb16967bfb0a9ffa855a06fe5a9d6920cbaa18ba250e2",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inspector-drag-edge-return.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inspector-shrink-small",
+          "command": [
+            "test_designer_inspector_shrink_pty.py",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 5.8074727058410645,
+          "test_sha256": "c48a484a86ae4f88c757ecb1ff3ba44e357d6547b624e5d7e3ba3c141e2461f1",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inspector-shrink-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inspector-shrink",
+          "command": [
+            "test_designer_inspector_shrink_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 4.455677509307861,
+          "test_sha256": "c48a484a86ae4f88c757ecb1ff3ba44e357d6547b624e5d7e3ba3c141e2461f1",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inspector-shrink.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 197,
+  "logs": {
+    "designer-inline-get-runtime.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS alpha control selection updates exact bound value\nPASS alpha inline-edited event handler executes in generated runtime\nPASS beta control selection updates exact bound value\nPASS beta inline-edited event handler executes in generated runtime\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-8hxb2qfm\n",
+    "designer-inline-radio-runtime.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS down control selection updates exact bound value\nPASS down inline-edited event handler executes in generated runtime\nPASS two-down control selection updates exact bound value\nPASS two-down inline-edited event handler executes in generated runtime\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-dgcgkdbl\n",
+    "designer-inline-checkbox-runtime.log": "PASS inline event exact persisted\nPASS actual F9 emits inline event\nPASS generated inline-edited-control artifact compiles\nPASS toggle control selection updates exact bound value\nPASS toggle inline-edited event handler executes in generated runtime\nPASS twice control selection updates exact bound value\nPASS twice inline-edited event handler executes in generated runtime\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-gk2rw16z\n",
+    "designer-inline-combo-runtime.log": "PASS inline STATE exact persisted\nPASS actual F9 emits inline STATE\nPASS generated inline-edited-ComboBox artifact compiles\nPASS down ComboBox selection updates exact bound value\nPASS down inline-edited STATE handler executes in generated runtime\nPASS two-down ComboBox selection updates exact bound value\nPASS two-down inline-edited STATE handler executes in generated runtime\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-n9ws96h7\n",
+    "designer-inline-list-runtime.log": "PASS inline STATE exact persisted\nPASS actual F9 emits inline STATE\nPASS generated inline-edited-ComboBox artifact compiles\nPASS down ComboBox selection updates exact bound value\nPASS down inline-edited STATE handler executes in generated runtime\nPASS two-down ComboBox selection updates exact bound value\nPASS two-down inline-edited STATE handler executes in generated runtime\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-j2c4j917\n",
+    "designer-inline-button-runtime.log": "PASS edited action persisted exact\nPASS edited focus persisted exact\nPASS actual F9 emits edited action and focus\nPASS generated inline-edited-button artifact compiles\nPASS enter runtime caption retains double quotes\nPASS enter generated button accepts dialog true\nPASS enter inline-edited custom action executes\nPASS enter inline-edited focus handler executes\nPASS space runtime caption retains double quotes\nPASS space generated button accepts dialog true\nPASS space inline-edited custom action executes\nPASS space inline-edited focus handler executes\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-mikjdnvv\n",
+    "designer-inspector-drag-edge-return-small.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS outward drag remains visibly clamped\nPASS reversal outside grab-point range retains clamp\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-wd_4kjph\n",
+    "designer-inspector-drag-edge-return.log": "PASS combobox inspector visible\nPASS inspector initially clamped to right\nPASS outward drag remains visibly clamped\nPASS reversal outside grab-point range retains clamp\nPASS drag immediately follows visible origin\nPASS drag preserves full control JSON\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-thsyuoyu\n",
+    "designer-inspector-shrink-small.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS dialog inspector selected\nPASS shorter inspector clears old State row\nPASS shorter inspector clears old Focus row\nPASS Combo inspector restored\nPASS selection only preserves JSON\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-q3mcxgyn\n",
+    "designer-inspector-shrink.log": "PASS combobox inspector visible\nPASS dialog inspector selected\nPASS shorter inspector clears old State row\nPASS shorter inspector clears old Focus row\nPASS Combo inspector restored\nPASS selection only preserves JSON\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-usxqdgqi\n"
+  }
+}
