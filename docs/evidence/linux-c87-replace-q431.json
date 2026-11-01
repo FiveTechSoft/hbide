@@ -1,0 +1,33 @@
+{
+  "scope": "Five bounded C87 Replace modes33checks",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "results": {
+    "test_replace_spaces_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Replace one-space search reports4\nPASS Replace space changes exact fixture spaces\nPASS Undo space replacement restores exact bytes\nPASS Redo space replacement restores exact changed bytes\nPASS Undo again restores exact source\nPASS Replace two-space search reports1\nPASS Replace pair touches only adjacent spaces\nPASS Undo pair replacement restores exact bytes\nPASS Cancel all-space replace preserves exact bytes\nTOTAL 10 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-xjuc1iag\n",
+      "binary_unchanged": true
+    },
+    "test_replace_identity_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS identity replacement still reports one match\nPASS identity replacement of clean buffer closes without save prompt\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-l_r1fu7v\n",
+      "binary_unchanged": true
+    },
+    "test_replace_nochange_selection_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS cancel retains original selection for typing\nPASS cancel Undo restores original exact\nPASS identity correct replacement count\nPASS identity retains original selection for typing\nPASS identity Undo restores original exact\nPASS missing correct replacement count\nPASS missing retains original selection for typing\nPASS missing Undo restores original exact\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6dacqaa6\n",
+      "binary_unchanged": true
+    },
+    "test_replace_selection_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Replace applies with prior marked range\nPASS typing after Replace inserts without deleting stale selection\nPASS Undo typing keeps Replace\nPASS Undo Replace restores original\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-mgwnw5r1\n",
+      "binary_unchanged": true
+    },
+    "test_replace_undo_boundary_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS one Undo reverts Replace but preserves earlier typed X\nPASS Redo reapplies only replacement\nPASS Undo later typing preserves replacement\nPASS next Undo restores text before Replace\nPASS third Undo removes earlier typing alone\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-sw841f9d\n",
+      "binary_unchanged": true
+    }
+  },
+  "limits": "No new pixels/models/fullmatrix/Windows/install/license/hitoclosure. No casefold/codepage behavior changes"
+}
