@@ -1,0 +1,16 @@
+{
+  "scope": "Q446 rightclick ignored gesture characterization, no product fix",
+  "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+  "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+  "pty_log": "PASS debugger stopped before increment\nPASS three locals visible\nPASS Right click on Monitor is a no-op\nPASS single click selects exact local for Enter edit\nPASS doubleclick edits clicked C not prior B\nPASS doubleclick typed Cancel preserves A\nPASS mouse values execute exact debuggee state\nPASS mouse debugger never modifies source bytes\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-wq8vylmk\n",
+  "remaining_mouse_branches_classification": {
+    "IDE-leftclick": "parent route and menu/title hiding dispatch, no whole-branch acceptance",
+    "editor-IsNavKey-wheel-two": "internal navigation classification, not two new features",
+    "designer-main-buttonup": "trace only, not activation gesture",
+    "hbwindow-DsnMouseRoute-three": "arm/release/double suppression state machine needs dedicated runtime interaction; filemodal clicks do not establish full reader route",
+    "debugger-HandleEvent-right": "intentional ignored event, bounded Monitor no-op measured",
+    "debugger-ShowAppScreen-left": "release/input consumption needs own fixture, no toggles/policy permission inferred",
+    "dbgtwin-ShowModal-left": "close glyph hit-test needs own mouse-close fixture"
+  },
+  "limits": "No pixel/model/fullmatrix/Windows/license/hitoclosure, branch count not feature count"
+}
