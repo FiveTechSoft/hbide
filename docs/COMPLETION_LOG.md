@@ -5362,3 +5362,14 @@ inalterado, sin fallo/reintento en estos10.197 escenarios distintos
 cotejados con plan353 y normalizaciónQ223. Casos acotados, sin nueva
 política oversized, producto/píxeles/modelos/Windows/matriz completa/hitos.
 Evidencia: docs/evidence/linux-c30-designer-extra-blocks5557-q233.json.
+
+### Q234 (1 noviembre 2026): C30 numéricos/diálogo inspector
+
+17 escenarios adicionales PASS mismo C30 96d77549/export049b533: campos
+numéricos de siete tipos en40x120/25x80 y diálogo inline/colores normal
+y pequeño. Fixtures acotadas con persistencia/Undo/Redo según contrato,
+no todos valores ni validación oversized. Tests propios hashados/binario
+inalterado, sin fallo/reintento en estos17.214 escenarios distintos
+cotejados con plan353/normalizaciónQ223. No producto/píxeles/modelos/Windows,
+políticas nuevas/matriz completa/cierre hitos.
+Evidencia: docs/evidence/linux-c30-numeric-blocks5864-q234.json.

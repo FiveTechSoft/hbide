@@ -1,0 +1,312 @@
+{
+  "scope": "Frozen C30 inspector numeric/dialog fields.17additional scenarios;214distinct across blocks1..64 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-say-numeric",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "say"
+          ],
+          "exit": 0,
+          "seconds": 7.136219024658203,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-say-numeric.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-get-numeric",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "get"
+          ],
+          "exit": 0,
+          "seconds": 9.353357076644897,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-numeric.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-checkbox-numeric",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "checkbox"
+          ],
+          "exit": 0,
+          "seconds": 7.1366798877716064,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-numeric.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-button-numeric",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "button"
+          ],
+          "exit": 0,
+          "seconds": 11.612595558166504,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-numeric.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-radiogroup-numeric",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "radiogroup"
+          ],
+          "exit": 0,
+          "seconds": 7.139387845993042,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radiogroup-numeric.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-listbox-numeric",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--listbox"
+          ],
+          "exit": 0,
+          "seconds": 11.736412048339844,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-numeric.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-combobox-numeric",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "combobox"
+          ],
+          "exit": 0,
+          "seconds": 11.716304063796997,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combobox-numeric.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-say-numeric-small",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "say",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 8.502384424209595,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-say-numeric-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-get-numeric-small",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "get",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 10.678734540939331,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-get-numeric-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-button-numeric-small",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "button",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 12.979395627975464,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-button-numeric-small.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-checkbox-numeric-small",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "checkbox",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 8.485061883926392,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-checkbox-numeric-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-radiogroup-numeric-small",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "radiogroup",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 8.484813451766968,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-radiogroup-numeric-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-inline-combobox-numeric-small",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--kind",
+            "combobox",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 13.083705425262451,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-combobox-numeric-small.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-inline-listbox-numeric-small",
+          "command": [
+            "test_designer_inline_numeric_pty.py",
+            "--listbox",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 13.065613269805908,
+          "test_sha256": "a4e84937aa69f5aed2e27066523c02df288db407e96ca61e807404949c2d9dea",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-inline-listbox-numeric-small.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "designer-dialog-inline",
+          "command": [
+            "test_designer_dialog_inline_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 14.436535120010376,
+          "test_sha256": "8fcf2f7d3649bd91f30c47feb1338543739425763e51452eeac158e386232a44",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-dialog-inline.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-dialog-inline-colors",
+          "command": [
+            "test_designer_dialog_colors_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 15.703163146972656,
+          "test_sha256": "31c792b869a0e9f35cd09ec5be7f609b94eddbebec069e8e0d4b7579347a06a7",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-dialog-inline-colors.log",
+          "printed_failure": false
+        },
+        {
+          "name": "designer-dialog-inline-colors-small",
+          "command": [
+            "test_designer_dialog_colors_pty.py",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 17.094502210617065,
+          "test_sha256": "31c792b869a0e9f35cd09ec5be7f609b94eddbebec069e8e0d4b7579347a06a7",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/designer-dialog-inline-colors-small.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 214,
+  "logs": {
+    "designer-inline-say-numeric.log": "PASS say inspector visible\nPASS say inline row two adjustments persisted\nPASS say inline row burst Undo exact\nPASS say inline row burst Redo exact\nPASS say inline col two adjustments persisted\nPASS say inline col burst Undo exact\nPASS say inline col burst Redo exact\nPASS say no other controls introduced\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-dtso1jgm\n",
+    "designer-inline-get-numeric.log": "PASS get inspector visible\nPASS get inline row two adjustments persisted\nPASS get inline row burst Undo exact\nPASS get inline row burst Redo exact\nPASS get inline col two adjustments persisted\nPASS get inline col burst Undo exact\nPASS get inline col burst Redo exact\nPASS get inline width two adjustments persisted\nPASS get inline width burst Undo exact\nPASS get inline width burst Redo exact\nPASS get no other controls introduced\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-cq3y4o8y\n",
+    "designer-inline-checkbox-numeric.log": "PASS checkbox inspector visible\nPASS checkbox inline row two adjustments persisted\nPASS checkbox inline row burst Undo exact\nPASS checkbox inline row burst Redo exact\nPASS checkbox inline col two adjustments persisted\nPASS checkbox inline col burst Undo exact\nPASS checkbox inline col burst Redo exact\nPASS checkbox no other controls introduced\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-kgv8pwyc\n",
+    "designer-inline-button-numeric.log": "PASS button inspector visible\nPASS button inline row two adjustments persisted\nPASS button inline row burst Undo exact\nPASS button inline row burst Redo exact\nPASS button inline col two adjustments persisted\nPASS button inline col burst Undo exact\nPASS button inline col burst Redo exact\nPASS button inline style two adjustments persisted\nPASS button inline style burst Undo exact\nPASS button inline style burst Redo exact\nPASS button Enter cycles style\nPASS button Enter style Undo exact\nPASS button Enter style Redo exact\nPASS button no other controls introduced\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-y679x4_2\n",
+    "designer-inline-radiogroup-numeric.log": "PASS radiogroup inspector visible\nPASS radiogroup inline row two adjustments persisted\nPASS radiogroup inline row burst Undo exact\nPASS radiogroup inline row burst Redo exact\nPASS radiogroup inline col two adjustments persisted\nPASS radiogroup inline col burst Undo exact\nPASS radiogroup inline col burst Redo exact\nPASS radiogroup no other controls introduced\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-qbl6_y_v\n",
+    "designer-inline-listbox-numeric.log": "PASS listbox inspector visible\nPASS listbox inline row two adjustments persisted\nPASS listbox inline row burst Undo exact\nPASS listbox inline row burst Redo exact\nPASS listbox inline col two adjustments persisted\nPASS listbox inline col burst Undo exact\nPASS listbox inline col burst Redo exact\nPASS listbox inline width two adjustments persisted\nPASS listbox inline width burst Undo exact\nPASS listbox inline width burst Redo exact\nPASS listbox inline height two adjustments persisted\nPASS listbox inline height burst Undo exact\nPASS listbox inline height burst Redo exact\nPASS listbox no other controls introduced\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-she7qw_9\n",
+    "designer-inline-combobox-numeric.log": "PASS combobox inspector visible\nPASS combobox inline row two adjustments persisted\nPASS combobox inline row burst Undo exact\nPASS combobox inline row burst Redo exact\nPASS combobox inline col two adjustments persisted\nPASS combobox inline col burst Undo exact\nPASS combobox inline col burst Redo exact\nPASS combobox inline width two adjustments persisted\nPASS combobox inline width burst Undo exact\nPASS combobox inline width burst Redo exact\nPASS combobox inline height two adjustments persisted\nPASS combobox inline height burst Undo exact\nPASS combobox inline height burst Redo exact\nPASS combobox no other controls introduced\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-nzxnwsr2\n",
+    "designer-inline-say-numeric-small.log": "PASS actual Display applies25x80\nPASS say inspector visible\nPASS say inline row two adjustments persisted\nPASS say inline row burst Undo exact\nPASS say inline row burst Redo exact\nPASS say inline col two adjustments persisted\nPASS say inline col burst Undo exact\nPASS say inline col burst Redo exact\nPASS say no other controls introduced\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-m0lq931c\n",
+    "designer-inline-get-numeric-small.log": "PASS actual Display applies25x80\nPASS get inspector visible\nPASS get inline row two adjustments persisted\nPASS get inline row burst Undo exact\nPASS get inline row burst Redo exact\nPASS get inline col two adjustments persisted\nPASS get inline col burst Undo exact\nPASS get inline col burst Redo exact\nPASS get inline width two adjustments persisted\nPASS get inline width burst Undo exact\nPASS get inline width burst Redo exact\nPASS get no other controls introduced\nTOTAL 12 PASS 0 FAIL; evidence /tmp/hbide-source-run-qmcguky_\n",
+    "designer-inline-button-numeric-small.log": "PASS actual Display applies25x80\nPASS button inspector visible\nPASS button inline row two adjustments persisted\nPASS button inline row burst Undo exact\nPASS button inline row burst Redo exact\nPASS button inline col two adjustments persisted\nPASS button inline col burst Undo exact\nPASS button inline col burst Redo exact\nPASS button inline style two adjustments persisted\nPASS button inline style burst Undo exact\nPASS button inline style burst Redo exact\nPASS button Enter cycles style\nPASS button Enter style Undo exact\nPASS button Enter style Redo exact\nPASS button no other controls introduced\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-oxq4qbmc\n",
+    "designer-inline-checkbox-numeric-small.log": "PASS actual Display applies25x80\nPASS checkbox inspector visible\nPASS checkbox inline row two adjustments persisted\nPASS checkbox inline row burst Undo exact\nPASS checkbox inline row burst Redo exact\nPASS checkbox inline col two adjustments persisted\nPASS checkbox inline col burst Undo exact\nPASS checkbox inline col burst Redo exact\nPASS checkbox no other controls introduced\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-55gc2bx_\n",
+    "designer-inline-radiogroup-numeric-small.log": "PASS actual Display applies25x80\nPASS radiogroup inspector visible\nPASS radiogroup inline row two adjustments persisted\nPASS radiogroup inline row burst Undo exact\nPASS radiogroup inline row burst Redo exact\nPASS radiogroup inline col two adjustments persisted\nPASS radiogroup inline col burst Undo exact\nPASS radiogroup inline col burst Redo exact\nPASS radiogroup no other controls introduced\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-_88yud2j\n",
+    "designer-inline-combobox-numeric-small.log": "PASS actual Display applies25x80\nPASS combobox inspector visible\nPASS combobox inline row two adjustments persisted\nPASS combobox inline row burst Undo exact\nPASS combobox inline row burst Redo exact\nPASS combobox inline col two adjustments persisted\nPASS combobox inline col burst Undo exact\nPASS combobox inline col burst Redo exact\nPASS combobox inline width two adjustments persisted\nPASS combobox inline width burst Undo exact\nPASS combobox inline width burst Redo exact\nPASS combobox inline height two adjustments persisted\nPASS combobox inline height burst Undo exact\nPASS combobox inline height burst Redo exact\nPASS combobox no other controls introduced\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-0x81arpp\n",
+    "designer-inline-listbox-numeric-small.log": "PASS actual Display applies25x80\nPASS listbox inspector visible\nPASS listbox inline row two adjustments persisted\nPASS listbox inline row burst Undo exact\nPASS listbox inline row burst Redo exact\nPASS listbox inline col two adjustments persisted\nPASS listbox inline col burst Undo exact\nPASS listbox inline col burst Redo exact\nPASS listbox inline width two adjustments persisted\nPASS listbox inline width burst Undo exact\nPASS listbox inline width burst Redo exact\nPASS listbox inline height two adjustments persisted\nPASS listbox inline height burst Undo exact\nPASS listbox inline height burst Redo exact\nPASS listbox no other controls introduced\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-czxr4_04\n",
+    "designer-dialog-inline.log": "PASS dialog inspector visible\nPASS dialog inline name F10 exact\nPASS dialog inline name Undo exact\nPASS dialog inline name Redo exact\nPASS dialog inline name Esc exact\nPASS dialog inline caption F10 exact\nPASS dialog inline caption Undo exact\nPASS dialog inline caption Redo exact\nPASS dialog inline caption Esc exact\nPASS dialog inline width two adjustments exact\nPASS dialog inline width burst Undo exact\nPASS dialog inline width burst Redo exact\nPASS dialog inline height two adjustments exact\nPASS dialog inline height burst Undo exact\nPASS dialog inline height burst Redo exact\nPASS dialog edits preserve every control\nTOTAL 16 PASS 0 FAIL; evidence /tmp/hbide-source-run-qlo4cvfb\n",
+    "designer-dialog-inline-colors.log": "PASS dialog inspector visible\nPASS dialog colorback picker visible\nPASS dialog colorback picked F10 exact\nPASS dialog colorback Undo exact\nPASS dialog colorback Redo exact\nPASS dialog colorback Esc exact\nPASS dialog colortext picker visible\nPASS dialog colortext picked F10 exact\nPASS dialog colortext Undo exact\nPASS dialog colortext Redo exact\nPASS dialog colortext Esc exact\nPASS dialog colorfocus picker visible\nPASS dialog colorfocus picked F10 exact\nPASS dialog colorfocus Undo exact\nPASS dialog colorfocus Redo exact\nPASS dialog colorfocus Esc exact\nPASS dialog colors preserve every control\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-rlxahh0g\n",
+    "designer-dialog-inline-colors-small.log": "PASS actual Display applies25x80\nPASS dialog inspector visible\nPASS dialog colorback picker visible\nPASS dialog colorback picked F10 exact\nPASS dialog colorback Undo exact\nPASS dialog colorback Redo exact\nPASS dialog colorback Esc exact\nPASS dialog colortext picker visible\nPASS dialog colortext picked F10 exact\nPASS dialog colortext Undo exact\nPASS dialog colortext Redo exact\nPASS dialog colortext Esc exact\nPASS dialog colorfocus picker visible\nPASS dialog colorfocus picked F10 exact\nPASS dialog colorfocus Undo exact\nPASS dialog colorfocus Redo exact\nPASS dialog colorfocus Esc exact\nPASS dialog colors preserve every control\nTOTAL 18 PASS 0 FAIL; evidence /tmp/hbide-source-run-5azl_g6t\n"
+  }
+}
