@@ -4937,3 +4937,15 @@ y hostCP restaurado tanto EN como UTF8. No pixels del modelo.
 87guardas34docsPASS. Sin cambio producto/nuevos pixeles, anchoUnicode
 general, malformedUTF8, Windows, matriz343 o cierre.
 Evidencia: docs/evidence/linux-output-utf8-boundaries-q197.json.
+
+### Q198 (1 noviembre 2026): modelos conjuntos tras UTF8 Output
+
+Fuente93ef03c086eea122794b58343e7f2d2fc04f8775 limpia,29modelos
+frescos PASS sin cambios durante ejecucion. Incluye modeloOutput con
+raw exacto/restauracionCP, editor/disenador/proyecto/debugger/ayuda. Cada
+probe tiene binario/hash propio, no se presenta como un IDE comun.
+Sin PTY/pixeles nuevos, Windows, candidato ni cierreM2/M6.
+La fixture12controles pedida por captura queda en
+demos/designer/fixture-mas-controles.json; captura real entregada, no
+se afirma ejecucion funcional de ese formulario.
+Evidencia: docs/evidence/linux-model-joint-q198.json.
