@@ -1,0 +1,232 @@
+{
+  "scope": "Q418 standard PRINTER keyword abbreviation navigation fix",
+  "candidate": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "e84d41e1d57f35aa1b42fe538b4ab11aa598f6fe",
+    "archive_sha256": "979dfa49c1176bd97aea397401f39332fd1472f5fcc13c40d0bb64d9ebfd64e8",
+    "dirty": false,
+    "started": 1793564971.277266,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "dc963ea2216e2b56f9def05b4ab6076d7d1106f58cd25e5ab7aafdb78ebb20dd",
+    "release_status": "not cleared; source notice review required",
+    "document_check": {
+      "exit": 0,
+      "paths_sha256": "a9ad0b3a5c47771afa608f0f9b419e12fb6491c24b00f1af4ebba47cff6c1e1b",
+      "count": 34
+    },
+    "source_notice_inventory": {
+      "path": "source-notices.json",
+      "sha256": "f4a9870aff7f0c5c8b84035254582aabea897ff642c313438337538356db14dc",
+      "release_review_required": true,
+      "does_not_clear_redistribution": true
+    },
+    "unstripped_sha256": "7b47d6a419852cd1d4ebebdff5a5e69d97f11fb5c14a4d8efc22bceb52233020",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "a7f08d630682a8c13ac6ead900cead971c128fa5f974b23be2114d73191fca48",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793565069.0348241
+  },
+  "compiler_probes": {
+    "prin": {
+      "start": "TEXT TO PRIN",
+      "end": "ENDTEXT",
+      "compiler_exit": 0,
+      "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q418/prin.prg'...\n\rLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_vnn9to.dir/prin.c'... Done.\n"
+    },
+    "print": {
+      "start": "TEXT TO PRINT",
+      "end": "ENDTEXT",
+      "compiler_exit": 0,
+      "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q418/print.prg'...\n\rLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_b3by11.dir/print.c'... Done.\n"
+    },
+    "fil": {
+      "start": "TEXT TO FIL \"out.txt\"",
+      "end": "ENDTEXT",
+      "compiler_exit": 6,
+      "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q418/fil.prg'...\n\r/tmp/hbide-q418/fil.prg(2) Error E0030  Syntax error \"syntax error at 'TO'\"\n\r/tmp/hbide-q418/fil.prg(9) Error E0023  Unterminated /* */ comment\n\r2 errors\n\nNo code generated.\nhbmk2: Error: Running Harbour compiler (built-in). 1\n"
+    },
+    "endshort": {
+      "start": "TEXT",
+      "end": "ENDT",
+      "compiler_exit": 6,
+      "log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-q418/endshort.prg'...\n\r/tmp/hbide-q418/endshort.prg(9) Error E0003  Missing ENDTEXT\n\r1 error\n\nNo code generated.\nhbmk2: Error: Running Harbour compiler (built-in). 1\n"
+    }
+  },
+  "baseline_c86": {
+    "prin": {
+      "exit": 1,
+      "log": "PASS Open requested fixture\nFAIL Picker excludes TEXT phantom and includes real declaration\nFAIL Picker jumps after raw TEXT block\nTOTAL 1 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-v0d6b4ws\n"
+    },
+    "print": {
+      "exit": 1,
+      "log": "PASS Open requested fixture\nFAIL Picker excludes TEXT phantom and includes real declaration\nFAIL Picker jumps after raw TEXT block\nTOTAL 1 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-sp2baoes\n"
+    }
+  },
+  "fixed_contexts_c87": {
+    "file_literal": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/file_literal.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_pwy0yx.dir/file_literal.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO FILE \"out.txt\"\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-bu8jojsa\n"
+    },
+    "printer": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/printer.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_q4slfi.dir/printer.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO PRINTER\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-okkiib3s\n"
+    },
+    "printer_abbrev4": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/printer_abbrev4.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_rgos83.dir/printer_abbrev4.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO PRIN\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-hmtduvxz\n"
+    },
+    "printer_abbrev5": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/printer_abbrev5.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_8d66ak.dir/printer_abbrev5.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO PRINT\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-anznwgu8\n"
+    },
+    "printer_abbrev6": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/printer_abbrev6.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_8zort7.dir/printer_abbrev6.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO PRINTE\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-qxf5nmpv\n"
+    },
+    "printer_abbrev_continued": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/printer_abbrev_continued.prg'...\n\nLines 9, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_q15ooi.dir/printer_abbrev_continued.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO ;\nPRIN\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-hs7neij4\n"
+    },
+    "continued_text": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/continued_text.prg'...\n\nLines 9, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_g7i5p8.dir/continued_text.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT ;\nTO FILE \"out.txt\"\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-poxwrt5h\n"
+    },
+    "continued_to": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/continued_to.prg'...\n\nLines 9, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_9yy014.dir/continued_to.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO ;\nFILE \"out.txt\"\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-po96lymg\n"
+    },
+    "continued_printer": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/continued_printer.prg'...\n\nLines 9, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_baz6px.dir/continued_printer.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO ;\nPRINTER\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-jigewdtz\n"
+    },
+    "continued_twice": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/continued_twice.prg'...\n\nLines 10, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_n2ggsg.dir/continued_twice.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT ; // join\nTO ;\nFILE \"out.txt\"\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-f_f19ec7\n"
+    },
+    "file_tab": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/file_tab.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_v2j7nj.dir/file_tab.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT\tTO\tFILE\t\"out.txt\"\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-vg4sgrgo\n"
+    },
+    "file_bare": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/file_bare.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_e0ngbz.dir/file_bare.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO FILE out.txt\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-lns9axk3\n"
+    },
+    "file_expression": {
+      "compiler_exit": 0,
+      "compiler_log": "Harbour 3.2.1dev (r2610242111)\nCopyright (c) 1999-2025, https://harbour.github.io/\nCompiling '/tmp/hbide-text-contexts-ge5b0rfg/file_expression.prg'...\n\nLines 8, Functions/Procedures 2\nGenerating C source output to '/tmp/hbmk_oboxqu.dir/file_expression.c'... Done.\n",
+      "fixture": "procedure Main()\nTEXT TO FILE (\"out\" + \".txt\")\nfunction Phantom()\n/* literal, not comment state\nENDTEXT\nreturn\nfunction Real()\nreturn 42\n",
+      "pty_exit": 0,
+      "pty_log": "PASS Open requested fixture\nPASS Picker excludes TEXT phantom and includes real declaration\nPASS Picker jumps after raw TEXT block\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-yby8ioyg\n"
+    }
+  },
+  "lexical_model": "141PASS0FAIL GTSTD separate, including exact negatives PRI/PRINTERCUSTOM",
+  "visual": {
+    "before": "/downloads/hbide-q418-textprin-before.png",
+    "after": "/downloads/hbide-q418-textprin-c87.png",
+    "inspection": "Complete1202x762frames inspected including lower border/status. Before Phantom3, after Real7. No syntax coloring change claimed."
+  },
+  "limits": "13compiler-validcontexts39PTYchecks+official8smokes only; no fullmatrix/modelinheritance/Windows/install/license/hitoclosure. No payload execution/customstream/CP/toolchain/policychange"
+}
