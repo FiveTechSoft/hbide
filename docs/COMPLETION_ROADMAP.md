@@ -66,19 +66,20 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
-Corte 1 noviembre17:07 Q305: candidato focal C56,
-source8237734730007f7692fc1165de86ed601a33d6e4,
-bina4c70a4f78ad79e7ac8f20f3742e853ec3a36c9adf57a5de09c40e9a84b058ab.
-Q303Duplicate y Q304Paste anclan diff antes de instrucciones idénticas existentes,
-para que sus BP sigan al original, no a la copia nueva. C55baseline4PASS2FAIL;
-C56cincoPTY30checksPASS, modelos separados147EOL/210repaint y par nativo
-1202x762 inspeccionado. Q30537modelos GTSTD fresh del source59389588aef8e74962fe8cb0af338ebbe8916673
-limpio PASS. No37modosIDE ni certificados del binarioC56; globalVM/inputhook
-siguen caracterizando límites, no implementación. Q299/Q300TEXT conserva ledgers.
+Corte 1 noviembre17:15 Q309: candidato focal C57,
+source9eba255aa42bff90a87117c5d432cb750be26a59,
+binf7e77f10ca8fe81ef3d4c073b4c044e3c9785b200c65999f983b692e52abdd4c.
+Q307DeleteLine ancla diff antes de línea retirada, no eliminaBP de instrucción
+idéntica superviviente. C56baseline2PASS3FAIL; C57cincoPTY31checks+BPpolicyprobe
+PASS, modelos152EOL/210repaint y par nativo1202x762 inspeccionado. Q308arnés
+postexport24checksPASS Delete/CtrlY/Cut, conserva política drop/noUndoResurrection.
+Q30937modelos GTSTD fresh del source247cd40 limpio PASS. No37modosIDE ni
+certificados del binarioC57; globalVM/inputhook caracterizan límites, no soporte.
+Q303Duplicate/Q304Paste anclaBP y Q299/Q300TEXT conservan ledgers separados.
 C52identificado fuente90e6d102c19227322accc16d58af294162e0fa17,
 bin01c5434ab5b37bb687d19e50265d7ab6906641ce56d5ca4cc1c29bebbd566696:
-About/catálogoQ297/ldd/8smokes/5PTY34checks PASS, no heredados aC56.
-Q306docs posteriores no embebidos en C56 ni C52. No sumar fuentes/binarios
+About/catálogoQ297/ldd/8smokes/5PTY34checks PASS, no heredados aC57.
+Q310docs posteriores no embebidos en C57 ni C52. No sumar fuentes/binarios
 como matriz. Sin fullpreprocessor/customstream/navcontinuation/Windows/release/hitos.
 C30 sigue siendo el candidato con plan353 reconciliado,
 export049b5332628bbb8faa4458863405bc20438320ca,
@@ -1048,3 +1049,14 @@ par nativo completo inspeccionado. Q304PasteLine confirmado independientemente
 linux-paste-identical-bp-q304.json. Q30537modelos GTSTD fresh source5938958
 limpioPASS, recibo linux-model-baseline-q305.json. Q306aceptación/inventario/
 catálogo reconciliados. Sin rebuild sólo docs ni matriz/Windows/hito.
+
+### Seguimiento Q307-Q310 (1 noviembre 2026)
+
+Q307DeleteLine idénticas retirabaBP de superviviente por prefijo diff ambiguo.
+Ancla de borrado explícita; baseline2PASS3FAIL, C57cincoPTY31checks+BPpolicyprobe
+PASS, modelos152EOL/210repaint y par nativo completo inspeccionado. Q308arnés
+postexport24checksDelete/CtrlY/unmarkedCutPASS, borrar propia instrucción marcada
+no resucitaBP conUndo. Recibos linux-delete-identical-bp-q307.json y
+linux-delete-identical-bp-dispatch-q308.json. Q30937modelosGTSTD source247cd40
+limpioPASS, recibo linux-model-baseline-q309.json. Q310aceptación/inventario/
+catálogo actualizados, no nuevo producto/build por docs/matriz/Windows/hito.
