@@ -66,6 +66,10 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 1 noviembre20:21 Q373-Q380 añade regresiones focales sobre C77exacto
+(saveclose/nav/designer/BP/recoveryUTF8), detalladas al final. No se suman en
+una matriz global ni heredan píxeles/modelos. Q381docs posteriores no embebidos.
+
 Actualización 1 noviembre20:02 Q370: último candidato limpio identificado C77,
 fuente74db43fe4e4bc5dae5f54e4663a4ffb8e9d0abd9,
 bin b0ad4e6bb4ad5f5d87eef67111995dfdce3963c59745e2b101f543ea323beaeb.
@@ -1287,3 +1291,25 @@ linux-clipboard-recovery-c75-q362, linux-replace-c75-q363,
 utf8-casefold-investigation-q364, linux-selection-virtual-c75-q365,
 linux-project-c75-q366, linux-build-retry-c75-q367, linux-virtual-clipboard-q368,
 linux-clean-candidate-q370 (JSON en docs/evidence).
+
+### Q372-Q381 (1 noviembre 2026): regresiones focales del candidato C77
+
+Q37237modelosGTSTD fresh fuente b35f28c PASS, separados del binario IDE.
+Q373cinco scriptsC77Save/Close/conflictos/SaveAsrefusal+killrestartPASS: original,
+externo, dirty y documentos/journals separados conservados. Q374cinco navscripts
+15checksPASS: METHODimplícito/DECLARED/TEXT/continuación/PROCEDURECLASS.
+Q375labelsDECLARED corregidos sólo harness,3checksC77PASS. Q376ocho grupos
+herramientasPASS fuente72515f8, no aceptaciónIDE.
+Q377cuatro modosdesigner52checksC77PASS, runtimegenerado instrumentado acotado.
+Q378tres modos144checksC77PASS: sietecontrolesaprobados cargados/creados,
+Cut/Paste/UndoRedo y clones separados con variablesúnicas; persistenciaJSON,
+no píxeles ni aceptaciónruntimegenerado. Q379seisscriptsBPidentity33checksLF
+PASS, conserva/drop según instrucciónoriginal; no debuggercompleto.
+Q380cuatromodosC77PASS: deepmixedEOL y UTF8BOM separados kill/recover/saveexactos,
+Compare readonly/snapshots/Later, mouseUTF8terminal17checksBOM/TAB/mixedEOL.
+Cada prueba verificó hash C77intacto b0ad4e6bb4ad5f5d87eef67111995dfdce3963c59745e2b101f543ea323beaeb,
+fuente74db43fe4e4bc5dae5f54e4663a4ffb8e9d0abd9. Ningún bloque sustituye matriz
+completa ni nueva inspección de píxeles. C30único planhistórico completo.
+Q381reconcilia docs/catálogo, sin producto/buildIDE; docs posteriores no
+embebidosC77, no rebuild por receipts. Windows/install/licencias/M5/M6 y
+políticas pendientes intactos. Receipts docs/evidence/linux-*-q372 a q380.json.
