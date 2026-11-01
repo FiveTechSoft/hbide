@@ -5853,3 +5853,21 @@ Q391docs/catálogo posteriores no embebidos en C81, sin rebuild por docs.
 M5/M6/Windows/install/licencias y políticas pendientes intactos.
 Receipts linux-nav-end-class-q387.json, linux-nav-end-class-contexts-q388.json,
 linux-clean-candidate-q389.json.
+
+### Q392-Q396 (1 noviembre 2026): terminador continuado y C83
+
+Q39237modelosGTSTDfresh78df81bPASS separados. Q393seismodosC81clipboard/virtual/
+SaveAll/Close37checksPASS. Q394END ; seguido CLASS compiler-valid hblibexit0
+omitía METHODimplícito: C81baseline1PASS2FAIL. InicioEND/ENDCLASS se une por la
+ruta lógica ya existente; C82focal3/0, cinco contextoshblib0+15PTYchecksPASS,
+lexical127/0separado con negativo ENDIF. PíxelesC81/C82 completos1202x762
+inspeccionados muestran Demo:Pingline6 y2of2, jump/savebytes separado.
+Q395C83limpio identificado fuentec245e8c3047f97a8674f75bb0f1ae33123defe1e,
+bin92504b3338a3e2f24a14615d54d8ad4fd14b12f9901fd53cd8c1f8aa157309a5.
+Builderstrip-debug/Aboutrevision/docs34byteexact/ldd/8smokes y cincofocal17checks
+PASS binintacto: continuedEND/rawBOM/DECLARED/emptyline/virtualCopy.
+Último identificado, sin heredar matrices/modelos/píxeles; C30único planhistórico
+completo. Q396docs/catálogo posteriores no embebidosC83, no rebuild por docs.
+Windows/install/licencias/M5/M6 y políticas pendientes intactos. Evidencia:
+linux-clipboard-save-c81-q393.json, linux-nav-continued-end-q394.json,
+linux-clean-candidate-q395.json.
