@@ -575,3 +575,11 @@ escritura+Tabcommit,bindingrechazadoigual,FOCUSGUIausente.6PTY47checks
 63guardas34docsPASS.Sin all-skipped/re-enable/otrasteclas/Windows/
 cierreM4,nuevosmodelos/pixeles. Evidencia
 `docs/evidence/linux-designer-inline-when-veto-runtime-q153.json`.
+
+
+### Seguimiento Q154 (1 noviembre 2026)
+
+Modeloinspector104transicionesaltura+16panelmoves enmodos40x120/25x80
+byteexactincremental==Redraw;29modelos63guardas34docsPASS. No mismoheight,
+nuevoPTY/pixels/25x80native/Windows/cierreM4;sin arreglo. Evidencia
+`docs/evidence/linux-designer-inspector-repaint-models-q154.json`.

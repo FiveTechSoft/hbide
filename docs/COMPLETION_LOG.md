@@ -4292,3 +4292,13 @@ commit;TabcommitantesEsc corrige harness,nocambiasemanticaabort.
 Evidencia `docs/evidence/linux-designer-inline-when-veto-runtime-q153.json`.
 Sin todoscontrolesomitidos/re-enable/otrasteclas/mouse/cuentas/orden/
 excepciones/codigoarbitrario,nuevosmodelos/pixeles/Windows/cierreM4.
+
+
+## 1 noviembre 2026: Q154 modelo de restauracion inspector ampliado
+
+104transicionesdealtura entre dialogo y7tipos+16panelmoves;modos
+modelo40x120/25x80 verificados exactos. DrawInspectorincremental
+SaveScreenbyteexact==Redrawlimpio. Excluyetransicionesmismaaltura
+(callerRedraw),noalega25x80native/pixeles.29modelos63guardas34docs
+PASS en7a11d1a.Sin arreglo/nuevoPTY/visual/gestos/Windows/cierreM4.
+Evidencia `docs/evidence/linux-designer-inspector-repaint-models-q154.json`.
