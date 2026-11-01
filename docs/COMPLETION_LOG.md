@@ -5194,3 +5194,13 @@ delconductorcareciahbmk2paracrearfixture. PATHhostcorregidoyrerunPASS;
 PATHdelaAPPsiguevacioparafalloausente. Fallosinicialesconservados.
 Sinfixproducto/nuevospixeles/modelos/Windows/hitos.
 Evidencia: docs/evidence/linux-c30-build-block4-q219.json.
+
+### Q220 (1 noviembre 2026): C30oncevariantesbuild/run
+
+11modosmasPASSmismoC3096d77549/export049b533:status0sinoutput,fallo
+conoutput,saltodiagnostic,fallopromotionyreintento,outputlargo/color/
+scroll25x80y40x120,buildrealexitosoconoutputlargo2dimensiones.
+Testspropioexporthashed/binsincambios. 28modosdistintosconQ217..219,
+no sumarosextrasduplicados. Sinfallos/reintentosdelconductor en5/6/7.
+No fixproducto/pixeles/modelos/Windows/Cancel/bloqueoUI/matriz353/hitos.
+Evidencia: docs/evidence/linux-c30-build-blocks567-q220.json.

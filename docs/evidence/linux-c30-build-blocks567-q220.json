@@ -1,0 +1,187 @@
+{
+  "scope": "FrozenC30 eleven-mode build/run block,28distinctQ217..220. No full353/Windows/newpixels/models/Cancel/UI responsiveness/milestone closure.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "missing-output",
+          "command": [
+            "test_missing_compiler_pty.py",
+            "--missing-output"
+          ],
+          "exit": 0,
+          "seconds": 6.341779470443726,
+          "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/missing-output.log",
+          "printed_failure": false
+        },
+        {
+          "name": "failed-output",
+          "command": [
+            "test_missing_compiler_pty.py",
+            "--failed-output"
+          ],
+          "exit": 0,
+          "seconds": 6.3390092849731445,
+          "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/failed-output.log",
+          "printed_failure": false
+        },
+        {
+          "name": "promotion-failure",
+          "command": [
+            "test_missing_compiler_pty.py",
+            "--promotion-failure"
+          ],
+          "exit": 0,
+          "seconds": 5.256774425506592,
+          "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/promotion-failure.log",
+          "printed_failure": false
+        },
+        {
+          "name": "missing-output-diagnostic",
+          "command": [
+            "test_missing_compiler_pty.py",
+            "--missing-output-diagnostic"
+          ],
+          "exit": 0,
+          "seconds": 7.142953872680664,
+          "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/missing-output-diagnostic.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "long-output",
+          "command": [
+            "test_missing_compiler_pty.py",
+            "--long-output"
+          ],
+          "exit": 0,
+          "seconds": 8.117903709411621,
+          "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/long-output.log",
+          "printed_failure": false
+        },
+        {
+          "name": "long-output-small",
+          "command": [
+            "test_missing_compiler_pty.py",
+            "--long-output",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 7.942075729370117,
+          "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/long-output-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "long-output-horizontal-small",
+          "command": [
+            "test_missing_compiler_pty.py",
+            "--long-output",
+            "--small",
+            "--horizontal"
+          ],
+          "exit": 0,
+          "seconds": 10.931260347366333,
+          "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/long-output-horizontal-small.log",
+          "printed_failure": false
+        },
+        {
+          "name": "long-output-color",
+          "command": [
+            "test_missing_compiler_pty.py",
+            "--long-output",
+            "--color-output"
+          ],
+          "exit": 0,
+          "seconds": 8.127932071685791,
+          "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/long-output-color.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "promotion-retry",
+          "command": [
+            "test_missing_compiler_pty.py",
+            "--promotion-retry"
+          ],
+          "exit": 0,
+          "seconds": 7.081920385360718,
+          "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/promotion-retry.log",
+          "printed_failure": false
+        },
+        {
+          "name": "success-long-output",
+          "command": [
+            "test_missing_compiler_pty.py",
+            "--success-long-output"
+          ],
+          "exit": 0,
+          "seconds": 5.499308824539185,
+          "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/success-long-output.log",
+          "printed_failure": false
+        },
+        {
+          "name": "success-long-output-small",
+          "command": [
+            "test_missing_compiler_pty.py",
+            "--success-long-output",
+            "--small"
+          ],
+          "exit": 0,
+          "seconds": 5.486995458602905,
+          "test_sha256": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/success-long-output-small.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "logs": {
+    "missing-output.log": "PASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 13 PASS 0 FAIL; evidence /tmp/hbide-source-run-03b8pnoh\n",
+    "failed-output.log": "PASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 13 PASS 0 FAIL; evidence /tmp/hbide-source-run-td66y7vz\n",
+    "promotion-failure.log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS editor remains usable after repeated failure\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-b0zh893_\n",
+    "missing-output-diagnostic.log": "PASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-w0uvr_lq\n",
+    "long-output.log": "PASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-7npxitbo\n",
+    "long-output-small.log": "PASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-7f9kh4ok\n",
+    "long-output-horizontal-small.log": "PASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS Right reveals exact diagnostic tail\nPASS Left restores diagnostic source path\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS Right reveals exact diagnostic tail\nPASS Left restores diagnostic source path\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 23 PASS 0 FAIL; evidence /tmp/hbide-source-run-8do_n2ry\n",
+    "long-output-color.log": "PASS long build output opens scrollable viewer\nPASS viewer hides GCC color control notation\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS long build output opens scrollable viewer\nPASS viewer hides GCC color control notation\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 21 PASS 0 FAIL; evidence /tmp/hbide-source-run-fabhc_xz\n",
+    "promotion-retry.log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS retry with unblocked destination builds\nPASS retry launches fresh real compiler result\nPASS retry promotes new executable\nPASS retained first output stays exact\nPASS retry preserves source\nPASS retry has no unnamed temporary outputs\nPASS editor remains usable after repeated failure\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-r31i2o8d\n",
+    "success-long-output.log": "PASS successful real build opens scrollable output\nPASS viewer does not prematurely launch program\nPASS previous executable stays exact until viewer exits\nPASS End exposes real compiler completion\nPASS Esc viewer exit still runs fresh program\nPASS success promotes different executable\nPASS successful build source byte exact\nPASS successful build has no leftover temp\nPASS success never shows failure alert\nPASS editor remains usable after repeated failure\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-gr5tq6jn\n",
+    "success-long-output-small.log": "PASS successful real build opens scrollable output\nPASS viewer does not prematurely launch program\nPASS previous executable stays exact until viewer exits\nPASS End exposes real compiler completion\nPASS Esc viewer exit still runs fresh program\nPASS success promotes different executable\nPASS successful build source byte exact\nPASS successful build has no leftover temp\nPASS success never shows failure alert\nPASS editor remains usable after repeated failure\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-unr14a9x\n"
+  }
+}
