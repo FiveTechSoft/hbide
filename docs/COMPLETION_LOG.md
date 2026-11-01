@@ -4326,3 +4326,14 @@ overlay,marcosinspectorcompletos. Fixture corrige rawHBWindowidleactivo
 conSuspendUI,sinActivate;no bugIDEinferido.63guardas34docsPASSen ce2c4ba.
 No startupIDE25x80/endtoend/gestos/otroslayouts/Windows/cierreM4 ni arreglo.
 Evidencia `docs/evidence/linux-designer-inspector-native-geometry-q156.json`.
+
+
+## 1 noviembre 2026: Q157 all-skipped de un control
+
+GET/Radio/Checkbox/List/Combo/Button,formulariodeuncontrolconWHEN.F.
+editadoinline,F10,F9,compila artefactoreal. Runtime retorna sinenviar
+teclas antesde1.5s,bindingigual,FOCUSGUIausente.6PTY41checks63guardas
+34docsPASSen3848ccc,sin arreglo. No all-skippedmulticontrol/re-enable/
+errores/excepciones/orden/cuentas/arbitrarycode,nuevosmodelos/pixeles/
+Windows/global/cierreM4. Evidencia
+`docs/evidence/linux-designer-inline-all-skipped-runtime-q157.json`.

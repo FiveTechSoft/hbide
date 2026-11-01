@@ -599,3 +599,11 @@ Fixturestandalone native25x80/40x120 recibos/cuatropixelesinspeccionados,
 seleccionCombo ydialogosinrestos.63guardas34docsPASS. No startupIDE25x80,
 endtoend/gestos/otroslayouts/Windows/cierreM4 ni arreglo. Evidencia
 `docs/evidence/linux-designer-inspector-native-geometry-q156.json`.
+
+
+### Seguimiento Q157 (1 noviembre 2026)
+
+All-skipped deuncontrolWHEN.F.inline,F10,F9,runtime retorna sinteclas
+en6tipos:6PTY41checks63guardas34docsPASS. No multicontrol/re-enable/
+Windows/global/M4,nuevosmodelos/pixeles. Evidencia
+`docs/evidence/linux-designer-inline-all-skipped-runtime-q157.json`.
