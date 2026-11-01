@@ -506,3 +506,11 @@ Inventario de inspector por par control/campo: 60 pares fuente (53+7 dialogo),
 con contratos focales Q139-Q144, no aceptacion global. Guardas negativas de
 identidad/tipo/clave/control/prueba impiden vincular silenciosamente otra ruta.
 Sin ejecucion de handlers, nueva aceptacion PTY/visual o cierreM4.
+
+
+### Seguimiento Q146 (1 noviembre 2026)
+
+Matriz focal actual de inspector:22/22modos268checksPTY63guardasPASS
+en fuente b820b25, sin reintentos.60pares con rutas focales, no porcentaje
+ni aceptacion completa. Sin nuevos pixeles/modelos/handlers/Windows ni
+cierreM4; evidencia `docs/evidence/linux-inspector-matrix-q146.json`.

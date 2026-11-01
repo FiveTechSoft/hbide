@@ -4189,3 +4189,16 @@ no se mezcla el primer resultado de 57 guardas con las seis nuevas.
 
 Q145 final separado:63 guardas PASS (42 inventario),34 docs.
 Evidencia `docs/evidence/linux-inspector-contract-links-q145.json`.
+
+
+## 1 noviembre 2026: Q146 matriz focal de inspector
+
+Fuente `b820b25dfac336b3aeb1c14377296c452f827f74`, binario
+`771339cb24ab78bab90a3151e8d62bb7fd712beb528f23377b644a5ff1bff46d`.
+22/22 modos Linux PTY,268checksPASS:7numeric/style,7text,6eventos,
+2dialogo. Cuatro lotes con recibo de build y misma fuente/binario, sin
+reintentos ni interrupciones.63guardasPASS. Los60pares de Q145 tienen
+ruta focal ejecutada en esta fuente, no60funciones ni cobertura completa.
+Evidencia `docs/evidence/linux-inspector-matrix-q146.json`. No hereda
+matrizglobalQ136 ni pixelesanteriores. Sin nuevos modelos/visual/handlers,
+todos valores/colores, edgeclamp/oversized/mouse/Windows/cierreM4.
