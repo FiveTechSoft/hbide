@@ -1,0 +1,9 @@
+{
+  "scope": "C35 exact binary2postexport harness modes, recovered-session Reload success/failure. Not product/build change, full matrix, Windows or pixels.",
+  "source": "a83cd74b25dd7e405a39c3bd48150d714c49bd3c",
+  "binary_sha256": "080cd8f006e59034f5de3d5b7650e37bd098adc77c63f38916c5614a014a26b5",
+  "test_sha256": "6d52a1734c9b51da9d2e33b880ea4e5a8d6989d06ff3e1266f461661ed9cdf27",
+  "success": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS old recovery generation present\nPASS recovered dirty disk change offers Reload\nPASS Reload shows external bytes\nPASS Reload retires recovered generation\nPASS Reload retires all associated journals\nPASS restart recovery matches successful or failed Reload\nPASS recovered Reload generation lifetime and restart\n",
+  "failure_mode": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS old recovery generation present\nPASS recovered dirty disk change offers Reload\nPASS failed Reload reports unreadable file\nPASS failed Reload keeps recovered text\nPASS failed Reload keeps old recovery generation\nPASS failed Reload keeps dirty journal\nPASS restart recovery matches successful or failed Reload\nPASS recovered Reload generation lifetime and restart\n",
+  "notes": "Failed Reload chmod000 before accepting Reload reports unreadable file, preserves recovered text/old generation/current dirty journal, next restart offers it. Success retires old recovered generation+current journal, restart no offer. No failed run in this test development; both initial separate probes and final combined modes passed."
+}
