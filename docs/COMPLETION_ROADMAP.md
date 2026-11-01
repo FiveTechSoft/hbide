@@ -1,6 +1,6 @@
 # hbide: roadmap de cierre
 
-Actualizado: 31 de octubre de 2026. Rama: `designer-robustness`.
+Actualizado: 1 de noviembre de 2026. Rama: `designer-robustness`.
 Base inicial auditada: `f91fa20`. Cambios posteriores y su evidencia en COMPLETION_LOG.md.
 No es una certificacion del IDE completo.
 
@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q119 | Regresiónconjuntaeditor/nav/inputconayudasincronizada. | Source1070624/109PTY20modos22models34inventory34docsPASS;linux-joint-editor-input-q119.json.Priorhelpdriftdisclosed.Nofullmatrix/newpixels/candidate/Windows/global. |
 | Q118 | M0 AltF8/AltF7 exactdispatchlinked. | Sourcebe3610c/44PTY2modes34inventory34docsPASS;linux-inventory-alt-diagnostic-dispatch.json.No productfix/pixels/models/Windows/global. |
 | Q117 | Codeblockbracketliteral preservesfollowingcode. | Sourcefbe33df/32PTY6modes22models191repaint33inventory34docsPASS;nativeinspected;linux-editor-bracket-codeblock.json.No runtimecodeblock/generallexer/Windows/global. |
 | Q116 | Bracketliteraltrasoperadoreslógicosnoconfundecomentario. | Antes2PASS2FAIL7guards38PTY22models33inventory34docsPASSsource21036f1;nativeinspeccionado;linux-editor-bracket-logical.json. No runtime/type/generallexer/Windows. |

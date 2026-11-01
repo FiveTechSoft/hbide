@@ -1,0 +1,893 @@
+{
+  "scope": "Q119 joint regression of recent editor/navigation/project/input fixtures only; not full registered matrix/candidate/new visual inspection/Windows/global milestone.",
+  "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+  "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+  "pty": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-bracket-codeblock",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_codeblock_pty.py"
+      ],
+      "started": 1793492141.4876912,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "2564546fe0c87027741be0270a3b14f0888834e261ceefa7c8094095c4c12897",
+      "log": "/tmp/hbide-joint-q119-clean/editor-bracket-codeblock-1793492141487687943.log",
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Codeblock literal bracket literal stays string\nPASS Codeblock argument bracket literal stays string\nPASS Codeblock gapliteral bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-sbf3tk26\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-bracket-logical",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_logical_pty.py"
+      ],
+      "started": 1793492146.1606576,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "44eb04d83bc8e48e96241bdaed354ac04b36e79d3dbcdfcba936e4227f69424b",
+      "log": "/tmp/hbide-joint-q119-clean/editor-bracket-logical-1793492146160654181.log",
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Logical and bracket literal stays string\nPASS Logical or bracket literal stays string\nPASS Logical not bracket literal stays string\nPASS Logical bang bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-6qxxnwp3\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-bracket-arithmetic",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_arithmetic_pty.py"
+      ],
+      "started": 1793492150.8334782,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a36ed3e8be8e739459ac925d10e1df3806d53e97d792725dfce633514d0bf374",
+      "log": "/tmp/hbide-joint-q119-clean/editor-bracket-arithmetic-1793492150833474894.log",
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Arithmetic multiply bracket literal stays string\nPASS Arithmetic divide bracket literal stays string\nPASS Arithmetic modulo bracket literal stays string\nPASS Arithmetic power bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-g6h0d_wy\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-bracket-tabs",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_tabs_pty.py"
+      ],
+      "started": 1793492155.5036304,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "1313ab9b195c98399350ae355fa04cdb74d17a141378da203618cf2ccf3ad94a",
+      "log": "/tmp/hbide-joint-q119-clean/editor-bracket-tabs-1793492155503627116.log",
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-qnfoqid5\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-bracket-comparisons",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_comparisons_pty.py"
+      ],
+      "started": 1793492160.1765258,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "2b052c6613e033744068bd6d80c670ab7f6d4df98ee3b9333ffaeb707162279b",
+      "log": "/tmp/hbide-joint-q119-clean/editor-bracket-comparisons-1793492160176522108.log",
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Comparison different bracket literal stays string\nPASS Comparison alternate bracket literal stays string\nPASS Comparison hash bracket literal stays string\nPASS Comparison less bracket literal stays string\nPASS Comparison greater bracket literal stays string\nPASS Comparison equal bracket literal stays string\nPASS Comparison below bracket literal stays string\nPASS Comparison above bracket literal stays string\nPASS Comparison contains bracket literal stays string\nPASS F2 bracket source byte exact\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-tnpsn_sa\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-bracket-minus",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_minus_pty.py"
+      ],
+      "started": 1793492164.848241,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "7f501a5287c1e50cbafe93c7ec8c88de651025eb3e3474be79af33367fe638b0",
+      "log": "/tmp/hbide-joint-q119-clean/editor-bracket-minus-1793492164848237540.log",
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-bvm0ldni\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-bracket-multiline",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_multiline_pty.py"
+      ],
+      "started": 1793492169.5195735,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "3d6e16362b6ba09d04f51e5d666191445e3c62efe1fcb2e3e9363ee3a7d88619",
+      "log": "/tmp/hbide-joint-q119-clean/editor-bracket-multiline-1793492169519570301.log",
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-yl5zs5nc\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-bracket-gap",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_gap_pty.py"
+      ],
+      "started": 1793492174.1913865,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "02964671c81f24be84bc2fe953b0fd80e301ac4b829f737008c0517849fdaac3",
+      "log": "/tmp/hbide-joint-q119-clean/editor-bracket-gap-1793492174191382313.log",
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-gq9k5klu\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-bracket-operator",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_operator_pty.py"
+      ],
+      "started": 1793492178.8656292,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "032dc4a598002d313e48982cf7834307fbd597130c5547946dc43ef67095c050",
+      "log": "/tmp/hbide-joint-q119-clean/editor-bracket-operator-1793492178865625667.log",
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS Comparison bracket literal stays string color\nPASS F2 bracket source byte exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-yu8fgzn3\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-bracket-list",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_list_pty.py"
+      ],
+      "started": 1793492183.5389898,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "71a5ab61f74ecb2c0a63d78723012040e9a575830d39171a31d26689cd4dac2f",
+      "log": "/tmp/hbide-joint-q119-clean/editor-bracket-list-1793492183538986659.log",
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS Second comma-delimited bracket literal stays string color\nPASS F2 bracket source byte exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-tn6kp82o\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-paren-bracket",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_paren_bracket_pty.py"
+      ],
+      "started": 1793492188.2130535,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "c6e504ab46823ea6f70d0b00f99545c3798f3f39566e8ad08e92f5ec01b6a312",
+      "log": "/tmp/hbide-joint-q119-clean/editor-paren-bracket-1793492188213049879.log",
+      "log_text": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-n7bsgb4b\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "editor-bracket-variants",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_editor_bracket_variants_pty.py"
+      ],
+      "started": 1793492192.8853862,
+      "seconds": 4.67,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "20f4c1068e8f6fcdb8dbe29797f65bde49ead6fba53a4ef1a72d766cd92a6ea8",
+      "log": "/tmp/hbide-joint-q119-clean/editor-bracket-variants-1793492192885383056.log",
+      "log_text": "PASS Open requested fixture\nPASS Assignment literal marker string-colored /* literal\nPASS Assignment literal marker string-colored && literal\nPASS Actual block comment still colored /* real */\nPASS Actual block comment still colored /* index comment */\nPASS Return after bracket variants normal keyword\nPASS F2 bracket variants exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-m313x_k_\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "nav-multiline-gap",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_nav_multiline_gap_pty.py"
+      ],
+      "started": 1793492200.242882,
+      "seconds": 6.13,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "89cbce90e88a3387095608b75441709b2dad47ea601a45bfa33d15766d0b93b8",
+      "log": "/tmp/hbide-joint-q119-clean/nav-multiline-gap-1793492200242878188.log",
+      "log_text": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-nrg9j6wt\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "nav-array-gap-comment",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_nav_array_gap_comment_pty.py"
+      ],
+      "started": 1793492206.3682635,
+      "seconds": 6.13,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "a8f657ca3f16a763a0d90fe830d89862cf6fce0337368242e46ae3d8d9f031b7",
+      "log": "/tmp/hbide-joint-q119-clean/nav-array-gap-comment-1793492206368260418.log",
+      "log_text": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ttv_bwxg\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "nav-array-bracket-comment",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_nav_array_bracket_comment_pty.py"
+      ],
+      "started": 1793492212.4952512,
+      "seconds": 6.12,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "cd0726fa837e13c1696dd61ea5a27be2f44aeb71a3f7df25d411bcf937960b65",
+      "log": "/tmp/hbide-joint-q119-clean/nav-array-bracket-comment-1793492212495247762.log",
+      "log_text": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-el6in1_7\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "project-hpp",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_project_hpp_pty.py"
+      ],
+      "started": 1793492218.6198547,
+      "seconds": 4.72,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "b2aa7602389bc48c1f2878bad9552910c967a5bfba3aaa589cf2cda2c41f4360",
+      "log": "/tmp/hbide-joint-q119-clean/project-hpp-1793492218619851106.log",
+      "log_text": "PASS C++ header is listed\nPASS Enter opens actual first source\nPASS HBP and header bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-09dukq4r\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "prevdoc-shortcut",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_prevdoc_shortcut_pty.py"
+      ],
+      "started": 1793492223.3428593,
+      "seconds": 10.53,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "log": "/tmp/hbide-joint-q119-clean/prevdoc-shortcut-1793492223342856014.log",
+      "log_text": "PASS Third of three opened files active\nPASS CtrlShiftF6 goes third to second, not forward\nPASS Typing F2 saves exact second destination\nPASS Previous second to first\nPASS Previous first wraps to third\nPASS Return to second retains modified text\nPASS Undo remains second-only exact\nPASS CtrlF6 forward returns third\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-8kpqq7by\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "prevdoc-shortcut-single",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_prevdoc_shortcut_pty.py",
+        "--single"
+      ],
+      "started": 1793492233.8761752,
+      "seconds": 6.88,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "log": "/tmp/hbide-joint-q119-clean/prevdoc-shortcut-single-1793492233876171678.log",
+      "log_text": "PASS Single file opened\nPASS Previous shortcut single buffer byte inert\nPASS No dirty caption after inert shortcut\nPASS Following typing saves at unchanged cursor\nPASS Undo following inert shortcut exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-85p4sfgp\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "prevdoc-shortcut-compact-256",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_prevdoc_shortcut_pty.py",
+        "--compact-256"
+      ],
+      "started": 1793492240.7528048,
+      "seconds": 10.48,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f118842f5f8815470c53e1548480834a425b324be88b2cf6177191d0882e3d8b",
+      "log": "/tmp/hbide-joint-q119-clean/prevdoc-shortcut-compact-256-1793492240752801562.log",
+      "log_text": "PASS Third of three opened files active\nPASS CtrlShiftF6 goes third to second, not forward\nPASS Typing F2 saves exact second destination\nPASS Previous second to first\nPASS Previous first wraps to third\nPASS Return to second retains modified text\nPASS Undo remains second-only exact\nPASS CtrlF6 forward returns third\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-wmdpq7w2\n"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "03d82ac2c396181b2d254d04108a77b132d5624a4fe30d76fe6d80236add5da8",
+      "binary_sha256": "c83adc62ac6774493d6b243eb8ee497011152c22c67969f1d353d4f51573d6f4",
+      "build_receipt": "/tmp/hbide-joint-q119-clean/build-identity.json",
+      "platform": "linux",
+      "build": "reused_verified",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ebe9c5e28deb2c8d5a5f3fbad75c20646943c455d413d17750367b17bcb7e932",
+      "case": "find-f5-selection",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_find_f5_selection_pty.py"
+      ],
+      "started": 1793492251.235203,
+      "seconds": 18.75,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "31dc55106d51b9955c82934a9c5e8a2977fec02e4472d4c57cc3402bde20eb07",
+      "log": "/tmp/hbide-joint-q119-clean/find-f5-selection-1793492251235199710.log",
+      "log_text": "PASS Open requested fixture\nPASS Typing after Find inserts at match without old range\nPASS Undo Find-following typing exact\nPASS Cancelled Find retains old range\nPASS Undo after cancelled Find exact\nPASS Missing Find retains old range\nPASS Undo after missing Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-snxwozfo\n"
+    }
+  ],
+  "models": {
+    "source": "1070624604d258f9e518e6aa71a4b119da563be3",
+    "dirty": false,
+    "tracked_changes": "",
+    "runner_sha256": "0769892109e69ffb4d74cabc8ea80ac3bbd9f1a2ef8602138a1d68826830fdf2",
+    "platform": "Linux",
+    "hbmk2": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "started": 1793492270.0123456,
+    "scope": "Linux model probes only. Not PTY, visual or Windows certification.",
+    "tests": {
+      "navigation-lexical": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_nav_lexical.prg": "2b69fc63322bca572c464c0be614b03d57ecc3f2f16a9a69e4a17c43555f0c3a",
+          "nav.prg": "d851c10673997cbd88ae1aafd90ef08d619e61cf2ace6764137e1b0ada050b5d"
+        },
+        "binary_sha256": "e7eddf8dbd119186d748dda436d58102d338195d0bc7390e523f0d13a4af6d9e",
+        "started": 1793492270.0123975,
+        "seconds": 0.12592101097106934
+      },
+      "designer-clipboard-types": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_clipboard_types.prg": "3c99eef8fc38ce661bccfca80145764a180a1497f3a0b7a329bcd688758c1cc2",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "3f4b09c3416f01d9d6840e157a14001907ff5c3de7293dd20fd0eaa50e7b8bcc",
+        "started": 1793492270.1386209,
+        "seconds": 0.43562912940979004
+      },
+      "designer-schema": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_schema.prg": "839431d2ba2c137fc60a6eeebdfd8e79fee6a7252c50ebc45778504df89d176b",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "84935acfd2e395125d2716837dbb5dd15e752783b71a67ab2c829ff706112ed4",
+        "started": 1793492270.5745115,
+        "seconds": 0.42352795600891113
+      },
+      "designer-load": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_load.prg": "501e3671019f0b9536a9eb41d5436055ff01acc8d10e213c1522b72581ba6878",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "c4a05d541c3fb0747eeda514f5913f1d374f10ff72ac66ec84a660a7673d0fe8",
+        "started": 1793492270.9983053,
+        "seconds": 0.43506407737731934
+      },
+      "designer-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_write.prg": "3f99f13a61d120788382dc36bb5e1899ac48bb90fda302a6f57dc13328f426df",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "5c9fb983667069fa79b1d71e960ddb63b3a83e19fcd4e89fdc56202766c16f6d",
+        "started": 1793492271.4336119,
+        "seconds": 3.4890384674072266
+      },
+      "designer-inline-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_inline_geometry.prg": "c9de281ea69447a12c364072d2cfa6b1bdf8a5fa3fea04f0f453cccce8bd91bc",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "6894f22c31fc55203069d98da9d2c9346479112ced0844228a575dfe84dd4c39",
+        "started": 1793492274.922917,
+        "seconds": 0.47365736961364746
+      },
+      "designer-property-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_geometry.prg": "a693f8dba9e34558aa2ae7967cbdc4836e1cc5b32f6051aedd1b002270b63ab5",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "bcf157ea00dd1c86e429f8b730e214f5563fcb2ee18b14670b2885c964317886",
+        "started": 1793492275.3968608,
+        "seconds": 24.62664532661438
+      },
+      "designer-property-cancel": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_cancel.prg": "179843e9c41312e238f36da596c662a5bde637fa68452adff94bf98b9b22bdd3",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "a9b96d2d39538c8618c685b7672b2ddf1f76f00276dea20a2a952e266debdbb4",
+        "started": 1793492300.0237982,
+        "seconds": 3.9906911849975586
+      },
+      "project-output": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project_output.prg": "69e3067d0d088c411840a3bb81d1f30149e0bbbf35671a46b98ca677c8e9a8cb",
+          "projectui.prg": "9deb02dbb32facf57e7e3cadc01e5e225e57bc5ca770333ad0635e5a0b08fe11",
+          "project.prg": "1f95644a018650b9112fa511aca065647888fe9ee66c00c9f3489624d8429bdd",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "cc2ecbb063509117f512275a0115e5734386ed3468950e78595044886e13487b",
+        "started": 1793492304.0146112,
+        "seconds": 0.23384642601013184
+      },
+      "backup": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_backup.prg": "b3543b008b2d06ec45aa7836daa09c5f8e3f75287e266b6f06c9f7344e006d61",
+          "editor.prg": "09bc94551422bd2be1bfc72596d82d647058247bb3b0f53c005ddfc8e76ee27f",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "ec1b09deaab0cc5db7c446c6bc8674bb6ef8a671843381d0458bd6c1e9d0f4d0",
+        "started": 1793492304.2485948,
+        "seconds": 0.27628564834594727
+      },
+      "debug-temp-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_temp_write.prg": "210526b082b0d8d07e92f438e394de575a7ee2c47ce39fc0c6818f86df22b449",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "c2002bad3b75ed49cc067ad330ccc54651908bda057e3013e32fdd875bca765e",
+        "started": 1793492304.5249367,
+        "seconds": 0.12165951728820801
+      },
+      "debug-script-path": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_script_path.prg": "a856a0583716db4e22a24e0be04b6b344406f3eed7c261201d72268519efb71a",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "e9181fd0a25591e87584f02afa574de409d9dc3a12ac104c2da6d120bcfeb843",
+        "started": 1793492304.6466591,
+        "seconds": 0.12118911743164062
+      },
+      "debug-search": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_search.prg": "84ec5023c2bf1d2069b1cfbfdb7223cc8933b04bb49231c96f3f1a3e8f486f5b",
+          "hbdebug/tbrwtext.prg": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+          "hbdebug/dbgbrwsr.prg": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "74417112c19e868adf16efc459f818224650c9fe36fef59d498370799cf8e74c",
+        "started": 1793492304.7679312,
+        "seconds": 0.22589612007141113
+      },
+      "designer": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer.prg": "5e020c61123e21dad5181bd216eba36941c445cc36844bf61b5c1be140716fed",
+          "designer.prg": "fe276ac17d34da357ae4db16dc780c413a2ff7e59f06f9aa07396d12c215b711",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "0114e1b8acd53ac0837c9e9335e786d6503a1b9b5b616a46de57d42c812a35de",
+        "started": 1793492304.9941916,
+        "seconds": 0.533836841583252
+      },
+      "editor-repaint": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_repaint.prg": "63068d1a4ebbfd5b60a406a646dbf7216d9493338cf31f003a0fb3191a53c057",
+          "editor.prg": "09bc94551422bd2be1bfc72596d82d647058247bb3b0f53c005ddfc8e76ee27f",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "0f344abcce49d44002ae3d2395966049b1185453ccc2f02e21f4f649457daa1f",
+        "started": 1793492305.5281782,
+        "seconds": 3.337315082550049
+      },
+      "find": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_find.prg": "9af32468423371d620d8e6587ab4f56d56485ec332d528709a80338e5926a9e5",
+          "editor.prg": "09bc94551422bd2be1bfc72596d82d647058247bb3b0f53c005ddfc8e76ee27f",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "b5e82627583fa8b9f3cd07e33493f48de5562b955e8110b0abda06a4284d9fb6",
+        "started": 1793492308.8656244,
+        "seconds": 0.2721712589263916
+      },
+      "eol": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_eol.prg": "31153ecd41c90d6cf6cd92eac80ecaeda65d8e2ad3d36e79ecfadcf634ee92ff",
+          "editor.prg": "09bc94551422bd2be1bfc72596d82d647058247bb3b0f53c005ddfc8e76ee27f",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "6c54e7fafb18c0ea0da1cfdeb1e794d76603bfb7abe34dd2e03004ef3f981f30",
+        "started": 1793492309.1379879,
+        "seconds": 0.3827226161956787
+      },
+      "utf8": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_utf8_valid.prg": "13cb1239a5934db50f44530289afea8216db9b720ba5e1e7b30eabc98df336f0",
+          "editor.prg": "09bc94551422bd2be1bfc72596d82d647058247bb3b0f53c005ddfc8e76ee27f",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "70377d79f2277bf1c17f5f8bbe6c3d3ae4f9750cdb67d92560c7af00b4041cf6",
+        "started": 1793492309.5208423,
+        "seconds": 0.2721397876739502
+      },
+      "atomic": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_atomic.prg": "87f714d53e7324aad60d22f9fb9d02b5899689fdaa7a54d51ef60948f0717e01",
+          "editor.prg": "09bc94551422bd2be1bfc72596d82d647058247bb3b0f53c005ddfc8e76ee27f",
+          "safeio.prg": "04f56fbaeeed9506d38844b804edf3de84a3a2cf2efe7ebb68b99cd3e1c8397c",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "7f44ac44ec424a5aa6c9558ad076074e8aba1d2908c1e0404007696e3533606e",
+        "started": 1793492309.7931097,
+        "seconds": 0.30026817321777344
+      },
+      "recovery": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_recovery.prg": "714585c485dcb7bce32aa5b94310773019bb57e0814b1ed3bbe0e53e4e32a2d1",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "5e2f646a8e4234f8f3662d35b96d384867c789b1d4c5fd1842da677143dc1513",
+        "started": 1793492310.0934386,
+        "seconds": 0.1256580352783203
+      },
+      "project": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project.prg": "4769fddce0c87411a065bde6195d26e9f7d928077e27c96d302f6779f9b1de94",
+          "project.prg": "1f95644a018650b9112fa511aca065647888fe9ee66c00c9f3489624d8429bdd",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "3ec4803238cf87cab319880b3c09c38a1f1b45add4e8548a162729056d2c4f6d",
+        "started": 1793492310.2191772,
+        "seconds": 0.3823397159576416
+      },
+      "help": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_help.prg": "1dd387e3e5c7ebc79064edb1378adf2541e67e423495c09fb59b981c065d6ea0",
+          "help.prg": "4d00294fd70317df9c0ee6129852f7fd824c3c191ffaf56c8b5342c851e29e0b",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "9c01abc5d704a2dbfa64e10bf7142d444e1dfadcf2a904cd927a894a766a6909",
+        "started": 1793492310.6017017,
+        "seconds": 1.286400556564331
+      }
+    },
+    "finished": 1793492311.8881087
+  },
+  "inventory_log": "..................................\n----------------------------------------------------------------------\nRan 34 tests in 0.328s\n\nOK\n",
+  "docs": "34 complete documents byte-exact after Q118 drift correction",
+  "execution": "109numberedchecks20modes22models34inventory34docsPASS;two completed batches12+8samebinary,no test failure/retry/interruption in clean pass.",
+  "prior_attempt": "b3ea219 20PTY modes+22models passed but final helpdocs check stale; retained separately in /tmp/hbide-joint-q119. Corrected generated help 1070624 and repeated entire bounded pass with new identity."
+}
