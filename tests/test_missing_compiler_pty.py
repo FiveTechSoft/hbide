@@ -5,7 +5,8 @@ ROOT=pathlib.Path(__file__).resolve().parents[1]; ROWS,COLS=40,120
 text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class Scr:'):text.index('home = tempfile.')])
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
-promotion='--promotion-failure' in sys.argv
+recover_promotion='--promotion-retry' in sys.argv
+promotion='--promotion-failure' in sys.argv or recover_promotion
 restore='--restore' in sys.argv
 diagnostic='--missing-output-diagnostic' in sys.argv
 missing_output='--missing-output' in sys.argv or diagnostic
@@ -19,7 +20,7 @@ for kind in ['autorun']:
  previous=(work/'missing').read_bytes()
  if promotion:
   (work/'missing').unlink();(work/'missing').mkdir();(work/'missing/keep').write_bytes(b'original directory member')
- if restore:target.write_text(target.read_text().replace('"stale"','"fresh"'))
+ if restore or recover_promotion:target.write_text(target.read_text().replace('"stale"','"fresh"'))
  original=target.read_bytes()
  (work/'empty-path').mkdir()
  if fake:
@@ -27,6 +28,8 @@ for kind in ['autorun']:
   launcher.write_text('#!/bin/sh\nfor arg do case "$arg" in -o*) out=${arg#-o};; esac; done\nprintf \"%s\\n\" "$out" >> '+shlex.quote(str(work/'invocations'))+'\n'+('printf \"broken output\" > "$out"\nexit 7\n' if failed_output else 'exit 0\n'))
   if promotion:
    launcher.write_text(launcher.read_text().replace('exit 0\n','printf "new output" > "$out"\nexit 0\n'))
+  if recover_promotion:
+   launcher.write_text('#!/bin/sh\nfor arg do case "$arg" in -o*) out=${arg#-o};; esac; done\nprintf "%s\\n" "$out" >> '+shlex.quote(str(work/'invocations'))+'\nPATH='+shlex.quote(os.environ['PATH'])+'; export PATH\nexec '+shlex.quote(compiler)+' "$@"\n')
   if diagnostic:
    launcher.write_text(launcher.read_text().replace('exit 0\n', 'printf \"%s(3) Error E0030 simulated fixture error\\n\" '+shlex.quote(str(target))+'\nexit 0\n'))
   launcher.chmod(0o700)
@@ -52,7 +55,7 @@ for kind in ['autorun']:
   for attempt in range(1 if promotion else 2):
    send(b'\x1br');send(b's',.7)
    if promotion:
-    check('build output ready','Build OK:' in screen.text());send(b'\r',.4)
+    check('build output ready','Build OK:' in screen.text() or (recover_promotion and 'Done.' in screen.text()));send(b'\r',.4)
     (work/'promotion.screen').write_text(screen.text())
     check('replacement failure visible','could not replace' in screen.text())
     check('replacement failure names retained output','new executable kept at' in screen.text() and (work/'invocations').read_text().strip() in ''.join(line[29:91].strip() for line in screen.text().splitlines()))
@@ -60,9 +63,22 @@ for kind in ['autorun']:
     send(b'\r',.4)
     check('blocked destination directory untouched',(work/'missing/keep').read_bytes()==b'original directory member')
     tmp=pathlib.Path((work/'invocations').read_text().strip())
-    check('complete output retained after failed promotion',tmp.read_bytes()==b'new output')
+    retained=tmp.read_bytes()
+    check('complete output retained after failed promotion',len(retained)>1000 if recover_promotion else retained==b'new output')
     check('source remains byte exact after failed promotion',target.read_bytes()==original)
     check('no stale executable launched',not value.exists())
+    if recover_promotion:
+     (work/'missing/keep').unlink();(work/'missing').rmdir()
+     send(b'\x1br');send(b's',.7)
+     until=time.monotonic()+20
+     while not ('Done.' in screen.text() or 'Build OK:' in screen.text()) and time.monotonic()<until:pump(.2)
+     check('retry with unblocked destination builds','Done.' in screen.text() or 'Build OK:' in screen.text())
+     send(b'\r',.7)
+     check('retry launches fresh real compiler result',value.exists() and value.read_text()=='fresh')
+     check('retry promotes new executable',(work/'missing').is_file() and (work/'missing').read_bytes()!=previous)
+     check('retained first output stays exact',tmp.read_bytes()==retained)
+     check('retry preserves source',target.read_bytes()==original)
+     check('retry has no unnamed temporary outputs',len([p for p in work.iterdir() if p.name.startswith('missing.') and p!=target])==1)
     break
    if diagnostic:
     check('compiler diagnostic output visible','Error E0030' in screen.text())

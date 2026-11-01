@@ -6,6 +6,7 @@ import argparse, hashlib, json, os, pathlib, signal, shutil, subprocess, sys, te
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 # Generous ceilings include each harness's fixed waits, builds and nested suites.
 CASES = {
+    'compiler-promotion-real-retry': ('test_missing_compiler_pty.py', ['--promotion-retry'], 120),
     'compiler-promotion-failure-recovery': ('test_missing_compiler_pty.py', ['--promotion-failure'], 120),
     'compiler-success-missing-output-diagnostic': ('test_missing_compiler_pty.py', ['--missing-output-diagnostic'], 120),
     'compiler-success-missing-output': ('test_missing_compiler_pty.py', ['--missing-output'], 120),
