@@ -8,6 +8,7 @@ exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
 recover_promotion='--promotion-retry' in sys.argv
 promotion='--promotion-failure' in sys.argv or recover_promotion
 restore='--restore' in sys.argv
+horizontal='--horizontal' in sys.argv
 long_output='--long-output' in sys.argv
 diagnostic='--missing-output-diagnostic' in sys.argv or long_output
 missing_output='--missing-output' in sys.argv or diagnostic
@@ -87,6 +88,11 @@ for kind in ['autorun']:
     check('long build output opens scrollable viewer','Output - arrows scroll' in screen.text())
     send(b'\x1b[F',.4)
     check('End reveals last compiler diagnostic','Error E0030' in screen.text())
+    if horizontal:
+     for _ in range(12):send(b'\x1b[C'*8,.05)
+     check('Right reveals exact diagnostic tail','simulated fixture error' in screen.text())
+     for _ in range(12):send(b'\x1b[D'*8,.05)
+     check('Left restores diagnostic source path',str(target) in screen.text())
     send(b'\x1b',.4)
    elif diagnostic:
     check('compiler diagnostic output visible','Error E0030' in screen.text())
