@@ -1,0 +1,89 @@
+{
+  "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+  "source": "049b5332628bbb8faa4458863405bc20438320ca",
+  "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+  "cases": [
+    {
+      "name": "saveas-new",
+      "command": [
+        "test_saveas_literal_new_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.749048948287964,
+      "test_sha256": "8b1a92b1ba059d27dcbf5510950c593c2ecc3e65c2c5c712a6f82c0ee34672cb",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveas-new.log",
+      "printed_failure": false
+    },
+    {
+      "name": "saveas-regular",
+      "command": [
+        "test_saveas_literal_regular_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.97020673751831,
+      "test_sha256": "595b251f93da480ca52acb86b622fddb7390c0e938915acde780c532e8c12d95",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveas-regular.log",
+      "printed_failure": false
+    },
+    {
+      "name": "saveas-link",
+      "command": [
+        "test_saveas_literal_symlink_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.80928373336792,
+      "test_sha256": "1f48217926ce21af315d0b40181ff92a1a44f3f375657fd2907f7cc42f71aa25",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveas-link.log",
+      "printed_failure": false
+    },
+    {
+      "name": "saveas-link-dirty",
+      "command": [
+        "test_saveas_literal_symlink_pty.py",
+        "--dirty"
+      ],
+      "exit": 0,
+      "seconds": 12.388280391693115,
+      "test_sha256": "1f48217926ce21af315d0b40181ff92a1a44f3f375657fd2907f7cc42f71aa25",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/saveas-link-dirty.log",
+      "printed_failure": false
+    },
+    {
+      "name": "overwrite-accept",
+      "command": [
+        "test_saveas_overwrite_accept_pty.py"
+      ],
+      "exit": 0,
+      "seconds": 9.97125506401062,
+      "test_sha256": "8e4c7d3ae75239cdccf2b4ede8ee7b5603b4599fd579f06444062fb7030eae36",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/overwrite-accept.log",
+      "printed_failure": false
+    },
+    {
+      "name": "overwrite-cancel",
+      "command": [
+        "test_saveas_overwrite_cancel_pty.py",
+        "--dirty"
+      ],
+      "exit": 0,
+      "seconds": 12.230037927627563,
+      "test_sha256": "20fa50534fd6bed9040b6ba913567658ce797d15f95bf3a3ed7ffc044a43d1f1",
+      "binary_unchanged": true,
+      "log": "/tmp/hbide-c30/matrix-blocks/overwrite-cancel.log",
+      "printed_failure": false
+    }
+  ],
+  "logs": {
+    "saveas-link-dirty.log": "PASS literal wildcard symlink refused, link/target/sibling intact, complete recovery exact and F2 old identity\n",
+    "overwrite-cancel.log": "PASS SaveAs overwrite Cancel retains source identity/journal and destination bytes\n",
+    "saveas-link.log": "PASS literal wildcard symlink refused, link/target/sibling intact, complete recovery exact and F2 old identity\n",
+    "overwrite-accept.log": "PASS accepted SaveAs backs up destination bytes, retires journal, F2 uses new identity\n",
+    "saveas-new.log": "PASS absent literal wildcard target saves without phantom overwrite prompt; sibling/backup/journal/identity exact\n",
+    "saveas-regular.log": "PASS regular literal wildcard saves despite matching symlink sibling, backup/identity/journal exact\n"
+  }
+}

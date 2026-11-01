@@ -5167,3 +5167,11 @@ Dosnativasreales802x477inspeccionadas:titulo centrado,[■]izquierda,click
 restaurafondo/12controles. C29historicoanterior. Inventarioavisosexacto
 conservado,no licenciaclearance/release/instalador/Windows/matriz353/hitos.
 Evidencia: docs/evidence/linux-candidate-c30.json.
+
+### Q217 (1 noviembre 2026): primerbloqueC30ficheros
+
+C30export049b533/bin96d77549exactocon6modosSaveAsPASS:literalnuevo/regular/
+linkclean/dirty/overwriteaceptado/cancelado. Pruebasdelpropioexportcon
+hashes,binariosincambios. No6nuevasfunciones/matriz353/cierreM1/Windows.
+Noherenciade9modosQ214ni31modelos. Fuenteybincompletosenevidencia.
+Evidencia: docs/evidence/linux-c30-file-block1-q217.json.
