@@ -1,0 +1,605 @@
+{
+  "scope": "36 fresh GTSTD model executables on clean source81d3310, including sole-line deletion and updated90-check navigation. Not36IDE modes, no inherited C44 binary acceptance/fullmatrix/PTY/pixels/Windows/release/milestone closure. GlobalVM/inputHook remain characterization of current unsupported contract, not implemented features.",
+  "results": {
+    "source": "81d3310b3d62deb2749f53f62fbd88f45be754ca",
+    "dirty": false,
+    "tracked_changes": "",
+    "runner_sha256": "601adaaa8402c72bf57d92e1a45c77c8c1b07dda3513533fc62377deab03449a",
+    "platform": "Linux",
+    "hbmk2": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "started": 1793544295.146341,
+    "scope": "Linux model probes only. Not PTY, visual or Windows certification.",
+    "tests": {
+      "delete-only-line": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_delete_only_line.prg": "ed20b5582de9256bcff4a9b73b09a2fbb24af43a7f23d0823961bf8f4c2aaa77",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "715a8855d9de331d8bca0a2a58077eff67660b565cfcd4aad2e034750e1eeea6",
+        "started": 1793544295.146475,
+        "seconds": 0.2736375331878662
+      },
+      "delete-word-columns": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_delete_word_columns.prg": "574ddcd8de0f4e62eadf366e20eb1b0c3d2d2175e3f36f840634958e77ce7ee5",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "9cb5fbc53613f1896b6e5b728adc6897e7f4586e2b711056a8fe45dccf0c84c2",
+        "started": 1793544295.4202623,
+        "seconds": 0.27353668212890625
+      },
+      "saved-history": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_saved_history.prg": "2a5b346a0799eef0fa469037fb9e93ea483bd07e71190ee1fc2c8da77fc9f8b1",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "ad4c8202e1e7c3c75c744e07c9ed1eedf326de5448ce56e5376b6ebae444f26f",
+        "started": 1793544295.6939495,
+        "seconds": 0.3880035877227783
+      },
+      "recovered-undo-dirty": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_recovered_undo_dirty.prg": "9da347659ca1f05b943dae72c03e65c94301e88afedb6ef9725d951a7fcbf499",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "dea0879cb261b483720f7288aceffd14adc4092dcf0eccef51ff8ab086587f6a",
+        "started": 1793544296.082109,
+        "seconds": 0.27681446075439453
+      },
+      "undo-journal-cleanup": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_undo_journal_cleanup.prg": "98fded110221114529708cf41105eb3df25138f4393ada9b857e8e2573588c1b",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "fe3aa9b96fd49afe02d25d759f22d31bbe21efa29e2f6d302eed5ad915f0ceb0",
+        "started": 1793544296.3590603,
+        "seconds": 0.2767825126647949
+      },
+      "diskstamp-literal": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_diskstamp_literal.prg": "c286fe45a7c4a7204da910d63d3b106a18524be7027394a9777c89be06ad02d8",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "337e4b57fab3254d0cf10daea46dd937524cf1aeffe3b3c7fc2fbec00685ddf9",
+        "started": 1793544296.635966,
+        "seconds": 0.2848784923553467
+      },
+      "debug-global-vm-contract": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_global_vm.prg": "750c149d2ebdbecc3288bfd4ca216ae8491bb43dc8a9771eb40258e74d3833a5"
+        },
+        "binary_sha256": "a4b85adb69a548a5a8299a08376b1eebe52cd2e2d6430aa185c6bb1358bdf4ad",
+        "started": 1793544296.9208884,
+        "seconds": 0.11984086036682129
+      },
+      "designer-inspector-repaint": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_inspector_repaint.prg": "f99a359862726c3c76c9c2a0922df7a54ab6b8057814f7a076ed3b1de2925951",
+          "designer.prg": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "9fe97094f218727685f82c37f82e3d7a22beeaf2d04eb9079d412a55168c6222",
+        "started": 1793544297.043027,
+        "seconds": 0.7418570518493652
+      },
+      "designer-inline-fields": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_inline_fields.prg": "937706de146b1d8baa9faced96ae21d9acec306469b2bc5ff10f9ddccbe98a09",
+          "designer.prg": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "d486dbac7780d29153bf542b1f3c4a8ef77a0b17c788bbbcc6f0a610dd90b0a2",
+        "started": 1793544297.7851684,
+        "seconds": 0.43630361557006836
+      },
+      "debug-input-hook-contract": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_input_hook.prg": "f77e6bfcb2f7d0a4ddd93dd080cc3a13b4eb79cbade91e07662b93cc96e43616"
+        },
+        "binary_sha256": "c0e52ac21489c1db82d9b0d7c691e004534441dde7753fc17848002374b8ee75",
+        "started": 1793544298.2215428,
+        "seconds": 0.15033411979675293
+      },
+      "navigation-lexical": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_nav_lexical.prg": "cc883ac14a14b8f8eea5705fbbe0e9e9f5f9e4953818dfa5fc761dfcf2ce0c5e",
+          "nav.prg": "7cf1872690f048a71545970b8c91ba053f93a96aa56d9ac90841e6c427625d02"
+        },
+        "binary_sha256": "12f08fb66d2702113c3faf7b7c8ed5a9f82f82856494fda5a2cb773c63bdd8b3",
+        "started": 1793544298.3719585,
+        "seconds": 0.1766345500946045
+      },
+      "designer-clipboard-types": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_clipboard_types.prg": "3c99eef8fc38ce661bccfca80145764a180a1497f3a0b7a329bcd688758c1cc2",
+          "designer.prg": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "039636b15c3cb26265ec4a13845c4b6a90619846f55270ae66c89af649add1d0",
+        "started": 1793544298.5488768,
+        "seconds": 0.4361305236816406
+      },
+      "designer-schema": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_schema.prg": "839431d2ba2c137fc60a6eeebdfd8e79fee6a7252c50ebc45778504df89d176b",
+          "designer.prg": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "a82aa07732d0192a742d15f4c5c121580c9aef94776054928b2872aa9941824d",
+        "started": 1793544298.985346,
+        "seconds": 0.42394328117370605
+      },
+      "designer-load": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_load.prg": "501e3671019f0b9536a9eb41d5436055ff01acc8d10e213c1522b72581ba6878",
+          "designer.prg": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "1d0b05d33ca0352512d261952fe22f5260a962886940cbe25093c20445315e3f",
+        "started": 1793544299.4095962,
+        "seconds": 0.4867129325866699
+      },
+      "designer-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_write.prg": "3f99f13a61d120788382dc36bb5e1899ac48bb90fda302a6f57dc13328f426df",
+          "designer.prg": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "36ec74b3a1dc4513a2143c2e2eca2068f638e27474d4807a523549c7588801a2",
+        "started": 1793544299.8965743,
+        "seconds": 3.5417699813842773
+      },
+      "designer-inline-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_inline_geometry.prg": "c9de281ea69447a12c364072d2cfa6b1bdf8a5fa3fea04f0f453cccce8bd91bc",
+          "designer.prg": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "92967a19f4c6230aa08c084a3d326462d17d4c327a75c659ad26b75b1f6d0323",
+        "started": 1793544303.438657,
+        "seconds": 0.47920799255371094
+      },
+      "designer-property-geometry": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_geometry.prg": "a693f8dba9e34558aa2ae7967cbdc4836e1cc5b32f6051aedd1b002270b63ab5",
+          "designer.prg": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "4178bbfa24a6dd14a0072c23f3c21c244b4f1f630533aca9b967c24667358bae",
+        "started": 1793544303.9181926,
+        "seconds": 24.73859977722168
+      },
+      "designer-property-cancel": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer_property_cancel.prg": "179843e9c41312e238f36da596c662a5bde637fa68452adff94bf98b9b22bdd3",
+          "designer.prg": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "e88859e3297a7fb9a7e59e39b2d046df86f5cdd87369063bc85b789b9e91a2b4",
+        "started": 1793544328.6570814,
+        "seconds": 4.04530668258667
+      },
+      "project-output": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project_output.prg": "cc192d864e7ded4a498957a19b102a86de0f2b42b123bf592d4e5a3d0538d171",
+          "projectui.prg": "b6b1e2254805825b32c7d983c308cb1caaf8e9c000db55b3ca90100f16a910d1",
+          "project.prg": "1f7ef0d684a5ec6fd9cc2327b3a85db8c2451ace08a11803c2b0424216007198",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "c0ef994c3e617c331d0790bd56996892239241430b4b6b76710fb18a7561ebdd",
+        "started": 1793544332.7025423,
+        "seconds": 0.24245071411132812
+      },
+      "backup": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_backup.prg": "b3543b008b2d06ec45aa7836daa09c5f8e3f75287e266b6f06c9f7344e006d61",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "a3f87168460b5fe98010f4daee6198e465f29b2474c86044328ad1be13b1ac4e",
+        "started": 1793544332.9451416,
+        "seconds": 0.2773880958557129
+      },
+      "debug-temp-write": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_temp_write.prg": "210526b082b0d8d07e92f438e394de575a7ee2c47ce39fc0c6818f86df22b449",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "f38005229a9ac77930738f968050194eb14a2f4d4763058bced1828da2510bd1",
+        "started": 1793544333.222998,
+        "seconds": 0.12342262268066406
+      },
+      "debug-script-path": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_script_path.prg": "a856a0583716db4e22a24e0be04b6b344406f3eed7c261201d72268519efb71a",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18"
+        },
+        "binary_sha256": "6ff6c8a4892818ce2d8a6b12ef2ef3d982ae62abeb974a821beb0c0aa4819cf1",
+        "started": 1793544333.3464813,
+        "seconds": 0.12230873107910156
+      },
+      "debug-search": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_search.prg": "84ec5023c2bf1d2069b1cfbfdb7223cc8933b04bb49231c96f3f1a3e8f486f5b",
+          "hbdebug/tbrwtext.prg": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+          "hbdebug/dbgbrwsr.prg": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "42bdf3a24661f4a665cc40640e1862f01a8ae9238f7408131770c0d4dbad7d7f",
+        "started": 1793544333.4697433,
+        "seconds": 0.2266530990600586
+      },
+      "designer": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_designer.prg": "5cc4a81429ac05514c7cdbd33e6c1133e094ae3a9c2a92a371baddb38a877f2b",
+          "designer.prg": "ecd1d43accadef5ecc2e5e61a9b4878a2b4a2499a063bbd78fe4e71703e5ab30",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "9800b355ea0dce809c1fbd2615875b606da4218737291803f59586acf775333a",
+        "started": 1793544333.696732,
+        "seconds": 0.5357577800750732
+      },
+      "editor-repaint": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_repaint.prg": "b9037ffad87c4ceb062101d07d2519366b6f79ffcb979204829a4cd75d7dbd89",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "2a65c747c819cace626a4e9b137ca6d33c665a03a50a7b31287ff659444b6e2e",
+        "started": 1793544334.2326503,
+        "seconds": 3.3406405448913574
+      },
+      "find": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_find.prg": "9af32468423371d620d8e6587ab4f56d56485ec332d528709a80338e5926a9e5",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "6f8dff0de27785c1ef03c6a04769e54f332c353c3d55076ce0cedc587742510a",
+        "started": 1793544337.573474,
+        "seconds": 0.27373719215393066
+      },
+      "eol": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_editor_eol.prg": "31153ecd41c90d6cf6cd92eac80ecaeda65d8e2ad3d36e79ecfadcf634ee92ff",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "f13a2ec9099ae9894b74a7cc23148634cd04d9450d6b93e103493550713ecf9b",
+        "started": 1793544337.8473752,
+        "seconds": 0.38486289978027344
+      },
+      "utf8": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_utf8_valid.prg": "13cb1239a5934db50f44530289afea8216db9b720ba5e1e7b30eabc98df336f0",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "a84aded2b68db4a1fb5e1ed7f1e56685fda41a0770647b536200cc56aead43ca",
+        "started": 1793544338.2323856,
+        "seconds": 0.2739748954772949
+      },
+      "atomic": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_atomic.prg": "8df4d3350b2c770ac549291e8147e9d1ff132af9229d8290bbb59a4c3679fe9b",
+          "editor.prg": "893964879d0905ae3939501fbc2b343928f425f34b51536e8d97aa391cb768ca",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "cbee9975328e58de0bb4e5433feca10e0eea0b44902e42a1fbef983433fa8593",
+        "started": 1793544338.5065625,
+        "seconds": 0.33451318740844727
+      },
+      "recovery": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_recovery.prg": "714585c485dcb7bce32aa5b94310773019bb57e0814b1ed3bbe0e53e4e32a2d1",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "0e707d1d803b715c3159e9a8456725f57d91e99a3084a24b8413b3b8cebe8bd0",
+        "started": 1793544338.84118,
+        "seconds": 0.18614959716796875
+      },
+      "project": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project.prg": "6a29dfbb04b9fb6e7004683bde6e25b481de716439f637ac0c72da2a93080ee6",
+          "project.prg": "1f7ef0d684a5ec6fd9cc2327b3a85db8c2451ace08a11803c2b0424216007198",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "53c57e22d1bcf2378ec79b4d6c368f80514cdccd3987c744016d696ccd9d5ae8",
+        "started": 1793544339.0274377,
+        "seconds": 0.384340763092041
+      },
+      "project-ui": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_project_ui.prg": "aa757c2fded32ab5665a8e627a9d2025175241c90832d9707ce02eedbf1d22bf",
+          "project.prg": "1f7ef0d684a5ec6fd9cc2327b3a85db8c2451ace08a11803c2b0424216007198",
+          "projectui.prg": "b6b1e2254805825b32c7d983c308cb1caaf8e9c000db55b3ca90100f16a910d1",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "bf808f0cc80f20f5266998db100da41e97dd9b357caca6f956f1210a555c13de",
+        "started": 1793544339.4118812,
+        "seconds": 0.22755002975463867
+      },
+      "help-browser": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_help_browser.prg": "47e3169b9b5daaa8e7af60fa1b1084c2571acc8443c6ca3dec2e6023a8af3a48",
+          "help.prg": "4d00294fd70317df9c0ee6129852f7fd824c3c191ffaf56c8b5342c851e29e0b",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "f56fcf61be98fcb782fa3c46122b1bbcd242cb2d3902106a550ba5d8b938cd7b",
+        "started": 1793544339.639998,
+        "seconds": 1.8452608585357666
+      },
+      "help": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_help.prg": "1dd387e3e5c7ebc79064edb1378adf2541e67e423495c09fb59b981c065d6ea0",
+          "help.prg": "4d00294fd70317df9c0ee6129852f7fd824c3c191ffaf56c8b5342c851e29e0b",
+          "hbwindow.prg": "310f0afcfc146c0738dabb8e8ac5585bf831069c172231ea789340cd2eeae8a8",
+          "hbmenu.prg": "7152d3c454729ff8db2287962c9f3886cbb9f345d0623c42e68fa6593b43783b",
+          "hbbutton.prg": "3b4c4ee9e5f2430509d816bb01b9d943ec71258d015823b1a8473df9542e9708",
+          "hbgetu.prg": "98256fa8bc0ed349c24c18345e6838c3188cc192d0460b327f7e86690694eae9"
+        },
+        "binary_sha256": "86299de1c2a95257faf4a38e74ab9144521fe32cb77cee5e2d85e4a30c358f65",
+        "started": 1793544341.4855192,
+        "seconds": 1.7905049324035645
+      },
+      "debug-layout": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_layout.prg": "adb07a77b1b389137375439e6c815bf2e49a2e69b65536c785630b2f8873542a",
+          "hbdebug/dbgbrwsr.prg": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+          "hbdebug/dbghelp.prg": "49e63db24a757fb8f8771c5b629a822dc6617970ab9bb93171050e0a1746f27a",
+          "hbdebug/dbgmenu.prg": "30fb330448e0af889dc7e3688c520498afd14dffac8870d0bb687f647a846598",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18",
+          "hbdebug/dbgtarr.prg": "281578e4ee39be97da081eba31335a4e4bb2aabc6789c1f769855a5c2591630f",
+          "hbdebug/dbgthsh.prg": "660c9f94b84fbbba74859908843c20c1a19307f6b3ee3443ecaca4c1a58f4d21",
+          "hbdebug/dbgtinp.prg": "b7fd0a70fbe1af58600917c4eff1357ee7bf4ac8987faa497a9ce6fe98b28ec7",
+          "hbdebug/dbgtmenu.prg": "5e88fd251bc5bc69da09c5a3b9c27009aa897aa72a72ae51f10fae2aa5251d06",
+          "hbdebug/dbgtmitm.prg": "9b5d72a1ef05356b7eb91060fd1701f078055dce6b8e771a8e0834d3df822c17",
+          "hbdebug/dbgtobj.prg": "3f97ea1f3a58f361a3e30d1c7d37495a7a532528b5419deb25c75cde3a4b7b58",
+          "hbdebug/dbgtwin.prg": "0b0389ee7c0a26be8a10995f28eb30be10a5b8c772e99bf610d7458f7f953efa",
+          "hbdebug/dbgwa.prg": "8b2a033818ecffa3e322eb0d7dab00dd3c26fd79823eee2f5f7f330dbaa1f147",
+          "hbdebug/debugger.prg": "9816ba356782f9d4b818ef93d136d1590d2e1e30b23ebd7f6ce78431428b8b15",
+          "hbdebug/tbrwtext.prg": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+          "hbdebug/dbgentry.c": "2bbab7508c0fb685aceb020a249917830db38e6e50f3c8da62552b0625537d2c",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "20c260de993921189b44b96d4c95d284f775fd768a06dccd1e4e95505a7dc789",
+        "started": 1793544343.2789533,
+        "seconds": 1.3385074138641357
+      },
+      "debug-tabwidth": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "source_sha256": {
+          "tests/test_debug_tabwidth.prg": "51156b8fbe5b547a0349689a4c2a07647adccce739188f26c349a821442061bd",
+          "hbdebug/dbgbrwsr.prg": "da76bc37a79ce6cb13f5dce351a9096037147a6edf1ab3da46043802bfaefa3e",
+          "hbdebug/dbghelp.prg": "49e63db24a757fb8f8771c5b629a822dc6617970ab9bb93171050e0a1746f27a",
+          "hbdebug/dbgmenu.prg": "30fb330448e0af889dc7e3688c520498afd14dffac8870d0bb687f647a846598",
+          "hbdebug/dbgscript.prg": "ffc45cc3b1f75d08cd714fc2bb12a06feab903112ca0734983249cd9c5e88c18",
+          "hbdebug/dbgtarr.prg": "281578e4ee39be97da081eba31335a4e4bb2aabc6789c1f769855a5c2591630f",
+          "hbdebug/dbgthsh.prg": "660c9f94b84fbbba74859908843c20c1a19307f6b3ee3443ecaca4c1a58f4d21",
+          "hbdebug/dbgtinp.prg": "b7fd0a70fbe1af58600917c4eff1357ee7bf4ac8987faa497a9ce6fe98b28ec7",
+          "hbdebug/dbgtmenu.prg": "5e88fd251bc5bc69da09c5a3b9c27009aa897aa72a72ae51f10fae2aa5251d06",
+          "hbdebug/dbgtmitm.prg": "9b5d72a1ef05356b7eb91060fd1701f078055dce6b8e771a8e0834d3df822c17",
+          "hbdebug/dbgtobj.prg": "3f97ea1f3a58f361a3e30d1c7d37495a7a532528b5419deb25c75cde3a4b7b58",
+          "hbdebug/dbgtwin.prg": "0b0389ee7c0a26be8a10995f28eb30be10a5b8c772e99bf610d7458f7f953efa",
+          "hbdebug/dbgwa.prg": "8b2a033818ecffa3e322eb0d7dab00dd3c26fd79823eee2f5f7f330dbaa1f147",
+          "hbdebug/debugger.prg": "9816ba356782f9d4b818ef93d136d1590d2e1e30b23ebd7f6ce78431428b8b15",
+          "hbdebug/tbrwtext.prg": "26ee4cbeab49f5a9a480d678843dc86e0caec1fe74b076a1c076d83585b0af94",
+          "hbdebug/dbgentry.c": "2bbab7508c0fb685aceb020a249917830db38e6e50f3c8da62552b0625537d2c",
+          "safeio.prg": "4e984b1c830907e0231fa9f0bea3efd316ae1ef182ce413d82e17a5a2c84a2f8",
+          "recovery.prg": "89777d0ecb51553d63008f369dc84777319319a9550b9dd56c5a4b28d1cb630f"
+        },
+        "binary_sha256": "11a8c51a184a5fc121e36546d4d86456c2c7dc3312f66d791011aab709d84e72",
+        "started": 1793544344.6179636,
+        "seconds": 1.1795802116394043
+      }
+    },
+    "finished": 1793544345.797553
+  },
+  "new_model_log": "\n\n    1\n    2\n    3\n    4\n    5\n    6\n    7\n    8\n    9\n   10\n   11\n   12\n   13\n   14\n   15\n   16\n   17\n   18\n   19\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1alpha beta\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1caf\u00e9\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\n    1    x\nP   2\nP   3\nPASS Undo restores sole line clean\n    1\nP   2\nPASS Redo clears sole line dirty\nP   2\nPASS sole line cleared byteexact\nPASS deleted text copied intact\nP   2\nP   3\nPASS Undo restores sole line clean\nP   2\nPASS Redo clears sole line dirty\nPASS empty buffer delete no-opty\nPASS empty no-op preserves clipboard\n    1alpha\nP   2\nP   3\n    1\nPASS sole-line command consumes old mark\n    1alpha\nP   2\nPASS Undo sole marked line exact\nTOTAL         20 PASS          0 FAIL",
+  "navigation_model_log": "\nPASS: multiline gap carries value index context\nPASS: multiline gap carries literal introducer\nPASS: closed block carry resets on next physical line\nPASS: literal or linecomment does not startblock: local c := `/* literal'\nPASS: literal or linecomment does not startblock: local c := \"/*\"\nPASS: literal or linecomment does not startblock: local c := '/*'\nPASS: literal or linecomment does not startblock: local c := [/*]\nPASS: literal or linecomment does not startblock: // /*\nPASS: literal or linecomment does not startblock: && /*\nPASS: literal or linecomment does not startblock: * /*\nPASS: literal or linecomment does not startblock: local c := \"//\" // /*\nPASS: literal or linecomment does not startblock: local c := \"&&\" && /*\nPASS: realblock and declaration after closing marker\nPASS: trailinglinecomment opener ignored\nPASS: C dump excluded\nPASS: dump comment state stays outside Harbour lexer\nPASS: class members are not class declarations\nPASS: typed function method name and line\nPASS: typed procedure method name and line\nPASS: array index multiline block excludes hidden declaration\nPASS: macro body is not an active dump directive\nPASS: commented/separated raw enddump resumes Harbour: #pragma enddump // done\nPASS: commented/separated raw enddump resumes Harbour: # pragma enddump && done\nPASS: commented/separated raw enddump resumes Harbour: #pragma.enddump /* done *\n/\nPASS: commented/separated raw enddump resumes Harbour: #pragma enddump;\nPASS: nonterminator does not leak C text: #pragma enddumpExtra\nPASS: nonterminator does not leak C text: #pragmaenddump\nPASS: nonterminator does not leak C text: // #pragma enddump\nPASS: nonterminator does not leak C text: #pragma enddump bad\nPASS: index comment with closing bracket is not literal: local n := a[1 /* ] mar\nker\nPASS: index comment with closing bracket is not literal: local n := a [1 /* ] ma\nrker\nPASS: index comment with closing bracket is not literal: local n := GetArray()[1\n /* ] marker\nPASS: RETURN bracket literal remains masked\nPASS: completed comment preserves preceding index value: local n := a /* gap */\n[1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := a /* first *\n/ /* next */ [1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := GetArray() /\n* gap */ [1 /* ] marker\nPASS: completed comment preserves preceding index value: local n := \"array value\n\" /* gap */ [1 /* ] marker\nPASS: RETURN with completed comment still introduces bracket literal\nPASS: continued declaration preserves first physical line\nPASS: multiple declaration continuations preserve first line\nPASS: line comment between declaration parts ignored\nPASS: literal semicolon not declaration continuation\nPASS: directive drops pending incomplete declaration\nPASS: compact function continuation\nPASS: compact modifier and function continuations\nPASS: compact method continuation\nPASS: static abbreviation continuation starts at modifier: STAT\nPASS: static abbreviation continuation starts at modifier: STATI\nPASS: static abbreviation continuation starts at modifier: STATIC\nPASS: single-line static abbreviation remains recognized\nPASS: modifier substring is not a keyword\nPASS: CREATE CLASS alias indexed\nPASS: continued CREATE CLASS alias indexed at first line\nPASS: other CREATE commands not class declarations\nPASS: class members remain excluded with CREATE alias\nPASS: ACCESS explicit class implementation indexed\nPASS: ASSIGN implementation uses actual underscore method name\nPASS: member ACCESS ASSIGN declarations not implementations\nPASS: ACCESS continuation preserves first line\nPASS: commented accessor excluded\nPASS: PROCEDURE CLASS alias qualified as method\nPASS: ordinary procedure remains unqualified\nPASS: continued procedure method starts at first line\nPASS: commented CLASS not method qualifier\nPASS: explicit destructor implementation indexed\nPASS: member destructor declaration not implementation\nPASS: external function destructor binding not declaration\nPASS: destructor continuation retains first line\nPASS: NOTE line does not start block: NOTE /* ignored\nPASS: NOTE line does not start block: note/* ignored\nPASS: NOTE line does not start block: .NoTe /* ignored\nPASS: NOTE identifier prefix is not comment\nPASS: modifier kind retained: INIT\nPASS: modifier kind retained: EXIT\nPASS: modifier kind retained: STATIC\nPASS: modifier kind retained: STAT\nPASS: continued lifecycle modifiers keep kind and start line\nPASS: compact argument/class boundary: METHOD Ping()CLASS Demo\nPASS: compact argument/class boundary: METHOD FUNCTION Ping()CLASS Demo\nPASS: compact argument/class boundary: METHOD PROCEDURE Ping()CLASS Demo\nPASS: compact argument/class boundary: PROCEDURE Ping()CLASS Demo\nPASS: compact argument/class boundary: ACCESS Ping()CLASS Demo\nPASS: compact argument/class boundary: DESTRUCTOR Ping()CLASS Demo\nPASS: compact assign retains underscore method name\nPASS: compact qualifier continuation retains declaration line\nPASS: CLASS parameter is not owner qualifier: METHOD Ping( CLASS )CLASS Demo\nPASS: CLASS parameter is not owner qualifier: METHOD FUNCTION Ping(CLASS)CLASS D\nemo\nPASS: CLASS parameter is not owner qualifier: PROCEDURE Ping(CLASS)CLASS Demo\nPASS: CLASS parameter is not owner qualifier: ACCESS Ping(CLASS)CLASS Demo\nPASS: member CLASS parameter is not implementation\nTOTAL         90 PASS          0 FAIL"
+}
