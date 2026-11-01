@@ -209,7 +209,17 @@ METHOD HitGetAt( nR, nC ) CLASS HBWindow
    for each oGet in ::GetList
       cCls := If( Empty( oGet:control ), "", Upper( oGet:control:className() ) )
       do case
-         case cCls == "LISTBOX" .or. cCls == "RADIOGROUP"
+         case cCls == "RADIOGROUP"
+            // Native item hit-tests remain valid when callers hide the native
+            // frame and paint a titled group elsewhere (Compiler Options).
+            if oGet:control:hitTest( nR, nC ) > 0 .and. ;
+               ( oGet:row > nHitRow .or. ( oGet:row == nHitRow .and. oGet:col > nHitCol ) )
+               oHit := oGet
+               nHitRow := oGet:row
+               nHitCol := oGet:col
+               nHitBot := oGet:control:bottom
+            endif
+         case cCls == "LISTBOX"
             // Dropdowns have a collapsed top row and an optional frame below.
             // Their native hitTest knows both geometries, unlike border scans.
             if cCls == "LISTBOX" .and. oGet:control:dropDown
@@ -338,21 +348,12 @@ METHOD MouseClick( nR, nC ) CLASS HbWindow
             endif
          endif
          nIdx := nR - oHit:row - 1
-         if nIdx >= 0
+         if cCls == "RADIOGROUP" .or. nIdx >= 0
             if cCls == "RADIOGROUP"
-               // current selection from the "(*)" marker inside the frame
-               nCurV := -1
-               for nJ := oHit:row + 1 to nHitBot - 1
-                  for nK := oHit:col + 1 to oHit:col + 5
-                     if ScrCharCode( nJ, nK ) == 42  // '*' of the "(*)" marker
-                        nCurV := nJ - oHit:row - 1
-                        exit
-                     endif
-                  next
-                  if nCurV >= 0
-                     exit
-                  endif
-               next
+               // Both are public 1-based item indices, independent of
+               // frame geometry, title text and terminal marker glyphs.
+               nIdx := oHit:control:hitTest( nR, nC )
+               nCurV := oHit:control:value
             else
                // listbox: the clicked row is a VISIBLE offset; the absolute
                // item is the scroll offset (public topItem) plus that row.
