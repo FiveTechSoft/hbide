@@ -312,7 +312,7 @@ def main():
     for m in menus:
         m['acceptance']=acceptance.get(m['id'])
     report={'scope':'Source inventory only. No runtime or platform certification.',
-            'mouse_routes':mouse_routes(),'debugger_inputs':debugger_inputs(),'menus':menus,'ide_modal_fields':ide_modal_fields(),'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),'modal_control_pairs':modal_control_pairs(modal_fields()),
+            'mouse_routes':link_dispatch_contracts(mouse_routes(),specs.get('mouse_acceptance',{})),'debugger_inputs':debugger_inputs(),'menus':menus,'ide_modal_fields':ide_modal_fields(),'dispatch_routes':routes,'modal_contracts':modal_contracts,'modal_fields':modal_fields(),'modal_control_pairs':modal_control_pairs(modal_fields()),
             'inspector_fields': link_inspector_contracts(inspector_fields(),specs.get('inspector_field_acceptance',{})),
             'counts':{'menu_actions':len(menus),'stub_menu_actions':len(stubs),'dispatch_routes':len(routes),'modal_field_declarations':len(modal_fields()),'modal_control_pairs':len(modal_control_pairs(modal_fields())),'ide_modal_declarations':len(ide_modal_fields()),'debugger_input_calls':len(debugger_inputs()),'mouse_event_branches':len(mouse_routes())}}
     field_specs=specs.get('modal_field_acceptance',{})
@@ -407,7 +407,13 @@ def main():
         print('| --- | --- | --- | --- | --- |')
         for route in report['mouse_routes']:
             condition=route['condition'].replace('|','&#124;')
-            print(f"| {route['id']} | {route['context']} | `{condition}` | {route['source']}:{route['line']} | Pendiente gesto |")
+            status='Vinculo focal; no PASS actual' if isinstance(route['acceptance'],dict) else 'Pendiente gesto'
+            print(f"| {route['id']} | {route['context']} | `{condition}` | {route['source']}:{route['line']} | {status} |")
+        for route in report['mouse_routes']:
+            if isinstance(route['acceptance'],dict):
+                spec=route['acceptance']
+                links=', '.join('['+t+'](../tests/'+t+')' for t in spec['tests'])
+                print(f"- {route['acceptance_id']}: {spec['contract']} Pruebas: {links}")
         print('\n## Campos de inspector\n')
         print('Pares tipo/campo expandidos de guardas de InspFields. Vinculo no es PASS actual, ejecucion de handlers, todos los valores o Windows. Ver ledger fuente/hash.\n')
         print('| Control | Campo | Clave | Tipo | Fuente:linea | Aceptacion |')

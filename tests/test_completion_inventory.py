@@ -391,4 +391,30 @@ class RecentBoundaryContracts(unittest.TestCase):
         for text in ['at least four letters','exact ENDTEXT','not current runtime PASS']:
             self.assertIn(text,row['contract'])
 
+class GestureContractLinks(unittest.TestCase):
+    def setUp(self):
+        self.rows=audit.mouse_routes()
+        self.specs=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['mouse_acceptance']
+    def test_two_exact_editor_gestures_not_27_branch_acceptance(self):
+        linked=audit.link_dispatch_contracts(self.rows,self.specs)
+        self.assertEqual(len(linked),27)
+        selected=[r for r in linked if isinstance(r['acceptance'],dict)]
+        self.assertEqual(len(selected),2)
+        self.assertEqual({r['condition'] for r in selected},{'case nKeyStd == K_LDBLCLK','case nKeyStd == K_LBUTTONDOWN'})
+        for row in selected:
+            self.assertEqual(row['context'],'METHOD EditKey( nKey ) CLASS HBSrcEdit')
+            self.assertIn('not current runtime PASS',row['acceptance']['contract'])
+            self.assertIn('Event branch is not a unique feature',row['acceptance']['contract'])
+        self.assertTrue(all(isinstance(r['acceptance'],str) for r in self.rows))
+    def test_wrong_context_rejected(self):
+        ident=next(iter(self.specs));spec=dict(self.specs[ident],context='METHOD Other(')
+        with self.assertRaisesRegex(ValueError,'exactly one route'):
+            audit.link_dispatch_contracts(self.rows,{ident:spec})
+    def test_duplicate_and_missing_test_rejected(self):
+        ident=next(iter(self.specs));spec=self.specs[ident]
+        with self.assertRaisesRegex(ValueError,'Duplicate dispatch contract'):
+            audit.link_dispatch_contracts(self.rows,{ident:spec,'duplicate':spec})
+        with self.assertRaisesRegex(ValueError,'Missing dispatch test'):
+            audit.link_dispatch_contracts(self.rows,{ident:dict(spec,tests=['missing-gesture.py'])})
+
 if __name__=='__main__':unittest.main()

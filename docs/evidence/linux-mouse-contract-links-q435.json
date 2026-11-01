@@ -1,0 +1,10 @@
+{
+  "scope": "Q435 M0 bounded gesture links only, not runtime PASS",
+  "source_before": "603b838172e4b21491784d0dde1c301434fe90f8",
+  "mouse_branches": 27,
+  "exact_gesture_links": 2,
+  "unlinked_mouse_branches": 25,
+  "tests": "55inventoryunitsPASS including wrong context/duplicate/missingtest failclosed guards",
+  "limits": "Only editor click/doubleclick UTF8fixture linked, eventbranch not unique feature; no everyhit-test/parentsurface/pixel/Windows/M0closure",
+  "catalog": "34byteexact"
+}

@@ -539,8 +539,8 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | --- | --- | --- | --- | --- |
 | MOUSE-hbide-Activate-1 | METHOD Activate() CLASS HBIde | `if nKeyStd == K_LBUTTONDOWN` | hbide.prg:712 | Pendiente gesto |
 | MOUSE-hbide-Activate-2 | METHOD Activate() CLASS HBIde | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | hbide.prg:733 | Pendiente gesto |
-| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:554 | Pendiente gesto |
-| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:559 | Pendiente gesto |
+| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:554 | Vinculo focal; no PASS actual |
+| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:559 | Vinculo focal; no PASS actual |
 | MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:564 | Pendiente gesto |
 | MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:567 | Pendiente gesto |
 | MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2189 | Pendiente gesto |
@@ -564,6 +564,8 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | MOUSE-debugger-HandleEvent-3 | METHOD PROCEDURE HandleEvent() CLASS HBDebugger | `CASE K_RBUTTONDOWN` | hbdebug/debugger.prg:1649 | Pendiente gesto |
 | MOUSE-debugger-ShowAppScreen-1 | METHOD PROCEDURE ShowAppScreen() CLASS HBDebugger | `IF LastKey() == K_LBUTTONDOWN` | hbdebug/debugger.prg:2890 | Pendiente gesto |
 | MOUSE-dbgtwin-ShowModal-1 | METHOD PROCEDURE ShowModal() CLASS HBDbWindow | `CASE K_LBUTTONDOWN` | hbdebug/dbgtwin.prg:248 | Pendiente gesto |
+- GESTURE-EDITOR-WORD-DOUBLECLICK: Actual xterm mouse UTF8 terminal fixture doubleclick after TAB selects accented words; typing/Delete/Enter/Backspace/Copy/Cut and Undo preserve BOM/TAB/mixedEOL exact bytes. PTY byte/cell semantics, not pixel proof, every coordinate/scroll/encoding/terminal/Windows; link is not current runtime PASS. Event branch is not a unique feature; routing across parent surfaces and every hit-test remain outside this link. Pruebas: [test_editor_mouse_utf8_pty.py](../tests/test_editor_mouse_utf8_pty.py)
+- GESTURE-EDITOR-POSITION-CLICK: Actual xterm UTF8 terminal click after accented word maps to exact source byte; insertion and Undo preserve fixture bytes including BOM/TAB/mixedEOL. Bounded position only, not every coordinate/scroll/terminal/Windows; link is not current runtime PASS. Event branch is not a unique feature; routing across parent surfaces and every hit-test remain outside this link. Pruebas: [test_editor_mouse_utf8_pty.py](../tests/test_editor_mouse_utf8_pty.py)
 
 ## Campos de inspector
 

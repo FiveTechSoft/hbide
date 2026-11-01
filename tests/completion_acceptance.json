@@ -2936,5 +2936,25 @@
       "test_delete_word_columns.prg"
     ],
     "contract": "CtrlT treats raw TAB as word separator like space, keeps source offsets scalar-based and preserves following word. Virtual/actual EOL no-op keeps redo/clipboard, no dirty/journal or false save prompt. Empty-buffer model guard separate."
+  },
+  "mouse_acceptance": {
+    "GESTURE-EDITOR-WORD-DOUBLECLICK": {
+      "source": "editor.prg",
+      "context": "METHOD EditKey( nKey ) CLASS HBSrcEdit",
+      "condition": "case nKeyStd == K_LDBLCLK",
+      "tests": [
+        "test_editor_mouse_utf8_pty.py"
+      ],
+      "contract": "Actual xterm mouse UTF8 terminal fixture doubleclick after TAB selects accented words; typing/Delete/Enter/Backspace/Copy/Cut and Undo preserve BOM/TAB/mixedEOL exact bytes. PTY byte/cell semantics, not pixel proof, every coordinate/scroll/encoding/terminal/Windows; link is not current runtime PASS. Event branch is not a unique feature; routing across parent surfaces and every hit-test remain outside this link."
+    },
+    "GESTURE-EDITOR-POSITION-CLICK": {
+      "source": "editor.prg",
+      "context": "METHOD EditKey( nKey ) CLASS HBSrcEdit",
+      "condition": "case nKeyStd == K_LBUTTONDOWN",
+      "tests": [
+        "test_editor_mouse_utf8_pty.py"
+      ],
+      "contract": "Actual xterm UTF8 terminal click after accented word maps to exact source byte; insertion and Undo preserve fixture bytes including BOM/TAB/mixedEOL. Bounded position only, not every coordinate/scroll/terminal/Windows; link is not current runtime PASS. Event branch is not a unique feature; routing across parent surfaces and every hit-test remain outside this link."
+    }
   }
 }
