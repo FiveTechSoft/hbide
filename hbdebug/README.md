@@ -1,22 +1,34 @@
 # Vendored Harbour source debugger
 
-Copied from the Harbour 3.2.1dev sources (`src/debug/`) of the toolchain
-used to build hbide (Harbour snapshot r2610240856). Harbour is free software
-under the GNU General Public License v2 or later (with the Harbour runtime
-exception); the original copyright and license headers are kept unmodified
-at the top of every file. `en.txt` is the debugger help text.
+The fourteen upstream-derived compiled sources in this directory were compared
+with the local Harbour checkout at commit
+`694428e1c12f726675b19324d62167fa77d68185`, remote
+`https://github.com/harbour/core.git`. This is a comparison reference, not proof
+of the exact original import revision. An earlier README described snapshot
+r2610240856 and claimed that only two files had changed. That description is
+historical and does not describe the current tree.
 
-hbide carries these sources inside its own repository so the IDE can adapt
-debugger behavior without touching the shared Harbour toolchain. Local
-modifications:
+At the Q427 comparison, four complete compiled files are byte-identical to that
+checkout: `dbgbrwsr.prg`, `dbgtmenu.prg`, `dbgtmitm.prg` and `dbgwa.prg`.
+Ten differ outside their initial notices: `dbghelp.prg`, `dbgmenu.prg`,
+`dbgtarr.prg`, `dbgthsh.prg`, `dbgtinp.prg`, `dbgtobj.prg`, `dbgtwin.prg`,
+`tbrwtext.prg`, `debugger.prg` and `dbgentry.c`. All fourteen initial comment
+notices match the comparison checkout. `en.txt`, the bundled debugger help,
+is byte-identical to its upstream counterpart. `dbgscript.prg` is an additional
+local compiled helper with no same-named file in that checkout.
 
-- `debugger.prg`, `Quit()` (Alt+X / File>Exit): `__Quit()` replaced by
-  `Break( NIL )` and the `__dbgSetQuit()` call removed. The debugger no
-  longer kills the host process; it unwinds to the recovery point the IDE
-  installs around `hb_HrbRun()`, aborting only the debugged program.
-- `dbgentry.c`, added `__hbide_dbgReset()`: clears `bInside`/`bQuit` of the
-  per-stack debug-info structure. A `Break()` out of the debugger skips the
-  `bInside` restore in `hb_dbgActivate()`, which otherwise suppresses every
-  later debug session in the same process.
+The IDE carries local debugger behavior changes in its repository rather than
+changing the shared Harbour toolchain. These include returning from debugger
+Quit to the IDE, resetting per-session VM state, and changes to menus, editing,
+search, variables and window behavior. The two original Quit/reset examples
+are not an exhaustive change list. File hashes and comparison results are in
+`docs/evidence/harbour-provenance-refresh-q427.json`; the earlier comparison is
+`docs/evidence/harbour-notice-provenance-q353.json`.
 
-Everything else is byte-identical to upstream r2610240856.
+The upstream notices describe GPL v2-or-later terms and a Harbour exception.
+The literal upstream license reference is kept separately in
+`third-party/harbour/LICENSE.upstream.txt`, with its provenance alongside it.
+This records upstream text, not a license selection for hbide's own code or
+modifications. The root `LICENSE.txt` reference remains missing. Holders' terms,
+modified-file exception scope, dependency notices and final-package review
+remain open. Neither matching headers nor this README clears redistribution.
