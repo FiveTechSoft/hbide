@@ -862,7 +862,7 @@ return oMenu
 METHOD Start() CLASS HbIde
 
    local cFile := ::oEditor:cFile, cExe, cOut, cBase, cExeTmp, cErr := "", nRc, cRecovery := "", cCommand, oError
-   local aDiag, nFirstErr, oOpenEd
+   local aDiag, nFirstErr, oOpenEd, lBuildReady := .F.
 
    if HBIDEProjectTokens( ::cRunArgs ) == nil
       HBIDE_MsgAlert( "Run > Arguments has an unbalanced quote; fix it first" )
@@ -969,7 +969,8 @@ METHOD Start() CLASS HbIde
       HBIDE_MsgAlert( "Build OK: " + cExe )
    endif
 
-   if nRc == 0 .and. File( cExeTmp )
+   lBuildReady := nRc == 0 .and. File( cExeTmp )
+   if lBuildReady
       if ! HBIDE_ReplaceFile( cExeTmp, cExe, @cRecovery )
          HBIDE_MsgAlert( "Build succeeded but could not replace " + cExe + ": " + cRecovery )
       elseif ::lAutoRun
@@ -990,7 +991,7 @@ METHOD Start() CLASS HbIde
    SetCursor( SC_NORMAL )
 
    // like the Borland IDE: a failed build lands on its first error
-   if ! ( nRc == 0 .and. File( cExe ) )
+   if ! lBuildReady
       nFirstErr := AScan( ::aMessages, {| h | h[ "level" ] == "error" } )
       if nFirstErr > 0
          ::JumpMessage( nFirstErr )

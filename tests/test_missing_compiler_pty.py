@@ -6,7 +6,8 @@ text=(ROOT/'tests/test_designer_pty.py').read_text();exec(text[text.index('class
 work=pathlib.Path(tempfile.mkdtemp(prefix='hbide-source-run-'));(work/'home').mkdir();(work/'rec').mkdir()
 exe=os.environ.get('HBIDE_BIN',str(ROOT/'hbide'));results=[]
 restore='--restore' in sys.argv
-missing_output='--missing-output' in sys.argv
+diagnostic='--missing-output-diagnostic' in sys.argv
+missing_output='--missing-output' in sys.argv or diagnostic
 failed_output='--failed-output' in sys.argv
 fake=missing_output or failed_output
 for kind in ['autorun']:
@@ -21,6 +22,8 @@ for kind in ['autorun']:
  if fake:
   launcher=work/'empty-path/hbmk2'
   launcher.write_text('#!/bin/sh\nfor arg do case "$arg" in -o*) out=${arg#-o};; esac; done\nprintf \"%s\\n\" "$out" >> '+shlex.quote(str(work/'invocations'))+'\n'+('printf \"broken output\" > "$out"\nexit 7\n' if failed_output else 'exit 0\n'))
+  if diagnostic:
+   launcher.write_text(launcher.read_text().replace('exit 0\n', 'printf \"%s(3) Error E0030 simulated fixture error\\n\" '+shlex.quote(str(target))+'\nexit 0\n'))
   launcher.chmod(0o700)
  pid,fd=pty.fork()
  if pid==0:
@@ -43,12 +46,16 @@ for kind in ['autorun']:
   pump(1.5);send(b'\x1bf');send(b'o');send(str(target).encode());send(b'\r',.6)
   for attempt in range(2):
    send(b'\x1br');send(b's',.7)
+   if diagnostic:
+    check('compiler diagnostic output visible','Error E0030' in screen.text())
+    send(b'\r',.4)
    (work/('failure-'+str(attempt)+'.screen')).write_text(screen.text())
    check('failed build reports preserved executable','Build failed (status ' in screen.text() and (not fake or 'status '+('7' if failed_output else '0')+')' in screen.text()) and 'previous' in screen.text() and 'executable left untouched' in screen.text())
    if fake:
     calls=(work/'invocations').read_text().splitlines() if (work/'invocations').exists() else []
     check('compiler actually invoked once per attempt',len(calls)==attempt+1 and all(str(work) in c for c in calls))
    send(b'\r',.4)
+   if diagnostic:check('failed build navigates to first error despite previous executable',bool(re.search(r'row:\s*3\b',screen.text())) and 'ERROR' in screen.text())
    check('previous executable byte exact',(work/'missing').read_bytes()==previous)
    check('stale executable never launched',not value.exists())
    check('source byte exact',target.read_bytes()==original)
