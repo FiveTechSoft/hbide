@@ -66,6 +66,22 @@ PROCEDURE Main()
    Check(Len(o:aBPs)==1.and.o:aBPs[1]==2,'Undo identical paste BP',@nPass,@nFail)
    o:Redo()
    Check(Len(o:aBPs)==1.and.o:aBPs[1]==3,'Redo identical paste BP',@nPass,@nFail)
+   o:LoadText('same'+cLF+'same'+cLF+'tail')
+   o:aBPs := {2}
+   o:GoTo(1,5)
+   o:DeleteLine()
+   Check(o:GetText()=='same'+cLF+'tail'.and.Len(o:aBPs)==1.and.o:aBPs[1]==1,'delete preceding identical keeps surviving BP',@nPass,@nFail)
+   o:Undo()
+   Check(Len(o:aBPs)==1.and.o:aBPs[1]==2,'Undo identical delete surviving BP',@nPass,@nFail)
+   o:Redo()
+   Check(Len(o:aBPs)==1.and.o:aBPs[1]==1,'Redo identical delete surviving BP',@nPass,@nFail)
+   o:LoadText('same'+cLF+'same'+cLF+'tail')
+   o:aBPs := {1}
+   o:GoTo(1,5)
+   o:DeleteLine()
+   Check(Len(o:aBPs)==0,'deleting marked identical instruction drops BP',@nPass,@nFail)
+   o:Undo()
+   Check(Len(o:aBPs)==0,'Undo cannot resurrect deleted identical instruction BP',@nPass,@nFail)
    // Every edit is checked in both directions, including adjacent metadata.
    cText := 'abc' + cCRLF + 'def' + cLF + 'ghi' + Chr( 13 ) + 'tail'
    o:LoadText( cText )
