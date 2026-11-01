@@ -1,0 +1,284 @@
+{
+  "scope": "Q184 oversized Start compiler output uses existing scrollable Output viewer, short output retains MsgAlert, no global modal change",
+  "receipt": {
+    "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "cd1613d8cfbd35421368b51cf7f07f81fe399e8f",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "e70c00386a5ace611923b5cb8fb8d7d2eba98382b5cf9361b48868f5e2f66000",
+    "binary_sha256": "62a5642df2ba2294f07d8a45aa9955f80a051a8afa4f7892c0ba9c1ac5416e09",
+    "built_at": 1793519712.4845853
+  },
+  "results": [
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "cd1613d8cfbd35421368b51cf7f07f81fe399e8f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e70c00386a5ace611923b5cb8fb8d7d2eba98382b5cf9361b48868f5e2f66000",
+      "binary_sha256": "62a5642df2ba2294f07d8a45aa9955f80a051a8afa4f7892c0ba9c1ac5416e09",
+      "build_receipt": "/tmp/hbide-q184-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ca566dfea02f560eddc1f340199a3895163cf160b5ebbee11d77c32f2423ffa3",
+      "case": "compiler-long-output-scroll",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_missing_compiler_pty.py",
+        "--long-output"
+      ],
+      "started": 1793519712.4848607,
+      "seconds": 8.29,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f6e4bd9a5d4b508f41ea2e83ca974358703f2484fb53bfcf6f065bf7931f499a",
+      "log": "/tmp/hbide-q184-final/compiler-long-output-scroll-1793519712484857391.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "cd1613d8cfbd35421368b51cf7f07f81fe399e8f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e70c00386a5ace611923b5cb8fb8d7d2eba98382b5cf9361b48868f5e2f66000",
+      "binary_sha256": "62a5642df2ba2294f07d8a45aa9955f80a051a8afa4f7892c0ba9c1ac5416e09",
+      "build_receipt": "/tmp/hbide-q184-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ca566dfea02f560eddc1f340199a3895163cf160b5ebbee11d77c32f2423ffa3",
+      "case": "compiler-success-missing-output-diagnostic",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_missing_compiler_pty.py",
+        "--missing-output-diagnostic"
+      ],
+      "started": 1793519720.7740662,
+      "seconds": 7.34,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f6e4bd9a5d4b508f41ea2e83ca974358703f2484fb53bfcf6f065bf7931f499a",
+      "log": "/tmp/hbide-q184-final/compiler-success-missing-output-diagnostic-1793519720774062162.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "cd1613d8cfbd35421368b51cf7f07f81fe399e8f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e70c00386a5ace611923b5cb8fb8d7d2eba98382b5cf9361b48868f5e2f66000",
+      "binary_sha256": "62a5642df2ba2294f07d8a45aa9955f80a051a8afa4f7892c0ba9c1ac5416e09",
+      "build_receipt": "/tmp/hbide-q184-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ca566dfea02f560eddc1f340199a3895163cf160b5ebbee11d77c32f2423ffa3",
+      "case": "compiler-promotion-real-retry",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_missing_compiler_pty.py",
+        "--promotion-retry"
+      ],
+      "started": 1793519728.1123953,
+      "seconds": 7.34,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f6e4bd9a5d4b508f41ea2e83ca974358703f2484fb53bfcf6f065bf7931f499a",
+      "log": "/tmp/hbide-q184-final/compiler-promotion-real-retry-1793519728112390707.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "cd1613d8cfbd35421368b51cf7f07f81fe399e8f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e70c00386a5ace611923b5cb8fb8d7d2eba98382b5cf9361b48868f5e2f66000",
+      "binary_sha256": "62a5642df2ba2294f07d8a45aa9955f80a051a8afa4f7892c0ba9c1ac5416e09",
+      "build_receipt": "/tmp/hbide-q184-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ca566dfea02f560eddc1f340199a3895163cf160b5ebbee11d77c32f2423ffa3",
+      "case": "compiler-promotion-failure-recovery",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_missing_compiler_pty.py",
+        "--promotion-failure"
+      ],
+      "started": 1793519735.448265,
+      "seconds": 5.43,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "f6e4bd9a5d4b508f41ea2e83ca974358703f2484fb53bfcf6f065bf7931f499a",
+      "log": "/tmp/hbide-q184-final/compiler-promotion-failure-recovery-1793519735448261358.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "cd1613d8cfbd35421368b51cf7f07f81fe399e8f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e70c00386a5ace611923b5cb8fb8d7d2eba98382b5cf9361b48868f5e2f66000",
+      "binary_sha256": "62a5642df2ba2294f07d8a45aa9955f80a051a8afa4f7892c0ba9c1ac5416e09",
+      "build_receipt": "/tmp/hbide-q184-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ca566dfea02f560eddc1f340199a3895163cf160b5ebbee11d77c32f2423ffa3",
+      "case": "compiler-autorun",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_compiler_autorun_pty.py"
+      ],
+      "started": 1793519740.8809915,
+      "seconds": 25.82,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "efb0c99f2d69f6896caccd476d358a06accbc8924e4eaf9c6c87784b789cef27",
+      "log": "/tmp/hbide-q184-final/compiler-autorun-1793519740880988125.log"
+    },
+    {
+      "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source": "cd1613d8cfbd35421368b51cf7f07f81fe399e8f",
+      "tracked_changes": "",
+      "tracked_snapshot_sha256": "e70c00386a5ace611923b5cb8fb8d7d2eba98382b5cf9361b48868f5e2f66000",
+      "binary_sha256": "62a5642df2ba2294f07d8a45aa9955f80a051a8afa4f7892c0ba9c1ac5416e09",
+      "build_receipt": "/tmp/hbide-q184-final/build-identity.json",
+      "platform": "linux",
+      "build": "fresh",
+      "scope": "Linux PTY only; not full visual/Windows acceptance",
+      "runner_sha256": "ca566dfea02f560eddc1f340199a3895163cf160b5ebbee11d77c32f2423ffa3",
+      "case": "project-output-scroll",
+      "command": [
+        "/usr/bin/python3",
+        "-u",
+        "/home/sandbox/hbide/tests/test_project_output_pty.py"
+      ],
+      "started": 1793519766.7000756,
+      "seconds": 12.0,
+      "exit_code": 0,
+      "printed_failure": false,
+      "source_or_binary_changed": false,
+      "test_sha256": "da7836afe1085933995ded88f46a19c405b320399a4561182b72a5d375a0dec0",
+      "log": "/tmp/hbide-q184-final/project-output-scroll-1793519766700071547.log"
+    }
+  ],
+  "logs": {
+    "compiler-long-output-scroll-1793519712484857391.log": "PASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS long build output opens scrollable viewer\nPASS End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 19 PASS 0 FAIL; evidence /tmp/hbide-source-run-0e393f7k\n",
+    "compiler-success-missing-output-diagnostic-1793519720774062162.log": "PASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS compiler diagnostic output visible\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 17 PASS 0 FAIL; evidence /tmp/hbide-source-run-nuzs_l00\n",
+    "compiler-promotion-real-retry-1793519728112390707.log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS retry with unblocked destination builds\nPASS retry launches fresh real compiler result\nPASS retry promotes new executable\nPASS retained first output stays exact\nPASS retry preserves source\nPASS retry has no unnamed temporary outputs\nPASS editor remains usable after repeated failure\nTOTAL 15 PASS 0 FAIL; evidence /tmp/hbide-source-run-6gb9wo4b\n",
+    "compiler-promotion-failure-recovery-1793519735448261358.log": "PASS build output ready\nPASS replacement failure visible\nPASS replacement failure names retained output\nPASS retained output path has its own complete line\nPASS blocked destination directory untouched\nPASS complete output retained after failed promotion\nPASS source remains byte exact after failed promotion\nPASS no stale executable launched\nPASS editor remains usable after repeated failure\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-euf3cdns\n",
+    "compiler-autorun-1793519740880988125.log": "PASS default-on actual compiler output\nPASS default-on launch matches committed choice\nPASS default-on launched artifact exact args\nPASS default-on fresh executable promoted\nPASS default-on editor restored\nPASS accepted-off actual compiler output\nPASS accepted-off auto-run off message\nPASS accepted-off launch matches committed choice\nPASS accepted-off fresh executable promoted\nPASS accepted-off editor restored\nPASS cancelled-on-remains-off actual compiler output\nPASS cancelled-on-remains-off auto-run off message\nPASS cancelled-on-remains-off launch matches committed choice\nPASS cancelled-on-remains-off fresh executable promoted\nPASS cancelled-on-remains-off editor restored\nPASS accepted-on actual compiler output\nPASS accepted-on launch matches committed choice\nPASS accepted-on launched artifact exact args\nPASS accepted-on fresh executable promoted\nPASS accepted-on editor restored\nTOTAL 20 PASS 0 FAIL; evidence /tmp/hbide-source-run-n4ig9v67\n",
+    "project-output-scroll-1793519766700071547.log": "PASS F6 opens full output and horizontal scrolling reveals diagnostic tail\nPASS Esc returns to same project failure state\n"
+  },
+  "before": {
+    "results": [
+      {
+        "untracked_inputs_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "source": "8fb623244a684e236be8a47c69ce587df9c32348",
+        "tracked_changes": " M scripts/completion_pty.py\n M tests/test_missing_compiler_pty.py\n",
+        "tracked_snapshot_sha256": "13995bc718b07c4bfd5b0d6f0dde1960c59ea73027a40ad6cd2e53e9f6f40fa7",
+        "binary_sha256": "b595beae045aaa1b957c0dd37274a1e138b8e9c39814a28de7443062638827be",
+        "build_receipt": "/tmp/hbide-q184-before/build-identity.json",
+        "platform": "linux",
+        "build": "fresh",
+        "scope": "Linux PTY only; not full visual/Windows acceptance",
+        "runner_sha256": "ca566dfea02f560eddc1f340199a3895163cf160b5ebbee11d77c32f2423ffa3",
+        "case": "compiler-long-output-scroll",
+        "command": [
+          "/usr/bin/python3",
+          "-u",
+          "/home/sandbox/hbide/tests/test_missing_compiler_pty.py",
+          "--long-output"
+        ],
+        "started": 1793519677.8418517,
+        "seconds": 8.29,
+        "exit_code": 1,
+        "printed_failure": true,
+        "source_or_binary_changed": false,
+        "test_sha256": "f6e4bd9a5d4b508f41ea2e83ca974358703f2484fb53bfcf6f065bf7931f499a",
+        "log": "/tmp/hbide-q184-before/compiler-long-output-scroll-1793519677841847770.log"
+      }
+    ],
+    "log": "FAIL long build output opens scrollable viewer\nFAIL End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nFAIL long build output opens scrollable viewer\nFAIL End reveals last compiler diagnostic\nPASS failed build reports preserved executable\nPASS compiler actually invoked once per attempt\nPASS failed build navigates to first error despite previous executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 15 PASS 4 FAIL; evidence /tmp/hbide-source-run-ulbw6day\n",
+    "outcome": "15PASS4FAIL scrollviewer/tail access twice; preliminary longalert probe also showed first tail diagnostic outside visible screen"
+  },
+  "guards": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "cd1613d8cfbd35421368b51cf7f07f81fe399e8f",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "d40ee8fc144e0d247c6fd61274ceea597eb702ace2f217b3befbfd6dbb9b572b",
+    "started": 1793519778.8789673,
+    "runner_sha256": "d8e1b33008b126ce28f71722967a5ba136d9a3c979a0ce5732d5c3a00027d71f",
+    "tests": {
+      "test_linux_rebuild_guard.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "73a969605a7e7033059468f56dd5c9e72c088ce87e39729b1c63a34580c79626",
+        "log": "/tmp/hbide-q184-guards/test_linux_rebuild_guard.py.log",
+        "seconds": 0.211
+      },
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "7bbe99c0b395839c22e14428fb155b20d7061444eb0d81a0def9eb60253286d1",
+        "log": "/tmp/hbide-q184-guards/test_completion_guards.py.log",
+        "seconds": 0.212
+      },
+      "test_build_receipt.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "d25507ab5e060f2f57c1578af0182690d361e737697330e522b0df85badfa73e",
+        "log": "/tmp/hbide-q184-guards/test_build_receipt.py.log",
+        "seconds": 0.212
+      },
+      "test_completion_inventory.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "e6f79e6fa0af285676b2ab2be7e585568186ed37e369759008f959635c3f6a81",
+        "log": "/tmp/hbide-q184-guards/test_completion_inventory.py.log",
+        "seconds": 0.766
+      },
+      "test_distribution_notices.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "19eaddd33521eb2b36660679baaf9825ce44d936b51aac482401226d3372682d",
+        "log": "/tmp/hbide-q184-guards/test_distribution_notices.py.log",
+        "seconds": 0.213
+      },
+      "test_embed_help_docs.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "2f819c0776ccd8117f928feed5abebbb9216a69c330da16c1f98913b7f3df77d",
+        "log": "/tmp/hbide-q184-guards/test_embed_help_docs.py.log",
+        "seconds": 0.212
+      },
+      "test_candidate_doc_preflight.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "99b70d37771afbfcd7c6a2e9c4cbb2834540442f0da50d40d2208a391e6a0380",
+        "log": "/tmp/hbide-q184-guards/test_candidate_doc_preflight.py.log",
+        "seconds": 0.364
+      }
+    },
+    "ok": true,
+    "finished": 1793519781.0684843
+  },
+  "visual": {
+    "inspection": "Exact62a5642d bin,40x120full1202x762. Top shows initialprogress0..32,End shows final ErrorE0030,Esc then failure dismissal returns clean editor row3/1of1ERROR; complete lower borders all3.",
+    "files": {
+      "hbide-q184-top.png": "7c552e99c29fbda4f41176fb59b768864b4c34963b3292231d9bd36fb75b9d73",
+      "hbide-q184-end.png": "88893f61a4c841542b9ea08c8c0052d7416202a3df47e047abf8ab465764ff00",
+      "hbide-q184-return.png": "406d55fb3db4df5a8fb9e7660e7a343061fde27ae524c686d94f5a5e4ffa201e"
+    }
+  },
+  "limits": "6PTY82checks74guards34docsPASS. 60line synthetic compiler output; parser unchanged, no allANSI/controlencodings/terminals/Windows/Cancel/responsiveness/fullmatrix/M2closure. Existing projectOutput regression2checks covers horizontal scroll+Esc."
+}

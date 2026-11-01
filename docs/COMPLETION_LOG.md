@@ -4721,3 +4721,22 @@ Tres modos PTY40checks74guardas34docsPASS en
 No arreglo de producto nuevo ni todas las fallas de promotion, nativas,
 Windows, Cancel, respuestaUI, matriz global o cierreM2.
 Evidencia `docs/evidence/linux-real-build-promotion-retry-q183.json`.
+
+
+### Q184 (1 noviembre 2026): salida larga de Start accesible
+
+Arreglo: Start mostraba toda salida compiler en MsgAlert sin scroll;
+con60lineas el error final quedaba fuera. Ahora usa el visor Output
+existente si el texto envuelto no cabe en pantalla; salida corta mantiene
+alerta. Se suspende/restaura status, pantalla y cursor alrededor del visor.
+Mismo fixture antes15PASS4FAIL, despues19PASS (dos intentos): End revela
+error final y Esc vuelve al fallo sin promover/ejecutar binario antiguo;
+fuente exacta y salto a linea3 correctos.
+Seis modos PTY82checks74guardas34docsPASS en
+cd1613d8cfbd35421368b51cf7f07f81fe399e8f, binario
+62a5642df2ba2294f07d8a45aa9955f80a051a8afa4f7892c0ba9c1ac5416e09.
+Nativas exactbin40x120/1202x762 inicio, End/error y retorno al editor
+revisadas: bordes completos, underlay limpio, row3/1of1ERROR.
+No cambio de modales globales, parser, ANSI/encodings generales, todos
+terminales, Windows, Cancel, respuestaUI, matriz global ni cierreM2.
+Evidencia `docs/evidence/linux-start-long-output-q184.json`.
