@@ -3960,3 +3960,11 @@ andVMglue,nostubs. Clean24modelsPASS(including324geometrycases+runtime
 layoutcommands,7tabwidthchecks).6guardsuites57unittests34docsPASS,no
 fail/retry. linux-debug-extra-models-q129.json. GTSTDnotpixelcertification/
 PTY/nativeWindows/globalmilestone.Noearlier22modelreceiptpromotedto24.
+
+## Q130 - help browser and project UI models registered
+
+Source1258a6f includes existingkeyqueuemodels.HelpbrowserfullGUI
+dependencies;projectUIreceivesactualhbmk2argument.Clean26models6suites
+57guardtests34docsPASSnofail/retry.ExploratoryHelplinkmissinghbgetufailed,
+correctedbeforecleanpass. linux-help-project-extra-models-q130.json.
+GTSTDnotpixels/PTY/nativeWindows/globalmilestone.Prior24/22receiptshistorical.

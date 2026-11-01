@@ -68,6 +68,7 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 | ID | Hallazgo / siguiente paso | Evidencia y salida |
 | --- | --- | --- |
+| Q130 | M0 registerhelpbrowser/projectUImodels. | Source1258a6f/26models57guardtests34docsPASS;linux-help-project-extra-models-q130.json.GTSTDnotpixels/PTY/Windows/global. |
 | Q129 | M0 registerexistingdebuglayout/tabwidthmodels. | Source54ed845/24models57guardtests34docsPASS;linux-debug-extra-models-q129.json.GTSTDnotpixels/PTY/Windows/global.Prior22modelsremainhistorical. |
 | Q128 | M0 failclosedguardrunnernegativefixtures. | Sourcefd6d538/6suites57unittests34docsPASS;linux-tooling-guards-negative-q128.json.No productbinary/PTY/models/pixels/Windows/global. |
 | Q127 | M0 sourcetrackedtoolingguardrunner. | Source6be9a2b/5suites51unittests34docsPASS;linux-tooling-guards-q127.json.No productfix/PTY/models/pixels/Windows/global. |
