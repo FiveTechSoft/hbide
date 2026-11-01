@@ -71,7 +71,9 @@ METHOD Open( cFile ) CLASS HBIDEProject
          cExt := Lower( hb_FNameExt( cResolved ) )
          IF Left( cToken, 1 ) != "-" .AND. AScan( { ".prg", ".ch", ".c", ".cpp", ".cc", ".cxx", ".cx", ".h", ".hpp", ".hh", ".hbp", ".hbm", ".hbc" }, cExt ) > 0
             IF ! Empty( cExt )
-               cMember := HBIDEProjectPath( ::cRoot, cResolved )
+               // hbmk2 accepts portable separators in literal HBP members.
+               // Preserve the token/original bytes; normalize only the resolved path.
+               cMember := HBIDEProjectPath( ::cRoot, hb_DirSepToOS( cResolved ) )
                IF AScan( ::aMembers, {| m | m[ "path" ] == cMember } ) == 0
                   AAdd( ::aMembers, { "path" => cMember, "token" => cToken, ;
                      "line" => nLine, "exists" => hb_FileExists( cMember ), ;
