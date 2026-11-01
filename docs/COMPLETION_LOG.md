@@ -5267,3 +5267,16 @@ Tests propios hashados/binario inalterado; sin fallos/reintentos en estos19.
 104 escenarios distintos documentados/cotejados con plan353, normalización
 Q223 aplicada; no matriz completa ni producto/píxeles/modelos/Windows/hitos.
 Evidencia: docs/evidence/linux-c30-navigation-blocks1921-q225.json.
+
+### Q226 (1 noviembre 2026): C30 edición/selección
+
+14 escenarios finales PASS con C30 96d77549/export049b533: Find/F5/Repeat,
+selección virtual/TAB/identidad/Undo/límites destructivos, Replace sin cambios
+y con selección, duplicar/borrar/reload, continuación bracket seleccionada.
+Comparación exacta de bytes y estado según cada fixture. Tests propios
+hashados/binario inalterado. La llamada combinada bloques22+23 agotó120s
+tras5+1 recibos completos; reanudada saltando esos recibos y reiniciando
+el posible caso destructivo interrumpido. No fallo IDE registrado ni
+afirma ejecución global sin reintentos.118 escenarios distintos cotejados
+con plan353, normalizaciónQ223; no matriz completa/producto/píxeles/modelos/Windows/hitos.
+Evidencia: docs/evidence/linux-c30-selection-blocks2224-q226.json.

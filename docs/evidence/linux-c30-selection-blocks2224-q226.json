@@ -1,0 +1,213 @@
+{
+  "scope": "Frozen C30 bounded editing and selection.14additional scenarios;118distinct across blocks1..24 after Q223 normalization. Not full353/Windows/pixels/models/milestone closure.",
+  "interruption": "Combined blocks22+23 shell call hit120second budget after all5block22 and firstblock23 completed. No product failure recorded; block23 resumed skipping saved identity receipt, potentially interrupted destructive-boundary restarted. Not globally retry-free.",
+  "blocks": [
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "find-f5-selection",
+          "command": [
+            "test_find_f5_selection_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 18.59719753265381,
+          "test_sha256": "31dc55106d51b9955c82934a9c5e8a2977fec02e4472d4c57cc3402bde20eb07",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/find-f5-selection.log",
+          "printed_failure": false
+        },
+        {
+          "name": "find-repeat-selection",
+          "command": [
+            "test_find_repeat_selection_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 18.514030933380127,
+          "test_sha256": "969ec83aeb61d954572e7bb9844b3ba426963a2eb6ef3fc2f5bdce4a7ee4b17c",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/find-repeat-selection.log",
+          "printed_failure": false
+        },
+        {
+          "name": "find-selection",
+          "command": [
+            "test_find_selection_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 19.687803983688354,
+          "test_sha256": "3ce3425dc070bc83240929b1d47c820118db1385a119c8ff909ddc3b2835ceb7",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/find-selection.log",
+          "printed_failure": false
+        },
+        {
+          "name": "virtual-selection",
+          "command": [
+            "test_virtual_selection_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 26.11492657661438,
+          "test_sha256": "dc383490bb249481865369ca35c9d744d761151e67810e010f24735921186381",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/virtual-selection.log",
+          "printed_failure": false
+        },
+        {
+          "name": "selection-tab",
+          "command": [
+            "test_selection_tab_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 16.74718689918518,
+          "test_sha256": "05969c31e08a955f584548a5ee20a551689fa7b608e2d5524cdf4aea2110aaa0",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/selection-tab.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "selection-identity",
+          "command": [
+            "test_selection_identity_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 13.139593601226807,
+          "test_sha256": "9ef6f84dd3d1a915dc2e6840f703964f906a665d1a67833051a3fc0b07c35f82",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/selection-identity.log",
+          "printed_failure": false
+        },
+        {
+          "name": "selection-destructive-boundary",
+          "command": [
+            "test_selection_destructive_boundary_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 37.209794998168945,
+          "test_sha256": "12379682ea24bcc6fac3fad6464b80bda4a44119975c1e41b401e48d4ea4d46c",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/selection-destructive-boundary.log",
+          "printed_failure": false
+        },
+        {
+          "name": "selection-undo-boundary",
+          "command": [
+            "test_selection_undo_boundary_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 14.586518049240112,
+          "test_sha256": "49d4c846fb5c901bf8025681dfa7a470021cabde305736b196f9a870db455ea8",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/selection-undo-boundary.log",
+          "printed_failure": false
+        },
+        {
+          "name": "replace-nochange-selection",
+          "command": [
+            "test_replace_nochange_selection_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 20.411811113357544,
+          "test_sha256": "7b55b73f4e93d173b99f07c7bcd9db45ae633d40a95ba6c7ca54a0fa6470586d",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/replace-nochange-selection.log",
+          "printed_failure": false
+        },
+        {
+          "name": "replace-selection",
+          "command": [
+            "test_replace_selection_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 10.661768436431885,
+          "test_sha256": "d6c004b3ba6e553e0bb32def0d35df9bf85d439a54b3d011f826acc812a0050e",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/replace-selection.log",
+          "printed_failure": false
+        }
+      ]
+    },
+    {
+      "scope": "Frozen C30 Linux block only. Not full353matrix, Windows or milestone closure.",
+      "source": "049b5332628bbb8faa4458863405bc20438320ca",
+      "binary": "96d77549996ebf15bf0040a7e134f5ce630ddaa22c5d073ad4df6e13df70ef29",
+      "cases": [
+        {
+          "name": "duplicate-selection",
+          "command": [
+            "test_duplicate_selection_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 12.17006802558899,
+          "test_sha256": "f174ad8790ecb0041fa1082a9243852fd15b112f2ea56dab0c9b5fc982c566a9",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/duplicate-selection.log",
+          "printed_failure": false
+        },
+        {
+          "name": "delete-selection",
+          "command": [
+            "test_delete_selection_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 12.17228102684021,
+          "test_sha256": "2c229972d3976e8193309e4258c7fbb39767acd3732a41b550c00868ecd0843e",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/delete-selection.log",
+          "printed_failure": false
+        },
+        {
+          "name": "reload-selection",
+          "command": [
+            "test_reload_selection_pty.py"
+          ],
+          "exit": 0,
+          "seconds": 10.504945516586304,
+          "test_sha256": "0985cef9fa5ff6653a857d303fcec659c7652055b1adc37bd28f284ff274d8bc",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/reload-selection.log",
+          "printed_failure": false
+        },
+        {
+          "name": "editor-bracket-continuation-selection",
+          "command": [
+            "test_editor_bracket_continuation_pty.py",
+            "--selection"
+          ],
+          "exit": 0,
+          "seconds": 10.96738052368164,
+          "test_sha256": "b330bb40c7fb9c4e58a4fc1d20e195bdcf4489261bf77de79da582bd384e0084",
+          "binary_unchanged": true,
+          "log": "/tmp/hbide-c30/matrix-blocks/editor-bracket-continuation-selection.log",
+          "printed_failure": false
+        }
+      ]
+    }
+  ],
+  "distinct_scenarios_all_blocks": 118,
+  "logs": {
+    "find-f5-selection.log": "PASS Open requested fixture\nPASS Typing after Find inserts at match without old range\nPASS Undo Find-following typing exact\nPASS Cancelled Find retains old range\nPASS Undo after cancelled Find exact\nPASS Missing Find retains old range\nPASS Undo after missing Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-f2ldj85r\n",
+    "find-repeat-selection.log": "PASS Open requested fixture\nPASS Find consumes old multirow range at second match\nPASS Undo after multirow selected Find exact\nPASS Repeat Last Find clears old range\nPASS Undo after repeated Find exact\nPASS Wrapped Repeat Find clears old range on other row\nPASS Undo after wrapped Repeat Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-dxn4rmu4\n",
+    "find-selection.log": "PASS Open requested fixture\nPASS Typing after Find inserts at match without old range\nPASS Undo Find-following typing exact\nPASS Cancelled Find retains old range\nPASS Undo after cancelled Find exact\nPASS Missing Find retains old range\nPASS Undo after missing Find exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-tt8v7f2i\n",
+    "virtual-selection.log": "PASS Open requested fixture\nPASS Cut wholly past EOL closes without false prompt\nPASS Delete wholly past EOL closes without false prompt\nPASS Backspace wholly past EOL closes without false prompt\nPASS Virtual Cut preserves earlier redo\nPASS Undo earlier edit exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-q4u04j3u\n",
+    "selection-tab.log": "PASS Open requested fixture\nPASS forward selected Tab expands from replacement start\nPASS Undo selected Tab restores exact\nPASS Redo selected Tab exact\nPASS reverse selected Tab expands from replacement start\nPASS Undo selected Tab restores exact\nPASS Redo selected Tab exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-wup0dlhe\n",
+    "selection-identity.log": "PASS Open requested fixture\nPASS Identical selected typing keeps rendered text\nPASS Identical selected typing closes without false dirty prompt\nPASS Identical selected typing preserves earlier redo\nPASS Undo after redo restores original exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-om2vfhc2\n",
+    "selection-destructive-boundary.log": "PASS Open requested fixture\nPASS Delete selected edit exact\nPASS Delete Undo preserves prior typing\nPASS Delete Redo selected edit exact\nPASS Delete Undo later typing preserves selected edit\nPASS Delete next Undo preserves prior typing\nPASS Delete final Undo original exact\nPASS Backspace selected edit exact\nPASS Backspace Undo preserves prior typing\nPASS Backspace Redo selected edit exact\nPASS Backspace Undo later typing preserves selected edit\nPASS Backspace next Undo preserves prior typing\nPASS Backspace final Undo original exact\nPASS Enter selected edit exact\nPASS Enter Undo preserves prior typing\nPASS Enter Redo selected edit exact\nPASS Enter Undo later typing preserves selected edit\nPASS Enter next Undo preserves prior typing\nPASS Enter final Undo original exact\nTOTAL 19 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-n2yn_p45\n",
+    "selection-undo-boundary.log": "PASS Open requested fixture\nPASS Typing replaces selected al but preserves earlier X\nPASS Undo selected replacement alone preserves earlier typing\nPASS Redo selected replacement exact\nPASS Undo later typing keeps selection replacement\nPASS next Undo restores pre-replacement typing\nPASS third Undo removes earlier typing\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-kifxxapm\n",
+    "replace-nochange-selection.log": "PASS Open requested fixture\nPASS cancel retains original selection for typing\nPASS cancel Undo restores original exact\nPASS identity correct replacement count\nPASS identity retains original selection for typing\nPASS identity Undo restores original exact\nPASS missing correct replacement count\nPASS missing retains original selection for typing\nPASS missing Undo restores original exact\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-0i_2csk6\n",
+    "replace-selection.log": "PASS Open requested fixture\nPASS Replace applies with prior marked range\nPASS typing after Replace inserts without deleting stale selection\nPASS Undo typing keeps Replace\nPASS Undo Replace restores original\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-58vi73g0\n",
+    "duplicate-selection.log": "PASS Open requested fixture\nPASS typing after Duplicate Line inserts without deleting marked block\nPASS editor remains alive after Duplicate Line and typing\nPASS Undo typing preserves duplicated line\nPASS Undo Duplicate Line restores exact original\nPASS Redo Duplicate Line exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-a4ogl0i1\n",
+    "delete-selection.log": "PASS Open requested fixture\nPASS typing after Delete Line has no stale out-of-range mark\nPASS editor remains alive after Delete Line and typing\nPASS Undo typing preserves line deletion\nPASS Undo Delete Line restores exact original\nPASS Redo Delete Line exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-c1rio_1d\n",
+    "reload-selection.log": "PASS Open requested fixture\nPASS clean selected buffer auto reloads shorter disk file\nPASS typing after reload inserts without stale range deletion\nPASS editor remains alive after typing\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-u90vaydh\n",
+    "editor-bracket-continuation-selection.log": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nPASS Removing continuation recolors following literal and return as real comment\nPASS Removed semicolon saves exact bytes\nPASS Typing semicolon repaints following literal and return without forced redraw\nPASS Retyped semicolon restores exact bytes\nPASS Undo semicolon restores real comment colors\nPASS Undo semicolon saves exact bytes\nPASS Redo semicolon restores literal and keyword colors\nPASS Redo semicolon restores original bytes\nTOTAL 12 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ooaitkbm\n"
+  }
+}
