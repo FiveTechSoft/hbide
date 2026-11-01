@@ -1,0 +1,20 @@
+{
+  "scope": "Q364 factual investigation only, no IDE configuration or product change",
+  "source": "7bfff9aa50c0904c12c2f6d445fa0847a3169546",
+  "probe_source": "REQUEST HB_CODEPAGE_UTF8\nREQUEST HB_CODEPAGE_UTF8EX\nPROCEDURE Main()\n LOCAL cp, cLower := hb_HexToStr('c3a9'), cUpper := hb_HexToStr('c389')\n FOR EACH cp IN {'UTF8','UTF8EX','EN'}\n  hb_cdpSelect(cp)\n  OutStd(cp+' LowerE='+hb_StrToHex(Upper(cLower))+' UpperE='+hb_StrToHex(Upper(cUpper))+Chr(10))\n NEXT\n RETURN\n",
+  "probe_output": "UTF8 LowerE=C3A9 UpperE=C389\nUTF8EX LowerE=C389 UpperE=C389\nEN LowerE=C3A9 UpperE=C389\n",
+  "compiler": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+  "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+  "harbour_source": {
+    "path": "/home/sandbox/harbour/src/codepage/cp_utf8.c",
+    "sha256": "a3e4ca68e7f1a6cf6d5a7c21c2c122da3aa7e41ca0b357a5c42eaaf620498a27",
+    "upstream_remote": "https://github.com/harbour/core.git",
+    "revision": "694428e1c12f726675b19324d62167fa77d68185"
+  },
+  "conclusion": "UTF8 Upper leaves accented case pair unchanged; UTF8EX differs. IDE experimental host intentionally selects UTF8. No global change made or compatibility assumed. Existing ASCII-insensitive code is not full Unicode casefold.",
+  "limitations": [
+    "Standalone library probe, not terminal/IDE end-to-end evidence or accepted switch proposal",
+    "No normalization/grapheme guarantee, Windows or distribution acceptance",
+    "C75 unchanged"
+  ]
+}

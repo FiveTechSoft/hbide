@@ -302,6 +302,13 @@ the text, and the section tree is always expanded. Details in
 - The full plan and honest per-area status live in
   [ROADMAP.md](ROADMAP.md).
 
+Experimental editor host mode (`HBIDE_UTF8=1`) keeps Harbour's `UTF8`
+codepage, not `UTF8EX`. Find/Replace use its `Upper()` mapping: ASCII case
+pairs match, but accented pairs such as `é`/`É` are not folded in that mode.
+Use the same accented spelling when searching. This is not full Unicode
+case-insensitive search, normalization or grapheme support. No global
+codepage switch is implied by this limitation.
+
 Compiler output: U explicitly selects UTF-8 display, L restores legacy bytes.
 The default remains legacy; the IDE does not guess the compiler encoding.
 This changes only the viewer copy, not raw output or source paths.
