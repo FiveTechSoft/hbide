@@ -3092,6 +3092,15 @@
         "test_debug_stack_mouse_pty.py"
       ],
       "contract": "Actual caller/callee stack clicks switch visible locals MAINVAR101/CHILDVAR202; tested title/right border clicks keep caller selection, debuggee completes, source unchanged. Bounded nested frames, not every scroll depth/recursion/column/terminal/Windows; PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-DEBUGGER-RIGHT-IGNORED": {
+      "source": "hbdebug/debugger.prg",
+      "context": "METHOD PROCEDURE HandleEvent() CLASS HBDebugger",
+      "condition": "CASE K_RBUTTONDOWN",
+      "tests": [
+        "test_debug_right_mouse_pty.py"
+      ],
+      "contract": "Actual xterm right press/release on visible Monitor B local leaves complete normalized character grid unchanged; later left/Enter/double edits and Cancel still work, debuggee writes expected values, source unchanged. Characterizes intentional ignored event, not context menu feature/all coordinates/allwindows/terminal/Windows; PTY grid not pixels; link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }
