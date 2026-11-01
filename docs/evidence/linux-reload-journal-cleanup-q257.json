@@ -1,0 +1,34 @@
+{
+  "source": "a83cd74b25dd7e405a39c3bd48150d714c49bd3c",
+  "binary_sha256": "080cd8f006e59034f5de3d5b7650e37bd098adc77c63f38916c5614a014a26b5",
+  "scope": "C35 Linux focused successful Reload journal retirement, not complete matrix/Windows/pixels/release/milestone.",
+  "fix": "Call editor JournalDiscard only after successful LoadFile in ReloadFromDisk. Removes current session key and associated recovered base, not other session generations. Failed LoadFile returns before cleanup.",
+  "baseline": {
+    "source": "fdda695af4cb57394b02a68988a8232bcf0de573",
+    "binary_sha256": "051785b8a669a256e790943f6ed85235f7073405e24e4cf0b812c9192d858f5b",
+    "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS dirty disk change offers Reload\nPASS Reload shows external bytes\nFAIL Reload retires discarded dirty journal\nFAIL restart does not offer obsolete recovery\nPASS restart enters clean IDE\n"
+  },
+  "tests": {
+    "test_reload_journal_cleanup_pty.py": {
+      "script_sha256": "238b3427b3ad7edc0f0fd4182f0a1b86353d66361a55cb856445856503f7a919",
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS dirty disk change offers Reload\nPASS Reload shows external bytes\nPASS Reload retires discarded dirty journal\nPASS restart does not offer obsolete recovery\nPASS restart enters clean IDE\n"
+    },
+    "test_reload_selection_pty.py": {
+      "script_sha256": "0985cef9fa5ff6653a857d303fcec659c7652055b1adc37bd28f284ff274d8bc",
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS clean selected buffer auto reloads shorter disk file\nPASS typing after reload inserts without stale range deletion\nPASS editor remains alive after typing\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ds8ydusj\n"
+    },
+    "test_saveall_conflict_reload_pty.py": {
+      "script_sha256": "bd78388572be73377d44c64d53627ea3ed4f0b4d8ba4a4a09d2b8f3e24e265e0",
+      "exit": 0,
+      "log": "PASS SaveAll reload keeps external bytes and prior backup, not counted as saved\n"
+    },
+    "test_recovered_undo_dirty_pty.py": {
+      "script_sha256": "0687cc2491ba527e7f3cca3bc94f7c49f2f2ebb0bd24a391d98f23d7260ae955",
+      "exit": 0,
+      "log": "PASS boot\nPASS Open dialog\nPASS deep file open\nPASS journal written for >200-char path\nPASS journal holds the edit\nPASS journal retains original EOL\nPASS recovery prompt after kill\nPASS recovered doc shows edit\nPASS Undo returns recovered bytes still not on disk\nPASS recovered document remains dirty after Undo\nPASS recovery journal survives Undo to recovered baseline\nPASS journal cleaned after save\nPASS saved bytes retain original encoding and EOL\nPASS saved is original plus edit\nPASS deep-path recovery: journal written, kill, byte-exact recover and save\n"
+    }
+  },
+  "caveats": "No injected new buildinfo, no About identity claim. Source and binary hashes explicit. Runtime failed-reload and recovered-generation cleanup variants not included yet."
+}
