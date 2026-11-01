@@ -1,0 +1,33 @@
+{
+  "scope": "Five bounded C86 clipboard modes30checks",
+  "source": "81c06602b621616005bc9b2e45195fd9184f51a9",
+  "binary_sha256": "c46a6b8134656df89aa177188b44bc261e2f7c72a6f1e0005ffaf9de9ee89a27",
+  "results": {
+    "virtual-copy": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Copy virtual range has no source bytes\nPASS Copy virtual empty range Paste remains no-op\nPASS Undo after virtual Copy Paste remains no-op\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-jmgleube\n",
+      "binary_unchanged": true
+    },
+    "virtual-cut": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Cut virtual range has no source bytes\nPASS Cut virtual empty range Paste remains no-op\nPASS Undo after virtual Cut Paste remains no-op\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-rktqst1b\n",
+      "binary_unchanged": true
+    },
+    "physical-empty": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Paste copied empty line as a real third line\nPASS Undo empty-line paste exact\nPASS Redo empty-line paste exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-fifi514d\n",
+      "binary_unchanged": true
+    },
+    "block-multidoc": {
+      "exit": 0,
+      "log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-odsayuop\n",
+      "binary_unchanged": true
+    },
+    "utf8-multidoc": {
+      "exit": 0,
+      "log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-yfpcoqbx\n",
+      "binary_unchanged": true
+    }
+  },
+  "limits": "No new pixels/models/fullmatrix/Windows/install/license/hitoclosure"
+}
