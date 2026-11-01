@@ -1,0 +1,41 @@
+{
+  "scope": "Q365 existing C75 virtual cursor/duplicate/selection TAB acceptance, no product defect found",
+  "source": "93d3876480c5217e4eadddc2f88a4400c321146a",
+  "binary_sha256": "e78652a51a586d67550d526c05a1ac54278d7b62459d26a23beace1afca024ef",
+  "results": {
+    "test_virtual_selection_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Cut wholly past EOL closes without false prompt\nPASS Delete wholly past EOL closes without false prompt\nPASS Backspace wholly past EOL closes without false prompt\nPASS Virtual Cut preserves earlier redo\nPASS Undo earlier edit exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-m0el97fv\n",
+      "binary_unchanged": true
+    },
+    "test_virtual_backspace_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS Virtual Backspace moves left without deleting text\nPASS Backspace beyond short line closes without false prompt\nPASS Virtual Backspace preserves earlier redo\nPASS Undo earlier edit exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-31bct0wn\n",
+      "binary_unchanged": true
+    },
+    "test_duplicate_selection_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS typing after Duplicate Line inserts without deleting marked block\nPASS editor remains alive after Duplicate Line and typing\nPASS Undo typing preserves duplicated line\nPASS Undo Duplicate Line restores exact original\nPASS Redo Duplicate Line exact\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-yhh7dymx\n",
+      "binary_unchanged": true
+    },
+    "test_duplicate_identical_bp_pty.py": {
+      "exit": 0,
+      "log": "PASS Breakpoint on second identical line\nPASS Duplicate inserted bytes\nPASS Breakpoint follows original second line to third\nPASS Undo duplicate returns original breakpoint second\nPASS Redo duplicate moves original breakpoint third\nPASS Duplicate saves exact bytes\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-j9c8sznd\n",
+      "binary_unchanged": true
+    },
+    "test_selection_tab_pty.py": {
+      "exit": 0,
+      "log": "PASS Open requested fixture\nPASS forward selected Tab expands from replacement start\nPASS Undo selected Tab restores exact\nPASS Redo selected Tab exact\nPASS reverse selected Tab expands from replacement start\nPASS Undo selected Tab restores exact\nPASS Redo selected Tab exact\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-pl1pd268\n",
+      "binary_unchanged": true
+    }
+  },
+  "exploration": {
+    "hypothesis": "Project parser could collapse blank lines and mislabel source origin",
+    "actual": "\nMemberline          5 expected5\nUnresolvedline          7 expected7",
+    "conclusion": "Not reproduced: member line5/unbalanced quote line7 correct; no parser change"
+  },
+  "limitations": [
+    "Five PTYscripts30checksPASS only, no full matrix inherited",
+    "No product/build/pixels/model acceptance or Windows/release/milestone claim"
+  ]
+}
