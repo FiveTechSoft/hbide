@@ -1,0 +1,12 @@
+{
+  "scope": "C103 real IDE history cap, 610-line fixture,8PASS final",
+  "source": "ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc",
+  "binary_sha256": "046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd",
+  "test_sha256": "072ef6f92648a336780c5b00e04d87410d89d8f8a06fdf976faa07f20ef82c6c",
+  "logs": {
+    "history-cap-corrected.log": "PASS Open610 lines\nPASS Save at history cap exact\nPASS cap save clean\nPASS Undo across one truncation reaches saved clean\nPASS Saved row300 restored\nPASS Unreachable saved state remains dirty\nPASS Retained history stops at row301\nPASS Save retained oldest state exact\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-qo1iifrf\n",
+    "history-cap.log": "PASS Open610 lines\nPASS Save at history cap exact\nPASS cap save clean\nPASS Undo across one truncation reaches saved clean\nPASS Saved row300 restored\nFAIL Unreachable saved state remains dirty\nPASS Retained history stops at row301\nPASS Save retained oldest state exact\nTOTAL 7 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-vaqdc7px\n"
+  },
+  "result": "Initial7PASS1FAIL was harness reading title path instead of WindowList row; screenshot text shows dirty star correctly. Corrected anchored 1> row, repeated8PASS. Initial probe/log/fixture retained. New reusable test differs from corrected passing probe only module docstring.",
+  "limits": "No product fix/new IDE build/export/package/removal/new pixels/Windows/fullmatrix/milestone closure."
+}
