@@ -1,0 +1,16 @@
+{
+  "scope": "Fresh C96 Script error/screen existing two modes16PASS plus private Debug syntax rejection3PASS, no new defect confirmed",
+  "source": "ea630625ac5cab04a30a1f17fae3ee5016e0d7e2",
+  "binary_sha256": "861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9",
+  "tests": {
+    "script_errors": "5fa2c6ad9066943a72eda04e3a43b84dde2393ec9cc9a37a3ffa2e48c1a9d90f",
+    "script_screen": "f2a410361f5490a93d8b9980cb600d2ab2c6de20ba8ba7f52ca1fc73eee96614"
+  },
+  "logs": {
+    "c96-debug-syntax.log": "PASS Debug syntax rejection reported\nPASS Debug compile failure leaves editor usable\nPASS No debug temp retained\nTOTAL 3 PASS 0 FAIL; evidence /tmp/hbide-source-run-x8ys_6dg\n",
+    "script_errors.log": "PASS script run1 preserves source literal\nPASS script run2 preserves source literal\nPASS script editor remains usable\nPASS runtime error is visible\nPASS runtime error dismiss returns to editor\nPASS valid script works after error\nPASS script compile error is reported\nPASS compile error leaves editor usable\nPASS valid script works after compile error\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-s1v9ws_r\n",
+    "script_screen.log": "PASS script owns status row while awaiting input\nPASS script run1 preserves source literal\nPASS script return repaints app output\nPASS script owns status row while awaiting input\nPASS script run2 preserves source literal\nPASS script return repaints app output\nPASS script editor remains usable\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-vzv9vy9w\n"
+  },
+  "private_probe_sha256": "7549c21dd26c123d8cf47ba9142920bd64a5f2c19e5d50b4e67dc49829da0985",
+  "limits": "No M3 toggle/restart/Cancel policy change; no new visual/Windows/fullmatrix/license/hito closure. Stop equivalent failure variants."
+}
