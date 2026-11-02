@@ -6485,3 +6485,15 @@ Q534docs posteriores no embebidos C99, no build por docs; gates intactos.
 Q534toolinginitial: guardnonclient añade rama interna31 frente30esperadas;
 dos inventoryunits fallaron. Enlace acotado nuevo30/31, no feature nueva ni
 DBLinstrumentado. Denominador actualizado y repeticion completa registrada.
+
+
+### Q535-Q536 (2 noviembre 2026): regresiones frescas C99
+
+Q535 Script normal7/error8 y Debug normal9/error10,34PASS frescos.
+Q536 SaveAllfallo5/SaveAsrefusalRecovery21/CloseRoutes11,37PASS frescos.
+Bin C99 42fc43771b08081372b9de7d9a7c534d407ba0286b17d20e94f4e6484f2a50f8
+intacto. Receipts propios con hashes y logs. No nuevo defecto en estos modos;
+se detienen variantes equivalentes. Docs posteriores no embebidos, sin rebuild
+por docs, ni nuevas retiradas/politicas/fullmatrix/visual/Windows/install/license
+ni cierre de hitos. Reserva63MiB, builds bloqueados por capacidad hasta defecto
+concreto y siguiente decision de capacidad.

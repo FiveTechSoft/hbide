@@ -1,0 +1,16 @@
+{
+  "scope": "Fresh C99 SaveAll failure5/SaveAs refusal and crash recovery21/close routes11,37PASS, no full matrix or new product change",
+  "source": "283f99c604db3de1b270666df1fdb64b2eec38c8",
+  "binary_sha256": "42fc43771b08081372b9de7d9a7c534d407ba0286b17d20e94f4e6484f2a50f8",
+  "tests": {
+    "saveall_fail": "867f41dfed5f1947f30ef5b090265a1cc87ec7ee1177947074e59acb548b729f",
+    "saveas_refusal_recovery": "ec10d6e7bb4251cdd2e7ae6ca891f520b314bbe2ed99b38f57cd96229eddbc59",
+    "close_routes": "f85b7e37254c3c9c039a896dcfe05698b953419539ddf57ed6dc5fce3cc3f280"
+  },
+  "logs": {
+    "saveall_fail": "PASS boot\nPASS summary says 1 saved and 1 could not be saved\nPASS failed file content on disk untouched\nPASS ok file saved with its edit\nPASS failed doc still marked modified, ok doc clean\n5/5 passed\n",
+    "saveas_refusal_recovery": "PASS boot caption noname\nPASS doc2 saved as dup.prg\nPASS dup.prg written\nPASS dup.prg holds doc2 text only\nPASS doc1 shows aa1\nPASS SaveAs collision refused\nPASS refusal left dup.prg byte-identical\nPASS refusal created no other file\nPASS doc1 still unsaved noname\nPASS dup.prg edit visible\nPASS two base journals (noname doc + dup.prg)\nPASS dup.prg still unchanged on disk before kill\nPASS recovery prompt on restart\nPASS recovery dialogs cleared\nPASS prompts named dup.prg\nPASS noname buffer recovered (aa1)\nPASS dup.prg buffer recovered (bb2 and q7k)\nPASS recovered into separate docs\nPASS disk dup.prg still the pre-crash save\nPASS F2 saved recovered dup.prg with q7k\nPASS saved file is old bytes plus the lost edit only\nTOTAL 21 PASS 0 FAIL\n",
+    "close_routes": "PASS About opens actual dialog\nPASS About returns edited document\nPASS Window Close asks about active dirty source\nPASS Window Close Cancel retains dirty text\nPASS Window Close Discard replaces last document with starter\nPASS Discard never writes edited source\nPASS Project opens Sources\nPASS Close Project keeps edited source open\nPASS Sources after Close Project gives no-project notice\nPASS no-project notice returns dirty document\nPASS Close Project never writes source or HBP\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-e3aatyg6\n"
+  },
+  "limits": "No new visual acceptance, Windows/fullmatrix/install/license/milestone closure. No new policy or removal. Binary unchanged."
+}
