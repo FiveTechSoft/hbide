@@ -1,0 +1,15 @@
+{
+  "scope": "Q556 C106 current binary bounded SaveAll/recovery characterization, no product change or milestone closure",
+  "binary_sha256": "23cacdc20fcb06d9939eb9accbf417019016a5a9fbaa8adee31773c9af19ba7c",
+  "logs": {
+    "c106-recovery-unreadable.log": "PASS unreadable journal reports error and preserves disk journal and current document\n",
+    "c106-recovery-compare.log": "PASS Compare is read-only; open snapshots stay stable; reopening refreshes disk; Later keeps bytes and current document\n",
+    "c106-saveall_conflict_reload.log": "PASS SaveAll reload keeps external bytes and prior backup, not counted as saved\n",
+    "c106-saveall_conflict_cancel.log": "PASS SaveAll cancelled conflict leaves external bytes and dirty edit, other document saves\n",
+    "c106-saveall_fail.log": "PASS boot\nPASS summary says 1 saved and 1 could not be saved\nPASS failed file content on disk untouched\nPASS ok file saved with its edit\nPASS failed doc still marked modified, ok doc clean\n5/5 passed\n",
+    "c106-recovery-malformed.log": "PASS malformed envelope reports error and preserves disk journal and current document\n"
+  },
+  "outcome": "SaveAll cancel/reload/partialfailure, recovery unreadable/malformed and readonly compare pass in these specific fixtures only. No new defect demonstrated.",
+  "limitations": "No full M1, Windows, install, license, global matrix or new candidate acceptance inferred. Existing C106 no-wrap focal status and softwrap runtime gap remain.",
+  "free_bytes": 266375168
+}
