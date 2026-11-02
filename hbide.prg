@@ -515,8 +515,8 @@ METHOD Repaint() CLASS HBIde
    next
    if ::oWndCode:lVisible
       ::oWndCode:Refresh()
+      ::oEditor:Display()
    endif
-   ::oEditor:Display()
    ::ShowStatus()
    DispEnd()
 
