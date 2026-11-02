@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Run identified tooling guards. Not product/PTY/visual/Windows acceptance."""
-import argparse,hashlib,json,os,pathlib,subprocess,sys,tempfile,time
+import argparse,hashlib,json,os,pathlib,subprocess,sys,tempfile,time,re
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 CASES=['test_foreign_root_guard.py','test_linux_rebuild_guard.py','test_completion_guards.py','test_build_receipt.py','test_completion_inventory.py','test_distribution_notices.py','test_embed_help_docs.py','test_candidate_doc_preflight.py']
+def reported_failure(text):
+    # Only diagnostic line boundaries, not mentions in prose or nested labels.
+    return any(re.match(r'^(?:FAIL(?: |:)|ERROR(?: |:)|FAILED \(|Traceback \(most recent call last\):$)',line)
+               for line in text.splitlines())
 def snapshot():
     def git(*args):return subprocess.check_output(['git',*args],cwd=ROOT,text=True)
     files=git('ls-files').splitlines();h=hashlib.sha256()
@@ -21,7 +25,7 @@ def main():
         with log.open('w') as f:
             try:rc=subprocess.run([sys.executable,'-u',str(test)],cwd=ROOT,env=env,stdout=f,stderr=subprocess.STDOUT,timeout=60).returncode
             except subprocess.TimeoutExpired:f.write('\nGUARD TIMEOUT\n');rc=124
-        text=log.read_text();bad=any(line.startswith(('FAIL:','ERROR:','FAILED (')) for line in text.splitlines());changed=snapshot()!=state or hashlib.sha256(test.read_bytes()).hexdigest()!=before
+        text=log.read_text();bad=reported_failure(text);changed=snapshot()!=state or hashlib.sha256(test.read_bytes()).hexdigest()!=before
         report['tests'][name]=dict(exit=rc,reported_failure=bad,source_or_test_changed=changed,test_sha256=before,log=str(log),seconds=round(time.time()-started,3));failed|=bool(rc or bad or changed)
         print(name,'PASS' if not(rc or bad or changed) else 'FAIL',flush=True)
         if rc==124:break

@@ -1,0 +1,74 @@
+{
+  "scope": "Q558 tooling failure line detector only, no claim historical suites affected",
+  "before": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "started": 1793593553.1747406,
+    "runner_sha256": "83b8decead040585f45a610b1399a16c1fa068cff30222f50c5737dede782646",
+    "tests": {
+      "probe.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "b4d390126af96556abed81ca184c65fc40637fabc2f37b14857671e5c1616207",
+        "log": "/tmp/tmpk2jperat/out/probe.py.log",
+        "seconds": 0.0
+      }
+    },
+    "ok": true,
+    "finished": 1793593553.1749845
+  },
+  "after": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "tracked_changes": "",
+    "tracked_snapshot_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "started": 1793593585.5525634,
+    "runner_sha256": "47b790e5122966bb4512009d8dc155f1d1414b3436fc6ce8c447694744f9bdd9",
+    "tests": {
+      "probe.py": {
+        "exit": 0,
+        "reported_failure": true,
+        "source_or_test_changed": false,
+        "test_sha256": "b4d390126af96556abed81ca184c65fc40637fabc2f37b14857671e5c1616207",
+        "log": "/tmp/tmpreykuyp3/out/probe.py.log",
+        "seconds": 0.0
+      }
+    },
+    "ok": false,
+    "finished": 1793593585.5529275
+  },
+  "initial_tests": "probe.py FAIL\n.Results: /tmp/tmpj0x4aws1/out/results.json\nprobe.py PASS\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.Results: /tmp/tmpw00w0uej/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmpjy6zlwjo/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmphh3r4vv0/out/results.json\nprobe.py FAIL\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\nResults: /tmp/tmp51ye8i3y/out/results.json\n",
+  "final_tests": "probe.py FAIL\n.Results: /tmp/tmph12r5758/out/results.json\nprobe.py PASS\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.Results: /tmp/tmpfuuxhx4k/out/results.json\nprobe.py FAIL\nResults: /tmp/tmpbb0k2m8d/inner/results.json\nprobe.py PASS\n.Results: /tmp/tmpbb0k2m8d/outer/results.json\nprobe.py FAIL\n.Results: /tmp/tmpeohom61w/out/results.json\nprobe.py FAIL\nResults: /tmp/tmpx08um8op/out-3895473877419916732/results.json\nprobe.py FAIL\nResults: /tmp/tmpx08um8op/out-221586439113150282/results.json\nprobe.py FAIL\nResults: /tmp/tmpx08um8op/out-4311187315188832085/results.json\nprobe.py FAIL\nResults: /tmp/tmpx08um8op/out-46289404876423087/results.json\nprobe.py FAIL\n.Results: /tmp/tmpx08um8op/out-3856179679471071578/results.json\nprobe.py FAIL\n.Results: /tmp/tmpslj148l3/out/results.json\nprobe.py PASS\n.Results: /tmp/tmpj7b2b_ls/out/results.json\nprobe.py FAIL\n.\n----------------------------------------------------------------------\nRan 9 tests in 0.013s\n\nOK\nResults: /tmp/tmp5csnj3gq/out/results.json\n",
+  "boundaries": "Column0 FAIL followed space or colon, ERROR followed space or colon, FAILED followed space-openparen, exact standard Traceback header. No substring/prose matching. Nested probe.py FAIL label is not line-start FAIL. No suite exemptions or output suppression.",
+  "tests": "9 targeted runner tests including unchanged exitcode/sourcechange/timeout protections,5 new diagnostic texts and legitimate prose/nested output checks. Not global runner/tooling/product acceptance.",
+  "no_product": "No IDE build/export/removal or binary change.",
+  "integration": {
+    "scope": "Run identified tooling guards. Not product/PTY/visual/Windows acceptance.",
+    "source": "42771e1ffc1dbe54411637208eef0f97cf4b496d",
+    "tracked_changes": " M scripts/completion_guards.py\n M tests/test_completion_guards.py\n",
+    "tracked_snapshot_sha256": "1f622a1c9a7d4e0f71a562368208d49dc01da294b7e84443d61482f98482bc67",
+    "started": 1793593606.8800232,
+    "runner_sha256": "47b790e5122966bb4512009d8dc155f1d1414b3436fc6ce8c447694744f9bdd9",
+    "tests": {
+      "test_completion_guards.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "source_or_test_changed": false,
+        "test_sha256": "0d7ede81c2034e2c74c261f847f643ba3fe35a6b3524b82e5dff1a77efae0914",
+        "log": "/tmp/hbide-q558/runner-integration/test_completion_guards.py.log",
+        "seconds": 0.28
+      }
+    },
+    "ok": true,
+    "finished": 1793593607.1601534
+  },
+  "integration_scope": "Actual runner narrowed CASES to test_completion_guards.py, actual child nine tests with nested negative output, no exemptions/detector suppression. Default full runner not executed because candidate_doc_preflight creates isolated exports and calls fakecompiler, outside no-export/build scope.",
+  "integration_space": {
+    "before": 263987200,
+    "after": 263979008,
+    "delta": 8192
+  }
+}

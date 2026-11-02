@@ -25,6 +25,24 @@ class Guards(unittest.TestCase):
         rc,r=self.run_fixture(code=7);self.assertEqual(rc,1);self.assertEqual(r['tests']['probe.py']['exit'],7)
     def test_printed_failure_with_zero_exit_fails(self):
         rc,r=self.run_fixture(text='FAILED (failures=1)\n');self.assertEqual(rc,1);self.assertTrue(r['tests']['probe.py']['reported_failure'])
+    def test_plain_failure_and_error_boundaries_zero_exit_fail(self):
+        for text in ['FAIL expected byte preservation\n','ERROR unexpected result\n','Traceback (most recent call last):\n','FAIL: failed check\n','ERROR: test_name\n']:
+            with self.subTest(text=text):
+                # Each runner fixture owns a separate output directory.
+                self.out=self.root/('out-'+str(abs(hash(text))))
+                rc,r=self.run_fixture(text=text)
+                self.assertEqual(rc,1);self.assertTrue(r['tests']['probe.py']['reported_failure']);self.assertFalse(r['ok'])
+    def test_prose_nested_labels_and_similar_words_not_failures(self):
+        text='Expected FAIL in negative fixture\nprobe.py FAIL\nFAILURE example\nERRORS total zero\nTraceback documentation example\n'
+        rc,r=self.run_fixture(text=text)
+        self.assertEqual(rc,0);self.assertFalse(r['tests']['probe.py']['reported_failure']);self.assertTrue(r['ok'])
+    def test_nested_negative_runner_is_not_a_failure_of_outer_runner(self):
+        self.out=self.root/'inner'
+        rc,inner=self.run_fixture(text='FAIL intentional negative fixture\n')
+        self.assertEqual(rc,1)
+        self.out=self.root/'outer'
+        rc,outer=self.run_fixture(text='probe.py FAIL\nNested expected failure verified\n')
+        self.assertEqual(rc,0);self.assertTrue(outer['ok'])
     def test_changed_test_with_zero_exit_fails(self):
         rc,r=self.run_fixture(changed=True);self.assertEqual(rc,1);self.assertTrue(r['tests']['probe.py']['source_or_test_changed'])
     def test_timeout_fails(self):
