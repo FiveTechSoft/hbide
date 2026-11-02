@@ -1,0 +1,16 @@
+{
+  "scope": "Fresh C103 debugger WorkAreas and object access failures,24PASS, no product change",
+  "source": "ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc",
+  "binary_sha256": "046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd",
+  "tests": {
+    "debug_workareas": "60dc3e118fb3cb83889113fe8d2f52cecee2bd896138e0a00400502ba7622713",
+    "debug_getter_failure": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+    "debug_setter_failure": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f"
+  },
+  "logs": {
+    "debug_setter_failure.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS readable getter shows backing1\nPASS failed setter error reported\nPASS failed setter refresh preserves backing1\nPASS cancel after setter error preserves backing1\nPASS setter failure leaves debuggee backing1\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-s2obpynf\n",
+    "debug_workareas.log": "PASS debugger stopped before increment\nPASS View WorkAreas opens actual three browser dialog\nPASS ALPHA actual field structure shown\nPASS switching alias updates exact BETA structure\nPASS switching alias updates Alias status\nPASS cycling panes and returning alias restores ALPHA fields\nPASS Esc closes WorkAreas to debugger\nPASS F6 reopens WorkAreas with original alias\nPASS Resume retains original workarea record and exact fields\nPASS WorkAreas inspection leaves source bytes unchanged\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-iz7f_l5a\n",
+    "debug_getter_failure.log": "PASS object debugger stopped\nPASS object structured top inspector opens\nPASS object top inspector refuses replacement\nPASS failing getter displays captured error\nPASS failing getter rejects edit before setter\nPASS failed getter leaves backing value exact\nTOTAL 6 PASS 0 FAIL; evidence /tmp/hbide-source-run-5im3h4_r\n"
+  },
+  "limits": "Existing tests exact C103. No source fix/new defect confirmed. No official build/source export/package/removal/new visual/native Windows/full matrix/milestone closure."
+}
