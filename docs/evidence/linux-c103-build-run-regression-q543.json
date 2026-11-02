@@ -1,0 +1,20 @@
+{
+  "scope": "C103 fresh build/run argv and failure guards, not fullmatrix",
+  "source": "ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc",
+  "binary_sha256": "046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd",
+  "tests": {
+    "missing_compiler": "eeeb73373962f56afadb8aff5673f828ff707e978917773544f138afc9e8f7d4",
+    "project_output": "da7836afe1085933995ded88f46a19c405b320399a4561182b72a5d375a0dec0",
+    "run_empty_args": "38110f01457b6b707a630e32a0c4a44189e5a676c637209a9e3960f44a33c520",
+    "run_arguments_modal": "ce24ee133541f28a8720bc4c8df8aab24da86d308699f6a71c070b36b202fc81"
+  },
+  "logs": {
+    "run_arguments_modal-path.log": "PASS arguments modal opens\nPASS explicit-ok exact Script argv\nPASS arguments modal opens\nPASS explicit-cancel exact Script argv\nPASS arguments modal opens\nPASS esc-preserve exact Script argv\nPASS arguments modal opens\nPASS invalid quote rejected\nPASS invalid-preserve exact Script argv\nPASS arguments modal opens\nPASS explicit-clear exact Script argv\nPASS arguments modal opens\nPASS enter-accept exact Script argv\nPASS editor remains usable\nTOTAL 14 PASS 0 FAIL; evidence /tmp/hbide-source-run-8yvy_vi9\n",
+    "missing_compiler.log": "Traceback (most recent call last):\n  File \"/home/sandbox/hbide/tests/test_missing_compiler_pty.py\", line 23, in <module>\n    subprocess.run([compiler,str(target),'-quiet','-o'+str(work/'missing')],check=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)\n  File \"/usr/lib/python3.10/subprocess.py\", line 503, in run\n    with Popen(*popenargs, **kwargs) as process:\n  File \"/usr/lib/python3.10/subprocess.py\", line 971, in __init__\n    self._execute_child(args, executable, preexec_fn, close_fds,\n  File \"/usr/lib/python3.10/subprocess.py\", line 1738, in _execute_child\n    and os.path.dirname(executable)\n  File \"/usr/lib/python3.10/posixpath.py\", line 152, in dirname\n    p = os.fspath(p)\nTypeError: expected str, bytes or os.PathLike object, not NoneType\n",
+    "project_output-path.log": "PASS F6 opens full output and horizontal scrolling reveals diagnostic tail\nPASS Esc returns to same project failure state\n",
+    "run_empty_args-path.log": "PASS start run1 retains empty argument positions\nPASS start editor remains usable\nPASS script run1 retains empty argument positions\nPASS script editor remains usable\nPASS debug source retains main declaration\nPASS debug run1 retains empty argument positions\nPASS debug editor remains usable\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-xuvesn7y\n",
+    "missing_compiler-path.log": "PASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS failed build reports preserved executable\nPASS previous executable byte exact\nPASS stale executable never launched\nPASS source byte exact\nPASS no sibling build temp remains\nPASS editor remains usable after repeated failure\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-15upcip9\n"
+  },
+  "result": "missingcompiler11/output2/emptyargv7/argumentmodal14,34PASS final. Initial missingcompiler fixture had no compilerPATH, TypeError before IDEstart retained; notproductdefect. Private source fixtures compile in tests, no officialIDE rebuild/export.",
+  "limits": "No newdefect confirmed by source read of projectui/designer/safeio/recovery. Stop equivalent argv/outputvariants. No newpixels/Windows/install/license/hitoclosure or policychange. C100C102failurespreserved."
+}
