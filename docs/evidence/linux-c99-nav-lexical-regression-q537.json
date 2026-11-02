@@ -1,0 +1,16 @@
+{
+  "scope": "Fresh C99 raw BOM navigation3/multiline gap navigation3/bracket TAB colors4,10PASS; source inspection did not establish another defect",
+  "source": "283f99c604db3de1b270666df1fdb64b2eec38c8",
+  "binary_sha256": "42fc43771b08081372b9de7d9a7c534d407ba0286b17d20e94f4e6484f2a50f8",
+  "tests": {
+    "nav_raw_bom": "7fa6a5bbb1fc051899f15cecbbd58813c156255a3fca2e1263e6dee8fcb763a8",
+    "nav_multiline_gap": "89cbce90e88a3387095608b75441709b2dad47ea601a45bfa33d15766d0b93b8",
+    "editor_bracket_tabs": "1313ab9b195c98399350ae355fa04cdb74d17a141378da203618cf2ccf3ad94a"
+  },
+  "logs": {
+    "nav_raw_bom": "PASS Raw UTF8 warning\nPASS Picker includes first declaration behind raw BOM\nPASS Navigation preserves raw UTF8 BOM file\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ui5rmss8\n",
+    "nav_multiline_gap": "PASS Open requested fixture\nPASS Picker excludes declaration inside array-index block comment\nPASS Picker jumps to real Target declaration\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ir52sh8q\n",
+    "editor_bracket_tabs": "PASS Open requested fixture\nPASS Return after bracket literal keeps keyword color\nPASS Bracket literal marker stays string color\nPASS F2 bracket source byte exact\nTOTAL 4 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-2pe7ehdp\n"
+  },
+  "limits": "PTY text and color attributes only, not pixel certification. No new product change or full matrix/Windows/install/license/milestone closure. Stop equivalent lexical variants. No new removals/build."
+}

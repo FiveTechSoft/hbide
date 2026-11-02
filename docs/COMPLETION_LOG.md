@@ -6497,3 +6497,12 @@ se detienen variantes equivalentes. Docs posteriores no embebidos, sin rebuild
 por docs, ni nuevas retiradas/politicas/fullmatrix/visual/Windows/install/license
 ni cierre de hitos. Reserva63MiB, builds bloqueados por capacidad hasta defecto
 concreto y siguiente decision de capacidad.
+
+
+### Q537 (2 noviembre 2026): navegacion/lexico C99 frescos
+
+RawBOMnav3/MultilineGapnav3/BracketTabs4,10PASS frescos, receipt propio con
+hashes/logs. PTYtexto/atributos no es pixel-certificacion. Bin C99 intacto.
+Lectura source editor/SaveAs/Start/recovery no establece defecto adicional;
+no cambios producto ni nuevas politicas. Paro variantes lexicas equivalentes.
+Sin rebuild por docs, retiradas/fullmatrix/Windows/install/license/hito cierre.
