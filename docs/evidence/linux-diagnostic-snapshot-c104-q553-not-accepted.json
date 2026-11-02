@@ -11,8 +11,30 @@
     "c104-start-corrected.log": "PASS Controlled reader consumed exact source identity bytes\nPASS Initial source snapshot match\nPASS Initial diagnostic row2col9\nPASS Unsaved changed source labelled\nPASS Original jump coordinates preserved\nPASS Undo original bytes match\nPASS Other document edit leaves match\nPASS Save changed bytes exact\nPASS Save without rebuild remains changed\nPASS Rebuild replaces version with match\nPASS Rebuild moved diagnostic row3\nPASS Rebuild consumed updated bytes\nPASS Message list cache timing legend\nPASS Absent compiler never inherits old messages\nTOTAL 14 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-9dqyjvqe\n",
     "c104-project-preparation-final.log": "PASS Controlled reader consumed exact source identity bytes\nPASS Initial source snapshot match\nPASS Initial diagnostic row2col9\nPASS Unsaved changed source labelled\nPASS Original jump coordinates preserved\nPASS Undo original bytes match\nPASS Other document edit leaves match\nPASS Save changed bytes exact\nPASS Save without rebuild remains changed\nPASS Rebuild replaces version with match\nPASS Rebuild moved diagnostic row3\nPASS Rebuild consumed updated bytes\nPASS Message list cache timing legend\nPASS Absent project compiler clears diagnostic ledger\nPASS Absent compiler never inherits old messages\nTOTAL 15 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-lgzmw1um\n",
     "c104-driver.log": "{\n  \"ok\": true,\n  \"source\": \"05e6c05ebd43314db408577a57597e4fbb43cd23\",\n  \"binary_sha256\": \"39e38c347ab8641439a66037c1dabe489280d5b7fcacde2698d91c8372e0dd4b\",\n  \"manifest\": \"/tmp/hbide-c104/manifest.json\"\n}\n",
-    "c104-start.log": ""
+    "c104-start.log": "",
+    "c104-start-edge-oversize.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-7sukgly7\n",
+    "c104-start-edge-utf8.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-wn5g13dm\n",
+    "c104-reg-message_selection.log": "PASS Project opens source desktop\nPASS Real GCC error lists correct file and line\nPASS Only actual error counted, not GCC context/note\nPASS Jump opens exact colon-bearing source\nPASS Jump lands at real GCC row2 column9\nPASS Next diagnostic on same buffer consumes stale range\nPASS Undo diagnostic insertion exact\nPASS Project source jump on same buffer consumes stale range\nPASS Undo project source insertion exact\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-spzip1cc\n",
+    "c104-reg-messages_horizontal_bounds.log": "PASS Project opens source desktop\nPASS Real GCC error and warning list exact file lines\nPASS Two real diagnostics counted\nPASS Jump opens exact colon-bearing source\nPASS Window Messages opens actual compiler picker\nPASS Outside Messages clicks keep first diagnostic target\nPASS Interior Messages click jumps exact second diagnostic\nPASS Diagnostic picker leaves source bytes unchanged\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-jjdbt5rc\n",
+    "c104-reg-project_messages.log": "PASS boot caption noname\nPASS desktop opens after project open (no dirty docs)\nPASS real build fails (exit shown)\nPASS Messages lists parsed diagnostic bad1.prg:3\nPASS diagnostic jump opens bad1.prg\nPASS cursor lands on line 3\nPASS cursor lands on column 1\nPASS desktop closed after jump\nPASS buffer loaded clean from disk\nPASS cursor moved to line 1\nPASS buffer now dirty with z edit visible\nPASS jump returns to the already-open bad1.prg\nPASS dirty buffer preserved (z edit survives)\nPASS cursor back on line 3\nPASS disk file untouched (no silent save)\nPASS second source opens as its own doc\nPASS exactly two docs cycle (no duplicate)\nPASS IDE exits clean\nTOTAL 18 PASS 0 FAIL\n",
+    "c104-project-utf8host-timing.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-fw9mfnw4\n",
+    "c104-project-utf8host-oversize-multiline.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-q53wghwu\n",
+    "c104-project-utf8host-oversize-timing.log": "FAIL Expected source state\nFAIL Original path still reached\nPASS No implicit source write\nTOTAL 1 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-1aj67ffb\n",
+    "c103-project-utf8host-longline-comparison.log": "FAIL Expected source state\nFAIL Original path still reached\nPASS No implicit source write\nTOTAL 1 PASS 2 FAIL\nArtifacts /tmp/hbide-edit-menu-r1fnnvk4\n",
+    "c104-project-utf8host-longline-wait.log": "FAIL Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 2 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-ri74h3qg\n",
+    "c103-project-utf8host-longline-wait.log": "FAIL Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 2 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-h1rzo4xl\n"
   },
   "test_changes": "Initial NameError importsys before IDE and Project11PASS4FAIL dirty-otherdoc preparation retained; local corrected test repeats same binary, no rebuild.",
-  "limits": "No inherited C103 regression matrix/Windows/install/license/fullmatrix/hito. No further exports/build/removals authorized."
+  "limits": "No inherited C103 regression matrix/Windows/install/license/fullmatrix/hito. No further exports/build/removals authorized.",
+  "separate_unresolved_issue": {
+    "fixture": "original bad.c plus one line of 65537 spaces, C.UTF-8 HBIDE_UTF8=1",
+    "comparison": "C103 and C104 both still noname after initial 1.5s after Enter, both open bad.c after additional 12s but row1col1. New regression not shown. Exact cause and final jump timing unresolved; not declared innocent fixture. Multiline >64K proves only that boundary.",
+    "test_caveat": "Expected source state assertion looks at post-open screen; absence there after editor opens is not evidence snapshot signal failed. C104 before-enter screen contains correct unverified.",
+    "no_scope_change": "No product or oversized policy change; no rebuild/export/removal."
+  },
+  "pending_legend": {
+    "Compiler": "snapshot=bytes, not validity; cached open; Enter rechecks",
+    "Project": "snapshot=bytes, not validity; cached open/build; Enter rechecks",
+    "status": "two line source diff only, not compiled or visually certified"
+  }
 }
