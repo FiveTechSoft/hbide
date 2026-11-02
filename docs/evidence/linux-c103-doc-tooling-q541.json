@@ -1,0 +1,17 @@
+{
+  "scope": "C103 postbinary docs/tooling only, no inherited runtime",
+  "catalogue": "34 complete documents byteexact current, postbinary notembeddedC103",
+  "checks": "completionguards6/inventory56/distribution10/embed5/foreignroot6/linuxrebuild9/buildreceipt3 plusrecoveryrouteguardPASS",
+  "logs": {
+    "foreign_root_guard.log": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n",
+    "embed_help_docs.log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+    "completion_guards.log": "probe.py FAIL\n.Results: /tmp/tmpzychku99/out/results.json\nprobe.py PASS\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.Results: /tmp/tmpkhrhel5x/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmp7n3j494w/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmpn8og9nk8/out/results.json\nprobe.py FAIL\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.007s\n\nOK\nResults: /tmp/tmps5owjdj1/out/results.json\n",
+    "recovery_route_guard.log": "PASS RecoverJournal: FindDoc>0 -> SwitchDoc -> CheckUnsaved before LoadText\nPASS RecoveryCheck: no pre-CheckUnsaved before RecoverJournal (batch recovery)\n",
+    "distribution_notices.log": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.020s\n\nOK\n",
+    "linux_rebuild_guard.log": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.011s\n\nOK\n",
+    "build_receipt.log": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "completion_inventory.log": "........................................................\n----------------------------------------------------------------------\nRan 56 tests in 0.659s\n\nOK\n"
+  },
+  "binary_sha256": "046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd",
+  "limits": "No newbuild/export/package/removal. candidate_doc_preflight not rerun because export restriction. NegativefixtureFAIL strings inside completionguards expectedunitOK. No Windows/fullmatrix/install/license/hitoclosure."
+}
