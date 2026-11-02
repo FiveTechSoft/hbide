@@ -520,6 +520,15 @@ METHOD EditKey( nKey ) CLASS HBSrcEdit
    local nOldScrRow := ::Row()
    local cKey, oLine, nPos, lHotPath, lBlkBefore, cCtxBefore, lSkipTail := .F., cOldLine, nWordEnd
 
+   // Nonclient window/status clicks are not source coordinates. Reject
+   // before ClearSelection or GoTo; gutter and all interior cells keep
+   // their existing mapping and the host still owns menu/close actions.
+   if ( nKeyStd == K_LBUTTONDOWN .or. nKeyStd == K_LDBLCLK ) .and. ;
+      ( MRow() < ::nTop .or. MRow() > ::nBottom .or. ;
+        MCol() < ::nLeft .or. MCol() > ::nRight )
+      return nil
+   endif
+
    do case
       // Distinct only under HB_INKEY_EXT: the classic set delivers Ctrl+Left
       // as 26 == K_CTRL_Z, so this case must run before the Undo one.
