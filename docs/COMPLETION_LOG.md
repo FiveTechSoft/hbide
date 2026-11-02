@@ -6530,3 +6530,21 @@ Pausa build llego durante C101 ya ejecutandose, informado; focal pausado despues
 y permitido34MiBbudget/100MiBstop/64MiBsafety. No ocultar C100 ni pico no medido.
 Docs posteriores no embebidos, sin rebuild por docs. No recovery ambiguo resuelto,
 fullmatrix/Windows/install/license/hito cerrado.
+
+
+### Q540 (2 noviembre 2026): C102 repintado oculto, NO ACEPTADO
+
+C101 ocultar editor y cerrar About/OpenCancel/GotoCancel/WindowListCancel
+pinta texto sin marco/titulo. Baseline16PASS4FAIL. RepaintDisplay bajo lVisible.
+C102source0988c3a6ecd964d2bf8771bd2c33b69c5014dff7,
+bin4752b60d129b1b8c01fab1c23fafcb54bb26c7f1d19b9e9f2f22aeccd99bf6e9
+own8smokes/docs34/About/ldd/focal20PASS. PERO parentMouse8PASS1FAIL reapertura.
+C101parentMouse9PASS superficial: native prueba texto SINmarco/titulo al reabrir,
+SwitchDoc retorna si current sin mostrar; C102 ya no pinta texto y sigue oculto.
+Ambas capturas nativas1202x762 completas inspeccionadas. Gate detenido antes
+aceptacion, no fix completo ni nueva politica navegacion. C101 sigue ultimo
+candidato focal aceptado, C102 bin/export/manifest/logs/evidencia intactos.
+C89C90 preservadosintegros independientes restauracionSHA-size-mode-metadata-
+inventario/originalrecheck, parolibre540520448B>=500MiB, records padre.
+Build monitor100ms minobservado318357504B/deltamax222101504B/noabort, no garantia
+picoinstantaneo. Postcomparacion310644736B, sin mas builds/export/retiros.
