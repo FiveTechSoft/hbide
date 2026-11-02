@@ -2192,7 +2192,7 @@ return nil
 
 METHOD Script() CLASS HbIde
    
-   local oHrb, bOldError, aArgs, oCompileError
+   local oHrb, bOldError, aArgs, oCompileError, cOldCwd := hb_cwd()
 
    aArgs := HBIDEProjectTokens( ::cRunArgs )
    if aArgs == nil
@@ -2228,6 +2228,9 @@ METHOD Script() CLASS HbIde
          // Always return screen ownership to the host after an aborted script.
       END SEQUENCE
       ErrorBlock( bOldError )
+      // HRB shares the process cwd. Return relative document routes to the
+      // host directory before polling, saving or repainting after any exit.
+      hb_cwd( cOldCwd )
       ::ResumeStatus()
       ::Repaint()
       ::oEditor:ShowCursor()
