@@ -1,0 +1,42 @@
+{
+  "scope": "C103 own acceptance for hidden repaint and explicit current-document reopen; no navigation policy expansion",
+  "source": "ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc",
+  "binary_sha256": "046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd",
+  "own_smokes": "8smokes/docs34/About/lddPASS",
+  "own_focal": "hiddenmodal fourroutes20PASS; strongreopen11PASS; parentMouse9PASS; externalchanges5PASS; closeroutes11PASS",
+  "tests": {
+    "hidden_editor_repaint": "c5fb4401650818458325a855aa853c1fda3decaab3e9a740704d1108f936e649",
+    "hidden_editor_reopen": "5283162d159f1378f58ca7f7a1dc01abe559b18ccb84e7d8bd15ca206e9b257b",
+    "ide_parent_mouse": "22a8e546583f91f0798f5cc7aa2493a2739692e4ca1944d9743817fe52632b48",
+    "external_changes": "f3c5115b2aa248e1f37a655aba7f3258a8eb5b8dac5ca0c7d3fe2a18001979ac",
+    "close_routes": "f85b7e37254c3c9c039a896dcfe05698b953419539ddf57ed6dc5fce3cc3f280"
+  },
+  "logs": {
+    "c103-driver.log": "{\n  \"ok\": true,\n  \"source\": \"ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc\",\n  \"binary_sha256\": \"046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd\",\n  \"manifest\": \"/tmp/hbide-c103/manifest.json\"\n}\n",
+    "c103-hidden_editor_repaint.log": "PASS about preserves visible source\nPASS about source hides\nPASS about preserves hidden source\nPASS about FileNew explicitly reveals new editor\nPASS about hidden typing preserved bytes\nPASS open-cancel preserves visible source\nPASS open-cancel source hides\nPASS open-cancel preserves hidden source\nPASS open-cancel FileNew explicitly reveals new editor\nPASS open-cancel hidden typing preserved bytes\nPASS goto-cancel preserves visible source\nPASS goto-cancel source hides\nPASS goto-cancel preserves hidden source\nPASS goto-cancel FileNew explicitly reveals new editor\nPASS goto-cancel hidden typing preserved bytes\nPASS window-cancel preserves visible source\nPASS window-cancel source hides\nPASS window-cancel preserves hidden source\nPASS window-cancel FileNew explicitly reveals new editor\nPASS window-cancel hidden typing preserved bytes\nTOTAL 20 PASS 0 FAIL; evidence /tmp/hbide-source-run-a6nwh8f4\n",
+    "c103-ide_parent_mouse.log": "PASS Top-row File click opens menu\nPASS Outside click dismisses open File menu\nPASS Visible-editor parent click routes insertion to exact byte\nPASS Undo parent-routed insertion exact\nPASS Code close-glyph click hides editor\nPASS Click and typing while editor hidden do not reveal source\nPASS File menu remains usable with editor hidden\nPASS Reopen hidden document restores original source\nPASS Hidden click and typing did not change source bytes\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-heg7z2sa\n",
+    "c103-hidden_editor_reopen.log": "PASS Top-row File click opens menu\nPASS Outside click dismisses open File menu\nPASS Visible-editor parent click routes insertion to exact byte\nPASS Undo parent-routed insertion exact\nPASS Code close-glyph click hides editor\nPASS Click and typing while editor hidden do not reveal source\nPASS File menu remains usable with editor hidden\nPASS Explicit reopen restores title and frame\nPASS Reopened editor owns keyboard and saves exact bytes\nPASS Reopened editor keeps disk watch active\nPASS Watch never writes external change\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-zcz79w9k\n",
+    "c103-close_routes.log": "PASS About opens actual dialog\nPASS About returns edited document\nPASS Window Close asks about active dirty source\nPASS Window Close Cancel retains dirty text\nPASS Window Close Discard replaces last document with starter\nPASS Discard never writes edited source\nPASS Project opens Sources\nPASS Close Project keeps edited source open\nPASS Sources after Close Project gives no-project notice\nPASS no-project notice returns dirty document\nPASS Close Project never writes source or HBP\nTOTAL 11 PASS 0 FAIL; evidence /tmp/hbide-source-run-yvg0nxem\n",
+    "c103-external_changes.log": "PASS clean external change reloads actual disk content\nPASS Keep mine still asks before overwrite; Cancel preserves disk and buffer\nPASS explicit overwrite saves buffer and backs up external version byte-exact\nPASS deleted file Cancel does not recreate or discard buffer\nPASS explicit Recreate restores buffer and preserves last external backup\n"
+  },
+  "space_monitor_summary": {
+    "start_free": 677195776,
+    "min_observed_free": 455000064,
+    "end_free": 459485184,
+    "max_observed_space_delta": 222195712,
+    "sample_cadence_seconds": 0.1,
+    "abort_threshold_bytes": 134217728,
+    "aborted": false,
+    "exit": 0,
+    "limit": "sampled free space, not instantaneous peak proof"
+  },
+  "full_monitor_record": "/tmp/hbide-q540/c103-space.json",
+  "visual": {
+    "hbide-q540-reopen-c103.png": "a2ec9e8b3367afca7f4208ee7c4024036853f1537657bd679bf4c1a538b2e0d2",
+    "hbide-q540-hidden-c103.png": "9f378b43672075862b960b9f8ed87928b9a7328283141c29549bc03bb115bc4f"
+  },
+  "visual_inspected": "Native1202x762 hidden afterAbout desktopclean; explicitreopen fulltitle/frame/source/status/lowerborder restored. C101/C102before comparisons inspected retained.",
+  "history": "C102 notaccepted because existingparentMouse8/1 and strongreopen8/3. C101parentMouse9PASS superficial textonly; actualcapture noframe/noteditable. No rewrite of earlier failedgate. C100precompilefailedcatalogue remainsintact.",
+  "capacity": "C89C90 andC91C92 separatelyauthorizedpreservationsfullrestoreSHA-size-mode-metadata-inventory originalrecheckbeforeexpandedremoval, recordsparent. No moreremovals; C99C100C101C102 intact. C103start677195776/minobserved455000064/end459485184 noabort,100ms samples not instantaneouspeakguarantee. Postowncaptures451284992B.",
+  "limits": "No inheritedC101matrix; no allsizes/Windows/install/license/globalmilestone closure. Docs afterbinary notembedded; no rebuild for docs."
+}

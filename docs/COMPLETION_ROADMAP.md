@@ -66,6 +66,21 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 2 noviembre02:10 Q540: candidato aceptado en alcance focal **C103**,
+fuente `ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc`,
+bin `046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd`.
+Repaint no dibuja editor oculto; explicit Open currenthidden restaura ventana
+completa/foco/watch, sin cambiar cancel/repintado/otros documentos.
+Own8smokes/docs34/About/ldd/hidden20/reopenstrong11/parentMouse9/external5/close11
+PASS, native1202x762hidden/reopen completos inspeccionados. C102 previo NOaceptado
+por reopengate8/1 y8/3 conservado, no se borra fallo ni cambia su identidad.
+No herencia matrizC101/Windows/install/license/hito. ReceiptC103Q540 propio.
+Docs posteriores no embebidos, sin rebuild por docs. Reserva430MiB aprox;
+preservaciones autorizadas cerradas, no mas retiros/build/export por inercia.
+
+Historico anterior, no evidencia heredada por C103:
+
+
 Corte 2 noviembre01:53 Q538: candidato aceptado en alcance focal **C101**,
 fuente `2be7bb73e4133019648a725d6135cf4c2d21ad6d`,
 bin `3dbd3a36ed387fea25839e0a01f019927e7f80882d5544313e14e610f2e8b148`.

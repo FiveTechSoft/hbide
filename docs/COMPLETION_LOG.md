@@ -6548,3 +6548,21 @@ C89C90 preservadosintegros independientes restauracionSHA-size-mode-metadata-
 inventario/originalrecheck, parolibre540520448B>=500MiB, records padre.
 Build monitor100ms minobservado318357504B/deltamax222101504B/noabort, no garantia
 picoinstantaneo. Postcomparacion310644736B, sin mas builds/export/retiros.
+
+
+### Q540 cierre focal: C103 propio, C102 conservado NO ACEPTADO
+
+OpenInDoc restaura ventana solo explicitOpen currenthidden, caption/cursor/watch;
+SwitchDoc otros documentos y cancel/repintado no cambian politica.
+C103sourceef8c78792a1b5726d61dd61467b6cd77f0aaa5cc,
+bin046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd
+own8smokes/docs34/About/ldd, hidden20/reopenstrong11/parentMouse9/external5/
+closeRoutes11PASS. Capturas nativas1202x762 hiddenCleanDesktop y reopenfullframe
+title/source/status/lowerborder inspeccionadas. BaselineC10220PASSfocal pero
+8/1parent y8/3strong, noaceptado intacto. C1019PASStextonly superficial, captura
+sinmarco no probaba reapertura. No ocultar ese gate ni heredar matriz.
+C91C92 autorizadospreservadosintegrosrecordsparent11,051,833/11,069,581bytes
+1575/1585entries, paro677867520B>=500MiB; C99C100C101C102 intactos/sinextras.
+BuildC103monitor100msminobservado455000064B/deltamax222195712B/noabort, no
+garantia instantaneapeak. Postcapturas451284992B. No politica nueva ni Windows/
+install/license/fullmatrix/hito cierre. Docs posteriores no embebidos C103.
