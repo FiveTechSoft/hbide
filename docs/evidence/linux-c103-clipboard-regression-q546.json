@@ -1,0 +1,16 @@
+{
+  "scope": "Fresh C103 shared clipboard multiline/UTF8/cut-close,26PASS, no product change",
+  "source": "ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc",
+  "binary_sha256": "046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd",
+  "tests": {
+    "clipboard_utf8_multidoc": "f850dc526d634f483cf4b6194c109f77ae970ebd8816cb48eac4d93199098368",
+    "clipboard_block_multidoc": "85802744523168aaf84622697e98cf5275fd8a5595d4510c2d8b7c210ad0ea26",
+    "clipboard_close": "1748cca360147228158bea743e6226bdc251bcd07af72b0ba70fa5d4a6431e2f"
+  },
+  "logs": {
+    "clipboard_utf8_multidoc.log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-e4vmvjk4\n",
+    "clipboard_close.log": "PASS Open source fixture\nPASS Cut source line saves remaining bytes exact\nPASS closed cut source returns to noname\nPASS Paste retains cut clipboard after source closes\nPASS Undo paste isolated after source closes\nPASS Redo paste after source closes exact\nPASS new document opened\nPASS latest Copy replaces shared clipboard in new document\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-lbkrl7wg\n",
+    "clipboard_block_multidoc.log": "PASS Open source fixture\nPASS Open destination fixture\nPASS Paste multiline selected clipboard in second document\nPASS destination Undo restores exact bytes\nPASS destination Redo restores multiline bytes\nPASS source document remained unchanged\nPASS multiline Cut removes source block exact\nPASS source Cut Undo restores mixed EOL bytes\nPASS Paste retains block after Cut Undo in source\nTOTAL 9 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-mh97fm64\n"
+  },
+  "limits": "Existing tests against exact C103; no new defect confirmed. No official build/source export/package/removal/visual/Windows/full matrix/milestone closure."
+}
