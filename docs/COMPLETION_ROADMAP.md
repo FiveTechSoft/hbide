@@ -1994,3 +1994,24 @@ No nuevos pixeles/fullmatrix/models/Windows/install/license/cierre de hitos.
 Q534toolinginitial: guardnonclient añade rama interna31 frente30esperadas;
 dos inventoryunits fallaron. Enlace acotado nuevo30/31, no feature nueva ni
 DBLinstrumentado. Denominador actualizado y repeticion completa registrada.
+
+
+### Q553, 2 noviembre 2026, señal de versión de fuente
+
+C105 Linux fuente `ff9d91f1f5e506b0fc800a675db889c93eddc866`, binario
+`33f7642ae343ecf773ea6079b377f69036b4f3131a91c3a2cc9fef6630a0b19d`:
+gates propios registrados en `docs/evidence/linux-diagnostic-snapshot-c105-q553.json`;
+pendiente de aceptación focal. Start/Project lector controlado, Undo, otherdoc,
+save sin rebuild, rebuild, compiler absent y regresiones de navegación pasan.
+Estados snapshot=/changed/unverified y leyendas completas inspeccionadas en ambos
+listados nativos 80x25/120x40. Límites 64KiB por fuente, 512KiB total y 256
+identidades incluyendo intentos fallidos; dedup de miembros repetidos de Project.
+`Snapshot=` sólo significa bytes iguales a la captura prebuild de fuentes listadas,
+no validez del diagnóstico, ni garantía de bytes consumidos concurrentemente,
+ni cobertura de dependencias indirectas/modelo HBP completo. Cache al abrir y tras
+build; Enter revalida. Sin trabajo nuevo en Paint/idle/teclas ordinarias.
+C104 sigue NO ACEPTADA por leyenda truncada, evidencia intacta.
+Incidencia separada abierta: línea de 65537 espacios bajo host UTF8 presenta
+latencia compartida C103/C104; tras espera mayor abre fuente pero row1col1,
+causa y llegada a destino no resueltas. No se cambia política oversized.
+Sin cierre Windows, instalación, licencia, matriz completa ni hito por conteos.

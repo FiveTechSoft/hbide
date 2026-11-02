@@ -150,7 +150,7 @@ try:
     check('Rebuild moved diagnostic row3',bool(re.search(r'row:\s*3,\s*col:\s*9',scr.text())))
     d=json.loads(receipt.read_text());check('Rebuild consumed updated bytes',bytes.fromhex(d['hex'])==b'\n'+original)
     send(b'\x1bw');send(b'm',.4)
-    check('Message list cache timing legend','checked on open' in scr.text())
+    check('Message list cache timing legend','cached open' in scr.text() and 'not validity' in scr.text() and 'Enter rechecks' in scr.text())
     send(b'\x1b',.3)
     compiler.rename(work/'disabled-compiler')
     if project_mode:

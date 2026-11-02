@@ -4,6 +4,12 @@
   "binary_sha256": "33f7642ae343ecf773ea6079b377f69036b4f3131a91c3a2cc9fef6630a0b19d",
   "changes_since_C104": "only two compact list legends; official8smokes/docs34/About/ldd own PASS",
   "logs": {
+    "c105-aggregate-countfail.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-10ea4s0q\n",
+    "c105-aggregate-countwithin.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-ngdsberu\n",
+    "c105-aggregate-dedup.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-koky2cze\n",
+    "c105-aggregate-exact-totalexcess.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-mnq4lgf8\n",
+    "c105-aggregate-exact-totalwithin.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-tvyjwg_4\n",
+    "c105-aggregate-totalexcess.log": "FAIL Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 2 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-w63hpjfr\n",
     "c105-driver.log": "{\n  \"ok\": true,\n  \"source\": \"ff9d91f1f5e506b0fc800a675db889c93eddc866\",\n  \"binary_sha256\": \"33f7642ae343ecf773ea6079b377f69036b4f3131a91c3a2cc9fef6630a0b19d\",\n  \"manifest\": \"/tmp/hbide-c105/manifest.json\"\n}\n",
     "c105-invalid-raw-emoji.log": "PASS Raw valid UTF8 initially matches\nPASS Broken raw UTF8 becomes unverified\nPASS No implicit write after broken UTF8\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-fvip8sku\n",
     "c105-invalid-raw-position3.log": "PASS Raw valid UTF8 initially matches\nFAIL Broken raw UTF8 becomes unverified\nPASS No implicit write after broken UTF8\nTOTAL 2 PASS 1 FAIL\nArtifacts /tmp/hbide-edit-menu-qu564uz5\n",
@@ -4068,6 +4074,13 @@
       "inspected": "full legend/status/file/error and lower borders readable; parent independently confirmed"
     }
   },
-  "limits": "Snapshot= listed-source prebuild bytes match only, not diagnostic validity, consumed-source concurrency guarantee, indirect deps/HBP model coverage. 64KiB boundary, oversize, BOM, raw invalid UTF8, uncaptured integration tested; total512KiB/256 identities not separately exercised through C105 full UI. C104 remains NOT ACCEPTED. Longline C103/C104 shared initial delay and eventual row1col1 unresolved, no new variants. Windows/install/license/full matrix/global milestone not certified. No more builds/exports/removals authorized.",
-  "harness_preparation": "Private focal copy expects new approved legend; repository test still expects old checked on open and requires test-only update. Two raw tests used CP437-representable e-acute, did not enter raw mode and were invalid preparation for invalid-raw oracle; corrected emoji with raw-modal confirms PASS, all failures retained."
+  "limits": "Snapshot= listed-source prebuild bytes match only, not diagnostic validity, consumed-source concurrency guarantee, indirect deps/HBP model coverage. 64KiB boundary, oversize, BOM, raw invalid UTF8, uncaptured integration tested; total512KiB/256 identities exercised through C105 Project UI as recorded, no independent helper-only dedup test. C104 remains NOT ACCEPTED. Longline C103/C104 shared initial delay and eventual row1col1 unresolved, no new variants. Windows/install/license/full matrix/global milestone not certified. No more builds/exports/removals authorized.",
+  "harness_preparation": "Private focal copy expects new approved legend; repository test still expects old checked on open and requires test-only update. Two raw tests used CP437-representable e-acute, did not enter raw mode and were invalid preparation for invalid-raw oracle; corrected emoji with raw-modal confirms PASS, all failures retained.",
+  "aggregate_final_binary_tests": {
+    "count_limit": "254 absent + HBP + target =256 considered matches; 256 absent preceding target unverified",
+    "total_limit": "7x64KiB+HBP+target under512KiB matches; HBP+7x64KiB+remaining-exact eighth exhausts512KiB then target unverified",
+    "dedup": "256 repeated same literal member plus target matches via Project parser dedup, not independently helper dedup",
+    "preparation_retained": "First8x64KiB expectation wrong: eighth cannot fit after HBP so skipped, small target still fits. Correct exactremaining fixture passes; initial2PASS1FAIL retained."
+  },
+  "free_at_close": 313618432
 }
