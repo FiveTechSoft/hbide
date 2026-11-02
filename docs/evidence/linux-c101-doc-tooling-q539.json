@@ -1,0 +1,17 @@
+{
+  "scope": "C101 postbinary docs and lightweight tooling only, no runtime/fullmatrix inheritance",
+  "catalogue": "34complete documents byte exact, generated after Q538 not embedded in C101",
+  "groups": "completion_guards6/inventory56/distribution10/embed5/foreignroot6/linuxrebuild9/buildreceipt3 plus recoveryroute guardPASS. Candidate_doc_preflight not rerun to avoid extra export per restriction. No completion_pty.py exists, skipped visibly, not a PASS.",
+  "logs": {
+    "foreign_root_guard.log": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.006s\n\nOK\n",
+    "embed_help_docs.log": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+    "completion_guards.log": "probe.py FAIL\n.Results: /tmp/tmpplaq_ker/out/results.json\nprobe.py PASS\n.usage: guards [-h] [--output OUTPUT]\nguards: error: output already contains results; refuses overwrite\n.Results: /tmp/tmpy6wjd05n/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmpvz0xd8xe/out/results.json\nprobe.py FAIL\n.Results: /tmp/tmplwcjo__0/out/results.json\nprobe.py FAIL\n.\n----------------------------------------------------------------------\nRan 6 tests in 0.007s\n\nOK\nResults: /tmp/tmp__3n62ok/out/results.json\n",
+    "recovery_route_guard.log": "PASS RecoverJournal: FindDoc>0 -> SwitchDoc -> CheckUnsaved before LoadText\nPASS RecoveryCheck: no pre-CheckUnsaved before RecoverJournal (batch recovery)\n",
+    "distribution_notices.log": "..........\n----------------------------------------------------------------------\nRan 10 tests in 0.020s\n\nOK\n",
+    "linux_rebuild_guard.log": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.011s\n\nOK\n",
+    "build_receipt.log": "...\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nOK\n",
+    "completion_inventory.log": "........................................................\n----------------------------------------------------------------------\nRan 56 tests in 0.657s\n\nOK\n"
+  },
+  "binary_sha256": "3dbd3a36ed387fea25839e0a01f019927e7f80882d5544313e14e610f2e8b148",
+  "limits": "No new product change/build/export/package/removal. Fixture probe FAIL strings inside completion_guards are expected negative cases; unit group exits0 OK. Legacy ambiguous recovery policy intact."
+}
