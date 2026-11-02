@@ -6445,3 +6445,23 @@ corregidos antes de aceptar, logs iniciales retenidos. C96 conservado.
 No Debugcwd/generalprocessisolation/deletedhostcwd/Windows/fullmatrix/license/
 hito cerrado ni politica nueva. Reserva160MiB, sin retiradas nuevas.
 Q529docs posteriores no embebidos C97; no build solo por docs.
+
+
+### Q530-Q531 (2 noviembre 2026): retorno Debug y limpieza, C98 propio
+
+C97Debughb_cwd("child")/F5 reproduce4PASS5FAIL: falso deleted/Recreate,
+wrong childsave y temporales .prg/.hrb retenidos por FErase relativo desde
+carpeta equivocada. FixDebug guarda cwd al entrar y restaura tras HRB
+normal/error recuperado ANTES FErase/status/repaint. Libertad del programa
+durante run intacta, sin toggles/restart/Cancel nuevos.
+C98sourcea02c032dfaf9c7184a865a8095cbbef09ff43e43,
+bina7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c.
+Own8smokes/About/ldd/docs34/Debugnormal9-error10-repeatnormal9/Scriptnormal7-error8
+PASS. Visual1202x762beforeC97falseDeleted/afterC98cleaneditor inspeccionada
+source/borders/status enteros; limpieza directorio correcto y savebytes exactos.
+C97 conservado. No deletedhostcwd/generalprocessisolation/Windows/fullmatrix/
+license/hito cierre. C78/C79 loteautorizado preservado independiente reversible
+con SHA-size-mode-mtime-uid-gid-inventory/originalrecheck completos antes de
+retirar solo expandido. Archivos10905384/10906624bytes,1463/1464entries.
+Paro527998976bytes >=500MiB, C80 intacto; tras build287MiB. Sin otras retiradas.
+Q531docs posteriores no embebidos C98, no rebuild por docs. Gates intactos.

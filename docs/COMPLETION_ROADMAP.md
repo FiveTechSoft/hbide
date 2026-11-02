@@ -66,6 +66,29 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 2 noviembre01:12 Q530: ultimo candidato aceptado en alcance focal **C98**,
+fuente `a02c032dfaf9c7184a865a8095cbbef09ff43e43`,
+bin `a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c`.
+Debug comparte cwd con el host por una ruta independiente de Script. C97 con
+hb_cwd("child") y F5 deja falso deleted/Recreate, wrong child save y temporales
+.prg/.hrb en el directorio original: baseline4PASS5FAIL. C98 restaura cwd tras
+HRB normal/error recuperado ANTES FErase y retorno al host. No impide cambios
+cwd del programa durante run ni cambia toggles/restart/Cancel.
+Own8smokes/About/ldd/docs34 PASS; Debugnormal9/error10 y repeticionnormal9,
+Scriptnormal7/error8 frescos PASS. Limpieza de temporales en directorio correcto,
+save original exacto y no childsave comprobados. Visual nativa1202x762 antes
+falso aviso/despues editor limpio inspeccionada con fuente/bordes/status completos.
+C97 conservado, no herencia matriz/Windows/install/license ni cierre de hitos.
+No garantia hostcwd eliminado/inaccesible ni aislamiento general del proceso.
+C78/C79 preservados independientes SHA-size-mode-mtime-uid-gid-inventario y
+recheck original antes de retirar solo expandido redundante; bin/logs/originales
+intactos. Se paro527998976bytes libres al alcanzar500MiB, C80 intacto.
+Tras build reserva287MiB. Q531docs posteriores no embebidos C98, no rebuild
+por docs. Siguiente hueco distinto reproducible, no variantes equivalentes.
+Politicas y gates pendientes intactos.
+
+Historico anterior, no evidencia heredada por C98:
+
 Corte 2 noviembre01:07 Q528: ultimo candidato aceptado en alcance focal **C97**,
 fuente `8db62f6e73fdd4fa8bebf6a296ae8066fe4d1a1f`,
 bin `3170ef0f89bc2867e7ea636a9edae5d4e7cc9a9863f31ac15b79dac5674b6f2e`.
