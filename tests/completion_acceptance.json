@@ -2996,7 +2996,7 @@
     },
     "GESTURE-PROJECT-ROW-SELECT": {
       "source": "projectui.prg",
-      "context": "FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 )",
+      "context": "FUNCTION HBIDEProjectDesktop( oProject, cHbmk2, aEditors )",
       "condition": "CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK",
       "tests": [
         "test_project_mouse_pty.py"
@@ -3005,7 +3005,7 @@
     },
     "GESTURE-PROJECT-ROW-DOUBLECLICK": {
       "source": "projectui.prg",
-      "context": "FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 )",
+      "context": "FUNCTION HBIDEProjectDesktop( oProject, cHbmk2, aEditors )",
       "condition": "IF nKey == K_LDBLCLK",
       "tests": [
         "test_project_mouse_pty.py"

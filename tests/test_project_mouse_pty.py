@@ -56,12 +56,12 @@ for kind in ['autorun']:
   send(b'\x1b[H');send(b'\x1bOS',.3) # F4 Messages
   check('Messages empty has no diagnostics', 'No parsed diagnostics' in screen.text())
   double(6,10)
-  check('doubleclick empty Messages does not open file', 'MESSAGES' in screen.text() and 'No parsed diagnostics' in screen.text())
+  check('doubleclick empty Messages does not open file', 'cached open/build; Enter rechecks' in screen.text() and 'No parsed diagnostics' in screen.text())
   project.write_text(project.read_text().replace('missing.prg\n',''))
   send(b'\x1b[20~',3) # F9 real build
   check('real failed build parsed bad source', 'BUILD FAILED' in screen.text() and 'ERROR bad.prg:3' in screen.text())
   double(*locate('ERROR bad.prg:3'))
-  check('doubleclick diagnostic opens correct file row', 'bad.prg' in screen.text() and 'MESSAGES' not in screen.text() and bool(re.search(r'row:\s*3\s*,',screen.text())))
+  check('doubleclick diagnostic opens correct file row', 'bad.prg' in screen.text() and 'cached open/build; Enter rechecks' not in screen.text() and bool(re.search(r'row:\s*3\s*,',screen.text())))
   check('all source bytes unchanged', all(p.read_bytes()==b for p,b in originals.items()))
   (work/'project-mouse-final.screen').write_text(screen.text())
  finally:

@@ -390,46 +390,46 @@ GotoLine/CompilerFlags/Replace/Find/RunArguments/Display/ProjectOpen/OpenFile/Sa
 | IDE-FIELD-GotoLine-nLine-1 | number: | value | hbide.prg:346 | Vinculo focal; ver alcance |
 | IDE-FIELD-GotoLine-lDummy-1 | &OK | pushbutton | hbide.prg:349 | Vinculo focal; ver alcance |
 | IDE-FIELD-GotoLine-lDummy-2 | &Cancel | pushbutton | hbide.prg:352 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-cCompiler-1 | cCompiler | radiogroup | hbide.prg:1886 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lWarnings-1 | &Warnings | checkbox | hbide.prg:1895 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDebug-1 | &Debug info | checkbox | hbide.prg:1901 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lStrict-1 | S&trict types | checkbox | hbide.prg:1907 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lIncremental-1 | &Incremental | checkbox | hbide.prg:1913 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lOptimize-1 | O&ptimize code | checkbox | hbide.prg:1920 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1926 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1933 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1937 | Vinculo focal; ver alcance |
-| IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1941 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2107 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2110 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-cFind-1 | cFind | freeform_input | hbide.prg:2113 | Vinculo focal; ver alcance |
-| IDE-FIELD-ReplaceDialog-cReplace-1 | cReplace | freeform_input | hbide.prg:2120 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2164 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2167 | Vinculo focal; ver alcance |
-| IDE-FIELD-FindDialog-cText-1 | cText | freeform_input | hbide.prg:2170 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-lDummy-1 | &OK | pushbutton | hbide.prg:2503 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-lDummy-2 | &Cancel | pushbutton | hbide.prg:2506 | Vinculo focal; ver alcance |
-| IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2509 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:3024 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:3032 | Vinculo focal; ver alcance |
-| IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:3036 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-cFileName-1 | cFileName | value | hbide.prg:1046 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1060 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-lDummy-1 | &OK | pushbutton | hbide.prg:1085 | Vinculo focal; ver alcance |
-| IDE-FIELD-ProjectOpen-lDummy-2 | &Cancel | pushbutton | hbide.prg:1092 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-cFileName-1 | cFileName | value | hbide.prg:1241 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1255 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-lDummy-1 | &OK | pushbutton | hbide.prg:1280 | Vinculo focal; ver alcance |
-| IDE-FIELD-OpenFile-lDummy-2 | &Cancel | pushbutton | hbide.prg:1287 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-cFileName-1 | cFileName | value | hbide.prg:1741 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-lDummy-1 | &OK | pushbutton | hbide.prg:1751 | Vinculo focal; ver alcance |
-| IDE-FIELD-SaveAs-lDummy-2 | &Cancel | pushbutton | hbide.prg:1755 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-cPick-1 | cPick | listbox | hbide.prg:2797 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-lDummy-1 | &OK | pushbutton | hbide.prg:2803 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpPick-lDummy-2 | &Cancel | pushbutton | hbide.prg:2807 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-cFilter-1 | cFilter | value | hbide.prg:2839 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-lDummy-1 | &OK | pushbutton | hbide.prg:2849 | Vinculo focal; ver alcance |
-| IDE-FIELD-HelpIndex-lDummy-2 | &Cancel | pushbutton | hbide.prg:2853 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-cCompiler-1 | cCompiler | radiogroup | hbide.prg:1907 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lWarnings-1 | &Warnings | checkbox | hbide.prg:1916 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDebug-1 | &Debug info | checkbox | hbide.prg:1922 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lStrict-1 | S&trict types | checkbox | hbide.prg:1928 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lIncremental-1 | &Incremental | checkbox | hbide.prg:1934 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lOptimize-1 | O&ptimize code | checkbox | hbide.prg:1941 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lAutoRun-1 | &Run after build | checkbox | hbide.prg:1947 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-1 | &OK | pushbutton | hbide.prg:1954 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-2 | &Cancel | pushbutton | hbide.prg:1958 | Vinculo focal; ver alcance |
+| IDE-FIELD-CompilerFlags-lDummy-3 | &Help | pushbutton | hbide.prg:1962 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2128 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2131 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-cFind-1 | cFind | freeform_input | hbide.prg:2134 | Vinculo focal; ver alcance |
+| IDE-FIELD-ReplaceDialog-cReplace-1 | cReplace | freeform_input | hbide.prg:2141 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-lDummy-1 | &OK | pushbutton | hbide.prg:2185 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-lDummy-2 | &Cancel | pushbutton | hbide.prg:2188 | Vinculo focal; ver alcance |
+| IDE-FIELD-FindDialog-cText-1 | cText | freeform_input | hbide.prg:2191 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-lDummy-1 | &OK | pushbutton | hbide.prg:2531 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-lDummy-2 | &Cancel | pushbutton | hbide.prg:2534 | Vinculo focal; ver alcance |
+| IDE-FIELD-RunArguments-cText-1 | cText | freeform_input | hbide.prg:2537 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-cSize-1 | cSize | radiogroup | hbide.prg:3053 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-lDummy-1 | &OK | pushbutton | hbide.prg:3061 | Vinculo focal; ver alcance |
+| IDE-FIELD-DisplayOpts-lDummy-2 | &Cancel | pushbutton | hbide.prg:3065 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-cFileName-1 | cFileName | value | hbide.prg:1050 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1064 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-lDummy-1 | &OK | pushbutton | hbide.prg:1089 | Vinculo focal; ver alcance |
+| IDE-FIELD-ProjectOpen-lDummy-2 | &Cancel | pushbutton | hbide.prg:1096 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-cFileName-1 | cFileName | value | hbide.prg:1259 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-cPickFileName-1 | cPickFileName | listbox | hbide.prg:1273 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-lDummy-1 | &OK | pushbutton | hbide.prg:1298 | Vinculo focal; ver alcance |
+| IDE-FIELD-OpenFile-lDummy-2 | &Cancel | pushbutton | hbide.prg:1305 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-cFileName-1 | cFileName | value | hbide.prg:1762 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-lDummy-1 | &OK | pushbutton | hbide.prg:1772 | Vinculo focal; ver alcance |
+| IDE-FIELD-SaveAs-lDummy-2 | &Cancel | pushbutton | hbide.prg:1776 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-cPick-1 | cPick | listbox | hbide.prg:2826 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-lDummy-1 | &OK | pushbutton | hbide.prg:2832 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpPick-lDummy-2 | &Cancel | pushbutton | hbide.prg:2836 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-cFilter-1 | cFilter | value | hbide.prg:2868 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-lDummy-1 | &OK | pushbutton | hbide.prg:2878 | Vinculo focal; ver alcance |
+| IDE-FIELD-HelpIndex-lDummy-2 | &Cancel | pushbutton | hbide.prg:2882 | Vinculo focal; ver alcance |
 - IDE-FIELD-GotoLine-nLine-1: Real Edit menu modal input changes source/navigation as intended; Esc retains text/current row. Replace includes trailing spaces, empty replacement/missing match and undo; Goto zero/oversized/negative clamps. Each field only its applicable assertions; Enter path, not explicit buttons or full validation/pixels/Windows. Q477 C88 mouse Cancel preserves selected al range; mouse OK goes third row preserving column3 and clears stale range before typing, Undo mixedEOL exact. Bounded only, not all clamps/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_goto_mouse_selection_pty.py](../tests/test_goto_mouse_selection_pty.py)
 - IDE-FIELD-GotoLine-lDummy-1: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Q477 C88 mouse Cancel preserves selected al range; mouse OK goes third row preserving column3 and clears stale range before typing, Undo mixedEOL exact. Bounded only, not all clamps/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_goto_mouse_selection_pty.py](../tests/test_goto_mouse_selection_pty.py)
 - IDE-FIELD-GotoLine-lDummy-2: Actual explicit OK and Cancel activated after field edits, not inferred from Enter/Esc. Goto/Find assert cursor; Replace asserts exact file bytes and Undo. Focal Linux PTY only. Q477 C88 mouse Cancel preserves selected al range; mouse OK goes third row preserving column3 and clears stale range before typing, Undo mixedEOL exact. Bounded only, not all clamps/pixels/Windows. Pruebas: [test_edit_menu_pty.py](../tests/test_edit_menu_pty.py), [test_goto_mouse_selection_pty.py](../tests/test_goto_mouse_selection_pty.py)
@@ -539,25 +539,26 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 | --- | --- | --- | --- | --- |
 | MOUSE-hbide-Activate-1 | METHOD Activate() CLASS HBIde | `if nKeyStd == K_LBUTTONDOWN` | hbide.prg:713 | Vinculo focal; no PASS actual |
 | MOUSE-hbide-Activate-2 | METHOD Activate() CLASS HBIde | `elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD` | hbide.prg:734 | Vinculo focal; no PASS actual |
-| MOUSE-hbide-HBIDE_DlgInput-1 | static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons ) | `if nMouse == K_LBUTTONDOWN .or. nMouse == K_LBUTTONUP .or. nMouse == K_LDBLCLK` | hbide.prg:2022 | Vinculo focal; no PASS actual |
-| MOUSE-hbide-HBIDE_DlgInput-2 | static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons ) | `case nMouse == K_LBUTTONDOWN` | hbide.prg:2033 | Vinculo focal; no PASS actual |
-| MOUSE-hbide-HBIDE_DlgInput-3 | static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons ) | `case nMouse == K_LDBLCLK` | hbide.prg:2035 | Pendiente gesto |
-| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:554 | Vinculo focal; no PASS actual |
-| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:559 | Vinculo focal; no PASS actual |
-| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:564 | Vinculo focal; no PASS actual |
-| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:567 | Vinculo focal; no PASS actual |
-| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2189 | Vinculo focal; no PASS actual |
-| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2190 | Vinculo focal; no PASS actual |
+| MOUSE-hbide-HBIDE_DlgInput-1 | static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons ) | `if nMouse == K_LBUTTONDOWN .or. nMouse == K_LBUTTONUP .or. nMouse == K_LDBLCLK` | hbide.prg:2043 | Vinculo focal; no PASS actual |
+| MOUSE-hbide-HBIDE_DlgInput-2 | static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons ) | `case nMouse == K_LBUTTONDOWN` | hbide.prg:2054 | Vinculo focal; no PASS actual |
+| MOUSE-hbide-HBIDE_DlgInput-3 | static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons ) | `case nMouse == K_LDBLCLK` | hbide.prg:2056 | Pendiente gesto |
+| MOUSE-editor-EditKey-1 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `if ( nKeyStd == K_LBUTTONDOWN .or. nKeyStd == K_LDBLCLK ) .and. ; ( MRow() < ::nTop .or. MRow() > ::nBottom .or. ; MCol() < ::nLeft .or. MCol() > ::nRight )` | editor.prg:528 | Vinculo focal; no PASS actual |
+| MOUSE-editor-EditKey-2 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LDBLCLK` | editor.prg:565 | Vinculo focal; no PASS actual |
+| MOUSE-editor-EditKey-3 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_LBUTTONDOWN` | editor.prg:570 | Vinculo focal; no PASS actual |
+| MOUSE-editor-EditKey-4 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWBACKWARD` | editor.prg:575 | Vinculo focal; no PASS actual |
+| MOUSE-editor-EditKey-5 | METHOD EditKey( nKey ) CLASS HBSrcEdit | `case nKeyStd == K_MWFORWARD` | editor.prg:578 | Vinculo focal; no PASS actual |
+| MOUSE-editor-HBIDE_IsNavKey-1 | static function HBIDE_IsNavKey( nKey ) | `case K_MWFORWARD` | editor.prg:2230 | Vinculo focal; no PASS actual |
+| MOUSE-editor-HBIDE_IsNavKey-2 | static function HBIDE_IsNavKey( nKey ) | `case K_MWBACKWARD` | editor.prg:2231 | Vinculo focal; no PASS actual |
 | MOUSE-designer-Activate-1 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONUP` | designer.prg:437 | Vinculo focal; no PASS actual |
 | MOUSE-designer-Activate-2 | METHOD Activate() CLASS HbDesigner | `case nKey == K_LBUTTONDOWN` | designer.prg:440 | Vinculo focal; no PASS actual |
-| MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:558 | Vinculo focal; no PASS actual |
-| MOUSE-help-HBHelpInput-2 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWBACKWARD` | help.prg:560 | Vinculo focal; no PASS actual |
-| MOUSE-help-HBHelpInput-3 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_LBUTTONDOWN` | help.prg:562 | Vinculo focal; no PASS actual |
-| MOUSE-help-HBIDEHelpOpen-1 | FUNCTION HBIDEHelpOpen( cTitle, aTopics ) | `CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR` | help.prg:869 | Vinculo focal; no PASS actual |
-| MOUSE-help-HBIDEHelpOpen-2 | FUNCTION HBIDEHelpOpen( cTitle, aTopics ) | `CASE nKey == K_UP .OR. nKey == K_MWFORWARD` | help.prg:871 | Vinculo focal; no PASS actual |
-| MOUSE-help-HBIDEHelpOpen-3 | FUNCTION HBIDEHelpOpen( cTitle, aTopics ) | `CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD` | help.prg:873 | Vinculo focal; no PASS actual |
-| MOUSE-projectui-HBIDEProjectDesktop-1 | FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 ) | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` | projectui.prg:42 | Vinculo focal; no PASS actual |
-| MOUSE-projectui-HBIDEProjectDesktop-2 | FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 ) | `IF nKey == K_LDBLCLK` | projectui.prg:46 | Vinculo focal; no PASS actual |
+| MOUSE-help-HBHelpInput-1 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWFORWARD` | help.prg:579 | Vinculo focal; no PASS actual |
+| MOUSE-help-HBHelpInput-2 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_MWBACKWARD` | help.prg:581 | Vinculo focal; no PASS actual |
+| MOUSE-help-HBHelpInput-3 | FUNCTION HBHelpInput( h, aTopics, g, nKey ) | `CASE nKey == K_LBUTTONDOWN` | help.prg:583 | Vinculo focal; no PASS actual |
+| MOUSE-help-HBIDEHelpOpen-1 | FUNCTION HBIDEHelpOpen( cTitle, aTopics ) | `CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR` | help.prg:890 | Vinculo focal; no PASS actual |
+| MOUSE-help-HBIDEHelpOpen-2 | FUNCTION HBIDEHelpOpen( cTitle, aTopics ) | `CASE nKey == K_UP .OR. nKey == K_MWFORWARD` | help.prg:892 | Vinculo focal; no PASS actual |
+| MOUSE-help-HBIDEHelpOpen-3 | FUNCTION HBIDEHelpOpen( cTitle, aTopics ) | `CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD` | help.prg:894 | Vinculo focal; no PASS actual |
+| MOUSE-projectui-HBIDEProjectDesktop-1 | FUNCTION HBIDEProjectDesktop( oProject, cHbmk2, aEditors ) | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` | projectui.prg:44 | Vinculo focal; no PASS actual |
+| MOUSE-projectui-HBIDEProjectDesktop-2 | FUNCTION HBIDEProjectDesktop( oProject, cHbmk2, aEditors ) | `IF nKey == K_LDBLCLK` | projectui.prg:49 | Vinculo focal; no PASS actual |
 | MOUSE-hbwindow-DsnMouseRoute-1 | METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow | `case nCode == DSNK_MLDOWN` | hbwindow.prg:425 | Vinculo focal; no PASS actual |
 | MOUSE-hbwindow-DsnMouseRoute-2 | METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow | `case nCode == DSNK_MLDBL` | hbwindow.prg:434 | Vinculo focal; no PASS actual |
 | MOUSE-hbwindow-DsnMouseRoute-3 | METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow | `case nCode == DSNK_MLUP` | hbwindow.prg:437 | Vinculo focal; no PASS actual |
@@ -571,6 +572,7 @@ Condiciones fuente, no gestos completos ni aceptacion funcional. Incluye rueda, 
 - GESTURE-IDE-VISIBLE-EDITOR-WHEEL: Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature. Separate Q457 ASCII three-row CRLF selected-word fixture characterizes existing wheel extension to second-row endpoint and down/up contraction; typing/Undo/Redo exact. Not all selection states or policy approval. Q458 adds explicit UTF8 host/terminal accented word after TAB with BOM/mixedEOL down/up range and Undo/Redo exact; not every Unicode width or F8 path. Q459 actual F8-key forward/reverse anchors across short EOL preserve virtual endpoint and remove physical boundary without added padding on typing; Undo/Redo exact CRLF. Not all virtual-selection operations. Pruebas: [test_editor_wheel_pty.py](../tests/test_editor_wheel_pty.py), [test_editor_wheel_mark_pty.py](../tests/test_editor_wheel_mark_pty.py), [test_editor_wheel_mark_utf8_pty.py](../tests/test_editor_wheel_mark_utf8_pty.py), [test_editor_wheel_short_eol_pty.py](../tests/test_editor_wheel_short_eol_pty.py)
 - GESTURE-FREEINPUT-PAIRED-BUTTONS: C90 direct Find/Replace both fields/RunArguments button pairs accept or cancel without Tab; press alone/cross-boundary/unpaired release do not activate. Exact selection/source/argv. Combined branch link covers DOWN/UP only, not DBL timing; no all coordinates/Unicode/Windows. Link is not current runtime PASS. Event branch is not a unique feature. Pruebas: [test_freeinput_mouse_pairs_pty.py](../tests/test_freeinput_mouse_pairs_pty.py), [test_find_mouse_selection_pty.py](../tests/test_find_mouse_selection_pty.py), [test_replace_mouse_selection_pty.py](../tests/test_replace_mouse_selection_pty.py), [test_run_arguments_mouse_pty.py](../tests/test_run_arguments_mouse_pty.py)
 - GESTURE-FREEINPUT-ARM: C90 direct Find/Replace both fields/RunArguments button pairs accept or cancel without Tab; press alone/cross-boundary/unpaired release do not activate. Exact selection/source/argv. Combined branch link covers DOWN/UP only, not DBL timing; no all coordinates/Unicode/Windows. Link is not current runtime PASS. Event branch is not a unique feature. Pruebas: [test_freeinput_mouse_pairs_pty.py](../tests/test_freeinput_mouse_pairs_pty.py), [test_find_mouse_selection_pty.py](../tests/test_find_mouse_selection_pty.py), [test_replace_mouse_selection_pty.py](../tests/test_replace_mouse_selection_pty.py), [test_run_arguments_mouse_pty.py](../tests/test_run_arguments_mouse_pty.py)
+- GESTURE-INTERNAL-EDITOR-NONCLIENT-GUARD: Internal guard for source-coordinate mapping: bounded status/title/bottom/left/right clicks preserve insertion point; interior mouse fixture guards existing routes. DBL branch is not separately instrumented, no allgeometry or Windows. Link is not current runtime PASS. Event branch is not a unique feature. Pruebas: [test_editor_mouse_nonclient_pty.py](../tests/test_editor_mouse_nonclient_pty.py), [test_editor_mouse_pty.py](../tests/test_editor_mouse_pty.py)
 - GESTURE-EDITOR-WORD-DOUBLECLICK: Actual xterm mouse UTF8 terminal fixture doubleclick after TAB selects accented words; typing/Delete/Enter/Backspace/Copy/Cut and Undo preserve BOM/TAB/mixedEOL exact bytes. PTY byte/cell semantics, not pixel proof, every coordinate/scroll/encoding/terminal/Windows; link is not current runtime PASS. Event branch is not a unique feature; routing across parent surfaces and every hit-test remain outside this link. Pruebas: [test_editor_mouse_utf8_pty.py](../tests/test_editor_mouse_utf8_pty.py)
 - GESTURE-EDITOR-POSITION-CLICK: Actual xterm UTF8 terminal click after accented word maps to exact source byte; insertion and Undo preserve fixture bytes including BOM/TAB/mixedEOL. Bounded position only, not every coordinate/scroll/terminal/Windows; link is not current runtime PASS. Event branch is not a unique feature; routing across parent surfaces and every hit-test remain outside this link. Pruebas: [test_editor_mouse_utf8_pty.py](../tests/test_editor_mouse_utf8_pty.py)
 - GESTURE-EDITOR-WHEEL-DOWN: Actual menu-closed visible editor xterm wheel, 100logical CRLF lines with no trailing separator: first-line up clamps, down moves cursor1to2,44down crosses viewport to46, up45, repeated down clamps100, up99. Close has no dirty prompt and disk bytes exact. Not menus-open/hidden editor/selection/other wheel encodings/Windows; cursor/viewport PTY not pixels; link is not current runtime PASS. Event branch is not a unique feature. Separate Q457 ASCII three-row CRLF selected-word fixture characterizes existing wheel extension to second-row endpoint and down/up contraction; typing/Undo/Redo exact. Not all selection states or policy approval. Q458 adds explicit UTF8 host/terminal accented word after TAB with BOM/mixedEOL down/up range and Undo/Redo exact; not every Unicode width or F8 path. Q459 actual F8-key forward/reverse anchors across short EOL preserve virtual endpoint and remove physical boundary without added padding on typing; Undo/Redo exact CRLF. Not all virtual-selection operations. Pruebas: [test_editor_wheel_pty.py](../tests/test_editor_wheel_pty.py), [test_editor_wheel_mark_pty.py](../tests/test_editor_wheel_mark_pty.py), [test_editor_wheel_mark_utf8_pty.py](../tests/test_editor_wheel_mark_utf8_pty.py), [test_editor_wheel_short_eol_pty.py](../tests/test_editor_wheel_short_eol_pty.py)
@@ -977,22 +979,23 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | designer.prg:475 | `if nIndex > 0` | Pendiente vinculo |
 | designer.prg:478 | `if ::HandleHit( MRow(), MCol() )` | Pendiente vinculo |
 | designer.prg:494 | `if ::nIdleDraw != nil` | Pendiente vinculo |
-| projectui.prg:14 | `IF nPick >= nTop + nVisible` | Pendiente vinculo |
-| projectui.prg:20 | `CASE nKey == K_ESC` | Pendiente vinculo |
-| projectui.prg:22 | `CASE nKey == K_UP` | Pendiente vinculo |
-| projectui.prg:24 | `CASE nKey == K_DOWN` | Pendiente vinculo |
-| projectui.prg:26 | `CASE nKey == K_HOME` | Pendiente vinculo |
-| projectui.prg:28 | `CASE nKey == K_END` | Pendiente vinculo |
-| projectui.prg:30 | `CASE nKey == K_PGUP` | Pendiente vinculo |
-| projectui.prg:32 | `CASE nKey == K_PGDN` | Pendiente vinculo |
-| projectui.prg:34 | `CASE nKey == K_F4` | Pendiente vinculo |
-| projectui.prg:36 | `CASE nKey == K_F6 .AND. ! Empty( oProject:hBuild )` | Pendiente vinculo |
-| projectui.prg:38 | `CASE nKey == K_F9 .OR. nKey == K_CTRL_F9` | Pendiente vinculo |
-| projectui.prg:42 | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` | Pendiente vinculo |
-| projectui.prg:44 | `IF MRow() >= 6 .AND. MRow() < 6 + nVisible .AND. nClick <= Len( aRows )` | Pendiente vinculo |
-| projectui.prg:46 | `IF nKey == K_LDBLCLK` | Pendiente vinculo |
-| projectui.prg:51 | `IF nKey == K_ENTER .AND. Len( aRows ) > 0` | Pendiente vinculo |
-| projectui.prg:53 | `IF ! Empty( h[ "path" ] )` | Pendiente vinculo |
+| projectui.prg:15 | `IF nPick >= nTop + nVisible` | Pendiente vinculo |
+| projectui.prg:21 | `CASE nKey == K_ESC` | Pendiente vinculo |
+| projectui.prg:23 | `CASE nKey == K_UP` | Pendiente vinculo |
+| projectui.prg:25 | `CASE nKey == K_DOWN` | Pendiente vinculo |
+| projectui.prg:27 | `CASE nKey == K_HOME` | Pendiente vinculo |
+| projectui.prg:29 | `CASE nKey == K_END` | Pendiente vinculo |
+| projectui.prg:31 | `CASE nKey == K_PGUP` | Pendiente vinculo |
+| projectui.prg:33 | `CASE nKey == K_PGDN` | Pendiente vinculo |
+| projectui.prg:35 | `CASE nKey == K_F4` | Pendiente vinculo |
+| projectui.prg:37 | `CASE nKey == K_F6 .AND. ! Empty( oProject:hBuild )` | Pendiente vinculo |
+| projectui.prg:39 | `CASE nKey == K_F9 .OR. nKey == K_CTRL_F9` | Pendiente vinculo |
+| projectui.prg:44 | `CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK` | Pendiente vinculo |
+| projectui.prg:46 | `IF MRow() >= 6 .AND. MRow() < 6 + nVisible .AND. MCol() > 2 .AND. MCol() < MaxCol() - 2 .AND. nClick <= Len( aRows )` | Pendiente vinculo |
+| projectui.prg:49 | `IF nKey == K_LDBLCLK` | Pendiente vinculo |
+| projectui.prg:54 | `IF nKey == K_ENTER .AND. Len( aRows ) > 0` | Pendiente vinculo |
+| projectui.prg:56 | `IF ! Empty( h[ "path" ] )` | Pendiente vinculo |
+| projectui.prg:59 | `IF lMessages` | Pendiente vinculo |
 | designer.prg:2319 | `case nKey == K_ESC .or. nKey == K_F6` | Pendiente vinculo |
 | designer.prg:2324 | `case nKey == K_F4` | Pendiente vinculo |
 | designer.prg:2327 | `case nKey == K_UP` | Pendiente vinculo |
@@ -1058,166 +1061,167 @@ Estas condiciones amplian el inventario fuera del menu. No se suman como funcion
 | hbide.prg:753 | `if ::oWndCode:lVisible` | Pendiente vinculo |
 | hbide.prg:761 | `if Seconds() - ::nLastDiskCheck >= 2 .or. Seconds() < ::nLastDiskCheck` | Pendiente vinculo |
 | hbide.prg:770 | `if "xterm" $ Lower( GetEnv( "TERM" ) )` | Pendiente vinculo |
-| help.prg:533 | `IF h[ "mode" ] == "search"` | Pendiente vinculo |
-| help.prg:535 | `CASE nKey == K_ESC` | Pendiente vinculo |
-| help.prg:538 | `CASE nKey == K_ENTER` | Pendiente vinculo |
-| help.prg:540 | `CASE nKey == K_BS` | Pendiente vinculo |
-| help.prg:542 | `CASE nKey >= 32 .AND. nKey <= 126 .AND. Len( h[ "query" ] ) < 30` | Pendiente vinculo |
-| help.prg:548 | `CASE nKey == K_ESC` | Pendiente vinculo |
-| help.prg:550 | `CASE nKey == K_TAB` | Pendiente vinculo |
-| help.prg:552 | `CASE nKey == K_SH_TAB` | Pendiente vinculo |
-| help.prg:554 | `CASE nKey == K_F7` | Pendiente vinculo |
-| help.prg:556 | `CASE nKey == K_F3` | Pendiente vinculo |
-| help.prg:558 | `CASE nKey == K_MWFORWARD` | Pendiente vinculo |
-| help.prg:560 | `CASE nKey == K_MWBACKWARD` | Pendiente vinculo |
-| help.prg:562 | `CASE nKey == K_LBUTTONDOWN` | Pendiente vinculo |
-| help.prg:563 | `IF MRow() > g[ "lbT" ] .AND. MRow() <= g[ "lbT" ] + g[ "idxH" ] .AND. MCol() >= g[ "lbL" ] .AND. MCol() <= g[ "lbR" ]` | Pendiente vinculo |
-| help.prg:564 | `IF h[ "itop" ] + MRow() - g[ "lbT" ] - 1 <= Len( h[ "rows" ] )` | Pendiente vinculo |
-| help.prg:569 | `ELSEIF MRow() > g[ "rbT" ] .AND. MRow() < g[ "rbB" ] .AND. MCol() >= g[ "rbL" ] .AND. MCol() <= g[ "rbR" ]` | Pendiente vinculo |
-| help.prg:571 | `ELSEIF MRow() == g[ "btnRow" ]` | Pendiente vinculo |
-| help.prg:574 | `IF MCol() >= aCols[ n ][ 1 ] .AND. MCol() < aCols[ n ][ 2 ]` | Pendiente vinculo |
-| help.prg:580 | `CASE h[ "pane" ] == "index"` | Pendiente vinculo |
-| help.prg:582 | `CASE nKey == K_UP    ; h[ "row" ]--` | Pendiente vinculo |
-| help.prg:583 | `CASE nKey == K_DOWN  ; h[ "row" ]++` | Pendiente vinculo |
-| help.prg:584 | `CASE nKey == K_HOME  ; h[ "row" ] := 1` | Pendiente vinculo |
-| help.prg:585 | `CASE nKey == K_END   ; h[ "row" ] := Len( h[ "rows" ] )` | Pendiente vinculo |
-| help.prg:586 | `CASE nKey == K_PGUP  ; h[ "row" ] -= g[ "idxH" ]` | Pendiente vinculo |
-| help.prg:587 | `CASE nKey == K_PGDN  ; h[ "row" ] += g[ "idxH" ]` | Pendiente vinculo |
-| help.prg:588 | `CASE nKey == K_ENTER .OR. nKey == K_RIGHT` | Pendiente vinculo |
-| help.prg:592 | `IF nKey == K_UP .OR. nKey == K_DOWN .OR. nKey == K_HOME .OR. nKey == K_END .OR. nKey == K_PGUP .OR. nKey == K_PGDN` | Pendiente vinculo |
-| help.prg:596 | `CASE h[ "pane" ] == "text"` | Pendiente vinculo |
-| help.prg:598 | `CASE nKey == K_UP    ; h[ "top" ]--` | Pendiente vinculo |
-| help.prg:599 | `CASE nKey == K_DOWN  ; h[ "top" ]++` | Pendiente vinculo |
-| help.prg:600 | `CASE nKey == K_PGUP  ; h[ "top" ] -= g[ "txtH" ]` | Pendiente vinculo |
-| help.prg:601 | `CASE nKey == K_PGDN  ; h[ "top" ] += g[ "txtH" ]` | Pendiente vinculo |
-| help.prg:602 | `CASE nKey == K_HOME  ; h[ "top" ] := 1` | Pendiente vinculo |
-| help.prg:603 | `CASE nKey == K_END   ; h[ "top" ] := 99999` | Pendiente vinculo |
-| help.prg:604 | `CASE nKey == K_LEFT  ; h[ "row" ] := Max( 1, h[ "row" ] - 1 ) ; h[ "top" ] := 1` | Pendiente vinculo |
-| help.prg:605 | `CASE nKey == K_RIGHT ; h[ "row" ] := Min( Len( h[ "rows" ] ), h[ "row" ] + 1 ) ; h[ "top" ] := 1` | Pendiente vinculo |
-| help.prg:606 | `CASE nKey == K_ENTER ; h[ "pane" ] := "index"` | Pendiente vinculo |
-| help.prg:608 | `CASE h[ "pane" ] == "buttons"` | Pendiente vinculo |
-| help.prg:610 | `CASE nKey == K_LEFT  ; h[ "btn" ] := iif( h[ "btn" ] > 1, h[ "btn" ] - 1, Len( g[ "btnCaps" ] ) )` | Pendiente vinculo |
-| help.prg:611 | `CASE nKey == K_RIGHT ; h[ "btn" ] := h[ "btn" ] % Len( g[ "btnCaps" ] ) + 1` | Pendiente vinculo |
-| help.prg:612 | `CASE nKey == K_ENTER ; HBHelpButton( h, aTopics, g, h[ "btn" ] )` | Pendiente vinculo |
-| help.prg:613 | `CASE nKey == K_UP    ; h[ "pane" ] := "index"` | Pendiente vinculo |
-| help.prg:617 | `IF h[ "row" ] < h[ "itop" ]` | Pendiente vinculo |
-| help.prg:619 | `ELSEIF h[ "row" ] > h[ "itop" ] + g[ "idxH" ] - 1` | Pendiente vinculo |
-| help.prg:820 | `IF nTopic == 0` | Pendiente vinculo |
-| help.prg:851 | `CASE nKey == K_ESC` | Pendiente vinculo |
-| help.prg:853 | `CASE nKey == K_F1` | Pendiente vinculo |
-| help.prg:855 | `CASE nKey == K_BS .AND. ! Empty( aHistory )` | Pendiente vinculo |
-| help.prg:859 | `CASE hb_keyStd( nKey ) == K_ALT_RIGHT .AND. ! Empty( aForward )` | Pendiente vinculo |
-| help.prg:863 | `CASE nKey == K_TAB .AND. Len( aLinks ) > 0` | Pendiente vinculo |
-| help.prg:865 | `CASE nKey == K_SH_TAB .AND. Len( aLinks ) > 0` | Pendiente vinculo |
-| help.prg:867 | `CASE nKey == K_ENTER .AND. Len( aLinks ) > 0` | Pendiente vinculo |
-| help.prg:869 | `CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR` | Pendiente vinculo |
-| help.prg:871 | `CASE nKey == K_UP .OR. nKey == K_MWFORWARD` | Pendiente vinculo |
-| help.prg:873 | `CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD` | Pendiente vinculo |
-| help.prg:875 | `CASE nKey == K_PGUP` | Pendiente vinculo |
-| help.prg:877 | `CASE nKey == K_PGDN` | Pendiente vinculo |
-| help.prg:879 | `CASE nKey == K_HOME` | Pendiente vinculo |
-| help.prg:881 | `CASE nKey == K_END` | Pendiente vinculo |
-| help.prg:884 | `IF nTarget > 0 .AND. nTarget != nTopic` | Pendiente vinculo |
-| help.prg:886 | `IF Len( aHistory ) > 100` | Pendiente vinculo |
-| editor.prg:526 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
-| editor.prg:532 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. hb_bitAnd( nKeyMod, hb_bitOr( HB_KF_SHIFT, HB_KF_CTRL, HB_KF_ALT ) ) == HB_KF_SHIFT` | Pendiente vinculo |
-| editor.prg:534 | `if ! ::lMark` | Pendiente vinculo |
-| editor.prg:538 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
-| editor.prg:539 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
-| editor.prg:540 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
-| editor.prg:541 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` | Pendiente vinculo |
-| editor.prg:542 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` | Pendiente vinculo |
-| editor.prg:543 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` | Pendiente vinculo |
-| editor.prg:546 | `case nKeyStd == K_CTRL_Z` | Pendiente vinculo |
-| editor.prg:550 | `case nKeyStd == K_CTRL_U` | Pendiente vinculo |
-| editor.prg:554 | `case nKeyStd == K_LDBLCLK` | EDIT-MOUSE-WORD-DOUBLECLICK |
-| editor.prg:559 | `case nKeyStd == K_LBUTTONDOWN` | EDIT-MOUSE-POSITION-CLICK |
-| editor.prg:564 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:567 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:570 | `case nKeyStd == K_BS` | EDIT-KEY-BACKSPACE-BOUNDARY |
-| editor.prg:571 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:575 | `IF ::nCol > 5` | Pendiente vinculo |
-| editor.prg:578 | `if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:585 | `if ::BlkCmtState(::nRow+1) != lBlkBefore .or. (::nRow < Len(::aText) .and. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore))` | Pendiente vinculo |
-| editor.prg:591 | `ELSEIF ::nRow > 1` | Pendiente vinculo |
-| editor.prg:603 | `case nKeyStd == K_DEL` | EDIT-KEY-DELETE-BOUNDARY |
-| editor.prg:604 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:613 | `if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:620 | `case nKeyStd == K_ENTER` | EDIT-KEY-ENTER-BOUNDARY |
-| editor.prg:621 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:630 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
-| editor.prg:631 | `if ::nCol - 4 > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
-| editor.prg:632 | `if ::nRow < Len( ::aText )` | Pendiente vinculo |
-| editor.prg:639 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
-| editor.prg:640 | `if ::nCol <= 5` | Pendiente vinculo |
-| editor.prg:641 | `if ::nRow > 1` | Pendiente vinculo |
-| editor.prg:648 | `case nKeyStd == K_HOME` | Pendiente vinculo |
-| editor.prg:651 | `case nKeyStd == K_END` | Pendiente vinculo |
-| editor.prg:654 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
-| editor.prg:658 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
-| editor.prg:666 | `case nKeyStd == K_CTRL_T` | EDIT-KEY-DELETE-WORD-CTRL-T |
-| editor.prg:667 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:681 | `if nWordEnd > nPos` | Pendiente vinculo |
-| editor.prg:689 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
-| editor.prg:692 | `case nKeyStd == K_F2` | Pendiente vinculo |
-| editor.prg:698 | `case nKeyStd == K_F8` | Pendiente vinculo |
-| editor.prg:702 | `case nKeyStd == K_F9` | Pendiente vinculo |
-| editor.prg:705 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
-| editor.prg:710 | `if ::SelRange() != NIL` | Pendiente vinculo |
-| editor.prg:717 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
-| editor.prg:725 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
-| editor.prg:728 | `if lHotPath` | Pendiente vinculo |
-| editor.prg:736 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
-| editor.prg:740 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
-| editor.prg:742 | `ELSEIF lHotPath` | Pendiente vinculo |
-| editor.prg:743 | `if ! ::lWordWrap` | Pendiente vinculo |
-| editor.prg:749 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )` | Pendiente vinculo |
-| editor.prg:773 | `if ::lMark .and. Abs( ::Row() - nOldScrRow ) > 1` | Pendiente vinculo |
-| editor.prg:778 | `if ! lSkipTail` | Pendiente vinculo |
-| editor.prg:779 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
-| editor.prg:786 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
-| editor.prg:790 | `if ::Row() > ::nTop` | Pendiente vinculo |
-| editor.prg:796 | `if ::Row() < ::nBottom` | Pendiente vinculo |
-| editor.prg:806 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
-| editor.prg:2066 | `if nKey == K_LEFT` | Pendiente vinculo |
-| editor.prg:2067 | `if Col() > 5` | Pendiente vinculo |
-| editor.prg:2070 | `if ::nFirstCol > 1` | Pendiente vinculo |
-| editor.prg:2095 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
-| editor.prg:2115 | `if nB < 0x80` | Pendiente vinculo |
-| editor.prg:2118 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
-| editor.prg:2120 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
-| editor.prg:2122 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
-| editor.prg:2127 | `if nI + nNeed > nLen` | Pendiente vinculo |
-| editor.prg:2133 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
-| editor.prg:2141 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
-| editor.prg:2158 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
-| editor.prg:2162 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
-| editor.prg:2181 | `case K_UP` | Pendiente vinculo |
-| editor.prg:2182 | `case K_DOWN` | Pendiente vinculo |
-| editor.prg:2183 | `case K_LEFT` | Pendiente vinculo |
-| editor.prg:2184 | `case K_RIGHT` | Pendiente vinculo |
-| editor.prg:2185 | `case K_HOME` | Pendiente vinculo |
-| editor.prg:2186 | `case K_END` | Pendiente vinculo |
-| editor.prg:2187 | `case K_PGUP` | Pendiente vinculo |
-| editor.prg:2188 | `case K_PGDN` | Pendiente vinculo |
-| editor.prg:2189 | `case K_MWFORWARD` | Pendiente vinculo |
-| editor.prg:2190 | `case K_MWBACKWARD` | Pendiente vinculo |
-| editor.prg:2202 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
-| editor.prg:2208 | `CASE lBlock` | Pendiente vinculo |
-| editor.prg:2209 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
-| editor.prg:2214 | `CASE !Empty(q)` | Pendiente vinculo |
-| editor.prg:2215 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
-| editor.prg:2217 | `ELSEIF c == q` | Pendiente vinculo |
-| editor.prg:2221 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
-| editor.prg:2224 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
-| editor.prg:2253 | `if Upper(Left(c,7)) != "ENDTEXT"` | Pendiente vinculo |
-| editor.prg:2263 | `if hb_defaultValue(lIn,.F.)` | Pendiente vinculo |
-| editor.prg:2265 | `if n==0` | Pendiente vinculo |
-| editor.prg:2272 | `if n==0` | Pendiente vinculo |
-| editor.prg:2277 | `if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"` | Pendiente vinculo |
-| editor.prg:2282 | `if Left(c,2)=="//" .or. Left(c,2)=="&&"` | Pendiente vinculo |
-| editor.prg:2284 | `elseif Left(c,2)=="/*"` | Pendiente vinculo |
-| editor.prg:2286 | `if n==0` | Pendiente vinculo |
+| help.prg:554 | `IF h[ "mode" ] == "search"` | Pendiente vinculo |
+| help.prg:556 | `CASE nKey == K_ESC` | Pendiente vinculo |
+| help.prg:559 | `CASE nKey == K_ENTER` | Pendiente vinculo |
+| help.prg:561 | `CASE nKey == K_BS` | Pendiente vinculo |
+| help.prg:563 | `CASE nKey >= 32 .AND. nKey <= 126 .AND. Len( h[ "query" ] ) < 30` | Pendiente vinculo |
+| help.prg:569 | `CASE nKey == K_ESC` | Pendiente vinculo |
+| help.prg:571 | `CASE nKey == K_TAB` | Pendiente vinculo |
+| help.prg:573 | `CASE nKey == K_SH_TAB` | Pendiente vinculo |
+| help.prg:575 | `CASE nKey == K_F7` | Pendiente vinculo |
+| help.prg:577 | `CASE nKey == K_F3` | Pendiente vinculo |
+| help.prg:579 | `CASE nKey == K_MWFORWARD` | Pendiente vinculo |
+| help.prg:581 | `CASE nKey == K_MWBACKWARD` | Pendiente vinculo |
+| help.prg:583 | `CASE nKey == K_LBUTTONDOWN` | Pendiente vinculo |
+| help.prg:584 | `IF MRow() > g[ "lbT" ] .AND. MRow() <= g[ "lbT" ] + g[ "idxH" ] .AND. MCol() >= g[ "lbL" ] .AND. MCol() <= g[ "lbR" ]` | Pendiente vinculo |
+| help.prg:585 | `IF h[ "itop" ] + MRow() - g[ "lbT" ] - 1 <= Len( h[ "rows" ] )` | Pendiente vinculo |
+| help.prg:590 | `ELSEIF MRow() > g[ "rbT" ] .AND. MRow() < g[ "rbB" ] .AND. MCol() >= g[ "rbL" ] .AND. MCol() <= g[ "rbR" ]` | Pendiente vinculo |
+| help.prg:592 | `ELSEIF MRow() == g[ "btnRow" ]` | Pendiente vinculo |
+| help.prg:595 | `IF MCol() >= aCols[ n ][ 1 ] .AND. MCol() < aCols[ n ][ 2 ]` | Pendiente vinculo |
+| help.prg:601 | `CASE h[ "pane" ] == "index"` | Pendiente vinculo |
+| help.prg:603 | `CASE nKey == K_UP    ; h[ "row" ]--` | Pendiente vinculo |
+| help.prg:604 | `CASE nKey == K_DOWN  ; h[ "row" ]++` | Pendiente vinculo |
+| help.prg:605 | `CASE nKey == K_HOME  ; h[ "row" ] := 1` | Pendiente vinculo |
+| help.prg:606 | `CASE nKey == K_END   ; h[ "row" ] := Len( h[ "rows" ] )` | Pendiente vinculo |
+| help.prg:607 | `CASE nKey == K_PGUP  ; h[ "row" ] -= g[ "idxH" ]` | Pendiente vinculo |
+| help.prg:608 | `CASE nKey == K_PGDN  ; h[ "row" ] += g[ "idxH" ]` | Pendiente vinculo |
+| help.prg:609 | `CASE nKey == K_ENTER .OR. nKey == K_RIGHT` | Pendiente vinculo |
+| help.prg:613 | `IF nKey == K_UP .OR. nKey == K_DOWN .OR. nKey == K_HOME .OR. nKey == K_END .OR. nKey == K_PGUP .OR. nKey == K_PGDN` | Pendiente vinculo |
+| help.prg:617 | `CASE h[ "pane" ] == "text"` | Pendiente vinculo |
+| help.prg:619 | `CASE nKey == K_UP    ; h[ "top" ]--` | Pendiente vinculo |
+| help.prg:620 | `CASE nKey == K_DOWN  ; h[ "top" ]++` | Pendiente vinculo |
+| help.prg:621 | `CASE nKey == K_PGUP  ; h[ "top" ] -= g[ "txtH" ]` | Pendiente vinculo |
+| help.prg:622 | `CASE nKey == K_PGDN  ; h[ "top" ] += g[ "txtH" ]` | Pendiente vinculo |
+| help.prg:623 | `CASE nKey == K_HOME  ; h[ "top" ] := 1` | Pendiente vinculo |
+| help.prg:624 | `CASE nKey == K_END   ; h[ "top" ] := 99999` | Pendiente vinculo |
+| help.prg:625 | `CASE nKey == K_LEFT  ; h[ "row" ] := Max( 1, h[ "row" ] - 1 ) ; h[ "top" ] := 1` | Pendiente vinculo |
+| help.prg:626 | `CASE nKey == K_RIGHT ; h[ "row" ] := Min( Len( h[ "rows" ] ), h[ "row" ] + 1 ) ; h[ "top" ] := 1` | Pendiente vinculo |
+| help.prg:627 | `CASE nKey == K_ENTER ; h[ "pane" ] := "index"` | Pendiente vinculo |
+| help.prg:629 | `CASE h[ "pane" ] == "buttons"` | Pendiente vinculo |
+| help.prg:631 | `CASE nKey == K_LEFT  ; h[ "btn" ] := iif( h[ "btn" ] > 1, h[ "btn" ] - 1, Len( g[ "btnCaps" ] ) )` | Pendiente vinculo |
+| help.prg:632 | `CASE nKey == K_RIGHT ; h[ "btn" ] := h[ "btn" ] % Len( g[ "btnCaps" ] ) + 1` | Pendiente vinculo |
+| help.prg:633 | `CASE nKey == K_ENTER ; HBHelpButton( h, aTopics, g, h[ "btn" ] )` | Pendiente vinculo |
+| help.prg:634 | `CASE nKey == K_UP    ; h[ "pane" ] := "index"` | Pendiente vinculo |
+| help.prg:638 | `IF h[ "row" ] < h[ "itop" ]` | Pendiente vinculo |
+| help.prg:640 | `ELSEIF h[ "row" ] > h[ "itop" ] + g[ "idxH" ] - 1` | Pendiente vinculo |
+| help.prg:841 | `IF nTopic == 0` | Pendiente vinculo |
+| help.prg:872 | `CASE nKey == K_ESC` | Pendiente vinculo |
+| help.prg:874 | `CASE nKey == K_F1` | Pendiente vinculo |
+| help.prg:876 | `CASE nKey == K_BS .AND. ! Empty( aHistory )` | Pendiente vinculo |
+| help.prg:880 | `CASE hb_keyStd( nKey ) == K_ALT_RIGHT .AND. ! Empty( aForward )` | Pendiente vinculo |
+| help.prg:884 | `CASE nKey == K_TAB .AND. Len( aLinks ) > 0` | Pendiente vinculo |
+| help.prg:886 | `CASE nKey == K_SH_TAB .AND. Len( aLinks ) > 0` | Pendiente vinculo |
+| help.prg:888 | `CASE nKey == K_ENTER .AND. Len( aLinks ) > 0` | Pendiente vinculo |
+| help.prg:890 | `CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR` | Pendiente vinculo |
+| help.prg:892 | `CASE nKey == K_UP .OR. nKey == K_MWFORWARD` | Pendiente vinculo |
+| help.prg:894 | `CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD` | Pendiente vinculo |
+| help.prg:896 | `CASE nKey == K_PGUP` | Pendiente vinculo |
+| help.prg:898 | `CASE nKey == K_PGDN` | Pendiente vinculo |
+| help.prg:900 | `CASE nKey == K_HOME` | Pendiente vinculo |
+| help.prg:902 | `CASE nKey == K_END` | Pendiente vinculo |
+| help.prg:905 | `IF nTarget > 0 .AND. nTarget != nTopic` | Pendiente vinculo |
+| help.prg:907 | `IF Len( aHistory ) > 100` | Pendiente vinculo |
+| editor.prg:528 | `if ( nKeyStd == K_LBUTTONDOWN .or. nKeyStd == K_LDBLCLK ) .and. ( MRow() < ::nTop .or. MRow() > ::nBottom .or. MCol() < ::nLeft .or. MCol() > ::nRight )` | Pendiente vinculo |
+| editor.prg:537 | `case nKeyExt == HB_KX_LEFT .and. hb_bitAnd( nKeyMod, HB_KF_CTRL ) != 0` | Pendiente vinculo |
+| editor.prg:543 | `case nKeyExt >= HB_KX_UP .and. nKeyExt <= HB_KX_END .and. hb_bitAnd( nKeyMod, hb_bitOr( HB_KF_SHIFT, HB_KF_CTRL, HB_KF_ALT ) ) == HB_KF_SHIFT` | Pendiente vinculo |
+| editor.prg:545 | `if ! ::lMark` | Pendiente vinculo |
+| editor.prg:549 | `case nKeyExt == HB_KX_UP     ; ::EditKey( K_UP )` | Pendiente vinculo |
+| editor.prg:550 | `case nKeyExt == HB_KX_DOWN   ; ::EditKey( K_DOWN )` | Pendiente vinculo |
+| editor.prg:551 | `case nKeyExt == HB_KX_LEFT   ; ::EditKey( K_LEFT )` | Pendiente vinculo |
+| editor.prg:552 | `case nKeyExt == HB_KX_RIGHT  ; ::EditKey( K_RIGHT )` | Pendiente vinculo |
+| editor.prg:553 | `case nKeyExt == HB_KX_HOME   ; ::EditKey( K_HOME )` | Pendiente vinculo |
+| editor.prg:554 | `case nKeyExt == HB_KX_END    ; ::EditKey( K_END )` | Pendiente vinculo |
+| editor.prg:557 | `case nKeyStd == K_CTRL_Z` | Pendiente vinculo |
+| editor.prg:561 | `case nKeyStd == K_CTRL_U` | Pendiente vinculo |
+| editor.prg:565 | `case nKeyStd == K_LDBLCLK` | EDIT-MOUSE-WORD-DOUBLECLICK |
+| editor.prg:570 | `case nKeyStd == K_LBUTTONDOWN` | EDIT-MOUSE-POSITION-CLICK |
+| editor.prg:575 | `case nKeyStd == K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:578 | `case nKeyStd == K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:581 | `case nKeyStd == K_BS` | EDIT-KEY-BACKSPACE-BOUNDARY |
+| editor.prg:582 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:586 | `IF ::nCol > 5` | Pendiente vinculo |
+| editor.prg:589 | `if ::nCol - 5 <= hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:596 | `if ::BlkCmtState(::nRow+1) != lBlkBefore .or. (::nRow < Len(::aText) .and. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore))` | Pendiente vinculo |
+| editor.prg:602 | `ELSEIF ::nRow > 1` | Pendiente vinculo |
+| editor.prg:614 | `case nKeyStd == K_DEL` | EDIT-KEY-DELETE-BOUNDARY |
+| editor.prg:615 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:624 | `if ::nRow < Len( ::aText ) .and. ::nCol > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:631 | `case nKeyStd == K_ENTER` | EDIT-KEY-ENTER-BOUNDARY |
+| editor.prg:632 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:641 | `case nKeyStd == K_RIGHT` | Pendiente vinculo |
+| editor.prg:642 | `if ::nCol - 4 > hb_ULen( ::aText[ ::nRow ]:cText )` | Pendiente vinculo |
+| editor.prg:643 | `if ::nRow < Len( ::aText )` | Pendiente vinculo |
+| editor.prg:650 | `case nKeyStd == K_LEFT` | Pendiente vinculo |
+| editor.prg:651 | `if ::nCol <= 5` | Pendiente vinculo |
+| editor.prg:652 | `if ::nRow > 1` | Pendiente vinculo |
+| editor.prg:659 | `case nKeyStd == K_HOME` | Pendiente vinculo |
+| editor.prg:662 | `case nKeyStd == K_END` | Pendiente vinculo |
+| editor.prg:665 | `case nKeyStd == K_CTRL_RIGHT` | Pendiente vinculo |
+| editor.prg:669 | `case nKeyStd == K_ALT_LEFT` | Pendiente vinculo |
+| editor.prg:677 | `case nKeyStd == K_CTRL_T` | EDIT-KEY-DELETE-WORD-CTRL-T |
+| editor.prg:678 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:692 | `if nWordEnd > nPos` | Pendiente vinculo |
+| editor.prg:700 | `case nKeyStd == K_CTRL_Y` | Pendiente vinculo |
+| editor.prg:703 | `case nKeyStd == K_F2` | Pendiente vinculo |
+| editor.prg:709 | `case nKeyStd == K_F8` | Pendiente vinculo |
+| editor.prg:713 | `case nKeyStd == K_F9` | Pendiente vinculo |
+| editor.prg:716 | `case ! HB_ISNULL( cKey := iif( nKeyStd == K_TAB .AND. Set( _SET_INSERT ), Space( TabCount( ::nTabWidth, ::VisualCol( ::nRow, ::nCol - 4 ) ) ), hb_keyChar( nKey ) ) )` | Pendiente vinculo |
+| editor.prg:721 | `if ::SelRange() != NIL` | Pendiente vinculo |
+| editor.prg:728 | `if nKeyStd == K_TAB .and. Set( _SET_INSERT )` | Pendiente vinculo |
+| editor.prg:736 | `IF ( nPos := ::nCol - hb_ULen( oLine:cText ) - 5 ) > 0` | Pendiente vinculo |
+| editor.prg:739 | `if lHotPath` | Pendiente vinculo |
+| editor.prg:747 | `if ! HBIDE_StrEq( cOldLine, oLine:cText )` | Pendiente vinculo |
+| editor.prg:751 | `IF ::lWordWrap .AND. hb_ULen( oLine:cText ) > ::nWordWrapCol` | Pendiente vinculo |
+| editor.prg:753 | `ELSEIF lHotPath` | Pendiente vinculo |
+| editor.prg:754 | `if ! ::lWordWrap` | Pendiente vinculo |
+| editor.prg:760 | `IF ::BlkCmtState( ::nRow + 1 ) != lBlkBefore .OR. ( ::nRow < Len(::aText) .AND. ! HBIDE_StrEq(hb_defaultValue(::aBlkCtx[::nRow+1],""),cCtxBefore) )` | Pendiente vinculo |
+| editor.prg:784 | `if ::lMark .and. Abs( ::Row() - nOldScrRow ) > 1` | Pendiente vinculo |
+| editor.prg:789 | `if ! lSkipTail` | Pendiente vinculo |
+| editor.prg:790 | `if HBIDE_IsNavKey( nKey ) .and. ! ::lMark` | Pendiente vinculo |
+| editor.prg:797 | `if ::Row() != nOldScrRow` | Pendiente vinculo |
+| editor.prg:801 | `if ::Row() > ::nTop` | Pendiente vinculo |
+| editor.prg:807 | `if ::Row() < ::nBottom` | Pendiente vinculo |
+| editor.prg:817 | `if ::Row() != nOldScrRow .and. nOldScrRow >= ::nTop .and. nOldScrRow <= ::nBottom` | Pendiente vinculo |
+| editor.prg:2107 | `if nKey == K_LEFT` | Pendiente vinculo |
+| editor.prg:2108 | `if Col() > 5` | Pendiente vinculo |
+| editor.prg:2111 | `if ::nFirstCol > 1` | Pendiente vinculo |
+| editor.prg:2136 | `if cChar $ "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"` | Pendiente vinculo |
+| editor.prg:2156 | `if nB < 0x80` | Pendiente vinculo |
+| editor.prg:2159 | `if nB >= 0xC2 .and. nB <= 0xDF` | Pendiente vinculo |
+| editor.prg:2161 | `elseif nB >= 0xE0 .and. nB <= 0xEF` | Pendiente vinculo |
+| editor.prg:2163 | `elseif nB >= 0xF0 .and. nB <= 0xF4` | Pendiente vinculo |
+| editor.prg:2168 | `if nI + nNeed > nLen` | Pendiente vinculo |
+| editor.prg:2174 | `if ( nB == 0xE0 .and. nJ < 0xA0 ) .or. ( nB == 0xED .and. nJ > 0x9F ) .or. ( nB == 0xF0 .and. nJ < 0x90 ) .or. ( nB == 0xF4 .and. nJ > 0x8F )` | Pendiente vinculo |
+| editor.prg:2182 | `if nB < 0x80 .or. nB > 0xBF` | Pendiente vinculo |
+| editor.prg:2199 | `if HBIDE_Utf8Valid( cText )` | Pendiente vinculo |
+| editor.prg:2203 | `if Asc( SubStr( cText, n, 1 ) ) >= 0x80` | Pendiente vinculo |
+| editor.prg:2222 | `case K_UP` | Pendiente vinculo |
+| editor.prg:2223 | `case K_DOWN` | Pendiente vinculo |
+| editor.prg:2224 | `case K_LEFT` | Pendiente vinculo |
+| editor.prg:2225 | `case K_RIGHT` | Pendiente vinculo |
+| editor.prg:2226 | `case K_HOME` | Pendiente vinculo |
+| editor.prg:2227 | `case K_END` | Pendiente vinculo |
+| editor.prg:2228 | `case K_PGUP` | Pendiente vinculo |
+| editor.prg:2229 | `case K_PGDN` | Pendiente vinculo |
+| editor.prg:2230 | `case K_MWFORWARD` | Pendiente vinculo |
+| editor.prg:2231 | `case K_MWBACKWARD` | Pendiente vinculo |
+| editor.prg:2243 | `IF Right(cBefore,2) != "*/"` | Pendiente vinculo |
+| editor.prg:2249 | `CASE lBlock` | Pendiente vinculo |
+| editor.prg:2250 | `IF SubStr(cBefore,n,2) == "*/"` | Pendiente vinculo |
+| editor.prg:2255 | `CASE !Empty(q)` | Pendiente vinculo |
+| editor.prg:2256 | `IF lEscape .AND. c == Chr(92)` | Pendiente vinculo |
+| editor.prg:2258 | `ELSEIF c == q` | Pendiente vinculo |
+| editor.prg:2262 | `CASE SubStr(cBefore,n,2) == "/*"` | Pendiente vinculo |
+| editor.prg:2265 | `CASE c == Chr(34) .OR. c == "'" .OR. c == "`" .OR. (c == "[" .AND. HBIDE_BracketContext(RTrim(cContext)))` | Pendiente vinculo |
+| editor.prg:2294 | `if Upper(Left(c,7)) != "ENDTEXT"` | Pendiente vinculo |
+| editor.prg:2304 | `if hb_defaultValue(lIn,.F.)` | Pendiente vinculo |
+| editor.prg:2306 | `if n==0` | Pendiente vinculo |
+| editor.prg:2313 | `if n==0` | Pendiente vinculo |
+| editor.prg:2318 | `if Upper(Left(c,4)) != "TEXT" .or. SubStr(c,5,2)=="&&"` | Pendiente vinculo |
+| editor.prg:2323 | `if Left(c,2)=="//" .or. Left(c,2)=="&&"` | Pendiente vinculo |
+| editor.prg:2325 | `elseif Left(c,2)=="/*"` | Pendiente vinculo |
+| editor.prg:2327 | `if n==0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1563 | `IF ::lAnimate` | Pendiente vinculo |
 | hbdebug/debugger.prg:1564 | `IF ::nSpeed != 0` | Pendiente vinculo |
 | hbdebug/debugger.prg:1567 | `IF __dbgInvokeDebug()  // NextKey() == K_ALT_D` | Pendiente vinculo |
