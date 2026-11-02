@@ -1,5 +1,5 @@
 """Real IDE Edit-menu dispatch. Linux PTY, not visual certification."""
-import shlex, shutil
+import shlex, shutil, sys
 import os, pty, struct, fcntl, termios, select, time, signal, tempfile, pathlib, re
 ROWS, COLS = 40, 120
 BIN = os.environ.get('HBIDE_BIN', str(pathlib.Path(__file__).resolve().parents[1] / 'hbide'))
@@ -142,7 +142,7 @@ try:
     check('Original jump coordinates preserved',bool(re.search(r'row:\s*2,\s*col:\s*9',scr.text())) and '3 return unknown_name;' in scr.text())
     menu(b'n');jump();state('Undo original bytes match','snapshot=')
     other=work/'other.prg';other.write_bytes(b'other')
-    send(b'\x1bf');send(b'o');send(str(other).encode()+b'\r',.4);send(b'X');jump()
+    send(b'\x1bf');send(b'o');send(str(other).encode()+b'\r',.4);send(b'X');send(b'\x1bOQ',.4);jump()
     state('Other document edit leaves match','snapshot=')
     send(b'\x1b[1;5H');send(b'\r',.3);saved('Save changed bytes exact',b'\n'+original);jump()
     state('Save without rebuild remains changed','changed')

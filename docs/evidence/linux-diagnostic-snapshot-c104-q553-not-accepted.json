@@ -1,0 +1,18 @@
+{
+  "candidate": "C104 NOT ACCEPTED",
+  "source": "05e6c05ebd43314db408577a57597e4fbb43cd23",
+  "binary_sha256": "39e38c347ab8641439a66037c1dabe489280d5b7fcacde2698d91c8372e0dd4b",
+  "status": "Official smokes PASS, Start14/Project15 and Projectedges9PASS, native changed/file/error clear but CompilerMessageList Enter rechecks legend clipped at both 80x25 and120x40. Visual gate failed; no acceptance or next candidate authorized yet.",
+  "logs": {
+    "c104-edge-utf8.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-1okkb7nw\n",
+    "c104-edge-uncaptured.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-7qo4xqoc\n",
+    "c104-edge-oversize.log": "PASS Expected source state\nPASS Original path still reached\nPASS No implicit source write\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-dbgmufuc\n",
+    "c104-project-corrected.log": "PASS Controlled reader consumed exact source identity bytes\nPASS Initial source snapshot match\nPASS Initial diagnostic row2col9\nPASS Unsaved changed source labelled\nPASS Original jump coordinates preserved\nPASS Undo original bytes match\nPASS Other document edit leaves match\nPASS Save changed bytes exact\nPASS Save without rebuild remains changed\nFAIL Rebuild replaces version with match\nFAIL Rebuild moved diagnostic row3\nFAIL Rebuild consumed updated bytes\nFAIL Message list cache timing legend\nPASS Absent project compiler clears diagnostic ledger\nPASS Absent compiler never inherits old messages\nTOTAL 11 PASS 4 FAIL\nArtifacts /tmp/hbide-edit-menu-i_fbaud3\n",
+    "c104-start-corrected.log": "PASS Controlled reader consumed exact source identity bytes\nPASS Initial source snapshot match\nPASS Initial diagnostic row2col9\nPASS Unsaved changed source labelled\nPASS Original jump coordinates preserved\nPASS Undo original bytes match\nPASS Other document edit leaves match\nPASS Save changed bytes exact\nPASS Save without rebuild remains changed\nPASS Rebuild replaces version with match\nPASS Rebuild moved diagnostic row3\nPASS Rebuild consumed updated bytes\nPASS Message list cache timing legend\nPASS Absent compiler never inherits old messages\nTOTAL 14 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-9dqyjvqe\n",
+    "c104-project-preparation-final.log": "PASS Controlled reader consumed exact source identity bytes\nPASS Initial source snapshot match\nPASS Initial diagnostic row2col9\nPASS Unsaved changed source labelled\nPASS Original jump coordinates preserved\nPASS Undo original bytes match\nPASS Other document edit leaves match\nPASS Save changed bytes exact\nPASS Save without rebuild remains changed\nPASS Rebuild replaces version with match\nPASS Rebuild moved diagnostic row3\nPASS Rebuild consumed updated bytes\nPASS Message list cache timing legend\nPASS Absent project compiler clears diagnostic ledger\nPASS Absent compiler never inherits old messages\nTOTAL 15 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-lgzmw1um\n",
+    "c104-driver.log": "{\n  \"ok\": true,\n  \"source\": \"05e6c05ebd43314db408577a57597e4fbb43cd23\",\n  \"binary_sha256\": \"39e38c347ab8641439a66037c1dabe489280d5b7fcacde2698d91c8372e0dd4b\",\n  \"manifest\": \"/tmp/hbide-c104/manifest.json\"\n}\n",
+    "c104-start.log": ""
+  },
+  "test_changes": "Initial NameError importsys before IDE and Project11PASS4FAIL dirty-otherdoc preparation retained; local corrected test repeats same binary, no rebuild.",
+  "limits": "No inherited C103 regression matrix/Windows/install/license/fullmatrix/hito. No further exports/build/removals authorized."
+}
