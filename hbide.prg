@@ -1182,7 +1182,16 @@ METHOD OpenInDoc( cFileName ) CLASS HbIde
    local n := ::FindDoc( cFileName ), cRaw, lReadOk
 
    if n > 0
-      ::SwitchDoc( n )
+      // Only explicit Open restores the current hidden document window.
+      if n == ::nCurrent .and. ! ::oWndCode:lVisible
+         ::oWndCode:Show( .F. )
+         ::oWndCode:cCaption := ::oEditor:cFile
+         ::Repaint()
+         ::oEditor:ShowCursor()
+         ::CheckDiskChange()
+      else
+         ::SwitchDoc( n )
+      endif
       return .T.
    endif
 
