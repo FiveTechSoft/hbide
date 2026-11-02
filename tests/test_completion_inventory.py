@@ -146,8 +146,8 @@ class DebuggerInputInventory(unittest.TestCase):
 class MouseRouteInventory(unittest.TestCase):
     def test_bounded_event_branch_counts_and_identity(self):
         rows=audit.mouse_routes()
-        self.assertEqual(len(rows),30)
-        self.assertEqual(len({r['id'] for r in rows}),30)
+        self.assertEqual(len(rows),31)
+        self.assertEqual(len({r['id'] for r in rows}),31)
         for row in rows:
             line=(ROOT/row['source']).read_text().splitlines()[row['line']-1]
             self.assertEqual(row['condition'].split(';')[0].strip(),line.rstrip(';').strip())
@@ -403,12 +403,12 @@ class GestureContractLinks(unittest.TestCase):
     def setUp(self):
         self.rows=audit.mouse_routes()
         self.specs=json.loads((ROOT/'tests/completion_acceptance.json').read_text())['mouse_acceptance']
-    def test_30_branches_with_29_links_not_exhaustive_gesture_acceptance(self):
+    def test_31_branches_with_30_links_not_exhaustive_gesture_acceptance(self):
         linked=audit.link_dispatch_contracts(self.rows,self.specs)
-        self.assertEqual(len(linked),30)
+        self.assertEqual(len(linked),31)
         selected=[r for r in linked if isinstance(r['acceptance'],dict)]
-        self.assertEqual(len(selected),29)
-        self.assertEqual({r['condition'] for r in selected},{'case nMouse == K_LBUTTONDOWN','if nMouse == K_LBUTTONDOWN .or. nMouse == K_LBUTTONUP .or. nMouse == K_LDBLCLK','case nKey == K_LBUTTONUP','case K_MWFORWARD','case K_MWBACKWARD','if nKeyStd == K_LBUTTONDOWN','case nKeyStd == K_LDBLCLK','case nKeyStd == K_LBUTTONDOWN','case nKey == K_LBUTTONDOWN','CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK','IF nKey == K_LDBLCLK','case nCode == DSNK_MLDOWN','case nCode == DSNK_MLDBL','case nCode == DSNK_MLUP','IF LastKey() == K_LBUTTONDOWN','CASE K_LBUTTONDOWN','CASE K_LDBLCLK','CASE K_RBUTTONDOWN','CASE nKey == K_UP .OR. nKey == K_MWFORWARD','CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD','case nKeyStd == K_MWFORWARD','case nKeyStd == K_MWBACKWARD','elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD','CASE nKey == K_MWFORWARD','CASE nKey == K_MWBACKWARD','CASE nKey == K_LBUTTONDOWN','CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR'})
+        self.assertEqual(len(selected),30)
+        self.assertEqual({r['condition'] for r in selected},{'if ( nKeyStd == K_LBUTTONDOWN .or. nKeyStd == K_LDBLCLK ) .and. ; ( MRow() < ::nTop .or. MRow() > ::nBottom .or. ; MCol() < ::nLeft .or. MCol() > ::nRight )','case nMouse == K_LBUTTONDOWN','if nMouse == K_LBUTTONDOWN .or. nMouse == K_LBUTTONUP .or. nMouse == K_LDBLCLK','case nKey == K_LBUTTONUP','case K_MWFORWARD','case K_MWBACKWARD','if nKeyStd == K_LBUTTONDOWN','case nKeyStd == K_LDBLCLK','case nKeyStd == K_LBUTTONDOWN','case nKey == K_LBUTTONDOWN','CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK','IF nKey == K_LDBLCLK','case nCode == DSNK_MLDOWN','case nCode == DSNK_MLDBL','case nCode == DSNK_MLUP','IF LastKey() == K_LBUTTONDOWN','CASE K_LBUTTONDOWN','CASE K_LDBLCLK','CASE K_RBUTTONDOWN','CASE nKey == K_UP .OR. nKey == K_MWFORWARD','CASE nKey == K_DOWN .OR. nKey == K_MWBACKWARD','case nKeyStd == K_MWFORWARD','case nKeyStd == K_MWBACKWARD','elseif nKeyStd == K_MWFORWARD .or. nKeyStd == K_MWBACKWARD','CASE nKey == K_MWFORWARD','CASE nKey == K_MWBACKWARD','CASE nKey == K_LBUTTONDOWN','CASE nKey == K_LBUTTONDOWN .AND. MRow() >= nLinkRow .AND. MRow() < nLinkRow + Len( aLinks ) .AND. MCol() > nL .AND. MCol() < nR'})
         for row in selected:
             self.assertIn(row['context'],['METHOD EditKey( nKey ) CLASS HBSrcEdit','METHOD Activate() CLASS HbDesigner','FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 )','FUNCTION HBHelpInput( h, aTopics, g, nKey )','FUNCTION HBIDEHelpOpen( cTitle, aTopics )','METHOD Activate() CLASS HBIde','METHOD PROCEDURE HandleEvent() CLASS HBDebugger','METHOD PROCEDURE CallStackProcessKey( nKey ) CLASS HBDebugger','METHOD PROCEDURE ShowModal() CLASS HBDbWindow','METHOD DsnMouseRoute( nKey, oWnd, oGet ) CLASS HbWindow','METHOD PROCEDURE ShowAppScreen() CLASS HBDebugger','static function HBIDE_IsNavKey( nKey )','static function HBIDE_DlgInput( nRow, nCol, nWidth, cInit, cColor, aButtons )'])
             self.assertIn('not current runtime PASS',row['acceptance']['contract'])

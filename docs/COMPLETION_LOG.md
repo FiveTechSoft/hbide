@@ -6465,3 +6465,23 @@ con SHA-size-mode-mtime-uid-gid-inventory/originalrecheck completos antes de
 retirar solo expandido. Archivos10905384/10906624bytes,1463/1464entries.
 Paro527998976bytes >=500MiB, C80 intacto; tras build287MiB. Sin otras retiradas.
 Q531docs posteriores no embebidos C98, no rebuild por docs. Gates intactos.
+
+
+### Q532-Q534 (2 noviembre 2026): editor nonclient, C99 propio
+
+Q532 C98 HBPportable3/WindowUTF8filter5/Pickerhorizontal6,14PASS frescos,
+no heredados por C99. Q533 C98 mouse status/bottom/title/left/right5PASS5FAIL:
+click fuera editor clampa a fuente, status row39 mueve X a line38 con padding.
+FixEditKey ignora Down/DBL fuera rectangulo antes de ClearSelection/GoTo;
+gutter/interior/menu/close/wheel intactos. C99source283f99c604db3de1b270666df1fdb64b2eec38c8,
+bin42fc43771b08081372b9de7d9a7c534d407ba0286b17d20e94f4e6484f2a50f8.
+Own8smokes/About/ldd/docs34/nonclient10/interiorMouse37PASS. Capturas nativas
+1202x762beforeC98Xline38/afterC99alphaXbetarow1 inspeccionadas bordes/status/source.
+InitialUndo viewport scroll locatebeta fallo corregido CtrlPgUp/Home, log retenido.
+DBL interno no instrumentado nuevoharness; no allgeometry/fullmatrix/Windows/
+install/license/hito cierre. C98 conservado, reserva65MiB sin nuevas retiradas.
+Q534docs posteriores no embebidos C99, no build por docs; gates intactos.
+
+Q534toolinginitial: guardnonclient añade rama interna31 frente30esperadas;
+dos inventoryunits fallaron. Enlace acotado nuevo30/31, no feature nueva ni
+DBLinstrumentado. Denominador actualizado y repeticion completa registrada.

@@ -3245,6 +3245,16 @@
         "test_run_arguments_mouse_pty.py"
       ],
       "contract": "C90 direct Find/Replace both fields/RunArguments button pairs accept or cancel without Tab; press alone/cross-boundary/unpaired release do not activate. Exact selection/source/argv. Combined branch link covers DOWN/UP only, not DBL timing; no all coordinates/Unicode/Windows. Link is not current runtime PASS. Event branch is not a unique feature."
+    },
+    "GESTURE-INTERNAL-EDITOR-NONCLIENT-GUARD": {
+      "source": "editor.prg",
+      "context": "METHOD EditKey( nKey ) CLASS HBSrcEdit",
+      "condition": "if ( nKeyStd == K_LBUTTONDOWN .or. nKeyStd == K_LDBLCLK ) .and. ; ( MRow() < ::nTop .or. MRow() > ::nBottom .or. ; MCol() < ::nLeft .or. MCol() > ::nRight )",
+      "tests": [
+        "test_editor_mouse_nonclient_pty.py",
+        "test_editor_mouse_pty.py"
+      ],
+      "contract": "Internal guard for source-coordinate mapping: bounded status/title/bottom/left/right clicks preserve insertion point; interior mouse fixture guards existing routes. DBL branch is not separately instrumented, no allgeometry or Windows. Link is not current runtime PASS. Event branch is not a unique feature."
     }
   }
 }

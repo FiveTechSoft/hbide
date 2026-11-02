@@ -66,6 +66,26 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 2 noviembre01:21 Q533: ultimo candidato aceptado en alcance focal **C99**,
+fuente `283f99c604db3de1b270666df1fdb64b2eec38c8`,
+bin `42fc43771b08081372b9de7d9a7c534d407ba0286b17d20e94f4e6484f2a50f8`.
+C98 trataba clicks status/bordes/titulo como coordenadas fuente; statusclick
+tras cursor beta movia X a line38 con padding. Baseline cinco bordes5PASS5FAIL.
+C99 rechaza Down/DBL fuera del rectangulo editor antes de ClearSelection/GoTo;
+gutter/interior y host menu/close mantienen sus rutas, wheel no cambia.
+Own8smokes/About/ldd/docs34 PASS; nonclient10/interiorMouse37 frescos PASS.
+Visual nativa1202x762 antes Xline38/despues alphaXbeta row1 inspeccionada,
+fuente/bordes/status completos. Primer harness tras Undo no encontraba beta
+por viewport scrolleado; corregido CtrlPgUp/Home, logs iniciales conservados.
+DBL interno no instrumentado por el harness nuevo, no todos tamanos/geometrias.
+C98 conservado, no herencia de matriz/Windows/install/license/cierre de hitos.
+Q534 docs posteriores no embebidos C99, sin build por docs. Reserva65MiB;
+no mas retiradas autorizadas ni build pesado sin defecto concreto y capacidad.
+Siguiente lectura/tests ligeros de hueco distinto, no variantes equivalentes.
+Politicas y gates pendientes intactos.
+
+Historico anterior, no evidencia heredada por C99:
+
 Corte 2 noviembre01:12 Q530: ultimo candidato aceptado en alcance focal **C98**,
 fuente `a02c032dfaf9c7184a865a8095cbbef09ff43e43`,
 bin `a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c`.
@@ -1939,3 +1959,7 @@ C95 source1cdedd93da118bcdb33866d574943a784a00c0f6,
 bin112573c77e3fe18c930a8bc76404027d0472d5a42aa06c1ed25a2ab2d23dd845 intacto.
 Docs posteriores no embebidos en C95; sin build por docs ni retiradas nuevas.
 No nuevos pixeles/fullmatrix/models/Windows/install/license/cierre de hitos.
+
+Q534toolinginitial: guardnonclient añade rama interna31 frente30esperadas;
+dos inventoryunits fallaron. Enlace acotado nuevo30/31, no feature nueva ni
+DBLinstrumentado. Denominador actualizado y repeticion completa registrada.
