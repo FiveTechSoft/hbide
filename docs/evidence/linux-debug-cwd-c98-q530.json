@@ -1,0 +1,125 @@
+{
+  "scope": "C98 own Debug cwd restoration acceptance with temp cleanup, no inherited Script acceptance",
+  "source": "a02c032dfaf9c7184a865a8095cbbef09ff43e43",
+  "binary_sha256": "a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c",
+  "official_manifest": {
+    "scope": "Linux source candidate, not a release. No Windows acceptance, portable installation or license clearance inferred.",
+    "source": "a02c032dfaf9c7184a865a8095cbbef09ff43e43",
+    "archive_sha256": "0d6fcf1f156de6d8c373a7922c01dad3ee4648fed3592b3f05c68d79d6b092d6",
+    "archive_file": "source.tar.gz",
+    "archive_format": "tar.gz",
+    "dirty": false,
+    "started": 1793578190.80907,
+    "compiler_path": "/home/sandbox/harbour/bin/linux/gcc/hbmk2",
+    "compiler_sha256": "8b1697d24f23003cb73c2adc26ff11cdadb5006ae89494ac4ae48bc60102f62a",
+    "compiler_version": "Harbour Make (hbmk2) 3.2.1dev (r2026-10-24 21:11)\nCopyright (c) 1999-present, Viktor Szakats\nhttps://github.com/harbour/core/\n\n",
+    "removed_inherited_binaries": [
+      {
+        "path": "hbide.exe",
+        "sha256": "f53d95e5894399d146ae944f347a1a13eaaf74a0d4775667125c4d973ffb03f3"
+      },
+      {
+        "path": "tests/hbide",
+        "sha256": "4187a10a7ac61347e487f9293eb45d29cf34f41c6a97b884fcab9cb6f335073b"
+      }
+    ],
+    "tests": {
+      "test_about_build_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "ed0683ceceb656323b6b90ec6c61305a643c169c310f55fcd727482d93b176c1",
+        "binary_sha256": "a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c"
+      },
+      "test_help_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "7e5e34ba4a848978752545ab887e56881c033e22a315c0c1ceef313a24afbfc4",
+        "binary_sha256": "a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c"
+      },
+      "test_run_source_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "28fd5e1d4b09e052b29f142d7591d9fe410ed460bbe4b4ae1dcac2bdeba9ee9a",
+        "binary_sha256": "a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c"
+      },
+      "test_debug_getter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "743574904b66228ebfeffc04d12657fb26c750c26a542b37a8336493520f1426",
+        "binary_sha256": "a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c"
+      },
+      "test_debug_setter_failure_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "b135370c3443663271acfb2939ccdff34864891edec7b013e60673f3351cf03f",
+        "binary_sha256": "a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c"
+      },
+      "test_file_modal_long_list_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "464e5c905cf4912fe004586e83e087d3abbca4878287f24c714961add1708619",
+        "binary_sha256": "a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c"
+      },
+      "test_file_modal_mouse_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "6d40b4f599fc501012bca3a0b119c0fdf8c242b0788632a73b63683b84f0abf3",
+        "binary_sha256": "a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c"
+      },
+      "test_file_modal_buttons_pty.py": {
+        "exit": 0,
+        "reported_failure": false,
+        "test_sha256": "db709e68a7f644033fa5c5d34466e257b47296e917ddf43c81df4f25195f9952",
+        "binary_sha256": "a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c"
+      }
+    },
+    "build_exit": 0,
+    "generated_buildinfo_sha256": "4e9b104892ce241be1b7af9c02e6eac5f7c2a81d858a0faec65114dabdfcf1c2",
+    "release_status": "not cleared; source notice review required",
+    "document_check": {
+      "exit": 0,
+      "paths_sha256": "a9ad0b3a5c47771afa608f0f9b419e12fb6491c24b00f1af4ebba47cff6c1e1b",
+      "count": 34
+    },
+    "source_notice_inventory": {
+      "path": "source-notices.json",
+      "sha256": "0a71c805637c73f741b1dc27c22946dcb42757e12a5b889791f94d839e70a105",
+      "release_review_required": true,
+      "does_not_clear_redistribution": true
+    },
+    "unstripped_sha256": "7984dbc42fbe5e24949d4a26973dcc4f763f1c6a28b63be756211be5af8138ba",
+    "strip_tool": {
+      "path": "/usr/bin/strip",
+      "sha256": "001150abd7bbfaf605f2b091a2a3db7d00aa05aba1b6c62dc7cbb416336e23c7"
+    },
+    "binary_sha256": "a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c",
+    "dependency_check_exit": 0,
+    "ok": true,
+    "finished": 1793578288.8290062
+  },
+  "baseline_C97": "4 PASS5 FAIL: F5 normal run false deleted/Recreate, wrong child save and session .prg/.hrb leaked in original cwd",
+  "fix": "capture host cwd at Debug entry; restore after HRB normal/recovered error before FErase temp names/status/repaint. Program may change cwd during run.",
+  "tests": {
+    "test_debug_cwd_restore_pty.py": "f1d5f0678b602ea17476e816506cf545722d9f3575ee39306024052dfbc1782c",
+    "test_script_cwd_restore_pty.py": "1170106d37fbedb8ec9429ab1a67a5cfb2f1be59c36b7332959116fe40f28baa"
+  },
+  "logs": {
+    "c97-debug-cwd.log": "PASS Relative fixture opened\nPASS Debugger entered\nPASS Debug returns usable editor\nFAIL No false disk deletion after Debug\nPASS Original source not actually deleted\nFAIL No false recreate prompt\nFAIL Original relative source saved in its original directory\nFAIL No leaked debug temporary files\nFAIL No wrong directory save created\nTOTAL 4 PASS 5 FAIL; evidence /tmp/hbide-source-run-zoi7_dtk\n",
+    "c98-cwd.log": "PASS Relative fixture opened\nPASS Debugger entered\nPASS Debug returns usable editor\nPASS No false disk deletion after Debug\nPASS Original source not actually deleted\nPASS No false recreate prompt\nPASS Original relative source saved in its original directory\nPASS No leaked debug temporary files\nPASS No wrong directory save created\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-i9_cvsj7\n",
+    "c98-cwderror.log": "PASS Relative fixture opened\nPASS Debugger entered\nPASS Runtime error visible\nPASS Debug returns usable editor\nPASS No false disk deletion after Debug\nPASS Original source not actually deleted\nPASS No false recreate prompt\nPASS Original relative source saved in its original directory\nPASS No leaked debug temporary files\nPASS No wrong directory save created\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-rvh_tc6b\n",
+    "c98-driver.log": "{\n  \"ok\": true,\n  \"source\": \"a02c032dfaf9c7184a865a8095cbbef09ff43e43\",\n  \"binary_sha256\": \"a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c\",\n  \"manifest\": \"/tmp/hbide-c98/manifest.json\"\n}\n",
+    "c98-repeat.log": "PASS Relative fixture opened\nPASS Debugger entered\nPASS Debug returns usable editor\nPASS No false disk deletion after Debug\nPASS Original source not actually deleted\nPASS No false recreate prompt\nPASS Original relative source saved in its original directory\nPASS No leaked debug temporary files\nPASS No wrong directory save created\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-f4nvafb0\n",
+    "c98-script.log": "PASS Relative fixture opened\nPASS Script returns usable editor\nPASS No false disk deletion after Script\nPASS Original source not actually deleted\nPASS No false recreate prompt\nPASS Original relative source saved in its original directory\nPASS No wrong directory save created\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-m1mso8yi\n",
+    "c98-scripterror.log": "PASS Relative fixture opened\nPASS Runtime error visible\nPASS Script returns usable editor\nPASS No false disk deletion after Script\nPASS Original source not actually deleted\nPASS No false recreate prompt\nPASS Original relative source saved in its original directory\nPASS No wrong directory save created\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-dgf575fq\n"
+  },
+  "visual": {
+    "inspected": [
+      "/downloads/hbide-q530-debug-c97.png",
+      "/downloads/hbide-q530-debug-c98.png"
+    ],
+    "size": "1202x762",
+    "result": "C97 false File deleted; C98 clean editor same relative source after F5; full borders/status/source inspected"
+  },
+  "storage": "C78/C79 expanded copies preserved independently with full verification before removal; stopped at527998976free, C80 untouched; records sent parent",
+  "limits": "No deleted/inaccessible host cwd recovery promise, restart/toggles/Cancel/general process isolation/Windows/fullmatrix/install/license/milestone closure. C97 retained."
+}
