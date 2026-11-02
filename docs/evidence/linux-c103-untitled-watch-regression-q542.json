@@ -1,0 +1,8 @@
+{
+  "scope": "Fresh C103 nine watchidentitymodes22PASS, no inheritedC101acceptance",
+  "source": "ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc",
+  "binary_sha256": "046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd",
+  "test_sha256": "ab265f136a6029cf10b31815b1b0a2f1463a7da16c406c821abb4e3339916e8b",
+  "log": "PASS clean template remains unassociated\nPASS clean homonym bytes untouched by IDE\nPASS dirty dirty template has no unrelated conflict\nPASS dirty homonym bytes untouched by IDE\nPASS new template remains unassociated\nPASS new homonym bytes untouched by IDE\nPASS explicit explicit source loaded\nPASS explicit explicit relative noname watch active\nPASS explicit homonym bytes untouched by IDE\nPASS saveas successful SaveAs watch active\nPASS saveas homonym bytes untouched by IDE\nPASS failure dirty template has no unrelated conflict\nPASS failure homonym bytes untouched by IDE\nPASS recover-unnamed recovered bytes visible\nPASS recover-unnamed ambiguous legacy retains prior watch policy\nPASS recover-unnamed homonym bytes untouched by IDE\nPASS recover-relative recovered bytes visible\nPASS recover-relative ambiguous legacy retains prior watch policy\nPASS recover-relative homonym bytes untouched by IDE\nPASS recover-named recovered bytes visible\nPASS recover-named named recovery watch active\nPASS recover-named homonym bytes untouched by IDE\nTOTAL 22 PASS 0 FAIL; evidence /tmp/hbide-watch-p7_mu_9x\n",
+  "limits": "Legacyambiguity unchanged. No newvisual/fullmatrix/Windows/install/license/hitoclosure. ProjectUI read didnotconfirmanotherdefect; stop equivalentidentityvariants. No newbuild/export/removal."
+}
