@@ -46,6 +46,7 @@ ENDCLASS
 CLASS HBSrcEdit FROM HBEditor
 
    DATA   cFile
+   DATA   lDiskBacked INIT .F.   // watch association, not the displayed untitled name
    DATA   cEol        INIT NIL   // preferred terminator for new boundaries
    DATA   cClrString   INIT "GR+"
    DATA   cClrOperator INIT "R+"
@@ -1323,6 +1324,7 @@ METHOD LoadFile( cFileName, cRaw ) CLASS HBSrcEdit
    endif
 
    ::cFile := cFileName
+   ::lDiskBacked := .T.
    ::aBPs := {}   // breakpoints belong to the previous buffer
    xRet := ::LoadText( cRaw )
 
@@ -1436,6 +1438,7 @@ METHOD SaveFile() CLASS HBSrcEdit
    lOk := HBIDE_AtomicWriteFile( ::cFile, cContent, @cFailInfo )
 
    if lOk
+      ::lDiskBacked := .T.   // failed SaveAs leaves the previous watch identity intact
       ::JournalDiscard()   // the journal exists only for unsaved work
       ::lDirty := .F.
       ::nSavedUndoLen := Len( ::aUndo )

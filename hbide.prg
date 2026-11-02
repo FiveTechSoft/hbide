@@ -1469,6 +1469,9 @@ METHOD RecoverJournal( cKey, cTarget ) CLASS HbIde
    ::oEditor:lUtf8 := hEncoding != NIL .and. hEncoding[ "utf8" ]
    ::oEditor:lUtf8Bom := hEncoding != NIL .and. hEncoding[ "bom" ]
    ::oEditor:lUtf8Raw := hEncoding != NIL .and. hEncoding[ "raw" ]
+   // Legacy targets named noname.prg cannot identify their original intent.
+   // Preserve the previous recovery watch behavior, without reinterpreting them.
+   ::oEditor:lDiskBacked := .T.
    ::oEditor:cFile := iif( Empty( cTarget ), "noname.prg", cTarget )
    ::oEditor:SetDirty( .T. )
    // the stamp of the disk version, so the external-change watch does not
@@ -1517,7 +1520,7 @@ METHOD CheckDiskChange() CLASS HbIde
 
    local cStamp
 
-   if ::oMenu:IsOpen() .or. Empty( ::oEditor:cFile )
+   if ::oMenu:IsOpen() .or. ! ::oEditor:lDiskBacked .or. Empty( ::oEditor:cFile )
       return nil
    endif
 
