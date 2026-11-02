@@ -2001,7 +2001,7 @@ DBLinstrumentado. Denominador actualizado y repeticion completa registrada.
 C105 Linux fuente `ff9d91f1f5e506b0fc800a675db889c93eddc866`, binario
 `33f7642ae343ecf773ea6079b377f69036b4f3131a91c3a2cc9fef6630a0b19d`:
 gates propios registrados en `docs/evidence/linux-diagnostic-snapshot-c105-q553.json`;
-pendiente de aceptación focal. Start/Project lector controlado, Undo, otherdoc,
+aceptación focal Q553 confirmada, no global. Start/Project lector controlado, Undo, otherdoc,
 save sin rebuild, rebuild, compiler absent y regresiones de navegación pasan.
 Estados snapshot=/changed/unverified y leyendas completas inspeccionadas en ambos
 listados nativos 80x25/120x40. Límites 64KiB por fuente, 512KiB total y 256

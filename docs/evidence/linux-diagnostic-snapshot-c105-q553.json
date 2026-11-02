@@ -1,5 +1,5 @@
 {
-  "candidate": "C105 pending parent acceptance",
+  "candidate": "C105 accepted focal Q553 only",
   "source": "ff9d91f1f5e506b0fc800a675db889c93eddc866",
   "binary_sha256": "33f7642ae343ecf773ea6079b377f69036b4f3131a91c3a2cc9fef6630a0b19d",
   "changes_since_C104": "only two compact list legends; official8smokes/docs34/About/ldd own PASS",
@@ -4082,5 +4082,6 @@
     "dedup": "256 repeated same literal member plus target matches via Project parser dedup, not independently helper dedup",
     "preparation_retained": "First8x64KiB expectation wrong: eighth cannot fit after HBP so skipped, small target still fits. Correct exactremaining fixture passes; initial2PASS1FAIL retained."
   },
-  "free_at_close": 313618432
+  "free_at_close": 313618432,
+  "acceptance": "Parent confirmed 2Nov2026 04:28:36 CET based on own candidate gates and four inspected native captures. Not global or Windows/license/install acceptance."
 }
