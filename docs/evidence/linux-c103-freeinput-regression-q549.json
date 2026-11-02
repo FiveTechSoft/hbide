@@ -1,0 +1,16 @@
+{
+  "scope": "Fresh C103 free-input UTF8 viewport and paired mouse routing,20PASS, no product change",
+  "source": "ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc",
+  "binary_sha256": "046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd",
+  "tests": {
+    "freeinput_utf8_scroll": "6151fcf4001905722d0d928c44361c14bdb2534123782aa1a8f2cea537d855ed",
+    "freeinput_mouse_pairs": "5dea61cf95063ba690453120e62b5b0a0055f7755893e0a5632efe51f1ffa536",
+    "freeinput_mouse_double": "e8ca035b69d4966ac79be5f4462ec6f811bac59b075c4fd9a8dd9df1b2343bdd"
+  },
+  "logs": {
+    "freeinput_mouse_pairs.log": "PASS Open requested fixture\nPASS Button press alone keeps Find active\nPASS Button press outside release does not activate\nPASS Outside press button release does not activate\nPASS OK press Cancel release does not activate\nPASS Unpaired Cancel release does not activate\nPASS Same-button pair finally closes Find\nPASS Cross-boundary events leave source exact\nTOTAL 8 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-5n_tg4z4\n",
+    "freeinput_mouse_double.log": "PASS Open requested fixture\nPASS Rapid double sequence in input does not activate dialog buttons\nPASS Typing after input double sequence stays in free-form field\nPASS Same-button pair finally closes Find\nPASS Input double sequence and Cancel leave source exact\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-hrtx8skm\n",
+    "freeinput_utf8_scroll.log": "PASS Open long accented fixture\nPASS Input suffix scrolled into viewport\nPASS Home scrolls to start\nPASS End restores UTF8 suffix\nPASS Enter confirms edited long input\nPASS UTF8 scroll edit finds exact long string\nPASS Undo restores original BOM mixed EOL\nTOTAL 7 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-r7by12kt\n"
+  },
+  "limits": "No new defect established by hbgetu/hbbutton reads. Tests exercise free-input route, not every patched TGet method. No new IDE build/export/package/removal/native visual/Windows/full matrix/milestone closure."
+}
