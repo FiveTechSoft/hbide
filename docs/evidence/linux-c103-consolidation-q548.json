@@ -1,0 +1,6 @@
+{
+  "scope": "Q541-Q547 log consolidation only, functional C103 unchanged",
+  "checks": "34 complete documents byte-exact; embed5/inventory56PASS",
+  "log": ".............................................................\n----------------------------------------------------------------------\nRan 61 tests in 0.699s\n\nOK\n",
+  "limits": "Postbinary docs not embedded in existing C103. No new IDE build/export/package/removal/native visual/Windows/install/license/fullmatrix/milestone closure. Initial Q543 fixture failure and Q544 initial failed resize assertions remain in respective receipts."
+}

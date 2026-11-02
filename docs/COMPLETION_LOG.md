@@ -6566,3 +6566,34 @@ C91C92 autorizadospreservadosintegrosrecordsparent11,051,833/11,069,581bytes
 BuildC103monitor100msminobservado455000064B/deltamax222195712B/noabort, no
 garantia instantaneapeak. Postcapturas451284992B. No politica nueva ni Windows/
 install/license/fullmatrix/hito cierre. Docs posteriores no embebidos C103.
+
+### Q541-Q548 (2 noviembre 2026): regresion propia C103 y consolidacion
+
+Mismo binario C103 `046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd`,
+fuente `ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc`. No build nuevo por docs.
+Q541 comprueba catalogo34 byte-exacto y guards de tooling; se omite
+candidate_doc_preflight porque exporta. Documentos posteriores no embebidos.
+Q542 watchidentity nueve modos22PASS propios, sin heredar C101; recovery
+legacy ambiguo conserva politica previa y no queda resuelto.
+Q543 missingcompiler11/outputhorizontal2/emptyargv7/argumentsmodal14PASS.
+Primer fixture missingcompiler sin compilerPATH falla antes del IDE con
+TypeError; log retenido, corregido entorno y repetido, no defecto del IDE.
+Q544 compilerflags14/autorun20/displaymultidoc9PASS. Primer Display7PASS2FAIL
+usaba respuestas terminal40x120 constantes tras resize25x80. Harness corregido
+con TIOCGWINSZ actual: probe independiente9PASS y test repositorio9PASS;
+fallo inicial retenido, sin parche producto ni nuevo claim de pixels.
+Q545 Help symlink3/regularExport5/linkedViewerWheel9PASS, notas ajenas y
+fuente/Undo conservados. Q546 clipboard UTF8multidoc9/blockmultidoc9/close8PASS,
+bytes y Undo/Redo aislados. Q547 debugger WorkAreas10/getterfailure6/
+setterfailure8PASS: alias/record/estructura y backingvalue conservados.
+Receipts linux-c103-*-q541 a q547 en docs/evidence conservan hash y logs propios.
+
+Q548 consolida el registro, no suma estos checks como avance funcional ni
+cierra hitos. Lecturas recientes de coloresdesigner/help/projectoutput/
+clipboard/debugger no establecen otro defecto. Combinedcolorassignment ya
+reinicia splitcolors; no se publica esa hipotesis como fallo. No variantes
+equivalentes para inflar conteos. Fuente funcional C103 intacta; solo harness
+Display corregido y registros posteriores. Sin nuevo build oficial/export/
+paquete/retiros/visual/Windows/install/license/fullmatrix/cierre de hitos.
+C100 precompile fallido y C102 NO ACEPTADO siguen preservados. Preservaciones
+autorizadas cerradas; no nuevas retiradas por inercia. Reserva aproximada423MiB.
