@@ -1,0 +1,16 @@
+{
+  "scope": "Fresh C98 three bounded prior-fix navigation modes14PASS, no inheritanceC95-C97",
+  "source": "a02c032dfaf9c7184a865a8095cbbef09ff43e43",
+  "binary_sha256": "a7b445bb3d80bf8a750a2de0a7ac582e7439644410df0071f17d706a4c1e1c3c",
+  "tests": {
+    "project_portable_separator": "2ae495fd347f9f71d341f618fbd41e9529c1d43037cef70dc707333c8ef80695",
+    "windowlist_utf8_filter": "60cba7ab217f841069bcd831b053631d08693ac847f143439cc919fb792a312c",
+    "picker_horizontal_bounds": "cdba5fc60483d0a670108a8a33f4d48d2b40fb3201c2713f551ca1a810f994a0"
+  },
+  "logs": {
+    "project_portable_separator": "PASS Portable HBP member is listed without missing marker\nPASS Enter opens actual first source\nPASS HBP literal and source bytes unchanged\nTOTAL 3 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-y767g59t\n",
+    "windowlist_utf8_filter": "PASS Open accented document\nPASS Accented WindowList filter matches accented filename\nPASS Backspace removes entire accented character\nPASS Filtered Enter returns same source\nPASS Filter does not modify BOM mixed EOL\nTOTAL 5 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-vda82586\n",
+    "picker_horizontal_bounds": "PASS Open requested fixture\nPASS Picker starts on first declaration\nPASS Outside and border clicks do not select another row\nPASS Undo exact after outside picker clicks\nPASS Interior edge click selects intended implementation\nPASS Undo exact after interior picker click\nTOTAL 6 PASS 0 FAIL\nArtifacts /tmp/hbide-edit-menu-o83hxf_3\n"
+  },
+  "limits": "No fullmatrix/newpixels/Windows/install/license/hito closure. Stop equivalent navigation variants."
+}
