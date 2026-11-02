@@ -1653,7 +1653,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
    local lInBlk := ::BlkCmtState( ::nFirstRow + nLine - ::nTop )
    local nRowNum := ::nFirstRow + nLine - ::nTop
    local nVisualFirst := ::VisualCol( nRowNum, ::nFirstCol )
-   local nCodeStart
+   local nCodeStart, lAsciiBlank
    local cLead := iif(nRowNum<=Len(::aBlkCtx),hb_defaultValue(::aBlkCtx[nRowNum],""),"")
 
    DispBegin()
@@ -1664,6 +1664,9 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
                  nVisualFirst, ::nRight - ::nLeft - 4 + 1 ),;
                  ::LineColor( nLine ) )
 
+   // Byte-only predicate, once per painted line. Tabs/Unicode stay on the
+   // existing tokenizer path. Keep base paint and final selection unchanged.
+   lAsciiBlank := Len( StrTran( cLine, " ", "" ) ) == 0
    nCodeStart := hb_ULen( cLine ) - hb_ULen( LTrim( cLine ) ) + 1
    n = 1
    if cLead == "@TEXT" .and. ! HBIDE_EditorEndText(cLine)
@@ -1672,7 +1675,7 @@ METHOD DisplayLine( nLine ) CLASS HBSrcEdit
          ::cClrString + SubStr(::LineColor(nLine),At("/",::LineColor(nLine))) )
       n := hb_ULen(cLine) + 1
    endif
-   while n <= hb_ULen( cLine )
+   while ! lAsciiBlank .and. n <= hb_ULen( cLine )
       while hb_USubStr( cLine, n, 1 ) == " " .and. n <= hb_ULen( cLine )
          n++
       end

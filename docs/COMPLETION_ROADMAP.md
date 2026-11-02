@@ -2015,3 +2015,16 @@ Incidencia separada abierta: línea de 65537 espacios bajo host UTF8 presenta
 latencia compartida C103/C104; tras espera mayor abre fuente pero row1col1,
 causa y llegada a destino no resueltas. No se cambia política oversized.
 Sin cierre Windows, instalación, licencia, matriz completa ni hito por conteos.
+
+
+### Q554 en preparación: repaint de líneas sólo espacios ASCII
+
+Microdiff limita el bypass al tokenizer de una línea visual vacía o compuesta
+sólo por byte ASCII 0x20, después del dibujo base y antes de la selección final.
+Tabs, formfeed, Unicode y líneas mixtas siguen la ruta previa; no cambia carga,
+modelo, wordwrap ni política de edición oversized. Comparación estática confirma
+base paint y selección final sin cambios; no sustituye gates runtime/visuales.
+Baseline C105 mismo caso 65537 espacios hostUTF8: destino correcto row2col9
+observado en (12.010,20.047] segundos; row1 anterior era checkpoint intermedio,
+no fallo de salto. Mecanismo O(n²) del tokenizer es candidato fuerte, no causa
+exclusiva demostrada. Próxima candidata y aceptación aún pendientes.
