@@ -1,0 +1,16 @@
+{
+  "scope": "Fresh C103 Help symlink3/regularExport5/linkWheel9,17PASS, no productchange",
+  "source": "ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc",
+  "binary_sha256": "046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd",
+  "tests": {
+    "help_export_symlink": "74f32188a66f2deffe112243585eeded3bd249fa4f0fbd9b6ff8359c690d0d0e",
+    "help_export_destinations": "2c786903c7a54803d3dbc70e5d3340a8b6200edbaf3a8d564f989d4d9806df49",
+    "help_link_wheel": "ed168068b7ba5c190367f53b32ed78de75fb759e92d88bacd341f8261ff3e3c7"
+  },
+  "logs": {
+    "help_link_wheel.log": "PASS Exact long manual opens link viewer at first line\nPASS Link viewer wheel down moves one line\nPASS Link viewer wheel up restores first line\nPASS Link viewer wheel up clamps at first line\nPASS Link viewer End reaches last readable top\nPASS Link viewer wheel down clamps at end\nPASS Link viewer wheel up from end moves one line\nPASS Link viewer returns same dirty source\nPASS Undo after link viewer wheel restores exact bytes\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-knwxuw4x\n",
+    "help_export_symlink.log": "PASS Export reports symlink refusal\nPASS Help export does not follow symlink into existing notes\nPASS Close returns unchanged dirty source\nTOTAL 3 PASS 0 FAIL; evidence /tmp/hbide-source-run-nfr75rcm\n",
+    "help_export_destinations.log": "PASS New regular export succeeds\nPASS Regular overwrite still allowed and complete\nPASS Regular export preserves mode\nPASS Unrelated existing notes remain exact\nPASS Close returns unchanged dirty source\nTOTAL 5 PASS 0 FAIL; evidence /tmp/hbide-source-run-5m87g055\n"
+  },
+  "limits": "No newdefect established by designercolor/help source reads; combinedcolorassignment resets splitcolors correctly. Stop equivalenthelp/exportvariants. No newofficialbuild/sourceexport/package/removal/visual/Windows/globalmatrix/license/hitoclosure."
+}
