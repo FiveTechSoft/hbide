@@ -2248,6 +2248,7 @@ return nil
 METHOD Debug() CLASS HbIde
 
    local oHrb, bOldError, cTmpPrg, cTmpHrb, cOldClr := SetColor(), aArgs
+   local cOldCwd := hb_cwd()
    static nDbgSeq := 0
 
    aArgs := HBIDEProjectTokens( ::cRunArgs )
@@ -2331,6 +2332,9 @@ METHOD Debug() CLASS HbIde
          // leaking this session's temp files.
       END SEQUENCE
       ErrorBlock( bOldError )
+      // The debuggee shares cwd with the host. Restore before resolving
+      // relative session temp names and returning to relative documents.
+      hb_cwd( cOldCwd )
       FErase( cTmpPrg )
       FErase( cTmpHrb )
       SetColor( cOldClr )
