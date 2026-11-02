@@ -66,6 +66,28 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 2 noviembre04:38 Q554: candidata **C106** aceptada sólo en alcance focal
+UI normal no-wrap. Fuente `2e84fa5353f32300fff24d5136c957304eb10515`, binario
+`23cacdc20fcb06d9939eb9accbf417019016a5a9fbaa8adee31773c9af19ba7c`.
+Fastpath sólo líneas visuales vacías/espacios ASCII; selección, gutter, colores,
+viewport y cursor conservados en los gates propios registrados. Caso temporal
+concreto: destino correcto en (0,0.503]s frente C105 (12.010,20.047]s, una
+observación cada uno, no rendimiento global ni causa exclusiva demostrada.
+Softwrap runtime NO verificado: enlace inicial fallido y retry de clase con
+propiedad protegida/timeout retenidos, NO PASS. Sin más intentos.
+Receipt: `docs/evidence/linux-ascii-blank-c106-q554.json`.
+Q553 C105 aceptada focal señal snapshot=/changed/unverified: 64KiB/fuente,
+512KiB total, 256 identidades incluidos fallos, cache al abrir/tras build,
+Enter revalida. Snapshot= significa bytes listados iguales a captura prebuild,
+no validez del diagnóstico ni garantía de consumo concurrente/dependencias.
+C104 sigue NO ACEPTADA por leyenda truncada; evidencia preservada.
+Sin herencia de matriz/Windows/install/licencia/hitos. Docs posteriores al
+build no están en el binario C106; no rebuild por docs. Espacio libre observado
+04:41: 267284480B, dato temporal no presupuesto vigente. No quedan grants de
+build/export/retiro. Siguiente: consolidación ligera y hueco distinto acotado.
+
+### Histórico C103, no candidata vigente
+
 Corte 2 noviembre02:10 Q540: candidato aceptado en alcance focal **C103**,
 fuente `ef8c78792a1b5726d61dd61467b6cd77f0aaa5cc`,
 bin `046e0aa60f3a72a335ebf203caaf6f9293644b4a9cd0c37cead6309138648bdd`.
