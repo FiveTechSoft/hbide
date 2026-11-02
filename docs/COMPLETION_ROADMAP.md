@@ -66,6 +66,22 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 2 noviembre01:53 Q538: candidato aceptado en alcance focal **C101**,
+fuente `2be7bb73e4133019648a725d6135cf4c2d21ad6d`,
+bin `3dbd3a36ed387fea25839e0a01f019927e7f80882d5544313e14e610f2e8b148`.
+Watch no asocia plantilla inicial al homonimo cwd/noname.prg; explicit Open
+relativo sigue vigilado. Own8smokes/docs34/About/ldd/focal22/regresiones32PASS.
+Native1202x762before/after inspeccionadas completas, plantilla conservada.
+Recovery legacy ambiguo conserva comportamiento previo, no formato/politica nueva
+ni solucion de ambiguedad. C100 export fallido antes compile intacto, C99 intacto.
+Receipt linux-untitled-watch-c101-q538.json detalla baseline y readiness failures.
+No matriz heredada/fullmatrix/Windows/install/licencias/cierre de hitos.
+Docs posteriores no embebidos, sin rebuild por docs. Reserva170MiB aprox;
+no nuevas retiradas/export/build sin defecto/capacidad.
+
+Historico anterior, no evidencia heredada por C101:
+
+
 Corte 2 noviembre01:21 Q533: ultimo candidato aceptado en alcance focal **C99**,
 fuente `283f99c604db3de1b270666df1fdb64b2eec38c8`,
 bin `42fc43771b08081372b9de7d9a7c534d407ba0286b17d20e94f4e6484f2a50f8`.

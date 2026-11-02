@@ -6506,3 +6506,27 @@ hashes/logs. PTYtexto/atributos no es pixel-certificacion. Bin C99 intacto.
 Lectura source editor/SaveAs/Start/recovery no establece defecto adicional;
 no cambios producto ni nuevas politicas. Paro variantes lexicas equivalentes.
 Sin rebuild por docs, retiradas/fullmatrix/Windows/install/license/hito cierre.
+
+
+### Q538 (2 noviembre 2026): vigilancia del buffer realmente sin nombre, C101
+
+C99 con homonimo cwd/noname.prg recarga archivo no abierto en plantilla inicial,
+o falso conflicto si dirty. Baseline final18PASS4FAIL; errores previos readiness
+harness retenidos, no atribuidos al producto. lDiskBacked separa asociacion watch:
+LoadFile/SaveFile exitosos activan, fallo no cambia; LoadText neutro. Recovery
+activa siempre para preservar watch legacy, sin inferir intencion ambigua target
+noname.prg; no formato/key/sidecars/politica nueva ni migracion Save/FindDoc/SaveAll.
+C100 fallo ANTES compile por helpdocs stale, export intacto/no bin/no reutilizado.
+C101 tras catalogo34check fuente2be7bb73e4133019648a725d6135cf4c2d21ad6d,
+bin3dbd3a36ed387fea25839e0a01f019927e7f80882d5544313e14e610f2e8b148.
+Own8smokes/About/ldd/docs34PASS, focal9modes22PASS, regresiones externas5/
+SaveAsfailure1/SaveAllfail5/refusalRecovery21PASS. Native1202x762before/after
+inspeccionadas source/menu/titulo/bordes/status completos: homonimo inesperado
+vs plantilla conservada sin aviso. C99 conservado. Reserva postcaptura178454528B,
+consumoaceptacion~4MiB; sin mas retiradas/build/export/package. C80C87C88 preservados
+integros independientes con restauracionSHA-size-mode-metadata-inventory y recheck
+original antes de retirar solo expandido, paro614973440B>=500MiB. Registros padre.
+Pausa build llego durante C101 ya ejecutandose, informado; focal pausado despues
+y permitido34MiBbudget/100MiBstop/64MiBsafety. No ocultar C100 ni pico no medido.
+Docs posteriores no embebidos, sin rebuild por docs. No recovery ambiguo resuelto,
+fullmatrix/Windows/install/license/hito cerrado.
