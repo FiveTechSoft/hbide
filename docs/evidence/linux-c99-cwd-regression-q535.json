@@ -1,0 +1,16 @@
+{
+  "scope": "Fresh C99 Script normal7/error8 and Debug normal9/error10,34PASS, no inheritedC97C98 acceptance",
+  "source": "283f99c604db3de1b270666df1fdb64b2eec38c8",
+  "binary_sha256": "42fc43771b08081372b9de7d9a7c534d407ba0286b17d20e94f4e6484f2a50f8",
+  "tests": {
+    "script": "1170106d37fbedb8ec9429ab1a67a5cfb2f1be59c36b7332959116fe40f28baa",
+    "debug": "f1d5f0678b602ea17476e816506cf545722d9f3575ee39306024052dfbc1782c"
+  },
+  "logs": {
+    "debug-error.log": "PASS Relative fixture opened\nPASS Debugger entered\nPASS Runtime error visible\nPASS Debug returns usable editor\nPASS No false disk deletion after Debug\nPASS Original source not actually deleted\nPASS No false recreate prompt\nPASS Original relative source saved in its original directory\nPASS No leaked debug temporary files\nPASS No wrong directory save created\nTOTAL 10 PASS 0 FAIL; evidence /tmp/hbide-source-run-_aztowak\n",
+    "debug-normal.log": "PASS Relative fixture opened\nPASS Debugger entered\nPASS Debug returns usable editor\nPASS No false disk deletion after Debug\nPASS Original source not actually deleted\nPASS No false recreate prompt\nPASS Original relative source saved in its original directory\nPASS No leaked debug temporary files\nPASS No wrong directory save created\nTOTAL 9 PASS 0 FAIL; evidence /tmp/hbide-source-run-89b56_29\n",
+    "script-error.log": "PASS Relative fixture opened\nPASS Runtime error visible\nPASS Script returns usable editor\nPASS No false disk deletion after Script\nPASS Original source not actually deleted\nPASS No false recreate prompt\nPASS Original relative source saved in its original directory\nPASS No wrong directory save created\nTOTAL 8 PASS 0 FAIL; evidence /tmp/hbide-source-run-99exfauh\n",
+    "script-normal.log": "PASS Relative fixture opened\nPASS Script returns usable editor\nPASS No false disk deletion after Script\nPASS Original source not actually deleted\nPASS No false recreate prompt\nPASS Original relative source saved in its original directory\nPASS No wrong directory save created\nTOTAL 7 PASS 0 FAIL; evidence /tmp/hbide-source-run-ny57dddl\n"
+  },
+  "limits": "No deleted/inaccessible hostcwd/general process isolation/restart/toggles/Cancel/Windows/fullmatrix/install/license/hito closure. Stop equivalent cwd variants."
+}
