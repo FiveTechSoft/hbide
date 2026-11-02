@@ -863,6 +863,7 @@ return oMenu
 METHOD Start() CLASS HbIde
 
    local cFile := ::oEditor:cFile, cExe, cOut, cBase, cExeTmp, cErr := "", nRc, cRecovery := "", cCommand, oError
+   local hDiagnosticSnapshot
    local aDiag, nFirstErr, oOpenEd, lBuildReady := .F., cBuildScreen, nBuildCursor
 
    if HBIDEProjectTokens( ::cRunArgs ) == nil
@@ -943,6 +944,8 @@ METHOD Start() CLASS HbIde
       return nil
    endif
 
+   hDiagnosticSnapshot := HBIDEDiagnosticCapture({cFile})
+
    // Process argv quoting is not shell quoting. Source/output paths remain
    // single arguments, including spaces and shell metacharacters.
    cOut := ""
@@ -962,6 +965,7 @@ METHOD Start() CLASS HbIde
    // keep the parsed diagnostics for Window > Messages / Alt+F7 / Alt+F8
    // (paths stay as hbmk2 printed them: relative to the current directory)
    aDiag := HBIDEProjectDiagnostics( cOut, hb_cwd() + hb_ps() )
+   HBIDEDiagnosticBind(aDiag,hDiagnosticSnapshot)
    ::SetMessages( aDiag )
    // No compiler output is not proof of success (missing executable can be quiet).
    if ! Empty( cOut )
@@ -1154,7 +1158,7 @@ METHOD ProjectDesktop() CLASS HbIde
       endif
    endif
    ::SuspendStatus()
-   hNavigate := HBIDEProjectDesktop( ::oProject, ::cProjectHbmk2 )
+   hNavigate := HBIDEProjectDesktop( ::oProject, ::cProjectHbmk2, ::aEditors )
    ::ResumeStatus()
    ::Repaint()
    // a project build feeds the same message list as Run > Start
@@ -1166,6 +1170,11 @@ METHOD ProjectDesktop() CLASS HbIde
          ::oEditor:ClearSelection()
          ::oEditor:Goto( hNavigate[ "line" ], hNavigate[ "column" ] + 4 )
          ::oEditor:Display()
+         if hb_HHasKey(hNavigate,"diagnostic")
+            ::cMsgBar := "[" + HBIDEDiagnosticStatus(hNavigate["diagnostic"],::aEditors,HBIDEDiagnosticBudget()) + "] " + ;
+               hNavigate["diagnostic"]["text"]
+            ::ShowStatus()
+         endif
          ::nMsg := AScan( ::aMessages, {| h | h[ "path" ] == hNavigate[ "path" ] .and. ;
                           h[ "line" ] == hNavigate[ "line" ] } )
       endif
@@ -2562,18 +2571,18 @@ return nil
 
 METHOD MessageList() CLASS HbIde
 
-   local aLabels := {}, h, n
+   local aLabels := {}, h, n, hBudget := HBIDEDiagnosticBudget()
 
    if Empty( ::aMessages )
       HBIDE_MsgAlert( "No compiler messages. Build with Run > Start (or the project desktop) first" )
       return nil
    endif
    for each h in ::aMessages
-      AAdd( aLabels, PadR( Upper( h[ "level" ] ), 8 ) + hb_FNameNameExt( h[ "path" ] ) + ":" + ;
+      AAdd( aLabels, "[" + HBIDEDiagnosticStatus(h,::aEditors,hBudget) + "] " + PadR( Upper( h[ "level" ] ), 8 ) + hb_FNameNameExt( h[ "path" ] ) + ":" + ;
             hb_ntos( h[ "line" ] ) + "  " + h[ "text" ] )
    next
    ::SuspendStatus()
-   n := HBIDE_ListPick( "Compiler messages", aLabels, Max( 1, ::nMsg ), "Enter jump to source   Esc cancel" )
+   n := HBIDE_ListPick( "Compiler messages", aLabels, Max( 1, ::nMsg ), "snapshot= is byte match, not validity; checked on open. Enter rechecks" )
    ::ResumeStatus()
    ::Repaint()
    if n > 0
@@ -2606,18 +2615,19 @@ return nil
 
 METHOD JumpMessage( n, cWrap ) CLASS HbIde
 
-   local h := ::aMessages[ n ]
+   local h := ::aMessages[ n ], cSourceState
 
    hb_default( @cWrap, "" )
    if ! ::OpenInEditor( h[ "path" ] )
       return nil
    endif
+   cSourceState := HBIDEDiagnosticStatus(h,::aEditors,HBIDEDiagnosticBudget())
    ::nMsg := n
    ::oEditor:ClearSelection()
    ::oEditor:Goto( h[ "line" ], h[ "column" ] + 4 )
    ::oEditor:Display()
    ::oEditor:ShowCursor()
-   ::cMsgBar := hb_ntos( n ) + "/" + hb_ntos( Len( ::aMessages ) ) + cWrap + " " + Upper( h[ "level" ] ) + ": " + h[ "text" ]
+   ::cMsgBar := "[" + cSourceState + "] " + hb_ntos( n ) + "/" + hb_ntos( Len( ::aMessages ) ) + cWrap + " " + Upper( h[ "level" ] ) + ": " + h[ "text" ]
    ::ShowStatus()
 
 return nil

@@ -3,12 +3,13 @@
 
 // Modal project desktop. Returns a navigation request; never edits a buffer.
 // Host suspends its idle/status repaint while this dialog owns the screen.
-FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 )
+FUNCTION HBIDEProjectDesktop( oProject, cHbmk2, aEditors )
    LOCAL cSaved := SaveScreen( 0, 0, MaxRow(), MaxCol() ), nCursor := SetCursor( SC_NONE )
    LOCAL nPick := 1, nTop := 1, nKey, lMessages := .F., aRows, hReturn := NIL
    LOCAL nVisible := MaxRow() - 10, nClick, h
+   LOCAL aSourceStates := HBIDEProjectSourceStates(oProject,aEditors)
    DO WHILE .T.
-      aRows := HBIDEProjectRows( oProject, lMessages )
+      aRows := HBIDEProjectRows( oProject, lMessages, aSourceStates )
       nPick := Max( 1, Min( nPick, Len( aRows ) ) )
       nTop := Min( nTop, nPick )
       IF nPick >= nTop + nVisible
@@ -38,6 +39,7 @@ FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 )
       CASE nKey == K_F9 .OR. nKey == K_CTRL_F9
          hb_DispOutAt( MaxRow() - 3, 4, PadR( "Building... waiting for hbmk2 (Esc cannot cancel)", MaxCol() - 7 ), "W+/R" )
          oProject:Build( cHbmk2, nKey == K_CTRL_F9 )
+         aSourceStates := HBIDEProjectSourceStates(oProject,aEditors)
          lMessages := .T.; nPick := 1; nTop := 1
       CASE nKey == K_LBUTTONDOWN .OR. nKey == K_LDBLCLK
          nClick := MRow() - 6 + nTop
@@ -54,6 +56,9 @@ FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 )
          IF ! Empty( h[ "path" ] )
             hReturn := { "action" => "open", "path" => h[ "path" ], ;
                "line" => h[ "line" ], "column" => h[ "column" ] }
+            IF lMessages
+               hReturn["diagnostic"] := oProject:hBuild["diagnostics"][nPick]
+            ENDIF
             EXIT
          ENDIF
       ENDIF
@@ -62,12 +67,13 @@ FUNCTION HBIDEProjectDesktop( oProject, cHbmk2 )
    SetCursor( nCursor )
    RETURN hReturn
 
-FUNCTION HBIDEProjectRows( oProject, lMessages )
+FUNCTION HBIDEProjectRows( oProject, lMessages, aSourceStates )
    LOCAL a := {}, h, u
    IF lMessages
       IF ! Empty( oProject:hBuild )
          FOR EACH h IN oProject:hBuild[ "diagnostics" ]
-            AAdd( a, { "label" => Upper( h[ "level" ] ) + " " + hb_FNameNameExt( h[ "path" ] ) + ;
+            AAdd( a, { "label" => iif(HB_ISARRAY(aSourceStates) .AND. h:__enumIndex()<=Len(aSourceStates), ;
+               "["+aSourceStates[h:__enumIndex()]+"] ","") + Upper( h[ "level" ] ) + " " + hb_FNameNameExt( h[ "path" ] ) + ;
                ":" + hb_ntos( h[ "line" ] ) + " " + h[ "text" ], "detail" => h[ "path" ], ;
                "path" => h[ "path" ], "line" => h[ "line" ], "column" => h[ "column" ] } )
          NEXT
@@ -100,7 +106,7 @@ FUNCTION HBIDEProjectPaint( oProject, lMessages, aRows, nPick, nTop, nVisible )
          hb_ntos( Len( oProject:hBuild[ "diagnostics" ] ) ) + " diagnostics"
    ENDIF
    hb_DispOutAt( 4, 4, PadR( cState, nC - 7 ), iif( "FAILED" $ cState, "W+/R", "N/W" ) )
-   hb_DispOutAt( 5, 4, PadR( iif( lMessages, "MESSAGES - Enter jumps to source; F6 full output", ;
+   hb_DispOutAt( 5, 4, PadR( iif( lMessages, "MESSAGES cached open/build; snapshot= bytes only; Enter rechecks", ;
       "SOURCES - Enter opens; ! missing; ? resolved by hbmk2" ), nC - 7 ), "W+/B" )
    FOR i := 0 TO nVisible - 1
       n := nTop + i
@@ -180,3 +186,13 @@ FUNCTION HBIDEProjectOutput( cOutput )
       nTop := Max( 1, Min( nTop, Max( 1, Len( a ) - nR + 7 ) ) )
    ENDDO
    RETURN NIL
+
+// Frozen labels for this modal opening/build. Painting only reads the cache.
+FUNCTION HBIDEProjectSourceStates(oProject,aEditors)
+   LOCAL a := {}, h, hBudget := HBIDEDiagnosticBudget()
+   IF !Empty(oProject:hBuild)
+      FOR EACH h IN oProject:hBuild["diagnostics"]
+         AAdd(a,HBIDEDiagnosticStatus(h,aEditors,hBudget))
+      NEXT
+   ENDIF
+RETURN a

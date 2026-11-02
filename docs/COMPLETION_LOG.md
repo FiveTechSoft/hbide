@@ -6597,3 +6597,30 @@ Display corregido y registros posteriores. Sin nuevo build oficial/export/
 paquete/retiros/visual/Windows/install/license/fullmatrix/cierre de hitos.
 C100 precompile fallido y C102 NO ACEPTADO siguen preservados. Preservaciones
 autorizadas cerradas; no nuevas retiradas por inercia. Reserva aproximada423MiB.
+
+### Q553 (2 noviembre 2026): senal de snapshot de diagnosticos, pendiente
+
+C103 reproduce diagnostico GCC original row2col9 tras insertar una linea:
+el error pasa a row3 pero NextMessage salta row2col9 sin avisar. Baseline
+fuerte5PASS1FAIL; matrices Start8/Project7 caracterizan estado previo, no
+aceptan una correccion. Diff local aun sin aceptar: snapshot previo al build
+para fuente Start y miembros literales/HBP del modelo Project; no dependencias
+indirectas, coherencia con HBP cambiado ni bytes realmente consumidos bajo
+concurrencia. [snapshot=] significa solo coincidencia de bytes con ese snapshot;
+[changed] diferencia; [unverified] fuera de captura/limites/lectura/conversion.
+Cache al abrir listas/tras build, Enter reconsulta destino; no cambios al salto,
+guardados adicionales ni bloqueo. Topes64KiB/fuente,512KiBtotal,256identidades
+consideradas incluyendo fallos; dedup y cargo de bytes intentados. Consulta
+reserva64KiB por destino, por eso como maximo ocho destinos por barrido y resto
+unverified. Serializacion usa BOM/encoding/EOL de SaveFile, validador Unicode
+y roundtrip, rechazo conservador antes de asignacion. Paint/idle/teclas no
+leen ni serializan ni calculan hashes nuevos.
+Modelos locales13/19/19PASS, sintaxisHarbour4PASS, no wiring/UI. Medicion local
+warmcache: serializacion real60KB validada+hash diez115ms/ocho92ms; captura256
+archivos distintos512KiB3ms, no p95/discofrio. Primitiva hb_StrIsUTF8 no sirve
+como validador scalar. Preparaciones fallidas y logs se conservan. C93 expandida
+redundante preservada reversiblemente autorizada, archivo11,077,723bytes y
+1594entradas, inventario/hash/metadata/descompresion/recheck antes de retirar
+solo expandida. C99-103/bin/originales/logs intactos. Candidata unica autorizada
+con320MiBoperativo+128MiBreserva y monitor100ms, todavia no aceptada. Sin nuevo
+claim de vigencia global/Windows/install/license/fullmatrix/hitos.

@@ -1,5 +1,6 @@
 // Harbour project model and build diagnostics. hbmk2 remains the build authority.
 #include "hbclass.ch"
+#include "fileio.ch"
 
 CREATE CLASS HBIDEProject
    VAR cFile INIT ""
@@ -106,15 +107,20 @@ METHOD Info( cHbmk2 ) CLASS HBIDEProject
    RETURN .T.
 
 METHOD Build( cHbmk2, lRebuild ) CLASS HBIDEProject
-   LOCAL aFlags := { "-run-", "-q" }
+   LOCAL aFlags := { "-run-", "-q" }, aPaths := { ::cFile }, hMember, hSnapshot
    // Do not run the product here, including when the project contains -run.
    // The caller can offer Run only after this result's exit code is zero.
    IF hb_defaultValue( lRebuild, .F. )
       AAdd( aFlags, "-rebuild" )
    ENDIF
+   FOR EACH hMember IN ::aMembers
+      AAdd(aPaths,hMember["path"])
+   NEXT
+   hSnapshot := HBIDEDiagnosticCapture(aPaths)
    ::hBuild := HBIDEProjectProcess( Self, cHbmk2, aFlags )
    ::hBuild[ "ok" ] := ::hBuild[ "exit" ] == 0
    ::hBuild[ "diagnostics" ] := HBIDEProjectDiagnostics( ::hBuild[ "output" ], ::cRoot )
+   HBIDEDiagnosticBind(::hBuild["diagnostics"],hSnapshot)
    ::cError := iif( ::hBuild[ "ok" ], "", "Build failed (exit " + hb_ntos( ::hBuild[ "exit" ] ) + ")" )
    RETURN ::hBuild[ "ok" ]
 
@@ -385,3 +391,96 @@ FUNCTION HBIDECompilerInclude()
       ENDIF
    NEXT
 RETURN ""
+
+// Diagnostic provenance is a bounded pre-build snapshot of listed sources,
+// not proof of compiler consumption, dependencies or concurrent consistency.
+FUNCTION HBIDEDiagnosticKey(cPath)
+   cPath := HBIDE_RecoveryAbs(cPath)
+#ifdef __PLATFORM__WINDOWS
+   cPath := Upper(cPath)
+#endif
+RETURN cPath
+
+FUNCTION HBIDEDiagnosticBudget()
+RETURN { "seen" => {=>}, "count" => 0, "bytes" => 0 }
+
+FUNCTION HBIDEDiagnosticRead(cPath,hBudget,lOk)
+   LOCAL nHandle, nSize, nRead, cText := "", cKey := HBIDEDiagnosticKey(cPath)
+   lOk := .F.
+   IF hb_HHasKey(hBudget["seen"],cKey) .OR. hBudget["count"] >= 256
+      RETURN ""
+   ENDIF
+   hBudget["seen"][cKey] := .T.
+   hBudget["count"]++
+   nHandle := FOpen(cPath,FO_READ+FO_SHARED)
+   IF nHandle >= 0
+      nSize := FSeek(nHandle,0,FS_END)
+      IF nSize >= 0 .AND. nSize <= 65536 .AND. nSize <= 524288-hBudget["bytes"]
+         // Charge attempted bytes even if the read subsequently fails.
+         hBudget["bytes"] += nSize
+         IF FSeek(nHandle,0,FS_SET)==0
+            cText := Space(nSize)
+            nRead := FRead(nHandle,@cText,nSize)
+            lOk := nRead==nSize .AND. FError()==0 .AND. FSeek(nHandle,0,FS_END)==nSize
+         ENDIF
+      ENDIF
+      FClose(nHandle)
+   ENDIF
+RETURN iif(lOk,cText,"")
+
+FUNCTION HBIDEDiagnosticCapture(aPaths)
+   LOCAL h := {=>}, hBudget := HBIDEDiagnosticBudget(), cPath, cText, lOk, cKey
+   FOR EACH cPath IN aPaths
+      IF hBudget["count"] >= 256
+         EXIT
+      ENDIF
+      cKey := HBIDEDiagnosticKey(cPath)
+      IF !hb_HHasKey(hBudget["seen"],cKey)
+         cText := HBIDEDiagnosticRead(cPath,hBudget,@lOk)
+         IF lOk
+            h[cKey] := {Len(cText),hb_SHA256(cText)}
+         ENDIF
+      ENDIF
+   NEXT
+RETURN h
+
+FUNCTION HBIDEDiagnosticBind(aDiag,hSnapshot)
+   LOCAL h,cKey
+   FOR EACH h IN aDiag
+      cKey := HBIDEDiagnosticKey(h["path"])
+      h["snapshot"] := hb_HGetDef(hSnapshot,cKey,NIL)
+   NEXT
+RETURN NIL
+
+// Called only on explicit list opening/build completion/jump, never paint.
+FUNCTION HBIDEDiagnosticStatus(h,aEditors,hBudget)
+   LOCAL aVersion := hb_HGetDef(h,"snapshot",NIL), cKey, cText, lOk := .F., oEd
+   cKey := HBIDEDiagnosticKey(h["path"])
+   IF hb_HHasKey(hBudget["seen"],cKey)
+      RETURN hBudget["seen"][cKey]
+   ENDIF
+   IF hBudget["count"] >= 256
+      RETURN "unverified"
+   ENDIF
+   hBudget["count"]++
+   hBudget["seen"][cKey] := "unverified"
+   IF 65536 > 524288-hBudget["bytes"] .OR. aVersion == NIL
+      RETURN "unverified"
+   ENDIF
+   // Reserve the maximum attempted serialization/read, including failures.
+   hBudget["bytes"] += 65536
+   IF HB_ISARRAY(aEditors)
+      FOR EACH oEd IN aEditors
+         IF oEd:lDiskBacked .AND. HBIDEDiagnosticKey(oEd:cFile)==cKey
+            cText := oEd:DiagnosticBytes(65536,@lOk)
+            EXIT
+         ENDIF
+      NEXT
+   ENDIF
+   IF cText == NIL
+      cText := HBIDEDiagnosticRead(h["path"],HBIDEDiagnosticBudget(),@lOk)
+   ENDIF
+   hBudget["seen"][cKey] := iif(!lOk,"unverified", ;
+      iif(Len(cText)==aVersion[1] .AND. hb_SHA256(cText)==aVersion[2], ;
+      "snapshot=","changed"))
+RETURN hBudget["seen"][cKey]

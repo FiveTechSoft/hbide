@@ -112,6 +112,7 @@ CLASS HBSrcEdit FROM HBEditor
    METHOD InsertLine( cLine, lSoftCR, nRow )
    METHOD LoadFile( cFileName, cRaw )
    METHOD SaveFile()
+   METHOD DiagnosticBytes( nLimit, lOk )
    DATA   cRecoveredBase INIT ""
    DATA   lJournalWarned INIT .F.   // one-shot: recovery write failing
    DATA   cDocId        INIT ""     // unique per editor instance (multi-doc):
@@ -1408,6 +1409,31 @@ function HBIDE_BackupFile( cSource, cFailInfo )
 return HBIDE_AtomicWriteFile( cSource + ".bak", cBytes, @cFailInfo )
 
 //-----------------------------------------------------------------------------------------//
+
+// Bounded, side-effect-free serialization for an explicit diagnostic query.
+// No dirty test: Undo can reproduce the original bytes while still dirty.
+METHOD DiagnosticBytes( nLimit, lOk ) CLASS HBSrcEdit
+   local nTotal := 3, oLine, cText, cUTF8
+   local nFactor := iif( ::lUtf8 .and. hb_cdpSelect() != "UTF8", 4, 1 )
+   lOk := .F.
+   for each oLine in ::aText
+      nTotal += ( Len(oLine:cText) + Len(oLine:cEol) ) * nFactor
+      if nTotal > nLimit
+         return ""
+      endif
+   next
+   cText := ::GetText()
+   if ::lUtf8
+      cUTF8 := hb_StrToUTF8(cText)
+      if ! HBIDE_Utf8Valid(cUTF8) .or. ! HBIDE_StrEq(hb_UTF8ToStr(cUTF8),cText)
+         return ""
+      endif
+      cText := iif(::lUtf8Bom,HBIDE_Utf8Bom(),"") + cUTF8
+   elseif ::lUtf8Raw .and. ! HBIDE_Utf8Valid(cText)
+      return ""
+   endif
+   lOk := Len(cText) <= nLimit
+return iif(lOk,cText,"")
 
 METHOD SaveFile() CLASS HBSrcEdit
 
