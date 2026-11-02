@@ -2582,7 +2582,7 @@ METHOD MessageList() CLASS HbIde
             hb_ntos( h[ "line" ] ) + "  " + h[ "text" ] )
    next
    ::SuspendStatus()
-   n := HBIDE_ListPick( "Compiler messages", aLabels, Max( 1, ::nMsg ), "snapshot= is byte match, not validity; checked on open. Enter rechecks" )
+   n := HBIDE_ListPick( "Compiler messages", aLabels, Max( 1, ::nMsg ), "snapshot=bytes, not validity; cached open; Enter rechecks" )
    ::ResumeStatus()
    ::Repaint()
    if n > 0

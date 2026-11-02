@@ -106,7 +106,7 @@ FUNCTION HBIDEProjectPaint( oProject, lMessages, aRows, nPick, nTop, nVisible )
          hb_ntos( Len( oProject:hBuild[ "diagnostics" ] ) ) + " diagnostics"
    ENDIF
    hb_DispOutAt( 4, 4, PadR( cState, nC - 7 ), iif( "FAILED" $ cState, "W+/R", "N/W" ) )
-   hb_DispOutAt( 5, 4, PadR( iif( lMessages, "MESSAGES cached open/build; snapshot= bytes only; Enter rechecks", ;
+   hb_DispOutAt( 5, 4, PadR( iif( lMessages, "snapshot=bytes, not validity; cached open/build; Enter rechecks", ;
       "SOURCES - Enter opens; ! missing; ? resolved by hbmk2" ), nC - 7 ), "W+/B" )
    FOR i := 0 TO nVisible - 1
       n := nTop + i
