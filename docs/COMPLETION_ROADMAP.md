@@ -2017,7 +2017,7 @@ causa y llegada a destino no resueltas. No se cambia política oversized.
 Sin cierre Windows, instalación, licencia, matriz completa ni hito por conteos.
 
 
-### Q554 en preparación: repaint de líneas sólo espacios ASCII
+### Q554 aceptada focal UI normal no-wrap: repaint sólo espacios ASCII
 
 Microdiff limita el bypass al tokenizer de una línea visual vacía o compuesta
 sólo por byte ASCII 0x20, después del dibujo base y antes de la selección final.
@@ -2027,4 +2027,4 @@ base paint y selección final sin cambios; no sustituye gates runtime/visuales.
 Baseline C105 mismo caso 65537 espacios hostUTF8: destino correcto row2col9
 observado en (12.010,20.047] segundos; row1 anterior era checkpoint intermedio,
 no fallo de salto. Mecanismo O(n²) del tokenizer es candidato fuerte, no causa
-exclusiva demostrada. Próxima candidata y aceptación aún pendientes.
+exclusiva demostrada. C106 fuente `2e84fa5353f32300fff24d5136c957304eb10515`, bin `23cacdc20fcb06d9939eb9accbf417019016a5a9fbaa8adee31773c9af19ba7c`: mismo caso llega a destino correcto en primer checkpoint0.503s, una observación sin claimglobal. Selección/horizontal/virtual/Undo/F2, tabs, TEXT, Unicode y visuales propias ambos tamaños pasan. Runtime softwrap NO verificado: prueba de clase separada falló enlace inicial; retry compiló pero aserción de propiedad protegida provocó modal y deadline8s, NO PASS. No más intentos. Aceptación limitada UI normal sinwrap, sin cierre rendimiento global/causa exclusiva/Windows/install/licencia/matriz. Receipt `docs/evidence/linux-ascii-blank-c106-q554.json`.
