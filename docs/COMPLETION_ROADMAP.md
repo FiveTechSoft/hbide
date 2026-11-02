@@ -66,6 +66,26 @@ correcciones de hoy no heredan automaticamente pruebas antiguas ni Windows.
 
 ## Trabajo siguiente y evidencia vigente
 
+Corte 2 noviembre01:07 Q528: ultimo candidato aceptado en alcance focal **C97**,
+fuente `8db62f6e73fdd4fa8bebf6a296ae8066fe4d1a1f`,
+bin `3170ef0f89bc2867e7ea636a9edae5d4e7cc9a9863f31ac15b79dac5674b6f2e`.
+Script comparte cwd con el host: un hb_cwd("child") dejaba rutas relativas
+apuntando a otra carpeta al volver. C96 mostraba falso File deleted/Recreate;
+aceptar guardaba child/script.prg en vez del original. Baseline normal3PASS4FAIL,
+error4PASS4FAIL. C97 restaura cwd del host tras HRB normal/error recuperado,
+antes del poll/status/repaint. El script puede cambiar cwd durante su ejecucion.
+Own8smokes/About/ldd/docs34 PASS; focal normal7/error8, ScriptErrors9/Screen7/
+HBPportable3 frescos PASS. Visual nativa1202x762 antes falso aviso/despues editor
+limpio inspeccionada con fuente/bordes/status completos. Probes iniciales25x80/
+poll y fixture LOCAL tras sentencia corregidos, logs retenidos sin ocultar fallos.
+C96 conservado, sin heredar matriz. No fix Debugcwd/general process isolation/
+cwdhost eliminado ni Windows/install/license/cierre de hitos o politicas.
+Q529 docs posteriores no embebidos C97, sin build por docs. Reserva160MiB;
+no mas retiradas autorizadas. Siguiente hueco distinto con reproduccion concreta,
+no variantes equivalentes ni builds para consumir reserva.
+
+Historico anterior, no evidencia heredada por C97:
+
 Corte 2 noviembre00:52 Q521: ultimo candidato aceptado en alcance focal **C96**,
 fuente `ea630625ac5cab04a30a1f17fae3ee5016e0d7e2`,
 bin `861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9`.

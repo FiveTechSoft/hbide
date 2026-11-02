@@ -6426,3 +6426,22 @@ variantes equivalentes parser/history/modelos. Cada receipt tiene identidad,
 hashes y logs propios. C96bin861deed01575d869459a6e4384df0a4d0ba63b99326c5dc04a50ddc256dd68f9 intacto.
 Q526 docs posteriores no embebidos C96, no build por docs. Reserva382MiB;
 sin nuevas retiradas/politicas/fullmatrix/pixeles/Windows/install/license/hitos.
+
+
+### Q527-Q529 (2 noviembre 2026): retorno Script y cwd del host, C97 propio
+
+Q527 C96 ScriptErrors9/Screen7 y probe privado DebugSyntax3PASS frescos, sin
+nuevo defecto en esos modos. Q528 reprodujo otro defecto: hb_cwd("child") en
+Script altera cwd del host y hace que Save de script.prg relativo ofrezca
+Recreate y escriba en child/script.prg. C96 normal3PASS4FAIL/error4PASS4FAIL.
+Fix guarda cwd al entrar Script y restaura tras HRB normal/error recuperado,
+antes de devolver poll/status/repaint. No impide cambios cwd dentro del script.
+C97source8db62f6e73fdd4fa8bebf6a296ae8066fe4d1a1f,
+bin3170ef0f89bc2867e7ea636a9edae5d4e7cc9a9863f31ac15b79dac5674b6f2e.
+Own8smokes/About/ldd/docs34/focalnormal7-error8/ScriptErrors9-Screen7/HBPportable3
+PASS. Visual nativa1202x762 C96falsoFiledeleted/C97editorlimpio inspeccionada,
+bordes/status/source completos. Probes25x80/poll y LOCAL tras sentencia
+corregidos antes de aceptar, logs iniciales retenidos. C96 conservado.
+No Debugcwd/generalprocessisolation/deletedhostcwd/Windows/fullmatrix/license/
+hito cerrado ni politica nueva. Reserva160MiB, sin retiradas nuevas.
+Q529docs posteriores no embebidos C97; no build solo por docs.
