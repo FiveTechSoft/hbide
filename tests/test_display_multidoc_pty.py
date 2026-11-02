@@ -20,10 +20,11 @@ for kind in ['display']:
    try:d=os.read(fd,65536)
    except OSError:break
    b+=d
-   if b'\x1b[6n' in d:os.write(fd,b'\x1b[40;1R')
-   if b'\x1b[18t' in d:os.write(fd,b'\x1b[8;40;120t')
    for rr,cc in re.findall(rb'\x1b\[8;(\d+);(\d+)t',d):
     fcntl.ioctl(fd,termios.TIOCSWINSZ,struct.pack('HHHH',int(rr),int(cc),0,0))
+   rr,cc=struct.unpack('HHHH',fcntl.ioctl(fd,termios.TIOCGWINSZ,b'\0'*8))[:2]
+   if b'\x1b[6n' in d:os.write(fd,('\x1b[%d;1R'%rr).encode())
+   if b'\x1b[18t' in d:os.write(fd,('\x1b[8;%d;%dt'%(rr,cc)).encode())
   screen.feed(b)
  def send(b,wait=.35):os.write(fd,b);pump(wait)
  def check(name,ok):results.append(bool(ok));print(('PASS' if ok else 'FAIL'),name,flush=True)
@@ -47,6 +48,7 @@ for kind in ['display']:
   check('Display applies 25x80',struct.unpack('HHHH',fcntl.ioctl(fd,termios.TIOCGWINSZ,b'\0'*8))[:2]==(25,80))
   send(b'\x1b[17;5~',.6)
   for _ in range(8):send(b'\x1b[6~',.1)
+  (work/'shrunk.screen').write_text(screen.text())
   check('inactive document cursor fits resized desktop',screen.r < 23 and screen.c < 79)
   check('inactive document last line visible','first line 100' in '\n'.join(''.join(r) for r in screen.g[2:23]))
   # Return to large grid while first is active; second must also resize.
